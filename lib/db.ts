@@ -45,7 +45,7 @@ export interface ReviewNote {
 export async function getCombinedProfile(authUserId: string, authEmail?: string): Promise<UserProfile | null> {
     try {
         const { data, error } = await supabase
-            .from('users')
+            .from('cpa_users')
             .select('*')
             .eq('id', authUserId)
             .single();
@@ -72,7 +72,7 @@ export async function getCombinedProfile(authUserId: string, authEmail?: string)
 export async function createPublicProfile(userId: string, username: string): Promise<boolean> {
     try {
         const { error } = await supabase
-            .from('users')
+            .from('cpa_users')
             .insert({
                 id: userId,
                 username,
@@ -95,7 +95,7 @@ export async function createPublicProfile(userId: string, username: string): Pro
 export async function updateProgress(id: string, level: number, exp: number): Promise<boolean> {
     try {
         const { error } = await supabase
-            .from('users')
+            .from('cpa_users')
             .update({ level, exp })
             .eq('id', id);
 
@@ -113,7 +113,7 @@ export async function updateProgress(id: string, level: number, exp: number): Pr
 export async function checkUsernameExists(username: string): Promise<boolean> {
     try {
         const { data, error } = await supabase
-            .from('users')
+            .from('cpa_users')
             .select('username')
             .eq('username', username);
 
@@ -142,7 +142,7 @@ export async function saveReviewNote(
         // Look up question ID
         if (questionTitle) {
             const { data, error } = await supabase
-                .from('audit_questions')
+                .from('cpa_questions')
                 .select('id')
                 .eq('question_title', questionTitle);
 
@@ -152,7 +152,7 @@ export async function saveReviewNote(
         }
 
         const { error } = await supabase
-            .from('review_notes')
+            .from('cpa_review_notes')
             .insert({
                 user_id: userId,
                 question_id: questionId,
@@ -175,8 +175,8 @@ export async function saveReviewNote(
 export async function getUserReviewNotes(userId: string): Promise<ReviewNote[]> {
     try {
         const { data, error } = await supabase
-            .from('review_notes')
-            .select('*, audit_questions(*)')
+            .from('cpa_review_notes')
+            .select('*, cpa_questions(*)')
             .eq('user_id', userId)
             .order('created_at', { ascending: false });
 
@@ -186,7 +186,7 @@ export async function getUserReviewNotes(userId: string): Promise<ReviewNote[]> 
         }
 
         return (data || []).map((item: any) => {
-            const q = item.audit_questions || {};
+            const q = item.cpa_questions || {};
             return {
                 id: item.id,
                 user_id: item.user_id,
@@ -212,7 +212,7 @@ export async function getUserReviewNotes(userId: string): Promise<ReviewNote[]> 
 export async function deleteReviewNote(noteId: number): Promise<boolean> {
     try {
         const { error } = await supabase
-            .from('review_notes')
+            .from('cpa_review_notes')
             .delete()
             .eq('id', noteId);
 
@@ -232,7 +232,7 @@ export async function deleteReviewNote(noteId: number): Promise<boolean> {
 export async function getLeaderboardData(): Promise<Omit<UserProfile, 'email'>[]> {
     try {
         const { data, error } = await supabase
-            .from('users')
+            .from('cpa_users')
             .select('id, username, role, level, exp')
             .order('exp', { ascending: false })
             .limit(10);
@@ -251,7 +251,7 @@ export async function getLeaderboardData(): Promise<Omit<UserProfile, 'email'>[]
 export async function getAllUsers(): Promise<UserProfile[]> {
     try {
         const { data, error } = await supabase
-            .from('users')
+            .from('cpa_users')
             .select('*')
             .order('username', { ascending: true });
 
@@ -269,7 +269,7 @@ export async function getAllUsers(): Promise<UserProfile[]> {
 export async function updateUserRole(userId: string, newRole: string): Promise<boolean> {
     try {
         const { error } = await supabase
-            .from('users')
+            .from('cpa_users')
             .update({ role: newRole })
             .eq('id', userId);
 
@@ -289,7 +289,7 @@ export async function updateUserRole(userId: string, newRole: string): Promise<b
 export async function fetchAllQuestions(): Promise<AuditQuestion[]> {
     try {
         const { data, error } = await supabase
-            .from('audit_questions')
+            .from('cpa_questions')
             .select('*')
             .order('id', { ascending: true });
 
@@ -307,7 +307,7 @@ export async function fetchAllQuestions(): Promise<AuditQuestion[]> {
 export async function addQuestion(question: Omit<AuditQuestion, 'id'>): Promise<boolean> {
     try {
         const { error } = await supabase
-            .from('audit_questions')
+            .from('cpa_questions')
             .insert(question);
 
         if (error) {
@@ -327,7 +327,7 @@ export async function updateQuestion(id: number, question: Partial<AuditQuestion
         delete cleanData.id;
 
         const { error } = await supabase
-            .from('audit_questions')
+            .from('cpa_questions')
             .update(cleanData)
             .eq('id', id);
 
@@ -345,7 +345,7 @@ export async function updateQuestion(id: number, question: Partial<AuditQuestion
 export async function deleteQuestion(id: number): Promise<boolean> {
     try {
         const { error } = await supabase
-            .from('audit_questions')
+            .from('cpa_questions')
             .delete()
             .eq('id', id);
 

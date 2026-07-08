@@ -14,7 +14,7 @@ export async function GET() {
 
     try {
         const { data, error } = await supabase
-            .from('audit_questions')
+            .from('cpa_questions')
             .select('*')
             .limit(1);
 
