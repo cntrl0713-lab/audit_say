@@ -45,7 +45,7 @@ export interface ReviewNote {
 export async function getCombinedProfile(authUserId: string, authEmail?: string): Promise<UserProfile | null> {
     try {
         const { data, error } = await supabase
-            .from('users')
+            .from('user_cpa')
             .select('*')
             .eq('id', authUserId)
             .single();
@@ -72,7 +72,7 @@ export async function getCombinedProfile(authUserId: string, authEmail?: string)
 export async function createPublicProfile(userId: string, username: string): Promise<boolean> {
     try {
         const { error } = await supabase
-            .from('users')
+            .from('user_cpa')
             .insert({
                 id: userId,
                 username,
@@ -95,7 +95,7 @@ export async function createPublicProfile(userId: string, username: string): Pro
 export async function updateProgress(id: string, level: number, exp: number): Promise<boolean> {
     try {
         const { error } = await supabase
-            .from('users')
+            .from('user_cpa')
             .update({ level, exp })
             .eq('id', id);
 
@@ -113,7 +113,7 @@ export async function updateProgress(id: string, level: number, exp: number): Pr
 export async function checkUsernameExists(username: string): Promise<boolean> {
     try {
         const { data, error } = await supabase
-            .from('users')
+            .from('user_cpa')
             .select('username')
             .eq('username', username);
 
@@ -232,7 +232,7 @@ export async function deleteReviewNote(noteId: number): Promise<boolean> {
 export async function getLeaderboardData(): Promise<Omit<UserProfile, 'email'>[]> {
     try {
         const { data, error } = await supabase
-            .from('users')
+            .from('user_cpa')
             .select('id, username, role, level, exp')
             .order('exp', { ascending: false })
             .limit(10);
@@ -251,7 +251,7 @@ export async function getLeaderboardData(): Promise<Omit<UserProfile, 'email'>[]
 export async function getAllUsers(): Promise<UserProfile[]> {
     try {
         const { data, error } = await supabase
-            .from('users')
+            .from('user_cpa')
             .select('*')
             .order('username', { ascending: true });
 
@@ -269,7 +269,7 @@ export async function getAllUsers(): Promise<UserProfile[]> {
 export async function updateUserRole(userId: string, newRole: string): Promise<boolean> {
     try {
         const { error } = await supabase
-            .from('users')
+            .from('user_cpa')
             .update({ role: newRole })
             .eq('id', userId);
 
