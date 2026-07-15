@@ -1,4 +1,5 @@
-import { supabase, getSupabaseAdmin } from './supabase';
+import { supabase } from './supabase';
+import { getSupabaseAdmin } from './supabaseAdmin';
 
 export interface UserProfile {
     id: string;
@@ -92,11 +93,26 @@ export async function createPublicProfile(userId: string, username: string): Pro
     }
 }
 
-export async function updateProgress(id: string, level: number, exp: number): Promise<boolean> {
+export async function incrementProgress(id: string, addedExp: number): Promise<boolean> {
     try {
-        const { error } = await supabase
+        const adminSupabase = getSupabaseAdmin();
+
+        // Transactional increment approach since Supabase SDK doesn't have a direct increment method
+        // (If there are concurrency issues, RPC is better, but this solves the lost update over client state)
+        const { data, error: selectError } = await adminSupabase
             .from('user_cpa')
-            .update({ level, exp })
+            .select('exp')
+            .eq('id', id)
+            .single();
+
+        if (selectError || !data) return false;
+
+        const newExp = (data.exp || 0) + addedExp;
+        const newLevel = 1 + Math.floor(newExp / 100);
+
+        const { error } = await adminSupabase
+            .from('user_cpa')
+            .update({ level: newLevel, exp: newExp })
             .eq('id', id);
 
         if (error) {
@@ -105,7 +121,7 @@ export async function updateProgress(id: string, level: number, exp: number): Pr
         }
         return true;
     } catch (err) {
-        console.error('Error in updateProgress:', err);
+        console.error('Error in incrementProgress:', err);
         return false;
     }
 }
@@ -119,7 +135,7 @@ export async function checkUsernameExists(username: string): Promise<boolean> {
 
         if (error) {
             console.error('Error checking username:', error);
-            return false;
+            return true; // Fail closed: assume exists to prevent overlaps
         }
         return data.length > 0;
     } catch (err) {
@@ -132,26 +148,14 @@ export async function checkUsernameExists(username: string): Promise<boolean> {
 
 export async function saveReviewNote(
     userId: string,
-    questionTitle: string,
+    questionId: number,
     userAnswer: string,
     score: number
 ): Promise<boolean> {
     try {
-        let questionId: number | null = null;
 
-        // Look up question ID
-        if (questionTitle) {
-            const { data, error } = await supabase
-                .from('cpa_questions')
-                .select('id')
-                .eq('question_title', questionTitle);
-
-            if (!error && data && data.length > 0) {
-                questionId = data[0].id;
-            }
-        }
-
-        const { error } = await supabase
+        const adminSupabase = getSupabaseAdmin();
+        const { error } = await adminSupabase
             .from('cpa_review_notes')
             .insert({
                 user_id: userId,
@@ -182,7 +186,7 @@ export async function getUserReviewNotes(userId: string): Promise<ReviewNote[]> 
 
         if (error) {
             console.error('Error getting review notes:', error);
-            return [];
+            throw new Error(`Failed to load review notes: ${error.message}`);
         }
 
         return (data || []).map((item: any) => {
@@ -205,16 +209,18 @@ export async function getUserReviewNotes(userId: string): Promise<ReviewNote[]> 
         });
     } catch (err) {
         console.error('Error in getUserReviewNotes:', err);
-        return [];
+        throw err;
     }
 }
 
-export async function deleteReviewNote(noteId: number): Promise<boolean> {
+export async function deleteReviewNote(noteId: number, userId: string): Promise<boolean> {
     try {
-        const { error } = await supabase
+        const adminSupabase = getSupabaseAdmin();
+        const { error } = await adminSupabase
             .from('cpa_review_notes')
             .delete()
-            .eq('id', noteId);
+            .eq('id', noteId)
+            .eq('user_id', userId);
 
         if (error) {
             console.error('Error deleting review note:', error);
@@ -239,14 +245,16 @@ export async function getLeaderboardData(): Promise<Omit<UserProfile, 'email'>[]
 
         if (error) {
             console.error('Error getting leaderboard:', error);
-            return [];
+            throw new Error(`Failed to load leaderboard: ${error.message}`);
         }
         return data || [];
     } catch (err) {
         console.error('Error in getLeaderboardData:', err);
-        return [];
+        throw err;
     }
 }
+
+
 
 export async function getAllUsers(): Promise<UserProfile[]> {
     try {
@@ -257,18 +265,19 @@ export async function getAllUsers(): Promise<UserProfile[]> {
 
         if (error) {
             console.error('Error getting all users:', error);
-            return [];
+            throw new Error(`Failed to load users: ${error.message}`);
         }
         return data || [];
     } catch (err) {
         console.error('Error in getAllUsers:', err);
-        return [];
+        throw err;
     }
 }
 
 export async function updateUserRole(userId: string, newRole: string): Promise<boolean> {
     try {
-        const { error } = await supabase
+        const adminSupabase = getSupabaseAdmin();
+        const { error } = await adminSupabase
             .from('user_cpa')
             .update({ role: newRole })
             .eq('id', userId);
@@ -286,18 +295,18 @@ export async function updateUserRole(userId: string, newRole: string): Promise<b
 
 // --- Question Administration ---
 
-export async function fetchAllQuestions(): Promise<AuditQuestion[]> {
+export async function fetchAllQuestions(stripAnswers: boolean = true): Promise<AuditQuestion[]> {
     try {
         const { data, error } = await supabase
             .from('cpa_questions')
-            .select('*')
+            .select(stripAnswers ? 'id, part, chapter, standard, question_title, question_description, keywords' : '*')
             .order('id', { ascending: true });
 
         if (error) {
             console.error('Error loading questions:', error);
             return [];
         }
-        return data || [];
+        return (data as any as AuditQuestion[]) || [];
     } catch (err) {
         console.error('Error in fetchAllQuestions:', err);
         return [];
@@ -306,7 +315,8 @@ export async function fetchAllQuestions(): Promise<AuditQuestion[]> {
 
 export async function addQuestion(question: Omit<AuditQuestion, 'id'>): Promise<boolean> {
     try {
-        const { error } = await supabase
+        const adminSupabase = getSupabaseAdmin();
+        const { error } = await adminSupabase
             .from('cpa_questions')
             .insert(question);
 
@@ -326,7 +336,8 @@ export async function updateQuestion(id: number, question: Partial<AuditQuestion
         const cleanData = { ...question };
         delete cleanData.id;
 
-        const { error } = await supabase
+        const adminSupabase = getSupabaseAdmin();
+        const { error } = await adminSupabase
             .from('cpa_questions')
             .update(cleanData)
             .eq('id', id);
@@ -344,7 +355,8 @@ export async function updateQuestion(id: number, question: Partial<AuditQuestion
 
 export async function deleteQuestion(id: number): Promise<boolean> {
     try {
-        const { error } = await supabase
+        const adminSupabase = getSupabaseAdmin();
+        const { error } = await adminSupabase
             .from('cpa_questions')
             .delete()
             .eq('id', id);

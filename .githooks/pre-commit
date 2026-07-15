@@ -1,0 +1,25 @@
+#!/bin/sh
+# Pre-commit gate: block the commit if typecheck OR tests fail.
+# Purpose: catch regressions at commit time, not later at review.
+#   - typecheck catches type/shape/signature mismatches (e.g. R2: string passed as a numeric id).
+#   - tests catch type-valid logic bugs (e.g. R1: matching by array index instead of question id).
+# This is enforcement by tool, not by prompt.
+
+echo "> Gate 1/2: typecheck (npm run typecheck)..."
+npm run typecheck --silent
+if [ $? -ne 0 ]; then
+  echo "x Typecheck FAILED - commit blocked. Fix the type errors above, then re-commit."
+  echo "  (Bypass in a genuine emergency only: git commit --no-verify)"
+  exit 1
+fi
+echo "v Typecheck passed."
+
+echo "> Gate 2/2: tests (npm test)..."
+npm test --silent
+if [ $? -ne 0 ]; then
+  echo "x Tests FAILED - commit blocked. Fix the failing tests above, then re-commit."
+  echo "  (Bypass in a genuine emergency only: git commit --no-verify)"
+  exit 1
+fi
+echo "v Tests passed."
+exit 0

@@ -1,18 +1,12 @@
 import { createClient } from '@supabase/supabase-js';
+import { createBrowserClient } from '@supabase/ssr';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error('Supabase URL or Anon Key is missing in environment variables.');
+}
 
 // Client-side & public server-side client
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-// Admin-side client for privileged operations (running only on Node.js/server context)
-export const getSupabaseAdmin = () => {
-    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder';
-    return createClient(supabaseUrl, serviceRoleKey, {
-        auth: {
-            autoRefreshToken: false,
-            persistSession: false,
-        },
-    });
-};
+export const supabase = createBrowserClient(supabaseUrl, supabaseAnonKey);

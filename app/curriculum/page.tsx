@@ -65,9 +65,15 @@ export default function CurriculumPage() {
                 (partName) => partName.includes(p)
             ) || `PART${p}`;
 
+            const cMatch = c.match(/\d+/);
+            const cNum = cMatch ? cMatch[0] : c;
+
             const chapKey = Object.keys(structure.hierarchy[partKey] || {}).find(
-                (cName) => cName === `ch${c}` || cName.includes(c)
-            ) || `ch${c}`;
+                (cName) => {
+                    const match = cName.match(/\d+/);
+                    return match ? match[0] === cNum : false;
+                }
+            ) || `ch${cNum}`;
 
             const chapName = structure.nameMap[chapKey] || chapKey;
 

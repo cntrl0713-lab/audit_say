@@ -20,9 +20,13 @@ import {
     ROLE_NAMES
 } from '../../lib/utils';
 import { AuditQuestion } from '../../lib/db';
+import type { BatchItem, GradeResult } from '../../lib/serverUtils';
 import { ArrowLeft, ArrowRight, Home, RefreshCw, CheckCircle, AlertTriangle, HelpCircle } from 'lucide-react';
 
 type AppState = 'LOADING' | 'SETUP' | 'SOLVING' | 'REVIEW';
+
+// One graded question: the source question, the user's answer, and the grade result.
+type EvalResult = { q: AuditQuestion; ans: string; eval: GradeResult };
 
 // Nice Archery Target SVG component to replace matplotlib draw_target
 const TargetChart: React.FC<{ score: number }> = ({ score }) => {
@@ -94,12 +98,12 @@ export default function QuizPage() {
     const [selectedChapter, setSelectedChapter] = useState('전체');
     const [selectedStandard, setSelectedStandard] = useState('전체');
     const [selectedCount, setSelectedCount] = useState<number>(1);
-    const [maxSelectableQuestions, setMaxSelectableQuestions] = useState(3);
+    const [savedNotes, setSavedNotes] = useState<Set<number>>(new Set());
 
     // Quiz Active States
     const [quizList, setQuizList] = useState<AuditQuestion[]>([]);
-    const [answers, setAnswers] = useState<{ [title: string]: string }>({});
-    const [results, setResults] = useState<any[]>([]);
+    const [answers, setAnswers] = useState<{ [id: string]: string }>({});
+    const [results, setResults] = useState<EvalResult[]>([]);
     const [reviewIdx, setReviewIdx] = useState(0);
     const [gradingProgress, setGradingProgress] = useState(false);
     const [gradingMessage, setGradingMessage] = useState('');
@@ -122,6 +126,8 @@ export default function QuizPage() {
                 setAppState('SETUP');
             } catch (err) {
                 console.error('데이터 로그 에러:', err);
+                alert('데이터를 로드하는 중 오류가 발생했습니다. 새로고침 해주세요.');
+                setAppState('SETUP'); // At least don't stay loading
             }
         }
         loadData();
@@ -149,17 +155,13 @@ export default function QuizPage() {
         }
     };
 
-    // Adjust max selectable questions based on user roles
+    // Adjust selectable questions based on user roles
     useEffect(() => {
         if (!user) return;
         if (user.role === 'GUEST' || user.role === 'MEMBER') {
-            setMaxSelectableQuestions(3);
             if (selectedCount > 3) setSelectedCount(3);
-        } else {
-            // PRO or ADMIN
-            setMaxSelectableQuestions(9999);
         }
-    }, [user]);
+    }, [user, selectedCount]);
 
     const handleStartQuiz = () => {
         // Map chapter short code to full name for matching
@@ -182,9 +184,9 @@ export default function QuizPage() {
         }
 
         setQuizList(quizSet);
-        const initialAnswers: { [title: string]: string } = {};
+        const initialAnswers: { [id: string]: string } = {};
         quizSet.forEach((q) => {
-            initialAnswers[q.question_title] = '';
+            initialAnswers[q.id.toString()] = '';
         });
         setAnswers(initialAnswers);
         setAppState('SOLVING');
@@ -196,12 +198,12 @@ export default function QuizPage() {
         setGradingProgress(true);
         setGradingMessage('키워드 매칭 및 AI 채점 시작...');
 
-        const batchItems: any[] = [];
-        const evaluationResults: any[] = new Array(quizList.length).fill(null);
+        const batchItems: BatchItem[] = [];
+        const evaluationResults: (EvalResult | null)[] = new Array(quizList.length).fill(null);
 
         // 1. Keyword check
         quizList.forEach((q, idx) => {
-            const ans = answers[q.question_title] || '';
+            const ans = answers[q.id.toString()] || '';
             if (!ans.trim()) {
                 evaluationResults[idx] = {
                     q,
@@ -211,14 +213,15 @@ export default function QuizPage() {
             } else {
                 const keywords = q.keywords || [];
                 const matched = calculateMatchedCount(ans, keywords);
+                const reqCount = Math.min(3, keywords.length);
 
-                if (matched < 3) {
+                if (keywords.length > 0 && matched < reqCount) {
                     evaluationResults[idx] = {
                         q,
                         ans,
                         eval: {
                             score: 0.0,
-                            evaluation: `핵심 키워드 부족 (3개 미만 감지됨: ${matched}개). 아래 필수 키워드가 답안에 적절히 서술되었는지 확인하며 조금 더 구체적으로 작성해 주세요.\n\n*필수 키워드 가이드: ${keywords.join(', ')}*`
+                            evaluation: `핵심 키워드 부족 (요구치 ${reqCount}개 미만 감지됨: ${matched}개). 필수 키워드가 답안에 적절히 서술되었는지 확인하며 조금 더 구체적으로 작성해 주세요.\n\n*필수 키워드: ${keywords.join(', ')}*`
                         }
                     };
                 } else {
@@ -228,6 +231,7 @@ export default function QuizPage() {
 
                     batchItems.push({
                         id: idx,
+                        qid: Number(q.id),
                         q: `${q.question_title} - ${q.question_description}`,
                         a: ans,
                         m: mStr,
@@ -267,51 +271,80 @@ export default function QuizPage() {
         }
 
         // 3. Save progress for Non-guests
-        if (user.role !== 'GUEST') {
-            setGradingMessage('학습 경력 업데이트 중...');
-            // Save low score notes (<= 5.0) automatically for PRO or ADMIN
-            for (const r of evaluationResults) {
-                if ((user.role === 'PRO' || user.role === 'ADMIN') && r.eval.score <= 5.0) {
-                    await saveQuizNoteAction(user.id, r.q.question_title, r.ans, r.eval.score);
+        try {
+            if (user.role !== 'GUEST') {
+                setGradingMessage('학습 경력 업데이트 중...');
+                // Save low score notes (<= 5.0) automatically for PRO or ADMIN
+                const autoSaved = new Set<number>();
+                for (let i = 0; i < evaluationResults.length; i++) {
+                    const r = evaluationResults[i];
+                    if (!r) continue;
+                    if ((user.role === 'PRO' || user.role === 'ADMIN') && r.eval.score >= 0 && r.eval.score <= 5.0) {
+                        try {
+                            const success = await saveQuizNoteAction(user.id, Number(r.q.id), r.ans, r.eval.score);
+                            if (success) {
+                                autoSaved.add(i);
+                            }
+                        } catch (e) {
+                            console.error('자동 보관 실패:', e);
+                        }
+                    }
                 }
+                setSavedNotes(autoSaved);
+
+                const totalScore = evaluationResults.reduce((acc, curr) => acc + (curr ? Math.max(0, curr.eval.score) : 0), 0);
+                if (totalScore > 0) {
+                    await updateUserProgressAction(user.id, totalScore);
+                }
+                await refreshProfile();
             }
+        } catch (err) {
+            console.error('Error saving progress:', err);
+        } finally {
+            // Mark as solved in this session
+            const updatedSolved = new Set(solvedQuestions);
+            quizList.forEach((q) => updatedSolved.add(q.id.toString()));
+            setSolvedQuestions(updatedSolved);
 
-            // Exp and Level calculations
-            const totalScore = evaluationResults.reduce((acc, curr) => acc + curr.eval.score, 0);
-            const newExp = user.exp + totalScore;
-            const newLevel = 1 + Math.floor(newExp / 100);
-
-            await updateUserProgressAction(user.id, newLevel, newExp);
-            await refreshProfile();
+            setResults(evaluationResults.filter((r): r is EvalResult => r !== null));
+            setReviewIdx(0);
+            setGradingProgress(false);
+            setAppState('REVIEW');
         }
-
-        // Mark as solved in this session
-        const updatedSolved = new Set(solvedQuestions);
-        quizList.forEach((q) => updatedSolved.add(q.question_title));
-        setSolvedQuestions(updatedSolved);
-
-        setResults(evaluationResults);
-        setReviewIdx(0);
-        setGradingProgress(false);
-        setAppState('REVIEW');
     };
 
     const handleSaveReportNote = async () => {
         if (!user || user.role === 'GUEST') return;
+        if (savedNotes.has(reviewIdx)) {
+            setToastMsg('이미 자동 저장 완료되었거나 방금 보관된 노트입니다.');
+            setTimeout(() => setToastMsg(null), 3000);
+            return;
+        }
+
         const currentRes = results[reviewIdx];
 
-        const success = await saveQuizNoteAction(
-            user.id,
-            currentRes.q.question_title,
-            currentRes.ans,
-            currentRes.eval.score
-        );
+        try {
+            const success = await saveQuizNoteAction(
+                user.id,
+                Number(currentRes.q.id),
+                currentRes.ans,
+                currentRes.eval.score
+            );
 
-        if (success) {
-            setToastMsg('오답노트에 성공적으로 저장되었습니다!');
-            setTimeout(() => setToastMsg(null), 3000);
-        } else {
-            alert('오답노트 저장 실패 (로그 서버를 참고해 주세요)');
+            if (success) {
+                setSavedNotes((prev) => {
+                    const newSet = new Set(prev);
+                    newSet.add(reviewIdx);
+                    return newSet;
+                });
+                setToastMsg('오답노트에 성공적으로 저장되었습니다!');
+                setTimeout(() => setToastMsg(null), 3000);
+            } else {
+                alert('오답노트 저장 실패 (로그 서버를 참고해 주세요)');
+            }
+        } catch (err) {
+            console.error('Manual Note Save Error:', err);
+            alert('오답노트 예약에 문제가 생겼습니다.');
         }
     };
 
@@ -487,7 +520,7 @@ export default function QuizPage() {
                 ) : (
                     <form onSubmit={handleAnswerSubmit} className="space-y-6">
                         {quizList.map((q, idx) => (
-                            <div key={q.question_title} className="bg-card border border-card-border rounded-xl p-5 space-y-4 shadow-md">
+                            <div key={q.id} className="bg-card border border-card-border rounded-xl p-5 space-y-4 shadow-md">
                                 <div className="flex items-start justify-between gap-4">
                                     <span className="px-2.5 py-1 bg-accent/25 text-accent border border-accent/20 rounded-lg text-xs font-bold">
                                         Q{idx + 1}. {q.question_title}
@@ -504,8 +537,8 @@ export default function QuizPage() {
                                     </label>
                                     <textarea
                                         rows={4}
-                                        value={answers[q.question_title] || ''}
-                                        onChange={(e) => setAnswers({ ...answers, [q.question_title]: e.target.value })}
+                                        value={answers[q.id.toString()] || ''}
+                                        onChange={(e) => setAnswers({ ...answers, [q.id.toString()]: e.target.value })}
                                         placeholder="인과관계(감사절차-결과/대응)를 명확히 작성하고 회계감사 전문 용어를 올바르게 활용하여 기재해주세요."
                                         className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg p-3 text-sm focus:outline-none transition-colors"
                                         required
@@ -599,15 +632,7 @@ export default function QuizPage() {
                             </span>
 
                             <div className="text-sm leading-relaxed text-foreground/90 font-medium space-y-1">
-                                {Array.isArray(qData.model_answer) ? (
-                                    <ul className="list-disc list-inside space-y-1">
-                                        {qData.model_answer.map((ans: string, i: number) => (
-                                            <li key={i}>{ans}</li>
-                                        ))}
-                                    </ul>
-                                ) : (
-                                    <p className="whitespace-pre-line">{qData.model_answer}</p>
-                                )}
+                                {currentRes.eval.model_answer || '이 문제를 풀 당시 사용 가능한 모범 답안 가이드가 없었습니다.'}
                             </div>
                         </div>
 
@@ -639,9 +664,13 @@ export default function QuizPage() {
                             {user?.role !== 'GUEST' && (user?.role === 'PRO' || user?.role === 'ADMIN') && (
                                 <button
                                     onClick={handleSaveReportNote}
-                                    className="w-full py-2.5 bg-card-border border border-card-border hover:bg-card-border/80 text-foreground font-bold rounded-lg text-sm transition-colors cursor-pointer"
+                                    disabled={savedNotes.has(reviewIdx)}
+                                    className={`w-full py-2.5 font-bold rounded-lg text-sm transition-colors cursor-pointer ${savedNotes.has(reviewIdx)
+                                        ? 'bg-success/20 text-success border border-success/30 cursor-not-allowed'
+                                        : 'bg-card-border border border-card-border hover:bg-card-border/80 text-foreground'
+                                        }`}
                                 >
-                                    오답노트에 수동 저장
+                                    {savedNotes.has(reviewIdx) ? '✅ 보관 완료' : '오답노트에 수동 저장'}
                                 </button>
                             )}
 

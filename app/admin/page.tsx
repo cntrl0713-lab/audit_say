@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import {
     getStructureData,
-    getNormalizedQuestions,
+    getAdminQuestions,
     getAllUsersAction,
     updateUserRoleAction,
     addQuestionAction,
@@ -16,7 +16,7 @@ import { AuditQuestion, UserProfile } from '../../lib/db';
 import { Plus, Trash2, Edit3, Settings, ShieldAlert, Users, Search } from 'lucide-react';
 
 export default function AdminPage() {
-    const { user, refreshProfile } = useAuth();
+    const { user, loading: authLoading, refreshProfile } = useAuth();
 
     // Tab states
     const [activeTab, setActiveTab] = useState<'add' | 'edit' | 'users'>('add');
@@ -28,6 +28,7 @@ export default function AdminPage() {
     const [loading, setLoading] = useState(true);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const [successMsg, setSuccessMsg] = useState<string | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Form State: Add Question
     const [addPart, setAddPart] = useState('');
@@ -66,7 +67,7 @@ export default function AdminPage() {
             const struct = await getStructureData();
             setStructure(struct);
 
-            const qs = await getNormalizedQuestions();
+            const qs = await getAdminQuestions();
             setQuestions(qs);
 
             const allUsers = await getAllUsersAction();
@@ -85,10 +86,23 @@ export default function AdminPage() {
     };
 
     useEffect(() => {
-        if (user?.role === 'ADMIN') {
-            loadAdminData();
+        if (!authLoading) {
+            if (user?.role === 'ADMIN') {
+                loadAdminData();
+            } else {
+                setLoading(false);
+            }
         }
-    }, [user]);
+    }, [user, authLoading]);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col items-center justify-center flex-grow py-20">
+                <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+                <p className="mt-4 text-foreground/60 font-semibold text-sm">콘솔 데이터 리프레시 중...</p>
+            </div>
+        );
+    }
 
     // Auth block
     if (!user || user.role !== 'ADMIN') {
@@ -103,18 +117,11 @@ export default function AdminPage() {
         );
     }
 
-    if (loading) {
-        return (
-            <div className="flex flex-col items-center justify-center flex-grow py-20">
-                <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
-                <p className="mt-4 text-foreground/60 font-semibold text-sm">콘솔 데이터 리프레시 중...</p>
-            </div>
-        );
-    }
-
     // --- Add Question Form Submission ---
     const handleAddQuestion = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (isSubmitting) return;
+
         if (!addTitle || !addDesc) {
             setErrorMsg('제목과 본문 상세 내용은 필수작성 사항입니다.');
             return;
@@ -125,6 +132,8 @@ export default function AdminPage() {
             setErrorMsg('챕터 코드를 입력 또는 선택해 주세요.');
             return;
         }
+
+        setIsSubmitting(true);
 
         // Extract numbers safely
         const partNum = addPart.match(/\d+/) ? addPart.match(/\d+/)![0] : addPart;
@@ -144,22 +153,28 @@ export default function AdminPage() {
             explanation: addExpl
         };
 
-        const success = await addQuestionAction(questionData);
-        if (success) {
-            setSuccessMsg(`문제 '${addTitle}' 추가 완료!`);
-            setErrorMsg(null);
-            // Reset form
-            setAddTitle('');
-            setAddDesc('');
-            setAddKeywords('');
-            setAddModelAns('');
-            setAddExpl('');
-            setAddStd('');
-            // Reload db data
-            const qs = await getNormalizedQuestions();
-            setQuestions(qs);
-        } else {
-            setErrorMsg('문제 추가에 실패했습니다. 형식 오류를 확인하세요.');
+        try {
+            const success = await addQuestionAction(questionData);
+            if (success) {
+                setSuccessMsg(`문제 '${addTitle}' 추가 완료!`);
+                setErrorMsg(null);
+                // Reset form
+                setAddTitle('');
+                setAddDesc('');
+                setAddKeywords('');
+                setAddModelAns('');
+                setAddExpl('');
+                setAddStd('');
+                // Reload db data
+                const qs = await getAdminQuestions();
+                setQuestions(qs);
+            } else {
+                setErrorMsg('문제 추가에 실패했습니다. 형식 오류를 확인하세요.');
+            }
+        } catch (e: any) {
+            setErrorMsg(`서버 오류 발생: ${e.message || String(e)}`);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -183,7 +198,9 @@ export default function AdminPage() {
     // --- Save Edited Question ---
     const handleUpdateQuestion = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!selectedQId) return;
+        if (!selectedQId || isSubmitting) return;
+
+        setIsSubmitting(true);
 
         const partNum = editPart.match(/\d+/) ? editPart.match(/\d+/)![0] : editPart;
         const chapNum = editChap.match(/\d+/) ? editChap.match(/\d+/)![0] : editChap;
@@ -191,25 +208,31 @@ export default function AdminPage() {
         const keywordsArray = editKeywords.split(',').map((k) => k.trim()).filter(Boolean);
         const modelAnsArray = editModelAns.split('\n').map((m) => m.trim()).filter(Boolean);
 
-        const success = await updateQuestionAction(selectedQId, {
-            part: partNum,
-            chapter: chapNum,
-            standard: editStd,
-            question_title: editTitle,
-            question_description: editDesc,
-            keywords: keywordsArray,
-            model_answer: modelAnsArray,
-            explanation: editExpl
-        });
+        try {
+            const success = await updateQuestionAction(selectedQId, {
+                part: partNum,
+                chapter: chapNum,
+                standard: editStd,
+                question_title: editTitle,
+                question_description: editDesc,
+                keywords: keywordsArray,
+                model_answer: modelAnsArray,
+                explanation: editExpl
+            });
 
-        if (success) {
-            setSuccessMsg('수정 사항이 데이터베이스에 영구 반영되었습니다.');
-            setErrorMsg(null);
-            // Reload db data
-            const qs = await getNormalizedQuestions();
-            setQuestions(qs);
-        } else {
-            setErrorMsg('수정 처리가 실패하였습니다.');
+            if (success) {
+                setSuccessMsg('수정 사항이 데이터베이스에 영구 반영되었습니다.');
+                setErrorMsg(null);
+                // Reload db data
+                const qs = await getAdminQuestions();
+                setQuestions(qs);
+            } else {
+                setErrorMsg('수정 처리가 실패하였습니다.');
+            }
+        } catch (e: any) {
+            setErrorMsg(`서버 오류 발생: ${e.message || String(e)}`);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -224,7 +247,7 @@ export default function AdminPage() {
             setErrorMsg(null);
             setSelectedQId(null);
             // Reload db data
-            const qs = await getNormalizedQuestions();
+            const qs = await getAdminQuestions();
             setQuestions(qs);
         } else {
             setErrorMsg('데이터베이스 삭제 오퍼레이션이 거부되었습니다.');
@@ -234,10 +257,8 @@ export default function AdminPage() {
     // --- Change User Role ---
     const handleChangeRole = async () => {
         if (!selectedUser) return;
-        if (selectedUser === '준영2') {
-            alert('보호 메커니즘: 최고 관리자 등급은 박탈할 수 없습니다.');
-            return;
-        }
+
+        // Removed hardcoded '준영2' check; server handles authorization completely.
 
         const success = await updateUserRoleAction(selectedUser, newRole);
         if (success) {
@@ -430,10 +451,17 @@ export default function AdminPage() {
 
                         <button
                             type="submit"
-                            className="w-full py-3 bg-primary hover:bg-primary-hover text-foreground font-black rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                            disabled={isSubmitting}
+                            className={`w-full py-3 font-black rounded-lg transition-colors flex items-center justify-center gap-1.5 ${isSubmitting ? 'bg-primary/50 text-foreground/50 cursor-not-allowed' : 'bg-primary hover:bg-primary-hover text-foreground cursor-pointer'}`}
                         >
-                            <Plus className="w-5 h-5" />
-                            <span>새로운 감사문제 추가하기</span>
+                            {isSubmitting ? (
+                                <div className="w-5 h-5 border-2 border-foreground/50 border-t-transparent rounded-full animate-spin"></div>
+                            ) : (
+                                <>
+                                    <Plus className="w-5 h-5" />
+                                    <span>새로운 감사문제 추가하기</span>
+                                </>
+                            )}
                         </button>
                     </form>
                 )}
@@ -444,7 +472,21 @@ export default function AdminPage() {
 
                         {/* Search Filter Panel */}
                         <div className="bg-card border border-card-border p-5 rounded-2xl shadow flex flex-col md:flex-row gap-4 items-end">
-                            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                            <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+                                <div>
+                                    <label className="block text-xs font-bold text-foreground/50 mb-1">Part 필터</label>
+                                    <select
+                                        value={partFilter}
+                                        onChange={(e) => setPartFilter(e.target.value)}
+                                        className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-3 py-2 text-sm focus:outline-none"
+                                    >
+                                        <option value="전체">전체 Parts</option>
+                                        {Array.from(new Set(questions.map((q) => String(q.part)))).sort().map((p) => (
+                                            <option key={p} value={p}>{p}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
                                 <div>
                                     <label className="block text-xs font-bold text-foreground/50 mb-1">Chapter 필터</label>
                                     <select
@@ -608,9 +650,14 @@ export default function AdminPage() {
 
                                 <button
                                     type="submit"
-                                    className="w-full py-3 bg-accent hover:bg-accent text-background font-black rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                                    disabled={isSubmitting}
+                                    className={`w-full py-3 font-black rounded-lg transition-colors flex items-center justify-center gap-1.5 ${isSubmitting ? 'bg-accent/50 text-background/50 cursor-not-allowed' : 'bg-accent hover:bg-accent text-background cursor-pointer'}`}
                                 >
-                                    <span>데이터베이스 반영 저장하기</span>
+                                    {isSubmitting ? (
+                                        <div className="w-5 h-5 border-2 border-background/50 border-t-transparent rounded-full animate-spin"></div>
+                                    ) : (
+                                        <span>데이터베이스 반영 저장하기</span>
+                                    )}
                                 </button>
                             </form>
                         )}
@@ -670,7 +717,7 @@ export default function AdminPage() {
                                     >
                                         <option value="">-- 사용자를 선택하세요 --</option>
                                         {users.map((u) => (
-                                            <option key={u.id} value={u.username}>
+                                            <option key={u.id} value={u.id}>
                                                 {u.username} ({ROLE_NAMES[u.role] || u.role})
                                             </option>
                                         ))}

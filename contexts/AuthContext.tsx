@@ -21,7 +21,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [loading, setLoading] = useState(true);
 
     const fetchProfile = async (authUserId: string, email?: string) => {
-        const profile = await getCombinedProfile(authUserId, email);
+        let profile = await getCombinedProfile(authUserId, email);
+
+        // Error Recovery (Deadlock fix): Auth user exists, but DB profile is missing.
+        if (!profile) {
+            const fallbackUsername = email ? email.split('@')[0] : `user_${authUserId.substring(0, 8)}`;
+            const recovered = await createPublicProfile(authUserId, fallbackUsername);
+            if (recovered) {
+                profile = await getCombinedProfile(authUserId, email);
+            }
+        }
+
         setUser(profile);
     };
 
@@ -115,16 +125,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             }
 
             if (data.user) {
-                // Create public profile
+                // If there's no session, it means email confirmation is required.
+                if (!data.session) {
+                    return { success: true, msg: 'CHECK_EMAIL' };
+                }
+
                 const profileCreated = await createPublicProfile(data.user.id, username);
                 if (profileCreated) {
-                    // If session is already active (auto-login enabled in Supabase)
-                    if (data.session) {
-                        await fetchProfile(data.user.id, data.user.email);
-                    }
+                    await fetchProfile(data.user.id, data.user.email);
                     return { success: true, msg: 'SUCCESS' };
                 } else {
-                    return { success: true, msg: 'CHECK_EMAIL' };
+                    return { success: false, error: '계정은 생성되었으나 프로필 설정에 실패했습니다.' };
                 }
             }
             return { success: false, error: '가입을 처리하는 도중 사용자 정보가 반환되지 않았습니다.' };

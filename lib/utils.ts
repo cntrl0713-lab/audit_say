@@ -1,4 +1,4 @@
-import { AuditQuestion } from './db';
+import type { AuditQuestion } from './db';
 
 export const ROLE_NAMES = {
     GUEST: '비회원',
@@ -98,22 +98,26 @@ export function getQuizSet(
     chapter: string,
     standard: string,
     numQuestions: number,
-    excludeTitles: string[] = []
+    excludeIds: string[] = []
 ): AuditQuestion[] {
-    const excludeSet = new Set(excludeTitles);
+    const excludeSet = new Set(excludeIds);
 
     const candidates = data.filter((q) => {
         const partMatch = q.part === part;
         const chapMatch = chapter === '전체' || q.chapter === chapter;
         const stdMatch = standard === '전체' || q.standard === standard;
-        const isNotExcluded = !excludeSet.has(q.question_title);
+        const isNotExcluded = !excludeSet.has(q.id.toString());
         return partMatch && chapMatch && stdMatch && isNotExcluded;
     });
 
     if (candidates.length === 0) return [];
     if (candidates.length <= numQuestions) return candidates;
 
-    // Shuffle candidates and return first N
-    const shuffled = [...candidates].sort(() => 0.5 - Math.random());
+    // Shuffle candidates and return first N using Fisher-Yates
+    const shuffled = [...candidates];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
     return shuffled.slice(0, numQuestions);
 }

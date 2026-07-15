@@ -130,10 +130,11 @@ export default function Home() {
           {activeTab === 'login' ? (
             <form onSubmit={handleLoginSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                <label htmlFor="login-email" className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
                   이메일 (Email)
                 </label>
                 <input
+                  id="login-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -144,11 +145,12 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                <label htmlFor="login-password" className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
                   비밀번호 (PW)
                 </label>
                 <div className="relative">
                   <input
+                    id="login-password"
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -158,6 +160,7 @@ export default function Home() {
                   />
                   <button
                     type="button"
+                    aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 표시"}
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/45 hover:text-foreground/90"
                   >
@@ -217,10 +220,11 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                <label htmlFor="signup-username" className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
                   닉네임 (Username)
                 </label>
                 <input
+                  id="signup-username"
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
@@ -231,10 +235,11 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                <label htmlFor="signup-password" className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
                   비밀번호 (PW)
                 </label>
                 <input
+                  id="signup-password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -245,10 +250,11 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                <label htmlFor="signup-password-confirm" className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
                   비밀번호 확인
                 </label>
                 <input
+                  id="signup-password-confirm"
                   type="password"
                   value={passwordConfirm}
                   onChange={(e) => setPasswordConfirm(e.target.value)}

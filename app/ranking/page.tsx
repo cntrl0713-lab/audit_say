@@ -16,14 +16,16 @@ interface LeaderboardUser {
 export default function RankingPage() {
     const [leaderboard, setLeaderboard] = useState<LeaderboardUser[]>([]);
     const [loading, setLoading] = useState(true);
+    const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
     useEffect(() => {
         async function loadLeaderboard() {
             try {
                 const data = await getLeaderboardAction();
                 setLeaderboard(data as LeaderboardUser[]);
-            } catch (err) {
+            } catch (err: any) {
                 console.error('랭킹 로드 오류:', err);
+                setErrorMsg(err.message || '랭킹 데이터를 불러오는 데 실패했습니다.');
             } finally {
                 setLoading(false);
             }
@@ -36,6 +38,16 @@ export default function RankingPage() {
             <div className="flex flex-col items-center justify-center flex-grow py-20">
                 <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
                 <p className="mt-4 text-foreground/60 font-semibold text-sm">리더보드 집계 중...</p>
+            </div>
+        );
+    }
+
+    if (errorMsg) {
+        return (
+            <div className="flex flex-col items-center justify-center flex-grow py-20 px-4">
+                <ShieldAlert className="w-16 h-16 text-danger mb-4" />
+                <h2 className="text-xl font-bold text-danger">⚠️ 데이터를 불러오지 못했습니다.</h2>
+                <p className="mt-2 text-foreground/60 font-semibold text-sm">{errorMsg}</p>
             </div>
         );
     }

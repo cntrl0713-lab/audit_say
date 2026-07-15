@@ -12,7 +12,7 @@ import { ReviewNote } from '../../lib/db';
 import { User, Award, BookOpen, Clock, Trash2, Folder, ChevronDown, ChevronRight, Lock } from 'lucide-react';
 
 export default function ProfilePage() {
-    const { user } = useAuth();
+    const { user, loading: authLoading } = useAuth();
 
     // States
     const [activeTab, setActiveTab] = useState<'stats' | 'notes'>('stats');
@@ -24,7 +24,10 @@ export default function ProfilePage() {
 
     useEffect(() => {
         async function loadProfileData() {
-            if (!user) return;
+            if (!user) {
+                setLoading(false);
+                return;
+            }
             try {
                 const struct = await getStructureData();
                 setStructure(struct);
@@ -42,7 +45,7 @@ export default function ProfilePage() {
         loadProfileData();
     }, [user]);
 
-    if (loading) {
+    if (loading || authLoading) {
         return (
             <div className="flex flex-col items-center justify-center flex-grow py-20">
                 <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
@@ -91,16 +94,22 @@ export default function ProfilePage() {
             let notePart = '기타';
             let noteChap = note.chapter || '미분류';
 
-            if (structure) {
-                // Look up standard code or chapter
-                const foundPart = Object.keys(structure.hierarchy).find((partName) => {
-                    const chaps = structure.hierarchy[partName];
-                    return Object.keys(chaps).some((chapName) => {
-                        const fullName = structure.nameMap[chapName] || chapName;
-                        return fullName === note.chapter || chapName === note.chapter;
-                    });
-                });
-                if (foundPart) notePart = foundPart;
+            if (structure && note.chapter) {
+                const cNum = note.chapter.match(/\d+/) ? note.chapter.match(/\d+/)![0] : note.chapter;
+                let found = false;
+                for (const pName of Object.keys(structure.hierarchy)) {
+                    const chaps = structure.hierarchy[pName];
+                    for (const cKey of Object.keys(chaps)) {
+                        const cKeyNum = cKey.match(/\d+/) ? cKey.match(/\d+/)![0] : cKey;
+                        if (cKeyNum === cNum) {
+                            notePart = pName;
+                            noteChap = structure.nameMap[cKey] || cKey;
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) break;
+                }
             }
 
             if (!grouped[notePart]) grouped[notePart] = {};
@@ -191,8 +200,8 @@ export default function ProfilePage() {
                 <button
                     onClick={() => setActiveTab('stats')}
                     className={`pb-3 px-6 text-sm font-extrabold border-b-2 transition-all cursor-pointer ${activeTab === 'stats'
-                            ? 'border-accent text-accent'
-                            : 'border-transparent text-foreground/40 hover:text-foreground/75'
+                        ? 'border-accent text-accent'
+                        : 'border-transparent text-foreground/40 hover:text-foreground/75'
                         }`}
                 >
                     📊 학습 통계
@@ -200,8 +209,8 @@ export default function ProfilePage() {
                 <button
                     onClick={() => setActiveTab('notes')}
                     className={`pb-3 px-6 text-sm font-extrabold border-b-2 transition-all cursor-pointer ${activeTab === 'notes'
-                            ? 'border-accent text-accent'
-                            : 'border-transparent text-foreground/40 hover:text-foreground/75'
+                        ? 'border-accent text-accent'
+                        : 'border-transparent text-foreground/40 hover:text-foreground/75'
                         }`}
                 >
                     📓 오답 노트 복습
@@ -225,7 +234,7 @@ export default function ProfilePage() {
                                 <div className="bg-card-border/30 border border-card-border/50 p-4 rounded-xl">
                                     <div className="text-xs font-bold text-foreground/50">누적 평균 평가점수</div>
                                     <div className="text-3xl font-extrabold text-warning mt-1">
-                                        {user.exp > 0 ? (Math.min(10, user.exp / Math.max(1, user.level))).toFixed(1) : '0.0'}{' '}
+                                        {notes.length > 0 ? (notes.reduce((acc, n) => acc + n.score, 0) / notes.length).toFixed(1) : '-.-'}{' '}
                                         <span className="text-sm font-normal text-foreground/45">/ 10.0 점</span>
                                     </div>
                                 </div>
@@ -267,7 +276,7 @@ export default function ProfilePage() {
                                 <Lock className="w-12 h-12 text-warning/60 mx-auto" />
                                 <h3 className="text-lg font-bold text-foreground/80">🔒 오답 노트 권한이 없습니다.</h3>
                                 <p className="text-sm text-foreground/50 max-w-md mx-auto">
-                                    오답 노트 영구보관 기능은 **등록공인회계사(PRO)** 및 **관리자(ADMIN)** 전용 혜택입니다.
+                                    오답 노트 영구보관 기능은 <b className="font-extrabold text-foreground/80">등록공인회계사(PRO)</b> 및 <b className="font-extrabold text-foreground/80">관리자(ADMIN)</b> 전용 혜택입니다.
                                 </p>
                             </div>
                         ) : notes.length === 0 ? (

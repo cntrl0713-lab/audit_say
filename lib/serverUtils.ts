@@ -72,9 +72,9 @@ export function loadStructure(): StructureData {
     return { hierarchy, nameMap, partCodeMap, chapterMap };
 }
 
-export async function loadDb(): Promise<AuditQuestion[]> {
+export async function loadDb(stripAnswers: boolean = true): Promise<AuditQuestion[]> {
     try {
-        const data = await fetchAllQuestions();
+        const data = await fetchAllQuestions(stripAnswers);
         const { partCodeMap, chapterMap } = loadStructure();
 
         return data.map((q) => {
@@ -108,6 +108,7 @@ export async function loadDb(): Promise<AuditQuestion[]> {
 
 export interface BatchItem {
     id: number;
+    qid: number;
     q: string;
     a: string;
     m: string;
@@ -118,6 +119,7 @@ export interface BatchItem {
 export interface GradeResult {
     score: number;
     evaluation: string;
+    model_answer?: string;
 }
 
 export async function gradeBatch(items: BatchItem[], apiKey: string): Promise<{ [id: number]: GradeResult }> {
@@ -185,33 +187,27 @@ export async function gradeBatch(items: BatchItem[], apiKey: string): Promise<{ 
             if (text.endsWith('```')) text = text.slice(0, -3);
             text = text.trim();
 
+            const parseScore = (s: any) => {
+                let fs = parseFloat(s);
+                if (isNaN(fs)) return 0;
+                return Math.max(0, Math.min(10, fs));
+            };
+
             const regexMatch = text.match(/\[[^]*\]/);
-            if (regexMatch) {
-                const resultList = JSON.parse(regexMatch[0]);
-                const outputMap: { [id: number]: GradeResult } = {};
-                for (const r of resultList) {
-                    outputMap[Number(r.id)] = {
-                        score: parseFloat(r.score ?? 0),
-                        evaluation: r.feedback || '피드백 없음',
-                    };
-                }
-                return outputMap;
-            } else {
-                const resultList = JSON.parse(text);
-                const outputMap: { [id: number]: GradeResult } = {};
-                for (const r of resultList) {
-                    outputMap[Number(r.id)] = {
-                        score: parseFloat(r.score ?? 0),
-                        evaluation: r.feedback || '피드백 없음',
-                    };
-                }
-                return outputMap;
+            const sourceList = regexMatch ? JSON.parse(regexMatch[0]) : JSON.parse(text);
+            const outputMap: { [id: number]: GradeResult } = {};
+            for (const r of sourceList) {
+                outputMap[Number(r.id)] = {
+                    score: parseScore(r.score),
+                    evaluation: r.feedback || '피드백 없음',
+                };
             }
+            return outputMap;
         } catch (e: any) {
             console.error('JSON parsing error in gradeBatch:', e);
             const fallbackMap: { [id: number]: GradeResult } = {};
             for (const item of items) {
-                fallbackMap[item.id] = { score: 0, evaluation: `채점 분석 형식을 해석할 수 없습니다: ${e.message}` };
+                fallbackMap[item.id] = { score: -1, evaluation: `채점 분석 형식을 해석할 수 없습니다: ${e.message}` };
             }
             return fallbackMap;
         }
@@ -221,7 +217,7 @@ export async function gradeBatch(items: BatchItem[], apiKey: string): Promise<{ 
         if (errName.includes('429')) errName = '요청량 초과 (잠시 후 다시 시도해 주세요)';
         const fallbackMap: { [id: number]: GradeResult } = {};
         for (const item of items) {
-            fallbackMap[item.id] = { score: 0, evaluation: `AI 채점 오류: ${errName}` };
+            fallbackMap[item.id] = { score: -1, evaluation: `AI 채점 오류: ${errName}` };
         }
         return fallbackMap;
     }
