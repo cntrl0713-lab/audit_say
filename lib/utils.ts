@@ -70,6 +70,34 @@ export function calculateMatchedCount(userAns: string, keywords: string[]): numb
     return count;
 }
 
+// 두 문자열의 Bigram Jaccard 유사도 계산 (공백 제외, 소문자화)
+export function calculateBigramJaccard(s1: string, s2: string): number {
+    const getBigrams = (str: string): Set<string> => {
+        const norm = (str || '').replace(/\s+/g, '').toLowerCase();
+        const bigrams = new Set<string>();
+        for (let i = 0; i < norm.length - 1; i++) {
+            bigrams.add(norm.substring(i, i + 2));
+        }
+        return bigrams;
+    };
+
+    const bigrams1 = getBigrams(s1);
+    const bigrams2 = getBigrams(s2);
+
+    if (bigrams1.size === 0 && bigrams2.size === 0) return 1.0;
+    if (bigrams1.size === 0 || bigrams2.size === 0) return 0.0;
+
+    let intersectionSize = 0;
+    for (const b of bigrams1) {
+        if (bigrams2.has(b)) {
+            intersectionSize++;
+        }
+    }
+
+    const unionSize = bigrams1.size + bigrams2.size - intersectionSize;
+    return unionSize === 0 ? 0.0 : intersectionSize / unionSize;
+}
+
 // Get counts of questions equivalent to python's get_counts
 export function getCounts(data: AuditQuestion[]) {
     const counts = {

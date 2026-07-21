@@ -1,16 +1,20 @@
 @import "tailwindcss";
 
+/* Cursor-design-analysis (DESIGN.md) 팔레트 적용:
+   warm-cream 캔버스 + ink 텍스트 + Cursor Orange 단일 브랜드 컬러.
+   accent는 스펙에 별도 보조 브랜드색이 없어 primary와 동일하게 매핑,
+   warning은 스펙에 없는 시맨틱이라 timeline-done(gold)을 근사치로 사용. */
 :root {
-  --background: #1e222b;
-  --foreground: #eceff4;
-  --card: #252932;
-  --card-border: #353c4a;
-  --primary: #5e81ac;
-  --primary-hover: #81a1c1;
-  --accent: #88c0d0;
-  --success: #a3be8c;
-  --warning: #ebcb8b;
-  --danger: #bf616a;
+  --background: #f7f7f4;
+  --foreground: #26251e;
+  --card: #ffffff;
+  --card-border: #e6e5e0;
+  --primary: #f54e00;
+  --primary-hover: #d04200;
+  --accent: #f54e00;
+  --success: #1f8a65;
+  --warning: #c08532;
+  --danger: #cf2d56;
 }
 
 @theme inline {
@@ -58,13 +62,17 @@ body {
   min-height: 100vh;
 }
 
+/* CursorGothic는 라이선스 폰트라 Inter로 대체(스펙 권장). 디스플레이는 항상 weight 400 +
+   음수 letter-spacing 유지 — 매거진 톤이며, 굵게(700+) 만들지 않는다. */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-outfit), var(--font-inter), -apple-system, sans-serif;
+  font-family: var(--font-inter), -apple-system, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 /* Custom premium scrollbar */
@@ -74,25 +82,24 @@ h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e222b;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #353c4a;
+  background: var(--card-border);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4c566a;
+  background: #cfcdc4;
 }
 
-/* Base custom classes to match original Streamlit styling style but much cleaner */
+/* hairline-only depth: 그림자 없이 hairline 강조 + 미세한 lift만 사용 (DESIGN.md Don't: no drop shadows) */
 .card-hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.4);
-  border-color: var(--accent);
+  border-color: var(--primary);
 }

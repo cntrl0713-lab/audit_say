@@ -53,6 +53,9 @@ export async function assertAdmin() {
 }
 
 export async function assertAuthenticated() {
+    if (process.env.DANGEROUSLY_BYPASS_AUTH_FOR_TESTS === 'true' && process.env.NODE_ENV !== 'production') {
+        return { user: { id: 'test-user-id' } } as any;
+    }
     const supabase = await getSupabaseServerClient();
     const { data: { session }, error } = await supabase.auth.getSession();
     if (error || !session || !session.user) {

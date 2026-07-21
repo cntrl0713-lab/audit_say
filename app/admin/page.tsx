@@ -3,43 +3,29 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import {
-    getStructureData,
     getAdminQuestions,
     getAllUsersAction,
     updateUserRoleAction,
-    addQuestionAction,
     updateQuestionAction,
     deleteQuestionAction
 } from '../actions';
-import { ROLE_NAMES, StructureData, compareChapters } from '../../lib/utils';
+import { ROLE_NAMES } from '../../lib/utils';
 import { AuditQuestion, UserProfile } from '../../lib/db';
-import { Plus, Trash2, Edit3, Settings, ShieldAlert, Users, Search } from 'lucide-react';
+import { Trash2, Edit3, Settings, ShieldAlert, Users, Search } from 'lucide-react';
 
 export default function AdminPage() {
     const { user, loading: authLoading, refreshProfile } = useAuth();
 
     // Tab states
-    const [activeTab, setActiveTab] = useState<'add' | 'edit' | 'users'>('add');
+    const [activeTab, setActiveTab] = useState<'edit' | 'users'>('edit');
 
     // Common states
-    const [structure, setStructure] = useState<StructureData | null>(null);
     const [questions, setQuestions] = useState<AuditQuestion[]>([]);
     const [users, setUsers] = useState<UserProfile[]>([]);
     const [loading, setLoading] = useState(true);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const [successMsg, setSuccessMsg] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
-
-    // Form State: Add Question
-    const [addPart, setAddPart] = useState('');
-    const [addChapSel, setAddChapSel] = useState('직접 입력');
-    const [addChapDirect, setAddChapDirect] = useState('');
-    const [addStd, setAddStd] = useState('');
-    const [addTitle, setAddTitle] = useState('');
-    const [addDesc, setAddDesc] = useState('');
-    const [addKeywords, setAddKeywords] = useState('');
-    const [addModelAns, setAddModelAns] = useState('');
-    const [addExpl, setAddExpl] = useState('');
 
     // Form State: Edit Question
     const [partFilter, setPartFilter] = useState('전체');
@@ -56,6 +42,7 @@ export default function AdminPage() {
     const [editKeywords, setEditKeywords] = useState('');
     const [editModelAns, setEditModelAns] = useState('');
     const [editExpl, setEditExpl] = useState('');
+    const [editRubric, setEditRubric] = useState('[]');
 
     // User role change states
     const [selectedUser, setSelectedUser] = useState('');
@@ -64,20 +51,11 @@ export default function AdminPage() {
     // Load everything
     const loadAdminData = async () => {
         try {
-            const struct = await getStructureData();
-            setStructure(struct);
-
             const qs = await getAdminQuestions();
             setQuestions(qs);
 
             const allUsers = await getAllUsersAction();
             setUsers(allUsers);
-
-            // Default Part Selected for Add Question
-            const parts = Object.keys(struct.hierarchy).sort();
-            if (parts.length > 0 && !addPart) {
-                setAddPart(parts[0]);
-            }
         } catch (err) {
             console.error('관리자 리소스 로드 에러:', err);
         } finally {
@@ -117,67 +95,6 @@ export default function AdminPage() {
         );
     }
 
-    // --- Add Question Form Submission ---
-    const handleAddQuestion = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (isSubmitting) return;
-
-        if (!addTitle || !addDesc) {
-            setErrorMsg('제목과 본문 상세 내용은 필수작성 사항입니다.');
-            return;
-        }
-
-        const finalChap = addChapSel === '직접 입력' ? addChapDirect : addChapSel;
-        if (!finalChap) {
-            setErrorMsg('챕터 코드를 입력 또는 선택해 주세요.');
-            return;
-        }
-
-        setIsSubmitting(true);
-
-        // Extract numbers safely
-        const partNum = addPart.match(/\d+/) ? addPart.match(/\d+/)![0] : addPart;
-        const chapNum = finalChap.match(/\d+/) ? finalChap.match(/\d+/)![0] : finalChap;
-
-        const keywordsArray = addKeywords.split(',').map((k) => k.trim()).filter(Boolean);
-        const modelAnsArray = addModelAns.split('\n').map((m) => m.trim()).filter(Boolean);
-
-        const questionData = {
-            part: partNum,
-            chapter: chapNum,
-            standard: addStd,
-            question_title: addTitle,
-            question_description: addDesc,
-            keywords: keywordsArray,
-            model_answer: modelAnsArray,
-            explanation: addExpl
-        };
-
-        try {
-            const success = await addQuestionAction(questionData);
-            if (success) {
-                setSuccessMsg(`문제 '${addTitle}' 추가 완료!`);
-                setErrorMsg(null);
-                // Reset form
-                setAddTitle('');
-                setAddDesc('');
-                setAddKeywords('');
-                setAddModelAns('');
-                setAddExpl('');
-                setAddStd('');
-                // Reload db data
-                const qs = await getAdminQuestions();
-                setQuestions(qs);
-            } else {
-                setErrorMsg('문제 추가에 실패했습니다. 형식 오류를 확인하세요.');
-            }
-        } catch (e: any) {
-            setErrorMsg(`서버 오류 발생: ${e.message || String(e)}`);
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
-
     // --- Edit Target Loaded ---
     const handleLoadQuestionToEdit = (q: AuditQuestion) => {
         setSelectedQId(q.id);
@@ -193,6 +110,7 @@ export default function AdminPage() {
         // Model answer pre fill
         setEditModelAns(Array.isArray(q.model_answer) ? q.model_answer.join('\n') : String(q.model_answer));
         setEditExpl(q.explanation || '');
+        setEditRubric(q.rubric ? JSON.stringify(q.rubric, null, 2) : '[]');
     };
 
     // --- Save Edited Question ---
@@ -217,7 +135,8 @@ export default function AdminPage() {
                 question_description: editDesc,
                 keywords: keywordsArray,
                 model_answer: modelAnsArray,
-                explanation: editExpl
+                explanation: editExpl,
+                rubric: editRubric
             });
 
             if (success) {
@@ -307,13 +226,6 @@ export default function AdminPage() {
             {/* Tab Menu */}
             <div className="flex border-b border-card-border">
                 <button
-                    onClick={() => { setActiveTab('add'); setErrorMsg(null); setSuccessMsg(null); }}
-                    className={`pb-3 px-6 text-sm font-extrabold border-b-2 transition-all cursor-pointer ${activeTab === 'add' ? 'border-accent text-accent' : 'border-transparent text-foreground/45 hover:text-foreground/75'
-                        }`}
-                >
-                    ➕ 문제 추가
-                </button>
-                <button
                     onClick={() => { setActiveTab('edit'); setErrorMsg(null); setSuccessMsg(null); }}
                     className={`pb-3 px-6 text-sm font-extrabold border-b-2 transition-all cursor-pointer ${activeTab === 'edit' ? 'border-accent text-accent' : 'border-transparent text-foreground/45 hover:text-foreground/75'
                         }`}
@@ -332,141 +244,7 @@ export default function AdminPage() {
             {/* Tab Contents */}
             <div className="space-y-6">
 
-                {/* TAB 1: ADD QUESTION */}
-                {activeTab === 'add' && structure && (
-                    <form onSubmit={handleAddQuestion} className="bg-card border border-card-border p-6 rounded-2xl shadow-lg space-y-4">
-                        <h3 className="text-lg font-bold">기출 및 모의고사 문제 추가</h3>
-
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div>
-                                <label className="block text-xs font-bold text-foreground/50 mb-1">Part 분류</label>
-                                <select
-                                    value={addPart}
-                                    onChange={(e) => setAddPart(e.target.value)}
-                                    className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-3 py-2 text-sm focus:outline-none transition-colors"
-                                >
-                                    {Object.keys(structure.hierarchy).sort().map((part) => (
-                                        <option key={part} value={part}>{part}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            <div>
-                                <label className="block text-xs font-bold text-foreground/50 mb-1">Chapter 분류</label>
-                                <select
-                                    value={addChapSel}
-                                    onChange={(e) => setAddChapSel(e.target.value)}
-                                    className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-3 py-2 text-sm focus:outline-none transition-colors"
-                                >
-                                    <option value="직접 입력">직접 코드 입력</option>
-                                    {Object.keys(structure.hierarchy[addPart] || {}).sort(compareChapters).map((chap) => (
-                                        <option key={chap} value={chap}>{chap}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            <div>
-                                <label className="block text-xs font-bold text-foreground/50 mb-1">감사기준 (Standard)</label>
-                                <input
-                                    type="text"
-                                    placeholder="예: 200, law, Ethics"
-                                    value={addStd}
-                                    onChange={(e) => setAddStd(e.target.value)}
-                                    className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-3 py-2 text-sm focus:outline-none transition-colors"
-                                />
-                            </div>
-                        </div>
-
-                        {addChapSel === '직접 입력' && (
-                            <div className="w-full">
-                                <label className="block text-xs font-bold text-foreground/50 mb-1">직접 입력 챕터 코드 (Chapter Code)</label>
-                                <input
-                                    type="text"
-                                    placeholder="예: ch1, ch3 (기본 분류와 숫자가 밀접히 연관됩니다)"
-                                    value={addChapDirect}
-                                    onChange={(e) => setAddChapDirect(e.target.value)}
-                                    className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-3 py-2 text-sm focus:outline-none transition-colors"
-                                />
-                            </div>
-                        )}
-
-                        <div>
-                            <label className="block text-xs font-bold text-foreground/50 mb-1">문제 제목 (Title)</label>
-                            <input
-                                type="text"
-                                placeholder="예: [315] 통제위험과 실증절차의 결합관계"
-                                value={addTitle}
-                                onChange={(e) => setAddTitle(e.target.value)}
-                                className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-3.5 py-2 text-sm focus:outline-none transition-colors font-bold"
-                                required
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block text-xs font-bold text-foreground/50 mb-1">문제 시나리오 및 상세 본문 (Description)</label>
-                            <textarea
-                                rows={5}
-                                placeholder="실제 시험 처럼 주관식 서술 유도를 요구하는 감사인의 검토 절차 및 질문을 입력하세요."
-                                value={addDesc}
-                                onChange={(e) => setAddDesc(e.target.value)}
-                                className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg p-3 text-sm focus:outline-none transition-colors"
-                                required
-                            />
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-xs font-bold text-foreground/50 mb-1">채점용 필수 키워드 (Keywords, 콤마 구분)</label>
-                                <textarea
-                                    rows={4}
-                                    placeholder="감사의견, 핵심감사사항, 감사업무수임, 윤리강령"
-                                    value={addKeywords}
-                                    onChange={(e) => setAddKeywords(e.target.value)}
-                                    className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg p-3 text-sm focus:outline-none transition-colors"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-xs font-bold text-foreground/50 mb-1">모범 답안 문단 (Lines, 엔터 구문)</label>
-                                <textarea
-                                    rows={4}
-                                    placeholder="유효한 감사보고서의 서술은 명백한 사실관계의 인과성 입증을 요구한다."
-                                    value={addModelAns}
-                                    onChange={(e) => setAddModelAns(e.target.value)}
-                                    className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg p-3 text-sm focus:outline-none transition-colors"
-                                />
-                            </div>
-                        </div>
-
-                        <div>
-                            <label className="block text-xs font-bold text-foreground/50 mb-1">참고 해설 (Explanation)</label>
-                            <textarea
-                                rows={3}
-                                placeholder="기준서 목차 및 절차에 보강되는 이론적 설명을 제공합니다."
-                                value={addExpl}
-                                onChange={(e) => setAddExpl(e.target.value)}
-                                className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg p-3 text-sm focus:outline-none transition-colors"
-                            />
-                        </div>
-
-                        <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className={`w-full py-3 font-black rounded-lg transition-colors flex items-center justify-center gap-1.5 ${isSubmitting ? 'bg-primary/50 text-foreground/50 cursor-not-allowed' : 'bg-primary hover:bg-primary-hover text-foreground cursor-pointer'}`}
-                        >
-                            {isSubmitting ? (
-                                <div className="w-5 h-5 border-2 border-foreground/50 border-t-transparent rounded-full animate-spin"></div>
-                            ) : (
-                                <>
-                                    <Plus className="w-5 h-5" />
-                                    <span>새로운 감사문제 추가하기</span>
-                                </>
-                            )}
-                        </button>
-                    </form>
-                )}
-
-                {/* TAB 2: MANAGE/EDIT QUESTIONS */}
+                {/* TAB 1: MANAGE/EDIT QUESTIONS */}
                 {activeTab === 'edit' && (
                     <div className="space-y-6">
 
@@ -648,6 +426,16 @@ export default function AdminPage() {
                                     />
                                 </div>
 
+                                <div>
+                                    <label className="block text-xs font-bold text-foreground/50 mb-1">루브릭 구조 (Rubric JSON)</label>
+                                    <textarea
+                                        rows={6}
+                                        value={editRubric}
+                                        onChange={(e) => setEditRubric(e.target.value)}
+                                        className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg p-3 text-sm focus:outline-none transition-colors font-mono"
+                                    />
+                                </div>
+
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
@@ -664,7 +452,7 @@ export default function AdminPage() {
                     </div>
                 )}
 
-                {/* TAB 3: USER PROFILE MANAGEMENT */}
+                {/* TAB 2: USER PROFILE MANAGEMENT */}
                 {activeTab === 'users' && (
                     <div className="space-y-6">
                         <div className="bg-card border border-card-border rounded-2xl overflow-hidden shadow-lg">

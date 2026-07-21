@@ -9,7 +9,9 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test \"tests/**/*.test.ts\"",
-    "prepare": "node -e \"try{require('child_process').execSync('git config core.hooksPath .githooks')}catch(e){}\""
+    "prepare": "node -e \"try{require('child_process').execSync('git config core.hooksPath .githooks')}catch(e){}\"",
+    "rag:index": "tsx --env-file=.env.local cpa_uploader/index_references.ts",
+    "rag:query": "tsx --env-file=.env.local cpa_uploader/rag_query.ts"
   },
   "dependencies": {
     "@google/genai": "^2.10.0",
@@ -27,7 +29,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
+    "server-only": "^0.0.1",
     "tailwindcss": "^4",
+    "tsx": "^4.23.1",
     "typescript": "^5"
   }
 }

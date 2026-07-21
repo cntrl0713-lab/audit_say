@@ -11,7 +11,7 @@ interface AuthContextType {
     signUp: (email: string, pass: string, username: string) => Promise<{ success: boolean; msg?: string; error?: string }>;
     logout: () => Promise<void>;
     refreshProfile: () => Promise<void>;
-    loginAsGuest: () => void;
+    loginAsGuest: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -35,47 +35,37 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(profile);
     };
 
+    // 세션을 화면 표시용 사용자 상태로 변환.
+    // 익명(게스트) 세션은 실제 Supabase 세션이지만 user_cpa에 영구 프로필을 만들지 않는다
+    // (게스트는 학습 기록·오답노트가 보관되지 않는다는 기존 원칙 유지) — 화면 표시용
+    // 고정 프로필만 세팅하고 DB 프로필 조회/생성 경로(fetchProfile)를 타지 않는다.
+    const resolveSessionUser = async (session: { user: { id: string; email?: string; is_anonymous?: boolean } } | null) => {
+        if (session?.user) {
+            if (session.user.is_anonymous) {
+                setUser({
+                    id: session.user.id,
+                    username: '비회원',
+                    role: 'GUEST',
+                    level: 1,
+                    exp: 0,
+                });
+            } else {
+                await fetchProfile(session.user.id, session.user.email);
+            }
+        } else {
+            setUser(null);
+        }
+    };
+
     useEffect(() => {
         // Check active session
         supabase.auth.getSession().then(({ data: { session } }) => {
-            if (session?.user) {
-                fetchProfile(session.user.id, session.user.email);
-            } else {
-                const isGuest = typeof window !== 'undefined' ? sessionStorage.getItem('is_guest') : null;
-                if (isGuest === 'true') {
-                    setUser({
-                        id: 'guest_user',
-                        username: '비회원',
-                        role: 'GUEST',
-                        level: 1,
-                        exp: 0,
-                    });
-                } else {
-                    setUser(null);
-                }
-            }
-            setLoading(false);
+            resolveSessionUser(session).then(() => setLoading(false));
         });
 
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            if (session?.user) {
-                fetchProfile(session.user.id, session.user.email);
-            } else {
-                const isGuest = typeof window !== 'undefined' ? sessionStorage.getItem('is_guest') : null;
-                if (isGuest === 'true') {
-                    setUser({
-                        id: 'guest_user',
-                        username: '비회원',
-                        role: 'GUEST',
-                        level: 1,
-                        exp: 0,
-                    });
-                } else {
-                    setUser(null);
-                }
-            }
-            setLoading(false);
+            resolveSessionUser(session).then(() => setLoading(false));
         });
 
         return () => {
@@ -145,30 +135,36 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     const logout = async () => {
-        if (typeof window !== 'undefined') {
-            sessionStorage.removeItem('is_guest');
-        }
         await supabase.auth.signOut();
         setUser(null);
     };
 
     const refreshProfile = async () => {
-        if (user?.id && user.id !== 'guest_user') {
+        if (user?.id && user.role !== 'GUEST') {
             await fetchProfile(user.id, user.email);
         }
     };
 
-    const loginAsGuest = () => {
-        if (typeof window !== 'undefined') {
-            sessionStorage.setItem('is_guest', 'true');
+    const loginAsGuest = async () => {
+        try {
+            // 실제 Supabase 익명 세션을 발급받아야 서버 측 assertAuthenticated()가
+            // 통과한다 — 이전에는 sessionStorage 플래그만 세팅해 클라이언트만 게스트로
+            // "보이고" 서버는 항상 Unauthorized를 던져 채점 자체가 동작하지 않았다.
+            const { data, error } = await supabase.auth.signInAnonymously();
+            if (error || !data.user) {
+                console.error('Guest login error:', error);
+                return;
+            }
+            setUser({
+                id: data.user.id,
+                username: '비회원',
+                role: 'GUEST',
+                level: 1,
+                exp: 0,
+            });
+        } catch (err) {
+            console.error('Error in loginAsGuest:', err);
         }
-        setUser({
-            id: 'guest_user',
-            username: '비회원',
-            role: 'GUEST',
-            level: 1,
-            exp: 0,
-        });
     };
 
     return (

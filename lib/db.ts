@@ -1,5 +1,10 @@
 import { supabase } from './supabase';
-import { getSupabaseAdmin } from './supabaseAdmin';
+import { flattenRubricVariants } from './rubric';
+
+// 이 파일은 클라이언트 컴포넌트(contexts/AuthContext.tsx 등)에서도 import되므로
+// anon 클라이언트(supabase)만 쓰는 함수만 둔다. admin 클라이언트가 필요한 함수는
+// lib/dbAdmin.ts로 분리되어 있다 — 'server-only'가 이 파일에 섞이면 클라이언트
+// 번들링 시 500 에러가 발생한다.
 
 export interface UserProfile {
     id: string;
@@ -21,6 +26,7 @@ export interface AuditQuestion {
     model_answer: string | string[];
     explanation: string;
     keywords?: string[];
+    rubric?: any;
 }
 
 export interface ReviewNote {
@@ -93,39 +99,6 @@ export async function createPublicProfile(userId: string, username: string): Pro
     }
 }
 
-export async function incrementProgress(id: string, addedExp: number): Promise<boolean> {
-    try {
-        const adminSupabase = getSupabaseAdmin();
-
-        // Transactional increment approach since Supabase SDK doesn't have a direct increment method
-        // (If there are concurrency issues, RPC is better, but this solves the lost update over client state)
-        const { data, error: selectError } = await adminSupabase
-            .from('user_cpa')
-            .select('exp')
-            .eq('id', id)
-            .single();
-
-        if (selectError || !data) return false;
-
-        const newExp = (data.exp || 0) + addedExp;
-        const newLevel = 1 + Math.floor(newExp / 100);
-
-        const { error } = await adminSupabase
-            .from('user_cpa')
-            .update({ level: newLevel, exp: newExp })
-            .eq('id', id);
-
-        if (error) {
-            console.error('Error updating progress:', error);
-            return false;
-        }
-        return true;
-    } catch (err) {
-        console.error('Error in incrementProgress:', err);
-        return false;
-    }
-}
-
 export async function checkUsernameExists(username: string): Promise<boolean> {
     try {
         const { data, error } = await supabase
@@ -146,51 +119,42 @@ export async function checkUsernameExists(username: string): Promise<boolean> {
 
 // --- Review Notes Functions ---
 
-export async function saveReviewNote(
-    userId: string,
-    questionId: number,
-    userAnswer: string,
-    score: number
-): Promise<boolean> {
-    try {
-
-        const adminSupabase = getSupabaseAdmin();
-        const { error } = await adminSupabase
-            .from('cpa_review_notes')
-            .insert({
-                user_id: userId,
-                question_id: questionId,
-                user_answer: userAnswer,
-                score,
-                created_at: new Date().toISOString()
-            });
-
-        if (error) {
-            console.error('Error saving review note:', error);
-            return false;
-        }
-        return true;
-    } catch (err) {
-        console.error('Error in saveReviewNote:', err);
-        return false;
-    }
-}
-
 export async function getUserReviewNotes(userId: string): Promise<ReviewNote[]> {
     try {
-        const { data, error } = await supabase
+        const { data: notesData, error: notesError } = await supabase
             .from('cpa_review_notes')
-            .select('*, cpa_questions(*)')
+            .select('*')
             .eq('user_id', userId)
             .order('created_at', { ascending: false });
 
-        if (error) {
-            console.error('Error getting review notes:', error);
-            throw new Error(`Failed to load review notes: ${error.message}`);
+        if (notesError) {
+            console.error('Error getting review notes:', notesError);
+            throw new Error(`Failed to load review notes: ${notesError.message}`);
         }
 
-        return (data || []).map((item: any) => {
-            const q = item.cpa_questions || {};
+        const notes = notesData || [];
+        const questionIds = Array.from(
+            new Set(notes.map((n: any) => n.question_id).filter((id: any) => id !== null))
+        );
+
+        const questionMap = new Map<number, any>();
+        if (questionIds.length > 0) {
+            const { data: qData, error: qError } = await supabase
+                .from('cpa_questions_v2')
+                .select('*')
+                .in('id', questionIds);
+
+            if (qError) {
+                console.error('Error getting v2 questions for review notes:', qError);
+            } else if (qData) {
+                qData.forEach((q: any) => {
+                    questionMap.set(Number(q.id), q);
+                });
+            }
+        }
+
+        return notes.map((item: any) => {
+            const q = item.question_id !== null ? questionMap.get(Number(item.question_id)) : undefined;
             return {
                 id: item.id,
                 user_id: item.user_id,
@@ -198,38 +162,18 @@ export async function getUserReviewNotes(userId: string): Promise<ReviewNote[]> 
                 user_answer: item.user_answer,
                 score: item.score,
                 created_at: item.created_at,
-                part: q.part || 'Unknown/Deleted',
-                chapter: q.chapter || 'Unknown',
-                standard_code: q.standard || 'Unknown',
-                question_title: q.question_title || 'Unknown Title',
-                question_description: q.question_description || '(문제 내용 없음)',
-                model_answer: q.model_answer || [],
-                explanation: q.explanation || '해설 없음',
+                part: q ? String(q.part) : 'Unknown/Deleted',
+                chapter: q ? String(q.chapter) : 'Unknown',
+                standard_code: q ? q.standard : 'Unknown',
+                question_title: q ? q.question_title : 'Unknown Title',
+                question_description: q ? q.question_description : '(문제 내용 없음)',
+                model_answer: q ? (q.model_answer || []) : [],
+                explanation: q ? (q.explanation || '') : '해설 없음',
             };
         });
     } catch (err) {
         console.error('Error in getUserReviewNotes:', err);
         throw err;
-    }
-}
-
-export async function deleteReviewNote(noteId: number, userId: string): Promise<boolean> {
-    try {
-        const adminSupabase = getSupabaseAdmin();
-        const { error } = await adminSupabase
-            .from('cpa_review_notes')
-            .delete()
-            .eq('id', noteId)
-            .eq('user_id', userId);
-
-        if (error) {
-            console.error('Error deleting review note:', error);
-            return false;
-        }
-        return true;
-    } catch (err) {
-        console.error('Error in deleteReviewNote:', err);
-        return false;
     }
 }
 
@@ -274,100 +218,43 @@ export async function getAllUsers(): Promise<UserProfile[]> {
     }
 }
 
-export async function updateUserRole(userId: string, newRole: string): Promise<boolean> {
-    try {
-        const adminSupabase = getSupabaseAdmin();
-        const { error } = await adminSupabase
-            .from('user_cpa')
-            .update({ role: newRole })
-            .eq('id', userId);
-
-        if (error) {
-            console.error('Error updating user role:', error);
-            return false;
-        }
-        return true;
-    } catch (err) {
-        console.error('Error in updateUserRole:', err);
-        return false;
-    }
-}
-
 // --- Question Administration ---
 
 export async function fetchAllQuestions(stripAnswers: boolean = true): Promise<AuditQuestion[]> {
     try {
-        const { data, error } = await supabase
-            .from('cpa_questions')
-            .select(stripAnswers ? 'id, part, chapter, standard, question_title, question_description, keywords' : '*')
+        const v2SelectCols = stripAnswers
+            ? 'id, part, chapter, standard, question_title, question_description'
+            : '*';
+        const { data: v2Data, error: v2Error } = await supabase
+            .from('cpa_questions_v2')
+            .select(v2SelectCols)
             .order('id', { ascending: true });
 
-        if (error) {
-            console.error('Error loading questions:', error);
+        if (v2Error) {
+            console.error('Error loading v2 questions:', v2Error);
             return [];
         }
-        return (data as any as AuditQuestion[]) || [];
+
+        const questions: AuditQuestion[] = (v2Data || []).map((q: any) => ({
+            id: q.id,
+            part: String(q.part),
+            chapter: String(q.chapter),
+            standard: q.standard,
+            question_title: q.question_title,
+            question_description: q.question_description,
+            model_answer: q.model_answer || [],
+            explanation: q.explanation || '',
+            // v2 rubric의 variants·배점 등 채점 근거는 클라이언트에 노출하지 않는다 (기존 leak 방지 원칙 유지).
+            keywords: [],
+            rubric: stripAnswers ? undefined : q.rubric,
+        }));
+
+        questions.sort((a, b) => Number(a.id) - Number(b.id));
+
+        return questions;
     } catch (err) {
         console.error('Error in fetchAllQuestions:', err);
         return [];
     }
 }
 
-export async function addQuestion(question: Omit<AuditQuestion, 'id'>): Promise<boolean> {
-    try {
-        const adminSupabase = getSupabaseAdmin();
-        const { error } = await adminSupabase
-            .from('cpa_questions')
-            .insert(question);
-
-        if (error) {
-            console.error('Error adding question:', error);
-            return false;
-        }
-        return true;
-    } catch (err) {
-        console.error('Error in addQuestion:', err);
-        return false;
-    }
-}
-
-export async function updateQuestion(id: number, question: Partial<AuditQuestion>): Promise<boolean> {
-    try {
-        const cleanData = { ...question };
-        delete cleanData.id;
-
-        const adminSupabase = getSupabaseAdmin();
-        const { error } = await adminSupabase
-            .from('cpa_questions')
-            .update(cleanData)
-            .eq('id', id);
-
-        if (error) {
-            console.error('Error updating question:', error);
-            return false;
-        }
-        return true;
-    } catch (err) {
-        console.error('Error in updateQuestion:', err);
-        return false;
-    }
-}
-
-export async function deleteQuestion(id: number): Promise<boolean> {
-    try {
-        const adminSupabase = getSupabaseAdmin();
-        const { error } = await adminSupabase
-            .from('cpa_questions')
-            .delete()
-            .eq('id', id);
-
-        if (error) {
-            console.error('Error deleting question:', error);
-            return false;
-        }
-        return true;
-    } catch (err) {
-        console.error('Error in deleteQuestion:', err);
-        return false;
-    }
-}

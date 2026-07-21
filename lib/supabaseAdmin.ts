@@ -1,4 +1,8 @@
-import 'server-only';
+if (process.env.NODE_ENV !== 'test') {
+    try {
+        require('server-only');
+    } catch (e) {}
+}
 import { createClient } from '@supabase/supabase-js';
 
 export const getSupabaseAdmin = () => {

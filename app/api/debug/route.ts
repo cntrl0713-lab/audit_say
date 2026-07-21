@@ -22,7 +22,7 @@ export async function GET() {
 
     try {
         const { data, error } = await supabase
-            .from('cpa_questions')
+            .from('cpa_questions_v2')
             .select('*')
             .limit(1);
 

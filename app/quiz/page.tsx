@@ -201,7 +201,6 @@ export default function QuizPage() {
         const batchItems: BatchItem[] = [];
         const evaluationResults: (EvalResult | null)[] = new Array(quizList.length).fill(null);
 
-        // 1. Keyword check
         quizList.forEach((q, idx) => {
             const ans = answers[q.id.toString()] || '';
             if (!ans.trim()) {
@@ -211,34 +210,20 @@ export default function QuizPage() {
                     eval: { score: 0.0, evaluation: '답안을 입력해주세요.' }
                 };
             } else {
-                const keywords = q.keywords || [];
-                const matched = calculateMatchedCount(ans, keywords);
-                const reqCount = Math.min(3, keywords.length);
+                const keywords: string[] = [];
+                // Model answer stringification
+                const mAns = q.model_answer;
+                const mStr = Array.isArray(mAns) ? mAns.join('\n') : String(mAns);
 
-                if (keywords.length > 0 && matched < reqCount) {
-                    evaluationResults[idx] = {
-                        q,
-                        ans,
-                        eval: {
-                            score: 0.0,
-                            evaluation: `핵심 키워드 부족 (요구치 ${reqCount}개 미만 감지됨: ${matched}개). 필수 키워드가 답안에 적절히 서술되었는지 확인하며 조금 더 구체적으로 작성해 주세요.\n\n*필수 키워드: ${keywords.join(', ')}*`
-                        }
-                    };
-                } else {
-                    // Model answer stringification
-                    const mAns = q.model_answer;
-                    const mStr = Array.isArray(mAns) ? mAns.join('\n') : String(mAns);
-
-                    batchItems.push({
-                        id: idx,
-                        qid: Number(q.id),
-                        q: `${q.question_title} - ${q.question_description}`,
-                        a: ans,
-                        m: mStr,
-                        k: keywords,
-                        r: q.explanation || '참고 설명 없음'
-                    });
-                }
+                batchItems.push({
+                    id: idx,
+                    qid: Number(q.id),
+                    q: `${q.question_title} - ${q.question_description}`,
+                    a: ans,
+                    m: mStr,
+                    k: keywords,
+                    r: q.explanation || '참고 설명 없음'
+                });
             }
         });
 
