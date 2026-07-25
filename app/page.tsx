@@ -87,16 +87,16 @@ export default function Home() {
   if (!user) {
     return (
       <div className="flex flex-col items-center justify-center flex-1 max-w-md mx-auto w-full py-8 md:py-16">
-        <div className="bg-card w-full rounded-2xl border border-card-border shadow-xl overflow-hidden p-6 md:p-8">
+        <div className="bg-card w-full rounded-lg border border-card-border overflow-hidden p-6 md:p-8">
 
           <div className="text-center mb-6">
-            <h1 className="text-3xl font-extrabold text-accent">Audit Say 🏹</h1>
+            <h1 className="text-3xl font-normal text-foreground">Audit Say</h1>
             <p className="text-sm text-foreground/60 mt-1">CPA 회계감사 AI 문제풀이 및 피드백 플랫폼</p>
           </div>
 
           {/* Alert messages */}
           {statusMsg && (
-            <div className={`p-4 mb-4 rounded-lg text-sm font-semibold border ${statusMsg.type === 'success'
+            <div className={`p-4 mb-4 rounded-md text-sm font-medium border ${statusMsg.type === 'success'
               ? 'bg-success/15 border-success/30 text-success'
               : 'bg-danger/15 border-danger/30 text-danger'
               }`}>
@@ -108,8 +108,8 @@ export default function Home() {
           <div className="flex border-b border-card-border mb-6">
             <button
               onClick={() => { setActiveTab('login'); setStatusMsg(null); }}
-              className={`flex-1 pb-3 text-sm font-bold border-b-2 transition-all ${activeTab === 'login'
-                ? 'border-accent text-accent'
+              className={`flex-1 pb-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${activeTab === 'login'
+                ? 'border-primary text-foreground'
                 : 'border-transparent text-foreground/40 hover:text-foreground/70'
                 }`}
             >
@@ -117,8 +117,8 @@ export default function Home() {
             </button>
             <button
               onClick={() => { setActiveTab('signup'); setStatusMsg(null); }}
-              className={`flex-1 pb-3 text-sm font-bold border-b-2 transition-all ${activeTab === 'signup'
-                ? 'border-accent text-accent'
+              className={`flex-1 pb-3 text-sm font-medium border-b-2 transition-colors cursor-pointer ${activeTab === 'signup'
+                ? 'border-primary text-foreground'
                 : 'border-transparent text-foreground/40 hover:text-foreground/70'
                 }`}
             >
@@ -130,7 +130,7 @@ export default function Home() {
           {activeTab === 'login' ? (
             <form onSubmit={handleLoginSubmit} className="space-y-4">
               <div>
-                <label htmlFor="login-email" className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                <label htmlFor="login-email" className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
                   이메일 (Email)
                 </label>
                 <input
@@ -139,13 +139,13 @@ export default function Home() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@example.com"
-                  className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-4 py-2.5 text-sm focus:outline-none transition-colors"
+                  className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-4 py-2.5 text-sm focus:outline-none transition-colors"
                   required
                 />
               </div>
 
               <div>
-                <label htmlFor="login-password" className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                <label htmlFor="login-password" className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
                   비밀번호 (PW)
                 </label>
                 <div className="relative">
@@ -155,14 +155,14 @@ export default function Home() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg pl-4 pr-10 py-2.5 text-sm focus:outline-none transition-colors"
+                    className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md pl-4 pr-10 py-2.5 text-sm focus:outline-none transition-colors"
                     required
                   />
                   <button
                     type="button"
                     aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 표시"}
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/45 hover:text-foreground/90"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/45 hover:text-foreground/90 cursor-pointer"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -172,10 +172,10 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={formLoading}
-                className="w-full py-3 bg-primary hover:bg-primary-hover disabled:opacity-50 text-foreground font-bold rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-2.5 bg-primary hover:bg-primary-hover disabled:opacity-50 text-white font-medium rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
                 {formLoading ? (
-                  <div className="w-5 h-5 border-2 border-foreground border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 ) : (
                   <>
                     <Lock className="w-4 h-4" />
@@ -186,27 +186,27 @@ export default function Home() {
 
               <div className="relative flex py-2 items-center">
                 <div className="flex-grow border-t border-card-border"></div>
-                <span className="flex-shrink mx-4 text-foreground/35 text-xs font-bold">또는</span>
+                <span className="flex-shrink mx-4 text-foreground/40 text-xs font-medium">또는</span>
                 <div className="flex-grow border-t border-card-border"></div>
               </div>
 
               <button
                 type="button"
                 onClick={loginAsGuest}
-                className="w-full py-3 bg-card-border/40 hover:bg-card-border/75 border border-card-border text-foreground font-extrabold rounded-lg shadow transition-all flex items-center justify-center gap-2 cursor-pointer text-sm"
+                className="w-full py-2.5 bg-card-border/30 hover:bg-card-border/60 border border-card-border text-foreground font-medium rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer text-sm"
               >
-                <span>👀 비회원으로 바로 시작하기</span>
+                <span>비회원으로 바로 시작하기</span>
               </button>
             </form>
           ) : (
             /* Signup tab content */
             <form onSubmit={handleSignupSubmit} className="space-y-4">
-              <div className="p-3 bg-warning/10 border border-warning/20 text-warning rounded-lg text-xs font-semibold leading-relaxed">
-                ⚠️ 기존 ID 사용자는 이메일로 새로 가입해야 합니다.
+              <div className="p-3 bg-card-border/50 border border-card-border text-foreground/80 rounded-md text-xs font-medium leading-relaxed">
+                기존 ID 사용자는 이메일로 새로 가입해야 합니다.
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                <label className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
                   이메일 (Email)
                 </label>
                 <input
@@ -214,13 +214,13 @@ export default function Home() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@example.com"
-                  className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-4 py-2.5 text-sm focus:outline-none transition-colors"
+                  className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-4 py-2.5 text-sm focus:outline-none transition-colors"
                   required
                 />
               </div>
 
               <div>
-                <label htmlFor="signup-username" className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                <label htmlFor="signup-username" className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
                   닉네임 (Username)
                 </label>
                 <input
@@ -229,13 +229,13 @@ export default function Home() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="닉네임 입력"
-                  className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-4 py-2.5 text-sm focus:outline-none transition-colors"
+                  className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-4 py-2.5 text-sm focus:outline-none transition-colors"
                   required
                 />
               </div>
 
               <div>
-                <label htmlFor="signup-password" className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                <label htmlFor="signup-password" className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
                   비밀번호 (PW)
                 </label>
                 <input
@@ -244,13 +244,13 @@ export default function Home() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-4 py-2.5 text-sm focus:outline-none transition-colors"
+                  className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-4 py-2.5 text-sm focus:outline-none transition-colors"
                   required
                 />
               </div>
 
               <div>
-                <label htmlFor="signup-password-confirm" className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                <label htmlFor="signup-password-confirm" className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
                   비밀번호 확인
                 </label>
                 <input
@@ -259,7 +259,7 @@ export default function Home() {
                   value={passwordConfirm}
                   onChange={(e) => setPasswordConfirm(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-4 py-2.5 text-sm focus:outline-none transition-colors"
+                  className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-4 py-2.5 text-sm focus:outline-none transition-colors"
                   required
                 />
               </div>
@@ -267,10 +267,10 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={formLoading}
-                className="w-full py-3 bg-accent/90 hover:bg-accent disabled:opacity-50 text-background font-black rounded-lg shadow-lg shadow-accent/10 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-2.5 bg-primary hover:bg-primary-hover disabled:opacity-50 text-white font-medium rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
                 {formLoading ? (
-                  <div className="w-5 h-5 border-2 border-background border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 ) : (
                   <span>회원가입 완료</span>
                 )}
@@ -286,18 +286,18 @@ export default function Home() {
   // --- Dashboard View (Logged In) ---
   const roleName = ROLE_NAMES[user.role] || user.role;
   return (
-    <div className="max-w-4xl mx-auto w-full space-y-8 py-4">
+    <div className="max-w-4xl mx-auto w-full space-y-6 py-4">
       {/* Welcome Card */}
-      <div className="bg-card border-l-[6px] border-accent border border-card-border p-6 rounded-2xl shadow-lg relative overflow-hidden">
+      <div className="bg-card border border-card-border p-6 rounded-lg relative overflow-hidden">
         <div className="absolute right-0 bottom-0 opacity-5 w-48 h-48 translate-x-12 translate-y-12 select-none pointer-events-none">
           <BookOpen className="w-full h-full" />
         </div>
-        <h2 className="text-2xl md:text-3xl font-extrabold text-foreground mb-2">
-          환영합니다, {user.username}님! 👋
+        <h2 className="text-2xl font-normal text-foreground mb-2">
+          환영합니다, {user.username}님!
         </h2>
-        <p className="text-foreground/80 text-sm md:text-base">
-          현재 등급: <span className="text-success font-bold">{roleName}</span> |{' '}
-          레벨: <span className="text-warning font-extrabold">{user.level}</span>
+        <p className="text-foreground/80 text-sm">
+          현재 등급: <span className="font-medium text-foreground">{roleName}</span> |{' '}
+          레벨: <span className="font-medium text-foreground">{user.level}</span>
         </p>
 
         {/* Simple XP Progress Bar */}
@@ -306,9 +306,9 @@ export default function Home() {
             <span>레벨 진행도</span>
             <span>{user.exp % 100} / 100 EXP</span>
           </div>
-          <div className="w-full h-2.5 bg-card-border rounded-full overflow-hidden">
+          <div className="w-full h-2 bg-card-border/60 rounded-full overflow-hidden">
             <div
-              className="h-full bg-accent transition-all duration-500 rounded-full"
+              className="h-full bg-primary transition-all duration-500 rounded-full"
               style={{ width: `${user.exp % 100}%` }}
             ></div>
           </div>
@@ -318,57 +318,57 @@ export default function Home() {
       {/* Navigation Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Link href="/quiz" className="flex flex-col">
-          <div className="bg-card border border-card-border p-6 rounded-2xl shadow-md card-hover flex-1 flex flex-col justify-between group">
+          <div className="bg-card border border-card-border p-6 rounded-lg card-hover flex-1 flex flex-col justify-between group">
             <div>
-              <div className="w-12 h-12 bg-primary/10 border border-primary/20 text-primary rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <BookOpen className="w-6 h-6" />
+              <div className="w-10 h-10 bg-card-border/40 border border-card-border text-foreground rounded-md flex items-center justify-center mb-4 transition-transform">
+                <BookOpen className="w-5 h-5" />
               </div>
-              <h3 className="text-xl font-extrabold mb-2 text-foreground group-hover:text-accent transition-colors">
-                📝 문제 풀기
+              <h3 className="text-lg font-normal mb-2 text-foreground group-hover:text-primary transition-colors">
+                문제 풀기
               </h3>
               <p className="text-sm text-foreground/60 leading-relaxed">
                 실제 시험처럼 시나리오 기반 약식 주관식 문제를 풀고 인공지능(AI) 채점과 논리 중심의 상세 피드백을 받아보세요.
               </p>
             </div>
-            <div className="text-right mt-6 text-sm font-bold text-accent group-hover:underline">
+            <div className="text-right mt-6 text-xs font-medium text-foreground/70 group-hover:text-foreground">
               문제 풀기 시작 &rarr;
             </div>
           </div>
         </Link>
 
         <Link href="/ranking" className="flex flex-col">
-          <div className="bg-card border border-card-border p-6 rounded-2xl shadow-md card-hover flex-1 flex flex-col justify-between group">
+          <div className="bg-card border border-card-border p-6 rounded-lg card-hover flex-1 flex flex-col justify-between group">
             <div>
-              <div className="w-12 h-12 bg-warning/10 border border-warning/20 text-warning rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Award className="w-6 h-6" />
+              <div className="w-10 h-10 bg-card-border/40 border border-card-border text-foreground rounded-md flex items-center justify-center mb-4 transition-transform">
+                <Award className="w-5 h-5" />
               </div>
-              <h3 className="text-xl font-extrabold mb-2 text-foreground group-hover:text-accent transition-colors">
-                🏆 랭킹
+              <h3 className="text-lg font-normal mb-2 text-foreground group-hover:text-primary transition-colors">
+                랭킹
               </h3>
               <p className="text-sm text-foreground/60 leading-relaxed">
                 정답률과 누적 학습 경험치 점수를 바탕으로 다른 회계사 시험 수험생들과 순위를 겨루며 성장을 시각화하고 경쟁력을 키웁니다.
               </p>
             </div>
-            <div className="text-right mt-6 text-sm font-bold text-accent group-hover:underline">
+            <div className="text-right mt-6 text-xs font-medium text-foreground/70 group-hover:text-foreground">
               랭킹 보드 확인 &rarr;
             </div>
           </div>
         </Link>
 
         <Link href="/profile" className="flex flex-col">
-          <div className="bg-card border border-card-border p-6 rounded-2xl shadow-md card-hover flex-1 flex flex-col justify-between group">
+          <div className="bg-card border border-card-border p-6 rounded-lg card-hover flex-1 flex flex-col justify-between group">
             <div>
-              <div className="w-12 h-12 bg-success/10 border border-success/20 text-success rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <User className="w-6 h-6" />
+              <div className="w-10 h-10 bg-card-border/40 border border-card-border text-foreground rounded-md flex items-center justify-center mb-4 transition-transform">
+                <User className="w-5 h-5" />
               </div>
-              <h3 className="text-xl font-extrabold mb-2 text-foreground group-hover:text-accent transition-colors">
-                👤 내 정보
+              <h3 className="text-lg font-normal mb-2 text-foreground group-hover:text-primary transition-colors">
+                내 정보
               </h3>
               <p className="text-sm text-foreground/60 leading-relaxed">
                 지금까지 푼 모의고사 풀이 기록과 누적 성향 통계를 분석하고, 틀린 문제를 기록하는 오답 노트를 검토하여 취약점을 점검합니다.
               </p>
             </div>
-            <div className="text-right mt-6 text-sm font-bold text-accent group-hover:underline">
+            <div className="text-right mt-6 text-xs font-medium text-foreground/70 group-hover:text-foreground">
               내 학습 통계 바로가기 &rarr;
             </div>
           </div>
@@ -376,10 +376,10 @@ export default function Home() {
       </div>
 
       {user.role === 'ADMIN' && (
-        <div className="bg-card/40 border border-card-border/60 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="bg-card border border-card-border p-6 rounded-lg flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
-            <h4 className="text-lg font-bold flex items-center gap-2">
-              <Settings className="w-5 h-5 text-accent animate-spin-slow" />
+            <h4 className="text-base font-normal flex items-center gap-2">
+              <Settings className="w-5 h-5 text-foreground/70" />
               <span>관리자 콘솔에 접근 가능합니다.</span>
             </h4>
             <p className="text-sm text-foreground/50 mt-1">
@@ -388,7 +388,7 @@ export default function Home() {
           </div>
           <Link
             href="/admin"
-            className="px-5 py-2.5 bg-card-border hover:bg-card-border/80 border border-card-border rounded-xl text-sm font-bold flex items-center gap-1.5 whitespace-nowrap transition-colors"
+            className="px-4 py-2 bg-card-border/40 hover:bg-card-border/70 border border-card-border rounded-md text-xs font-medium flex items-center gap-1.5 whitespace-nowrap transition-colors"
           >
             <span>관리자 페이지 이동</span>
             <span>&rarr;</span>

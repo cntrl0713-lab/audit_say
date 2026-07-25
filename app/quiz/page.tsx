@@ -28,36 +28,21 @@ type AppState = 'LOADING' | 'SETUP' | 'SOLVING' | 'REVIEW';
 // One graded question: the source question, the user's answer, and the grade result.
 type EvalResult = { q: AuditQuestion; ans: string; eval: GradeResult };
 
-// Nice Archery Target SVG component to replace matplotlib draw_target
+// Target SVG Component
 const TargetChart: React.FC<{ score: number }> = ({ score }) => {
-    // Translate score 0-10 -> distance from center (0 is bullseye, 100 is complete miss)
-    const distance = Math.max(0, (10 - score) * 9.5); // 0 to 95 px radius
+    const distance = Math.max(0, (10 - score) * 9.5);
     const [angle, setAngle] = useState(0);
 
     useEffect(() => {
-        // Generate a random angle on load to scatter the arrow shot
         setAngle(Math.random() * 2 * Math.PI);
     }, [score]);
 
-    // Coordinates
     const x = 100 + distance * Math.cos(angle);
     const y = 100 + distance * Math.sin(angle);
 
-    // Archery target ring colors (outer to inner): White, Black, Blue, Red, Gold
-    const rings = [
-        { r: 95, color: '#E5E9F0', stroke: '#D8DEE9' }, // White outer
-        { r: 76, color: '#E5E9F0', stroke: '#D8DEE9' },
-        { r: 57, color: '#2E3440', stroke: '#4C566A' }, // Black
-        { r: 38, color: '#434C5E', stroke: '#4C566A' },
-        { r: 19, color: '#81A1C1', stroke: '#5E81AC' }, // Blue
-        { r: 9.5, color: '#5E81AC', stroke: '#5E81AC' },
-        { r: 6.5, color: '#BF616A', stroke: '#D08770' }, // Red
-    ];
-
     return (
-        <div className="w-52 h-52 mx-auto relative bg-[#2e3440] p-2 rounded-2xl border border-card-border shadow-inner">
+        <div className="w-52 h-52 mx-auto relative bg-[#2e3440] p-2 rounded-lg border border-card-border">
             <svg viewBox="0 0 200 200" className="w-full h-full">
-                {/* Draw target circles */}
                 <circle cx="100" cy="100" r="95" fill="#E5E9F0" stroke="#D8DEE9" strokeWidth="1" />
                 <circle cx="100" cy="100" r="76" fill="#E5E9F0" stroke="#D8DEE9" strokeWidth="1" />
                 <circle cx="100" cy="100" r="57" fill="#2E3440" stroke="#4C566A" strokeWidth="1" />
@@ -68,11 +53,9 @@ const TargetChart: React.FC<{ score: number }> = ({ score }) => {
                 <circle cx="100" cy="100" r="6" fill="#EBCB8B" stroke="#D08770" strokeWidth="1" />
                 <circle cx="100" cy="100" r="2" fill="#EBCB8B" />
 
-                {/* Crosshair grid lines */}
                 <line x1="100" y1="5" x2="100" y2="195" stroke="#4C566A" strokeWidth="0.5" strokeDasharray="3,3" />
                 <line x1="5" y1="100" x2="195" y2="100" stroke="#4C566A" strokeWidth="0.5" strokeDasharray="3,3" />
 
-                {/* Hit marker "X" */}
                 <g transform={`translate(${x}, ${y})`}>
                     <line x1="-6" y1="-6" x2="6" y2="6" stroke="#A3BE8C" strokeWidth="3" />
                     <line x1="6" y1="-6" x2="-6" y2="6" stroke="#A3BE8C" strokeWidth="3" />
@@ -359,19 +342,19 @@ export default function QuizPage() {
         const isMember = user?.role === 'MEMBER';
 
         return (
-            <div className="max-w-2xl mx-auto w-full bg-card border border-card-border rounded-2xl shadow-xl p-6 md:p-8 space-y-6">
-                <h1 className="text-3xl font-black text-center mb-6">📝 문제 풀기 설정</h1>
+            <div className="max-w-2xl mx-auto w-full bg-card border border-card-border rounded-lg p-6 md:p-8 space-y-6">
+                <h1 className="text-2xl font-normal text-center mb-6">문제 풀기 설정</h1>
 
                 {isGuest && (
-                    <div className="p-3.5 bg-primary/10 border border-primary/20 text-primary rounded-xl text-xs font-semibold leading-relaxed">
-                        👋 현재 비회원 모드입니다. 학습 기록 및 오답노트 보관은 불가합니다.
+                    <div className="p-3 bg-card-border/50 border border-card-border text-foreground/80 rounded-md text-xs font-medium leading-relaxed">
+                        현재 비회원 모드입니다. 학습 기록 및 오답노트 보관은 불가합니다.
                     </div>
                 )}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Part Selection */}
                     <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                        <label className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
                             Part 선택
                         </label>
                         <select
@@ -381,7 +364,7 @@ export default function QuizPage() {
                                 setSelectedChapter('전체');
                                 setSelectedStandard('전체');
                             }}
-                            className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-3 py-2 text-sm focus:outline-none transition-colors"
+                            className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-3 py-2 text-sm focus:outline-none transition-colors"
                         >
                             {Object.keys(structure?.hierarchy || {}).sort().map((part) => (
                                 <option key={part} value={part}>
@@ -393,7 +376,7 @@ export default function QuizPage() {
 
                     {/* Chapter Selection */}
                     <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                        <label className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
                             Chapter 선택
                         </label>
                         <select
@@ -402,7 +385,7 @@ export default function QuizPage() {
                                 setSelectedChapter(e.target.value);
                                 setSelectedStandard('전체');
                             }}
-                            className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-3 py-2 text-sm focus:outline-none transition-colors"
+                            className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-3 py-2 text-sm focus:outline-none transition-colors"
                         >
                             {chapterOpts.map((chap) => {
                                 let display = chap;
@@ -422,13 +405,13 @@ export default function QuizPage() {
 
                     {/* Standard Selection */}
                     <div className="md:col-span-2">
-                        <label className="block text-xs font-bold uppercase tracking-wider text-foreground/50 mb-1">
+                        <label className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
                             회계감사기준 (Standard) 선택
                         </label>
                         <select
                             value={selectedStandard}
                             onChange={(e) => setSelectedStandard(e.target.value)}
-                            className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg px-3 py-2 text-sm focus:outline-none transition-colors"
+                            className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-3 py-2 text-sm focus:outline-none transition-colors"
                         >
                             {standardOpts.map((std) => (
                                 <option key={std} value={std}>
@@ -441,12 +424,12 @@ export default function QuizPage() {
 
                 {/* Difficulty Access Restriction */}
                 <div className="border-t border-card-border pt-4">
-                    <h3 className="text-sm font-bold text-foreground/75 mb-2">문항 수 설정</h3>
+                    <h3 className="text-sm font-medium text-foreground/75 mb-2">문항 수 설정</h3>
 
                     {(isGuest || isMember) && (
                         <p className="text-xs text-foreground/50 mb-3 flex items-center gap-1">
-                            <HelpCircle className="w-3.5 h-3.5 text-primary" />
-                            <span>현재 등급({ROLE_NAMES[user?.role || 'GUEST']})은 중급(3문제)까지만 제한 없이 선택 가능합니다.</span>
+                            <HelpCircle className="w-3.5 h-3.5 text-foreground/60" />
+                            <span>현재 등급({ROLE_NAMES[user?.role || 'GUEST']})은 중급(3문제)까지만 선택 가능합니다.</span>
                         </p>
                     )}
 
@@ -461,11 +444,11 @@ export default function QuizPage() {
                                     type="button"
                                     disabled={disabled}
                                     onClick={() => setSelectedCount(cnt)}
-                                    className={`py-3 rounded-lg border text-sm font-bold transition-all cursor-pointer ${disabled
+                                    className={`py-2.5 rounded-md border text-xs font-medium transition-colors cursor-pointer ${disabled
                                         ? 'border-card-border text-foreground/20 cursor-not-allowed bg-card-border/20'
                                         : selectedCount === cnt
-                                            ? 'border-accent bg-accent/15 text-accent shadow-md shadow-accent/5'
-                                            : 'border-card-border text-foreground/70 hover:bg-card-border/50'
+                                            ? 'border-primary bg-card-border/50 text-foreground'
+                                            : 'border-card-border text-foreground/70 hover:bg-card-border/30'
                                         }`}
                                 >
                                     {label}
@@ -477,9 +460,9 @@ export default function QuizPage() {
 
                 <button
                     onClick={handleStartQuiz}
-                    className="w-full py-3.5 bg-primary hover:bg-primary-hover text-foreground font-extrabold rounded-lg shadow-lg shadow-primary/20 transition-all text-base cursor-pointer"
+                    className="w-full py-3 bg-primary hover:bg-primary-hover text-white font-medium rounded-md transition-colors text-sm cursor-pointer"
                 >
-                    문제 풀기 시작 🚀
+                    문제 풀기 시작
                 </button>
             </div>
         );
@@ -490,34 +473,34 @@ export default function QuizPage() {
         return (
             <div className="max-w-3xl mx-auto w-full space-y-6">
                 <div className="flex items-center justify-between">
-                    <h1 className="text-2xl font-black">📝 실증 감사 주관식 작성</h1>
-                    <span className="px-3 py-1 bg-card-border border border-card-border text-foreground/70 rounded-full text-xs font-bold">
+                    <h1 className="text-xl font-normal">실증 감사 주관식 작성</h1>
+                    <span className="px-3 py-1 bg-card-border/50 border border-card-border text-foreground/70 rounded-md text-xs font-medium">
                         총 {quizList.length}문항
                     </span>
                 </div>
 
                 {gradingProgress ? (
-                    <div className="bg-card border border-card-border rounded-2xl p-12 flex flex-col items-center justify-center space-y-4">
-                        <div className="w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
-                        <h3 className="text-lg font-extrabold text-foreground">{gradingMessage}</h3>
-                        <p className="text-sm text-foreground/50">Gemini 2.5 AI 채점 위원이 답안을 공정하게 분석 중입니다. 잠시만 기다려주세요.</p>
+                    <div className="bg-card border border-card-border rounded-lg p-12 flex flex-col items-center justify-center space-y-4">
+                        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                        <h3 className="text-base font-normal text-foreground">{gradingMessage}</h3>
+                        <p className="text-sm text-foreground/50">AI 채점 모델이 답안을 분석 중입니다. 잠시만 기다려주세요.</p>
                     </div>
                 ) : (
                     <form onSubmit={handleAnswerSubmit} className="space-y-6">
                         {quizList.map((q, idx) => (
-                            <div key={q.id} className="bg-card border border-card-border rounded-xl p-5 space-y-4 shadow-md">
+                            <div key={q.id} className="bg-card border border-card-border rounded-lg p-5 space-y-4">
                                 <div className="flex items-start justify-between gap-4">
-                                    <span className="px-2.5 py-1 bg-accent/25 text-accent border border-accent/20 rounded-lg text-xs font-bold">
+                                    <span className="px-2.5 py-1 bg-card-border/60 text-foreground border border-card-border rounded-md text-xs font-medium">
                                         Q{idx + 1}. {q.question_title}
                                     </span>
                                 </div>
 
-                                <div className="p-4 bg-card-border/30 border border-card-border rounded-xl text-sm leading-relaxed text-foreground/90 font-medium whitespace-pre-wrap">
+                                <div className="p-4 bg-card-border/30 border border-card-border rounded-md text-sm leading-relaxed text-foreground/90 font-normal whitespace-pre-wrap">
                                     {q.question_description}
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-bold text-foreground/50 mb-1.5 uppercase tracking-wider">
+                                    <label className="block text-xs font-medium text-foreground/50 mb-1.5 uppercase tracking-wider">
                                         답안 작성
                                     </label>
                                     <textarea
@@ -525,7 +508,7 @@ export default function QuizPage() {
                                         value={answers[q.id.toString()] || ''}
                                         onChange={(e) => setAnswers({ ...answers, [q.id.toString()]: e.target.value })}
                                         placeholder="인과관계(감사절차-결과/대응)를 명확히 작성하고 회계감사 전문 용어를 올바르게 활용하여 기재해주세요."
-                                        className="w-full bg-card-border border border-card-border focus:border-accent text-foreground rounded-lg p-3 text-sm focus:outline-none transition-colors"
+                                        className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md p-3 text-sm focus:outline-none transition-colors"
                                         required
                                     />
                                 </div>
@@ -534,7 +517,7 @@ export default function QuizPage() {
 
                         <button
                             type="submit"
-                            className="w-full py-4 bg-primary hover:bg-primary-hover text-foreground font-black rounded-xl shadow-lg shadow-primary/25 transition-all text-base cursor-pointer"
+                            className="w-full py-3 bg-primary hover:bg-primary-hover text-white font-medium rounded-md transition-colors text-sm cursor-pointer"
                         >
                             제출 및 AI 채점 &rarr;
                         </button>
@@ -559,31 +542,31 @@ export default function QuizPage() {
             <div className="max-w-4xl mx-auto w-full space-y-6">
 
                 {/* Navigation header */}
-                <div className="flex items-center justify-between bg-card border border-card-border p-4 rounded-xl shadow-md">
+                <div className="flex items-center justify-between bg-card border border-card-border p-4 rounded-lg">
                     <button
                         onClick={() => setReviewIdx(reviewIdx - 1)}
                         disabled={isFirst}
-                        className="p-2 border border-card-border bg-card-border/40 hover:bg-card-border rounded-lg text-foreground/75 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                        className="p-2 border border-card-border bg-card-border/30 hover:bg-card-border/70 rounded-md text-foreground/75 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
                     >
-                        <ArrowLeft className="w-5 h-5" />
+                        <ArrowLeft className="w-4 h-4" />
                     </button>
 
-                    <h4 className="text-sm md:text-base font-extrabold text-foreground">
+                    <h4 className="text-sm md:text-base font-normal text-foreground">
                         감사답안 피드백 (과제 {reviewIdx + 1} / {results.length})
                     </h4>
 
                     <button
                         onClick={() => setReviewIdx(reviewIdx + 1)}
                         disabled={isLast}
-                        className="p-2 border border-card-border bg-card-border/40 hover:bg-card-border rounded-lg text-foreground/75 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                        className="p-2 border border-card-border bg-card-border/30 hover:bg-card-border/70 rounded-md text-foreground/75 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
                     >
-                        <ArrowRight className="w-5 h-5" />
+                        <ArrowRight className="w-4 h-4" />
                     </button>
                 </div>
 
                 {/* Global Success Notification */}
                 {toastMsg && (
-                    <div className="p-3 bg-success/15 border border-success/30 text-success text-sm font-bold text-center rounded-lg animate-bounce">
+                    <div className="p-3 bg-success/15 border border-success/30 text-success text-sm font-medium text-center rounded-md">
                         {toastMsg}
                     </div>
                 )}
@@ -594,40 +577,40 @@ export default function QuizPage() {
                     <div className="md:col-span-2 space-y-6">
 
                         {/* Question Card */}
-                        <div className="bg-card border border-card-border rounded-xl p-5 space-y-2.5">
-                            <span className="text-xs text-accent font-bold">문제 내역</span>
-                            <p className="text-sm font-semibold text-foreground/95 bg-card-border/30 border border-card-border p-3.5 rounded-lg whitespace-pre-wrap">
+                        <div className="bg-card border border-card-border rounded-lg p-5 space-y-2.5">
+                            <span className="text-xs text-foreground/60 font-medium">문제 내역</span>
+                            <p className="text-sm font-normal text-foreground/95 bg-card-border/30 border border-card-border p-3.5 rounded-md whitespace-pre-wrap">
                                 {qData.question_description}
                             </p>
                         </div>
 
                         {/* Answer Display */}
-                        <div className="bg-card border border-card-border rounded-xl p-5 space-y-2.5">
-                            <span className="text-xs text-foreground/50 font-bold block">작성한 내 답안</span>
-                            <p className="text-sm font-medium text-foreground bg-card-border/60 p-3.5 rounded-lg whitespace-pre-wrap border border-card-border">
+                        <div className="bg-card border border-card-border rounded-lg p-5 space-y-2.5">
+                            <span className="text-xs text-foreground/50 font-medium block">작성한 내 답안</span>
+                            <p className="text-sm font-normal text-foreground bg-card-border/30 p-3.5 rounded-md whitespace-pre-wrap border border-card-border">
                                 {uAns || '(제출한 답안 없음)'}
                             </p>
                         </div>
 
                         {/* Reference Model Answer */}
-                        <div className="bg-card border-l-[5px] border-success border border-card-border p-5 rounded-xl space-y-3">
-                            <span className="text-xs font-bold text-success flex items-center gap-1.5">
-                                <CheckCircle className="w-4 h-4" />
-                                <span>✅ 핵심 모범 답안 가이드 ({qData.question_title})</span>
+                        <div className="bg-card border border-card-border p-5 rounded-lg space-y-3">
+                            <span className="text-xs font-medium text-foreground/70 flex items-center gap-1.5">
+                                <CheckCircle className="w-4 h-4 text-success" />
+                                <span>핵심 모범 답안 가이드 ({qData.question_title})</span>
                             </span>
 
-                            <div className="text-sm leading-relaxed text-foreground/90 font-medium space-y-1">
+                            <div className="text-sm leading-relaxed text-foreground/90 font-normal space-y-1">
                                 {currentRes.eval.model_answer || '이 문제를 풀 당시 사용 가능한 모범 답안 가이드가 없었습니다.'}
                             </div>
                         </div>
 
                         {/* AI Feedback */}
-                        <div className="bg-card border border-card-border rounded-xl p-5 space-y-3">
-                            <span className="text-xs font-bold text-accent flex items-center gap-1.5">
-                                🤖 AI 감사 채점 실평평가
+                        <div className="bg-card border border-card-border rounded-lg p-5 space-y-3">
+                            <span className="text-xs font-medium text-foreground/70 flex items-center gap-1.5">
+                                AI 감사 채점 실평평가
                             </span>
 
-                            <div className="text-sm leading-relaxed text-foreground/90 font-medium whitespace-pre-wrap bg-card-border/10 p-3 rounded-lg border border-card-border/20">
+                            <div className="text-sm leading-relaxed text-foreground/90 font-normal whitespace-pre-wrap bg-card-border/20 p-3 rounded-md border border-card-border/40">
                                 {evalData.evaluation}
                             </div>
                         </div>
@@ -636,32 +619,32 @@ export default function QuizPage() {
 
                     {/* Performance Radar Target Graph */}
                     <div className="space-y-6">
-                        <div className="bg-card border border-card-border p-6 rounded-xl text-center space-y-4 flex flex-col justify-between h-fit shadow-md">
-                            <span className="text-xs font-extrabold text-foreground/50 block">AI 논리적 적중률 (Target)</span>
+                        <div className="bg-card border border-card-border p-6 rounded-lg text-center space-y-4 flex flex-col justify-between h-fit">
+                            <span className="text-xs font-medium text-foreground/50 block">AI 논리적 적중률 (Target)</span>
 
                             <TargetChart score={evalData.score} />
 
                             <div className="pt-2">
-                                <span className="text-xs text-foreground/40 font-bold block mb-1">판독 점수</span>
-                                <span className="text-3xl font-black text-warning leading-none">{evalData.score} <span className="text-sm font-semibold text-foreground/60">/ 10 점</span></span>
+                                <span className="text-xs text-foreground/40 font-medium block mb-1">판독 점수</span>
+                                <span className="text-3xl font-normal text-foreground leading-none">{evalData.score} <span className="text-sm font-normal text-foreground/60">/ 10 점</span></span>
                             </div>
 
                             {user?.role !== 'GUEST' && (user?.role === 'PRO' || user?.role === 'ADMIN') && (
                                 <button
                                     onClick={handleSaveReportNote}
                                     disabled={savedNotes.has(reviewIdx)}
-                                    className={`w-full py-2.5 font-bold rounded-lg text-sm transition-colors cursor-pointer ${savedNotes.has(reviewIdx)
-                                        ? 'bg-success/20 text-success border border-success/30 cursor-not-allowed'
-                                        : 'bg-card-border border border-card-border hover:bg-card-border/80 text-foreground'
+                                    className={`w-full py-2 font-medium rounded-md text-xs transition-colors cursor-pointer ${savedNotes.has(reviewIdx)
+                                        ? 'bg-card-border/50 text-foreground/50 border border-card-border cursor-not-allowed'
+                                        : 'bg-card-border/30 border border-card-border hover:bg-card-border/60 text-foreground'
                                         }`}
                                 >
-                                    {savedNotes.has(reviewIdx) ? '✅ 보관 완료' : '오답노트에 수동 저장'}
+                                    {savedNotes.has(reviewIdx) ? '보관 완료' : '오답노트에 수동 저장'}
                                 </button>
                             )}
 
                             {user?.role === 'MEMBER' && (
-                                <div className="text-xs font-bold text-foreground/40 p-2 bg-card-border/30 rounded-lg">
-                                    🔒 오답노트 영구 보관 (유료 회원 전용)
+                                <div className="text-xs font-medium text-foreground/40 p-2 bg-card-border/30 rounded-md">
+                                    오답노트 영구 보관 (유료 회원 전용)
                                 </div>
                             )}
                         </div>
@@ -673,10 +656,10 @@ export default function QuizPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-card-border">
                     <button
                         onClick={handleRetrySameConfig}
-                        className="py-3 bg-accent/20 hover:bg-accent/35 border border-accent/30 text-accent font-extrabold rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2"
+                        className="py-2.5 bg-card-border/30 hover:bg-card-border/60 border border-card-border text-foreground font-medium rounded-md transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm"
                     >
-                        <RefreshCw className="w-4 h-4 animate-spin-slow" />
-                        <span>🔄 동일한 조건으로 추가 문제 풀기</span>
+                        <RefreshCw className="w-4 h-4" />
+                        <span>동일한 조건으로 추가 문제 풀기</span>
                     </button>
 
                     <button
@@ -684,10 +667,10 @@ export default function QuizPage() {
                             setAppState('SETUP');
                             router.push('/');
                         }}
-                        className="py-3 bg-card border border-card-border hover:bg-card-border/70 text-foreground/90 font-extrabold rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2"
+                        className="py-2.5 bg-card-border/30 hover:bg-card-border/60 border border-card-border text-foreground font-medium rounded-md transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm"
                     >
                         <Home className="w-4 h-4" />
-                        <span>🏠 문제 마감 및 홈 대시보드 이동</span>
+                        <span>문제 마감 및 홈 대시보드 이동</span>
                     </button>
                 </div>
 
