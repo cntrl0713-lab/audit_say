@@ -2,7 +2,8 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { getCombinedProfile, createPublicProfile, checkUsernameExists, UserProfile } from '../lib/db';
+import { getCombinedProfile, createPublicProfile, UserProfile } from '../lib/db';
+import { checkUsernameExistsAction } from '../app/actions';
 
 interface AuthContextType {
     user: UserProfile | null;
@@ -20,12 +21,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [user, setUser] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
 
-    const fetchProfile = async (authUserId: string, email?: string) => {
+    const fetchProfile = async (authUserId: string, email?: string, signupUsername?: string) => {
         let profile = await getCombinedProfile(authUserId, email);
 
         // Error Recovery (Deadlock fix): Auth user exists, but DB profile is missing.
+        // 이메일 인증이 필요한 가입은 이 경로로 프로필이 처음 생성된다. 가입 폼에서 받은
+        // 닉네임은 auth user_metadata.username에 남아 있으므로 그것을 먼저 쓴다 —
+        // 이메일 앞부분으로 덮어쓰면 사용자가 입력한 닉네임이 사라진다.
         if (!profile) {
-            const fallbackUsername = email ? email.split('@')[0] : `user_${authUserId.substring(0, 8)}`;
+            const fallbackUsername =
+                signupUsername?.trim() ||
+                (email ? email.split('@')[0] : `user_${authUserId.substring(0, 8)}`);
             const recovered = await createPublicProfile(authUserId, fallbackUsername);
             if (recovered) {
                 profile = await getCombinedProfile(authUserId, email);
@@ -39,7 +45,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // 익명(게스트) 세션은 실제 Supabase 세션이지만 user_cpa에 영구 프로필을 만들지 않는다
     // (게스트는 학습 기록·오답노트가 보관되지 않는다는 기존 원칙 유지) — 화면 표시용
     // 고정 프로필만 세팅하고 DB 프로필 조회/생성 경로(fetchProfile)를 타지 않는다.
-    const resolveSessionUser = async (session: { user: { id: string; email?: string; is_anonymous?: boolean } } | null) => {
+    const resolveSessionUser = async (
+        session: {
+            user: {
+                id: string;
+                email?: string;
+                is_anonymous?: boolean;
+                user_metadata?: { username?: string };
+            };
+        } | null
+    ) => {
         if (session?.user) {
             if (session.user.is_anonymous) {
                 setUser({
@@ -50,7 +65,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                     exp: 0,
                 });
             } else {
-                await fetchProfile(session.user.id, session.user.email);
+                await fetchProfile(
+                    session.user.id,
+                    session.user.email,
+                    session.user.user_metadata?.username
+                );
             }
         } else {
             setUser(null);
@@ -85,7 +104,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             }
 
             if (data.user) {
-                await fetchProfile(data.user.id, data.user.email);
+                await fetchProfile(data.user.id, data.user.email, data.user.user_metadata?.username);
             }
             return { success: true };
         } catch (err: any) {
@@ -95,8 +114,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     const signUp = async (email: string, pass: string, username: string) => {
         try {
-            // 1. Check Username
-            const exists = await checkUsernameExists(username);
+            // 1. Check Username (서버 액션 — user_cpa를 anon에게 열지 않기 위해 service role로 조회)
+            const exists = await checkUsernameExistsAction(username);
             if (exists) {
                 return { success: false, error: '이미 사용 중인 닉네임입니다.' };
             }
@@ -122,7 +141,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
                 const profileCreated = await createPublicProfile(data.user.id, username);
                 if (profileCreated) {
-                    await fetchProfile(data.user.id, data.user.email);
+                    await fetchProfile(data.user.id, data.user.email, username);
                     return { success: true, msg: 'SUCCESS' };
                 } else {
                     return { success: false, error: '계정은 생성되었으나 프로필 설정에 실패했습니다.' };

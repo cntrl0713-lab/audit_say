@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { getStructureData, getNormalizedQuestions } from '../actions';
 import { StructureData, compareChapters } from '../../lib/utils';
 import { AuditQuestion } from '../../lib/db';
-import { BookOpen, Folder, ChevronDown, ChevronRight, HelpCircle } from 'lucide-react';
+import { Loading } from '../../components/Loading';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 
 export default function CurriculumPage() {
     const [structure, setStructure] = useState<StructureData | null>(null);
@@ -35,18 +36,14 @@ export default function CurriculumPage() {
     }, []);
 
     if (loading) {
-        return (
-            <div className="flex flex-col items-center justify-center flex-grow py-20">
-                <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
-                <p className="mt-4 text-foreground/60 font-semibold text-sm">커리큘럼 지도 로드 중...</p>
-            </div>
-        );
+        return <Loading label="커리큘럼 불러오는 중" />;
     }
 
     if (!structure) {
         return (
-            <div className="max-w-md mx-auto w-full p-8 text-center bg-card border border-card-border rounded-lg">
-                <p className="text-sm text-foreground/60 font-medium">커리큘럼을 로드할 수 없습니다.</p>
+            <div className="max-w-3xl mx-auto w-full py-8">
+                <h1 className="text-xl">커리큘럼</h1>
+                <p className="text-sm text-foreground/55 mt-1.5">커리큘럼을 불러오지 못했습니다.</p>
             </div>
         );
     }
@@ -93,17 +90,14 @@ export default function CurriculumPage() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto w-full space-y-6 py-4">
+        <div className="max-w-3xl mx-auto w-full py-8 space-y-6">
             {/* Title */}
-            <div className="text-center space-y-2">
-                <h1 className="text-2xl font-normal flex items-center justify-center gap-2">
-                    <BookOpen className="w-6 h-6 text-foreground" />
-                    <span>전체 학습 커리큘럼</span>
-                </h1>
-                <p className="text-sm text-foreground/60 font-normal">
-                    회계감사기준 체계에 따른 단원 구성과 등록된 문제 분포를 한눈에 파악합니다.
+            <header>
+                <h1 className="text-xl">커리큘럼</h1>
+                <p className="text-sm text-foreground/55 mt-1.5">
+                    회계감사기준 체계에 따른 단원 구성과 등록된 문제 수입니다.
                 </p>
-            </div>
+            </header>
 
             {/* Render hierarchy */}
             <div className="space-y-4">
@@ -115,16 +109,15 @@ export default function CurriculumPage() {
                         <div key={partName} className="bg-card border border-card-border rounded-lg overflow-hidden">
                             <button
                                 onClick={() => togglePart(partName)}
-                                className="w-full px-5 py-3.5 bg-card-border/20 border-b border-card-border hover:bg-card-border/40 transition-colors flex items-center justify-between text-left cursor-pointer"
+                                aria-expanded={!!isExpanded}
+                                className={`w-full px-5 py-3.5 hover:bg-card-border/25 transition-colors flex items-center justify-between text-left cursor-pointer text-sm font-medium text-foreground ${isExpanded ? 'border-b border-card-border' : ''
+                                    }`}
                             >
-                                <span className="font-medium text-foreground flex items-center gap-2 text-sm">
-                                    <Folder className="w-4 h-4 text-foreground/70" />
-                                    <span>{partName}</span>
-                                </span>
+                                <span>{partName}</span>
                                 {isExpanded ? (
-                                    <ChevronDown className="w-4 h-4 text-foreground/60" />
+                                    <ChevronDown className="w-4 h-4 text-foreground/45" />
                                 ) : (
-                                    <ChevronRight className="w-4 h-4 text-foreground/60" />
+                                    <ChevronRight className="w-4 h-4 text-foreground/45" />
                                 )}
                             </button>
 
@@ -136,41 +129,30 @@ export default function CurriculumPage() {
 
                                         return (
                                             <div key={chapKey} className={`${idx > 0 ? 'pt-5' : ''} space-y-3`}>
-                                                <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
-                                                    <span className="w-1 h-3 bg-foreground/40 rounded-full"></span>
-                                                    <span>{chapName}</span>
-                                                </h3>
+                                                <h2 className="text-sm font-medium text-foreground">{chapName}</h2>
 
-                                                <div className="pl-3.5 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
                                                     {standards.map((std) => {
                                                         const matchedQs = contentMap[partName]?.[chapName]?.[std] || [];
 
                                                         return (
-                                                            <div
-                                                                key={std}
-                                                                className="bg-card-border/20 border border-card-border rounded-md p-3.5 flex flex-col justify-between"
-                                                            >
-                                                                <div className="flex justify-between items-start gap-4">
-                                                                    <span className="text-xs font-medium text-foreground/80">기준서 {std}</span>
-                                                                    <span className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-card-border/40 text-foreground/70 border border-card-border">
-                                                                        등록 문제: {matchedQs.length}문항
+                                                            <div key={std} className="space-y-1.5">
+                                                                <div className="flex justify-between items-baseline gap-4 pb-1.5 border-b border-card-border">
+                                                                    <span className="text-sm text-foreground/80">기준서 {std}</span>
+                                                                    <span className="text-xs text-foreground/45 tabular-nums">
+                                                                        {matchedQs.length}문항
                                                                     </span>
                                                                 </div>
 
-                                                                <div className="mt-3.5 space-y-1.5">
-                                                                    {matchedQs.length === 0 ? (
-                                                                        <p className="text-xs text-foreground/35 italic flex items-center gap-1">
-                                                                            <HelpCircle className="w-3.5 h-3.5" />
-                                                                            <span>등록된 핵심 문항이 없습니다.</span>
-                                                                        </p>
-                                                                    ) : (
-                                                                        matchedQs.map((q) => (
-                                                                            <div key={q.id} className="text-xs font-normal text-foreground/80 leading-relaxed truncate">
-                                                                                • {q.question_title}
-                                                                            </div>
-                                                                        ))
-                                                                    )}
-                                                                </div>
+                                                                {matchedQs.length === 0 ? (
+                                                                    <p className="text-xs text-foreground/35">등록된 문제 없음</p>
+                                                                ) : (
+                                                                    matchedQs.map((q) => (
+                                                                        <div key={q.id} className="text-xs text-foreground/65 leading-relaxed truncate">
+                                                                            {q.question_title}
+                                                                        </div>
+                                                                    ))
+                                                                )}
                                                             </div>
                                                         );
                                                     })}

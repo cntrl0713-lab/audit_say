@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../contexts/AuthContext';
 import { ROLE_NAMES } from '../lib/utils';
-import { BookOpen, Award, User, Settings, Lock, Eye, EyeOff } from 'lucide-react';
+import { Loading } from '../components/Loading';
+import { Eye, EyeOff } from 'lucide-react';
 
 export default function Home() {
   const { user, login, signUp, loading, loginAsGuest } = useAuth();
@@ -61,10 +62,10 @@ export default function Home() {
 
     if (res.success) {
       if (res.msg === 'SUCCESS') {
-        setStatusMsg({ type: 'success', text: '회원가입이 완료되었습니다! 로그인해 주세요.' });
+        setStatusMsg({ type: 'success', text: '가입이 완료되었습니다. 로그인해 주세요.' });
         setActiveTab('login');
       } else if (res.msg === 'CHECK_EMAIL') {
-        setStatusMsg({ type: 'success', text: '가입 접수 완료! 입력하신 이메일의 인증 링크를 클릭해주세요.' });
+        setStatusMsg({ type: 'success', text: '인증 메일을 보냈습니다. 메일의 링크를 눌러 가입을 마쳐주세요.' });
       }
       // Reset fields
       setPassword('');
@@ -75,12 +76,7 @@ export default function Home() {
   };
 
   if (loading) {
-    return (
-      <div className="flex flex-col items-center justify-center flex-1 py-20">
-        <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
-        <p className="mt-4 text-foreground/60 font-medium">사용자 세션 확인 중...</p>
-      </div>
-    );
+    return <Loading />;
   }
 
   // --- Auth View (Not logged in) ---
@@ -89,9 +85,9 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center flex-1 max-w-md mx-auto w-full py-8 md:py-16">
         <div className="bg-card w-full rounded-lg border border-card-border overflow-hidden p-6 md:p-8">
 
-          <div className="text-center mb-6">
-            <h1 className="text-3xl font-normal text-foreground">Audit Say</h1>
-            <p className="text-sm text-foreground/60 mt-1">CPA 회계감사 AI 문제풀이 및 피드백 플랫폼</p>
+          <div className="mb-8">
+            <h1 className="text-2xl text-foreground">Audit Say</h1>
+            <p className="text-sm text-foreground/60 mt-1.5">회계감사 서술형 문제를 풀고 답안 채점 피드백을 받습니다.</p>
           </div>
 
           {/* Alert messages */}
@@ -130,8 +126,8 @@ export default function Home() {
           {activeTab === 'login' ? (
             <form onSubmit={handleLoginSubmit} className="space-y-4">
               <div>
-                <label htmlFor="login-email" className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
-                  이메일 (Email)
+                <label htmlFor="login-email" className="block text-sm text-foreground/70 mb-1.5">
+                  이메일
                 </label>
                 <input
                   id="login-email"
@@ -145,8 +141,8 @@ export default function Home() {
               </div>
 
               <div>
-                <label htmlFor="login-password" className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
-                  비밀번호 (PW)
+                <label htmlFor="login-password" className="block text-sm text-foreground/70 mb-1.5">
+                  비밀번호
                 </label>
                 <div className="relative">
                   <input
@@ -172,15 +168,12 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={formLoading}
-                className="w-full py-2.5 bg-primary hover:bg-primary-hover disabled:opacity-50 text-white font-medium rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-2.5 bg-primary hover:bg-primary-hover disabled:opacity-50 text-white text-sm font-medium rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
                 {formLoading ? (
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 ) : (
-                  <>
-                    <Lock className="w-4 h-4" />
-                    <span>이메일로 로그인</span>
-                  </>
+                  <span>로그인</span>
                 )}
               </button>
 
@@ -193,23 +186,24 @@ export default function Home() {
               <button
                 type="button"
                 onClick={loginAsGuest}
-                className="w-full py-2.5 bg-card-border/30 hover:bg-card-border/60 border border-card-border text-foreground font-medium rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer text-sm"
+                className="w-full py-2.5 bg-card-border/30 hover:bg-card-border/60 border border-card-border text-foreground font-medium rounded-md transition-colors cursor-pointer text-sm"
               >
-                <span>비회원으로 바로 시작하기</span>
+                비회원으로 둘러보기
               </button>
             </form>
           ) : (
             /* Signup tab content */
             <form onSubmit={handleSignupSubmit} className="space-y-4">
-              <div className="p-3 bg-card-border/50 border border-card-border text-foreground/80 rounded-md text-xs font-medium leading-relaxed">
+              <div className="p-3 bg-card-border/40 border border-card-border text-foreground/70 rounded-md text-xs leading-relaxed">
                 기존 ID 사용자는 이메일로 새로 가입해야 합니다.
               </div>
 
               <div>
-                <label className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
-                  이메일 (Email)
+                <label htmlFor="signup-email" className="block text-sm text-foreground/70 mb-1.5">
+                  이메일
                 </label>
                 <input
+                  id="signup-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -220,8 +214,8 @@ export default function Home() {
               </div>
 
               <div>
-                <label htmlFor="signup-username" className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
-                  닉네임 (Username)
+                <label htmlFor="signup-username" className="block text-sm text-foreground/70 mb-1.5">
+                  닉네임
                 </label>
                 <input
                   id="signup-username"
@@ -235,8 +229,8 @@ export default function Home() {
               </div>
 
               <div>
-                <label htmlFor="signup-password" className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
-                  비밀번호 (PW)
+                <label htmlFor="signup-password" className="block text-sm text-foreground/70 mb-1.5">
+                  비밀번호
                 </label>
                 <input
                   id="signup-password"
@@ -250,7 +244,7 @@ export default function Home() {
               </div>
 
               <div>
-                <label htmlFor="signup-password-confirm" className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
+                <label htmlFor="signup-password-confirm" className="block text-sm text-foreground/70 mb-1.5">
                   비밀번호 확인
                 </label>
                 <input
@@ -267,12 +261,12 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={formLoading}
-                className="w-full py-2.5 bg-primary hover:bg-primary-hover disabled:opacity-50 text-white font-medium rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-2.5 bg-primary hover:bg-primary-hover disabled:opacity-50 text-white text-sm font-medium rounded-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
                 {formLoading ? (
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 ) : (
-                  <span>회원가입 완료</span>
+                  <span>회원가입</span>
                 )}
               </button>
             </form>
@@ -285,113 +279,67 @@ export default function Home() {
 
   // --- Dashboard View (Logged In) ---
   const roleName = ROLE_NAMES[user.role] || user.role;
+  const levelProgress = user.exp % 100;
+
+  const shortcuts = [
+    { href: '/quiz', title: '문제 풀기', desc: '서술형 문제를 풀고 채점 피드백을 받습니다.' },
+    { href: '/curriculum', title: '커리큘럼', desc: '단원별 문제 구성을 확인합니다.' },
+    { href: '/ranking', title: '랭킹', desc: '경험치 기준 상위 학습자를 봅니다.' },
+    { href: '/profile', title: '내 정보', desc: '학습 통계와 오답 노트를 봅니다.' },
+  ];
+
   return (
-    <div className="max-w-4xl mx-auto w-full space-y-6 py-4">
-      {/* Welcome Card */}
-      <div className="bg-card border border-card-border p-6 rounded-lg relative overflow-hidden">
-        <div className="absolute right-0 bottom-0 opacity-5 w-48 h-48 translate-x-12 translate-y-12 select-none pointer-events-none">
-          <BookOpen className="w-full h-full" />
+    <div className="max-w-3xl mx-auto w-full py-8 space-y-10">
+      <header className="space-y-4">
+        <div>
+          <h1 className="text-2xl text-foreground">안녕하세요, {user.username}님</h1>
+          <p className="text-sm text-foreground/55 mt-1.5">
+            {roleName} · 레벨 {user.level} · 누적 {user.exp} EXP
+          </p>
         </div>
-        <h2 className="text-2xl font-normal text-foreground mb-2">
-          환영합니다, {user.username}님!
-        </h2>
-        <p className="text-foreground/80 text-sm">
-          현재 등급: <span className="font-medium text-foreground">{roleName}</span> |{' '}
-          레벨: <span className="font-medium text-foreground">{user.level}</span>
-        </p>
 
-        {/* Simple XP Progress Bar */}
-        <div className="mt-4">
-          <div className="flex justify-between text-xs text-foreground/50 mb-1">
-            <span>레벨 진행도</span>
-            <span>{user.exp % 100} / 100 EXP</span>
+        <div className="max-w-sm">
+          <div className="flex justify-between text-xs text-foreground/50 mb-1.5">
+            <span>다음 레벨까지</span>
+            <span>{levelProgress} / 100 EXP</span>
           </div>
-          <div className="w-full h-2 bg-card-border/60 rounded-full overflow-hidden">
+          <div className="w-full h-1 bg-card-border rounded-full overflow-hidden">
             <div
-              className="h-full bg-primary transition-all duration-500 rounded-full"
-              style={{ width: `${user.exp % 100}%` }}
-            ></div>
+              className="h-full bg-foreground/40 transition-all duration-500"
+              style={{ width: `${levelProgress}%` }}
+            />
           </div>
         </div>
-      </div>
 
-      {/* Navigation Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Link href="/quiz" className="flex flex-col">
-          <div className="bg-card border border-card-border p-6 rounded-lg card-hover flex-1 flex flex-col justify-between group">
-            <div>
-              <div className="w-10 h-10 bg-card-border/40 border border-card-border text-foreground rounded-md flex items-center justify-center mb-4 transition-transform">
-                <BookOpen className="w-5 h-5" />
-              </div>
-              <h3 className="text-lg font-normal mb-2 text-foreground group-hover:text-primary transition-colors">
-                문제 풀기
-              </h3>
-              <p className="text-sm text-foreground/60 leading-relaxed">
-                실제 시험처럼 시나리오 기반 약식 주관식 문제를 풀고 인공지능(AI) 채점과 논리 중심의 상세 피드백을 받아보세요.
-              </p>
-            </div>
-            <div className="text-right mt-6 text-xs font-medium text-foreground/70 group-hover:text-foreground">
-              문제 풀기 시작 &rarr;
-            </div>
-          </div>
+        <Link
+          href="/quiz"
+          className="inline-flex items-center px-4 h-10 bg-primary hover:bg-primary-hover text-white text-sm font-medium rounded-md transition-colors"
+        >
+          문제 풀러 가기
         </Link>
+      </header>
 
-        <Link href="/ranking" className="flex flex-col">
-          <div className="bg-card border border-card-border p-6 rounded-lg card-hover flex-1 flex flex-col justify-between group">
-            <div>
-              <div className="w-10 h-10 bg-card-border/40 border border-card-border text-foreground rounded-md flex items-center justify-center mb-4 transition-transform">
-                <Award className="w-5 h-5" />
-              </div>
-              <h3 className="text-lg font-normal mb-2 text-foreground group-hover:text-primary transition-colors">
-                랭킹
-              </h3>
-              <p className="text-sm text-foreground/60 leading-relaxed">
-                정답률과 누적 학습 경험치 점수를 바탕으로 다른 회계사 시험 수험생들과 순위를 겨루며 성장을 시각화하고 경쟁력을 키웁니다.
-              </p>
-            </div>
-            <div className="text-right mt-6 text-xs font-medium text-foreground/70 group-hover:text-foreground">
-              랭킹 보드 확인 &rarr;
-            </div>
-          </div>
-        </Link>
-
-        <Link href="/profile" className="flex flex-col">
-          <div className="bg-card border border-card-border p-6 rounded-lg card-hover flex-1 flex flex-col justify-between group">
-            <div>
-              <div className="w-10 h-10 bg-card-border/40 border border-card-border text-foreground rounded-md flex items-center justify-center mb-4 transition-transform">
-                <User className="w-5 h-5" />
-              </div>
-              <h3 className="text-lg font-normal mb-2 text-foreground group-hover:text-primary transition-colors">
-                내 정보
-              </h3>
-              <p className="text-sm text-foreground/60 leading-relaxed">
-                지금까지 푼 모의고사 풀이 기록과 누적 성향 통계를 분석하고, 틀린 문제를 기록하는 오답 노트를 검토하여 취약점을 점검합니다.
-              </p>
-            </div>
-            <div className="text-right mt-6 text-xs font-medium text-foreground/70 group-hover:text-foreground">
-              내 학습 통계 바로가기 &rarr;
-            </div>
-          </div>
-        </Link>
+      <div className="border-t border-card-border">
+        {shortcuts.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="block py-4 border-b border-card-border hover:bg-card-border/25 -mx-3 px-3 transition-colors"
+          >
+            <span className="block text-sm font-medium text-foreground">{item.title}</span>
+            <span className="block text-sm text-foreground/50 mt-0.5">{item.desc}</span>
+          </Link>
+        ))}
       </div>
 
       {user.role === 'ADMIN' && (
-        <div className="bg-card border border-card-border p-6 rounded-lg flex flex-col md:flex-row items-center justify-between gap-4">
-          <div>
-            <h4 className="text-base font-normal flex items-center gap-2">
-              <Settings className="w-5 h-5 text-foreground/70" />
-              <span>관리자 콘솔에 접근 가능합니다.</span>
-            </h4>
-            <p className="text-sm text-foreground/50 mt-1">
-              시험 문제 데이터베이스 추가, 수정, 삭제(CRUD) 및 회원 권한 관리가 가능합니다.
-            </p>
-          </div>
+        <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
+          <p className="text-foreground/55">문제 데이터와 회원 권한은 관리자 페이지에서 관리합니다.</p>
           <Link
             href="/admin"
-            className="px-4 py-2 bg-card-border/40 hover:bg-card-border/70 border border-card-border rounded-md text-xs font-medium flex items-center gap-1.5 whitespace-nowrap transition-colors"
+            className="px-3 py-1.5 border border-card-border rounded-md font-medium hover:bg-card-border/40 transition-colors whitespace-nowrap"
           >
-            <span>관리자 페이지 이동</span>
-            <span>&rarr;</span>
+            관리자 페이지
           </Link>
         </div>
       )}

@@ -48,8 +48,8 @@ body {
   min-height: 100vh;
 }
 
-/* CursorGothic는 라이선스 폰트라 Inter로 대체(스펙 권장). 디스플레이는 항상 weight 400 +
-   음수 letter-spacing 유지 — 매거진 톤이며, 굵게(700+) 만들지 않는다. */
+/* CursorGothic는 라이선스 폰트라 Inter로 대체(스펙 권장). 디스플레이는 항상 weight 400 —
+   매거진 톤이며, 굵게(700+) 만들지 않는다. */
 h1,
 h2,
 h3,
@@ -58,10 +58,14 @@ h5,
 h6 {
   font-family: var(--font-inter), -apple-system, sans-serif;
   font-weight: 400;
+}
+
+/* 음수 letter-spacing은 display 스케일에만 적용한다 (DESIGN.md: title/body는 tracking 0). */
+h1,
+h2 {
   letter-spacing: -0.02em;
 }
 
-/* Custom premium scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -80,12 +84,19 @@ h6 {
   background: #cfcdc4;
 }
 
-/* hairline-only depth: 그림자 없이 hairline 강조 + 미세한 lift만 사용 (DESIGN.md Don't: no drop shadows) */
+/* hairline-only depth: 그림자도 lift도 없이 hairline 대비만으로 상태를 표현한다
+   (DESIGN.md Don't: no drop shadows). */
 .card-hover {
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .card-hover:hover {
-  transform: translateY(-2px);
-  border-color: var(--foreground);
+  border-color: #cfcdc4;
+}
+
+/* 버튼·링크의 키보드 포커스를 브랜드 톤으로 통일한다. 입력 요소는 focus:border-primary로
+   자체 포커스 표시가 있고 그 유틸리티가 우선순위상 이 규칙을 덮는다. */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }

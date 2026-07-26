@@ -119,6 +119,21 @@ export function getCounts(data: AuditQuestion[]) {
     return counts;
 }
 
+/** 한 번 제출로 받을 수 있는 최대 경험치: 최대 문항 수(5) × 문항당 만점(10). */
+export const MAX_EXP_PER_SUBMISSION = 50;
+
+/**
+ * 클라이언트가 보낸 획득 경험치를 저장 가능한 값으로 정규화한다.
+ * - 루브릭 채점은 0.5점 단위라 합계가 소수일 수 있다. exp는 정수로만 누적해야 하므로
+ *   반올림한다 (exp가 정수 컬럼이면 소수 update가 거부되어 경험치가 조용히 안 오른다).
+ * - addedExp는 클라이언트 계산값이므로 한 번에 가능한 최대치로 자른다.
+ * @returns 저장할 정수 경험치, 저장할 필요가 없으면 0
+ */
+export function sanitizeExpGain(addedExp: number): number {
+    if (!Number.isFinite(addedExp) || addedExp <= 0) return 0;
+    return Math.min(MAX_EXP_PER_SUBMISSION, Math.round(addedExp));
+}
+
 // Randomly sample quiz questions
 export function getQuizSet(
     data: AuditQuestion[],

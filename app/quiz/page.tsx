@@ -16,52 +16,51 @@ import {
     getQuizSet,
     compareChapters,
     compareStandards,
-    calculateMatchedCount,
     ROLE_NAMES
 } from '../../lib/utils';
 import { AuditQuestion } from '../../lib/db';
 import type { BatchItem, GradeResult } from '../../lib/serverUtils';
-import { ArrowLeft, ArrowRight, Home, RefreshCw, CheckCircle, AlertTriangle, HelpCircle } from 'lucide-react';
+import { Loading } from '../../components/Loading';
 
 type AppState = 'LOADING' | 'SETUP' | 'SOLVING' | 'REVIEW';
 
 // One graded question: the source question, the user's answer, and the grade result.
 type EvalResult = { q: AuditQuestion; ans: string; eval: GradeResult };
 
-// Target SVG Component
-const TargetChart: React.FC<{ score: number }> = ({ score }) => {
-    const distance = Math.max(0, (10 - score) * 9.5);
-    const [angle, setAngle] = useState(0);
+// 10점 만점 점수 표시. 눈금은 채점 척도 그대로 두고 별도 장식은 넣지 않는다.
+// score < 0은 "0점"이 아니라 채점 자체가 불가했다는 신호(루브릭 검증 실패, 채점 API 오류)라
+// 0.0으로 표시하면 답안이 빵점이었다는 뜻으로 잘못 읽힌다.
+const ScoreMeter: React.FC<{ score: number }> = ({ score }) => {
+    if (score < 0) {
+        return (
+            <div className="space-y-1">
+                <span className="text-2xl text-foreground/60 leading-none">채점 불가</span>
+                <p className="text-xs text-foreground/45">채점 의견을 확인해주세요.</p>
+            </div>
+        );
+    }
 
-    useEffect(() => {
-        setAngle(Math.random() * 2 * Math.PI);
-    }, [score]);
-
-    const x = 100 + distance * Math.cos(angle);
-    const y = 100 + distance * Math.sin(angle);
+    const clamped = Math.min(10, score);
 
     return (
-        <div className="w-52 h-52 mx-auto relative bg-[#2e3440] p-2 rounded-lg border border-card-border">
-            <svg viewBox="0 0 200 200" className="w-full h-full">
-                <circle cx="100" cy="100" r="95" fill="#E5E9F0" stroke="#D8DEE9" strokeWidth="1" />
-                <circle cx="100" cy="100" r="76" fill="#E5E9F0" stroke="#D8DEE9" strokeWidth="1" />
-                <circle cx="100" cy="100" r="57" fill="#2E3440" stroke="#4C566A" strokeWidth="1" />
-                <circle cx="100" cy="100" r="38" fill="#2E3440" stroke="#4C566A" strokeWidth="1" />
-                <circle cx="100" cy="100" r="28" fill="#88C0D0" stroke="#5E81AC" strokeWidth="1" />
-                <circle cx="100" cy="100" r="19" fill="#5E81AC" stroke="#5E81AC" strokeWidth="1" />
-                <circle cx="100" cy="100" r="12" fill="#BF616A" stroke="#BF616A" strokeWidth="1" />
-                <circle cx="100" cy="100" r="6" fill="#EBCB8B" stroke="#D08770" strokeWidth="1" />
-                <circle cx="100" cy="100" r="2" fill="#EBCB8B" />
+        <div className="space-y-3">
+            <div className="flex items-baseline gap-1.5">
+                <span className="text-4xl text-foreground leading-none tabular-nums">{clamped.toFixed(1)}</span>
+                <span className="text-sm text-foreground/45">/ 10</span>
+            </div>
 
-                <line x1="100" y1="5" x2="100" y2="195" stroke="#4C566A" strokeWidth="0.5" strokeDasharray="3,3" />
-                <line x1="5" y1="100" x2="195" y2="100" stroke="#4C566A" strokeWidth="0.5" strokeDasharray="3,3" />
-
-                <g transform={`translate(${x}, ${y})`}>
-                    <line x1="-6" y1="-6" x2="6" y2="6" stroke="#A3BE8C" strokeWidth="3" />
-                    <line x1="6" y1="-6" x2="-6" y2="6" stroke="#A3BE8C" strokeWidth="3" />
-                    <circle cx="0" cy="0" r="2" fill="#2E3440" />
-                </g>
-            </svg>
+            <div
+                className="w-full h-1 bg-card-border rounded-full overflow-hidden"
+                role="meter"
+                aria-valuenow={clamped}
+                aria-valuemin={0}
+                aria-valuemax={10}
+            >
+                <div
+                    className="h-full bg-foreground/50 transition-all duration-500"
+                    style={{ width: `${clamped * 10}%` }}
+                />
+            </div>
         </div>
     );
 };
@@ -179,7 +178,7 @@ export default function QuizPage() {
         e.preventDefault();
         if (!user) return;
         setGradingProgress(true);
-        setGradingMessage('키워드 매칭 및 AI 채점 시작...');
+        setGradingMessage('답안을 채점하는 중');
 
         const batchItems: BatchItem[] = [];
         const evaluationResults: (EvalResult | null)[] = new Array(quizList.length).fill(null);
@@ -212,7 +211,7 @@ export default function QuizPage() {
 
         // 2. Call server side AI grading
         if (batchItems.length > 0) {
-            setGradingMessage('AI가 답안지의 인과관계 및 전문 용어 사용을 채점하는 중...');
+            setGradingMessage('답안의 논리 전개와 용어 사용을 확인하는 중');
             try {
                 const apiResults = await gradeQuizBatch(batchItems);
 
@@ -222,17 +221,20 @@ export default function QuizPage() {
                     evaluationResults[idx] = {
                         q: quizList[idx],
                         ans: item.a,
-                        eval: res || { score: 0.0, evaluation: '⚠️ 채점 서버 오류가 발생했습니다.' }
+                        eval: res || { score: -1, evaluation: '채점 서버 오류가 발생했습니다.' }
                     };
                 });
             } catch (err: any) {
                 console.error('Grading err:', err);
+                // 채점 실패는 0점이 아니라 -1(채점 불가)로 둔다. 0점으로 두면 아래 자동 보관
+                // 조건(0 <= score <= 5)에 걸려 서버 오류·요청량 초과 메시지가 오답 노트에
+                // 0점짜리 답안으로 영구 저장된다.
                 batchItems.forEach((item) => {
                     const idx = item.id;
                     evaluationResults[idx] = {
                         q: quizList[idx],
                         ans: item.a,
-                        eval: { score: 0.0, evaluation: `오류 발생: ${err.message || String(err)}` }
+                        eval: { score: -1, evaluation: `채점 중 오류가 발생했습니다: ${err.message || String(err)}` }
                     };
                 });
             }
@@ -241,7 +243,7 @@ export default function QuizPage() {
         // 3. Save progress for Non-guests
         try {
             if (user.role !== 'GUEST') {
-                setGradingMessage('학습 경력 업데이트 중...');
+                setGradingMessage('학습 기록을 저장하는 중');
                 // Save low score notes (<= 5.0) automatically for PRO or ADMIN
                 const autoSaved = new Set<number>();
                 for (let i = 0; i < evaluationResults.length; i++) {
@@ -284,7 +286,7 @@ export default function QuizPage() {
     const handleSaveReportNote = async () => {
         if (!user || user.role === 'GUEST') return;
         if (savedNotes.has(reviewIdx)) {
-            setToastMsg('이미 자동 저장 완료되었거나 방금 보관된 노트입니다.');
+            setToastMsg('이미 오답 노트에 저장된 문제입니다.');
             setTimeout(() => setToastMsg(null), 3000);
             return;
         }
@@ -305,14 +307,14 @@ export default function QuizPage() {
                     newSet.add(reviewIdx);
                     return newSet;
                 });
-                setToastMsg('오답노트에 성공적으로 저장되었습니다!');
+                setToastMsg('오답 노트에 저장했습니다.');
                 setTimeout(() => setToastMsg(null), 3000);
             } else {
-                alert('오답노트 저장 실패 (로그 서버를 참고해 주세요)');
+                alert('오답 노트 저장에 실패했습니다.');
             }
         } catch (err) {
             console.error('Manual Note Save Error:', err);
-            alert('오답노트 예약에 문제가 생겼습니다.');
+            alert('오답 노트 저장 중 오류가 발생했습니다.');
         }
     };
 
@@ -326,12 +328,7 @@ export default function QuizPage() {
 
     // --- Loader View ---
     if (appState === 'LOADING') {
-        return (
-            <div className="flex flex-col items-center justify-center flex-grow py-24">
-                <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-                <p className="mt-4 text-foreground/75 font-semibold text-sm">과목 설정 및 기출 문제 데이터베이스 로드 중...</p>
-            </div>
-        );
+        return <Loading label="문제 불러오는 중" />;
     }
 
     // --- 1. SETUP STATE ---
@@ -343,21 +340,22 @@ export default function QuizPage() {
 
         return (
             <div className="max-w-2xl mx-auto w-full bg-card border border-card-border rounded-lg p-6 md:p-8 space-y-6">
-                <h1 className="text-2xl font-normal text-center mb-6">문제 풀기 설정</h1>
+                <h1 className="text-xl">문제 범위 선택</h1>
 
                 {isGuest && (
-                    <div className="p-3 bg-card-border/50 border border-card-border text-foreground/80 rounded-md text-xs font-medium leading-relaxed">
-                        현재 비회원 모드입니다. 학습 기록 및 오답노트 보관은 불가합니다.
+                    <div className="p-3 bg-card-border/40 border border-card-border text-foreground/70 rounded-md text-xs leading-relaxed">
+                        비회원 모드에서는 학습 기록과 오답 노트가 저장되지 않습니다.
                     </div>
                 )}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Part Selection */}
                     <div>
-                        <label className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
-                            Part 선택
+                        <label htmlFor="quiz-part" className="block text-sm text-foreground/70 mb-1.5">
+                            Part
                         </label>
                         <select
+                            id="quiz-part"
                             value={selectedPart}
                             onChange={(e) => {
                                 setSelectedPart(e.target.value);
@@ -376,10 +374,11 @@ export default function QuizPage() {
 
                     {/* Chapter Selection */}
                     <div>
-                        <label className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
-                            Chapter 선택
+                        <label htmlFor="quiz-chapter" className="block text-sm text-foreground/70 mb-1.5">
+                            Chapter
                         </label>
                         <select
+                            id="quiz-chapter"
                             value={selectedChapter}
                             onChange={(e) => {
                                 setSelectedChapter(e.target.value);
@@ -405,10 +404,11 @@ export default function QuizPage() {
 
                     {/* Standard Selection */}
                     <div className="md:col-span-2">
-                        <label className="block text-xs font-medium uppercase tracking-wider text-foreground/50 mb-1">
-                            회계감사기준 (Standard) 선택
+                        <label htmlFor="quiz-standard" className="block text-sm text-foreground/70 mb-1.5">
+                            회계감사기준
                         </label>
                         <select
+                            id="quiz-standard"
                             value={selectedStandard}
                             onChange={(e) => setSelectedStandard(e.target.value)}
                             className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-3 py-2 text-sm focus:outline-none transition-colors"
@@ -423,35 +423,35 @@ export default function QuizPage() {
                 </div>
 
                 {/* Difficulty Access Restriction */}
-                <div className="border-t border-card-border pt-4">
-                    <h3 className="text-sm font-medium text-foreground/75 mb-2">문항 수 설정</h3>
+                <div className="border-t border-card-border pt-5">
+                    <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2.5">
+                        <span className="text-sm text-foreground/70">문항 수</span>
+                        {(isGuest || isMember) && (
+                            <span className="text-xs text-foreground/45">
+                                {ROLE_NAMES[user?.role || 'GUEST']} 등급은 3문제까지 선택할 수 있습니다.
+                            </span>
+                        )}
+                    </div>
 
-                    {(isGuest || isMember) && (
-                        <p className="text-xs text-foreground/50 mb-3 flex items-center gap-1">
-                            <HelpCircle className="w-3.5 h-3.5 text-foreground/60" />
-                            <span>현재 등급({ROLE_NAMES[user?.role || 'GUEST']})은 중급(3문제)까지만 선택 가능합니다.</span>
-                        </p>
-                    )}
-
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-3 gap-2">
                         {[1, 3, 5].map((cnt) => {
                             const disabled = cnt > 3 && (isGuest || isMember);
-                            const label = cnt === 1 ? '초급 (1문제)' : cnt === 3 ? '중급 (3문제)' : '고급 (5문제)';
 
                             return (
                                 <button
                                     key={cnt}
                                     type="button"
                                     disabled={disabled}
+                                    aria-pressed={selectedCount === cnt}
                                     onClick={() => setSelectedCount(cnt)}
-                                    className={`py-2.5 rounded-md border text-xs font-medium transition-colors cursor-pointer ${disabled
-                                        ? 'border-card-border text-foreground/20 cursor-not-allowed bg-card-border/20'
+                                    className={`py-2.5 rounded-md border text-sm transition-colors cursor-pointer ${disabled
+                                        ? 'border-card-border text-foreground/25 cursor-not-allowed'
                                         : selectedCount === cnt
-                                            ? 'border-primary bg-card-border/50 text-foreground'
-                                            : 'border-card-border text-foreground/70 hover:bg-card-border/30'
+                                            ? 'border-foreground/50 bg-card-border/40 text-foreground font-medium'
+                                            : 'border-card-border text-foreground/65 hover:bg-card-border/30'
                                         }`}
                                 >
-                                    {label}
+                                    {cnt}문제
                                 </button>
                             );
                         })}
@@ -460,9 +460,9 @@ export default function QuizPage() {
 
                 <button
                     onClick={handleStartQuiz}
-                    className="w-full py-3 bg-primary hover:bg-primary-hover text-white font-medium rounded-md transition-colors text-sm cursor-pointer"
+                    className="w-full h-11 bg-primary hover:bg-primary-hover text-white font-medium rounded-md transition-colors text-sm cursor-pointer"
                 >
-                    문제 풀기 시작
+                    시작하기
                 </button>
             </div>
         );
@@ -472,54 +472,54 @@ export default function QuizPage() {
     if (appState === 'SOLVING') {
         return (
             <div className="max-w-3xl mx-auto w-full space-y-6">
-                <div className="flex items-center justify-between">
-                    <h1 className="text-xl font-normal">실증 감사 주관식 작성</h1>
-                    <span className="px-3 py-1 bg-card-border/50 border border-card-border text-foreground/70 rounded-md text-xs font-medium">
-                        총 {quizList.length}문항
-                    </span>
+                <div className="flex items-baseline justify-between gap-4">
+                    <h1 className="text-xl">답안 작성</h1>
+                    <span className="text-sm text-foreground/50">{quizList.length}문항</span>
                 </div>
 
                 {gradingProgress ? (
-                    <div className="bg-card border border-card-border rounded-lg p-12 flex flex-col items-center justify-center space-y-4">
-                        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-                        <h3 className="text-base font-normal text-foreground">{gradingMessage}</h3>
-                        <p className="text-sm text-foreground/50">AI 채점 모델이 답안을 분석 중입니다. 잠시만 기다려주세요.</p>
+                    <div className="bg-card border border-card-border rounded-lg py-20">
+                        <Loading label={gradingMessage} />
                     </div>
                 ) : (
-                    <form onSubmit={handleAnswerSubmit} className="space-y-6">
-                        {quizList.map((q, idx) => (
-                            <div key={q.id} className="bg-card border border-card-border rounded-lg p-5 space-y-4">
-                                <div className="flex items-start justify-between gap-4">
-                                    <span className="px-2.5 py-1 bg-card-border/60 text-foreground border border-card-border rounded-md text-xs font-medium">
-                                        Q{idx + 1}. {q.question_title}
-                                    </span>
-                                </div>
+                    <form onSubmit={handleAnswerSubmit} className="space-y-5">
+                        {quizList.map((q, idx) => {
+                            const fieldId = `answer-${q.id}`;
+                            return (
+                                <div key={q.id} className="bg-card border border-card-border rounded-lg p-6 space-y-4">
+                                    <div className="space-y-2">
+                                        <div className="text-xs text-foreground/45">
+                                            {idx + 1} / {quizList.length}
+                                        </div>
+                                        <h2 className="text-base font-medium text-foreground">{q.question_title}</h2>
+                                        <p className="text-sm leading-relaxed text-foreground/75 whitespace-pre-wrap">
+                                            {q.question_description}
+                                        </p>
+                                    </div>
 
-                                <div className="p-4 bg-card-border/30 border border-card-border rounded-md text-sm leading-relaxed text-foreground/90 font-normal whitespace-pre-wrap">
-                                    {q.question_description}
+                                    <div>
+                                        <label htmlFor={fieldId} className="block text-sm text-foreground/70 mb-1.5">
+                                            답안
+                                        </label>
+                                        <textarea
+                                            id={fieldId}
+                                            rows={5}
+                                            value={answers[q.id.toString()] || ''}
+                                            onChange={(e) => setAnswers({ ...answers, [q.id.toString()]: e.target.value })}
+                                            placeholder="감사절차와 그 결과의 인과관계가 드러나도록 서술해주세요."
+                                            className="w-full bg-card-border/25 border border-card-border focus:border-primary text-foreground rounded-md p-3 text-sm leading-relaxed focus:outline-none transition-colors"
+                                            required
+                                        />
+                                    </div>
                                 </div>
-
-                                <div>
-                                    <label className="block text-xs font-medium text-foreground/50 mb-1.5 uppercase tracking-wider">
-                                        답안 작성
-                                    </label>
-                                    <textarea
-                                        rows={4}
-                                        value={answers[q.id.toString()] || ''}
-                                        onChange={(e) => setAnswers({ ...answers, [q.id.toString()]: e.target.value })}
-                                        placeholder="인과관계(감사절차-결과/대응)를 명확히 작성하고 회계감사 전문 용어를 올바르게 활용하여 기재해주세요."
-                                        className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md p-3 text-sm focus:outline-none transition-colors"
-                                        required
-                                    />
-                                </div>
-                            </div>
-                        ))}
+                            );
+                        })}
 
                         <button
                             type="submit"
-                            className="w-full py-3 bg-primary hover:bg-primary-hover text-white font-medium rounded-md transition-colors text-sm cursor-pointer"
+                            className="w-full h-11 bg-primary hover:bg-primary-hover text-white font-medium rounded-md transition-colors text-sm cursor-pointer"
                         >
-                            제출 및 AI 채점 &rarr;
+                            제출하고 채점받기
                         </button>
                     </form>
                 )}
@@ -542,135 +542,127 @@ export default function QuizPage() {
             <div className="max-w-4xl mx-auto w-full space-y-6">
 
                 {/* Navigation header */}
-                <div className="flex items-center justify-between bg-card border border-card-border p-4 rounded-lg">
-                    <button
-                        onClick={() => setReviewIdx(reviewIdx - 1)}
-                        disabled={isFirst}
-                        className="p-2 border border-card-border bg-card-border/30 hover:bg-card-border/70 rounded-md text-foreground/75 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-                    >
-                        <ArrowLeft className="w-4 h-4" />
-                    </button>
+                <div className="flex items-center justify-between gap-4 pb-4 border-b border-card-border">
+                    <h1 className="text-xl">
+                        채점 결과 <span className="text-foreground/40 text-base">{reviewIdx + 1} / {results.length}</span>
+                    </h1>
 
-                    <h4 className="text-sm md:text-base font-normal text-foreground">
-                        감사답안 피드백 (과제 {reviewIdx + 1} / {results.length})
-                    </h4>
-
-                    <button
-                        onClick={() => setReviewIdx(reviewIdx + 1)}
-                        disabled={isLast}
-                        className="p-2 border border-card-border bg-card-border/30 hover:bg-card-border/70 rounded-md text-foreground/75 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-                    >
-                        <ArrowRight className="w-4 h-4" />
-                    </button>
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={() => setReviewIdx(reviewIdx - 1)}
+                            disabled={isFirst}
+                            className="px-3 py-1.5 border border-card-border rounded-md text-sm text-foreground/75 hover:bg-card-border/40 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                        >
+                            이전
+                        </button>
+                        <button
+                            onClick={() => setReviewIdx(reviewIdx + 1)}
+                            disabled={isLast}
+                            className="px-3 py-1.5 border border-card-border rounded-md text-sm text-foreground/75 hover:bg-card-border/40 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                        >
+                            다음
+                        </button>
+                    </div>
                 </div>
 
                 {/* Global Success Notification */}
                 {toastMsg && (
-                    <div className="p-3 bg-success/15 border border-success/30 text-success text-sm font-medium text-center rounded-md">
+                    <div className="p-3 bg-success/10 border border-success/30 text-success text-sm rounded-md">
                         {toastMsg}
                     </div>
                 )}
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
 
                     {/* Detailed analysis logs */}
-                    <div className="md:col-span-2 space-y-6">
+                    <div className="md:col-span-2 space-y-5">
 
-                        {/* Question Card */}
-                        <div className="bg-card border border-card-border rounded-lg p-5 space-y-2.5">
-                            <span className="text-xs text-foreground/60 font-medium">문제 내역</span>
-                            <p className="text-sm font-normal text-foreground/95 bg-card-border/30 border border-card-border p-3.5 rounded-md whitespace-pre-wrap">
+                        {/* Question */}
+                        <div className="bg-card border border-card-border rounded-lg p-6 space-y-2">
+                            <h2 className="text-base font-medium text-foreground">{qData.question_title}</h2>
+                            <p className="text-sm leading-relaxed text-foreground/75 whitespace-pre-wrap">
                                 {qData.question_description}
                             </p>
                         </div>
 
                         {/* Answer Display */}
-                        <div className="bg-card border border-card-border rounded-lg p-5 space-y-2.5">
-                            <span className="text-xs text-foreground/50 font-medium block">작성한 내 답안</span>
-                            <p className="text-sm font-normal text-foreground bg-card-border/30 p-3.5 rounded-md whitespace-pre-wrap border border-card-border">
-                                {uAns || '(제출한 답안 없음)'}
+                        <div className="bg-card border border-card-border rounded-lg p-6 space-y-2">
+                            <h3 className="text-sm font-medium text-foreground">내 답안</h3>
+                            <p className="text-sm leading-relaxed text-foreground/75 whitespace-pre-wrap">
+                                {uAns || '제출한 답안 없음'}
                             </p>
                         </div>
 
                         {/* Reference Model Answer */}
-                        <div className="bg-card border border-card-border p-5 rounded-lg space-y-3">
-                            <span className="text-xs font-medium text-foreground/70 flex items-center gap-1.5">
-                                <CheckCircle className="w-4 h-4 text-success" />
-                                <span>핵심 모범 답안 가이드 ({qData.question_title})</span>
-                            </span>
-
-                            <div className="text-sm leading-relaxed text-foreground/90 font-normal space-y-1">
-                                {currentRes.eval.model_answer || '이 문제를 풀 당시 사용 가능한 모범 답안 가이드가 없었습니다.'}
+                        <div className="bg-card border border-card-border rounded-lg p-6 space-y-2">
+                            <h3 className="text-sm font-medium text-foreground">모범 답안</h3>
+                            <div className="text-sm leading-relaxed text-foreground/75 whitespace-pre-wrap">
+                                {currentRes.eval.model_answer || '등록된 모범 답안이 없습니다.'}
                             </div>
                         </div>
 
-                        {/* AI Feedback */}
-                        <div className="bg-card border border-card-border rounded-lg p-5 space-y-3">
-                            <span className="text-xs font-medium text-foreground/70 flex items-center gap-1.5">
-                                AI 감사 채점 실평평가
-                            </span>
-
-                            <div className="text-sm leading-relaxed text-foreground/90 font-normal whitespace-pre-wrap bg-card-border/20 p-3 rounded-md border border-card-border/40">
+                        {/* Feedback */}
+                        <div className="bg-card border border-card-border rounded-lg p-6 space-y-2">
+                            <h3 className="text-sm font-medium text-foreground">채점 의견</h3>
+                            <div className="text-sm leading-relaxed text-foreground/75 whitespace-pre-wrap">
                                 {evalData.evaluation}
                             </div>
                         </div>
 
                     </div>
 
-                    {/* Performance Radar Target Graph */}
-                    <div className="space-y-6">
-                        <div className="bg-card border border-card-border p-6 rounded-lg text-center space-y-4 flex flex-col justify-between h-fit">
-                            <span className="text-xs font-medium text-foreground/50 block">AI 논리적 적중률 (Target)</span>
-
-                            <TargetChart score={evalData.score} />
-
-                            <div className="pt-2">
-                                <span className="text-xs text-foreground/40 font-medium block mb-1">판독 점수</span>
-                                <span className="text-3xl font-normal text-foreground leading-none">{evalData.score} <span className="text-sm font-normal text-foreground/60">/ 10 점</span></span>
-                            </div>
-
-                            {user?.role !== 'GUEST' && (user?.role === 'PRO' || user?.role === 'ADMIN') && (
-                                <button
-                                    onClick={handleSaveReportNote}
-                                    disabled={savedNotes.has(reviewIdx)}
-                                    className={`w-full py-2 font-medium rounded-md text-xs transition-colors cursor-pointer ${savedNotes.has(reviewIdx)
-                                        ? 'bg-card-border/50 text-foreground/50 border border-card-border cursor-not-allowed'
-                                        : 'bg-card-border/30 border border-card-border hover:bg-card-border/60 text-foreground'
-                                        }`}
-                                >
-                                    {savedNotes.has(reviewIdx) ? '보관 완료' : '오답노트에 수동 저장'}
-                                </button>
-                            )}
-
-                            {user?.role === 'MEMBER' && (
-                                <div className="text-xs font-medium text-foreground/40 p-2 bg-card-border/30 rounded-md">
-                                    오답노트 영구 보관 (유료 회원 전용)
-                                </div>
-                            )}
+                    {/* Score */}
+                    <div className="bg-card border border-card-border p-6 rounded-lg space-y-5 md:sticky md:top-24">
+                        <div className="space-y-3">
+                            <h3 className="text-sm text-foreground/55">점수</h3>
+                            <ScoreMeter score={evalData.score} />
                         </div>
+
+                        {/* 채점 불가(-1) 결과는 저장하지 않는다 — 노트에 -1점으로 남아
+                            프로필의 평균 점수를 0~10 범위 밖으로 끌어내린다. */}
+                        {(user?.role === 'PRO' || user?.role === 'ADMIN') && evalData.score >= 0 && (
+                            <button
+                                onClick={handleSaveReportNote}
+                                disabled={savedNotes.has(reviewIdx)}
+                                className={`w-full py-2 rounded-md text-sm border transition-colors ${savedNotes.has(reviewIdx)
+                                    ? 'border-card-border text-foreground/40 cursor-not-allowed'
+                                    : 'border-card-border hover:bg-card-border/40 text-foreground cursor-pointer'
+                                    }`}
+                            >
+                                {savedNotes.has(reviewIdx) ? '오답 노트에 저장됨' : '오답 노트에 저장'}
+                            </button>
+                        )}
+
+                        {user?.role === 'MEMBER' && (
+                            <p className="text-xs text-foreground/45 leading-relaxed">
+                                오답 노트 보관은 등록공인회계사 등급부터 이용할 수 있습니다.
+                            </p>
+                        )}
                     </div>
 
                 </div>
 
                 {/* Ending options */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-card-border">
+                <div className="flex flex-wrap gap-3 pt-2">
                     <button
                         onClick={handleRetrySameConfig}
-                        className="py-2.5 bg-card-border/30 hover:bg-card-border/60 border border-card-border text-foreground font-medium rounded-md transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm"
+                        className="px-4 h-10 bg-primary hover:bg-primary-hover text-white font-medium rounded-md transition-colors cursor-pointer text-sm"
                     >
-                        <RefreshCw className="w-4 h-4" />
-                        <span>동일한 조건으로 추가 문제 풀기</span>
+                        같은 범위로 더 풀기
                     </button>
 
                     <button
-                        onClick={() => {
-                            setAppState('SETUP');
-                            router.push('/');
-                        }}
-                        className="py-2.5 bg-card-border/30 hover:bg-card-border/60 border border-card-border text-foreground font-medium rounded-md transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm"
+                        onClick={handleRetrySetup}
+                        className="px-4 h-10 border border-card-border hover:bg-card-border/40 text-foreground font-medium rounded-md transition-colors cursor-pointer text-sm"
                     >
-                        <Home className="w-4 h-4" />
-                        <span>문제 마감 및 홈 대시보드 이동</span>
+                        범위 다시 선택
+                    </button>
+
+                    <button
+                        onClick={() => router.push('/')}
+                        className="px-4 h-10 text-foreground/60 hover:text-foreground font-medium rounded-md transition-colors cursor-pointer text-sm"
+                    >
+                        홈으로
                     </button>
                 </div>
 
