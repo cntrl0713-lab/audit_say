@@ -195,52 +195,93 @@ where table_schema = 'public'
 
 ## STEP 2. 적용
 
-STEP 1-4에서 `id`가 `text`였다면 아래 두 곳의 `(select auth.uid())`를
-`(select auth.uid())::text`로 바꿔서 실행한다.
+아래를 **그대로** SQL Editor에 붙여넣고 Run 한다. 수정할 곳은 없다 —
+`user_cpa.id`가 `uuid`든 `text`든 스크립트가 컬럼 타입을 읽어 비교식을 스스로 맞춘다.
+
+전체가 하나의 트랜잭션이라, 대상 테이블이 하나라도 없으면 명확한 메시지와 함께
+**아무것도 바꾸지 않고 중단**한다.
+
+> 실행 전에 STEP 1의 **E. 롤백용 복원SQL** 결과를 저장해 두었는지 확인할 것.
+> 이 스크립트는 대상 3개 테이블의 기존 정책을 모두 제거한다.
 
 ```sql
 begin;
 
--- 대상 3개 테이블의 기존 정책을 모두 제거한다.
--- (STEP 1-1의 덤프가 롤백 수단이다 — 저장해 두지 않았다면 지금 멈추고 먼저 실행할 것)
 do $$
-declare p record;
+declare
+  p        record;
+  t        text;
+  id_type  text;
+  uid_expr text;
+  tables   text[] := array['user_cpa','cpa_questions_v2','cpa_review_notes'];
 begin
+  -- 1) 대상 테이블이 모두 있는지 먼저 확인 (없으면 아무것도 적용하지 않고 중단)
+  foreach t in array tables loop
+    if to_regclass('public.' || t) is null then
+      raise exception '테이블 public.% 를 찾을 수 없습니다. 실제 테이블명을 확인한 뒤 다시 실행하세요.', t;
+    end if;
+  end loop;
+
+  -- 2) 대상 테이블의 기존 정책 전부 제거
   for p in
-    select policyname, tablename
-    from pg_policies
-    where schemaname = 'public'
-      and tablename in ('user_cpa', 'cpa_questions_v2', 'cpa_review_notes')
+    select policyname, tablename from pg_policies
+    where schemaname = 'public' and tablename = any(tables)
   loop
     execute format('drop policy %I on public.%I', p.policyname, p.tablename);
+    raise notice '기존 정책 제거: % / %', p.tablename, p.policyname;
   end loop;
+
+  -- 3) RLS 활성화
+  --    cpa_questions_v2 / cpa_review_notes에는 정책을 만들지 않는다:
+  --    RLS가 켜져 있고 정책이 없으면 클라이언트에는 0행이 보이고, service role은 RLS를 우회한다.
+  foreach t in array tables loop
+    execute format('alter table public.%I enable row level security', t);
+  end loop;
+
+  -- 4) user_cpa.id 타입에 맞는 비교식 자동 선택
+  select data_type into id_type
+  from information_schema.columns
+  where table_schema = 'public' and table_name = 'user_cpa' and column_name = 'id';
+
+  if id_type is null then
+    raise exception 'user_cpa.id 컬럼을 찾을 수 없습니다.';
+  elsif id_type = 'uuid' then
+    uid_expr := '(select auth.uid())';
+  else
+    uid_expr := '(select auth.uid())::text';
+  end if;
+  raise notice 'user_cpa.id 타입 = %  ->  비교식 %', id_type, uid_expr;
+
+  -- 5) user_cpa: 본인 행만 조회 / 본인 행만 생성
+  --    익명(비회원) 세션도 Supabase에서는 authenticated 역할이므로 is_anonymous로 걸러낸다 —
+  --    비회원은 user_cpa에 영구 프로필을 만들지 않는 것이 앱의 기존 규칙이다.
+  execute format($f$
+    create policy "user_cpa_select_own" on public.user_cpa
+      for select to authenticated
+      using ( %s = id )
+  $f$, uid_expr);
+
+  execute format($f$
+    create policy "user_cpa_insert_own" on public.user_cpa
+      for insert to authenticated
+      with check (
+        %s = id
+        and coalesce((auth.jwt() ->> 'is_anonymous')::boolean, false) = false
+      )
+  $f$, uid_expr);
+
+  raise notice '적용 완료';
 end $$;
 
--- RLS 활성화.
--- cpa_questions_v2 / cpa_review_notes는 정책을 하나도 만들지 않는다:
--- RLS가 켜져 있고 정책이 없으면 클라이언트에는 0행이 보이고, service role은 RLS를 우회한다.
-alter table public.user_cpa         enable row level security;
-alter table public.cpa_questions_v2 enable row level security;
-alter table public.cpa_review_notes enable row level security;
-
--- user_cpa: 본인 프로필 조회 (로그인 직후 등급·레벨·경험치 표시)
-create policy "user_cpa_select_own"
-on public.user_cpa for select
-to authenticated
-using ( (select auth.uid()) = id );
-
--- user_cpa: 가입 직후 본인 프로필 생성
--- 익명(비회원) 세션도 Supabase에서는 authenticated 역할이므로 is_anonymous로 걸러낸다 —
--- 비회원은 user_cpa에 영구 프로필을 만들지 않는 것이 앱의 기존 규칙이다.
-create policy "user_cpa_insert_own"
-on public.user_cpa for insert
-to authenticated
-with check (
-  (select auth.uid()) = id
-  and coalesce((auth.jwt() ->> 'is_anonymous')::boolean, false) = false
-);
-
 commit;
+```
+
+**성공 시 출력되는 NOTICE** (Supabase SQL Editor 하단에 표시된다)
+
+```
+NOTICE:  기존 정책 제거: user_cpa / <기존 정책명>
+NOTICE:  user_cpa.id 타입 = uuid  ->  비교식 (select auth.uid())
+NOTICE:  적용 완료
 ```
 
 **UPDATE·DELETE 정책은 의도적으로 만들지 않는다.** 경험치 증가와 등급 변경은 각각
