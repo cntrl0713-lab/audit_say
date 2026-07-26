@@ -324,10 +324,10 @@ export default function Home() {
           <Link
             key={item.href}
             href={item.href}
-            className="flex items-baseline justify-between gap-6 py-4 border-b border-card-border hover:bg-card-border/25 -mx-3 px-3 transition-colors"
+            className="block py-4 border-b border-card-border hover:bg-card-border/25 -mx-3 px-3 transition-colors"
           >
-            <span className="text-sm font-medium text-foreground whitespace-nowrap">{item.title}</span>
-            <span className="text-sm text-foreground/50 text-right">{item.desc}</span>
+            <span className="block text-sm font-medium text-foreground">{item.title}</span>
+            <span className="block text-sm text-foreground/50 mt-0.5">{item.desc}</span>
           </Link>
         ))}
       </div>
