@@ -9,6 +9,8 @@ import {
     calculateMatchedCount,
     getCounts,
     getQuizSet,
+    sanitizeExpGain,
+    MAX_EXP_PER_SUBMISSION,
 } from '../lib/utils.ts';
 
 // ─── 헬퍼 ─────────────────────────────────────────
@@ -308,5 +310,53 @@ describe('getQuizSet 추가 엣지 케이스', () => {
             set.map((x) => x.id).sort(),
             [1, 2],
         );
+    });
+});
+
+// ─── sanitizeExpGain ─────────────────────────────────────────
+
+describe('sanitizeExpGain', () => {
+    test('정수 경험치는 그대로 통과', () => {
+        assert.equal(sanitizeExpGain(23), 23);
+        assert.equal(sanitizeExpGain(1), 1);
+    });
+
+    test('루브릭 0.5점 단위 합계는 정수로 반올림', () => {
+        // 7.5 + 8 + 6.5 = 22 처럼 정수로 떨어지는 경우와 x.5로 끝나는 경우 모두
+        assert.equal(sanitizeExpGain(22), 22);
+        assert.equal(sanitizeExpGain(22.5), 23);
+        assert.equal(sanitizeExpGain(7.5), 8);
+        assert.equal(sanitizeExpGain(0.5), 1);
+    });
+
+    test('반환값은 항상 정수 — 소수 exp가 DB로 내려가지 않는다', () => {
+        for (const v of [0.5, 1.5, 9.5, 22.5, 33.3, 49.9]) {
+            assert.ok(Number.isInteger(sanitizeExpGain(v)), `${v} → 정수여야 함`);
+        }
+    });
+
+    test('한 번 제출 최대치(50)로 클램핑 — 임의 값 전송 방지', () => {
+        assert.equal(sanitizeExpGain(50), 50);
+        assert.equal(sanitizeExpGain(51), 50);
+        assert.equal(sanitizeExpGain(999999), 50);
+        assert.equal(sanitizeExpGain(MAX_EXP_PER_SUBMISSION + 0.4), MAX_EXP_PER_SUBMISSION);
+    });
+
+    test('0 이하는 저장하지 않음(0 반환)', () => {
+        assert.equal(sanitizeExpGain(0), 0);
+        assert.equal(sanitizeExpGain(-5), 0);
+        assert.equal(sanitizeExpGain(-0.4), 0);
+    });
+
+    test('숫자가 아니거나 유한하지 않으면 0', () => {
+        assert.equal(sanitizeExpGain(NaN), 0);
+        assert.equal(sanitizeExpGain(Infinity), 0);
+        assert.equal(sanitizeExpGain(-Infinity), 0);
+        assert.equal(sanitizeExpGain('10' as any), 0);
+        assert.equal(sanitizeExpGain(undefined as any), 0);
+    });
+
+    test('0.4는 0으로 반올림되어 저장 대상에서 빠진다', () => {
+        assert.equal(sanitizeExpGain(0.4), 0);
     });
 });

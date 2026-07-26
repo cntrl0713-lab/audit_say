@@ -4,6 +4,11 @@ import { supabase } from './supabase';
 // anon 클라이언트(supabase)만 쓰는 함수만 둔다. admin 클라이언트가 필요한 함수는
 // lib/dbAdmin.ts로 분리되어 있다 — 'server-only'가 이 파일에 섞이면 클라이언트
 // 번들링 시 500 에러가 발생한다.
+//
+// 여기 남은 두 함수는 실제로 브라우저에서 실행되며(로그인 직후 자기 프로필 조회·생성),
+// 사용자 세션으로 동작하므로 user_cpa의 "본인 행" RLS 정책이 적용된다.
+// 나머지 조회(문제, 오답노트, 리더보드, 회원 목록)는 모두 서버에서 service role로
+// 수행하므로 어떤 테이블도 anon에게 열어둘 필요가 없다. 필요한 정책은 supabase-rls.md 참고.
 
 export interface UserProfile {
     id: string;
@@ -46,7 +51,7 @@ export interface ReviewNote {
     explanation?: string;
 }
 
-// --- Auth & User Profile Functions ---
+// --- Auth & User Profile Functions (브라우저에서 사용자 세션으로 실행) ---
 
 export async function getCombinedProfile(authUserId: string, authEmail?: string): Promise<UserProfile | null> {
     try {
@@ -97,163 +102,3 @@ export async function createPublicProfile(userId: string, username: string): Pro
         return false;
     }
 }
-
-export async function checkUsernameExists(username: string): Promise<boolean> {
-    try {
-        const { data, error } = await supabase
-            .from('user_cpa')
-            .select('username')
-            .eq('username', username);
-
-        if (error) {
-            console.error('Error checking username:', error);
-            return true; // Fail closed: assume exists to prevent overlaps
-        }
-        return data.length > 0;
-    } catch (err) {
-        console.error('Error in checkUsernameExists:', err);
-        return true; // 위 error 분기와 동일하게 fail closed — 예외 시 중복을 통과시키지 않는다.
-    }
-}
-
-// --- Review Notes Functions ---
-
-export async function getUserReviewNotes(userId: string): Promise<ReviewNote[]> {
-    try {
-        const { data: notesData, error: notesError } = await supabase
-            .from('cpa_review_notes')
-            .select('*')
-            .eq('user_id', userId)
-            .order('created_at', { ascending: false });
-
-        if (notesError) {
-            console.error('Error getting review notes:', notesError);
-            throw new Error(`Failed to load review notes: ${notesError.message}`);
-        }
-
-        const notes = notesData || [];
-        const questionIds = Array.from(
-            new Set(notes.map((n: any) => n.question_id).filter((id: any) => id !== null))
-        );
-
-        const questionMap = new Map<number, any>();
-        if (questionIds.length > 0) {
-            const { data: qData, error: qError } = await supabase
-                .from('cpa_questions_v2')
-                .select('*')
-                .in('id', questionIds);
-
-            if (qError) {
-                console.error('Error getting v2 questions for review notes:', qError);
-            } else if (qData) {
-                qData.forEach((q: any) => {
-                    questionMap.set(Number(q.id), q);
-                });
-            }
-        }
-
-        return notes.map((item: any) => {
-            const q = item.question_id !== null ? questionMap.get(Number(item.question_id)) : undefined;
-            return {
-                id: item.id,
-                user_id: item.user_id,
-                question_id: item.question_id,
-                user_answer: item.user_answer,
-                score: item.score,
-                created_at: item.created_at,
-                part: q ? String(q.part) : 'Unknown/Deleted',
-                chapter: q ? String(q.chapter) : 'Unknown',
-                standard_code: q ? q.standard : 'Unknown',
-                question_title: q ? q.question_title : 'Unknown Title',
-                question_description: q ? q.question_description : '(문제 내용 없음)',
-                model_answer: q ? (q.model_answer || []) : [],
-                explanation: q ? (q.explanation || '') : '해설 없음',
-            };
-        });
-    } catch (err) {
-        console.error('Error in getUserReviewNotes:', err);
-        throw err;
-    }
-}
-
-// --- Leaderboard & User List ---
-
-export async function getLeaderboardData(): Promise<Omit<UserProfile, 'email'>[]> {
-    try {
-        const { data, error } = await supabase
-            .from('user_cpa')
-            .select('id, username, role, level, exp')
-            .order('exp', { ascending: false })
-            .limit(10);
-
-        if (error) {
-            console.error('Error getting leaderboard:', error);
-            throw new Error(`Failed to load leaderboard: ${error.message}`);
-        }
-        return data || [];
-    } catch (err) {
-        console.error('Error in getLeaderboardData:', err);
-        throw err;
-    }
-}
-
-
-
-export async function getAllUsers(): Promise<UserProfile[]> {
-    try {
-        const { data, error } = await supabase
-            .from('user_cpa')
-            .select('*')
-            .order('username', { ascending: true });
-
-        if (error) {
-            console.error('Error getting all users:', error);
-            throw new Error(`Failed to load users: ${error.message}`);
-        }
-        return data || [];
-    } catch (err) {
-        console.error('Error in getAllUsers:', err);
-        throw err;
-    }
-}
-
-// --- Question Administration ---
-
-export async function fetchAllQuestions(stripAnswers: boolean = true): Promise<AuditQuestion[]> {
-    try {
-        const v2SelectCols = stripAnswers
-            ? 'id, part, chapter, standard, question_title, question_description'
-            : '*';
-        const { data: v2Data, error: v2Error } = await supabase
-            .from('cpa_questions_v2')
-            .select(v2SelectCols)
-            .order('id', { ascending: true });
-
-        if (v2Error) {
-            console.error('Error loading v2 questions:', v2Error);
-            return [];
-        }
-
-        const questions: AuditQuestion[] = (v2Data || []).map((q: any) => ({
-            id: q.id,
-            part: String(q.part),
-            chapter: String(q.chapter),
-            standard: q.standard,
-            question_title: q.question_title,
-            question_description: q.question_description,
-            model_answer: q.model_answer || [],
-            explanation: q.explanation || '',
-            // v2 rubric의 variants·배점 등 채점 근거는 클라이언트에 노출하지 않는다 (기존 leak 방지 원칙 유지).
-            keywords: [],
-            rubric: stripAnswers ? undefined : q.rubric,
-        }));
-
-        questions.sort((a, b) => Number(a.id) - Number(b.id));
-
-        return questions;
-    } catch (err) {
-        console.error('Error in fetchAllQuestions:', err);
-        return [];
-    }
-}
-

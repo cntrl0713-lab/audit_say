@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { fetchAllQuestions, AuditQuestion } from './db';
+import { fetchAllQuestions } from './dbAdmin';
+import type { AuditQuestion } from './db';
 import { StructureData, calculateMatchedCount, calculateBigramJaccard } from './utils';
 import { GoogleGenAI } from '@google/genai';
 import { computeRubricCoverage, RubricSub, buildOrderedNotice } from './rubric.ts';

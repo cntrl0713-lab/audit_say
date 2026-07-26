@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '../../../lib/supabase';
+import { getSupabaseAdmin } from '../../../lib/supabaseAdmin';
 import { assertAdmin } from '../../../lib/supabaseServer';
 
 export async function GET() {
@@ -21,9 +21,11 @@ export async function GET() {
     let dataCount = 0;
 
     try {
-        const { data, error } = await supabase
+        // 앱이 실제로 쓰는 경로(service role)로 연결을 확인해야 진단값이 의미가 있다.
+        // 행 내용은 응답에 담지 않고 개수만 센다.
+        const { data, error } = await getSupabaseAdmin()
             .from('cpa_questions_v2')
-            .select('*')
+            .select('id')
             .limit(1);
 
         if (error) {

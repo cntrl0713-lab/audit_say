@@ -3,14 +3,7 @@
 import { assertAdmin, assertSelf, assertAuthenticated } from '../lib/supabaseServer';
 
 import { loadStructure, loadDb, gradeBatch, BatchItem, GradeResult } from '../lib/serverUtils';
-import {
-    getLeaderboardData,
-    getAllUsers,
-    getUserReviewNotes,
-    AuditQuestion,
-    UserProfile,
-    ReviewNote
-} from '../lib/db';
+import type { AuditQuestion, UserProfile, ReviewNote } from '../lib/db';
 import {
     saveReviewNote,
     incrementProgress,
@@ -18,17 +11,31 @@ import {
     deleteReviewNote,
     updateQuestion,
     deleteQuestion,
+    checkUsernameExists,
+    getLeaderboardData,
+    getAllUsers,
+    getUserReviewNotes,
 } from '../lib/dbAdmin';
 import { getSupabaseAdmin } from '../lib/supabaseAdmin';
 import { hydrateModelAnswers } from '../lib/quizGrading';
-import { StructureData } from '../lib/utils';
+import { StructureData, sanitizeExpGain } from '../lib/utils';
 
 export async function getStructureData(): Promise<StructureData> {
     return loadStructure();
 }
 
 export async function getNormalizedQuestions(): Promise<AuditQuestion[]> {
+    // 문제 본문은 로그인(비회원 익명 세션 포함)한 사용자에게만 준다. service role로 조회하게
+    // 되면서 RLS가 더 이상 이 경로를 막아주지 않으므로 액션 자체에 관문을 둔다.
+    await assertAuthenticated();
     return loadDb(true);
+}
+
+/** 가입 폼의 닉네임 중복 확인. 가입 전 호출이라 인증을 요구하지 않고 boolean만 돌려준다. */
+export async function checkUsernameExistsAction(username: string): Promise<boolean> {
+    const trimmed = (username || '').trim();
+    if (!trimmed) return true; // 빈 닉네임은 사용 불가로 취급 (fail closed)
+    return checkUsernameExists(trimmed);
 }
 
 export async function getAdminQuestions(): Promise<AuditQuestion[]> {
@@ -121,7 +128,12 @@ export async function saveQuizNoteAction(userId: string, questionId: number, use
 
 export async function updateUserProgressAction(userId: string, addedExp: number) {
     await assertSelf(userId);
-    return incrementProgress(userId, addedExp);
+
+    // addedExp는 클라이언트가 계산해 보내는 값이라 그대로 믿지 않는다 (lib/utils 참고).
+    const safeExp = sanitizeExpGain(addedExp);
+    if (safeExp <= 0) return false;
+
+    return incrementProgress(userId, safeExp);
 }
 
 export async function getLeaderboardAction(): Promise<Omit<UserProfile, 'email'>[]> {

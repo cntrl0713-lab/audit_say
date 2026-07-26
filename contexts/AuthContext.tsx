@@ -2,7 +2,8 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { getCombinedProfile, createPublicProfile, checkUsernameExists, UserProfile } from '../lib/db';
+import { getCombinedProfile, createPublicProfile, UserProfile } from '../lib/db';
+import { checkUsernameExistsAction } from '../app/actions';
 
 interface AuthContextType {
     user: UserProfile | null;
@@ -113,8 +114,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     const signUp = async (email: string, pass: string, username: string) => {
         try {
-            // 1. Check Username
-            const exists = await checkUsernameExists(username);
+            // 1. Check Username (서버 액션 — user_cpa를 anon에게 열지 않기 위해 service role로 조회)
+            const exists = await checkUsernameExistsAction(username);
             if (exists) {
                 return { success: false, error: '이미 사용 중인 닉네임입니다.' };
             }
