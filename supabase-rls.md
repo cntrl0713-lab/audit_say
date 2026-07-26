@@ -1,8 +1,23 @@
-# Supabase RLS 정책
+# Supabase RLS 적용 런북
 
-앱 코드가 어떤 키로 어떤 테이블에 접근하는지와, 그에 맞춰 설정해야 할 RLS 정책을 정리한다.
+Supabase 대시보드 → SQL Editor에서 STEP 0부터 순서대로 실행한다.
+**순서를 지키지 않으면 운영 앱이 멈춘다** (STEP 0 참고).
 
-## 왜 이 문서가 필요한가
+> 이 문서의 STEP 1·2·4 SQL은 로컬 PostgreSQL 16에 Supabase 환경(anon·authenticated·
+> service_role 역할, `auth.uid()`/`auth.jwt()`, 적용 전의 광범위한 정책)을 재현해 실제로
+> 실행 검증했다. 확인한 동작:
+> - anon: 세 테이블 모두 0행
+> - 로그인 사용자: 본인 `user_cpa` 행만 조회, 문제·오답노트는 0행
+> - 자기 `role`을 `ADMIN`으로, `exp`를 임의 값으로 UPDATE 시도 → 0행 (차단)
+> - 가입 INSERT: 본인 id 성공 / 타인 id 거부 / 익명 세션 거부
+> - service role: 전부 정상 조회 (서버 액션 경로)
+> - STEP 4 롤백으로 적용 전 상태 복구
+>
+> 다만 검증은 재현 환경이라 실제 스키마와 다를 수 있다. STEP 1을 건너뛰지 말 것.
+
+---
+
+## 왜 필요한가
 
 이전에는 서버 액션의 조회까지 브라우저용 anon 클라이언트(`createBrowserClient`)로 수행했다.
 서버에는 쿠키 저장소가 없어 사용자 JWT가 실리지 않으므로, 그 조회들은 전부 **anon 역할**로
@@ -11,11 +26,11 @@
 타인의 오답노트를 그대로 받아갈 수 있다**는 뜻이다. 앱의 `stripAnswers` 처리는 이 경로를
 막지 못한다.
 
-지금은 조회를 모두 서버에서 service role로 수행하도록 바꿨다(`lib/dbAdmin.ts`). 호출하는 서버
-액션이 이미 `assertAdmin`/`assertSelf`/`assertAuthenticated`로 권한을 검증하므로, **테이블은
+지금은 조회를 모두 서버에서 service role로 수행한다(`lib/dbAdmin.ts`). 호출하는 서버 액션이
+이미 `assertAdmin`/`assertSelf`/`assertAuthenticated`로 권한을 검증하므로, **테이블을
 클라이언트에 대해 전부 잠가도 앱이 정상 동작한다.**
 
-## 현재 접근 경로
+### 적용 후 접근 경로
 
 | 경로 | 사용 키 | 대상 |
 |---|---|---|
@@ -23,49 +38,120 @@
 | 브라우저 `supabase.auth.*` (`contexts/AuthContext.tsx`) | anon | Auth API (테이블 아님) |
 | 서버 액션 전부 (`app/actions.ts` → `lib/dbAdmin.ts`) | service role | 모든 테이블 |
 
-즉 **클라이언트가 직접 접근해야 하는 테이블은 `user_cpa` 하나뿐**이고, 그것도 본인 행에
-한정된다.
+**클라이언트가 직접 접근해야 하는 테이블은 `user_cpa` 하나뿐**이고, 그것도 본인 행에 한정된다.
 
-## 적용할 정책
+---
 
-### 0. 현재 정책 확인
+## STEP 0. 먼저 코드부터 배포 (건너뛰면 앱이 멈춘다)
+
+RLS를 잠그는 순간부터 **anon 키로는 아무것도 읽히지 않는다.** 운영에 아직 이전 코드가
+돌고 있으면(=조회를 anon 클라이언트로 하는 버전) 문제 목록·랭킹·오답노트가 전부 비게 된다.
+
+1. `claude/ai-design-natural-fix-nreaoi` 브랜치를 머지하고 배포한다.
+2. 배포 환경에 **`SUPABASE_SERVICE_ROLE_KEY`가 설정돼 있는지 반드시 확인한다.**
+   이제 모든 조회가 이 키에 의존한다. 없으면 `getSupabaseAdmin()`이 예외를 던져
+   문제 로딩·랭킹·오답노트가 전부 실패한다.
+3. 배포본에서 문제 풀기와 랭킹이 정상인지 확인한 뒤에 STEP 1로 넘어간다.
+
+---
+
+## STEP 1. 현재 상태 점검 + 백업
+
+### 1-1. 현재 정책을 복원용 SQL로 덤프 (롤백 대비 — 결과를 어딘가에 저장해 둘 것)
 
 ```sql
-select schemaname, tablename, policyname, roles, cmd, qual, with_check
+select 'create policy "' || policyname || '" on ' || schemaname || '.' || tablename ||
+       ' as ' || permissive || ' for ' || cmd ||
+       ' to ' || array_to_string(roles, ', ') ||
+       coalesce(' using (' || qual || ')', '') ||
+       coalesce(' with check (' || with_check || ')', '') || ';' as restore_sql
 from pg_policies
-where schemaname = 'public';
+where schemaname = 'public'
+  and tablename in ('user_cpa', 'cpa_questions_v2', 'cpa_review_notes');
 ```
 
-여기 나오는 기존 정책 중 **아래에서 정의하지 않은 것은 모두 삭제**한다. 특히 `using (true)`
-형태의 광범위한 SELECT 정책이 남아 있으면 이 문서의 의미가 없다.
+### 1-2. RLS 활성화 여부
 
 ```sql
-drop policy if exists "<기존 정책 이름>" on public.<테이블>;
+select relname as table_name, relrowsecurity as rls_enabled
+from pg_class
+where relnamespace = 'public'::regnamespace
+  and relname in ('user_cpa', 'cpa_questions_v2', 'cpa_review_notes');
 ```
 
-### 1. RLS 활성화
+`rls_enabled`가 `false`인 테이블은 정책과 무관하게 anon에게 전부 열려 있다는 뜻이다.
+
+### 1-3. 위험한 정책이 있는지 확인
 
 ```sql
+select tablename, policyname, cmd, roles, qual, with_check
+from pg_policies
+where schemaname = 'public'
+  and tablename in ('user_cpa', 'cpa_questions_v2', 'cpa_review_notes')
+order by tablename, cmd;
+```
+
+특히 다음을 확인한다:
+
+- **`user_cpa`에 `cmd = 'UPDATE'`(또는 `'ALL'`) 정책이 있는가** — 있으면 사용자가 자기 행의
+  `role`을 `'ADMIN'`으로 바꾸거나 `exp`를 임의로 올릴 수 있다. 가장 시급한 항목이다.
+- `qual`이 `true`인 광범위한 SELECT 정책 — 모범답안·타인 오답노트 노출 경로다.
+
+### 1-4. 컬럼 타입 확인 (STEP 2의 정책·EXP 처리와 직결)
+
+```sql
+select table_name, column_name, data_type
+from information_schema.columns
+where table_schema = 'public'
+  and (table_name, column_name) in (('user_cpa','id'), ('user_cpa','exp'));
+```
+
+- `user_cpa.id`가 **`uuid`가 아니라 `text`**라면 STEP 2의 정책에서 `(select auth.uid())`를
+  `(select auth.uid())::text`로 바꿔야 한다. 안 그러면 타입 불일치로 본인 프로필 조회가
+  실패하고 **로그인이 안 되는 것처럼 보인다.**
+- `user_cpa.exp`가 `integer`류면 소수 경험치 update가 거부된다 — 코드에서 이미 정수로
+  반올림하므로(`sanitizeExpGain` + `incrementProgress`) 문제없지만, 확인해 두면 좋다.
+
+---
+
+## STEP 2. 적용
+
+STEP 1-4에서 `id`가 `text`였다면 아래 두 곳의 `(select auth.uid())`를
+`(select auth.uid())::text`로 바꿔서 실행한다.
+
+```sql
+begin;
+
+-- 대상 3개 테이블의 기존 정책을 모두 제거한다.
+-- (STEP 1-1의 덤프가 롤백 수단이다 — 저장해 두지 않았다면 지금 멈추고 먼저 실행할 것)
+do $$
+declare p record;
+begin
+  for p in
+    select policyname, tablename
+    from pg_policies
+    where schemaname = 'public'
+      and tablename in ('user_cpa', 'cpa_questions_v2', 'cpa_review_notes')
+  loop
+    execute format('drop policy %I on public.%I', p.policyname, p.tablename);
+  end loop;
+end $$;
+
+-- RLS 활성화.
+-- cpa_questions_v2 / cpa_review_notes는 정책을 하나도 만들지 않는다:
+-- RLS가 켜져 있고 정책이 없으면 클라이언트에는 0행이 보이고, service role은 RLS를 우회한다.
 alter table public.user_cpa         enable row level security;
 alter table public.cpa_questions_v2 enable row level security;
 alter table public.cpa_review_notes enable row level security;
-```
 
-RLS가 켜져 있고 정책이 하나도 없으면 클라이언트(anon·authenticated)에게는 0행이 보이고,
-service role은 RLS를 우회하므로 영향이 없다. 이것이 `cpa_questions_v2`와
-`cpa_review_notes`의 목표 상태다 — **두 테이블에는 정책을 만들지 않는다.**
-
-### 2. `user_cpa` — 본인 행만
-
-```sql
--- 본인 프로필 조회 (로그인 직후 등급·레벨·경험치 표시용)
+-- user_cpa: 본인 프로필 조회 (로그인 직후 등급·레벨·경험치 표시)
 create policy "user_cpa_select_own"
 on public.user_cpa for select
 to authenticated
 using ( (select auth.uid()) = id );
 
--- 가입 직후 본인 프로필 생성
--- 익명(비회원) 세션도 Supabase에서는 authenticated 역할이므로 is_anonymous로 걸러낸다:
+-- user_cpa: 가입 직후 본인 프로필 생성
+-- 익명(비회원) 세션도 Supabase에서는 authenticated 역할이므로 is_anonymous로 걸러낸다 —
 -- 비회원은 user_cpa에 영구 프로필을 만들지 않는 것이 앱의 기존 규칙이다.
 create policy "user_cpa_insert_own"
 on public.user_cpa for insert
@@ -74,42 +160,76 @@ with check (
   (select auth.uid()) = id
   and coalesce((auth.jwt() ->> 'is_anonymous')::boolean, false) = false
 );
+
+commit;
 ```
 
-### 3. `user_cpa`에 UPDATE·DELETE 정책을 만들지 않는다 (중요)
-
-클라이언트에 UPDATE 권한이 열려 있으면 사용자가 자기 행의 `role`을 `'ADMIN'`으로 바꾸거나
-`exp`를 임의로 올릴 수 있다. 경험치 증가와 등급 변경은 각각
+**UPDATE·DELETE 정책은 의도적으로 만들지 않는다.** 경험치 증가와 등급 변경은 각각
 `updateUserProgressAction`(본인 확인 + 정수 반올림 + 1회 최대 50 클램프)과
-`updateUserRoleAction`(`assertAdmin`)을 거쳐 **서버에서 service role로만** 수행한다.
+`updateUserRoleAction`(`assertAdmin`)을 거쳐 서버에서 service role로만 수행한다.
 
-기존에 UPDATE 정책이 있다면 반드시 삭제한다.
+---
 
-## 적용 후 검증
+## STEP 3. 검증
 
-anon 키로 직접 조회해 빈 배열이 나오면 성공이다.
+### 3-1. anon 키로 직접 조회 → 셋 다 `[]`가 나와야 한다
 
 ```bash
-# 모범답안·루브릭이 딸려오면 안 된다 → [] 기대
-curl -s "$SUPABASE_URL/rest/v1/cpa_questions_v2?select=*&limit=1" \
-  -H "apikey: $ANON_KEY"
+export U="<NEXT_PUBLIC_SUPABASE_URL>"
+export K="<NEXT_PUBLIC_SUPABASE_ANON_KEY>"
 
-# 타인의 오답노트가 보이면 안 된다 → [] 기대
-curl -s "$SUPABASE_URL/rest/v1/cpa_review_notes?select=*&limit=1" \
-  -H "apikey: $ANON_KEY"
+# 모범답안·루브릭이 딸려오면 실패
+curl -s "$U/rest/v1/cpa_questions_v2?select=*&limit=1" -H "apikey: $K"
 
-# 로그인하지 않은 상태에서 회원 목록이 보이면 안 된다 → [] 기대
-curl -s "$SUPABASE_URL/rest/v1/user_cpa?select=*&limit=1" \
-  -H "apikey: $ANON_KEY"
+# 타인의 오답노트가 보이면 실패
+curl -s "$U/rest/v1/cpa_review_notes?select=*&limit=1"  -H "apikey: $K"
+
+# 로그아웃 상태에서 회원 목록이 보이면 실패
+curl -s "$U/rest/v1/user_cpa?select=*&limit=1"          -H "apikey: $K"
 ```
 
-그 다음 앱에서 다음이 정상 동작하는지 확인한다: 로그인, 회원가입(닉네임 유지), 비회원
-시작하기, 문제 풀기·채점, 오답노트 저장·삭제, 랭킹, 관리자 페이지.
+### 3-2. 앱 주요 흐름 (하나라도 깨지면 STEP 4로)
+
+- [ ] 로그인 → 대시보드에 닉네임·등급·레벨이 뜬다 *(깨지면 대개 STEP 1-4의 `id` 타입 문제)*
+- [ ] 회원가입 → 입력한 닉네임이 그대로 유지된다
+- [ ] 비회원으로 둘러보기 → 문제 풀기까지 진행된다
+- [ ] 문제 풀기 → 채점 결과와 점수가 나온다
+- [ ] 채점 후 경험치가 **정수로** 오른다
+- [ ] 오답 노트 저장·조회·삭제
+- [ ] 랭킹 목록이 보인다
+- [ ] 관리자 페이지에서 회원 목록·문제 수정
+
+---
+
+## STEP 4. 롤백
+
+STEP 2는 하나의 트랜잭션이므로 실행 중 실패했다면 아무것도 바뀌지 않았다.
+커밋된 뒤 문제가 생겼다면:
+
+```sql
+begin;
+
+-- 새로 만든 정책 제거
+drop policy if exists "user_cpa_select_own" on public.user_cpa;
+drop policy if exists "user_cpa_insert_own" on public.user_cpa;
+
+-- STEP 1-1에서 덤프해 둔 restore_sql을 여기에 붙여넣어 실행
+
+-- STEP 1-2에서 rls_enabled가 false였던 테이블만 되돌린다
+-- alter table public.cpa_questions_v2 disable row level security;
+-- alter table public.cpa_review_notes disable row level security;
+-- alter table public.user_cpa         disable row level security;
+
+commit;
+```
+
+---
 
 ## 키 취급
 
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`는 공개 값이다. 브라우저 번들에 들어가는 것이 정상이며,
   보호는 RLS가 담당한다.
 - `SUPABASE_SERVICE_ROLE_KEY`는 RLS를 우회하므로 절대 클라이언트에 노출되면 안 된다.
-  `NEXT_PUBLIC_` 접두사가 없으므로 Next.js가 클라이언트 번들에 인라인하지 않으며,
-  이 키를 쓰는 `lib/supabaseAdmin.ts`는 서버 전용 모듈(`lib/dbAdmin.ts`)에서만 import한다.
+  `NEXT_PUBLIC_` 접두사가 없어 Next.js가 클라이언트 번들에 인라인하지 않으며, 이 키를 쓰는
+  `lib/supabaseAdmin.ts`는 서버 전용 모듈(`lib/dbAdmin.ts`)에서만 import한다.
+  빌드 산출물에서 클라이언트 번들이 직접 참조하는 테이블이 `user_cpa`뿐임을 확인했다.
