@@ -11,7 +11,8 @@ import {
 } from '../actions';
 import { ROLE_NAMES } from '../../lib/utils';
 import { AuditQuestion, UserProfile } from '../../lib/db';
-import { Trash2, Edit3, Settings, ShieldAlert, Users, Search } from 'lucide-react';
+import { Loading } from '../../components/Loading';
+import { Search } from 'lucide-react';
 
 export default function AdminPage() {
     const { user, loading: authLoading, refreshProfile } = useAuth();
@@ -74,23 +75,15 @@ export default function AdminPage() {
     }, [user, authLoading]);
 
     if (loading) {
-        return (
-            <div className="flex flex-col items-center justify-center flex-grow py-20">
-                <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
-                <p className="mt-4 text-foreground/60 font-semibold text-sm">콘솔 데이터 리프레시 중...</p>
-            </div>
-        );
+        return <Loading />;
     }
 
     // Auth block
     if (!user || user.role !== 'ADMIN') {
         return (
-            <div className="max-w-md mx-auto w-full p-8 text-center bg-card border border-card-border rounded-lg space-y-4">
-                <ShieldAlert className="w-12 h-12 text-foreground/50 mx-auto" />
-                <h2 className="text-xl font-normal text-foreground">접근 권한이 없습니다.</h2>
-                <p className="text-sm text-foreground/60 leading-relaxed font-normal">
-                    이 콘솔은 시스템 총괄 관리자(ADMIN) 전용 기능 구역입니다.
-                </p>
+            <div className="max-w-3xl mx-auto w-full py-8">
+                <h1 className="text-xl">접근 권한이 없습니다</h1>
+                <p className="text-sm text-foreground/55 mt-1.5">관리자 등급에서만 열 수 있는 페이지입니다.</p>
             </div>
         );
     }
@@ -140,16 +133,16 @@ export default function AdminPage() {
             });
 
             if (success) {
-                setSuccessMsg('수정 사항이 데이터베이스에 영구 반영되었습니다.');
+                setSuccessMsg('수정 사항을 저장했습니다.');
                 setErrorMsg(null);
                 // Reload db data
                 const qs = await getAdminQuestions();
                 setQuestions(qs);
             } else {
-                setErrorMsg('수정 처리가 실패하였습니다.');
+                setErrorMsg('저장에 실패했습니다.');
             }
         } catch (e: any) {
-            setErrorMsg(`서버 오류 발생: ${e.message || String(e)}`);
+            setErrorMsg(`서버 오류: ${e.message || String(e)}`);
         } finally {
             setIsSubmitting(false);
         }
@@ -158,18 +151,18 @@ export default function AdminPage() {
     // --- Delete Question ---
     const handleDeleteQuestion = async () => {
         if (!selectedQId) return;
-        if (!confirm('문제를 영구 삭제하겠습니까? 이 작업은 되돌릴 수 없습니다.')) return;
+        if (!confirm('이 문제를 삭제할까요? 되돌릴 수 없습니다.')) return;
 
         const success = await deleteQuestionAction(selectedQId);
         if (success) {
-            setSuccessMsg('문제가 성공적으로 삭제되었습니다.');
+            setSuccessMsg('문제를 삭제했습니다.');
             setErrorMsg(null);
             setSelectedQId(null);
             // Reload db data
             const qs = await getAdminQuestions();
             setQuestions(qs);
         } else {
-            setErrorMsg('데이터베이스 삭제 오퍼레이션이 거부되었습니다.');
+            setErrorMsg('문제 삭제에 실패했습니다.');
         }
     };
 
@@ -181,13 +174,13 @@ export default function AdminPage() {
 
         const success = await updateUserRoleAction(selectedUser, newRole);
         if (success) {
-            setSuccessMsg(`사용자 ${selectedUser}의 권한 등급이 ${newRole}로 수정 완료.`);
+            setSuccessMsg(`선택한 사용자의 등급을 ${newRole}로 변경했습니다.`);
             setErrorMsg(null);
             // Reload users list
             const allUsers = await getAllUsersAction();
             setUsers(allUsers);
         } else {
-            setErrorMsg('권한 변경 오퍼레이션 실패.');
+            setErrorMsg('권한 변경에 실패했습니다.');
         }
     };
 
@@ -204,12 +197,9 @@ export default function AdminPage() {
     const filteredQs = getFilteredQuestions();
 
     return (
-        <div className="max-w-5xl mx-auto w-full space-y-6 py-4">
+        <div className="max-w-5xl mx-auto w-full space-y-6 py-8">
             {/* Title */}
-            <div className="flex items-center gap-3">
-                <Settings className="w-6 h-6 text-foreground/70" />
-                <h1 className="text-2xl font-normal">관리자 제어반 (Admin Console)</h1>
-            </div>
+            <h1 className="text-xl">관리자</h1>
 
             {/* Messages */}
             {successMsg && (
@@ -224,20 +214,20 @@ export default function AdminPage() {
             )}
 
             {/* Tab Menu */}
-            <div className="flex border-b border-card-border">
+            <div className="flex gap-6 border-b border-card-border">
                 <button
                     onClick={() => { setActiveTab('edit'); setErrorMsg(null); setSuccessMsg(null); }}
-                    className={`pb-3 px-6 text-sm font-medium border-b-2 transition-colors cursor-pointer ${activeTab === 'edit' ? 'border-primary text-foreground' : 'border-transparent text-foreground/45 hover:text-foreground/75'
+                    className={`pb-3 text-sm font-medium border-b-2 -mb-px transition-colors cursor-pointer ${activeTab === 'edit' ? 'border-foreground text-foreground' : 'border-transparent text-foreground/45 hover:text-foreground/75'
                         }`}
                 >
-                    문제 수정 / 삭제
+                    문제 관리
                 </button>
                 <button
                     onClick={() => { setActiveTab('users'); setErrorMsg(null); setSuccessMsg(null); }}
-                    className={`pb-3 px-6 text-sm font-medium border-b-2 transition-colors cursor-pointer ${activeTab === 'users' ? 'border-primary text-foreground' : 'border-transparent text-foreground/45 hover:text-foreground/75'
+                    className={`pb-3 text-sm font-medium border-b-2 -mb-px transition-colors cursor-pointer ${activeTab === 'users' ? 'border-foreground text-foreground' : 'border-transparent text-foreground/45 hover:text-foreground/75'
                         }`}
                 >
-                    회원 권한 관리
+                    회원 관리
                 </button>
             </div>
 
@@ -252,7 +242,7 @@ export default function AdminPage() {
                         <div className="bg-card border border-card-border p-5 rounded-lg flex flex-col md:flex-row gap-4 items-end">
                             <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
                                 <div>
-                                    <label className="block text-xs font-medium text-foreground/50 mb-1">Part 필터</label>
+                                    <label className="block text-sm text-foreground/70 mb-1.5">Part 필터</label>
                                     <select
                                         value={partFilter}
                                         onChange={(e) => setPartFilter(e.target.value)}
@@ -266,7 +256,7 @@ export default function AdminPage() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-foreground/50 mb-1">Chapter 필터</label>
+                                    <label className="block text-sm text-foreground/70 mb-1.5">Chapter 필터</label>
                                     <select
                                         value={chapFilter}
                                         onChange={(e) => setChapFilter(e.target.value)}
@@ -280,11 +270,11 @@ export default function AdminPage() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-foreground/50 mb-1">제목 검색</label>
+                                    <label className="block text-sm text-foreground/70 mb-1.5">제목 검색</label>
                                     <div className="relative">
                                         <input
                                             type="text"
-                                            placeholder="문제 제목 검색어..."
+                                            placeholder="문제 제목 검색"
                                             value={searchTitle}
                                             onChange={(e) => setSearchTitle(e.target.value)}
                                             className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md pl-9 pr-4 py-2 text-sm focus:outline-none"
@@ -297,12 +287,15 @@ export default function AdminPage() {
 
                         {/* Questions Selector List */}
                         <div className="bg-card border border-card-border rounded-lg p-5">
-                            <label className="block text-xs font-medium text-foreground/50 mb-1.5 uppercase">수정/삭제 대상 문제 풀 선택</label>
+                            <label htmlFor="admin-question-select" className="block text-sm text-foreground/70 mb-1.5">
+                                수정할 문제
+                            </label>
 
                             {filteredQs.length === 0 ? (
-                                <p className="text-sm text-foreground/50 py-2.5">검색에 부합하는 문제가 존재하지 않습니다.</p>
+                                <p className="text-sm text-foreground/50 py-2.5">검색 조건에 맞는 문제가 없습니다.</p>
                             ) : (
                                 <select
+                                    id="admin-question-select"
                                     onChange={(e) => {
                                         const qData = filteredQs.find((q) => q.id === Number(e.target.value));
                                         if (qData) handleLoadQuestionToEdit(qData);
@@ -310,7 +303,7 @@ export default function AdminPage() {
                                     value={selectedQId || ''}
                                     className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-3 py-2.5 text-sm"
                                 >
-                                    <option value="">-- 수정할 문제를 선택하세요 ({filteredQs.length}건 검색됨) --</option>
+                                    <option value="">문제 선택 ({filteredQs.length}건)</option>
                                     {filteredQs.map((q) => (
                                         <option key={q.id} value={q.id}>
                                             [{q.id}] (Ch.{q.chapter}) {q.question_title}
@@ -323,24 +316,20 @@ export default function AdminPage() {
                         {/* Editable Form Segment */}
                         {selectedQId && (
                             <form onSubmit={handleUpdateQuestion} className="bg-card border border-card-border p-6 rounded-lg space-y-4">
-                                <div className="flex items-center justify-between border-b border-card-border pb-3">
-                                    <h3 className="text-base font-normal text-foreground flex items-center gap-2">
-                                        <Edit3 className="w-4 h-4 text-foreground/70" />
-                                        <span>감사문제 상세 정보 수정 (ID: {selectedQId})</span>
-                                    </h3>
+                                <div className="flex items-center justify-between gap-4 border-b border-card-border pb-3">
+                                    <h2 className="text-base text-foreground">문제 수정 (ID {selectedQId})</h2>
                                     <button
                                         type="button"
                                         onClick={handleDeleteQuestion}
-                                        className="flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium border border-danger/30 text-danger hover:bg-danger/10 transition-colors cursor-pointer"
+                                        className="px-3 py-1.5 rounded-md text-xs font-medium border border-danger/30 text-danger hover:bg-danger/10 transition-colors cursor-pointer whitespace-nowrap"
                                     >
-                                        <Trash2 className="w-3.5 h-3.5" />
-                                        <span>영구 삭제</span>
+                                        삭제
                                     </button>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div>
-                                        <label className="block text-xs font-medium text-foreground/50 mb-1">Part 코드 (숫자만)</label>
+                                        <label className="block text-sm text-foreground/70 mb-1.5">Part 코드</label>
                                         <input
                                             type="text"
                                             value={editPart}
@@ -351,7 +340,7 @@ export default function AdminPage() {
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-medium text-foreground/50 mb-1">Chapter 코드 (숫자만)</label>
+                                        <label className="block text-sm text-foreground/70 mb-1.5">Chapter 코드</label>
                                         <input
                                             type="text"
                                             value={editChap}
@@ -362,7 +351,7 @@ export default function AdminPage() {
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-medium text-foreground/50 mb-1">감사기준 (Standard)</label>
+                                        <label className="block text-sm text-foreground/70 mb-1.5">감사기준</label>
                                         <input
                                             type="text"
                                             value={editStd}
@@ -373,7 +362,7 @@ export default function AdminPage() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-foreground/50 mb-1">문제 제목</label>
+                                    <label className="block text-sm text-foreground/70 mb-1.5">문제 제목</label>
                                     <input
                                         type="text"
                                         value={editTitle}
@@ -384,7 +373,7 @@ export default function AdminPage() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-foreground/50 mb-1">문제 세부 지문</label>
+                                    <label className="block text-sm text-foreground/70 mb-1.5">문제 지문</label>
                                     <textarea
                                         rows={6}
                                         value={editDesc}
@@ -396,7 +385,7 @@ export default function AdminPage() {
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-xs font-medium text-foreground/50 mb-1">검색 핵심 키워드 (쉼표 구분)</label>
+                                        <label className="block text-sm text-foreground/70 mb-1.5">키워드 (쉼표로 구분)</label>
                                         <textarea
                                             rows={5}
                                             value={editKeywords}
@@ -406,7 +395,7 @@ export default function AdminPage() {
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-medium text-foreground/50 mb-1">기본 모범답안 문법 (엔터 구분)</label>
+                                        <label className="block text-sm text-foreground/70 mb-1.5">모범 답안 (줄바꿈으로 구분)</label>
                                         <textarea
                                             rows={5}
                                             value={editModelAns}
@@ -417,7 +406,7 @@ export default function AdminPage() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-foreground/50 mb-1">전문 해설</label>
+                                    <label className="block text-sm text-foreground/70 mb-1.5">해설</label>
                                     <textarea
                                         rows={3}
                                         value={editExpl}
@@ -427,7 +416,7 @@ export default function AdminPage() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-foreground/50 mb-1">루브릭 구조 (Rubric JSON)</label>
+                                    <label className="block text-sm text-foreground/70 mb-1.5">루브릭 (JSON)</label>
                                     <textarea
                                         rows={6}
                                         value={editRubric}
@@ -444,7 +433,7 @@ export default function AdminPage() {
                                     {isSubmitting ? (
                                         <div className="w-5 h-5 border-2 border-white/50 border-t-transparent rounded-full animate-spin"></div>
                                     ) : (
-                                        <span>데이터베이스 반영 저장하기</span>
+                                        <span>저장</span>
                                     )}
                                 </button>
                             </form>
@@ -456,9 +445,8 @@ export default function AdminPage() {
                 {activeTab === 'users' && (
                     <div className="space-y-6">
                         <div className="bg-card border border-card-border rounded-lg overflow-hidden">
-                            <div className="p-4 bg-card-border/20 border-b border-card-border flex items-center gap-2">
-                                <Users className="w-4 h-4 text-foreground/70" />
-                                <h3 className="text-sm font-medium text-foreground/80">회원 정보 목록</h3>
+                            <div className="p-4 border-b border-card-border">
+                                <h2 className="text-sm font-medium text-foreground">회원 목록</h2>
                             </div>
 
                             <div className="overflow-x-auto">
@@ -469,7 +457,7 @@ export default function AdminPage() {
                                             <th className="px-6 py-3">권한 등급</th>
                                             <th className="px-6 py-3">경험치</th>
                                             <th className="px-6 py-3">레벨</th>
-                                            <th className="px-6 py-3 text-right">가입 관리일</th>
+                                            <th className="px-6 py-3 text-right">가입일</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-card-border">
@@ -497,13 +485,13 @@ export default function AdminPage() {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-xs font-medium text-foreground/50 mb-1">사용자 선택</label>
+                                    <label className="block text-sm text-foreground/70 mb-1.5">사용자 선택</label>
                                     <select
                                         value={selectedUser}
                                         onChange={(e) => setSelectedUser(e.target.value)}
                                         className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-3 py-2 text-sm focus:outline-none"
                                     >
-                                        <option value="">-- 사용자를 선택하세요 --</option>
+                                        <option value="">사용자 선택</option>
                                         {users.map((u) => (
                                             <option key={u.id} value={u.id}>
                                                 {u.username} ({ROLE_NAMES[u.role] || u.role})
@@ -513,7 +501,7 @@ export default function AdminPage() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-foreground/50 mb-1">변경할 권한 등급</label>
+                                    <label className="block text-sm text-foreground/70 mb-1.5">변경할 권한 등급</label>
                                     <select
                                         value={newRole}
                                         onChange={(e) => setNewRole(e.target.value as any)}
@@ -531,7 +519,7 @@ export default function AdminPage() {
                                 onClick={handleChangeRole}
                                 className="px-4 py-2 bg-primary hover:bg-primary-hover text-white font-medium rounded-md text-sm transition-colors cursor-pointer"
                             >
-                                변경 권한 적용하기
+                                등급 변경
                             </button>
                         </div>
                     </div>

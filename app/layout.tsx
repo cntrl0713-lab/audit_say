@@ -11,8 +11,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Audit Say 🏹",
-  description: "KICPA 회계감사 AI 채점 및 문제 풀기 플랫폼",
+  title: "Audit Say",
+  description: "KICPA 회계감사 문제 풀이와 서술형 답안 채점 서비스",
 };
 
 export default function RootLayout({
