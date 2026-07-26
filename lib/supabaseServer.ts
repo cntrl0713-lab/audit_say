@@ -30,19 +30,14 @@ export async function getSupabaseServerClient() {
 }
 
 export async function assertAdmin() {
-    const supabase = await getSupabaseServerClient();
-    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-
-    if (sessionError || !session || !session.user) {
-        throw new Error('Unauthorized');
-    }
+    const { user } = await assertAuthenticated();
 
     // Now check role using admin client
     const supabaseAdmin = getSupabaseAdmin();
     const { data, error } = await supabaseAdmin
         .from('user_cpa')
         .select('role')
-        .eq('id', session.user.id)
+        .eq('id', user.id)
         .single();
 
     if (error || !data || data.role !== 'ADMIN') {
@@ -57,11 +52,16 @@ export async function assertAuthenticated() {
         return { user: { id: 'test-user-id' } } as any;
     }
     const supabase = await getSupabaseServerClient();
-    const { data: { session }, error } = await supabase.auth.getSession();
-    if (error || !session || !session.user) {
+
+    // getSession()이 아니라 getUser()를 쓴다. 서버에서 getSession()은 요청 쿠키를 그대로
+    // 디코딩할 뿐 JWT 서명을 검증하지 않으므로, 위조된 쿠키로 임의의 user.id를 주장할 수
+    // 있다 — assertAdmin이 그 id로 역할을 조회하기 때문에 관리자 UUID를 넣으면 권한 상승이
+    // 가능하다. getUser()는 Auth 서버에 토큰을 보내 검증한다.
+    const { data: { user }, error } = await supabase.auth.getUser();
+    if (error || !user) {
         throw new Error('Unauthorized');
     }
-    return session;
+    return { user };
 }
 
 export async function assertSelf(userId: string) {
@@ -71,3 +71,5 @@ export async function assertSelf(userId: string) {
     }
     return session;
 }
+
+export type AuthenticatedSession = Awaited<ReturnType<typeof assertAuthenticated>>;

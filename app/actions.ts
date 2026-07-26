@@ -53,6 +53,12 @@ export async function gradeQuizBatch(items: BatchItem[]) {
         gradeRateLimiter.set(userId, { count: 1, resetAt: now + 60000 });
     }
 
+    // 만료된 항목을 정리한다. 한 번 채점한 사용자의 엔트리가 영구히 남아 있으면
+    // 장수명 서버 인스턴스에서 Map이 사용자 수만큼 무한히 커진다.
+    for (const [key, entry] of gradeRateLimiter) {
+        if (now >= entry.resetAt) gradeRateLimiter.delete(key);
+    }
+
     const apiKey = process.env.GOOGLE_API_KEY;
     if (!apiKey) {
         throw new Error('GOOGLE_API_KEY environment variable is not defined on the server.');

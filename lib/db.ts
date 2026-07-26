@@ -1,5 +1,4 @@
 import { supabase } from './supabase';
-import { flattenRubricVariants } from './rubric';
 
 // 이 파일은 클라이언트 컴포넌트(contexts/AuthContext.tsx 등)에서도 import되므로
 // anon 클라이언트(supabase)만 쓰는 함수만 둔다. admin 클라이언트가 필요한 함수는
@@ -113,7 +112,7 @@ export async function checkUsernameExists(username: string): Promise<boolean> {
         return data.length > 0;
     } catch (err) {
         console.error('Error in checkUsernameExists:', err);
-        return false;
+        return true; // 위 error 분기와 동일하게 fail closed — 예외 시 중복을 통과시키지 않는다.
     }
 }
 

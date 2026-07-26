@@ -16,7 +16,6 @@ import {
     getQuizSet,
     compareChapters,
     compareStandards,
-    calculateMatchedCount,
     ROLE_NAMES
 } from '../../lib/utils';
 import { AuditQuestion } from '../../lib/db';
@@ -29,8 +28,19 @@ type AppState = 'LOADING' | 'SETUP' | 'SOLVING' | 'REVIEW';
 type EvalResult = { q: AuditQuestion; ans: string; eval: GradeResult };
 
 // 10점 만점 점수 표시. 눈금은 채점 척도 그대로 두고 별도 장식은 넣지 않는다.
+// score < 0은 "0점"이 아니라 채점 자체가 불가했다는 신호(루브릭 검증 실패, 채점 API 오류)라
+// 0.0으로 표시하면 답안이 빵점이었다는 뜻으로 잘못 읽힌다.
 const ScoreMeter: React.FC<{ score: number }> = ({ score }) => {
-    const clamped = Math.min(10, Math.max(0, score));
+    if (score < 0) {
+        return (
+            <div className="space-y-1">
+                <span className="text-2xl text-foreground/60 leading-none">채점 불가</span>
+                <p className="text-xs text-foreground/45">채점 의견을 확인해주세요.</p>
+            </div>
+        );
+    }
+
+    const clamped = Math.min(10, score);
 
     return (
         <div className="space-y-3">
@@ -211,17 +221,20 @@ export default function QuizPage() {
                     evaluationResults[idx] = {
                         q: quizList[idx],
                         ans: item.a,
-                        eval: res || { score: 0.0, evaluation: '채점 서버 오류가 발생했습니다.' }
+                        eval: res || { score: -1, evaluation: '채점 서버 오류가 발생했습니다.' }
                     };
                 });
             } catch (err: any) {
                 console.error('Grading err:', err);
+                // 채점 실패는 0점이 아니라 -1(채점 불가)로 둔다. 0점으로 두면 아래 자동 보관
+                // 조건(0 <= score <= 5)에 걸려 서버 오류·요청량 초과 메시지가 오답 노트에
+                // 0점짜리 답안으로 영구 저장된다.
                 batchItems.forEach((item) => {
                     const idx = item.id;
                     evaluationResults[idx] = {
                         q: quizList[idx],
                         ans: item.a,
-                        eval: { score: 0.0, evaluation: `오류 발생: ${err.message || String(err)}` }
+                        eval: { score: -1, evaluation: `채점 중 오류가 발생했습니다: ${err.message || String(err)}` }
                     };
                 });
             }
@@ -605,7 +618,9 @@ export default function QuizPage() {
                             <ScoreMeter score={evalData.score} />
                         </div>
 
-                        {(user?.role === 'PRO' || user?.role === 'ADMIN') && (
+                        {/* 채점 불가(-1) 결과는 저장하지 않는다 — 노트에 -1점으로 남아
+                            프로필의 평균 점수를 0~10 범위 밖으로 끌어내린다. */}
+                        {(user?.role === 'PRO' || user?.role === 'ADMIN') && evalData.score >= 0 && (
                             <button
                                 onClick={handleSaveReportNote}
                                 disabled={savedNotes.has(reviewIdx)}

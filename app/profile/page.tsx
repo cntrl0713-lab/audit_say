@@ -73,11 +73,17 @@ export default function ProfilePage() {
 
     const handleDeleteNote = async (noteId: number) => {
         if (!confirm('이 오답 노트를 삭제할까요?')) return;
-        const success = await deleteReviewNoteAction(noteId);
-        if (success) {
-            setNotes((prev) => prev.filter((note) => note.id !== noteId));
-        } else {
-            alert('오답노트 삭제에 실패했습니다.');
+        // 세션이 만료되면 서버 액션이 throw한다 — catch가 없으면 삭제도 안 되고
+        // 사용자에게 아무 안내도 가지 않는다.
+        try {
+            const success = await deleteReviewNoteAction(noteId);
+            if (success) {
+                setNotes((prev) => prev.filter((note) => note.id !== noteId));
+            } else {
+                alert('오답 노트 삭제에 실패했습니다.');
+            }
+        } catch (e: any) {
+            alert(`오답 노트 삭제 실패: ${e.message || String(e)}`);
         }
     };
 
@@ -118,8 +124,11 @@ export default function ProfilePage() {
 
     const groupedNotes = getGroupedNotes();
     const rawRoleName = ROLE_NAMES[user.role] || user.role;
-    const averageScore = notes.length > 0
-        ? (notes.reduce((acc, n) => acc + n.score, 0) / notes.length).toFixed(1)
+    // 채점 불가(-1)로 저장된 과거 노트는 평균에서 제외한다 — 0~10 척도 밖의 값이라
+    // 섞이면 평균이 실제보다 낮게 나온다.
+    const scoredNotes = notes.filter((n) => n.score >= 0);
+    const averageScore = scoredNotes.length > 0
+        ? (scoredNotes.reduce((acc, n) => acc + n.score, 0) / scoredNotes.length).toFixed(1)
         : null;
 
     // 보관된 오답 노트를 Part 단위로 집계한다. 별도 통계 테이블 없이 이미 불러온 데이터만 쓴다.

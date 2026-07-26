@@ -305,10 +305,11 @@ export async function gradeBatch(items: BatchItem[], apiKey: string): Promise<{ 
             if (text.endsWith('```')) text = text.slice(0, -3);
             text = text.trim();
 
+            // 이 파일 상단에서 import한 node의 fs 모듈과 이름이 겹치지 않게 둔다.
             const parseScore = (s: any) => {
-                let fs = parseFloat(s);
-                if (isNaN(fs)) return 0;
-                return Math.max(0, Math.min(10, fs));
+                const parsed = parseFloat(s);
+                if (isNaN(parsed)) return 0;
+                return Math.max(0, Math.min(10, parsed));
             };
 
             // 균형 중괄호 스캔을 통한 첫 번째 완결 JSON 객체 추출기

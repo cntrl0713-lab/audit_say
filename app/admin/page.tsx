@@ -15,7 +15,7 @@ import { Loading } from '../../components/Loading';
 import { Search } from 'lucide-react';
 
 export default function AdminPage() {
-    const { user, loading: authLoading, refreshProfile } = useAuth();
+    const { user, loading: authLoading } = useAuth();
 
     // Tab states
     const [activeTab, setActiveTab] = useState<'edit' | 'users'>('edit');
@@ -40,7 +40,6 @@ export default function AdminPage() {
     const [editStd, setEditStd] = useState('');
     const [editTitle, setEditTitle] = useState('');
     const [editDesc, setEditDesc] = useState('');
-    const [editKeywords, setEditKeywords] = useState('');
     const [editModelAns, setEditModelAns] = useState('');
     const [editExpl, setEditExpl] = useState('');
     const [editRubric, setEditRubric] = useState('[]');
@@ -97,9 +96,6 @@ export default function AdminPage() {
         setEditTitle(q.question_title);
         setEditDesc(q.question_description);
 
-        // Keywords pre fill
-        setEditKeywords(Array.isArray(q.keywords) ? q.keywords.join(', ') : String(q.keywords));
-
         // Model answer pre fill
         setEditModelAns(Array.isArray(q.model_answer) ? q.model_answer.join('\n') : String(q.model_answer));
         setEditExpl(q.explanation || '');
@@ -116,7 +112,6 @@ export default function AdminPage() {
         const partNum = editPart.match(/\d+/) ? editPart.match(/\d+/)![0] : editPart;
         const chapNum = editChap.match(/\d+/) ? editChap.match(/\d+/)![0] : editChap;
 
-        const keywordsArray = editKeywords.split(',').map((k) => k.trim()).filter(Boolean);
         const modelAnsArray = editModelAns.split('\n').map((m) => m.trim()).filter(Boolean);
 
         try {
@@ -126,7 +121,6 @@ export default function AdminPage() {
                 standard: editStd,
                 question_title: editTitle,
                 question_description: editDesc,
-                keywords: keywordsArray,
                 model_answer: modelAnsArray,
                 explanation: editExpl,
                 rubric: editRubric
@@ -153,16 +147,23 @@ export default function AdminPage() {
         if (!selectedQId) return;
         if (!confirm('이 문제를 삭제할까요? 되돌릴 수 없습니다.')) return;
 
-        const success = await deleteQuestionAction(selectedQId);
-        if (success) {
-            setSuccessMsg('문제를 삭제했습니다.');
-            setErrorMsg(null);
-            setSelectedQId(null);
-            // Reload db data
-            const qs = await getAdminQuestions();
-            setQuestions(qs);
-        } else {
-            setErrorMsg('문제 삭제에 실패했습니다.');
+        // deleteQuestionAction은 권한 검증 실패·DB 오류를 throw로 알린다. try 없이 두면
+        // 처리되지 않은 rejection이 되어 화면에 아무 변화가 없다.
+        try {
+            const success = await deleteQuestionAction(selectedQId);
+            if (success) {
+                setSuccessMsg('문제를 삭제했습니다.');
+                setErrorMsg(null);
+                setSelectedQId(null);
+                // Reload db data
+                const qs = await getAdminQuestions();
+                setQuestions(qs);
+            } else {
+                setErrorMsg('문제 삭제에 실패했습니다.');
+            }
+        } catch (e: any) {
+            setSuccessMsg(null);
+            setErrorMsg(`문제 삭제 실패: ${e.message || String(e)}`);
         }
     };
 
@@ -172,15 +173,20 @@ export default function AdminPage() {
 
         // Removed hardcoded '준영2' check; server handles authorization completely.
 
-        const success = await updateUserRoleAction(selectedUser, newRole);
-        if (success) {
-            setSuccessMsg(`선택한 사용자의 등급을 ${newRole}로 변경했습니다.`);
-            setErrorMsg(null);
-            // Reload users list
-            const allUsers = await getAllUsersAction();
-            setUsers(allUsers);
-        } else {
-            setErrorMsg('권한 변경에 실패했습니다.');
+        try {
+            const success = await updateUserRoleAction(selectedUser, newRole);
+            if (success) {
+                setSuccessMsg(`선택한 사용자의 등급을 ${newRole}로 변경했습니다.`);
+                setErrorMsg(null);
+                // Reload users list
+                const allUsers = await getAllUsersAction();
+                setUsers(allUsers);
+            } else {
+                setErrorMsg('권한 변경에 실패했습니다.');
+            }
+        } catch (e: any) {
+            setSuccessMsg(null);
+            setErrorMsg(`권한 변경 실패: ${e.message || String(e)}`);
         }
     };
 
@@ -383,17 +389,10 @@ export default function AdminPage() {
                                     />
                                 </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label className="block text-sm text-foreground/70 mb-1.5">키워드 (쉼표로 구분)</label>
-                                        <textarea
-                                            rows={5}
-                                            value={editKeywords}
-                                            onChange={(e) => setEditKeywords(e.target.value)}
-                                            className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md p-3 text-sm focus:outline-none"
-                                        />
-                                    </div>
-
+                                {/* 키워드 입력란은 제거했다: v2에서 채점 키워드는 루브릭의 variants가
+                                    담당하고, fetchAllQuestions는 keywords를 항상 빈 배열로 반환하며
+                                    updateQuestion도 keywords를 저장하지 않는다 — 입력해도 조용히 버려졌다. */}
+                                <div className="grid grid-cols-1 gap-4">
                                     <div>
                                         <label className="block text-sm text-foreground/70 mb-1.5">모범 답안 (줄바꿈으로 구분)</label>
                                         <textarea
