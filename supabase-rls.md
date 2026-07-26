@@ -57,6 +57,83 @@ RLS를 잠그는 순간부터 **anon 키로는 아무것도 읽히지 않는다.
 
 ## STEP 1. 현재 상태 점검 + 백업
 
+**읽기 전용이므로 STEP 0(배포) 전에 미리 실행해도 안전하다.**
+Supabase 대시보드 → 왼쪽 메뉴 **SQL Editor** → **New query** → 아래를 붙여넣고 **Run**.
+
+### 1-0. 통합 진단 (이것 하나만 실행하면 1-1 ~ 1-4를 모두 포함한다)
+
+```sql
+select section, item, detail from (
+  -- 0) 테이블 존재 확인 (이름이 다르면 아래 진단이 전부 빈다)
+  select 0 as ord, 'A. 테이블' as section, t.name::text as item,
+         case when to_regclass('public.' || t.name) is null
+              then '없음 ← 테이블 이름 확인 필요' else '있음' end as detail
+  from (values ('user_cpa'),('cpa_questions_v2'),('cpa_review_notes')) as t(name)
+
+  -- 1) RLS 활성화 여부
+  union all
+  select 1, 'B. RLS 켜짐?', relname::text,
+         case when relrowsecurity then '켜짐'
+              else '꺼짐 ← 정책과 무관하게 전부 공개 상태' end
+  from pg_class
+  where relnamespace = 'public'::regnamespace
+    and relname in ('user_cpa','cpa_questions_v2','cpa_review_notes')
+
+  -- 2) 현재 정책 (위험한 것 표시)
+  union all
+  select 2, 'C. 현재 정책', (tablename || ' / ' || policyname)::text,
+         cmd || ' to ' || array_to_string(roles, ',')
+         || ' using(' || coalesce(qual, '-') || ')'
+         || case when tablename = 'user_cpa' and cmd in ('UPDATE','ALL')
+                 then '  [!] 사용자가 자기 role을 ADMIN으로 바꿀 수 있음' else '' end
+         || case when coalesce(qual, '') = 'true' and cmd in ('SELECT','ALL')
+                 then '  [!] 전체 공개 읽기' else '' end
+  from pg_policies
+  where schemaname = 'public'
+    and tablename in ('user_cpa','cpa_questions_v2','cpa_review_notes')
+
+  -- 3) 컬럼 타입 (STEP 2 정책 문법이 여기서 갈린다)
+  union all
+  select 3, 'D. 컬럼 타입', (table_name || '.' || column_name)::text,
+         data_type
+         || case when table_name='user_cpa' and column_name='id' and data_type <> 'uuid'
+                 then '  <- STEP 2에서 auth.uid()::text 로 바꿔야 함' else '' end
+  from information_schema.columns
+  where table_schema = 'public'
+    and (table_name, column_name) in (('user_cpa','id'), ('user_cpa','exp'))
+
+  -- 4) 롤백용 복원 SQL (반드시 따로 저장해 둘 것)
+  union all
+  select 4, 'E. 롤백용 복원SQL', tablename::text,
+         'create policy "' || policyname || '" on ' || schemaname || '.' || tablename
+         || ' as ' || permissive || ' for ' || cmd
+         || ' to ' || array_to_string(roles, ', ')
+         || coalesce(' using (' || qual || ')', '')
+         || coalesce(' with check (' || with_check || ')', '') || ';'
+  from pg_policies
+  where schemaname = 'public'
+    and tablename in ('user_cpa','cpa_questions_v2','cpa_review_notes')
+) t
+order by ord, item;
+```
+
+**결과 읽는 법**
+
+| 구역 | 봐야 할 것 |
+|---|---|
+| A. 테이블 | 셋 다 `있음`이어야 한다. `없음`이면 실제 테이블명을 확인해 이후 SQL의 이름을 모두 바꾼다. |
+| B. RLS 켜짐? | `꺼짐`인 테이블은 정책과 무관하게 지금 전부 공개다. |
+| C. 현재 정책 | `[!]` 표시가 붙은 행이 이번에 없애려는 대상이다. 아무 행도 없으면 정책이 없다는 뜻(B가 `꺼짐`이면 공개, `켜짐`이면 이미 잠긴 상태). |
+| D. 컬럼 타입 | `user_cpa.id`가 `uuid`가 아니면 STEP 2에서 `auth.uid()::text`로 바꿔야 한다. |
+| E. 롤백용 복원SQL | **이 행들을 메모장에 복사해 둔다.** STEP 4 롤백의 유일한 수단이다. |
+
+E 구역이 비어 있으면(정책이 원래 없었으면) 롤백 시 복원할 정책도 없다는 뜻이므로 그대로 진행하면 된다.
+
+---
+
+<details>
+<summary>참고: 1-0을 항목별로 나눠 실행하고 싶을 때 (1-1 ~ 1-4)</summary>
+
 ### 1-1. 현재 정책을 복원용 SQL로 덤프 (롤백 대비 — 결과를 어딘가에 저장해 둘 것)
 
 ```sql
@@ -111,6 +188,8 @@ where table_schema = 'public'
   실패하고 **로그인이 안 되는 것처럼 보인다.**
 - `user_cpa.exp`가 `integer`류면 소수 경험치 update가 거부된다 — 코드에서 이미 정수로
   반올림하므로(`sanitizeExpGain` + `incrementProgress`) 문제없지만, 확인해 두면 좋다.
+
+</details>
 
 ---
 
