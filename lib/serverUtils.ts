@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fetchAllQuestions } from './dbAdmin';
 import type { AuditQuestion } from './db';
-import { StructureData, calculateMatchedCount, calculateBigramJaccard } from './utils';
+import { StructureData, calculateMatchedCount, calculateBigramJaccard, mapWithConcurrency } from './utils';
 import { GoogleGenAI } from '@google/genai';
 import { computeRubricCoverage, RubricSub, buildOrderedNotice } from './rubric.ts';
 import { parseJudgmentResponse, buildJudgmentFeedback, judgeAndScore } from './rubricJudge.ts';
@@ -141,6 +141,12 @@ export interface GradeResult {
     evaluation: string;
     model_answer?: string;
 }
+
+/**
+ * 동시에 진행할 채점 개수. 한 요청의 문항 수 상한이 5이므로 3이면 최대 두 번의 파도로
+ * 끝난다. 올리면 빨라지지만 Gemini 쪽 429/503 확률이 오른다.
+ */
+export const GRADE_CONCURRENCY = 3;
 
 export async function gradeBatch(items: BatchItem[], apiKey: string): Promise<{ [id: number]: GradeResult }> {
     if (!items || items.length === 0) return {};
@@ -415,19 +421,12 @@ export async function gradeBatch(items: BatchItem[], apiKey: string): Promise<{ 
     };
 
     try {
-        const resultsArray: { id: number; result: GradeResult }[] = [];
-        
-        // 503 에러(임시 요청 폭증) 방지를 위한 순차 지연 호출 처리
-        for (const item of items) {
-            const res = await gradeItem(item);
-            resultsArray.push(res);
-            
-            // 마지막 요청이 아닐 경우 500ms 지연 부여
-            if (item !== items[items.length - 1]) {
-                await new Promise(resolve => setTimeout(resolve, 500));
-            }
-        }
-        
+        // 예전에는 완전 직렬 + 항목 사이 500ms 지연이었다. 5문항이면 왕복 시간 5회분에
+        // 지연 2초가 그대로 더해져 함수 타임아웃에 닿았다. 동시 실행 수를 제한해
+        // 벽시계 시간을 줄이되, 429/503을 부를 만큼 한꺼번에 던지지는 않는다.
+        // (일시적 오류는 gradeItem 내부의 재시도·백오프가 계속 담당한다.)
+        const resultsArray = await mapWithConcurrency(items, GRADE_CONCURRENCY, gradeItem);
+
         const outputMap: { [id: number]: GradeResult } = {};
         for (const res of resultsArray) {
             outputMap[res.id] = res.result;

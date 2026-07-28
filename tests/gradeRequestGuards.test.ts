@@ -4,6 +4,7 @@ import {
     validateGradeRequest,
     maxQuestionsForRole,
     MAX_ANSWER_LENGTH,
+    mapWithConcurrency,
 } from '../lib/utils.ts';
 import { consumeInMemory, isMissingMigration } from '../lib/rateLimit.ts';
 
@@ -138,5 +139,61 @@ describe('consumeInMemory', () => {
         consumeInMemory(buckets, 'new', 10, 60_000, 61_001);
         assert.equal(buckets.size, 1);
         assert.ok(buckets.has('new'));
+    });
+});
+
+// ─── mapWithConcurrency (채점 병렬화) ───────────────────────────────
+
+describe('mapWithConcurrency', () => {
+    /** 동시 실행 최대치를 관측하는 worker를 만든다. */
+    const makeProbe = () => {
+        const state = { active: 0, peak: 0 };
+        const worker = async (n: number) => {
+            state.active++;
+            state.peak = Math.max(state.peak, state.active);
+            await new Promise((r) => setTimeout(r, 5));
+            state.active--;
+            return n * 2;
+        };
+        return { state, worker };
+    };
+
+    test('결과는 입력 순서를 유지한다 (완료 순서가 아니라)', async () => {
+        // 앞쪽일수록 느리게 끝나도록 해서 완료 순서를 뒤집는다
+        const out = await mapWithConcurrency([1, 2, 3, 4, 5], 3, async (n) => {
+            await new Promise((r) => setTimeout(r, (6 - n) * 5));
+            return n * 10;
+        });
+        assert.deepEqual(out, [10, 20, 30, 40, 50]);
+    });
+
+    test('동시 실행 개수가 한도를 넘지 않는다', async () => {
+        const { state, worker } = makeProbe();
+        await mapWithConcurrency([1, 2, 3, 4, 5, 6, 7, 8], 3, worker);
+        assert.ok(state.peak <= 3, `peak=${state.peak}`);
+        assert.equal(state.active, 0);
+    });
+
+    test('항목이 한도보다 적으면 항목 수만큼만 띄운다', async () => {
+        const { state, worker } = makeProbe();
+        await mapWithConcurrency([1, 2], 5, worker);
+        assert.ok(state.peak <= 2, `peak=${state.peak}`);
+    });
+
+    test('직렬(1)과 빈 배열도 정상 동작한다', async () => {
+        const { state, worker } = makeProbe();
+        assert.deepEqual(await mapWithConcurrency([1, 2, 3], 1, worker), [2, 4, 6]);
+        assert.equal(state.peak, 1);
+        assert.deepEqual(await mapWithConcurrency([], 3, worker), []);
+    });
+
+    test('worker의 예외는 호출자로 전파된다', async () => {
+        await assert.rejects(
+            () => mapWithConcurrency([1, 2, 3], 2, async (n) => {
+                if (n === 2) throw new Error('boom');
+                return n;
+            }),
+            /boom/
+        );
     });
 });

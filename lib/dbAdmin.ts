@@ -217,15 +217,25 @@ export async function checkUsernameExists(username: string): Promise<boolean> {
     }
 }
 
+export interface UserRoleLookup {
+    role: UserProfile['role'];
+    /**
+     * 조회가 실제로 성공했는지. false면 role은 fail-closed 기본값(GUEST)일 뿐
+     * "이 사용자가 게스트임을 확인했다"는 뜻이 아니다.
+     */
+    known: boolean;
+}
+
 /**
  * 사용자의 등급을 조회한다. 채점 요청의 문항 수 상한과 경험치 적립 여부를 서버에서
  * 판단하는 데 쓴다.
  *
- * 익명(게스트) 세션은 user_cpa에 행이 없으므로 조회에 실패한다 — 이 경우 'GUEST'를
- * 돌려주는 것이 정확한 동작이다. 조회 자체가 오류인 경우에도 가장 권한이 낮은 등급으로
- * 떨어뜨린다 (fail closed).
+ * 익명(게스트) 세션은 user_cpa에 행이 없다 — 행이 없는 것은 오류가 아니라 확정된
+ * 'GUEST'다(known: true). 반면 조회 자체가 실패한 경우는 등급을 모르는 것이므로
+ * known: false로 구분해서 돌려준다. 둘을 뭉뚱그리면, 일시적인 DB 오류가 정상 사용자의
+ * 경험치를 오류 표시 하나 없이 조용히 0으로 만든다.
  */
-export async function getUserRole(userId: string): Promise<UserProfile['role']> {
+export async function getUserRole(userId: string): Promise<UserRoleLookup> {
     try {
         const adminSupabase = getSupabaseAdmin();
         const { data, error } = await adminSupabase
@@ -236,12 +246,13 @@ export async function getUserRole(userId: string): Promise<UserProfile['role']> 
 
         if (error) {
             console.error('Error getting user role:', error);
-            return 'GUEST';
+            return { role: 'GUEST', known: false };
         }
-        return (data?.role as UserProfile['role']) || 'GUEST';
+        // 행이 없으면(익명 세션) 확정된 게스트다.
+        return { role: (data?.role as UserProfile['role']) || 'GUEST', known: true };
     } catch (err) {
         console.error('Error in getUserRole:', err);
-        return 'GUEST';
+        return { role: 'GUEST', known: false };
     }
 }
 

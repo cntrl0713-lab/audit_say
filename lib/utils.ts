@@ -216,6 +216,38 @@ export function validateGradeRequest(items: unknown, role: string): string | nul
     return null;
 }
 
+/**
+ * 동시 실행 개수를 제한하며 items를 매핑한다. 결과는 **입력 순서 그대로** 반환한다.
+ *
+ * 채점은 문항마다 Gemini를 한 번씩 부른다. 이걸 완전 직렬로 돌리면 5문항이 5회 왕복
+ * 시간을 그대로 더해 함수 타임아웃에 닿는다. 반대로 전부 동시에 던지면 429/503을 부른다.
+ * 그 사이를 잡기 위한 최소 구현이다.
+ *
+ * worker가 던지는 예외는 그대로 전파된다 — 호출자가 항목별로 try/catch 하는 것을 전제한다.
+ */
+export async function mapWithConcurrency<T, R>(
+    items: T[],
+    limit: number,
+    worker: (item: T, index: number) => Promise<R>
+): Promise<R[]> {
+    const results = new Array<R>(items.length);
+    if (items.length === 0) return results;
+
+    const effectiveLimit = Math.max(1, Math.min(Math.floor(limit) || 1, items.length));
+    let nextIndex = 0;
+
+    const runner = async (): Promise<void> => {
+        while (true) {
+            const current = nextIndex++;
+            if (current >= items.length) return;
+            results[current] = await worker(items[current], current);
+        }
+    };
+
+    await Promise.all(Array.from({ length: effectiveLimit }, () => runner()));
+    return results;
+}
+
 // Randomly sample quiz questions
 export function getQuizSet(
     data: AuditQuestion[],
