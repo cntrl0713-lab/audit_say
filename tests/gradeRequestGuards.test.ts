@@ -5,7 +5,7 @@ import {
     maxQuestionsForRole,
     MAX_ANSWER_LENGTH,
 } from '../lib/utils.ts';
-import { consumeInMemory } from '../lib/rateLimit.ts';
+import { consumeInMemory, isMissingMigration } from '../lib/rateLimit.ts';
 
 const req = (id: number, qid: number, a = '유효한 답안') => ({ id, qid, a });
 
@@ -67,6 +67,40 @@ describe('validateGradeRequest', () => {
 
     test('id가 중복되면 거절한다 (결과 맵에서 서로 덮어쓴다)', () => {
         assert.ok(validateGradeRequest([req(0, 1), req(0, 2)], 'ADMIN'));
+    });
+
+    test('qid가 중복되면 거절한다 (같은 문항 반복 제출로 EXP를 채울 수 있다)', () => {
+        // id는 다르지만 같은 문항 5개 = 답 하나를 외워 1회 상한(50 EXP)을 채우는 경로
+        const sameQuestion = [req(0, 7), req(1, 7), req(2, 7), req(3, 7), req(4, 7)];
+        assert.ok(validateGradeRequest(sameQuestion, 'ADMIN'));
+
+        // 서로 다른 문항이면 통과
+        assert.equal(validateGradeRequest([req(0, 7), req(1, 8)], 'ADMIN'), null);
+    });
+});
+
+// ─── isMissingMigration (폴백 판정) ────────────────────────────────
+
+describe('isMissingMigration', () => {
+    test('함수/테이블이 없는 경우만 마이그레이션 미적용으로 본다', () => {
+        assert.equal(isMissingMigration({ code: 'PGRST202' }), true);
+        assert.equal(isMissingMigration({ code: '42883' }), true);  // undefined_function
+        assert.equal(isMissingMigration({ code: '42P01' }), true);  // undefined_table
+        assert.equal(isMissingMigration({ message: 'Could not find the function public.consume_rate_limit' }), true);
+    });
+
+    test('권한 오류는 폴백 대상이 아니다 (fail closed 유지)', () => {
+        // grant 누락을 폴백으로 덮으면 제한이 없는 상태가 정상처럼 보인다.
+        assert.equal(isMissingMigration({
+            code: '42501',
+            message: 'permission denied for table cpa_rate_limits',
+        }), false);
+    });
+
+    test('그 밖의 오류도 폴백 대상이 아니다', () => {
+        assert.equal(isMissingMigration({ code: '57014', message: 'canceling statement due to statement timeout' }), false);
+        assert.equal(isMissingMigration({ message: 'column "reset_at" does not exist' }), false);
+        assert.equal(isMissingMigration({}), false);
     });
 });
 

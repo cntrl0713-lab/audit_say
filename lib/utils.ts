@@ -178,6 +178,7 @@ export function validateGradeRequest(items: unknown, role: string): string | nul
     }
 
     const seenIds = new Set<number>();
+    const seenQids = new Set<number>();
     for (const item of items) {
         if (!item || typeof item !== 'object') {
             return '채점 요청 항목 형식이 올바르지 않습니다.';
@@ -197,6 +198,13 @@ export function validateGradeRequest(items: unknown, role: string): string | nul
         if (!Number.isInteger(qid)) {
             return '채점 요청 항목의 문항 번호(qid)가 정수가 아닙니다.';
         }
+        // 같은 문항을 한 요청에 여러 번 담으면, 답 하나를 외워 반복 제출하는 것만으로
+        // 1회 상한(50 EXP)을 채울 수 있다. 출제는 항상 서로 다른 문항을 뽑으므로
+        // (lib/utils의 getQuizSet) 정상 요청에는 중복이 없다.
+        if (seenQids.has(qid as number)) {
+            return `같은 문항을 한 번에 여러 번 채점할 수 없습니다: ${qid}`;
+        }
+        seenQids.add(qid as number);
         if (typeof a !== 'string' || a.trim().length === 0) {
             return '빈 답안은 채점할 수 없습니다.';
         }

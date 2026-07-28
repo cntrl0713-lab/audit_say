@@ -384,14 +384,26 @@ alter table public.cpa_rate_limits enable row level security;
 -- 만료된 행 정리용
 create index if not exists cpa_rate_limits_reset_at_idx on public.cpa_rate_limits (reset_at);
 
+-- service role은 RLS를 우회하지만 테이블 GRANT까지 자동으로 갖지는 않는다. 프로젝트에
+-- default privileges가 걸려 있지 않으면 이 grant 없이는 "permission denied for table"이
+-- 나고, 앱은 그 오류를 fail closed로 처리해 채점이 전부 막힌다.
+grant select, insert, update on public.cpa_rate_limits to service_role;
+
 -- 한도를 1회 소비하고 허용 여부를 돌려준다.
 -- upsert 한 문장이라 행 잠금 안에서 읽기-수정-쓰기가 끝난다 (동시 요청에도 경쟁 없음).
+--
+-- security definer: 위 grant가 어떤 이유로든 빠져도 함수 소유자 권한으로 테이블에 접근해
+-- 동작하게 한다(이중 방어). 실행 권한은 아래에서 service_role로만 좁히므로, 이 함수로
+-- 할 수 있는 일은 "자기 키의 카운터를 1 올리는 것"뿐이다.
+-- search_path 고정: security definer 함수에서 스키마 하이재킹을 막는 표준 처방.
 create or replace function public.consume_rate_limit(
   p_key            text,
   p_limit          integer,
   p_window_seconds integer
 ) returns boolean
 language plpgsql
+security definer
+set search_path = public, pg_temp
 as $$
 declare
   v_count integer;
@@ -421,14 +433,22 @@ commit;
 
 ### 검증
 
-> 위 SQL은 로컬 PostgreSQL 16에 Supabase 역할(anon·authenticated·service_role)을 재현해
-> 실제로 실행 검증했다. 확인한 동작:
+> 위 SQL은 로컬 PostgreSQL 16에 Supabase 역할(anon·authenticated·service_role,
+> service_role은 `bypassrls`)을 재현해 실제로 실행 검증했다. **검증은 `postgres`가 아니라
+> `set role service_role`로, 즉 앱이 실제로 타는 경로로 호출해서 확인했다.**
+> 확인한 동작:
 > - 10회까지 `t`, 11번째 `f`
 > - `reset_at`이 지난 뒤 재호출하면 카운터가 1로 초기화
 > - 키(`grade:<user_id>`)별로 카운터 분리
 > - `has_function_privilege`: anon `f` / authenticated `f` / service_role `t`
+> - anon이 직접 호출하면 `permission denied for function`
 > - 테이블 RLS 켜짐 + 정책 0개, anon에게 `grant select`를 줘도 0행
+> - 테이블 grant를 회수해도 `security definer` 덕분에 정상 동작(이중 방어)
 > - 롤백 SQL로 함수·테이블 제거 성공
+>
+> 반례도 함께 확인했다: `grant`와 `security definer`가 **둘 다 없으면**
+> `permission denied for table cpa_rate_limits`가 나고, 앱은 이를 fail closed로 처리해
+> 채점이 전부 막힌다. 두 줄 중 하나라도 빠뜨리지 말 것.
 
 ```sql
 -- 11번째 호출부터 false가 나와야 한다

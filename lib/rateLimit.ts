@@ -46,12 +46,21 @@ export function consumeInMemory(
 
 const fallbackBuckets = new Map<string, Bucket>();
 
-/** RPC가 아직 DB에 없는 경우인지 판별한다. */
-function isMissingRpc(error: { code?: string; message?: string }): boolean {
-    // PGRST202: PostgREST 스키마 캐시에 함수 없음 / 42883: undefined_function
-    if (error.code === 'PGRST202' || error.code === '42883') return true;
-    const message = (error.message || '').toLowerCase();
-    return message.includes('could not find the function') || message.includes('does not exist');
+/**
+ * 마이그레이션이 아직 적용되지 않은 경우인지 판별한다.
+ *
+ * 코드로만 판정한다. 예전에는 메시지에 'does not exist'가 들어가면 전부 미적용으로
+ * 취급했는데, 그 문구는 미적용과 무관한 오류에도 흔히 섞여 들어와 fail closed 계약을
+ * 조용히 무너뜨린다. 특히 권한 오류("permission denied for table ...")는 여기 해당하지
+ * 않아야 한다 — grant가 빠진 설정 실수를 폴백으로 덮어버리면 제한이 없는 상태가
+ * 정상처럼 보인다.
+ */
+export function isMissingMigration(error: { code?: string; message?: string }): boolean {
+    // PGRST202: PostgREST 스키마 캐시에 함수 없음
+    // 42883: undefined_function / 42P01: undefined_table (함수만 있고 테이블이 없는 경우)
+    if (error.code === 'PGRST202' || error.code === '42883' || error.code === '42P01') return true;
+    // PostgREST가 코드 없이 메시지만 주는 경우에 대한 좁은 보완
+    return (error.message || '').toLowerCase().includes('could not find the function');
 }
 
 /**
@@ -74,9 +83,9 @@ export async function consumeGradeQuota(userId: string): Promise<boolean> {
         });
 
         if (error) {
-            if (isMissingRpc(error)) {
+            if (isMissingMigration(error)) {
                 console.error(
-                    '[rateLimit] consume_rate_limit RPC를 찾을 수 없습니다. ' +
+                    '[rateLimit] consume_rate_limit RPC/테이블을 찾을 수 없습니다. ' +
                     'supabase-rls.md 부록의 SQL을 적용하기 전까지 인스턴스 로컬 폴백으로 동작합니다 ' +
                     '(서버리스에서는 실효성이 없습니다).'
                 );

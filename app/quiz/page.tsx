@@ -565,6 +565,14 @@ export default function QuizPage() {
                     </div>
                 </div>
 
+                {/* 적립 경험치는 제출 단위 값이다. 문항별 점수 카드 안에 두면 문항마다
+                    그만큼씩 받은 것처럼 읽히므로, 결과 화면 상단에 한 번만 보여준다. */}
+                {awardedExp > 0 && (
+                    <p className="text-xs text-foreground/45">
+                        이번 제출({results.length}문항)로 {awardedExp} EXP를 적립했습니다.
+                    </p>
+                )}
+
                 {/* Global Success Notification */}
                 {toastMsg && (
                     <div className="p-3 bg-success/10 border border-success/30 text-success text-sm rounded-md">
@@ -617,12 +625,6 @@ export default function QuizPage() {
                             <h3 className="text-sm text-foreground/55">점수</h3>
                             <ScoreMeter score={evalData.score} />
                         </div>
-
-                        {awardedExp > 0 && (
-                            <p className="text-xs text-foreground/45">
-                                이번 제출로 {awardedExp} EXP를 적립했습니다.
-                            </p>
-                        )}
 
                         {/* 채점 불가(-1) 결과는 저장하지 않는다 — 노트에 -1점으로 남아
                             프로필의 평균 점수를 0~10 범위 밖으로 끌어내린다. */}
