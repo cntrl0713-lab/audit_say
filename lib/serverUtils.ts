@@ -109,11 +109,26 @@ export async function loadDb(stripAnswers: boolean = true): Promise<AuditQuestio
     }
 }
 
-export interface BatchItem {
+/**
+ * 클라이언트가 보내는 채점 요청 항목. **서버가 신뢰하는 필드는 이 셋뿐이다.**
+ * - id: 결과를 돌려줄 때 쓰는 요청 내 식별자
+ * - qid: 채점할 문항의 DB id
+ * - a: 사용자 답안
+ *
+ * 질문 본문·모범 답안·루브릭은 클라이언트가 보내지 않는다. 예전에는 질문 본문(q)을
+ * 클라이언트가 보낸 값 그대로 프롬프트에 넣었기 때문에, 답안에 걸어둔 구분자 방어를
+ * 우회해 q에 채점 지시를 심는 프롬프트 주입이 가능했다. 이제 서버가 qid로 DB에서
+ * 조회해 채운다 (lib/quizGrading의 hydrateModelAnswers).
+ */
+export interface GradeRequestItem {
     id: number;
     qid: number;
-    q: string;
     a: string;
+}
+
+/** 서버가 DB 값으로 채운 채점 항목. gradeBatch는 이 형태만 받는다. */
+export interface BatchItem extends GradeRequestItem {
+    q: string;
     m: string;
     k: string[];
     r: string;

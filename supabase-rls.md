@@ -345,6 +345,122 @@ commit;
 
 ---
 
+## 부록. 채점 레이트 리밋 테이블 (`consume_rate_limit`)
+
+STEP 1~4와 독립적으로 적용할 수 있다. 순서 제약도 없다.
+
+### 왜 필요한가
+
+채점 레이트 리밋(분당 10회)은 원래 `app/actions.ts`의 모듈 스코프 `Map` 하나였다.
+Vercel에서는 요청마다 다른 인스턴스가 처리할 수 있고 콜드 스타트마다 메모리가 비므로,
+그 카운터는 실질적으로 아무것도 막지 못했다. 채점 1회는 Gemini 호출 1~5회이므로
+제한이 걸리지 않는다는 것은 곧 비용 상한이 없다는 뜻이다.
+
+카운터를 Postgres에 두고 하나의 upsert로 원자적으로 증가시켜, 어느 인스턴스가 처리하든
+같은 한도가 적용되게 한다.
+
+### 적용 전/후 동작
+
+`lib/rateLimit.ts`는 RPC가 없으면(=아래 SQL 적용 전) 서버 로그에 경고를 남기고
+인스턴스 로컬 폴백으로 동작한다. **즉 SQL을 적용하기 전에 코드를 배포해도 채점은 멈추지
+않지만, 적용 전까지는 제한이 사실상 없는 상태다.** RPC가 있는데 호출이 실패하는 경우는
+fail closed로 요청을 거절한다.
+
+### SQL
+
+```sql
+begin;
+
+create table if not exists public.cpa_rate_limits (
+  key       text primary key,
+  count     integer     not null default 0,
+  reset_at  timestamptz not null
+);
+
+-- 이 테이블은 서버(service role)만 만진다. RLS를 켜고 정책을 하나도 만들지 않으면
+-- anon·authenticated는 전면 차단되고, service role은 RLS를 우회해 정상 동작한다.
+alter table public.cpa_rate_limits enable row level security;
+
+-- 만료된 행 정리용
+create index if not exists cpa_rate_limits_reset_at_idx on public.cpa_rate_limits (reset_at);
+
+-- 한도를 1회 소비하고 허용 여부를 돌려준다.
+-- upsert 한 문장이라 행 잠금 안에서 읽기-수정-쓰기가 끝난다 (동시 요청에도 경쟁 없음).
+create or replace function public.consume_rate_limit(
+  p_key            text,
+  p_limit          integer,
+  p_window_seconds integer
+) returns boolean
+language plpgsql
+as $$
+declare
+  v_count integer;
+begin
+  insert into public.cpa_rate_limits as t (key, count, reset_at)
+  values (p_key, 1, now() + make_interval(secs => p_window_seconds))
+  on conflict (key) do update
+     set count    = case when t.reset_at <= now() then 1
+                         else t.count + 1 end,
+         reset_at = case when t.reset_at <= now()
+                         then now() + make_interval(secs => p_window_seconds)
+                         else t.reset_at end
+  returning t.count into v_count;
+
+  return v_count <= p_limit;
+end;
+$$;
+
+-- 브라우저가 직접 호출할 수 있으면 한도를 소진시켜 타인의 채점을 막을 수 있다.
+revoke all on function public.consume_rate_limit(text, integer, integer)
+  from public, anon, authenticated;
+grant execute on function public.consume_rate_limit(text, integer, integer)
+  to service_role;
+
+commit;
+```
+
+### 검증
+
+> 위 SQL은 로컬 PostgreSQL 16에 Supabase 역할(anon·authenticated·service_role)을 재현해
+> 실제로 실행 검증했다. 확인한 동작:
+> - 10회까지 `t`, 11번째 `f`
+> - `reset_at`이 지난 뒤 재호출하면 카운터가 1로 초기화
+> - 키(`grade:<user_id>`)별로 카운터 분리
+> - `has_function_privilege`: anon `f` / authenticated `f` / service_role `t`
+> - 테이블 RLS 켜짐 + 정책 0개, anon에게 `grant select`를 줘도 0행
+> - 롤백 SQL로 함수·테이블 제거 성공
+
+```sql
+-- 11번째 호출부터 false가 나와야 한다
+select public.consume_rate_limit('grade:verify', 10, 60) from generate_series(1, 11);
+
+-- 정리
+delete from public.cpa_rate_limits where key = 'grade:verify';
+```
+
+배포본에서 채점을 11회 연속 실행하면 마지막 요청이
+"채점 요청이 너무 잦습니다"로 거절되어야 한다.
+
+### 정리(선택)
+
+만료된 행은 같은 키가 다시 쓰일 때 덮어써지므로 방치해도 동작에는 문제가 없다.
+행 수가 신경 쓰이면 pg_cron 등으로 주기 삭제한다.
+
+```sql
+delete from public.cpa_rate_limits where reset_at < now() - interval '1 day';
+```
+
+### 롤백
+
+```sql
+drop function if exists public.consume_rate_limit(text, integer, integer);
+drop table if exists public.cpa_rate_limits;
+```
+
+함수가 사라지면 `lib/rateLimit.ts`는 다시 인스턴스 로컬 폴백으로 떨어진다(채점은 계속 동작).
+
+---
+
 ## 키 취급
 
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`는 공개 값이다. 브라우저 번들에 들어가는 것이 정상이며,

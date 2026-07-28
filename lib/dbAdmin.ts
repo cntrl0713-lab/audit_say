@@ -217,6 +217,34 @@ export async function checkUsernameExists(username: string): Promise<boolean> {
     }
 }
 
+/**
+ * 사용자의 등급을 조회한다. 채점 요청의 문항 수 상한과 경험치 적립 여부를 서버에서
+ * 판단하는 데 쓴다.
+ *
+ * 익명(게스트) 세션은 user_cpa에 행이 없으므로 조회에 실패한다 — 이 경우 'GUEST'를
+ * 돌려주는 것이 정확한 동작이다. 조회 자체가 오류인 경우에도 가장 권한이 낮은 등급으로
+ * 떨어뜨린다 (fail closed).
+ */
+export async function getUserRole(userId: string): Promise<UserProfile['role']> {
+    try {
+        const adminSupabase = getSupabaseAdmin();
+        const { data, error } = await adminSupabase
+            .from('user_cpa')
+            .select('role')
+            .eq('id', userId)
+            .maybeSingle();
+
+        if (error) {
+            console.error('Error getting user role:', error);
+            return 'GUEST';
+        }
+        return (data?.role as UserProfile['role']) || 'GUEST';
+    } catch (err) {
+        console.error('Error in getUserRole:', err);
+        return 'GUEST';
+    }
+}
+
 export async function getUserReviewNotes(userId: string): Promise<ReviewNote[]> {
     try {
         const adminSupabase = getSupabaseAdmin();

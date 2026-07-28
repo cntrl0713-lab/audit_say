@@ -7,8 +7,7 @@ import {
     getStructureData,
     getNormalizedQuestions,
     gradeQuizBatch,
-    saveQuizNoteAction,
-    updateUserProgressAction
+    saveQuizNoteAction
 } from '../actions';
 import {
     StructureData,
@@ -16,10 +15,12 @@ import {
     getQuizSet,
     compareChapters,
     compareStandards,
-    ROLE_NAMES
+    ROLE_NAMES,
+    MAX_ANSWER_LENGTH,
+    maxQuestionsForRole
 } from '../../lib/utils';
 import { AuditQuestion } from '../../lib/db';
-import type { BatchItem, GradeResult } from '../../lib/serverUtils';
+import type { GradeRequestItem, GradeResult } from '../../lib/serverUtils';
 import { Loading } from '../../components/Loading';
 
 type AppState = 'LOADING' | 'SETUP' | 'SOLVING' | 'REVIEW';
@@ -90,6 +91,8 @@ export default function QuizPage() {
     const [gradingProgress, setGradingProgress] = useState(false);
     const [gradingMessage, setGradingMessage] = useState('');
     const [toastMsg, setToastMsg] = useState<string | null>(null);
+    // 서버가 이번 제출로 실제 적립한 경험치. 클라이언트가 계산하지 않는다.
+    const [awardedExp, setAwardedExp] = useState(0);
 
     // Load structure and DB data
     useEffect(() => {
@@ -137,13 +140,15 @@ export default function QuizPage() {
         }
     };
 
-    // Adjust selectable questions based on user roles
+    // Adjust selectable questions based on user roles.
+    // 상한값은 서버가 채점 요청을 검증할 때 쓰는 것과 같은 함수에서 가져온다 — 화면과
+    // 서버가 따로 놀면 사용자가 고를 수 있는 문항 수가 서버에서 거절된다.
+    const maxCount = maxQuestionsForRole(user?.role || 'GUEST');
+
     useEffect(() => {
         if (!user) return;
-        if (user.role === 'GUEST' || user.role === 'MEMBER') {
-            if (selectedCount > 3) setSelectedCount(3);
-        }
-    }, [user, selectedCount]);
+        if (selectedCount > maxCount) setSelectedCount(maxCount);
+    }, [user, selectedCount, maxCount]);
 
     const handleStartQuiz = () => {
         // Map chapter short code to full name for matching
@@ -180,8 +185,12 @@ export default function QuizPage() {
         setGradingProgress(true);
         setGradingMessage('답안을 채점하는 중');
 
-        const batchItems: BatchItem[] = [];
+        // 서버로는 문항 id와 답안만 보낸다. 질문 본문·모범 답안·루브릭은 서버가 qid로
+        // DB에서 조회해 채운다 — 클라이언트가 보낸 값이 채점 프롬프트에 들어가면
+        // 답안 구분자 방어를 우회하는 프롬프트 주입이 가능해진다.
+        const batchItems: GradeRequestItem[] = [];
         const evaluationResults: (EvalResult | null)[] = new Array(quizList.length).fill(null);
+        setAwardedExp(0);
 
         quizList.forEach((q, idx) => {
             const ans = answers[q.id.toString()] || '';
@@ -192,19 +201,10 @@ export default function QuizPage() {
                     eval: { score: 0.0, evaluation: '답안을 입력해주세요.' }
                 };
             } else {
-                const keywords: string[] = [];
-                // Model answer stringification
-                const mAns = q.model_answer;
-                const mStr = Array.isArray(mAns) ? mAns.join('\n') : String(mAns);
-
                 batchItems.push({
                     id: idx,
                     qid: Number(q.id),
-                    q: `${q.question_title} - ${q.question_description}`,
-                    a: ans,
-                    m: mStr,
-                    k: keywords,
-                    r: q.explanation || '참고 설명 없음'
+                    a: ans
                 });
             }
         });
@@ -213,7 +213,8 @@ export default function QuizPage() {
         if (batchItems.length > 0) {
             setGradingMessage('답안의 논리 전개와 용어 사용을 확인하는 중');
             try {
-                const apiResults = await gradeQuizBatch(batchItems);
+                const { results: apiResults, awardedExp: gainedExp } = await gradeQuizBatch(batchItems);
+                setAwardedExp(gainedExp);
 
                 batchItems.forEach((item) => {
                     const idx = item.id;
@@ -262,10 +263,8 @@ export default function QuizPage() {
                 }
                 setSavedNotes(autoSaved);
 
-                const totalScore = evaluationResults.reduce((acc, curr) => acc + (curr ? Math.max(0, curr.eval.score) : 0), 0);
-                if (totalScore > 0) {
-                    await updateUserProgressAction(user.id, totalScore);
-                }
+                // 경험치는 gradeQuizBatch가 서버에서 채점 결과로 직접 적립한다.
+                // 여기서는 갱신된 값을 다시 읽어오기만 한다.
                 await refreshProfile();
             }
         } catch (err) {
@@ -428,14 +427,14 @@ export default function QuizPage() {
                         <span className="text-sm text-foreground/70">문항 수</span>
                         {(isGuest || isMember) && (
                             <span className="text-xs text-foreground/45">
-                                {ROLE_NAMES[user?.role || 'GUEST']} 등급은 3문제까지 선택할 수 있습니다.
+                                {ROLE_NAMES[user?.role || 'GUEST']} 등급은 {maxCount}문제까지 선택할 수 있습니다.
                             </span>
                         )}
                     </div>
 
                     <div className="grid grid-cols-3 gap-2">
                         {[1, 3, 5].map((cnt) => {
-                            const disabled = cnt > 3 && (isGuest || isMember);
+                            const disabled = cnt > maxCount;
 
                             return (
                                 <button
@@ -506,6 +505,7 @@ export default function QuizPage() {
                                             rows={5}
                                             value={answers[q.id.toString()] || ''}
                                             onChange={(e) => setAnswers({ ...answers, [q.id.toString()]: e.target.value })}
+                                            maxLength={MAX_ANSWER_LENGTH}
                                             placeholder="감사절차와 그 결과의 인과관계가 드러나도록 서술해주세요."
                                             className="w-full bg-card-border/25 border border-card-border focus:border-primary text-foreground rounded-md p-3 text-sm leading-relaxed focus:outline-none transition-colors"
                                             required
@@ -617,6 +617,12 @@ export default function QuizPage() {
                             <h3 className="text-sm text-foreground/55">점수</h3>
                             <ScoreMeter score={evalData.score} />
                         </div>
+
+                        {awardedExp > 0 && (
+                            <p className="text-xs text-foreground/45">
+                                이번 제출로 {awardedExp} EXP를 적립했습니다.
+                            </p>
+                        )}
 
                         {/* 채점 불가(-1) 결과는 저장하지 않는다 — 노트에 -1점으로 남아
                             프로필의 평균 점수를 0~10 범위 밖으로 끌어내린다. */}
