@@ -62,6 +62,7 @@ describe('runGradePipeline — 관문 순서', () => {
         assert.deepEqual(calls, [
             'getUserRole', 'consumeQuota', 'fetchQuestions', 'gradeBatch', 'incrementProgress',
         ]);
+        assert.ok(res.ok);
         assert.equal(res.results[0].score, 8);
         assert.equal(res.results[1].score, 8);
         assert.equal(res.awardedExp, 16); // 8 + 8, 서버 점수로 계산
@@ -72,7 +73,9 @@ describe('runGradePipeline — 관문 순서', () => {
         // PRO 상한은 5문항
         const tooMany = Array.from({ length: 6 }, (_, i) => req(i, i + 1));
 
-        await assert.rejects(() => runGradePipeline('u1', tooMany, 10, deps), /최대 5개/);
+        const res = await runGradePipeline('u1', tooMany, 10, deps);
+        assert.equal(res.ok, false);
+        assert.match(res.ok === false ? res.error : '', /최대 5개/);
         assert.deepEqual(calls, ['getUserRole']);
     });
 
@@ -80,7 +83,8 @@ describe('runGradePipeline — 관문 순서', () => {
         const { deps, calls } = makeDeps();
         const tooLong = [req(0, 1, 'ㄱ'.repeat(MAX_ANSWER_LENGTH + 1))];
 
-        await assert.rejects(() => runGradePipeline('u1', tooLong, 10, deps));
+        const res = await runGradePipeline('u1', tooLong, 10, deps);
+        assert.equal(res.ok, false);
         assert.ok(!calls.includes('gradeBatch'));
         assert.ok(!calls.includes('consumeQuota'));
     });
@@ -88,7 +92,9 @@ describe('runGradePipeline — 관문 순서', () => {
     test('레이트 리밋에 걸리면 Gemini를 부르지 않는다', async () => {
         const { deps, calls } = makeDeps({ consumeQuota: async () => false });
 
-        await assert.rejects(() => runGradePipeline('u1', [req(0, 1)], 10, deps), /분당 10회/);
+        const res = await runGradePipeline('u1', [req(0, 1)], 10, deps);
+        assert.equal(res.ok, false);
+        assert.match(res.ok === false ? res.error : '', /분당 10회/);
         assert.ok(!calls.includes('gradeBatch'));
         assert.ok(!calls.includes('incrementProgress'));
     });
@@ -101,6 +107,7 @@ describe('runGradePipeline — 경험치 적립', () => {
         });
 
         const res = await runGradePipeline('guest', [req(0, 1)], 10, deps);
+        assert.ok(res.ok);
         assert.equal(res.awardedExp, 0);
         assert.ok(!calls.includes('incrementProgress'));
         assert.equal(res.results[0].score, 8); // 채점 자체는 정상
@@ -113,6 +120,7 @@ describe('runGradePipeline — 경험치 적립', () => {
 
         const res = await runGradePipeline('u1', [req(0, 1)], 10, deps);
         assert.ok(calls.includes('incrementProgress'));
+        assert.ok(res.ok);
         assert.equal(res.awardedExp, 8);
     });
 
@@ -120,6 +128,7 @@ describe('runGradePipeline — 경험치 적립', () => {
         const { deps } = makeDeps({ incrementProgress: async () => false });
 
         const res = await runGradePipeline('u1', [req(0, 1)], 10, deps);
+        assert.ok(res.ok);
         assert.equal(res.awardedExp, 0);
         assert.equal(res.results[0].score, 8);
     });
@@ -138,6 +147,7 @@ describe('runGradePipeline — 경험치 적립', () => {
         });
 
         const res = await runGradePipeline('u1', [req(0, 1), req(1, 2)], 10, deps);
+        assert.ok(res.ok);
         assert.equal(res.awardedExp, 6); // -1이 합계를 깎지 않는다
     });
 
@@ -152,6 +162,7 @@ describe('runGradePipeline — 경험치 적립', () => {
 
         const five = Array.from({ length: 5 }, (_, i) => req(i, i + 1));
         const res = await runGradePipeline('u1', five, 10, deps);
+        assert.ok(res.ok);
         assert.equal(res.awardedExp, 50);
     });
 });
@@ -181,6 +192,7 @@ describe('runGradePipeline — DB 수화', () => {
         });
 
         const res = await runGradePipeline('u1', [req(0, 999)], 10, deps);
+        assert.ok(res.ok);
         assert.equal(res.results[0].score, -1);
         assert.ok(res.results[0].evaluation.includes('채점 불가'));
         assert.equal(gradedCount, -1); // gradeBatch 자체가 호출되지 않았다
@@ -197,6 +209,7 @@ describe('runGradePipeline — DB 수화', () => {
         });
 
         const res = await runGradePipeline('u1', [req(0, 1)], 10, deps);
+        assert.ok(res.ok);
         assert.equal(res.results[0].score, -1);
         assert.ok(res.results[0].evaluation.includes('루브릭 검증 실패'));
     });
@@ -204,6 +217,7 @@ describe('runGradePipeline — DB 수화', () => {
     test('모범 답안은 결과에 실려 검토 화면으로 돌아간다', async () => {
         const { deps } = makeDeps();
         const res = await runGradePipeline('u1', [req(0, 1)], 10, deps);
+        assert.ok(res.ok);
         assert.equal(res.results[0].model_answer, '모범답안');
     });
 });

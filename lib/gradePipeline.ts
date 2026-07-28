@@ -21,14 +21,26 @@ export interface GradePipelineDeps {
     incrementProgress: (userId: string, exp: number) => Promise<boolean>;
 }
 
-export interface GradeBatchResponse {
-    results: { [id: number]: GradeResult };
-    /** 이번 제출로 서버가 실제 적립한 경험치. 적립하지 않았으면 0. */
-    awardedExp: number;
-}
+/**
+ * 채점 요청의 결과.
+ *
+ * 관문에 걸린 경우를 throw가 아니라 **반환값**으로 돌려주는 이유: 프로덕션 빌드에서는
+ * 서버 액션이 던진 Error의 message가 클라이언트에 전달되지 않는다. React가 민감 정보
+ * 유출을 막으려고 generic 메시지와 digest로 대체하기 때문에, throw로는 "분당 10회까지"
+ * 같은 안내가 사용자에게 절대 도착하지 못한다. 사용자가 스스로 고칠 수 있는 실패는
+ * 반환값으로, 진짜 예외(인증 실패·서버 설정 오류)만 throw로 구분한다.
+ */
+export type GradeBatchResponse =
+    | {
+        ok: true;
+        results: { [id: number]: GradeResult };
+        /** 이번 제출로 서버가 실제 적립한 경험치. 적립하지 않았으면 0. */
+        awardedExp: number;
+    }
+    | { ok: false; error: string };
 
 export const RATE_LIMIT_MESSAGE = (limit: number) =>
-    `채점 요청이 너무 잦습니다. 분당 ${limit}회까지 채점할 수 있습니다.`;
+    `채점 요청이 너무 잦습니다. 분당 ${limit}회까지 채점할 수 있습니다. 잠시 후 다시 제출해주세요.`;
 
 export async function runGradePipeline(
     userId: string,
@@ -43,11 +55,11 @@ export async function runGradePipeline(
     // 비용이 드는 단계로 넘어간다.
     const validationError = validateGradeRequest(items, roleLookup.role);
     if (validationError) {
-        throw new Error(validationError);
+        return { ok: false, error: validationError };
     }
 
     if (!(await deps.consumeQuota(userId))) {
-        throw new Error(RATE_LIMIT_MESSAGE(rateLimit));
+        return { ok: false, error: RATE_LIMIT_MESSAGE(rateLimit) };
     }
 
     // 프롬프트에 들어갈 값(질문 본문·모범 답안·루브릭)은 전부 DB 행으로 확정한다 —
@@ -96,5 +108,5 @@ export async function runGradePipeline(
         }
     }
 
-    return { results, awardedExp };
+    return { ok: true, results, awardedExp };
 }

@@ -93,6 +93,8 @@ export default function QuizPage() {
     const [toastMsg, setToastMsg] = useState<string | null>(null);
     // 서버가 이번 제출로 실제 적립한 경험치. 클라이언트가 계산하지 않는다.
     const [awardedExp, setAwardedExp] = useState(0);
+    // 요청 자체가 거절된 경우의 안내. 작성 화면에 머문 채 표시한다.
+    const [submitError, setSubmitError] = useState<string | null>(null);
 
     // Load structure and DB data
     useEffect(() => {
@@ -191,6 +193,7 @@ export default function QuizPage() {
         const batchItems: GradeRequestItem[] = [];
         const evaluationResults: (EvalResult | null)[] = new Array(quizList.length).fill(null);
         setAwardedExp(0);
+        setSubmitError(null);
 
         quizList.forEach((q, idx) => {
             const ans = answers[q.id.toString()] || '';
@@ -210,35 +213,47 @@ export default function QuizPage() {
         });
 
         // 2. Call server side AI grading
+        //
+        // 요청 자체가 거절되면(레이트 리밋·검증 실패·네트워크 오류) 채점이 한 건도
+        // 수행되지 않은 것이다. 이때는 REVIEW로 넘어가지 않고 작성 화면에 머문다 —
+        // 넘어가 버리면 아래 finally에서 문항이 '푼 문제'로 기록되어, 채점을 못 받았는데도
+        // 같은 범위에서 다시 뽑히지 않는다. 답안도 폼에 그대로 남겨 재제출할 수 있게 한다.
         if (batchItems.length > 0) {
             setGradingMessage('답안의 논리 전개와 용어 사용을 확인하는 중');
-            try {
-                const { results: apiResults, awardedExp: gainedExp } = await gradeQuizBatch(batchItems);
-                setAwardedExp(gainedExp);
 
-                batchItems.forEach((item) => {
-                    const idx = item.id;
-                    const res = apiResults[idx];
-                    evaluationResults[idx] = {
-                        q: quizList[idx],
-                        ans: item.a,
-                        eval: res || { score: -1, evaluation: '채점 서버 오류가 발생했습니다.' }
-                    };
-                });
-            } catch (err: any) {
+            let outcome: Awaited<ReturnType<typeof gradeQuizBatch>>;
+            try {
+                outcome = await gradeQuizBatch(batchItems);
+            } catch (err) {
+                // 프로덕션 빌드에서는 서버 액션이 던진 메시지가 클라이언트에 도달하지
+                // 않는다(React가 generic 메시지로 대체). 원문을 그대로 보여줘 봐야
+                // 의미가 없으므로 행동 가능한 안내로 대체한다. 원인은 서버 로그에 남는다.
                 console.error('Grading err:', err);
-                // 채점 실패는 0점이 아니라 -1(채점 불가)로 둔다. 0점으로 두면 아래 자동 보관
-                // 조건(0 <= score <= 5)에 걸려 서버 오류·요청량 초과 메시지가 오답 노트에
-                // 0점짜리 답안으로 영구 저장된다.
-                batchItems.forEach((item) => {
-                    const idx = item.id;
-                    evaluationResults[idx] = {
-                        q: quizList[idx],
-                        ans: item.a,
-                        eval: { score: -1, evaluation: `채점 중 오류가 발생했습니다: ${err.message || String(err)}` }
-                    };
-                });
+                setSubmitError('채점 요청을 처리하지 못했습니다. 잠시 후 다시 제출해주세요.');
+                setGradingProgress(false);
+                return;
             }
+
+            if (!outcome.ok) {
+                setSubmitError(outcome.error);
+                setGradingProgress(false);
+                return;
+            }
+
+            const { results: apiResults, awardedExp: gainedExp } = outcome;
+            setAwardedExp(gainedExp);
+            batchItems.forEach((item) => {
+                const idx = item.id;
+                const res = apiResults[idx];
+                evaluationResults[idx] = {
+                    q: quizList[idx],
+                    ans: item.a,
+                    // 개별 문항의 채점 실패는 0점이 아니라 -1(채점 불가)로 둔다. 0점으로
+                    // 두면 아래 자동 보관 조건(0 <= score <= 5)에 걸려 오류 메시지가
+                    // 오답 노트에 0점짜리 답안으로 영구 저장된다.
+                    eval: res || { score: -1, evaluation: '채점 결과를 받지 못했습니다.' }
+                };
+            });
         }
 
         // 3. Save progress for Non-guests
@@ -482,6 +497,18 @@ export default function QuizPage() {
                     </div>
                 ) : (
                     <form onSubmit={handleAnswerSubmit} className="space-y-5">
+                        {submitError && (
+                            <div
+                                role="alert"
+                                className="p-4 bg-danger/10 border border-danger/30 text-danger text-sm rounded-md leading-relaxed"
+                            >
+                                {submitError}
+                                <span className="block text-foreground/55 mt-1 text-xs">
+                                    작성한 답안은 그대로 남아 있습니다.
+                                </span>
+                            </div>
+                        )}
+
                         {quizList.map((q, idx) => {
                             const fieldId = `answer-${q.id}`;
                             return (
