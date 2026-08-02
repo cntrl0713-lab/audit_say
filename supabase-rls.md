@@ -496,6 +496,92 @@ drop table if exists public.cpa_rate_limits;
 
 ---
 
+## 부록. 오답노트 스키마 보정 (점수 정밀도·중복·인덱스)
+
+> **적용 완료 (2026-08-02, 프로젝트 `xvifzicrjmbfqaepcfpp`).**
+> 마이그레이션명 `fix_review_notes_score_precision_and_indexes`.
+
+### 왜 필요했는가
+
+`cpa_review_notes.score`가 `integer`였다. 루브릭 판정 엔진은 0.5점 단위 점수를 내므로
+(`scoreFromVerdicts`의 `Math.round(x*2)/2`), 저장 시 **오류 없이 조용히 반올림**됐다.
+실제 INSERT로 확인한 값: 6.5 → 7, 5.5 → 6, 4.5 → 5.
+
+`user_cpa.exp`에서 이미 겪고 고쳤던 것과 같은 종류의 문제다(`incrementProgress` 주석 참고).
+당시엔 exp 쪽만 고치고 score는 남아 있었다.
+
+함께 처리한 것: `(user_id, question_id)` 유니크 제약이 없어 같은 문항을 여러 번 저장할 수
+있었고, 조회 패턴(`user_id` 필터 + `created_at` 역순)에 맞는 인덱스가 없었다.
+
+### SQL
+
+```sql
+alter table public.cpa_review_notes
+  alter column score type numeric(3,1) using score::numeric(3,1);
+
+alter table public.cpa_review_notes
+  add constraint cpa_review_notes_user_question_uniq unique (user_id, question_id);
+
+create index if not exists cpa_review_notes_user_created_idx
+  on public.cpa_review_notes (user_id, created_at desc);
+
+-- question_id는 cpa_questions_v2를 ON DELETE SET NULL로 참조한다. 커버링 인덱스가 없으면
+-- 관리자가 문항을 삭제할 때마다 cpa_review_notes 전체를 훑는다.
+-- (마이그레이션 add_review_notes_question_fk_index)
+create index if not exists cpa_review_notes_question_idx
+  on public.cpa_review_notes (question_id);
+```
+
+### 코드 쪽 짝
+
+유니크 제약을 걸면 `saveReviewNote`의 `insert`가 중복 저장 시 제약 위반을 낸다. 사용자에게는
+"저장 실패"로만 보이므로 `upsert(..., { onConflict: 'user_id,question_id' })`로 바꿨다
+(`lib/dbAdmin.ts`). 같은 문항을 다시 풀고 저장하면 최신 답안·점수로 갱신된다.
+
+`question_id`가 NULL인 고아 노트(문항이 삭제된 경우)는 NULL이 서로 distinct하므로 제약에
+걸리지 않고 계속 쌓인다 — 의도된 동작이다.
+
+### 검증
+
+- `information_schema.columns`: `numeric` precision 3 / scale 1
+- 인덱스 2개 생성 확인(`..._user_question_uniq`, `..._user_created_idx`)
+- `row_to_json`으로 직렬화 확인: `{"score":6.5}` — 따옴표 없는 JSON 숫자라
+  supabase-js가 JS number로 파싱한다(문자열로 오면 프로필의 평균 점수 계산이 깨진다)
+
+---
+
+## 부록. 백필 잔재 정리 (2026-08-02)
+
+`user_cpa` 196행 중 **193행이 익명 auth 사용자에게 붙어 있었다.** 2026-07-09 01:09 UTC에
+1분 안에 `cpa_user_<hex8>` 패턴으로 일괄 생성된, 일회성 백필 스크립트의 잔재다.
+
+설계상 익명(게스트) 세션은 `user_cpa`에 프로필을 만들지 않는다
+(`contexts/AuthContext.tsx`의 `resolveSessionUser`). 이후 19일간 신규 생성이 0건인 것으로
+**현재 코드는 정상 동작함을 확인했다** — 남아 있던 것은 과거 데이터뿐이었다.
+
+영향: `getLeaderboardData`가 exp 내림차순 상위 10명을 뽑는데 전원 exp가 0이라, 랭킹 화면에
+자동 생성된 계정 10개가 노출되고 있었다.
+
+삭제 전 대상 193행이 `exp=0`, `level=1`, `role=MEMBER`, 오답노트 0건임을 전수 확인했다
+(잃을 데이터 없음). 삭제 후 `user_cpa`는 실제 계정 3행만 남는다.
+
+```sql
+delete from public.user_cpa uc
+using auth.users au
+where au.id = uc.id
+  and au.is_anonymous
+  and uc.username ~ '^cpa_user_[0-9a-f]{8}$'
+  and uc.exp = 0 and uc.level = 1 and uc.role = 'MEMBER';
+```
+
+### 남은 판단거리
+
+`auth.users`에 익명 사용자가 820명 쌓여 있다(전체 855명 중). 게스트 로그인이 매번 실제
+Supabase 익명 계정을 발급하는데 정리 주기가 없어서다. 이 행들은 지금 앱 동작에 영향을 주지
+않지만 무한히 늘어난다. 정리 정책은 아직 정하지 않았다.
+
+---
+
 ## 키 취급
 
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`는 공개 값이다. 브라우저 번들에 들어가는 것이 정상이며,

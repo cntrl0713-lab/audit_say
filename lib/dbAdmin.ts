@@ -58,15 +58,20 @@ export async function saveReviewNote(
 ): Promise<boolean> {
     try {
         const adminSupabase = getSupabaseAdmin();
+        // (user_id, question_id)에 유니크 제약이 있으므로 insert가 아니라 upsert를 쓴다.
+        // 같은 문항을 다시 풀고 저장하면 최신 답안·점수로 갱신된다 — insert로 두면
+        // 중복 저장 시 제약 위반이 나서 사용자에게는 "저장 실패"로만 보인다.
+        // question_id가 NULL인 고아 노트는 NULL이 서로 distinct해 제약에 걸리지 않고
+        // 항상 새 행으로 쌓인다(의도된 동작).
         const { error } = await adminSupabase
             .from('cpa_review_notes')
-            .insert({
+            .upsert({
                 user_id: userId,
                 question_id: questionId,
                 user_answer: userAnswer,
                 score,
                 created_at: new Date().toISOString()
-            });
+            }, { onConflict: 'user_id,question_id' });
 
         if (error) {
             console.error('Error saving review note:', error);
