@@ -7,8 +7,7 @@ import {
     getStructureData,
     getNormalizedQuestions,
     gradeQuizBatch,
-    saveQuizNoteAction,
-    updateUserProgressAction
+    saveQuizNoteAction
 } from '../actions';
 import {
     StructureData,
@@ -16,10 +15,12 @@ import {
     getQuizSet,
     compareChapters,
     compareStandards,
-    ROLE_NAMES
+    ROLE_NAMES,
+    MAX_ANSWER_LENGTH,
+    maxQuestionsForRole
 } from '../../lib/utils';
 import { AuditQuestion } from '../../lib/db';
-import type { BatchItem, GradeResult } from '../../lib/serverUtils';
+import type { GradeRequestItem, GradeResult } from '../../lib/serverUtils';
 import { Loading } from '../../components/Loading';
 
 type AppState = 'LOADING' | 'SETUP' | 'SOLVING' | 'REVIEW';
@@ -90,6 +91,10 @@ export default function QuizPage() {
     const [gradingProgress, setGradingProgress] = useState(false);
     const [gradingMessage, setGradingMessage] = useState('');
     const [toastMsg, setToastMsg] = useState<string | null>(null);
+    // 서버가 이번 제출로 실제 적립한 경험치. 클라이언트가 계산하지 않는다.
+    const [awardedExp, setAwardedExp] = useState(0);
+    // 요청 자체가 거절된 경우의 안내. 작성 화면에 머문 채 표시한다.
+    const [submitError, setSubmitError] = useState<string | null>(null);
 
     // Load structure and DB data
     useEffect(() => {
@@ -137,13 +142,15 @@ export default function QuizPage() {
         }
     };
 
-    // Adjust selectable questions based on user roles
+    // Adjust selectable questions based on user roles.
+    // 상한값은 서버가 채점 요청을 검증할 때 쓰는 것과 같은 함수에서 가져온다 — 화면과
+    // 서버가 따로 놀면 사용자가 고를 수 있는 문항 수가 서버에서 거절된다.
+    const maxCount = maxQuestionsForRole(user?.role || 'GUEST');
+
     useEffect(() => {
         if (!user) return;
-        if (user.role === 'GUEST' || user.role === 'MEMBER') {
-            if (selectedCount > 3) setSelectedCount(3);
-        }
-    }, [user, selectedCount]);
+        if (selectedCount > maxCount) setSelectedCount(maxCount);
+    }, [user, selectedCount, maxCount]);
 
     const handleStartQuiz = () => {
         // Map chapter short code to full name for matching
@@ -180,8 +187,13 @@ export default function QuizPage() {
         setGradingProgress(true);
         setGradingMessage('답안을 채점하는 중');
 
-        const batchItems: BatchItem[] = [];
+        // 서버로는 문항 id와 답안만 보낸다. 질문 본문·모범 답안·루브릭은 서버가 qid로
+        // DB에서 조회해 채운다 — 클라이언트가 보낸 값이 채점 프롬프트에 들어가면
+        // 답안 구분자 방어를 우회하는 프롬프트 주입이 가능해진다.
+        const batchItems: GradeRequestItem[] = [];
         const evaluationResults: (EvalResult | null)[] = new Array(quizList.length).fill(null);
+        setAwardedExp(0);
+        setSubmitError(null);
 
         quizList.forEach((q, idx) => {
             const ans = answers[q.id.toString()] || '';
@@ -192,52 +204,56 @@ export default function QuizPage() {
                     eval: { score: 0.0, evaluation: '답안을 입력해주세요.' }
                 };
             } else {
-                const keywords: string[] = [];
-                // Model answer stringification
-                const mAns = q.model_answer;
-                const mStr = Array.isArray(mAns) ? mAns.join('\n') : String(mAns);
-
                 batchItems.push({
                     id: idx,
                     qid: Number(q.id),
-                    q: `${q.question_title} - ${q.question_description}`,
-                    a: ans,
-                    m: mStr,
-                    k: keywords,
-                    r: q.explanation || '참고 설명 없음'
+                    a: ans
                 });
             }
         });
 
         // 2. Call server side AI grading
+        //
+        // 요청 자체가 거절되면(레이트 리밋·검증 실패·네트워크 오류) 채점이 한 건도
+        // 수행되지 않은 것이다. 이때는 REVIEW로 넘어가지 않고 작성 화면에 머문다 —
+        // 넘어가 버리면 아래 finally에서 문항이 '푼 문제'로 기록되어, 채점을 못 받았는데도
+        // 같은 범위에서 다시 뽑히지 않는다. 답안도 폼에 그대로 남겨 재제출할 수 있게 한다.
         if (batchItems.length > 0) {
             setGradingMessage('답안의 논리 전개와 용어 사용을 확인하는 중');
-            try {
-                const apiResults = await gradeQuizBatch(batchItems);
 
-                batchItems.forEach((item) => {
-                    const idx = item.id;
-                    const res = apiResults[idx];
-                    evaluationResults[idx] = {
-                        q: quizList[idx],
-                        ans: item.a,
-                        eval: res || { score: -1, evaluation: '채점 서버 오류가 발생했습니다.' }
-                    };
-                });
-            } catch (err: any) {
+            let outcome: Awaited<ReturnType<typeof gradeQuizBatch>>;
+            try {
+                outcome = await gradeQuizBatch(batchItems);
+            } catch (err) {
+                // 프로덕션 빌드에서는 서버 액션이 던진 메시지가 클라이언트에 도달하지
+                // 않는다(React가 generic 메시지로 대체). 원문을 그대로 보여줘 봐야
+                // 의미가 없으므로 행동 가능한 안내로 대체한다. 원인은 서버 로그에 남는다.
                 console.error('Grading err:', err);
-                // 채점 실패는 0점이 아니라 -1(채점 불가)로 둔다. 0점으로 두면 아래 자동 보관
-                // 조건(0 <= score <= 5)에 걸려 서버 오류·요청량 초과 메시지가 오답 노트에
-                // 0점짜리 답안으로 영구 저장된다.
-                batchItems.forEach((item) => {
-                    const idx = item.id;
-                    evaluationResults[idx] = {
-                        q: quizList[idx],
-                        ans: item.a,
-                        eval: { score: -1, evaluation: `채점 중 오류가 발생했습니다: ${err.message || String(err)}` }
-                    };
-                });
+                setSubmitError('채점 요청을 처리하지 못했습니다. 잠시 후 다시 제출해주세요.');
+                setGradingProgress(false);
+                return;
             }
+
+            if (!outcome.ok) {
+                setSubmitError(outcome.error);
+                setGradingProgress(false);
+                return;
+            }
+
+            const { results: apiResults, awardedExp: gainedExp } = outcome;
+            setAwardedExp(gainedExp);
+            batchItems.forEach((item) => {
+                const idx = item.id;
+                const res = apiResults[idx];
+                evaluationResults[idx] = {
+                    q: quizList[idx],
+                    ans: item.a,
+                    // 개별 문항의 채점 실패는 0점이 아니라 -1(채점 불가)로 둔다. 0점으로
+                    // 두면 아래 자동 보관 조건(0 <= score <= 5)에 걸려 오류 메시지가
+                    // 오답 노트에 0점짜리 답안으로 영구 저장된다.
+                    eval: res || { score: -1, evaluation: '채점 결과를 받지 못했습니다.' }
+                };
+            });
         }
 
         // 3. Save progress for Non-guests
@@ -262,10 +278,8 @@ export default function QuizPage() {
                 }
                 setSavedNotes(autoSaved);
 
-                const totalScore = evaluationResults.reduce((acc, curr) => acc + (curr ? Math.max(0, curr.eval.score) : 0), 0);
-                if (totalScore > 0) {
-                    await updateUserProgressAction(user.id, totalScore);
-                }
+                // 경험치는 gradeQuizBatch가 서버에서 채점 결과로 직접 적립한다.
+                // 여기서는 갱신된 값을 다시 읽어오기만 한다.
                 await refreshProfile();
             }
         } catch (err) {
@@ -428,14 +442,14 @@ export default function QuizPage() {
                         <span className="text-sm text-foreground/70">문항 수</span>
                         {(isGuest || isMember) && (
                             <span className="text-xs text-foreground/45">
-                                {ROLE_NAMES[user?.role || 'GUEST']} 등급은 3문제까지 선택할 수 있습니다.
+                                {ROLE_NAMES[user?.role || 'GUEST']} 등급은 {maxCount}문제까지 선택할 수 있습니다.
                             </span>
                         )}
                     </div>
 
                     <div className="grid grid-cols-3 gap-2">
                         {[1, 3, 5].map((cnt) => {
-                            const disabled = cnt > 3 && (isGuest || isMember);
+                            const disabled = cnt > maxCount;
 
                             return (
                                 <button
@@ -483,6 +497,18 @@ export default function QuizPage() {
                     </div>
                 ) : (
                     <form onSubmit={handleAnswerSubmit} className="space-y-5">
+                        {submitError && (
+                            <div
+                                role="alert"
+                                className="p-4 bg-danger/10 border border-danger/30 text-danger text-sm rounded-md leading-relaxed"
+                            >
+                                {submitError}
+                                <span className="block text-foreground/55 mt-1 text-xs">
+                                    작성한 답안은 그대로 남아 있습니다.
+                                </span>
+                            </div>
+                        )}
+
                         {quizList.map((q, idx) => {
                             const fieldId = `answer-${q.id}`;
                             return (
@@ -506,6 +532,7 @@ export default function QuizPage() {
                                             rows={5}
                                             value={answers[q.id.toString()] || ''}
                                             onChange={(e) => setAnswers({ ...answers, [q.id.toString()]: e.target.value })}
+                                            maxLength={MAX_ANSWER_LENGTH}
                                             placeholder="감사절차와 그 결과의 인과관계가 드러나도록 서술해주세요."
                                             className="w-full bg-card-border/25 border border-card-border focus:border-primary text-foreground rounded-md p-3 text-sm leading-relaxed focus:outline-none transition-colors"
                                             required
@@ -564,6 +591,14 @@ export default function QuizPage() {
                         </button>
                     </div>
                 </div>
+
+                {/* 적립 경험치는 제출 단위 값이다. 문항별 점수 카드 안에 두면 문항마다
+                    그만큼씩 받은 것처럼 읽히므로, 결과 화면 상단에 한 번만 보여준다. */}
+                {awardedExp > 0 && (
+                    <p className="text-xs text-foreground/45">
+                        이번 제출({results.length}문항)로 {awardedExp} EXP를 적립했습니다.
+                    </p>
+                )}
 
                 {/* Global Success Notification */}
                 {toastMsg && (

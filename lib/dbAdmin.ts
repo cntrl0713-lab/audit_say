@@ -58,15 +58,20 @@ export async function saveReviewNote(
 ): Promise<boolean> {
     try {
         const adminSupabase = getSupabaseAdmin();
+        // (user_id, question_id)에 유니크 제약이 있으므로 insert가 아니라 upsert를 쓴다.
+        // 같은 문항을 다시 풀고 저장하면 최신 답안·점수로 갱신된다 — insert로 두면
+        // 중복 저장 시 제약 위반이 나서 사용자에게는 "저장 실패"로만 보인다.
+        // question_id가 NULL인 고아 노트는 NULL이 서로 distinct해 제약에 걸리지 않고
+        // 항상 새 행으로 쌓인다(의도된 동작).
         const { error } = await adminSupabase
             .from('cpa_review_notes')
-            .insert({
+            .upsert({
                 user_id: userId,
                 question_id: questionId,
                 user_answer: userAnswer,
                 score,
                 created_at: new Date().toISOString()
-            });
+            }, { onConflict: 'user_id,question_id' });
 
         if (error) {
             console.error('Error saving review note:', error);
@@ -214,6 +219,45 @@ export async function checkUsernameExists(username: string): Promise<boolean> {
     } catch (err) {
         console.error('Error in checkUsernameExists:', err);
         return true; // 위 error 분기와 동일하게 fail closed — 예외 시 중복을 통과시키지 않는다.
+    }
+}
+
+export interface UserRoleLookup {
+    role: UserProfile['role'];
+    /**
+     * 조회가 실제로 성공했는지. false면 role은 fail-closed 기본값(GUEST)일 뿐
+     * "이 사용자가 게스트임을 확인했다"는 뜻이 아니다.
+     */
+    known: boolean;
+}
+
+/**
+ * 사용자의 등급을 조회한다. 채점 요청의 문항 수 상한과 경험치 적립 여부를 서버에서
+ * 판단하는 데 쓴다.
+ *
+ * 익명(게스트) 세션은 user_cpa에 행이 없다 — 행이 없는 것은 오류가 아니라 확정된
+ * 'GUEST'다(known: true). 반면 조회 자체가 실패한 경우는 등급을 모르는 것이므로
+ * known: false로 구분해서 돌려준다. 둘을 뭉뚱그리면, 일시적인 DB 오류가 정상 사용자의
+ * 경험치를 오류 표시 하나 없이 조용히 0으로 만든다.
+ */
+export async function getUserRole(userId: string): Promise<UserRoleLookup> {
+    try {
+        const adminSupabase = getSupabaseAdmin();
+        const { data, error } = await adminSupabase
+            .from('user_cpa')
+            .select('role')
+            .eq('id', userId)
+            .maybeSingle();
+
+        if (error) {
+            console.error('Error getting user role:', error);
+            return { role: 'GUEST', known: false };
+        }
+        // 행이 없으면(익명 세션) 확정된 게스트다.
+        return { role: (data?.role as UserProfile['role']) || 'GUEST', known: true };
+    } catch (err) {
+        console.error('Error in getUserRole:', err);
+        return { role: 'GUEST', known: false };
     }
 }
 

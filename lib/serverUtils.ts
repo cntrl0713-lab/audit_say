@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fetchAllQuestions } from './dbAdmin';
 import type { AuditQuestion } from './db';
-import { StructureData, calculateMatchedCount, calculateBigramJaccard } from './utils';
+import { StructureData, calculateMatchedCount, calculateBigramJaccard, mapWithConcurrency } from './utils';
 import { GoogleGenAI } from '@google/genai';
 import { computeRubricCoverage, RubricSub, buildOrderedNotice } from './rubric.ts';
 import { parseJudgmentResponse, buildJudgmentFeedback, judgeAndScore } from './rubricJudge.ts';
@@ -109,11 +109,26 @@ export async function loadDb(stripAnswers: boolean = true): Promise<AuditQuestio
     }
 }
 
-export interface BatchItem {
+/**
+ * 클라이언트가 보내는 채점 요청 항목. **서버가 신뢰하는 필드는 이 셋뿐이다.**
+ * - id: 결과를 돌려줄 때 쓰는 요청 내 식별자
+ * - qid: 채점할 문항의 DB id
+ * - a: 사용자 답안
+ *
+ * 질문 본문·모범 답안·루브릭은 클라이언트가 보내지 않는다. 예전에는 질문 본문(q)을
+ * 클라이언트가 보낸 값 그대로 프롬프트에 넣었기 때문에, 답안에 걸어둔 구분자 방어를
+ * 우회해 q에 채점 지시를 심는 프롬프트 주입이 가능했다. 이제 서버가 qid로 DB에서
+ * 조회해 채운다 (lib/quizGrading의 hydrateModelAnswers).
+ */
+export interface GradeRequestItem {
     id: number;
     qid: number;
-    q: string;
     a: string;
+}
+
+/** 서버가 DB 값으로 채운 채점 항목. gradeBatch는 이 형태만 받는다. */
+export interface BatchItem extends GradeRequestItem {
+    q: string;
     m: string;
     k: string[];
     r: string;
@@ -126,6 +141,12 @@ export interface GradeResult {
     evaluation: string;
     model_answer?: string;
 }
+
+/**
+ * 동시에 진행할 채점 개수. 한 요청의 문항 수 상한이 5이므로 3이면 최대 두 번의 파도로
+ * 끝난다. 올리면 빨라지지만 Gemini 쪽 429/503 확률이 오른다.
+ */
+export const GRADE_CONCURRENCY = 3;
 
 export async function gradeBatch(items: BatchItem[], apiKey: string): Promise<{ [id: number]: GradeResult }> {
     if (!items || items.length === 0) return {};
@@ -400,19 +421,12 @@ export async function gradeBatch(items: BatchItem[], apiKey: string): Promise<{ 
     };
 
     try {
-        const resultsArray: { id: number; result: GradeResult }[] = [];
-        
-        // 503 에러(임시 요청 폭증) 방지를 위한 순차 지연 호출 처리
-        for (const item of items) {
-            const res = await gradeItem(item);
-            resultsArray.push(res);
-            
-            // 마지막 요청이 아닐 경우 500ms 지연 부여
-            if (item !== items[items.length - 1]) {
-                await new Promise(resolve => setTimeout(resolve, 500));
-            }
-        }
-        
+        // 예전에는 완전 직렬 + 항목 사이 500ms 지연이었다. 5문항이면 왕복 시간 5회분에
+        // 지연 2초가 그대로 더해져 함수 타임아웃에 닿았다. 동시 실행 수를 제한해
+        // 벽시계 시간을 줄이되, 429/503을 부를 만큼 한꺼번에 던지지는 않는다.
+        // (일시적 오류는 gradeItem 내부의 재시도·백오프가 계속 담당한다.)
+        const resultsArray = await mapWithConcurrency(items, GRADE_CONCURRENCY, gradeItem);
+
         const outputMap: { [id: number]: GradeResult } = {};
         for (const res of resultsArray) {
             outputMap[res.id] = res.result;

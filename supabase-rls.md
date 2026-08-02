@@ -345,6 +345,243 @@ commit;
 
 ---
 
+## 부록. 채점 레이트 리밋 테이블 (`consume_rate_limit`)
+
+> **적용 완료 (2026-08-02, 프로젝트 `xvifzicrjmbfqaepcfpp`).**
+> 마이그레이션명 `add_cpa_grade_rate_limit`. 아래 SQL은 이미 운영 DB에 반영돼 있으므로
+> 다시 실행할 필요가 없다(재실행해도 멱등하긴 하다). 남겨두는 이유는 다른 환경에
+> 올리거나 롤백할 때 쓰기 위해서다.
+
+STEP 1~4와 독립적으로 적용할 수 있다. 순서 제약도 없다.
+
+### 왜 필요한가
+
+채점 레이트 리밋(분당 10회)은 원래 `app/actions.ts`의 모듈 스코프 `Map` 하나였다.
+Vercel에서는 요청마다 다른 인스턴스가 처리할 수 있고 콜드 스타트마다 메모리가 비므로,
+그 카운터는 실질적으로 아무것도 막지 못했다. 채점 1회는 Gemini 호출 1~5회이므로
+제한이 걸리지 않는다는 것은 곧 비용 상한이 없다는 뜻이다.
+
+카운터를 Postgres에 두고 하나의 upsert로 원자적으로 증가시켜, 어느 인스턴스가 처리하든
+같은 한도가 적용되게 한다.
+
+### 적용 전/후 동작
+
+`lib/rateLimit.ts`는 RPC가 없으면(=아래 SQL 적용 전) 서버 로그에 경고를 남기고
+인스턴스 로컬 폴백으로 동작한다. **즉 SQL을 적용하기 전에 코드를 배포해도 채점은 멈추지
+않지만, 적용 전까지는 제한이 사실상 없는 상태다.** RPC가 있는데 호출이 실패하는 경우는
+fail closed로 요청을 거절한다.
+
+### SQL
+
+```sql
+begin;
+
+create table if not exists public.cpa_rate_limits (
+  key       text primary key,
+  count     integer     not null default 0,
+  reset_at  timestamptz not null
+);
+
+-- 이 테이블은 서버(service role)만 만진다. RLS를 켜고 정책을 하나도 만들지 않으면
+-- anon·authenticated는 전면 차단되고, service role은 RLS를 우회해 정상 동작한다.
+alter table public.cpa_rate_limits enable row level security;
+
+-- 만료된 행 정리용
+create index if not exists cpa_rate_limits_reset_at_idx on public.cpa_rate_limits (reset_at);
+
+-- service role은 RLS를 우회하지만 테이블 GRANT까지 자동으로 갖지는 않는다. 프로젝트에
+-- default privileges가 걸려 있지 않으면 이 grant 없이는 "permission denied for table"이
+-- 나고, 앱은 그 오류를 fail closed로 처리해 채점이 전부 막힌다.
+grant select, insert, update on public.cpa_rate_limits to service_role;
+
+-- 한도를 1회 소비하고 허용 여부를 돌려준다.
+-- upsert 한 문장이라 행 잠금 안에서 읽기-수정-쓰기가 끝난다 (동시 요청에도 경쟁 없음).
+--
+-- security definer: 위 grant가 어떤 이유로든 빠져도 함수 소유자 권한으로 테이블에 접근해
+-- 동작하게 한다(이중 방어). 실행 권한은 아래에서 service_role로만 좁히므로, 이 함수로
+-- 할 수 있는 일은 "자기 키의 카운터를 1 올리는 것"뿐이다.
+-- search_path 고정: security definer 함수에서 스키마 하이재킹을 막는 표준 처방.
+create or replace function public.consume_rate_limit(
+  p_key            text,
+  p_limit          integer,
+  p_window_seconds integer
+) returns boolean
+language plpgsql
+security definer
+set search_path = public, pg_temp
+as $$
+declare
+  v_count integer;
+begin
+  insert into public.cpa_rate_limits as t (key, count, reset_at)
+  values (p_key, 1, now() + make_interval(secs => p_window_seconds))
+  on conflict (key) do update
+     set count    = case when t.reset_at <= now() then 1
+                         else t.count + 1 end,
+         reset_at = case when t.reset_at <= now()
+                         then now() + make_interval(secs => p_window_seconds)
+                         else t.reset_at end
+  returning t.count into v_count;
+
+  return v_count <= p_limit;
+end;
+$$;
+
+-- 브라우저가 직접 호출할 수 있으면 한도를 소진시켜 타인의 채점을 막을 수 있다.
+revoke all on function public.consume_rate_limit(text, integer, integer)
+  from public, anon, authenticated;
+grant execute on function public.consume_rate_limit(text, integer, integer)
+  to service_role;
+
+commit;
+```
+
+### 검증
+
+> 위 SQL은 로컬 PostgreSQL 16에 Supabase 역할(anon·authenticated·service_role,
+> service_role은 `bypassrls`)을 재현해 실제로 실행 검증했다. **검증은 `postgres`가 아니라
+> `set role service_role`로, 즉 앱이 실제로 타는 경로로 호출해서 확인했다.**
+> 확인한 동작:
+> - 10회까지 `t`, 11번째 `f`
+> - `reset_at`이 지난 뒤 재호출하면 카운터가 1로 초기화
+> - 키(`grade:<user_id>`)별로 카운터 분리
+> - `has_function_privilege`: anon `f` / authenticated `f` / service_role `t`
+> - anon이 직접 호출하면 `permission denied for function`
+> - 테이블 RLS 켜짐 + 정책 0개, anon에게 `grant select`를 줘도 0행
+> - 테이블 grant를 회수해도 `security definer` 덕분에 정상 동작(이중 방어)
+> - 롤백 SQL로 함수·테이블 제거 성공
+>
+> 반례도 함께 확인했다: `grant`와 `security definer`가 **둘 다 없으면**
+> `permission denied for table cpa_rate_limits`가 나고, 앱은 이를 fail closed로 처리해
+> 채점이 전부 막힌다. 두 줄 중 하나라도 빠뜨리지 말 것.
+>
+> **운영 DB 적용 후 재검증(2026-08-02).** 로컬 재현 환경과 달리 이 프로젝트에는
+> `public` 스키마 기본 권한(default ACL)이 설정돼 있어 **새 함수에 anon·authenticated
+> EXECUTE가 자동으로 부여된다.** 즉 위 `revoke` 줄이 실효를 갖는지가 로컬에서는 검증되지
+> 않았는데, 적용 후 `has_function_privilege`로 anon `f` / authenticated `f` /
+> service_role `t`를 확인했다. `set local role service_role`로 10회 통과·11번째 거절,
+> 창 만료 후 카운터 1로 초기화, 키별 분리도 확인했고 검증용 행은 삭제했다.
+> Supabase security advisor에도 이 함수는 걸리지 않는다(`search_path` 고정 +
+> anon/authenticated EXECUTE 없음). `cpa_rate_limits`의 "RLS Enabled No Policy"
+> INFO는 의도된 설계다 — 기존 `cpa_questions_v2`·`cpa_review_notes`와 동일하다.
+
+```sql
+-- 11번째 호출부터 false가 나와야 한다
+select public.consume_rate_limit('grade:verify', 10, 60) from generate_series(1, 11);
+
+-- 정리
+delete from public.cpa_rate_limits where key = 'grade:verify';
+```
+
+배포본에서 채점을 11회 연속 실행하면 마지막 요청이
+"채점 요청이 너무 잦습니다"로 거절되어야 한다.
+
+### 정리(선택)
+
+만료된 행은 같은 키가 다시 쓰일 때 덮어써지므로 방치해도 동작에는 문제가 없다.
+행 수가 신경 쓰이면 pg_cron 등으로 주기 삭제한다.
+
+```sql
+delete from public.cpa_rate_limits where reset_at < now() - interval '1 day';
+```
+
+### 롤백
+
+```sql
+drop function if exists public.consume_rate_limit(text, integer, integer);
+drop table if exists public.cpa_rate_limits;
+```
+
+함수가 사라지면 `lib/rateLimit.ts`는 다시 인스턴스 로컬 폴백으로 떨어진다(채점은 계속 동작).
+
+---
+
+## 부록. 오답노트 스키마 보정 (점수 정밀도·중복·인덱스)
+
+> **적용 완료 (2026-08-02, 프로젝트 `xvifzicrjmbfqaepcfpp`).**
+> 마이그레이션명 `fix_review_notes_score_precision_and_indexes`.
+
+### 왜 필요했는가
+
+`cpa_review_notes.score`가 `integer`였다. 루브릭 판정 엔진은 0.5점 단위 점수를 내므로
+(`scoreFromVerdicts`의 `Math.round(x*2)/2`), 저장 시 **오류 없이 조용히 반올림**됐다.
+실제 INSERT로 확인한 값: 6.5 → 7, 5.5 → 6, 4.5 → 5.
+
+`user_cpa.exp`에서 이미 겪고 고쳤던 것과 같은 종류의 문제다(`incrementProgress` 주석 참고).
+당시엔 exp 쪽만 고치고 score는 남아 있었다.
+
+함께 처리한 것: `(user_id, question_id)` 유니크 제약이 없어 같은 문항을 여러 번 저장할 수
+있었고, 조회 패턴(`user_id` 필터 + `created_at` 역순)에 맞는 인덱스가 없었다.
+
+### SQL
+
+```sql
+alter table public.cpa_review_notes
+  alter column score type numeric(3,1) using score::numeric(3,1);
+
+alter table public.cpa_review_notes
+  add constraint cpa_review_notes_user_question_uniq unique (user_id, question_id);
+
+create index if not exists cpa_review_notes_user_created_idx
+  on public.cpa_review_notes (user_id, created_at desc);
+
+-- question_id는 cpa_questions_v2를 ON DELETE SET NULL로 참조한다. 커버링 인덱스가 없으면
+-- 관리자가 문항을 삭제할 때마다 cpa_review_notes 전체를 훑는다.
+-- (마이그레이션 add_review_notes_question_fk_index)
+create index if not exists cpa_review_notes_question_idx
+  on public.cpa_review_notes (question_id);
+```
+
+### 코드 쪽 짝
+
+유니크 제약을 걸면 `saveReviewNote`의 `insert`가 중복 저장 시 제약 위반을 낸다. 사용자에게는
+"저장 실패"로만 보이므로 `upsert(..., { onConflict: 'user_id,question_id' })`로 바꿨다
+(`lib/dbAdmin.ts`). 같은 문항을 다시 풀고 저장하면 최신 답안·점수로 갱신된다.
+
+`question_id`가 NULL인 고아 노트(문항이 삭제된 경우)는 NULL이 서로 distinct하므로 제약에
+걸리지 않고 계속 쌓인다 — 의도된 동작이다.
+
+### 검증
+
+- `information_schema.columns`: `numeric` precision 3 / scale 1
+- 인덱스 2개 생성 확인(`..._user_question_uniq`, `..._user_created_idx`)
+- `row_to_json`으로 직렬화 확인: `{"score":6.5}` — 따옴표 없는 JSON 숫자라
+  supabase-js가 JS number로 파싱한다(문자열로 오면 프로필의 평균 점수 계산이 깨진다)
+
+---
+
+## 부록. 백필 잔재 정리 (2026-08-02)
+
+`user_cpa` 196행 중 **193행이 익명 auth 사용자에게 붙어 있었다.** 2026-07-09 01:09 UTC에
+1분 안에 `cpa_user_<hex8>` 패턴으로 일괄 생성된, 일회성 백필 스크립트의 잔재다.
+
+설계상 익명(게스트) 세션은 `user_cpa`에 프로필을 만들지 않는다
+(`contexts/AuthContext.tsx`의 `resolveSessionUser`). 이후 19일간 신규 생성이 0건인 것으로
+**현재 코드는 정상 동작함을 확인했다** — 남아 있던 것은 과거 데이터뿐이었다.
+
+영향: `getLeaderboardData`가 exp 내림차순 상위 10명을 뽑는데 전원 exp가 0이라, 랭킹 화면에
+자동 생성된 계정 10개가 노출되고 있었다.
+
+삭제 전 대상 193행이 `exp=0`, `level=1`, `role=MEMBER`, 오답노트 0건임을 전수 확인했다
+(잃을 데이터 없음). 삭제 후 `user_cpa`는 실제 계정 3행만 남는다.
+
+```sql
+delete from public.user_cpa uc
+using auth.users au
+where au.id = uc.id
+  and au.is_anonymous
+  and uc.username ~ '^cpa_user_[0-9a-f]{8}$'
+  and uc.exp = 0 and uc.level = 1 and uc.role = 'MEMBER';
+```
+
+### 남은 판단거리
+
+`auth.users`에 익명 사용자가 820명 쌓여 있다(전체 855명 중). 게스트 로그인이 매번 실제
+Supabase 익명 계정을 발급하는데 정리 주기가 없어서다. 이 행들은 지금 앱 동작에 영향을 주지
+않지만 무한히 늘어난다. 정리 정책은 아직 정하지 않았다.
+
+---
+
 ## 키 취급
 
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`는 공개 값이다. 브라우저 번들에 들어가는 것이 정상이며,

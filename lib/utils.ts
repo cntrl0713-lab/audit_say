@@ -1,4 +1,4 @@
-import type { AuditQuestion } from './db';
+import type { AuditQuestion, UserProfile } from './db';
 
 export const ROLE_NAMES = {
     GUEST: '비회원',
@@ -119,19 +119,133 @@ export function getCounts(data: AuditQuestion[]) {
     return counts;
 }
 
+/**
+ * 한 번의 채점 요청에 담을 수 있는 최대 문항 수 (등급별).
+ * 예전에는 이 제한이 퀴즈 화면의 버튼 disabled 처리로만 존재해서, 서버 액션을 직접
+ * 호출하면 원하는 만큼 문항을 밀어넣을 수 있었다. 액션은 누구나 POST할 수 있는
+ * 엔드포인트이므로 화면 제한은 방어선이 아니다 — 서버가 같은 값으로 강제한다.
+ */
+export const MAX_QUESTIONS_PER_ROLE: Record<UserProfile['role'], number> = {
+    GUEST: 3,
+    MEMBER: 3,
+    PRO: 5,
+    ADMIN: 5,
+};
+
+/** 알 수 없는 등급은 가장 낮은 상한을 적용한다 (fail closed). */
+export function maxQuestionsForRole(role: string): number {
+    return MAX_QUESTIONS_PER_ROLE[role as UserProfile['role']] ?? MAX_QUESTIONS_PER_ROLE.GUEST;
+}
+
+/**
+ * 답안 한 건의 최대 길이(문자). 서술형 답안으로 충분한 길이면서, 한 번의 요청이
+ * Gemini 토큰 비용을 무한정 끌어올리지 못하게 막는 상한이다.
+ */
+export const MAX_ANSWER_LENGTH = 4000;
+
 /** 한 번 제출로 받을 수 있는 최대 경험치: 최대 문항 수(5) × 문항당 만점(10). */
 export const MAX_EXP_PER_SUBMISSION = 50;
 
 /**
- * 클라이언트가 보낸 획득 경험치를 저장 가능한 값으로 정규화한다.
+ * 획득 경험치를 저장 가능한 값으로 정규화한다.
  * - 루브릭 채점은 0.5점 단위라 합계가 소수일 수 있다. exp는 정수로만 누적해야 하므로
  *   반올림한다 (exp가 정수 컬럼이면 소수 update가 거부되어 경험치가 조용히 안 오른다).
- * - addedExp는 클라이언트 계산값이므로 한 번에 가능한 최대치로 자른다.
+ * - 서버가 채점 결과로 직접 계산한 값이지만, 문항 수 상한이 바뀌어도 1회 적립량이
+ *   튀지 않도록 최대치로 한 번 더 자른다.
  * @returns 저장할 정수 경험치, 저장할 필요가 없으면 0
  */
 export function sanitizeExpGain(addedExp: number): number {
     if (!Number.isFinite(addedExp) || addedExp <= 0) return 0;
     return Math.min(MAX_EXP_PER_SUBMISSION, Math.round(addedExp));
+}
+
+/**
+ * 채점 요청 페이로드 검증. 서버 액션은 누구나 POST할 수 있는 엔드포인트이므로,
+ * 개수·길이·타입을 여기서 전부 확인한 뒤에야 Gemini 호출로 넘어간다.
+ * @returns 거절 사유 메시지, 문제가 없으면 null
+ */
+export function validateGradeRequest(items: unknown, role: string): string | null {
+    if (!Array.isArray(items)) {
+        return '채점 요청 형식이 올바르지 않습니다.';
+    }
+    if (items.length === 0) {
+        return '채점할 답안이 없습니다.';
+    }
+
+    const maxItems = maxQuestionsForRole(role);
+    if (items.length > maxItems) {
+        return `한 번에 채점할 수 있는 문항은 최대 ${maxItems}개입니다. (요청: ${items.length}개)`;
+    }
+
+    const seenIds = new Set<number>();
+    const seenQids = new Set<number>();
+    for (const item of items) {
+        if (!item || typeof item !== 'object') {
+            return '채점 요청 항목 형식이 올바르지 않습니다.';
+        }
+
+        const { id, qid, a } = item as { id?: unknown; qid?: unknown; a?: unknown };
+
+        if (!Number.isInteger(id)) {
+            return '채점 요청 항목의 id가 정수가 아닙니다.';
+        }
+        // id는 결과 맵의 키다. 중복되면 한 답안의 결과가 다른 답안의 결과를 덮어쓴다.
+        if (seenIds.has(id as number)) {
+            return `채점 요청 항목의 id가 중복되었습니다: ${id}`;
+        }
+        seenIds.add(id as number);
+
+        if (!Number.isInteger(qid)) {
+            return '채점 요청 항목의 문항 번호(qid)가 정수가 아닙니다.';
+        }
+        // 같은 문항을 한 요청에 여러 번 담으면, 답 하나를 외워 반복 제출하는 것만으로
+        // 1회 상한(50 EXP)을 채울 수 있다. 출제는 항상 서로 다른 문항을 뽑으므로
+        // (lib/utils의 getQuizSet) 정상 요청에는 중복이 없다.
+        if (seenQids.has(qid as number)) {
+            return `같은 문항을 한 번에 여러 번 채점할 수 없습니다: ${qid}`;
+        }
+        seenQids.add(qid as number);
+        if (typeof a !== 'string' || a.trim().length === 0) {
+            return '빈 답안은 채점할 수 없습니다.';
+        }
+        if (a.length > MAX_ANSWER_LENGTH) {
+            return `답안은 ${MAX_ANSWER_LENGTH}자를 넘을 수 없습니다. (현재 ${a.length}자)`;
+        }
+    }
+
+    return null;
+}
+
+/**
+ * 동시 실행 개수를 제한하며 items를 매핑한다. 결과는 **입력 순서 그대로** 반환한다.
+ *
+ * 채점은 문항마다 Gemini를 한 번씩 부른다. 이걸 완전 직렬로 돌리면 5문항이 5회 왕복
+ * 시간을 그대로 더해 함수 타임아웃에 닿는다. 반대로 전부 동시에 던지면 429/503을 부른다.
+ * 그 사이를 잡기 위한 최소 구현이다.
+ *
+ * worker가 던지는 예외는 그대로 전파된다 — 호출자가 항목별로 try/catch 하는 것을 전제한다.
+ */
+export async function mapWithConcurrency<T, R>(
+    items: T[],
+    limit: number,
+    worker: (item: T, index: number) => Promise<R>
+): Promise<R[]> {
+    const results = new Array<R>(items.length);
+    if (items.length === 0) return results;
+
+    const effectiveLimit = Math.max(1, Math.min(Math.floor(limit) || 1, items.length));
+    let nextIndex = 0;
+
+    const runner = async (): Promise<void> => {
+        while (true) {
+            const current = nextIndex++;
+            if (current >= items.length) return;
+            results[current] = await worker(items[current], current);
+        }
+    };
+
+    await Promise.all(Array.from({ length: effectiveLimit }, () => runner()));
+    return results;
 }
 
 // Randomly sample quiz questions
