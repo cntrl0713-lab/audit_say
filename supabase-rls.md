@@ -347,6 +347,11 @@ commit;
 
 ## 부록. 채점 레이트 리밋 테이블 (`consume_rate_limit`)
 
+> **적용 완료 (2026-08-02, 프로젝트 `xvifzicrjmbfqaepcfpp`).**
+> 마이그레이션명 `add_cpa_grade_rate_limit`. 아래 SQL은 이미 운영 DB에 반영돼 있으므로
+> 다시 실행할 필요가 없다(재실행해도 멱등하긴 하다). 남겨두는 이유는 다른 환경에
+> 올리거나 롤백할 때 쓰기 위해서다.
+
 STEP 1~4와 독립적으로 적용할 수 있다. 순서 제약도 없다.
 
 ### 왜 필요한가
@@ -449,6 +454,16 @@ commit;
 > 반례도 함께 확인했다: `grant`와 `security definer`가 **둘 다 없으면**
 > `permission denied for table cpa_rate_limits`가 나고, 앱은 이를 fail closed로 처리해
 > 채점이 전부 막힌다. 두 줄 중 하나라도 빠뜨리지 말 것.
+>
+> **운영 DB 적용 후 재검증(2026-08-02).** 로컬 재현 환경과 달리 이 프로젝트에는
+> `public` 스키마 기본 권한(default ACL)이 설정돼 있어 **새 함수에 anon·authenticated
+> EXECUTE가 자동으로 부여된다.** 즉 위 `revoke` 줄이 실효를 갖는지가 로컬에서는 검증되지
+> 않았는데, 적용 후 `has_function_privilege`로 anon `f` / authenticated `f` /
+> service_role `t`를 확인했다. `set local role service_role`로 10회 통과·11번째 거절,
+> 창 만료 후 카운터 1로 초기화, 키별 분리도 확인했고 검증용 행은 삭제했다.
+> Supabase security advisor에도 이 함수는 걸리지 않는다(`search_path` 고정 +
+> anon/authenticated EXECUTE 없음). `cpa_rate_limits`의 "RLS Enabled No Policy"
+> INFO는 의도된 설계다 — 기존 `cpa_questions_v2`·`cpa_review_notes`와 동일하다.
 
 ```sql
 -- 11번째 호출부터 false가 나와야 한다
