@@ -149,25 +149,25 @@ function main(): void {
     }
 
     const expectedTopicCounts = new Map<string, number>([
-        ['01', 2],
-        ['02', 3],
-        ['03', 2],
-        ['04', 2],
-        ['05', 3],
-        ['06', 3],
-        ['07', 2],
-        ['08', 2],
-        ['09', 2],
-        ['10', 2],
-        ['11', 2],
-        ['12', 2],
-        ['13', 2],
-        ['14', 3],
-        ['15', 3],
-        ['16', 3],
-        ['17', 2],
-        ['18', 2],
-        ['19', 3],
+        ['01', 3],
+        ['02', 4],
+        ['03', 3],
+        ['04', 3],
+        ['05', 4],
+        ['06', 4],
+        ['07', 3],
+        ['08', 4],
+        ['09', 3],
+        ['10', 3],
+        ['11', 3],
+        ['12', 3],
+        ['13', 3],
+        ['14', 4],
+        ['15', 4],
+        ['16', 4],
+        ['17', 3],
+        ['18', 3],
+        ['19', 4],
     ]);
     for (const [topicId, expectedCount] of expectedTopicCounts) {
         const actualCount = topicCounts.get(topicId) ?? 0;
@@ -175,7 +175,7 @@ function main(): void {
             errors.push(`topic_id ${topicId} 세트 수는 ${expectedCount}개여야 하지만 ${actualCount}개입니다.`);
         }
     }
-    if (raw.length !== 45) errors.push(`파일럿 문제 세트는 45개여야 하지만 ${raw.length}개입니다.`);
+    if (raw.length !== 65) errors.push(`파일럿 문제 세트는 65개여야 하지만 ${raw.length}개입니다.`);
 
     const compiled = (raw as QuestionSetV3[]).map(compilePublicQuestionSet);
     if (fs.existsSync(publicPath)) {

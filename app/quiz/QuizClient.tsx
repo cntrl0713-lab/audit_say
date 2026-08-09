@@ -32,6 +32,10 @@ export default function QuizClient({ initialSets }: { initialSets: PublicQuestio
         () => ['전체', ...new Set(initialSets.map((set) => set.classification.part))],
         [initialSets],
     );
+    const subquestionCount = useMemo(
+        () => initialSets.reduce((sum, set) => sum + set.subquestions.length, 0),
+        [initialSets],
+    );
     const visibleSets = selectedPart === '전체'
         ? initialSets
         : initialSets.filter((set) => set.classification.part === selectedPart);
@@ -76,7 +80,7 @@ export default function QuizClient({ initialSets }: { initialSets: PublicQuestio
                         <span className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                             출처 기반 신규 문제은행
                         </span>
-                        <span className="text-xs text-foreground/50">19개 주제 · 45세트 · 90개 세부 문항</span>
+                        <span className="text-xs text-foreground/50">19개 주제 · {initialSets.length}세트 · {subquestionCount}개 세부 문항</span>
                     </div>
                     <div>
                         <h1 className="text-2xl font-normal text-foreground">회계감사 연계형 문제</h1>

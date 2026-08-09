@@ -100,7 +100,7 @@ export default function AdminPage() {
                         </label>
                     </div>
                     <div className="rounded-lg border border-card-border bg-card">
-                        <div className="border-b border-card-border p-4 text-sm text-foreground/60">45세트 중 {filteredSets.length}세트 표시</div>
+                        <div className="border-b border-card-border p-4 text-sm text-foreground/60">{questionSets.length}세트 중 {filteredSets.length}세트 표시</div>
                         <div className="divide-y divide-card-border">
                             {filteredSets.map((set) => (
                                 <article key={set.id} className="grid gap-2 p-4 md:grid-cols-[9rem_1fr_auto] md:items-center">

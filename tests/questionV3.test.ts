@@ -101,31 +101,31 @@ test('validateQuestionSetV3 validates source-bound linked question sets', () => 
     assert.equal(result.max_points, 3);
 });
 
-test('v3 authoring bank follows the planned 45-set topic distribution', {
+test('v3 authoring bank follows the planned 65-set topic distribution', {
     skip: !fs.existsSync(authoringBankPath),
 }, () => {
     const sets = JSON.parse(fs.readFileSync(authoringBankPath, 'utf8')) as QuestionSetV3[];
     const countsByTopic = new Map<string, number>();
     const expectedCounts = new Map<string, number>([
-        ['01', 2],
-        ['02', 3],
-        ['03', 2],
-        ['04', 2],
-        ['05', 3],
-        ['06', 3],
-        ['07', 2],
-        ['08', 2],
-        ['09', 2],
-        ['10', 2],
-        ['11', 2],
-        ['12', 2],
-        ['13', 2],
-        ['14', 3],
-        ['15', 3],
-        ['16', 3],
-        ['17', 2],
-        ['18', 2],
-        ['19', 3],
+        ['01', 3],
+        ['02', 4],
+        ['03', 3],
+        ['04', 3],
+        ['05', 4],
+        ['06', 4],
+        ['07', 3],
+        ['08', 4],
+        ['09', 3],
+        ['10', 3],
+        ['11', 3],
+        ['12', 3],
+        ['13', 3],
+        ['14', 4],
+        ['15', 4],
+        ['16', 4],
+        ['17', 3],
+        ['18', 3],
+        ['19', 4],
     ]);
 
     for (const set of sets) {
@@ -133,8 +133,8 @@ test('v3 authoring bank follows the planned 45-set topic distribution', {
         countsByTopic.set(topicId, (countsByTopic.get(topicId) ?? 0) + 1);
     }
 
-    assert.equal(sets.length, 45);
-    assert.equal(new Set(sets.map((set) => set.id)).size, 45);
+    assert.equal(sets.length, 65);
+    assert.equal(new Set(sets.map((set) => set.id)).size, 65);
     const prompts = sets.flatMap((set) => set.subquestions.map((subquestion) => (
         subquestion.prompt.replace(/\s+/g, '').toLowerCase()
     )));

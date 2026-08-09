@@ -12,7 +12,8 @@
     "prepare": "node -e \"try{require('child_process').execSync('git config core.hooksPath .githooks')}catch(e){}\"",
     "rag:index": "tsx --env-file=.env.local cpa_uploader/index_references.ts",
     "rag:query": "tsx --env-file=.env.local cpa_uploader/rag_query.ts",
-    "questions:v3:validate": "tsx cpa_uploader/validate_cpa_v3.ts"
+    "questions:v3:validate": "tsx cpa_uploader/validate_cpa_v3.ts",
+    "questions:v3:compile": "tsx --env-file=.env.local scripts/compile-question-bank-v3.ts"
   },
   "dependencies": {
     "@google/genai": "^2.10.0",

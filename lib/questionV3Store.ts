@@ -7,8 +7,10 @@ import type {
     PublicQuestionSetV3,
     QuestionSetV3,
 } from './questionV3.ts';
+import { decryptAuthoringQuestionBankV3 } from './questionV3Encryption.ts';
 
 interface CachedQuestionSets {
+    file: string;
     mtimeMs: number;
     sets: QuestionSetV3[];
 }
@@ -27,6 +29,12 @@ function authoringPath(): string {
         : path.join(process.cwd(), 'cpa_uploader/data/cpa_question_sets_v3.authoring.json');
 }
 
+function encryptedAuthoringPath(): string {
+    return process.env.CPA_QUESTION_V3_ENCRYPTED_PATH
+        ? path.resolve(process.env.CPA_QUESTION_V3_ENCRYPTED_PATH)
+        : path.join(process.cwd(), 'data/cpa_question_sets_v3.authoring.enc.json');
+}
+
 function publicPath(): string {
     return process.env.CPA_QUESTION_V3_PUBLIC_PATH
         ? path.resolve(process.env.CPA_QUESTION_V3_PUBLIC_PATH)
@@ -34,15 +42,26 @@ function publicPath(): string {
 }
 
 export function loadAuthoringQuestionSetsV3(): QuestionSetV3[] {
-    const file = authoringPath();
+    const plaintextFile = authoringPath();
+    const encryptedFile = encryptedAuthoringPath();
+    const file = fs.existsSync(plaintextFile) ? plaintextFile : encryptedFile;
     if (!fs.existsSync(file)) {
-        throw new Error('v3 문제 파일이 없습니다. npm run questions:v3:generate를 먼저 실행하세요.');
+        throw new Error('v3 authoring 문제 파일이 없습니다. 평문 또는 암호화된 배포 문제은행을 확인하세요.');
     }
 
     const stat = fs.statSync(file);
-    if (authoringCache?.mtimeMs === stat.mtimeMs) return authoringCache.sets;
+    if (authoringCache?.file === file && authoringCache.mtimeMs === stat.mtimeMs) {
+        return authoringCache.sets;
+    }
 
-    const parsed = JSON.parse(fs.readFileSync(file, 'utf8')) as unknown;
+    const fileContents = fs.readFileSync(file, 'utf8');
+    const plaintext = file === plaintextFile
+        ? fileContents
+        : decryptAuthoringQuestionBankV3(
+            fileContents,
+            process.env.CPA_QUESTION_V3_ENCRYPTION_KEY || process.env.GOOGLE_API_KEY || '',
+        );
+    const parsed = JSON.parse(plaintext) as unknown;
     if (!Array.isArray(parsed)) throw new Error('v3 문제 파일의 루트는 배열이어야 합니다.');
 
     const sets: QuestionSetV3[] = [];
@@ -61,7 +80,7 @@ export function loadAuthoringQuestionSetsV3(): QuestionSetV3[] {
         throw new Error(`v3 문제 데이터 검증 실패:\n${errors.join('\n')}`);
     }
 
-    authoringCache = { mtimeMs: stat.mtimeMs, sets };
+    authoringCache = { file, mtimeMs: stat.mtimeMs, sets };
     return sets;
 }
 

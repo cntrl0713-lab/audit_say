@@ -5,6 +5,7 @@ export const dynamic = 'force-dynamic';
 
 export default function CurriculumPage() {
     const sets = loadPublicQuestionSetsV3();
+    const subquestionCount = sets.reduce((sum, set) => sum + set.subquestions.length, 0);
     const parts = new Map<string, Map<string, typeof sets>>();
 
     for (const set of sets) {
@@ -20,7 +21,7 @@ export default function CurriculumPage() {
             <header className="text-center">
                 <BookOpen className="mx-auto h-7 w-7" />
                 <h1 className="mt-2 text-2xl font-normal">신규 문제은행 커리큘럼</h1>
-                <p className="mt-2 text-sm text-foreground/55">19개 주제, 45개 세트, 90개 세부 문항의 분포입니다.</p>
+                <p className="mt-2 text-sm text-foreground/55">19개 주제, {sets.length}개 세트, {subquestionCount}개 세부 문항의 분포입니다.</p>
             </header>
             {[...parts.entries()].map(([part, chapters]) => (
                 <section key={part} className="rounded-lg border border-card-border bg-card p-5">
