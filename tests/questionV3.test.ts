@@ -6,6 +6,7 @@ import path from 'node:path';
 import {
     compilePublicQuestionSet,
     computeQuestionSetMaxPoints,
+    isQuestionSetAnswerPayloadV3,
     scoreCriterionVerdicts,
     validateQuestionSetV3,
     verifyCriterionVerdicts,
@@ -229,6 +230,14 @@ test('validateQuestionSetV3 rejects public tags that reveal a model answer', () 
     const result = validateQuestionSetV3(set);
 
     assert.ok(result.errors.some((error) => error.includes('model_answer')));
+});
+
+test('isQuestionSetAnswerPayloadV3 accepts canonical subquestion ids and rejects unsafe payloads', () => {
+    assert.equal(isQuestionSetAnswerPayloadV3({ sub1: '답안', sub2: '답안' }), true);
+    assert.equal(isQuestionSetAnswerPayloadV3({ 'pilot-19-004.q1': '답안' }), true);
+    assert.equal(isQuestionSetAnswerPayloadV3({ 'bad id': '답안' }), false);
+    assert.equal(isQuestionSetAnswerPayloadV3({ sub1: 'x'.repeat(5001) }), false);
+    assert.equal(isQuestionSetAnswerPayloadV3(Array.from({ length: 11 }, (_, index) => [`q${index}`, '답안'])), false);
 });
 
 test('compilePublicQuestionSet strips model answers, requirements, criteria, and source quotes', () => {

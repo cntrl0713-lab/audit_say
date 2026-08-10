@@ -153,6 +153,17 @@ function isRecord(value: unknown): value is Record<string, unknown> {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
+export function isQuestionSetAnswerPayloadV3(value: unknown): value is Record<string, string> {
+    if (!isRecord(value)) return false;
+
+    const entries = Object.entries(value);
+    return entries.length <= 10 && entries.every(([id, answer]) => (
+        /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(id)
+        && typeof answer === 'string'
+        && answer.length <= 5000
+    ));
+}
+
 function normalizeSourceText(value: string): string {
     return value.replace(/\s+/g, ' ').trim();
 }
