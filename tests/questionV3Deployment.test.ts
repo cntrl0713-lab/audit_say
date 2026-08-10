@@ -4,7 +4,10 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { loadAuthoringQuestionSetsV3 } from '../lib/questionV3Store.ts';
+import {
+    loadAuthoringQuestionSetsV3,
+    resolveAuthoringQuestionBankPath,
+} from '../lib/questionV3Store.ts';
 import {
     decryptAuthoringQuestionBankV3,
     encryptAuthoringQuestionBankV3,
@@ -93,6 +96,34 @@ test('encrypted authoring bundles round-trip without exposing plaintext', () => 
 
     assert.equal(encrypted.includes('배포용 암호화 문제은행 테스트'), false);
     assert.equal(decryptAuthoringQuestionBankV3(encrypted, secret), plaintext);
+});
+
+test('authoring encryption rejects low-entropy keys', () => {
+    assert.throws(
+        () => encryptAuthoringQuestionBankV3('sensitive', 'short-key'),
+        /32바이트/,
+    );
+});
+
+test('production always selects the encrypted bank even when plaintext exists locally', () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'question-v3-selection-'));
+    const plaintextPath = path.join(directory, 'authoring.json');
+    const encryptedPath = path.join(directory, 'authoring.enc.json');
+    fs.writeFileSync(plaintextPath, 'plaintext', 'utf8');
+    fs.writeFileSync(encryptedPath, 'encrypted', 'utf8');
+
+    try {
+        assert.equal(
+            resolveAuthoringQuestionBankPath(plaintextPath, encryptedPath, 'production'),
+            encryptedPath,
+        );
+        assert.equal(
+            resolveAuthoringQuestionBankPath(plaintextPath, encryptedPath, 'development'),
+            plaintextPath,
+        );
+    } finally {
+        fs.rmSync(directory, { recursive: true, force: true });
+    }
 });
 
 test('production loads the encrypted authoring bank when the ignored plaintext bank is absent', () => {

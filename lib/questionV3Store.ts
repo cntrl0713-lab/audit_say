@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import {
     validateQuestionSetV3,
 } from './questionV3.ts';
@@ -12,6 +13,8 @@ import { decryptAuthoringQuestionBankV3 } from './questionV3Encryption.ts';
 interface CachedQuestionSets {
     file: string;
     mtimeMs: number;
+    size: number;
+    keyFingerprint: string;
     sets: QuestionSetV3[];
 }
 
@@ -41,16 +44,42 @@ function publicPath(): string {
         : path.join(process.cwd(), 'cpa_uploader/data/cpa_question_sets_v3.public.json');
 }
 
+function authoringEncryptionKey(): string {
+    const secret = process.env.CPA_QUESTION_V3_ENCRYPTION_KEY;
+    if (!secret) {
+        throw new Error('CPA_QUESTION_V3_ENCRYPTION_KEY가 설정되지 않았습니다.');
+    }
+    return secret;
+}
+
+export function resolveAuthoringQuestionBankPath(
+    plaintextFile: string,
+    encryptedFile: string,
+    nodeEnv = process.env.NODE_ENV,
+): string {
+    if (nodeEnv === 'production') return encryptedFile;
+    return fs.existsSync(plaintextFile) ? plaintextFile : encryptedFile;
+}
+
 export function loadAuthoringQuestionSetsV3(): QuestionSetV3[] {
     const plaintextFile = authoringPath();
     const encryptedFile = encryptedAuthoringPath();
-    const file = fs.existsSync(plaintextFile) ? plaintextFile : encryptedFile;
+    const file = resolveAuthoringQuestionBankPath(plaintextFile, encryptedFile);
     if (!fs.existsSync(file)) {
         throw new Error('v3 authoring 문제 파일이 없습니다. 평문 또는 암호화된 배포 문제은행을 확인하세요.');
     }
 
     const stat = fs.statSync(file);
-    if (authoringCache?.file === file && authoringCache.mtimeMs === stat.mtimeMs) {
+    const secret = file === plaintextFile ? '' : authoringEncryptionKey();
+    const keyFingerprint = secret
+        ? crypto.createHash('sha256').update(secret, 'utf8').digest('hex')
+        : '';
+    if (
+        authoringCache?.file === file
+        && authoringCache.mtimeMs === stat.mtimeMs
+        && authoringCache.size === stat.size
+        && authoringCache.keyFingerprint === keyFingerprint
+    ) {
         return authoringCache.sets;
     }
 
@@ -59,7 +88,7 @@ export function loadAuthoringQuestionSetsV3(): QuestionSetV3[] {
         ? fileContents
         : decryptAuthoringQuestionBankV3(
             fileContents,
-            process.env.CPA_QUESTION_V3_ENCRYPTION_KEY || process.env.GOOGLE_API_KEY || '',
+            secret,
         );
     const parsed = JSON.parse(plaintext) as unknown;
     if (!Array.isArray(parsed)) throw new Error('v3 문제 파일의 루트는 배열이어야 합니다.');
@@ -80,7 +109,13 @@ export function loadAuthoringQuestionSetsV3(): QuestionSetV3[] {
         throw new Error(`v3 문제 데이터 검증 실패:\n${errors.join('\n')}`);
     }
 
-    authoringCache = { file, mtimeMs: stat.mtimeMs, sets };
+    authoringCache = {
+        file,
+        mtimeMs: stat.mtimeMs,
+        size: stat.size,
+        keyFingerprint,
+        sets,
+    };
     return sets;
 }
 

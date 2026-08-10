@@ -117,7 +117,7 @@ export interface PublicQuestionSetV3 {
         prompt: string;
         constraints: SubquestionV3['constraints'];
         selection: SubquestionV3['selection'];
-        decision?: SubquestionV3['decision'];
+        decision?: { options: string[] };
         answer_slots: NonNullable<SubquestionV3['answer_slots']>;
         max_points: number;
     }>;
@@ -155,6 +155,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function normalizeSourceText(value: string): string {
     return value.replace(/\s+/g, ' ').trim();
+}
+
+function normalizePublicLeakText(value: string): string {
+    return value.replace(/\s+/g, '').toLowerCase();
 }
 
 function resolveSourcePath(file: string, cwd: string): string {
@@ -212,7 +216,7 @@ export function compilePublicQuestionSet(questionSet: QuestionSetV3): PublicQues
             prompt: subquestion.prompt,
             constraints: subquestion.constraints,
             selection: subquestion.selection,
-            ...(subquestion.decision ? { decision: subquestion.decision } : {}),
+            ...(subquestion.decision ? { decision: { options: subquestion.decision.options } } : {}),
             answer_slots: defaultAnswerSlots(subquestion),
             max_points: computeSubquestionMaxPoints(subquestion),
         })),
@@ -333,6 +337,18 @@ export function validateQuestionSetV3(
     if (!Array.isArray(questionSet.subquestions) || questionSet.subquestions.length === 0) {
         errors.push('subquestions가 최소 하나 필요합니다.');
         return { errors, warnings, max_points: 0 };
+    }
+    const modelAnswers = new Set(questionSet.subquestions.flatMap((subquestion) => (
+        Array.isArray(subquestion.model_answer)
+            ? subquestion.model_answer
+                .filter((answer): answer is string => typeof answer === 'string')
+                .map(normalizePublicLeakText)
+            : []
+    )));
+    for (const tag of questionSet.classification?.tags || []) {
+        if (typeof tag === 'string' && modelAnswers.has(normalizePublicLeakText(tag))) {
+            errors.push(`classification.tags에 model_answer가 노출되어 있습니다: ${tag}`);
+        }
     }
     if (questionSet.verification?.calculation_required !== false) {
         errors.push('계산이 필요한 문제는 v3 파일럿에 포함할 수 없습니다.');

@@ -135,6 +135,8 @@ test('v3 authoring bank follows the planned 65-set topic distribution', {
 
     assert.equal(sets.length, 65);
     assert.equal(new Set(sets.map((set) => set.id)).size, 65);
+    assert.ok(sets.every((set) => set.status === 'published'));
+    assert.ok(sets.every((set) => set.verification.review_status === 'verified'));
     const prompts = sets.flatMap((set) => set.subquestions.map((subquestion) => (
         subquestion.prompt.replace(/\s+/g, '').toLowerCase()
     )));
@@ -144,6 +146,16 @@ test('v3 authoring bank follows the planned 65-set topic distribution', {
     assert.equal(new Set(prompts).size, prompts.length, 'subquestion prompts must be unique');
     assert.equal(new Set(sourceQuotes).size, sourceQuotes.length, 'source quotes must be unique');
     for (const set of sets) {
+        const normalizedModelAnswers = set.subquestions.flatMap((subquestion) => (
+            subquestion.model_answer.map((answer) => answer.replace(/\s+/g, '').toLowerCase())
+        ));
+        for (const tag of set.classification.tags) {
+            const normalizedTag = tag.replace(/\s+/g, '').toLowerCase();
+            assert.ok(
+                !normalizedModelAnswers.includes(normalizedTag),
+                `${set.id} public tag must not reveal a model answer`,
+            );
+        }
         assert.ok(
             computeQuestionSetMaxPoints(set) <= 8,
             `${set.id} should not exceed eight grading points`,
@@ -210,8 +222,22 @@ test('computeQuestionSetMaxPoints honors best_n without forcing a ten-point tota
     assert.equal(computeQuestionSetMaxPoints(set), 2);
 });
 
+test('validateQuestionSetV3 rejects public tags that reveal a model answer', () => {
+    const set = createValidSet('source.md');
+    set.classification.tags = [set.subquestions[0].model_answer[0]];
+
+    const result = validateQuestionSetV3(set);
+
+    assert.ok(result.errors.some((error) => error.includes('model_answer')));
+});
+
 test('compilePublicQuestionSet strips model answers, requirements, criteria, and source quotes', () => {
-    const publicSet = compilePublicQuestionSet(createValidSet('source.md'));
+    const authoringSet = createValidSet('source.md');
+    authoringSet.subquestions[0].decision = {
+        options: ['예', '아니오'],
+        correct: '예',
+    };
+    const publicSet = compilePublicQuestionSet(authoringSet);
     const publicSub = publicSet.subquestions[0] as Record<string, unknown>;
     const publicSource = publicSet.sources[0] as Record<string, unknown>;
 
@@ -219,6 +245,7 @@ test('compilePublicQuestionSet strips model answers, requirements, criteria, and
     assert.equal('requirements' in publicSub, false);
     assert.equal('criteria' in publicSub, false);
     assert.equal('source_quote' in publicSource, false);
+    assert.deepEqual(publicSub.decision, { options: ['예', '아니오'] });
     assert.equal(publicSet.max_points, 3);
 });
 

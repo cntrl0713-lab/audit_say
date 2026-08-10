@@ -13,6 +13,9 @@ const KEY_CONTEXT = 'audit-say:v3-authoring:v1\0';
 
 function deriveKey(secret: string): Buffer {
     if (!secret) throw new Error('v3 문제은행 복호화 키가 설정되지 않았습니다.');
+    if (Buffer.byteLength(secret, 'utf8') < 32) {
+        throw new Error('v3 문제은행 암호화 키는 최소 32바이트여야 합니다.');
+    }
     return crypto.createHash('sha256')
         .update(KEY_CONTEXT, 'utf8')
         .update(secret, 'utf8')
