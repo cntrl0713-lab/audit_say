@@ -54,8 +54,13 @@ export default function QuizClient({ initialSets }: { initialSets: PublicQuestio
         setView('grading');
         setError(null);
         try {
-            const graded = await gradeQuestionSetV3Action(activeSet.id, answers);
-            setResult(graded);
+            const response = await gradeQuestionSetV3Action(activeSet.id, answers);
+            if (!response.ok) {
+                setError(response.message);
+                setView('solving');
+                return;
+            }
+            setResult(response.result);
             setView('review');
             await refreshProfile();
         } catch (submitError) {

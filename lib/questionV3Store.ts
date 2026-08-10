@@ -26,6 +26,22 @@ interface CachedPublicQuestionSets {
 let authoringCache: CachedQuestionSets | null = null;
 let publicCache: CachedPublicQuestionSets | null = null;
 
+export type QuestionBankV3LoadErrorCode =
+    | 'file_missing'
+    | 'key_missing'
+    | 'decryption_failed'
+    | 'invalid';
+
+export function classifyQuestionBankV3LoadError(error: unknown): QuestionBankV3LoadErrorCode {
+    const message = error instanceof Error ? error.message : String(error);
+    if (message.includes('CPA_QUESTION_V3_ENCRYPTION_KEY') || message.includes('복호화 키가 설정되지')) {
+        return 'key_missing';
+    }
+    if (message.includes('복호화에 실패')) return 'decryption_failed';
+    if (message.includes('문제 파일이 없습니다')) return 'file_missing';
+    return 'invalid';
+}
+
 function authoringPath(): string {
     return process.env.CPA_QUESTION_V3_AUTHORING_PATH
         ? path.resolve(process.env.CPA_QUESTION_V3_AUTHORING_PATH)

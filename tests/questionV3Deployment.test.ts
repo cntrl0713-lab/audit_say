@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {
+    classifyQuestionBankV3LoadError,
     loadAuthoringQuestionSetsV3,
     resolveAuthoringQuestionBankPath,
 } from '../lib/questionV3Store.ts';
@@ -103,6 +104,22 @@ test('authoring encryption rejects low-entropy keys', () => {
         () => encryptAuthoringQuestionBankV3('sensitive', 'short-key'),
         /32바이트/,
     );
+});
+
+test('question bank load failures are classified without exposing secrets', () => {
+    assert.equal(
+        classifyQuestionBankV3LoadError(new Error('CPA_QUESTION_V3_ENCRYPTION_KEY가 설정되지 않았습니다.')),
+        'key_missing',
+    );
+    assert.equal(
+        classifyQuestionBankV3LoadError(new Error('v3 문제은행 복호화에 실패했습니다. 배포 환경의 암호화 키를 확인하세요.')),
+        'decryption_failed',
+    );
+    assert.equal(
+        classifyQuestionBankV3LoadError(new Error('v3 authoring 문제 파일이 없습니다.')),
+        'file_missing',
+    );
+    assert.equal(classifyQuestionBankV3LoadError(new Error('unexpected')), 'invalid');
 });
 
 test('production always selects the encrypted bank even when plaintext exists locally', () => {
