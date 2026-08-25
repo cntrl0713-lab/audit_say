@@ -172,6 +172,13 @@ function normalizePublicLeakText(value: string): string {
     return value.replace(/\s+/g, '').toLowerCase();
 }
 
+// critical_facts.expected의 정규화 키: 공백 제거 + 소문자.
+// 같은 물음 안에서 동일한 핵심 사실을 두 criterion이 요구하면 한쪽 답안만 맞혀도
+// 양쪽 점수를 받는 중복 득점이 생기므로 validateQuestionSetV3가 이 키로 검사한다.
+export function normalizeCriticalFactKey(value: string): string {
+    return value.replace(/\s+/g, '').toLowerCase();
+}
+
 function resolveSourcePath(file: string, cwd: string): string {
     return path.isAbsolute(file) ? file : path.resolve(cwd, file);
 }
@@ -393,6 +400,9 @@ export function validateQuestionSetV3(
         if (!subquestion.id?.trim()) errors.push('모든 subquestion에는 id가 필요합니다.');
         if (subquestionIds.has(subquestion.id)) errors.push(`중복 subquestion id: ${subquestion.id}`);
         subquestionIds.add(subquestion.id);
+        // 중복 핵심 사실 검사 범위는 subquestion 단위다. 다른 물음의 criterion이
+        // 같은 사실을 요구하는 것은 연계형 세트에서 정상적인 구조다.
+        const criticalFactOwners = new Map<string, string>();
         if (!['descriptive', 'enumeration', 'judgment'].includes(subquestion.type)) {
             errors.push(`[${subquestion.id}] 지원하지 않는 문제 유형입니다.`);
         }
@@ -467,6 +477,19 @@ export function validateQuestionSetV3(
             }
             for (const sourceId of criterion.source_ref_ids || []) {
                 if (!sourceIds.has(sourceId)) errors.push(`[${criterion.id}] 존재하지 않는 source_ref_id: ${sourceId}`);
+            }
+
+            // 같은 subquestion 안에서 동일한 (type, expected) 핵심 사실이 여러 criterion에
+            // 걸리면 한쪽 답안만 맞혀도 양쪽 점수를 받는 중복 득점 경로가 된다.
+            for (const fact of criterion.critical_facts ?? []) {
+                if (!fact?.expected?.trim()) continue;
+                const factKey = `${fact.type}:${normalizeCriticalFactKey(fact.expected)}`;
+                const factOwner = criticalFactOwners.get(factKey);
+                if (factOwner) {
+                    errors.push(`[${criterion.id}] 핵심 사실(${fact.type}: ${fact.expected})이 ${factOwner}와 중복됩니다. 같은 물음 안에서 두 criterion이 같은 사실을 요구하면 중복 득점이 발생합니다.`);
+                } else {
+                    criticalFactOwners.set(factKey, criterion.id);
+                }
             }
         }
 

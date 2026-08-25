@@ -102,7 +102,7 @@ test('validateQuestionSetV3 validates source-bound linked question sets', () => 
     assert.equal(result.max_points, 3);
 });
 
-test('v3 authoring bank follows the planned 65-set topic distribution', {
+test('v3 authoring bank keeps the pilot floor distribution and stays internally consistent', {
     skip: !fs.existsSync(authoringBankPath),
 }, () => {
     const sets = JSON.parse(fs.readFileSync(authoringBankPath, 'utf8')) as QuestionSetV3[];
@@ -134,10 +134,22 @@ test('v3 authoring bank follows the planned 65-set topic distribution', {
         countsByTopic.set(topicId, (countsByTopic.get(topicId) ?? 0) + 1);
     }
 
-    assert.equal(sets.length, 65);
-    assert.equal(new Set(sets.map((set) => set.id)).size, 65);
-    assert.ok(sets.every((set) => set.status === 'published'));
-    assert.ok(sets.every((set) => set.verification.review_status === 'verified'));
+    // 파일럿 65세트는 하한 계약이다. 은행은 성장할 수 있고(신규 세트 추가),
+    // 기존 세트가 삭제돼 주제별 수가 줄어드는 것만 막는다.
+    const minimumTotal = 65;
+    assert.ok(sets.length >= minimumTotal, `bank should keep at least ${minimumTotal} sets`);
+    assert.equal(new Set(sets.map((set) => set.id)).size, sets.length, 'set ids must be unique');
+    // 신규 세트는 사람 승인 전까지 needs_review 상태로 남는다(compile 게이트가 published를 강제).
+    const legacyPilotIds = new Set(
+        [...expectedCounts.keys()].flatMap((topicId) => {
+            const count = expectedCounts.get(topicId)!;
+            return Array.from({ length: count }, (_, index) => `pilot-${topicId}-${String(index + 1).padStart(3, '0')}`);
+        }),
+    );
+    assert.ok(sets.every((set) => (
+        (legacyPilotIds.has(set.id) && set.status === 'published' && set.verification.review_status === 'verified')
+        || (!legacyPilotIds.has(set.id) && ['needs_review', 'verified', 'published'].includes(set.status))
+    )), 'pilot sets must stay published+verified; new sets must carry a valid status');
     const prompts = sets.flatMap((set) => set.subquestions.map((subquestion) => (
         subquestion.prompt.replace(/\s+/g, '').toLowerCase()
     )));
@@ -163,10 +175,9 @@ test('v3 authoring bank follows the planned 65-set topic distribution', {
         );
     }
     for (const [topicId, expectedCount] of expectedCounts) {
-        assert.equal(
-            countsByTopic.get(topicId),
-            expectedCount,
-            `topic ${topicId} should contain ${expectedCount} sets`,
+        assert.ok(
+            (countsByTopic.get(topicId) ?? 0) >= expectedCount,
+            `topic ${topicId} should contain at least ${expectedCount} sets`,
         );
         for (let index = 1; index <= expectedCount; index += 1) {
             const suffix = String(index).padStart(3, '0');
@@ -188,6 +199,35 @@ test('validateQuestionSetV3 rejects ungrounded requirements and invalid partial 
     const result = validateQuestionSetV3(set, { verifySourceQuotes: true });
     assert.ok(result.errors.some((error) => error.includes('source_quote')));
     assert.ok(result.errors.some((error) => error.includes('1점 criterion은 partial')));
+});
+
+test('validateQuestionSetV3 rejects duplicate critical facts within one subquestion', () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'question-v3-'));
+    const sourceFile = path.join(dir, 'source.md');
+    fs.writeFileSync(sourceFile, '# 기준서\n\n합리적인 확신은 높은 수준의 그러나 절대적이지는 아니한 수준의 확신이다.\n');
+
+    const duplicateFact = { id: 'dup-a', type: 'conclusion' as const, expected: '높은 수준의 확신' };
+    const set = createValidSet(sourceFile);
+    set.subquestions[0].criteria[0].critical_facts = [duplicateFact];
+    // 공백·대소문자만 달라도 정규화하면 같은 사실이므로 중복으로 잡혀야 한다.
+    set.subquestions[0].criteria[1].critical_facts = [
+        { id: 'dup-b', type: 'conclusion' as const, expected: '높은수준의  확신' },
+    ];
+
+    const result = validateQuestionSetV3(set, { verifySourceQuotes: true, cwd: path.dirname(sourceFile) + '/..' });
+    assert.ok(result.errors.some((error) => error.includes('핵심 사실(conclusion: 높은수준의  확신)이 q1.c1와 중복됩니다')));
+
+    // 다른 subquestion이라면 같은 사실을 요구해도 정상이다.
+    const acrossSubquestions = createValidSet(sourceFile);
+    acrossSubquestions.subquestions.push({
+        ...structuredClone(acrossSubquestions.subquestions[0]),
+        id: 'q2',
+        prompt: '다른 물음에서 같은 결론을 묻는다.',
+        criteria: [{ ...structuredClone(acrossSubquestions.subquestions[0].criteria[0]), id: 'q2.c1', critical_facts: [duplicateFact] }],
+    });
+    acrossSubquestions.learning_order = ['q1', 'q2'];
+    const ok = validateQuestionSetV3(acrossSubquestions, { verifySourceQuotes: false });
+    assert.ok(!ok.errors.some((error) => error.includes('중복됩니다')));
 });
 
 test('validateQuestionSetV3 requires criterion evidence to include its requirement source', () => {

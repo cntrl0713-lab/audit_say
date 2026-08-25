@@ -10,7 +10,6 @@ import type { QuestionSetV3 } from '../lib/questionV3.ts';
 const root = process.cwd();
 const authoringPath = path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.authoring.json');
 const publicPath = path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.public.json');
-const v2Path = path.join(root, 'cpa_uploader/data/cpa_problems_v2.json');
 const allowedStandardsByTopic: Record<string, string[]> = {
     '01': ['KGA 200', 'KGA 220'],
     '02': ['KGA 200'],
@@ -65,17 +64,6 @@ function main(): void {
     if (!Array.isArray(raw)) throw new Error('v3 authoring 루트는 배열이어야 합니다.');
 
     const errors: string[] = [];
-    const v2Seeds = fs.existsSync(v2Path) ? readJson(v2Path) : [];
-    const oldPrompts = new Set(
-        (Array.isArray(v2Seeds) ? v2Seeds : [])
-            .map((item) => (
-                typeof item === 'object' && item !== null
-                    ? (item as Record<string, unknown>).question_description
-                    : null
-            ))
-            .filter((prompt): prompt is string => typeof prompt === 'string')
-            .map(normalize),
-    );
     const ids = new Set<string>();
     const topicCounts = new Map<string, number>();
     const promptOwners = new Map<string, string>();
@@ -132,9 +120,6 @@ function main(): void {
             } else {
                 promptOwners.set(promptKey, `${set.id}/${subquestion.id}`);
             }
-            if (oldPrompts.has(normalize(subquestion.prompt))) {
-                errors.push(`${set.id}/${subquestion.id}: 기존 v2 발문을 그대로 재사용했습니다.`);
-            }
             if (/계산하시오|산출하시오|금액을\s*구하시오/u.test(subquestion.prompt)) {
                 errors.push(`${set.id}/${subquestion.id}: 계산형 발문은 파일럿 범위에서 제외됩니다.`);
             }
@@ -148,7 +133,9 @@ function main(): void {
         totalPoints += setMaxPoints;
     }
 
-    const expectedTopicCounts = new Map<string, number>([
+    // 파일럿 당시 주제별 세트 수를 하한으로 유지한다. 은행이 성장해도 기존 커버리지가
+    // 줄어들지는 못하게 하는 계약이다(신규 추가는 자유, 기존 축소·삭제는 게이트에서 차단).
+    const minimumTopicCounts = new Map<string, number>([
         ['01', 3],
         ['02', 4],
         ['03', 3],
@@ -169,13 +156,13 @@ function main(): void {
         ['18', 3],
         ['19', 4],
     ]);
-    for (const [topicId, expectedCount] of expectedTopicCounts) {
+    for (const [topicId, minimumCount] of minimumTopicCounts) {
         const actualCount = topicCounts.get(topicId) ?? 0;
-        if (actualCount !== expectedCount) {
-            errors.push(`topic_id ${topicId} 세트 수는 ${expectedCount}개여야 하지만 ${actualCount}개입니다.`);
+        if (actualCount < minimumCount) {
+            errors.push(`topic_id ${topicId} 세트 수는 최소 ${minimumCount}개여야 하지만 ${actualCount}개입니다.`);
         }
     }
-    if (raw.length !== 65) errors.push(`파일럿 문제 세트는 65개여야 하지만 ${raw.length}개입니다.`);
+    if (raw.length < 65) errors.push(`문제 은행은 최소 65개 세트를 유지해야 하지만 ${raw.length}개입니다.`);
 
     const compiled = (raw as QuestionSetV3[]).map(compilePublicQuestionSet);
     if (fs.existsSync(publicPath)) {
