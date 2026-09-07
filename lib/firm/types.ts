@@ -44,16 +44,88 @@ export interface FirmSummaryRow {
     listed_client_count: number;
     unlisted_client_count: number;
     avg_client_revenue: number | null;
+    avg_client_operating_profit: number | null;
+    avg_client_net_income: number | null;
     opinion_unqualified_count: number;
+    opinion_qualified_count: number;
+    opinion_adverse_count: number;
+    opinion_disclaimer_count: number;
     opinion_modified_count: number;
     avg_kam_count: number | null;
     revenue_total: number | null;
-    employee_total: number | null;
+    revenue_audit: number | null;
+    operating_income: number | null;
+    net_income: number | null;
     director_count: number | null;
+    employee_total: number | null;
+    salary_total: number | null;
+    salary_avg: number | null;
     revenue_per_employee: number | null;
     salary_per_employee: number | null;
     employee_per_director: number | null;
     audit_revenue_ratio: number | null;
+}
+
+/** v_firm_clients — 고객사 상세 */
+export interface FirmClientRow {
+    engagement_id: number;
+    firm_id: number;
+    firm_name: string;
+    bsns_year: number;
+    rcept_no: string | null;
+    corp_code: string;
+    corp_name: string;
+    corp_cls: CorpCls | null;
+    market: string | null;
+    listed_yn: boolean;
+    stock_code: string | null;
+    induty: string | null;
+    revenue: number | null;
+    operating_profit: number | null;
+    net_income: number | null;
+    fs_div: FsDiv | null;
+    fallback_yn: boolean;
+    data_status: FinancialDataStatus;
+    adt_opinion: AuditOpinion | null;
+    kam_count: number | null;
+    audit_fee_total: number | null;
+    nonaudit_fee_total: number | null;
+    nonaudit_contract_count: number;
+}
+
+/** v_firm_kam — KAM 원문 */
+export interface FirmKamRow {
+    engagement_id: number;
+    firm_id: number;
+    firm_name: string;
+    bsns_year: number;
+    corp_code: string;
+    corp_name: string;
+    corp_cls: CorpCls | null;
+    induty: string | null;
+    adt_opinion: AuditOpinion | null;
+    kam_count: number | null;
+    kam_text: string | null;
+    emph_matter: string | null;
+}
+
+/** v_firm_company_audit_history — 회사별 감사인 변천 */
+export interface CompanyAuditHistoryRow {
+    corp_code: string;
+    corp_name: string;
+    corp_cls: CorpCls | null;
+    listed_yn: boolean;
+    induty: string | null;
+    bsns_year: number;
+    firm_id: number;
+    firm_name: string;
+    adt_opinion: AuditOpinion | null;
+    kam_count: number | null;
+    prev_firm_name: string | null;
+    prev_adt_opinion: AuditOpinion | null;
+    /** 첫 연도는 비교 대상이 없어 null 이다. false 와 구분해서 다뤄야 한다. */
+    auditor_changed: boolean | null;
+    opinion_changed: boolean | null;
 }
 
 export const MARKET_LABEL: Record<CorpCls, string> = {
@@ -74,4 +146,14 @@ export const POSITION_LABEL: Record<ReviewPosition, string> = {
 export const EMPLOYMENT_TYPE_LABEL: Record<EmploymentType, string> = {
     current: '현직',
     former: '전직',
+};
+
+export const AUDIT_OPINIONS: AuditOpinion[] = ['적정', '한정', '부적정', '의견거절'];
+
+/** 재무 결측 사유. 화면에서 "-" 옆에 이유를 적어 준다. */
+export const DATA_STATUS_LABEL: Record<FinancialDataStatus, string> = {
+    ok: '',
+    missing: '미수집',
+    financial_corp: '금융사 결측',
+    parse_failed: '파싱 실패',
 };
