@@ -323,7 +323,7 @@ describe('DartClient', () => {
         }) as unknown as typeof fetch;
 
         return {
-            client: new DartClient({ apiKey: 'test-key', minIntervalMs: 0, maxRetries: 1, fetchImpl }),
+            client: new DartClient({ apiKey: 'test-key', minIntervalMs: 0, maxRetries: 1, retryBaseMs: 0, fetchImpl }),
             calls,
         };
     }

@@ -52,6 +52,8 @@ export interface DartClientOptions {
     /** 호출 간 최소 간격(ms). DART 는 분당 호출을 제한하므로 기본값을 넉넉히 둔다. */
     minIntervalMs?: number;
     maxRetries?: number;
+    /** 재시도 백오프의 기준 시간(ms). 테스트에서 대기 없이 돌리려고 열어 뒀다. */
+    retryBaseMs?: number;
     fetchImpl?: typeof fetch;
 }
 
@@ -65,6 +67,7 @@ export class DartClient {
     private readonly apiKey: string;
     private readonly minIntervalMs: number;
     private readonly maxRetries: number;
+    private readonly retryBaseMs: number;
     private readonly fetchImpl: typeof fetch;
     private lastCallAt = 0;
 
@@ -73,6 +76,7 @@ export class DartClient {
         this.apiKey = options.apiKey;
         this.minIntervalMs = options.minIntervalMs ?? 60;
         this.maxRetries = options.maxRetries ?? 4;
+        this.retryBaseMs = options.retryBaseMs ?? 1000;
         this.fetchImpl = options.fetchImpl ?? fetch;
     }
 
@@ -106,7 +110,7 @@ export class DartClient {
                 envelope = (await response.json()) as DartEnvelope<T>;
             } catch (error) {
                 if (attempt >= this.maxRetries) throw error;
-                await new Promise((resolve) => setTimeout(resolve, 2 ** attempt * 1000));
+                await new Promise((resolve) => setTimeout(resolve, 2 ** attempt * this.retryBaseMs));
                 continue;
             }
 
@@ -114,7 +118,7 @@ export class DartClient {
             if (envelope.status === '013') return [];
 
             if (RETRYABLE.has(envelope.status) && attempt < this.maxRetries) {
-                await new Promise((resolve) => setTimeout(resolve, 2 ** attempt * 1000));
+                await new Promise((resolve) => setTimeout(resolve, 2 ** attempt * this.retryBaseMs));
                 continue;
             }
 
