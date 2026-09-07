@@ -1,9 +1,9 @@
-import { GoogleGenAI } from '@google/genai';
 import {
     computeQuestionSetMaxPoints,
     scoreCriterionVerdicts,
     verifyCriterionVerdicts,
 } from './questionV3.ts';
+import { requestOpenAIStructured } from './ai/openaiStructured.ts';
 import type {
     CriterionVerdictV3,
     QuestionSetV3,
@@ -111,25 +111,13 @@ export function applyQuestionSetJudgment(
     };
 }
 
-function extractJson(text: string): unknown {
-    const trimmed = text.trim().replace(/^```json\s*/i, '').replace(/\s*```$/, '');
-    try {
-        return JSON.parse(trimmed);
-    } catch {
-        const start = trimmed.indexOf('{');
-        const end = trimmed.lastIndexOf('}');
-        if (start < 0 || end <= start) throw new Error('채점 응답에서 JSON 객체를 찾을 수 없습니다.');
-        return JSON.parse(trimmed.slice(start, end + 1));
-    }
-}
-
 function isVerdict(value: unknown): value is CriterionVerdictV3 {
     if (typeof value !== 'object' || value === null || Array.isArray(value)) return false;
     const verdict = value as Record<string, unknown>;
     return typeof verdict.criterion_id === 'string'
         && ['met', 'partial', 'not_met', 'contradicted'].includes(String(verdict.verdict))
-        && (verdict.quote === undefined || typeof verdict.quote === 'string')
-        && (verdict.reason === undefined || typeof verdict.reason === 'string');
+        && (verdict.quote === undefined || verdict.quote === null || typeof verdict.quote === 'string')
+        && (verdict.reason === undefined || verdict.reason === null || typeof verdict.reason === 'string');
 }
 
 function parseJudgment(value: unknown): QuestionSetJudgmentV3 {
@@ -149,7 +137,16 @@ function parseJudgment(value: unknown): QuestionSetJudgmentV3 {
         }
         return {
             subquestion_id: subquestion.subquestion_id,
-            verdicts: subquestion.verdicts.filter(isVerdict),
+            verdicts: subquestion.verdicts.filter(isVerdict).map((verdict) => {
+                const quote = typeof verdict.quote === 'string' ? verdict.quote : undefined;
+                const reason = typeof verdict.reason === 'string' ? verdict.reason : undefined;
+                return {
+                    criterion_id: verdict.criterion_id,
+                    verdict: verdict.verdict,
+                    ...(quote === undefined ? {} : { quote }),
+                    ...(reason === undefined ? {} : { reason }),
+                };
+            }),
             injection_detected: subquestion.injection_detected === true,
             salad_detected: subquestion.salad_detected === true,
         };
@@ -159,6 +156,80 @@ function parseJudgment(value: unknown): QuestionSetJudgmentV3 {
         subquestions,
         injection_detected: root.injection_detected === true,
         salad_detected: root.salad_detected === true,
+    };
+}
+
+function validateJudgmentCoverage(questionSet: QuestionSetV3, judgment: QuestionSetJudgmentV3): void {
+    const expectedSubquestionIds = new Set(questionSet.subquestions.map((subquestion) => subquestion.id));
+    const actualSubquestionIds = new Set<string>();
+    for (const subquestion of judgment.subquestions) {
+        if (!expectedSubquestionIds.has(subquestion.subquestion_id)) {
+            throw new Error(`채점 응답에 알 수 없는 subquestion id가 있습니다: ${subquestion.subquestion_id}`);
+        }
+        if (actualSubquestionIds.has(subquestion.subquestion_id)) {
+            throw new Error(`채점 응답에 subquestion이 중복되었습니다: ${subquestion.subquestion_id}`);
+        }
+        actualSubquestionIds.add(subquestion.subquestion_id);
+
+        const expectedCriterionIds = new Set(
+            questionSet.subquestions.find((candidate) => candidate.id === subquestion.subquestion_id)!.criteria.map((criterion) => criterion.id),
+        );
+        const actualCriterionIds = new Set<string>();
+        for (const verdict of subquestion.verdicts) {
+            if (!expectedCriterionIds.has(verdict.criterion_id)) {
+                throw new Error(`채점 응답에 알 수 없는 criterion id가 있습니다: ${verdict.criterion_id}`);
+            }
+            if (actualCriterionIds.has(verdict.criterion_id)) {
+                throw new Error(`채점 응답에 criterion이 중복되었습니다: ${verdict.criterion_id}`);
+            }
+            actualCriterionIds.add(verdict.criterion_id);
+        }
+        if (actualCriterionIds.size !== expectedCriterionIds.size) {
+            throw new Error(`채점 응답의 criterion 수가 맞지 않습니다: ${subquestion.subquestion_id}`);
+        }
+    }
+    if (actualSubquestionIds.size !== expectedSubquestionIds.size) {
+        throw new Error('채점 응답의 subquestion 수가 맞지 않습니다.');
+    }
+}
+
+function buildGradingResponseSchema(): Record<string, unknown> {
+    const nullableString = { anyOf: [{ type: 'string' }, { type: 'null' }] };
+    return {
+        type: 'object',
+        additionalProperties: false,
+        required: ['subquestions', 'injection_detected', 'salad_detected'],
+        properties: {
+            subquestions: {
+                type: 'array',
+                items: {
+                    type: 'object',
+                    additionalProperties: false,
+                    required: ['subquestion_id', 'verdicts', 'injection_detected', 'salad_detected'],
+                    properties: {
+                        subquestion_id: { type: 'string' },
+                        verdicts: {
+                            type: 'array',
+                            items: {
+                                type: 'object',
+                                additionalProperties: false,
+                                required: ['criterion_id', 'verdict', 'quote', 'reason'],
+                                properties: {
+                                    criterion_id: { type: 'string' },
+                                    verdict: { type: 'string', enum: ['met', 'partial', 'not_met', 'contradicted'] },
+                                    quote: nullableString,
+                                    reason: nullableString,
+                                },
+                            },
+                        },
+                        injection_detected: { type: 'boolean' },
+                        salad_detected: { type: 'boolean' },
+                    },
+                },
+            },
+            injection_detected: { type: 'boolean' },
+            salad_detected: { type: 'boolean' },
+        },
     };
 }
 
@@ -220,7 +291,7 @@ function buildGradingPrompt(questionSet: QuestionSetV3, answers: Record<string, 
 export async function gradeQuestionSetV3(
     questionSet: QuestionSetV3,
     answers: Record<string, string>,
-    apiKey: string,
+    apiKey = process.env.OPENAI_API_KEY || '',
 ): Promise<QuestionSetGradeResultV3> {
     const allowedIds = new Set(questionSet.subquestions.map((subquestion) => subquestion.id));
     for (const [id, answer] of Object.entries(answers)) {
@@ -234,24 +305,18 @@ export async function gradeQuestionSetV3(
         return applyQuestionSetJudgment(questionSet, answers, forceNotMet(questionSet));
     }
 
-    const ai = new GoogleGenAI({ apiKey });
-    let lastError: unknown;
-    for (let attempt = 1; attempt <= 3; attempt++) {
-        try {
-            const response = await ai.models.generateContent({
-                model: process.env.CPA_GRADING_MODEL || 'gemini-3.1-flash-lite',
-                contents: buildGradingPrompt(questionSet, answers),
-                config: {
-                    responseMimeType: 'application/json',
-                    temperature: 0.1,
-                },
-            });
-            const judgment = parseJudgment(extractJson(response.text || ''));
-            return applyQuestionSetJudgment(questionSet, answers, judgment);
-        } catch (error) {
-            lastError = error;
-            if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 750));
-        }
-    }
-    throw lastError instanceof Error ? lastError : new Error(String(lastError));
+    const judgment = await requestOpenAIStructured<QuestionSetJudgmentV3>({
+        apiKey,
+        model: process.env.CPA_GRADING_MODEL || 'gpt-5.5',
+        name: 'audit_grading_judgment',
+        instructions: 'KICPA 회계감사 답안의 criterion 충족 여부만 판정하고 점수는 계산하지 마십시오.',
+        input: buildGradingPrompt(questionSet, answers),
+        schema: buildGradingResponseSchema(),
+        maxOutputTokens: 8_000,
+        timeoutMs: 45_000,
+        maxAttempts: 3,
+    });
+    const parsedJudgment = parseJudgment(judgment);
+    validateJudgmentCoverage(questionSet, parsedJudgment);
+    return applyQuestionSetJudgment(questionSet, answers, parsedJudgment);
 }

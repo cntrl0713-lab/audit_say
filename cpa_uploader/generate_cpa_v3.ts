@@ -1,11 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { GoogleGenAI } from '@google/genai';
+import { pathToFileURL } from 'node:url';
 import {
-    compilePublicQuestionSet,
     validateQuestionSetV3,
 } from '../lib/questionV3.ts';
+import { requestOpenAIStructured } from '../lib/ai/openaiStructured.ts';
 import type {
     QuestionSetV3,
     SourceRefV3,
@@ -26,6 +26,13 @@ interface SourceCandidate extends SourceRefV3 {
     score: number;
 }
 
+interface GenerationCheckpoint {
+    schema_version: '3.0';
+    model: string;
+    source_fingerprint: string;
+    sets: QuestionSetV3[];
+}
+
 const ROOT = process.cwd();
 const STANDARD_DIR = path.join(
     ROOT,
@@ -37,9 +44,27 @@ const BASIC_THEORY_DIR = path.join(
 );
 const WIKI_CONCEPT_DIR = path.join(ROOT, 'cpa_uploader/wiki/concepts');
 const OUTPUT_DIR = path.join(ROOT, 'cpa_uploader/data');
-const AUTHORING_PATH = path.join(OUTPUT_DIR, 'cpa_question_sets_v3.authoring.json');
-const PUBLIC_PATH = path.join(OUTPUT_DIR, 'cpa_question_sets_v3.public.json');
-const CHECKPOINT_PATH = path.join(OUTPUT_DIR, 'cpa_question_sets_v3.checkpoint.json');
+const DEFAULT_DRAFT_PATH = path.join(OUTPUT_DIR, 'cpa_question_sets_v3.generated.draft.json');
+const CHECKPOINT_PATH = path.join(OUTPUT_DIR, 'cpa_question_sets_v3.generated.checkpoint.json');
+
+function outputPathArgument(): string | undefined {
+    const args = process.argv.slice(2);
+    const inline = args.find((arg) => arg.startsWith('--output='));
+    if (inline) {
+        const value = inline.slice('--output='.length).trim();
+        if (!value) throw new Error('--output에는 draft 파일 경로가 필요합니다.');
+        return value;
+    }
+    const index = args.indexOf('--output');
+    if (index < 0) return undefined;
+    const value = args[index + 1]?.trim();
+    if (!value || value.startsWith('--')) throw new Error('--output 다음에 draft 파일 경로를 지정하세요.');
+    return value;
+}
+
+function generationModel(): string {
+    return process.env.CPA_GENERATION_MODEL || 'gpt-5.5';
+}
 
 const TOPICS: TopicDefinition[] = [
     { id: '01', slug: 'ethics-independence-quality', title: '윤리·독립성·품질관리', standards: ['200', '220'], keywords: ['윤리적 요구사항', '독립성', '품질관리', '업무품질관리', '모니터링'], part: 'PART1', chapter: '감사인의 책임과 품질관리', domain: 'ethics' },
@@ -92,15 +117,15 @@ const QUESTION_SET_RESPONSE_SCHEMA: unknown = {
             items: {
                 type: 'object',
                 additionalProperties: false,
-                required: ['id', 'file', 'source_quote', 'role'],
+                required: ['id', 'file', 'title', 'page', 'source_quote', 'role', 'content_hash'],
                 properties: {
                     id: { type: 'string' },
                     file: { type: 'string' },
-                    title: { type: 'string' },
-                    page: { type: 'string' },
+                    title: { anyOf: [{ type: 'string' }, { type: 'null' }] },
+                    page: { anyOf: [{ type: 'string' }, { type: 'null' }] },
                     source_quote: { type: 'string' },
                     role: { type: 'string' },
-                    content_hash: { type: 'string' },
+                    content_hash: { anyOf: [{ type: 'string' }, { type: 'null' }] },
                 },
             },
         },
@@ -163,12 +188,12 @@ const QUESTION_SET_RESPONSE_SCHEMA: unknown = {
                         items: {
                             type: 'object',
                             additionalProperties: false,
-                            required: ['id', 'source_ref_id', 'source_quote'],
-                            properties: {
-                                id: { type: 'string' },
-                                source_ref_id: { type: 'string' },
-                                source_quote: { type: 'string' },
-                                source_span: { type: 'string' },
+                                required: ['id', 'source_ref_id', 'source_quote', 'source_span'],
+                                properties: {
+                                    id: { type: 'string' },
+                                    source_ref_id: { type: 'string' },
+                                    source_quote: { type: 'string' },
+                                    source_span: { anyOf: [{ type: 'string' }, { type: 'null' }] },
                             },
                         },
                     },
@@ -200,10 +225,10 @@ const QUESTION_SET_RESPONSE_SCHEMA: unknown = {
                                 scores: {
                                     type: 'object',
                                     additionalProperties: false,
-                                    required: ['met', 'not_met', 'contradicted'],
+                                    required: ['met', 'partial', 'not_met', 'contradicted'],
                                     properties: {
                                         met: { type: 'integer' },
-                                        partial: { type: 'integer' },
+                                        partial: { anyOf: [{ type: 'integer' }, { type: 'null' }] },
                                         not_met: { type: 'integer' },
                                         contradicted: { type: 'integer' },
                                     },
@@ -235,6 +260,19 @@ function normalize(value: string): string {
 
 function hash(value: string): string {
     return crypto.createHash('sha256').update(value, 'utf8').digest('hex');
+}
+
+function sourceFingerprint(): string {
+    const files = [
+        ...standardFiles(),
+        ...fs.readdirSync(BASIC_THEORY_DIR)
+            .filter((name) => name.endsWith('.md'))
+            .map((name) => path.join(BASIC_THEORY_DIR, name)),
+        ...fs.readdirSync(WIKI_CONCEPT_DIR)
+            .filter((name) => name.endsWith('.md'))
+            .map((name) => path.join(WIKI_CONCEPT_DIR, name)),
+    ].sort();
+    return hash(files.map((file) => `${path.relative(ROOT, file)}\n${fs.readFileSync(file, 'utf8')}`).join('\n'));
 }
 
 function toSourceRef(candidate: SourceCandidate): SourceRefV3 {
@@ -386,18 +424,6 @@ function readWikiContext(topic: TopicDefinition): string {
     return context.replace(/^---[\s\S]*?---\s*/u, '').trim();
 }
 
-function extractJson(text: string): unknown {
-    const trimmed = text.trim().replace(/^```json\s*/i, '').replace(/\s*```$/, '');
-    try {
-        return JSON.parse(trimmed);
-    } catch {
-        const start = trimmed.indexOf('{');
-        const end = trimmed.lastIndexOf('}');
-        if (start < 0 || end <= start) throw new Error('LLM 응답에서 JSON 객체를 찾을 수 없습니다.');
-        return JSON.parse(trimmed.slice(start, end + 1));
-    }
-}
-
 function buildPrompt(topic: TopicDefinition, sources: SourceCandidate[], previousErrors: string[]): string {
     const sourceJson = sources.map(toSourceRef);
     const wikiContext = readWikiContext(topic);
@@ -493,6 +519,7 @@ function enforceTrustedMetadata(
             for (const rawRequirement of subquestion.requirements) {
                 if (typeof rawRequirement !== 'object' || rawRequirement === null) continue;
                 const requirement = rawRequirement as Record<string, unknown>;
+                if (requirement.source_span === null) delete requirement.source_span;
                 const sourceId = String(requirement.source_ref_id || '');
                 const trustedSource = trustedById.get(sourceId);
                 if (trustedSource) {
@@ -504,6 +531,10 @@ function enforceTrustedMetadata(
                 for (const rawCriterion of subquestion.criteria) {
                     if (typeof rawCriterion !== 'object' || rawCriterion === null) continue;
                     const criterion = rawCriterion as Record<string, unknown>;
+                    if (typeof criterion.scores === 'object' && criterion.scores !== null) {
+                        const scores = criterion.scores as Record<string, unknown>;
+                        if (scores.partial === null) delete scores.partial;
+                    }
                     const requirementSourceId = requirementSources.get(String(criterion.requirement_id || ''));
                     const requestedCriterionSources = Array.isArray(criterion.source_ref_ids)
                         ? criterion.source_ref_ids.map(String).filter((sourceId) => trustedById.has(sourceId))
@@ -522,7 +553,7 @@ function enforceTrustedMetadata(
     return draft as unknown as QuestionSetV3;
 }
 
-async function generateTopic(ai: GoogleGenAI, topic: TopicDefinition): Promise<QuestionSetV3> {
+async function generateTopic(topic: TopicDefinition): Promise<QuestionSetV3> {
     const sourceBundle = topic.standards.length > 0
         ? collectSourceBundle(topic)
         : collectPracticeSourceBundle(topic);
@@ -532,19 +563,20 @@ async function generateTopic(ai: GoogleGenAI, topic: TopicDefinition): Promise<Q
 
     let previousErrors: string[] = [];
     for (let attempt = 1; attempt <= 3; attempt++) {
-        let responseText = '';
         try {
-            const response = await ai.models.generateContent({
-                model: 'gemini-3.1-flash-lite',
-                contents: buildPrompt(topic, sourceBundle, previousErrors),
-                config: {
-                    responseMimeType: 'application/json',
-                    responseJsonSchema: QUESTION_SET_RESPONSE_SCHEMA,
-                    temperature: 0.2,
-                },
+            const raw = await requestOpenAIStructured({
+                apiKey: process.env.OPENAI_API_KEY || '',
+                model: generationModel(),
+                name: 'audit_question_set_generation',
+                instructions: 'KICPA 회계감사 문제 출제자는 제공된 출처만 사용하고, 사람 검수 대기 상태의 v3 JSON만 작성하십시오.',
+                input: buildPrompt(topic, sourceBundle, previousErrors),
+                schema: QUESTION_SET_RESPONSE_SCHEMA as Record<string, unknown>,
+                maxOutputTokens: 16_000,
+                timeoutMs: 45_000,
+                // 검증 재시도는 이 함수가 소유한다. 전송 계층과 중첩하지 않는다.
+                maxAttempts: 1,
             });
-            responseText = response.text || '';
-            const draft = enforceTrustedMetadata(extractJson(responseText), topic, sourceBundle);
+            const draft = enforceTrustedMetadata(raw, topic, sourceBundle);
             const validation = validateQuestionSetV3(draft, { verifySourceQuotes: true, cwd: ROOT });
             if (validation.errors.length === 0) {
                 console.log(`[${topic.id}/19] ${topic.title}: 생성 완료 (${validation.max_points}점)`);
@@ -554,14 +586,6 @@ async function generateTopic(ai: GoogleGenAI, topic: TopicDefinition): Promise<Q
             console.warn(`[${topic.id}/19] 검증 실패 ${attempt}/3: ${previousErrors.join(' | ')}`);
         } catch (error) {
             previousErrors = [error instanceof Error ? error.message : String(error)];
-            if (process.env.CPA_V3_DEBUG === '1' && responseText) {
-                fs.writeFileSync(
-                    path.join(OUTPUT_DIR, `.debug-v3-${topic.id}-${attempt}.txt`),
-                    responseText,
-                    'utf8',
-                );
-                if (error instanceof Error && error.stack) console.warn(error.stack);
-            }
             console.warn(`[${topic.id}/19] 생성 실패 ${attempt}/3: ${previousErrors[0]}`);
             if (attempt < 3) {
                 await new Promise((resolve) => setTimeout(resolve, attempt * 2_000));
@@ -571,46 +595,74 @@ async function generateTopic(ai: GoogleGenAI, topic: TopicDefinition): Promise<Q
     throw new Error(`${topic.id} ${topic.title}: 3회 생성 후에도 검증을 통과하지 못했습니다.`);
 }
 
-async function main(): Promise<void> {
-    const apiKey = process.env.GOOGLE_API_KEY;
-    if (!apiKey) throw new Error('GOOGLE_API_KEY가 필요합니다. --env-file=.env.local로 실행하세요.');
+export async function main(): Promise<void> {
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) throw new Error('OPENAI_API_KEY가 필요합니다. --env-file=.env.local로 실행하세요.');
 
-    const ai = new GoogleGenAI({ apiKey });
+    const configuredOutputPath = outputPathArgument() || process.env.CPA_V3_OUTPUT_PATH || DEFAULT_DRAFT_PATH;
+    const draftPath = path.resolve(ROOT, configuredOutputPath);
+    const protectedPaths = new Set([
+        path.resolve(ROOT, 'cpa_uploader/data/cpa_question_sets_v3.authoring.json'),
+        path.resolve(ROOT, 'cpa_uploader/data/cpa_question_sets_v3.public.json'),
+        path.resolve(ROOT, 'cpa_uploader/data/cpa_question_sets_v3.promotions.json'),
+    ]);
+    if (protectedPaths.has(draftPath)) {
+        throw new Error('생성 출력은 authoring/public/promotions 파일을 덮어쓸 수 없습니다. --output 또는 CPA_V3_OUTPUT_PATH로 별도 draft 경로를 지정하세요.');
+    }
+    if (fs.existsSync(draftPath) && process.env.CPA_V3_OVERWRITE !== '1') {
+        throw new Error(`생성 draft가 이미 존재합니다: ${path.relative(ROOT, draftPath)} (덮어쓰려면 CPA_V3_OVERWRITE=1을 명시하세요.)`);
+    }
     const selectedTopic = process.env.CPA_V3_TOPIC;
     const topics = selectedTopic ? TOPICS.filter((topic) => topic.id === selectedTopic) : TOPICS;
     if (topics.length === 0) throw new Error(`알 수 없는 CPA_V3_TOPIC: ${selectedTopic}`);
 
+    const checkpointContext = {
+        schema_version: '3.0' as const,
+        model: generationModel(),
+        source_fingerprint: sourceFingerprint(),
+    };
     const sets: QuestionSetV3[] = !selectedTopic
         && process.env.CPA_V3_FRESH !== '1'
         && fs.existsSync(CHECKPOINT_PATH)
-        ? JSON.parse(fs.readFileSync(CHECKPOINT_PATH, 'utf8')) as QuestionSetV3[]
+        ? (() => {
+            const checkpoint = JSON.parse(fs.readFileSync(CHECKPOINT_PATH, 'utf8')) as GenerationCheckpoint | QuestionSetV3[];
+            if (Array.isArray(checkpoint)) {
+                throw new Error('기존 생성 체크포인트 형식이 오래되었습니다. CPA_V3_FRESH=1로 새로 시작하세요.');
+            }
+            if (
+                checkpoint.schema_version !== checkpointContext.schema_version
+                || checkpoint.model !== checkpointContext.model
+                || checkpoint.source_fingerprint !== checkpointContext.source_fingerprint
+                || !Array.isArray(checkpoint.sets)
+            ) {
+                throw new Error('생성 체크포인트의 모델·스키마·원자료가 현재 설정과 다릅니다. CPA_V3_FRESH=1로 새로 시작하세요.');
+            }
+            return checkpoint.sets;
+        })()
         : [];
     for (const topic of topics) {
         if (sets.some((set) => set.classification.topic_id === topic.id)) {
             console.log(`[${topic.id}/19] ${topic.title}: 체크포인트에서 복원`);
             continue;
         }
-        sets.push(await generateTopic(ai, topic));
+        sets.push(await generateTopic(topic));
         if (!selectedTopic) {
             sets.sort((left, right) => left.classification.topic_id.localeCompare(right.classification.topic_id));
-            fs.writeFileSync(CHECKPOINT_PATH, `${JSON.stringify(sets, null, 2)}\n`, 'utf8');
+            const checkpoint: GenerationCheckpoint = { ...checkpointContext, sets };
+            fs.writeFileSync(CHECKPOINT_PATH, `${JSON.stringify(checkpoint, null, 2)}\n`, 'utf8');
         }
     }
 
-    if (selectedTopic) {
-        console.log(`진단 실행 완료: ${selectedTopic}`);
-        return;
-    }
-
-    fs.writeFileSync(AUTHORING_PATH, `${JSON.stringify(sets, null, 2)}\n`, 'utf8');
-    fs.writeFileSync(PUBLIC_PATH, `${JSON.stringify(sets.map(compilePublicQuestionSet), null, 2)}\n`, 'utf8');
+    fs.writeFileSync(draftPath, `${JSON.stringify(sets, null, 2)}\n`, 'utf8');
     if (fs.existsSync(CHECKPOINT_PATH)) fs.unlinkSync(CHECKPOINT_PATH);
-    console.log(`v3 파일럿 ${sets.length}세트를 기록했습니다.`);
-    console.log(path.relative(ROOT, AUTHORING_PATH));
-    console.log(path.relative(ROOT, PUBLIC_PATH));
+    console.log(`v3 생성 draft ${sets.length}세트를 기록했습니다.`);
+    console.log(path.relative(ROOT, draftPath));
 }
 
-main().catch((error) => {
-    console.error(error instanceof Error ? error.message : String(error));
-    process.exitCode = 1;
-});
+const invokedPath = process.argv[1] ? pathToFileURL(path.resolve(process.argv[1])).href : '';
+if (invokedPath === import.meta.url) {
+    main().catch((error) => {
+        console.error(error instanceof Error ? error.message : String(error));
+        process.exitCode = 1;
+    });
+}

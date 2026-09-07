@@ -5,6 +5,14 @@ import path from 'node:path';
 
 const root = process.cwd();
 const read = (relativePath: string) => fs.readFileSync(path.join(root, relativePath), 'utf8');
+const legacyDependencyPattern = new RegExp([
+    ['gem', 'ini'].join(''),
+    ['Google', 'GenAI'].join(''),
+    ['@google/', 'genai'].join(''),
+    ['GOOGLE_', 'API_KEY'].join(''),
+    ['rag', 'Retriever'].join(''),
+    ['file_', 'search'].join(''),
+].map((token) => token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'i');
 
 test('the canonical quiz route serves the v3 question bank to authenticated users', () => {
     const quizPage = read('app/quiz/page.tsx');
@@ -64,4 +72,19 @@ test('the v3 cutover removes duplicate and v2-only runtime files', () => {
     for (const relativePath of runtimePaths) {
         assert.doesNotMatch(read(relativePath), /cpa_questions_v2|AuditQuestion|ReviewNote/);
     }
+});
+
+test('the active question pipeline has no legacy provider or RAG dependency', () => {
+    const activePaths = [
+        'app/actions.ts',
+        'lib/questionV3Grading.ts',
+        'cpa_uploader/generate_cpa_v3.ts',
+        'package.json',
+        'package-lock.json',
+    ];
+    for (const relativePath of activePaths) {
+        assert.doesNotMatch(read(relativePath), legacyDependencyPattern);
+    }
+    assert.equal(fs.existsSync(path.join(root, ['lib/', ['rag', 'Retriever.ts'].join('')].join(''))), false);
+    assert.doesNotMatch(read('README.md'), legacyDependencyPattern);
 });

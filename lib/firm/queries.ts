@@ -8,6 +8,7 @@ import type {
     FirmCompany,
     FirmKamRow,
     FirmSummaryRow,
+    FirmAnnualSummary,
     RegisteredFirm,
 } from './types';
 
@@ -15,6 +16,15 @@ import type {
 // 로그인 여부와 무관하게 같은 결과가 나와야 하는 공개 데이터다.
 
 export const PAGE_SIZE = 25;
+
+export async function getFirmAnnualSummaries(firmId: number): Promise<FirmAnnualSummary[]> {
+    const db = await getSupabaseServerClient();
+    const { data, error } = await db.from('v_firm_annual_summary').select('*').eq('firm_id', firmId).order('fy_end_date', { ascending: false });
+    // 마이그레이션 적용 전에는 기존 화면을 유지한다. 권한·네트워크 오류는 숨기지 않는다.
+    if (error?.code === 'PGRST205' || error?.code === '42P01') return [];
+    fail('회계법인 결산 지표 조회', error);
+    return (data ?? []) as FirmAnnualSummary[];
+}
 
 export interface Page<T> {
     rows: T[];
@@ -118,35 +128,9 @@ export async function listAvailableYears(firmId: number): Promise<number[]> {
 
 // ── 회계법인 요약 ───────────────────────────────────────────────────────────
 
-export type FirmSort = 'name' | 'clients' | 'employees' | 'revenue_per_employee';
-
-const FIRM_SORT_COLUMN: Record<FirmSort, { column: string; ascending: boolean }> = {
-    name: { column: 'firm_name', ascending: true },
-    clients: { column: 'client_count', ascending: false },
-    employees: { column: 'employee_total', ascending: false },
-    revenue_per_employee: { column: 'revenue_per_employee', ascending: false },
-};
-
-export async function listFirmSummaries(options: {
-    year: number;
-    q?: string;
-    sort?: FirmSort;
-}): Promise<FirmSummaryRow[]> {
+export async function listFirmSummaries(year: number): Promise<FirmSummaryRow[]> {
     const supabase = await getSupabaseServerClient();
-    const sort = FIRM_SORT_COLUMN[options.sort ?? 'clients'];
-
-    let query = supabase
-        .from('v_firm_summary')
-        .select('*')
-        .eq('bsns_year', options.year)
-        // 정렬 키가 NULL 인 법인이 맨 위로 올라오면 목록이 쓸모없어진다
-        .order(sort.column, { ascending: sort.ascending, nullsFirst: false })
-        .order('firm_name');
-
-    const search = options.q ? sanitizeSearch(options.q) : '';
-    if (search) query = query.ilike('firm_name', `%${search}%`);
-
-    const { data, error } = await query;
+    const { data, error } = await supabase.from('v_firm_summary').select('*').eq('bsns_year', year);
     fail('회계법인 요약 조회', error);
     return (data ?? []) as FirmSummaryRow[];
 }
@@ -174,6 +158,7 @@ export interface ClientFilters {
     /** true=상장만, false=비상장만, undefined=전체 */
     listed?: boolean;
     q?: string;
+    sort?: 'revenue' | 'operating_profit' | 'name';
 }
 
 export async function listFirmClients(filters: ClientFilters): Promise<Page<FirmClientRow>> {
@@ -186,8 +171,9 @@ export async function listFirmClients(filters: ClientFilters): Promise<Page<Firm
         .eq('firm_id', filters.firmId)
         .eq('bsns_year', filters.year)
         // 매출 큰 고객사부터. 결측(NULL)은 뒤로 민다.
-        .order('revenue', { ascending: false, nullsFirst: false })
+        .order(filters.sort === 'name' ? 'corp_name' : (filters.sort ?? 'revenue'), { ascending: filters.sort === 'name', nullsFirst: false })
         .order('corp_name')
+        .order('engagement_id')
         .range(from, from + PAGE_SIZE - 1);
 
     if (filters.market) query = query.eq('corp_cls', filters.market);
@@ -198,6 +184,11 @@ export async function listFirmClients(filters: ClientFilters): Promise<Page<Firm
     if (search) query = query.ilike('corp_name', `%${search}%`);
 
     const { data, error, count } = await query;
+    // PostgREST returns 416 for an offset beyond the filtered result. Recover its
+    // count from page 1 so the page can redirect to the last available page.
+    if (error?.code === 'PGRST103' && filters.page > 1) {
+        return listFirmClients({ ...filters, page: 1 });
+    }
     fail('고객사 목록 조회', error);
     return toPage((data ?? []) as FirmClientRow[], count ?? 0, filters.page);
 }
@@ -241,39 +232,17 @@ export async function listFirmKam(options: {
         .eq('bsns_year', options.year)
         .order('kam_count', { ascending: false, nullsFirst: false })
         .order('corp_name')
+        .order('engagement_id')
         .range(from, from + PAGE_SIZE - 1);
 
+    if (error?.code === 'PGRST103' && options.page > 1) {
+        return listFirmKam({ ...options, page: 1 });
+    }
     fail('KAM 조회', error);
     return toPage((data ?? []) as FirmKamRow[], count ?? 0, options.page);
 }
 
 // ── 회사 ───────────────────────────────────────────────────────────────────
-
-export async function listCompanies(options: {
-    page: number;
-    q?: string;
-    market?: CorpCls;
-    listed?: boolean;
-}): Promise<Page<FirmCompany>> {
-    const supabase = await getSupabaseServerClient();
-    const from = (options.page - 1) * PAGE_SIZE;
-
-    let query = supabase
-        .from('firm_company')
-        .select('corp_code, corp_name, corp_cls, stock_code, listed_yn, induty', { count: 'exact' })
-        .order('corp_name')
-        .range(from, from + PAGE_SIZE - 1);
-
-    if (options.market) query = query.eq('corp_cls', options.market);
-    if (options.listed !== undefined) query = query.eq('listed_yn', options.listed);
-
-    const search = options.q ? sanitizeSearch(options.q) : '';
-    if (search) query = query.ilike('corp_name', `%${search}%`);
-
-    const { data, error, count } = await query;
-    fail('회사 목록 조회', error);
-    return toPage((data ?? []) as FirmCompany[], count ?? 0, options.page);
-}
 
 export async function getCompany(corpCode: string): Promise<FirmCompany | null> {
     const supabase = await getSupabaseServerClient();
@@ -322,77 +291,4 @@ export async function getCompanyKam(corpCode: string): Promise<FirmKamRow[]> {
 
     fail('회사 KAM 조회', error);
     return (data ?? []) as FirmKamRow[];
-}
-
-// ── 용역 요약 ──────────────────────────────────────────────────────────────
-
-export interface FirmContractSummary {
-    engagementCount: number;
-    auditFeeTotal: number | null;
-    nonauditFeeTotal: number | null;
-    nonauditContractCount: number;
-    /** 비감사 보수 / 전체 보수. 독립성 논의에서 먼저 보는 수치다. */
-    nonauditFeeRatio: number | null;
-    /** 비감사 용역을 한 건이라도 받은 고객사 수 */
-    clientsWithNonaudit: number;
-    topByAuditFee: { corp_code: string; corp_name: string; audit_fee_total: number }[];
-}
-
-export async function getFirmContractSummary(
-    firmId: number,
-    year: number,
-): Promise<FirmContractSummary> {
-    const supabase = await getSupabaseServerClient();
-    const { data, error } = await supabase
-        .from('v_firm_clients')
-        .select('corp_code, corp_name, audit_fee_total, nonaudit_fee_total, nonaudit_contract_count')
-        .eq('firm_id', firmId)
-        .eq('bsns_year', year);
-
-    fail('용역 요약 조회', error);
-
-    const rows = (data ?? []) as {
-        corp_code: string;
-        corp_name: string;
-        audit_fee_total: number | null;
-        nonaudit_fee_total: number | null;
-        nonaudit_contract_count: number;
-    }[];
-
-    // 결측과 0 을 섞지 않는다. 한 건도 없으면 합계는 0 이 아니라 null 이다.
-    let auditFeeTotal: number | null = null;
-    let nonauditFeeTotal: number | null = null;
-    let nonauditContractCount = 0;
-    let clientsWithNonaudit = 0;
-
-    for (const row of rows) {
-        if (row.audit_fee_total !== null) auditFeeTotal = (auditFeeTotal ?? 0) + row.audit_fee_total;
-        if (row.nonaudit_fee_total !== null) {
-            nonauditFeeTotal = (nonauditFeeTotal ?? 0) + row.nonaudit_fee_total;
-        }
-        nonauditContractCount += row.nonaudit_contract_count;
-        if (row.nonaudit_contract_count > 0) clientsWithNonaudit += 1;
-    }
-
-    const combined = (auditFeeTotal ?? 0) + (nonauditFeeTotal ?? 0);
-
-    const topByAuditFee = rows
-        .filter((row): row is typeof row & { audit_fee_total: number } => row.audit_fee_total !== null)
-        .sort((a, b) => b.audit_fee_total - a.audit_fee_total)
-        .slice(0, 10)
-        .map((row) => ({
-            corp_code: row.corp_code,
-            corp_name: row.corp_name,
-            audit_fee_total: row.audit_fee_total,
-        }));
-
-    return {
-        engagementCount: rows.length,
-        auditFeeTotal,
-        nonauditFeeTotal,
-        nonauditContractCount,
-        nonauditFeeRatio: combined > 0 ? (nonauditFeeTotal ?? 0) / combined : null,
-        clientsWithNonaudit,
-        topByAuditFee,
-    };
 }

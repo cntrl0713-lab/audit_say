@@ -1,7 +1,7 @@
 ---
 title: 원자료 매니페스트
 created: 2026-08-08
-updated: 2026-08-25
+updated: 2026-09-08
 type: source-map
 status: generated
 review_required: true
@@ -14,7 +14,7 @@ confidence: high
 
 > 위키는 원자료를 복제하지 않는다. 아래 파일은 `cpa_uploader/data`에 있는 immutable source layer로 취급한다.
 
-- 파일 수: 26
+- 파일 수: 25
 - 동일 해시를 가진 중복 그룹 수: 0
 - NUL 바이트가 포함된 파일 수: 0
 
@@ -45,7 +45,6 @@ confidence: high
 | `data/cpa_question_sets_v3.authoring.json` | 922205 | `80f81cb41af7` | 0 |  | 정상 |
 | `data/cpa_question_sets_v3.promotions.json` | 23854 | `7ef15f8f7083` | 0 |  | 정상 |
 | `data/cpa_question_sets_v3.public.json` | 245318 | `7978f3cf6308` | 0 |  | 정상 |
-| `data/rag_config.json` | 205 | `302c78a25c93` | 0 |  | 정상 |
 
 ## 사용 규칙
 

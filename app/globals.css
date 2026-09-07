@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 /* Cursor-design-analysis (DESIGN.md) 팔레트 적용:
-   warm-cream 캔버스 + ink 텍스트 + Cursor Orange 단일 브랜드 컬러.
-   accent는 스펙에 별도 보조 브랜드색이 없어 primary와 동일하게 매핑. */
+   warm-cream 캔버스 + ink 텍스트 + Cursor Orange 단일 브랜드 컬러. */
 :root {
   --background: #f7f7f4;
   --foreground: #26251e;
@@ -10,7 +9,6 @@
   --card-border: #e6e5e0;
   --primary: #f54e00;
   --primary-hover: #d04200;
-  --accent: #f54e00;
   --success: #1f8a65;
   --danger: #cf2d56;
 }
@@ -22,23 +20,8 @@
   --color-card-border: var(--card-border);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
-  --color-accent: var(--accent);
   --color-success: var(--success);
   --color-danger: var(--danger);
-
-  --animate-fade-in: fade-in 0.5s ease-out forwards;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 body {
@@ -82,16 +65,6 @@ h2 {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #cfcdc4;
-}
-
-/* hairline-only depth: 그림자도 lift도 없이 hairline 대비만으로 상태를 표현한다
-   (DESIGN.md Don't: no drop shadows). */
-.card-hover {
-  transition: border-color 0.15s ease, background-color 0.15s ease;
-}
-
-.card-hover:hover {
-  border-color: #cfcdc4;
 }
 
 /* 버튼·링크의 키보드 포커스를 브랜드 톤으로 통일한다. 입력 요소는 focus:border-primary로

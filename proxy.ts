@@ -42,7 +42,7 @@ export async function proxy(request: NextRequest) {
     // 이 호출이 갱신을 유발한다. 반환값은 쓰지 않지만 제거하면 안 된다 —
     // 호출이 없으면 토큰이 갱신되지 않고 위 setAll도 실행되지 않는다.
     // 인증 여부로 접근을 막지는 않는다. 권한 판단은 서버 액션이
-    // assertAuthenticated/assertAdmin/assertSelf로 수행한다.
+    // assertAuthenticated/assertAdmin으로 수행한다.
     await supabase.auth.getUser();
 
     return response;

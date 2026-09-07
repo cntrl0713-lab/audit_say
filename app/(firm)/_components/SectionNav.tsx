@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 
 const SECTIONS = [
     { href: '/firms', label: '회계법인' },
-    { href: '/companies', label: '회사' },
     { href: '/reports', label: '리포트' },
     { href: '/chat', label: '챗봇' },
     { href: '/reviews', label: '평점' },
@@ -19,7 +18,8 @@ export function SectionNav() {
             {SECTIONS.map((section) => {
                 // /firms/123 처럼 하위 경로에서도 상위 탭이 켜져 있어야 한다
                 const active =
-                    pathname === section.href || pathname.startsWith(`${section.href}/`);
+                    pathname === section.href || pathname.startsWith(`${section.href}/`)
+                    || (section.href === '/firms' && pathname.startsWith('/companies/'));
 
                 return (
                     <Link

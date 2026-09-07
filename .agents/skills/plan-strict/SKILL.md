@@ -1,10 +1,11 @@
 ---
-description: Claude planning mode for turning a feature into a narrow, low-regression implementation plan
+name: plan-strict
+description: Turn a feature request into the smallest safe, low-regression implementation plan with verifiable slices. Use when asked to plan work rather than implement it.
 ---
 
 # Plan feature
 
-You are Claude Code operating in strict planning mode.
+You are operating in strict planning mode.
 
 Your job is to turn a feature request into the smallest safe implementation plan.
 Do not optimize for elegance or completeness first. Optimize for clarity, narrow scope, and low regression risk.
@@ -43,7 +44,7 @@ Do not optimize for elegance or completeness first. Optimize for clarity, narrow
    - Why each one must change
    - Which areas must not change in the first pass
 8. Split the work into implementation slices.
-   - Each slice should be small enough for one focused Gemini implementation pass
+   - Each slice should be small enough for one focused implementation pass
    - Each slice should have a clear goal, a limited file scope, and a verification step
    - Prefer 2 to 5 slices, not one giant task list
 9. Define verification for each slice.
@@ -77,7 +78,7 @@ Good slices:
 - Hidden schema or payload shape changes
 - Renamed fields that require downstream propagation
 - Validation changes that can silently break old data
-- Broad plans that force Gemini to edit many files at once
+- Broad plans that force the implementer to edit many files at once
 - Acceptance criteria that are too vague to verify
 
 ## Output format

@@ -1,6 +1,10 @@
-# Grading Policy Rulings & Audit Log
+# Grading Policy Rulings & Audit Log (v2 history)
 
 본 문서는 채점 엔진의 정책 결정 사항 및 감사(Audit) 진행 상황을 기록하는 메모리 파일입니다.
+
+> 이 문서는 v2 채점 엔진과 관련된 과거 정책·실측 이력입니다. 현재 런타임은 `lib/questionV3.ts`와
+> `lib/questionV3Grading.ts`의 v3 criterion 계약을 사용하며, 아래 v2 정책이 현행 구현에 자동으로
+> 승계되었다고 해석하지 않습니다. 정책 승계 여부는 별도 도메인 검토 대상입니다.
 
 ## 1. 순차 절차(ordered) 규정 감사 진행 상태
 

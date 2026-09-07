@@ -2,7 +2,7 @@
 // 테이블·뷰 정의는 supabase/migrations/20260907*_firm_platform_*.sql 이 정본이고,
 // 여기 타입은 그 컬럼을 그대로 옮긴 것이다. 스키마를 고치면 이 파일도 같이 고친다.
 
-export type FirmTier = '가군' | '나군';
+export type FirmTier = '가군' | '나군' | '다군' | '라군';
 export type FirmStatus = 'active' | 'closed';
 export type CorpCls = 'Y' | 'K' | 'N' | 'E';
 export type AuditOpinion = '적정' | '한정' | '부적정' | '의견거절';
@@ -31,6 +31,17 @@ export interface FirmCompany {
     stock_code: string | null;
     listed_yn: boolean;
     induty: string | null;
+}
+
+/** 실적 기준연도는 fy_start_year. bsns_year는 명세 조인용 기존 결산말 연도 키다. 고객사 연도와 독립적이다. */
+export interface FirmAnnualSummary {
+    firm_id: number; bsns_year: number; fy_start_year: number; fy_start_date: string; fy_end_date: string;
+    fy_seq: number | null; source_rcept_no: string; source_rcept_dt: string;
+    employee_total: number | null; director_count: number | null;
+    revenue_total: number | null; operating_income: number | null;
+    salary_total: number | null; revenue_per_employee: number | null;
+    salary_per_employee: number | null; audit_revenue_ratio: number | null;
+    consistency_warnings: string[];
 }
 
 /** v_firm_summary — 회계법인 × 사업연도 */
@@ -153,7 +164,7 @@ export const AUDIT_OPINIONS: AuditOpinion[] = ['적정', '한정', '부적정', 
 /** 재무 결측 사유. 화면에서 "-" 옆에 이유를 적어 준다. */
 export const DATA_STATUS_LABEL: Record<FinancialDataStatus, string> = {
     ok: '',
-    missing: '미수집',
+    missing: 'API 데이터 미확보',
     financial_corp: '금융사 결측',
-    parse_failed: '파싱 실패',
+    parse_failed: '금액 확인 보류',
 };

@@ -21,7 +21,7 @@ export function readInt(params: SearchParams, key: string, fallback: number): nu
     const raw = first(params[key]);
     if (raw === undefined) return fallback;
     const value = Number(raw);
-    return Number.isInteger(value) && value > 0 ? value : fallback;
+    return Number.isSafeInteger(value) && value > 0 ? value : fallback;
 }
 
 export function readEnum<T extends string>(

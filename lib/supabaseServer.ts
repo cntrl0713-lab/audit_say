@@ -63,13 +63,3 @@ export async function assertAuthenticated() {
     }
     return { user };
 }
-
-export async function assertSelf(userId: string) {
-    const session = await assertAuthenticated();
-    if (session.user.id !== userId) {
-        throw new Error('Forbidden: User ID mismatch');
-    }
-    return session;
-}
-
-export type AuthenticatedSession = Awaited<ReturnType<typeof assertAuthenticated>>;

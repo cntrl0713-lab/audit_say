@@ -3,9 +3,7 @@ import { DartClient, DartError } from './dartClient.ts';
 import type { CorpCodeEntry } from './dartClient.ts';
 import {
     aggregateEmployeesBySegment,
-    buildFirmIndex,
     countRegisteredDirectors,
-    matchFirm,
     pickFinancials,
     type EmpRow,
     type ExctvRow,
@@ -16,13 +14,13 @@ import {
     upsertFirmProfile,
     upsertFirmWorkforce,
 } from './store.ts';
+import { firmCorpCandidates } from './responseMapping.ts';
 
 /**
  * 회계법인 자체 인력·재무 파이프라인 (PRD §4.2-B, M1).
  *
- * 회계법인도 DART 에 사업보고서를 내므로, 감사대상회사와 똑같은 사업보고서 API 로
- * 임원·직원·재무를 읽는다. 다른 점은 대상이 "기타법인" 이라 corp_code 를
- * 이름으로 찾아야 한다는 것뿐이다.
+ * 회계법인 자체 고유번호로 임원·직원·재무 API 제공 여부를 확인한다.
+ * 회계법인 사업보고서 제출 사실만으로 일반 사업보고서 API 제공을 가정하지 않는다.
  */
 
 export interface FirmProfileReport {
@@ -30,7 +28,7 @@ export interface FirmProfileReport {
     processed: number;
     /** corpCode.xml 에서 DART 고유번호를 찾지 못한 법인 */
     corpCodeMissing: string[];
-    /** 고유번호는 있는데 그 해 사업보고서가 없는 법인 */
+    /** 고유번호는 있으나 세 API 모두 조회 데이터가 없는 법인 (공시 원문 부재와 다름) */
     noReport: string[];
     /** 부문별 인원을 하나도 못 나눈 법인 (직원 현황에 사업부문이 안 왔다) */
     segmentsUnavailable: string[];
@@ -74,13 +72,10 @@ export async function collectFirmProfiles(
 
     // 법인명 → firm_id 색인으로 corpCode.xml 을 훑어 고유번호를 찾는다.
     // 회계법인은 DART 에서 "기타법인" 이라 stock_code 가 없고, 이름 말고는 단서가 없다.
-    const firmIndex = buildFirmIndex(rows);
     const corpCodeByFirmId = new Map<number, string>();
-    for (const entry of corpCodes) {
-        const firmId = matchFirm(firmIndex, entry.corp_name);
-        if (firmId !== null && !corpCodeByFirmId.has(firmId)) {
-            corpCodeByFirmId.set(firmId, entry.corp_code);
-        }
+    for (const firm of rows) {
+        const candidates = firmCorpCandidates(firm, corpCodes);
+        if (candidates.length === 1) corpCodeByFirmId.set(firm.firm_id, candidates[0]);
     }
 
     for (const [i, firm] of rows.entries()) {
@@ -143,7 +138,7 @@ export async function collectFirmProfiles(
 
             report.processed += 1;
         } catch (err) {
-            if (err instanceof DartError && ['010', '011', '012', '901'].includes(err.status)) {
+            if (err instanceof DartError && ['010', '011', '012', '020', '901'].includes(err.status)) {
                 throw err;
             }
             report.errors.push({

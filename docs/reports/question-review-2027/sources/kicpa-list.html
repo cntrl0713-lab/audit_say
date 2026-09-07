@@ -1,0 +1,1850 @@
+
+
+
+
+
+
+
+
+
+
+<!-- 2017.04.19 sskim : 게시판 카테고리 값 확인하기 위해 추가 -->
+   
+   
+   
+   
+
+<!-- 2017.02.09 sskim : 테마 입힌 게시판 상세페이지로 이동  -->
+
+
+<!-- 2017.04.19 sskim : 게시판 임의의 카테고리 값으로 초기 세팅 위해 추가 -->
+
+
+<!-- 2017.04.24 sskim : 게시판 관리자 역할 체크 후 세팅 -->
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=8">
+  <link type="text/css" rel="stylesheet" href="/board/css/style.css">
+  <link type="text/css" rel="stylesheet" href="/board/calendar/css/calendar.css">
+
+  
+  <script type="text/javascript" src="/javascript/common_new.js"></script>
+  <script type="text/javascript" src="/face/javascript/portlet.js"></script>
+  <script type="text/javascript" src="/javascript/portal_new.js"></script>  
+  <script type="text/javascript" src="/javascript/utility.js"></script>
+  
+  
+    <script type="text/javascript" src="/javascript/message/mrbun__mm.js"></script>
+    <script type="text/javascript" src="/javascript/message/mrbun__eb.js"></script>
+  
+
+  <script type="text/javascript" src="/board/javascript/enboard_util.js"></script>
+  <script type="text/javascript" src="/board/calendar/calendar.js"></script>
+  <script type="text/javascript" src="/board/calendar/ko-kr/generatecalendar.js"></script>
+  <script type="text/javascript">
+    <!--
+	function adminEventFree (win) {
+		// 관리자/중간관리자가 아니면 바로 return.
+		
+			return;
+		
+		ebUtil.eventReset (win.document);
+		for (var i=0; i<win.frames.length; i++) {
+			try {
+				adminEventFree (win.frames[i]);
+			} catch(e) {}
+		}
+	}
+	ebUtil.eventSet();
+	//-->
+  </script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+ 
+
+<script type="text/javascript" src="/board/javascript/enboard_list.js"></script>
+<script type="text/javascript" src="/board/javascript/enboard_read.js"></script>
+
+<script type="text/javascript">
+	window.onload = ebList.initList;
+</script>
+
+<!-- 2017.05.19 sskim : pc, mobile 스킨 분기 추가 -->
+
+
+
+
+		
+
+ 
+   
+  
+  
+   
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/javascript/jquery/jquery-1.10.2.min.js;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"></script>
+<script type="text/javascript" src="/kicpa/res/common/js/common.js;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1?ver=1788145130872"></script>
+<script type="text/javascript" src="/kicpa/res/common/js/aesUtil.js;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"></script>
+<div id="comm_section">
+	<input type="hidden" name="commSessionKEY"   id="commSessionKEY" value="C58FA0CBD6CD75EE"/>
+</div>
+ <!DOCTYPE HTML>
+<html lang="ko-KR">
+<head>
+	<meta charset="UTF-8">
+	<title>한국공인회계사회</title>
+	<link rel="stylesheet" href="/kicpa/res/krhome/css/sub_layout.css;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"/>
+	<link rel="stylesheet" href="/kicpa/res/krhome/css/reset.css;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"/>
+	<link rel="stylesheet" href="/kicpa/res/krhome/css/sub.css;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"/>
+	<link rel="stylesheet" href="/kicpa/res/krhome/css/sub_layout.css;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"/>
+	
+	<link rel="stylesheet" href="/kicpa/res/board/css/sub.css;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"/>
+	<link rel="stylesheet" href="/kicpa/res/common/css/jquery-confirm.min.css;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"/>
+	<script type="text/javascript" src="/kicpa/res/common/js/jquery-1.9.1.js;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"></script>
+	<script type="text/javascript" src="/kicpa/res/board/js/jquery.dotdotdot.js;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"></script>
+	<script type="text/javascript" src="/kicpa/res/board/js/swiper.jquery.min.js;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"></script>
+	<script type="text/javascript" src="/kicpa/res/board/js/run.js;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"></script>
+	<script type="text/javascript" src="/kicpa/res/common/js/jquery-confirm.min.js;jsessionid=C58FA0CBD6CD75EE17C1C26DA7740E5F.tomcat-portal1"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{ 
+			try
+			{
+				//페이징 세팅 
+				document.getElementById("pagingArea").innerHTML = fn_setPageInfo('1', '4', 10);
+				//즐겨찾기 관리 세팅
+				fn_setBookmarkManage("");
+			}
+			catch(e) 
+			{  } 
+			
+			try
+			{
+				//첨부파일 title 세팅 
+				$(".table_st02 > img").each(function()
+				{
+					$(this).attr("title",$(this).attr("alt"));
+				});	
+			}
+			catch(e)
+			{ }
+		});
+		
+		// 20180808 수정 : iframe resize 관련 함수를 window.load로 이동함. (document.load보다 window.load가 나중에 실행 됨.)  
+		$(window).load(function() {
+			try
+			{
+				//iframe resize 
+				parent.fn_childIframeAutoresize(parent.document.getElementById(window.name),parseInt($("#sub_contents").height()+100));
+				parent.fn_scrollTop();	
+			}
+			catch(e)
+			{
+				//4depth iframe resize 
+				var height = parseInt($("#sub_contents").height()+100);
+				parent.document.getElementById(window.name).setAttribute('style','height:'+height+';border: 0px;');
+				
+				parent.parent.fn_childIframeAutoresize(parent.document.getElementById(window.name),height);
+				parent.parent.fn_scrollTop();
+			}
+			
+			//2017.05.08 sskim : tab 으로 게시판이 들어갈 경우, iframe resize 처리 
+			try
+			{
+				parent.fn_frameResize(parseInt($("#sub_contents").height()+200));
+			}
+			catch(e)
+			{ }
+		});		
+	</script>
+</head>
+<body>
+<!-- article_wrap -->
+<div id="sub_contents">
+
+   
+
+	
+	<div class="article">	
+		
+		
+		<div class="board_top cf" style="border: none;"></div>
+		
+		
+		
+		<div class="board_top cf">
+			<div class="board_top_left cf">
+				<div class="total_wrap">
+					<p class="page">
+					
+						
+						
+							<strong>1</strong>/4 페이지
+						
+					
+					</p>
+					<p class="total">(총 34 건)</p>
+				</div>
+			</div>
+			<form name="setSrch" OnSubmit="return ebList.srchBulletin()">
+			<div class="board_top_right cf">
+				
+				<div class="select_wrap">
+						<label for="select_st01" class="d_none">선택하세요.</label>
+						<select id="select_st01" name="srchType">
+							
+								<option   value="Subj">
+									제목
+								</option>
+							
+								<option   value="Cntt">
+									본문
+								</option>
+							
+								<option   value="Extext_str1">
+									담당부서
+								</option>
+							
+						</select>
+				</div>
+				<div class="search_wrap cf">
+					<label>
+						<input id="in_search" name="srchKey" type="text" value=""/>
+			        </label>
+			        
+			          <button class="btn_search" onClick="javascript:ebList.srchBulletin();">검색</button>	
+					
+			        
+				</div>
+			</div> <!-- //board_top_right -->
+			</form>
+		</div> <!-- //board_top -->
+		<table class="table_st02" summary="" width=800 border="0" cellspacing="0" cellpadding="0" >
+			<caption></caption>
+			<colgroup>
+				<!-- 번호 -->
+				
+					<col width="10%">
+				
+				
+				<!-- 썸네일 -->
+				
+				<!-- 카테고리 -->
+				
+				<!-- 제목 -->
+				<col width="*%">
+				
+				<!-- 추가적인 확장필드 영역 -->
+				
+					<!-- 확장필드 1 -->
+					
+						<col width="15%">
+					
+						
+						
+				<!-- 작성자명 -->
+				
+				<!-- 등록일 -->
+				
+					 <col width="12%">
+		        
+				<!-- 첨부파일 -->
+				
+					<col width="10%">
+				
+				<!-- 추가적인 확장필드 영역 -->
+				
+					<!-- 확장필드 3 -->
+					
+					<!-- 확장필드 4 -->
+					
+					<!-- 확장필드 5 -->
+					
+					<!-- 확장필드 6 -->
+					
+					<!-- 확장필드 7 -->
+					
+					<!-- 확장필드 8 -->
+					
+					<!-- 확장필드 9 -->
+					
+				
+				<!-- //추가적인 확장필드 영역 -->
+				<!-- 조회수 -->
+				
+					<col width="10%">
+				
+			</colgroup>
+			<thead>
+				<tr>
+					
+					<!-- 번호 -->
+					
+							
+						<th>번호</th>
+					
+										
+					<!-- 썸네일 -->
+					
+					<!-- 카테고리 -->
+					
+					
+					<th>제목</th>
+					
+					<!-- 추가적인 확장필드 영역 -->
+					
+						<!-- 확장필드 1 -->
+						
+							
+							<th>담당부서</th>			
+						
+							
+									
+					<!-- 작성자명 -->
+					
+					<!-- 등록일 -->
+					
+						
+						 <th>등록일</th>
+			        
+					<!-- 첨부파일 -->
+					
+						
+						<th>첨부파일</th>
+					
+					<!-- 추가적인 확장필드 영역 -->
+					
+						<!-- 확장필드 3 -->
+						
+						<!-- 확장필드 4 -->
+						
+						<!-- 확장필드 5 -->
+						
+						<!-- 확장필드 6 -->
+						
+						<!-- 확장필드 7 -->
+						
+						<!-- 확장필드 8 -->
+						
+						<!-- 확장필드 9 -->
+						
+					
+					<!-- //추가적인 확장필드 영역 -->
+					<!-- 조회수 -->
+					
+						
+						<th class="last">조회</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				
+			    
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    				<!-- 공지글 일때 -->
+			    				<tr class="notice">
+			    			
+			    			
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     			<td class="num">공지사항</td>
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='회계감사기준 전문[全文] (2026년 개정)' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc0102','11786004332051')"
+										  
+										  
+									    
+									    
+									  >
+									    회계감사기준 전문[全文] (2026년 개정)
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">감사인증기준본부</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2026.08.06</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11786004332051 name=i11786004332051 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11786004332051&fileSeq=1&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconZIP.gif' alt='회계감사기준 전문(2026 개정)_Word, PDF.zip' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	385 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">33</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='감사기준서 720 ‘기타정보에 관한 감사인의 책임’ 적용 FAQ&#039; 안내' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc0102','11787722077670')"
+										  
+										  
+									    
+									    
+									  >
+									    감사기준서 720 ‘기타정보에 관한 감사인의 책임’ 적용 FAQ&#039; 안내
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">감사인증기준본부</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2026.08.26</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11787722077670 name=i11787722077670 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11787722077670&fileSeq=1&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='공문(감사인증기준본부-232).pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11787722077670&fileSeq=2&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='감사기준서 720 적용 FAQ(2026.8.).pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	713 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">32</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='회계감사기준 개정(감사기준서 220) 안내' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc0102','11786003927937')"
+										  
+										  
+									    
+									    
+									  >
+									    회계감사기준 개정(감사기준서 220) 안내
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">감사인증기준본부</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2026.08.06</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11786003927937 name=i11786003927937 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11786003927937&fileSeq=1&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='[붙임1] 품질관리기준 및 감사기준서 개정 개요.pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11786003927937&fileSeq=2&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='[붙임2] 감사기준서 220 (2026년 개정).pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11786003927937&fileSeq=3&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='[붙임2-1] 감사기준서 220 개정 국영문 비교표.pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11786003927937&fileSeq=4&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='[붙임3] 품질관리기준 개정에 따른 타 감사기준서 등의 개정 변경내역 표시.pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11786003927937&fileSeq=5&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconZIP.gif' alt='감사기준 개정(2026년) Word.zip' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	227 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">31</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='&#039;횡령 등 자금 관련 부정위험에 대응하기 위해 회사가 수행한 내부통제 활동 서식&#039;에 대한 감사인의 절차 안내' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc0102','11767051599816')"
+										  
+										  
+									    
+									    
+									  >
+									    &#039;횡령 등 자금 관련 부정위험에 대응하기 위해 회사가 수행한 내부통제 활동 서식&#039;에 대한 감사인의 절차 안내
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">감사인증기준본부</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2025.12.30</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11767051599816 name=i11767051599816 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11767051599816&fileSeq=4&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='공문(감사인증기준본부_382).pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11767051599816&fileSeq=5&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt=''횡령 등 자금 관련 부정위험에 대응하기 위해 회사가 수행한 내부통제 활동 서식'에 대한 감사인의 절차 안내 (2025.12.).pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	2346 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">30</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='재무제표 감사에서 기술 관련 고려사항에 관한 FAQ 안내' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc0102','11765342006138')"
+										  
+										  
+									    
+									    
+									  >
+									    재무제표 감사에서 기술 관련 고려사항에 관한 FAQ 안내
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">감사인증기준본부</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2025.12.10</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11765342006138 name=i11765342006138 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11765342006138&fileSeq=4&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='공문(감사인증기준본부-343).pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11765342006138&fileSeq=5&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='재무제표 감사에서 기술 관련 고려사항에 관한 FAQ(2025.12.).pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	844 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">29</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='회계감사기준 전문[全文] (2025년 개정)' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc0102','11762493343340')"
+										  
+										  
+									    
+									    
+									  >
+									    회계감사기준 전문[全文] (2025년 개정)
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">감사인증기준본부</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2025.11.07</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11762493343340 name=i11762493343340 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11762493343340&fileSeq=7&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='0. 회계감사기준 전문(2025 개정).pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11762493343340&fileSeq=8&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconDOCX.gif' alt='0. 회계감사기준 전문(2025 개정).docx' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	3732 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">28</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='회계감사기준 개정(감사기준서 315, 540, 720) 안내' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc0102','11762493087075')"
+										  
+										  
+									    
+									    
+									  >
+									    회계감사기준 개정(감사기준서 315, 540, 720) 안내
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">감사인증기준본부</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2025.11.07</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11762493087075 name=i11762493087075 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11762493087075&fileSeq=2&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconZIP.gif' alt='1. 감사기준서 315 540 720 개정개요.zip' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11762493087075&fileSeq=6&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconZIP.gif' alt='2. 개정 감사기준서 315 540 720.zip' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11762493087075&fileSeq=7&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconZIP.gif' alt='3. 감사기준서 315 540 720 개정에 따른 타 기준서 관련 개정.zip' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11762493087075&fileSeq=8&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconZIP.gif' alt='4. 감사기준서 315 540 720 개정 관련 워드파일.zip' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	1676 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">27</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='「내부회계관리제도 감사 FAQ (2024.10.)」 안내' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc0102','11729500555491')"
+										  
+										  
+									    
+									    
+									  >
+									    「내부회계관리제도 감사 FAQ (2024.10.)」 안내
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">감사인증기준본부</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2024.10.21</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11729500555491 name=i11729500555491 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11729500555491&fileSeq=1&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='공문(감사인증기준본부-305).pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11729500555491&fileSeq=4&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='[붙임1] 내부회계관리제도 감사 FAQ (2024.10.).pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11729500555491&fileSeq=5&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='[붙임2] 내부회계관리제도 감사 FAQ 개정 전후 비교표(2024.10.).pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	1775 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">26</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='가상자산에 대한 감사 가이드라인 안내' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc0102','11703147262599')"
+										  
+										  
+									    
+									    
+									  >
+									    가상자산에 대한 감사 가이드라인 안내
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">감사인증기준본부</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2023.12.21</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11703147262599 name=i11703147262599 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11703147262599&fileSeq=1&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='가상자산에 대한 감사 가이드라인_202312_공표.pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	600 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">25</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='회계감사기준 전문(2023 개정) 안내' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc0102','11677569040207')"
+										  
+										  
+									    
+									    
+									  >
+									    회계감사기준 전문(2023 개정) 안내
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">감사기준팀</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2023.02.28</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11677569040207 name=i11677569040207 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11677569040207&fileSeq=3&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconDOCX.gif' alt='0. 회계감사기준 전문(2023 개정).docx' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11677569040207&fileSeq=4&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='0. 회계감사기준 전문(2023 개정).pdf' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	9541 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+			    
+			</tbody>
+		</table>
+		<div class="btn_wrap_table">
+			
+		</div>
+	</div> <!-- //article -->
+	<div class="article article_last">
+		<!-- paging -->
+		<div class="paging" id="pagingArea">
+		</div> 
+		<!-- //paging -->
+	</div> <!-- //article_last -->
+</div>
+<!-- //article_wrap -->
+</body>
+</html>
+   
+  
+
+
+ 
+
+<form name="setForm" method=post>
+<input type="hidden" name="boardId"       value="acc0102"/>
+<input type="hidden" name="cmpBrdId"      value="acc0102"/>
+<input type="hidden" name="srchKey"       value=""/>
+<input type="hidden" name="srchType"      value=""/>
+<input type="hidden" name="srchBgnReg"    value="2026.09.08"/>
+<input type="hidden" name="srchEndReg"    value="2026.09.08"/>
+<input type="hidden" name="srchReplYn"    value=""/>
+<input type="hidden" name="srchMemoYn"    value=""/>
+<input type="hidden" name="page"          value="1"/>
+<input type="hidden" name="pageSize"      value="0"/>
+<input type="hidden" name="cateId"        value=""/>
+<input type="hidden" name="bltnCateId"    value="-1"/>
+<input type="hidden" name="listOpt"       value=""/>
+<input type="hidden" name="onlyReplYn"    value=""/>
+<input type="hidden" name="onlyMemoYn"    value=""/>
+<input type="hidden" name="wallUserId"    value=""/>
+<input type="hidden" name="systemCurrentTimeMillis" value="1788821435377"/>
+<input type="hidden" name="boardSkinDflt" value="kicpa_notice"/>
+<input type="hidden" name="miniTrgtWin"   value=""/>
+<input type="hidden" name="miniTrgtUrl"   value=""/>
+<input type=hidden name="srchKey1"       value=""/>
+<input type=hidden name="srchKey2"       value=""/>
+<input type=hidden name="srchKey3"       value=""/>
+<input type=hidden name="srchKey4"       value=""/>
+<input type=hidden name="srchType1"      value=""/>
+<input type=hidden name="srchType2"      value=""/>
+<input type=hidden name="srchType3"      value=""/>
+<input type=hidden name="srchType4"      value=""/>
+<input type=hidden name="sortColumn"      value=""/>
+<input type=hidden name="sortMethod"      value="ASC"/>
+<input type="hidden" name="bltnNo" value="" />
+
+<input type="hidden" name="rtnBltnNo" 	value=""/>
+<input type="hidden" name="cmd" 	value=""/>
+<input type="hidden" name="rtnURI" 	value=""/>
+<input type="hidden" name="userPass" 	value=""/>
+<input type="hidden" name="langKnd" value="ko"/>
+<input type="hidden" id="viewMode"  name="viewMode" value=""/>
+<input type="hidden" name="boardTtlYn" value=""/>
+</form>
+<iframe name="download" title="download" width=0 height=0 style="border: none;"></iframe>
+
+
+
+	</body>
+</html>
+ 

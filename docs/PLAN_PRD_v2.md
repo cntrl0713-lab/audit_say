@@ -25,7 +25,7 @@ v2에서는 같은 도메인(회계감사)에서 다른 니즈(취업·리서치
 
 - **Frontend**: Next.js (TypeScript)
 - **Backend/DB**: Supabase (PostgreSQL + Auth + RLS)
-- **AI**: Gemini API
+- **AI**: 외부 AI API(공급자 미정)
 - **디자인 시스템**: DESIGN.md 기반 (Cursor-inspired 크림 캔버스 `#f7f7f4`, 잉크 `#26251e`, Primary Orange `#f54e00`)
 - **배포**: Vercel
 
@@ -231,7 +231,7 @@ DART는 회계법인을 "기타법인"으로 분류하며, 각 회계법인이 �
 - 특정 법인 컨텍스트 설정 후 질문
 - 플랫폼 내부 데이터 범위 내 답변 (환각 최소화)
 - 답변에 근거 데이터 출처 표시
-- Gemini API 단일 엔진
+- 외부 AI API 단일 엔진
 - 질문 이력 저장
 
 **우선순위**: Should
@@ -378,10 +378,10 @@ DART는 회계법인을 "기타법인"으로 분류하며, 각 회계법인이 �
 | bsns_year | 사업연도 |
 | director_count | 이사 수 (임원 현황 기준) |
 | employee_total | 직원 수 합계 |
-| employee_audit | 감사부문 인원 |
+| employee_audit | 감사부문 전 임직원 수 (`TG_BSAL.BSAL_CFY_P_A`, 등록회계사 경력표의 인원과 구분) |
 | employee_tax | 세무부문 인원 |
 | employee_advisory | 자문부문 인원 |
-| salary_total | 급여 총액 |
+| salary_total | 전 임직원 인건비 총액 (`TG_BSAL.BSAL_CFY_S_SUM`, 이사 개인 보수 합계와 구분) |
 | salary_avg | 1인 평균 급여 |
 | source_rcept_no | 원천 접수번호 |
 
@@ -557,7 +557,7 @@ Supabase Auth 연동 계정
 목표:
 - 특정 법인 전용 챗봇
 - 구독제 연동
-- Gemini API 연동
+- 외부 AI API 연동
 
 산출물:
 - `/chat` 페이지, 구독 모델

@@ -140,6 +140,12 @@ RLS 가 그대로 적용되고, 뷰를 RLS 우회 통로로 쓸 수 없다.
 
 ## 4. 남은 판단거리
 
+> **2026-09-08 F004 구현 상태 갱신**: 아래 M0의 28곳 기록은 과거 상태다. P0 후 운영 마스터는
+> 최초 63곳에서 F004 발견 모집단 266곳을 보강해 운영 마스터는 269곳이다(조회 범위 내 F004가 없는 기존 3곳 포함).
+> Supabase MCP로 기본 F004와 2026 확장 마이그레이션을 운영 적용했다. 상세 적재·대조 결과는
+> `docs/reports/annual/IMPLEMENTATION_RESULT.md`를 참조한다. F004 제출 여부를 상장사 감사인 등록으로 해석하지 않는다.
+> 1.8 서식 지원과 현대 2024 복수 결산기 처리가 남아 있다.
+
 1. **등록회계법인 마스터가 아직 부분적이다.** 현재 28곳이며 가군 4곳만 군이
    확정돼 있다. `registration_no` 와 `dart_corp_code` 는 전부 NULL 이다 — 확인되지 않은
    등록번호를 지어내지 않으려고 비워 뒀고, DART 코드는 M1 수집기가 `corpCode.xml` 로
@@ -172,3 +178,56 @@ RLS 가 그대로 적용되고, 뷰를 RLS 우회 통로로 쓸 수 없다.
 
 4. **평점 항목은 PRD §13-4 대로 미확정이다.** 지금 CHECK 에 박힌 6개 항목·1-5 척도와
    5개 직급(`intern`/`staff`/`senior`/`manager`/`above`)은 M6 착수 전에 다시 본다.
+
+## 5. F004 회계법인 사업보고서 확장
+
+정본 SQL: `supabase/migrations/20260908000002_firm_annual_reports.sql`.
+구현 결과: `docs/reports/annual/IMPLEMENTATION_RESULT.md`.
+
+| 신규 테이블 | 용도 | 조회 |
+|---|---|---|
+| firm_personnel_cost_yearly | 임직원·품질관리 비용, 표/계정 매칭 방법 | 공개 |
+| firm_income_statement_line | 손익 원문 계정 순서·금액 | 공개 |
+| firm_audit_record_yearly | 시장·개별/연결 감사실적 | 공개 |
+| firm_audit_client | 연결 지배회사 명단·종속회사 수·의견 | 공개 |
+| firm_cpa_tenure_yearly | 부문별 등록회계사 경력, 총 이동 인원 | 공개 |
+| firm_audit_input_yearly | 경력 구간별 감사 인력·시간 | 공개 |
+| firm_quality_staff | 품질관리 조직·인력 | 공개 |
+| firm_inspection_result | 감사보고서/감사인 감리 서술 | 공개 |
+| firm_director_discipline | 성명 제외 징계 사항 | 공개 |
+| firm_certification_yearly | 전문자격증별 인원 | 공개 |
+| firm_director_profile_yearly | 사원·이사 경력 집계, 소규모 통계 억제 | 공개 |
+| firm_director | 사원·이사 실명·경력·출자비율 | 관리자 |
+| firm_director_pay | 사용자 추가 지시에 따른 실명/마스킹 보수 | 관리자 |
+| firm_annual_form_cell | 허용된 집계 표의 전 칸·전기·전전기 원문 | 공개 |
+| firm_annual_collection | 채택 공시·파서 버전·해시·검토 신호 | 공개 |
+
+기존 프로필/인력에는 `fy_start_date`, `fy_end_date`, `fy_seq`, `source_rcept_dt`를 추가한다.
+프로필은 `revenue_other`, 인력은 `employee_other`, `director_pay_total`, `director_pay_count`를 추가한다.
+마스터에는 `acc_mt`, `induty_code`를 추가하며 등록번호·군은 추정하지 않는다.
+
+모든 신규 테이블은 RLS 활성화. 개인 명세 두 테이블에는 SELECT 정책이 없어
+anon/authenticated는 0행이며 service_role만 읽고 쓴다. 관리자 서버는 `assertAdmin()`을 거친다.
+기존 `queries.ts`는 개인 명세를 조회하지 않으며 `adminQueries.ts`를 별도로 둔다.
+
+`replace_firm_annual_report`는 service_role만 실행한다. 표 전체 교체가 한 트랜잭션이며
+부분 실패 시 기존 행이 유지된다. 같은 법인/연도의 더 오래된 접수 공시와 다른 결산일은 거부한다.
+자연키가 없는 상세 행도 교체되므로 정정 후 줄어든 행이 잔존하지 않는다.
+
+`v_firm_summary`는 고객사 사업연도만 집계하고 기존 자체 지표 컬럼은 호환성을 위해 NULL을 반환한다.
+자체 지표는 `v_firm_annual_summary`로 옮기고 결산일이 같은 프로필·인력만 조인한다.
+고객사 미확보를 고객사 0곳으로 만들지 않으며, 고객사가 없는 법인도 마스터 검색과 자체 정보 탭에 접근할 수 있다.
+
+사용자 지시에 따라 접수 조회는 실행 당일까지 확대했다. 적재 대상 결산연도는 2024·2025·2026이며 서식 1.8·6.0을 지원한다.
+현대 2024는 사용자 지시에 따라 제20기(3개월)를 제외하고 제19기를 저장한다. 제외 근거는 수집 보고서에 보존한다.
+그 밖의 복수 결산기는 기존 연도 키에서 여전히 보류하며 자동 합산하지 않는다.
+
+### 실적 분석 기준연도 — 2026-09-08 후속 결정
+
+회계법인 자체 지표는 `v_firm_annual_summary.fy_start_year`(보고기간 시작연도)로 분석·표시한다.
+`fy_start_date`에서 직접 계산하며 종료연도에서 1을 빼지 않는다. 기존 테이블의 `bsns_year`는
+원문 명세 조인용 결산말 연도 키로 보존한다. 같은 시작연도의 복수 기수는 실제 시작일·종료일로 구분하고
+같은 연도의 한 행으로 합산하지 않는다. 기존 721보고기간은 그대로 유지된다.
+현대 제19기: 2023년 시작 실적, 제21기: 2024년 시작 실적. 제20기는 사용자 결정대로 제외한다.
+고객사 `bsns_year`의 의미는 바꾸지 않으며, 실제 감사대상 연도를 회계법인 시작연도와 같다고 추정하지 않는다.
+F004 제출 자체는 상장회사 감사인 등록 확인이 아니며, 연결 명단이 개별감사 전수 명단도 아니다.

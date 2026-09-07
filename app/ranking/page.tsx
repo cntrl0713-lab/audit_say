@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getLeaderboardAction } from '../actions';
 import { ROLE_NAMES } from '../../lib/utils';
 import { Loading } from '../../components/Loading';

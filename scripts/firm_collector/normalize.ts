@@ -224,6 +224,7 @@ const ACCOUNT_ALIASES = {
 } as const;
 
 export interface FnlttRow {
+    currency?: string;
     fs_div?: string;
     sj_div?: string;
     account_nm?: string;
@@ -236,7 +237,7 @@ export interface PickedFinancials {
     net_income: number | null;
     fs_div: 'CFS' | 'OFS' | null;
     fallback_yn: boolean;
-    data_status: 'ok' | 'missing';
+    data_status: 'ok' | 'missing' | 'parse_failed';
 }
 
 export function pickFinancials(rows: FnlttRow[]): PickedFinancials {
@@ -251,6 +252,12 @@ export function pickFinancials(rows: FnlttRow[]): PickedFinancials {
         chosen = forDiv('OFS');
         fsDiv = chosen.length > 0 ? 'OFS' : null;
         fallback = chosen.length > 0;
+    }
+
+    // The comparison views format these amounts as KRW. Do not silently label USD/CNY/JPY as won.
+    if (chosen.some((row) => row.currency && row.currency.trim().toUpperCase() !== 'KRW')) {
+        return { revenue: null, operating_profit: null, net_income: null,
+            fs_div: fsDiv, fallback_yn: fallback, data_status: 'parse_failed' };
     }
 
     const pick = (aliases: readonly string[]): number | null => {

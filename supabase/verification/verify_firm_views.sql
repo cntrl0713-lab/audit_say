@@ -29,14 +29,11 @@ declare
 
   procedure_note text;
 begin
-  -- ── 대상 법인 (시드에 있는 실제 행을 쓴다) ────────────────────────────────
-  select firm_id into firm_a from public.firm_registered where firm_name = '삼일회계법인';
-  select firm_id into firm_b from public.firm_registered where firm_name = '삼정회계법인';
-  select firm_id into firm_c from public.firm_registered where firm_name = '안진회계법인';
-
-  if firm_a is null or firm_b is null or firm_c is null then
-    raise exception '시드된 회계법인을 찾지 못했습니다. 20260907000003_firm_registered_seed.sql 을 먼저 적용하세요.';
-  end if;
+  -- 실제 법인에 테스트 실적을 섞으면 기존 데이터 때문에 검사가 실패한다.
+  -- 독립된 임시 법인을 생성하고 마지막 ROLLBACK으로 제거한다.
+  insert into public.firm_registered(firm_name) values('VERIFY_법인A_' || txid_current()) returning firm_id into firm_a;
+  insert into public.firm_registered(firm_name) values('VERIFY_법인B_' || txid_current()) returning firm_id into firm_b;
+  insert into public.firm_registered(firm_name) values('VERIFY_법인C_' || txid_current()) returning firm_id into firm_c;
 
   -- ── 회사 ──────────────────────────────────────────────────────────────────
   insert into public.firm_company (corp_code, corp_name, corp_cls, stock_code, listed_yn, induty) values
@@ -80,7 +77,13 @@ begin
     (firm_c, 2024,  500000, 400000,  60000, 40000);   -- 고객사 없이 자체 지표만
 
   insert into public.firm_workforce_yearly (firm_id, bsns_year, director_count, employee_total, salary_total) values
-    (firm_a, 2024, 10, 100, 5000000);
+    (firm_a, 2024, 10, 100, 5000000), (firm_c, 2024, null, null, null);
+
+  update public.firm_profile_yearly set fy_end_date='2024-06-30',fy_start_date='2023-07-01' where firm_id in (firm_a,firm_c);
+  update public.firm_workforce_yearly set fy_end_date='2024-06-30',fy_start_date='2023-07-01' where firm_id in (firm_a,firm_c);
+  insert into public.firm_annual_collection(firm_id,bsns_year,fy_end_date,source_rcept_no,source_rcept_dt,parser_version,payload_hash) values
+    (firm_a,2024,'2024-06-30','VERIFY1','2024-09-30','verification','verification'),
+    (firm_c,2024,'2024-06-30','VERIFY2','2024-09-30','verification','verification');
 
   -- ══ v_firm_summary ════════════════════════════════════════════════════════
   select * into r from public.v_firm_summary where firm_id = firm_a and bsns_year = 2024;
@@ -109,30 +112,27 @@ begin
     raise exception 'v_firm_summary.avg_kam_count: 기대 2.5, 실제 %', r.avg_kam_count;
   end if;
 
-  -- 파생 지표 (PRD §4.2-C)
-  if r.revenue_per_employee <> 10000 then      -- 1,000,000 / 100
+  -- 자체 지표를 고객사 사업연도에 조인하지 않는다.
+  if r.revenue_per_employee is not null then raise exception '고객사 뷰에 법인 결산 지표가 섞였습니다'; end if;
+  select * into r from public.v_firm_annual_summary where firm_id=firm_a and bsns_year=2024;
+  if r.revenue_per_employee is distinct from 10000::numeric then      -- 1,000,000 / 100
     raise exception '1인당 매출: 기대 10000, 실제 %', r.revenue_per_employee;
   end if;
-  if r.salary_per_employee <> 50000 then       -- 5,000,000 / 100
+  if r.salary_per_employee is distinct from 50000::numeric then       -- 5,000,000 / 100
     raise exception '1인당 급여: 기대 50000, 실제 %', r.salary_per_employee;
   end if;
-  if r.employee_per_director <> 10 then        -- 100 / 10
+  if r.employee_per_director is distinct from 10::numeric then        -- 100 / 10
     raise exception '이사 대비 직원: 기대 10, 실제 %', r.employee_per_director;
   end if;
-  if r.audit_revenue_ratio <> 0.6 then         -- 600,000 / 1,000,000
+  if r.audit_revenue_ratio is distinct from 0.6::numeric then         -- 600,000 / 1,000,000
     raise exception '감사부문 매출 비중: 기대 0.6, 실제 %', r.audit_revenue_ratio;
   end if;
 
-  -- 고객사가 없어도 자체 지표만으로 연도 축에 나와야 한다
-  select * into r from public.v_firm_summary where firm_id = firm_c and bsns_year = 2024;
-  if r is null then
-    raise exception 'v_firm_summary: 고객사 없는 법인이 연도 축에서 빠졌습니다.';
-  end if;
-  if r.client_count <> 0 then
-    raise exception 'v_firm_summary: 고객사 0곳인데 client_count 가 % 입니다', r.client_count;
-  end if;
-  if r.audit_revenue_ratio <> 0.8 then
-    raise exception 'v_firm_summary: 고객사 없는 법인의 파생 지표가 어긋납니다 (기대 0.8, 실제 %)', r.audit_revenue_ratio;
+  -- 고객사 미확보 법인은 자체 지표 뷰에만 나타난다.
+  if exists(select 1 from public.v_firm_summary where firm_id=firm_c) then raise exception '고객사 미확보가 0곳으로 노출됐습니다'; end if;
+  select * into r from public.v_firm_annual_summary where firm_id = firm_c and bsns_year = 2024;
+  if r.audit_revenue_ratio is distinct from 0.8::numeric then
+    raise exception 'v_firm_annual_summary: 고객사 없는 법인의 파생 지표가 어긋납니다 (기대 0.8, 실제 %)', r.audit_revenue_ratio;
   end if;
 
   -- 분모가 없으면 0 이 아니라 NULL 이어야 한다 (0 으로 나누면 터지고, 0 을 주면 거짓말이다)
@@ -194,8 +194,8 @@ begin
   if r.auditor_changed is not true then
     raise exception '감사인이 바뀐 연도의 auditor_changed 가 % 입니다', r.auditor_changed;
   end if;
-  if r.prev_firm_name <> '삼일회계법인' then
-    raise exception 'prev_firm_name: 기대 삼일회계법인, 실제 %', r.prev_firm_name;
+  if r.prev_firm_name is distinct from (select firm_name from public.firm_registered where firm_id=firm_a) then
+    raise exception 'prev_firm_name: 기대 임시 법인A, 실제 %', r.prev_firm_name;
   end if;
   if r.opinion_changed is not true then
     raise exception '의견이 바뀐 연도의 opinion_changed 가 % 입니다', r.opinion_changed;

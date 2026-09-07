@@ -86,12 +86,11 @@ export function NotCollectedNotice({ what }: { what: string }) {
     return (
         <div className="rounded-lg border border-dashed border-card-border bg-card px-6 py-10 text-center">
             <span className="inline-block rounded-full border border-card-border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-foreground/50">
-                수집 전
+                데이터 미확보
             </span>
             <p className="mt-3 text-sm">{what} 데이터가 아직 없습니다.</p>
             <p className="mt-1.5 text-xs text-foreground/60">
-                M1 수집 배치(<code className="text-[11px]">npm run firm:collect:engagements</code>)를
-                돌리면 채워집니다.
+                API 조회 결과가 없거나 감사인 식별이 보류된 경우일 수 있습니다. 실제 고객사가 0곳이라는 뜻은 아닙니다.
             </p>
         </div>
     );

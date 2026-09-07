@@ -1,25 +1,34 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import {
     getCompany,
     getCompanyAuditHistory,
     getCompanyEngagements,
     getCompanyKam,
+    getRegisteredFirm,
 } from '../../../../lib/firm/queries';
+import { firmReturnHref } from '../../../../lib/firm/navigation';
+import { buildFilterQuery, readInt, type SearchParams } from '../../../../lib/firm/params';
 import { formatKrw, formatNumber } from '../../../../lib/firm/format';
 import { DATA_STATUS_LABEL, MARKET_LABEL } from '../../../../lib/firm/types';
-import { EmptyState, NotCollectedNotice, OpinionBadge, StatTile } from '../../_components/ui';
+import { Chip, EmptyState, OpinionBadge, StatTile } from '../../_components/ui';
 
 export default async function CompanyDetailPage({
     params,
+    searchParams,
 }: {
     params: Promise<{ corp_code: string }>;
+    searchParams: Promise<SearchParams>;
 }) {
     const { corp_code } = await params;
     // DART corp_code 는 8자리 숫자다. 형식이 아니면 조회 없이 404.
     if (!/^\d{8}$/.test(corp_code)) notFound();
 
-    const company = await getCompany(corp_code);
+    const query = await searchParams;
+    const firmId = readInt(query, 'firm_id', 0);
+    if (firmId === 0) redirect('/firms');
+    const [company, firm] = await Promise.all([getCompany(corp_code), getRegisteredFirm(firmId)]);
+    if (!firm) notFound();
     if (!company) notFound();
 
     const [history, engagements, kams] = await Promise.all([
@@ -28,16 +37,21 @@ export default async function CompanyDetailPage({
         getCompanyKam(corp_code),
     ]);
 
-    // 재무 3지표는 가장 최근 사업연도 기준으로 보여 준다.
-    const latest = engagements[0] ?? null;
+    const scoped = engagements.filter((row) => row.firm_id === firmId);
+    if (scoped.length === 0) notFound();
+    const year = readInt(query, 'year', scoped[0].bsns_year);
+    const selected = scoped.find((row) => row.bsns_year === year) ?? null;
+    if (!selected) notFound();
+    const returnHref = firmReturnHref(firmId, year, query);
+    const selectedKams = kams.filter((row) => row.bsns_year === year && row.firm_id === firmId);
 
     return (
         <section>
             <header className="mb-4 rounded-lg border border-card-border bg-card px-5 py-4">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <h2 className="text-xl">{company.corp_name}</h2>
-                    <Link href="/companies" className="text-xs text-foreground/50 hover:text-primary">
-                        ← 목록으로
+                    <div><p className="mb-1 text-xs text-foreground/60">{firm.firm_name} · {year} 사업연도 고객사</p><h2 className="text-xl">{company.corp_name}</h2></div>
+                    <Link href={returnHref} className="text-xs text-foreground/50 hover:text-primary">
+                        ← {firm.firm_name} 고객사 목록
                     </Link>
                 </div>
                 <dl className="mt-3 grid grid-cols-2 gap-x-6 gap-y-2 text-sm sm:grid-cols-4">
@@ -60,24 +74,25 @@ export default async function CompanyDetailPage({
                 </dl>
             </header>
 
-            {latest === null ? (
-                <NotCollectedNotice what={`${company.corp_name}의 감사`} />
-            ) : (
-                <>
+            <div className="mb-4 flex flex-wrap gap-1.5" aria-label="고객사 사업연도">
+                {scoped.map((row) => <Chip key={row.bsns_year} href={'/companies/' + corp_code + buildFilterQuery(query, { year: row.bsns_year })} active={row.bsns_year === year}>{row.bsns_year}</Chip>)}
+            </div>
+            <>
                     <h3 className="mb-2 text-sm text-foreground/60">
-                        재무 3지표
+                        고객사 재무 3지표
                         <span className="ml-2 text-xs text-foreground/40">
-                            {latest.bsns_year} 사업연도 · {latest.fs_div === 'OFS' ? '별도' : '연결'}
-                            {latest.data_status !== 'ok' ? ` · ${DATA_STATUS_LABEL[latest.data_status]}` : ''}
+                            {selected.bsns_year} 사업연도 · {selected.fs_div === 'OFS' ? '별도' : selected.fs_div === 'CFS' ? '연결' : '재무제표 구분 미확보'}
+                            {selected.data_status !== 'ok' ? ` · ${DATA_STATUS_LABEL[selected.data_status]}` : ''}
                         </span>
                     </h3>
-                    <dl className="mb-6 grid grid-cols-3 gap-2">
-                        <StatTile label="매출액" value={formatKrw(latest.revenue)} />
-                        <StatTile label="영업이익" value={formatKrw(latest.operating_profit)} />
-                        <StatTile label="당기순이익" value={formatKrw(latest.net_income)} />
+                    <dl className="mb-6 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                        <StatTile label="고객사 매출액" value={formatKrw(selected.revenue)} />
+                        <StatTile label="고객사 영업이익" value={formatKrw(selected.operating_profit)} />
+                        <StatTile label="고객사 당기순이익" value={formatKrw(selected.net_income)} />
                     </dl>
 
-                    <h3 className="mb-2 text-sm text-foreground/60">감사 이력</h3>
+                    <p className="mb-4 text-xs text-foreground/60">‘-’는 미확보 값이며 0과 다릅니다. 금액 확인 보류에는 외화 공시 등이 포함되며 원화로 임의 환산하지 않습니다.</p>
+                    <h3 className="mb-2 text-sm text-foreground/60">고객사 감사 이력 · 수집된 연도 기준</h3>
                     <div className="mb-6 overflow-x-auto rounded-lg border border-card-border bg-card">
                         <table className="w-full min-w-[40rem] text-sm">
                             <thead>
@@ -138,12 +153,12 @@ export default async function CompanyDetailPage({
                         </table>
                     </div>
 
-                    <h3 className="mb-2 text-sm text-foreground/60">KAM · 강조사항</h3>
-                    {kams.length === 0 ? (
+                    <h3 className="mb-2 text-sm text-foreground/60">선택 법인·연도의 KAM · 강조사항</h3>
+                    {selectedKams.length === 0 ? (
                         <EmptyState title="기록된 KAM·강조사항이 없습니다." />
                     ) : (
                         <ul className="space-y-2">
-                            {kams.map((row) => (
+                            {selectedKams.map((row) => (
                                 <li
                                     key={row.engagement_id}
                                     className="rounded-lg border border-card-border bg-card px-4 py-3"
@@ -156,7 +171,7 @@ export default async function CompanyDetailPage({
                                             </span>
                                         </span>
                                         <span className="text-xs text-foreground/50">
-                                            KAM {formatNumber(row.kam_count)}개
+                                            {row.kam_count === null ? 'KAM 수 미확인' : `KAM ${formatNumber(row.kam_count, '개')}`}
                                         </span>
                                     </div>
                                     {row.kam_text ? (
@@ -173,8 +188,7 @@ export default async function CompanyDetailPage({
                             ))}
                         </ul>
                     )}
-                </>
-            )}
+            </>
         </section>
     );
 }

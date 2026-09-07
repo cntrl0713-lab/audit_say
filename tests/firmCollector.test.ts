@@ -432,6 +432,7 @@ describe('collectEngagements 배선', () => {
                     rcept_no: '20250315000001',
                     corp_cls: 'Y',
                     corp_name: '주식회사 테스트전자',
+                    bsns_year: '제30기 (당기)',
                     adtor: '삼일회계법인',
                     adt_opinion: '적정',
                     emphs_matter: '계속기업 관련 중요한 불확실성',
@@ -449,23 +450,7 @@ describe('collectEngagements 배선', () => {
                 { fs_div: 'OFS', account_nm: '매출액', thstrm_amount: '900,000' },
             ],
         },
-        'adtServcCnclsSttus.json': {
-            status: '000',
-            message: '정상',
-            list: [{ bsns_year: '제 30 기', adt_cntrct_dtls_mtrpz: '450,000,000', adt_cntrct_dtls_tot_tm: '3,200' }],
-        },
-        'accnutAdtorNonAdtServcCnclsSttus.json': {
-            status: '000',
-            message: '정상',
-            list: [
-                {
-                    cntrct_cncls_de: '2024년 07월 01일',
-                    servc_cn: '세무자문',
-                    servc_exc_pd: '2024.07~2024.12',
-                    servc_mnrt: '80,000,000',
-                },
-            ],
-        },
+
     };
 
     function fixtureFetch(): typeof fetch {
@@ -525,14 +510,49 @@ describe('collectEngagements 배선', () => {
         assert.equal(financials.fallback_yn, false);
         assert.equal(financials.data_status, 'ok');
 
-        const contracts = find('firm_service_contract', 'insert') as unknown as Record<string, unknown>[];
-        assert.equal(contracts.length, 2);
-        assert.equal(contracts[0].contract_type, 'audit');
-        assert.equal(contracts[0].service_fee, 450000000);
-        assert.equal(contracts[1].contract_type, 'nonaudit');
-        assert.equal(contracts[1].service_fee, 80000000);
-        assert.equal(contracts[1].contract_date, '2024-07-01');
-        assert.equal(contracts[1].service_content, '세무자문');
+        assert.equal(written.some((row) => row.table === 'firm_service_contract'), false);
+    });
+
+    test('여러 회사의 진행 기록을 합치고 재시도 성공 시 이전 오류를 제거한다', async () => {
+        const { db } = fakeDb([{ firm_id: 7, firm_name: '삼일회계법인', alias: ['삼일'] }]);
+        const { collectEngagements, emptyReport } = await import('../scripts/firm_collector/collectEngagements.ts');
+        const initial = emptyReport(2024);
+        initial.completedCorps.push('00000001');
+        initial.noReport.push('00000001');
+        initial.errors.push({ corp_code: '00126380', message: '일시 장애' });
+        const progress: number[] = [];
+        const report = await collectEngagements({
+            db: db as never,
+            dart: new DartClient({ apiKey: 'k', minIntervalMs: 0, fetchImpl: fixtureFetch() }),
+            year: 2024,
+            companies: ['00126380', '00000002'].map((corp_code) => ({ corp_code, corp_name: '테스트', stock_code: '005930' })),
+            concurrency: 2, initialReport: initial,
+            onProgress: (done) => progress.push(done),
+        });
+        assert.equal(report.processed, 2);
+        assert.deepEqual(report.errors, []);
+        assert.equal(new Set(report.completedCorps).size, 3);
+        assert.deepEqual(progress, [1, 2]);
+        assert.deepEqual(report.noReport, ['00000001']);
+    });
+
+    test('요청 한도 소진 시 회사별 실패를 반복하지 않고 진행 기록을 남긴다', async () => {
+        const { db } = fakeDb([]);
+        const { collectEngagements } = await import('../scripts/firm_collector/collectEngagements.ts');
+        let calls = 0;
+        let checkpointed = false;
+        const dart = new DartClient({ apiKey: 'k', minIntervalMs: 0, maxRetries: 0,
+            fetchImpl: (async () => {
+                calls++;
+                return new Response(JSON.stringify({ status: '020', message: '한도 초과' }));
+            }) as typeof fetch,
+        });
+        await assert.rejects(collectEngagements({ db: db as never, dart, year: 2024,
+            companies: ['00000001', '00000002'].map((corp_code) => ({ corp_code, corp_name: '테스트', stock_code: null })),
+            onCheckpoint: (report) => { checkpointed = report.errors[0]?.message.includes('020'); },
+        }), /020/);
+        assert.equal(calls, 1);
+        assert.equal(checkpointed, true);
     });
 
     test('마스터에 없는 감사인은 적재하지 않고 보고서에 남긴다', async () => {

@@ -65,7 +65,7 @@ export async function gradeQuestionSetV3Action(
         return { ok: false, code: 'rate_limited', message: '채점 요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.' };
     }
 
-    const apiKey = process.env.GOOGLE_API_KEY;
+    const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
         return { ok: false, code: 'grading_key_missing', message: 'AI 채점 서비스 설정이 누락되었습니다.' };
     }
