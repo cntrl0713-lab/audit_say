@@ -10,8 +10,8 @@ cpa_uploader/
 ├─ data/
 │  ├─ cpa_question_sets_v3.authoring.json   # 정본 은행(모범답안·루브릭 포함) — 커밋 대상 아님
 │  ├─ cpa_question_sets_v3.promotions.json  # 상태 전환 장부(needs_review→verified→published)
-│  └─ rag_config.json                       # Gemini File Search Store 참조
-├─ references/                              # 감사기준서 원문 마크다운(KGA 코드별) — RAG 인덱싱용
+│  └─ 회계감사_통합학습자료/                 # source_quote 근거 원자료 — 지우면 은행 검증이 전부 깨진다
+├─ references/                              # 감사기준서 원문 마크다운(KGA 코드별) — 읽기용 참고자료
 ├─ wiki/                                    # 출처 탐색용 LLM 위키 (build-wiki.mjs로 재생성)
 │  ├─ concepts/                             # 19개 주제: v3 연결 현황 + 원자료 탐색 링크
 │  ├─ question-generation/                  # 수동 관리 문서(워크플로·스키마·프롬프트)
@@ -44,10 +44,6 @@ npx tsx cpa_uploader/validate_draft_v3.ts --file <draft.json>
 
 # 운영 배포물 생성 (published+verified만 통과, 암호화 + round-trip 검증)
 npm run questions:v3:compile
-
-# 기준서 RAG 인덱싱/질의 (참고용, 별도 GOOGLE_API_KEY 필요)
-npm run rag:index
-npm run rag:query
 ```
 
 ## 문제 제작 흐름 (수동 기준)
