@@ -63,7 +63,7 @@ function outputPathArgument(): string | undefined {
 }
 
 function generationModel(): string {
-    return process.env.CPA_GENERATION_MODEL || 'gpt-5.5';
+    return process.env.CPA_GENERATION_MODEL || 'gpt-5.6-luna';
 }
 
 const TOPICS: TopicDefinition[] = [

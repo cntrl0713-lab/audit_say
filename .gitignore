@@ -65,7 +65,10 @@ ENV/
 
 # Firm collector run dumps are regenerable output.
 # The written summaries and the applied-write history stay tracked.
-/docs/reports/**/*.json
+# Scoped to the collector's own output paths so hand-authored inputs
+# elsewhere under docs/reports are not silently dropped.
+/docs/reports/*.json
+/docs/reports/annual/*.json
 !/docs/reports/auditor-master-added.json
 # 외부 기준서 원문은 로컬 참고용으로만 둔다
 /docs/reports/question-review-2027/sources/

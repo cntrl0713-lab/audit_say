@@ -19,7 +19,7 @@ KICPA 회계감사 서술형 문제를 풀고, 기준서 근거와 criterion 단
 
 운영 채점은 `data/cpa_question_sets_v3.authoring.enc.json`을 복호화해 사용합니다. production에서는 암호화 파일을 선택하며, `next.config.ts`도 암호화 배포 파일만 tracing에 포함하고 평문 authoring 파일은 제외합니다. 상태 전환은 `cpa_question_sets_v3.promotions.json` 장부로 추적합니다.
 
-기본 채점 모델은 OpenAI `gpt-5.5`이며 `CPA_GRADING_MODEL`로 변경할 수 있습니다. 모델은 criterion 판정과 답안 원문 인용을 반환하고, 점수 합산·인용 검증·주입/키워드 샐러드 차단은 코드가 수행합니다. 자동 출제는 `CPA_GENERATION_MODEL`로 모델을 지정하며 결과는 사람 검수용 draft로만 기록됩니다.
+기본 채점 모델은 OpenAI `gpt-5.6-luna`이며 `CPA_GRADING_MODEL`로 변경할 수 있습니다. 모델은 criterion 판정과 답안 원문 인용을 반환하고, 점수 합산·인용 검증·주입/키워드 샐러드 차단은 코드가 수행합니다. 자동 출제는 `CPA_GENERATION_MODEL`로 모델을 지정하며 결과는 사람 검수용 draft로만 기록됩니다.
 
 ## 기술 스택
 

@@ -307,7 +307,7 @@ export async function gradeQuestionSetV3(
 
     const judgment = await requestOpenAIStructured<QuestionSetJudgmentV3>({
         apiKey,
-        model: process.env.CPA_GRADING_MODEL || 'gpt-5.5',
+        model: process.env.CPA_GRADING_MODEL || 'gpt-5.6-luna',
         name: 'audit_grading_judgment',
         instructions: 'KICPA 회계감사 답안의 criterion 충족 여부만 판정하고 점수는 계산하지 마십시오.',
         input: buildGradingPrompt(questionSet, answers),
