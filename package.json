@@ -10,10 +10,10 @@
     "typecheck": "tsc --noEmit",
     "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test \"tests/**/*.test.ts\"",
     "prepare": "node -e \"try{require('child_process').execSync('git config core.hooksPath .githooks')}catch(e){}\"",
-    "rag:index": "tsx --env-file=.env.local cpa_uploader/index_references.ts",
-    "rag:query": "tsx --env-file=.env.local cpa_uploader/rag_query.ts",
     "questions:v3:validate": "tsx cpa_uploader/validate_cpa_v3.ts",
-    "questions:v3:compile": "tsx --env-file=.env.local scripts/compile-question-bank-v3.ts"
+    "questions:v3:compile": "tsx --env-file=.env.local scripts/compile-question-bank-v3.ts",
+    "firm:collect:engagements": "tsx --env-file=.env.local scripts/firm_collector/run.ts engagements",
+    "firm:collect:profiles": "tsx --env-file=.env.local scripts/firm_collector/run.ts firm-profiles"
   },
   "dependencies": {
     "@google/genai": "^2.10.0",
