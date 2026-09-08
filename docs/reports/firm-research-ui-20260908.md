@@ -29,7 +29,18 @@
 
 `npm run lint` 전체 실행은 기존 파일과 임시 사본에서 30 errors / 53 warnings로 실패했다. 주요 기존 오류는 `contexts/AuthContext.tsx`, `lib/supabaseServer.ts`의 explicit-any, `.cache/firm_collector`와 `tmp/*`의 과거 작업 사본이다. 이번 리서치 화면 변경 범위의 lint 오류는 없다.
 
-운영 Supabase에는 마이그레이션을 적용하지 않았다. 운영 연결 개발 화면에서 공인회계사와 감사 투입이 미확보로 보이는 것은 새 뷰 미적용 상태이다. 승인 후 `20260908005001_firm_headcount_and_audit_input_views.sql`을 별도로 적용하고 삼일 보고기간 **2024-07-01 ~ 2025-06-30**에서 신규 지표가 실제로 표시되는지 확인해야 한다. 이는 **2025 결산 공시 / 2024 보고기간 시작연도**이며 두 연도 표기를 혼동하지 않는다.
+## 운영 DB 적용 — 2026-09-08
+
+사용자 승인에 따라 `20260908005001_firm_headcount_and_audit_input_views.sql`을 운영 Supabase(`xvifzicrjmbfqaepcfpp`)에 적용했다. 마이그레이션 장부 이름은 `firm_headcount_and_audit_input_views`이며, 적용 도구가 트랜잭션을 감싸므로 파일의 `begin;`·`commit;`만 제외하고 본문은 동일하다.
+
+- 적용 전 상태: 두 뷰 모두 미존재. 원본 `cpa_firm_annual_form_cell`·`cpa_firm_profile_yearly`·`cpa_firm_audit_input_yearly`와 참조 컬럼은 모두 존재. 대상 데이터는 HR 셀 3,605행·감사 투입 5,768행·보고기간 721행이다.
+- 적용 후 `pg_class.reloptions`에서 두 뷰의 `security_invoker=true`를 확인했다. anon·authenticated·service_role의 SELECT 권한은 이 프로젝트의 public 스키마 기본 권한과 같은 범위이며, 원본 테이블의 RLS가 invoker 기준으로 그대로 적용된다.
+- 삼일회계법인(`firm_id=1`) 보고기간 **2024-07-01 ~ 2025-06-30**(제55기, 2025 결산 공시 / 2024 보고기간 시작연도)에서 공인회계사 3,073명, 등록회계사 2,512명, 수습 260명, 사원 301명, 기타직원 1,190명을 확인했다. 인원 행의 `unit_multiplier`는 모두 null이다.
+- 같은 보고기간의 감사 투입은 총 2,118명·2,142,905시간이며, 근속 구간 7개 인원 합(233+222+541+366+366+168+222)이 총계와 일치한다. 1인당 1,011.8시간으로 사전 fixture 검증값과 같다.
+- `set local role anon`으로 두 뷰를 조회해 같은 값과 전체 행 수(3,605·5,768)를 확인했다. 익명 공개 조회 경로가 실제로 동작한다.
+- 적용 후 security advisor에 두 뷰 관련 신규 지적은 없다. 다만 조회된 advisor 스냅샷의 관측 시각이 적용 이전이므로, `security_invoker`는 advisor가 아니라 `pg_class` 직접 조회로 확인한 것이다. 기존 경고(pg_net, 유출 비밀번호 검사, 의도된 무정책 테이블)는 그대로다.
+
+프런트엔드 코드는 아직 배포하지 않았다. 미푸시 커밋 4건(`1c9834a`~`cbdf014`)의 원격 반영과 Vercel 배포, 운영 화면에서의 표시 확인은 별도 단계다.
 
 ## 보류 범위
 
