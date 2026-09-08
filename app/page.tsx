@@ -283,6 +283,7 @@ export default function Home() {
 
   const shortcuts = [
     { href: '/quiz', title: '문제 풀기', desc: '서술형 문제를 풀고 채점 피드백을 받습니다.' },
+    { href: '/firms', title: '회계법인 정보', desc: '회계법인별 고객사와 공시 기반 운영·인력 정보를 확인합니다.' },
     { href: '/curriculum', title: '커리큘럼', desc: '단원별 문제 구성을 확인합니다.' },
     { href: '/ranking', title: '랭킹', desc: '경험치 기준 상위 학습자를 봅니다.' },
     { href: '/profile', title: '내 정보', desc: '학습 통계와 오답 노트를 봅니다.' },

@@ -60,6 +60,7 @@ function service() {
         claim: async () => { if (stored) return { state: 'completed' }; if (leased) return { state: 'busy' }; leased = true; return { state: 'claimed', run_id: version, lease_token: release }; },
         grade: async (_set, _answers, _key, callback) => { counts.grade++; callback?.(judgment); return result; },
         consumeQuota: async () => { counts.quota++; return true; },
+        consumeSubmissionQuota: async () => true,
         complete: async (_owner, _attempt, _run, _lease, value, raw) => {
             assert.deepEqual(raw, judgment);
             counts.complete++;
@@ -105,7 +106,7 @@ test('lost finalize response reads committed result without another award or fai
     assert.equal(counts.fail, 0);
 });
 
-test('model failure does not finalize and blank submissions do not need quota or key', async () => {
+test('model failure does not finalize and blank submissions do not need AI quota or key', async () => {
     const failed = service();
     failed.deps.grade = async () => { throw new Error('unavailable'); };
     assert.equal((await gradeLearningSubmission(memberId, set.id, token(), answers, failed.deps)).ok, false);
@@ -116,6 +117,26 @@ test('model failure does not finalize and blank submissions do not need quota or
     const blankAnswers = { sub1: '', sub2: '' };
     assert.equal((await gradeLearningSubmission(memberId, set.id, token('member', now, blankAnswers), blankAnswers, blank.deps)).ok, true);
     assert.equal(blank.counts.quota, 0);
+});
+
+test('new blank submissions are rate limited before creating any database records', async () => {
+    const { deps, counts } = service();
+    const blank = { sub1: '', sub2: '' };
+    deps.consumeSubmissionQuota = async () => false;
+    const result = await gradeLearningSubmission(memberId, set.id, token('member', now, blank), blank, deps);
+    assert.equal(result.ok, false);
+    if (!result.ok) assert.equal(result.code, 'rate_limited');
+    assert.deepEqual(counts, { begin: 0, grade: 0, quota: 0, complete: 0, fail: 0 });
+});
+
+test('saved results remain readable when the new submission quota is exhausted', async () => {
+    const { deps, counts } = service();
+    const issued = token();
+    assert.equal((await gradeLearningSubmission(memberId, set.id, issued, answers, deps)).ok, true);
+    deps.consumeSubmissionQuota = async () => { throw new Error('must not consume quota for existing submission'); };
+    assert.equal((await gradeLearningSubmission(memberId, set.id, issued, answers, deps)).ok, true);
+    assert.equal(counts.begin, 1);
+    assert.equal(counts.grade, 1);
 });
 
 test('public database projections discard private fields and reject unsafe numeric coercion', () => {

@@ -26,13 +26,17 @@ export async function proxy(request: NextRequest) {
                 getAll() {
                     return request.cookies.getAll();
                 },
-                setAll(cookiesToSet) {
+                setAll(cookiesToSet, headersToSet) {
                     cookiesToSet.forEach(({ name, value }) => {
                         request.cookies.set(name, value);
                     });
                     response = NextResponse.next({ request });
                     cookiesToSet.forEach(({ name, value, options }) => {
                         response.cookies.set(name, value, options);
+                    });
+                    // 갱신된 세션 쿠키가 공유 캐시에 저장되지 않게 SSR의 헤더도 전달한다.
+                    Object.entries(headersToSet).forEach(([name, value]) => {
+                        response.headers.set(name, value);
                     });
                 },
             },

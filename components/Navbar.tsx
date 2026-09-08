@@ -9,32 +9,37 @@ export const Navbar: React.FC = () => {
     const { user, logout } = useAuth();
     const pathname = usePathname();
 
-    if (!user) return null;
-
-    const navItems = [
+    const firmInfo = { name: '회계법인 정보', href: '/firms' };
+    const navItems = user ? [
         { name: '문제 풀기', href: '/quiz' },
+        firmInfo,
         { name: '커리큘럼', href: '/curriculum' },
         { name: '풀이 기록', href: '/history' },
         { name: '오답노트', href: '/review-notes' },
         { name: '랭킹', href: '/ranking' },
         { name: '내 정보', href: '/profile' },
-    ];
+    ] : [firmInfo];
 
-    if (user.role === 'ADMIN') {
+    if (user?.role === 'ADMIN') {
         navItems.push({ name: '관리자', href: '/admin' });
     }
 
+    const isItemActive = (href: string) =>
+        pathname === href || pathname.startsWith(`${href}/`)
+        || (href === '/firms' && ['/companies', '/reports', '/chat', '/reviews']
+            .some((section) => pathname === section || pathname.startsWith(`${section}/`)));
+
     return (
-        <nav className="bg-background border-b border-card-border sticky top-0 z-50 px-4 md:px-8">
+        <nav aria-label="주 메뉴" className="bg-background border-b border-card-border sticky top-0 z-50 px-4 md:px-8">
             <div className="max-w-7xl mx-auto flex items-center justify-between gap-6 h-16">
                 <div className="flex items-center gap-8 min-w-0">
                     <Link href="/" className="text-base tracking-tight text-foreground whitespace-nowrap">
                         Audit Say
                     </Link>
 
-                    <div className="hidden lg:flex items-center gap-1">
+                    <div className="hidden xl:flex items-center gap-1 whitespace-nowrap">
                         {navItems.map((item) => {
-                            const isActive = pathname === item.href;
+                            const isActive = isItemActive(item.href);
                             return (
                                 <Link
                                     key={item.href}
@@ -53,22 +58,30 @@ export const Navbar: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-4 whitespace-nowrap">
-                    <span className="text-sm text-foreground/60">
-                        {user.username} <span className="text-foreground/35">Lv.{user.level}</span>
-                    </span>
-                    <button
-                        onClick={logout}
-                        className="text-sm text-foreground/55 hover:text-foreground transition-colors cursor-pointer"
-                    >
-                        로그아웃
-                    </button>
+                    {user ? (
+                        <>
+                            <span className="text-sm text-foreground/60">
+                                {user.username} <span className="text-foreground/35">Lv.{user.level}</span>
+                            </span>
+                            <button
+                                onClick={logout}
+                                className="text-sm text-foreground/55 hover:text-foreground transition-colors cursor-pointer"
+                            >
+                                로그아웃
+                            </button>
+                        </>
+                    ) : (
+                        <Link href="/" className="text-sm text-foreground/55 hover:text-foreground transition-colors">
+                            로그인
+                        </Link>
+                    )}
                 </div>
             </div>
 
             {/* 모바일: 링크를 아래 줄에 가로 스크롤로 둔다. */}
-            <div className="lg:hidden flex items-center gap-1 -mx-1 pb-2 overflow-x-auto">
+            <div className="xl:hidden flex items-center gap-1 -mx-1 pb-2 overflow-x-auto">
                 {navItems.map((item) => {
-                    const isActive = pathname === item.href;
+                    const isActive = isItemActive(item.href);
                     return (
                         <Link
                             key={item.href}

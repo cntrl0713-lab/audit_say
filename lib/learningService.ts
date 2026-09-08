@@ -19,6 +19,7 @@ export interface LearningServiceDependencies {
     complete: (owner: string, attempt: string, run: string, lease: string, result: QuestionSetGradeResultV3, raw?: QuestionSetJudgmentV3) => Promise<StoredAttemptResult>;
     fail: (owner: string, attempt: string, run: string, lease: string, code: string) => Promise<void>;
     consumeQuota: (owner: string) => Promise<boolean>;
+    consumeSubmissionQuota: (owner: string) => Promise<boolean>;
     grade: (set: QuestionSetV3, answers: Record<string, string>, key: string, onJudgment?: (judgment: QuestionSetJudgmentV3) => void) => Promise<QuestionSetGradeResultV3>;
 }
 
@@ -52,6 +53,7 @@ export async function gradeLearningSubmission(
         answers = assertBoundAnswers(claims, set, input);
         const existing = await deps.findAttempt(owner, claims.submission_key);
         if (!existing && now >= Date.parse(claims.accept_until)) return failure('submission_expired', '제출 준비 정보가 만료되었습니다. 새 제출로 요청해 주세요.');
+        if (!existing && !await deps.consumeSubmissionQuota(owner)) return failure('rate_limited', '제출 요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.');
         attempt = existing ?? (await deps.begin(claims, answers)).attempt_id;
         const stored = success(await deps.readResult(owner, attempt));
         if (stored) return stored;

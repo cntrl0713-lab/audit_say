@@ -374,6 +374,7 @@ test('real submission orchestration and SQL agree on guest conversion, replay an
                 [id, owner, run, lease, JSON.stringify({ ...result, raw_judgment: raw })]),
             fail: async (owner, id, run, lease, code) => { await scalar(db, 'public.cpa_fail_grading_run($1,$2,$3,$4,$5)', [id, owner, run, lease, code]); },
             consumeQuota: async () => { quotaCalls++; return true; },
+            consumeSubmissionQuota: async () => true,
             grade: async (set, raw, _key, onJudgment) => {
                 modelCalls++;
                 const judgment: QuestionSetJudgmentV3 = { subquestions: set.subquestions.map((sub) => ({

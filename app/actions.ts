@@ -9,7 +9,7 @@ import {
     incrementProgress,
     updateUserRole,
 } from '../lib/dbAdmin';
-import { consumeGradeQuota } from '../lib/rateLimit';
+import { consumeGradeQuota, consumeSubmissionQuota } from '../lib/rateLimit';
 import {
     classifyQuestionBankV3LoadError,
     findAuthoringQuestionSetV3,
@@ -56,7 +56,8 @@ export async function getQuestionSetsV3(): Promise<PublicQuestionSetV3[]> {
 }
 
 export async function checkUsernameExistsAction(username: string): Promise<boolean> {
-    const trimmed = (username || '').trim();
+    if (typeof username !== 'string' || username.length > 100) return true;
+    const trimmed = username.trim();
     if (!trimmed) return true;
     return checkUsernameExists(trimmed);
 }
@@ -76,7 +77,7 @@ export async function gradeQuestionSetV3Action(
                 loadSet: findDatabaseQuestionVersion, findAttempt: findAttemptForSubmission,
                 begin: beginAttempt, readResult: getAttemptResult, claim: claimGradingRun,
                 complete: completeGradingRun, fail: failGradingRun,
-                consumeQuota: consumeGradeQuota, grade: gradeQuestionSetV3,
+                consumeQuota: consumeGradeQuota, consumeSubmissionQuota, grade: gradeQuestionSetV3,
             });
         } catch {
             return { ok: false, code: 'persistence_unavailable', message: '학습 기록 저장 설정을 확인하지 못했습니다. 잠시 후 다시 시도해 주세요.' };
