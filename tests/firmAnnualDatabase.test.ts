@@ -54,5 +54,25 @@ test('실제 SQL: 원자적 교체·구 공시 거부·재실행·비공개 RLS�
         assert.equal((await db.query("select * from pg_policies where tablename in ('firm_director','firm_director_pay')")).rows.length, 0);
         await db.exec(fs.readFileSync(new URL('../supabase/verification/verify_firm_views.sql', import.meta.url), 'utf8'));
         assert.equal((await db.query<{ count: number }>('select count(*)::int as count from firm_registered')).rows[0].count, 1);
+        // 실제 적재된 공개 원문으로 새 뷰를 검증한다. 운영 DB에는 쓰지 않는다.
+        await db.exec('alter table public.firm_annual_form_cell rename to cpa_firm_annual_form_cell; alter table public.firm_profile_yearly rename to cpa_firm_profile_yearly; alter table public.firm_audit_input_yearly rename to cpa_firm_audit_input_yearly;');
+        const viewSql = fs.readFileSync(new URL('../supabase/migrations/20260908005001_firm_headcount_and_audit_input_views.sql', import.meta.url), 'utf8');
+        await db.exec(viewSql);
+        await db.exec(viewSql); // 재실행 가능
+        // 이 테스트는 기본 스키마의 CREATE TABLE만 읽으므로 공개 profile의 기본 권한을 복원한다.
+        await db.exec('grant select on cpa_firm_profile_yearly to anon,authenticated; set role anon');
+        const headcounts = await db.query<{ numeric_value: string; source_rcept_no: string }>("select numeric_value,source_rcept_no from v_firm_headcount where code='HR_CPA_ALL' and bsns_year=2025");
+        assert.equal(headcounts.rows.length, 1);
+        assert.equal(Number(headcounts.rows[0].numeric_value), 3073);
+        assert.equal(headcounts.rows[0].source_rcept_no, '20250930000188');
+        assert.ok((await db.query('select * from v_firm_audit_input where bsns_year=2025')).rows.length > 0);
+        for (const name of ['v_firm_headcount', 'v_firm_audit_input']) {
+            const options = await db.query<{ reloptions: string[] }>('select reloptions from pg_class where relname=$1', [name]);
+            assert.ok(options.rows[0].reloptions.includes('security_invoker=true'));
+        }
+        // 같은 결산연도라도 다른 접수번호는 조인되지 않는다.
+        await db.exec('reset role');
+        await db.exec("update cpa_firm_annual_form_cell set source_rcept_no='unmatched' where bsns_year=2025 and code='HR_CPA_ALL'");
+        assert.equal((await db.query("select * from v_firm_headcount where bsns_year=2025 and code='HR_CPA_ALL'")).rows.length, 0);
     } finally { await db.close(); }
 });

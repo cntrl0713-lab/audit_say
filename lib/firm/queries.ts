@@ -11,6 +11,8 @@ import type {
     FirmAnnualSummary,
     FirmCpaTenureRow,
     FirmPersonnelCostRow,
+    FirmHeadcountRow,
+    FirmAuditInputRow,
     RegisteredFirm,
 } from './types';
 
@@ -47,6 +49,22 @@ export async function getFirmPersonnelCost(firmId: number): Promise<FirmPersonne
     if (error?.code === 'PGRST205' || error?.code === '42P01') return [];
     fail('회계법인 인건비 조회', error);
     return (data ?? []) as FirmPersonnelCostRow[];
+}
+
+export async function getFirmHeadcount(firmId: number): Promise<FirmHeadcountRow[]> {
+    const db = await getSupabaseServerClient();
+    const { data, error } = await db.from('v_firm_headcount').select('*').eq('firm_id', firmId);
+    if (error?.code === 'PGRST205' || error?.code === '42P01') return [];
+    fail('회계법인 인원 조회', error);
+    return (data ?? []) as FirmHeadcountRow[];
+}
+
+export async function getFirmAuditInput(firmId: number): Promise<FirmAuditInputRow[]> {
+    const db = await getSupabaseServerClient();
+    const { data, error } = await db.from('v_firm_audit_input').select('*').eq('firm_id', firmId);
+    if (error?.code === 'PGRST205' || error?.code === '42P01') return [];
+    fail('회계법인 감사 투입 조회', error);
+    return (data ?? []) as FirmAuditInputRow[];
 }
 
 export interface Page<T> {

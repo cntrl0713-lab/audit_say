@@ -2,6 +2,9 @@ import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
     buildCostConcepts,
+    buildHeadcounts,
+    averageDirectorPay,
+    buildAuditInput,
     buildPersonnelCostSegments,
     buildTenureSegments,
     rowsForReceipt,
@@ -9,7 +12,7 @@ import {
     splitTenureSegments,
     summarizeTurnover,
 } from '../lib/firm/personnel.ts';
-import type { FirmCpaTenureRow, FirmPersonnelCostRow, FirmSegment } from '../lib/firm/types.ts';
+import type { FirmCpaTenureRow, FirmPersonnelCostRow, FirmSegment, FirmHeadcountRow } from '../lib/firm/types.ts';
 
 const PERIOD = {
     firm_id: 1,
@@ -21,6 +24,35 @@ const PERIOD = {
     source_rcept_no: '20260101000001',
     source_rcept_dt: '2026-01-01',
 };
+
+const headcount = (over: Partial<FirmHeadcountRow> = {}): FirmHeadcountRow => ({ ...PERIOD, code: 'HR_CPA_ALL', occurrence: 1, raw_text: '3,073', numeric_value: 3073, unit_multiplier: null, ...over });
+test('인원 칸은 1번 단일 출현만 사용하고 단위 배수 이상·결측·중복을 추정하지 않는다', () => {
+    const value = (rows: FirmHeadcountRow[]) => buildHeadcounts(rows)[0];
+    assert.equal(value([headcount()]).count, 3073);
+    assert.equal(value([headcount({ numeric_value: 0, unit_multiplier: 1 })]).count, 0);
+    assert.equal(value([]).count, null);
+    assert.equal(value([headcount({ numeric_value: null })]).count, null);
+    assert.equal(value([headcount({ unit_multiplier: 1000 })]).count, null);
+    assert.equal(value([headcount({ occurrence: 2 })]).count, null);
+    assert.equal(value([headcount(), headcount({ occurrence: 2 })]).count, null);
+    assert.match(value([headcount(), headcount({ occurrence: 2 })]).note ?? '', /2개/);
+    assert.equal(value([headcount(), headcount({ code: 'HR_R_ALL', numeric_value: 2813 })]).count, 3073);
+    assert.equal(value([headcount({ numeric_value: -1 })]).count, null);
+});
+
+test('5명 미만 또는 미확보 집계는 이사 평균 보수를 만들지 않는다', () => {
+    for (const count of [null, 0, 1, 4]) assert.equal(averageDirectorPay({ director_pay_total: 100, director_pay_count: count }), null);
+    assert.equal(averageDirectorPay({ director_pay_total: 100, director_pay_count: 5 }), 20);
+    assert.equal(averageDirectorPay({ director_pay_total: null, director_pay_count: 5 }), null);
+});
+
+test('감사시간 분모는 해당 경력 구간의 합계 투입 인원이며 수습은 독립 구간이다', () => {
+    const base = { ...PERIOD, tenure_band: 'trainee' as const, mid_headcount: 100, mid_hours: 1000, end_headcount: 200, end_hours: 2000, tot_headcount: 3, tot_hours: 120 };
+    assert.equal(buildAuditInput([base])[0].hoursPerHead, 40);
+    assert.equal(buildAuditInput([base])[0].label, '수습');
+    assert.equal(buildAuditInput([{ ...base, tot_headcount: 0 }])[0].hoursPerHead, null);
+    assert.equal(buildAuditInput([{ ...base, tot_hours: null }])[0].hoursPerHead, null);
+});
 
 function tenure(segment: FirmSegment, over: Partial<FirmCpaTenureRow> = {}): FirmCpaTenureRow {
     return {

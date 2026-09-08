@@ -41,6 +41,12 @@ export interface FirmAnnualSummary {
     revenue_total: number | null; operating_income: number | null;
     salary_total: number | null; revenue_per_employee: number | null;
     salary_per_employee: number | null; audit_revenue_ratio: number | null;
+    employee_per_director: number | null; net_income: number | null;
+    employee_audit: number | null; employee_tax: number | null;
+    employee_advisory: number | null; employee_other: number | null;
+    revenue_audit: number | null; revenue_tax: number | null;
+    revenue_advisory: number | null; revenue_other: number | null;
+    director_pay_total: number | null; director_pay_count: number | null;
     consistency_warnings: string[];
 }
 
@@ -192,6 +198,23 @@ export interface FirmPersonnelCostRow extends FirmAnnualPeriodRef {
     headcount: number | null;
     source_table: string;
     match_method: CostMatchMethod;
+}
+
+/** v_firm_headcount — TG_HR_TOT 원문 인원 칸. 단위 배수를 곱하지 않는다. */
+export interface FirmHeadcountRow extends FirmAnnualPeriodRef {
+    code: string;
+    occurrence: number;
+    raw_text: string | null;
+    numeric_value: number | null;
+    unit_multiplier: number | null;
+}
+
+export type AuditInputBand = 'trainee' | 'under_1y' | 'y1_3' | 'y3_5' | 'y5_10' | 'y10_15' | 'over_15y' | 'total';
+export interface FirmAuditInputRow extends FirmAnnualPeriodRef {
+    tenure_band: AuditInputBand;
+    mid_headcount: number | null; mid_hours: number | null;
+    end_headcount: number | null; end_hours: number | null;
+    tot_headcount: number | null; tot_hours: number | null;
 }
 
 export const MARKET_LABEL: Record<CorpCls, string> = {

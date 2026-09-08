@@ -13,8 +13,48 @@ import type {
     FirmCpaTenureRow,
     FirmPersonnelCostRow,
     FirmSegment,
+    FirmHeadcountRow,
+    FirmAnnualSummary,
+    FirmAuditInputRow,
     PersonnelCostConcept,
 } from './types.ts';
+import { safeRatio } from './format.ts';
+
+export const HEADCOUNT_CODES = [
+    { code: 'HR_CPA_ALL', label: '공인회계사' },
+    { code: 'HR_R_ALL', label: '등록회계사 (인원표)' },
+    { code: 'HR_P_ALL', label: '수습회계사' },
+    { code: 'HR_E_ALL', label: '사원(출자자)' },
+    { code: 'HR_W_ALL', label: '기타직원' },
+] as const;
+
+/** 먼저 rowsForReceipt로 한 공시만 선택한다. 중복 칸은 어느 값도 채택하지 않는다. */
+export function buildHeadcounts(rows: readonly FirmHeadcountRow[]) {
+    return HEADCOUNT_CODES.map(({ code, label }) => {
+        const cells = rows.filter(row => row.code === code);
+        const cell = cells[0];
+        let note: string | null = null;
+        if (cells.length > 1 || cells.some(row => row.occurrence !== 1)) note = `원문 칸 ${cells.length}개 · 출현번호 ${cells.map(row => row.occurrence).join(', ')}: 값 선택 보류`;
+        else if (cell && cell.unit_multiplier !== null && cell.unit_multiplier !== 1) note = '인원 칸의 단위 배수 이상: 값 사용 보류';
+        else if (cell?.numeric_value != null && (!Number.isSafeInteger(cell.numeric_value) || cell.numeric_value < 0)) note = '인원 값 확인 보류';
+        return { code, label, count: note === null ? cell?.numeric_value ?? null : null, note };
+    });
+}
+
+/** 공개된 집계만 사용한다. 5명 미만이거나 집계 인원이 없으면 평균 보수를 만들지 않는다. */
+export function averageDirectorPay(summary: Pick<FirmAnnualSummary, 'director_pay_total' | 'director_pay_count'>) {
+    const count = summary.director_pay_count;
+    if (count == null || !Number.isSafeInteger(count) || count < 5) return null;
+    return safeRatio(summary.director_pay_total, count);
+}
+
+export function buildAuditInput(rows: readonly FirmAuditInputRow[]) {
+    const bands = [{ key: 'total', label: '전체' }, { key: 'trainee', label: '수습' }, ...TENURE_BANDS];
+    return bands.flatMap(band => rows.filter(row => row.tenure_band === band.key).map(row => ({
+        ...row, label: band.label,
+        hoursPerHead: row.tot_headcount != null && row.tot_headcount > 0 ? safeRatio(row.tot_hours, row.tot_headcount) : null,
+    })));
+}
 
 export const SEGMENT_ORDER: FirmSegment[] = ['total', 'audit', 'tax', 'advisory', 'other'];
 

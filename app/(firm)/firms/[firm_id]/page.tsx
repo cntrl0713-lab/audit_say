@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getFirmSummaries, getFirmAnnualSummaries, getFirmCpaTenure, getRegisteredFirm, listAllYears } from '../../../../lib/firm/queries';
+import { getFirmSummaries, getFirmAnnualSummaries, getFirmCpaTenure, getFirmHeadcount, getRegisteredFirm, listAllYears } from '../../../../lib/firm/queries';
 import { ANNUAL_DISPLAY_YEARS, annualPeriodsForYear } from '../../../../lib/firm/annualYears';
 import { formatDecimal, formatKrw, formatNumber } from '../../../../lib/firm/format';
 import { buildFilterQuery, readEnum, readInt, type SearchParams } from '../../../../lib/firm/params';
@@ -36,12 +36,13 @@ export default async function FirmDetailPage({
     const firmId = Number(firm_id);
     if (!Number.isSafeInteger(firmId) || firmId <= 0) notFound();
 
-    const [firm, summaries, years, annualSummaries, tenure] = await Promise.all([
+    const [firm, summaries, years, annualSummaries, tenure, headcounts] = await Promise.all([
         getRegisteredFirm(firmId),
         getFirmSummaries(firmId),
         listAllYears(),
         getFirmAnnualSummaries(firmId),
         getFirmCpaTenure(firmId),
+        getFirmHeadcount(firmId),
     ]);
     if (!firm) notFound();
 
@@ -92,7 +93,7 @@ export default async function FirmDetailPage({
             </nav>
             {FIRM_OWN_TABS.includes(tab) ? <YearAxis label="보고기간 시작연도" years={ANNUAL_DISPLAY_YEARS} current={annualYear} hrefFor={y => `${base}${buildFilterQuery(query, { fy_start_year: y, fy_year: null })}`} /> : <YearAxis label="감사대상회사 사업연도" years={years} current={year} hrefFor={y => `${base}${buildFilterQuery(query, { year: y })}`} />}
 
-            {tab === 'workforce' ? <WorkforceTab periods={periods} year={annualYear} /> : tab === 'personnel' ? <PersonnelTab firmId={firmId} periods={periods} year={annualYear} tenure={tenure} /> : year === null || summary === null ? (
+            {tab === 'workforce' ? <WorkforceTab periods={periods} year={annualYear} tenure={tenure} headcounts={headcounts} /> : tab === 'personnel' ? <PersonnelTab firmId={firmId} periods={periods} year={annualYear} tenure={tenure} /> : year === null || summary === null ? (
                 <NotCollectedNotice what={`${firm.firm_name}의 감사`} />
             ) : (
                 <>

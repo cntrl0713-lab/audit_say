@@ -1,16 +1,16 @@
-import { getFirmPersonnelCost } from '../../../../lib/firm/queries';
-import { buildCostConcepts, buildPersonnelCostSegments, buildTenureSegments, rowsForReceipt, splitCostSegments, splitTenureSegments, summarizeTurnover, TENURE_BANDS } from '../../../../lib/firm/personnel';
-import type { FirmAnnualSummary, FirmCpaTenureRow, FirmPersonnelCostRow } from '../../../../lib/firm/types';
-import { formatNumber, formatRatio, formatKrw } from '../../../../lib/firm/format';
+import { getFirmPersonnelCost, getFirmAuditInput } from '../../../../lib/firm/queries';
+import { buildAuditInput, buildCostConcepts, buildPersonnelCostSegments, buildTenureSegments, rowsForReceipt, splitCostSegments, splitTenureSegments, summarizeTurnover, TENURE_BANDS } from '../../../../lib/firm/personnel';
+import type { FirmAnnualSummary, FirmCpaTenureRow, FirmPersonnelCostRow, FirmAuditInputRow } from '../../../../lib/firm/types';
+import { formatDecimal, formatNumber, formatRatio, formatKrw } from '../../../../lib/firm/format';
 import { Basis, Footnote, DataTable, EmptyState, StatTile } from '../../_components/ui';
 
 export default async function PersonnelTab({ firmId, periods, year, tenure }: { firmId: number; periods: FirmAnnualSummary[]; year: number; tenure: FirmCpaTenureRow[] }) {
-    const cost = await getFirmPersonnelCost(firmId);
+    const [cost, auditInput] = await Promise.all([getFirmPersonnelCost(firmId), getFirmAuditInput(firmId)]);
     return (
         <>
             <h3 className="mb-2 text-lg font-medium">{year}년 시작 보고기간 · 인력 구성과 인건비</h3>
             <Basis>
-                근속 분포는 <strong className="font-medium">공인회계사</strong>, 인건비 표의 인원은{' '}
+                근속 분포는 <strong className="font-medium">등록회계사 (공인회계사 중 근속표 모집단)</strong>, 인건비 표의 인원은{' '}
                 <strong className="font-medium">전 임직원</strong> 기준이라 두 인원은 서로 다릅니다. 같은 수로 비교하지
                 마십시오. 부문 구분과 근속 구간은 공시 표기를 그대로 따르며, 값이 없으면 0 이 아니라 결측으로 둡니다.
             </Basis>
@@ -23,10 +23,11 @@ export default async function PersonnelTab({ firmId, periods, year, tenure }: { 
                 <div className="space-y-8">
                     {periods.map((period) => (
                         <PersonnelPeriodCard
-                            key={period.fy_end_date}
+                            key={period.source_rcept_no}
                             period={period}
                             tenure={rowsForReceipt(tenure, period.source_rcept_no)}
                             cost={rowsForReceipt(cost, period.source_rcept_no)}
+                            auditInput={rowsForReceipt(auditInput, period.source_rcept_no)}
                         />
                     ))}
                 </div>
@@ -44,16 +45,19 @@ function PersonnelPeriodCard({
     period,
     tenure,
     cost,
+    auditInput,
 }: {
     period: FirmAnnualSummary;
     tenure: FirmCpaTenureRow[];
     cost: FirmPersonnelCostRow[];
+    auditInput: FirmAuditInputRow[];
 }) {
     const { shown: segments, omitted: emptySegments } = splitTenureSegments(buildTenureSegments(tenure));
     const turnover = summarizeTurnover(tenure);
     const { shown: costSegments, omitted: emptyCostSegments } = splitCostSegments(buildPersonnelCostSegments(cost));
     const concepts = buildCostConcepts(cost);
-    const nothing = segments.length === 0 && turnover === null && costSegments.length === 0 && concepts.length === 0;
+    const input = buildAuditInput(auditInput);
+    const nothing = input.length === 0 && segments.length === 0 && turnover === null && costSegments.length === 0 && concepts.length === 0;
 
     return (
         <div className="space-y-8">
@@ -70,6 +74,10 @@ function PersonnelPeriodCard({
                 </a>
             </p>
 
+            {period.consistency_warnings.length ? <Basis title={`공시 정합성 확인 사항 ${period.consistency_warnings.length}건`}>
+                원문 값을 보존했습니다. 표 간 수치 차이 또는 검증할 수 없는 항목이 있습니다.
+                {period.consistency_warnings.some(warning => warning.startsWith('auditInputExceedsCpa')) ? <p>감사 투입 인력이 공인회계사 수보다 큽니다. 원문의 투입 인력 집계 기준을 확인해 주세요.</p> : null}
+            </Basis> : null}
             {nothing ? (
                 <EmptyState
                     title="인력·인건비 수치 미확보"
@@ -79,7 +87,7 @@ function PersonnelPeriodCard({
 
             {turnover ? (
                 <section>
-                    <h4 className="mb-2 text-lg font-medium">공인회계사 입·퇴사</h4>
+                    <h4 className="mb-2 text-lg font-medium">등록회계사 입·퇴사</h4>
                     <dl className="grid grid-cols-2 gap-2 lg:grid-cols-3">
                         <StatTile label="기초 인원" value={formatNumber(turnover.begin, '명')} />
                         <StatTile label="입사" value={formatNumber(turnover.hires, '명')} />
@@ -107,7 +115,7 @@ function PersonnelPeriodCard({
 
             {segments.length ? (
                 <section>
-                    <h4 className="mb-2 text-lg font-medium">공인회계사 근속 분포</h4>
+                    <h4 className="mb-2 text-lg font-medium">등록회계사 근속 분포</h4>
                     <DataTable columns={[{ key: 'segment', label: '부문' }, ...TENURE_BANDS.map(band => ({ key: band.key, label: band.label, align: 'right' as const, priority: 'wide' as const })), { key: 'total', label: '공시 합계', align: 'right' }]} rows={segments.map(segment => [segment.label, ...segment.bands.map(band => <span key={band.key}>{formatNumber(band.count)}<small className="block">{formatRatio(band.share)}</small></span>), <span key="total">{formatNumber(segment.total)}{segment.totalMismatch ? <small className="block">구간 합 {formatNumber(segment.observed)}</small> : null}</span>])} />
                     <Footnote>
                         비중은 구간 값이 확인된 인원만을 분모로 씁니다.
@@ -141,7 +149,7 @@ function PersonnelPeriodCard({
                                         </span>])} />
                     <Footnote>
                         1인당 인건비는 이사를 포함한 전체 임직원 인건비를 같은 표의 인원으로 나눈 값입니다. 위 근속
-                        분포의 공인회계사 수로 나눈 값이 아닙니다.
+                        분포의 등록회계사 수로 나눈 값이 아닙니다.
                         {emptyCostSegments.length
                             ? ` ${emptyCostSegments.map((segment) => segment.label).join(' · ')} 부문은 금액도 인원도 공시되지 않아 표에서 뺐습니다.`
                             : ''}
@@ -167,6 +175,11 @@ function PersonnelPeriodCard({
                     </Footnote>
                 </section>
             ) : null}
+            <section className="space-y-3">
+                <h4 className="text-lg font-medium">감사 투입</h4>
+                {input.length ? <DataTable columns={[{ key: 'band', label: '경력 구간' }, { key: 'mid', label: '중간 (mid)', priority: 'wide' }, { key: 'end', label: '기말 (end)', priority: 'wide' }, { key: 'total', label: '합계 (tot)' }, { key: 'average', label: '1인당 연간 감사시간', align: 'right' }]} rows={input.map(row => [row.label, <span key="mid">{formatNumber(row.mid_headcount, '명')}<br />{formatNumber(row.mid_hours, '시간')}</span>, <span key="end">{formatNumber(row.end_headcount, '명')}<br />{formatNumber(row.end_hours, '시간')}</span>, <span key="total">{formatNumber(row.tot_headcount, '명')}<br />{formatNumber(row.tot_hours, '시간')}</span>, formatDecimal(row.hoursPerHead, 1, '시간')])} /> : <EmptyState title="감사 투입 수치 미확보" />}
+                <Footnote>감사 부문 투입 한정이며 회계법인 전체 근로시간이 아닙니다. 중간(mid)·기말(end)·합계(tot)는 공시 원문의 구분입니다. 1인당 연간 감사시간은 해당 보고기간의 합계 감사시간 ÷ 같은 경력 구간의 합계 투입 인력(tot_headcount)이며, 보고기간 길이를 12개월로 환산하지 않습니다. 수습을 포함하는 경력 구간으로 위 근속연차 구간과 기준이 다릅니다.</Footnote>
+            </section>
         </div>
     );
 }
