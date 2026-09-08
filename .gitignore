@@ -70,5 +70,23 @@ ENV/
 /docs/reports/*.json
 /docs/reports/annual/*.json
 !/docs/reports/auditor-master-added.json
+!/docs/reports/cpa-learning-db-applied.json
 # 외부 기준서 원문은 로컬 참고용으로만 둔다
 /docs/reports/question-review-2027/sources/
+
+.vercel
+.env*
+
+# 원자적 쓰기가 남긴 조각. 정본은 확장자 없는 원본 파일이다.
+**/*.tmp
+
+# 배포·마이그레이션 작업 스크래치와 DB 스냅샷. 재생성 가능한 로컬 산출물이다.
+/tmp/
+
+# 외부 기준서 원문은 로컬 참고용으로만 둔다.
+# docs/reports/.../sources/ 와 같은 이유이며, 인용은 문항·리뷰 문서에 남는다.
+/cpa_uploader/data/official/
+
+# 채점 하네스가 남긴 API 요청·응답 원문 로그. 하네스를 다시 돌리면 재생성된다.
+# 하네스 스크립트와 케이스·판정 기록은 검토 근거라 추적한다.
+/docs/reports/question-review-2027/grading-cases/*-live.jsonl
