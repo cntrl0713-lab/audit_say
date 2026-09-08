@@ -1,16 +1,21 @@
 'use client';
-import { DataTable } from '../(firm)/_components/ui';
-
-
 import { useEffect, useMemo, useState } from 'react';
 import { Search, Settings, ShieldAlert } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { getAllUsersAction, getQuestionSetsV3, updateUserRoleAction } from '../actions';
 import { ROLE_NAMES } from '../../lib/utils';
+import { DataTable, type DataColumn } from '../(firm)/_components/ui';
 import type { UserProfile } from '../../lib/db';
 import type { PublicQuestionSetV3 } from '../../lib/questionV3';
 
 type AdminTab = 'questions' | 'users';
+
+const USER_COLUMNS: DataColumn[] = [
+    { key: 'username', label: '닉네임' },
+    { key: 'role', label: '권한' },
+    { key: 'exp', label: '경험치', align: 'right' },
+    { key: 'level', label: '레벨', align: 'right' },
+];
 
 export default function AdminPage() {
     const { user, loading: authLoading } = useAuth();
@@ -120,10 +125,15 @@ export default function AdminPage() {
                 </section>
             ) : (
                 <section className="space-y-5">
-                    <DataTable columns={[{"key":"0","label":"닉네임","align":"left","priority":"always"},{"key":"1","label":"권한","align":"right","priority":"always"},{"key":"2","label":"경험치","align":"right","priority":"always"},{"key":"3","label":"레벨","align":"right","priority":"always"}]} rows={users.map(candidate => [<span key="0" className="block">{candidate.username}</span>,
-<span key="1" className="block">{ROLE_NAMES[candidate.role]}</span>,
-<span key="2" className="block">{candidate.exp}</span>,
-<span key="3" className="block">Lv.{candidate.level}</span>])} />
+                    <DataTable
+                        columns={USER_COLUMNS}
+                        rows={users.map((candidate) => [
+                            candidate.username,
+                            ROLE_NAMES[candidate.role],
+                            candidate.exp,
+                            `Lv.${candidate.level}`,
+                        ])}
+                    />
                     <div className="grid gap-3 rounded-lg border border-card-border bg-card p-5 md:grid-cols-[1fr_1fr_auto] md:items-end">
                         <label className="text-xs text-foreground/50">사용자
                             <select value={selectedUser} onChange={(event) => setSelectedUser(event.target.value)} className="mt-1 block w-full rounded-md border border-card-border bg-card-border/20 px-3 py-2 text-sm text-foreground">

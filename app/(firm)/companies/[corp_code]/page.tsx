@@ -1,4 +1,3 @@
-import { DataTable } from '../../_components/ui';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import {
@@ -12,7 +11,15 @@ import { firmReturnHref } from '../../../../lib/firm/navigation';
 import { buildFilterQuery, readInt, type SearchParams } from '../../../../lib/firm/params';
 import { formatKrw, formatNumber } from '../../../../lib/firm/format';
 import { DATA_STATUS_LABEL, MARKET_LABEL } from '../../../../lib/firm/types';
-import { Chip, EmptyState, OpinionBadge, StatTile } from '../../_components/ui';
+import { Chip, DataTable, type DataColumn, EmptyState, OpinionBadge, StatTile } from '../../_components/ui';
+
+const HISTORY_COLUMNS: DataColumn[] = [
+    { key: 'bsns_year', label: '사업연도' },
+    { key: 'firm', label: '감사인' },
+    { key: 'opinion', label: '의견' },
+    { key: 'kam', label: 'KAM', align: 'right', priority: 'wide' },
+    { key: 'change', label: '변동', priority: 'wide' },
+];
 
 export default async function CompanyDetailPage({
     params,
@@ -94,43 +101,35 @@ export default async function CompanyDetailPage({
 
                     <p className="mb-4 text-xs text-foreground/60">‘-’는 미확보 값이며 0과 다릅니다. 금액 확인 보류에는 외화 공시 등이 포함되며 원화로 임의 환산하지 않습니다.</p>
                     <h3 className="mb-2 text-sm text-foreground/60">감사대상회사 감사 이력 · 수집된 연도 기준</h3>
-                    <DataTable columns={[{"key":"0","label":"사업연도","align":"left","priority":"always"},{"key":"1","label":"감사인","align":"right","priority":"always"},{"key":"2","label":"의견","align":"right","priority":"always"},{"key":"3","label":"KAM","align":"right","priority":"wide"},{"key":"4","label":"변동","align":"right","priority":"wide"}]} rows={history.map(row => [<span key="0" className="block">{row.bsns_year}</span>,
-<span key="1" className="block">
-                                            <Link
-                                                href={`/firms/${row.firm_id}?year=${row.bsns_year}`}
-                                                className="hover:text-primary"
-                                            >
-                                                {row.firm_name}
-                                            </Link>
-                                        </span>,
-<span key="2" className="block">
-                                            <OpinionBadge opinion={row.adt_opinion} />
-                                        </span>,
-<span key="3" className="block">
-                                            {formatNumber(row.kam_count)}
-                                        </span>,
-<span key="4" className="block">
-                                            {/* 첫 연도(null)는 "변동 없음"이 아니라 비교 대상이 없는 것이다 */}
-                                            {row.auditor_changed === null ? (
-                                                <span className="text-foreground/30">첫 기록</span>
-                                            ) : (
-                                                <span className="flex flex-wrap gap-2">
-                                                    {row.auditor_changed ? (
-                                                        <span className="text-primary">
-                                                            감사인 교체 · 이전 {row.prev_firm_name}
-                                                        </span>
-                                                    ) : null}
-                                                    {row.opinion_changed ? (
-                                                        <span className="text-danger">
-                                                            의견 변경 · 이전 {row.prev_adt_opinion ?? '미상'}
-                                                        </span>
-                                                    ) : null}
-                                                    {!row.auditor_changed && !row.opinion_changed ? (
-                                                        <span className="text-foreground/30">-</span>
-                                                    ) : null}
-                                                </span>
-                                            )}
-                                        </span>])} />
+                    <DataTable
+                        columns={HISTORY_COLUMNS}
+                        rows={history.map((row) => [
+                            row.bsns_year,
+                            <Link key="firm" href={`/firms/${row.firm_id}?year=${row.bsns_year}`} className="hover:text-primary">
+                                {row.firm_name}
+                            </Link>,
+                            <OpinionBadge key="opinion" opinion={row.adt_opinion} />,
+                            formatNumber(row.kam_count),
+                            // 첫 연도(null)는 "변동 없음"이 아니라 비교 대상이 없는 것이다
+                            row.auditor_changed === null ? (
+                                <span key="change" className="text-foreground/30">
+                                    첫 기록
+                                </span>
+                            ) : (
+                                <span key="change" className="flex flex-wrap gap-2">
+                                    {row.auditor_changed ? (
+                                        <span className="text-primary">감사인 교체 · 이전 {row.prev_firm_name}</span>
+                                    ) : null}
+                                    {row.opinion_changed ? (
+                                        <span className="text-danger">의견 변경 · 이전 {row.prev_adt_opinion ?? '미상'}</span>
+                                    ) : null}
+                                    {!row.auditor_changed && !row.opinion_changed ? (
+                                        <span className="text-foreground/30">-</span>
+                                    ) : null}
+                                </span>
+                            ),
+                        ])}
+                    />
 
                     <h3 className="mb-2 text-sm text-foreground/60">선택 법인·연도의 KAM · 강조사항</h3>
                     {selectedKams.length === 0 ? (
