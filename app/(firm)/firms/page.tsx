@@ -43,7 +43,7 @@ export default async function FirmsPage({ searchParams }: { searchParams: Promis
             </div>
             <p className="mb-4 text-xs leading-relaxed text-foreground/60">
                 수집된 공시에서 감사인을 확인한 감사대상회사 기준입니다. 식별 보류·미확보 건은 집계에서 제외됩니다.
-                감사대상회사 평균 매출액은 재무금액이 감사대상회사 기준이며, 회계법인 자체 매출이 아닙니다.
+                감사대상회사 평균 매출액은 재무금액이 확인된 감사대상회사 기준이며, 회계법인 자체 매출이 아닙니다.
                 ‘-’는 미확보 값으로 0과 구분합니다. 회계법인 목록에 있다는 사실만으로 상장회사 감사인 등록 여부가 확인되는 것은 아닙니다.
             </p>
             {rows.length === 0 ? <EmptyState title="조건에 맞는 회계법인이 없습니다." description={q ? `“${q}” 검색 결과가 없습니다.` : undefined} /> : (

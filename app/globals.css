@@ -73,3 +73,9 @@ h2 {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
+
+/* 차트 원표는 접혀 있어도 인쇄에 포함한다. */
+@media print {
+  .firm-chart-data::details-content { content-visibility: visible; height: auto; }
+  .firm-chart-data > div { display: block !important; }
+}

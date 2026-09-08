@@ -20,7 +20,8 @@ export default async function KamTab({
     const page = Math.min(readInt(query, 'page', 1), 1_000_000);
     const result = await listFirmKam({ firmId, year, page });
 
-    if (page > result.pageCount && result.total > 0) redirect(`${base}${buildQuery(query, { page: result.pageCount })}`);
+    if (page > result.pageCount && result.total > 0)
+        redirect(`${base}${buildQuery(query, { page: result.pageCount })}`);
 
     if (result.rows.length === 0) {
         return <EmptyState title="KAM·강조사항이 기록된 감사 건이 없습니다." />;
@@ -33,10 +34,7 @@ export default async function KamTab({
             </p>
             <ul className="space-y-2">
                 {result.rows.map((row) => (
-                    <li
-                        key={row.engagement_id}
-                        className="rounded-lg border border-card-border bg-card px-4 py-3"
-                    >
+                    <li key={row.engagement_id} className="rounded-lg border border-card-border bg-card px-4 py-3">
                         <div className="flex flex-wrap items-baseline justify-between gap-2">
                             <Link
                                 href={clientDetailHref(row.corp_code, firmId, year, query)}
@@ -70,4 +68,3 @@ export default async function KamTab({
         </>
     );
 }
-

@@ -93,7 +93,7 @@ export default async function FirmDetailPage({
             </nav>
             {FIRM_OWN_TABS.includes(tab) ? <YearAxis label="보고기간 시작연도" years={ANNUAL_DISPLAY_YEARS} current={annualYear} hrefFor={y => `${base}${buildFilterQuery(query, { fy_start_year: y, fy_year: null })}`} /> : <YearAxis label="감사대상회사 사업연도" years={years} current={year} hrefFor={y => `${base}${buildFilterQuery(query, { year: y })}`} />}
 
-            {tab === 'workforce' ? <WorkforceTab periods={periods} year={annualYear} tenure={tenure} headcounts={headcounts} /> : tab === 'personnel' ? <PersonnelTab firmId={firmId} periods={periods} year={annualYear} tenure={tenure} /> : year === null || summary === null ? (
+            {tab === 'workforce' ? <WorkforceTab summaries={annualSummaries} periods={periods} year={annualYear} tenure={tenure} headcounts={headcounts} /> : tab === 'personnel' ? <PersonnelTab firmId={firmId} periods={periods} year={annualYear} tenure={tenure} /> : year === null || summary === null ? (
                 <NotCollectedNotice what={`${firm.firm_name}의 감사`} />
             ) : (
                 <>
@@ -108,7 +108,7 @@ export default async function FirmDetailPage({
                             value={formatNumber(summary.opinion_modified_count, '건')}
                             hint={`적정 ${summary.opinion_unqualified_count}건`}
                         />
-                        <StatTile label="감사대상회사 평균 매출액" value={formatKrw(summary.avg_client_revenue)} hint="금액이 감사대상회사 기준" />
+                        <StatTile label="감사대상회사 평균 매출액" value={formatKrw(summary.avg_client_revenue)} hint="금액이 확인된 감사대상회사 기준" />
                         <StatTile label="감사대상회사 평균 KAM 수" value={formatDecimal(summary.avg_kam_count, 1, '개')} hint="개수를 확인한 공시 기준" />
                     </dl>
 
@@ -123,4 +123,3 @@ export default async function FirmDetailPage({
         </section>
     );
 }
-
