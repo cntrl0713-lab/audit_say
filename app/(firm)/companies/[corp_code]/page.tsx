@@ -1,3 +1,4 @@
+import { DataTable } from '../../_components/ui';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import {
@@ -93,39 +94,22 @@ export default async function CompanyDetailPage({
 
                     <p className="mb-4 text-xs text-foreground/60">‘-’는 미확보 값이며 0과 다릅니다. 금액 확인 보류에는 외화 공시 등이 포함되며 원화로 임의 환산하지 않습니다.</p>
                     <h3 className="mb-2 text-sm text-foreground/60">감사대상회사 감사 이력 · 수집된 연도 기준</h3>
-                    <div className="mb-6 overflow-x-auto rounded-lg border border-card-border bg-card">
-                        <table className="w-full min-w-[40rem] text-sm">
-                            <thead>
-                                <tr className="border-b border-card-border text-left text-xs text-foreground/50">
-                                    <th className="px-4 py-2.5 font-medium">사업연도</th>
-                                    <th className="px-4 py-2.5 font-medium">감사인</th>
-                                    <th className="px-4 py-2.5 font-medium">의견</th>
-                                    <th className="px-4 py-2.5 text-right font-medium">KAM</th>
-                                    <th className="px-4 py-2.5 font-medium">변동</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {history.map((row) => (
-                                    <tr
-                                        key={`${row.bsns_year}-${row.firm_id}`}
-                                        className="border-b border-card-border last:border-0"
-                                    >
-                                        <td className="px-4 py-2.5 tabular-nums">{row.bsns_year}</td>
-                                        <td className="px-4 py-2.5">
+                    <DataTable columns={[{"key":"0","label":"사업연도","align":"left","priority":"always"},{"key":"1","label":"감사인","align":"right","priority":"always"},{"key":"2","label":"의견","align":"right","priority":"always"},{"key":"3","label":"KAM","align":"right","priority":"wide"},{"key":"4","label":"변동","align":"right","priority":"wide"}]} rows={history.map(row => [<span key="0" className="block">{row.bsns_year}</span>,
+<span key="1" className="block">
                                             <Link
                                                 href={`/firms/${row.firm_id}?year=${row.bsns_year}`}
                                                 className="hover:text-primary"
                                             >
                                                 {row.firm_name}
                                             </Link>
-                                        </td>
-                                        <td className="px-4 py-2.5">
+                                        </span>,
+<span key="2" className="block">
                                             <OpinionBadge opinion={row.adt_opinion} />
-                                        </td>
-                                        <td className="px-4 py-2.5 text-right tabular-nums text-foreground/70">
+                                        </span>,
+<span key="3" className="block">
                                             {formatNumber(row.kam_count)}
-                                        </td>
-                                        <td className="px-4 py-2.5 text-xs">
+                                        </span>,
+<span key="4" className="block">
                                             {/* 첫 연도(null)는 "변동 없음"이 아니라 비교 대상이 없는 것이다 */}
                                             {row.auditor_changed === null ? (
                                                 <span className="text-foreground/30">첫 기록</span>
@@ -146,12 +130,7 @@ export default async function CompanyDetailPage({
                                                     ) : null}
                                                 </span>
                                             )}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                        </span>])} />
 
                     <h3 className="mb-2 text-sm text-foreground/60">선택 법인·연도의 KAM · 강조사항</h3>
                     {selectedKams.length === 0 ? (

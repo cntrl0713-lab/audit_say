@@ -1,3 +1,4 @@
+import { DataTable } from '../_components/ui';
 import Link from 'next/link';
 import { listAllYears, listFirmSummaries, listRegisteredFirms } from '../../../lib/firm/queries';
 import { formatDecimal, formatKrw, formatNumber } from '../../../lib/firm/format';
@@ -46,28 +47,15 @@ export default async function FirmsPage({ searchParams }: { searchParams: Promis
                 ‘-’는 미확보 값으로 0과 구분합니다. 회계법인 목록에 있다는 사실만으로 상장회사 감사인 등록 여부가 확인되는 것은 아닙니다.
             </p>
             {rows.length === 0 ? <EmptyState title="조건에 맞는 회계법인이 없습니다." description={q ? `“${q}” 검색 결과가 없습니다.` : undefined} /> : (
-                <div className="overflow-x-auto rounded-lg border border-card-border bg-card">
-                    <table className="w-full min-w-[48rem] text-sm">
-                        <thead><tr className="border-b border-card-border text-left text-xs text-foreground/60">
-                            {['회계법인', '감사대상회사', '상장 감사대상회사', '의견변형', '평균 KAM', '감사대상회사 평균 매출액'].map((label, i) => (
-                                <th key={label} scope="col" className={`px-4 py-3 font-medium ${i ? 'text-right' : ''}`}>{label}</th>
-                            ))}
-                        </tr></thead>
-                        <tbody>{rows.map(({ firm, summary }) => (
-                            <tr key={firm.firm_id} className="border-b border-card-border last:border-0 hover:bg-background">
-                                <td className="px-4 py-3">
+                <DataTable columns={[{"key":"0","label":"회계법인","align":"left","priority":"always"},{"key":"1","label":"감사대상회사","align":"right","priority":"always"},{"key":"2","label":"상장 감사대상회사","align":"right","priority":"wide"},{"key":"3","label":"의견변형","align":"right","priority":"always"},{"key":"4","label":"평균 KAM","align":"right","priority":"wide"},{"key":"5","label":"평균 매출액","align":"right","priority":"wide"}]} rows={rows.map(({ firm, summary }) => [<span key="0" className="block">
                                     <Link href={`/firms/${firm.firm_id}${year === null ? '' : `?year=${year}`}`} className="font-medium hover:text-primary">{firm.firm_name}</Link>
                                     {!summary ? <span className="mt-1 block text-xs text-foreground/50">선택 연도 감사대상회사 데이터 미확보</span> : null}
-                                </td>
-                                <td className="px-4 py-3 text-right tabular-nums">{formatNumber(summary?.client_count)}</td>
-                                <td className="px-4 py-3 text-right tabular-nums">{formatNumber(summary?.listed_client_count)}</td>
-                                <td className="px-4 py-3 text-right tabular-nums"><span className={summary && summary.opinion_modified_count > 0 ? 'text-danger' : ''}>{formatNumber(summary?.opinion_modified_count)}</span></td>
-                                <td className="px-4 py-3 text-right tabular-nums">{formatDecimal(summary?.avg_kam_count)}</td>
-                                <td className="px-4 py-3 text-right tabular-nums">{formatKrw(summary?.avg_client_revenue)}</td>
-                            </tr>
-                        ))}</tbody>
-                    </table>
-                </div>
+                                </span>,
+<span key="1" className="block">{formatNumber(summary?.client_count)}</span>,
+<span key="2" className="block">{formatNumber(summary?.listed_client_count)}</span>,
+<span key="3" className="block"><span className={summary && summary.opinion_modified_count > 0 ? 'text-danger' : ''}>{formatNumber(summary?.opinion_modified_count)}</span></span>,
+<span key="4" className="block">{formatDecimal(summary?.avg_kam_count)}</span>,
+<span key="5" className="block">{formatKrw(summary?.avg_client_revenue)}</span>])} />
             )}
         </section>
     );

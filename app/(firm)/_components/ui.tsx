@@ -6,20 +6,64 @@ export function StatTile({
     label,
     value,
     hint,
+    size = 'default',
 }: {
     label: string;
     value: string;
     hint?: string;
+    size?: 'lead' | 'default';
 }) {
     return (
         <div className="rounded-lg border border-card-border bg-card px-4 py-3">
-            <dt className="text-[11px] font-semibold uppercase tracking-wider text-foreground/50">
+            <dt className="text-[13px] font-medium text-foreground/70">
                 {label}
             </dt>
-            <dd className="mt-1 text-xl tabular-nums">{value}</dd>
-            {hint ? <p className="mt-0.5 text-xs text-foreground/50">{hint}</p> : null}
+            <dd className={`mt-1 tabular-nums ${size === 'lead' ? 'text-3xl' : 'text-xl'}`}>{value}</dd>
+            {hint ? <p className="mt-1 text-[13px] text-foreground/60">{hint}</p> : null}
         </div>
     );
+}
+
+export function Footnote({ children }: { children: React.ReactNode }) {
+    return <p className="mt-3 text-[13px] leading-relaxed text-foreground/70">{children}</p>;
+}
+
+export function Basis({ title = '이 수치의 기준', children }: { title?: string; children: React.ReactNode }) {
+    return <details className="my-3 rounded-lg border border-card-border px-4 py-3 text-[13px] leading-relaxed text-foreground/70 print:break-inside-avoid">
+        <summary className="cursor-pointer font-medium text-foreground">{title}</summary>
+        <div className="mt-3">{children}</div>
+    </details>;
+}
+
+export function YearAxis({ label, years, current, hrefFor }: {
+    label: string; years: readonly number[]; current: number | null; hrefFor: (year: number) => string;
+}) {
+    return <nav aria-label={label} className="mb-6 flex flex-wrap items-center gap-2">
+        <span className="mr-2 text-[13px] text-foreground/70">{label}</span>
+        {years.map(year => <Chip key={year} active={year === current} href={hrefFor(year)}>{year}</Chip>)}
+    </nav>;
+}
+
+export interface DataColumn {
+    key: string; label: string; align?: 'left' | 'right'; priority?: 'always' | 'wide';
+}
+
+/** 핵심 열은 모바일에서도 유지하며 보조 열은 인쇄 시 다시 표시한다. */
+export function DataTable({ columns, rows, caption }: {
+    columns: readonly DataColumn[]; rows: React.ReactNode[][]; caption?: string;
+}) {
+    const cellClass = (column: DataColumn) => `px-2 py-3 md:px-4 align-top break-words ${column.align === 'right' ? 'text-right tabular-nums' : 'text-left'} ${column.priority === 'wide' ? 'hidden md:table-cell print:table-cell' : ''}`;
+    return <div className="rounded-lg border border-card-border bg-card">
+        <table className="w-full table-fixed text-[15px]">
+            {caption ? <caption className="px-3 py-2 text-left text-[13px] text-foreground/70">{caption}</caption> : null}
+            <thead><tr className="border-b border-card-border text-[13px] text-foreground/70">
+                {columns.map(column => <th key={column.key} scope="col" className={`${cellClass(column)} font-medium`}>{column.label}</th>)}
+            </tr></thead>
+            <tbody>{rows.map((row, index) => <tr key={index} className="border-b border-card-border last:border-0 hover:bg-background">
+                {columns.map((column, col) => <td key={column.key} className={cellClass(column)}>{row[col]}</td>)}
+            </tr>)}</tbody>
+        </table>
+    </div>;
 }
 
 const OPINION_TONE: Record<AuditOpinion, string> = {

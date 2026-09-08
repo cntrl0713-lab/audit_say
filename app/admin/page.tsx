@@ -1,4 +1,6 @@
 'use client';
+import { DataTable } from '../(firm)/_components/ui';
+
 
 import { useEffect, useMemo, useState } from 'react';
 import { Search, Settings, ShieldAlert } from 'lucide-react';
@@ -118,18 +120,10 @@ export default function AdminPage() {
                 </section>
             ) : (
                 <section className="space-y-5">
-                    <div className="overflow-x-auto rounded-lg border border-card-border bg-card">
-                        <table className="w-full text-left text-sm">
-                            <thead className="border-b border-card-border bg-card-border/15 text-xs text-foreground/45">
-                                <tr><th className="px-5 py-3">닉네임</th><th className="px-5 py-3">권한</th><th className="px-5 py-3">경험치</th><th className="px-5 py-3">레벨</th></tr>
-                            </thead>
-                            <tbody className="divide-y divide-card-border">
-                                {users.map((candidate) => (
-                                    <tr key={candidate.id}><td className="px-5 py-3">{candidate.username}</td><td className="px-5 py-3">{ROLE_NAMES[candidate.role]}</td><td className="px-5 py-3">{candidate.exp}</td><td className="px-5 py-3">Lv.{candidate.level}</td></tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                    <DataTable columns={[{"key":"0","label":"닉네임","align":"left","priority":"always"},{"key":"1","label":"권한","align":"right","priority":"always"},{"key":"2","label":"경험치","align":"right","priority":"always"},{"key":"3","label":"레벨","align":"right","priority":"always"}]} rows={users.map(candidate => [<span key="0" className="block">{candidate.username}</span>,
+<span key="1" className="block">{ROLE_NAMES[candidate.role]}</span>,
+<span key="2" className="block">{candidate.exp}</span>,
+<span key="3" className="block">Lv.{candidate.level}</span>])} />
                     <div className="grid gap-3 rounded-lg border border-card-border bg-card p-5 md:grid-cols-[1fr_1fr_auto] md:items-end">
                         <label className="text-xs text-foreground/50">사용자
                             <select value={selectedUser} onChange={(event) => setSelectedUser(event.target.value)} className="mt-1 block w-full rounded-md border border-card-border bg-card-border/20 px-3 py-2 text-sm text-foreground">
