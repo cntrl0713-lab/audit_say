@@ -1,6 +1,6 @@
 # CPA 학습 DB 구현·전환 기록
 
-2026-09-08 11:44 KST. **운영 Supabase에 신규 테이블 20개·RPC·보관기간 작업과 최종 문제은행을 적용했다.** 사용자 지시에 따라 문항 내용을 재검증하거나 수정하지 않고, 최종 파일 식별과 이관 일치만 확인했다. 경험치 초기화·앱 배포는 실행하지 않았으며 `CPA_LEARNING_DB_ENABLED`는 아직 꺼져 있다. 테이블별 컬럼·관계는 [설계서](cpa-learning-db-design.md)에 있다.
+2026-09-08 12:57 KST 기준. **운영 Supabase 적용에 이어 앱 배포와 경험치 원장 초기화를 완료했다.** 운영 주소는 [audit-say.vercel.app](https://audit-say.vercel.app/)이며 `CPA_LEARNING_DB_ENABLED=true`로 DB 학습 기록을 사용한다. 사용자 지시에 따라 문항 내용을 재검증하거나 수정하지 않고, 최종 파일 식별과 이관 일치만 확인했다. 테이블별 컬럼·관계는 [설계서](cpa-learning-db-design.md)에 있다.
 
 ## 실제 적용 결과
 
@@ -17,9 +17,26 @@
 | 권한 | 신규 20테이블 모두 RLS 활성, anon/authenticated 직접 권한 0건, service-role 접근 허용. 주요 RPC도 서버 전용 |
 | 기존 자료 | 회원 3명·경험치 합계 0·v2 문제 107개 유지. 프로필 호환 뷰 권한과 security_invoker 유지 |
 | 비회원 정리 | pg_cron job 4 활성, 매시 정각 최대 5,000건 |
-| 학습 서비스 전환 | 아직 미실행. 제출·XP 원장 0건, 기존 EXP 직접 갱신 차단 초기화 미실행 |
+| 학습 서비스 전환 | 완료. 초기화 marker 1개, 회원 3명 opening balance 3건, EXP 합계 0, 제출 적립 0건. 기존 직접 EXP 갱신 차단 활성 |
 
 실행 영수증은 `docs/reports/cpa-learning-db-applied.json`에 저장했다. 운영 확인에 사용한 [읽기 전용 SQL](../supabase/verification/cpa_learning_post_import.sql)은 답안·회원 식별자를 출력하지 않는다.
+
+## 앱 배포·경험치 초기화 결과
+
+| 항목 | 확인 결과 |
+|---|---|
+| 배포 | `dpl_82P2ncKG3U9iHfkpXXzJVvBsjZXU`, [고유 배포 URL](https://audit-ofz8h8csd-cta-tax-law.vercel.app). `--prod --skip-domain`으로 READY 확인 후 운영 승격 완료 |
+| 서버 설정 | `CPA_LEARNING_DB_ENABLED=true`, `OPENAI_API_KEY`를 production secret으로 추가. 기본 모델 `gpt-5.6-luna` 접근 확인 |
+| 배포 입력 | 앱 파일 82개, 약 2.4 MB. 평문 authoring·환경 파일·임시 자료 0개. 배포 빌드·타입 검사 통과 |
+| 구요청 정리 | 03:53:12 UTC에 임시 POST 차단 403 확인 후, 구배포 quiz 실행 상한 60초보다 긴 약 114초 대기 |
+| 원장 초기화 | 03:55:06.273450 UTC에 `cpa_initialize_learning_progress()`로 회원 3명의 opening balance와 marker를 원자 기록. 기존 EXP가 모두 0이어서 초기화 후에도 0 |
+| 전환 후 방화벽 | `rule_cpa_cutover_post_hold_0IuPMl`를 `CPA legacy deployment POST block`으로 변경·게시. 과거 hostname 48개·배포 ID 44개의 POST를 차단하고 운영 별칭 3개는 유지 |
+| 운영 경로 확인 | 03:57:32 UTC에 `/`, `/quiz`, `/curriculum`, `/ranking`, `/history`, `/review-notes` 모두 200, `/quiz` DB 모드 확인 |
+| POST 경로 확인 | 새 POST 200, 구배포 고정 POST 403. 구 고유 URL의 비인증 POST는 SSO로 302 이동 |
+| 전환 직후 DB 집계 | marker 1, 프로필 3, EXP 합계 0, 비영점 프로필 0, opening 3, submission award 0, 원장 불일치 0, opening 누락 0 |
+| 후속 상태 확인 | 03:58:52 UTC에 제출 0건, XP 이벤트 3건, 활성 릴리스 1개, 보관기간 작업 1개. 방화벽 변경 모두 게시되어 pending 없음 |
+
+위 HTTP 확인은 접근·배포 경로 확인이다. 실제 비회원 제출·저장·결과 복원 smoke는 아직 실행하지 않았으며, 모델 접근 확인을 실제 AI 채점 성공으로 기록하지 않는다. 초기화 실행 스크립트의 CommonJS 진입점은 async main으로 정리했고, 이후 실제 초기화와 타입 검사·해당 스크립트 ESLint가 통과했다.
 
 ## 구현 범위
 
@@ -49,9 +66,9 @@
 
 이번 실행은 `--preserve-source`를 사용했다. 내용 검증기·공식 출처 재검토·모델 평가는 실행하지 않는다. 파일 SHA-256, 원문 JSON과 이관 payload의 일치, DB FK·정수 계약·공개/비공개 권한·왕복 저장만 확인한다. 영수증과 DB 기록의 `content_review_performed=false` / `source_validation`은 이를 명시한다. 기본 `db:check`의 엄격한 편집 정책 검사는 별도 선택 가능한 절차로 남는다.
 
-## 이후 학습 서비스 전환 순서
+## 새 환경 적용·재배포 참고 절차
 
-테이블 생성·문제 이관은 위 결과대로 완료했다. 아래는 새 문제 릴리스 또는 아직 실행하지 않은 학습 서비스 전환의 절차다. 이번 작업은 6번 경험치 초기화부터 진행하지 않았다.
+현재 운영 DB의 테이블·문제 이관·경험치 초기화·앱 전환은 모두 완료했다. 아래는 새 환경이나 후속 릴리스의 참고 절차이며, 현재 운영에서 DDL과 최초 초기화를 다시 실행할 필요는 없다. 앱 재배포는 새 빌드를 먼저 준비하고 구요청을 정리한 뒤 승격한다. 구배포 POST 차단은 해당 배포가 계속 접근 가능한 동안 유지한다.
 
 1. 진행 중인 문제·공통 코드 검토를 마친다. authoring/public/암호화 배포본을 같은 최종본으로 compile하고 검토 근거를 고정한다.
 2. 아래 검사와 테스트를 통과한다. `db:check`는 구조·공식 출처·주제 분포·공개본 일치·모두 작성 정책을 확인하고 DB에 쓰지 않는다.
@@ -113,4 +130,5 @@ where actor_kind = 'guest' and expires_at <= now();
 - 초기 구현 때는 엄격한 저장 규격에 맞는 **89세트·178물음**으로 격리 DB 조립을 확인했다. 이번 실제 이관에서는 원문 호환 처리를 거쳐 **전체 96세트의 운영 공개 round trip과 원문 바이트 일치**를 확인했다.
 - 서버 서비스와 UI 상태 테스트에서 서명 변조·다른 답안·만료 후 재전송·완료 응답 유실·이력 커서·공개 정보 경계를 검증했다.
 - 이번 적용 전 변경한 저장 호환·원문 보존·권한 fixture SQL 테스트 **15개**, 이관/제출 서비스 fixture 테스트 **11개**, 타입 검사·관련 린트 통과. 실제 문제은행 내용 검증은 사용자 요청으로 생략했다.
-- 운영 RLS·RPC 권한·테이블 건수·전체 원문/공개 왕복·cron 등록을 확인했다. 실제 anon 키로 정본 스냅샷 SELECT와 공개 RPC 직접 호출이 모두 권한 오류 42501로 거절됨을 확인했다. PGlite 테스트는 여러 PostgreSQL 연결을 동시에 실행한 동시성 부하검증이 아니다. 전체 로그인·채점 브라우저 E2E와 cron의 예약 실행 결과는 아직 확인하지 않았다.
+- 운영 RLS·RPC 권한·테이블 건수·전체 원문/공개 왕복·cron 등록을 확인했다. 실제 anon 키로 정본 스냅샷 SELECT와 공개 RPC 직접 호출이 모두 권한 오류 42501로 거절됨을 확인했다. 앱 승격 후 6개 GET 경로·신규/구배포 POST 경로와 초기화 집계를 확인했다.
+- PGlite 테스트는 여러 PostgreSQL 연결을 동시에 실행한 동시성 부하검증이 아니다. 실제 비회원 제출 smoke, 전체 로그인·AI 채점 브라우저 E2E, cron의 예약 실행 결과는 아직 확인하지 않았다.

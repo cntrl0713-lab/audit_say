@@ -8,12 +8,14 @@ KICPA 회계감사 서술형 문제를 풀고, 기준서 근거와 criterion 단
 - `/quiz`: 기준서 출처가 연결된 v3 문제 세트 선택, 세부 물음 답안 작성, AI 채점 및 criterion별 결과 확인
 - `/curriculum`: 19개 주제와 문제 세트 분포 확인
 - `/profile`: 회원 등급·레벨·경험치 확인
-- `/ranking`: 경험치 기준 상위 학습자 확인
+- `/history`: 회원 풀이 이력과 저장된 채점 결과 확인
+- `/review-notes`: 감점 물음 자동 등록, 수동 추가·해결 및 메모
+- `/ranking`: 누적·주간·월간 경험치 기준 상위 학습자 확인
 - `/admin`: 관리자 전용 문제은행 현황 조회 및 회원 권한 변경
 
-채점 결과의 양수 점수는 회원의 경험치에 반영됩니다. 비회원은 실제 익명 Supabase 세션으로 학습할 수 있지만 영구 프로필을 만들지 않습니다.
+채점 결과와 회원 경험치는 한 트랜잭션으로 저장하며 같은 제출 재시도는 중복 적립하지 않습니다. 비회원은 익명 Supabase 세션으로 학습하며 풀이 결과는 7일 보관하고 영구 프로필이나 경험치를 만들지 않습니다.
 
-v3 문제은행·제출·오답노트·누적/주간/월간 랭킹의 신규 테이블 20개와 최종 문제은행 96세트·192물음·521criterion을 운영 DB에 적용했습니다. `/history`, `/review-notes`, 기간 랭킹은 경험치 초기화와 `CPA_LEARNING_DB_ENABLED=true` 서비스 전환 뒤 활성화됩니다. 실제 적용 이력과 남은 서비스 전환 순서는 [학습 DB 구현·전환 기록](docs/cpa-learning-db-implementation.md), 테이블 설계는 [DB 설계서](docs/cpa-learning-db-design.md)를 참고하세요.
+2026-09-08 기준 [운영 앱](https://audit-say.vercel.app/) 배포와 경험치 원장 초기화를 완료했습니다. 신규 테이블 20개와 최종 문제은행 96세트·192물음·521criterion을 사용하며 `CPA_LEARNING_DB_ENABLED=true`로 풀이 이력·오답노트·기간 랭킹을 활성화했습니다. 운영 경로와 초기화 집계는 확인했으며 실제 비회원 제출 smoke는 아직 미실행입니다. 적용 이력과 확인 범위는 [학습 DB 구현·전환 기록](docs/cpa-learning-db-implementation.md), 테이블 설계는 [DB 설계서](docs/cpa-learning-db-design.md)를 참고하세요.
 
 ## 문제은행과 채점
 
@@ -21,7 +23,7 @@ v3 문제은행·제출·오답노트·누적/주간/월간 랭킹의 신규 테
 
 Supabase의 프로젝트 소유 테이블은 `cpa_*` 접두어를 사용합니다. 회원 프로필은 `cpa_users`, 회계법인 데이터는 `cpa_firm_*`입니다. 기존 이름은 배포 호환용 뷰로 유지하며 다른 앱의 `cta_*`와 Supabase 관리 테이블은 변경하지 않습니다. [테이블 이름 전환 기록](docs/cpa-table-prefix.md)을 참고하세요.
 
-운영 채점은 `data/cpa_question_sets_v3.authoring.enc.json`을 복호화해 사용합니다. production에서는 암호화 파일을 선택하며, `next.config.ts`도 암호화 배포 파일만 tracing에 포함하고 평문 authoring 파일은 제외합니다. 상태 전환은 `cpa_question_sets_v3.promotions.json` 장부로 추적합니다.
+현재 운영 조회·채점은 DB의 게시된 문제 버전을 사용하며, 제출은 당시 버전에 연결됩니다. DB 조회 실패 시 파일 은행으로 자동 전환하지 않습니다. DB 모드를 끈 파일 기반 실행은 `data/cpa_question_sets_v3.authoring.enc.json`을 복호화하며, production tracing에서도 평문 authoring 파일을 제외합니다. 파일 은행의 상태 전환은 `cpa_question_sets_v3.promotions.json` 장부로 추적합니다.
 
 기본 채점 모델은 OpenAI `gpt-5.6-luna`이며 `CPA_GRADING_MODEL`로 변경할 수 있습니다. 모델은 criterion 판정과 답안 원문 인용을 반환하고, 점수 합산·인용 검증·주입/키워드 샐러드 차단은 코드가 수행합니다. 자동 출제는 `CPA_GENERATION_MODEL`로 모델을 지정하며 결과는 사람 검수용 draft로만 기록됩니다.
 
