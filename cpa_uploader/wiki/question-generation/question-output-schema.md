@@ -117,6 +117,8 @@ confidence: high
 10. source/requirement/criterion 연결은 문자열 ID로 일치해야 한다. 한 requirement에 여러 독립 criterion이 연결될 수 있다.
 11. source fidelity는 실제 인용 처리에 맞게 정하고 최종 인용의 content_hash를 재계산한다. 예시의 문자열·자리표시자를 검수 완료 근거로 사용하지 않는다.
 12. 공개 변환에는 정답·criterion·requirements·source_quote·decision.correct를 노출하지 않는다. 작성 정본과 공개본을 혼용하지 않는다.
+13. `shared_context.facts`는 배열이며 각 fact는 고유한 id와 text를 가지고 `scoreable`은 항상 false다. 공통 지문에는 점수를 두지 않고 점수는 criterion으로만 부여한다. facts는 공개본에 그대로 나가므로 model_answer가 그대로 들어가면 검증 오류이고, model_answer 전문을 포함하면 경고가 발생한다. 사례형 세트는 이 지문에 결론 문장이 섞이지 않았는지 확인한다.
+14. 채점 프롬프트에는 `shared_context`가 함께 전달된다. 사례의 전제가 지문에만 있어도 평가자가 이를 보고 판정한다. 다만 공통 지문 자체는 채점 대상이 아니며 지문을 옮겨 적은 답안은 명제를 충족하지 않는다.
 
 단독 신규 draft는 `npx tsx cpa_uploader/validate_draft_v3.ts --file <draft.json> --against-bank`로 검사한다. 기존 ID를 수정하는 draft는 신규 ID 중복 검사와 구분한다. 구조·인용 검증만으로 내용 적합이나 실제 채점 통과를 보장하지 않는다.
 

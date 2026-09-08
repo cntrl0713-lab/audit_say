@@ -42,7 +42,7 @@ confidence: high
 | `data/회계감사_통합학습자료/99_문자_판독_검토대상.md` | 32800 | `ca1c52ada053` | 0 |  | 정상 |
 | `data/회계감사_통합학습자료/99_완전성_검증.md` | 3899 | `553582dd19d4` | 0 |  | 정상 |
 | `data/회계감사_통합학습자료/README.md` | 3608 | `73089ee49076` | 0 |  | 정상 |
-| `data/cpa_question_sets_v3.authoring.json` | 1241230 | `b22d74f9874c` | 0 |  | 정상 |
+| `data/cpa_question_sets_v3.authoring.json` | 1241004 | `21ec8158fe8d` | 0 |  | 정상 |
 | `data/cpa_question_sets_v3.promotions.json` | 36487 | `edb2173d12ef` | 0 |  | 정상 |
 | `data/cpa_question_sets_v3.public.json` | 269598 | `7749f44a8aab` | 0 |  | 정상 |
 | `data/official/assurance-review-2027-topic19.txt` | 7954 | `864546d0b2a1` | 0 |  | 정상 |

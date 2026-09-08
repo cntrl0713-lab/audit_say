@@ -342,3 +342,36 @@ test('verifyCriterionVerdicts allows one real quote for independent criteria and
         { criterion_id: 'q1.c1', verdict: 'met', quote: '답안에 없는 인용' },
     ])[0].verdict, 'not_met');
 });
+
+test('validateQuestionSetV3 guards shared_context contract and public leaks', () => {
+    const scoreable = createValidSet('source.md');
+    scoreable.shared_context.facts = [
+        { id: 'f1', text: '감사인은 재무제표감사를 수행하고 있다.', scoreable: true as unknown as false },
+    ];
+    assert.ok(validateQuestionSetV3(scoreable).errors.some((error) => error.includes('scoreable=false')));
+
+    const duplicated = createValidSet('source.md');
+    duplicated.shared_context.facts = [
+        { id: 'f1', text: '첫 번째 사실', scoreable: false },
+        { id: 'f1', text: '두 번째 사실', scoreable: false },
+    ];
+    assert.ok(validateQuestionSetV3(duplicated).errors.some((error) => error.includes('중복 shared_context fact id')));
+
+    const leaked = createValidSet('source.md');
+    leaked.shared_context.facts = [
+        { id: 'f1', text: leaked.subquestions[0].model_answer[0], scoreable: false },
+    ];
+    assert.ok(validateQuestionSetV3(leaked).errors.some((error) => error.includes('model_answer가 그대로 노출')));
+
+    const embedded = createValidSet('source.md');
+    embedded.shared_context.facts = [
+        { id: 'f1', text: `상황: ${embedded.subquestions[0].model_answer[0]} 라고 감사인이 결론지었다.`, scoreable: false },
+    ];
+    const embeddedResult = validateQuestionSetV3(embedded);
+    assert.equal(embeddedResult.errors.length, 0);
+    assert.ok(embeddedResult.warnings.some((warning) => warning.includes('model_answer 전문을 포함')));
+
+    const missing = createValidSet('source.md');
+    (missing as { shared_context?: unknown }).shared_context = {};
+    assert.ok(validateQuestionSetV3(missing).errors.some((error) => error.includes('shared_context.facts는 배열')));
+});

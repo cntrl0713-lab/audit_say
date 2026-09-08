@@ -61,9 +61,11 @@ function main(): void {
     }
 
     const errors: string[] = [];
+    const warnings: string[] = [];
     for (const draft of drafts) {
-        errors.push(...validateQuestionSetV3(draft, { verifySourceQuotes: true, cwd: root })
-            .errors.map((error) => `[${draft.id}] ${error}`));
+        const result = validateQuestionSetV3(draft, { verifySourceQuotes: true, cwd: root });
+        errors.push(...result.errors.map((error) => `[${draft.id}] ${error}`));
+        warnings.push(...result.warnings.map((warning) => `[${draft.id}] ${warning}`));
 
         if (bankIds.has(draft.id)) errors.push(`[${draft.id}] 은행에 이미 존재하는 세트 id입니다.`);
         if (args['--against-bank']) {
@@ -74,6 +76,11 @@ function main(): void {
         }
 
         console.log(`- ${draft.id}: 물음 ${draft.subquestions.length}개 · criterion ${draft.subquestions.reduce((sum, q) => sum + q.criteria.length, 0)}개 · ${computeQuestionSetMaxPoints(draft)}점 · status=${draft.status}`);
+    }
+
+    if (warnings.length > 0) {
+        console.warn(`\ndraft 검토 필요: ${warnings.length}개 경고`);
+        for (const warning of warnings) console.warn(`- ${warning}`);
     }
 
     if (errors.length > 0) {

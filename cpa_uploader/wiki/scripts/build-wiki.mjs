@@ -348,9 +348,12 @@ const coverageRows = topicDefinitions.map((topic) => {
   const subquestionCount = sets.reduce((sum, set) => sum + set.subquestions.length, 0);
   const publishedCount = sets.filter((set) => set.status === 'published').length;
   const status = sets.length === 0 ? '빈 영역' : sets.length <= 2 ? '우선 보강' : sets.length <= 3 ? '보강 권장' : '충분';
+  // 세트 수가 충분해도 주제 축의 기준서 하나가 통째로 비어 있을 수 있다. 상태 열만으로는 보이지 않는다.
+  const linkedStandards = new Set(sets.flatMap((set) => set.classification.standards || []));
+  const unlinked = topic.standards.filter((standard) => !linkedStandards.has(standard));
   const ids = sets.length ? sets.map((set) => `${set.id}(${set.subquestions.length}문항/${set.subquestions.reduce((acc, q) => acc + q.criteria.length, 0)}루브릭)`).join(', ') : '-';
   const standardAxis = topic.standards.length ? topic.standards.join('·') : (definition.axis || '원자료 확인 필요');
-  return `| ${topic.id} | [[${topic.slug}]] | ${standardAxis} | ${sets.length} | ${subquestionCount} | ${criteriaCount} | ${publishedCount} | ${status} | ${ids} |`;
+  return `| ${topic.id} | [[${topic.slug}]] | ${standardAxis} | ${sets.length} | ${subquestionCount} | ${criteriaCount} | ${publishedCount} | ${status} | ${unlinked.length ? unlinked.join('·') : '-'} | ${ids} |`;
 }).join('\n');
 write(path.join(wikiDir, '_meta', 'coverage-map.md'), `---
 title: 문제은행 커버리지 맵
@@ -369,16 +372,17 @@ confidence: high
 > 개수는 현재 v3 authoring 은행(\`cpa_question_sets_v3.authoring.json\`) 기준 분포다.
 > 세트 수·criterion 수는 게시 여부나 기준서 요구사항의 완전성을 의미하지 않는다.
 
-| ID | 주제 | 기준 축 | 세트 | 세부 물음 | criterion | published | 상태 | 세트 ID |
-|---|---|---|---:|---:|---:|---:|---|---|
+| ID | 주제 | 기준 축 | 세트 | 세부 물음 | criterion | published | 상태 | 미연결 기준서 | 세트 ID |
+|---|---|---|---:|---:|---:|---:|---|---|---|
 ${coverageRows}
 
 ## 우선순위
 
 1. \`빈 영역\`과 \`우선 보강\` 주제의 실제 원문을 먼저 확인한다.
-2. 문제 수가 많아도 judgment·enumeration·descriptive가 한쪽으로 치우치지 않았는지 확인한다.
-3. 새 세트는 [[question-generation-workflow]]와 validateQuestionSetV3 검증을 통과한 뒤 promote_cpa_v3.ts로 상태를 올린다.
-4. 실제 산술을 요구하는 문제는 coverage 목표에서 제외하고 \`excluded: calculation\`로 기록한다.
+2. \`미연결 기준서\`가 있는 주제는 상태가 \`충분\`이어도 그 기준서를 다루는 세트가 하나도 없다는 뜻이다. 세트 수보다 먼저 본다.
+3. 문제 수가 많아도 judgment·enumeration·descriptive가 한쪽으로 치우치지 않았는지 확인한다.
+4. 새 세트는 [[question-generation-workflow]]와 validateQuestionSetV3 검증을 통과한 뒤 promote_cpa_v3.ts로 상태를 올린다.
+5. 실제 산술을 요구하는 문제는 coverage 목표에서 제외하고 \`excluded: calculation\`로 기록한다.
 
 ## Related
 

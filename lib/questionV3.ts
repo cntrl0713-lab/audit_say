@@ -347,6 +347,39 @@ export function validateQuestionSetV3(
             errors.push(`classification.tags에 model_answer가 노출되어 있습니다: ${tag}`);
         }
     }
+    // 공통 지문은 공개본에 그대로 나가고 채점 대상이 아니다. 사례형 세트에서 지문이 길어지면
+    // 결론 문장이 섞여 정답이 공개 데이터로 새어 나갈 수 있으므로 여기서 함께 검사한다.
+    const sharedContext = (questionSet as { shared_context?: unknown }).shared_context;
+    const sharedFacts = isRecord(sharedContext) ? sharedContext.facts : undefined;
+    if (!Array.isArray(sharedFacts)) {
+        errors.push('shared_context.facts는 배열이어야 합니다.');
+    } else {
+        const factIds = new Set<string>();
+        for (const value of sharedFacts) {
+            const fact = isRecord(value) ? value : {};
+            const factId = typeof fact.id === 'string' ? fact.id : '';
+            const factText = typeof fact.text === 'string' ? fact.text : '';
+            if (!factId.trim()) errors.push('모든 shared_context fact에는 id가 필요합니다.');
+            else if (factIds.has(factId)) errors.push(`중복 shared_context fact id: ${factId}`);
+            factIds.add(factId);
+            if (!factText.trim()) errors.push(`[${factId}] shared_context fact text가 필요합니다.`);
+            if (fact.scoreable !== false) {
+                errors.push(`[${factId}] shared_context fact는 scoreable=false여야 합니다. 점수는 criterion으로만 부여합니다.`);
+            }
+            const normalizedFact = normalizePublicLeakText(factText);
+            if (modelAnswers.has(normalizedFact)) {
+                errors.push(`[${factId}] shared_context에 model_answer가 그대로 노출되어 있습니다.`);
+                continue;
+            }
+            for (const answer of modelAnswers) {
+                // 짧은 답안은 공통 사실과 우연히 겹칠 수 있으므로 길이가 있는 답안만 경고한다.
+                if (answer.length >= 20 && normalizedFact.includes(answer)) {
+                    warnings.push(`[${factId}] shared_context fact가 model_answer 전문을 포함합니다. 공개본 유출 여부를 확인하십시오.`);
+                    break;
+                }
+            }
+        }
+    }
     if (questionSet.verification?.calculation_required !== false) {
         errors.push('계산이 필요한 문제는 v3 파일럿에 포함할 수 없습니다.');
     }

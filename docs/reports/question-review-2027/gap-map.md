@@ -13,7 +13,7 @@
 | 요구사항 절 수준 | 기준서 요구사항 절 189개 중 **공백 26개 · 얇음 67개 · 커버 96개** |
 | 물음 유형 | 전체 192물음 중 judgment 31개. **주제 10·14·15·19는 judgment 0** |
 | 데이터 정합 | `classification.standards`가 빈 세트 2개(pilot-19-001, pilot-19-002) |
-| 사례형 | 구조·스키마상 가능하나 실제 사례형 세트는 0개. 채점기·검증기에 선행 과제 2건 (8항) |
+| 사례형 | 구조·스키마상 가능하고 실제 사례형 세트는 아직 0개. 선행 과제 2건은 처리 완료 (8항) |
 
 즉 "출제할 곳이 없다"가 아니라 **주제 안에서 기준서 절이 한쪽으로 몰려 있다**가 현재 상태다.
 
@@ -28,6 +28,7 @@
 - 은행의 인용 상당수는 `data/official/*.txt`(공식 발췌)에서 오고 절 본문은 통합학습자료에서 오므로, **표현이 다르면 실제보다 낮게 잡힐 수 있다.** 아래 `공백` 목록은 후보이지 확정된 미출제 증명이 아니다.
 - 반대로 포함률이 높아도 **절의 일부만** 다뤘을 수 있다. `커버`는 "해당 절에서 최소 한 세트가 실질 인용을 함"만 뜻한다.
 - KGA 705·600은 통합자료에 전문이 없고 `08_기준서_600_705_보완학습.md` 요약만 있어 절 분해 기준이 다른 기준서와 동일하지 않다.
+- `coverage-map`에 `미연결 기준서` 열을 추가했다. 축으로 선언된 기준서 중 어떤 세트도 다루지 않는 것을 표에서 바로 볼 수 있다(현재 주제01의 KGA 200, 주제13의 KGA 402).
 - 재현 스크립트는 `cpa_uploader/wiki/scripts/gap-scan.mjs`다. `node cpa_uploader/wiki/scripts/gap-scan.mjs --sections`로 절 단위 전체 목록을 볼 수 있다.
 
 ## 3. 완전 공백: KGA 402 (서비스조직)
@@ -128,14 +129,17 @@
 `source_refs[].role`에는 `question`이 있고 검증기는 인용문이 해당 파일에 실제 존재하는지만 확인하므로, **기출 사례 지문을 원문 그대로 인용하면 검증을 통과한다.**
 현재 은행에서 `04_기출문제`를 인용하는 세트는 0개다. 사례형은 이 미사용 출처 계층을 여는 작업이기도 하다.
 
-### 8.4 먼저 고쳐야 할 두 가지
+### 8.4 먼저 고쳐야 했던 두 가지 (처리 완료)
 
-| # | 문제 | 위치 | 영향 |
+처음 조사했을 때 두 가지가 막고 있었고, 둘 다 이 문서와 함께 처리했다.
+
+| # | 문제 | 위치 | 조치 |
 |---|---|---|---|
-| 1 | **채점 프롬프트에 `shared_context`가 들어가지 않는다** | `lib/questionV3Grading.ts:237` `buildGradingPrompt` | 사례 지문은 사용자에게만 보이고 평가자에게는 전달되지 않는다. `claim`에 결론이 들어 있어 판정 자체는 되지만, 답안이 사례 사실을 지칭하는 방식("위 ②의 상황에서는")을 평가자가 해석할 근거가 없다. |
-| 2 | **검증기가 `shared_context`를 전혀 검사하지 않는다** | `validateQuestionSetV3` (`lib/questionV3.ts:308~`) | 존재 여부·fact id 중복·모범답안 유출 어느 것도 확인하지 않는다. `tags`는 `model_answer` 유출을 검사하는데(`lib/questionV3.ts:344`) `facts`는 빠져 있고, `facts`는 공개본에 그대로 나간다(`lib/questionV3.ts:230`). **사례 지문에 결론이 섞이면 공개 데이터로 유출된다.** |
+| 1 | 채점 프롬프트에 `shared_context`가 들어가지 않았다 | `buildGradingPrompt` (`lib/questionV3Grading.ts`) | 채점 payload를 `{shared_context, subquestions}` 객체로 바꾸어 공통 지문을 함께 전달한다. 지문 자체는 채점 대상이 아니며 지문을 옮겨 적은 답안은 명제를 충족하지 않는다는 규칙을 프롬프트에 추가했다. |
+| 2 | 검증기가 `shared_context`를 전혀 검사하지 않았다 | `validateQuestionSetV3` (`lib/questionV3.ts`) | facts 배열 여부, fact id 중복, text 존재, `scoreable=false`를 오류로 검사한다. fact가 model_answer와 같으면 오류, model_answer 전문을 포함하면 경고다. `validate_draft_v3.ts`가 경고를 출력한다. |
 
-2번이 특히 중요하다. 사례형은 지문이 길어질수록 "…따라서 감사인은 한정의견을 표명해야 하는 상황이다" 같은 문장이 섞이기 쉽고, 그 순간 공개 JSON이 정답을 담는다.
+2번이 특히 중요했다. 사례형은 지문이 길어질수록 "…따라서 감사인은 한정의견을 표명해야 하는 상황이다" 같은 문장이 섞이기 쉽고, 그 순간 공개 JSON이 정답을 담는다.
+기존 96세트는 새 검사에서 오류·경고 없이 통과한다.
 
 ### 8.5 지켜야 할 정책 경계
 
@@ -157,10 +161,10 @@
 ## 9. 다음 단계
 
 1. 후보 1~3(KGA 402)의 공식 판본 문단을 확보해 `data/official/kga402-*.txt`를 만든다.
-2. `topic-map`·`coverage-map`에 **축은 선언됐지만 세트가 0인 기준서**를 표시하는 열을 추가한다(현재는 "충분"으로만 보인다).
-3. 사례형을 도입한다면 `buildGradingPrompt`에 `shared_context`를 포함시키고, `validateQuestionSetV3`에 `facts`의 모범답안 유출 검사를 추가한다(8.4항).
-4. 새 세트는 `question-generation-workflow` → `validateQuestionSetV3` → `promote_cpa_v3.ts` 순서를 따른다.
-5. pilot-19-001·002의 `standards` 값을 보정한다.
+2. ~~coverage-map 열 추가~~ — `미연결 기준서` 열을 추가했다. 주제13의 KGA 402가 상태 `충분` 옆에 그대로 드러난다.
+3. 8.4항의 두 선행 과제는 처리했다. 사례형 초안은 [question-drafts.md](question-drafts.md)의 B·E를 사용한다.
+4. 새 세트는 `question-generation-workflow` → `validateQuestionSetV3` → `promote_cpa_v3.ts` 순서를 따른다. 후보 설계는 [question-drafts.md](question-drafts.md)에 있다.
+5. pilot-19-001·002의 빈 `standards`는 **값을 채우지 않는다.** 두 세트의 근거는 인증업무개념체계 문단이고 이 자료에는 대응하는 KGA 번호가 없다. 없는 기준서 코드를 만들어 넣는 것은 `SCHEMA.md`의 추정 금지에 어긋난다. 커버리지 집계에서 빠진다는 사실만 기록하고, 공식 판본에서 번호를 확인한 뒤에 채운다.
 
 ## Related
 

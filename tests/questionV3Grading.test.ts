@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { applyQuestionSetJudgment } from '../lib/questionV3Grading.ts';
+import { applyQuestionSetJudgment, buildGradingPrompt } from '../lib/questionV3Grading.ts';
 import type { QuestionSetV3 } from '../lib/questionV3.ts';
 
 const set: QuestionSetV3 = {
@@ -121,4 +121,28 @@ test('salad flags do not erase valid criteria, while local injection stays isola
         const result = applyQuestionSetJudgment(set, answers, judgment);
         assert.deepEqual(result.subquestions.map(q => q.score), [0, 2]);
     }
+});
+
+test('grading prompt carries shared context facts so case questions are judged with their premise', () => {
+    const caseSet: QuestionSetV3 = {
+        ...set,
+        shared_context: {
+            facts: [
+                { id: 'f1', text: '감사인은 서비스조직의 유형 1 보고서를 통제테스트 증거로 쓸 계획이다.', scoreable: false },
+            ],
+        },
+    };
+
+    const prompt = buildGradingPrompt(caseSet, { q1: '답안', q2: '답안' });
+    const payload = JSON.parse(
+        prompt.split('<<<GRADING_PAYLOAD_START>>>\n')[1].split('\n<<<GRADING_PAYLOAD_END>>>')[0],
+    );
+
+    assert.deepEqual(payload.shared_context, ['감사인은 서비스조직의 유형 1 보고서를 통제테스트 증거로 쓸 계획이다.']);
+    assert.equal(payload.subquestions.length, 2);
+    assert.equal(payload.subquestions[0].subquestion_id, 'q1');
+    assert.ok(prompt.includes('shared_context는 모든 물음에 공통으로 주어진 사실이며 그 자체는 채점 대상이 아니다'));
+    assert.deepEqual(JSON.parse(
+        buildGradingPrompt(set, {}).split('<<<GRADING_PAYLOAD_START>>>\n')[1].split('\n<<<GRADING_PAYLOAD_END>>>')[0],
+    ).shared_context, []);
 });

@@ -235,19 +235,24 @@ function buildGradingResponseSchema(): Record<string, unknown> {
 }
 
 export function buildGradingPrompt(questionSet: QuestionSetV3, answers: Record<string, string>): string {
-    const gradingPayload = questionSet.subquestions.map((subquestion) => ({
-        subquestion_id: subquestion.id,
-        type: subquestion.type,
-        prompt: subquestion.prompt,
-        model_answer: subquestion.model_answer,
-        criteria: subquestion.criteria.map((criterion) => ({
-            criterion_id: criterion.id,
-            claim: criterion.claim,
-            critical_facts: criterion.critical_facts,
-            partial_allowed: criterion.scores.partial !== undefined,
+    // 사례형 세트는 판단의 전제가 shared_context에 있다. 이것이 빠지면 평가자는
+    // 사례를 보지 못한 채 판정하게 되므로 채점 데이터에 함께 넣는다.
+    const gradingPayload = {
+        shared_context: (questionSet.shared_context?.facts ?? []).map((fact) => fact.text),
+        subquestions: questionSet.subquestions.map((subquestion) => ({
+            subquestion_id: subquestion.id,
+            type: subquestion.type,
+            prompt: subquestion.prompt,
+            model_answer: subquestion.model_answer,
+            criteria: subquestion.criteria.map((criterion) => ({
+                criterion_id: criterion.id,
+                claim: criterion.claim,
+                critical_facts: criterion.critical_facts,
+                partial_allowed: criterion.scores.partial !== undefined,
+            })),
+            user_answer: answers[subquestion.id] ?? '',
         })),
-        user_answer: answers[subquestion.id] ?? '',
-    }));
+    };
 
     return [
         '당신은 KICPA 회계감사 답안의 criterion 충족 여부만 판정하는 평가자다.',
@@ -264,6 +269,7 @@ export function buildGradingPrompt(questionSet: QuestionSetV3, answers: Record<s
         '- not_met에는 quote를 넣지 않는다.',
         '- 한 문장이 독립된 여러 명제를 충족하면 동일 quote를 여러 criterion에 사용할 수 있다.',
         '- 같은 사실의 반복은 다른 독립 명제의 충족을 대신하지 않는다.',
+        '- shared_context는 모든 물음에 공통으로 주어진 사실이며 그 자체는 채점 대상이 아니다. 주어진 사실을 그대로 옮겨 적은 답안은 명제 충족으로 보지 않는다.',
         '- 발문에서 명칭이나 범주를 요구하면 명칭 나열만으로 해당 criterion을 충족할 수 있다. 정의·근거를 별도로 요구하면 그 요건은 별도로 판정한다.',
         '- 답안의 문장 수나 단순 나열 순서로 감점하지 말고 답안 전체에서 각 명제를 평가한다. 절차의 의미상 순서·시점·조건 및 명시적 반대 결론은 보존한다.',
         '',
