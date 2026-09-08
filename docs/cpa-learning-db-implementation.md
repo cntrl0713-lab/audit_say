@@ -1,6 +1,6 @@
 # CPA 학습 DB 구현·전환 기록
 
-2026-09-08 12:57 KST 기준. **운영 Supabase 적용에 이어 앱 배포와 경험치 원장 초기화를 완료했다.** 운영 주소는 [audit-say.vercel.app](https://audit-say.vercel.app/)이며 `CPA_LEARNING_DB_ENABLED=true`로 DB 학습 기록을 사용한다. 사용자 지시에 따라 문항 내용을 재검증하거나 수정하지 않고, 최종 파일 식별과 이관 일치만 확인했다. 테이블별 컬럼·관계는 [설계서](cpa-learning-db-design.md)에 있다.
+2026-09-08 기준. **운영 Supabase 적용에 이어 앱 배포와 경험치 원장 초기화를 완료했다.** 운영 주소는 [audit-say.vercel.app](https://audit-say.vercel.app/)이며 `CPA_LEARNING_DB_ENABLED=true`로 DB 학습 기록을 사용한다. 실제 비회원 빈 답안 제출·재시도·복원 확인도 통과했다. 사용자 지시에 따라 문항 내용을 재검증하거나 수정하지 않고, 최종 파일 식별과 이관 일치만 확인했다. 테이블별 컬럼·관계는 [설계서](cpa-learning-db-design.md)에 있다.
 
 ## 실제 적용 결과
 
@@ -27,16 +27,20 @@
 |---|---|
 | 배포 | `dpl_82P2ncKG3U9iHfkpXXzJVvBsjZXU`, [고유 배포 URL](https://audit-ofz8h8csd-cta-tax-law.vercel.app). `--prod --skip-domain`으로 READY 확인 후 운영 승격 완료 |
 | 서버 설정 | `CPA_LEARNING_DB_ENABLED=true`, `OPENAI_API_KEY`를 production secret으로 추가. 기본 모델 `gpt-5.6-luna` 접근 확인 |
-| 배포 입력 | 앱 파일 82개, 약 2.4 MB. 평문 authoring·환경 파일·임시 자료 0개. 배포 빌드·타입 검사 통과 |
+| 배포 입력 | Git push 없이 현재 작업 파일 82개를 선택한 CLI 스냅샷, 약 2.4 MB. 평문 authoring·환경 파일·임시 자료 0개. 배포 빌드·타입 검사 통과 |
 | 구요청 정리 | 03:53:12 UTC에 임시 POST 차단 403 확인 후, 구배포 quiz 실행 상한 60초보다 긴 약 114초 대기 |
 | 원장 초기화 | 03:55:06.273450 UTC에 `cpa_initialize_learning_progress()`로 회원 3명의 opening balance와 marker를 원자 기록. 기존 EXP가 모두 0이어서 초기화 후에도 0 |
-| 전환 후 방화벽 | `rule_cpa_cutover_post_hold_0IuPMl`를 `CPA legacy deployment POST block`으로 변경·게시. 과거 hostname 48개·배포 ID 44개의 POST를 차단하고 운영 별칭 3개는 유지 |
+| 전환 후 방화벽 | `rule_cpa_cutover_post_hold_0IuPMl`를 `CPA legacy deployment POST block`으로 변경·게시. 과거 hostname 49개·배포 ID 44개의 POST를 차단. 실제 서비스 별칭은 `audit-say.vercel.app`, `audit-say-cta-tax-law.vercel.app` 2개 |
 | 운영 경로 확인 | 03:57:32 UTC에 `/`, `/quiz`, `/curriculum`, `/ranking`, `/history`, `/review-notes` 모두 200, `/quiz` DB 모드 확인 |
 | POST 경로 확인 | 새 POST 200, 구배포 고정 POST 403. 구 고유 URL의 비인증 POST는 SSO로 302 이동 |
 | 전환 직후 DB 집계 | marker 1, 프로필 3, EXP 합계 0, 비영점 프로필 0, opening 3, submission award 0, 원장 불일치 0, opening 누락 0 |
 | 후속 상태 확인 | 03:58:52 UTC에 제출 0건, XP 이벤트 3건, 활성 릴리스 1개, 보관기간 작업 1개. 방화벽 변경 모두 게시되어 pending 없음 |
+| 비회원 실제 제출 확인 | 운영 공개 JS의 Server Action ID 4개를 사용해 익명 세션 1개 생성 → 제출 준비 1회 → 동일 서명 토큰으로 빈 답안 채점 2회 → 결과 복원 1회 → 완료 이력 1건 확인. 같은 제출 유지·결과 복원·7일 보관 계약 통과 |
+| 최종 DB 집계 | 04:02:45.983172 UTC에 회원 3명·EXP 합계 0·비영점 회원 0·opening 3·award 0·원장 불일치 0. 비회원 완료 제출 1건·7일 보관 1건·채점 실행 1건·오답노트 0건 |
 
-위 HTTP 확인은 접근·배포 경로 확인이다. 실제 비회원 제출·저장·결과 복원 smoke는 아직 실행하지 않았으며, 모델 접근 확인을 실제 AI 채점 성공으로 기록하지 않는다. 초기화 실행 스크립트의 CommonJS 진입점은 async main으로 정리했고, 이후 실제 초기화와 타입 검사·해당 스크립트 ESLint가 통과했다.
+비회원 smoke는 실제 운영 HTTP Server Action과 Supabase 쿠키를 유지하는 세션으로 실행했다. 비어 있지 않은 답안은 0개이며 문제 내용 검증이나 AI 모델 호출은 하지 않았다. 전체 UI를 조작한 브라우저 E2E와는 구분한다. 초기화 실행 스크립트의 CommonJS 진입점은 async main으로 정리했고, 이후 실제 초기화와 타입 검사·해당 스크립트 ESLint가 통과했다.
+
+승격 후 별칭 API를 확인해 `audit-say-git-main-cta-tax-law.vercel.app`이 구배포에 남아 있는 것을 발견했고, 해당 hostname도 POST 차단 대상에 추가·게시했다. 현재 운영 배포의 소스는 위 CLI 스냅샷이며, 기존 Git commit 메타데이터를 새 배포 코드 전체의 커밋으로 해석하지 않는다.
 
 ## 구현 범위
 
@@ -131,4 +135,5 @@ where actor_kind = 'guest' and expires_at <= now();
 - 서버 서비스와 UI 상태 테스트에서 서명 변조·다른 답안·만료 후 재전송·완료 응답 유실·이력 커서·공개 정보 경계를 검증했다.
 - 이번 적용 전 변경한 저장 호환·원문 보존·권한 fixture SQL 테스트 **15개**, 이관/제출 서비스 fixture 테스트 **11개**, 타입 검사·관련 린트 통과. 실제 문제은행 내용 검증은 사용자 요청으로 생략했다.
 - 운영 RLS·RPC 권한·테이블 건수·전체 원문/공개 왕복·cron 등록을 확인했다. 실제 anon 키로 정본 스냅샷 SELECT와 공개 RPC 직접 호출이 모두 권한 오류 42501로 거절됨을 확인했다. 앱 승격 후 6개 GET 경로·신규/구배포 POST 경로와 초기화 집계를 확인했다.
-- PGlite 테스트는 여러 PostgreSQL 연결을 동시에 실행한 동시성 부하검증이 아니다. 실제 비회원 제출 smoke, 전체 로그인·AI 채점 브라우저 E2E, cron의 예약 실행 결과는 아직 확인하지 않았다.
+- 실제 운영 비회원 smoke에서 제출 준비·동일 서명 토큰 재시도·결과 복원·완료 이력 1건·7일 보관 계약을 확인했다. 빈 답안만 사용했고 AI 모델은 호출하지 않았다.
+- PGlite 테스트는 여러 PostgreSQL 연결을 동시에 실행한 동시성 부하검증이 아니다. 전체 로그인·AI 채점 브라우저 E2E와 cron의 예약 실행 결과는 아직 확인하지 않았다.

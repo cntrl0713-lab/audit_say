@@ -15,7 +15,7 @@ KICPA 회계감사 서술형 문제를 풀고, 기준서 근거와 criterion 단
 
 채점 결과와 회원 경험치는 한 트랜잭션으로 저장하며 같은 제출 재시도는 중복 적립하지 않습니다. 비회원은 익명 Supabase 세션으로 학습하며 풀이 결과는 7일 보관하고 영구 프로필이나 경험치를 만들지 않습니다.
 
-2026-09-08 기준 [운영 앱](https://audit-say.vercel.app/) 배포와 경험치 원장 초기화를 완료했습니다. 신규 테이블 20개와 최종 문제은행 96세트·192물음·521criterion을 사용하며 `CPA_LEARNING_DB_ENABLED=true`로 풀이 이력·오답노트·기간 랭킹을 활성화했습니다. 운영 경로와 초기화 집계는 확인했으며 실제 비회원 제출 smoke는 아직 미실행입니다. 적용 이력과 확인 범위는 [학습 DB 구현·전환 기록](docs/cpa-learning-db-implementation.md), 테이블 설계는 [DB 설계서](docs/cpa-learning-db-design.md)를 참고하세요.
+2026-09-08 기준 [운영 앱](https://audit-say.vercel.app/) 배포와 경험치 원장 초기화를 완료했습니다. 신규 테이블 20개와 최종 문제은행 96세트·192물음·521criterion을 사용하며 `CPA_LEARNING_DB_ENABLED=true`로 풀이 이력·오답노트·기간 랭킹을 활성화했습니다. 운영 경로·초기화 집계와 실제 비회원 빈 답안 제출·같은 제출 재시도·결과 복원·7일 보관 계약을 확인했습니다. AI 실제 호출과 전체 브라우저 E2E는 이번 확인 범위에 포함하지 않았습니다. 적용 이력과 확인 범위는 [학습 DB 구현·전환 기록](docs/cpa-learning-db-implementation.md), 테이블 설계는 [DB 설계서](docs/cpa-learning-db-design.md)를 참고하세요.
 
 ## 문제은행과 채점
 
