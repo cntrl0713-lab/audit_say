@@ -31,7 +31,7 @@ async function main() {
     const filingsAt = process.argv.indexOf('--filings');
     const filings = JSON.parse(fs.readFileSync(filingsAt >= 0 ? process.argv[filingsAt + 1] : path.join(dir, 'filings-latest.json'), 'utf8')) as FirmFiling[];
     const db = localOnly ? null : createStoreClient();
-    const masters = db ? await db.from('firm_registered').select('firm_id,dart_corp_code').limit(2000) : null;
+    const masters = db ? await db.from('cpa_firm_registered').select('firm_id,dart_corp_code').limit(2000) : null;
     if (masters?.error) throw new Error(`masterRead:${masters.error.code}`);
     const checks: Record<string, unknown>[] = [];
     for (const year of years) {
@@ -68,7 +68,7 @@ async function main() {
                             if (!tableIds[table]) throw new Error(`unknownTable:${table}`);
                             const byFirm = new Map<number, Record<string, unknown>[]>();
                             for (let offset = 0; ; offset += 1000) {
-                                const { data, error } = await db.from(table).select('*').eq('bsns_year', year)
+                                const { data, error } = await db.from(`cpa_${table}`).select('*').eq('bsns_year', year)
                                     .order(tableIds[table]).range(offset, offset + 999);
                                 if (error) throw new Error(`verifyRead:${table}:${error.code}`);
                                 for (const row of data as Record<string, unknown>[]) {

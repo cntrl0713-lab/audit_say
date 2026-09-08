@@ -1,0 +1,117 @@
+{
+  "at": "2026-09-08T01:25:13.433Z",
+  "commands": {
+    "typecheck": {
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "output": "\n> crimson-lagoon@0.1.0 typecheck\n> tsc --noEmit\n\n"
+    },
+    "bank_validation": {
+      "command": "npm run questions:v3:validate",
+      "exit_code": 0,
+      "output": "\n> crimson-lagoon@0.1.0 questions:v3:validate\n> tsx cpa_uploader/validate_cpa_v3.ts\n\nv3 검증 통과: 96세트, 192개 세부 물음, 521개 criterion, 총 521점\n모든 source_quote가 원자료에 존재하며 public JSON에는 비공개 채점 데이터가 없습니다.\n"
+    },
+    "related_tests": {
+      "command": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/questionV3*.test.ts tests/openaiStructured.test.ts tests/v3Cutover.test.ts tests/rateLimit.test.ts",
+      "exit_code": 0,
+      "output": "✔ requestOpenAIStructured sends strict JSON schema and parses output (2.0742ms)\n✔ requestOpenAIStructured surfaces refusals without treating them as JSON (0.9926ms)\n✔ requestOpenAIStructured retries transient transport failures once (36.1992ms)\n✔ requestOpenAIStructured retries rate limits (6.2869ms)\n✔ requestOpenAIStructured does not retry authentication failures (0.8329ms)\n✔ requestOpenAIStructured rejects incomplete output without scoring it (0.3464ms)\n✔ requestOpenAIStructured retries timeout failures (5.458ms)\n✔ requestOpenAIStructured rejects missing credentials before a network call (0.5508ms)\n✔ validateQuestionSetV3 validates source-bound linked question sets (36.8493ms)\n✔ v3 authoring bank keeps the pilot floor distribution and stays internally consistent (57.1976ms)\n✔ validateQuestionSetV3 rejects ungrounded requirements and invalid partial scoring (0.7751ms)\n✔ validateQuestionSetV3 rejects duplicate critical facts within one subquestion (14.249ms)\n✔ validateQuestionSetV3 requires criterion evidence to include its requirement source (0.3783ms)\n✔ validateQuestionSetV3 reports malformed LLM subquestions without throwing (0.3861ms)\n✔ computeQuestionSetMaxPoints honors best_n without forcing a ten-point total (0.2407ms)\n✔ validateQuestionSetV3 rejects public tags that reveal a model answer (0.2183ms)\n✔ isQuestionSetAnswerPayloadV3 accepts canonical subquestion ids and rejects unsafe payloads (0.4385ms)\n✔ compilePublicQuestionSet strips model answers, requirements, criteria, and source quotes (0.5969ms)\n✔ scoreCriterionVerdicts computes integer criterion scores in code (0.4477ms)\n✔ scoreCriterionVerdicts gives contradicted criteria zero points and caps best_n (0.214ms)\n✔ verifyCriterionVerdicts allows one real quote for independent criteria and rejects invented evidence (0.3145ms)\n✔ encrypted authoring bundles round-trip without exposing plaintext (3.5301ms)\n✔ authoring encryption rejects low-entropy keys (0.8427ms)\n✔ question bank load failures are classified without exposing secrets (0.3426ms)\n✔ production always selects the encrypted bank even when plaintext exists locally (5.338ms)\n✔ production loads the encrypted authoring bank when the ignored plaintext bank is absent (42.6672ms)\n✔ question generation CLI can be imported without starting a generation run (2.5795ms)\n✔ applyQuestionSetJudgment verifies quotes and sums dynamic subquestion scores (4.2791ms)\n✔ applyQuestionSetJudgment forces zero when prompt injection is detected (0.6902ms)\n✔ salad flags do not erase valid criteria, while local injection stays isolated (0.5707ms)\n✔ payload and grader share the input limit; blank answers never need a model key or network (26.262ms)\n✔ shared quotes preserve independent criteria across the bank and existing score caps (11.8167ms)\n✔ empty topic 04 answers skip the model without credentials (0.9852ms)\n✔ bank validation permits cross-set source reuse but rejects redundant entries and fabricated quotes (6165.374ms)\n▶ isMissingMigration\n  ✔ 함수나 테이블이 없는 경우만 마이그레이션 미적용으로 본다 (0.8899ms)\n  ✔ 권한 오류와 기타 오류는 폴백 대상이 아니다 (0.2346ms)\n✔ isMissingMigration (2.2171ms)\n▶ consumeInMemory\n  ✔ 한도까지 허용하고 이후 요청은 거절한다 (0.3725ms)\n  ✔ 시간 창과 사용자별 버킷을 분리하고 만료 항목을 정리한다 (0.292ms)\n✔ consumeInMemory (0.8766ms)\n✔ the canonical quiz route serves the v3 question bank to authenticated users (33.7523ms)\n✔ the v3 cutover removes duplicate and v2-only runtime files (30.8688ms)\n✔ the active question pipeline has no legacy provider or RAG dependency (9.2889ms)\nℹ tests 41\nℹ suites 2\nℹ pass 41\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 6778.1901\n"
+    },
+    "skill_validation": {
+      "command": "$env:PYTHONPATH='C:/Users/cntrl/Workspace/study/audit_say/tmp/question-review-07/skill-deps'; & 'C:/Users/cntrl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' -X utf8 C:/Users/cntrl/.codex/skills/.system/skill-creator/scripts/quick_validate.py C:/Users/cntrl/.codex/skills/audit-question-review",
+      "exit_code": 0,
+      "output": "Skill is valid!\r\n"
+    },
+    "wiki_lint": {
+      "command": "node cpa_uploader/wiki/scripts/lint-wiki.mjs",
+      "exit_code": 0,
+      "output": "29 markdown files / 26 content pages / errors: []; warning: question-design.md 295 lines, split recommended"
+    },
+    "compile": {
+      "command": "npm run questions:v3:compile",
+      "exit_code": 0,
+      "output": "v3 배포 문제은행 생성 완료: 96세트; final source/public/encrypted comparison passed"
+    }
+  },
+  "original_local_sources": [
+    {
+      "set": "pilot-16-001",
+      "source": "src6",
+      "present": true
+    },
+    {
+      "set": "pilot-16-001",
+      "source": "src12",
+      "present": true
+    },
+    {
+      "set": "pilot-16-001",
+      "source": "src14",
+      "present": true
+    },
+    {
+      "set": "pilot-16-002",
+      "source": "src1",
+      "present": true
+    },
+    {
+      "set": "pilot-16-002",
+      "source": "src2",
+      "present": true
+    },
+    {
+      "set": "pilot-16-003",
+      "source": "src1",
+      "present": true
+    },
+    {
+      "set": "pilot-16-003",
+      "source": "src2",
+      "present": true
+    },
+    {
+      "set": "pilot-16-004",
+      "source": "src1",
+      "present": true
+    },
+    {
+      "set": "pilot-16-004",
+      "source": "src2",
+      "present": true
+    },
+    {
+      "set": "pilot-16-005",
+      "source": "src1",
+      "present": true
+    },
+    {
+      "set": "pilot-16-005",
+      "source": "src2",
+      "present": true
+    },
+    {
+      "set": "pilot-16-006",
+      "source": "src1",
+      "present": true
+    },
+    {
+      "set": "pilot-16-006",
+      "source": "src2",
+      "present": true
+    },
+    {
+      "set": "pilot-16-007",
+      "source": "src1",
+      "present": true
+    },
+    {
+      "set": "pilot-16-007",
+      "source": "src2",
+      "present": true
+    },
+    {
+      "set": "pilot-16-007",
+      "source": "src3",
+      "present": true
+    }
+  ]
+}

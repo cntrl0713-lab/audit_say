@@ -13,9 +13,13 @@ KICPA 회계감사 서술형 문제를 풀고, 기준서 근거와 criterion 단
 
 채점 결과의 양수 점수는 회원의 경험치에 반영됩니다. 비회원은 실제 익명 Supabase 세션으로 학습할 수 있지만 영구 프로필을 만들지 않습니다.
 
+v3 문제은행·제출·오답노트·누적/주간/월간 랭킹의 신규 테이블 20개와 최종 문제은행 96세트·192물음·521criterion을 운영 DB에 적용했습니다. `/history`, `/review-notes`, 기간 랭킹은 경험치 초기화와 `CPA_LEARNING_DB_ENABLED=true` 서비스 전환 뒤 활성화됩니다. 실제 적용 이력과 남은 서비스 전환 순서는 [학습 DB 구현·전환 기록](docs/cpa-learning-db-implementation.md), 테이블 설계는 [DB 설계서](docs/cpa-learning-db-design.md)를 참고하세요.
+
 ## 문제은행과 채점
 
 문제은행은 `cpa_uploader/data/cpa_question_sets_v3.authoring.json`을 편집 정본으로, `cpa_uploader/data/cpa_question_sets_v3.public.json`을 공개 문제 목록으로 사용합니다. 공개본에는 모범답안·requirements·criterion·source quote가 포함되지 않습니다.
+
+Supabase의 프로젝트 소유 테이블은 `cpa_*` 접두어를 사용합니다. 회원 프로필은 `cpa_users`, 회계법인 데이터는 `cpa_firm_*`입니다. 기존 이름은 배포 호환용 뷰로 유지하며 다른 앱의 `cta_*`와 Supabase 관리 테이블은 변경하지 않습니다. [테이블 이름 전환 기록](docs/cpa-table-prefix.md)을 참고하세요.
 
 운영 채점은 `data/cpa_question_sets_v3.authoring.enc.json`을 복호화해 사용합니다. production에서는 암호화 파일을 선택하며, `next.config.ts`도 암호화 배포 파일만 tracing에 포함하고 평문 authoring 파일은 제외합니다. 상태 전환은 `cpa_question_sets_v3.promotions.json` 장부로 추적합니다.
 

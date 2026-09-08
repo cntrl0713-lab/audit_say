@@ -3,6 +3,8 @@
 `docs/PLAN_PRD_v2.md` §4 의 수집 설계를 구현한 연 1회 배치다.
 적재 대상 스키마는 `docs/firm-platform-schema.md` 를 본다.
 
+2026-09-08부터 실제 적재 테이블은 `cpa_firm_*`다. 연간 RPC와 캐시 payload의 `tables.firm_*` 키는 기존 계약을 유지하고 DB 접근 시 새 이름으로 연결한다. 이름 변경이 적용된 DB에서는 `migrateAnnualReports.ts`가 과거 F004 DDL을 재실행하지 않는다. [전환 기록](../../docs/cpa-table-prefix.md)을 참고한다.
+
 ---
 
 ## 첫 실행 전 확인 — 2026-09-08 실호출 검증 반영
@@ -78,12 +80,12 @@ npm run firm:collect:profiles -- --year 2025 --report docs/reports/profiles-2025
 
 | 테이블 | 중복 방지 키 |
 |---|---|
-| `firm_company` | `corp_code` |
-| `firm_engagement` | `(firm_id, corp_code, bsns_year)` |
-| `firm_audit_opinion` · `firm_financials` | `engagement_id` |
-| `firm_profile_yearly` · `firm_workforce_yearly` | `(firm_id, bsns_year)` |
+| `cpa_firm_company` | `corp_code` |
+| `cpa_firm_engagement` | `(firm_id, corp_code, bsns_year)` |
+| `cpa_firm_audit_opinion` · `cpa_firm_financials` | `engagement_id` |
+| `cpa_firm_profile_yearly` · `cpa_firm_workforce_yearly` | `(firm_id, bsns_year)` |
 
-이번 파이프라인은 `firm_service_contract`를 조회·변경하지 않는다.
+이번 파이프라인은 `cpa_firm_service_contract`를 조회·변경하지 않는다.
 
 ## 수집 보고서
 
@@ -92,7 +94,7 @@ npm run firm:collect:profiles -- --year 2025 --report docs/reports/profiles-2025
 
 | 항목 | 뜻 | 할 일 |
 |---|---|---|
-| `unmatchedAuditors` | 감사인명이 `firm_registered` 에 없다 | 마스터에 법인을 추가하거나 `alias` 를 보강한다 |
+| `unmatchedAuditors` | 감사인명이 `cpa_firm_registered` 에 없다 | 마스터에 법인을 추가하거나 `alias` 를 보강한다 |
 | `unnormalizedOpinions` | 의견 원문을 못 접었다 | `normalizeAuditOpinion` 에 표현을 추가한다 |
 | `financialsMissing` | 재무 계정을 못 찾았다 | 금융회사면 정상. 아니면 계정명 alias 를 본다 |
 | `financialsUnsupportedCurrency` | 원화가 아닌 재무금액 | 원화 환산 근거 확보 전 금액 NULL·`parse_failed` 유지 |
@@ -110,9 +112,9 @@ PRD §4.3 의 2차 수집 범위다.
 - 종목코드가 없는 회사의 감사보고서 원문 파싱 (1차는 `stock_code`가 있는 회사)
 - 금융회사 재무 3지표 보완 (지금은 `data_status = 'missing'` 으로 남는다)
 - KAM 주제 분류·태깅 (지금은 원문 보관 + 번호 세기만)
-- **부문별 매출** (`firm_profile_yearly.revenue_*`) — 구조화 API 에 없어 전부 NULL 이다.
+- **부문별 매출** (`cpa_firm_profile_yearly.revenue_*`) — 구조화 API 에 없어 전부 NULL 이다.
   부문별 **인원** 분류기는 있지만 회계법인 직원 API의 실데이터가 없어 이번에는 채우지 못했다.
-- `firm_company.induty` — 기업개황 API 를 아직 붙이지 않아 NULL 이다.
+- `cpa_firm_company.induty` — 기업개황 API 를 아직 붙이지 않아 NULL 이다.
 
 ## 파일
 

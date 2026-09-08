@@ -105,3 +105,20 @@ test('applyQuestionSetJudgment forces zero when prompt injection is detected', (
     assert.equal(result.score, 0);
     assert.ok(result.subquestions.every((subquestion) => subquestion.score === 0));
 });
+
+test('salad flags do not erase valid criteria, while local injection stays isolated', () => {
+    const answers = { q1: '합리적 확신은 높은 수준이다.', q2: '합리적 확신은 절대적 확신이 아니다.' };
+    for (const scope of ['global', 'local']) {
+        const judgment = {
+            subquestions: [
+                { subquestion_id: 'q1', verdicts: [{ criterion_id: 'q1.c1', verdict: 'met' as const, quote: answers.q1 }], salad_detected: scope === 'local', injection_detected: false },
+                { subquestion_id: 'q2', verdicts: [{ criterion_id: 'q2.c1', verdict: 'met' as const, quote: answers.q2 }] },
+            ],
+            salad_detected: scope === 'global',
+        };
+        assert.equal(applyQuestionSetJudgment(set, answers, judgment).score, 3);
+        judgment.subquestions[0].injection_detected = true;
+        const result = applyQuestionSetJudgment(set, answers, judgment);
+        assert.deepEqual(result.subquestions.map(q => q.score), [0, 2]);
+    }
+});

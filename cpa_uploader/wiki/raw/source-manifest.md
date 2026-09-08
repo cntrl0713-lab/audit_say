@@ -14,7 +14,7 @@ confidence: high
 
 > 위키는 원자료를 복제하지 않는다. 아래 파일은 `cpa_uploader/data`에 있는 immutable source layer로 취급한다.
 
-- 파일 수: 25
+- 파일 수: 39
 - 동일 해시를 가진 중복 그룹 수: 0
 - NUL 바이트가 포함된 파일 수: 0
 
@@ -41,10 +41,24 @@ confidence: high
 | `data/회계감사_통합학습자료/99_문맥_교정_기록.md` | 26532 | `699705844557` | 0 |  | 정상 |
 | `data/회계감사_통합학습자료/99_문자_판독_검토대상.md` | 32800 | `ca1c52ada053` | 0 |  | 정상 |
 | `data/회계감사_통합학습자료/99_완전성_검증.md` | 3899 | `553582dd19d4` | 0 |  | 정상 |
-| `data/회계감사_통합학습자료/README.md` | 3605 | `3c6cf0466ef4` | 0 |  | 정상 |
-| `data/cpa_question_sets_v3.authoring.json` | 922205 | `80f81cb41af7` | 0 |  | 정상 |
-| `data/cpa_question_sets_v3.promotions.json` | 23854 | `7ef15f8f7083` | 0 |  | 정상 |
-| `data/cpa_question_sets_v3.public.json` | 245318 | `7978f3cf6308` | 0 |  | 정상 |
+| `data/회계감사_통합학습자료/README.md` | 3608 | `73089ee49076` | 0 |  | 정상 |
+| `data/cpa_question_sets_v3.authoring.json` | 1241230 | `b22d74f9874c` | 0 |  | 정상 |
+| `data/cpa_question_sets_v3.promotions.json` | 36487 | `edb2173d12ef` | 0 |  | 정상 |
+| `data/cpa_question_sets_v3.public.json` | 269598 | `7749f44a8aab` | 0 |  | 정상 |
+| `data/official/assurance-review-2027-topic19.txt` | 7954 | `864546d0b2a1` | 0 |  | 정상 |
+| `data/official/kga1100-2025-review17.txt` | 59992 | `9747034fdf13` | 0 |  | 정상 |
+| `data/official/kga1200-2025-review18.txt` | 17657 | `5fce04684438` | 0 |  | 정상 |
+| `data/official/kga315-330-2025-review06.txt` | 28801 | `486c1df843af` | 0 |  | 정상 |
+| `data/official/kga330-2025-review07.txt` | 33610 | `6505709543fe` | 0 |  | 정상 |
+| `data/official/kga450-560-570-580-2025-review12.txt` | 48500 | `3c10765257b6` | 0 |  | 정상 |
+| `data/official/kga500-2025-review08.txt` | 58067 | `dfb6038ddf13` | 0 |  | 정상 |
+| `data/official/kga501-505-510-2025-review09.txt` | 40415 | `3c67b9ef97c8` | 0 |  | 정상 |
+| `data/official/kga520-530-2025-review10.txt` | 27961 | `492520a73165` | 0 |  | 정상 |
+| `data/official/kga540-550-2025-review11.txt` | 9501 | `0cc7abb65b85` | 0 |  | 정상 |
+| `data/official/kga600-2025-review14.txt` | 81927 | `22f6a25d5963` | 0 |  | 정상 |
+| `data/official/kga610-620-2025-review13.txt` | 7486 | `63ffc6421981` | 0 |  | 정상 |
+| `data/official/kga700-705-2025-review15.txt` | 8934 | `b36f38470355` | 0 |  | 정상 |
+| `data/official/kga701-706-710-720-2025-review16.txt` | 51680 | `9e7889d4b5fe` | 0 |  | 정상 |
 
 ## 사용 규칙
 

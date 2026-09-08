@@ -139,6 +139,61 @@ export interface CompanyAuditHistoryRow {
     opinion_changed: boolean | null;
 }
 
+/** 사업보고서가 인력·매출을 나누는 부문 축. */
+export type FirmSegment = 'total' | 'audit' | 'tax' | 'advisory' | 'other';
+
+/** firm_personnel_cost_yearly.concept — 인건비와 그에 준해 함께 공시되는 비용. */
+export type PersonnelCostConcept =
+    | 'personnel_total'
+    | 'quality_personnel'
+    | 'training'
+    | 'travel'
+    | 'welfare'
+    | 'entertainment';
+
+/** 수치를 어디서 얻었는지. 공시 표(form_table)와 손익계산서 유도값은 신뢰도가 다르다. */
+export type CostMatchMethod = 'form_table' | 'account_code' | 'account_label';
+
+/** 인력·인건비 행이 공통으로 갖는 보고기간 식별자. */
+export interface FirmAnnualPeriodRef {
+    firm_id: number;
+    /** 결산말 연도. 원문 조인 키이며 표시 기준연도가 아니다. */
+    bsns_year: number;
+    fy_start_year: number;
+    fy_start_date: string;
+    fy_end_date: string;
+    fy_seq: number | null;
+    source_rcept_no: string;
+    source_rcept_dt: string;
+}
+
+/** v_firm_cpa_tenure — 공인회계사 근속 분포. 모집단이 전 임직원이 아니라 공인회계사다. */
+export interface FirmCpaTenureRow extends FirmAnnualPeriodRef {
+    segment: FirmSegment;
+    under_1y: number | null;
+    y1_3: number | null;
+    y3_5: number | null;
+    y5_10: number | null;
+    y10_15: number | null;
+    over_15y: number | null;
+    total: number | null;
+    /** 입·퇴사와 기초·기말은 total 세그먼트에만 공시된다. 부문별 행에서는 null 이다. */
+    hires: number | null;
+    leavers: number | null;
+    begin_count: number | null;
+    end_count: number | null;
+}
+
+/** v_firm_personnel_cost — 부문별 인건비. headcount 는 전 임직원 기준이다. */
+export interface FirmPersonnelCostRow extends FirmAnnualPeriodRef {
+    concept: PersonnelCostConcept;
+    segment: FirmSegment;
+    amount: number | null;
+    headcount: number | null;
+    source_table: string;
+    match_method: CostMatchMethod;
+}
+
 export const MARKET_LABEL: Record<CorpCls, string> = {
     Y: '유가증권',
     K: '코스닥',

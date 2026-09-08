@@ -1,10 +1,10 @@
 import { BookOpen } from 'lucide-react';
-import { loadPublicQuestionSetsV3 } from '../../lib/questionV3Store';
+import { loadLearningQuestionSetsV3 } from '../../lib/questionV3Repository';
 
 export const dynamic = 'force-dynamic';
 
-export default function CurriculumPage() {
-    const sets = loadPublicQuestionSetsV3();
+export default async function CurriculumPage() {
+    const sets = await loadLearningQuestionSetsV3();
     const subquestionCount = sets.reduce((sum, set) => sum + set.subquestions.length, 0);
     const parts = new Map<string, Map<string, typeof sets>>();
 

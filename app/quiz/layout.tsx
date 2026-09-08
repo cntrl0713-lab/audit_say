@@ -5,7 +5,7 @@
 //
 // maxDuration은 라우트 세그먼트 설정이라 서버 컴포넌트에서만 export할 수 있다.
 // Server Action의 실행 시간 상한은 이 라우트 세그먼트에 둔다.
-export const maxDuration = 60;
+export const maxDuration = 180;
 
 export default function QuizLayout({ children }: { children: React.ReactNode }) {
     return children;

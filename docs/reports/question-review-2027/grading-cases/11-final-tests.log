@@ -1,0 +1,87 @@
+✔ validateQuestionSetV3 validates source-bound linked question sets (6.723ms)
+✖ v3 authoring bank keeps the pilot floor distribution and stays internally consistent (28.9367ms)
+✔ validateQuestionSetV3 rejects ungrounded requirements and invalid partial scoring (0.658ms)
+✔ validateQuestionSetV3 rejects duplicate critical facts within one subquestion (10.7194ms)
+✔ validateQuestionSetV3 requires criterion evidence to include its requirement source (0.4684ms)
+✔ validateQuestionSetV3 reports malformed LLM subquestions without throwing (0.543ms)
+✔ computeQuestionSetMaxPoints honors best_n without forcing a ten-point total (0.3138ms)
+✔ validateQuestionSetV3 rejects public tags that reveal a model answer (0.2754ms)
+✔ isQuestionSetAnswerPayloadV3 accepts canonical subquestion ids and rejects unsafe payloads (0.7883ms)
+✔ compilePublicQuestionSet strips model answers, requirements, criteria, and source quotes (0.8234ms)
+✔ scoreCriterionVerdicts computes integer criterion scores in code (0.5255ms)
+✔ scoreCriterionVerdicts gives contradicted criteria zero points and caps best_n (0.2107ms)
+✔ verifyCriterionVerdicts allows one real quote for independent criteria and rejects invented evidence (0.3009ms)
+✔ encrypted authoring bundles round-trip without exposing plaintext (3.0252ms)
+✔ authoring encryption rejects low-entropy keys (1.3535ms)
+✔ question bank load failures are classified without exposing secrets (0.4869ms)
+✔ production always selects the encrypted bank even when plaintext exists locally (6.9561ms)
+✔ production loads the encrypted authoring bank when the ignored plaintext bank is absent (17.0309ms)
+✔ question generation CLI can be imported without starting a generation run (2.1308ms)
+✔ applyQuestionSetJudgment verifies quotes and sums dynamic subquestion scores (2.1746ms)
+✔ applyQuestionSetJudgment forces zero when prompt injection is detected (0.4116ms)
+✔ salad flags do not erase valid criteria, while local injection stays isolated (0.9561ms)
+✔ payload and grader share the input limit; blank answers never need a model key or network (17.3795ms)
+✔ shared quotes preserve independent criteria across the bank and existing score caps (10.5997ms)
+✔ empty topic 04 answers skip the model without credentials (2.0078ms)
+✖ bank validation permits cross-set source reuse but rejects redundant entries and fabricated quotes (1215.5624ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 24
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1620.0077
+
+✖ failing tests:
+
+test at tests\questionV3.test.ts:105:1
+✖ v3 authoring bank keeps the pilot floor distribution and stays internally consistent (28.9367ms)
+  AssertionError [ERR_ASSERTION]: pilot-18-003 should not exceed eight grading points
+      at TestContext.<anonymous> (file:///C:/Users/cntrl/Workspace/study/audit_say/tests/questionV3.test.ts:172:16)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\questionV3SourceReuse.test.ts:11:1
+✖ bank validation permits cross-set source reuse but rejects redundant entries and fabricated quotes (1215.5624ms)
+  AssertionError [ERR_ASSERTION]: v3 검증 실패: 11개 오류
+  - pilot-18-001/src1: source_quote가 KGA 1200 구간에 존재하지 않습니다.
+  - pilot-18-001/src2: source_quote가 KGA 1200 구간에 존재하지 않습니다.
+  - pilot-18-001/src6: source_quote가 KGA 1200 구간에 존재하지 않습니다.
+  - pilot-18-002/src1: source_quote가 KGA 1200 구간에 존재하지 않습니다.
+  - pilot-18-002/src2: source_quote가 KGA 1200 구간에 존재하지 않습니다.
+  - pilot-18-003/src1: source_quote가 KGA 1200 구간에 존재하지 않습니다.
+  - pilot-18-003/src3: source_quote가 KGA 1200 구간에 존재하지 않습니다.
+  - pilot-18-003/src2: source_quote가 KGA 1200 구간에 존재하지 않습니다.
+  - pilot-18-003: 세트 총점은 8점을 초과할 수 없지만 15점입니다.
+  - pilot-18-004/src1: source_quote가 KGA 1200 구간에 존재하지 않습니다.
+  - pilot-18-004/src2: source_quote가 KGA 1200 구간에 존재하지 않습니다.
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///C:/Users/cntrl/Workspace/study/audit_say/tests/questionV3SourceReuse.test.ts:28:16)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

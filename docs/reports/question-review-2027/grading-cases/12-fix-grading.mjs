@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+const file='cpa_uploader/data/cpa_question_sets_v3.authoring.json',dir='docs/reports/question-review-2027/grading-cases';
+const bank=JSON.parse(fs.readFileSync(file));
+const c=(n,qi,ci)=>bank.find(s=>s.id===`pilot-12-${String(n).padStart(3,'0')}`).subquestions[qi].criteria[ci];
+c(1,1,0).critical_facts[0].expected='제시된 재무제표일로부터 10개월은 최소 12개월에 미달함. 10개월이 부족하다는 명시적 판단 또는 제시된 평가기간을 재무제표일로부터 최소 12개월까지 늘리라는 조치로 그 판단과 최소기간 근거가 분명히 표현되면 인정. 단순히 기간을 늘리라는 말이나 명시적 반대 판단은 불인정';
+c(2,1,0).critical_facts[0].expected='감사보고서일에 실행가능한 가장 근접한 날. 감사보고서일과 같은 날로 한다는 답안도 가장 근접한 날짜를 제시하므로 인정. 반드시 같은 날이어야 하며 다른 근접일은 허용되지 않는다는 배타적 주장은 불인정';
+c(5,1,0).critical_facts[0].expected='과거기간 미수정왜곡표시도 지배기구와 커뮤니케이션 필요. 발문에서 특정한 과거기간 왜곡표시를 그 왜곡표시라고 지칭하여 지배기구에 그 영향을 전달한다고 답해도 필요 판단을 분명히 함축하므로 인정. 별도의 필요하다 문장 반복은 요구하지 않음. 명시적 불필요 판단은 불인정';
+c(7,0,0).claim='감사보고서일 후에는 원칙적으로 감사절차 수행 의무가 없음을 판단하되, 새로 알게 된 사실에 대한 예외적 대응 의무까지 부정하지 않음';
+c(7,0,0).critical_facts[0].expected='보고서일 후 원칙적 감사절차 수행 의무 없음. 원칙적으로·통상·일반적으로 등으로 표현해도 인정. 보고서 수정 원인이 될 수 있는 새로운 사실을 알게 되어도 아무 의무가 없다고 명시적으로 단정하면 이 원칙의 적용범위를 왜곡한 반대 답안이므로 불인정. 예외만 설명하고 일반 원칙을 전혀 쓰지 않으면 이 요소는 미충족';
+fs.writeFileSync(file,JSON.stringify(bank,null,2)+'\n');
+fs.writeFileSync(`${dir}/12-v2-after.json`,JSON.stringify(bank.filter(s=>s.id.startsWith('pilot-12-')),null,2)+'\n');
+let t=fs.readFileSync(`${dir}/12-run.mjs`,'utf8');
+for(const name of ['cases','offline','public','run-metadata','live'])t=t.replaceAll(`12-${name}`,`12-v2-${name}`);
+t=t.replace("const live=cases.filter(c=>c.live&&c.variant!=='empty');","const revisedSets=['pilot-12-001','pilot-12-002','pilot-12-005','pilot-12-007']; const live=cases.filter(c=>c.live&&c.variant!=='empty'&&revisedSets.includes(c.set_id));");
+fs.writeFileSync(`${dir}/12-v2-run.mjs`,t);

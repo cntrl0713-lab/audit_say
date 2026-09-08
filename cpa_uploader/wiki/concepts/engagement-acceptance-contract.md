@@ -1,7 +1,7 @@
 ---
 title: 감사업무 수임과 계약
 created: 2026-08-08
-updated: 2026-08-25
+updated: 2026-09-08
 type: concept
 status: generated
 review_required: true
@@ -15,9 +15,11 @@ confidence: medium
 ## 범위
 
 - 기준 축: KGA 210
+- 현재 문제은행 연결 기준: KGA 210
 - 탐색어: 감사업무 조건, 감사계약, 감사의 전제조건, 수임, 계속감사
 - 현재 연결된 문제 세트: 4개
 - 현재 연결된 criterion: 20개
+- 주제 전체 유형 분포: descriptive 2, judgment 3, enumeration 3
 
 ## 문제 생성 관점
 
@@ -29,30 +31,30 @@ confidence: medium
 
 ## v3 문제은행 연결 현황
 
-아래 criterion claim은 이미 출처 quote와 사람 검수를 거쳐 게시된 것이지만,
-새 문제를 만들 때는 같은 명제를 다시 묻지 않도록 참고한다.
+아래 criterion claim과 게시 상태는 현재 정본의 기록이다. 생성된 목록 자체는 공식 출처 대조나 사람 검수 완료를 보증하지 않는다.
+새 문제를 만들 때는 중복 명제 탐색에 참고하고 해당 검토 보고서와 공식 근거를 확인한다.
 
 ### pilot-03-001. 감사업무 수임과 계약의 전제조건 및 변경 (게시 중)
 
-- 물음 구성: sub1, sub2 · 유형 분포: descriptive 2, judgment 3, enumeration 3
+- 물음 구성: sub1, sub2 · 유형 분포: descriptive 1, judgment 1
 - sub1(descriptive): `crit1` 경영진의 재무제표 작성 책임을 확인함 · `crit2` 경영진의 관련 내부통제 책임을 확인함 · `crit3` 경영진이 감사에 필요한 정보를 제공하거나 확보할 책임을 확인함 · `crit4` 책임 불인정 시 법규상 강제되지 않는 한 수임이 부적합하다고 설명함
 - sub2(judgment): `crit5` 감사업무 조건 변경 요청의 정당성을 고려함 · `crit6` 감사업무 범위제한의 시사점을 고려함
 
 ### pilot-03-002. 감사업무 수임 전 범위제한과 계속감사 시 재평가 (게시 중)
 
-- 물음 구성: sub1, sub2 · 유형 분포: descriptive 2, judgment 3, enumeration 3
+- 물음 구성: sub1, sub2 · 유형 분포: judgment 1, descriptive 1
 - sub1(judgment): `crit1` 부과된 범위제한의 결과 재무제표에 대한 의견거절이 예상되는 상황임을 판단 근거로 제시함 · `crit2` 법규에 의해 요구되는 경우가 아니면 제한된 업무를 감사업무로 수임하지 않는다고 판단함
 - sub2(descriptive): `crit7` 상황 변화에 따라 감사업무 조건을 수정해야 하는지 평가한다고 설명함 · `crit8` 기존 감사업무 조건을 기업에 다시 알릴 필요가 있는지 평가한다고 설명함
 
 ### pilot-03-003. 감사업무 조건의 계약서 기록과 변경 (게시 중)
 
-- 물음 구성: sub1, sub2 · 유형 분포: descriptive 2, judgment 3, enumeration 3
+- 물음 구성: sub1, sub2 · 유형 분포: enumeration 2
 - sub1(enumeration): `crit1` 감사업무 조건을 정한 법규가 적용된다는 사실을 기록함 · `crit2` 경영진이 문단 6(b)의 책임을 인정한다는 사실을 기록함 · `crit3` 경영진이 문단 6(b)의 책임을 이해한다는 사실을 기록함
 - sub2(enumeration): `crit4` 감사인과 경영진이 새로운 업무조건에 합의함 · `crit5` 새로운 업무조건을 계약서 또는 기타 적절한 합의서에 기록함
 
-### pilot-03-004. 감사를 위한 전제조건의 확인과 미충족 시 수임 판단 (검증 완료·게시 대기)
+### pilot-03-004. 감사를 위한 전제조건의 확인과 미충족 시 수임 판단 (게시 중)
 
-- 물음 구성: sub1, sub2 · 유형 분포: descriptive 2, judgment 3, enumeration 3
+- 물음 구성: sub1, sub2 · 유형 분포: enumeration 1, judgment 1
 - sub1(enumeration): `crit1` 재무제표 작성에 적용되는 재무보고체계의 수용가능성 여부를 결정하는 절차를 제시함 · `crit2` 경영진의 책임 인정·이해에 대한 경영진의 동의를 받는 절차를 제시함
 - sub2(judgment): `crit3` 재무보고체계가 수용가능하지 않다고 결정한 경우(문단 19 예외 제외) 수임해서는 안 된다고 판단함 · `crit4` 경영진의 책임 인정·이해에 관한 동의를 받지 못한 경우 수임해서는 안 된다고 판단함 · `crit5` 법규에 의해 요구되는 감사에는 이 수임 금지가 적용되지 않음을 구별하여 설명함
 

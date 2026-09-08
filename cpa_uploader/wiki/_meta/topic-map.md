@@ -1,7 +1,7 @@
 ---
 title: 회계감사 주제 지도
 created: 2026-08-08
-updated: 2026-08-25
+updated: 2026-09-08
 type: source-map
 status: generated
 review_required: false
@@ -14,12 +14,12 @@ confidence: high
 
 | ID | 주제 | 기준 축 | 탐색어 | v3 세트 |
 |---|---|---|---|---:|
-| 01 | [[ethics-independence-quality]] | KGA 200·KGA 220 | 윤리적 요구사항, 독립성, 품질관리, 업무품질관리, 모니터링 | 9세트 |
-| 02 | [[audit-objectives-foundations]] | KGA 200 | 합리적인 확신, 감사위험, 전문가적 의구심, 전문가적 판단, 감사의 고유한계 | 0세트 |
+| 01 | [[ethics-independence-quality]] | KGA 200·KGA 220 | 윤리적 요구사항, 독립성, 품질관리, 업무품질관리, 모니터링 | 4세트 |
+| 02 | [[audit-objectives-foundations]] | KGA 200 | 합리적인 확신, 감사위험, 전문가적 의구심, 전문가적 판단, 감사의 고유한계 | 5세트 |
 | 03 | [[engagement-acceptance-contract]] | KGA 210 | 감사업무 조건, 감사계약, 감사의 전제조건, 수임, 계속감사 | 4세트 |
 | 04 | [[planning-documentation-materiality]] | KGA 230·KGA 300·KGA 320 | 감사문서, 감사조서, 감사전략, 감사계획, 계획수립, 중요성, 수행중요성 | 5세트 |
 | 05 | [[fraud-laws-governance-communication]] | KGA 240·KGA 250·KGA 260·KGA 265 | 부정, 법률과 규정, 법규, 지배기구, 내부통제 미비점, 커뮤니케이션 | 6세트 |
-| 06 | [[risk-assessment-internal-control]] | KGA 315 | 중요왜곡표시위험, 위험평가절차, 내부통제시스템, 통제환경, 정보시스템, 통제활동 | 5세트 |
+| 06 | [[risk-assessment-internal-control]] | KGA 315·KGA 330 | 중요왜곡표시위험, 위험평가절차, 내부통제시스템, 통제환경, 정보시스템, 통제활동 | 5세트 |
 | 07 | [[responses-controls-substantive-procedures]] | KGA 330 | 평가된 위험, 추가감사절차, 통제테스트, 실증절차, 실증분석절차, 세부테스트 | 5세트 |
 | 08 | [[audit-evidence-assertions]] | KGA 500 | 감사증거, 충분하고 적합, 경영진주장, 감사증거의 신뢰성, 감사절차 | 5세트 |
 | 09 | [[inventory-litigation-confirmations-opening-balances]] | KGA 501·KGA 505·KGA 510 | 재고자산, 소송과 배상청구, 부문정보, 외부조회, 조회서, 기초잔액, 초도감사 | 7세트 |
@@ -32,7 +32,7 @@ confidence: high
 | 16 | [[kam-emphasis-comparatives-other-information]] | KGA 701·KGA 706·KGA 710·KGA 720 | 핵심감사사항, 강조사항문단, 기타사항문단, 비교정보, 대응수치, 비교재무제표, 기타정보 | 7세트 |
 | 17 | [[internal-control-over-financial-reporting]] | KGA 1100 | 내부회계관리제도, 내부회계, 운영실태보고서, 전사적 수준 통제 | 4세트 |
 | 18 | [[small-entity-audit]] | KGA 1200 | 소규모기업, 소규모 기업 | 4세트 |
-| 19 | [[assurance-review-related-services]] | 기타 기준 | 검토업무, 인증업무, 합의된 절차, 재무제표 검토, 예측재무정보 | 4세트 |
+| 19 | [[assurance-review-related-services]] | KGA 200 | 검토업무, 인증업무, 합의된 절차, 재무제표 검토, 예측재무정보 | 4세트 |
 
 ## 사용법
 

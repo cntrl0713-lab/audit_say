@@ -1,0 +1,65 @@
+{
+  "at": "2026-09-08T00:49:47.489Z",
+  "checks": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "typecheck",
+        "cmd": "npm run typecheck",
+        "chunk_id": "fce677",
+        "wall_time_seconds": 5.0877876,
+        "exit_code": 0,
+        "original_token_count": 13,
+        "output": "\n> crimson-lagoon@0.1.0 typecheck\n> tsc --noEmit\n\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "validate",
+        "cmd": "npm run questions:v3:validate",
+        "chunk_id": "490a63",
+        "wall_time_seconds": 3.7625477,
+        "exit_code": 1,
+        "original_token_count": 455,
+        "output": "\n> crimson-lagoon@0.1.0 questions:v3:validate\n> tsx cpa_uploader/validate_cpa_v3.ts\n\nv3 검증 실패: 21개 오류\n- pilot-15-004: 세트 총점은 8점을 초과할 수 없지만 10점입니다.\n- pilot-16-001/src6: source_quote가 KGA 710 구간에 존재하지 않습니다.\n- pilot-16-001/src12: source_quote가 KGA 710 구간에 존재하지 않습니다.\n- pilot-16-001/src14: source_quote가 KGA 710 구간에 존재하지 않습니다.\n- pilot-16-002/src1: source_quote가 KGA 701 구간에 존재하지 않습니다.\n- pilot-16-002/src2: source_quote가 KGA 701 구간에 존재하지 않습니다.\n- pilot-16-003/src1: source_quote가 KGA 720 구간에 존재하지 않습니다.\n- pilot-16-003/src2: source_quote가 KGA 720 구간에 존재하지 않습니다.\n- pilot-16-004/src1: source_quote가 KGA 706 구간에 존재하지 않습니다.\n- pilot-16-004/src2: source_quote가 KGA 706 구간에 존재하지 않습니다.\n- pilot-16-004/src3: source_quote가 KGA 706 구간에 존재하지 않습니다.\n- pilot-16-005/src1: source_quote가 KGA 701 구간에 존재하지 않습니다.\n- pilot-16-005/src2: source_quote가 KGA 701 구간에 존재하지 않습니다.\n- pilot-16-005/sub1: 발문이 pilot-16-002/sub1와 중복됩니다.\n- pilot-16-006/src1: source_quote가 KGA 701 구간에 존재하지 않습니다.\n- pilot-16-006/src2: source_quote가 KGA 701 구간에 존재하지 않습니다.\n- pilot-16-006/src3: source_quote가 KGA 701 구간에 존재하지 않습니다.\n- pilot-16-007/src1: source_quote가 KGA 701 구간에 존재하지 않습니다.\n- pilot-16-007/src2: source_quote가 KGA 701 구간에 존재하지 않습니다.\n- pilot-16-007/src2: source_quote가 pilot-16-007/src1와 중복됩니다.\n- pilot-16-007/src3: source_quote가 KGA 701 구간에 존재하지 않습니다.\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "tests",
+        "cmd": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/questionV3*.test.ts",
+        "chunk_id": "b86c39",
+        "wall_time_seconds": 2.8118338,
+        "exit_code": 1,
+        "original_token_count": 1533,
+        "output": "✔ validateQuestionSetV3 validates source-bound linked question sets (7.6016ms)\n✖ v3 authoring bank keeps the pilot floor distribution and stays internally consistent (18.2942ms)\n✔ validateQuestionSetV3 rejects ungrounded requirements and invalid partial scoring (0.7943ms)\n✔ validateQuestionSetV3 rejects duplicate critical facts within one subquestion (13.3833ms)\n✔ validateQuestionSetV3 requires criterion evidence to include its requirement source (0.6034ms)\n✔ validateQuestionSetV3 reports malformed LLM subquestions without throwing (0.5304ms)\n✔ computeQuestionSetMaxPoints honors best_n without forcing a ten-point total (0.2493ms)\n✔ validateQuestionSetV3 rejects public tags that reveal a model answer (0.207ms)\n✔ isQuestionSetAnswerPayloadV3 accepts canonical subquestion ids and rejects unsafe payloads (0.4809ms)\n✔ compilePublicQuestionSet strips model answers, requirements, criteria, and source quotes (0.6381ms)\n✔ scoreCriterionVerdicts computes integer criterion scores in code (0.3918ms)\n✔ scoreCriterionVerdicts gives contradicted criteria zero points and caps best_n (0.1968ms)\n✔ verifyCriterionVerdicts allows one real quote for independent criteria and rejects invented evidence (0.3636ms)\n✔ encrypted authoring bundles round-trip without exposing plaintext (3.6696ms)\n✔ authoring encryption rejects low-entropy keys (0.8014ms)\n✔ question bank load failures are classified without exposing secrets (0.2937ms)\n✔ production always selects the encrypted bank even when plaintext exists locally (6.1338ms)\n✔ production loads the encrypted authoring bank when the ignored plaintext bank is absent (112.7509ms)\n✔ question generation CLI can be imported without starting a generation run (1.8277ms)\n✔ applyQuestionSetJudgment verifies quotes and sums dynamic subquestion scores (3.4725ms)\n✔ applyQuestionSetJudgment forces zero when prompt injection is detected (0.4521ms)\n✔ salad flags do not erase valid criteria, while local injection stays isolated (0.5777ms)\n✔ payload and grader share the input limit; blank answers never need a model key or network (99.4676ms)\n✔ shared quotes preserve independent criteria across the bank and existing score caps (9.0632ms)\n✔ empty topic 04 answers skip the model without credentials (16.1213ms)\n✖ bank validation permits cross-set source reuse but rejects redundant entries and fabricated quotes (2243.7017ms)\nℹ tests 26\nℹ suites 0\nℹ pass 24\nℹ fail 2\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2737.9645\n\n✖ failing tests:\n\ntest at tests\\questionV3.test.ts:105:1\n✖ v3 authoring bank keeps the pilot floor distribution and stays internally consistent (18.2942ms)\n  AssertionError [ERR_ASSERTION]: subquestion prompts must be unique\n  \n  191 !== 192\n  \n      at TestContext.<anonymous> (file:///C:/Users/cntrl/Workspace/study/audit_say/tests/questionV3.test.ts:156:12)\n      at Test.runInAsyncScope (node:async_hooks:214:14)\n      at Test.run (node:internal/test_runner/test:1106:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)\n      at Test.postRun (node:internal/test_runner/test:1235:19)\n      at Test.run (node:internal/test_runner/test:1163:12)\n      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 191,\n    expected: 192,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\ntest at tests\\questionV3SourceReuse.test.ts:11:1\n✖ bank validation permits cross-set source reuse but rejects redundant entries and fabricated quotes (2243.7017ms)\n  AssertionError [ERR_ASSERTION]: v3 검증 실패: 21개 오류\n  - pilot-15-004: 세트 총점은 8점을 초과할 수 없지만 10점입니다.\n  - pilot-16-001/src6: source_quote가 KGA 710 구간에 존재하지 않습니다.\n  - pilot-16-001/src12: source_quote가 KGA 710 구간에 존재하지 않습니다.\n  - pilot-16-001/src14: source_quote가 KGA 710 구간에 존재하지 않습니다.\n  - pilot-16-002/src1: source_quote가 KGA 701 구간에 존재하지 않습니다.\n  - pilot-16-002/src2: source_quote가 KGA 701 구간에 존재하지 않습니다.\n  - pilot-16-003/src1: source_quote가 KGA 720 구간에 존재하지 않습니다.\n  - pilot-16-003/src2: source_quote가 KGA 720 구간에 존재하지 않습니다.\n  - pilot-16-004/src1: source_quote가 KGA 706 구간에 존재하지 않습니다.\n  - pilot-16-004/src2: source_quote가 KGA 706 구간에 존재하지 않습니다.\n  - pilot-16-004/src3: source_quote가 KGA 706 구간에 존재하지 않습니다.\n  - pilot-16-005/src1: source_quote가 KGA 701 구간에 존재하지 않습니다.\n  - pilot-16-005/src2: source_quote가 KGA 701 구간에 존재하지 않습니다.\n  - pilot-16-005/sub1: 발문이 pilot-16-002/sub1와 중복됩니다.\n  - pilot-16-006/src1: source_quote가 KGA 701 구간에 존재하지 않습니다.\n  - pilot-16-006/src2: source_quote가 KGA 701 구간에 존재하지 않습니다.\n  - pilot-16-006/src3: source_quote가 KGA 701 구간에 존재하지 않습니다.\n  - pilot-16-007/src1: source_quote가 KGA 701 구간에 존재하지 않습니다.\n  - pilot-16-007/src2: source_quote가 KGA 701 구간에 존재하지 않습니다.\n  - pilot-16-007/src2: source_quote가 pilot-16-007/src1와 중복됩니다.\n  - pilot-16-007/src3: source_quote가 KGA 701 구간에 존재하지 않습니다.\n  \n  \n  1 !== 0\n  \n      at TestContext.<anonymous> (file:///C:/Users/cntrl/Workspace/study/audit_say/tests/questionV3SourceReuse.test.ts:28:16)\n      at Test.runInAsyncScope (node:async_hooks:214:14)\n      at Test.run (node:internal/test_runner/test:1106:25)\n      at Test.start (node:internal/test_runner/test:1003:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)\n      at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 1,\n    expected: 0,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "wiki",
+        "cmd": "node cpa_uploader/wiki/scripts/lint-wiki.mjs",
+        "chunk_id": "6f110a",
+        "wall_time_seconds": 2.3879527,
+        "exit_code": 1,
+        "original_token_count": 99,
+        "output": "{\n  \"wikiDir\": \"C:\\\\Users\\\\cntrl\\\\Workspace\\\\study\\\\audit_say\\\\cpa_uploader\\\\wiki\",\n  \"markdownFiles\": 29,\n  \"contentPages\": 26,\n  \"errors\": [\n    \"question-generation/question-design.md: source link 없음 ../../../docs/reports/question-review-2027/10.md\",\n    \"question-generation/question-design.md: source link 없음 ../../../docs/reports/question-review-2027/11.md\"\n  ],\n  \"warnings\": []\n}\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "skill",
+        "cmd": "python -X utf8 'C:\\Users\\cntrl\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py' 'C:\\Users\\cntrl\\.codex\\skills\\audit-question-review'",
+        "chunk_id": "9663b1",
+        "wall_time_seconds": 1.6355315,
+        "exit_code": 0,
+        "original_token_count": 5,
+        "output": "Skill is valid!\r\n"
+      }
+    }
+  ]
+}

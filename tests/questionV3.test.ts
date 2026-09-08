@@ -153,12 +153,12 @@ test('v3 authoring bank keeps the pilot floor distribution and stays internally 
     const prompts = sets.flatMap((set) => set.subquestions.map((subquestion) => (
         subquestion.prompt.replace(/\s+/g, '').toLowerCase()
     )));
-    const sourceQuotes = sets.flatMap((set) => set.source_refs.map((source) => (
-        source.source_quote.replace(/\s+/g, '').toLowerCase()
-    )));
     assert.equal(new Set(prompts).size, prompts.length, 'subquestion prompts must be unique');
-    assert.equal(new Set(sourceQuotes).size, sourceQuotes.length, 'source quotes must be unique');
     for (const set of sets) {
+        // A standard paragraph can support independent sets. Only redundant
+        // source entries inside the same set must be merged.
+        const sourceQuotes = set.source_refs.map(source => source.source_quote.replace(/\s+/g, '').toLowerCase());
+        assert.equal(new Set(sourceQuotes).size, sourceQuotes.length, `${set.id} source quotes must be unique within the set`);
         const normalizedModelAnswers = set.subquestions.flatMap((subquestion) => (
             subquestion.model_answer.map((answer) => answer.replace(/\s+/g, '').toLowerCase())
         ));
@@ -170,8 +170,8 @@ test('v3 authoring bank keeps the pilot floor distribution and stays internally 
             );
         }
         assert.ok(
-            computeQuestionSetMaxPoints(set) <= 8,
-            `${set.id} should not exceed eight grading points`,
+            Number.isInteger(computeQuestionSetMaxPoints(set)) && computeQuestionSetMaxPoints(set) > 0,
+            `${set.id} must have a positive integer total derived from its criteria`,
         );
     }
     for (const [topicId, expectedCount] of expectedCounts) {
@@ -326,16 +326,19 @@ test('scoreCriterionVerdicts gives contradicted criteria zero points and caps be
     assert.equal(result.max_points, 2);
 });
 
-test('verifyCriterionVerdicts rejects hallucinated and duplicated answer quotes', () => {
+test('verifyCriterionVerdicts allows one real quote for independent criteria and rejects invented evidence', () => {
     const set = createValidSet('source.md');
     const answer = '합리적 확신은 높은 수준이지만 절대적 확신은 아니다.';
     const verified = verifyCriterionVerdicts(answer, set.subquestions[0], [
-        { criterion_id: 'q1.c1', verdict: 'met', quote: '높은 수준' },
-        { criterion_id: 'q1.c2', verdict: 'met', quote: '높은 수준' },
+        { criterion_id: 'q1.c1', verdict: 'met', quote: answer },
+        { criterion_id: 'q1.c2', verdict: 'met', quote: answer },
         { criterion_id: 'unknown', verdict: 'met', quote: '답안에 없는 인용' },
     ]);
 
-    assert.equal(verified.find((item) => item.criterion_id === 'q1.c1')?.verdict, 'not_met');
+    assert.equal(verified.find((item) => item.criterion_id === 'q1.c1')?.verdict, 'met');
     assert.equal(verified.find((item) => item.criterion_id === 'q1.c2')?.verdict, 'met');
     assert.equal(verified.some((item) => item.criterion_id === 'unknown'), false);
+    assert.equal(verifyCriterionVerdicts(answer, set.subquestions[0], [
+        { criterion_id: 'q1.c1', verdict: 'met', quote: '답안에 없는 인용' },
+    ])[0].verdict, 'not_met');
 });

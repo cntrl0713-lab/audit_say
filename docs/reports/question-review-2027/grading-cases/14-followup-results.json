@@ -1,0 +1,153 @@
+{
+  "date": "2026-09-08T01:50:21.376Z",
+  "status": "scoring_regression_passed_label_classification_unresolved",
+  "set_id": "pilot-14-002",
+  "criterion_id": "crit11",
+  "fingerprint": "52e507b1d880012b12f573761d8c000b62bf67a07d52bb1be9690637a937a1dc9d93ed938f4feee93e1c0bfa175309dcb0460a75f089e7ed40e906492d96fc65",
+  "cases": 29,
+  "executions": 47,
+  "live_calls": 46,
+  "score_failures": 0,
+  "label_failures": [
+    {
+      "id": "14-wrong-report-direction",
+      "attempt": 1,
+      "differences": [
+        {
+          "q": "sub2",
+          "c": "crit11",
+          "expected": "not_met",
+          "actual": "contradicted"
+        }
+      ]
+    },
+    {
+      "id": "14-report-format-only",
+      "attempt": 1,
+      "differences": [
+        {
+          "q": "sub2",
+          "c": "crit11",
+          "expected": "contradicted",
+          "actual": "not_met"
+        }
+      ]
+    },
+    {
+      "id": "14-wrong-report-direction",
+      "attempt": 2,
+      "differences": [
+        {
+          "q": "sub2",
+          "c": "crit11",
+          "expected": "not_met",
+          "actual": "contradicted"
+        }
+      ]
+    },
+    {
+      "id": "14-wrong-report-direction",
+      "attempt": 3,
+      "differences": [
+        {
+          "q": "sub2",
+          "c": "crit11",
+          "expected": "not_met",
+          "actual": "contradicted"
+        }
+      ]
+    },
+    {
+      "id": "14-report-format-only",
+      "attempt": 3,
+      "differences": [
+        {
+          "q": "sub2",
+          "c": "crit11",
+          "expected": "contradicted",
+          "actual": "not_met"
+        }
+      ]
+    }
+  ],
+  "baseline": [
+    {
+      "id": "14-wrong-report-direction",
+      "attempt": 1,
+      "score": 0,
+      "differences": [
+        {
+          "q": "sub2",
+          "c": "crit11",
+          "expected": "not_met",
+          "actual": "contradicted"
+        }
+      ]
+    },
+    {
+      "id": "14-report-both-actions",
+      "attempt": 1,
+      "score": 1,
+      "differences": []
+    },
+    {
+      "id": "14-wrong-report-direction",
+      "attempt": 2,
+      "score": 0,
+      "differences": [
+        {
+          "q": "sub2",
+          "c": "crit11",
+          "expected": "not_met",
+          "actual": "contradicted"
+        }
+      ]
+    },
+    {
+      "id": "14-report-both-actions",
+      "attempt": 2,
+      "score": 1,
+      "differences": []
+    },
+    {
+      "id": "14-wrong-report-direction",
+      "attempt": 3,
+      "score": 0,
+      "differences": [
+        {
+          "q": "sub2",
+          "c": "crit11",
+          "expected": "not_met",
+          "actual": "contradicted"
+        }
+      ]
+    },
+    {
+      "id": "14-report-both-actions",
+      "attempt": 3,
+      "score": 1,
+      "differences": []
+    }
+  ],
+  "total_experimental_calls": 365,
+  "baseline_calls": 6,
+  "deployment": {
+    "public_matches": true,
+    "encrypted_matches": true,
+    "source_validation": true,
+    "public_private_fields_absent": true
+  },
+  "code_hashes": {
+    "lib/questionV3.ts": "7d80ba81b03f9c6975adac3c018ad3a725ee750c38ba57629d65e9154ca76c79",
+    "lib/questionV3Grading.ts": "7378884f7a9eb68452e48e935871c2b5899628d33b9c4e6dc320577c8c50b202",
+    "lib/ai/openaiStructured.ts": "cfa79caf861079a15721740e0507dbefefa411a515b0cf1bdb3b193a2b8fd6c3"
+  },
+  "current_code_hashes": {
+    "lib/questionV3.ts": "7d80ba81b03f9c6975adac3c018ad3a725ee750c38ba57629d65e9154ca76c79",
+    "lib/questionV3Grading.ts": "7378884f7a9eb68452e48e935871c2b5899628d33b9c4e6dc320577c8c50b202",
+    "lib/ai/openaiStructured.ts": "cfa79caf861079a15721740e0507dbefefa411a515b0cf1bdb3b193a2b8fd6c3"
+  },
+  "expected_correction": "형식만 정한다는 한정 표현은 내용까지 지정할 요구의 배제로 contradicted 기대; 형식을 정한다는 단순 누락은 not_met. v3–v6의 최초 기대표 및 로그는 보존했고 v7 이후 이 둘을 별도 사례로 구분함.",
+  "accepted_change": "보고사항의 형식·내용 지정이라는 대상 행위를 간결하게 명시하고 양립 가능한 추가 서술을 구별. 1점·원문·source·모범답안·발문 유지.",
+  "rejected_changes": "정상 관형절·동의어 답안의 오감점을 유발한 장문 설명 및 실험 공통 프롬프트 두 줄은 채택하지 않음. 다른 작업이 추가한 gradingModelName/onJudgment 등 현행 변경은 보존."
+}

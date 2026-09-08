@@ -1,0 +1,34 @@
+✔ validateQuestionSetV3 validates source-bound linked question sets (16.7732ms)
+✔ v3 authoring bank keeps the pilot floor distribution and stays internally consistent (71.1785ms)
+✔ validateQuestionSetV3 rejects ungrounded requirements and invalid partial scoring (1.5202ms)
+✔ validateQuestionSetV3 rejects duplicate critical facts within one subquestion (11.1069ms)
+✔ validateQuestionSetV3 requires criterion evidence to include its requirement source (0.52ms)
+✔ validateQuestionSetV3 reports malformed LLM subquestions without throwing (0.8974ms)
+✔ computeQuestionSetMaxPoints honors best_n without forcing a ten-point total (0.4855ms)
+✔ validateQuestionSetV3 rejects public tags that reveal a model answer (0.7504ms)
+✔ isQuestionSetAnswerPayloadV3 accepts canonical subquestion ids and rejects unsafe payloads (0.7131ms)
+✔ compilePublicQuestionSet strips model answers, requirements, criteria, and source quotes (1.5456ms)
+✔ scoreCriterionVerdicts computes integer criterion scores in code (0.5961ms)
+✔ scoreCriterionVerdicts gives contradicted criteria zero points and caps best_n (0.2284ms)
+✔ verifyCriterionVerdicts allows one real quote for independent criteria and rejects invented evidence (0.9431ms)
+✔ encrypted authoring bundles round-trip without exposing plaintext (3.5611ms)
+✔ authoring encryption rejects low-entropy keys (1.0253ms)
+✔ question bank load failures are classified without exposing secrets (0.6888ms)
+✔ production always selects the encrypted bank even when plaintext exists locally (8.0652ms)
+✔ production loads the encrypted authoring bank when the ignored plaintext bank is absent (16.5825ms)
+✔ question generation CLI can be imported without starting a generation run (1.294ms)
+✔ applyQuestionSetJudgment verifies quotes and sums dynamic subquestion scores (2.0108ms)
+✔ applyQuestionSetJudgment forces zero when prompt injection is detected (0.4904ms)
+✔ salad flags do not erase valid criteria, while local injection stays isolated (0.6521ms)
+✔ payload and grader share the input limit; blank answers never need a model key or network (12.9822ms)
+✔ shared quotes preserve independent criteria across the bank and existing score caps (7.1861ms)
+✔ empty topic 04 answers skip the model without credentials (0.906ms)
+✔ bank validation permits cross-set source reuse but rejects redundant entries and fabricated quotes (2803.5471ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3109.8347

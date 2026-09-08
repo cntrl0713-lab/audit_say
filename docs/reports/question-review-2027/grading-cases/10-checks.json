@@ -1,0 +1,1031 @@
+{
+  "at": "2026-09-08T00:54:00.440Z",
+  "topic_counts": {
+    "sets": 5,
+    "subquestions": 10,
+    "criteria": 27,
+    "points": 27
+  },
+  "typecheck": {
+    "status": "passed",
+    "command": "npm run typecheck",
+    "output": "\r\n> crimson-lagoon@0.1.0 typecheck\r\n> tsc --noEmit\r\n\r\n"
+  },
+  "compile": {
+    "status": "passed",
+    "command": "npm run questions:v3:compile",
+    "output": "\r\n> crimson-lagoon@0.1.0 questions:v3:compile\r\n> tsx --env-file=.env.local scripts/compile-question-bank-v3.ts\r\n\r\nv3 배포 문제은행 생성 완료: 96세트\r\n"
+  },
+  "bank_validation": {
+    "status": "passed_at_recorded_run",
+    "command": "npm run questions:v3:validate",
+    "output": "\r\n> crimson-lagoon@0.1.0 questions:v3:validate\r\n> tsx cpa_uploader/validate_cpa_v3.ts\r\n\r\nv3 검증 통과: 96세트, 192개 세부 물음, 514개 criterion, 총 514점\r\n모든 source_quote가 원자료에 존재하며 public JSON에는 비공개 채점 데이터가 없습니다.\r\n",
+    "note": "共有 작업트리의 다른 주제도 변경 중이므로 당시 전체은행 수치로 기록. 주제10은27criterion 유지."
+  },
+  "tests": {
+    "status": "passed",
+    "command": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/questionV3*.test.ts tests/openaiStructured.test.ts tests/v3Cutover.test.ts tests/rateLimit.test.ts",
+    "test_count": 41,
+    "output": "✔ requestOpenAIStructured sends strict JSON schema and parses output (2.0836ms)\r\n✔ requestOpenAIStructured surfaces refusals without treating them as JSON (1.1328ms)\r\n✔ requestOpenAIStructured retries transient transport failures once (6.6522ms)\r\n✔ requestOpenAIStructured retries rate limits (2.18ms)\r\n✔ requestOpenAIStructured does not retry authentication failures (0.7997ms)\r\n✔ requestOpenAIStructured rejects incomplete output without scoring it (0.3228ms)\r\n✔ requestOpenAIStructured retries timeout failures (1.8226ms)\r\n✔ requestOpenAIStructured rejects missing credentials before a network call (1.1301ms)\r\n✔ validateQuestionSetV3 validates source-bound linked question sets (26.8562ms)\r\n✔ v3 authoring bank keeps the pilot floor distribution and stays internally consistent (41.3515ms)\r\n✔ validateQuestionSetV3 rejects ungrounded requirements and invalid partial scoring (0.63ms)\r\n✔ validateQuestionSetV3 rejects duplicate critical facts within one subquestion (6.3039ms)\r\n✔ validateQuestionSetV3 requires criterion evidence to include its requirement source (0.6645ms)\r\n✔ validateQuestionSetV3 reports malformed LLM subquestions without throwing (0.4976ms)\r\n✔ computeQuestionSetMaxPoints honors best_n without forcing a ten-point total (0.2557ms)\r\n✔ validateQuestionSetV3 rejects public tags that reveal a model answer (0.2765ms)\r\n✔ isQuestionSetAnswerPayloadV3 accepts canonical subquestion ids and rejects unsafe payloads (0.5205ms)\r\n✔ compilePublicQuestionSet strips model answers, requirements, criteria, and source quotes (0.667ms)\r\n✔ scoreCriterionVerdicts computes integer criterion scores in code (0.4102ms)\r\n✔ scoreCriterionVerdicts gives contradicted criteria zero points and caps best_n (0.2069ms)\r\n✔ verifyCriterionVerdicts allows one real quote for independent criteria and rejects invented evidence (0.3413ms)\r\n✔ encrypted authoring bundles round-trip without exposing plaintext (3.1324ms)\r\n✔ authoring encryption rejects low-entropy keys (0.7598ms)\r\n✔ question bank load failures are classified without exposing secrets (0.3488ms)\r\n✔ production always selects the encrypted bank even when plaintext exists locally (11.6771ms)\r\n✔ production loads the encrypted authoring bank when the ignored plaintext bank is absent (13.9788ms)\r\n✔ question generation CLI can be imported without starting a generation run (1.9609ms)\r\n✔ applyQuestionSetJudgment verifies quotes and sums dynamic subquestion scores (1.7174ms)\r\n✔ applyQuestionSetJudgment forces zero when prompt injection is detected (0.5421ms)\r\n✔ salad flags do not erase valid criteria, while local injection stays isolated (0.4746ms)\r\n✔ payload and grader share the input limit; blank answers never need a model key or network (12.8923ms)\r\n✔ shared quotes preserve independent criteria across the bank and existing score caps (7.05ms)\r\n✔ empty topic 04 answers skip the model without credentials (0.8919ms)\r\n✔ bank validation permits cross-set source reuse but rejects redundant entries and fabricated quotes (2822.4585ms)\r\n▶ isMissingMigration\r\n  ✔ 함수나 테이블이 없는 경우만 마이그레이션 미적용으로 본다 (0.5052ms)\r\n  ✔ 권한 오류와 기타 오류는 폴백 대상이 아니다 (0.1245ms)\r\n✔ isMissingMigration (1.283ms)\r\n▶ consumeInMemory\r\n  ✔ 한도까지 허용하고 이후 요청은 거절한다 (0.2253ms)\r\n  ✔ 시간 창과 사용자별 버킷을 분리하고 만료 항목을 정리한다 (0.1377ms)\r\n✔ consumeInMemory (0.4586ms)\r\n✔ the canonical quiz route serves the v3 question bank to authenticated users (2.0257ms)\r\n✔ the v3 cutover removes duplicate and v2-only runtime files (5.407ms)\r\n✔ the active question pipeline has no legacy provider or RAG dependency (4.6226ms)\r\nℹ tests 41\r\nℹ suites 2\r\nℹ pass 41\r\nℹ fail 0\r\nℹ cancelled 0\r\nℹ skipped 0\r\nℹ todo 0\r\nℹ duration_ms 3189.6166\r\n"
+  },
+  "topic_static": {
+    "source_quotes_and_hashes": true,
+    "standard_sections": true,
+    "all_27_criterion_coverage": true,
+    "wiki_matches": true
+  },
+  "deployment": {
+    "public_matches": true,
+    "encrypted_matches": true,
+    "private_data_not_in_public": true
+  },
+  "model": {
+    "base_question_answer_combinations": 50,
+    "total_set_cases": 93,
+    "mock_passes": 93,
+    "boundaries": 57,
+    "empty_model_calls": 0,
+    "unique_live_cases": 87,
+    "actual_live_calls": 112,
+    "models": [
+      "gpt-5.6-luna"
+    ],
+    "usage": {
+      "input": 201871,
+      "output": 38396
+    },
+    "initial_mismatching_cases": [
+      "pilot-10-001-omission",
+      "pilot-10-001-subq2-omit-crit3"
+    ],
+    "final_mismatches": 0,
+    "final": [
+      {
+        "case_id": "pilot-10-001-full",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 6,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-paraphrase",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 6,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-omission",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 3,
+        "raw_and_final_match": true,
+        "score": 5,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-contrary",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 0,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-bank-model-answer",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 6,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-002-full",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 6,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-paraphrase",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 6,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-omission",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 4,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-contrary",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 0,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-bank-model-answer",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 6,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-full",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 8,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-paraphrase",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 8,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-omission",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 6,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-contrary",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 0,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-bank-model-answer",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 8,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-full",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 4,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-paraphrase",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 4,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-omission",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-contrary",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 0,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-bank-model-answer",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 4,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-full",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-paraphrase",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-omission",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-contrary",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 0,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-bank-model-answer",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-001-subq1-omit-crit1",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-subq1-omit-crit2",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-subq1-omit-crit5",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-subq1-shared-quote",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-subq1-reverse-extra",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-subq1-repeated-fact",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-subq2-omit-crit3",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 3,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-subq2-omit-crit4",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-subq2-omit-crit5",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-subq2-shared-quote",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-subq2-reverse-extra",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-001-subq2-repeated-fact",
+        "set_id": "pilot-10-001",
+        "selected_fingerprint": "b54f3831b8610a447d1e7e541970d8a9d5bd07b79ece3018838e66ebac5a2690",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "new calls after criterion clarification"
+      },
+      {
+        "case_id": "pilot-10-002-sub1-omit-crit1",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-sub1-omit-crit2",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-sub1-omit-crit3",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-sub1-omit-crit4",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-sub1-shared-quote",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 4,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-sub1-reverse-extra",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 4,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-sub1-repeated-fact",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-sub2-omit-crit5",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-sub2-omit-crit6",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-sub2-shared-quote",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-sub2-reverse-extra",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-002-sub2-repeated-fact",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub1-omit-crit1",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub1-omit-crit2",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub1-omit-crit3",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub1-shared-quote",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub1-reverse-extra",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 3,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub1-repeated-fact",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub2-omit-crit4",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 4,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub2-omit-crit5",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 4,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub2-omit-crit6",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 4,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub2-omit-crit7",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 4,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub2-omit-crit8",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 4,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub2-shared-quote",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 5,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub2-reverse-extra",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 5,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-003-sub2-repeated-fact",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-sub1-omit-crit1",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-sub1-omit-crit2",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-sub1-shared-quote",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-sub1-reverse-extra",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-sub1-repeated-fact",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-sub2-omit-crit3",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-sub2-omit-crit4",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-sub2-shared-quote",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-sub2-reverse-extra",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-004-sub2-repeated-fact",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-sub1-shared-quote",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-sub1-reverse-extra",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-sub1-repeated-fact",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-sub2-omit-crit2",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-sub2-omit-crit3",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-sub2-shared-quote",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-sub2-reverse-extra",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 2,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "pilot-10-005-sub2-repeated-fact",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "10-data-reliability-no-factors",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 0,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "10-inquiry-without-evidence",
+        "set_id": "pilot-10-002",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 0,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "10-missing-document-replacement",
+        "set_id": "pilot-10-003",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 0,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "10-purpose-without-risk-limit",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "10-projection-wrong-risk-direction",
+        "set_id": "pilot-10-004",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      },
+      {
+        "case_id": "10-unequal-known-probability",
+        "set_id": "pilot-10-005",
+        "selected_fingerprint": "1039dfa8e681cb07cce0a97b56413ab6e0ceea24082a2184098453c385563328",
+        "attempts": 1,
+        "raw_and_final_match": true,
+        "score": 1,
+        "evidence_mode": "original live calls; complete set, prompt/schema/instructions/model and scoring code unchanged; raw re-applied"
+      }
+    ]
+  },
+  "ui": {
+    "scope": "actual QuizClient + actual globals.css; auth and server action mocked; no live auth/database E2E",
+    "records": [
+      {
+        "set_id": "pilot-10-001",
+        "width": 1440,
+        "prompts": true,
+        "result_ownership": true,
+        "model_answers": true,
+        "horizontal_overflow": false,
+        "retry_reset": true,
+        "service_failure_preserves_answers": true,
+        "blank_html_submission_blocked": false,
+        "profile_refresh_failure_returns_to_solving": false,
+        "profile_retry_preserves_result": true,
+        "textarea_maxlength": "5000"
+      },
+      {
+        "set_id": "pilot-10-002",
+        "width": 1440,
+        "prompts": true,
+        "result_ownership": true,
+        "model_answers": true,
+        "horizontal_overflow": false,
+        "retry_reset": true,
+        "service_failure_preserves_answers": true,
+        "blank_html_submission_blocked": false,
+        "profile_refresh_failure_returns_to_solving": false,
+        "profile_retry_preserves_result": true,
+        "textarea_maxlength": "5000"
+      },
+      {
+        "set_id": "pilot-10-003",
+        "width": 1440,
+        "prompts": true,
+        "result_ownership": true,
+        "model_answers": true,
+        "horizontal_overflow": false,
+        "retry_reset": true,
+        "service_failure_preserves_answers": true,
+        "blank_html_submission_blocked": false,
+        "profile_refresh_failure_returns_to_solving": false,
+        "profile_retry_preserves_result": true,
+        "textarea_maxlength": "5000"
+      },
+      {
+        "set_id": "pilot-10-004",
+        "width": 1440,
+        "prompts": true,
+        "result_ownership": true,
+        "model_answers": true,
+        "horizontal_overflow": false,
+        "retry_reset": true,
+        "service_failure_preserves_answers": true,
+        "blank_html_submission_blocked": false,
+        "profile_refresh_failure_returns_to_solving": false,
+        "profile_retry_preserves_result": true,
+        "textarea_maxlength": "5000"
+      },
+      {
+        "set_id": "pilot-10-005",
+        "width": 1440,
+        "prompts": true,
+        "result_ownership": true,
+        "model_answers": true,
+        "horizontal_overflow": false,
+        "retry_reset": true,
+        "service_failure_preserves_answers": true,
+        "blank_html_submission_blocked": false,
+        "profile_refresh_failure_returns_to_solving": false,
+        "profile_retry_preserves_result": true,
+        "textarea_maxlength": "5000"
+      },
+      {
+        "set_id": "pilot-10-001",
+        "width": 390,
+        "prompts": true,
+        "result_ownership": true,
+        "model_answers": true,
+        "horizontal_overflow": false,
+        "retry_reset": true,
+        "service_failure_preserves_answers": true,
+        "blank_html_submission_blocked": false,
+        "profile_refresh_failure_returns_to_solving": false,
+        "profile_retry_preserves_result": true,
+        "textarea_maxlength": "5000"
+      },
+      {
+        "set_id": "pilot-10-002",
+        "width": 390,
+        "prompts": true,
+        "result_ownership": true,
+        "model_answers": true,
+        "horizontal_overflow": false,
+        "retry_reset": true,
+        "service_failure_preserves_answers": true,
+        "blank_html_submission_blocked": false,
+        "profile_refresh_failure_returns_to_solving": false,
+        "profile_retry_preserves_result": true,
+        "textarea_maxlength": "5000"
+      },
+      {
+        "set_id": "pilot-10-003",
+        "width": 390,
+        "prompts": true,
+        "result_ownership": true,
+        "model_answers": true,
+        "horizontal_overflow": false,
+        "retry_reset": true,
+        "service_failure_preserves_answers": true,
+        "blank_html_submission_blocked": false,
+        "profile_refresh_failure_returns_to_solving": false,
+        "profile_retry_preserves_result": true,
+        "textarea_maxlength": "5000"
+      },
+      {
+        "set_id": "pilot-10-004",
+        "width": 390,
+        "prompts": true,
+        "result_ownership": true,
+        "model_answers": true,
+        "horizontal_overflow": false,
+        "retry_reset": true,
+        "service_failure_preserves_answers": true,
+        "blank_html_submission_blocked": false,
+        "profile_refresh_failure_returns_to_solving": false,
+        "profile_retry_preserves_result": true,
+        "textarea_maxlength": "5000"
+      },
+      {
+        "set_id": "pilot-10-005",
+        "width": 390,
+        "prompts": true,
+        "result_ownership": true,
+        "model_answers": true,
+        "horizontal_overflow": false,
+        "retry_reset": true,
+        "service_failure_preserves_answers": true,
+        "blank_html_submission_blocked": false,
+        "profile_refresh_failure_returns_to_solving": false,
+        "profile_retry_preserves_result": true,
+        "textarea_maxlength": "5000"
+      }
+    ]
+  },
+  "wiki_build": {
+    "output": "{\r\n  \"wikiDir\": \"C:\\\\Users\\\\cntrl\\\\Workspace\\\\study\\\\audit_say\\\\cpa_uploader\\\\wiki\",\r\n  \"topics\": 19,\r\n  \"questionSets\": 96,\r\n  \"subquestions\": 192,\r\n  \"criteria\": 521,\r\n  \"contentPages\": 26\r\n}\r\n"
+  },
+  "wiki_lint": {
+    "command": "node cpa_uploader/wiki/scripts/lint-wiki.mjs",
+    "output": "{\r\n  \"wikiDir\": \"C:\\\\Users\\\\cntrl\\\\Workspace\\\\study\\\\audit_say\\\\cpa_uploader\\\\wiki\",\r\n  \"markdownFiles\": 29,\r\n  \"contentPages\": 26,\r\n  \"errors\": [\r\n    \"question-generation/question-design.md: source link 없음 ../../../docs/reports/question-review-2027/11.md\",\r\n    \"question-generation/question-design.md: source link 없음 ../../../docs/reports/question-review-2027/13.md\",\r\n    \"question-generation/question-design.md: source link 없음 ../../../docs/reports/question-review-2027/15.md\"\r\n  ],\r\n  \"warnings\": [\r\n    \"question-generation/question-design.md: 235줄, 분할 검토 권장\"\r\n  ]\r\n}\r\n",
+    "note": "출력의 남은 대상 외 문서 링크/분할 권고는 병행 작업 상태로 구별한다."
+  },
+  "skill_validation": {
+    "status": "passed",
+    "command": "python -X utf8 C:/Users/cntrl/.codex/skills/.system/skill-creator/scripts/quick_validate.py C:/Users/cntrl/.codex/skills/audit-question-review",
+    "output": "Skill is valid!",
+    "initial_environment_failures": [
+      "bundled Python lacked yaml",
+      "system Python needed UTF-8 mode for Korean file"
+    ]
+  },
+  "hashes": {
+    "cpa_uploader/data/cpa_question_sets_v3.authoring.json": "12ad4bb064484aea405492dff76eaae5e500067aae9b354e8e8a91c8c2499e26",
+    "cpa_uploader/data/cpa_question_sets_v3.public.json": "9f471de3cac019551266d12d291e6608671d7ae80332e1adb5d006c3679c038b",
+    "data/cpa_question_sets_v3.authoring.enc.json": "4e4d183b22831215b3b75ec537d4aa85ccb2463082f7f47b579f7ee97c39670d",
+    "lib/questionV3.ts": "7d80ba81b03f9c6975adac3c018ad3a725ee750c38ba57629d65e9154ca76c79",
+    "lib/questionV3Grading.ts": "f6d0ff1996cbabb5ed38f48fbd5793c720d6454c4f752d106b8490c4f2139fe2",
+    "docs/reports/question-review-2027/grading-cases/10-before.json": "8a5bdaaad89110dd084725afe8111c39f6c9d5a7005e0da8d47229b44bf3925c",
+    "cpa_uploader/data/official/kga520-530-2025-review10.txt": "492520a731654374593215906d6798fdc4db254c22dd1466a5ab512733324277"
+  },
+  "earlier_failures": [
+    {
+      "scope": "10 source extract",
+      "result": "15 source section errors",
+      "resolution": "KGA520/530 section headings added without changing quotes; final pass"
+    },
+    {
+      "scope": "other concurrent topics13/17 and public mirror",
+      "result": "intermediate full-bank26 errors",
+      "resolution": "not edited by this task; later compile/validate passed at recorded run"
+    }
+  ]
+}

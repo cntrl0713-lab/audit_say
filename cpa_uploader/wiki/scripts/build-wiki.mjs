@@ -25,7 +25,7 @@ const topicDefinitions = [
   { id: '03', slug: 'engagement-acceptance-contract', standards: ['KGA 210'], tags: ['audit', 'planning'] },
   { id: '04', slug: 'planning-documentation-materiality', standards: ['KGA 230', 'KGA 300', 'KGA 320'], tags: ['audit', 'planning'] },
   { id: '05', slug: 'fraud-laws-governance-communication', standards: ['KGA 240', 'KGA 250', 'KGA 260', 'KGA 265'], tags: ['audit', 'risk'] },
-  { id: '06', slug: 'risk-assessment-internal-control', standards: ['KGA 315'], tags: ['audit', 'risk', 'control'] },
+  { id: '06', slug: 'risk-assessment-internal-control', standards: ['KGA 315', 'KGA 330'], tags: ['audit', 'risk', 'control'] },
   { id: '07', slug: 'responses-controls-substantive-procedures', standards: ['KGA 330'], tags: ['audit', 'risk', 'control', 'procedures'] },
   { id: '08', slug: 'audit-evidence-assertions', standards: ['KGA 500'], tags: ['audit', 'evidence'] },
   { id: '09', slug: 'inventory-litigation-confirmations-opening-balances', standards: ['KGA 501', 'KGA 505', 'KGA 510'], tags: ['audit', 'evidence', 'procedures'] },
@@ -38,7 +38,7 @@ const topicDefinitions = [
   { id: '16', slug: 'kam-emphasis-comparatives-other-information', standards: ['KGA 701', 'KGA 706', 'KGA 710', 'KGA 720'], tags: ['audit', 'reporting'] },
   { id: '17', slug: 'internal-control-over-financial-reporting', standards: ['KGA 1100'], tags: ['audit', 'icfr', 'control'] },
   { id: '18', slug: 'small-entity-audit', standards: ['KGA 1200'], tags: ['audit'] },
-  { id: '19', slug: 'assurance-review-related-services', standards: [], tags: ['audit', 'assurance'] },
+  { id: '19', slug: 'assurance-review-related-services', standards: ['KGA 200'], tags: ['audit', 'assurance'] },
 ];
 
 function cleanText(buffer) {
@@ -101,10 +101,11 @@ function setStandards(set) {
 }
 
 function topicForSet(set) {
+  const classified = topicDefinitions.find((topic) => topic.id === set.classification.topic_id);
+  if (classified) return classified;
   const standards = setStandards(set);
   const matched = topicDefinitions.find((topic) => (
-    topic.id === set.classification.topic_id
-    || (standards.length > 0 && standards.every((standard) => topic.standards.includes(standard)))
+    standards.length > 0 && standards.every((standard) => topic.standards.includes(standard))
   ));
   return matched || topicDefinitions.at(-1);
 }
@@ -135,7 +136,10 @@ function buildConceptPage(topic, definition, sets, previous, next) {
         : set.status === 'verified'
           ? '검증 완료·게시 대기'
           : '검수 대기';
-      return `### ${set.id}. ${inlineText(set.title)} (${statusNote})\n\n- 물음 구성: ${set.subquestions.map((q) => q.id).join(', ')} · 유형 분포: ${typeSummary}\n${criteriaLines}`;
+      const setTypeCounts = {};
+      for (const q of set.subquestions) setTypeCounts[q.type] = (setTypeCounts[q.type] || 0) + 1;
+      const setTypeSummary = Object.entries(setTypeCounts).map(([type, count]) => `${type} ${count}`).join(', ');
+      return `### ${set.id}. ${inlineText(set.title)} (${statusNote})\n\n- 물음 구성: ${set.subquestions.map((q) => q.id).join(', ')} · 유형 분포: ${setTypeSummary}\n${criteriaLines}`;
     }).join('\n\n')
     : '> 현재 v3 문제은행에 이 주제의 세트가 없다. 원자료에서 우선 보강할 영역이다.';
 
@@ -160,9 +164,11 @@ confidence: medium
 ## 범위
 
 - 기준 축: ${definition.axis || '원자료 확인 필요'}
+- 현재 문제은행 연결 기준: ${[...new Set(sets.flatMap((set) => set.classification.standards))].join('·') || '연결 없음'}
 - 탐색어: ${definition.terms.join(', ') || '원자료 확인 필요'}
 - 현재 연결된 문제 세트: ${sets.length}개
 - 현재 연결된 criterion: ${criteriaCount}개
+- 주제 전체 유형 분포: ${typeSummary}
 
 ## 문제 생성 관점
 
@@ -174,8 +180,8 @@ confidence: medium
 
 ## v3 문제은행 연결 현황
 
-아래 criterion claim은 이미 출처 quote와 사람 검수를 거쳐 게시된 것이지만,
-새 문제를 만들 때는 같은 명제를 다시 묻지 않도록 참고한다.
+아래 criterion claim과 게시 상태는 현재 정본의 기록이다. 생성된 목록 자체는 공식 출처 대조나 사람 검수 완료를 보증하지 않는다.
+새 문제를 만들 때는 중복 명제 탐색에 참고하고 해당 검토 보고서와 공식 근거를 확인한다.
 
 ${setSection}
 
@@ -212,7 +218,7 @@ function allFiles(root) {
 
 function buildSourceManifest() {
   const files = allFiles(dataDir)
-    .filter((file) => ['.md', '.json', '.sql'].includes(path.extname(file).toLowerCase()))
+    .filter((file) => ['.md', '.txt', '.json', '.sql'].includes(path.extname(file).toLowerCase()))
     .sort((a, b) => a.localeCompare(b, 'ko'));
   const records = files.map((file) => {
     const body = fs.readFileSync(file);

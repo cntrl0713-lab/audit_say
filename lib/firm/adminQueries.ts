@@ -11,8 +11,8 @@ export async function getFirmDirectorDetails(firmId: number, year: number, page 
     const db = getSupabaseAdmin();
     const size = 100;
     const [directors, pay] = await Promise.all([
-        db.from('firm_director').select('seq_no,name,position,duty,segment,tenure_months,practice_months,invest_rate,source_rcept_no', { count: 'exact' }).eq('firm_id', firmId).eq('bsns_year', year).order('seq_no').range((page - 1) * size, page * size - 1),
-        db.from('firm_director_pay').select('seq_no,name,position,employer,pay_kind,amount,masked,source_rcept_no', { count: 'exact' }).eq('firm_id', firmId).eq('bsns_year', year).order('seq_no').range((page - 1) * size, page * size - 1),
+        db.from('cpa_firm_director').select('seq_no,name,position,duty,segment,tenure_months,practice_months,invest_rate,source_rcept_no', { count: 'exact' }).eq('firm_id', firmId).eq('bsns_year', year).order('seq_no').range((page - 1) * size, page * size - 1),
+        db.from('cpa_firm_director_pay').select('seq_no,name,position,employer,pay_kind,amount,masked,source_rcept_no', { count: 'exact' }).eq('firm_id', firmId).eq('bsns_year', year).order('seq_no').range((page - 1) * size, page * size - 1),
     ]);
     if (directors.error || pay.error) throw new Error('개인 명세 조회 실패');
     return { directors: directors.data, directorCount: directors.count, pay: pay.data, payCount: pay.count, page, pageSize: size };

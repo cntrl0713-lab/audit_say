@@ -38,7 +38,7 @@ export interface FirmRow {
 
 export async function loadRegisteredFirms(db: SupabaseClient): Promise<FirmRow[]> {
     const { data, error } = await db
-        .from('firm_registered')
+        .from('cpa_firm_registered')
         .select('firm_id, firm_name, alias')
         .eq('status', 'active');
 
@@ -57,7 +57,7 @@ export interface CompanyInput {
 
 export async function upsertCompany(db: SupabaseClient, company: CompanyInput): Promise<void> {
     const { error } = await db
-        .from('firm_company')
+        .from('cpa_firm_company')
         .upsert({ ...company, updated_at: new Date().toISOString() }, { onConflict: 'corp_code' });
     fail(`회사 적재(${company.corp_code})`, error);
 }
@@ -68,7 +68,7 @@ export async function upsertEngagement(
     input: { firm_id: number; corp_code: string; bsns_year: number; rcept_no: string | null },
 ): Promise<number> {
     const { data, error } = await db
-        .from('firm_engagement')
+        .from('cpa_firm_engagement')
         .upsert(input, { onConflict: 'firm_id,corp_code,bsns_year' })
         .select('engagement_id')
         .single();
@@ -88,7 +88,7 @@ export interface AuditOpinionInput {
 
 export async function upsertAuditOpinion(db: SupabaseClient, input: AuditOpinionInput): Promise<void> {
     const { error } = await db
-        .from('firm_audit_opinion')
+        .from('cpa_firm_audit_opinion')
         .upsert(input, { onConflict: 'engagement_id' });
     fail(`감사의견 적재(engagement ${input.engagement_id})`, error);
 }
@@ -105,7 +105,7 @@ export interface FinancialsInput {
 
 export async function upsertFinancials(db: SupabaseClient, input: FinancialsInput): Promise<void> {
     const { error } = await db
-        .from('firm_financials')
+        .from('cpa_firm_financials')
         .upsert(input, { onConflict: 'engagement_id' });
     fail(`재무 적재(engagement ${input.engagement_id})`, error);
 }
@@ -130,14 +130,14 @@ export async function replaceServiceContracts(
     contracts: ServiceContractInput[],
 ): Promise<void> {
     const { error: deleteError } = await db
-        .from('firm_service_contract')
+        .from('cpa_firm_service_contract')
         .delete()
         .eq('engagement_id', engagementId);
     fail(`용역 삭제(engagement ${engagementId})`, deleteError);
 
     if (contracts.length === 0) return;
 
-    const { error: insertError } = await db.from('firm_service_contract').insert(contracts);
+    const { error: insertError } = await db.from('cpa_firm_service_contract').insert(contracts);
     fail(`용역 적재(engagement ${engagementId})`, insertError);
 }
 
@@ -155,7 +155,7 @@ export interface FirmProfileInput {
 
 export async function upsertFirmProfile(db: SupabaseClient, input: FirmProfileInput): Promise<void> {
     const { error } = await db
-        .from('firm_profile_yearly')
+        .from('cpa_firm_profile_yearly')
         .upsert({ ...input, updated_at: new Date().toISOString() }, { onConflict: 'firm_id,bsns_year' });
     fail(`법인 재무 적재(firm ${input.firm_id}/${input.bsns_year})`, error);
 }
@@ -175,7 +175,7 @@ export interface FirmWorkforceInput {
 
 export async function upsertFirmWorkforce(db: SupabaseClient, input: FirmWorkforceInput): Promise<void> {
     const { error } = await db
-        .from('firm_workforce_yearly')
+        .from('cpa_firm_workforce_yearly')
         .upsert({ ...input, updated_at: new Date().toISOString() }, { onConflict: 'firm_id,bsns_year' });
     fail(`법인 인력 적재(firm ${input.firm_id}/${input.bsns_year})`, error);
 }
@@ -187,7 +187,7 @@ export async function backfillFirmCorpCode(
     corpCode: string,
 ): Promise<void> {
     const { error } = await db
-        .from('firm_registered')
+        .from('cpa_firm_registered')
         .update({ dart_corp_code: corpCode, updated_at: new Date().toISOString() })
         .eq('firm_id', firmId)
         .is('dart_corp_code', null);

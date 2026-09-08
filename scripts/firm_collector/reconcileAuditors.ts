@@ -11,7 +11,7 @@ async function main() {
     const reports = process.argv.slice(2).filter((arg) => arg !== '--apply');
     if (!reports.length) throw new Error('수집 보고서 경로를 지정하세요. 기본은 검토만, --apply로 적용합니다.');
     const db = createStoreClient();
-    const { data: firms, error } = await db.from('firm_registered').select('firm_id,firm_name,alias,dart_corp_code,status');
+    const { data: firms, error } = await db.from('cpa_firm_registered').select('firm_id,firm_name,alias,dart_corp_code,status');
     if (error) throw new Error(error.message);
     const existing = firms as { firm_id: number; firm_name: string; alias: string[]; dart_corp_code: string | null; status: string }[];
     const index = buildFirmIndex(existing);
@@ -63,7 +63,7 @@ async function main() {
     fs.mkdirSync(path.dirname(out), { recursive: true });
     fs.writeFileSync(out, JSON.stringify(review, null, 2));
     if (apply && additions.length) {
-        const result = await db.from('firm_registered').insert(additions).select('firm_id,firm_name,dart_corp_code');
+        const result = await db.from('cpa_firm_registered').insert(additions).select('firm_id,firm_name,dart_corp_code');
         if (result.error) throw new Error(result.error.message);
         const historyPath = 'docs/reports/auditor-master-added.json';
         const history = fs.existsSync(historyPath) ? JSON.parse(fs.readFileSync(historyPath, 'utf8')) : [];

@@ -58,7 +58,7 @@ export async function collectFirmProfiles(
     };
 
     const { data: firms, error } = await db
-        .from('firm_registered')
+        .from('cpa_firm_registered')
         .select('firm_id, firm_name, alias, dart_corp_code')
         .eq('status', 'active');
     if (error) throw new Error(`등록회계법인 조회 실패: ${error.message}`);

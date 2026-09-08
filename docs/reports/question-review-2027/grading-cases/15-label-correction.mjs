@@ -1,0 +1,11 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+const dir='docs/reports/question-review-2027/grading-cases',file='cpa_uploader/data/cpa_question_sets_v3.authoring.json';
+const bank=JSON.parse(fs.readFileSync(file)),sets=bank.filter(s=>s.id.startsWith('pilot-15'));
+assert.deepEqual(sets,JSON.parse(fs.readFileSync(`${dir}/15-v2-after.json`)));
+const c=sets[2].subquestions[0].criteria.find(c=>c.id==='crit2');
+c.critical_facts[0].expected+=' 판정값 구분: 부정의견처럼 정의되지 않은 불명확한 명칭만 쓴 경우는 not_met이다. 한정의견·적정의견·의견거절처럼 다른 표준 의견으로 명시적으로 대체한 경우는 contradicted이다. 둘 다 득점하지 않는다.';
+fs.writeFileSync(file,JSON.stringify(bank,null,2)+'\n');fs.writeFileSync(`${dir}/15-v3-after.json`,JSON.stringify(sets,null,2)+'\n');
+let r=fs.readFileSync(`${dir}/15-v2-run.mjs`,'utf8').replaceAll('15-v2-','15-v3-');
+r=r.replace("['pilot-15-001','pilot-15-003'].includes(c.set_id)","c.set_id==='pilot-15-003'");
+r=r.replace("const prior=['pilot-15-001-omission','pilot-15-001-subq1-omit-crit1','pilot-15-003-paraphrase','15-mapped-conclusions-only'];","const prior=['15-wrong-opinion-name','pilot-15-003-paraphrase','15-mapped-conclusions-only'];");
+fs.writeFileSync(`${dir}/15-v3-run.mjs`,r);

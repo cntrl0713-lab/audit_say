@@ -1,0 +1,14 @@
+const contra=quote=>({verdict:'contradicted',quote});
+edge('pilot-15-001','subq2','15-title-only','한정의견근거, 부적정의견근거 또는 의견거절근거로 제목을 바꾼다.',[not]);
+edge('pilot-15-001','subq2','15-cause-only','의견변형의 원인을 설명한다.',[not]);
+edge('pilot-15-003','sub1','15-unmapped-opinions','한정의견, 부적정의견, 의견거절',[not,not,not,not]);
+edge('pilot-15-003','sub1','15-conditions-without-opinions','왜곡표시의 영향은 중요하고 전반적이다. 감사증거는 충분하고 적합하게 입수할 수 없고 가능한 영향은 중요하지만 전반적이지 않다.',[not,not,not,not]);
+edge('pilot-15-003','sub1','15-mapped-conclusions-only','왜곡·비전반적: 한정. 왜곡·전반적: 부적정. 증거부족·비전반적: 한정. 증거부족·전반적: 의견거절.',Array(4).fill(met('왜곡·비전반적: 한정. 왜곡·전반적: 부적정. 증거부족·비전반적: 한정. 증거부족·전반적: 의견거절.')));
+edge('pilot-15-003','sub1','15-wrong-opinion-name','확인된 왜곡표시가 중요하고 전반적이면 부정의견이다.',[not,not,not,not]);
+edge('pilot-15-004','sub1','15-disclosure-no-evidence','실행가능하고 법규상 금지되지 않으면 누락된 공시를 포함한다.',[not,not,not,not]);
+edge('pilot-15-004','sub1','15-disclosure-despite-prohibition','증거를 충분하고 적합하게 얻고 실행가능하면 법규상 금지되어도 누락된 공시를 포함한다.',[not,not,contra('증거를 충분하고 적합하게 얻고 실행가능하면 법규상 금지되어도 누락된 공시를 포함한다.'),not]);
+edge('pilot-15-004','sub1','15-quantification-no-impossible-note','특정 금액의 왜곡표시는 재무적 영향을 설명하고 가능한 경우 계량화한다.',[not,not,not,not]);
+edge('pilot-15-004','sub2','15-vague-change','의견거절 시 다른 보고요소에 필요한 변경을 반영한다.',[not,not,not,not]);
+edge('pilot-15-004','sub2','15-no-law-exception','의견거절 시 핵심감사사항 단락과 기타정보 단락은 어떤 경우에도 포함할 수 없다.',[not,contra('의견거절 시 핵심감사사항 단락과 기타정보 단락은 어떤 경우에도 포함할 수 없다.'),not,not]);
+edge('pilot-15-004','sub2','15-responsibility-without-ethics','감사인의 책임 단락에는 기준에 따라 감사하고 보고서를 발행할 책임과 거절근거 때문에 충분하고 적합한 증거를 못 얻었다는 사실만 적는다.',[not,not,not,not]);
+edge('pilot-15-002','sub2','15-fairness-label-only','공정한 표시 달성 여부를 평가한다.',[not,not]);

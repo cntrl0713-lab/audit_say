@@ -1,5 +1,7 @@
 # Supabase RLS 적용 런북
 
+> 2026-09-08 이름 변경 이후 프로필 테이블은 `cpa_users`다. 이전 `user_cpa`는 호환 뷰이므로 이 문서의 테이블 RLS 명령을 이전 이름에 실행하지 않는다. [이름 전환 기록](docs/cpa-table-prefix.md)을 먼저 확인한다. 아래 과거 RLS 검증 설명은 테이블 이름을 현재 이름으로 표기했다.
+
 Supabase 대시보드 → SQL Editor에서 STEP 0부터 순서대로 실행한다.
 **순서를 지키지 않으면 운영 앱이 멈춘다** (STEP 0 참고).
 
@@ -7,7 +9,7 @@ Supabase 대시보드 → SQL Editor에서 STEP 0부터 순서대로 실행한�
 > service_role 역할, `auth.uid()`/`auth.jwt()`, 적용 전의 광범위한 정책)을 재현해 실제로
 > 실행 검증했다. 확인한 동작:
 > - anon: 세 테이블 모두 0행
-> - 로그인 사용자: 본인 `user_cpa` 행만 조회, 문제·오답노트는 0행
+> - 로그인 사용자: 본인 `cpa_users` 행만 조회, 문제·오답노트는 0행
 > - 자기 `role`을 `ADMIN`으로, `exp`를 임의 값으로 UPDATE 시도 → 0행 (차단)
 > - 가입 INSERT: 본인 id 성공 / 타인 id 거부 / 익명 세션 거부
 > - service role: 전부 정상 조회 (서버 액션 경로)
@@ -21,7 +23,7 @@ Supabase 대시보드 → SQL Editor에서 STEP 0부터 순서대로 실행한�
 
 이전에는 서버 액션의 조회까지 브라우저용 anon 클라이언트(`createBrowserClient`)로 수행했다.
 서버에는 쿠키 저장소가 없어 사용자 JWT가 실리지 않으므로, 그 조회들은 전부 **anon 역할**로
-나갔다. 즉 앱이 동작하려면 `cpa_questions_v2`·`cpa_review_notes`·`user_cpa`가 모두 anon에게
+나갔다. 즉 앱이 동작하려면 `cpa_questions_v2`·`cpa_review_notes`·`cpa_users`가 모두 anon에게
 열려 있어야 했고, 그렇다는 것은 **공개된 anon 키만으로 Supabase에 직접 붙어 모범답안·루브릭·
 타인의 오답노트를 그대로 받아갈 수 있다**는 뜻이다. 앱의 `stripAnswers` 처리는 이 경로를
 막지 못한다.
@@ -34,11 +36,11 @@ Supabase 대시보드 → SQL Editor에서 STEP 0부터 순서대로 실행한�
 
 | 경로 | 사용 키 | 대상 |
 |---|---|---|
-| 브라우저 `getCombinedProfile` / `createPublicProfile` (`lib/db.ts`) | anon (사용자 세션) | `user_cpa` 본인 행 SELECT / INSERT |
+| 브라우저 `getCombinedProfile` / `createPublicProfile` (`lib/db.ts`) | anon (사용자 세션) | `cpa_users` 본인 행 SELECT / INSERT |
 | 브라우저 `supabase.auth.*` (`contexts/AuthContext.tsx`) | anon | Auth API (테이블 아님) |
 | 서버 액션 전부 (`app/actions.ts` → `lib/dbAdmin.ts`) | service role | 모든 테이블 |
 
-**클라이언트가 직접 접근해야 하는 테이블은 `user_cpa` 하나뿐**이고, 그것도 본인 행에 한정된다.
+**클라이언트가 직접 접근해야 하는 테이블은 `cpa_users` 하나뿐**이고, 그것도 본인 행에 한정된다.
 
 ---
 
@@ -68,7 +70,7 @@ select section, item, detail from (
   select 0 as ord, 'A. 테이블' as section, t.name::text as item,
          case when to_regclass('public.' || t.name) is null
               then '없음 ← 테이블 이름 확인 필요' else '있음' end as detail
-  from (values ('user_cpa'),('cpa_questions_v2'),('cpa_review_notes')) as t(name)
+  from (values ('cpa_users'),('cpa_questions_v2'),('cpa_review_notes')) as t(name)
 
   -- 1) RLS 활성화 여부
   union all
@@ -77,30 +79,30 @@ select section, item, detail from (
               else '꺼짐 ← 정책과 무관하게 전부 공개 상태' end
   from pg_class
   where relnamespace = 'public'::regnamespace
-    and relname in ('user_cpa','cpa_questions_v2','cpa_review_notes')
+    and relname in ('cpa_users','cpa_questions_v2','cpa_review_notes')
 
   -- 2) 현재 정책 (위험한 것 표시)
   union all
   select 2, 'C. 현재 정책', (tablename || ' / ' || policyname)::text,
          cmd || ' to ' || array_to_string(roles, ',')
          || ' using(' || coalesce(qual, '-') || ')'
-         || case when tablename = 'user_cpa' and cmd in ('UPDATE','ALL')
+         || case when tablename = 'cpa_users' and cmd in ('UPDATE','ALL')
                  then '  [!] 사용자가 자기 role을 ADMIN으로 바꿀 수 있음' else '' end
          || case when coalesce(qual, '') = 'true' and cmd in ('SELECT','ALL')
                  then '  [!] 전체 공개 읽기' else '' end
   from pg_policies
   where schemaname = 'public'
-    and tablename in ('user_cpa','cpa_questions_v2','cpa_review_notes')
+    and tablename in ('cpa_users','cpa_questions_v2','cpa_review_notes')
 
   -- 3) 컬럼 타입 (STEP 2 정책 문법이 여기서 갈린다)
   union all
   select 3, 'D. 컬럼 타입', (table_name || '.' || column_name)::text,
          data_type
-         || case when table_name='user_cpa' and column_name='id' and data_type <> 'uuid'
+         || case when table_name='cpa_users' and column_name='id' and data_type <> 'uuid'
                  then '  <- STEP 2에서 auth.uid()::text 로 바꿔야 함' else '' end
   from information_schema.columns
   where table_schema = 'public'
-    and (table_name, column_name) in (('user_cpa','id'), ('user_cpa','exp'))
+    and (table_name, column_name) in (('cpa_users','id'), ('cpa_users','exp'))
 
   -- 4) 롤백용 복원 SQL (반드시 따로 저장해 둘 것)
   union all
@@ -112,7 +114,7 @@ select section, item, detail from (
          || coalesce(' with check (' || with_check || ')', '') || ';'
   from pg_policies
   where schemaname = 'public'
-    and tablename in ('user_cpa','cpa_questions_v2','cpa_review_notes')
+    and tablename in ('cpa_users','cpa_questions_v2','cpa_review_notes')
 ) t
 order by ord, item;
 ```
@@ -124,7 +126,7 @@ order by ord, item;
 | A. 테이블 | 셋 다 `있음`이어야 한다. `없음`이면 실제 테이블명을 확인해 이후 SQL의 이름을 모두 바꾼다. |
 | B. RLS 켜짐? | `꺼짐`인 테이블은 정책과 무관하게 지금 전부 공개다. |
 | C. 현재 정책 | `[!]` 표시가 붙은 행이 이번에 없애려는 대상이다. 아무 행도 없으면 정책이 없다는 뜻(B가 `꺼짐`이면 공개, `켜짐`이면 이미 잠긴 상태). |
-| D. 컬럼 타입 | `user_cpa.id`가 `uuid`가 아니면 STEP 2에서 `auth.uid()::text`로 바꿔야 한다. |
+| D. 컬럼 타입 | `cpa_users.id`가 `uuid`가 아니면 STEP 2에서 `auth.uid()::text`로 바꿔야 한다. |
 | E. 롤백용 복원SQL | **이 행들을 메모장에 복사해 둔다.** STEP 4 롤백의 유일한 수단이다. |
 
 E 구역이 비어 있으면(정책이 원래 없었으면) 롤백 시 복원할 정책도 없다는 뜻이므로 그대로 진행하면 된다.
@@ -144,7 +146,7 @@ select 'create policy "' || policyname || '" on ' || schemaname || '.' || tablen
        coalesce(' with check (' || with_check || ')', '') || ';' as restore_sql
 from pg_policies
 where schemaname = 'public'
-  and tablename in ('user_cpa', 'cpa_questions_v2', 'cpa_review_notes');
+  and tablename in ('cpa_users', 'cpa_questions_v2', 'cpa_review_notes');
 ```
 
 ### 1-2. RLS 활성화 여부
@@ -153,7 +155,7 @@ where schemaname = 'public'
 select relname as table_name, relrowsecurity as rls_enabled
 from pg_class
 where relnamespace = 'public'::regnamespace
-  and relname in ('user_cpa', 'cpa_questions_v2', 'cpa_review_notes');
+  and relname in ('cpa_users', 'cpa_questions_v2', 'cpa_review_notes');
 ```
 
 `rls_enabled`가 `false`인 테이블은 정책과 무관하게 anon에게 전부 열려 있다는 뜻이다.
@@ -164,13 +166,13 @@ where relnamespace = 'public'::regnamespace
 select tablename, policyname, cmd, roles, qual, with_check
 from pg_policies
 where schemaname = 'public'
-  and tablename in ('user_cpa', 'cpa_questions_v2', 'cpa_review_notes')
+  and tablename in ('cpa_users', 'cpa_questions_v2', 'cpa_review_notes')
 order by tablename, cmd;
 ```
 
 특히 다음을 확인한다:
 
-- **`user_cpa`에 `cmd = 'UPDATE'`(또는 `'ALL'`) 정책이 있는가** — 있으면 사용자가 자기 행의
+- **`cpa_users`에 `cmd = 'UPDATE'`(또는 `'ALL'`) 정책이 있는가** — 있으면 사용자가 자기 행의
   `role`을 `'ADMIN'`으로 바꾸거나 `exp`를 임의로 올릴 수 있다. 가장 시급한 항목이다.
 - `qual`이 `true`인 광범위한 SELECT 정책 — 모범답안·타인 오답노트 노출 경로다.
 
@@ -180,13 +182,13 @@ order by tablename, cmd;
 select table_name, column_name, data_type
 from information_schema.columns
 where table_schema = 'public'
-  and (table_name, column_name) in (('user_cpa','id'), ('user_cpa','exp'));
+  and (table_name, column_name) in (('cpa_users','id'), ('cpa_users','exp'));
 ```
 
-- `user_cpa.id`가 **`uuid`가 아니라 `text`**라면 STEP 2의 정책에서 `(select auth.uid())`를
+- `cpa_users.id`가 **`uuid`가 아니라 `text`**라면 STEP 2의 정책에서 `(select auth.uid())`를
   `(select auth.uid())::text`로 바꿔야 한다. 안 그러면 타입 불일치로 본인 프로필 조회가
   실패하고 **로그인이 안 되는 것처럼 보인다.**
-- `user_cpa.exp`가 `integer`류면 소수 경험치 update가 거부된다 — 코드에서 이미 정수로
+- `cpa_users.exp`가 `integer`류면 소수 경험치 update가 거부된다 — 코드에서 이미 정수로
   반올림하므로(`sanitizeExpGain` + `incrementProgress`) 문제없지만, 확인해 두면 좋다.
 
 </details>
@@ -196,7 +198,7 @@ where table_schema = 'public'
 ## STEP 2. 적용
 
 아래를 **그대로** SQL Editor에 붙여넣고 Run 한다. 수정할 곳은 없다 —
-`user_cpa.id`가 `uuid`든 `text`든 스크립트가 컬럼 타입을 읽어 비교식을 스스로 맞춘다.
+`cpa_users.id`가 `uuid`든 `text`든 스크립트가 컬럼 타입을 읽어 비교식을 스스로 맞춘다.
 
 전체가 하나의 트랜잭션이라, 대상 테이블이 하나라도 없으면 명확한 메시지와 함께
 **아무것도 바꾸지 않고 중단**한다.
@@ -213,7 +215,7 @@ declare
   t        text;
   id_type  text;
   uid_expr text;
-  tables   text[] := array['user_cpa','cpa_questions_v2','cpa_review_notes'];
+  tables   text[] := array['cpa_users','cpa_questions_v2','cpa_review_notes'];
 begin
   -- 1) 대상 테이블이 모두 있는지 먼저 확인 (없으면 아무것도 적용하지 않고 중단)
   foreach t in array tables loop
@@ -238,31 +240,31 @@ begin
     execute format('alter table public.%I enable row level security', t);
   end loop;
 
-  -- 4) user_cpa.id 타입에 맞는 비교식 자동 선택
+  -- 4) cpa_users.id 타입에 맞는 비교식 자동 선택
   select data_type into id_type
   from information_schema.columns
-  where table_schema = 'public' and table_name = 'user_cpa' and column_name = 'id';
+  where table_schema = 'public' and table_name = 'cpa_users' and column_name = 'id';
 
   if id_type is null then
-    raise exception 'user_cpa.id 컬럼을 찾을 수 없습니다.';
+    raise exception 'cpa_users.id 컬럼을 찾을 수 없습니다.';
   elsif id_type = 'uuid' then
     uid_expr := '(select auth.uid())';
   else
     uid_expr := '(select auth.uid())::text';
   end if;
-  raise notice 'user_cpa.id 타입 = %  ->  비교식 %', id_type, uid_expr;
+  raise notice 'cpa_users.id 타입 = %  ->  비교식 %', id_type, uid_expr;
 
-  -- 5) user_cpa: 본인 행만 조회 / 본인 행만 생성
+  -- 5) cpa_users: 본인 행만 조회 / 본인 행만 생성
   --    익명(비회원) 세션도 Supabase에서는 authenticated 역할이므로 is_anonymous로 걸러낸다 —
   --    비회원은 user_cpa에 영구 프로필을 만들지 않는 것이 앱의 기존 규칙이다.
   execute format($f$
-    create policy "user_cpa_select_own" on public.user_cpa
+    create policy "user_cpa_select_own" on public.cpa_users
       for select to authenticated
       using ( %s = id )
   $f$, uid_expr);
 
   execute format($f$
-    create policy "user_cpa_insert_own" on public.user_cpa
+    create policy "user_cpa_insert_own" on public.cpa_users
       for insert to authenticated
       with check (
         %s = id
@@ -279,8 +281,8 @@ commit;
 **성공 시 출력되는 NOTICE** (Supabase SQL Editor 하단에 표시된다)
 
 ```
-NOTICE:  기존 정책 제거: user_cpa / <기존 정책명>
-NOTICE:  user_cpa.id 타입 = uuid  ->  비교식 (select auth.uid())
+NOTICE:  기존 정책 제거: cpa_users / <기존 정책명>
+NOTICE:  cpa_users.id 타입 = uuid  ->  비교식 (select auth.uid())
 NOTICE:  적용 완료
 ```
 
@@ -305,7 +307,7 @@ curl -s "$U/rest/v1/cpa_questions_v2?select=*&limit=1" -H "apikey: $K"
 curl -s "$U/rest/v1/cpa_review_notes?select=*&limit=1"  -H "apikey: $K"
 
 # 로그아웃 상태에서 회원 목록이 보이면 실패
-curl -s "$U/rest/v1/user_cpa?select=*&limit=1"          -H "apikey: $K"
+curl -s "$U/rest/v1/cpa_users?select=*&limit=1"          -H "apikey: $K"
 ```
 
 ### 3-2. 앱 주요 흐름 (하나라도 깨지면 STEP 4로)
@@ -330,15 +332,15 @@ STEP 2는 하나의 트랜잭션이므로 실행 중 실패했다면 아무것�
 begin;
 
 -- 새로 만든 정책 제거
-drop policy if exists "user_cpa_select_own" on public.user_cpa;
-drop policy if exists "user_cpa_insert_own" on public.user_cpa;
+drop policy if exists "user_cpa_select_own" on public.cpa_users;
+drop policy if exists "user_cpa_insert_own" on public.cpa_users;
 
 -- STEP 1-1에서 덤프해 둔 restore_sql을 여기에 붙여넣어 실행
 
 -- STEP 1-2에서 rls_enabled가 false였던 테이블만 되돌린다
 -- alter table public.cpa_questions_v2 disable row level security;
 -- alter table public.cpa_review_notes disable row level security;
--- alter table public.user_cpa         disable row level security;
+-- alter table public.cpa_users         disable row level security;
 
 commit;
 ```
@@ -507,7 +509,7 @@ drop table if exists public.cpa_rate_limits;
 (`scoreFromVerdicts`의 `Math.round(x*2)/2`), 저장 시 **오류 없이 조용히 반올림**됐다.
 실제 INSERT로 확인한 값: 6.5 → 7, 5.5 → 6, 4.5 → 5.
 
-`user_cpa.exp`에서 이미 겪고 고쳤던 것과 같은 종류의 문제다(`incrementProgress` 주석 참고).
+`cpa_users.exp`에서 이미 겪고 고쳤던 것과 같은 종류의 문제다(`incrementProgress` 주석 참고).
 당시엔 exp 쪽만 고치고 score는 남아 있었다.
 
 함께 처리한 것: `(user_id, question_id)` 유니크 제약이 없어 같은 문항을 여러 번 저장할 수
@@ -552,10 +554,10 @@ create index if not exists cpa_review_notes_question_idx
 
 ## 부록. 백필 잔재 정리 (2026-08-02)
 
-`user_cpa` 196행 중 **193행이 익명 auth 사용자에게 붙어 있었다.** 2026-07-09 01:09 UTC에
+`cpa_users` 196행 중 **193행이 익명 auth 사용자에게 붙어 있었다.** 2026-07-09 01:09 UTC에
 1분 안에 `cpa_user_<hex8>` 패턴으로 일괄 생성된, 일회성 백필 스크립트의 잔재다.
 
-설계상 익명(게스트) 세션은 `user_cpa`에 프로필을 만들지 않는다
+설계상 익명(게스트) 세션은 `cpa_users`에 프로필을 만들지 않는다
 (`contexts/AuthContext.tsx`의 `resolveSessionUser`). 이후 19일간 신규 생성이 0건인 것으로
 **현재 코드는 정상 동작함을 확인했다** — 남아 있던 것은 과거 데이터뿐이었다.
 
@@ -563,10 +565,10 @@ create index if not exists cpa_review_notes_question_idx
 자동 생성된 계정 10개가 노출되고 있었다.
 
 삭제 전 대상 193행이 `exp=0`, `level=1`, `role=MEMBER`, 오답노트 0건임을 전수 확인했다
-(잃을 데이터 없음). 삭제 후 `user_cpa`는 실제 계정 3행만 남는다.
+(잃을 데이터 없음). 삭제 후 `cpa_users`는 실제 계정 3행만 남는다.
 
 ```sql
-delete from public.user_cpa uc
+delete from public.cpa_users uc
 using auth.users au
 where au.id = uc.id
   and au.is_anonymous
@@ -589,4 +591,4 @@ Supabase 익명 계정을 발급하는데 정리 주기가 없어서다. 이 행
 - `SUPABASE_SERVICE_ROLE_KEY`는 RLS를 우회하므로 절대 클라이언트에 노출되면 안 된다.
   `NEXT_PUBLIC_` 접두사가 없어 Next.js가 클라이언트 번들에 인라인하지 않으며, 이 키를 쓰는
   `lib/supabaseAdmin.ts`는 서버 전용 모듈(`lib/dbAdmin.ts`)에서만 import한다.
-  빌드 산출물에서 클라이언트 번들이 직접 참조하는 테이블이 `user_cpa`뿐임을 확인했다.
+  빌드 산출물에서 클라이언트 번들이 직접 참조하는 테이블이 `cpa_users`뿐임을 확인했다.

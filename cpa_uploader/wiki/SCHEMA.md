@@ -6,7 +6,7 @@
 
 ## Source of Truth
 
-신뢰 우선순위는 다음과 같다.
+적용 연도는 공식 시험 적용 공고와 국내 기준서의 확정 본문·부칙으로 확인한다. 아래 로컬 자료는 탐색·대조 계층이며 공식 판본과 불일치하면 공식 근거를 우선한다.
 
 1. `data/회계감사_통합학습자료/01_감사기준`의 기준서 통합본
 2. `data/회계감사_통합학습자료/02_기본이론`의 설명과 핵심요약
@@ -37,7 +37,8 @@
 - 새 문제는 `descriptive`, `enumeration`, `judgment` 중 하나로 분류한다.
 - 관련 물음은 하나의 `linked_question_set`으로 묶고 물음별로 독립 채점한다.
 - 배점은 채점요소별 정수로 두며 문제 총점은 합계로 계산한다.
-- `best_n` 선택군의 요소는 같은 배점을 가진다.
+- 열거형은 발문 범위의 항목을 모두 작성한다. `selection={type:'all',n:null}`, `ordered=false`, `max_entries=null`, `overflow_policy='none'`을 사용한다. 감사절차의 의미상 순서와 시점은 criterion에 보존한다.
+- 같은 문장이 독립 명제를 충족하면 같은 인용을 허용한다. 명칭을 요구한 답안은 명칭만으로 득점할 수 있다. 요구 조치에서 결론이 분명하면 판단 점수를 인정한다.
 - 원문에서 실제로 묻지 않은 해설 지식을 채점요소로 추가하지 않는다.
 
 ## Frontmatter
@@ -82,12 +83,17 @@ confidence: high | medium | low
 2. `shared_context`: 여러 물음이 공유하는 최소 사실
 3. `subquestions`: 원문의 독립적인 요구사항
 4. `criteria`: 독립적으로 점수를 줄 수 있는 원자적 명제
-5. `integer_scoring`: 각 criterion의 0~3점 정수 단계
+5. 각 criterion의 `max_points`·`scores`: 기본 1점 명제의 정수 합산. `integer_scoring`이라는 별도 필드는 없음
 6. `verification`: 출처 대조와 사람 검수 상태
 
 세부 구조는 [[question-output-schema]]를 따른다.
 
 ## Update Policy
+
+- DB 저장 구조를 설명할 때 프로젝트 테이블은 `cpa_*` 규약을 따른다. 회원은 `cpa_users`, 회계법인 데이터는 `cpa_firm_*`이며 문제은행 v3의 편집 정본은 JSON 파일이다. [DB 이름 전환 기록](../../docs/cpa-table-prefix.md)을 참조한다. 이전 이름의 호환 뷰를 별도의 물리 테이블로 집계하지 않는다.
+
+- 출제·검증 정책은 [주제01–03 수정 결정](../../docs/plans/question-review-01-03-remediation.md)을 따른다. 문서의 목표와 현재 코드 구현 상태는 별도로 확인한다. 과거 실측을 새 정책의 기대값으로 그대로 재사용하지 않는다.
+- 2027년의 2026년 시행 기준 동일 적용은 작업 가정이다. [개정220 시행일 메모](../../docs/reports/question-review-2027/kga220-effective-date-note.md)와 최종 시험 적용 판본을 구분한다.
 
 - 생성 스크립트가 concept·coverage·source-map 페이지를 재생성할 수 있다.
 - 수동 검토 메모는 `question-generation/` 또는 별도 reviewed 페이지에 기록한다.

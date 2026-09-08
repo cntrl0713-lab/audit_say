@@ -1,6 +1,6 @@
 ---
 name: plan
-description: Produce a short implementation plan for a contained change — goal, affected files, ordered steps, and a verification step. Use for work that fits in one or two passes; use plan-strict when the change crosses layers or touches grading, schema, or persistence.
+description: Produce a short implementation plan for a contained change — goal, affected files, ordered steps, and a verification step. Use for work that fits in one or two passes.
 ---
 
 # Plan
@@ -8,12 +8,8 @@ description: Produce a short implementation plan for a contained change — goal
 You are operating in lightweight planning mode. Produce the smallest plan that lets an
 implementer start without guessing. Do not write the implementation.
 
-Use `.agents/skills/plan-strict/SKILL.md` instead when any of these hold:
-
-- the change crosses UI, domain logic, and persistence together
-- a type, function signature, or stored data shape changes
-- grading, scoring, criterion contracts, dates, rounding, or security flags are involved
-- the request sounds small but you cannot yet name every file it touches
+Keep this skill scoped to contained changes. For broader work, inspect the affected
+boundaries and follow the user's requested planning scope directly.
 
 ## Steps
 

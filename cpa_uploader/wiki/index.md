@@ -1,7 +1,7 @@
 # CPA 회계감사 문제 출제 LLM Wiki
 
 > `cpa_uploader/data`를 출처로 하는 문제 생성 지식베이스.
-> Last updated: 2026-08-25 | Content pages: 26 | v3 문제은행: 세트 96개 · criterion 503개
+> Last updated: 2026-09-08 | Content pages: 26 | v3 문제은행: 세트 96개 · criterion 521개
 
 ## Start Here
 
@@ -13,12 +13,12 @@
 
 ## Concepts
 
-- [[ethics-independence-quality]] — KGA 200·KGA 220 · 윤리적 요구사항, 독립성, 품질관리, 업무품질관리, 모니터링 · v3 9세트
-- [[audit-objectives-foundations]] — KGA 200 · 합리적인 확신, 감사위험, 전문가적 의구심, 전문가적 판단, 감사의 고유한계 · v3 0세트
+- [[ethics-independence-quality]] — KGA 200·KGA 220 · 윤리적 요구사항, 독립성, 품질관리, 업무품질관리, 모니터링 · v3 4세트
+- [[audit-objectives-foundations]] — KGA 200 · 합리적인 확신, 감사위험, 전문가적 의구심, 전문가적 판단, 감사의 고유한계 · v3 5세트
 - [[engagement-acceptance-contract]] — KGA 210 · 감사업무 조건, 감사계약, 감사의 전제조건, 수임, 계속감사 · v3 4세트
 - [[planning-documentation-materiality]] — KGA 230·KGA 300·KGA 320 · 감사문서, 감사조서, 감사전략, 감사계획, 계획수립, 중요성, 수행중요성 · v3 5세트
 - [[fraud-laws-governance-communication]] — KGA 240·KGA 250·KGA 260·KGA 265 · 부정, 법률과 규정, 법규, 지배기구, 내부통제 미비점, 커뮤니케이션 · v3 6세트
-- [[risk-assessment-internal-control]] — KGA 315 · 중요왜곡표시위험, 위험평가절차, 내부통제시스템, 통제환경, 정보시스템, 통제활동 · v3 5세트
+- [[risk-assessment-internal-control]] — KGA 315·KGA 330 · 중요왜곡표시위험, 위험평가절차, 내부통제시스템, 통제환경, 정보시스템, 통제활동 · v3 5세트
 - [[responses-controls-substantive-procedures]] — KGA 330 · 평가된 위험, 추가감사절차, 통제테스트, 실증절차, 실증분석절차, 세부테스트 · v3 5세트
 - [[audit-evidence-assertions]] — KGA 500 · 감사증거, 충분하고 적합, 경영진주장, 감사증거의 신뢰성, 감사절차 · v3 5세트
 - [[inventory-litigation-confirmations-opening-balances]] — KGA 501·KGA 505·KGA 510 · 재고자산, 소송과 배상청구, 부문정보, 외부조회, 조회서, 기초잔액, 초도감사 · v3 7세트
@@ -31,7 +31,7 @@
 - [[kam-emphasis-comparatives-other-information]] — KGA 701·KGA 706·KGA 710·KGA 720 · 핵심감사사항, 강조사항문단, 기타사항문단, 비교정보, 대응수치, 비교재무제표, 기타정보 · v3 7세트
 - [[internal-control-over-financial-reporting]] — KGA 1100 · 내부회계관리제도, 내부회계, 운영실태보고서, 전사적 수준 통제 · v3 4세트
 - [[small-entity-audit]] — KGA 1200 · 소규모기업, 소규모 기업 · v3 4세트
-- [[assurance-review-related-services]] — 기타 기준 · 검토업무, 인증업무, 합의된 절차, 재무제표 검토, 예측재무정보 · v3 4세트
+- [[assurance-review-related-services]] — KGA 200 · 검토업무, 인증업무, 합의된 절차, 재무제표 검토, 예측재무정보 · v3 4세트
 
 ## Question Generation
 

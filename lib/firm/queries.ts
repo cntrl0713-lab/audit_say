@@ -9,6 +9,8 @@ import type {
     FirmKamRow,
     FirmSummaryRow,
     FirmAnnualSummary,
+    FirmCpaTenureRow,
+    FirmPersonnelCostRow,
     RegisteredFirm,
 } from './types';
 
@@ -24,6 +26,27 @@ export async function getFirmAnnualSummaries(firmId: number): Promise<FirmAnnual
     if (error?.code === 'PGRST205' || error?.code === '42P01') return [];
     fail('회계법인 결산 지표 조회', error);
     return (data ?? []) as FirmAnnualSummary[];
+}
+
+/**
+ * 공인회계사 근속 분포. 접수번호로 보고기간을 고를 수 있게 전 기간을 준다.
+ * 모집단이 공인회계사라 v_firm_annual_summary 의 전 임직원 수와 다르다.
+ */
+export async function getFirmCpaTenure(firmId: number): Promise<FirmCpaTenureRow[]> {
+    const db = await getSupabaseServerClient();
+    const { data, error } = await db.from('v_firm_cpa_tenure').select('*').eq('firm_id', firmId);
+    if (error?.code === 'PGRST205' || error?.code === '42P01') return [];
+    fail('회계법인 근속 분포 조회', error);
+    return (data ?? []) as FirmCpaTenureRow[];
+}
+
+/** 부문별 인건비와 함께 공시되는 비용. headcount 는 전 임직원 기준이다. */
+export async function getFirmPersonnelCost(firmId: number): Promise<FirmPersonnelCostRow[]> {
+    const db = await getSupabaseServerClient();
+    const { data, error } = await db.from('v_firm_personnel_cost').select('*').eq('firm_id', firmId);
+    if (error?.code === 'PGRST205' || error?.code === '42P01') return [];
+    fail('회계법인 인건비 조회', error);
+    return (data ?? []) as FirmPersonnelCostRow[];
 }
 
 export interface Page<T> {
@@ -59,7 +82,7 @@ function sanitizeSearch(raw: string): string {
 export async function listRegisteredFirms(): Promise<RegisteredFirm[]> {
     const supabase = await getSupabaseServerClient();
     const { data, error } = await supabase
-        .from('firm_registered')
+        .from('cpa_firm_registered')
         .select('firm_id, firm_name, registration_no, tier, alias, status, dart_corp_code')
         .eq('status', 'active')
         .order('firm_name');
@@ -71,7 +94,7 @@ export async function listRegisteredFirms(): Promise<RegisteredFirm[]> {
 export async function getRegisteredFirm(firmId: number): Promise<RegisteredFirm | null> {
     const supabase = await getSupabaseServerClient();
     const { data, error } = await supabase
-        .from('firm_registered')
+        .from('cpa_firm_registered')
         .select('firm_id, firm_name, registration_no, tier, alias, status, dart_corp_code')
         .eq('firm_id', firmId)
         .maybeSingle();
@@ -247,7 +270,7 @@ export async function listFirmKam(options: {
 export async function getCompany(corpCode: string): Promise<FirmCompany | null> {
     const supabase = await getSupabaseServerClient();
     const { data, error } = await supabase
-        .from('firm_company')
+        .from('cpa_firm_company')
         .select('corp_code, corp_name, corp_cls, stock_code, listed_yn, induty')
         .eq('corp_code', corpCode)
         .maybeSingle();

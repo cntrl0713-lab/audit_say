@@ -1,0 +1,5400 @@
+[
+  {
+    "id": "pilot-18-001-full",
+    "set_id": "pilot-18-001",
+    "variant": "full",
+    "answers": {
+      "subq1": "KGA 1200을 적용할 수 없다.\n일반 감사기준서(KGA 200부터 KGA 720까지)를 적용한다.",
+      "subq2": "해당 적정의견 감사보고서 사례에는 핵심감사사항 단락이 포함되지 않는다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "KGA 1200을 적용할 수 없다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "일반 감사기준서(KGA 200부터 KGA 720까지)를 적용한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "해당 적정의견 감사보고서 사례에는 핵심감사사항 단락이 포함되지 않는다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 3,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-paraphrase",
+    "set_id": "pilot-18-001",
+    "variant": "paraphrase",
+    "answers": {
+      "subq1": "소규모기업에 해당하지 않으므로 1200 기준으로 감사할 수 없습니다.\n이 경우 일반 감사기준서를 사용해야 합니다.",
+      "subq2": "보론 2 사례 1에는 KAM 문단이 없습니다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "소규모기업에 해당하지 않으므로 1200 기준으로 감사할 수 없습니다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "이 경우 일반 감사기준서를 사용해야 합니다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "보론 2 사례 1에는 KAM 문단이 없습니다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 3,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-omission",
+    "set_id": "pilot-18-001",
+    "variant": "omission",
+    "answers": {
+      "subq1": "KGA 1200을 적용할 수 없다.",
+      "subq2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "KGA 1200을 적용할 수 없다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-contrary",
+    "set_id": "pilot-18-001",
+    "variant": "contrary",
+    "answers": {
+      "subq1": "KGA 1200을 적용할 수 있다.\n일반 감사기준서를 적용해서는 안 된다.",
+      "subq2": "보론 2 사례 1에는 핵심감사사항 단락이 포함되어 있다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "contradicted",
+              "quote": "KGA 1200을 적용할 수 있다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "contradicted",
+              "quote": "일반 감사기준서를 적용해서는 안 된다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "contradicted",
+              "quote": "보론 2 사례 1에는 핵심감사사항 단락이 포함되어 있다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-empty",
+    "set_id": "pilot-18-001",
+    "variant": "empty",
+    "answers": {
+      "subq1": "",
+      "subq2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-bank-model-answer",
+    "set_id": "pilot-18-001",
+    "variant": "bank-model-answer",
+    "answers": {
+      "subq1": "KGA 1200을 적용할 수 없다.\n일반 감사기준서(KGA 200부터 KGA 720까지)를 적용해야 한다.",
+      "subq2": "해당 적정의견 감사보고서 사례에는 핵심감사사항(KAM) 단락이 포함되지 않는다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "KGA 1200을 적용할 수 없다.\n일반 감사기준서(KGA 200부터 KGA 720까지)를 적용해야 한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "KGA 1200을 적용할 수 없다.\n일반 감사기준서(KGA 200부터 KGA 720까지)를 적용해야 한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "해당 적정의견 감사보고서 사례에는 핵심감사사항(KAM) 단락이 포함되지 않는다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 3,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-full",
+    "set_id": "pilot-18-002",
+    "variant": "full",
+    "answers": {
+      "sub1": "일반 감사기준서에 따라 감사를 수행한다.\n감사계약서를 수정하는 등 업무조건을 다시 합의한다.\n기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다.\n일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다.",
+      "sub2": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "일반 감사기준서에 따라 감사를 수행한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "감사계약서를 수정하는 등 업무조건을 다시 합의한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 5,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-paraphrase",
+    "set_id": "pilot-18-002",
+    "variant": "paraphrase",
+    "answers": {
+      "sub1": "이제 일반 감사기준서로 감사를 진행합니다.\n계약서를 고치는 등 감사업무 조건에 재합의합니다.\n회사와 그 환경의 이해를 비롯한 위험평가, 설계 또는 실행한 후속 감사절차, 조서 작업을 포함하여 기수행 업무의 충분성과 적합성을 살핍니다.\n일반 기준의 관련 요건 충족에 필요한 보완 절차를 계획하고 실행하며 필요한 경우 문서 기록도 보완합니다.",
+      "sub2": "올해 감사부터 앞으로 적용하며, 기준 변경만을 이유로 전기 감사를 소급하여 다시 하지 않습니다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "이제 일반 감사기준서로 감사를 진행합니다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "계약서를 고치는 등 감사업무 조건에 재합의합니다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "회사와 그 환경의 이해를 비롯한 위험평가, 설계 또는 실행한 후속 감사절차, 조서 작업을 포함하여 기수행 업무의 충분성과 적합성을 살핍니다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "일반 기준의 관련 요건 충족에 필요한 보완 절차를 계획하고 실행하며 필요한 경우 문서 기록도 보완합니다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "올해 감사부터 앞으로 적용하며, 기준 변경만을 이유로 전기 감사를 소급하여 다시 하지 않습니다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 5,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-omission",
+    "set_id": "pilot-18-002",
+    "variant": "omission",
+    "answers": {
+      "sub1": "일반 감사기준서에 따라 감사를 수행한다.\n감사계약서를 수정하는 등 업무조건을 다시 합의한다.\n일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "일반 감사기준서에 따라 감사를 수행한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "감사계약서를 수정하는 등 업무조건을 다시 합의한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 3,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-contrary",
+    "set_id": "pilot-18-002",
+    "variant": "contrary",
+    "answers": {
+      "sub1": "일반 감사기준서는 적용하지 않고 KGA 1200으로 계속 감사한다.\n업무조건을 다시 합의해서는 안 된다.\n이미 수행한 위험평가절차, 추가감사절차 및 문서화가 충분하고 적합한지는 평가할 필요가 없다.\n관련 요구사항 준수에 필요한 추가 절차를 설계하거나 수행해서는 안 되고 필요한 문서화도 추가해서는 안 된다.",
+      "sub2": "일반 감사기준서는 다음 회계연도 감사부터 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "contradicted",
+              "quote": "일반 감사기준서는 적용하지 않고 KGA 1200으로 계속 감사한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "contradicted",
+              "quote": "업무조건을 다시 합의해서는 안 된다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "contradicted",
+              "quote": "이미 수행한 위험평가절차, 추가감사절차 및 문서화가 충분하고 적합한지는 평가할 필요가 없다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "contradicted",
+              "quote": "관련 요구사항 준수에 필요한 추가 절차를 설계하거나 수행해서는 안 되고 필요한 문서화도 추가해서는 안 된다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "contradicted",
+              "quote": "일반 감사기준서는 다음 회계연도 감사부터 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-empty",
+    "set_id": "pilot-18-002",
+    "variant": "empty",
+    "answers": {
+      "sub1": "",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-bank-model-answer",
+    "set_id": "pilot-18-002",
+    "variant": "bank-model-answer",
+    "answers": {
+      "sub1": "일반 감사기준서를 적용하여 감사를 수행한다.\n감사계약서를 수정하는 등 업무조건을 다시 합의한다.\n기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다.\n일반 감사기준서의 관련 요구사항 준수를 위한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다.",
+      "sub2": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다. 적용 기준서의 변경 자체 때문에 기초잔액이나 비교재무제표에 관한 추가 고려 또는 추가 절차가 요구되는 것은 아니다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "일반 감사기준서를 적용하여 감사를 수행한다.\n감사계약서를 수정하는 등 업무조건을 다시 합의한다.\n기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다.\n일반 감사기준서의 관련 요구사항 준수를 위한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "일반 감사기준서를 적용하여 감사를 수행한다.\n감사계약서를 수정하는 등 업무조건을 다시 합의한다.\n기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다.\n일반 감사기준서의 관련 요구사항 준수를 위한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "일반 감사기준서를 적용하여 감사를 수행한다.\n감사계약서를 수정하는 등 업무조건을 다시 합의한다.\n기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다.\n일반 감사기준서의 관련 요구사항 준수를 위한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "일반 감사기준서를 적용하여 감사를 수행한다.\n감사계약서를 수정하는 등 업무조건을 다시 합의한다.\n기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다.\n일반 감사기준서의 관련 요구사항 준수를 위한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다. 적용 기준서의 변경 자체 때문에 기초잔액이나 비교재무제표에 관한 추가 고려 또는 추가 절차가 요구되는 것은 아니다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 5,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-full",
+    "set_id": "pilot-18-003",
+    "variant": "full",
+    "answers": {
+      "sub1": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다.\n감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다.\n문단 2의 조건을 충족하는 기업과 서면으로 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다.",
+      "sub2": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\n이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "문단 2의 조건을 충족하는 기업과 서면으로 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "quote": "감사 관련 문서를 하나의 감사파일로 취합한다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "met",
+              "quote": "감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다."
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "met",
+              "quote": "최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다."
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "met",
+              "quote": "이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "met",
+              "quote": "수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다."
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "met",
+              "quote": "감사절차의 수행 결과와 입수한 감사증거를 기록한다."
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "met",
+              "quote": "감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다."
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "met",
+              "quote": "경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다."
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "met",
+              "quote": "최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다."
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "met",
+              "quote": "최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 15,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-paraphrase",
+    "set_id": "pilot-18-003",
+    "variant": "paraphrase",
+    "answers": {
+      "sub1": "보고서에서 회계감사기준 전부를 지켰다고 표시할 수 없습니다.\n일반 감사기준서의 전부나 일부를 보고서에서 거론할 수도 없습니다.\n적격 회사와 문서로 합의하면 1200을 대체하여 일반 감사기준서로 감사할 수 있습니다.",
+      "sub2": "보고서의 토대가 되는 충분하고 적절한 기록을 남기는 문서를 만듭니다.\n이번 감사에 참여한 적 없는 숙련된 감사인도 충분히 알 수 있게 조서를 씁니다.\n관련 감사문서를 한 개의 감사파일에 모읍니다.\n감사보고서 날짜가 지난 뒤 적시에 최종파일 정리를 위한 행정 작업을 마칩니다.\n최종파일 정리가 끝난 때부터 보존기한이 끝날 때까지 조서를 지우거나 버리지 않습니다.\n1200 기준 및 관련 법령에 맞춰 감사를 계획하고 실행했음을 증명할 조서를 작성합니다.\n수행 절차의 성격과 시기 및 범위, 검사한 항목의 식별 특성, 수행한 사람과 완료 날짜, 검토한 사람과 검토 날짜 및 범위를 남깁니다.\n실행한 감사절차의 결과와 확보한 감사증거를 문서에 남깁니다.\n유의적 사안과 도달한 결론, 그 결론에 사용한 중요한 전문적 판단을 기록합니다.\n경영진이나 지배기구 등 관련자와 중요한 사안을 논의했다면 그 성격, 언제 누구와 논의했는지를 포함해 내용을 적습니다.\n최종파일 취합 뒤 수정 또는 추가할 필요가 있다면 변경의 종류에 상관없이 구체적 사유를 기록합니다.\n취합 후 조서를 고치거나 보탠 사람 및 이를 검토한 사람과 각 작업 시점도 남깁니다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "보고서에서 회계감사기준 전부를 지켰다고 표시할 수 없습니다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "일반 감사기준서의 전부나 일부를 보고서에서 거론할 수도 없습니다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "적격 회사와 문서로 합의하면 1200을 대체하여 일반 감사기준서로 감사할 수 있습니다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "보고서의 토대가 되는 충분하고 적절한 기록을 남기는 문서를 만듭니다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "이번 감사에 참여한 적 없는 숙련된 감사인도 충분히 알 수 있게 조서를 씁니다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "quote": "관련 감사문서를 한 개의 감사파일에 모읍니다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "met",
+              "quote": "감사보고서 날짜가 지난 뒤 적시에 최종파일 정리를 위한 행정 작업을 마칩니다."
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "met",
+              "quote": "최종파일 정리가 끝난 때부터 보존기한이 끝날 때까지 조서를 지우거나 버리지 않습니다."
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "met",
+              "quote": "1200 기준 및 관련 법령에 맞춰 감사를 계획하고 실행했음을 증명할 조서를 작성합니다."
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "met",
+              "quote": "수행 절차의 성격과 시기 및 범위, 검사한 항목의 식별 특성, 수행한 사람과 완료 날짜, 검토한 사람과 검토 날짜 및 범위를 남깁니다."
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "met",
+              "quote": "실행한 감사절차의 결과와 확보한 감사증거를 문서에 남깁니다."
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "met",
+              "quote": "유의적 사안과 도달한 결론, 그 결론에 사용한 중요한 전문적 판단을 기록합니다."
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "met",
+              "quote": "경영진이나 지배기구 등 관련자와 중요한 사안을 논의했다면 그 성격, 언제 누구와 논의했는지를 포함해 내용을 적습니다."
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "met",
+              "quote": "최종파일 취합 뒤 수정 또는 추가할 필요가 있다면 변경의 종류에 상관없이 구체적 사유를 기록합니다."
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "met",
+              "quote": "취합 후 조서를 고치거나 보탠 사람 및 이를 검토한 사람과 각 작업 시점도 남깁니다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 15,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-omission",
+    "set_id": "pilot-18-003",
+    "variant": "omission",
+    "answers": {
+      "sub1": "감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다.\n문단 2의 조건을 충족하는 기업과 서면으로 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다.",
+      "sub2": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\n이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "문단 2의 조건을 충족하는 기업과 서면으로 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "quote": "감사 관련 문서를 하나의 감사파일로 취합한다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "met",
+              "quote": "감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다."
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "met",
+              "quote": "최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다."
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "met",
+              "quote": "이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "met",
+              "quote": "수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다."
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "met",
+              "quote": "감사절차의 수행 결과와 입수한 감사증거를 기록한다."
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "met",
+              "quote": "감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다."
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "met",
+              "quote": "경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다."
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "met",
+              "quote": "최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다."
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 13,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-contrary",
+    "set_id": "pilot-18-003",
+    "variant": "contrary",
+    "answers": {
+      "sub1": "감사보고서에 회계감사기준 전체를 준수했다고 기술할 수 있다.\n감사보고서에서 일반 감사기준서나 그 일부를 언급할 수 있다.\n적격 기업과 구두로만 합의하면 KGA 1200과 일반 감사기준서의 조항을 일부씩 골라 혼용할 수 있다.",
+      "sub2": "감사보고서를 뒷받침하는 충분하고 적합한 기록을 제공하는 문서는 작성하지 않아도 된다.\n해당 감사에 참여했던 사람만 이해할 수 있으면 되고 관여하지 않은 숙련된 감사인은 이해하지 못해도 된다.\n관련 문서를 하나의 감사파일로 취합해서는 안 된다.\n최종감사파일 취합은 감사보고서일 후 적시에 완료할 필요가 없다.\n최종감사파일 취합 후 보존기간 종료 전에도 감사문서를 자유롭게 삭제·폐기할 수 있다.\n기준과 관련 법규에 따라 감사를 계획하고 수행했다는 증거는 문서화할 필요가 없다.\n감사절차의 성격·시기·범위나 항목 식별 특성, 수행자·완료일, 검토자·검토일·범위는 기록할 필요가 없다.\n감사절차의 결과와 입수한 감사증거는 문서에 적지 않아도 된다.\n유의적 사안과 관련 결론 및 유의적인 전문가적 판단은 문서화할 필요가 없다.\n경영진 등과 유의적 사안을 논의해도 성격과 시기 및 상대자를 문서화할 필요가 없다.\n취합 후 문서 수정이나 추가가 필요한 경우 구체적 이유를 기록할 필요가 없다.\n취합 후 문서의 수정·추가자 및 검토자와 각각의 시기는 기록할 필요가 없다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "contradicted",
+              "quote": "감사보고서에 회계감사기준 전체를 준수했다고 기술할 수 있다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "contradicted",
+              "quote": "감사보고서에서 일반 감사기준서나 그 일부를 언급할 수 있다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "contradicted",
+              "quote": "적격 기업과 구두로만 합의하면 KGA 1200과 일반 감사기준서의 조항을 일부씩 골라 혼용할 수 있다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "contradicted",
+              "quote": "감사보고서를 뒷받침하는 충분하고 적합한 기록을 제공하는 문서는 작성하지 않아도 된다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "contradicted",
+              "quote": "해당 감사에 참여했던 사람만 이해할 수 있으면 되고 관여하지 않은 숙련된 감사인은 이해하지 못해도 된다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "contradicted",
+              "quote": "관련 문서를 하나의 감사파일로 취합해서는 안 된다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "contradicted",
+              "quote": "최종감사파일 취합은 감사보고서일 후 적시에 완료할 필요가 없다."
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "contradicted",
+              "quote": "최종감사파일 취합 후 보존기간 종료 전에도 감사문서를 자유롭게 삭제·폐기할 수 있다."
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "contradicted",
+              "quote": "기준과 관련 법규에 따라 감사를 계획하고 수행했다는 증거는 문서화할 필요가 없다."
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "contradicted",
+              "quote": "감사절차의 성격·시기·범위나 항목 식별 특성, 수행자·완료일, 검토자·검토일·범위는 기록할 필요가 없다."
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "contradicted",
+              "quote": "감사절차의 결과와 입수한 감사증거는 문서에 적지 않아도 된다."
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "contradicted",
+              "quote": "유의적 사안과 관련 결론 및 유의적인 전문가적 판단은 문서화할 필요가 없다."
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "contradicted",
+              "quote": "경영진 등과 유의적 사안을 논의해도 성격과 시기 및 상대자를 문서화할 필요가 없다."
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "contradicted",
+              "quote": "취합 후 문서 수정이나 추가가 필요한 경우 구체적 이유를 기록할 필요가 없다."
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "contradicted",
+              "quote": "취합 후 문서의 수정·추가자 및 검토자와 각각의 시기는 기록할 필요가 없다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-empty",
+    "set_id": "pilot-18-003",
+    "variant": "empty",
+    "answers": {
+      "sub1": "",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-bank-model-answer",
+    "set_id": "pilot-18-003",
+    "variant": "bank-model-answer",
+    "answers": {
+      "sub1": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다.\n감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다.\nKGA 1200 문단 2 요건을 충족하는 기업과 서면으로 합의하면 KGA 1200 대신 일반 감사기준서를 적용할 수 있다.",
+      "sub2": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다.\n감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다.\nKGA 1200 문단 2 요건을 충족하는 기업과 서면으로 합의하면 KGA 1200 대신 일반 감사기준서를 적용할 수 있다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다.\n감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다.\nKGA 1200 문단 2 요건을 충족하는 기업과 서면으로 합의하면 KGA 1200 대신 일반 감사기준서를 적용할 수 있다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다.\n감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다.\nKGA 1200 문단 2 요건을 충족하는 기업과 서면으로 합의하면 KGA 1200 대신 일반 감사기준서를 적용할 수 있다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n감사보고서일 후 적시에 최종감사파일 취합의 행정절차를 완료한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\nKGA 1200과 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 15,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-full",
+    "set_id": "pilot-18-004",
+    "variant": "full",
+    "answers": {
+      "sub1": "회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다.\n일반 감사기준서 또는 그 일부를 언급하는 것도 허용되지 않는다.",
+      "sub2": "기업과 서면으로 합의해야 한다.\nKGA 1200 대신 일반 감사기준서를 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "일반 감사기준서 또는 그 일부를 언급하는 것도 허용되지 않는다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "기업과 서면으로 합의해야 한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "KGA 1200 대신 일반 감사기준서를 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 4,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-paraphrase",
+    "set_id": "pilot-18-004",
+    "variant": "paraphrase",
+    "answers": {
+      "sub1": "전체 회계감사기준을 지켰다는 표명은 금지됩니다.\n일반 감사기준서의 전부나 일부를 거론하는 것 역시 금지됩니다.",
+      "sub2": "회사와 문서로 합의해야 합니다.\n1200을 대체하여 일반 감사기준서를 사용합니다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "전체 회계감사기준을 지켰다는 표명은 금지됩니다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "일반 감사기준서의 전부나 일부를 거론하는 것 역시 금지됩니다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "회사와 문서로 합의해야 합니다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "1200을 대체하여 일반 감사기준서를 사용합니다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 4,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-omission",
+    "set_id": "pilot-18-004",
+    "variant": "omission",
+    "answers": {
+      "sub1": "일반 감사기준서 또는 그 일부를 언급하는 것도 허용되지 않는다.",
+      "sub2": "KGA 1200 대신 일반 감사기준서를 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "일반 감사기준서 또는 그 일부를 언급하는 것도 허용되지 않는다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "KGA 1200 대신 일반 감사기준서를 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 2,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-contrary",
+    "set_id": "pilot-18-004",
+    "variant": "contrary",
+    "answers": {
+      "sub1": "회계감사기준 전체를 준수했다고 기술할 수 있다.\n일반 감사기준서나 그 일부를 언급할 수 있다.",
+      "sub2": "기업과 서면으로 합의할 필요가 없고 구두 합의만으로 충분하다.\nKGA 1200과 일반 감사기준서의 일부 조항을 임의로 섞어서 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "contradicted",
+              "quote": "회계감사기준 전체를 준수했다고 기술할 수 있다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "contradicted",
+              "quote": "일반 감사기준서나 그 일부를 언급할 수 있다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "contradicted",
+              "quote": "기업과 서면으로 합의할 필요가 없고 구두 합의만으로 충분하다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "contradicted",
+              "quote": "KGA 1200과 일반 감사기준서의 일부 조항을 임의로 섞어서 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-empty",
+    "set_id": "pilot-18-004",
+    "variant": "empty",
+    "answers": {
+      "sub1": "",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-bank-model-answer",
+    "set_id": "pilot-18-004",
+    "variant": "bank-model-answer",
+    "answers": {
+      "sub1": "회계감사기준 전체를 준수하였다고 기술해서는 안 된다.\n일반 감사기준서 또는 그 일부를 언급해서도 안 된다.",
+      "sub2": "감사대상 기업과 서면으로 합의해야 한다.\nKGA 1200 대신 일반 감사기준서를 대체 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "회계감사기준 전체를 준수하였다고 기술해서는 안 된다.\n일반 감사기준서 또는 그 일부를 언급해서도 안 된다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "회계감사기준 전체를 준수하였다고 기술해서는 안 된다.\n일반 감사기준서 또는 그 일부를 언급해서도 안 된다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "감사대상 기업과 서면으로 합의해야 한다.\nKGA 1200 대신 일반 감사기준서를 대체 적용한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "감사대상 기업과 서면으로 합의해야 한다.\nKGA 1200 대신 일반 감사기준서를 대체 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 4,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-subq1-shared-quote",
+    "set_id": "pilot-18-001",
+    "variant": "edge",
+    "answers": {
+      "subq1": "KGA 1200을 적용할 수 없다. 일반 감사기준서(KGA 200부터 KGA 720까지)를 적용한다.",
+      "subq2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "KGA 1200을 적용할 수 없다. 일반 감사기준서(KGA 200부터 KGA 720까지)를 적용한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "KGA 1200을 적용할 수 없다. 일반 감사기준서(KGA 200부터 KGA 720까지)를 적용한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 2,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-subq1-reverse-extra",
+    "set_id": "pilot-18-001",
+    "variant": "edge",
+    "answers": {
+      "subq1": "오늘은 맑다.\n일반 감사기준서(KGA 200부터 KGA 720까지)를 적용한다.\nKGA 1200을 적용할 수 없다.",
+      "subq2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "KGA 1200을 적용할 수 없다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "일반 감사기준서(KGA 200부터 KGA 720까지)를 적용한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 2,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-subq1-repeated-fact",
+    "set_id": "pilot-18-001",
+    "variant": "edge",
+    "answers": {
+      "subq1": "KGA 1200을 적용할 수 없다.\nKGA 1200을 적용할 수 없다.\nKGA 1200을 적용할 수 없다.",
+      "subq2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "KGA 1200을 적용할 수 없다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-subq1-only-crit1",
+    "set_id": "pilot-18-001",
+    "variant": "edge",
+    "answers": {
+      "subq1": "KGA 1200을 적용할 수 없다.",
+      "subq2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "KGA 1200을 적용할 수 없다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-subq1-only-crit2",
+    "set_id": "pilot-18-001",
+    "variant": "edge",
+    "answers": {
+      "subq1": "일반 감사기준서(KGA 200부터 KGA 720까지)를 적용한다.",
+      "subq2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "일반 감사기준서(KGA 200부터 KGA 720까지)를 적용한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-subq2-shared-quote",
+    "set_id": "pilot-18-001",
+    "variant": "edge",
+    "answers": {
+      "subq1": "",
+      "subq2": "해당 적정의견 감사보고서 사례에는 핵심감사사항 단락이 포함되지 않는다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "해당 적정의견 감사보고서 사례에는 핵심감사사항 단락이 포함되지 않는다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-subq2-reverse-extra",
+    "set_id": "pilot-18-001",
+    "variant": "edge",
+    "answers": {
+      "subq1": "",
+      "subq2": "오늘은 맑다.\n해당 적정의견 감사보고서 사례에는 핵심감사사항 단락이 포함되지 않는다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "해당 적정의견 감사보고서 사례에는 핵심감사사항 단락이 포함되지 않는다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-subq2-repeated-fact",
+    "set_id": "pilot-18-001",
+    "variant": "edge",
+    "answers": {
+      "subq1": "",
+      "subq2": "해당 적정의견 감사보고서 사례에는 핵심감사사항 단락이 포함되지 않는다.\n해당 적정의견 감사보고서 사례에는 핵심감사사항 단락이 포함되지 않는다.\n해당 적정의견 감사보고서 사례에는 핵심감사사항 단락이 포함되지 않는다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "해당 적정의견 감사보고서 사례에는 핵심감사사항 단락이 포함되지 않는다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-001-subq2-only-crit3",
+    "set_id": "pilot-18-001",
+    "variant": "edge",
+    "answers": {
+      "subq1": "",
+      "subq2": "해당 적정의견 감사보고서 사례에는 핵심감사사항 단락이 포함되지 않는다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "해당 적정의견 감사보고서 사례에는 핵심감사사항 단락이 포함되지 않는다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-sub1-shared-quote",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "일반 감사기준서에 따라 감사를 수행한다. 감사계약서를 수정하는 등 업무조건을 다시 합의한다. 기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다. 일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "일반 감사기준서에 따라 감사를 수행한다. 감사계약서를 수정하는 등 업무조건을 다시 합의한다. 기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다. 일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "일반 감사기준서에 따라 감사를 수행한다. 감사계약서를 수정하는 등 업무조건을 다시 합의한다. 기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다. 일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "일반 감사기준서에 따라 감사를 수행한다. 감사계약서를 수정하는 등 업무조건을 다시 합의한다. 기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다. 일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "일반 감사기준서에 따라 감사를 수행한다. 감사계약서를 수정하는 등 업무조건을 다시 합의한다. 기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다. 일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 4,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-sub1-reverse-extra",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "오늘은 맑다.\n일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다.\n기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다.\n감사계약서를 수정하는 등 업무조건을 다시 합의한다.\n일반 감사기준서에 따라 감사를 수행한다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "일반 감사기준서에 따라 감사를 수행한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "감사계약서를 수정하는 등 업무조건을 다시 합의한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 4,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-sub1-repeated-fact",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "일반 감사기준서에 따라 감사를 수행한다.\n일반 감사기준서에 따라 감사를 수행한다.\n일반 감사기준서에 따라 감사를 수행한다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "일반 감사기준서에 따라 감사를 수행한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-sub1-only-crit1",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "일반 감사기준서에 따라 감사를 수행한다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "일반 감사기준서에 따라 감사를 수행한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-sub1-only-crit2",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "감사계약서를 수정하는 등 업무조건을 다시 합의한다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "감사계약서를 수정하는 등 업무조건을 다시 합의한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-sub1-only-crit3",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "기업과 기업 환경의 이해를 포함한 위험평가절차, 이미 설계하였거나 수행한 추가감사절차 및 문서화를 포함하여, 이미 수행한 업무가 충분하고 적합한지 평가한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-sub1-only-crit4",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "일반 감사기준서의 관련 요구사항을 준수하기 위해 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 2,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-sub2-shared-quote",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-sub2-reverse-extra",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "오늘은 맑다.\n일반 감사기준서는 당기 감사부터 전진적으로 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-sub2-repeated-fact",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다.\n일반 감사기준서는 당기 감사부터 전진적으로 적용한다.\n일반 감사기준서는 당기 감사부터 전진적으로 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-002-sub2-only-crit5",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub1-shared-quote",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다. 감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다. 문단 2의 조건을 충족하는 기업과 서면으로 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다. 감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다. 문단 2의 조건을 충족하는 기업과 서면으로 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다. 감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다. 문단 2의 조건을 충족하는 기업과 서면으로 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다. 감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다. 문단 2의 조건을 충족하는 기업과 서면으로 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 3,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub1-reverse-extra",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "오늘은 맑다.\n문단 2의 조건을 충족하는 기업과 서면으로 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다.\n감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다.\n감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "문단 2의 조건을 충족하는 기업과 서면으로 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 3,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub1-repeated-fact",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다.\n감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다.\n감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub1-only-crit1",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub1-only-crit2",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub1-only-crit3",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "문단 2의 조건을 충족하는 기업과 서면으로 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "문단 2의 조건을 충족하는 기업과 서면으로 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-shared-quote",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다. 이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다. 감사 관련 문서를 하나의 감사파일로 취합한다. 감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다. 최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다. 이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다. 수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다. 감사절차의 수행 결과와 입수한 감사증거를 기록한다. 감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다. 경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다. 최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다. 최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 12,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-reverse-extra",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "오늘은 맑다.\n최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다.\n최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다.\n경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다.\n감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다.\n감사절차의 수행 결과와 입수한 감사증거를 기록한다.\n수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다.\n이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다.\n최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다.\n감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다.\n감사 관련 문서를 하나의 감사파일로 취합한다.\n이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다.\n감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "quote": "감사 관련 문서를 하나의 감사파일로 취합한다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "met",
+              "quote": "감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다."
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "met",
+              "quote": "최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다."
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "met",
+              "quote": "이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "met",
+              "quote": "수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다."
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "met",
+              "quote": "감사절차의 수행 결과와 입수한 감사증거를 기록한다."
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "met",
+              "quote": "감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다."
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "met",
+              "quote": "경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다."
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "met",
+              "quote": "최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다."
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "met",
+              "quote": "최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 12,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-repeated-fact",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다.\n감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-only-crit4",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-only-crit5",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "quote": "이전에 해당 감사에 관여하지 않은 숙련된 감사인이 충분히 이해할 수 있도록 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-only-crit6",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "감사 관련 문서를 하나의 감사파일로 취합한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "quote": "감사 관련 문서를 하나의 감사파일로 취합한다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-only-crit7",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "met",
+              "quote": "감사보고서일 이후 적시에 최종감사파일을 취합하는 행정절차를 완료한다."
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-only-crit8",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "met",
+              "quote": "최종감사파일 취합 완료 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다."
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-only-crit9",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "met",
+              "quote": "이 감사기준서와 관련 법규의 요구사항에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성한다."
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-only-crit10",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "met",
+              "quote": "수행한 감사절차의 성격·시기·범위를 기록하며, 테스트한 항목이나 사안의 식별 특성, 업무 수행자와 완료일, 검토자와 검토일 및 검토 범위를 포함한다."
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-only-crit11",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "감사절차의 수행 결과와 입수한 감사증거를 기록한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "met",
+              "quote": "감사절차의 수행 결과와 입수한 감사증거를 기록한다."
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-only-crit12",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "met",
+              "quote": "감사 중 발생한 유의적 사안, 그에 관한 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록한다."
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-only-crit13",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "met",
+              "quote": "경영진, 지배기구 또는 기타 관련자와 유의적 사안을 논의한 경우, 사안의 성격과 논의 시기 및 상대자 등 논의 내용을 문서화한다."
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-only-crit14",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "met",
+              "quote": "최종감사파일 취합 후 기존 문서의 수정이나 새 문서의 추가가 필요한 경우, 그 성격과 관계없이 수정하거나 추가하는 구체적 이유를 문서화한다."
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-003-sub2-only-crit15",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "met",
+              "quote": "최종감사파일 취합 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-sub1-shared-quote",
+    "set_id": "pilot-18-004",
+    "variant": "edge",
+    "answers": {
+      "sub1": "회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다. 일반 감사기준서 또는 그 일부를 언급하는 것도 허용되지 않는다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다. 일반 감사기준서 또는 그 일부를 언급하는 것도 허용되지 않는다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다. 일반 감사기준서 또는 그 일부를 언급하는 것도 허용되지 않는다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 2,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-sub1-reverse-extra",
+    "set_id": "pilot-18-004",
+    "variant": "edge",
+    "answers": {
+      "sub1": "오늘은 맑다.\n일반 감사기준서 또는 그 일부를 언급하는 것도 허용되지 않는다.\n회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "일반 감사기준서 또는 그 일부를 언급하는 것도 허용되지 않는다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 2,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-sub1-repeated-fact",
+    "set_id": "pilot-18-004",
+    "variant": "edge",
+    "answers": {
+      "sub1": "회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다.\n회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다.\n회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-sub1-only-crit1",
+    "set_id": "pilot-18-004",
+    "variant": "edge",
+    "answers": {
+      "sub1": "회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "회계감사기준 전체를 준수했다고 기술하는 것은 허용되지 않는다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-sub1-only-crit2",
+    "set_id": "pilot-18-004",
+    "variant": "edge",
+    "answers": {
+      "sub1": "일반 감사기준서 또는 그 일부를 언급하는 것도 허용되지 않는다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "일반 감사기준서 또는 그 일부를 언급하는 것도 허용되지 않는다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-sub2-shared-quote",
+    "set_id": "pilot-18-004",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "기업과 서면으로 합의해야 한다. KGA 1200 대신 일반 감사기준서를 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "기업과 서면으로 합의해야 한다. KGA 1200 대신 일반 감사기준서를 적용한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "기업과 서면으로 합의해야 한다. KGA 1200 대신 일반 감사기준서를 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 2,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-sub2-reverse-extra",
+    "set_id": "pilot-18-004",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "오늘은 맑다.\nKGA 1200 대신 일반 감사기준서를 적용한다.\n기업과 서면으로 합의해야 한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "기업과 서면으로 합의해야 한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "KGA 1200 대신 일반 감사기준서를 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 2,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-sub2-repeated-fact",
+    "set_id": "pilot-18-004",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "기업과 서면으로 합의해야 한다.\n기업과 서면으로 합의해야 한다.\n기업과 서면으로 합의해야 한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "기업과 서면으로 합의해야 한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-sub2-only-crit3",
+    "set_id": "pilot-18-004",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "기업과 서면으로 합의해야 한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "기업과 서면으로 합의해야 한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "pilot-18-004-sub2-only-crit4",
+    "set_id": "pilot-18-004",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "KGA 1200 대신 일반 감사기준서를 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "KGA 1200 대신 일반 감사기준서를 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "18-scope-small-other-definition",
+    "set_id": "pilot-18-001",
+    "variant": "edge",
+    "answers": {
+      "subq1": "비상장이고 업무가 단순하기만 하면 KGA 1200을 적용할 수 있다. 일반 감사기준서는 적용하지 않는다.",
+      "subq2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "subq1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "contradicted",
+              "quote": "비상장이고 업무가 단순하기만 하면 KGA 1200을 적용할 수 있다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "contradicted",
+              "quote": "일반 감사기준서는 적용하지 않는다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "subq2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "18-transition-missing-areas",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "일반 감사기준서에 따라 감사를 수행한다. 업무조건을 다시 합의한다. 이미 수행한 업무가 충분하고 적합한지 평가한다. 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "일반 감사기준서에 따라 감사를 수행한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "업무조건을 다시 합의한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "quote": "필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 3,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "18-transition-extra-no-documentation",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "일반 감사기준서 준수를 위해 필요한 추가 절차를 설계·수행한다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "일반 감사기준서 준수를 위해 필요한 추가 절차를 설계·수행한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "18-retrospective",
+    "set_id": "pilot-18-002",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "당기 감사부터 적용하되 전기 감사도 일반 감사기준서로 소급하여 다시 수행해야 한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "contradicted",
+              "quote": "당기 감사부터 적용하되 전기 감사도 일반 감사기준서로 소급하여 다시 수행해야 한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "18-oral",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "회계감사기준 전체 준수 표명은 금지된다. 일반 감사기준서나 일부 언급도 금지된다. 적격 기업과 구두로만 합의하면 KGA 1200 대신 일반 감사기준서를 적용할 수 있다.",
+      "sub2": ""
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "quote": "회계감사기준 전체 준수 표명은 금지된다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "quote": "일반 감사기준서나 일부 언급도 금지된다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "contradicted",
+              "quote": "적격 기업과 구두로만 합의하면 KGA 1200 대신 일반 감사기준서를 적용할 수 있다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 2,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "18-mixed",
+    "set_id": "pilot-18-004",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "기업과 서면으로 합의한다. 두 기준의 편리한 조항만 골라 섞어 적용한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "quote": "기업과 서면으로 합의한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "contradicted",
+              "quote": "두 기준의 편리한 조항만 골라 섞어 적용한다."
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "18-wrong-start",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "감사계약일로부터 60일 이내에 최종감사파일 취합을 완료한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "contradicted",
+              "quote": "감사계약일로부터 60일 이내에 최종감사파일 취합을 완료한다."
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "18-number-only",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "60일, 5년, 10년"
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "18-delete-after-report",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "감사보고서를 발행한 뒤에는 보존기간이 끝나지 않았어도 문서를 폐기할 수 있다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "contradicted",
+              "quote": "감사보고서를 발행한 뒤에는 보존기간이 끝나지 않았어도 문서를 폐기할 수 있다."
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "18-document-reason-only",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "취합 후 문서를 수정할 필요가 생기면 구체적 이유를 기록한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "met",
+              "quote": "취합 후 문서를 수정할 필요가 생기면 구체적 이유를 기록한다."
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 1,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "18-doc-no-reviewer",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "최종감사파일 취합 후 문서를 수정한 사람과 수정일만 기록한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  },
+  {
+    "id": "18-procedure-incomplete",
+    "set_id": "pilot-18-003",
+    "variant": "edge",
+    "answers": {
+      "sub1": "",
+      "sub2": "수행한 감사절차의 성격·시기·범위만 기록한다."
+    },
+    "expected": {
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met"
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit11",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit13",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit14",
+              "verdict": "not_met"
+            },
+            {
+              "criterion_id": "crit15",
+              "verdict": "not_met"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_score": 0,
+    "live": true,
+    "basis": "18-inputs.json + reviewed KGA1200 criterion contract; independent expectations before execution"
+  }
+]

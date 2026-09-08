@@ -4,6 +4,8 @@ import {
     countFirmClientsByOpinion,
     getFirmSummaries,
     getFirmAnnualSummaries,
+    getFirmCpaTenure,
+    getFirmPersonnelCost,
     getRegisteredFirm,
     listAllYears,
     listFirmClients,
@@ -11,6 +13,17 @@ import {
 } from '../../../../lib/firm/queries';
 import { clientDetailHref } from '../../../../lib/firm/navigation';
 import { ANNUAL_DISPLAY_YEARS, annualPeriodsForYear } from '../../../../lib/firm/annualYears';
+import {
+    buildCostConcepts,
+    buildPersonnelCostSegments,
+    buildTenureSegments,
+    rowsForReceipt,
+    splitCostSegments,
+    splitTenureSegments,
+    summarizeTurnover,
+    TENURE_BANDS,
+} from '../../../../lib/firm/personnel';
+import type { FirmCpaTenureRow, FirmPersonnelCostRow } from '../../../../lib/firm/types';
 import { formatDecimal, formatKrw, formatNumber, formatRatio } from '../../../../lib/firm/format';
 import {
     AUDIT_OPINIONS,
@@ -37,13 +50,17 @@ import {
     StatTile,
 } from '../../_components/ui';
 
-const TABS = ['clients', 'kam', 'workforce'] as const;
+const TABS = ['clients', 'kam', 'workforce', 'personnel'] as const;
 type Tab = (typeof TABS)[number];
+
+/** 회계법인 자체 공시를 보는 탭. 고객사 사업연도가 아니라 보고기간으로 고른다. */
+const FIRM_OWN_TABS: readonly Tab[] = ['workforce', 'personnel'];
 
 const TAB_LABEL: Record<Tab, string> = {
     clients: '고객사 포트폴리오',
     kam: '의견 · KAM',
     workforce: '회계법인 자체 정보',
+    personnel: '인력 구성 · 인건비',
 };
 
 const MARKETS: CorpCls[] = ['Y', 'K', 'N', 'E'];
@@ -109,7 +126,7 @@ export default async function FirmDetailPage({
                 {TABS.map((candidate) => <Link key={candidate} href={`${base}${buildFilterQuery(query, { tab: candidate })}`} aria-current={candidate === tab ? 'page' : undefined} className={`whitespace-nowrap border-b-2 px-3 py-2 text-sm ${candidate === tab ? 'border-primary' : 'border-transparent text-foreground/60'}`}>{TAB_LABEL[candidate]}</Link>)}
             </nav>
 
-            {tab !== 'workforce' && years.length > 1 ? (
+            {!FIRM_OWN_TABS.includes(tab) && years.length > 1 ? (
                 <div className="mb-4 flex flex-wrap gap-1.5">
                     <span className="self-center text-xs text-foreground/60">고객사 사업연도</span>
                     {years.map((candidate) => (
@@ -124,7 +141,7 @@ export default async function FirmDetailPage({
                 </div>
             ) : null}
 
-            {tab === 'workforce' ? <WorkforceTab summaries={annualSummaries} requestedYear={readInt(rawQuery, 'fy_start_year', 0)} base={base} query={query} /> : year === null || summary === null ? (
+            {tab === 'workforce' ? <WorkforceTab summaries={annualSummaries} requestedYear={readInt(rawQuery, 'fy_start_year', 0)} base={base} query={query} /> : tab === 'personnel' ? <PersonnelTab firmId={firmId} summaries={annualSummaries} requestedYear={readInt(rawQuery, 'fy_start_year', 0)} base={base} query={query} /> : year === null || summary === null ? (
                 <NotCollectedNotice what={`${firm.firm_name}의 감사`} />
             ) : (
                 <>
@@ -420,5 +437,257 @@ function AnnualPeriodCard({ current }: { current: Awaited<ReturnType<typeof getF
                 </dl>
             )}
         </>
+    );
+}
+
+// ── 인력 구성 · 인건비 ──────────────────────────────────────────────────────
+
+async function PersonnelTab({
+    firmId,
+    summaries,
+    requestedYear,
+    base,
+    query,
+}: {
+    firmId: number;
+    summaries: Awaited<ReturnType<typeof getFirmAnnualSummaries>>;
+    requestedYear: number;
+    base: string;
+    query: SearchParams;
+}) {
+    const { year, periods } = annualPeriodsForYear(summaries, requestedYear, readInt(query, 'fy_year', 0));
+    const [tenure, cost] = await Promise.all([getFirmCpaTenure(firmId), getFirmPersonnelCost(firmId)]);
+
+    return (
+        <>
+            <div className="mb-3 flex items-center gap-2">
+                <span className="text-xs text-foreground/60">보고기간 시작연도</span>
+                {ANNUAL_DISPLAY_YEARS.map((candidate) => (
+                    <Chip
+                        key={candidate}
+                        active={candidate === year}
+                        href={`${base}${buildFilterQuery(query, { fy_start_year: candidate, fy_year: null })}`}
+                    >
+                        {candidate}
+                    </Chip>
+                ))}
+            </div>
+            <h3 className="mb-2 text-sm font-medium">{year}년 시작 보고기간 · 인력 구성과 인건비</h3>
+            <p className="mb-4 text-xs leading-relaxed text-foreground/60">
+                근속 분포는 <strong className="font-medium">공인회계사</strong>, 인건비 표의 인원은{' '}
+                <strong className="font-medium">전 임직원</strong> 기준이라 두 인원은 서로 다릅니다. 같은 수로 비교하지
+                마십시오. 부문 구분과 근속 구간은 공시 표기를 그대로 따르며, 값이 없으면 0 이 아니라 결측으로 둡니다.
+            </p>
+            {periods.length > 1 ? (
+                <p className="mb-3 text-sm">
+                    같은 연도에 시작한 보고기간이 {periods.length}개입니다. 합산하지 않고 기간별로 표시합니다.
+                </p>
+            ) : null}
+            {periods.length ? (
+                <div className="space-y-8">
+                    {periods.map((period) => (
+                        <PersonnelPeriodCard
+                            key={period.fy_end_date}
+                            period={period}
+                            tenure={rowsForReceipt(tenure, period.source_rcept_no)}
+                            cost={rowsForReceipt(cost, period.source_rcept_no)}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <EmptyState
+                    title="보고기간 정보 미확보"
+                    description="선택한 연도에 시작한 사업보고서가 아직 적재되지 않았거나 검토 보류 중입니다."
+                />
+            )}
+        </>
+    );
+}
+
+function PersonnelPeriodCard({
+    period,
+    tenure,
+    cost,
+}: {
+    period: Awaited<ReturnType<typeof getFirmAnnualSummaries>>[number];
+    tenure: FirmCpaTenureRow[];
+    cost: FirmPersonnelCostRow[];
+}) {
+    const { shown: segments, omitted: emptySegments } = splitTenureSegments(buildTenureSegments(tenure));
+    const turnover = summarizeTurnover(tenure);
+    const { shown: costSegments, omitted: emptyCostSegments } = splitCostSegments(buildPersonnelCostSegments(cost));
+    const concepts = buildCostConcepts(cost);
+    const nothing = segments.length === 0 && turnover === null && costSegments.length === 0 && concepts.length === 0;
+
+    return (
+        <div className="space-y-5">
+            <p className="text-xs">
+                {period.fy_seq ? `제${period.fy_seq}기 · ` : ''}대상 기간 {period.fy_start_date} ~ {period.fy_end_date} ·
+                접수일 {period.source_rcept_dt} ·{' '}
+                <a
+                    href={`https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${period.source_rcept_no}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline"
+                >
+                    DART 원문
+                </a>
+            </p>
+
+            {nothing ? (
+                <EmptyState
+                    title="인력·인건비 수치 미확보"
+                    description="이 보고기간의 근속 분포와 인건비 표가 확인되지 않았습니다."
+                />
+            ) : null}
+
+            {turnover ? (
+                <section>
+                    <h4 className="mb-2 text-sm font-medium">공인회계사 입·퇴사</h4>
+                    <dl className="grid grid-cols-2 gap-2 lg:grid-cols-3">
+                        <StatTile label="기초 인원" value={formatNumber(turnover.begin, '명')} />
+                        <StatTile label="입사" value={formatNumber(turnover.hires, '명')} />
+                        <StatTile label="퇴사" value={formatNumber(turnover.leavers, '명')} />
+                        <StatTile label="기말 인원" value={formatNumber(turnover.end, '명')} />
+                        <StatTile
+                            label="순증"
+                            value={
+                                turnover.net === null
+                                    ? '-'
+                                    : `${turnover.net < 0 ? '−' : '+'}${formatNumber(Math.abs(turnover.net), '명')}`
+                            }
+                            hint="기말 − 기초"
+                        />
+                        <StatTile label="퇴사율" value={formatRatio(turnover.leaverRate)} hint="퇴사자 ÷ 기초 인원" />
+                    </dl>
+                    {turnover.reconciles === false ? (
+                        <p className="mt-2 rounded border border-card-border p-3 text-sm">
+                            기초 + 입사 − 퇴사가 기말 인원과 맞지 않습니다. 원문 값을 고치지 않고 그대로 두었으니 비교할
+                            때 공시의 집계 기준을 확인해 주세요.
+                        </p>
+                    ) : null}
+                </section>
+            ) : null}
+
+            {segments.length ? (
+                <section>
+                    <h4 className="mb-2 text-sm font-medium">공인회계사 근속 분포</h4>
+                    <div className="overflow-x-auto rounded-lg border border-card-border bg-card">
+                        <table className="w-full min-w-[46rem] text-sm">
+                            <thead>
+                                <tr className="border-b border-card-border text-left text-xs text-foreground/50">
+                                    <th className="px-4 py-2.5 font-medium">부문</th>
+                                    {TENURE_BANDS.map((band) => (
+                                        <th key={band.key} className="px-4 py-2.5 text-right font-medium">
+                                            {band.label}
+                                        </th>
+                                    ))}
+                                    <th className="px-4 py-2.5 text-right font-medium">합계</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {segments.map((segment) => (
+                                    <tr key={segment.segment} className="border-t border-card-border">
+                                        <td className="px-4 py-2.5">{segment.label}</td>
+                                        {segment.bands.map((band) => (
+                                            <td key={band.key} className="px-4 py-2.5 text-right tabular-nums">
+                                                <div>{formatNumber(band.count)}</div>
+                                                {band.share === null ? null : (
+                                                    <div className="text-xs text-foreground/50">
+                                                        {formatRatio(band.share)}
+                                                    </div>
+                                                )}
+                                            </td>
+                                        ))}
+                                        <td className="px-4 py-2.5 text-right tabular-nums">
+                                            <div>{formatNumber(segment.total ?? segment.observed)}</div>
+                                            {segment.totalMismatch ? (
+                                                <div className="text-xs text-foreground/50">
+                                                    구간 합 {formatNumber(segment.observed)}
+                                                </div>
+                                            ) : null}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <p className="mt-2 text-xs text-foreground/60">
+                        비중은 구간 값이 확인된 인원만을 분모로 씁니다.
+                        {segments.some((segment) => segment.totalMismatch)
+                            ? ' 일부 부문은 구간 합과 공시 합계가 다릅니다. 두 값을 함께 두고 어느 쪽도 고치지 않았습니다.'
+                            : ''}
+                        {emptySegments.length
+                            ? ` ${emptySegments.map((segment) => segment.label).join(' · ')} 부문은 이 보고기간에 근속 인원을 공시하지 않아 표에서 뺐습니다.`
+                            : ''}
+                    </p>
+                </section>
+            ) : null}
+
+            {costSegments.length ? (
+                <section>
+                    <h4 className="mb-2 text-sm font-medium">부문별 인건비</h4>
+                    <div className="overflow-x-auto rounded-lg border border-card-border bg-card">
+                        <table className="w-full min-w-[34rem] text-sm">
+                            <thead>
+                                <tr className="border-b border-card-border text-left text-xs text-foreground/50">
+                                    <th className="px-4 py-2.5 font-medium">부문</th>
+                                    <th className="px-4 py-2.5 text-right font-medium">인건비</th>
+                                    <th className="px-4 py-2.5 text-right font-medium">전 임직원 수</th>
+                                    <th className="px-4 py-2.5 text-right font-medium">1인당 인건비</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {costSegments.map((segment) => (
+                                    <tr key={segment.segment} className="border-t border-card-border">
+                                        <td className="px-4 py-2.5">
+                                            {segment.label}
+                                            {segment.note ? (
+                                                <div className="text-xs text-foreground/50">{segment.note}</div>
+                                            ) : null}
+                                        </td>
+                                        <td className="px-4 py-2.5 text-right tabular-nums">
+                                            {formatKrw(segment.amount)}
+                                        </td>
+                                        <td className="px-4 py-2.5 text-right tabular-nums">
+                                            {formatNumber(segment.headcount, '명')}
+                                        </td>
+                                        <td className="px-4 py-2.5 text-right tabular-nums">
+                                            {formatKrw(segment.perHead)}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <p className="mt-2 text-xs text-foreground/60">
+                        1인당 인건비는 이사를 포함한 전체 임직원 인건비를 같은 표의 인원으로 나눈 값입니다. 위 근속
+                        분포의 공인회계사 수로 나눈 값이 아닙니다.
+                        {emptyCostSegments.length
+                            ? ` ${emptyCostSegments.map((segment) => segment.label).join(' · ')} 부문은 금액도 인원도 공시되지 않아 표에서 뺐습니다.`
+                            : ''}
+                    </p>
+                </section>
+            ) : null}
+
+            {concepts.length ? (
+                <section>
+                    <h4 className="mb-2 text-sm font-medium">그 밖의 인력 관련 비용</h4>
+                    <dl className="grid grid-cols-2 gap-2 lg:grid-cols-3">
+                        {concepts.map((concept) => (
+                            <StatTile
+                                key={concept.concept}
+                                label={concept.label}
+                                value={formatKrw(concept.amount)}
+                                hint={concept.note ?? undefined}
+                            />
+                        ))}
+                    </dl>
+                    <p className="mt-2 text-xs text-foreground/60">
+                        전체 기준으로만 공시되어 부문별로 나누지 않습니다.
+                    </p>
+                </section>
+            ) : null}
+        </div>
     );
 }

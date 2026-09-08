@@ -1,0 +1,1006 @@
+{
+  "before_sha256": "d39a882e46049e45fd656140b974cf34fc6cf34187fc70274778f82953cb8f24",
+  "after_topic_sha256": "a8cfe6f18fcfb2e903561391534b2f580574cf5e3512e4e2bbcfaf1bdcdcf2ce",
+  "sets": [
+    {
+      "schema_version": "3.0",
+      "id": "pilot-07-001",
+      "type": "linked_question_set",
+      "status": "published",
+      "title": "위험 대응과 추가감사절차의 설계 및 수행",
+      "classification": {
+        "topic_id": "07",
+        "part": "PART2",
+        "chapter": "위험에 대한 대응",
+        "domain": "audit",
+        "standards": [
+          "KGA 330"
+        ],
+        "tags": [
+          "평가된 위험",
+          "추가감사절차",
+          "통제테스트",
+          "실증절차",
+          "실증분석절차",
+          "세부테스트"
+        ]
+      },
+      "source_refs": [
+        {
+          "id": "src6",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "title": "한국공인회계사회 회계감사기준 전문(2025 개정)",
+          "page": "330.21, p.317",
+          "source_quote": "21. 감사인은 경영진주장 수준의 평가된 중요왜곡표시위험이 유의적이라고 결정하면, 해당 위\r\n험에 구체적으로 대응하는 실증절차를 수행하여야 한다. 유의적 위험에 대응하는 접근방법\r\n이 실증절차 만으로 구성되어 있는 경우에는, 반드시 세부테스트를 포함하여야 한다. ( 문단 \r\nA55 참조)",
+          "role": "standard",
+          "content_hash": "45905899a722453d1384e08235cca8fd919bdd7c200bbdbe74c19f67e1265f3a"
+        },
+        {
+          "id": "src7",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "title": "한국공인회계사회 회계감사기준 전문(2025 개정)",
+          "page": "330.A23, p.324",
+          "source_quote": "A23. 뿐만 아니라, 감사인은 동일거래에 대하여 세부테스트와 동시에 통제테스트가 수행되도록 \r\n설계할 수 있다. 통제테스트의 목적은 세부테스트의 목적과 다르지만, 이중목적 테스트로 \r\n알려진 바와 같이, 동일 거래에 대하여 통제테스트와 세부테스트는 동시에 수행될 수 있다. \r\n예를 들어, 감사인은 청구서의 승인여부를 결정하기 위해 그리고 거래에 대한 감사증거를 \r\n입수하기 위해, 청구서의 조사를 위한 테스트를 설계하고 그 결과를 평가할 수 있을 것이\r\n다. 이중목적테스트는 각각의 테스트 목적을 개별적으로 고려하여 설계되고 평가된다.",
+          "role": "standard",
+          "content_hash": "ad02544e5dde64f59abfa3fb90dbb4f0956c8ebc425d3ef267b1cbc04a1b04aa"
+        }
+      ],
+      "shared_context": {
+        "facts": [
+          {
+            "id": "fact1",
+            "text": "감사인은 경영진주장 수준의 평가된 중요왜곡표시위험이 유의적이라고 결정할 수 있다.",
+            "scoreable": false
+          }
+        ]
+      },
+      "learning_order": [
+        "subq1",
+        "subq2"
+      ],
+      "subquestions": [
+        {
+          "id": "subq1",
+          "type": "descriptive",
+          "prompt": "감사인이 경영진주장 수준의 평가된 중요왜곡표시위험이 유의적이라고 결정한 경우, 해당 위험에 대응하는 실증절차의 수행 요건과 실증절차만으로 구성된 접근방법의 추가 요건을 설명하시오.",
+          "constraints": {
+            "ordered": false,
+            "max_entries": null,
+            "overflow_policy": "none"
+          },
+          "selection": {
+            "type": "all",
+            "n": null
+          },
+          "model_answer": [
+            "감사인은 해당 위험에 구체적으로 대응하는 실증절차를 수행하여야 하며, 실증절차만으로 구성된 접근방법인 경우에는 반드시 세부테스트를 포함하여야 한다."
+          ],
+          "requirements": [
+            {
+              "id": "req1",
+              "source_ref_id": "src6",
+              "source_quote": "21. 감사인은 경영진주장 수준의 평가된 중요왜곡표시위험이 유의적이라고 결정하면, 해당 위\r\n험에 구체적으로 대응하는 실증절차를 수행하여야 한다. 유의적 위험에 대응하는 접근방법\r\n이 실증절차 만으로 구성되어 있는 경우에는, 반드시 세부테스트를 포함하여야 한다. ( 문단 \r\nA55 참조)",
+              "source_span": "330.21"
+            }
+          ],
+          "criteria": [
+            {
+              "id": "crit1",
+              "requirement_id": "req1",
+              "claim": "유의적 위험에 대응하는 실증절차 수행 의무를 명시함",
+              "critical_facts": [
+                {
+                  "id": "cf1",
+                  "type": "action",
+                  "expected": "구체적으로 대응하는 실증절차 수행"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src6"
+              ]
+            },
+            {
+              "id": "crit2",
+              "requirement_id": "req1",
+              "claim": "실증절차만으로 구성된 경우 세부테스트 포함 의무를 명시함",
+              "critical_facts": [
+                {
+                  "id": "cf2",
+                  "type": "condition",
+                  "expected": "실증절차만으로 구성된 경우"
+                },
+                {
+                  "id": "cf3",
+                  "type": "action",
+                  "expected": "세부테스트 포함"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src6"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "subq2",
+          "type": "descriptive",
+          "prompt": "감사인이 동일한 거래에 대해 세부테스트와 통제테스트를 동시에 수행하도록 설계하는 것을 무엇이라 하는지 기술하시오.",
+          "constraints": {
+            "ordered": false,
+            "max_entries": null,
+            "overflow_policy": "none"
+          },
+          "selection": {
+            "type": "all",
+            "n": null
+          },
+          "model_answer": [
+            "이중목적 테스트라고 한다."
+          ],
+          "requirements": [
+            {
+              "id": "req2",
+              "source_ref_id": "src7",
+              "source_quote": "A23. 뿐만 아니라, 감사인은 동일거래에 대하여 세부테스트와 동시에 통제테스트가 수행되도록 \r\n설계할 수 있다. 통제테스트의 목적은 세부테스트의 목적과 다르지만, 이중목적 테스트로 \r\n알려진 바와 같이, 동일 거래에 대하여 통제테스트와 세부테스트는 동시에 수행될 수 있다. \r\n예를 들어, 감사인은 청구서의 승인여부를 결정하기 위해 그리고 거래에 대한 감사증거를 \r\n입수하기 위해, 청구서의 조사를 위한 테스트를 설계하고 그 결과를 평가할 수 있을 것이\r\n다. 이중목적테스트는 각각의 테스트 목적을 개별적으로 고려하여 설계되고 평가된다.",
+              "source_span": "330.A23"
+            }
+          ],
+          "criteria": [
+            {
+              "id": "crit3",
+              "requirement_id": "req2",
+              "claim": "동일 거래에 대한 세부테스트와 통제테스트 동시 수행 설계의 명칭을 정확히 기술함",
+              "critical_facts": [
+                {
+                  "id": "cf4",
+                  "type": "conclusion",
+                  "expected": "이중목적 테스트"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src7"
+              ]
+            }
+          ]
+        }
+      ],
+      "verification": {
+        "source_fidelity": "exact",
+        "review_status": "verified",
+        "calculation_required": false,
+        "notes": [
+          "LLM 위키 기반 자동 생성 파일럿. 원문·구조·의미 검수 완료.",
+          "2026-08-08 의미 품질 검수 지적사항을 결정적으로 보정함. 원문·구조·2차 의미 검수 완료.",
+          "2026-09-08 주제07 후속 검토: 공식 2025 전문 및 2026년7월 전문 직접 문단 대조. 발문·상황·유형·출처·해시·모두 작성 계약 보정. 기존 게시/검수 상태 유지(승급 아님). 과거 07-005 메모의 30(b)(c)는 현행 출처가 아니며 실제 근거는 5·7(b). 실측 및 미확정은 docs/reports/question-review-2027/07.md 참조."
+        ]
+      }
+    },
+    {
+      "schema_version": "3.0",
+      "id": "pilot-07-002",
+      "type": "linked_question_set",
+      "status": "published",
+      "title": "통제테스트의 수행 요건과 중간기간 증거",
+      "classification": {
+        "topic_id": "07",
+        "part": "PART2",
+        "chapter": "위험에 대한 대응",
+        "domain": "audit",
+        "standards": [
+          "KGA 330"
+        ],
+        "tags": [
+          "평가된 위험",
+          "통제테스트",
+          "운영효과성",
+          "실증절차",
+          "중간기간",
+          "잔여기간"
+        ]
+      },
+      "source_refs": [
+        {
+          "id": "src1",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "title": "한국공인회계사회 회계감사기준 전문(2025 개정)",
+          "page": "330.8(a)–(b), p.314",
+          "source_quote": "8. 감사인은 다음 중 하나에 해당한다면 관련 통제의 운영효과성에 대한 충분하고 적합한 감\r\n사증거를 입수할 수 있도록 통제테스트를 설계하고 수행하여야 한다. \r\n(a) 감사인이 경영진주장 수준의 중요왜곡표시위험을 평가할 때 통제가 효과적으로 운영\r\n되고 있다는 기대를 한 경우 (즉, 감사인이 실증절차의 성격, 시기 및 범위를 결정할 \r\n때 통제의 운영효과성을 테스트하려고 하는 경우) \r\n(b) 실증절차만으로는 경영진주장 수준의 충분하고 적합한 감사증거를 제공할 수 없는 \r\n경우 (문단 A20-A24 참조)",
+          "role": "standard",
+          "content_hash": "01a79e32f566e8ae0743619bfb109e9e0c4f3090d6548ccc66e2eac22196d62f"
+        },
+        {
+          "id": "src2",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "title": "한국공인회계사회 회계감사기준 전문(2025 개정)",
+          "page": "330.12(a)–(b), p.315",
+          "source_quote": "12. 감사인이 중간기간 중에 통제의 운영효과성에 대한 감사증거를 입수하면, 감사인은 다음의 \r\n절차를 수행하여야 한다. \r\n(a) 중간기간 이후 해당 통제에 유의적 변화가 있었는지에 대하여 감사증거를 입수함 \r\n(b) 잔여기간에 대하여 입수할 추가적인 감사증거를 결정함 (문단 A34-A35 참조)",
+          "role": "standard",
+          "content_hash": "497dacb1d96139d344da3700efdfbcc26af7f10d23ea89a30688fc8e0dc96c21"
+        }
+      ],
+      "shared_context": {
+        "facts": [
+          {
+            "id": "fact1",
+            "text": "감사팀은 평가된 중요왜곡표시위험에 대응하는 감사절차를 설계하고 있다.",
+            "scoreable": false
+          }
+        ]
+      },
+      "learning_order": [
+        "sub1",
+        "sub2"
+      ],
+      "subquestions": [
+        {
+          "id": "sub1",
+          "type": "enumeration",
+          "prompt": "감사인이 관련 통제의 운영효과성에 관한 충분하고 적합한 감사증거를 입수하기 위해 통제테스트를 설계하고 수행해야 하는 두 가지 경우를 모두 제시하시오.",
+          "constraints": {
+            "ordered": false,
+            "max_entries": null,
+            "overflow_policy": "none"
+          },
+          "selection": {
+            "type": "all",
+            "n": null
+          },
+          "model_answer": [
+            "경영진주장 수준의 중요왜곡표시위험을 평가할 때 통제가 효과적으로 운영된다고 기대하고, 실증절차의 성격·시기·범위를 결정할 때 그 통제의 운영효과성에 의존하려는 경우이다.",
+            "실증절차만으로는 경영진주장 수준의 충분하고 적합한 감사증거를 제공할 수 없는 경우이다."
+          ],
+          "requirements": [
+            {
+              "id": "req1",
+              "source_ref_id": "src1",
+              "source_quote": "8. 감사인은 다음 중 하나에 해당한다면 관련 통제의 운영효과성에 대한 충분하고 적합한 감\r\n사증거를 입수할 수 있도록 통제테스트를 설계하고 수행하여야 한다. \r\n(a) 감사인이 경영진주장 수준의 중요왜곡표시위험을 평가할 때 통제가 효과적으로 운영\r\n되고 있다는 기대를 한 경우 (즉, 감사인이 실증절차의 성격, 시기 및 범위를 결정할 \r\n때 통제의 운영효과성을 테스트하려고 하는 경우) \r\n(b) 실증절차만으로는 경영진주장 수준의 충분하고 적합한 감사증거를 제공할 수 없는 \r\n경우 (문단 A20-A24 참조)",
+              "source_span": "330.8(a)–(b)"
+            }
+          ],
+          "criteria": [
+            {
+              "id": "crit1",
+              "requirement_id": "req1",
+              "claim": "경영진주장 수준의 위험평가에서 통제의 효과적 운영을 기대하고 실증절차의 성격·시기·범위 결정 시 그 운영효과성에 의존하려는 경우를 제시함. 단순히 테스트를 하고 싶다는 의사만으로는 충족하지 않음",
+              "critical_facts": [
+                {
+                  "id": "cf1",
+                  "type": "condition",
+                  "expected": "통제의 효과적 운영을 기대하여 실증절차의 성격·시기·범위 결정 시 운영효과성에 의존하려는 경우"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src1"
+              ]
+            },
+            {
+              "id": "crit2",
+              "requirement_id": "req1",
+              "claim": "실증절차만으로 경영진주장 수준의 충분하고 적합한 감사증거를 제공할 수 없는 경우를 제시함",
+              "critical_facts": [
+                {
+                  "id": "cf2",
+                  "type": "condition",
+                  "expected": "실증절차만으로 충분하고 적합한 감사증거를 제공할 수 없는 경우"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sub2",
+          "type": "enumeration",
+          "prompt": "중간기간에 통제의 운영효과성에 관한 감사증거를 입수한 경우 감사인이 수행해야 하는 두 가지 후속절차를 제시하시오. 두 절차를 모두 작성하시오.",
+          "constraints": {
+            "ordered": false,
+            "max_entries": null,
+            "overflow_policy": "none"
+          },
+          "selection": {
+            "type": "all",
+            "n": null
+          },
+          "model_answer": [
+            "중간기간 이후 해당 통제에 유의적 변화가 있었는지에 관한 감사증거를 입수한다.",
+            "잔여기간에 대하여 입수할 추가적인 감사증거를 결정한다."
+          ],
+          "requirements": [
+            {
+              "id": "req2",
+              "source_ref_id": "src2",
+              "source_quote": "12. 감사인이 중간기간 중에 통제의 운영효과성에 대한 감사증거를 입수하면, 감사인은 다음의 \r\n절차를 수행하여야 한다. \r\n(a) 중간기간 이후 해당 통제에 유의적 변화가 있었는지에 대하여 감사증거를 입수함 \r\n(b) 잔여기간에 대하여 입수할 추가적인 감사증거를 결정함 (문단 A34-A35 참조)",
+              "source_span": "330.12(a)–(b)"
+            }
+          ],
+          "criteria": [
+            {
+              "id": "crit3",
+              "requirement_id": "req2",
+              "claim": "중간기간 이후 해당 통제에 유의적 변화가 있었는지에 관한 감사증거를 입수함",
+              "critical_facts": [
+                {
+                  "id": "cf3",
+                  "type": "action",
+                  "expected": "중간기간 이후 통제의 유의적 변화에 관한 증거 입수"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src2"
+              ]
+            },
+            {
+              "id": "crit4",
+              "requirement_id": "req2",
+              "claim": "잔여기간에 대하여 입수할 추가적인 감사증거를 결정함",
+              "critical_facts": [
+                {
+                  "id": "cf4",
+                  "type": "action",
+                  "expected": "잔여기간에 입수할 추가 증거의 결정"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src2"
+              ]
+            }
+          ]
+        }
+      ],
+      "verification": {
+        "source_fidelity": "exact",
+        "review_status": "verified",
+        "calculation_required": false,
+        "notes": [
+          "통합학습자료의 미사용 요구사항을 바탕으로 작성한 추가 v3 초안이며, 원문·구조·의미 검수 완료.",
+          "2026-09-08 주제07 후속 검토: 공식 2025 전문 및 2026년7월 전문 직접 문단 대조. 발문·상황·유형·출처·해시·모두 작성 계약 보정. 기존 게시/검수 상태 유지(승급 아님). 과거 07-005 메모의 30(b)(c)는 현행 출처가 아니며 실제 근거는 5·7(b). 실측 및 미확정은 docs/reports/question-review-2027/07.md 참조."
+        ]
+      }
+    },
+    {
+      "schema_version": "3.0",
+      "id": "pilot-07-003",
+      "type": "linked_question_set",
+      "status": "published",
+      "title": "통제의 운영효과성 평가와 이탈 발견 시 대응",
+      "classification": {
+        "topic_id": "07",
+        "part": "PART2",
+        "chapter": "위험에 대한 대응",
+        "domain": "audit",
+        "standards": [
+          "KGA 330"
+        ],
+        "tags": [
+          "통제 운영효과성",
+          "실증절차",
+          "통제 이탈",
+          "추가 통제테스트",
+          "실증절차 적용"
+        ]
+      },
+      "source_refs": [
+        {
+          "id": "src1",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "title": "한국공인회계사회 회계감사기준 전문(2025 개정)",
+          "page": "330.16, p.316",
+          "source_quote": "16. 감사인은 감사인이 의존하고자 하는 통제의 운영효과성을 평가할 때, 실증절차에서 발견된 \r\n왜곡표시가 통제가 효과적으로 운영되지 않고 있음을 나타내는 것인지 여부를 평가하여야 \r\n한다. 그러나 실증절차에서 왜곡표시가 발견되지 않았다고 하여 테스트 중인 경영진주장과 \r\n관련된 통제가 효과적이라는 감사증거를 제공하는 것은 아니다. (문단 A41 참조)",
+          "role": "standard",
+          "content_hash": "eb1e0e32e1e9cde655af0712cf6fd1ff345410bc9dcb1f029058628c3d2ffe6e"
+        },
+        {
+          "id": "src2",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "title": "한국공인회계사회 회계감사기준 전문(2025 개정)",
+          "page": "330.17, p.316",
+          "source_quote": "17. 감사인이 의존하고자 하는 통제에 이탈이 발견되었으면, 감사인은 이러한 사항과 그 잠재\r\n적인 영향을 이해하기 위해 구체적인 질문을 하고 또 다음 사항을 결정해야 한다. \r\n(a) 통제테스트를 수행한 결과가 해당 통제에 의존하는 것에 대한 적절한 근거를 제공하\r\n는지 여부 \r\n(b) 통제에 대한 추가적인 테스트가 필요한지 여부 \r\n(c) 중요한 왜곡표시에 대한 위험에 대처하기 위하여 실증절차를 적용할 필요가 있는지 \r\n여부 (문단 A42 참조) \r\n실증절차",
+          "role": "standard",
+          "content_hash": "cd0a723f63e419e6491738e3e75674049be40f3f4fb7e2ba691266959f2b5247"
+        }
+      ],
+      "shared_context": {
+        "facts": [
+          {
+            "id": "fact1",
+            "text": "감사인은 의존하려는 통제의 운영효과성을 평가하고 있다.",
+            "scoreable": false
+          }
+        ]
+      },
+      "learning_order": [
+        "sub1",
+        "sub2"
+      ],
+      "subquestions": [
+        {
+          "id": "sub1",
+          "type": "judgment",
+          "prompt": "의존하려는 통제의 운영효과성을 평가할 때, 실증절차에서 왜곡표시가 발견된 경우 감사인이 평가할 사항을 설명하시오. 또한 왜곡표시가 발견되지 않았다는 사실만으로 관련 통제가 효과적이라는 감사증거가 되는지 판단하시오.",
+          "constraints": {
+            "ordered": false,
+            "max_entries": null,
+            "overflow_policy": "none"
+          },
+          "selection": {
+            "type": "all",
+            "n": null
+          },
+          "model_answer": [
+            "실증절차에서 발견된 왜곡표시가 통제가 효과적으로 운영되지 않고 있음을 나타내는지 평가해야 한다.",
+            "실증절차에서 왜곡표시가 발견되지 않았다는 사실만으로는 관련 통제가 효과적이라는 감사증거가 되지 않는다."
+          ],
+          "requirements": [
+            {
+              "id": "req1",
+              "source_ref_id": "src1",
+              "source_quote": "16. 감사인은 감사인이 의존하고자 하는 통제의 운영효과성을 평가할 때, 실증절차에서 발견된 \r\n왜곡표시가 통제가 효과적으로 운영되지 않고 있음을 나타내는 것인지 여부를 평가하여야 \r\n한다. 그러나 실증절차에서 왜곡표시가 발견되지 않았다고 하여 테스트 중인 경영진주장과 \r\n관련된 통제가 효과적이라는 감사증거를 제공하는 것은 아니다. (문단 A41 참조)",
+              "source_span": "330.16"
+            }
+          ],
+          "criteria": [
+            {
+              "id": "crit1",
+              "requirement_id": "req1",
+              "claim": "실증절차에서 발견된 왜곡표시가 통제가 효과적으로 운영되지 않고 있음을 나타내는지 평가함",
+              "critical_facts": [
+                {
+                  "id": "cf1",
+                  "type": "action",
+                  "expected": "발견된 왜곡표시의 통제 운영효과성 시사점 평가"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src1"
+              ]
+            },
+            {
+              "id": "crit2",
+              "requirement_id": "req1",
+              "claim": "실증절차에서 왜곡표시가 발견되지 않았다는 사실만으로는 통제 효과성의 감사증거가 되지 않는다고 판단함",
+              "critical_facts": [
+                {
+                  "id": "cf2",
+                  "type": "negation",
+                  "expected": "왜곡표시 미발견만으로 통제 효과성 증거가 되지 않음"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sub2",
+          "type": "enumeration",
+          "prompt": "의존하려는 통제에서 이탈이 발견된 경우, 감사인이 수행할 질문과 그 밖에 결정해야 할 세 가지 사항을 모두 제시하시오.",
+          "constraints": {
+            "ordered": false,
+            "max_entries": null,
+            "overflow_policy": "none"
+          },
+          "selection": {
+            "type": "all",
+            "n": null
+          },
+          "model_answer": [
+            "이탈과 그 잠재적 영향을 이해하기 위해 구체적인 질문을 한다.",
+            "통제테스트 결과가 해당 통제에 의존할 적절한 근거를 제공하는지 결정한다.",
+            "통제에 대한 추가 테스트가 필요한지 결정한다.",
+            "중요왜곡표시위험에 대처하기 위해 실증절차를 적용할 필요가 있는지 결정한다."
+          ],
+          "requirements": [
+            {
+              "id": "req2",
+              "source_ref_id": "src2",
+              "source_quote": "17. 감사인이 의존하고자 하는 통제에 이탈이 발견되었으면, 감사인은 이러한 사항과 그 잠재\r\n적인 영향을 이해하기 위해 구체적인 질문을 하고 또 다음 사항을 결정해야 한다. \r\n(a) 통제테스트를 수행한 결과가 해당 통제에 의존하는 것에 대한 적절한 근거를 제공하\r\n는지 여부 \r\n(b) 통제에 대한 추가적인 테스트가 필요한지 여부 \r\n(c) 중요한 왜곡표시에 대한 위험에 대처하기 위하여 실증절차를 적용할 필요가 있는지 \r\n여부 (문단 A42 참조) \r\n실증절차",
+              "source_span": "330.17 본문 및 (a)–(c)"
+            }
+          ],
+          "criteria": [
+            {
+              "id": "crit3",
+              "requirement_id": "req2",
+              "claim": "통제 이탈과 그 잠재적 영향을 이해하기 위해 구체적인 질문을 함",
+              "critical_facts": [
+                {
+                  "id": "cf3",
+                  "type": "action",
+                  "expected": "통제 이탈과 잠재적 영향을 이해하기 위한 구체적인 질문"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src2"
+              ]
+            },
+            {
+              "id": "crit4",
+              "requirement_id": "req2",
+              "claim": "통제테스트 결과가 해당 통제에 의존할 적절한 근거를 제공하는지 결정함",
+              "critical_facts": [
+                {
+                  "id": "cf4",
+                  "type": "action",
+                  "expected": "통제 의존의 적절한 근거 제공 여부 결정"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src2"
+              ]
+            },
+            {
+              "id": "crit5",
+              "requirement_id": "req2",
+              "claim": "통제에 대한 추가 테스트가 필요한지 결정함",
+              "critical_facts": [
+                {
+                  "id": "cf5",
+                  "type": "action",
+                  "expected": "추가 통제테스트 필요성 결정"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src2"
+              ]
+            },
+            {
+              "id": "crit6",
+              "requirement_id": "req2",
+              "claim": "중요왜곡표시위험에 대처하기 위해 실증절차를 적용할 필요가 있는지 결정함",
+              "critical_facts": [
+                {
+                  "id": "cf6",
+                  "type": "action",
+                  "expected": "실증절차 적용 필요성 결정"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src2"
+              ]
+            }
+          ]
+        }
+      ],
+      "verification": {
+        "source_fidelity": "exact",
+        "review_status": "verified",
+        "calculation_required": false,
+        "notes": [
+          "통합학습자료의 미사용 요구사항을 바탕으로 작성한 추가 v3 초안이며, 원문·구조·의미 검수 완료.",
+          "2026-09-08 주제07 후속 검토: 공식 2025 전문 및 2026년7월 전문 직접 문단 대조. 발문·상황·유형·출처·해시·모두 작성 계약 보정. 기존 게시/검수 상태 유지(승급 아님). 과거 07-005 메모의 30(b)(c)는 현행 출처가 아니며 실제 근거는 5·7(b). 실측 및 미확정은 docs/reports/question-review-2027/07.md 참조."
+        ]
+      }
+    },
+    {
+      "schema_version": "3.0",
+      "id": "pilot-07-004",
+      "type": "linked_question_set",
+      "status": "published",
+      "title": "통제테스트의 설계 요건과 의존 정도에 따른 증거",
+      "classification": {
+        "topic_id": "07",
+        "part": "PART2",
+        "chapter": "위험에 대한 대응",
+        "domain": "audit",
+        "standards": [
+          "KGA 330"
+        ],
+        "tags": [
+          "평가된 위험",
+          "추가감사절차",
+          "통제테스트",
+          "실증절차",
+          "실증분석절차",
+          "세부테스트"
+        ]
+      },
+      "source_refs": [
+        {
+          "id": "src1",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "title": "한국공인회계사회 회계감사기준 전문(2025 개정)",
+          "page": "330.8(a)–(b), p.314",
+          "source_quote": "8. 감사인은 다음 중 하나에 해당한다면 관련 통제의 운영효과성에 대한 충분하고 적합한 감\r\n사증거를 입수할 수 있도록 통제테스트를 설계하고 수행하여야 한다. \r\n(a) 감사인이 경영진주장 수준의 중요왜곡표시위험을 평가할 때 통제가 효과적으로 운영\r\n되고 있다는 기대를 한 경우 (즉, 감사인이 실증절차의 성격, 시기 및 범위를 결정할 \r\n때 통제의 운영효과성을 테스트하려고 하는 경우) \r\n(b) 실증절차만으로는 경영진주장 수준의 충분하고 적합한 감사증거를 제공할 수 없는 \r\n경우 (문단 A20-A24 참조)",
+          "role": "standard",
+          "content_hash": "01a79e32f566e8ae0743619bfb109e9e0c4f3090d6548ccc66e2eac22196d62f"
+        },
+        {
+          "id": "src2",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "title": "한국공인회계사회 회계감사기준 전문(2025 개정)",
+          "page": "330.9, p.314",
+          "source_quote": "9. 감사인은 통제테스트를 설계하고 수행할 때 감사인이 통제의 효과성에 보다 크게 의존할수\r\n록 더욱 설득력이 있는 감사증거를 입수하여야 한다. (문단 A25 참조)",
+          "role": "standard",
+          "content_hash": "1b8ee82e1c113367f68ebb046359a2a5abf88dcdbcc1173b8a03a9e8c9118072"
+        }
+      ],
+      "shared_context": {
+        "facts": [
+          {
+            "id": "fact1",
+            "text": "감사인이 매출 승인 통제에 의존하기로 계획하고 통제테스트 범위를 논의하고 있다.",
+            "scoreable": false
+          }
+        ]
+      },
+      "learning_order": [
+        "sub1",
+        "sub2"
+      ],
+      "subquestions": [
+        {
+          "id": "sub1",
+          "type": "enumeration",
+          "prompt": "감사인이 통제테스트를 설계하고 수행해야 하는 두 가지 경우를 모두 제시하시오.",
+          "constraints": {
+            "ordered": false,
+            "max_entries": null,
+            "overflow_policy": "none"
+          },
+          "selection": {
+            "type": "all",
+            "n": null
+          },
+          "model_answer": [
+            "경영진주장 수준의 중요왜곡표시위험을 평가할 때 통제가 효과적으로 운영된다고 기대하고, 실증절차의 성격·시기·범위를 결정할 때 그 통제의 운영효과성에 의존하려는 경우이다.",
+            "실증절차만으로는 경영진주장 수준의 충분하고 적합한 감사증거를 제공할 수 없는 경우이다."
+          ],
+          "requirements": [
+            {
+              "id": "req1",
+              "source_ref_id": "src1",
+              "source_quote": "8. 감사인은 다음 중 하나에 해당한다면 관련 통제의 운영효과성에 대한 충분하고 적합한 감\r\n사증거를 입수할 수 있도록 통제테스트를 설계하고 수행하여야 한다. \r\n(a) 감사인이 경영진주장 수준의 중요왜곡표시위험을 평가할 때 통제가 효과적으로 운영\r\n되고 있다는 기대를 한 경우 (즉, 감사인이 실증절차의 성격, 시기 및 범위를 결정할 \r\n때 통제의 운영효과성을 테스트하려고 하는 경우) \r\n(b) 실증절차만으로는 경영진주장 수준의 충분하고 적합한 감사증거를 제공할 수 없는 \r\n경우 (문단 A20-A24 참조)",
+              "source_span": "330.8(a)–(b)"
+            }
+          ],
+          "criteria": [
+            {
+              "id": "crit1",
+              "requirement_id": "req1",
+              "claim": "경영진주장 수준의 위험평가에서 통제의 효과적 운영을 기대하고 실증절차의 성격·시기·범위 결정 시 그 운영효과성에 의존하려는 경우를 제시함. 단순히 테스트를 하고 싶다는 의사만으로는 충족하지 않음",
+              "critical_facts": [
+                {
+                  "id": "cf1",
+                  "type": "condition",
+                  "expected": "통제의 효과적 운영을 기대하여 실증절차의 성격·시기·범위 결정 시 운영효과성에 의존하려는 경우"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src1"
+              ]
+            },
+            {
+              "id": "crit2",
+              "requirement_id": "req1",
+              "claim": "실증절차만으로 경영진주장 수준의 충분하고 적합한 감사증거를 제공할 수 없는 경우를 제시함",
+              "critical_facts": [
+                {
+                  "id": "cf2",
+                  "type": "condition",
+                  "expected": "실증절차만으로 충분하고 적합한 감사증거를 제공할 수 없는 경우"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sub2",
+          "type": "descriptive",
+          "prompt": "통제테스트를 설계하고 수행할 때, 통제의 운영효과성에 대한 의존 정도와 입수해야 할 감사증거의 설득력 사이의 관계를 설명하시오.",
+          "constraints": {
+            "ordered": false,
+            "max_entries": null,
+            "overflow_policy": "none"
+          },
+          "selection": {
+            "type": "all",
+            "n": null
+          },
+          "model_answer": [
+            "감사인이 통제의 효과성에 보다 크게 의존할수록 더욱 설득력이 있는 감사증거를 입수해야 한다."
+          ],
+          "requirements": [
+            {
+              "id": "req2",
+              "source_ref_id": "src2",
+              "source_quote": "9. 감사인은 통제테스트를 설계하고 수행할 때 감사인이 통제의 효과성에 보다 크게 의존할수\r\n록 더욱 설득력이 있는 감사증거를 입수하여야 한다. (문단 A25 참조)",
+              "source_span": "330.9"
+            }
+          ],
+          "criteria": [
+            {
+              "id": "crit3",
+              "requirement_id": "req2",
+              "claim": "의존이 클수록 더욱 설득력 있는 감사증거가 필요함을 설명함",
+              "critical_facts": [
+                {
+                  "id": "cf3",
+                  "type": "conclusion",
+                  "expected": "의존 증가 시 더 설득력 있는 증거"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src2"
+              ]
+            }
+          ]
+        }
+      ],
+      "verification": {
+        "source_fidelity": "exact",
+        "review_status": "verified",
+        "calculation_required": false,
+        "notes": [
+          "2026-08-24 수동 제작. KGA 330 문단 8~9 원문 대조 완료.",
+          "2026-09-08 주제07 후속 검토: 공식 2025 전문 및 2026년7월 전문 직접 문단 대조. 발문·상황·유형·출처·해시·모두 작성 계약 보정. 기존 게시/검수 상태 유지(승급 아님). 과거 07-005 메모의 30(b)(c)는 현행 출처가 아니며 실제 근거는 5·7(b). 실측 및 미확정은 docs/reports/question-review-2027/07.md 참조."
+        ]
+      }
+    },
+    {
+      "schema_version": "3.0",
+      "id": "pilot-07-005",
+      "type": "linked_question_set",
+      "status": "published",
+      "title": "위험 수준별 감사 대응과 감사증거의 설득력",
+      "classification": {
+        "topic_id": "07",
+        "part": "PART2",
+        "chapter": "위험에 대한 대응",
+        "domain": "audit",
+        "standards": [
+          "KGA 330"
+        ],
+        "tags": [
+          "평가된 위험",
+          "추가감사절차",
+          "통제테스트",
+          "실증절차",
+          "실증분석절차",
+          "세부테스트"
+        ]
+      },
+      "source_refs": [
+        {
+          "id": "src1",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "title": "한국공인회계사회 회계감사기준 전문(2025 개정)",
+          "page": "330.5, p.313",
+          "source_quote": "5. 감사인은 재무제표 수준의 평가된 중요왜곡표시위험에 대처하기 위한 전반적인 대응을 설\r\n계하고 실행하여야 한다. (문단 A1-A3 참조)",
+          "role": "standard",
+          "content_hash": "494302c94738b2233572f7e7c6671417b57e24f3bf9ea16b7fbaf198913c41ad"
+        },
+        {
+          "id": "src3",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "title": "한국공인회계사회 회계감사기준 전문(2025 개정)",
+          "page": "330.7(b), p.314",
+          "source_quote": "(b) 감사인은 위험평가 수준이 높을수록 더욱 설득력 있는 감사증거를 입수하여야 한다. \r\n(문단 A19 참조) \r\n통제테스트",
+          "role": "standard",
+          "content_hash": "60796efa34b09ab6a2a2ae029f3e100397a294faef0529bb48f9e243bf4afcbf"
+        }
+      ],
+      "shared_context": {
+        "facts": [
+          {
+            "id": "fact1",
+            "text": "감사인은 평가된 중요왜곡표시위험에 대한 감사 대응을 검토하고 있다. 각 물음은 해당 발문에 제시된 위험 수준을 따른다.",
+            "scoreable": false
+          }
+        ]
+      },
+      "learning_order": [
+        "sub1",
+        "sub2"
+      ],
+      "subquestions": [
+        {
+          "id": "sub1",
+          "type": "descriptive",
+          "prompt": "재무제표 수준의 평가된 중요왜곡표시위험에 대하여 감사인이 무엇을 설계하고 실행해야 하는지 설명하시오.",
+          "constraints": {
+            "ordered": false,
+            "max_entries": null,
+            "overflow_policy": "none"
+          },
+          "selection": {
+            "type": "all",
+            "n": null
+          },
+          "model_answer": [
+            "감사인은 재무제표 수준의 평가된 중요왜곡표시위험에 대처하기 위한 전반적인 대응을 설계하고 실행해야 한다."
+          ],
+          "requirements": [
+            {
+              "id": "req1",
+              "source_ref_id": "src1",
+              "source_quote": "5. 감사인은 재무제표 수준의 평가된 중요왜곡표시위험에 대처하기 위한 전반적인 대응을 설\r\n계하고 실행하여야 한다. (문단 A1-A3 참조)",
+              "source_span": "330.5"
+            }
+          ],
+          "criteria": [
+            {
+              "id": "crit1",
+              "requirement_id": "req1",
+              "claim": "전반적인 대응을 설계하고 실행해야 함을 제시함",
+              "critical_facts": [
+                {
+                  "id": "cf1",
+                  "type": "action",
+                  "expected": "전반적 대응의 설계와 실행"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sub2",
+          "type": "descriptive",
+          "prompt": "경영진주장 수준의 평가된 중요왜곡표시위험에 대응하는 추가감사절차를 설계할 때, 위험평가 수준과 입수해야 할 감사증거의 설득력 사이의 관계를 설명하시오.",
+          "constraints": {
+            "ordered": false,
+            "max_entries": null,
+            "overflow_policy": "none"
+          },
+          "selection": {
+            "type": "all",
+            "n": null
+          },
+          "model_answer": [
+            "위험평가 수준이 높을수록 더욱 설득력 있는 감사증거를 입수해야 한다."
+          ],
+          "requirements": [
+            {
+              "id": "req3",
+              "source_ref_id": "src3",
+              "source_quote": "(b) 감사인은 위험평가 수준이 높을수록 더욱 설득력 있는 감사증거를 입수하여야 한다. \r\n(문단 A19 참조) \r\n통제테스트",
+              "source_span": "330.7(b)"
+            }
+          ],
+          "criteria": [
+            {
+              "id": "crit3",
+              "requirement_id": "req3",
+              "claim": "위험평가 수준이 높을수록 더욱 설득력 있는 감사증거가 필요함을 설명함",
+              "critical_facts": [
+                {
+                  "id": "cf3",
+                  "type": "conclusion",
+                  "expected": "높은 위험일수록 더 설득력 있는 증거"
+                }
+              ],
+              "max_points": 1,
+              "scores": {
+                "met": 1,
+                "not_met": 0,
+                "contradicted": 0
+              },
+              "source_ref_ids": [
+                "src3"
+              ]
+            }
+          ]
+        }
+      ],
+      "verification": {
+        "source_fidelity": "exact",
+        "review_status": "verified",
+        "calculation_required": false,
+        "notes": [
+          "2026-08-24 수동 제작. KGA 330 문단 30(b)(c)·7(b) 원문 대조 완료. 게시 전 사람 의미 검수 필요.",
+          "2026-09-08 주제07 후속 검토: 공식 2025 전문 및 2026년7월 전문 직접 문단 대조. 발문·상황·유형·출처·해시·모두 작성 계약 보정. 기존 게시/검수 상태 유지(승급 아님). 과거 07-005 메모의 30(b)(c)는 현행 출처가 아니며 실제 근거는 5·7(b). 실측 및 미확정은 docs/reports/question-review-2027/07.md 참조."
+        ]
+      }
+    }
+  ]
+}

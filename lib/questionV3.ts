@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { QUESTION_V3_ANSWER_MAX_LENGTH } from './questionV3Answer.ts';
 
 export type QuestionTypeV3 = 'descriptive' | 'enumeration' | 'judgment';
 export type ReviewStatusV3 = 'needs_human_review' | 'verified' | 'published';
@@ -91,7 +92,7 @@ export interface QuestionSetV3 {
     learning_order: string[];
     subquestions: SubquestionV3[];
     verification: {
-        source_fidelity: 'exact' | 'normalized' | 'reconstructed';
+        source_fidelity: 'exact' | 'normalized' | 'reconstructed' | 'excerpt';
         review_status: ReviewStatusV3;
         calculation_required: boolean;
         notes: string[];
@@ -160,7 +161,7 @@ export function isQuestionSetAnswerPayloadV3(value: unknown): value is Record<st
     return entries.length <= 10 && entries.every(([id, answer]) => (
         /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(id)
         && typeof answer === 'string'
-        && answer.length <= 5000
+        && answer.length <= QUESTION_V3_ANSWER_MAX_LENGTH
     ));
 }
 
@@ -264,30 +265,8 @@ export function verifyCriterionVerdicts(
             return { ...verdict, quote };
         });
 
-    const positiveByQuote = new Map<string, CriterionVerdictV3[]>();
-    for (const verdict of verified) {
-        if (!verdict.quote || !['met', 'partial'].includes(verdict.verdict)) continue;
-        const key = normalizeSourceText(verdict.quote);
-        const group = positiveByQuote.get(key) ?? [];
-        group.push(verdict);
-        positiveByQuote.set(key, group);
-    }
-
-    for (const group of positiveByQuote.values()) {
-        if (group.length < 2) continue;
-        const winner = [...group].sort((left, right) => {
-            const pointsDifference = (criteriaById.get(right.criterion_id)?.max_points ?? 0)
-                - (criteriaById.get(left.criterion_id)?.max_points ?? 0);
-            return pointsDifference || left.criterion_id.localeCompare(right.criterion_id);
-        })[0];
-        for (const verdict of group) {
-            if (verdict === winner) continue;
-            verdict.verdict = 'not_met';
-            verdict.quote = undefined;
-            verdict.reason = '동일한 답안 인용의 중복 득점 방지';
-        }
-    }
-
+    // One sentence may support several independent criteria, even for one requirement.
+    // Criterion IDs, rather than quote strings, define the scoring units.
     return verified;
 }
 

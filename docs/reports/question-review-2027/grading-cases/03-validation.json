@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-09-07T23:25:51.087Z",
+  "results": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "id": "typecheck",
+        "cmd": "npm run typecheck",
+        "chunk_id": "83b2d7",
+        "wall_time_seconds": 2.7859975,
+        "exit_code": 0,
+        "original_token_count": 13,
+        "output": "\n> crimson-lagoon@0.1.0 typecheck\n> tsc --noEmit\n\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "id": "bank",
+        "cmd": "npm run questions:v3:validate",
+        "chunk_id": "5966a0",
+        "wall_time_seconds": 2.1552673,
+        "exit_code": 0,
+        "original_token_count": 69,
+        "output": "\n> crimson-lagoon@0.1.0 questions:v3:validate\n> tsx cpa_uploader/validate_cpa_v3.ts\n\nv3 검증 통과: 96세트, 192개 세부 물음, 503개 criterion, 총 501점\n모든 source_quote가 원자료에 존재하며 public JSON에는 비공개 채점 데이터가 없습니다.\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "id": "tests",
+        "cmd": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/questionV3.test.ts tests/questionV3Grading.test.ts tests/questionV3Deployment.test.ts tests/questionV3Generation.test.ts tests/openaiStructured.test.ts tests/v3Cutover.test.ts tests/rateLimit.test.ts",
+        "chunk_id": "017ea4",
+        "wall_time_seconds": 0.8700742,
+        "exit_code": 0,
+        "original_token_count": 835,
+        "output": "✔ requestOpenAIStructured sends strict JSON schema and parses output (1.2855ms)\n✔ requestOpenAIStructured surfaces refusals without treating them as JSON (0.5129ms)\n✔ requestOpenAIStructured retries transient transport failures once (2.5814ms)\n✔ requestOpenAIStructured retries rate limits (1.3339ms)\n✔ requestOpenAIStructured does not retry authentication failures (0.6284ms)\n✔ requestOpenAIStructured rejects incomplete output without scoring it (0.2774ms)\n✔ requestOpenAIStructured retries timeout failures (1.2474ms)\n✔ requestOpenAIStructured rejects missing credentials before a network call (0.3224ms)\n✔ validateQuestionSetV3 validates source-bound linked question sets (7.9751ms)\n✔ v3 authoring bank keeps the pilot floor distribution and stays internally consistent (18.3556ms)\n✔ validateQuestionSetV3 rejects ungrounded requirements and invalid partial scoring (0.8948ms)\n✔ validateQuestionSetV3 rejects duplicate critical facts within one subquestion (3.8994ms)\n✔ validateQuestionSetV3 requires criterion evidence to include its requirement source (0.3917ms)\n✔ validateQuestionSetV3 reports malformed LLM subquestions without throwing (0.386ms)\n✔ computeQuestionSetMaxPoints honors best_n without forcing a ten-point total (0.238ms)\n✔ validateQuestionSetV3 rejects public tags that reveal a model answer (0.2213ms)\n✔ isQuestionSetAnswerPayloadV3 accepts canonical subquestion ids and rejects unsafe payloads (0.3968ms)\n✔ compilePublicQuestionSet strips model answers, requirements, criteria, and source quotes (0.542ms)\n✔ scoreCriterionVerdicts computes integer criterion scores in code (0.3386ms)\n✔ scoreCriterionVerdicts gives contradicted criteria zero points and caps best_n (0.1944ms)\n✔ verifyCriterionVerdicts rejects hallucinated and duplicated answer quotes (0.3358ms)\n✔ encrypted authoring bundles round-trip without exposing plaintext (3.8518ms)\n✔ authoring encryption rejects low-entropy keys (0.5678ms)\n✔ question bank load failures are classified without exposing secrets (0.1762ms)\n✔ production always selects the encrypted bank even when plaintext exists locally (6.2178ms)\n✔ production loads the encrypted authoring bank when the ignored plaintext bank is absent (10.9459ms)\n✔ question generation CLI can be imported without starting a generation run (0.8672ms)\n✔ applyQuestionSetJudgment verifies quotes and sums dynamic subquestion scores (1.2825ms)\n✔ applyQuestionSetJudgment forces zero when prompt injection is detected (0.2153ms)\n▶ isMissingMigration\n  ✔ 함수나 테이블이 없는 경우만 마이그레이션 미적용으로 본다 (0.6023ms)\n  ✔ 권한 오류와 기타 오류는 폴백 대상이 아니다 (0.1393ms)\n✔ isMissingMigration (1.4788ms)\n▶ consumeInMemory\n  ✔ 한도까지 허용하고 이후 요청은 거절한다 (0.236ms)\n  ✔ 시간 창과 사용자별 버킷을 분리하고 만료 항목을 정리한다 (0.1313ms)\n✔ consumeInMemory (0.4831ms)\n✔ the canonical quiz route serves the v3 question bank to authenticated users (1.3898ms)\n✔ the v3 cutover removes duplicate and v2-only runtime files (4.0971ms)\n✔ the active question pipeline has no legacy provider or RAG dependency (4.2191ms)\nℹ tests 36\nℹ suites 2\nℹ pass 36\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 416.5744\n"
+      }
+    }
+  ]
+}

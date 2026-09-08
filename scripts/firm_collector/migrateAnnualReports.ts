@@ -11,6 +11,11 @@ async function main() {
     const db = new Client({ connectionString: process.env.DATABASE_URL, connectionTimeoutMillis: 15000, query_timeout: 60000 });
     try {
         await db.connect();
+        const renamed = await db.query("select to_regclass('public.cpa_firm_annual_collection') as table_name");
+        if (renamed.rows[0].table_name) {
+            console.log('CPA-prefixed schema is installed; historical F004 migrations must not be replayed. Use new forward migrations.');
+            return;
+        }
         const existing = await db.query("select to_regclass('public.firm_annual_collection') as table_name");
         if (!existing.rows[0].table_name) {
             const backupDir = path.resolve('.cache/firm_collector/annual-2026-09-08/backups', new Date().toISOString().replace(/[:.]/g, '-'));

@@ -1,9 +1,10 @@
-import { loadPublicQuestionSetsV3 } from '../../lib/questionV3Store';
+import { loadLearningQuestionSetsV3 } from '../../lib/questionV3Repository';
+import { learningDbEnabled } from '../../lib/learningSubmission';
 import QuizClient from './QuizClient';
 
 export const dynamic = 'force-dynamic';
 
-export default function QuizPage() {
-    const questionSets = loadPublicQuestionSetsV3();
-    return <QuizClient initialSets={questionSets} />;
+export default async function QuizPage() {
+    const questionSets = await loadLearningQuestionSetsV3();
+    return <QuizClient initialSets={questionSets} learningDbEnabled={learningDbEnabled()} />;
 }

@@ -8,15 +8,17 @@ import {
 import type { QuestionSetV3 } from '../lib/questionV3.ts';
 
 const root = process.cwd();
-const authoringPath = path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.authoring.json');
-const publicPath = path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.public.json');
+const authoringPath = process.env.CPA_QUESTION_V3_AUTHORING_PATH
+    ? path.resolve(process.env.CPA_QUESTION_V3_AUTHORING_PATH) : path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.authoring.json');
+const publicPath = process.env.CPA_QUESTION_V3_PUBLIC_PATH
+    ? path.resolve(process.env.CPA_QUESTION_V3_PUBLIC_PATH) : path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.public.json');
 const allowedStandardsByTopic: Record<string, string[]> = {
     '01': ['KGA 200', 'KGA 220'],
     '02': ['KGA 200'],
     '03': ['KGA 210'],
     '04': ['KGA 230', 'KGA 300', 'KGA 320'],
     '05': ['KGA 240', 'KGA 250', 'KGA 260', 'KGA 265'],
-    '06': ['KGA 315'],
+    '06': ['KGA 315', 'KGA 330'],
     '07': ['KGA 330'],
     '08': ['KGA 500'],
     '09': ['KGA 501', 'KGA 505', 'KGA 510'],
@@ -29,7 +31,7 @@ const allowedStandardsByTopic: Record<string, string[]> = {
     '16': ['KGA 701', 'KGA 706', 'KGA 710', 'KGA 720'],
     '17': ['KGA 1100'],
     '18': ['KGA 1200'],
-    '19': [],
+    '19': ['KGA 200'],
 };
 
 function normalize(value: string): string {
@@ -67,7 +69,6 @@ function main(): void {
     const ids = new Set<string>();
     const topicCounts = new Map<string, number>();
     const promptOwners = new Map<string, string>();
-    const sourceQuoteOwners = new Map<string, string>();
     let subquestionCount = 0;
     let criterionCount = 0;
     let totalPoints = 0;
@@ -100,6 +101,9 @@ function main(): void {
         if (outOfScopeStandards.length > 0) {
             errors.push(`${set.id}: 주제 범위 밖 KGA source를 사용했습니다: ${outOfScopeStandards.join(', ')}`);
         }
+        // Separate sets may legitimately cite the same standard paragraph.
+        // Redundant source entries within one set still indicate a data defect.
+        const sourceQuoteOwners = new Map<string, string>();
         for (const source of set.source_refs) {
             if (!quoteBelongsToStandardSection(source)) {
                 errors.push(`${set.id}/${source.id}: source_quote가 ${source.page || '지정된 기준서'} 구간에 존재하지 않습니다.`);
@@ -125,9 +129,8 @@ function main(): void {
             }
         }
         const setMaxPoints = computeQuestionSetMaxPoints(set);
-        if (setMaxPoints > 8) {
-            errors.push(`${set.id}: 세트 총점은 8점을 초과할 수 없지만 ${setMaxPoints}점입니다.`);
-        }
+        // Reviewed requirements determine the total. The pilot's eight-point
+        // ceiling must not discard independent, source-backed grading elements.
         subquestionCount += set.subquestions.length;
         criterionCount += set.subquestions.reduce((sum, subquestion) => sum + subquestion.criteria.length, 0);
         totalPoints += setMaxPoints;

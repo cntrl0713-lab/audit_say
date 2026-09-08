@@ -21,7 +21,7 @@ export interface UserProfile {
 export async function getCombinedProfile(authUserId: string, authEmail?: string): Promise<UserProfile | null> {
     try {
         const { data, error } = await supabase
-            .from('user_cpa')
+            .from('cpa_users')
             .select('*')
             .eq('id', authUserId)
             .single();
@@ -48,7 +48,7 @@ export async function getCombinedProfile(authUserId: string, authEmail?: string)
 export async function createPublicProfile(userId: string, username: string): Promise<boolean> {
     try {
         const { error } = await supabase
-            .from('user_cpa')
+            .from('cpa_users')
             .insert({
                 id: userId,
                 username,

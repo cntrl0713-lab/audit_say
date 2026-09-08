@@ -2,50 +2,53 @@
 
 > 대상: `docs/PLAN_PRD_v2.md` §6·§7·§8 의 구현본
 > 정본 SQL: `supabase/migrations/20260907000001_firm_platform_schema.sql`, `..._views.sql`, `..._seed.sql`
+> 현재 이름 전환: `supabase/migrations/20260908003002_cpa_table_prefix.sql`. 기존 마이그레이션은 역사적 이름을 보존하고 새 마이그레이션을 순서대로 적용한다.
 > 적용 대상 Supabase 프로젝트: `CTA_tax_law` (`xvifzicrjmbfqaepcfpp`)
 
 ---
 
 ## 1. PRD 와 달라진 점
 
-### 1-1. 테이블 이름에 `firm_` 접두어를 붙였다
+### 1-1. 프로젝트 테이블을 `cpa_` 접두어로 통일했다
 
 이 Supabase 프로젝트의 `public` 스키마는 **두 앱이 공유**한다.
 
 | 접두어 | 앱 |
 |---|---|
 | `cta_*` | 세법학 |
-| `cpa_*`, `user_cpa` | audit_say 채점 시스템 |
+| `cpa_*` | audit_say 학습·회계법인 리서치 |
 
 PRD 가 적은 `company` · `users` · `subscriptions` · `chat_messages` 같은 무접두어 이름을
 그대로 쓰면 이 규약이 깨지고, 특히 `users` 와 `subscriptions` 는 이미 있는
-`cta_user` · `cta_subscription` · `user_cpa` 와 의미가 겹쳐 나중에 어느 앱 것인지
-분간이 안 된다. 그래서 리서치 플랫폼 테이블은 전부 `firm_*` 로 뒀다.
+`cta_user` · `cta_subscription` · `cpa_users` 와 의미가 겹쳐 나중에 어느 앱 것인지
+분간이 안 된다. 그래서 리서치 플랫폼 테이블은 전부 `cpa_firm_*` 로 뒀다.
 
 | PRD §6 | 실제 테이블 |
 |---|---|
-| `registered_firm` | `firm_registered` |
-| `company` | `firm_company` |
-| `engagement` | `firm_engagement` |
-| `audit_opinion` | `firm_audit_opinion` |
-| `financials` | `firm_financials` |
-| `service_contracts` | `firm_service_contract` |
-| `firm_profile_yearly` | `firm_profile_yearly` (그대로) |
-| `firm_workforce_yearly` | `firm_workforce_yearly` (그대로) |
-| `users` | **만들지 않음 — `user_cpa` 재사용** |
-| `subscriptions` | `firm_subscription` |
-| `chat_messages` | `firm_chat_message` |
-| `firm_reviews` | `firm_review` |
+| `registered_firm` | `cpa_firm_registered` |
+| `company` | `cpa_firm_company` |
+| `engagement` | `cpa_firm_engagement` |
+| `audit_opinion` | `cpa_firm_audit_opinion` |
+| `financials` | `cpa_firm_financials` |
+| `service_contracts` | `cpa_firm_service_contract` |
+| `firm_profile_yearly` | `cpa_firm_profile_yearly` |
+| `firm_workforce_yearly` | `cpa_firm_workforce_yearly` |
+| `users` | **만들지 않음 — `cpa_users` 재사용** |
+| `subscriptions` | `cpa_firm_subscription` |
+| `chat_messages` | `cpa_firm_chat_message` |
+| `firm_reviews` | `cpa_firm_review` |
 
 뷰도 `v_firm_` 으로 통일했다. PRD 의 `v_company_audit_history` 만
 `v_firm_company_audit_history` 로 이름이 바뀌었고 나머지 4개는 PRD 이름 그대로다.
 
+2026-09-08 변경은 물리 테이블 `user_cpa`→`cpa_users`, `firm_*` 26개→`cpa_firm_*`다. 기존 배포본을 위한 이전 이름은 `security_invoker=true` 호환 뷰로 유지한다. 데이터 사본이 아니며 원본 테이블의 RLS가 적용된다. `v_firm_*` 조회 뷰와 RPC 이름·수집 payload의 `firm_*` 키는 공개 호출 계약이므로 유지한다. 새 코드의 테이블 조회는 `cpa_*`를 사용한다. [전환 기록](cpa-table-prefix.md)을 함께 참조한다.
+
 ### 1-2. `users` 테이블을 새로 만들지 않았다
 
-audit_say 는 이미 `public.user_cpa` 가 `auth.users(id)` 를 참조하며 role 을 들고 있다.
+audit_say 는 이미 `public.cpa_users` 가 `auth.users(id)` 를 참조하며 role 을 들고 있다.
 같은 사이트의 같은 계정이므로 계정 테이블을 하나 더 만들 이유가 없다.
-`firm_subscription` · `firm_chat_message` · `firm_review` 는 `auth.users(id)` 를 직접
-참조하고, 역할이 필요하면 `user_cpa.role` 을 본다.
+`cpa_firm_subscription` · `cpa_firm_chat_message` · `cpa_firm_review` 는 `auth.users(id)` 를 직접
+참조하고, 역할이 필요하면 `cpa_users.role` 을 본다.
 
 ### 1-3. `engagement.rcept_no` 를 UNIQUE 로 두지 않았다
 
@@ -59,11 +62,11 @@ PRD 는 `rcept_no` 를 UK 로 적었지만, **공동감사(joint audit)** 면 �
 
 ### 1-4. 감사의견을 정규화값과 원문으로 나눴다
 
-`firm_audit_opinion.adt_opinion` 은 `적정/한정/부적정/의견거절` CHECK 이 걸린 정규화값이고,
+`cpa_firm_audit_opinion.adt_opinion` 은 `적정/한정/부적정/의견거절` CHECK 이 걸린 정규화값이고,
 DART 원문은 `adt_opinion_raw` 에 그대로 남긴다. 정규화 규칙이 바뀌어도 재수집 없이
 다시 파싱할 수 있어야 하기 때문이다.
 
-### 1-5. `firm_review` 에 운영용 컬럼을 더했다
+### 1-5. `cpa_firm_review` 에 운영용 컬럼을 더했다
 
 PRD §8 의 "신고 n건 이상 시 관리자 검토", "관리자만 숨김 처리"를 담으려면 필드가 필요하다.
 
@@ -84,10 +87,10 @@ PRD §8 의 "신고 n건 이상 시 관리자 검토", "관리자만 숨김 처�
 
 | 테이블 | SELECT |
 |---|---|
-| 공시 8종 (`firm_registered` … `firm_workforce_yearly`) | `anon`, `authenticated` 전체 허용 |
-| `firm_subscription` | 본인 행 (`auth.uid() = user_id`) |
-| `firm_chat_message` | 본인 행 |
-| `firm_review` | 숨김 아닌 행은 전체 공개 + 숨김 행은 작성자 본인 |
+| 공시 8종 (`cpa_firm_registered` … `cpa_firm_workforce_yearly`) | `anon`, `authenticated` 전체 허용 |
+| `cpa_firm_subscription` | 본인 행 (`auth.uid() = user_id`) |
+| `cpa_firm_chat_message` | 본인 행 |
+| `cpa_firm_review` | 숨김 아닌 행은 전체 공개 + 숨김 행은 작성자 본인 |
 
 `auth.uid()` 는 `(select auth.uid())` 로 감쌌다 — 행마다 재평가되지 않게 하는 기존 관례다.
 
@@ -130,10 +133,10 @@ RLS 가 그대로 적용되고, 뷰를 RLS 우회 통로로 쓸 수 없다.
     `employee_per_director`, `audit_revenue_ratio` 가 손계산과 일치
   - `v_firm_company_audit_history` 의 첫 연도는 `auditor_changed = NULL`,
     감사인이 바뀐 연도는 `true`
-  - `firm_engagement` 삭제 시 의견·재무·용역이 CASCADE 로 함께 지워진다
-- Supabase security advisor: `firm_*` 관련 신규 지적 없음
-  (`firm_subscription`·`firm_chat_message` 의 `auth_allow_anonymous_sign_ins` WARN 은
-  `to authenticated` 정책 전부에 붙는 것으로, 기존 `cta_*`·`user_cpa` 와 같은 등급이다.
+  - `cpa_firm_engagement` 삭제 시 의견·재무·용역이 CASCADE 로 함께 지워진다
+- Supabase security advisor: `cpa_firm_*` 관련 신규 지적 없음
+  (`cpa_firm_subscription`·`cpa_firm_chat_message` 의 `auth_allow_anonymous_sign_ins` WARN 은
+  `to authenticated` 정책 전부에 붙는 것으로, 기존 `cta_*`·`cpa_users` 와 같은 등급이다.
   정책 조건이 `auth.uid() = user_id` 라 익명 로그인 사용자도 자기 행만 본다.)
 
 ---
@@ -160,7 +163,7 @@ RLS 가 그대로 적용되고, 뷰를 RLS 우회 통로로 쓸 수 없다.
    명단이 전수가 아니라 부재가 곧 미등록을 뜻하지는 않지만, **검증되지 않은 행**이라는
    점은 기록해 둔다. 수집 결과 한 번도 감사인으로 나오지 않으면 지운다.
 
-2. **`firm_review.user_id` 가 공개 조회에 노출된다.** PRD §8 이 "전체 읽기 허용"이라
+2. **`cpa_firm_review.user_id` 가 공개 조회에 노출된다.** PRD §8 이 "전체 읽기 허용"이라
    테이블 단위로 열었기 때문이다. 실명·이메일은 담지 않지만, 같은 작성자가 쓴 리뷰끼리
    묶이는 것은 드러난다. M6 에서 익명성을 더 조이려면 공개 읽기를 `user_id` 없는
    뷰로 옮기고 테이블 정책은 본인 행으로 좁히면 된다.
@@ -186,21 +189,21 @@ RLS 가 그대로 적용되고, 뷰를 RLS 우회 통로로 쓸 수 없다.
 
 | 신규 테이블 | 용도 | 조회 |
 |---|---|---|
-| firm_personnel_cost_yearly | 임직원·품질관리 비용, 표/계정 매칭 방법 | 공개 |
-| firm_income_statement_line | 손익 원문 계정 순서·금액 | 공개 |
-| firm_audit_record_yearly | 시장·개별/연결 감사실적 | 공개 |
-| firm_audit_client | 연결 지배회사 명단·종속회사 수·의견 | 공개 |
-| firm_cpa_tenure_yearly | 부문별 등록회계사 경력, 총 이동 인원 | 공개 |
-| firm_audit_input_yearly | 경력 구간별 감사 인력·시간 | 공개 |
-| firm_quality_staff | 품질관리 조직·인력 | 공개 |
-| firm_inspection_result | 감사보고서/감사인 감리 서술 | 공개 |
-| firm_director_discipline | 성명 제외 징계 사항 | 공개 |
-| firm_certification_yearly | 전문자격증별 인원 | 공개 |
-| firm_director_profile_yearly | 사원·이사 경력 집계, 소규모 통계 억제 | 공개 |
-| firm_director | 사원·이사 실명·경력·출자비율 | 관리자 |
-| firm_director_pay | 사용자 추가 지시에 따른 실명/마스킹 보수 | 관리자 |
-| firm_annual_form_cell | 허용된 집계 표의 전 칸·전기·전전기 원문 | 공개 |
-| firm_annual_collection | 채택 공시·파서 버전·해시·검토 신호 | 공개 |
+| cpa_firm_personnel_cost_yearly | 임직원·품질관리 비용, 표/계정 매칭 방법 | 공개 |
+| cpa_firm_income_statement_line | 손익 원문 계정 순서·금액 | 공개 |
+| cpa_firm_audit_record_yearly | 시장·개별/연결 감사실적 | 공개 |
+| cpa_firm_audit_client | 연결 지배회사 명단·종속회사 수·의견 | 공개 |
+| cpa_firm_cpa_tenure_yearly | 부문별 등록회계사 경력, 총 이동 인원 | 공개 |
+| cpa_firm_audit_input_yearly | 경력 구간별 감사 인력·시간 | 공개 |
+| cpa_firm_quality_staff | 품질관리 조직·인력 | 공개 |
+| cpa_firm_inspection_result | 감사보고서/감사인 감리 서술 | 공개 |
+| cpa_firm_director_discipline | 성명 제외 징계 사항 | 공개 |
+| cpa_firm_certification_yearly | 전문자격증별 인원 | 공개 |
+| cpa_firm_director_profile_yearly | 사원·이사 경력 집계, 소규모 통계 억제 | 공개 |
+| cpa_firm_director | 사원·이사 실명·경력·출자비율 | 관리자 |
+| cpa_firm_director_pay | 사용자 추가 지시에 따른 실명/마스킹 보수 | 관리자 |
+| cpa_firm_annual_form_cell | 허용된 집계 표의 전 칸·전기·전전기 원문 | 공개 |
+| cpa_firm_annual_collection | 채택 공시·파서 버전·해시·검토 신호 | 공개 |
 
 기존 프로필/인력에는 `fy_start_date`, `fy_end_date`, `fy_seq`, `source_rcept_dt`를 추가한다.
 프로필은 `revenue_other`, 인력은 `employee_other`, `director_pay_total`, `director_pay_count`를 추가한다.

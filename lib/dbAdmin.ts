@@ -8,13 +8,14 @@ import type { UserProfile } from './db';
 // 에러를 일으킨다. 이 파일은 반드시 'use server' 컨텍스트(app/actions.ts 등)에서만 import한다.
 
 export async function incrementProgress(id: string, addedExp: number): Promise<boolean> {
+    if (process.env.CPA_LEARNING_DB_ENABLED === 'true') throw new Error('DB 경험치는 제출 완료 트랜잭션에서만 변경할 수 있습니다.');
     try {
         const adminSupabase = getSupabaseAdmin();
 
         // Transactional increment approach since Supabase SDK doesn't have a direct increment method
         // (If there are concurrency issues, RPC is better, but this solves the lost update over client state)
         const { data, error: selectError } = await adminSupabase
-            .from('user_cpa')
+            .from('cpa_users')
             .select('exp')
             .eq('id', id)
             .single();
@@ -25,7 +26,7 @@ export async function incrementProgress(id: string, addedExp: number): Promise<b
         const newLevel = 1 + Math.floor(newExp / 100);
 
         const { error } = await adminSupabase
-            .from('user_cpa')
+            .from('cpa_users')
             .update({ level: newLevel, exp: newExp })
             .eq('id', id);
 
@@ -45,7 +46,7 @@ export async function updateUserRole(userId: string, newRole: string): Promise<b
     try {
         const adminSupabase = getSupabaseAdmin();
         const { error } = await adminSupabase
-            .from('user_cpa')
+            .from('cpa_users')
             .update({ role: newRole })
             .eq('id', userId);
 
@@ -64,7 +65,7 @@ export async function checkUsernameExists(username: string): Promise<boolean> {
     try {
         const adminSupabase = getSupabaseAdmin();
         const { data, error } = await adminSupabase
-            .from('user_cpa')
+            .from('cpa_users')
             .select('username')
             .eq('username', username);
 
@@ -82,9 +83,11 @@ export async function checkUsernameExists(username: string): Promise<boolean> {
 export async function getLeaderboardData(): Promise<Omit<UserProfile, 'email'>[]> {
     const adminSupabase = getSupabaseAdmin();
     const { data, error } = await adminSupabase
-        .from('user_cpa')
+        .from('cpa_users')
         .select('id, username, role, level, exp')
         .order('exp', { ascending: false })
+        .order('created_at', { ascending: true })
+        .order('id', { ascending: true })
         .limit(10);
 
     if (error) throw new Error(`Failed to load leaderboard: ${error.message}`);
@@ -94,7 +97,7 @@ export async function getLeaderboardData(): Promise<Omit<UserProfile, 'email'>[]
 export async function getAllUsers(): Promise<UserProfile[]> {
     const adminSupabase = getSupabaseAdmin();
     const { data, error } = await adminSupabase
-        .from('user_cpa')
+        .from('cpa_users')
         .select('*')
         .order('username', { ascending: true });
 

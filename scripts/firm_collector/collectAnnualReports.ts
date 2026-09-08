@@ -25,7 +25,7 @@ export function annualPayload(result: AnnualResult, firmId: number, filing: Firm
 }
 
 async function masterMap(db: SupabaseClient, dart: DartClient, filings: FirmFiling[], dryRun: boolean, review: AnnualReport['masterReview']) {
-    const { data, error } = await db.from('firm_registered').select('firm_id,firm_name,dart_corp_code').order('firm_id').limit(2000);
+    const { data, error } = await db.from('cpa_firm_registered').select('firm_id,firm_name,dart_corp_code').order('firm_id').limit(2000);
     if (error) throw new Error(`masterRead:${error.code}`);
     const masters = data as Master[];
     const corpFilings = new Map<string, FirmFiling>();
@@ -46,16 +46,16 @@ async function masterMap(db: SupabaseClient, dart: DartClient, filings: FirmFili
             const acc = /^\d{2}$/.test(company.acc_mt ?? '') && Number(company.acc_mt) >= 1 && Number(company.acc_mt) <= 12 ? Number(company.acc_mt) : null;
             if (!dryRun) {
                 if (!master) {
-                    const { data: added, error: addError } = await db.from('firm_registered').insert({ firm_name: f.corp_name, dart_corp_code: f.corp_code, status: 'active', acc_mt: acc, induty_code: company.induty_code || null }).select('firm_id,firm_name,dart_corp_code').single();
+                    const { data: added, error: addError } = await db.from('cpa_firm_registered').insert({ firm_name: f.corp_name, dart_corp_code: f.corp_code, status: 'active', acc_mt: acc, induty_code: company.induty_code || null }).select('firm_id,firm_name,dart_corp_code').single();
                     if (addError) throw new Error(`masterInsert:${addError.code}`);
                     master = added as Master; masters.push(master);
                 } else {
-                    const { error: updateError } = await db.from('firm_registered').update({ dart_corp_code: f.corp_code, acc_mt: acc, induty_code: company.induty_code || null }).eq('firm_id', master.firm_id).or(`dart_corp_code.is.null,dart_corp_code.eq.${f.corp_code}`);
+                    const { error: updateError } = await db.from('cpa_firm_registered').update({ dart_corp_code: f.corp_code, acc_mt: acc, induty_code: company.induty_code || null }).eq('firm_id', master.firm_id).or(`dart_corp_code.is.null,dart_corp_code.eq.${f.corp_code}`);
                     if (updateError) throw new Error(`masterUpdate:${updateError.code}`);
                 }
                 // 이미 고객사 마스터에 존재하는 회사만 업종 백필. 회계법인을 고객사로 새로 만들지 않는다.
                 if (company.induty_code) {
-                    const { error: industryError } = await db.from('firm_company').update({ induty: company.induty_code }).eq('corp_code', f.corp_code).is('induty', null);
+                    const { error: industryError } = await db.from('cpa_firm_company').update({ induty: company.induty_code }).eq('corp_code', f.corp_code).is('induty', null);
                     if (industryError) throw new Error(`industryUpdate:${industryError.code}`);
                 }
             }
@@ -128,7 +128,7 @@ export async function collectAnnualReports(options: {
                     else {
                         let unchanged = false;
                         if (options.resume) {
-                            const { data, error } = await db.from('firm_annual_collection').select('payload_hash,parser_version,source_rcept_no').eq('firm_id', master.firmId).eq('bsns_year', year).maybeSingle();
+                            const { data, error } = await db.from('cpa_firm_annual_collection').select('payload_hash,parser_version,source_rcept_no').eq('firm_id', master.firmId).eq('bsns_year', year).maybeSingle();
                             if (error) throw new Error(`resumeRead:${error.code}`);
                             unchanged = data?.payload_hash === payload.payloadHash && data?.parser_version === ANNUAL_PARSER_VERSION && data?.source_rcept_no === f.rcept_no;
                         }

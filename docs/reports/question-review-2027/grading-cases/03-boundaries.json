@@ -1,0 +1,216 @@
+{
+  "scope": "Actual grading/parsing/scoring and actual actions.ts with synthetic adapters; no production DB/auth E2E",
+  "rows": [
+    {
+      "id": "duplicate-subquestion",
+      "passed": true,
+      "behavior": "rejects malformed coverage"
+    },
+    {
+      "id": "missing-subquestion",
+      "passed": true,
+      "behavior": "rejects malformed coverage"
+    },
+    {
+      "id": "unknown-subquestion",
+      "passed": true,
+      "behavior": "rejects malformed coverage"
+    },
+    {
+      "id": "duplicate-criterion",
+      "passed": true,
+      "behavior": "rejects malformed coverage"
+    },
+    {
+      "id": "missing-criterion",
+      "passed": true,
+      "behavior": "rejects malformed coverage"
+    },
+    {
+      "id": "unknown-criterion",
+      "passed": true,
+      "behavior": "rejects malformed coverage"
+    },
+    {
+      "id": "whitespace-empty-no-model",
+      "passed": true,
+      "calls": 0
+    },
+    {
+      "id": "overflow-code-boundary",
+      "expected_score": 1,
+      "actual_score": 2,
+      "passed": false,
+      "result": {
+        "question_set_id": "pilot-03-003",
+        "score": 2,
+        "max_points": 5,
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "prompt": "감사업무 조건이 법규에 충분히 세부적으로 명시된 경우에도 감사계약서에 기록해야 하는 두 가지 사실을 제시하시오.",
+            "user_answer": "",
+            "score": 0,
+            "max_points": 3,
+            "criteria": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "claim": "감사업무 조건을 정한 법규가 적용된다는 사실을 기록함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "claim": "경영진이 문단 6(b)의 책임을 인정한다는 사실을 기록함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "claim": "경영진이 문단 6(b)의 책임을 이해한다는 사실을 기록함",
+                "max_points": 1,
+                "awarded_points": 0
+              }
+            ],
+            "model_answer": [
+              "그 법규가 적용된다는 사실을 기록한다.",
+              "경영진이 문단 6(b)의 책임을 인정하고 이해한다는 사실을 기록한다."
+            ]
+          },
+          {
+            "subquestion_id": "sub2",
+            "prompt": "감사업무 조건이 변경된 경우 감사인과 경영진이 수행해야 할 두 가지 조치를 제시하시오.",
+            "user_answer": "1. 감사보수 지급일을 정한다.\n2. 감사인과 경영진이 새로운 업무조건에 합의한다.\n3. 새로운 업무조건을 계약서 또는 기타 적절한 형태의 합의서에 기록한다.",
+            "score": 2,
+            "max_points": 2,
+            "criteria": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "quote": "감사인과 경영진이 새로운 업무조건에 합의한다.",
+                "claim": "감사인과 경영진이 새로운 업무조건에 합의함",
+                "max_points": 1,
+                "awarded_points": 1
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "met",
+                "quote": "새로운 업무조건을 계약서 또는 기타 적절한 형태의 합의서에 기록한다.",
+                "claim": "새로운 업무조건을 계약서 또는 기타 적절한 합의서에 기록함",
+                "max_points": 1,
+                "awarded_points": 1
+              }
+            ],
+            "model_answer": [
+              "새로운 업무조건에 합의한다.",
+              "새로운 업무조건을 계약서 또는 기타 적절한 형태의 합의서에 기록한다."
+            ]
+          }
+        ],
+        "security_flag": "none"
+      }
+    },
+    {
+      "id": "sum-and-cap",
+      "passed": true
+    },
+    {
+      "id": "auth-required",
+      "passed": true,
+      "state": {
+        "quota": 0,
+        "grades": 0,
+        "progress": []
+      }
+    },
+    {
+      "id": "invalid-set-id",
+      "passed": true,
+      "state": {
+        "quota": 0,
+        "grades": 0,
+        "progress": []
+      }
+    },
+    {
+      "id": "ui-5001-server-reject",
+      "passed": true,
+      "state": {
+        "quota": 0,
+        "grades": 0,
+        "progress": []
+      }
+    },
+    {
+      "id": "unknown-slot-quota-consumed-first",
+      "passed": true,
+      "state": {
+        "quota": 1,
+        "grades": 0,
+        "progress": []
+      }
+    },
+    {
+      "id": "zero-no-progress",
+      "passed": true,
+      "state": {
+        "quota": 1,
+        "grades": 1,
+        "progress": []
+      }
+    },
+    {
+      "id": "repeated-positive-repeated-progress",
+      "passed": true,
+      "state": {
+        "quota": 2,
+        "grades": 2,
+        "progress": [
+          {
+            "id": "synthetic-review-user",
+            "points": 6
+          },
+          {
+            "id": "synthetic-review-user",
+            "points": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "quota-failure-no-grading",
+      "passed": true,
+      "state": {
+        "quota": 1,
+        "grades": 0,
+        "progress": []
+      }
+    },
+    {
+      "id": "missing-key-even-blank",
+      "passed": true,
+      "state": {
+        "quota": 1,
+        "grades": 0,
+        "progress": []
+      }
+    },
+    {
+      "id": "progress-failure-rejects-after-grading",
+      "passed": true,
+      "state": {
+        "quota": 1,
+        "grades": 1,
+        "progress": [
+          {
+            "id": "synthetic-review-user",
+            "points": 6
+          }
+        ]
+      }
+    }
+  ]
+}

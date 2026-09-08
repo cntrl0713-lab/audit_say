@@ -22,10 +22,11 @@ test('the canonical quiz route serves the v3 question bank to authenticated user
         actions.indexOf('\nexport async function', actions.indexOf('export async function gradeQuestionSetV3Action') + 1),
     );
 
-    assert.match(quizPage, /loadPublicQuestionSetsV3/);
+    assert.match(quizPage, /loadLearningQuestionSetsV3/);
     assert.match(quizPage, /QuizClient/);
     assert.doesNotMatch(gradeAction, /assertAdmin/);
     assert.match(gradeAction, /incrementProgress/);
+    assert.match(gradeAction, /gradeLearningSubmission/);
 });
 
 test('the v3 cutover removes duplicate and v2-only runtime files', () => {

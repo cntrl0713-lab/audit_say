@@ -1,0 +1,1082 @@
+[
+  {
+    "schema_version": "3.0",
+    "id": "pilot-15-001",
+    "type": "linked_question_set",
+    "status": "published",
+    "title": "감사보고서의 구성과 감사의견의 변형",
+    "classification": {
+      "topic_id": "15",
+      "part": "PART4",
+      "chapter": "감사의견과 보고",
+      "domain": "audit",
+      "standards": [
+        "KGA 705",
+        "KGA 700"
+      ],
+      "tags": [
+        "감사의견",
+        "감사보고서",
+        "적정의견",
+        "한정의견",
+        "부적정의견",
+        "의견거절",
+        "의견변형"
+      ]
+    },
+    "source_refs": [
+      {
+        "id": "src3",
+        "file": "cpa_uploader/data/회계감사_통합학습자료/01_감사기준/08_기준서_600_705_보완학습.md",
+        "title": "08_기준서_600_705_보완학습",
+        "page": "KGA 705",
+        "source_quote": "- 의견변형의 원인이 된 사항은 `한정의견 근거`, `부적정의견 근거` 또는 `의견거절 근거` 문단에 구체적으로 설명한다.",
+        "role": "practice",
+        "content_hash": "66b70b3494ed3b0568eed40f7dfb52652a1430af969bfa5bace198bed4a82c56"
+      },
+      {
+        "id": "src8",
+        "file": "cpa_uploader/data/회계감사_통합학습자료/01_감사기준/07_감사의견과_감사보고.md",
+        "title": "07_감사의견과_감사보고",
+        "page": "KGA 700",
+        "source_quote": "28. 감사보고서에는 감사의견 단락 바로 다음에 “감사의견근거”라는 제목의 단락을 포함하여야 하며 이 감사의견근거 단락에는 다음 내용을 기재하여야 한다.",
+        "role": "standard",
+        "content_hash": "ec2c962891b51e5cb2e89e69b8448d7e53a731c09847990235a8f5b2821d7a93"
+      },
+      {
+        "id": "src9",
+        "file": "cpa_uploader/data/회계감사_통합학습자료/01_감사기준/07_감사의견과_감사보고.md",
+        "title": "07_감사의견과_감사보고",
+        "page": "KGA 700",
+        "source_quote": "23. 감사보고서의 첫 번째 단락에는 감사의견을 포함하여야 하며, 해당 단락의 제목을 “감사의견” 이라 하여야 한다.",
+        "role": "standard",
+        "content_hash": "2ff1ffeffa6b8b66008971ca66547d5741a7c10a5e523975333528678d7920f9"
+      }
+    ],
+    "shared_context": {
+      "facts": [
+        {
+          "id": "fact1",
+          "text": "감사인은 감사보고서의 단락 구성과 의견변형 근거를 점검하고 있다.",
+          "scoreable": false
+        }
+      ]
+    },
+    "learning_order": [
+      "subq1",
+      "subq2"
+    ],
+    "subquestions": [
+      {
+        "id": "subq1",
+        "type": "descriptive",
+        "prompt": "감사보고서 내에서 감사의견 단락과 감사의견근거 단락의 배치 및 제목에 관한 기준서의 요구사항을 설명하시오.",
+        "constraints": {
+          "ordered": false,
+          "max_entries": null,
+          "overflow_policy": "none"
+        },
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "model_answer": [
+          "감사보고서의 첫 번째 단락은 '감사의견'이라는 제목으로 감사의견을 포함해야 하며, 그 바로 다음 단락으로 '감사의견근거'라는 제목의 단락을 포함해야 한다."
+        ],
+        "requirements": [
+          {
+            "id": "req1",
+            "source_ref_id": "src9",
+            "source_quote": "23. 감사보고서의 첫 번째 단락에는 감사의견을 포함하여야 하며, 해당 단락의 제목을 “감사의견” 이라 하여야 한다."
+          },
+          {
+            "id": "req2",
+            "source_ref_id": "src8",
+            "source_quote": "28. 감사보고서에는 감사의견 단락 바로 다음에 “감사의견근거”라는 제목의 단락을 포함하여야 하며 이 감사의견근거 단락에는 다음 내용을 기재하여야 한다."
+          }
+        ],
+        "criteria": [
+          {
+            "id": "crit1",
+            "requirement_id": "req1",
+            "claim": "감사보고서 첫 번째 단락에 감사의견을 포함함",
+            "critical_facts": [
+              {
+                "id": "cf1",
+                "type": "action",
+                "expected": "첫 번째 단락에 감사의견 포함"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src9"
+            ]
+          },
+          {
+            "id": "crit2",
+            "requirement_id": "req1",
+            "claim": "첫 번째 단락의 제목을 감사의견으로 함",
+            "critical_facts": [
+              {
+                "id": "cf2",
+                "type": "action",
+                "expected": "첫 번째 단락 제목은 감사의견"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src9"
+            ]
+          },
+          {
+            "id": "crit3",
+            "requirement_id": "req2",
+            "claim": "감사의견 단락 바로 다음에 근거 단락을 배치함",
+            "critical_facts": [
+              {
+                "id": "cf3",
+                "type": "action",
+                "expected": "감사의견 단락 바로 다음에 근거 단락 배치"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src8"
+            ]
+          },
+          {
+            "id": "crit4",
+            "requirement_id": "req2",
+            "claim": "근거 단락의 제목을 감사의견근거로 함",
+            "critical_facts": [
+              {
+                "id": "cf4",
+                "type": "action",
+                "expected": "근거 단락 제목은 감사의견근거"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src8"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "subq2",
+        "type": "judgment",
+        "prompt": "감사의견이 변형된 경우, 감사보고서의 '감사의견근거' 단락은 어떻게 구성되어야 하는지 기술하시오.",
+        "constraints": {
+          "ordered": false,
+          "max_entries": null,
+          "overflow_policy": "none"
+        },
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "model_answer": [
+          "의견변형의 원인이 된 사항을 한정의견 근거, 부적정의견 근거 또는 의견거절 근거 문단에 구체적으로 설명해야 한다."
+        ],
+        "requirements": [
+          {
+            "id": "req3",
+            "source_ref_id": "src3",
+            "source_quote": "- 의견변형의 원인이 된 사항은 `한정의견 근거`, `부적정의견 근거` 또는 `의견거절 근거` 문단에 구체적으로 설명한다."
+          }
+        ],
+        "criteria": [
+          {
+            "id": "crit5",
+            "requirement_id": "req3",
+            "claim": "의견변형 원인을 한정의견 근거·부적정의견 근거·의견거절 근거 중 해당 문단에 구체적으로 설명함",
+            "critical_facts": [
+              {
+                "id": "cf5",
+                "type": "action",
+                "expected": "한정의견 근거, 부적정의견 근거 또는 의견거절 근거 문단에 구체적으로 설명"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src3"
+            ]
+          }
+        ]
+      }
+    ],
+    "verification": {
+      "source_fidelity": "exact",
+      "review_status": "verified",
+      "calculation_required": false,
+      "notes": [
+        "LLM 위키 기반 자동 생성 파일럿. 원문·구조·의미 검수 완료.",
+        "2026-08-08 의미 품질 검수 지적사항을 결정적으로 보정함. 원문·구조·2차 의미 검수 완료."
+      ]
+    }
+  },
+  {
+    "schema_version": "3.0",
+    "id": "pilot-15-002",
+    "type": "linked_question_set",
+    "status": "published",
+    "title": "재무제표에 대한 의견형성 시 평가사항",
+    "classification": {
+      "topic_id": "15",
+      "part": "PART4",
+      "chapter": "감사의견과 보고",
+      "domain": "audit",
+      "standards": [
+        "KGA 700"
+      ],
+      "tags": [
+        "의견형성",
+        "회계정책",
+        "회계추정치",
+        "공정표시체계",
+        "재무보고체계"
+      ]
+    },
+    "source_refs": [
+      {
+        "id": "src1",
+        "file": "cpa_uploader/data/회계감사_통합학습자료/01_감사기준/07_감사의견과_감사보고.md",
+        "title": "07_감사의견과_감사보고",
+        "page": "KGA 700",
+        "source_quote": "13. 감사인은 해당 재무보고체계 요구사항의 관점에서 특히 다음 사항을 평가해야 한다.\n    (a) 경영진이 선택하고 적용한 유의적인 회계정책이 재무제표에 적절히 공시되었는지 여부\n    (b) 경영진이 선택하고 적용한 회계정책이 해당 재무보고체계와 일관성이 있으며 또한 적합한지 여부\n    (c) 경영진이 도출한 회계추정치와 관련 공시가 합리적인지 여부\n    (d) 재무제표에 표시된 정보가 목적적합하고, 신뢰할 수 있고, 비교가능하며, 이해가능한지 여부\n    (e) 의도된 이용자들이 중요한 거래와 사건이 재무제표의 정보에 미치는 영향을 이해할 수 있도록 재무제표의 공시는 적절한지 여부\n    (f) 재무제표에 사용된 용어가 적합한지 여부",
+        "role": "standard",
+        "content_hash": "ac86d586084084175db1b6e81c4a01df984ad8cf4978ccc4de77cbf31c410bbf"
+      },
+      {
+        "id": "src2",
+        "file": "cpa_uploader/data/회계감사_통합학습자료/01_감사기준/07_감사의견과_감사보고.md",
+        "title": "07_감사의견과_감사보고",
+        "page": "KGA 700",
+        "source_quote": "14. 재무제표가 공정표시체계에 따라 작성되는 경우, 감사인은 문단 12와 13의 요구에 따른 평가를 할 때 재무제표의 공정한 표시가 달성되었는지 여부를 평가하여야 한다.\n15. 감사인은 재무제표가 해당 재무보고체계를 적절하게 언급하거나 기술하고 있는지 여부를 평가하여야 한다.",
+        "role": "standard",
+        "content_hash": "e67772435376ff416ade5df93e0099888156f06f9ed972f8e7c3540ce64e6b4f"
+      }
+    ],
+    "shared_context": {
+      "facts": [
+        {
+          "id": "fact1",
+          "text": "감사인은 재무제표에 대한 의견을 형성하기 위한 평가 절차를 검토하고 있다.",
+          "scoreable": false
+        }
+      ]
+    },
+    "learning_order": [
+      "sub1",
+      "sub2"
+    ],
+    "subquestions": [
+      {
+        "id": "sub1",
+        "type": "enumeration",
+        "prompt": "재무제표가 해당 재무보고체계의 요구사항에 따라 작성되었는지 평가할 때 감사인이 특히 평가해야 할 사항 여섯 가지를 모두 제시하시오.",
+        "constraints": {
+          "ordered": false,
+          "max_entries": 6,
+          "overflow_policy": "ignore_after_limit"
+        },
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "model_answer": [
+          "유의적인 회계정책이 재무제표에 적절히 공시되었는지 평가한다.",
+          "선택·적용한 회계정책이 해당 재무보고체계와 일관되고 적합한지 평가한다.",
+          "회계추정치와 관련 공시가 합리적인지 평가한다.",
+          "표시된 정보가 목적적합하고 신뢰할 수 있으며 비교가능하고 이해가능한지 평가한다.",
+          "의도된 이용자가 중요한 거래와 사건의 영향을 이해할 수 있도록 공시가 적절한지 평가한다.",
+          "재무제표에 사용된 용어가 적합한지 평가한다."
+        ],
+        "requirements": [
+          {
+            "id": "req1",
+            "source_ref_id": "src1",
+            "source_quote": "13. 감사인은 해당 재무보고체계 요구사항의 관점에서 특히 다음 사항을 평가해야 한다.\n    (a) 경영진이 선택하고 적용한 유의적인 회계정책이 재무제표에 적절히 공시되었는지 여부\n    (b) 경영진이 선택하고 적용한 회계정책이 해당 재무보고체계와 일관성이 있으며 또한 적합한지 여부\n    (c) 경영진이 도출한 회계추정치와 관련 공시가 합리적인지 여부\n    (d) 재무제표에 표시된 정보가 목적적합하고, 신뢰할 수 있고, 비교가능하며, 이해가능한지 여부\n    (e) 의도된 이용자들이 중요한 거래와 사건이 재무제표의 정보에 미치는 영향을 이해할 수 있도록 재무제표의 공시는 적절한지 여부\n    (f) 재무제표에 사용된 용어가 적합한지 여부"
+          }
+        ],
+        "criteria": [
+          {
+            "id": "crit1",
+            "requirement_id": "req1",
+            "claim": "유의적인 회계정책이 재무제표에 적절히 공시되었는지 평가함",
+            "critical_facts": [
+              {
+                "id": "cf1",
+                "type": "action",
+                "expected": "유의적인 회계정책의 적절한 공시 여부 평가"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit2",
+            "requirement_id": "req1",
+            "claim": "선택·적용한 회계정책이 해당 재무보고체계와 일관되고 적합한지 평가함",
+            "critical_facts": [
+              {
+                "id": "cf2",
+                "type": "action",
+                "expected": "회계정책의 재무보고체계 일관성 및 적합성 평가"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit3",
+            "requirement_id": "req1",
+            "claim": "회계추정치와 관련 공시의 합리성을 평가함",
+            "critical_facts": [
+              {
+                "id": "cf3",
+                "type": "action",
+                "expected": "회계추정치와 관련 공시의 합리성 평가"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit4",
+            "requirement_id": "req1",
+            "claim": "재무제표 정보의 목적적합성·신뢰성·비교가능성·이해가능성을 평가함",
+            "critical_facts": [
+              {
+                "id": "cf4",
+                "type": "action",
+                "expected": "표시 정보의 목적적합성, 신뢰성, 비교가능성 및 이해가능성 평가"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit5",
+            "requirement_id": "req1",
+            "claim": "중요한 거래와 사건의 영향을 이용자가 이해할 수 있도록 공시가 적절한지 평가함",
+            "critical_facts": [
+              {
+                "id": "cf5",
+                "type": "action",
+                "expected": "중요한 거래와 사건의 영향을 이해할 수 있도록 공시 적절성 평가"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit6",
+            "requirement_id": "req1",
+            "claim": "재무제표에 사용된 용어의 적합성을 평가함",
+            "critical_facts": [
+              {
+                "id": "cf6",
+                "type": "action",
+                "expected": "재무제표 용어의 적합성 평가"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sub2",
+        "type": "descriptive",
+        "prompt": "공정표시체계에 따른 재무제표의 의견형성 과정에서 요구되는 추가 평가와, 적용되는 재무보고체계의 표시와 관련하여 감사인이 수행할 평가를 각각 설명하시오.",
+        "constraints": {
+          "ordered": false,
+          "max_entries": null,
+          "overflow_policy": "none"
+        },
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "model_answer": [
+          "공정표시체계에서는 재무제표의 공정한 표시가 달성되었는지 평가한다.",
+          "재무제표가 해당 재무보고체계를 적절하게 언급하거나 기술하는지 평가한다."
+        ],
+        "requirements": [
+          {
+            "id": "req2",
+            "source_ref_id": "src2",
+            "source_quote": "14. 재무제표가 공정표시체계에 따라 작성되는 경우, 감사인은 문단 12와 13의 요구에 따른 평가를 할 때 재무제표의 공정한 표시가 달성되었는지 여부를 평가하여야 한다.\n15. 감사인은 재무제표가 해당 재무보고체계를 적절하게 언급하거나 기술하고 있는지 여부를 평가하여야 한다."
+          }
+        ],
+        "criteria": [
+          {
+            "id": "crit7",
+            "requirement_id": "req2",
+            "claim": "공정표시체계에서 재무제표의 공정한 표시 달성 여부를 평가함",
+            "critical_facts": [
+              {
+                "id": "cf7",
+                "type": "action",
+                "expected": "공정한 표시 달성 여부 평가"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "id": "crit8",
+            "requirement_id": "req2",
+            "claim": "재무제표가 해당 재무보고체계를 적절히 언급하거나 기술하는지 평가함",
+            "critical_facts": [
+              {
+                "id": "cf8",
+                "type": "action",
+                "expected": "재무보고체계의 적절한 언급 또는 기술 여부 평가"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src2"
+            ]
+          }
+        ]
+      }
+    ],
+    "verification": {
+      "source_fidelity": "exact",
+      "review_status": "verified",
+      "calculation_required": false,
+      "notes": [
+        "원문 요구사항의 미사용 논점을 바탕으로 작성한 추가 v3 초안. 원문·구조·의미 검수 완료."
+      ]
+    }
+  },
+  {
+    "schema_version": "3.0",
+    "id": "pilot-15-003",
+    "type": "linked_question_set",
+    "status": "published",
+    "title": "의견변형의 형태와 전반성 판단",
+    "classification": {
+      "topic_id": "15",
+      "part": "PART4",
+      "chapter": "감사의견과 보고",
+      "domain": "audit",
+      "standards": [
+        "KGA 705"
+      ],
+      "tags": [
+        "의견변형",
+        "전반성",
+        "중요한 왜곡표시",
+        "감사증거 미입수",
+        "한정의견",
+        "부적정의견",
+        "의견거절"
+      ]
+    },
+    "source_refs": [
+      {
+        "id": "src1",
+        "file": "cpa_uploader/data/회계감사_통합학습자료/01_감사기준/08_기준서_600_705_보완학습.md",
+        "title": "08_기준서_600_705_보완학습",
+        "page": "KGA 705",
+        "source_quote": "### 중요성과 전반성에 따른 의견 형태\n\n| 상황 | 중요하지만 전반적이지 않음 | 중요하고 전반적임 |\n|---|---|---|\n| 재무제표에 중요한 왜곡표시가 존재함 | 한정의견 | 부적정의견 |\n| 충분하고 적합한 감사증거를 입수할 수 없음 | 한정의견 | 의견거절 |\n\n전반적인 영향은 특정 요소·계정·항목에 국한되지 않거나, 국한되더라도 재무제표의 상당 부분을 차지하거나, 공시와 관련하여 재무제표 이용자의 이해에 근본적인 영향을 미치는 경우를 말한다.",
+        "role": "practice",
+        "content_hash": "973bee23de1644c4319b279680b94f1dcfcbf2dc3c7da3fa78129df2c00431f6"
+      }
+    ],
+    "shared_context": {
+      "facts": [
+        {
+          "id": "fact1",
+          "text": "감사인은 의견변형의 원인과 그 영향의 전반성을 토대로 감사의견 형태를 결정하려 한다.",
+          "scoreable": false
+        }
+      ]
+    },
+    "learning_order": [
+      "sub1",
+      "sub2"
+    ],
+    "subquestions": [
+      {
+        "id": "sub1",
+        "type": "enumeration",
+        "prompt": "의견변형의 원인이 중요한 왜곡표시인 경우와 감사증거 미입수인 경우를 나누어, 영향의 전반성 여부에 따른 감사의견 형태를 네 가지 조합별로 제시하시오.",
+        "constraints": {
+          "ordered": false,
+          "max_entries": 4,
+          "overflow_policy": "ignore_after_limit"
+        },
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "model_answer": [
+          "중요한 왜곡표시가 중요하지만 전반적이지 않으면 한정의견이다.",
+          "중요한 왜곡표시가 중요하고 전반적이면 부적정의견이다.",
+          "감사증거를 입수할 수 없고 가능한 영향이 중요하지만 전반적이지 않으면 한정의견이다.",
+          "감사증거를 입수할 수 없고 가능한 영향이 중요하고 전반적이면 의견거절이다."
+        ],
+        "requirements": [
+          {
+            "id": "req1",
+            "source_ref_id": "src1",
+            "source_quote": "### 중요성과 전반성에 따른 의견 형태\n\n| 상황 | 중요하지만 전반적이지 않음 | 중요하고 전반적임 |\n|---|---|---|\n| 재무제표에 중요한 왜곡표시가 존재함 | 한정의견 | 부적정의견 |\n| 충분하고 적합한 감사증거를 입수할 수 없음 | 한정의견 | 의견거절 |"
+          }
+        ],
+        "criteria": [
+          {
+            "id": "crit1",
+            "requirement_id": "req1",
+            "claim": "중요한 왜곡표시가 중요하지만 전반적이지 않은 경우 한정의견을 제시함",
+            "critical_facts": [
+              {
+                "id": "cf1",
+                "type": "conclusion",
+                "expected": "재무제표에 중요한 왜곡표시가 존재하지만 전반적이지 않은 경우 한정의견"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit2",
+            "requirement_id": "req1",
+            "claim": "중요한 왜곡표시가 중요하고 전반적인 경우 부적정의견을 제시함",
+            "critical_facts": [
+              {
+                "id": "cf2",
+                "type": "conclusion",
+                "expected": "부적정의견"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit3",
+            "requirement_id": "req1",
+            "claim": "감사증거 미입수의 가능한 영향이 중요하지만 전반적이지 않은 경우 한정의견을 제시함",
+            "critical_facts": [
+              {
+                "id": "cf3",
+                "type": "conclusion",
+                "expected": "충분하고 적합한 감사증거를 입수할 수 없지만 영향이 전반적이지 않은 경우 한정의견"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit4",
+            "requirement_id": "req1",
+            "claim": "감사증거 미입수의 가능한 영향이 중요하고 전반적인 경우 의견거절을 제시함",
+            "critical_facts": [
+              {
+                "id": "cf4",
+                "type": "conclusion",
+                "expected": "의견거절"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sub2",
+        "type": "enumeration",
+        "prompt": "감사의견 형태를 결정할 때 영향이 전반적이라고 보는 세 가지 경우를 모두 제시하시오.",
+        "constraints": {
+          "ordered": false,
+          "max_entries": 3,
+          "overflow_policy": "ignore_after_limit"
+        },
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "model_answer": [
+          "영향이 특정 요소·계정·항목에 국한되지 않는 경우이다.",
+          "특정 요소·계정·항목에 국한되더라도 재무제표의 상당 부분을 차지하는 경우이다.",
+          "공시와 관련하여 재무제표 이용자의 이해에 근본적인 영향을 미치는 경우이다."
+        ],
+        "requirements": [
+          {
+            "id": "req2",
+            "source_ref_id": "src1",
+            "source_quote": "전반적인 영향은 특정 요소·계정·항목에 국한되지 않거나, 국한되더라도 재무제표의 상당 부분을 차지하거나, 공시와 관련하여 재무제표 이용자의 이해에 근본적인 영향을 미치는 경우를 말한다."
+          }
+        ],
+        "criteria": [
+          {
+            "id": "crit5",
+            "requirement_id": "req2",
+            "claim": "영향이 특정 요소·계정·항목에 국한되지 않는 경우를 제시함",
+            "critical_facts": [
+              {
+                "id": "cf5",
+                "type": "condition",
+                "expected": "특정 요소·계정·항목에 국한되지 않음"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit6",
+            "requirement_id": "req2",
+            "claim": "국한되더라도 재무제표의 상당 부분을 차지하는 경우를 제시함",
+            "critical_facts": [
+              {
+                "id": "cf6",
+                "type": "condition",
+                "expected": "재무제표의 상당 부분을 차지함"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit7",
+            "requirement_id": "req2",
+            "claim": "공시가 재무제표 이용자의 이해에 근본적 영향을 미치는 경우를 제시함",
+            "critical_facts": [
+              {
+                "id": "cf7",
+                "type": "condition",
+                "expected": "이용자의 이해에 근본적인 영향을 미침"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ]
+      }
+    ],
+    "verification": {
+      "source_fidelity": "exact",
+      "review_status": "verified",
+      "calculation_required": false,
+      "notes": [
+        "원문 요구사항의 미사용 논점을 바탕으로 작성한 추가 v3 초안. 원문·구조·의미 검수 완료."
+      ]
+    }
+  },
+  {
+    "schema_version": "3.0",
+    "id": "pilot-15-004",
+    "type": "linked_question_set",
+    "status": "published",
+    "title": "의견변형 근거의 기술과 지배기구 커뮤니케이션",
+    "classification": {
+      "topic_id": "15",
+      "part": "PART4",
+      "chapter": "감사의견과 보고",
+      "domain": "audit",
+      "standards": [
+        "KGA 705"
+      ],
+      "tags": [
+        "의견변형 근거",
+        "공시 누락",
+        "감사증거 미입수",
+        "의견거절",
+        "지배기구 커뮤니케이션"
+      ]
+    },
+    "source_refs": [
+      {
+        "id": "src1",
+        "file": "cpa_uploader/data/회계감사_통합학습자료/01_감사기준/08_기준서_600_705_보완학습.md",
+        "title": "08_기준서_600_705_보완학습",
+        "page": "KGA 705",
+        "source_quote": "- 중요한 왜곡표시가 특정 금액과 관련되면 실무적으로 가능한 경우 그 재무적 영향을 기술한다.\n- 공시 누락이 원인이면 누락된 정보의 성격을 설명하고, 실무적으로 가능하며 금지되지 않는 경우 필요한 정보를 포함한다.\n- 감사증거의 미입수가 원인이면 그 이유를 설명한다.",
+        "role": "practice",
+        "content_hash": "437fa5f9cd98377f7775100d46c5940748db0aad5c22ca444e642294f8728e8f"
+      },
+      {
+        "id": "src2",
+        "file": "cpa_uploader/data/회계감사_통합학습자료/01_감사기준/08_기준서_600_705_보완학습.md",
+        "title": "08_기준서_600_705_보완학습",
+        "page": "KGA 705",
+        "source_quote": "- 의견거절 시에는 감사인의 책임 문단과 핵심감사사항 등 다른 보고요소에 필요한 변경을 반영한다.",
+        "role": "practice",
+        "content_hash": "4a2e4abd2b83d7da6a012884be0acf00317b8ecf8387fa529d781619f982889d"
+      },
+      {
+        "id": "src3",
+        "file": "cpa_uploader/data/회계감사_통합학습자료/01_감사기준/08_기준서_600_705_보완학습.md",
+        "title": "08_기준서_600_705_보완학습",
+        "page": "KGA 705",
+        "source_quote": "감사인은 감사보고서에서 의견을 변형할 것으로 예상되는 상황과 제안하는 변형 문구를 지배기구에 커뮤니케이션한다.",
+        "role": "practice",
+        "content_hash": "f973c12f87cc8bc23d97990f5933ec0d1b7a6e60f66a16d0574354555a6055a0"
+      }
+    ],
+    "shared_context": {
+      "facts": [
+        {
+          "id": "fact1",
+          "text": "감사인은 재무제표감사에서 의견변형이 필요한 상황을 발견하고 감사보고서 및 커뮤니케이션 절차를 검토하고 있다.",
+          "scoreable": false
+        }
+      ]
+    },
+    "learning_order": [
+      "sub1",
+      "sub2"
+    ],
+    "subquestions": [
+      {
+        "id": "sub1",
+        "type": "enumeration",
+        "prompt": "의견변형의 원인이 특정 금액의 왜곡표시, 공시 누락 또는 감사증거 미입수인 경우 감사보고서의 근거 문단에 기술할 내용을 원인별로 제시하시오.",
+        "constraints": {
+          "ordered": false,
+          "max_entries": 4,
+          "overflow_policy": "ignore_after_limit"
+        },
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "model_answer": [
+          "특정 금액과 관련된 중요한 왜곡표시는 실무적으로 가능한 경우 재무적 영향을 기술한다.",
+          "공시 누락이 원인이면 누락된 정보의 성격을 설명한다.",
+          "공시 누락이 의견변형의 원인이고 실무적으로 가능하며 금지되지 않는 경우 필요한 공시정보를 포함한다.",
+          "감사증거를 입수하지 못한 것이 원인이면 그 이유를 설명한다."
+        ],
+        "requirements": [
+          {
+            "id": "req1",
+            "source_ref_id": "src1",
+            "source_quote": "- 중요한 왜곡표시가 특정 금액과 관련되면 실무적으로 가능한 경우 그 재무적 영향을 기술한다.\n- 공시 누락이 원인이면 누락된 정보의 성격을 설명하고, 실무적으로 가능하며 금지되지 않는 경우 필요한 정보를 포함한다.\n- 감사증거의 미입수가 원인이면 그 이유를 설명한다."
+          }
+        ],
+        "criteria": [
+          {
+            "id": "crit1",
+            "requirement_id": "req1",
+            "claim": "특정 금액 관련 중요왜곡표시의 재무적 영향을 실무적으로 가능한 경우 기술함",
+            "critical_facts": [
+              {
+                "id": "cf1",
+                "type": "action",
+                "expected": "실무적으로 가능한 경우 특정 금액 왜곡표시의 재무적 영향 기술"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit2",
+            "requirement_id": "req1",
+            "claim": "공시 누락이 원인이면 누락된 정보의 성격을 설명함",
+            "critical_facts": [
+              {
+                "id": "cf2",
+                "type": "action",
+                "expected": "누락된 정보의 성격 설명"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit3",
+            "requirement_id": "req1",
+            "claim": "공시 누락이 의견변형의 원인이고 실무적으로 가능하며 금지되지 않는 경우 필요한 공시정보를 포함함",
+            "critical_facts": [
+              {
+                "id": "cf3",
+                "type": "condition",
+                "expected": "공시 누락이 원인이고 가능하며 금지되지 않는 경우 필요한 공시정보 포함"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "id": "crit4",
+            "requirement_id": "req1",
+            "claim": "감사증거 미입수가 원인이면 그 이유를 설명함",
+            "critical_facts": [
+              {
+                "id": "cf4",
+                "type": "action",
+                "expected": "감사증거 미입수 이유 설명"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sub2",
+        "type": "enumeration",
+        "prompt": "의견거절 시 감사보고서의 다른 보고요소에 반영할 사항과 의견변형이 예상될 때 지배기구에 커뮤니케이션할 사항을 제시하시오.",
+        "constraints": {
+          "ordered": false,
+          "max_entries": 3,
+          "overflow_policy": "ignore_after_limit"
+        },
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "model_answer": [
+          "의견거절 시 감사인의 책임 문단과 핵심감사사항 등 다른 보고요소에 필요한 변경을 반영한다.",
+          "감사의견을 변형할 것으로 예상되는 상황을 지배기구에 커뮤니케이션한다.",
+          "제안하는 변형 문구를 지배기구에 커뮤니케이션한다."
+        ],
+        "requirements": [
+          {
+            "id": "req2",
+            "source_ref_id": "src2",
+            "source_quote": "- 의견거절 시에는 감사인의 책임 문단과 핵심감사사항 등 다른 보고요소에 필요한 변경을 반영한다."
+          },
+          {
+            "id": "req3",
+            "source_ref_id": "src3",
+            "source_quote": "감사인은 감사보고서에서 의견을 변형할 것으로 예상되는 상황과 제안하는 변형 문구를 지배기구에 커뮤니케이션한다."
+          }
+        ],
+        "criteria": [
+          {
+            "id": "crit5",
+            "requirement_id": "req2",
+            "claim": "의견거절 시 다른 보고요소에 필요한 변경을 반영함",
+            "critical_facts": [
+              {
+                "id": "cf5",
+                "type": "action",
+                "expected": "의견거절에 따른 다른 보고요소 변경"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "id": "crit6",
+            "requirement_id": "req3",
+            "claim": "의견변형이 예상되는 상황을 지배기구에 커뮤니케이션함",
+            "critical_facts": [
+              {
+                "id": "cf6",
+                "type": "action",
+                "expected": "예상되는 의견변형 상황의 커뮤니케이션"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src3"
+            ]
+          },
+          {
+            "id": "crit7",
+            "requirement_id": "req3",
+            "claim": "제안하는 변형 문구를 지배기구에 커뮤니케이션함",
+            "critical_facts": [
+              {
+                "id": "cf7",
+                "type": "action",
+                "expected": "제안 변형 문구의 커뮤니케이션"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src3"
+            ]
+          }
+        ]
+      }
+    ],
+    "verification": {
+      "source_fidelity": "exact",
+      "review_status": "verified",
+      "calculation_required": false,
+      "notes": [
+        "통합학습자료의 기존 세트에서 사용하지 않은 원문 논점을 바탕으로 작성한 v3 확장 초안. 원문·구조·의미 검수 완료."
+      ]
+    }
+  }
+]

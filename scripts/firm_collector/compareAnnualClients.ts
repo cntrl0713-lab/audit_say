@@ -11,7 +11,7 @@ async function main() {
     const dir = process.env.DART_CACHE_DIR;
     if (!dir) throw new Error('DART_CACHE_DIR 필요');
     const db = createStoreClient();
-    const firms = await db.from('firm_registered').select('firm_id,dart_corp_code').limit(2000);
+    const firms = await db.from('cpa_firm_registered').select('firm_id,dart_corp_code').limit(2000);
     if (firms.error) throw new Error(firms.error.code);
     const known: { corp_code: string; corp_name: string; firm_id: number; bsns_year: number }[] = [];
     for (let page = 0; ; page++) {

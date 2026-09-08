@@ -14,6 +14,8 @@ export const Navbar: React.FC = () => {
     const navItems = [
         { name: '문제 풀기', href: '/quiz' },
         { name: '커리큘럼', href: '/curriculum' },
+        { name: '풀이 기록', href: '/history' },
+        { name: '오답노트', href: '/review-notes' },
         { name: '랭킹', href: '/ranking' },
         { name: '내 정보', href: '/profile' },
     ];
@@ -30,7 +32,7 @@ export const Navbar: React.FC = () => {
                         Audit Say
                     </Link>
 
-                    <div className="hidden md:flex items-center gap-1">
+                    <div className="hidden lg:flex items-center gap-1">
                         {navItems.map((item) => {
                             const isActive = pathname === item.href;
                             return (
@@ -64,7 +66,7 @@ export const Navbar: React.FC = () => {
             </div>
 
             {/* 모바일: 링크를 아래 줄에 가로 스크롤로 둔다. */}
-            <div className="md:hidden flex items-center gap-1 -mx-1 pb-2 overflow-x-auto">
+            <div className="lg:hidden flex items-center gap-1 -mx-1 pb-2 overflow-x-auto">
                 {navItems.map((item) => {
                     const isActive = pathname === item.href;
                     return (
@@ -72,7 +74,7 @@ export const Navbar: React.FC = () => {
                             key={item.href}
                             href={item.href}
                             aria-current={isActive ? 'page' : undefined}
-                            className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${isActive
+                            className={`whitespace-nowrap px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${isActive
                                 ? 'bg-card border border-card-border text-foreground'
                                 : 'text-foreground/55'
                                 }`}

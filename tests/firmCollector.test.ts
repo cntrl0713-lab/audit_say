@@ -392,10 +392,10 @@ describe('collectEngagements 배선', () => {
             if (op !== 'select') written.push({ table, op, payload });
 
             let result: unknown = { data: null, error: null };
-            if (table === 'firm_registered' && op === 'select') {
+            if (table === 'cpa_firm_registered' && op === 'select') {
                 result = { data: firms, error: null };
             }
-            if (table === 'firm_engagement' && op === 'upsert') {
+            if (table === 'cpa_firm_engagement' && op === 'upsert') {
                 engagementSeq += 1;
                 result = { data: { engagement_id: engagementSeq }, error: null };
             }
@@ -484,33 +484,33 @@ describe('collectEngagements 배선', () => {
         const find = (table: string, op: string) =>
             written.find((row) => row.table === table && row.op === op)?.payload as Record<string, unknown>;
 
-        assert.deepEqual(find('firm_engagement', 'upsert'), {
+        assert.deepEqual(find('cpa_firm_engagement', 'upsert'), {
             firm_id: 7,
             corp_code: '00126380',
             bsns_year: 2024,
             rcept_no: '20250315000001',
         });
 
-        const company = find('firm_company', 'upsert');
+        const company = find('cpa_firm_company', 'upsert');
         assert.equal(company.corp_name, '주식회사 테스트전자');
         assert.equal(company.corp_cls, 'Y');
         assert.equal(company.listed_yn, true);
 
-        const opinion = find('firm_audit_opinion', 'upsert');
+        const opinion = find('cpa_firm_audit_opinion', 'upsert');
         assert.equal(opinion.adt_opinion, '적정');
         assert.equal(opinion.adt_opinion_raw, '적정');
         assert.equal(opinion.kam_count, 2);
         assert.equal(opinion.emph_matter, '계속기업 관련 중요한 불확실성');
 
         // 연결이 있으므로 별도(900,000)가 아니라 연결(1,000,000)을 써야 한다
-        const financials = find('firm_financials', 'upsert');
+        const financials = find('cpa_firm_financials', 'upsert');
         assert.equal(financials.revenue, 1000000);
         assert.equal(financials.operating_profit, -50000); // 괄호 음수
         assert.equal(financials.fs_div, 'CFS');
         assert.equal(financials.fallback_yn, false);
         assert.equal(financials.data_status, 'ok');
 
-        assert.equal(written.some((row) => row.table === 'firm_service_contract'), false);
+        assert.equal(written.some((row) => row.table === 'cpa_firm_service_contract'), false);
     });
 
     test('여러 회사의 진행 기록을 합치고 재시도 성공 시 이전 오류를 제거한다', async () => {
@@ -587,7 +587,7 @@ describe('collectEngagements 배선', () => {
             { corp_code: '00126380', auditor: '삼일회계법인' },
         ]);
         assert.equal(
-            empty.written.filter((row) => row.table === 'firm_engagement').length,
+            empty.written.filter((row) => row.table === 'cpa_firm_engagement').length,
             0,
         );
         assert.ok(written.length > 0);

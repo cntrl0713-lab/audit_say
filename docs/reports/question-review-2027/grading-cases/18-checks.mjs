@@ -1,0 +1,5 @@
+import fs from 'node:fs';import {spawnSync} from 'node:child_process';
+const testFiles=['questionV3','questionV3Grading','questionV3Deployment','questionV3Generation','questionV3Input','questionV3Review','questionV3SourceReuse','openaiStructured','v3Cutover','rateLimit'].map(x=>`tests/${x}.test.ts`);
+const checks=[['typecheck',['node_modules/typescript/bin/tsc','--noEmit']],['questions:v3:validate',['--import','tsx','cpa_uploader/validate_cpa_v3.ts']],['related-tests',['--disable-warning=MODULE_TYPELESS_PACKAGE_JSON','--test',...testFiles]],['wiki-lint',['cpa_uploader/wiki/scripts/lint-wiki.mjs']]];
+const results=[];for(const[name,args]of checks){const r=spawnSync(process.execPath,args,{encoding:'utf8',maxBuffer:8e6});results.push({name,at:new Date().toISOString(),exit_code:r.status,stdout:r.stdout,stderr:r.stderr});console.log(name,r.status,r.stdout.slice(-350),r.stderr.slice(-500));}
+fs.writeFileSync('docs/reports/question-review-2027/grading-cases/18-checks.json',JSON.stringify(results,null,2)+'\n');

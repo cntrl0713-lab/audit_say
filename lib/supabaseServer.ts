@@ -35,7 +35,7 @@ export async function assertAdmin() {
     // Now check role using admin client
     const supabaseAdmin = getSupabaseAdmin();
     const { data, error } = await supabaseAdmin
-        .from('user_cpa')
+        .from('cpa_users')
         .select('role')
         .eq('id', user.id)
         .single();

@@ -1,0 +1,53 @@
+[
+  {
+    "name": "typecheck",
+    "args": [
+      "node_modules/typescript/bin/tsc",
+      "--noEmit"
+    ],
+    "at": "2026-09-08T01:24:41.984Z",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "bank_validate",
+    "args": [
+      "--import",
+      "tsx",
+      "cpa_uploader/validate_cpa_v3.ts"
+    ],
+    "at": "2026-09-08T01:24:43.702Z",
+    "exit_code": 0,
+    "stdout": "v3 검증 통과: 96세트, 192개 세부 물음, 521개 criterion, 총 521점\n모든 source_quote가 원자료에 존재하며 public JSON에는 비공개 채점 데이터가 없습니다.\n",
+    "stderr": ""
+  },
+  {
+    "name": "related_tests",
+    "args": [
+      "--disable-warning=MODULE_TYPELESS_PACKAGE_JSON",
+      "--test",
+      "tests/questionV3.test.ts",
+      "tests/questionV3Grading.test.ts",
+      "tests/questionV3Input.test.ts",
+      "tests/questionV3Review.test.ts",
+      "tests/questionV3SourceReuse.test.ts",
+      "tests/openaiStructured.test.ts",
+      "tests/v3Cutover.test.ts"
+    ],
+    "at": "2026-09-08T01:24:48.895Z",
+    "exit_code": 0,
+    "stdout": "✔ requestOpenAIStructured sends strict JSON schema and parses output (1.7718ms)\n✔ requestOpenAIStructured surfaces refusals without treating them as JSON (0.6352ms)\n✔ requestOpenAIStructured retries transient transport failures once (3.2281ms)\n✔ requestOpenAIStructured retries rate limits (1.283ms)\n✔ requestOpenAIStructured does not retry authentication failures (0.6079ms)\n✔ requestOpenAIStructured rejects incomplete output without scoring it (0.2592ms)\n✔ requestOpenAIStructured retries timeout failures (1.2367ms)\n✔ requestOpenAIStructured rejects missing credentials before a network call (0.3183ms)\n✔ validateQuestionSetV3 validates source-bound linked question sets (21.28ms)\n✔ v3 authoring bank keeps the pilot floor distribution and stays internally consistent (43.1111ms)\n✔ validateQuestionSetV3 rejects ungrounded requirements and invalid partial scoring (0.8207ms)\n✔ validateQuestionSetV3 rejects duplicate critical facts within one subquestion (5.0984ms)\n✔ validateQuestionSetV3 requires criterion evidence to include its requirement source (0.5949ms)\n✔ validateQuestionSetV3 reports malformed LLM subquestions without throwing (7.3165ms)\n✔ computeQuestionSetMaxPoints honors best_n without forcing a ten-point total (0.5188ms)\n✔ validateQuestionSetV3 rejects public tags that reveal a model answer (0.4725ms)\n✔ isQuestionSetAnswerPayloadV3 accepts canonical subquestion ids and rejects unsafe payloads (2.0192ms)\n✔ compilePublicQuestionSet strips model answers, requirements, criteria, and source quotes (1.6195ms)\n✔ scoreCriterionVerdicts computes integer criterion scores in code (0.8266ms)\n✔ scoreCriterionVerdicts gives contradicted criteria zero points and caps best_n (0.494ms)\n✔ verifyCriterionVerdicts allows one real quote for independent criteria and rejects invented evidence (4.8549ms)\n✔ applyQuestionSetJudgment verifies quotes and sums dynamic subquestion scores (2.9039ms)\n✔ applyQuestionSetJudgment forces zero when prompt injection is detected (0.792ms)\n✔ salad flags do not erase valid criteria, while local injection stays isolated (0.7413ms)\n✔ payload and grader share the input limit; blank answers never need a model key or network (13.2286ms)\n✔ shared quotes preserve independent criteria across the bank and existing score caps (7.5546ms)\n✔ empty topic 04 answers skip the model without credentials (0.7946ms)\n✔ bank validation permits cross-set source reuse but rejects redundant entries and fabricated quotes (4524.2347ms)\n✔ the canonical quiz route serves the v3 question bank to authenticated users (3.4128ms)\n✔ the v3 cutover removes duplicate and v2-only runtime files (8.5263ms)\n✔ the active question pipeline has no legacy provider or RAG dependency (34.7298ms)\nℹ tests 31\nℹ suites 0\nℹ pass 31\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 5092.6599\n",
+    "stderr": ""
+  },
+  {
+    "name": "wiki_lint",
+    "args": [
+      "cpa_uploader/wiki/scripts/lint-wiki.mjs"
+    ],
+    "at": "2026-09-08T01:24:49.060Z",
+    "exit_code": 1,
+    "stdout": "{\n  \"wikiDir\": \"C:\\\\Users\\\\cntrl\\\\Workspace\\\\study\\\\audit_say\\\\cpa_uploader\\\\wiki\",\n  \"markdownFiles\": 29,\n  \"contentPages\": 26,\n  \"errors\": [\n    \"question-generation/question-design.md: source link 없음 ../../../docs/reports/question-review-2027/18.md\",\n    \"question-generation/question-design.md: source link 없음 ../../../docs/reports/question-review-2027/16.md\"\n  ],\n  \"warnings\": [\n    \"question-generation/question-design.md: 295줄, 분할 검토 권장\"\n  ]\n}\n",
+    "stderr": ""
+  }
+]

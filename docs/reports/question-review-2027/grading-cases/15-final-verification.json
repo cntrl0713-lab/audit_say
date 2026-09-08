@@ -1,0 +1,50 @@
+{
+  "at": "2026-09-08T01:03:15.500Z",
+  "topic_unchanged": true,
+  "topic_source_errors": 0,
+  "public_encrypted_match": true,
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exit_code": 0
+  },
+  "tests": {
+    "command": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/questionV3*.test.ts tests/openaiStructured.test.ts tests/v3Cutover.test.ts tests/rateLimit.test.ts",
+    "passed": 41,
+    "failed": 0,
+    "log": "✔ requestOpenAIStructured sends strict JSON schema and parses output (7.2057ms)\r\n✔ requestOpenAIStructured surfaces refusals without treating them as JSON (1.2522ms)\r\n✔ requestOpenAIStructured retries transient transport failures once (181.2469ms)\r\n✔ requestOpenAIStructured retries rate limits (7.2236ms)\r\n✔ requestOpenAIStructured does not retry authentication failures (1.6386ms)\r\n✔ requestOpenAIStructured rejects incomplete output without scoring it (0.37ms)\r\n✔ requestOpenAIStructured retries timeout failures (11.683ms)\r\n✔ requestOpenAIStructured rejects missing credentials before a network call (0.6736ms)\r\n✔ validateQuestionSetV3 validates source-bound linked question sets (13.5701ms)\r\n✔ v3 authoring bank keeps the pilot floor distribution and stays internally consistent (32.001ms)\r\n✔ validateQuestionSetV3 rejects ungrounded requirements and invalid partial scoring (1.204ms)\r\n✔ validateQuestionSetV3 rejects duplicate critical facts within one subquestion (13.7978ms)\r\n✔ validateQuestionSetV3 requires criterion evidence to include its requirement source (0.4455ms)\r\n✔ validateQuestionSetV3 reports malformed LLM subquestions without throwing (0.48ms)\r\n✔ computeQuestionSetMaxPoints honors best_n without forcing a ten-point total (0.3999ms)\r\n✔ validateQuestionSetV3 rejects public tags that reveal a model answer (2.3738ms)\r\n✔ isQuestionSetAnswerPayloadV3 accepts canonical subquestion ids and rejects unsafe payloads (1.7074ms)\r\n✔ compilePublicQuestionSet strips model answers, requirements, criteria, and source quotes (2.309ms)\r\n✔ scoreCriterionVerdicts computes integer criterion scores in code (0.6114ms)\r\n✔ scoreCriterionVerdicts gives contradicted criteria zero points and caps best_n (0.1928ms)\r\n✔ verifyCriterionVerdicts allows one real quote for independent criteria and rejects invented evidence (0.3488ms)\r\n✔ encrypted authoring bundles round-trip without exposing plaintext (3.1438ms)\r\n✔ authoring encryption rejects low-entropy keys (0.8251ms)\r\n✔ question bank load failures are classified without exposing secrets (0.332ms)\r\n✔ production always selects the encrypted bank even when plaintext exists locally (11.4066ms)\r\n✔ production loads the encrypted authoring bank when the ignored plaintext bank is absent (25.5536ms)\r\n✔ question generation CLI can be imported without starting a generation run (1.4796ms)\r\n✔ applyQuestionSetJudgment verifies quotes and sums dynamic subquestion scores (3.0925ms)\r\n✔ applyQuestionSetJudgment forces zero when prompt injection is detected (0.6727ms)\r\n✔ salad flags do not erase valid criteria, while local injection stays isolated (139.0582ms)\r\n✔ payload and grader share the input limit; blank answers never need a model key or network (85.5573ms)\r\n✔ shared quotes preserve independent criteria across the bank and existing score caps (216.1879ms)\r\n✔ empty topic 04 answers skip the model without credentials (1.8463ms)\r\n✔ bank validation permits cross-set source reuse but rejects redundant entries and fabricated quotes (13009.1218ms)\r\n▶ isMissingMigration\r\n  ✔ 함수나 테이블이 없는 경우만 마이그레이션 미적용으로 본다 (1.2166ms)\r\n  ✔ 권한 오류와 기타 오류는 폴백 대상이 아니다 (0.3597ms)\r\n✔ isMissingMigration (3.296ms)\r\n▶ consumeInMemory\r\n  ✔ 한도까지 허용하고 이후 요청은 거절한다 (0.6715ms)\r\n  ✔ 시간 창과 사용자별 버킷을 분리하고 만료 항목을 정리한다 (0.3977ms)\r\n✔ consumeInMemory (1.5708ms)\r\n✔ the canonical quiz route serves the v3 question bank to authenticated users (2.8015ms)\r\n✔ the v3 cutover removes duplicate and v2-only runtime files (7.7212ms)\r\n✔ the active question pipeline has no legacy provider or RAG dependency (8.8037ms)\r\nℹ tests 41\r\nℹ suites 2\r\nℹ pass 41\r\nℹ fail 0\r\nℹ cancelled 0\r\nℹ skipped 0\r\nℹ todo 0\r\nℹ duration_ms 15269.3703\r\n"
+  },
+  "bank_validate": {
+    "command": "npm run questions:v3:validate",
+    "exit_code": 0,
+    "log": "\r\n> crimson-lagoon@0.1.0 questions:v3:validate\r\n> tsx cpa_uploader/validate_cpa_v3.ts\r\n\r\nv3 검증 통과: 96세트, 192개 세부 물음, 521개 criterion, 총 521점\r\n모든 source_quote가 원자료에 존재하며 public JSON에는 비공개 채점 데이터가 없습니다.\r\n"
+  },
+  "compile": {
+    "command": "npm run questions:v3:compile",
+    "exit_code": 0,
+    "log": "\r\n> crimson-lagoon@0.1.0 questions:v3:compile\r\n> tsx --env-file=.env.local scripts/compile-question-bank-v3.ts\r\n\r\nv3 배포 문제은행 생성 완료: 96세트\r\n"
+  },
+  "wiki_lint": {
+    "command": "node cpa_uploader/wiki/scripts/lint-wiki.mjs",
+    "exit_code": 1,
+    "errors": [
+      "question-generation/question-design.md: source link 없음 ../../../docs/reports/question-review-2027/18.md",
+      "question-generation/question-design.md: source link 없음 ../../../docs/reports/question-review-2027/16.md"
+    ],
+    "warnings": [
+      "question-generation/question-design.md: 295줄, 분할 검토 권장"
+    ],
+    "scope": "주제15 오류0, 다른 주제 병행 작업의 미생성 보고서 링크2개"
+  },
+  "skill_validation": {
+    "command": "python -X utf8 quick_validate.py audit-question-review",
+    "result": "Skill is valid!",
+    "initial_attempt": "Windows cp949 decoding failed; UTF-8 retry passed"
+  },
+  "hashes": {
+    "cpa_uploader/data/cpa_question_sets_v3.authoring.json": "72bcb39eaa6d60aca43c3bb4101871e89a0a9392b9482e14d288ef89566aff52",
+    "cpa_uploader/data/cpa_question_sets_v3.public.json": "7749f44a8aabeb68c4fe92bc9d3eb985d3c4de9972dff8258c0ef824aad3b2ec",
+    "data/cpa_question_sets_v3.authoring.enc.json": "0fbc837fc9768fe3afdb84dc64ae93c1abe0ac0df513f81bc196143a58011743",
+    "lib/questionV3.ts": "7d80ba81b03f9c6975adac3c018ad3a725ee750c38ba57629d65e9154ca76c79",
+    "lib/questionV3Grading.ts": "f6d0ff1996cbabb5ed38f48fbd5793c720d6454c4f752d106b8490c4f2139fe2"
+  }
+}
