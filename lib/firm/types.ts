@@ -33,7 +33,7 @@ export interface FirmCompany {
     induty: string | null;
 }
 
-/** 실적 기준연도는 fy_start_year. bsns_year는 명세 조인용 기존 결산말 연도 키다. 고객사 연도와 독립적이다. */
+/** 실적 기준연도는 fy_start_year. bsns_year는 명세 조인용 기존 결산말 연도 키다. 감사대상회사 연도와 독립적이다. */
 export interface FirmAnnualSummary {
     firm_id: number; bsns_year: number; fy_start_year: number; fy_start_date: string; fy_end_date: string;
     fy_seq: number | null; source_rcept_no: string; source_rcept_dt: string;
@@ -77,7 +77,7 @@ export interface FirmSummaryRow {
     audit_revenue_ratio: number | null;
 }
 
-/** v_firm_clients — 고객사 상세 */
+/** v_firm_clients — 감사대상회사 상세 */
 export interface FirmClientRow {
     engagement_id: number;
     firm_id: number;

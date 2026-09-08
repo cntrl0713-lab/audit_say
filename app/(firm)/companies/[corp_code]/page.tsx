@@ -49,9 +49,9 @@ export default async function CompanyDetailPage({
         <section>
             <header className="mb-4 rounded-lg border border-card-border bg-card px-5 py-4">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <div><p className="mb-1 text-xs text-foreground/60">{firm.firm_name} · {year} 사업연도 고객사</p><h2 className="text-xl">{company.corp_name}</h2></div>
+                    <div><p className="mb-1 text-xs text-foreground/60">{firm.firm_name} · {year} 사업연도 · 외부감사법상 감사대상회사</p><h2 className="text-xl">{company.corp_name}</h2></div>
                     <Link href={returnHref} className="text-xs text-foreground/50 hover:text-primary">
-                        ← {firm.firm_name} 고객사 목록
+                        ← {firm.firm_name} 감사대상회사 목록
                     </Link>
                 </div>
                 <dl className="mt-3 grid grid-cols-2 gap-x-6 gap-y-2 text-sm sm:grid-cols-4">
@@ -74,25 +74,25 @@ export default async function CompanyDetailPage({
                 </dl>
             </header>
 
-            <div className="mb-4 flex flex-wrap gap-1.5" aria-label="고객사 사업연도">
+            <div className="mb-4 flex flex-wrap gap-1.5" aria-label="감사대상회사 사업연도">
                 {scoped.map((row) => <Chip key={row.bsns_year} href={'/companies/' + corp_code + buildFilterQuery(query, { year: row.bsns_year })} active={row.bsns_year === year}>{row.bsns_year}</Chip>)}
             </div>
             <>
                     <h3 className="mb-2 text-sm text-foreground/60">
-                        고객사 재무 3지표
+                        감사대상회사 재무 3지표
                         <span className="ml-2 text-xs text-foreground/40">
                             {selected.bsns_year} 사업연도 · {selected.fs_div === 'OFS' ? '별도' : selected.fs_div === 'CFS' ? '연결' : '재무제표 구분 미확보'}
                             {selected.data_status !== 'ok' ? ` · ${DATA_STATUS_LABEL[selected.data_status]}` : ''}
                         </span>
                     </h3>
                     <dl className="mb-6 grid grid-cols-1 gap-2 sm:grid-cols-3">
-                        <StatTile label="고객사 매출액" value={formatKrw(selected.revenue)} />
-                        <StatTile label="고객사 영업이익" value={formatKrw(selected.operating_profit)} />
-                        <StatTile label="고객사 당기순이익" value={formatKrw(selected.net_income)} />
+                        <StatTile label="감사대상회사 매출액" value={formatKrw(selected.revenue)} />
+                        <StatTile label="감사대상회사 영업이익" value={formatKrw(selected.operating_profit)} />
+                        <StatTile label="감사대상회사 당기순이익" value={formatKrw(selected.net_income)} />
                     </dl>
 
                     <p className="mb-4 text-xs text-foreground/60">‘-’는 미확보 값이며 0과 다릅니다. 금액 확인 보류에는 외화 공시 등이 포함되며 원화로 임의 환산하지 않습니다.</p>
-                    <h3 className="mb-2 text-sm text-foreground/60">고객사 감사 이력 · 수집된 연도 기준</h3>
+                    <h3 className="mb-2 text-sm text-foreground/60">감사대상회사 감사 이력 · 수집된 연도 기준</h3>
                     <div className="mb-6 overflow-x-auto rounded-lg border border-card-border bg-card">
                         <table className="w-full min-w-[40rem] text-sm">
                             <thead>

@@ -53,11 +53,11 @@ import {
 const TABS = ['clients', 'kam', 'workforce', 'personnel'] as const;
 type Tab = (typeof TABS)[number];
 
-/** 회계법인 자체 공시를 보는 탭. 고객사 사업연도가 아니라 보고기간으로 고른다. */
+/** 회계법인 자체 공시를 보는 탭. 감사대상회사 사업연도가 아니라 보고기간으로 고른다. */
 const FIRM_OWN_TABS: readonly Tab[] = ['workforce', 'personnel'];
 
 const TAB_LABEL: Record<Tab, string> = {
-    clients: '고객사 포트폴리오',
+    clients: '감사대상회사 포트폴리오',
     kam: '의견 · KAM',
     workforce: '회계법인 자체 정보',
     personnel: '인력 구성 · 인건비',
@@ -128,7 +128,7 @@ export default async function FirmDetailPage({
 
             {!FIRM_OWN_TABS.includes(tab) && years.length > 1 ? (
                 <div className="mb-4 flex flex-wrap gap-1.5">
-                    <span className="self-center text-xs text-foreground/60">고객사 사업연도</span>
+                    <span className="self-center text-xs text-foreground/60">감사대상회사 사업연도</span>
                     {years.map((candidate) => (
                         <Chip
                             key={candidate}
@@ -147,20 +147,20 @@ export default async function FirmDetailPage({
                 <>
                     <dl className="mb-5 grid grid-cols-2 gap-2 lg:grid-cols-4">
                         <StatTile
-                            label="확인된 고객사"
+                            label="감사대상회사"
                             value={formatNumber(summary.client_count, '곳')}
-                            hint={`상장 ${summary.listed_client_count} · 비상장 ${summary.unlisted_client_count}`}
+                            hint={`수집 공시에서 감사인이 확인된 회사 · 상장 ${summary.listed_client_count} · 비상장 ${summary.unlisted_client_count}`}
                         />
                         <StatTile
                             label="의견변형"
                             value={formatNumber(summary.opinion_modified_count, '건')}
                             hint={`적정 ${summary.opinion_unqualified_count}건`}
                         />
-                        <StatTile label="고객사 평균 매출액" value={formatKrw(summary.avg_client_revenue)} hint="금액이 확인된 고객사 기준" />
-                        <StatTile label="고객사 평균 KAM 수" value={formatDecimal(summary.avg_kam_count, 1, '개')} hint="개수를 확인한 공시 기준" />
+                        <StatTile label="감사대상회사 평균 매출액" value={formatKrw(summary.avg_client_revenue)} hint="금액이 감사대상회사 기준" />
+                        <StatTile label="감사대상회사 평균 KAM 수" value={formatDecimal(summary.avg_kam_count, 1, '개')} hint="개수를 확인한 공시 기준" />
                     </dl>
 
-                    <p className="mb-4 text-xs text-foreground/60">수집된 공시 중 식별된 고객사 기준이며, 미확보·검토 보류 건은 제외됩니다. ‘-’는 결측이며 0과 구분합니다. 고객사 재무금액은 회계법인 자체 실적이 아닙니다.</p>
+                    <p className="mb-4 text-xs text-foreground/60">외부감사법상 감사대상회사 중 수집된 공시에서 식별된 회사 기준이며, 미확보·검토 보류 건은 제외됩니다. ‘-’는 결측이며 0과 구분합니다. 감사대상회사 재무금액은 회계법인 자체 실적이 아닙니다.</p>
 
                     {tab === 'clients' ? (
                         <ClientsTab firmId={firmId} year={year} base={base} query={query} />
@@ -172,7 +172,7 @@ export default async function FirmDetailPage({
     );
 }
 
-// ── 고객사 포트폴리오 ───────────────────────────────────────────────────────
+// ── 감사대상회사 포트폴리오 ───────────────────────────────────────────────────────
 
 async function ClientsTab({
     firmId,
@@ -205,7 +205,7 @@ async function ClientsTab({
                 <SearchForm
                     action={base}
                     defaultValue={q}
-                    placeholder="이 회계법인의 고객사 이름 검색"
+                    placeholder="이 회계법인의 감사대상회사 이름 검색"
                     hidden={{
                         tab: 'clients',
                         sort,
@@ -253,14 +253,14 @@ async function ClientsTab({
                 ))}
             </div>
 
-            <div className="mb-4 flex flex-wrap gap-1.5" aria-label="고객사 정렬">
-                {([{ key: 'revenue', label: '고객사 매출액순' }, { key: 'operating_profit', label: '고객사 영업이익순' }, { key: 'name', label: '이름순' }] as const).map((option) => (
+            <div className="mb-4 flex flex-wrap gap-1.5" aria-label="감사대상회사 정렬">
+                {([{ key: 'revenue', label: '감사대상회사 매출액순' }, { key: 'operating_profit', label: '감사대상회사 영업이익순' }, { key: 'name', label: '이름순' }] as const).map((option) => (
                     <Chip key={option.key} href={base + buildFilterQuery(query, { sort: option.key })} active={sort === option.key}>{option.label}</Chip>
                 ))}
             </div>
 
             {result.rows.length === 0 ? (
-                <EmptyState title="조건에 맞는 고객사가 없습니다." description="선택한 회계법인과 사업연도 안에서만 검색합니다." />
+                <EmptyState title="조건에 맞는 감사대상회사가 없습니다." description="선택한 회계법인과 사업연도 안에서만 검색합니다." />
             ) : (
                 <>
                     <p className="mb-2 text-xs text-foreground/50">
@@ -270,11 +270,11 @@ async function ClientsTab({
                         <table className="w-full min-w-[52rem] text-sm">
                             <thead>
                                 <tr className="border-b border-card-border text-left text-xs text-foreground/50">
-                                    <th className="px-4 py-2.5 font-medium">고객사</th>
+                                    <th className="px-4 py-2.5 font-medium">감사대상회사</th>
                                     <th className="px-4 py-2.5 font-medium">시장</th>
                                     <th className="px-4 py-2.5 font-medium">업종</th>
-                                    <th className="px-4 py-2.5 text-right font-medium">고객사 매출액</th>
-                                    <th className="px-4 py-2.5 text-right font-medium">고객사 영업이익</th>
+                                    <th className="px-4 py-2.5 text-right font-medium">감사대상회사 매출액</th>
+                                    <th className="px-4 py-2.5 text-right font-medium">감사대상회사 영업이익</th>
                                     <th className="px-4 py-2.5 font-medium">의견</th>
                                     <th className="px-4 py-2.5 text-right font-medium">KAM</th>
                                 </tr>
@@ -409,7 +409,7 @@ function WorkforceTab({ summaries, requestedYear, base, query }: { summaries: Aw
     return <>
         <div className="mb-3 flex items-center gap-2"><span className="text-xs text-foreground/60">보고기간 시작연도</span>{ANNUAL_DISPLAY_YEARS.map(y => <Chip key={y} active={y === year} href={`${base}${buildFilterQuery(query, { fy_start_year: y, fy_year: null })}`}>{y}</Chip>)}</div>
         <h3 className="mb-2 text-sm font-medium">{year}년 시작 실적 · 회계법인 자체 인력·재무</h3>
-        <p className="mb-4 text-xs leading-relaxed text-foreground/60">실적은 보고기간 시작연도로 구분합니다. 고객사 사업연도와 실제 감사대상 기간이 같다는 뜻은 아닙니다. 인원은 각 보고기간 말 기준이며, 1인당 인건비는 이사 등을 포함한 전체 임직원 인건비를 기말 인원으로 나눈 값입니다.</p>
+        <p className="mb-4 text-xs leading-relaxed text-foreground/60">실적은 보고기간 시작연도로 구분합니다. 감사대상회사 사업연도와 실제 감사대상 기간이 같다는 뜻은 아닙니다. 인원은 각 보고기간 말 기준이며, 1인당 인건비는 이사 등을 포함한 전체 임직원 인건비를 기말 인원으로 나눈 값입니다.</p>
         {periods.length > 1 ? <p className="mb-3 text-sm">같은 연도에 시작한 보고기간이 {periods.length}개입니다. 실적을 합산하지 않고 기간별로 표시합니다.</p> : null}
         {periods.length ? <div className="space-y-5">{periods.map(current => <AnnualPeriodCard key={current.fy_end_date} current={current} />)}</div> : <EmptyState title="보고기간 정보 미확보" description="선택한 연도에 시작한 사업보고서가 아직 적재되지 않았거나 검토 보류 중입니다." />}
     </>;

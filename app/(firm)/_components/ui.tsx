@@ -90,7 +90,7 @@ export function NotCollectedNotice({ what }: { what: string }) {
             </span>
             <p className="mt-3 text-sm">{what} 데이터가 아직 없습니다.</p>
             <p className="mt-1.5 text-xs text-foreground/60">
-                API 조회 결과가 없거나 감사인 식별이 보류된 경우일 수 있습니다. 실제 고객사가 0곳이라는 뜻은 아닙니다.
+                API 조회 결과가 없거나 감사인 식별이 보류된 경우일 수 있습니다. 실제 감사대상회사가 0곳이라는 뜻은 아닙니다.
             </p>
         </div>
     );

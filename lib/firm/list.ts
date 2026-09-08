@@ -1,8 +1,8 @@
 import type { FirmSummaryRow, RegisteredFirm } from './types.ts';
 
 export const FIRM_SORTS = [
-    { key: 'clients', label: '확인된 고객사 수' },
-    { key: 'client_revenue', label: '고객사 평균 매출액' },
+    { key: 'clients', label: '감사대상회사 수' },
+    { key: 'client_revenue', label: '감사대상회사 평균 매출액' },
     { key: 'name', label: '이름순' },
 ] as const;
 export type FirmSort = (typeof FIRM_SORTS)[number]['key'];

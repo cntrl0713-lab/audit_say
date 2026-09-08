@@ -170,7 +170,7 @@ export async function getFirmSummaries(firmId: number): Promise<FirmSummaryRow[]
     return (data ?? []) as FirmSummaryRow[];
 }
 
-// ── 고객사 포트폴리오 ───────────────────────────────────────────────────────
+// ── 감사대상회사 포트폴리오 ───────────────────────────────────────────────────────
 
 export interface ClientFilters {
     firmId: number;
@@ -193,7 +193,7 @@ export async function listFirmClients(filters: ClientFilters): Promise<Page<Firm
         .select('*', { count: 'exact' })
         .eq('firm_id', filters.firmId)
         .eq('bsns_year', filters.year)
-        // 매출 큰 고객사부터. 결측(NULL)은 뒤로 민다.
+        // 매출 큰 감사대상회사부터. 결측(NULL)은 뒤로 민다.
         .order(filters.sort === 'name' ? 'corp_name' : (filters.sort ?? 'revenue'), { ascending: filters.sort === 'name', nullsFirst: false })
         .order('corp_name')
         .order('engagement_id')
@@ -212,7 +212,7 @@ export async function listFirmClients(filters: ClientFilters): Promise<Page<Firm
     if (error?.code === 'PGRST103' && filters.page > 1) {
         return listFirmClients({ ...filters, page: 1 });
     }
-    fail('고객사 목록 조회', error);
+    fail('감사대상회사 목록 조회', error);
     return toPage((data ?? []) as FirmClientRow[], count ?? 0, filters.page);
 }
 
