@@ -46,6 +46,8 @@ export function YearAxis({ label, years, current, hrefFor }: {
 
 export interface DataColumn {
     key: string; label: string; align?: 'left' | 'right'; priority?: 'always' | 'wide';
+    header?: React.ReactNode;
+    sortDirection?: 'asc' | 'desc';
 }
 
 /** 핵심 열은 모바일에서도 유지하며 보조 열은 인쇄 시 다시 표시한다. */
@@ -57,7 +59,9 @@ export function DataTable({ columns, rows, caption }: {
         <table className="w-full table-fixed text-[15px]">
             {caption ? <caption className="px-3 py-2 text-left text-[13px] text-foreground/70">{caption}</caption> : null}
             <thead><tr className="border-b border-card-border text-[13px] text-foreground/70">
-                {columns.map(column => <th key={column.key} scope="col" className={`${cellClass(column)} font-medium`}>{column.label}</th>)}
+                {columns.map(column => <th key={column.key} scope="col"
+                    aria-sort={column.sortDirection === 'asc' ? 'ascending' : column.sortDirection === 'desc' ? 'descending' : undefined}
+                    className={`${cellClass(column)} font-medium`}>{column.header ?? column.label}</th>)}
             </tr></thead>
             <tbody>{rows.map((row, index) => <tr key={index} className="border-b border-card-border last:border-0 hover:bg-background">
                 {columns.map((column, col) => <td key={column.key} className={cellClass(column)}>{row[col]}</td>)}

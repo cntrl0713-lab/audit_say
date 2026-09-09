@@ -21,11 +21,13 @@ export default async function ClientsTab({
     year,
     base,
     query,
+    view,
 }: {
     firmId: number;
     year: number;
     base: string;
     query: SearchParams;
+    view: 'list' | 'opinions';
 }) {
     const page = Math.min(readInt(query, 'page', 1), 1_000_000);
     const market = readEnum(query, 'market', MARKETS);
@@ -51,6 +53,8 @@ export default async function ClientsTab({
                     placeholder="이 회계법인의 감사대상회사 이름 검색"
                     hidden={{
                         tab: 'clients',
+                        client_view: view,
+                        ...(readString(query, 'fy_start_year') ? { fy_start_year: readString(query, 'fy_start_year')! } : {}),
                         sort,
                         year: String(year),
                         ...(market ? { market } : {}),
@@ -82,7 +86,7 @@ export default async function ClientsTab({
                 ))}
             </div>
 
-            <div className="mb-4 flex flex-wrap gap-1.5">
+            {view === 'opinions' ? <div className="mb-4 flex flex-wrap gap-1.5" aria-label="감사의견 필터">
                 {AUDIT_OPINIONS.map((candidate) => (
                     <Chip
                         key={candidate}
@@ -94,7 +98,7 @@ export default async function ClientsTab({
                         {candidate} {opinionCounts[candidate] ?? 0}
                     </Chip>
                 ))}
-            </div>
+            </div> : null}
 
             <div className="mb-4 flex flex-wrap gap-1.5" aria-label="감사대상회사 정렬">
                 {(

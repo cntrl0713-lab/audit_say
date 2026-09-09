@@ -2,7 +2,7 @@ import { buildQuery, type SearchParams } from './params.ts';
 
 // Carry only portfolio state. Never accept an arbitrary return URL.
 function portfolioParams(params: SearchParams): SearchParams {
-    return Object.fromEntries(['tab', 'q', 'market', 'opinion', 'listed', 'sort', 'page']
+    return Object.fromEntries(['tab', 'client_view', 'fy_start_year', 'q', 'market', 'opinion', 'listed', 'sort', 'page']
         .filter((key) => params[key] !== undefined).map((key) => [key, params[key]]));
 }
 

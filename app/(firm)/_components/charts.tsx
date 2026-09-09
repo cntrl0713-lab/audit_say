@@ -23,12 +23,20 @@ export function TrendChart({
     years,
     series,
     multiPeriodYears = [],
+    latestFirst = false,
 }: {
     title: string;
     years: readonly number[];
     series: readonly TrendSeries[];
     multiPeriodYears?: readonly number[];
+    /** 수치 카드는 최신 확보 기간부터 세로로, 원표의 미확보 값은 마지막에 표시한다. */
+    latestFirst?: boolean;
 }) {
+    const displaySeries = latestFirst ? series.map((s) => ({
+        ...s,
+        points: [...s.points].sort((a, b) =>
+            Number(a.value === null) - Number(b.value === null) || b.x - a.x),
+    })) : series;
     const values = series.flatMap((s) => s.points.flatMap((p) => (p.value === null ? [] : [p.value])));
     const domain: [number, number] = [Math.min(0, ...values), Math.max(0, ...values)];
     const plots = series.map((s) =>
@@ -152,8 +160,8 @@ export function TrendChart({
                     <p className="text-[13px] text-foreground/70">
                         추이 비교에 필요한 보고기간이 부족하여 확인된 수치를 표시합니다.
                     </p>
-                    <dl className="grid gap-2 sm:grid-cols-2">
-                        {series.flatMap((s) => {
+                    <dl className={`grid gap-2 ${latestFirst ? '' : 'sm:grid-cols-2'}`}>
+                        {displaySeries.flatMap((s) => {
                             const present = s.points.filter((p) => p.value !== null);
                             return present.length
                                 ? present.map((p, index) => (
@@ -185,7 +193,7 @@ export function TrendChart({
                             { key: 'series', label: '지표' },
                             { key: 'value', label: '값', align: 'right' },
                         ]}
-                        rows={series.flatMap((s) =>
+                        rows={displaySeries.flatMap((s) =>
                             s.points.map((p) => [p.label, s.label, formatValue(p.value, s.unit)]),
                         )}
                     />

@@ -145,9 +145,8 @@ RLS 가 그대로 적용되고, 뷰를 RLS 우회 통로로 쓸 수 없다.
 
 > **2026-09-08 F004 구현 상태 갱신**: 아래 M0의 28곳 기록은 과거 상태다. P0 후 운영 마스터는
 > 최초 63곳에서 F004 발견 모집단 266곳을 보강해 운영 마스터는 269곳이다(조회 범위 내 F004가 없는 기존 3곳 포함).
-> Supabase MCP로 기본 F004와 2026 확장 마이그레이션을 운영 적용했다. 상세 적재·대조 결과는
-> `docs/reports/annual/IMPLEMENTATION_RESULT.md`를 참조한다. F004 제출 여부를 상장사 감사인 등록으로 해석하지 않는다.
-> 1.8 서식 지원과 현대 2024 복수 결산기 처리가 남아 있다.
+> 기본 F004와 2026 확장 마이그레이션을 적용했다. 현행 지원 범위와 실행 방법은
+> [수집기 안내](../scripts/firm_collector/README.md)를 참조한다. F004 제출 여부를 상장사 감사인 등록으로 해석하지 않는다.
 
 1. **등록회계법인 마스터가 아직 부분적이다.** 현재 28곳이며 가군 4곳만 군이
    확정돼 있다. `registration_no` 와 `dart_corp_code` 는 전부 NULL 이다 — 확인되지 않은
@@ -185,7 +184,7 @@ RLS 가 그대로 적용되고, 뷰를 RLS 우회 통로로 쓸 수 없다.
 ## 5. F004 회계법인 사업보고서 확장
 
 정본 SQL: `supabase/migrations/20260908000002_firm_annual_reports.sql`.
-구현 결과: `docs/reports/annual/IMPLEMENTATION_RESULT.md`.
+지원 범위와 실행 방법: [수집기 안내](../scripts/firm_collector/README.md).
 
 | 신규 테이블 | 용도 | 조회 |
 |---|---|---|

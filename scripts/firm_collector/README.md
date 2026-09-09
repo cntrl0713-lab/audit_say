@@ -3,7 +3,7 @@
 `docs/PLAN_PRD_v2.md` §4 의 수집 설계를 구현한 연 1회 배치다.
 적재 대상 스키마는 `docs/firm-platform-schema.md` 를 본다.
 
-2026-09-08부터 실제 적재 테이블은 `cpa_firm_*`다. 연간 RPC와 캐시 payload의 `tables.firm_*` 키는 기존 계약을 유지하고 DB 접근 시 새 이름으로 연결한다. 이름 변경이 적용된 DB에서는 `migrateAnnualReports.ts`가 과거 F004 DDL을 재실행하지 않는다. [전환 기록](../../docs/cpa-table-prefix.md)을 참고한다.
+실제 적재 테이블은 `cpa_firm_*`다. 연간 RPC와 캐시 payload의 `tables.firm_*` 키는 기존 계약을 유지하고 DB 접근 시 새 이름으로 연결한다. [테이블 이름과 호환 규칙](../../docs/cpa-table-prefix.md)을 참고한다.
 
 ---
 
@@ -168,15 +168,25 @@ node --env-file=.env.local node_modules/tsx/dist/cli.mjs scripts/firm_collector/
 
 구조화 정기보고서 API와 별개로 `list.json`의 F004 및 `document.xml` 원문 API를 사용한다.
 공식 규약: [공시검색](https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&apiId=2019001), [원문](https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&apiId=2019003).
-진행 상태와 보류 사유는 `docs/reports/annual/IMPLEMENTATION_RESULT.md`를 참조한다.
+실행별 진행 상태와 보류 사유는 `--report`로 지정한 JSON에 기록한다.
+
+수집 전에 Supabase 인증·회원 스키마를 준비하고 [`supabase/migrations/`](../../supabase/migrations/)의 미적용 SQL을 파일명 순서대로 적용한다. 회계법인 수집·조회 스키마의 순서는 다음과 같다.
+
+1. `20260907000001_firm_platform_schema.sql`
+2. `20260907000002_firm_platform_views.sql`
+3. `20260907000003_firm_registered_seed.sql`
+4. `20260908000001_firm_tier_and_master.sql`
+5. `20260908000002_firm_annual_reports.sql`
+6. `20260908000003_firm_annual_2026.sql`
+7. `20260908000004_firm_annual_start_year.sql`
+8. `20260908003002_cpa_table_prefix.sql`
+9. `20260908004001_firm_personnel_views.sql`
+10. `20260908005001_firm_headcount_and_audit_input_views.sql`
+
+기존 DB는 적용 이력을 확인해 미적용 항목만 반영한다. `cpa_firm_*`로 이름을 바꾼 DB에 과거 `firm_*` 생성·변경 SQL을 다시 실행하지 않는다. 아래 수집 명령은 현재 `cpa_firm_*` 테이블과 `replace_firm_annual_report` RPC가 준비된 상태를 전제로 한다.
 
 ```powershell
 $env:DART_CACHE_DIR='.cache/firm_collector/annual-2026-09-08'
-# 최초 설치: DATABASE_URL로 아래 명령을 실행하거나 Supabase MCP apply_migration으로
-# 20260908000002_firm_annual_reports.sql, 20260908000003_firm_annual_2026.sql을 순서대로 적용한다.
-# 이어서 20260908000004_firm_annual_start_year.sql로 시작연도 기준 뷰를 적용한다.
-# 현재 운영 프로젝트는 MCP로 세 마이그레이션이 적용되어 있다.
-node --env-file=.env.local node_modules/tsx/dist/cli.mjs scripts/firm_collector/migrateAnnualReports.ts
 # 먼저 무쓰기 검증. --corp와 --limit은 원문 파싱 대상을 제한한다.
 node --env-file=.env.local node_modules/tsx/dist/cli.mjs scripts/firm_collector/run.ts annual-reports --year 2025 --dry-run --report docs/reports/annual/2025-dry-run.json
 # 2024·2025·2026을 각각 실행한다. 기본 접수 종료일은 실행 당일(Asia/Seoul)이다.
