@@ -65,4 +65,4 @@ npm run lint
 npm run build
 ```
 
-문제은행 제작·배포 명령과 원자료 규칙은 [`cpa_uploader/README.md`](cpa_uploader/README.md)에 정리되어 있습니다. v2 채점 엔진의 과거 검증 보고서와 계획서는 [`docs/archive/`](docs/archive/)에 보관합니다.
+문제은행 제작·배포 명령과 원자료 규칙은 [`cpa_uploader/README.md`](cpa_uploader/README.md)에 정리되어 있습니다.
