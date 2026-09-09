@@ -4,6 +4,7 @@ import {
     verifyCriterionVerdicts,
 } from './questionV3.ts';
 import { requestOpenAIStructured } from './ai/openaiStructured.ts';
+import type { OpenAIResponseCreator } from './ai/openaiStructured.ts';
 import { QUESTION_V3_ANSWER_MAX_LENGTH } from './questionV3Answer.ts';
 import type {
     CriterionVerdictV3,
@@ -307,6 +308,7 @@ export async function gradeQuestionSetV3(
     answers: Record<string, string>,
     apiKey = process.env.OPENAI_API_KEY || '',
     onJudgment?: (judgment: QuestionSetJudgmentV3) => void,
+    createResponse?: OpenAIResponseCreator,
 ): Promise<QuestionSetGradeResultV3> {
     const allowedIds = new Set(questionSet.subquestions.map((subquestion) => subquestion.id));
     for (const [id, answer] of Object.entries(answers)) {
@@ -330,7 +332,7 @@ export async function gradeQuestionSetV3(
         maxOutputTokens: 8_000,
         timeoutMs: 45_000,
         maxAttempts: 3,
-    });
+    }, createResponse);
     const parsedJudgment = parseJudgment(judgment);
     validateJudgmentCoverage(questionSet, parsedJudgment);
     onJudgment?.(parsedJudgment);

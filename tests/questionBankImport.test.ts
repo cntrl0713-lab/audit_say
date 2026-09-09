@@ -13,7 +13,7 @@ test('bank import requires matching public snapshot and final all-policy without
     assert.equal(checked.report.set_count, 1);
     assert.equal(checked.report.criterion_count, 2);
     const legacy = structuredClone(set);
-    legacy.subquestions[0].constraints.max_entries = 2;
+    Object.assign(legacy.subquestions[0].constraints, { max_entries: 2 });
     const before = JSON.stringify(legacy);
     const refused = inspectBankSnapshot(JSON.stringify([legacy]), JSON.stringify([compilePublicQuestionSet(legacy)]), { verifySourceQuotes: false });
     assert.equal(refused.report.ready, false);
@@ -46,11 +46,31 @@ test('explicit source-preserving import skips content review without rewriting t
     const set = sampleQuestionSet();
     set.verification.source_fidelity = 'excerpt';
     set.source_refs[0].content_hash = 'previously-declared-hash';
-    set.subquestions[0].constraints = { ordered: true, max_entries: 2, overflow_policy: 'ignore_after_limit' };
     const raw = JSON.stringify([set]);
     const checked = inspectBankSnapshot(raw, JSON.stringify([compilePublicQuestionSet(set)]), { contentReview: false });
     assert.equal(checked.report.ready, true);
     assert.equal(checked.report.content_review_performed, false);
     assert.equal(JSON.stringify(checked.sets), raw);
     assert.equal(inspectBankSnapshot(raw, '[]', { contentReview: false }).report.ready, false);
+});
+
+test('source-preserving import still rejects each legacy answer policy without rewriting the source', () => {
+    const policies = [
+        { constraints: { ordered: true } },
+        { constraints: { max_entries: 2 } },
+        { constraints: { overflow_policy: 'ignore_after_limit' } },
+        { selection: { type: 'best_n', n: 1 } },
+        { selection: { type: 'at_least_n', n: 1 } },
+        { selection: { n: 1 } },
+    ];
+    for (const policy of policies) {
+        const set = sampleQuestionSet();
+        Object.assign(set.subquestions[0].constraints, policy.constraints);
+        Object.assign(set.subquestions[0].selection, policy.selection);
+        const raw = JSON.stringify([set]);
+        const checked = inspectBankSnapshot(raw, JSON.stringify([compilePublicQuestionSet(set)]), { contentReview: false });
+        assert.equal(checked.report.ready, false, JSON.stringify(policy));
+        assert.deepEqual(checked.report.legacy_policy_subquestions, [`${set.id}/sub1`]);
+        assert.equal(JSON.stringify(checked.sets), raw, 'rejection must preserve the selected source snapshot');
+    }
 });

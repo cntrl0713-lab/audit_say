@@ -13,16 +13,25 @@ test('bank validation permits cross-set source reuse but rejects redundant entri
     const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-source-reuse-'));
     try {
         const bank = JSON.parse(fs.readFileSync(path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.authoring.json'), 'utf8')) as QuestionSetV3[];
-        for (const set of bank) for (const source of set.source_refs) source.file = path.resolve(root, source.file);
         const first = bank.find(s => s.id === 'pilot-07-002')!;
         const second = bank.find(s => s.id === 'pilot-07-004')!;
         assert.equal(first.source_refs[0].source_quote, second.source_refs[0].source_quote);
         const dataDir = path.join(temp, 'cpa_uploader/data');
         fs.mkdirSync(dataDir, { recursive: true });
+        const authoringPath = path.join(dataDir, 'cpa_question_sets_v3.authoring.json');
+        const publicPath = path.join(dataDir, 'cpa_question_sets_v3.public.json');
+        const promotionsPath = path.join(dataDir, 'cpa_question_sets_v3.promotions.json');
+        fs.copyFileSync(path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.promotions.json'), promotionsPath);
+        const env = { ...process.env,
+            CPA_QUESTION_V3_AUTHORING_PATH: authoringPath,
+            CPA_QUESTION_V3_PUBLIC_PATH: publicPath,
+            CPA_QUESTION_V3_PROMOTIONS_PATH: promotionsPath,
+            CPA_QUESTION_V3_ENCRYPTED_PATH: path.join(temp, 'authoring.enc.json'),
+        };
         const run = () => {
-            fs.writeFileSync(path.join(dataDir, 'cpa_question_sets_v3.authoring.json'), JSON.stringify(bank));
-            fs.writeFileSync(path.join(dataDir, 'cpa_question_sets_v3.public.json'), JSON.stringify(bank.map(compilePublicQuestionSet)));
-            return spawnSync(process.execPath, ['--import', pathToFileURL(path.join(root, 'node_modules/tsx/dist/loader.mjs')).href, path.join(root, 'cpa_uploader/validate_cpa_v3.ts')], { cwd: temp, encoding: 'utf8' });
+            fs.writeFileSync(authoringPath, JSON.stringify(bank));
+            fs.writeFileSync(publicPath, JSON.stringify(bank.map(compilePublicQuestionSet)));
+            return spawnSync(process.execPath, ['--import', pathToFileURL(path.join(root, 'node_modules/tsx/dist/loader.mjs')).href, path.join(root, 'cpa_uploader/validate_cpa_v3.ts')], { cwd: root, env, encoding: 'utf8' });
         };
         const valid = run();
         assert.equal(valid.status, 0, valid.stderr);

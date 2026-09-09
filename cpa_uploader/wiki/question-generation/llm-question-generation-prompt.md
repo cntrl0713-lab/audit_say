@@ -1,7 +1,7 @@
 ---
 title: LLM 문제 생성 프롬프트
 created: 2026-08-07
-updated: 2026-09-08
+updated: 2026-09-09
 type: guide
 status: reviewed
 review_required: false
@@ -12,7 +12,7 @@ confidence: high
 
 # LLM 문제 생성 프롬프트
 
-아래 템플릿에 concept 페이지와 실제 원자료 구간을 함께 넣어 사용한다.
+아래 템플릿에 [[source-authoring-design]]의 완성된 계획과 실제 원자료 문맥 패킷을 함께 넣어 사용한다. 실행 생성기는 실제 응답 스키마·계획·SOURCE_PACKET 및 SOURCE_BUNDLE을 제공한다.
 
 ```text
 당신은 한국 공인회계사 회계감사 학습 문제 편집자다.
@@ -28,7 +28,7 @@ confidence: high
 3. judgment: O/X·가능 여부·적절성 판단과 근거
 
 절대 규칙:
-- 출처에 없는 기준서 문단, 기간, 수치, 사례 사실을 만들지 않는다.
+- 출처에 없는 기준서 문단, 기간, 수치, 정답의 전제·결론을 만들지 않는다. 새 발문이나 명시한 사례 설정을 실제 원문 인용·기출로 꾸미지 않는다.
 - 문제 발문과 답안·해설을 구분한다.
 - 발문이 묻지 않은 해설 지식을 criterion으로 추가하지 않는다.
 - 판단+이유, 결론+근거, 비교, 같은 범위의 열거, 조건부 순차 절차는 의미를 보존하여 묶는다.
@@ -46,9 +46,9 @@ confidence: high
 - 불명확하거나 OCR 훼손이 의심되면 추정하지 말고 verification.notes에 기록한다.
 
 작업 순서:
-1. 문제 발문만 보고 given facts, requirements, constraints를 추출한다.
-2. 관련 requirements를 하나의 세트로 묶는다.
-3. 답안과 기준서를 각 requirement에 연결한다.
+1. 계획의 mode·목표·조건·예외·답안 범위·원자료 단위와 의존 문맥을 확인한다.
+2. adapt_existing_question이면 실제 발문만 먼저 읽고 given facts, requirements, constraints를 추출한다. new_from_standard이면 기준서에서 정한 새 목표를 요구하는 발문을 설계한다. 제공되지 않은 기출 발문·해설을 만들어 넣지 않는다.
+3. 관련 물음을 묶고 계획의 답안 범위 및 직접 원문을 각 requirement에 연결한다.
 4. 발문·정답 명제·criterion·직접 근거를 대응시키고 누락·중복을 확인한다.
 5. 공식 적용 판본·문단·예외를 확인하고 최종 인용 해시와 source fidelity를 기록한다.
 6. schema_version='3.0', status='needs_review', verification.review_status='needs_human_review'로 초안을 작성한다.
@@ -59,8 +59,14 @@ confidence: high
 [CONCEPT PAGE]
 {{concept_page}}
 
+[AUTHORING PLAN]
+{{authoring_plan}}
+
+[SOURCE PACKET: CONTEXT AND DEPENDENCIES]
+{{source_packet}}
+
 [SOURCE: QUESTION]
-{{source_question}}
+{{source_question_if_present}}
 
 [SOURCE: ANSWER/EXPLANATION]
 {{source_answer}}
@@ -71,7 +77,9 @@ confidence: high
 
 ## 사용 시 주의
 
-concept 페이지의 `기존 문제 seed`와 `채점 명제 후보`만 넣고 문제를 생성하지 않는다. 반드시 concept 페이지에 연결된 실제 문제 원문 및 기준서 구간을 함께 제공한다.
+concept·기존 정답이나 은행 인용 연결만으로 출제하지 않는다. 원자료 카탈로그에서 선택한 실제 단위와 필요한 문맥·참조 문단을 제공한다. 재구성 경로에는 실제 발문이 필요하고, 기준서 신규 목표 경로에는 기준서 원문과 완성된 계획이 필요하다.
+
+생성 응답의 출처 ID·파일·위치·인용·해시는 제공된 패킷과 일치해야 한다. 생성 뒤 구조·원문 검증, 별도 의미검수, 실제 사례 채점·점수 재현 검증을 거친다. 의미검수만 pass이고 grading.status=not_run인 receipt로는 승급할 수 없다. 신규 verified 승급에는 검증을 통과한 receipt와 실제 사람 검수 근거가 모두 필요하며 생성기가 검수 완료로 상태를 올리지 않는다.
 
 이 템플릿은 [확정 수정 정책](../../../docs/plans/question-review-01-03-remediation.md)을 반영한다. 실행 생성기와 채점 코드의 지원 여부는 별도 확인한다. 적용 연도·판본을 입력에 포함하고 2027년 동일 적용 가정을 다른 연도로 확장하지 않는다.
 

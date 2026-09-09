@@ -1,0 +1,205 @@
+**Wiki의 기존 문제 반영 및 신규 출제 구조 검토**
+
+**추가 재평가 및 수정(2026-09-09):** 원자료 연결 151개 누락, 기존 은행에 묶인 출처 탐색, 문맥 분리, 신규 학습목표 설계 및 의미 검수 경계를 추가로 수정했다. 원자료 30파일·6,866단위를 탐색하고 출제 계획·근거 묶음·검수 기록을 연결한다. 아래는 이전 단계의 검증 기록이며 현재 동작·최종 확인 범위는 [원자료 기반 출제 적합성 재평가의 수정 결과](wiki-source-authoring-suitability-2026-09-09.md)를 따른다. 종합 출제 품질이나 최종 시험 판본 승인을 의미하지 않는다.
+
+**후속 상태(2026-09-09): 1~6번 항목과 출제 범위·문서 분리 권고의 로컬 수정 완료.** 출제 정책, ID·중복 검증, 신규 게시·재검수 경로, 문항별 근거 색인, 검토 상태, 위키 동기화 검사를 수정했다. 아래 초기 발견과 1번 수정 당시의 기록은 보존하며, 문서 끝의 전체 수정 기록에서 최종 결과와 확인 범위를 구분한다.
+
+**초기 검토 기록 — 아래 발견과 수치는 수정 전 상태다.**
+
+검토일: 2026-09-09. 대상: `cpa_uploader/wiki/`, 현행 v3 정본, 출제·검증·승급·컴파일 경로.
+
+현재 문제은행의 요약 목록은 정확하게 반영되어 있다. 주제별 탐색과 사람이 원문을 확인하며 출제하는 기반은 갖추었지만, wiki만으로 문항을 재구성하거나 현재 자동 출제 명령부터 신규 게시까지 진행하기에는 보완이 필요하다. 특히 출제 지침과 실행 코드의 계약 차이, 고정 ID, 게시·컴파일의 순환 선행조건이 남아 있다.
+
+이번 작업은 검토다. 위키·문제 데이터·제품 코드는 변경하지 않았고 이 보고서만 추가했다. 모델 호출, 운영 DB 작업, 승급, 컴파일, 위키 재생성은 수행하지 않았다. 기준서 현행성이나 2027 시험 적용 판본을 새로 확정한 검토도 아니다.
+
+**전수 대조 결과**
+
+정본 SHA-256: `21ec8158fe8d3cb91557df98a0d4ba8084254cd75db979924b926c45c063f7d1`.
+
+| 항목 | 현행 값 | wiki 대조 결과 |
+| --- | ---: | --- |
+| 공통 주제 | 19 | 주제별 집계·연결 기준 일치 |
+| 문제 세트 | 96 | ID·제목·게시 상태 일치 |
+| 물음 | 192 | ID·유형 및 분포 일치 |
+| 채점요소 | 521 | criterion ID·claim 일치 |
+| 총점 | 521점 | 정본 검증으로 확인 |
+| 게시 상태 | published 96세트 | 표시 일치 |
+| 요구사항 / 출처 참조 | 238 / 251 | 정본 집계; wiki에는 전체 연결표가 없음 |
+| 원자료 매니페스트 | 39파일 | 파일 목록·크기·SHA 앞 12자리·NUL 수 일치, 미등록 0 |
+| wiki | Markdown 29개, 콘텐츠 26개 | 인덱스 집계 일치 |
+
+물음 유형은 서술형 83개, 판단형 31개, 열거형 78개다. 19주제 커버리지, 96세트 제목·상태, 192물음 유형 및 521claim의 불일치는 0건이었다. 이는 목록·메타데이터의 전수 대조이며, 192물음의 회계감사 의미와 실채점을 새로 전수 검수했다는 뜻은 아니다.
+
+근거: `wiki/index.md:4`, `wiki/_meta/coverage-map.md:19`, `wiki/raw/source-manifest.md:45`, `wiki/scripts/build-wiki.mjs:121` 이하. 위 경로의 기준 디렉터리는 `cpa_uploader/`이다.
+
+**우선 수정할 사항**
+
+**1. 높은 우선순위 — 출제 지침이 자동 출제와 검증에서 보장되지 않는다.**
+
+이 절은 수정 전 발견 기록이다. 후속 수정으로 신규 출제·정본 검증의 정책을 강제하고 6물음의 설정을 정리했다.
+
+wiki는 모든 물음에 `selection={type:'all',n:null}`, `constraints={ordered:false,max_entries:null,overflow_policy:'none'}`를 요구한다. 그러나 `generate_cpa_v3.ts`의 응답 스키마는 `best_n`, `at_least_n`, `ignore_after_limit`를 허용하고, `lib/questionV3.ts` 검증기도 이를 받아들인다. 생성 프롬프트는 concept 문서만 읽으며 수동 `question-design`, `question-output-schema`, `llm-question-generation-prompt`는 입력하지 않는다.
+
+파일을 쓰지 않는 재현에서 `pilot-01-001`을 메모리로 복제한 뒤 첫 물음을 `best_n:1`, `ordered:true`, `max_entries:1`, `ignore_after_limit`로 바꾸어 원문 인용 검증을 포함한 `validateQuestionSetV3`를 실행했다. 원본과 변경본 모두 오류 0개였고 계산된 세트 만점은 5점에서 2점으로 바뀌었다. 현재 은행 검증 통과만으로 확정 출제 정책 준수가 보장되지 않는다.
+
+현행 정본의 selection은 192물음 모두 all+n:null이나 constraints까지 일치하는 것은 186물음이다. 다음 6물음에는 과거 설정이 남아 있다.
+
+| 물음 | 잔존 설정 |
+| --- | --- |
+| pilot-01-003/sub1 | max_entries=4, ignore_after_limit |
+| pilot-01-004/sub2 | ordered=true, max_entries=2 |
+| pilot-02-004/sub1 | max_entries=2, ignore_after_limit |
+| pilot-03-003/sub1 | max_entries=2, ignore_after_limit |
+| pilot-03-003/sub2 | max_entries=2, ignore_after_limit |
+| pilot-03-004/sub1 | max_entries=2 |
+
+위 6건은 메타데이터 계약 불일치다. 이번 검토에서 이 설정 때문에 실제 답안이 잘려 감점된다고 판정한 것은 아니다.
+
+수정 방향: 새 출제에 적용할 정책을 생성 프롬프트·응답 스키마·검증기에 일치시키고, 과거 계약이 들어오는 반례를 차단한다. 현행 6물음은 의도된 발문 범위와 의미상 순서를 보존하여 메타데이터를 정합화한다.
+
+근거: `cpa_uploader/wiki/question-generation/question-output-schema.md:112`, `cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md:35`, `cpa_uploader/generate_cpa_v3.ts:166`, `:416`, `:427`, `lib/questionV3.ts:422`, `:508`.
+
+**2. 높은 우선순위 — 신규 생성 ID가 기존 은행과 반드시 충돌한다.**
+
+생성기는 프롬프트와 후처리에서 ID를 `pilot-${topic.id}-001`로 고정한다. 19주제의 이 ID는 모두 현행 은행에 존재한다. 따라서 현재 생성 결과를 그대로 신규 `--against-bank` 검증에 넣으면 기존 ID 오류가 발생한다. 별도 draft 출력으로 정본 덮어쓰기는 막지만, 기존 은행에 새 세트를 더하는 준비는 되어 있지 않다.
+
+수정 방향: 정본과 미편입 draft의 ID를 조회하여 충돌 없는 ID를 정하고, 생성 결과 반환 전 신규 중복 검증을 수행한다.
+
+근거: `cpa_uploader/generate_cpa_v3.ts:462`, `:493`, `:580`, `cpa_uploader/validate_draft_v3.ts:69`.
+
+**3. 높은 우선순위 — 신규 게시와 공개본 생성의 선행조건이 서로 막힌다.**
+
+README의 제작 절차는 draft 정본 편입 → 전체 은행 검증 → 검수·승급 → 컴파일 순서다. 하지만 새 세트를 추가하면 기존 public JSON과 달라져 전체 은행 검증부터 실패한다. 이어서 published 승급은 최신 정본을 변환한 public JSON이 이미 있어야 하고, 그 오류 메시지는 컴파일을 먼저 실행하라고 한다. 반면 컴파일은 모든 세트가 이미 published여야 실행된다.
+
+새 verified 세트가 정본에 추가되고 public에는 아직 없는 일반적인 상황에서, 안내된 두 명령은 서로의 완료를 먼저 요구한다. 현재 이미 게시된 96세트가 검증을 통과하는 것과 신규 세트의 게시 경로가 완결되는 것은 별개다. 이 발견은 코드 조건 대조이며 운영 상태 변경으로 재현하지 않았다.
+
+수정 방향: 검수된 신규 세트의 공개 변환·검증·승급·배포를 일관된 순서로 수행하도록 경계를 정리하고, 임시 은행을 사용해 신규 한 세트 편입부터 게시까지 확인한다. 상태나 검수 근거를 임의로 바꿔 우회하지 않는다.
+
+근거: `cpa_uploader/README.md:62`, `cpa_uploader/validate_cpa_v3.ts:169`, `cpa_uploader/promote_cpa_v3.ts:211`, `scripts/compile-question-bank-v3.ts:32`.
+
+**4. 중간 우선순위 — wiki의 기존 문항 요약만으로는 조건과 직접 근거를 복원할 수 없다.**
+
+concept 생성기는 제목·물음 ID/유형·criterion claim을 출력한다. 공통 사실, 실제 발문, 모범답안, critical_facts, requirement별 직접 출처, 검수 기록은 포함하지 않는다. 따라서 기존 문항이 반영되어 있다는 말은 요약 인덱스 수준에서 정확하다.
+
+실례로 `pilot-13-003/sub1`의 concept에는 서면동의 네 요소와 국내 직접적 보조 금지가 함께 나열되지만, 정본 발문에 있는 “직접적 보조가 허용되는 국가에서 활용 요건을 충족한 비교 상황”은 빠진다. 이 요약만으로 새 발문을 작성하면 적용 조건을 놓칠 수 있다. `pilot-16-003`도 발문의 KGA720 적용 전제와 후속대응 제외 범위가 claim 목록에는 드러나지 않는다.
+
+19개 concept 모두 “해당 검토 보고서” 확인을 요구하면서 해당 주제 보고서로 직접 연결하지 않는다. 공식 발췌 TXT는 source-manifest에 등록되어 있지만 concept의 원자료 탐색은 통합 목차에 의존한다. 주제19의 기준 지도도 비KGA 인증·검토·관련서비스 자료를 별도 기준 축으로 보여주지 않고 KGA200만 표시한다.
+
+수정 방향: wiki에는 물음별 발문·필수 조건·학습목표와 정본 위치를 연결하고, requirement/criterion에서 공식 출처·적용 판본·검토 보고서까지 추적 가능한 인덱스를 둔다. 정본 전체를 중복 저장하기보다 정본에서 필요한 정보를 조회하는 방식도 가능하다. 출제기는 관련 수동 지침과 공식 근거를 실제 입력에 포함해야 한다.
+
+근거: `cpa_uploader/wiki/scripts/build-wiki.mjs:128`, `:146`, `:184`; `cpa_uploader/wiki/concepts/service-organizations-internal-audit-experts.md:52`; 정본 `:15534`, `:15549`; `cpa_uploader/wiki/question-generation/question-design.md:208`.
+
+**5. 중간 우선순위 — 최신 검토 완료 상태가 수동 지침 일부에 반영되지 않았다.**
+
+`question-design.md:73`, `:267`은 주제18·16의 상세 검토 보고서가 아직 작성되지 않았다고 안내하고 계획 문서로 연결한다. 실제 `docs/reports/question-review-2027/18.md`, `16.md`는 존재하고 전수 검토·수정 결과를 기록한다. 로컬 검토 완료와 최종 시험 적용 판본 미확정을 구분해 현행 보고서·장부로 연결해야 한다.
+
+그 밖에 `cpa_uploader/README.md:26`의 503criterion, `validate_draft_v3.ts:14`의 은행65세트 주석도 과거 수치다. 반면 자동 생성 coverage의 521criterion은 현행 정본과 일치한다.
+
+**6. 중간 우선순위 — 위키 검사가 현재 실패하며 동기화 최신성을 자동 검사하지 않는다.**
+
+실제 wiki lint는 오류 4개로 종료코드1을 반환했다. coverage-map, group-audit, question-output-schema, source-manifest는 frontmatter가 있으나 Windows CRLF 줄바꿈이다. 파서는 LF의 `---\n`만 인정하므로 이를 frontmatter 없음으로 오판한다. 문서 내용을 새로 작성해야 하는 문제가 아니라 줄바꿈을 처리하는 검사 도구의 문제다.
+
+또한 lint는 링크·형식·길이를 검사하지만 은행 ID·물음·claim이나 manifest hash의 최신성은 비교하지 않는다. package scripts와 pre-commit에도 wiki 동기화 검사가 없다. 현재 일치 상태는 수동 재생성·대조에 의존한다. `build-wiki.mjs`는 log를 직접 append하지 않아 실행 이력도 작업자가 기록해야 한다.
+
+수정 방향: CRLF/LF를 모두 처리하고, 파일을 덮어쓰지 않는 동기화 검사로 현행 정본과 생성 영역의 차이를 검출한다. 은행 변경 시 관련 검증에 포함한다.
+
+근거: `cpa_uploader/wiki/scripts/lint-wiki.mjs:41`, `:119`; `.githooks/pre-commit`; `package.json`; `cpa_uploader/wiki/scripts/build-wiki.mjs:9`.
+
+**출제 범위 선택 구조의 개선점**
+
+coverage-map의 ‘충분’은 세트 4개 이상이라는 수량 기준이다. 현재 19주제가 모두 충분이지만 주제13의 KGA402는 전체 은행에 연결된 세트나 source가 없다. 해당 표에 미연결 기준서 경고가 있어 숨겨진 결함은 아니지만, 출제 우선순위를 정하려면 기준서 요구사항·학습목표·조건·물음 유형별 연결이 더 필요하다.
+
+`gap-scan.mjs` 실행 결과는 요구사항 절 189개 중 공백26·얇음67·커버96이다. 이는 문자 4-gram 유사도로 정한 후보 분류이며 실제 내용 커버율이 아니다. KGA402의 5개 절은 모두0%이고 실제 은행 연결도 없다. 이 영역을 우선 조사하는 근거로 사용할 수 있다.
+
+권장 구조는 기존 raw → concept → question-generation → draft의 층을 유지하면서, 공식 출처·판본 및 검수 장부, 물음별 조건·명제·근거 연결표, 요구사항별 출제 공백표를 연결하는 방식이다. 295줄이 된 question-design의 주제별 상세 지침은 공통 규칙과 분리하고 각 concept에서 바로 찾아갈 수 있게 하면 출제 시 누락을 줄일 수 있다.
+
+**실행한 검증**
+
+| 검증 | 결과 | 확인 범위 |
+| --- | --- | --- |
+| `npm run typecheck` | 통과 | 현행 타입 정합성 |
+| `npm run questions:v3:validate` | 통과 | 96세트·192물음·521criterion·521점, 로컬 source quote 실존과 public 일치 |
+| questionV3 / Generation / Review / SourceReuse 관련 테스트 | 18개 통과 | 기존 데이터·인용·공개 변환·점수 경계·생성 모듈 import |
+| `node cpa_uploader/wiki/scripts/lint-wiki.mjs` | 실패 | frontmatter 오탐4개, 길이 권고2개 |
+| `node cpa_uploader/wiki/scripts/gap-scan.mjs` | 실행 통과 | 공백 후보를 찾는 근사 스캔 |
+| 은행↔wiki 목록 및 manifest 전수 대조 | 일치 | 위 집계·ID·유형·claim·파일 메타데이터 |
+| 구형 정책 메모리 반례 | 결함 재현 | 금지 정책이 검증 통과, 세트 만점5→2 |
+
+길이 권고는 log.md 234줄, question-design.md 295줄이다. 통과한 타입 검사·은행 검사·18개 테스트가 자동 출제의 정책 준수나 신규 게시 경로를 보장하지는 않는다. 실제 모델 출제 품질, 공식 기준서 최신 판본, 운영 DB·암호화 배포물의 재생성은 이번 검토에서 확인하지 않았다.
+
+**2026-09-09 후속 수정 — 1번 항목 완료**
+
+생성 응답 스키마는 `all/n:null`, `ordered:false/max_entries:null/overflow_policy:none`만 허용한다. 실제 생성 요청에 네 수동 wiki 지침을 읽어 넣고, 지침·응답 스키마·생성기·프롬프트 계약 변경 시 과거 체크포인트를 재사용하지 않는다. 모델이 금지된 설정을 반환하면 조용히 덮어쓰지 않고 검증 오류를 전달하여 다시 생성한다. 모델이 기록한 문자열 검토 메모도 보존하며 검수 상태는 계속 코드가 검수 대기로 고정한다.
+
+`validateQuestionSetV3`의 기본 동작은 다섯 정책 필드의 정확한 값과 존재를 강제한다. 신규 draft·정본·승급·import에 이 검증을 적용하며 import의 내용 재검토 생략 옵션도 정책 위반은 허용하지 않는다. 타입에서 selection은 all/n:null로 제한했고, 만점·득점 계산의 best_n 분기를 제거하여 모든 독립 criterion을 합산한다. 일부 criterion 누락·반대 의미가 다른 정상 득점을 지우지 않는다.
+
+위 표의 6물음은 constraints만 변경했다. 수정 전 정본과 구조 비교하여 발문·모범답안·criterion·출처·배점·검수 상태를 포함한 나머지 데이터가 동일함을 확인했다. 192물음 모두 현행 정책에 일치하며 96세트·521criterion·521점은 유지된다. 검수 상태 승급은 수행하지 않았다.
+
+과거 DB의 불변 버전을 읽는 경로는 기존 constraints를 보존한다. 이를 위해 저장 형상 타입은 과거 constraints도 표현할 수 있게 유지하고, 게시·검수 상태를 갖춘 저장 버전 조회에만 `allowStoredAnswerConstraints`를 명시한다. 신규 출제·정본 검증에는 적용하지 않는다. 저장 버전의 selection도 all/n:null로 제한하고 점수는 전체 합산하므로 과거 메타데이터 때문에 다시 점수를 자르지 않는다. SQL 저장 계약·운영 DB는 변경하지 않았다.
+
+공개본·암호화본을 현재 컴파일 도구로 갱신했다. 복호화 결과와 정본의 바이트 일치, public과 정본 공개 변환의 구조 일치, 비공개 채점 필드의 public 비노출을 확인했다. 위키는 수동 스키마·워크플로를 갱신하고 빌더로 source-manifest를 갱신했다. 본문·집계가 동일한 생성 페이지는 날짜만 바꾸지 않고 원래 파일을 보존했다.
+
+| 최종 확인 | 결과 |
+| --- | --- |
+| 타입 검사 | `npm run typecheck` 통과 |
+| 관련 테스트 | `node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test "tests/questionV3*.test.ts" tests/questionBankImport.test.ts tests/cpaQuestionBankDatabase.test.ts` — 47개 통과 |
+| 은행 검증 | 96세트·192물음·521criterion·521점 통과 |
+| 컴파일·복호화·공개 변환 | 통과, 비공개 채점 필드 노출 없음 |
+| 정본 수정 범위 | 6물음 constraints만 변경, 나머지 내용·배점 동일 |
+| wiki 빌드 | 19주제·96세트·192물음·521criterion 확인 |
+| wiki lint | 실패: coverage-map·group-audit의 기존 CRLF frontmatter 오탐 2건, 길이 권고 2건 |
+| diff 공백 검사 | 통과 |
+
+최종 정본 SHA-256: `039a1a68c39b48d692d78d0980c6d2efaa9f68d2f7e32cbab973df95b7234d0a`.
+
+최종 공개본 SHA-256: `29fecf12bde61d1b4799c031ef0345f256ab4137d3e2a6e1ec9ebc0578e13056`.
+
+생성 테스트는 실제 요청 구성·전송 스키마·후처리·검증·재시도 경로에 오프라인 응답을 주입한 검사다. 실제 모델 품질 평가나 운영 배포를 수행한 결과가 아니다. DB 호환성은 격리 PGlite와 저장 버전 검증 반례로 확인했다. 이 1번 수정 단계에는 2번 ID 충돌, 3번 신규 게시 순서, 나머지 위키 개선이 남아 있었으며 후속 전체 수정은 아래에 기록한다.
+
+**2026-09-09 후속 전체 수정 — 1~6번 및 구조 개선**
+
+| 항목 | 수정 결과 | 주요 구현·문서 |
+| --- | --- | --- |
+| 1. 출제 계약 | 모두 작성 정책의 기존 수정 유지. 공통 4지침과 해당 주제 지침을 실제 생성 입력에 포함 | `lib/questionV3.ts`, `generate_cpa_v3.ts`, `question-generation/` |
+| 2. 신규 ID·중복 | 정본·미편입 draft·체크포인트를 조회해 다음 ID 배정. 생성 반환·배치 저장 전 ID와 공백 정규화한 동일 발문 검증. 기존 draft 덮어쓰기 거절 | `questionDraftInventory.ts`, `generate_cpa_v3.ts`, `validate_draft_v3.ts` |
+| 3. 신규 게시 | public 갱신 전 편집검증 → 근거 있는 verified → published → compile → public 포함 최종검증 순서로 정리 | `questionBankPublication.ts`, `validate_cpa_v3.ts`, `promote_cpa_v3.ts`, `scripts/compile-question-bank-v3.ts` |
+| 4. 조건·직접 근거 | 96세트 각각 공통 사실·발문·모범답안·critical_facts·배점·requirement·인용·출처 위치·검수 메모·정본 JSON Pointer 연결. concept에는 실제 발문·전제 및 세트 색인 연결 | `wiki/questions/`, `wiki/concepts/`, `wiki/_meta/source-review-map.md` |
+| 5. 수동 지침 | 주제16·18의 미작성 안내를 실제 검토 보고서·근거 장부로 변경. 로컬 검토와 시험 판본 미확정 구별. 낡은 고정 집계 제거 | `wiki/question-generation/topics/`, `cpa_uploader/README.md`, `validate_draft_v3.ts` |
+| 6. 위키 검사 | CRLF/LF, 메타데이터 값, 원자료·문서·문단 링크 검증. 파일을 쓰지 않는 생성 내용 대조를 package scripts·pre-commit에 추가 | `build-wiki.mjs`, `lint-wiki.mjs`, `check-wiki.mjs`, `.githooks/pre-commit` |
+| 출제 범위·길이 | 개수 기반 충분 판정 제거. 유형·직접 출처 미연결 및 요구사항 보강 후보 연결. 공통 지침과 19주제 지침 분리 | `wiki/_meta/coverage-map.md`, `requirement-coverage.md`, `question-design.md`, `topics/` |
+
+위 표에서 별도 루트가 없는 코드 경로는 `cpa_uploader/` 기준이다. [위키 인덱스](../../cpa_uploader/wiki/index.md), [실행 안내](../../cpa_uploader/README.md), [출처·검토·판본 지도](../../cpa_uploader/wiki/_meta/source-review-map.md), [요구사항 보강 후보](../../cpa_uploader/wiki/_meta/requirement-coverage.md)에서 새 구조를 확인할 수 있다.
+
+신규 ID 예약 조회 범위는 `cpa_uploader/data/` 하위와 출력 폴더 하위 JSON이다. 손상된 draft/checkpoint는 무시하지 않고 실패하며, 정본 없는 `--against-bank`도 실패한다. 체크포인트 복원 시 현재 은행·다른 초안과 다시 대조한다. 자동 중복 검사는 ID·동일 발문 검사이며 의미상 학습목표 중복의 사람 검토를 대체하지 않는다.
+
+생성기는 주제별 정본의 공식 출처 참조를 실제 전사 파일에서 찾고, 파일에 존재하는 인용과 해시를 사용한다. 제목·문단·판본·URL 기록은 별도 출처 메타데이터로 제공한다. 현행 주제06~19는 공식 전사 파일에 연결되고, 01~05는 공식 전사 연결이 없어 학습자료 fallback과 추가 검수 필요를 입력·notes에 표시한다. 이 경로가 새로운 기준서 전체나 2027 시험 판본을 자동 확보·확정하는 것은 아니다.
+
+검수 승급은 `status`와 `verification.review_status`를 함께 갱신하고 lifecycle 두 필드를 제외한 내용 해시를 기록한다. 검수 후 내용 수정은 일반 게시·컴파일에서 거절한다. 실제 재검수가 끝난 대상은 `--reverify --to verified --sets <ID> --evidence "새 검수 기록"`으로 장부를 추가하고 재게시한다. 타세트의 미검수·해시 불일치·상태 위조를 허용하지 않는다. 기존 해시 없는 소급 장부는 역사 기록으로 호환 유지한다. CLI는 잠금과 입력 변경 감지, 임시 파일 교체 및 동기 오류 시 복원을 사용하며 프로세스 강제종료를 포함한 다중 파일 DB 트랜잭션은 아니다.
+
+임시 97세트 은행에서 public 없는 신규 초안의 편입부터 verified·published·compile·최종 검증까지 실제 CLI로 확인했다. 미검수, 근거 누락, 중복 ID·발문, 원문 인용 실패, 과거 제한 설정, 검수 후 수정, 상태 직접 변경을 거절하고 실패 시 파일이 유지되는 것도 확인했다. 새로 게시한 문항의 수정→명시적 재검수→재게시도 검증했다. 실제 정본의 상태·승급 장부를 이 시험으로 변경하지 않았다.
+
+문항별 색인은 정본의 관련 필드를 전수 렌더링한다. 독립 대조에서 사실·발문·명제·핵심 조건·requirement 인용 1,572개 필드의 보존을 확인했다. 주제13의 허용 국가 비교 조건과 주제16의 KGA720 적용·제외 범위가 발문에 나타난다. 주제19는 비KGA 인증·검토·관련서비스를 별도 기준 축과 실제 출처 제목으로 표시한다. 장부의 객체형 `baseline`에는 과거 은행 전체가 들어갈 수 있어 현행 색인에 재복사하지 않고 장부 링크로 연결한다.
+
+요구사항 스캔은 기존 189절의 근사 문자열 탐색이며 공백 후보26·낮은 유사도67·유사 문구 탐지96이다. KGA402의 미연결·5개 공백 후보를 우선 검토 대상으로 표시한다. 현재 절 구조 파서에서 제외되는 KGA265·1200 및 비KGA 범위의 미스캔을 명시했다. 미스캔을 미출제 또는 검수 완료로 해석하지 않는다. 238개 requirement와 521개 criterion의 직접 연결은 세트별 표에서 조회한다.
+
+위키는 Markdown 146개, 콘텐츠 143개, 자동 생성 121개다. `buildWiki`는 읽기 전용 렌더 함수이고 CLI만 생성 파일을 쓰고 log를 append한다. `wiki:check`는 생성 날짜·줄바꿈만 정규화하며 발문·조건·출처 해시·장부 상태·판본 본문의 차이와 누락·오래된 생성 페이지를 검출한다. 비변경 동작은 파일 해시와 수정시각으로 검증했다. 셸 hook의 LF를 `.gitattributes`에 지정했다.
+
+**전체 수정의 최종 검증**
+
+최초 전체 실행에서는 226개 중 225개가 통과했고, 기존 출처 재사용 테스트의 임시 fixture에 새 필수 승급 장부가 없어 1개가 실패했다. 해당 fixture에 현행 장부를 복사하고 경로를 격리했으며, 검증을 생략하거나 인용 재사용·중복·조작 반례를 제거하지 않았다. 수정 후 전체 실행은 아래와 같이 통과했다.
+
+| 최종 검사 | 결과 |
+| --- | --- |
+| `npm test` | 242개 통과, 실패·취소·skip 0, 22 suites |
+| `npm run typecheck` | 통과 |
+| 변경 코드·테스트 ESLint | 통과 |
+| `npm run questions:v3:validate` | 96세트·192물음·521criterion·521점, 원문·중복·검수·장부·public 일치 통과 |
+| `npm run wiki:check` | 146문서·143콘텐츠·121생성 페이지, 오류·경고·동기화 불일치 모두 0 |
+| 생성 경로 | 19주제 오프라인 생성·공식 발췌/fallback·ID와 발문 중복·체크포인트 반례 통과 |
+| 신규 게시·재검수 | 격리 97세트 실제 CLI 경로와 실패·파일 복원 반례 6테스트 통과 |
+| 위키 회귀 | CRLF·링크·내용/근거/판본 변경·과거 snapshot 비복제·비변경 검사 11테스트 통과 |
+| 셸 hook 구문·diff 공백 | 통과 |
+
+정본 SHA-256은 `039a1a68c39b48d692d78d0980c6d2efaa9f68d2f7e32cbab973df95b7234d0a`로 유지된다. Git 기준 정본과 구조 대조한 차이는 위 6물음의 constraints뿐이다. 96세트·192물음·521criterion·521점과 정답·출처·검수 상태는 유지된다. 공개본은 정본의 공개 변환과 일치하고 기존 암호화본의 복호화 결과는 정본 바이트와 일치한다. 비공개 문항 색인을 앱의 public 문제 데이터로 읽는 경로는 추가하지 않았다.
+
+이번 전체 수정은 로컬 코드·문서·회귀 검증이다. 실제 모델 호출, 신규 회계감사 문제 제작, 운영 DB 변경·서비스 배포, 공식 기준서나 최종 시험 적용 판본의 신규 확정은 수행하지 않았다.

@@ -34,6 +34,14 @@ export function inspectBankSnapshot(authoring: string, publicText: string, optio
     const sourceHashMismatches: string[] = [];
     const seen = new Set<string>();
     for (const [index, set] of sets.entries()) {
+        // Skipping source/content review does not permit a retired answer policy.
+        // Keep the supplied snapshot intact and report each incompatible question.
+        for (const sub of Array.isArray(set?.subquestions) ? set.subquestions : []) {
+            if (sub?.selection?.type !== 'all' || sub.selection.n !== null || sub.constraints?.ordered !== false
+                || sub.constraints.max_entries !== null || sub.constraints.overflow_policy !== 'none') {
+                legacy.push(`${set.id}/${sub?.id}`);
+            }
+        }
         if (options.contentReview === false) {
             if (seen.has(set.id)) errors.push(`중복 세트 ID: ${set.id}`);
             seen.add(set.id);
@@ -53,12 +61,6 @@ export function inspectBankSnapshot(authoring: string, publicText: string, optio
             }
         }
         if (set.status !== 'published' || set.verification.review_status !== 'verified') errors.push(`${set.id}: 게시·검토 상태 미완료`);
-        for (const sub of set.subquestions) {
-            if (sub.selection.type !== 'all' || sub.selection.n !== null || sub.constraints.ordered
-                || sub.constraints.max_entries !== null || sub.constraints.overflow_policy !== 'none') {
-                legacy.push(`${set.id}/${sub.id}`);
-            }
-        }
     }
     if (legacy.length) errors.push(`최종 모두 작성 정책 미완료: ${legacy.length}개 물음. 발문·정답·배점 검토 후 정본에서 수정해야 합니다.`);
     if (sourceHashMismatches.length) errors.push(`출처 인용 SHA-256 불일치: ${sourceHashMismatches.length}개. 최종 검수한 인용 문자열의 content_hash를 확인해야 합니다.`);

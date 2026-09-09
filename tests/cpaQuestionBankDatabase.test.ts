@@ -6,6 +6,47 @@ import { publicLearningSet } from '../lib/learningPublic.ts';
 import type { PublicQuestionSetV3, QuestionSetV3 } from '../lib/questionV3.ts';
 import { createLearningDatabase, importQuestionBank, memberId, otherMemberId, questionBankPayload, sampleQuestionSet } from './helpers/cpaLearningDatabase.ts';
 
+test('public learning parser preserves stored legacy constraints and rejects malformed constraints or selection', () => {
+    const questionSet = compilePublicQuestionSet(sampleQuestionSet());
+    const envelope = { release_id: 'release', set_version_id: 'version', question_set: questionSet };
+    assert.deepEqual(publicLearningSet(envelope), { ...questionSet, release_id: 'release', set_version_id: 'version' });
+    for (const constraints of [
+        { ordered: true, max_entries: null, overflow_policy: 'none' as const },
+        { ordered: false, max_entries: 2, overflow_policy: 'none' as const },
+        { ordered: true, max_entries: 4, overflow_policy: 'ignore_after_limit' as const },
+    ]) {
+        const stored = structuredClone(envelope);
+        stored.question_set.subquestions[0].constraints = constraints;
+        const before = structuredClone(stored);
+        assert.deepEqual(publicLearningSet(stored).subquestions[0].constraints, constraints);
+        assert.deepEqual(stored, before, 'reading an immutable snapshot must preserve its stored constraints');
+    }
+    const policies = [
+        { constraints: { ordered: 'false' } },
+        { constraints: { ordered: undefined } },
+        { constraints: { max_entries: 0 } },
+        { constraints: { max_entries: -1 } },
+        { constraints: { max_entries: 1.5 } },
+        { constraints: { max_entries: 'invalid' } },
+        { constraints: { max_entries: undefined } },
+        { constraints: { overflow_policy: 'invalid' } },
+        { constraints: { overflow_policy: undefined } },
+        { selection: { type: 'best_n', n: 1 } },
+        { selection: { type: 'at_least_n', n: 1 } },
+        { selection: { type: undefined } },
+        { selection: { n: 1 } },
+        { selection: { n: undefined } },
+    ];
+    for (const policy of policies) {
+        const invalid = structuredClone(envelope);
+        Object.assign(invalid.question_set.subquestions[0].constraints, policy.constraints);
+        Object.assign(invalid.question_set.subquestions[0].selection, policy.selection);
+        const before = structuredClone(invalid);
+        assert.throws(() => publicLearningSet(invalid), /저장/, JSON.stringify(policy));
+        assert.deepEqual(invalid, before, 'rejection must not alter the stored payload');
+    }
+});
+
 test('SQL question bank preserves v3 public/private contracts, scoped codes, revision identity and idempotency', async () => {
     const db = await createLearningDatabase();
     try {
@@ -58,8 +99,8 @@ test('SQL importer rejects broken policy, scores, source links, private display 
     try {
         const first = await importQuestionBank(db);
         const corruptions: Array<(set: QuestionSetV3) => void> = [
-            (set) => { set.subquestions[0].selection = { type: 'best_n', n: 1 }; },
-            (set) => { set.subquestions[0].constraints.max_entries = 0; },
+            (set) => { Object.assign(set.subquestions[0].selection, { type: 'best_n', n: 1 }); },
+            (set) => { Object.assign(set.subquestions[0].constraints, { max_entries: 0 }); },
             (set) => { set.subquestions[0].criteria[0].scores.met = 2; },
             (set) => { set.subquestions[0].criteria[0].source_ref_ids = ['unknown']; },
             (set) => { set.subquestions[0].requirements[0].source_ref_id = 'unknown'; },

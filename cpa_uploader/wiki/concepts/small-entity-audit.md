@@ -1,66 +1,66 @@
 ---
-title: 소규모기업 감사
+title: "18. 소규모기업 감사"
 created: 2026-08-08
-updated: 2026-09-08
+updated: 2026-09-09
 type: concept
 status: generated
 review_required: true
-tags: ["audit", "question-generation"]
-sources: ["cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md", "cpa_uploader/data/cpa_question_sets_v3.authoring.json"]
+tags: [audit, question-generation, quality]
+sources: ["cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md","cpa_uploader/data/cpa_question_sets_v3.authoring.json","docs/reports/question-review-2027/18.md","docs/reports/question-review-2027/18.json"]
 confidence: medium
 ---
 
 # 18. 소규모기업 감사
 
+
 ## 범위
 
-- 기준 축: KGA 1200
-- 현재 문제은행 연결 기준: KGA 1200
+- 탐색 기준 축: KGA 1200
+- 목차 기준 축: KGA 1200
+- 정본 직접 출처: KGA 1200
 - 탐색어: 소규모기업, 소규모 기업
-- 현재 연결된 문제 세트: 4개
-- 현재 연결된 criterion: 27개
-- 주제 전체 유형 분포: judgment 3, descriptive 3, enumeration 2
+- 세트 4 · 물음 8 · criterion 27 · descriptive 3 · enumeration 2 · judgment 3
 
-## 문제 생성 관점
+## 출제 전 확인
 
-- 핵심개념과 정의를 묻는 `descriptive`
-- 조건 또는 결론을 판단하고 근거를 묻는 `judgment`
-- 독립된 절차·고려사항을 요구하는 `enumeration`
-- 같은 개념의 정의 → 적용 조건 → 절차 또는 보고효과를 연계형 물음으로 구성
-- 실제 산술을 요구하는 문제는 제외하고, 기준서상 수치·기간 자체를 묻는 경우만 허용
+- 원자료 단위와 새 목표 설계: [[source-catalog-topic-18]] · [[source-authoring-design]]
+- 주제별 조건·예외: [[topic-18-design]]
+- 문항별 검토·판본·실측: [18.md](../../../docs/reports/question-review-2027/18.md) · [18.json](../../../docs/reports/question-review-2027/18.json)
+- 기존 세트 색인의 공통 사실 → 발문 → 모범답안 → 핵심 조건 → requirement·출처를 함께 읽는다. 명제 목록만으로 적용 범위와 정답을 확정하지 않는다.
+- 아래 생성 목록은 정본의 현재 기록이며 사람 검수나 2027 시험 적용 판본 확정을 보증하지 않는다.
 
 ## v3 문제은행 연결 현황
 
-아래 criterion claim과 게시 상태는 현재 정본의 기록이다. 생성된 목록 자체는 공식 출처 대조나 사람 검수 완료를 보증하지 않는다.
-새 문제를 만들 때는 중복 명제 탐색에 참고하고 해당 검토 보고서와 공식 근거를 확인한다.
+### pilot-18-001. 소규모기업 감사기준의 적용 범위와 감사보고서 사례
 
-### pilot-18-001. 소규모기업 감사기준의 적용 범위와 감사보고서 사례 (게시 중)
+[[pilot-18-001]] — published/verified; 조건·정답·requirement·공식 파일 위치 포함
+- 공통 사실: 각 물음은 KGA 1200의 적용 범위 또는 보론 2의 감사보고서 사례를 다룬다.
+- subq1 (judgment): KGA 1200에서 정한 소규모기업에 해당하지 않는 기업의 일반목적 재무제표 감사에 KGA 1200을 적용할 수 있는지 판단하고, 이 경우 적용해야 하는 감사기준서를 제시하시오.
+- subq2 (judgment): KGA 1200 보론 2의 사례 1(적정의견 감사보고서)에 핵심감사사항(KAM) 단락이 포함되어 있는지 판단하시오.
 
-- 물음 구성: subq1, subq2 · 유형 분포: judgment 2
-- subq1(judgment): `crit1` 소규모기업이 아닌 기업에는 KGA 1200을 적용할 수 없다고 판단함 · `crit2` 그 경우 KGA 200부터 KGA 720까지의 일반 감사기준서를 적용한다고 설명함
-- subq2(judgment): `crit3` 보론 2 적정의견 감사보고서 사례에 KAM 단락이 포함되지 않는다고 설명함
+### pilot-18-002. 소규모기업 감사기준에서 일반 감사기준으로의 전환
 
-### pilot-18-002. 소규모기업 감사기준에서 일반 감사기준으로의 전환 (게시 중)
+[[pilot-18-002]] — published/verified; 조건·정답·requirement·공식 파일 위치 포함
+- 공통 사실: 각 물음은 독립된 상황이며, 감사 진행 중의 기준 전환과 회계연도 간 기준 변경을 각각 다룬다.
+- sub1 (descriptive): KGA 1200에 따라 감사를 수행하던 중 감사대상 기업이 문단 2의 적용 조건을 충족하지 못하게 되었다. 적용해야 하는 기준과 문단 7의 후속 절차를 모두 제시하고, 이미 수행한 업무를 평가할 때 포함해야 하는 세 범주도 설명하시오.
+- sub2 (descriptive): 직전 회계연도 감사에는 KGA 1200을 적용했으나 당기 감사에는 일반 감사기준서를 적용하는 경우, 일반 감사기준서의 적용 시점을 설명하시오.
 
-- 물음 구성: sub1, sub2 · 유형 분포: descriptive 2
-- sub1(descriptive): `crit1` 일반 감사기준서를 적용하여 감사를 수행함 · `crit2` 감사계약서 수정 등 업무조건을 다시 합의함 · `crit3` 위험평가절차(기업과 기업 환경의 이해 포함), 이미 설계하거나 수행한 추가감사절차 및 문서화의 세 범주를 포함하여 기수행 업무의 충분성과 적합성을 평가함 · `crit4` 필요한 추가 절차를 설계·수행하고 필요에 따라 문서화를 추가함
-- sub2(descriptive): `crit5` 일반 감사기준서를 해당 회계연도 감사부터 전진적으로 적용함
+### pilot-18-003. 소규모기업 감사의 준수 표명과 감사문서 관리
 
-### pilot-18-003. 소규모기업 감사의 준수 표명과 감사문서 관리 (게시 중)
+[[pilot-18-003]] — published/verified; 조건·정답·requirement·공식 파일 위치 포함
+- 공통 사실: 감사인은 소규모기업 감사의 적용 기준과 감사문서 관리 방식을 업무팀에 안내하려고 한다.
+- sub1 (enumeration): KGA 1200을 적용해 감사를 수행한 경우 감사보고서에 기술하거나 언급해서는 안 되는 두 사항을 모두 제시하시오. 또한 문단 2의 적용 조건을 충족하는 기업에 일반 감사기준서를 선택 적용할 수 있는 조건과 적용 방식을 설명하시오.
+- sub2 (enumeration): KGA 1200 문단 27–31에 따른 감사문서 요구사항을 모두 설명하시오. 문서 작성의 목적, 이해할 수 있어야 하는 사람과 문서에 담을 사항, 유의적 사안의 논의 기록, 최종감사파일의 취합 및 취합 후 삭제·폐기와 수정·추가 시의 요구사항을 포함하시오.
 
-- 물음 구성: sub1, sub2 · 유형 분포: enumeration 2
-- sub1(enumeration): `crit1` KGA 1200 적용 시 회계감사기준 전체를 준수했다고 기술하지 않음 · `crit2` KGA 1200 적용 시 일반 감사기준서 또는 그 일부를 언급하지 않음 · `crit3` KGA 1200 문단 2 요건을 충족하는 기업과 서면 합의한 경우 KGA 1200 대신 일반 감사기준서를 적용할 수 있다고 설명함
-- sub2(enumeration): `crit4` 감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성함 · `crit5` 해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 문서를 작성함 · `crit6` 감사 관련 문서를 하나의 감사파일로 취합함 · `crit7` 감사보고서일 후 적시에 최종감사파일 취합 절차를 완료함 · `crit8` 최종파일 취합 후 보존기간 종료 전 감사문서를 삭제·폐기하지 않음 · `crit9` 이 감사기준서와 관련 법규에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성함 · `crit10` 수행한 절차의 성격·시기·범위와 테스트 항목의 식별 특성, 수행자·완료일, 검토자·검토일·검토범위를 기록함 · `crit11` 감사절차의 수행 결과 및 입수한 감사증거를 기록함 · `crit12` 감사 중 유의적 사안, 관련 결론 및 결론 도출에 적용한 유의적인 전문가적 판단을 기록함 · `crit13` 경영진·지배기구·기타 관련자와 유의적 사안을 논의한 경우 그 성격·논의 시기·상대자 등 논의 내용을 문서화함 · `crit14` 취합 완료 후 기존 문서 수정 또는 새 문서 추가가 필요한 경우 그 성격과 관계없이 구체적 이유를 문서화함 · `crit15` 취합 완료 후 문서를 수정·추가한 사람과 검토한 사람 및 각각의 시기를 문서화함
+### pilot-18-004. 소규모기업 감사보고서의 준수 표명 제한과 일반 감사기준서 선택 적용
 
-### pilot-18-004. 소규모기업 감사보고서의 준수 표명 제한과 일반 감사기준서 선택 적용 (게시 중)
+[[pilot-18-004]] — published/verified; 조건·정답·requirement·공식 파일 위치 포함
+- 공통 사실: 감사대상 기업은 소규모기업 정의(문단 2)에 해당한다.
+- sub1 (judgment): KGA 1200을 적용해 감사를 수행한 경우, 감사보고서에 ① 회계감사기준 전체를 준수하였다고 기술하는 것과 ② 일반 감사기준서 또는 그 일부를 언급하는 것이 허용되는지 각각 판단하시오.
+- sub2 (descriptive): 소규모기업의 감사에 일반 감사기준서를 적용할 수 있는 조건과 적용 방식을 설명하시오.
 
-- 물음 구성: sub1, sub2 · 유형 분포: judgment 1, descriptive 1
-- sub1(judgment): `crit1` 전체 준수 표명이 금지됨을 판단함 · `crit2` 감사보고서에서 일반 감사기준서 또는 그 일부를 언급하는 것도 금지됨을 판단함
-- sub2(descriptive): `crit3` 기업과의 서면 합의를 적용 조건으로 제시함 · `crit4` KGA 1200 대신 일반 감사기준서를 적용하는 방식임을 제시함
 
 ## 원자료 탐색
-
-아래 페이지 범위는 통합 목차가 제공한 탐색 인덱스다. 새 문제를 만들 때 최소한 기준서 또는 기본이론과 실제 문제 발문을 함께 확인한다.
 
 - [02_기본이론/회계감사_기본이론.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md): 51, 295
 - [03_문제연습/고급_회계감사_연습.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EA%B3%A0%EA%B8%89_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md): 6, 60, 265, 280, 330-331
@@ -70,15 +70,10 @@ confidence: medium
 - [04_기출문제/기출문제_연도별_해설_B.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%97%B0%EB%8F%84%EB%B3%84_%ED%95%B4%EC%84%A4_B.md): 14, 22, 30, 190, 203
 - [04_기출문제/기출문제_주제별_해설.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md): 110, 122, 135-136, 356, 364, 372-373, 409
 
-## 검증 상태
-
-- 새로 만드는 문제는 [[question-output-schema]] 계약과 validateQuestionSetV3 검증을 통과해야 한다.
-- 상태 전환(needs_review → verified → published)은 promote_cpa_v3.ts와 승급 장부로만 수행한다.
-- OCR 훼손이나 서로 다른 자료의 답안 충돌은 추정하지 말고 verification.notes에 남긴다.
-
 ## Related
 
-- [[internal-control-over-financial-reporting]]
-- [[assurance-review-related-services]]
+- [[topic-map]]
+- [[coverage-map]]
+- [[source-review-map]]
+- [[requirement-coverage]]
 - [[question-generation-workflow]]
-- [[question-design]]

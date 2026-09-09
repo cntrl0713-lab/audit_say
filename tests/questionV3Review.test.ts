@@ -7,7 +7,7 @@ import type { QuestionSetV3 } from '../lib/questionV3.ts';
 
 const bank = JSON.parse(fs.readFileSync('cpa_uploader/data/cpa_question_sets_v3.authoring.json', 'utf8')) as QuestionSetV3[];
 
-test('shared quotes preserve independent criteria across the bank and existing score caps', () => {
+test('shared quotes preserve all independent criterion points across the bank', () => {
     // Mock verdicts test code behavior only; this is not semantic validation of unreviewed topics.
     for (const set of bank) {
         const answers = Object.fromEntries(set.subquestions.map(q => [q.id, q.model_answer.join('\n')]));
@@ -20,7 +20,9 @@ test('shared quotes preserve independent criteria across the bank and existing s
             })),
         };
         const result = applyQuestionSetJudgment(set, answers, judgment);
-        assert.equal(result.score, computeQuestionSetMaxPoints(set), set.id);
+        const expectedTotal = set.subquestions.reduce((sum, q) => sum + q.criteria.reduce((total, c) => total + c.max_points, 0), 0);
+        assert.equal(result.score, expectedTotal, set.id);
+        assert.equal(computeQuestionSetMaxPoints(set), expectedTotal, set.id);
         assert.equal(result.subquestions.reduce((n, q) => n + q.score, 0), result.score);
         for (const q of result.subquestions) assert.ok(q.criteria.every(c => c.verdict === 'met'));
     }

@@ -1,7 +1,7 @@
 ---
 title: 문제 생성 출력 스키마
 created: 2026-08-07
-updated: 2026-09-08
+updated: 2026-09-09
 type: guide
 status: reviewed
 review_required: false
@@ -12,7 +12,7 @@ confidence: high
 
 # 문제 생성 출력 스키마
 
-실제 형상은 `lib/questionV3.ts`의 `QuestionSetV3`와 검증기가 기준이다. 아래는 필수 연결을 설명하는 **구조 예시**이며 출처 경로·원문·해시는 실제 자료로 채워야 한다. 그대로 은행에 넣는 검증 완료 문항이 아니다. 기존 코드에 남은 선택형 enum은 새 출제 정책의 허용 목록으로 사용하지 않는다.
+실제 형상은 `lib/questionV3.ts`의 `QuestionSetV3`와 검증기가 기준이다. 아래는 필수 연결을 설명하는 **구조 예시**이며 출처 경로·원문·해시는 실제 자료로 채워야 한다. 그대로 은행에 넣는 검증 완료 문항이 아니다. 생성 스키마와 검증기는 모두 작성·순서 및 개수 무제한 계약만 허용하며, 과거 선택형 설정과 필수 정책 필드 누락을 거절한다.
 
 ```json
 {
@@ -122,9 +122,21 @@ confidence: high
 
 단독 신규 draft는 `npx tsx cpa_uploader/validate_draft_v3.ts --file <draft.json> --against-bank`로 검사한다. 기존 ID를 수정하는 draft는 신규 ID 중복 검사와 구분한다. 구조·인용 검증만으로 내용 적합이나 실제 채점 통과를 보장하지 않는다.
 
+이미 게시된 불변 DB 버전의 과거 constraints는 저장 기록을 바꾸지 않고 읽을 수 있다. 이 호환 처리는 저장 버전 조회에만 명시적으로 적용하며 신규 출제·정본 검증·승급·import에는 적용하지 않는다. 저장 버전도 `selection=all`로 전체 criterion 점수를 합산한다.
+
+## 생성·의미검수 sidecar
+
+출제 계획·원문 문맥 패킷·의미검수 receipt는 위 문항 JSON과 별도 산출물이다. 문항 스키마에 임의 필드를 추가하거나 공개 문제본에 검수 원문·정답·사례를 넣지 않는다.
+
+- `<draft>.authoring-plan.json`: `artifact_type: question_authoring_plan`, version 1, 세트 ID가 연결된 `plans` 배열.
+- `<draft>.source-packet.json`: `artifact_type: question_source_packet`, version 1, 세트 ID와 계획 해시가 연결된 `packets` 배열. 선택 원문과 의존 문맥·근거 계층·판본·해시를 보존한다.
+- 별도 `<review.json>`: `schema_version: "1.0"`, `reviews` 배열. 모든 물음·criterion의 검토사항, criterion당 다섯 의미 대조 사례, 실인용·근거, 문항·실제 출처 파일·계획·패킷·비교 은행의 식별 해시와 실행 방법을 담는다. `grading`에는 실제 사례 채점의 상태·모델·transport·실행 시점·원래 판정·검증 후 점수·기대 판정 일치·사례/채점 코드 해시를 기록한다.
+
+의미검수 receipt는 `review_question_draft_v3.ts`의 모델 또는 실제 수동 대조 경로로 작성한다. 의미검수만 마치면 pass여도 `grading.status=not_run`이다. `--grade-cases`는 채점 모델 API로 다섯 사례와 빈 답안의 실제 채점 경로를 실행하며, 기존 의미검수에는 `--review-input`을 함께 지정한다. 신규 verified 승급·재검수는 의미검수 pass, grading.status=completed, 모든 기대 판정 일치와 실제 채점 코드의 점수 재현, 입력·사례·채점 코드 해시 검증을 통과한 `--review <review.json>`과 실제 사람 검수의 `--evidence`를 모두 요구한다. 이 통과가 정답·판본 정확성을 보장하지는 않는다. 구체 명령·수동 양식·과거 장부 한계는 [[source-authoring-design]]과 [[question-generation-workflow]]를 따른다.
+
 ## 출처 위치와 인용의 충실성
 
-현재 은행 검증기는 KGA 출처의 `source_refs[].page`를 기준서 식별에도 사용한다. 위 예시처럼 `KGA 220`을 쓰고, 세부 문단·PDF 페이지·판본은 연결된 requirement의 `source_span`과 내부 출처 장부에 기록한다. 기준서 코드 뒤에 문단·쪽수를 덧붙이기 전에 실제 검증 계약을 확인한다. 필드 이름만 보고 일반적인 페이지 번호 칸으로 취급하지 않는다.
+현재 은행 검증기는 KGA 출처의 `source_refs[].page`를 기준서 식별에도 사용한다. 위 예시처럼 `KGA 220`을 쓰고, 세부 문단·PDF 페이지·판본은 연결된 requirement의 `source_span`과 내부 출처 장부에 기록한다. 원자료 카탈로그의 신규 KGA 단위도 page에는 기준서 코드를 유지하고 실제 줄·문단 위치를 source_span으로 전달한다. 기준서 코드 뒤에 문단·쪽수를 덧붙이기 전에 실제 검증 계약을 확인한다. 필드 이름만 보고 일반적인 페이지 번호 칸으로 취급하지 않는다.
 
 `exact`인 인용도 어느 파일과 일치하는지 명시한다. 로컬 전재문과의 문자 일치는 공식 PDF의 서식·판본·의미 검토 완료와 같지 않다. `content_hash`는 최종 인용 문자열의 실제 SHA-256으로 계산하고, 공식 첨부파일 전체 해시는 별도로 기록한다. 원문 자체의 시행일 자리표시자나 교차참조 오류는 source quote를 윤문하여 해소하지 않는다. 직접 근거와 미확정 상태를 [[question-design]] 및 해당 검토 장부에 연결한다.
 

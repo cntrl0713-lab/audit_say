@@ -2,442 +2,231 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-
-// cpa_uploader/data의 v3 문제은행과 원자료를 출처로 하는 위키 생성기.
-//
-// 생성 대상(재생성해도 안전): concepts/, _meta/topic-map·coverage-map, raw/source-manifest, index.md
-// 보존 대상(이 스크립트가 건드리지 않음): question-generation/ 수동 검수 문서, log.md(append만), SCHEMA.md
-//
-// 사용법: node cpa_uploader/wiki/scripts/build-wiki.mjs
+import { topicDefinitions } from './topic-definitions.mjs';
+import { scanGaps } from './gap-scan.mjs';
+import { buildSourceCatalog } from '../../questionSourceCatalog.mjs';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
-const wikiDir = path.resolve(scriptDir, '..');
-const uploaderDir = path.resolve(wikiDir, '..');
-const dataDir = path.join(uploaderDir, 'data');
-const integratedDir = path.join(dataDir, '회계감사_통합학습자료');
-const tocPath = path.join(integratedDir, '00_통합_목차.md');
-const bankPath = path.join(dataDir, 'cpa_question_sets_v3.authoring.json');
-const today = new Date().toISOString().slice(0, 10);
+const bankRelative = 'cpa_uploader/data/cpa_question_sets_v3.authoring.json';
+const tocRelative = 'cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md';
+const slash = (s) => s.split(path.sep).join('/');
+const inline = (s) => String(s ?? '').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, '').replace(/\s+/g, ' ').trim();
+const cell = (s) => inline(s).replaceAll('|', '&#124;');
+const list = (values) => JSON.stringify([...new Set(values)]);
+const hash = (body) => crypto.createHash('sha256').update(body).digest('hex');
+const allFiles = (root) => fs.readdirSync(root, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? allFiles(path.join(root, e.name)) : [path.join(root, e.name)]);
+const table = (headers, rows) => `| ${headers.join(' | ')} |\n|${headers.map(() => '---').join('|')}|\n${rows.map((r) => `| ${r.map(cell).join(' | ')} |`).join('\n')}`;
 
-const topicDefinitions = [
-  { id: '01', slug: 'ethics-independence-quality', standards: ['KGA 200', 'KGA 220'], tags: ['audit', 'ethics'] },
-  { id: '02', slug: 'audit-objectives-foundations', standards: ['KGA 200'], tags: ['audit'] },
-  { id: '03', slug: 'engagement-acceptance-contract', standards: ['KGA 210'], tags: ['audit', 'planning'] },
-  { id: '04', slug: 'planning-documentation-materiality', standards: ['KGA 230', 'KGA 300', 'KGA 320'], tags: ['audit', 'planning'] },
-  { id: '05', slug: 'fraud-laws-governance-communication', standards: ['KGA 240', 'KGA 250', 'KGA 260', 'KGA 265'], tags: ['audit', 'risk'] },
-  { id: '06', slug: 'risk-assessment-internal-control', standards: ['KGA 315', 'KGA 330'], tags: ['audit', 'risk', 'control'] },
-  { id: '07', slug: 'responses-controls-substantive-procedures', standards: ['KGA 330'], tags: ['audit', 'risk', 'control', 'procedures'] },
-  { id: '08', slug: 'audit-evidence-assertions', standards: ['KGA 500'], tags: ['audit', 'evidence'] },
-  { id: '09', slug: 'inventory-litigation-confirmations-opening-balances', standards: ['KGA 501', 'KGA 505', 'KGA 510'], tags: ['audit', 'evidence', 'procedures'] },
-  { id: '10', slug: 'analytics-audit-sampling', standards: ['KGA 520', 'KGA 530'], tags: ['audit', 'evidence', 'procedures'] },
-  { id: '11', slug: 'estimates-related-parties', standards: ['KGA 540', 'KGA 550'], tags: ['audit', 'evidence', 'procedures'] },
-  { id: '12', slug: 'completion-subsequent-events-going-concern', standards: ['KGA 450', 'KGA 560', 'KGA 570', 'KGA 580'], tags: ['audit', 'completion'] },
-  { id: '13', slug: 'service-organizations-internal-audit-experts', standards: ['KGA 402', 'KGA 610', 'KGA 620'], tags: ['audit', 'evidence', 'procedures'] },
-  { id: '14', slug: 'group-audit', standards: ['KGA 600'], tags: ['audit', 'group-audit'] },
-  { id: '15', slug: 'audit-opinions-reports', standards: ['KGA 700', 'KGA 705'], tags: ['audit', 'reporting'] },
-  { id: '16', slug: 'kam-emphasis-comparatives-other-information', standards: ['KGA 701', 'KGA 706', 'KGA 710', 'KGA 720'], tags: ['audit', 'reporting'] },
-  { id: '17', slug: 'internal-control-over-financial-reporting', standards: ['KGA 1100'], tags: ['audit', 'icfr', 'control'] },
-  { id: '18', slug: 'small-entity-audit', standards: ['KGA 1200'], tags: ['audit'] },
-  { id: '19', slug: 'assurance-review-related-services', standards: ['KGA 200'], tags: ['audit', 'assurance'] },
-];
-
-function cleanText(buffer) {
-  return buffer.toString('utf8').replaceAll('\u0000', '');
+function parseTopics(text) {
+  const matches = [...text.matchAll(/^###\s+(\d+)\.\s+(.+)$/gm)];
+  return new Map(matches.map((m, i) => {
+    const body = text.slice(m.index + m[0].length, matches[i + 1]?.index ?? text.length).split('\n## 자료 구성')[0];
+    return [m[1], { title: m[2].trim(), axis: body.match(/^- 기준 축:\s*(.+)$/m)?.[1]?.trim() || '', terms: body.match(/^- 탐색어:\s*(.+)$/m)?.[1]?.trim() || '', sourceLines: body.split(/\r?\n/).map((s) => s.trim()).filter((s) => /^- `[^`]+\.md`:/.test(s)) }];
+  }));
 }
 
-function yamlList(values) {
-  return `[${values.map((value) => JSON.stringify(value)).join(', ')}]`;
-}
-
-function ensureDir(dir) {
-  fs.mkdirSync(dir, { recursive: true });
-}
-
-function write(file, content) {
-  ensureDir(path.dirname(file));
-  fs.writeFileSync(file, `${content.trimEnd()}\n`, 'utf8');
-}
-
-function inlineText(value) {
-  return String(value ?? '')
-    .replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function parseTopics(tocText) {
-  const matches = [...tocText.matchAll(/^###\s+(\d+)\.\s+(.+)$/gm)];
-  return matches.map((match, index) => {
-    const start = match.index + match[0].length;
-    let end = index + 1 < matches.length ? matches[index + 1].index : tocText.length;
-    const dataSection = tocText.indexOf('\n## 자료 구성', start);
-    if (dataSection !== -1 && dataSection < end) end = dataSection;
-    const body = tocText.slice(start, end);
-    const axis = body.match(/^- 기준 축:\s*(.+)$/m)?.[1]?.trim() || '';
-    const terms = (body.match(/^- 탐색어:\s*(.+)$/m)?.[1] || '')
-      .split(',')
-      .map((term) => term.trim())
-      .filter(Boolean);
-    const sourceLines = body
-      .split(/\r?\n/)
-      .map((line) => line.trim())
-      .filter((line) => /^- `[^`]+\.md`:\s*/.test(line));
-    return {
-      id: match[1],
-      title: match[2].trim(),
-      axis,
-      terms,
-      sourceLines,
-    };
-  });
-}
-
-function setStandards(set) {
-  return [...new Set(
-    (set.source_refs || [])
-      .map((source) => source.page)
-      .filter((page) => typeof page === 'string' && page.startsWith('KGA ')),
-  )];
-}
-
-function topicForSet(set) {
-  const classified = topicDefinitions.find((topic) => topic.id === set.classification.topic_id);
-  if (classified) return classified;
-  const standards = setStandards(set);
-  const matched = topicDefinitions.find((topic) => (
-    standards.length > 0 && standards.every((standard) => topic.standards.includes(standard))
-  ));
-  return matched || topicDefinitions.at(-1);
-}
-
-function sourceLink(line) {
-  const match = line.match(/^- `([^`]+)`:\s*(.+)$/);
-  if (!match) return line;
-  const target = `../../data/회계감사_통합학습자료/${match[1]}`.split(path.sep).join('/');
-  return `- [${match[1]}](${encodeURI(target)}): ${match[2]}`;
-}
-
-function buildConceptPage(topic, definition, sets, previous, next) {
-  const criteriaCount = sets.reduce((sum, set) => sum + set.subquestions.reduce((acc, q) => acc + q.criteria.length, 0), 0);
-  const typeCounts = {};
-  for (const set of sets) for (const q of set.subquestions) typeCounts[q.type] = (typeCounts[q.type] || 0) + 1;
-  const typeSummary = Object.entries(typeCounts).map(([type, count]) => `${type} ${count}`).join(', ') || '물음 없음';
-
-  const setSection = sets.length
-    ? sets.map((set) => {
-      const criteriaLines = set.subquestions.map((q) => {
-        const claims = q.criteria
-          .map((criterion) => `\`${criterion.id}\` ${inlineText(criterion.claim)}`)
-          .join(' · ');
-        return `- ${q.id}(${q.type}): ${claims || 'criterion 없음'}`;
-      }).join('\n');
-      const statusNote = set.status === 'published'
-        ? '게시 중'
-        : set.status === 'verified'
-          ? '검증 완료·게시 대기'
-          : '검수 대기';
-      const setTypeCounts = {};
-      for (const q of set.subquestions) setTypeCounts[q.type] = (setTypeCounts[q.type] || 0) + 1;
-      const setTypeSummary = Object.entries(setTypeCounts).map(([type, count]) => `${type} ${count}`).join(', ');
-      return `### ${set.id}. ${inlineText(set.title)} (${statusNote})\n\n- 물음 구성: ${set.subquestions.map((q) => q.id).join(', ')} · 유형 분포: ${setTypeSummary}\n${criteriaLines}`;
-    }).join('\n\n')
-    : '> 현재 v3 문제은행에 이 주제의 세트가 없다. 원자료에서 우선 보강할 영역이다.';
-
-  const sources = definition.sourceLines.length
-    ? definition.sourceLines.map(sourceLink).join('\n')
-    : '- [[source-manifest]]에서 탐색 후 사람이 출처를 지정해야 한다.';
-
-  return `---
-title: ${definition.title}
-created: 2026-08-08
-updated: ${today}
-type: concept
-status: generated
-review_required: true
-tags: ${yamlList([...new Set([...topic.tags, 'question-generation'])])}
-sources: ${yamlList(['cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md', 'cpa_uploader/data/cpa_question_sets_v3.authoring.json'])}
-confidence: medium
----
-
-# ${definition.id}. ${definition.title}
-
-## 범위
-
-- 기준 축: ${definition.axis || '원자료 확인 필요'}
-- 현재 문제은행 연결 기준: ${[...new Set(sets.flatMap((set) => set.classification.standards))].join('·') || '연결 없음'}
-- 탐색어: ${definition.terms.join(', ') || '원자료 확인 필요'}
-- 현재 연결된 문제 세트: ${sets.length}개
-- 현재 연결된 criterion: ${criteriaCount}개
-- 주제 전체 유형 분포: ${typeSummary}
-
-## 문제 생성 관점
-
-- 핵심개념과 정의를 묻는 \`descriptive\`
-- 조건 또는 결론을 판단하고 근거를 묻는 \`judgment\`
-- 독립된 절차·고려사항을 요구하는 \`enumeration\`
-- 같은 개념의 정의 → 적용 조건 → 절차 또는 보고효과를 연계형 물음으로 구성
-- 실제 산술을 요구하는 문제는 제외하고, 기준서상 수치·기간 자체를 묻는 경우만 허용
-
-## v3 문제은행 연결 현황
-
-아래 criterion claim과 게시 상태는 현재 정본의 기록이다. 생성된 목록 자체는 공식 출처 대조나 사람 검수 완료를 보증하지 않는다.
-새 문제를 만들 때는 중복 명제 탐색에 참고하고 해당 검토 보고서와 공식 근거를 확인한다.
-
-${setSection}
-
-## 원자료 탐색
-
-아래 페이지 범위는 통합 목차가 제공한 탐색 인덱스다. 새 문제를 만들 때 최소한 기준서 또는 기본이론과 실제 문제 발문을 함께 확인한다.
-
-${sources}
-
-## 검증 상태
-
-- 새로 만드는 문제는 [[question-output-schema]] 계약과 validateQuestionSetV3 검증을 통과해야 한다.
-- 상태 전환(needs_review → verified → published)은 promote_cpa_v3.ts와 승급 장부로만 수행한다.
-- OCR 훼손이나 서로 다른 자료의 답안 충돌은 추정하지 말고 verification.notes에 남긴다.
-
-## Related
-
-- [[${previous.slug}]]
-- [[${next.slug}]]
-- [[question-generation-workflow]]
-- [[question-design]]
-`;
-}
-
-function allFiles(root) {
-  const results = [];
-  for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
-    const full = path.join(root, entry.name);
-    if (entry.isDirectory()) results.push(...allFiles(full));
-    else results.push(full);
+// Pure renderer: checks may read expected output without touching the wiki or source bank.
+export function buildWiki({ repoDir = path.resolve(scriptDir, '../../..'), date = new Date().toISOString().slice(0, 10) } = {}) {
+  const wikiDir = path.join(repoDir, 'cpa_uploader/wiki');
+  const read = (relative) => fs.readFileSync(path.join(repoDir, relative), 'utf8').replaceAll('\u0000', '');
+  const bank = JSON.parse(read(bankRelative));
+  const catalog = buildSourceCatalog({ repoDir });
+  const definitions = parseTopics(read(tocRelative));
+  const pages = new Map();
+  const byTopic = new Map(topicDefinitions.map((t) => [t.id, []]));
+  const ids = new Set();
+  for (const set of bank) {
+    if (!byTopic.has(set.classification.topic_id)) throw new Error(`Unknown topic: ${set.id}`);
+    if (!/^[a-zA-Z0-9_-]+$/.test(set.id) || ids.has(set.id)) throw new Error(`Invalid/duplicate set ID: ${set.id}`);
+    ids.add(set.id);
+    byTopic.get(set.classification.topic_id).push(set);
   }
-  return results;
-}
+  const link = (from, relative, label = relative) => `[${cell(label)}](${encodeURI(slash(path.relative(path.dirname(path.join(wikiDir, from)), path.join(repoDir, relative))))})`;
+  const reviewPaths = (id) => [
+    `docs/reports/question-review-2027/${id}.md`,
+    `docs/reports/question-review-2027/${id}.json`,
+    ...allFiles(path.join(repoDir, 'docs/reports/question-review-2027')).filter((p) => path.dirname(p) === path.join(repoDir, 'docs/reports/question-review-2027') && new RegExp(`^${id}[-.]`).test(path.basename(p)) && /\.(md|json)$/.test(p)).map((p) => slash(path.relative(repoDir, p))),
+  ].filter((p, i, all) => all.indexOf(p) === i && fs.existsSync(path.join(repoDir, p)));
+  const reviews = new Map(topicDefinitions.map((t) => [t.id, reviewPaths(t.id)]));
+  const reviewLinks = (from, id) => reviews.get(id).map((p) => link(from, p, path.basename(p))).join(' · ') || '검토 기록 없음';
+  const front = (title, type, sources = [bankRelative], confidence = 'high') => `---\ntitle: ${JSON.stringify(title)}\ncreated: 2026-08-08\nupdated: ${date}\ntype: ${type}\nstatus: generated\nreview_required: true\ntags: [audit, question-generation, quality]\nsources: ${list(sources)}\nconfidence: ${confidence}\n---\n\n# ${title}\n\n`;
+  const put = (file, body) => pages.set(file, body.trimEnd() + '\n');
+  const counts = (sets) => ({ sets: sets.length, questions: sets.flatMap((s) => s.subquestions).length, criteria: sets.flatMap((s) => s.subquestions).flatMap((q) => q.criteria).length });
+  const types = (sets) => ['descriptive', 'enumeration', 'judgment'].map((t) => `${t} ${sets.flatMap((s) => s.subquestions).filter((q) => q.type === t).length}`).join(' · ');
+  const axis = (topic) => topic.standards.join(' · ');
+  // Non-KGA source titles are authoritative index labels; do not hide them behind KGA 200 classification.
+  const actualAxes = (sets) => [...new Set(sets.flatMap((s) => s.source_refs.map((r) => /^KGA \d+$/.test(r.page) ? r.page : r.title)))];
 
-function buildSourceManifest() {
-  const files = allFiles(dataDir)
-    .filter((file) => ['.md', '.txt', '.json', '.sql'].includes(path.extname(file).toLowerCase()))
-    .sort((a, b) => a.localeCompare(b, 'ko'));
-  const records = files.map((file) => {
-    const body = fs.readFileSync(file);
-    return {
-      path: path.relative(uploaderDir, file).split(path.sep).join('/'),
-      bytes: body.length,
-      sha: crypto.createHash('sha256').update(body).digest('hex'),
-      nullBytes: body.reduce((count, byte) => count + (byte === 0 ? 1 : 0), 0),
-    };
+  for (const [bankIndex, set] of bank.entries()) {
+    const file = `questions/${set.id}.md`;
+    const topic = topicDefinitions.find((t) => t.id === set.classification.topic_id);
+    const sources = new Map(set.source_refs.map((s) => [s.id, s]));
+    const body = [front(`${set.id}. ${inline(set.title)}`, 'question', [bankRelative, ...set.source_refs.map((s) => s.file), ...reviews.get(topic.id)]),
+      `이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.`,
+      `- 주제: [[${topic.slug}]] · [[topic-${topic.id}-design]]`,
+      `- 정본: ${link(file, bankRelative, 'authoring JSON')} · JSON Pointer \`/${bankIndex}\``,
+      `- 상태: ${set.status} / ${set.verification.review_status} · source_fidelity: ${set.verification.source_fidelity}`,
+      `- 검토·근거 장부: ${reviewLinks(file, topic.id)}`,
+      `- 학습 순서: ${set.learning_order.join(' → ')}`,
+      '\n## 공통 사실\n',
+      ...set.shared_context.facts.map((f) => `- ${f.id} (scoreable=${f.scoreable}): ${inline(f.text)}`),
+    ];
+    for (const [qIndex, q] of set.subquestions.entries()) {
+      body.push(`\n## ${q.id}\n`, `유형: ${q.type} · JSON Pointer \`/${bankIndex}/subquestions/${qIndex}\``,
+        `\n### 발문\n\n${inline(q.prompt)}`, `\n### 모범답안\n\n${q.model_answer.map((a) => `- ${inline(a)}`).join('\n')}`,
+        `\n### 답안 계약\n\nselection: \`${JSON.stringify(q.selection)}\` · constraints: \`${JSON.stringify(q.constraints)}\``,
+        '\n### 학습목표·채점명제와 핵심 조건\n',
+        table(['criterion', '정본 명제', '핵심 사실·조건', '배점·판정별 점수', 'requirement', 'source'], q.criteria.map((c) => [c.id, c.claim, c.critical_facts.map((f) => `${f.id} (${f.type}): ${f.expected}`).join(' / '), `${c.max_points}; ${JSON.stringify(c.scores)}`, c.requirement_id, c.source_ref_ids.join(', ')])),
+        '\n### 요구사항과 직접 근거\n',
+        table(['requirement', '문단·페이지·판본', 'source', '원문 인용'], q.requirements.map((r) => [r.id, r.source_span, sources.has(r.source_ref_id) ? link(file, sources.get(r.source_ref_id).file, r.source_ref_id) : r.source_ref_id, r.source_quote])),
+      );
+    }
+    body.push('\n## 출처 파일·위치\n', table(['source', '직접 출처', 'page', '인용 SHA-256'], set.source_refs.map((s) => [s.id, link(file, s.file, s.title), s.page, s.content_hash])), '\n## 판본·검수 메모\n', ...set.verification.notes.map((n) => `- ${inline(n)}`), '\n2027 시험 적용 여부는 아래 판본 기록과 공식 시험 공고 확인 상태를 따른다. 게시 상태 또는 이 색인의 생성 상태로 대신 확정하지 않는다.', '\n## Related\n\n- [[source-review-map]]\n- [[requirement-coverage]]');
+    put(file, body.join('\n'));
+  }
+
+  for (const topic of topicDefinitions) {
+    const definition = definitions.get(topic.id);
+    if (!definition) throw new Error(`Missing TOC topic ${topic.id}`);
+    if (!definition.sourceLines.length) throw new Error(`Missing source navigation for TOC topic ${topic.id}`);
+    const sets = byTopic.get(topic.id), n = counts(sets), file = `concepts/${topic.slug}.md`;
+    const body = [front(`${topic.id}. ${definition.title}`, 'concept', [tocRelative, bankRelative, ...reviews.get(topic.id)], 'medium'),
+      '## 범위\n', `- 탐색 기준 축: ${axis(topic)}`, `- 목차 기준 축: ${definition.axis}`, `- 정본 직접 출처: ${actualAxes(sets).join(' · ') || '연결 없음'}`, `- 탐색어: ${definition.terms}`, `- 세트 ${n.sets} · 물음 ${n.questions} · criterion ${n.criteria} · ${types(sets)}`,
+      '\n## 출제 전 확인\n', `- 원자료 단위와 새 목표 설계: [[source-catalog-topic-${topic.id}]] · [[source-authoring-design]]`, `- 주제별 조건·예외: [[topic-${topic.id}-design]]`, `- 문항별 검토·판본·실측: ${reviewLinks(file, topic.id)}`,
+      '- 기존 세트 색인의 공통 사실 → 발문 → 모범답안 → 핵심 조건 → requirement·출처를 함께 읽는다. 명제 목록만으로 적용 범위와 정답을 확정하지 않는다.',
+      '- 아래 생성 목록은 정본의 현재 기록이며 사람 검수나 2027 시험 적용 판본 확정을 보증하지 않는다.', '\n## v3 문제은행 연결 현황\n'];
+    for (const set of sets) {
+      body.push(`### ${set.id}. ${inline(set.title)}\n`, `[[${set.id}]] — ${set.status}/${set.verification.review_status}; 조건·정답·requirement·공식 파일 위치 포함`,
+        ...set.shared_context.facts.map((f) => `- 공통 사실: ${inline(f.text)}`), ...set.subquestions.map((q) => `- ${q.id} (${q.type}): ${inline(q.prompt)}`), '');
+    }
+    body.push('\n## 원자료 탐색\n', ...definition.sourceLines.map((line) => {
+      const m = line.match(/^- `([^`]+)`:\s*(.+)$/);
+      return `- ${link(file, `cpa_uploader/data/회계감사_통합학습자료/${m[1]}`, m[1])}: ${m[2]}`;
+    }), '\n## Related\n\n- [[topic-map]]\n- [[coverage-map]]\n- [[source-review-map]]\n- [[requirement-coverage]]\n- [[question-generation-workflow]]');
+    put(file, body.join('\n'));
+  }
+
+  put('_meta/topic-map.md', front('회계감사 주제 지도', 'source-map', [tocRelative, bankRelative]) + table(['ID', '주제', '기준 축', '설계 지침', '세트'], topicDefinitions.map((t) => [t.id, `[[${t.slug}]]`, axis(t), `[[topic-${t.id}-design]]`, byTopic.get(t.id).length])) + '\n\n## Related\n\n- [[coverage-map]]\n- [[source-review-map]]\n- [[question-generation-workflow]]');
+  const coverageRows = topicDefinitions.map((t) => {
+    const sets = byTopic.get(t.id), n = counts(sets);
+    const linked = new Set(sets.flatMap((s) => s.source_refs.map((r) => r.page)));
+    const missing = t.standards.filter((s) => s.startsWith('KGA ') && !linked.has(s));
+    const absentTypes = ['descriptive', 'enumeration', 'judgment'].filter((type) => !sets.some((s) => s.subquestions.some((q) => q.type === type)));
+    const priority = !n.sets ? '빈 영역' : missing.length ? '기준서 미연결 우선 검토' : absentTypes.length ? '유형·요구사항 범위 검토' : '요구사항 범위 검토';
+    return [t.id, `[[${t.slug}]]`, n.sets, n.questions, n.criteria, sets.filter((s) => s.status === 'published').length, types(sets), missing.join(' · ') || '-', priority];
+  });
+  put('_meta/coverage-map.md', front('문제은행 커버리지 맵', 'coverage') + '세트 수는 분포이며 출제 범위 충족 판정이 아니다. 기준서별 직접 연결과 요구사항·학습목표의 대응은 [[requirement-coverage]], 판본·조건 검토 기록은 [[source-review-map]]을 먼저 확인한다. 유형 부재는 보강 검토 신호이며 모든 주제에 세 유형을 의무로 만드는 규칙은 아니다.\n\n' + table(['ID', '주제', '세트', '물음', 'criterion', 'published', '유형 분포', '직접 출처 미연결', '검토 우선순위'], coverageRows) + '\n\n## Related\n\n- [[topic-map]]\n- [[requirement-coverage]]\n- [[source-review-map]]\n- [[question-generation-workflow]]');
+
+  const sourceMapFile = '_meta/source-review-map.md';
+  const reviewRows = topicDefinitions.map((t) => {
+    const sets = byTopic.get(t.id), ledgerPath = `docs/reports/question-review-2027/${t.id}.json`;
+    const ledger = fs.existsSync(path.join(repoDir, ledgerPath)) ? JSON.parse(read(ledgerPath)) : {};
+    // Some historical ledgers embed the entire pre-review bank under baseline.
+    // Only scalar status/edition fields belong in this current-state index.
+    const status = ['review_record_complete', 'exam_2027_suitable', 'baseline', 'target_exam_year'].filter((k) => ledger[k] !== undefined).map((k) => `${k}=${ledger[k] !== null && typeof ledger[k] === 'object' ? '구조화된 과거 기록: 근거 장부 참조' : String(ledger[k])}`).join('; ');
+    return [t.id, `[[${t.slug}]] · [[topic-${t.id}-design]]`, reviewLinks(sourceMapFile, t.id), [...new Set(sets.flatMap((s) => s.source_refs.map((r) => r.file)))].map((p) => link(sourceMapFile, p, path.basename(p))).join(' · '), status || '보고서·장부 본문의 상태 확인'];
+  });
+  put(sourceMapFile, front('직접 출처·검토·판본 지도', 'source-map', [bankRelative, ...[...reviews.values()].flat()]) + `검토 기록 작성과 최종 시험 적용은 별개다. 아래 상태는 장부의 실제 필드를 옮긴 것이며, 필드가 없는 장부는 보고서 본문에서 확인한다. 주제별 세트 색인에는 출처 제목·문단·페이지·인용 해시와 검수 메모를 함께 보존한다.\n\n2027년의 2026년 시행 기준 동일 적용은 기존 작업 가정이다. ${link(sourceMapFile, 'docs/reports/question-review-2027/kga220-effective-date-note.md', '개정220 시행일·판본 메모')} 및 ${link(sourceMapFile, 'docs/reports/question-review-2027/standards-register.json', '기준대장')}의 적용 조건을 확인한다.\n\n` + table(['주제', '색인·지침', '검토·근거 기록', '실제 연결 출처 파일', '장부 상태·적용 가정'], reviewRows) + '\n\n## Related\n\n- [[coverage-map]]\n- [[requirement-coverage]]\n- [[question-output-schema]]');
+
+  // This inventory starts from source files, even when the bank has no questions.
+  // A same-file quote containment link is traceability, never a semantic coverage score.
+  const normalizedQuote = (text) => String(text).replaceAll('\u0000', '').replace(/\s+/gu, ' ').trim();
+  const bankQuotes = new Map();
+  for (const set of bank) for (const source of set.source_refs) {
+    const file = source.file.replaceAll('\\', '/');
+    if (!bankQuotes.has(file)) bankQuotes.set(file, []);
+    bankQuotes.get(file).push({ set: set.id, source: source.id, quote: normalizedQuote(source.source_quote) });
+  }
+  const unitBankLinks = new Map(catalog.units.map((unit) => {
+    const quote = normalizedQuote(unit.quote);
+    const matches = (bankQuotes.get(unit.file) || []).filter((entry) => quote && entry.quote && (quote.includes(entry.quote) || entry.quote.includes(quote)));
+    return [unit.id, [...new Set(matches.map((entry) => entry.set))]];
+  }));
+  const unitGroups = topicDefinitions.map((topic) => ({ id: `topic-${topic.id}`, topic, units: catalog.units.filter((unit) => unit.topicIds.includes(topic.id)) }));
+  const unmapped = catalog.units.filter((unit) => !unit.topicIds.length);
+  if (unmapped.length) unitGroups.push({ id: 'unmapped', topic: null, units: unmapped });
+  const catalogFiles = [];
+  const catalogRows = [];
+  const unitCounts = (units) => `${units.length}개: 기준서 ${units.filter((unit) => unit.kind === 'standard').length}, 이론 ${units.filter((unit) => unit.kind === 'theory').length}, 연습 ${units.filter((unit) => unit.kind === 'practice').length}, 기출 ${units.filter((unit) => unit.kind === 'past_exam').length}`;
+  for (const group of unitGroups) {
+    const chunkSize = 150;
+    const chunks = Array.from({ length: Math.max(1, Math.ceil(group.units.length / chunkSize)) }, (_, index) => ({
+      file: `_meta/source-catalog-${group.id}${index ? `-part-${String(index + 1).padStart(2, '0')}` : ''}.md`,
+      units: group.units.slice(index * chunkSize, (index + 1) * chunkSize),
+    }));
+    const title = group.topic ? `${group.topic.id}. ${definitions.get(group.topic.id).title}` : '주제 미연결 원자료';
+    const navigation = chunks.map((chunk, index) => `[[${path.basename(chunk.file, '.md')}]] (${index + 1}/${chunks.length})`).join(' · ');
+    const linked = group.units.filter((unit) => unitBankLinks.get(unit.id).length).length;
+    catalogRows.push([group.topic?.id || '미연결', navigation, unitCounts(group.units), linked, group.units.length - linked]);
+    for (const [index, chunk] of chunks.entries()) {
+      catalogFiles.push(chunk.file);
+      const rows = chunk.units.map((unit) => [
+        `<a id="${unit.id}"></a>\`${unit.id}\``,
+        `${unit.kind} / ${unit.authority}`,
+        `${link(chunk.file, unit.file, `${path.basename(unit.file)} · ${unit.locator}`)}; ${unit.title}`,
+        `${unit.context.section || '절 정보 없음'}; ${unit.edition}; ${unit.warnings.join('; ')}`,
+        `${unit.dependencies.length}개 / 미확보 ${unit.dependencies.filter((dependency) => !dependency.targetId).length}개`,
+        unitBankLinks.get(unit.id).map((id) => `[[${id}]]`).join(' · ') || '직접 인용 연결 없음 · 목표 검토 후보',
+        unit.contentHash,
+      ]);
+      put(chunk.file, front(`${title} 원자료 단위 ${index + 1}/${chunks.length}`, 'source-map', [tocRelative, bankRelative, ...new Set(chunk.units.map((unit) => unit.file))], 'medium')
+        + `주제 전체 ${unitCounts(group.units)}. 이 페이지는 ${chunk.units.length}개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.\n\n${navigation}\n\n`
+        + '단위·페이지는 원문 탐색 경계다. 실제 발문·해설의 연속성과 조건·예외는 전후 문맥 및 의존 문단까지 읽는다. 의존 문단 수는 현재 카탈로그가 찾은 참조이며 모든 의미상 의존을 보증하지 않는다. 공식 전사라는 분류도 시험 적용 판본 확정이 아니다.\n\n은행 연결은 **동일 파일에서 공백·NUL 정리 후 인용이 서로 포함되는지**만 검사한다. 출제 내용의 충족·중복·미출제를 판정하지 않는다. 연결이 없는 단위도 다른 파일·표현으로 출제되었을 수 있다. [[source-authoring-design]]의 새 목표·기존 차이·조건·예외 표를 작성한다.\n\n'
+        + table(['원자료 ID', '종류·근거 계층', '실제 파일·위치', '절·판본·원문 한계', '참조 의존', '은행 인용 연결', '원문 인용 SHA-256'], rows)
+        + '\n\n## Related\n\n- [[source-catalog]]\n- [[requirement-coverage]]\n- [[source-review-map]]');
+    }
+  }
+  const catalogFile = '_meta/source-catalog.md';
+  put(catalogFile, front('원자료 단위 카탈로그와 새 학습목표 탐색', 'source-map', [tocRelative, 'cpa_uploader/config/question-source-registry.json', ...catalog.sources.map((source) => source.file)], 'medium')
+    + `원자료 ${catalog.sources.length}개 파일에서 고유 단위 ${catalog.units.length}개를 분리했다. 주제별 표는 중복 연결을 포함하므로 합계를 고유 단위 수로 해석하지 않는다. 카탈로그는 은행 등록 여부와 독립적으로 기준서·이론·문제연습·기출 원문을 읽는다.\n\n- 카탈로그 버전: ${catalog.version}\n- 입력·분리 계약 SHA-256: ${catalog.fingerprint}\n- 목차 원자료 행: ${catalog.tocLinks.length}개\n- 주제 미연결 단위: ${unmapped.length}개\n\n`
+    + '원자료 단위를 선택한 뒤 [[source-authoring-design]]에서 기존 발문 재구성 또는 기준서 기반 신규 목표 경로를 택한다. 인용 연결과 문자 유사도는 후보 탐색이며 정확한 내용 커버리지를 보증하지 않는다. 판본·주체·시점·조건·예외는 원문과 [[source-review-map]]에서 확인한다.\n\n'
+    + table(['주제', '원자료 단위 탐색', '원자료 종류', '은행 인용 연결 단위', '직접 연결 없는 검토 후보'], catalogRows)
+    + '\n\n## 원자료 파일과 분리 상태\n\n'
+    + table(['파일', '종류·계층', '분리 단위', '파일 SHA-256', '판본 기록'], catalog.sources.map((source) => [link(catalogFile, source.file, source.file), `${source.kind} / ${source.authority}`, source.unitIds.length || '미분리: 원문 직접 확인', source.contentHash, source.edition]))
+    + '\n\n## 자동 탐색의 미확인 사항\n\n'
+    + (catalog.warnings.length ? catalog.warnings.map((warning) => `- ${inline(warning)}`).join('\n') : '- 카탈로그가 감지한 원문 페이지 누락 없음. OCR·문단 분리·내용·법역·판본의 완전성 판정은 아님.')
+    + '\n\n## Related\n\n- [[source-authoring-design]]\n- [[requirement-coverage]]\n- [[source-manifest]]');
+
+  const gaps = scanGaps({ repoDir });
+  const unscannedStandards = [...new Set(topicDefinitions.flatMap((t) => t.standards))].filter((s) => s.startsWith('KGA ') && !gaps.perStandard.has(s));
+  const requirementFile = '_meta/requirement-coverage.md';
+  const requirementCount = bank.flatMap((s) => s.subquestions).reduce((n, q) => n + q.requirements.length, 0);
+  const missingSections = gaps.rows.filter((r) => r.tier === '공백');
+  const sourceFirstCoverage = `## 원자료 단위에서 목표 후보 찾기\n\n[[source-catalog]]의 고유 원자료 단위 ${catalog.units.length}개를 먼저 탐색한다. 주제별 카탈로그는 기준서·이론·문제연습·기출의 실제 파일·위치·판본·은행 인용 연결을 표시한다. 직접 인용 연결이 없는 단위에서 목표 후보를 찾되, 다른 표현·파일로 출제된 기존 목표가 있는지 실제 발문과 대조한다. [[source-authoring-design]]의 두 경로와 계획서로 목표·조건·예외·답안 범위·기존 차이를 명시한다.\n\n`
+    + table(['주제', '원자료 단위', '은행 인용 연결', '직접 연결 없는 검토 후보'], unitGroups.map((group) => [
+      `[[source-catalog-${group.id}]]`, group.units.length,
+      group.units.filter((unit) => unitBankLinks.get(unit.id).length).length,
+      group.units.filter((unit) => !unitBankLinks.get(unit.id).length).length,
+    ]))
+    + '\n\n은행 인용 연결은 동일 파일·인용 포함 여부이며 학습목표 충족 판정이 아니다. 아래 요구사항 절 유사도 스캔과 별도 범위로 읽는다.\n\n## 기존 은행 대응과 요구사항 절 탐색\n\n';
+  put(requirementFile, front('요구사항·학습목표 연결과 보강 후보', 'coverage', [bankRelative, 'cpa_uploader/data/회계감사_통합학습자료/01_감사기준']) + sourceFirstCoverage + `정본 requirement ${requirementCount}개와 criterion ${counts(bank).criteria}개의 직접 대응은 각 [[topic-map]] → 세트 색인의 ‘학습목표·채점명제와 핵심 조건’ 및 ‘요구사항과 직접 근거’ 표에서 찾는다. ID는 세트·물음 안에서 해석한다. 실제 발문과 조건을 함께 보고 동일 명제 반복과 범위 누락을 검토한다.\n\n아래는 통합학습자료 요구사항 절의 4글자 문자열 겹침 탐색이다. 공식 문단 식별에 의한 내용 검수가 아니다. 15% 미만은 공백 후보, 15% 이상 35% 미만은 낮은 유사도, 35% 이상도 유사 문구 탐지일 뿐 완전한 출제를 뜻하지 않는다. 짧은 절(40개 미만 4-gram)은 제외한다. 현재 파서가 요구사항 절로 분리하지 못한 기준 축: ${unscannedStandards.join(', ') || '없음'}. 이 기준서는 미출제로 판정하지 말고 원문·세트 직접 연결에서 별도로 검토한다. 비KGA 인증·검토 기준의 전체 범위를 이 스캔에 포함했다고 해석하지 않는다.\n\n- 탐색 절 ${gaps.rows.length}개: 공백 후보 ${gaps.totals.공백}, 낮은 유사도 ${gaps.totals.얇음}, 유사 문구 탐지 ${gaps.totals.커버}\n- 전체 절별 결과: \`node cpa_uploader/wiki/scripts/gap-scan.mjs --sections\`\n\n` + table(['기준서', '공백 후보', '낮은 유사도', '유사 문구 탐지'], [...gaps.perStandard].sort(([a], [b]) => a.localeCompare(b, 'en', { numeric: true })).map(([standard, n]) => [standard, n.공백, n.얇음, n.커버])) + '\n\n## 공백 후보의 실제 절 위치\n\n' + table(['기준서', '학습자료 요구사항 절', '문자열 겹침', '최근접 세트'], missingSections.map((r) => [r.standard, link(requirementFile, `cpa_uploader/data/회계감사_통합학습자료/01_감사기준/${r.file}`, r.name), `${r.score}%`, r.bestSet === '-' ? '연결 없음' : `[[${r.bestSet}]]`])) + '\n\nKGA 402처럼 직접 출처가 없는 기준서는 세트 수보다 먼저 보강 범위를 검토한다. 후보 절의 실제 학습목표·조건·예외를 공식 원문과 대조한 뒤 출제 여부를 결정하며, 자동 유사도만으로 문항 검수 상태를 올리지 않는다.\n\n## Related\n\n- [[coverage-map]]\n- [[source-review-map]]\n- [[question-design]]');
+
+  const records = allFiles(path.join(repoDir, 'cpa_uploader/data')).filter((p) => /\.(md|txt|json|sql)$/i.test(p)).sort((a, b) => a.localeCompare(b, 'ko')).map((p) => {
+    const body = fs.readFileSync(p);
+    return { file: slash(path.relative(repoDir, p)), bytes: body.length, sha: hash(body), nul: body.reduce((n, v) => n + Number(v === 0), 0) };
   });
   const groups = new Map();
-  for (const record of records) {
-    const group = groups.get(record.sha) || [];
-    group.push(record.path);
-    groups.set(record.sha, group);
+  for (const r of records) groups.set(r.sha, [...(groups.get(r.sha) || []), r.file]);
+  const duplicates = new Map([...groups].filter(([, files]) => files.length > 1).map(([sha], i) => [sha, `D${i + 1}`]));
+  put('raw/source-manifest.md', front('원자료 매니페스트', 'source-map', ['cpa_uploader/data']) + `파일 ${records.length}개 · 동일 해시 중복 ${duplicates.size}그룹 · NUL 포함 ${records.filter((r) => r.nul).length}개. 원자료를 수정하지 않고 읽는다. 편집 정본과 배포물은 각각의 생성·검수 절차로만 갱신한다.\n\n` + table(['경로', 'bytes', 'SHA-256', 'NUL', '중복 그룹'], records.map((r) => [link('raw/source-manifest.md', r.file, r.file.replace('cpa_uploader/', '')), r.bytes, r.sha, r.nul, duplicates.get(r.sha) || '-'])) + '\n\n## Related\n\n- [[topic-map]]\n- [[coverage-map]]\n- [[source-review-map]]');
+
+  const manualPages = allFiles(wikiDir).filter((p) => p.endsWith('.md')).map((p) => slash(path.relative(wikiDir, p))).filter((p) => !pages.has(p) && !/^(concepts|questions|_meta|raw)\//.test(p) && !['index.md', 'log.md', 'SCHEMA.md'].includes(p));
+  const contentPages = pages.size + manualPages.length;
+  const summary = { wikiDir, topics: topicDefinitions.length, questionSets: bank.length, subquestions: counts(bank).questions, criteria: counts(bank).criteria, requirements: requirementCount, sourceFiles: catalog.sources.length, sourceUnits: catalog.units.length, sourceCatalogPages: catalogFiles.length + 1, sourceNavigationLinks: catalog.tocLinks.length, contentPages };
+  const catalogIndex = unitGroups.map((group) => `- ${catalogFiles.filter((file) => file.startsWith(`_meta/source-catalog-${group.id}.`) || file.startsWith(`_meta/source-catalog-${group.id}-part-`)).map((file) => `[[${path.basename(file, '.md')}]]`).join(' · ')}`).join('\n');
+  put('index.md', `# CPA 회계감사 문제 출제 LLM Wiki\n\n> Last updated: ${date} | Content pages: ${contentPages} | v3 문제은행: 세트 ${bank.length}개 · 물음 ${summary.subquestions}개 · criterion ${summary.criteria}개\n\n출제·검토용 내부 지식베이스다. 세트 색인은 정답과 비공개 채점 조건을 포함한다.\n\n## Start Here\n\n- [[source-catalog]] — 원자료 단위에서 새 목표 탐색\n- [[source-authoring-design]] — 두 설계 경로와 계획서\n- [[topic-map]] — 주제와 설계 지침\n- [[coverage-map]] — 분포·직접 출처 미연결·유형\n- [[requirement-coverage]] — 요구사항·학습목표와 공백 후보\n- [[source-review-map]] — 검토 기록·공식 출처·판본 상태\n- [[question-generation-workflow]] — 생성부터 게시까지\n- [스키마](SCHEMA.md) · [갱신 기록](log.md)\n\n## Concepts\n\n${topicDefinitions.map((t) => `- [[${t.slug}]] — ${axis(t)}`).join('\n')}\n\n## Question Generation\n\n${manualPages.sort().map((p) => `- [[${path.basename(p, '.md')}]]`).join('\n')}\n\n## Questions\n\n${bank.map((s) => `- [[${s.id}]] — ${inline(s.title)}`).join('\n')}\n\n## Meta\n\n- [[topic-map]]\n- [[coverage-map]]\n- [[requirement-coverage]]\n- [[source-review-map]]\n- [[source-manifest]]\n- [[source-catalog]]\n${catalogIndex}`);
+  return { pages, summary };
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const { pages, summary } = buildWiki();
+  for (const [relative, body] of pages) {
+    const target = path.join(summary.wikiDir, relative);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, body, 'utf8');
   }
-  const duplicateHashes = new Map([...groups].filter(([, paths]) => paths.length > 1).map(([sha], index) => [sha, `D${index + 1}`]));
-  const rows = records.map((record) => {
-    const duplicate = duplicateHashes.get(record.sha) || '';
-    const status = record.nullBytes > 0 ? 'NUL 포함·정제 읽기 필요' : '정상';
-    return `| \`${record.path}\` | ${record.bytes} | \`${record.sha.slice(0, 12)}\` | ${record.nullBytes} | ${duplicate} | ${status} |`;
-  }).join('\n');
-  return `---
-title: 원자료 매니페스트
-created: 2026-08-08
-updated: ${today}
-type: source-map
-status: generated
-review_required: true
-tags: [audit, source-map, quality]
-sources: [cpa_uploader/data]
-confidence: high
----
-
-# 원자료 매니페스트
-
-> 위키는 원자료를 복제하지 않는다. 아래 파일은 \`cpa_uploader/data\`에 있는 immutable source layer로 취급한다.
-
-- 파일 수: ${records.length}
-- 동일 해시를 가진 중복 그룹 수: ${duplicateHashes.size}
-- NUL 바이트가 포함된 파일 수: ${records.filter((record) => record.nullBytes > 0).length}
-
-| 경로 | bytes | SHA-256 앞 12자 | NUL bytes | 중복 그룹 | 상태 |
-|---|---:|---|---:|---|---|
-${rows}
-
-## 사용 규칙
-
-- SHA가 같은 파일은 별도 출처가 아니라 동일 복제본일 수 있으므로 중복 문제 생성에 주의한다.
-- NUL 바이트가 있는 마크다운은 일반 텍스트 도구가 binary로 판단할 수 있다. 읽을 때 NUL을 제거하되 원본 파일은 수정하지 않는다.
-- 주제별 페이지 탐색은 [[topic-map]], 현재 문제 커버리지는 [[coverage-map]]을 사용한다.
-- 원자료 품질 기록은 \`data/회계감사_통합학습자료/99_문맥_교정_기록.md\`와 관련 QA 문서를 확인한다.
-
-## Related
-
-- [[topic-map]]
-- [[coverage-map]]
-- [[question-generation-workflow]]
-`;
+  const logPath = path.join(summary.wikiDir, 'log.md');
+  const entry = `\n## ${new Date().toISOString()} — 자동 wiki 빌드\n\n생성 ${pages.size}페이지 · 전체 콘텐츠 ${summary.contentPages}페이지 · ${summary.questionSets}세트/${summary.subquestions}물음/${summary.criteria}criterion/${summary.requirements}requirement. 원자료·문제은행 변경 없음. lint·동기화 검사는 별도 명령의 실제 결과를 기록한다.\n`;
+  fs.appendFileSync(logPath, entry);
+  console.log(JSON.stringify(summary, null, 2));
 }
-
-const tocText = cleanText(fs.readFileSync(tocPath));
-const parsedTopics = parseTopics(tocText);
-if (!fs.existsSync(bankPath)) throw new Error(`v3 문제은행이 없습니다: ${bankPath}`);
-const bank = JSON.parse(cleanText(fs.readFileSync(bankPath)));
-const definitionsById = new Map(parsedTopics.map((topic) => [topic.id, topic]));
-const setsByTopic = new Map(topicDefinitions.map((topic) => [topic.id, []]));
-for (const set of bank) setsByTopic.get(topicForSet(set).id).push(set);
-
-ensureDir(path.join(wikiDir, 'concepts'));
-ensureDir(path.join(wikiDir, '_meta'));
-ensureDir(path.join(wikiDir, 'raw'));
-
-for (let index = 0; index < topicDefinitions.length; index += 1) {
-  const topic = topicDefinitions[index];
-  const definition = definitionsById.get(topic.id);
-  if (!definition) throw new Error(`통합 목차에서 topic ${topic.id}를 찾을 수 없습니다.`);
-  const previous = topicDefinitions[(index - 1 + topicDefinitions.length) % topicDefinitions.length];
-  const next = topicDefinitions[(index + 1) % topicDefinitions.length];
-  write(
-    path.join(wikiDir, 'concepts', `${topic.slug}.md`),
-    buildConceptPage(topic, definition, setsByTopic.get(topic.id), previous, next),
-  );
-}
-
-const topicMapRows = topicDefinitions.map((topic) => {
-  const definition = definitionsById.get(topic.id);
-  const sets = setsByTopic.get(topic.id);
-  const standardAxis = topic.standards.length ? topic.standards.join('·') : (definition.axis || '원자료 확인 필요');
-  return `| ${topic.id} | [[${topic.slug}]] | ${standardAxis} | ${definition.terms.join(', ')} | ${sets.length}세트 |`;
-}).join('\n');
-write(path.join(wikiDir, '_meta', 'topic-map.md'), `---
-title: 회계감사 주제 지도
-created: 2026-08-08
-updated: ${today}
-type: source-map
-status: generated
-review_required: false
-tags: [audit, source-map, question-generation]
-sources: ${yamlList(['cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md', 'cpa_uploader/data/cpa_question_sets_v3.authoring.json'])}
-confidence: high
----
-
-# 회계감사 주제 지도
-
-| ID | 주제 | 기준 축 | 탐색어 | v3 세트 |
-|---|---|---|---|---:|
-${topicMapRows}
-
-## 사용법
-
-1. 보강할 주제를 [[coverage-map]]에서 선택한다.
-2. 해당 concept 페이지의 v3 연결 현황과 원자료 페이지를 확인한다.
-3. [[question-generation-workflow]]에 따라 발문과 답안을 분리 추출한다.
-
-## Related
-
-- [[coverage-map]]
-- [[source-manifest]]
-- [[question-design]]
-`);
-
-const coverageRows = topicDefinitions.map((topic) => {
-  const definition = definitionsById.get(topic.id);
-  const sets = setsByTopic.get(topic.id);
-  const criteriaCount = sets.reduce((sum, set) => sum + set.subquestions.reduce((acc, q) => acc + q.criteria.length, 0), 0);
-  const subquestionCount = sets.reduce((sum, set) => sum + set.subquestions.length, 0);
-  const publishedCount = sets.filter((set) => set.status === 'published').length;
-  const status = sets.length === 0 ? '빈 영역' : sets.length <= 2 ? '우선 보강' : sets.length <= 3 ? '보강 권장' : '충분';
-  // 세트 수가 충분해도 주제 축의 기준서 하나가 통째로 비어 있을 수 있다. 상태 열만으로는 보이지 않는다.
-  const linkedStandards = new Set(sets.flatMap((set) => set.classification.standards || []));
-  const unlinked = topic.standards.filter((standard) => !linkedStandards.has(standard));
-  const ids = sets.length ? sets.map((set) => `${set.id}(${set.subquestions.length}문항/${set.subquestions.reduce((acc, q) => acc + q.criteria.length, 0)}루브릭)`).join(', ') : '-';
-  const standardAxis = topic.standards.length ? topic.standards.join('·') : (definition.axis || '원자료 확인 필요');
-  return `| ${topic.id} | [[${topic.slug}]] | ${standardAxis} | ${sets.length} | ${subquestionCount} | ${criteriaCount} | ${publishedCount} | ${status} | ${unlinked.length ? unlinked.join('·') : '-'} | ${ids} |`;
-}).join('\n');
-write(path.join(wikiDir, '_meta', 'coverage-map.md'), `---
-title: 문제은행 커버리지 맵
-created: 2026-08-08
-updated: ${today}
-type: coverage
-status: generated
-review_required: true
-tags: [audit, quality, question-generation]
-sources: ${yamlList(['cpa_uploader/data/cpa_question_sets_v3.authoring.json'])}
-confidence: high
----
-
-# 문제은행 커버리지 맵
-
-> 개수는 현재 v3 authoring 은행(\`cpa_question_sets_v3.authoring.json\`) 기준 분포다.
-> 세트 수·criterion 수는 게시 여부나 기준서 요구사항의 완전성을 의미하지 않는다.
-
-| ID | 주제 | 기준 축 | 세트 | 세부 물음 | criterion | published | 상태 | 미연결 기준서 | 세트 ID |
-|---|---|---|---:|---:|---:|---:|---|---|---|
-${coverageRows}
-
-## 우선순위
-
-1. \`빈 영역\`과 \`우선 보강\` 주제의 실제 원문을 먼저 확인한다.
-2. \`미연결 기준서\`가 있는 주제는 상태가 \`충분\`이어도 그 기준서를 다루는 세트가 하나도 없다는 뜻이다. 세트 수보다 먼저 본다.
-3. 문제 수가 많아도 judgment·enumeration·descriptive가 한쪽으로 치우치지 않았는지 확인한다.
-4. 새 세트는 [[question-generation-workflow]]와 validateQuestionSetV3 검증을 통과한 뒤 promote_cpa_v3.ts로 상태를 올린다.
-5. 실제 산술을 요구하는 문제는 coverage 목표에서 제외하고 \`excluded: calculation\`로 기록한다.
-
-## Related
-
-- [[topic-map]]
-- [[question-generation-workflow]]
-- [[source-manifest]]
-`);
-
-write(path.join(wikiDir, 'raw', 'source-manifest.md'), buildSourceManifest());
-
-const conceptIndex = topicDefinitions.map((topic) => {
-  const definition = definitionsById.get(topic.id);
-  const sets = setsByTopic.get(topic.id);
-  const standardAxis = topic.standards.length ? topic.standards.join('·') : (definition.axis || '원자료 확인 필요');
-  return `- [[${topic.slug}]] — ${standardAxis} · ${definition.terms.join(', ')} · v3 ${sets.length}세트`;
-}).join('\n');
-const contentPageCount = topicDefinitions.length + 4 + 3;
-const totalSets = bank.length;
-const totalCriteria = bank.reduce((sum, set) => sum + set.subquestions.reduce((acc, q) => acc + q.criteria.length, 0), 0);
-write(path.join(wikiDir, 'index.md'), `# CPA 회계감사 문제 출제 LLM Wiki
-
-> ` + '`cpa_uploader/data`' + `를 출처로 하는 문제 생성 지식베이스.
-> Last updated: ${today} | Content pages: ${contentPageCount} | v3 문제은행: 세트 ${totalSets}개 · criterion ${totalCriteria}개
-
-## Start Here
-
-1. [[topic-map]] — 19개 공통 주제 탐색
-2. [[coverage-map]] — v3 문제은행 세트 분포와 보강 우선순위
-3. [[question-generation-workflow]] — 출처에서 linked question set을 만드는 절차
-4. [[question-output-schema]] — 생성 JSON 계약
-5. [[llm-question-generation-prompt]] — LLM 입력 템플릿
-
-## Concepts
-
-${conceptIndex}
-
-## Question Generation
-
-- [[question-design]] — 3개 물음 유형과 정수 배점
-- [[question-generation-workflow]] — 발문 우선 추출과 검증 절차
-- [[question-output-schema]] — linked question set 출력 구조
-- [[llm-question-generation-prompt]] — 출처 기반 생성 프롬프트
-
-## Meta
-
-- [[topic-map]] — 주제·기준서·탐색어 지도
-- [[coverage-map]] — v3 문제은행 커버리지
-- [[source-manifest]] — 원자료 해시·중복·NUL 상태
-`);
-
-console.log(JSON.stringify({
-  wikiDir,
-  topics: topicDefinitions.length,
-  questionSets: totalSets,
-  subquestions: bank.reduce((sum, set) => sum + set.subquestions.length, 0),
-  criteria: totalCriteria,
-  contentPages: contentPageCount,
-}, null, 2));

@@ -1,0 +1,94 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import type { QuestionSetV3 } from '../lib/questionV3.ts';
+import { createManualReviewTemplate, finalizeManualReview, gradeSemanticReviewReceipt, prepareSemanticReview, readSemanticReviewDocument, reviewQuestionDraft, validateSemanticReviewReceipt } from './questionSemanticReview.ts';
+import type { SemanticReviewReceipt } from './questionSemanticReview.ts';
+import { publicationPaths, snapshotFile, snapshotSources, writePublicationFiles } from './questionBankPublication.ts';
+
+function parseArgs(argv: string[]) {
+    const args: Record<string, string> = {};
+    for (let i = 0; i < argv.length; i += 1) {
+        const key = argv[i];
+        if (args[key]) throw new Error(`중복 옵션: ${key}`);
+        if (key === '--manual-template' || key === '--grade-cases') args[key] = '1';
+        else if (['--file', '--output', '--bank', '--plan', '--packet', '--manual-input', '--review-input', '--description'].includes(key)) {
+            const value = argv[++i]; if (!value || value.startsWith('--')) throw new Error(`${key} 값이 필요합니다.`); args[key] = value;
+        } else throw new Error(`지원하지 않는 옵션: ${key}`);
+    }
+    return args;
+}
+function json(file: string): unknown { return JSON.parse(fs.readFileSync(file, 'utf8')); }
+function setsFrom(value: unknown): QuestionSetV3[] {
+    const sets = Array.isArray(value) ? value : value && typeof value === 'object' && 'sets' in value ? (value as { sets: unknown }).sets : [value];
+    if (!Array.isArray(sets) || !sets.length) throw new Error('검수할 문항 배열이 필요합니다.');
+    const ids = new Set<string>();
+    for (const set of sets) {
+        if (!set || typeof set !== 'object' || typeof set.id !== 'string' || ids.has(set.id)) throw new Error('검수 대상 ID가 없거나 중복입니다.');
+        ids.add(set.id);
+    }
+    return sets as QuestionSetV3[];
+}
+function sidecar(value: unknown, kind: 'plans' | 'packets', id: string): unknown {
+    if (value === null) return null;
+    if (typeof value === 'object' && value && kind in value) {
+        const rows = (value as Record<string, unknown>)[kind];
+        if (!Array.isArray(rows)) throw new Error(`${kind} sidecar 배열이 필요합니다.`);
+        const matches = rows.filter((row) => row?.set_id === id);
+        if (matches.length !== 1) throw new Error(`${id}: ${kind} sidecar의 set_id 연결이 없거나 중복입니다.`);
+        return matches[0];
+    }
+    return value;
+}
+
+try {
+    const args = parseArgs(process.argv.slice(2));
+    if (!args['--file'] || !args['--output']) throw new Error('--file <draft.json> --output <review.json>이 필요합니다.');
+    if (args['--manual-template'] && args['--manual-input']) throw new Error('--manual-template과 --manual-input은 함께 사용할 수 없습니다.');
+    if (args['--review-input'] && (!args['--grade-cases'] || args['--manual-input'] || args['--manual-template'])) throw new Error('--review-input은 기존 의미검수 receipt의 --grade-cases 실행과 함께 사용하십시오.');
+    if (args['--manual-template'] && args['--grade-cases']) throw new Error('미완성 양식은 실제 채점 사례를 실행할 수 없습니다.');
+    const file = path.resolve(args['--file']); const output = path.resolve(args['--output']);
+    const bankFile = path.resolve(args['--bank'] || publicationPaths().authoring);
+    const planFile = args['--plan'] ? path.resolve(args['--plan']) : fs.existsSync(`${file}.authoring-plan.json`) ? `${file}.authoring-plan.json` : null;
+    const packetFile = args['--packet'] ? path.resolve(args['--packet']) : fs.existsSync(`${file}.source-packet.json`) ? `${file}.source-packet.json` : null;
+    const manualFile = args['--manual-input'] ? path.resolve(args['--manual-input']) : null;
+    const reviewFile = args['--review-input'] ? path.resolve(args['--review-input']) : null;
+    const inputs = [file, bankFile, ...(planFile ? [planFile] : []), ...(packetFile ? [packetFile] : []), ...(manualFile ? [manualFile] : []), ...(reviewFile ? [reviewFile] : [])];
+    const samePath = (candidate: string) => path.resolve(candidate).toLowerCase() === output.toLowerCase();
+    if (inputs.some(samePath) || Object.values(publicationPaths()).some(samePath)) throw new Error('검수 출력은 입력·정본·장부·공개본·암호화본과 별도 파일이어야 합니다.');
+    const guards = [...inputs.map(snapshotFile), snapshotFile(output)];
+    const sets = setsFrom(json(file)); const bank = setsFrom(json(bankFile));
+    // Drafts in the same file are peers even before authoring-bank inclusion.
+    const peerBank = [...bank.filter((set) => !sets.some((draft) => draft.id === set.id)), ...sets];
+    guards.push(...snapshotSources(sets));
+    const plan = planFile ? json(planFile) : null; const packet = packetFile ? json(packetFile) : null;
+    const manual = manualFile ? readSemanticReviewDocument(manualFile) : null;
+    const existingReview = reviewFile ? readSemanticReviewDocument(reviewFile) : null;
+    if (manual && (manual.reviews.length !== sets.length || manual.reviews.some((review) => !sets.some((set) => set.id === review.set_id)))) throw new Error('수동 검수 문서와 초안의 대상 세트가 다릅니다.');
+    const reviews: SemanticReviewReceipt[] = [];
+    for (const set of sets) {
+        const options = { bank: peerBank, authoringPlan: sidecar(plan, 'plans', set.id), packet: sidecar(packet, 'packets', set.id) };
+        const prepared = prepareSemanticReview(set, options);
+        guards.push(...prepared.sourceFiles.map((source) => ({ file: path.resolve(source.file), hash: source.sha256 })));
+        console.log(`${set.id}: 직렬화 의미검수 입력 ${prepared.requestChars}자`);
+        let receipt: SemanticReviewReceipt;
+        if (args['--manual-template']) receipt = createManualReviewTemplate(prepared);
+        else if (manual) receipt = finalizeManualReview(prepared, manual.reviews.find((review) => review.set_id === set.id), args['--description'] || '');
+        else if (existingReview) {
+            const previous = existingReview.reviews.find((review) => review.set_id === set.id);
+            if (!previous) throw new Error(`${set.id}: 실행할 의미검수 receipt가 없습니다.`);
+            receipt = previous;
+        } else receipt = await reviewQuestionDraft(set, options);
+        if (args['--grade-cases']) {
+            receipt = await gradeSemanticReviewReceipt(receipt, set, options);
+            const errors = validateSemanticReviewReceipt(receipt, set, options);
+            if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
+        }
+        reviews.push(receipt);
+    }
+    writePublicationFiles([{ file: output, content: `${JSON.stringify({ schema_version: '1.0', reviews }, null, 2)}\n` }], guards);
+    console.log(`의미검수 산출물: ${output} (${reviews.map((review) => `${review.set_id}=${review.verdict}`).join(', ')})`);
+    console.log('문항 상태는 변경하지 않았습니다. pass도 사람의 실제 검수 근거와 별도 verified/published 승급이 필요합니다.');
+    if (!args['--grade-cases']) console.log('실제 채점 사례 미실행: 의미검수 완료 후 --review-input <review.json> --grade-cases로 실행해야 검수 승급이 가능합니다.');
+    if (args['--manual-template']) console.log('이 파일은 미완성 양식입니다. 모든 단위·사례·인용을 실제 대조한 뒤 --manual-input <작성한 양식> --description <확인 방법>으로 별도 출력에 확정하십시오.');
+    else if (reviews.some((review) => review.verdict !== 'pass')) process.exitCode = 1;
+} catch (error) { console.error(error instanceof Error ? error.message : String(error)); process.exitCode = 1; }

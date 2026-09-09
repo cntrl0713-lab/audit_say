@@ -1,72 +1,73 @@
 ---
-title: 서비스조직·내부감사·감사인측 전문가
+title: "13. 서비스조직·내부감사·감사인측 전문가"
 created: 2026-08-08
-updated: 2026-09-08
+updated: 2026-09-09
 type: concept
 status: generated
 review_required: true
-tags: ["audit", "evidence", "procedures", "question-generation"]
-sources: ["cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md", "cpa_uploader/data/cpa_question_sets_v3.authoring.json"]
+tags: [audit, question-generation, quality]
+sources: ["cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md","cpa_uploader/data/cpa_question_sets_v3.authoring.json","docs/reports/question-review-2027/13.md","docs/reports/question-review-2027/13.json"]
 confidence: medium
 ---
 
 # 13. 서비스조직·내부감사·감사인측 전문가
 
+
 ## 범위
 
-- 기준 축: KGA 402·610·620
-- 현재 문제은행 연결 기준: KGA 610·KGA 620
+- 탐색 기준 축: KGA 402 · KGA 610 · KGA 620
+- 목차 기준 축: KGA 402·610·620
+- 정본 직접 출처: KGA 610 · KGA 620
 - 탐색어: 서비스조직, 수탁회사, 내부감사기능, 내부감사인, 감사인측 전문가, 전문가의 업무
-- 현재 연결된 문제 세트: 5개
-- 현재 연결된 criterion: 24개
-- 주제 전체 유형 분포: descriptive 5, judgment 2, enumeration 3
+- 세트 5 · 물음 10 · criterion 24 · descriptive 5 · enumeration 3 · judgment 2
 
-## 문제 생성 관점
+## 출제 전 확인
 
-- 핵심개념과 정의를 묻는 `descriptive`
-- 조건 또는 결론을 판단하고 근거를 묻는 `judgment`
-- 독립된 절차·고려사항을 요구하는 `enumeration`
-- 같은 개념의 정의 → 적용 조건 → 절차 또는 보고효과를 연계형 물음으로 구성
-- 실제 산술을 요구하는 문제는 제외하고, 기준서상 수치·기간 자체를 묻는 경우만 허용
+- 원자료 단위와 새 목표 설계: [[source-catalog-topic-13]] · [[source-authoring-design]]
+- 주제별 조건·예외: [[topic-13-design]]
+- 문항별 검토·판본·실측: [13.md](../../../docs/reports/question-review-2027/13.md) · [13.json](../../../docs/reports/question-review-2027/13.json)
+- 기존 세트 색인의 공통 사실 → 발문 → 모범답안 → 핵심 조건 → requirement·출처를 함께 읽는다. 명제 목록만으로 적용 범위와 정답을 확정하지 않는다.
+- 아래 생성 목록은 정본의 현재 기록이며 사람 검수나 2027 시험 적용 판본 확정을 보증하지 않는다.
 
 ## v3 문제은행 연결 현황
 
-아래 criterion claim과 게시 상태는 현재 정본의 기록이다. 생성된 목록 자체는 공식 출처 대조나 사람 검수 완료를 보증하지 않는다.
-새 문제를 만들 때는 중복 명제 탐색에 참고하고 해당 검토 보고서와 공식 근거를 확인한다.
+### pilot-13-001. 타인의 업무 활용에 대한 외부감사인의 책임과 고려사항
 
-### pilot-13-001. 타인의 업무 활용에 대한 외부감사인의 책임과 고려사항 (게시 중)
+[[pilot-13-001]] — published/verified; 조건·정답·requirement·공식 파일 위치 포함
+- 공통 사실: 외부감사인은 내부감사기능과 감사인측 전문가의 업무를 활용할지 검토하고 있다.
+- sub1 (descriptive): 외부감사인이 내부감사기능이나 감사인측 전문가의 업무를 활용하는 경우, 감사의견에 대한 외부감사인의 책임은 어떻게 변화하는지 설명하시오.
+- sub2 (judgment): 적정의견의 감사보고서에 감사인측 전문가의 업무를 언급할 수 있는지 법규상 예외를 포함하여 판단하고, 감사인의 책임과 관련된 근거를 설명하시오. 법규상 언급이 요구되는 경우 보고서에 표시해야 할 사항도 제시하시오.
 
-- 물음 구성: sub1, sub2 · 유형 분포: descriptive 1, judgment 1
-- sub1(descriptive): `crit1` 내부감사기능을 활용해도 표명된 감사의견에 대한 외부감사인의 전적인 책임은 경감되지 않는다고 설명함 · `crit2` 감사인측 전문가를 활용해도 표명된 감사의견에 대한 외부감사인의 전적인 책임은 경감되지 않는다고 설명함
-- sub2(judgment): `crit3` 법규상 요구되지 않는 한 언급이 금지됨을 판단함 · `crit4` 전문가 활용으로 감사의견에 대한 전적인 책임이 경감되지 않음을 근거로 설명함 · `crit5` 법규상 언급 시 보고서에 책임이 경감되지 않음을 표시함
+### pilot-13-002. 내부감사기능 평가와 감사인측 전문가 합의
 
-### pilot-13-002. 내부감사기능 평가와 감사인측 전문가 합의 (게시 중)
+[[pilot-13-002]] — published/verified; 조건·정답·requirement·공식 파일 위치 포함
+- 공통 사실: 외부감사인은 내부감사기능과 감사인측 전문가의 업무를 활용하기 전에 평가 및 합의사항을 점검하고 있다.
+- sub1 (enumeration): 내부감사기능이 수행한 업무를 감사목적에 활용할 수 있는지 결정하기 위해 외부감사인이 평가해야 할 세 가지 사항을 제시하시오.
+- sub2 (enumeration): 감사인이 감사인측 전문가와 합의해야 할 네 가지 사항을 제시하시오.
 
-- 물음 구성: sub1, sub2 · 유형 분포: enumeration 2
-- sub1(enumeration): `crit1` 조직 내 위상과 정책·절차가 내부감사인의 객관성을 지원하는 정도를 평가함 · `crit2` 내부감사기능의 적격성 수준을 평가함 · `crit3` 품질관리를 포함한 체계적이고 규율된 접근법 적용 여부를 평가함
-- sub2(enumeration): `crit4` 전문가 업무의 성격·범위·목적을 합의함 · `crit5` 감사인과 전문가 각자의 역할과 책임을 합의함 · `crit6` 보고서 형태를 포함한 커뮤니케이션의 성격·시기·범위를 합의함 · `crit7` 전문가의 비밀유지 요구사항 준수 필요성을 합의함
+### pilot-13-003. 내부감사인의 직접적 보조와 부적합한 전문가 업무 대응
 
-### pilot-13-003. 내부감사인의 직접적 보조와 부적합한 전문가 업무 대응 (게시 중)
+[[pilot-13-003]] — published/verified; 조건·정답·requirement·공식 파일 위치 포함
+- 공통 사실: 두 물음은 독립된 상황이다. 직접적 보조의 활용 가능성은 해당 감사업무에 적용되는 기준과 국가별 제한을 구분하여 검토한다.
+- sub1 (descriptive): 우리나라의 회계감사기준에 따른 감사(그룹감사의 부문감사 포함)에서 내부감사인의 직접적 보조를 활용할 수 있는지 판단하시오. 이어서 직접적 보조가 허용되는 국가에서 활용 요건을 충족하였다고 가정할 때, 활용 전에 기업의 권한 있는 대표자와 내부감사인으로부터 각각 입수할 서면동의의 네 가지 내용을 모두 제시하시오.
+- sub2 (enumeration): 감사인측 전문가의 업무가 감사목적상 적합하지 않다고 판단한 경우 감사인이 수행해야 할 두 가지 절차를 제시하시오.
 
-- 물음 구성: sub1, sub2 · 유형 분포: descriptive 1, enumeration 1
-- sub1(descriptive): `crit1` 내부감사인이 외부감사인의 지시를 따른다는 기업 대표자의 서면동의를 제시함 · `crit2` 기업이 내부감사인의 직접적 보조업무에 관여하지 않는다는 서면동의를 제시함 · `crit3` 특정 기밀사항을 유지한다는 내부감사인의 서면동의를 제시함 · `crit4` 객관성 위협이 있으면 외부감사인에게 알린다는 내부감사인의 서면동의를 제시함 · `crit7` 국내 감사와 그룹감사의 부문감사에서 직접적 보조 활용이 금지됨을 판단함
-- sub2(enumeration): `crit5` 전문가가 수행할 후속업무의 성격과 범위에 대해 전문가와 합의한다고 제시함 · `crit6` 해당 상황에 적합한 추가적인 감사절차를 수행한다고 제시함
+### pilot-13-004. 감사인측 전문가의 활용 여부 결정과 업무 적합성 평가
 
-### pilot-13-004. 감사인측 전문가의 활용 여부 결정과 업무 적합성 평가 (게시 중)
+[[pilot-13-004]] — published/verified; 조건·정답·requirement·공식 파일 위치 포함
+- 공통 사실: 감사 대상 기업이 광업권 평가를 위해 외부 감정평가 결과를 사용하였다.
+- sub1 (descriptive): 충분하고 적합한 감사증거를 입수하기 위해 회계·감사 외 분야의 전문성이 필요한 경우, 감사인은 감사인측 전문가의 업무 활용에 관해 무엇을 결정해야 하는지 설명하시오.
+- sub2 (descriptive): 감사인측 전문가의 업무를 활용할 때, 그 업무와 감사목적의 관계에 대해 감사인이 내려야 할 전반적인 평가 결론을 설명하시오.
 
-- 물음 구성: sub1, sub2 · 유형 분포: descriptive 2
-- sub1(descriptive): `crit1` 감사인측 전문가의 업무 활용 여부를 결정해야 한다고 판단함
-- sub2(descriptive): `crit2` 전문가 업무가 감사목적상 적합한지 평가함을 설명함
+### pilot-13-005. 내부감사기능 활용 불능 사유와 과도한 활용 방지
 
-### pilot-13-005. 내부감사기능 활용 불능 사유와 과도한 활용 방지 (게시 중)
+[[pilot-13-005]] — published/verified; 조건·정답·requirement·공식 파일 위치 포함
+- 공통 사실: 두 물음은 독립된 상황이다. 각 물음에서 제시한 내부감사기능의 객관성 지원 수준을 기준으로 판단한다.
+- sub1 (judgment): 내부감사기능의 객관성이 조직 내 위상과 정책·절차로 충분히 뒷받침되지 않는다고 외부감사인이 결정한 경우, 해당 기능이 수행한 업무를 계속 활용할 수 있는지 판단하고 근거를 제시하시오.
+- sub2 (descriptive): 내부감사기능의 업무를 활용할 수 있는 기본 요건은 충족한 독립된 상황이다. 객관성 지원 정도가 상대적으로 낮아질수록 외부감사인은 내부감사기능의 업무 활용 범위와 직접 수행하는 업무 범위를 어떻게 조정해야 하는지 설명하시오.
 
-- 물음 구성: sub1, sub2 · 유형 분포: judgment 1, descriptive 1
-- sub1(judgment): `crit1` 객관성 지원 미흡 시 업무 활용 불능이라고 판단함 · `crit2` 조직 내 위상과 관련 정책·절차가 객관성을 적절히 지원하지 않는 것이 활용 금지 요건임을 설명함
-- sub2(descriptive): `crit3` 객관성 지원이 약할수록 활용을 줄이고 직접 수행업무를 늘려야 함을 설명함
 
 ## 원자료 탐색
-
-아래 페이지 범위는 통합 목차가 제공한 탐색 인덱스다. 새 문제를 만들 때 최소한 기준서 또는 기본이론과 실제 문제 발문을 함께 확인한다.
 
 - [02_기본이론/핵심요약.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%95%B5%EC%8B%AC%EC%9A%94%EC%95%BD.md): 5-6, 84-89, 99, 103, 129, 153-155, 169, 171, 179, 198
 - [02_기본이론/회계감사_기본이론.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md): 11, 15, 51, 215-217, 220-229, 256, 274, 289, 299-300, 304, 348-356, 397, 406, 431, 667, 713, 723
@@ -77,15 +78,10 @@ confidence: medium
 - [04_기출문제/기출문제_연도별_해설_B.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%97%B0%EB%8F%84%EB%B3%84_%ED%95%B4%EC%84%A4_B.md): 17, 55, 80, 112, 130, 179-180, 182, 217-218, 238, 297-298, 311, 317-318, 325, 386
 - [04_기출문제/기출문제_주제별_해설.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md): 7, 9, 41, 99-103, 119, 121, 131, 134, 146, 166-167, 197-198, 215, 360, 392, 400-401, 414, 430
 
-## 검증 상태
-
-- 새로 만드는 문제는 [[question-output-schema]] 계약과 validateQuestionSetV3 검증을 통과해야 한다.
-- 상태 전환(needs_review → verified → published)은 promote_cpa_v3.ts와 승급 장부로만 수행한다.
-- OCR 훼손이나 서로 다른 자료의 답안 충돌은 추정하지 말고 verification.notes에 남긴다.
-
 ## Related
 
-- [[completion-subsequent-events-going-concern]]
-- [[group-audit]]
+- [[topic-map]]
+- [[coverage-map]]
+- [[source-review-map]]
+- [[requirement-coverage]]
 - [[question-generation-workflow]]
-- [[question-design]]

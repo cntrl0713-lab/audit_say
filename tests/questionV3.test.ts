@@ -102,6 +102,86 @@ test('validateQuestionSetV3 validates source-bound linked question sets', () => 
     assert.equal(result.max_points, 3);
 });
 
+test('validateQuestionSetV3 rejects legacy, invalid, and omitted answer selection fields', () => {
+    const cases: Array<{
+        policy: 'constraints' | 'selection';
+        field: string;
+        rejected: unknown[];
+    }> = [
+        { policy: 'selection', field: 'type', rejected: ['best_n', 'at_least_n', 'unknown', null, undefined] },
+        { policy: 'selection', field: 'n', rejected: [1, 0, -1, '1', undefined] },
+        { policy: 'constraints', field: 'ordered', rejected: [true, 'false', null, undefined] },
+        { policy: 'constraints', field: 'max_entries', rejected: [1, 0, -1, '1', undefined] },
+        { policy: 'constraints', field: 'overflow_policy', rejected: ['ignore_after_limit', 'unknown', null, undefined] },
+    ];
+
+    for (const { policy, field, rejected } of cases) {
+        for (const value of rejected) {
+            const set = createValidSet('source.md');
+            const record = set.subquestions[0][policy] as Record<string, unknown>;
+            if (value === undefined) delete record[field];
+            else record[field] = value;
+
+            const result = validateQuestionSetV3(set);
+            assert.ok(
+                result.errors.some(error => error.includes(`${policy}.${field}`)),
+                `${policy}.${field}=${String(value)} must be rejected`,
+            );
+        }
+    }
+});
+
+test('validateQuestionSetV3 rejects missing or malformed answer selection objects without throwing', () => {
+    for (const policy of ['constraints', 'selection'] as const) {
+        for (const value of [undefined, null, [], false, 'all']) {
+            const set = createValidSet('source.md');
+            const subquestion = set.subquestions[0] as unknown as Record<string, unknown>;
+            if (value === undefined) delete subquestion[policy];
+            else subquestion[policy] = value;
+
+            const result = validateQuestionSetV3(set);
+            assert.ok(result.errors.some(error => error.includes(`${policy} 형식`)), `${policy}=${String(value)}`);
+            assert.equal(result.max_points, 3);
+        }
+    }
+});
+
+test('stored published constraints remain readable without relaxing new authoring or all-criterion scoring', () => {
+    const set = createValidSet('source.md');
+    set.subquestions[0].constraints = { ordered: true, max_entries: 1, overflow_policy: 'ignore_after_limit' };
+    const options = { allowStoredAnswerConstraints: true };
+    assert.ok(validateQuestionSetV3(set, options).errors.some(error => error.includes('constraints')),
+        'An unreviewed draft cannot use stored-version compatibility');
+    set.status = 'published';
+    assert.ok(validateQuestionSetV3(set, options).errors.some(error => error.includes('constraints')),
+        'Published status alone does not establish reviewed stored content');
+    set.verification.review_status = 'verified';
+    const before = structuredClone(set);
+    assert.deepEqual(validateQuestionSetV3(set, options).errors, []);
+    assert.deepEqual(set, before, 'Reading a stored version must not rewrite it');
+    assert.ok(validateQuestionSetV3(set).errors.some(error => error.includes('constraints')),
+        'The default authoring/import contract remains strict for published content too');
+    assert.equal(computeQuestionSetMaxPoints(set), 3);
+    assert.equal(scoreCriterionVerdicts(set.subquestions[0], [
+        { criterion_id: 'q1.c1', verdict: 'met' },
+        { criterion_id: 'q1.c2', verdict: 'met' },
+    ]).score, 3, 'Historical display limits cannot truncate criterion points');
+    for (const constraints of [
+        { ordered: false, max_entries: 0, overflow_policy: 'none' },
+        { ordered: false, max_entries: 1.5, overflow_policy: 'none' },
+        { ordered: 'true', max_entries: null, overflow_policy: 'none' },
+        { ordered: false, max_entries: null, overflow_policy: 'invalid' },
+        { ordered: false, overflow_policy: 'none' },
+    ]) {
+        const invalid = structuredClone(set);
+        Object.assign(invalid, { subquestions: [{ ...invalid.subquestions[0], constraints }] });
+        assert.ok(validateQuestionSetV3(invalid, options).errors.some(error => error.includes('constraints')));
+    }
+    Object.assign(set.subquestions[0].selection, { type: 'best_n', n: 1 });
+    assert.ok(validateQuestionSetV3(set, options).errors.some(error => error.includes('selection')),
+        'Stored compatibility never enables retired selection/scoring');
+});
+
 test('v3 authoring bank keeps the pilot floor distribution and stays internally consistent', {
     skip: !fs.existsSync(authoringBankPath),
 }, () => {
@@ -254,13 +334,12 @@ test('validateQuestionSetV3 reports malformed LLM subquestions without throwing'
     assert.equal(result.max_points, 0);
 });
 
-test('computeQuestionSetMaxPoints honors best_n without forcing a ten-point total', () => {
+test('computeQuestionSetMaxPoints sums every criterion without forcing a ten-point total', () => {
     const set = createValidSet('source.md');
-    set.subquestions[0].selection = { type: 'best_n', n: 1 };
     set.subquestions[0].criteria[0].max_points = 2;
     set.subquestions[0].criteria[0].scores = { met: 2, partial: 1, not_met: 0, contradicted: 0 };
 
-    assert.equal(computeQuestionSetMaxPoints(set), 2);
+    assert.equal(computeQuestionSetMaxPoints(set), 4);
 });
 
 test('validateQuestionSetV3 rejects public tags that reveal a model answer', () => {
@@ -311,9 +390,8 @@ test('scoreCriterionVerdicts computes integer criterion scores in code', () => {
     assert.deepEqual(result.criteria.map((item) => item.awarded_points), [1, 1]);
 });
 
-test('scoreCriterionVerdicts gives contradicted criteria zero points and caps best_n', () => {
+test('scoreCriterionVerdicts preserves earned points when another independent criterion is contradicted or missing', () => {
     const set = createValidSet('source.md');
-    set.subquestions[0].selection = { type: 'best_n', n: 1 };
     set.subquestions[0].criteria[0].max_points = 2;
     set.subquestions[0].criteria[0].scores = { met: 2, partial: 1, not_met: 0, contradicted: 0 };
 
@@ -323,7 +401,29 @@ test('scoreCriterionVerdicts gives contradicted criteria zero points and caps be
     ]);
 
     assert.equal(result.score, 2);
-    assert.equal(result.max_points, 2);
+    assert.equal(result.max_points, 4);
+    assert.deepEqual(result.criteria.map(criterion => criterion.awarded_points), [2, 0]);
+
+    const omitted = scoreCriterionVerdicts(set.subquestions[0], [
+        { criterion_id: 'q1.c1', verdict: 'met', quote: '높은 수준' },
+    ]);
+    assert.equal(omitted.score, 2);
+    assert.equal(omitted.max_points, 4);
+    assert.equal(omitted.criteria[1].verdict, 'not_met');
+});
+
+test('legacy selection metadata cannot restore score truncation', () => {
+    const set = createValidSet('source.md');
+    Object.assign(set.subquestions[0], { selection: { type: 'best_n', n: 1 } });
+    assert.ok(validateQuestionSetV3(set).errors.some(error => error.includes('selection.type')));
+
+    const result = scoreCriterionVerdicts(set.subquestions[0], [
+        { criterion_id: 'q1.c1', verdict: 'met', quote: '높은 수준' },
+        { criterion_id: 'q1.c2', verdict: 'met', quote: '절대적 수준은 아니다' },
+    ]);
+    assert.equal(result.score, 3);
+    assert.equal(result.max_points, 3);
+    assert.equal(computeQuestionSetMaxPoints(set), 3);
 });
 
 test('verifyCriterionVerdicts allows one real quote for independent criteria and rejects invented evidence', () => {

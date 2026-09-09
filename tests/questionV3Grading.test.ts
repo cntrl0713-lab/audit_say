@@ -1,6 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { applyQuestionSetJudgment, buildGradingPrompt } from '../lib/questionV3Grading.ts';
+import { applyQuestionSetJudgment, buildGradingPrompt, gradeQuestionSetV3 } from '../lib/questionV3Grading.ts';
+import type { QuestionSetJudgmentV3 } from '../lib/questionV3Grading.ts';
+import type { OpenAIResponseCreator } from '../lib/ai/openaiStructured.ts';
+import type { Response } from 'openai/resources/responses/responses';
 import type { QuestionSetV3 } from '../lib/questionV3.ts';
 
 const set: QuestionSetV3 = {
@@ -145,4 +148,77 @@ test('grading prompt carries shared context facts so case questions are judged w
     assert.deepEqual(JSON.parse(
         buildGradingPrompt(set, {}).split('<<<GRADING_PAYLOAD_START>>>\n')[1].split('\n<<<GRADING_PAYLOAD_END>>>')[0],
     ).shared_context, []);
+});
+
+const structuredResponse = (judgment: QuestionSetJudgmentV3): Response => ({
+    status: 'completed', output: [], output_text: JSON.stringify(judgment),
+} as unknown as Response);
+
+test('gradeQuestionSetV3 injected responses run quote isolation and integer scoring after the raw observer', async () => {
+    const answers = { q1: '합리적 확신은 높은 수준이다.', q2: '합리적 확신은 절대적 확신이 아니다.' };
+    const originalSet = structuredClone(set);
+    for (const validSecondQuote of [false, true]) {
+        let calls = 0;
+        const observed: QuestionSetJudgmentV3[] = [];
+        const createResponse: OpenAIResponseCreator = async (params) => {
+            calls++;
+            assert.equal(params.store, false);
+            assert.equal(params.text?.format?.type, 'json_schema');
+            assert.ok(String(params.input).includes(answers.q1));
+            assert.ok(String(params.input).includes(answers.q2));
+            return structuredResponse({
+                subquestions: [
+                    { subquestion_id: 'q1', verdicts: [{ criterion_id: 'q1.c1', verdict: 'met', quote: answers.q1 }] },
+                    { subquestion_id: 'q2', verdicts: [{ criterion_id: 'q2.c1', verdict: 'met', quote: validSecondQuote ? answers.q2 : answers.q1 }] },
+                ],
+                injection_detected: false, salad_detected: false,
+            });
+        };
+        const result = await gradeQuestionSetV3(set, answers, 'offline-test-key', judgment => observed.push(structuredClone(judgment)), createResponse);
+        assert.equal(calls, 1);
+        assert.equal(observed.length, 1);
+        assert.equal(observed[0].subquestions[1].verdicts[0].verdict, 'met', 'observer receives the raw judgment before quote verification');
+        assert.equal(result.max_points, 3);
+        assert.equal(result.score, validSecondQuote ? 3 : 1);
+        assert.deepEqual(result.subquestions.map(question => question.score), validSecondQuote ? [1, 2] : [1, 0]);
+        assert.equal(result.subquestions[1].criteria[0].verdict, validSecondQuote ? 'met' : 'not_met', 'another subquestion answer cannot supply quote evidence');
+        assert.deepEqual(set, originalSet);
+    }
+});
+
+test('gradeQuestionSetV3 injected judgments still apply security corrections', async () => {
+    const answers = { q1: '합리적 확신은 높은 수준이다.', q2: '합리적 확신은 절대적 확신이 아니다.' };
+    const result = await gradeQuestionSetV3(set, answers, 'offline-test-key', undefined, async () => structuredResponse({
+        subquestions: set.subquestions.map(question => ({
+            subquestion_id: question.id,
+            verdicts: question.criteria.map(criterion => ({ criterion_id: criterion.id, verdict: 'met', quote: answers[question.id as keyof typeof answers] })),
+        })),
+        injection_detected: true,
+    }));
+    assert.equal(result.score, 0);
+    assert.equal(result.security_flag, 'injection');
+    assert.ok(result.subquestions.every(question => question.criteria.every(criterion => criterion.verdict === 'not_met')));
+});
+
+test('gradeQuestionSetV3 blank answers need neither injected response nor judgment callback', async () => {
+    let calls = 0;
+    let observations = 0;
+    const result = await gradeQuestionSetV3(set, { q1: ' \n\t', q2: '' }, '', () => { observations++; }, async () => {
+        calls++;
+        throw new Error('blank answers must not request a response');
+    });
+    assert.equal(result.score, 0);
+    assert.equal(result.max_points, 3);
+    assert.equal(calls, 0);
+    assert.equal(observations, 0);
+    assert.equal((await gradeQuestionSetV3(set, {}, '', () => { observations++; })).score, 0, 'the existing four-argument call remains supported');
+    assert.equal(observations, 0);
+});
+
+test('gradeQuestionSetV3 rejects incomplete injected coverage before recording a judgment', async () => {
+    let observations = 0;
+    await assert.rejects(gradeQuestionSetV3(set, { q1: '답안', q2: '' }, 'offline-test-key', () => { observations++; }, async () => structuredResponse({
+        subquestions: [{ subquestion_id: 'q1', verdicts: [{ criterion_id: 'q1.c1', verdict: 'not_met' }] }],
+    })), /subquestion 수가 맞지 않습니다/u);
+    assert.equal(observations, 0);
 });

@@ -9,7 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
-const repoDir = path.resolve(scriptDir, '../../..');
+export function scanGaps({ repoDir = path.resolve(scriptDir, '../../..') } = {}) {
 const standardsDir = path.join(repoDir, 'cpa_uploader/data/회계감사_통합학습자료/01_감사기준');
 const bankPath = path.join(repoDir, 'cpa_uploader/data/cpa_question_sets_v3.authoring.json');
 
@@ -109,7 +109,7 @@ for (const section of sections) {
   }
   const score = Number((best * 100).toFixed(1));
   const tier = score < GAP_THRESHOLD ? '공백' : score < COVERED_THRESHOLD ? '얇음' : '커버';
-  rows.push({ standard: section.standard, name: section.name, score, tier, bestSet });
+  rows.push({ standard: section.standard, name: section.name, file: section.file, score, tier, bestSet });
 }
 
 rows.sort((left, right) => left.score - right.score);
@@ -121,6 +121,11 @@ for (const row of rows) {
   perStandard.get(row.standard)[row.tier] += 1;
 }
 
+return { rows, totals, perStandard };
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+const { rows, totals, perStandard } = scanGaps();
 console.log(`요구사항 절 ${rows.length}개 · 공백 ${totals.공백} · 얇음 ${totals.얇음} · 커버 ${totals.커버}`);
 console.log('');
 console.log('기준서별 (공백+얇음 많은 순)');
@@ -141,4 +146,6 @@ if (process.argv.includes('--sections')) {
   for (const row of rows) {
     console.log(`  ${String(row.score).padStart(5)}%  ${row.tier}  ${row.standard}  ${row.name}  (최근접: ${row.bestSet})`);
   }
+}
+
 }

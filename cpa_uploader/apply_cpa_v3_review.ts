@@ -187,7 +187,7 @@ function applyCorrections(sets: QuestionSetV3[]): void {
         replaceSharedFacts(set, ['감사인은 하나의 모집단에서 표본을 추출하고, 필요한 표본규모를 줄일 방법을 검토하고 있다.']);
         const sub1 = subquestion(set, 'subq1');
         sub1.prompt = '감사인이 감사표본을 설계할 때 모집단과 관련하여 고려해야 할 세 가지 사항을 제시하시오.';
-        sub1.constraints.max_entries = 3;
+        sub1.constraints.max_entries = null;
         sub1.model_answer = ['이탈 또는 왜곡표시를 구성하는 것이 무엇인지 정의한다.', '표본감사를 위해 이용할 모집단을 정의한다.', '표본이 도출된 모집단이 완전하다는 증거를 입수하기 위한 감사절차를 수행한다.'];
         sub1.criteria = [
             criterion('crit1', 'req1', 'src3', '이탈 또는 왜곡표시를 구성하는 것이 무엇인지 정의함', criticalFact('cf1', 'action', '이탈 또는 왜곡표시의 정의')),
@@ -215,7 +215,7 @@ function applyCorrections(sets: QuestionSetV3[]): void {
         const sub2 = subquestion(set, 'sub2');
         sub2.type = 'descriptive';
         sub2.prompt = '다음 두 상황을 각각 설명하시오. ① 정상적인 사업과정을 벗어난 유의적인 특수관계자 거래를 유의적 위험으로 취급하는지 ② 높은 추정불확실성·복잡성·주관성이 전문가적 의구심의 중요성에 어떤 영향을 미치는지';
-        sub2.constraints = { ordered: false, max_entries: 2, overflow_policy: 'none' };
+        sub2.constraints = { ordered: false, max_entries: null, overflow_policy: 'none' };
         sub2.model_answer = ['정상적인 사업과정을 벗어난 유의적인 특수관계자 거래는 유의적 위험으로 취급한다.', '회계추정치가 높은 추정불확실성·복잡성·주관성의 영향을 받을수록 전문가적 의구심의 중요성이 증가한다.'];
         sub2.criteria = [
             criterion('crit4', 'req2', 'src6', '정상적인 사업과정을 벗어난 유의적인 특수관계자 거래를 유의적 위험으로 취급함', criticalFact('cf4', 'condition', '정상적인 사업과정을 벗어난 유의적인 특수관계자 거래는 유의적 위험')),
@@ -256,7 +256,7 @@ function applyCorrections(sets: QuestionSetV3[]): void {
         sub1.criteria = [criterion('crit1', 'req1', 'src1', '그룹감사인이 그룹재무제표 전체에 대한 감사의견을 책임지며 부문감사인이 업무를 수행해도 그 책임이 감소하지 않는다고 설명함', criticalFact('cf1', 'conclusion', '그룹재무제표 전체에 대한 감사의견 책임은 부문감사인 활용에도 감소하지 않음'))];
         const sub2 = subquestion(set, 'sub2');
         sub2.prompt = '그룹감사인이 부문감사인의 업무를 활용하기 전에 확인해야 할 사항을 모두 제시하시오.';
-        sub2.constraints = { ordered: false, max_entries: 4, overflow_policy: 'none' };
+        sub2.constraints = { ordered: false, max_entries: null, overflow_policy: 'none' };
         sub2.selection = { type: 'all', n: null };
         sub2.model_answer = ['부문감사인의 적격성을 평가한다.', '부문감사인의 역량을 평가한다.', '관련 윤리적 요구사항, 특히 독립성을 평가한다.', '그룹감사인이 부문감사인의 업무에 충분하고 적절하게 관여할 수 있는지 판단한다.'];
         sub2.criteria = [

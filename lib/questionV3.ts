@@ -48,14 +48,16 @@ export interface SubquestionV3 {
     id: string;
     type: QuestionTypeV3;
     prompt: string;
+    // Historical immutable DB versions retain their original display metadata.
+    // New authoring is restricted to false/null/none by validateQuestionSetV3.
     constraints: {
         ordered: boolean;
         max_entries: number | null;
         overflow_policy: 'none' | 'ignore_after_limit';
     };
     selection: {
-        type: 'all' | 'best_n' | 'at_least_n';
-        n: number | null;
+        type: 'all';
+        n: null;
     };
     decision?: {
         options: string[];
@@ -189,15 +191,7 @@ export function computeSubquestionMaxPoints(subquestion: SubquestionV3): number 
     const points = subquestion.criteria
         .map((criterion) => criterion.max_points)
         .filter((points) => Number.isInteger(points) && points > 0);
-    if (subquestion.selection?.type !== 'best_n') {
-        return points.reduce((sum, value) => sum + value, 0);
-    }
-
-    const n = subquestion.selection.n ?? 0;
-    return [...points]
-        .sort((a, b) => b - a)
-        .slice(0, n)
-        .reduce((sum, value) => sum + value, 0);
+    return points.reduce((sum, value) => sum + value, 0);
 }
 
 export function computeQuestionSetMaxPoints(questionSet: QuestionSetV3): number {
@@ -290,13 +284,7 @@ export function scoreCriterionVerdicts(
         };
     });
 
-    const awardedPoints = criteria.map((criterion) => criterion.awarded_points);
-    const score = subquestion.selection.type === 'best_n'
-        ? [...awardedPoints]
-            .sort((a, b) => b - a)
-            .slice(0, subquestion.selection.n ?? 0)
-            .reduce((sum, value) => sum + value, 0)
-        : awardedPoints.reduce((sum, value) => sum + value, 0);
+    const score = criteria.reduce((sum, criterion) => sum + criterion.awarded_points, 0);
 
     return {
         score,
@@ -307,7 +295,7 @@ export function scoreCriterionVerdicts(
 
 export function validateQuestionSetV3(
     value: unknown,
-    options: { verifySourceQuotes?: boolean; cwd?: string } = {},
+    options: { verifySourceQuotes?: boolean; cwd?: string; allowStoredAnswerConstraints?: boolean } = {},
 ): QuestionSetValidationResultV3 {
     const errors: string[] = [];
     const warnings: string[] = [];
@@ -318,6 +306,11 @@ export function validateQuestionSetV3(
     }
 
     const questionSet = value as unknown as QuestionSetV3;
+    // Only the authenticated immutable-version reader opts in. Generation,
+    // authoring validation, promotion and imports always enforce the current policy.
+    const readingStoredConstraints = options.allowStoredAnswerConstraints === true
+        && questionSet.status === 'published'
+        && questionSet.verification?.review_status === 'verified';
     if (questionSet.schema_version !== '3.0') errors.push('schema_version은 3.0이어야 합니다.');
     if (questionSet.type !== 'linked_question_set') errors.push('type은 linked_question_set이어야 합니다.');
     if (!questionSet.id?.trim()) errors.push('문제 세트 id가 필요합니다.');
@@ -419,11 +412,35 @@ export function validateQuestionSetV3(
             errors.push(`[${subquestion.id}] 지원하지 않는 문제 유형입니다.`);
         }
         if (!subquestion.prompt?.trim()) errors.push(`[${subquestion.id}] prompt가 필요합니다.`);
-        if (!subquestion.constraints || typeof subquestion.constraints.ordered !== 'boolean') {
+        if (!isRecord(subquestion.constraints)) {
             errors.push(`[${subquestion.id}] constraints 형식이 올바르지 않습니다.`);
+        } else if (readingStoredConstraints) {
+            const { ordered, max_entries: maxEntries, overflow_policy: overflow } = subquestion.constraints;
+            if (typeof ordered !== 'boolean'
+                || (maxEntries !== null && (!Number.isInteger(maxEntries) || maxEntries <= 0))
+                || !['none', 'ignore_after_limit'].includes(overflow)) {
+                errors.push(`[${subquestion.id}] 저장된 constraints 형식이 올바르지 않습니다.`);
+            }
+        } else {
+            if (subquestion.constraints.ordered !== false) {
+                errors.push(`[${subquestion.id}] constraints.ordered는 false여야 합니다.`);
+            }
+            if (subquestion.constraints.max_entries !== null) {
+                errors.push(`[${subquestion.id}] constraints.max_entries는 null이어야 합니다.`);
+            }
+            if (subquestion.constraints.overflow_policy !== 'none') {
+                errors.push(`[${subquestion.id}] constraints.overflow_policy는 none이어야 합니다.`);
+            }
         }
-        if (!subquestion.selection || !['all', 'best_n', 'at_least_n'].includes(subquestion.selection.type)) {
+        if (!isRecord(subquestion.selection)) {
             errors.push(`[${subquestion.id}] selection 형식이 올바르지 않습니다.`);
+        } else {
+            if (subquestion.selection.type !== 'all') {
+                errors.push(`[${subquestion.id}] selection.type은 all이어야 합니다.`);
+            }
+            if (subquestion.selection.n !== null) {
+                errors.push(`[${subquestion.id}] selection.n은 null이어야 합니다.`);
+            }
         }
         if (!Array.isArray(subquestion.model_answer) || subquestion.model_answer.length === 0) {
             errors.push(`[${subquestion.id}] model_answer가 최소 하나 필요합니다.`);
@@ -505,14 +522,6 @@ export function validateQuestionSetV3(
             }
         }
 
-        if (subquestion.selection?.type === 'best_n') {
-            const n = subquestion.selection.n;
-            if (!Number.isInteger(n) || n === null || n <= 0 || n > subquestion.criteria.length) {
-                errors.push(`[${subquestion.id}] best_n에는 유효한 n이 필요합니다.`);
-            }
-            const distinctPoints = new Set(subquestion.criteria.map((criterion) => criterion.max_points));
-            if (distinctPoints.size > 1) errors.push(`[${subquestion.id}] best_n criterion의 배점은 모두 같아야 합니다.`);
-        }
     }
 
     const expectedOrder = new Set(questionSet.subquestions.map((subquestion) => subquestion.id));
