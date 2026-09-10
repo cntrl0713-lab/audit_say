@@ -1,7 +1,7 @@
 ---
 title: "원자료 매니페스트"
 created: 2026-08-08
-updated: 2026-09-09
+updated: 2026-09-10
 type: source-map
 status: generated
 review_required: true
@@ -33,10 +33,10 @@ confidence: high
 | [data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%97%B0%EB%8F%84%EB%B3%84_%ED%95%B4%EC%84%A4_A.md) | 1400973 | f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384 | 0 | - |
 | [data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%97%B0%EB%8F%84%EB%B3%84_%ED%95%B4%EC%84%A4_B.md) | 1151844 | ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc | 0 | - |
 | [data/회계감사_통합학습자료/04_기출문제/기출문제_주제별_해설.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md) | 1014723 | 764966468524dccf81522fa6f8e2f3b5b642d74234ee2fb0dc48b0d71791ba2a | 0 | - |
-| [data/회계감사_통합학습자료/99_괄호_검토대상.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EA%B4%84%ED%98%B8_%EA%B2%80%ED%86%A0%EB%8C%80%EC%83%81.md) | 197523 | 3305209fd7303803feaadb1137f72606af66b581af544e73d1a3a5f3aa27e226 | 0 | - |
-| [data/회계감사_통합학습자료/99_문맥_교정_기록.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EB%AC%B8%EB%A7%A5_%EA%B5%90%EC%A0%95_%EA%B8%B0%EB%A1%9D.md) | 26532 | 699705844557b614d2921eaa7cec066a8a9358d2d6cd6e37533d26b53546902f | 0 | - |
-| [data/회계감사_통합학습자료/99_문자_판독_검토대상.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EB%AC%B8%EC%9E%90_%ED%8C%90%EB%8F%85_%EA%B2%80%ED%86%A0%EB%8C%80%EC%83%81.md) | 32800 | ca1c52ada0534e9d29092a4165cbacfe23b993f9ec9e05154d2b7474715d877a | 0 | - |
-| [data/회계감사_통합학습자료/99_완전성_검증.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EC%99%84%EC%A0%84%EC%84%B1_%EA%B2%80%EC%A6%9D.md) | 3899 | 553582dd19d47ab9ab0cf885aff0e67819cf94687e05cbe3b3cb2d74d7793a67 | 0 | - |
+| [data/회계감사_통합학습자료/99_괄호_검토대상.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EA%B4%84%ED%98%B8_%EA%B2%80%ED%86%A0%EB%8C%80%EC%83%81.md) | 196242 | ff5283dc018e634d3977bdf8d814f0eb29cebfb12a16ab357997537865c2e75a | 0 | - |
+| [data/회계감사_통합학습자료/99_문맥_교정_기록.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EB%AC%B8%EB%A7%A5_%EA%B5%90%EC%A0%95_%EA%B8%B0%EB%A1%9D.md) | 25960 | 516b35c3c026ffdab7ff9de24ddb3b4d7a1d4643df29814323f63a913150f983 | 0 | - |
+| [data/회계감사_통합학습자료/99_문자_판독_검토대상.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EB%AC%B8%EC%9E%90_%ED%8C%90%EB%8F%85_%EA%B2%80%ED%86%A0%EB%8C%80%EC%83%81.md) | 32547 | b7ada42c94d11d0685af07fd97f447cb536cb2479445e29a7a831b80d36f4b1e | 0 | - |
+| [data/회계감사_통합학습자료/99_완전성_검증.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EC%99%84%EC%A0%84%EC%84%B1_%EA%B2%80%EC%A6%9D.md) | 3806 | d645692493fa616bdbdb386018d26c4f14f91dd18536cd84f8233446f541f21f | 0 | - |
 | [data/회계감사_통합학습자료/README.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/README.md) | 3608 | 73089ee49076f373e38fc33f5be4b30f5f2ed3b33e9763a62b4d77de70dac306 | 0 | - |
 | [data/cpa_question_sets_v3.authoring.json](../../data/cpa_question_sets_v3.authoring.json) | 1240967 | 039a1a68c39b48d692d78d0980c6d2efaa9f68d2f7e32cbab973df95b7234d0a | 0 | - |
 | [data/cpa_question_sets_v3.promotions.json](../../data/cpa_question_sets_v3.promotions.json) | 36487 | edb2173d12ef9da1cfe9bbf05a142f32fa363eae887faae38fd611ccad0dfbbc | 0 | - |

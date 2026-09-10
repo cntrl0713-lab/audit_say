@@ -1,7 +1,7 @@
 ---
 title: "원자료 단위 카탈로그와 새 학습목표 탐색"
 created: 2026-08-08
-updated: 2026-09-09
+updated: 2026-09-10
 type: source-map
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: medium
 원자료 30개 파일에서 고유 단위 6866개를 분리했다. 주제별 표는 중복 연결을 포함하므로 합계를 고유 단위 수로 해석하지 않는다. 카탈로그는 은행 등록 여부와 독립적으로 기준서·이론·문제연습·기출 원문을 읽는다.
 
 - 카탈로그 버전: source-catalog-context-v1
-- 입력·분리 계약 SHA-256: 3cb3d74381f0d5d9cc9a27ab80639a02bd7746873e01e8d74ec8823f9e97e8a8
+- 입력·분리 계약 SHA-256: c2004ff6a5de7927036a2cfad2ecd8dc8cd48f6ebd13ce6d2b1b3758838d1912
 - 목차 원자료 행: 151개
 - 주제 미연결 단위: 263개
 
