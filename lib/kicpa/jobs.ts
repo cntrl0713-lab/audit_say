@@ -15,9 +15,9 @@ export async function getKicpaJobs(firmId?: number): Promise<KicpaJobsResult> {
     if (firmId !== undefined) query = query.eq('firm_id', firmId);
     const { data, error } = await query
         .order('posted_at', { ascending: false, nullsFirst: false })
-        .order('created_at', { ascending: false })
+        // Same-day posts follow descending source IDs, independent of collection time.
+        .order('id', { ascending: false })
         .order('board')
-        .order('id')
         .limit(KICPA_JOBS_LIMIT);
     // Before migration, absence of the relation is different from a valid empty listing.
     if (error?.code === 'PGRST205' || error?.code === '42P01') return { status: 'unavailable' };
