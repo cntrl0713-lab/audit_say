@@ -25,7 +25,7 @@ export default async function FirmsPage({ searchParams }: { searchParams: Promis
     const sortHeader = (key: FirmSort, label: string) => {
         const option = FIRM_SORTS.find((candidate) => candidate.key === key)!;
         return (
-            <div className={`flex items-center gap-1 ${key === 'name' ? '' : 'justify-end'}`}>
+            <div className={`flex flex-wrap xl:flex-nowrap items-center gap-1 ${key === 'name' ? '' : 'justify-end'}`}>
                 <span className="min-w-0 break-keep">{label}</span>
                 <span role="group" aria-label={`${option.label} 정렬`} className="inline-flex shrink-0 flex-row gap-0.5">
                     {([{ value: 'asc', label: '오름차순', arrow: '↑' }, { value: 'desc', label: '내림차순', arrow: '↓' }] as const).map((direction) => {
