@@ -29,7 +29,7 @@
 
 브라우저에서 `SUPABASE_URL` 저장소 시크릿과 `KICPA_BOARD_CONFIG=scripts/kicpa_jobs/live-config.json`, `KICPA_APP_ORIGIN=https://audit-say.vercel.app`, `KICPA_NOTIFICATIONS_ENABLED=false` 변수를 등록했다. 사용자가 `SUPABASE_SERVICE_ROLE_KEY`를 기존 `Production – audit_say` 환경의 시크릿으로 등록했으므로 수집 작업의 `environment`를 해당 환경에 연결했다. 기존 환경은 승인자·대기 시간·브랜치 제한이 없으며 환경 보호 규칙은 변경하지 않았다. 비밀키를 채팅이나 로그에 출력하지 않았다.
 
-수집 활성화, 최초 적재, 예약 실행 결과는 아래 후속 검증 결과로 확정한다. 준비 설정만으로 실행 성공을 주장하지 않는다.
+`KICPA_BOARD_LAYOUT_VERIFIED=true`와 `KICPA_SCRAPER_ENABLED=true`를 저장소 변수로 등록해 예약 수집을 활성화했다. `KICPA_NOTIFICATIONS_ENABLED=false`를 다시 확인했다. 최초 적재와 GitHub 실행 결과는 아래 후속 검증 결과로 구분한다.
 
 ## 후속 검증 결과
 
@@ -39,6 +39,9 @@
 - 두 번째 실행은 양쪽 게시판 모두 신규 0건, `baseline=false`였다. 두 실행 모두 발송 큐 0건, `delivery_disabled`를 확인했다.
 - 15:10:54 KST 운영 조회: 공개 공고 44건, 전체 기준 목록 표식 유지, 기존 `deadline` 값은 모두 NULL. 35건은 법인명 또는 별칭의 정확한 일치로 법인과 연결됐다.
 - 운영 `/jobs`에서 HTTP 200과 실제 제목·원문 링크 노출을 확인했다. 원문 링크에 세션 ID가 없고 허용된 게시판 상세 경로와 `ijIdNum`만 쓰는 것을 검증했다.
-- GitHub에 서비스 역할 키를 등록한 뒤 자동 실행의 첫 성공을 별도로 확인한다. 그 전에는 로컬 실제 실행 성공을 GitHub 예약 실행 성공으로 간주하지 않는다.
+- GitHub 서버의 최초 실제 실행은 [run #2](https://github.com/cntrl0713-lab/audit_say/actions/runs/34445098057)로 성공했다. `main`의 `46f7d8e894d9847f3b935a8f24e177769aabaf4a`에서 `workflow_dispatch`로 한 번 실행했으며 전체 37초였다. 예약은 활성화했지만 이 검증 실행의 이벤트는 수동 실행이다.
+- GitHub 로그: 수습CPA `scanned_rows=38`, `matched_jobs=38`, `fetched_pages=1`; CPA `scanned_rows=131`, `matched_jobs=5`, `fetched_pages=3`. 양쪽 모두 `inserted=0`, `queued=0`, `baseline=false`였고 마지막 이벤트는 `delivery_disabled`였다. 환경 시크릿을 사용하는 실제 DB 적재가 성공했다.
+- GitHub 실행 시 원문 목록은 앞선 로컬 확인 이후 변경됐다. 목록에서 사라진 공고를 자동 삭제하지 않는 현재 정책에 따라 저장된 목록과 순간적인 원문 행 수는 다를 수 있다. 지원 가능 여부는 원문을 기준으로 확인한다.
+- 15:28:02 KST 읽기 전용 후속 검증: 수습CPA `last_checked_at=15:25:29.001023`, CPA `15:25:36.410950`으로 GitHub 실행 시각에 갱신됐다. 최초 기준 시각은 유지됐고 운영 DB·공개 목록 44건, 발송 기록·대기·성공 모두 0건이었다. `/jobs` HTTP 200과 공개 8개 필드·원문 경로/ID·실제 공고 표시도 통과했다.
 
-로컬 영수증은 저장소에서 제외된 `tmp/kicpa-live-run-*.json`과 `tmp/kicpa-collected-verification.json`에 보존했다.
+로컬 영수증은 저장소에서 제외된 `tmp/kicpa-live-run-*.json`, `tmp/kicpa-collected-verification.json`, `tmp/kicpa-cloud-verification-preactivation.json`, `tmp/kicpa-cloud-verification-postcloud.json`에 보존했다.

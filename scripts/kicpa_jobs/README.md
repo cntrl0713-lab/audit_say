@@ -44,8 +44,8 @@ python scripts/kicpa_scraper.py --config tests/fixtures/kicpa-jobs/synthetic-con
 | `KICPA_SCRAPER_ENABLED` | GitHub repository variable | 정확히 `true`일 때만 workflow job 실행 |
 | `KICPA_BOARD_LAYOUT_VERIFIED` | GitHub variable / CLI 환경 | 실제 구조 확인 후 정확히 `true` 설정; 미설정은 HTTP/DB 전에 실패 |
 | `KICPA_BOARD_CONFIG` | GitHub variable / CLI 환경 | 저장소 안의 검증된 실제 설정 파일 경로; CLI는 `--config` 가능 |
-| `SUPABASE_URL` | GitHub Secret / CLI 환경 | Supabase HTTPS 주소 |
-| `SUPABASE_SERVICE_ROLE_KEY` | GitHub Secret / CLI 환경 | 서버 전용 서비스 키 |
+| `SUPABASE_URL` | GitHub repository secret / CLI 환경 | Supabase HTTPS 주소 |
+| `SUPABASE_SERVICE_ROLE_KEY` | GitHub `Production – audit_say` environment secret / CLI 환경 | 서버 전용 서비스 키. 수집 job의 `environment`와 같은 환경에 저장 |
 | `KICPA_NOTIFICATIONS_ENABLED` | GitHub variable / CLI 환경 | 향후 업체 연결 시 사용할 추가 발송 스위치; 현재 `true`여도 발송 불가 |
 | `KICPA_APP_ORIGIN` | GitHub variable / CLI 환경 | 향후 메시지의 서비스 링크 origin; 예: `https://audit-say.vercel.app` |
 

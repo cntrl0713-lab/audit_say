@@ -19,8 +19,8 @@ GitHub Actions의 5분 예약은 5분 내 감지를 보장하지 않는다. 지�
 
 | 영역 | 상태 |
 | --- | --- |
-| 공고 저장·중복 방지·최초 수집 기준 | SQL 및 로컬 DB 테스트 준비 |
-| 전체 `/jobs`, 법인별 `?tab=jobs` | 조회 화면 구현, 운영 데이터 적재 전 |
+| 공고 저장·중복 방지·최초 수집 기준 | 운영 DB 적용 완료. 최초 44건 저장과 재실행 신규 0건 확인 |
+| 전체 `/jobs`, 법인별 `?tab=jobs` | 운영 배포와 실제 데이터 조회 확인 |
 | `/settings` | 회원의 신청 설정 저장 구현, 발송 준비 중 표시 |
 | 실제 목록 파서·시간 제한 | 2026-09-10 실제 목록·마지막 페이지·빈 목록·원문 링크 확인. `kicpa_face_v1`과 `live-config.json` 준비 |
 | 발송 처리 | 업체 공통 인터페이스와 오프라인 가짜 발송기 검증 |
@@ -115,7 +115,7 @@ GitHub Actions의 5분 예약은 5분 내 감지를 보장하지 않는다. 지�
 | --- | --- | --- |
 | `NEXT_PUBLIC_SUPABASE_URL` | Vercel | 기존 앱 설정 |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Vercel | 기존 앱 설정 |
-| `SUPABASE_SERVICE_ROLE_KEY` | Vercel 서버 / GitHub Secret | 구독 저장 / 수집 저장 |
+| `SUPABASE_SERVICE_ROLE_KEY` | Vercel 서버 / GitHub `Production – audit_say` 환경 시크릿 | 구독 저장 / 수집 저장 |
 | `SUPABASE_URL` | GitHub Secret | 수집 대상 DB |
 | `KICPA_SCRAPER_ENABLED` | GitHub Variable | `true`일 때 예약 작업 허용. 실제 활성화 확인은 수집 운영 기록 참고 |
 | `KICPA_BOARD_CONFIG` | GitHub Variable / CLI 환경 | 검증한 설정 파일의 저장소 경로 |
