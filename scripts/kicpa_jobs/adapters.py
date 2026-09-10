@@ -1,4 +1,4 @@
-"""Configurable adapters, deliberately without guessed live KICPA selectors."""
+"""Minimal-field adapters, including the locally verified KICPA list.face layout."""
 
 from __future__ import annotations
 
@@ -86,7 +86,7 @@ def validate_config(config: dict, *, live: bool = False) -> None:
     if live and config.get("synthetic", False):
         raise AdapterError("synthetic_config_not_for_live")
     for board, item in config["boards"].items():
-        if item.get("format") not in {"html", "json"}:
+        if item.get("format") not in {"html", "json", "kicpa_face_v1"}:
             raise AdapterError("unsupported_board_format")
         urls = item.get("urls")
         if not isinstance(urls, list) or not 1 <= len(urls) <= 20:
@@ -94,6 +94,10 @@ def validate_config(config: dict, *, live: bool = False) -> None:
         for url in urls:
             source_url(url, BOARD_URLS[board])
         _field_mappings(item)
+        if item["format"] == "kicpa_face_v1":
+            from .live_adapter import validate_live_config
+            validate_live_config(item, board)
+            continue
         if item["format"] == "html":
             if not all(item.get(key) for key in ("rows_selector", "empty_selector", "pinned_selector")):
                 raise AdapterError("html_structure_markers_required")
@@ -110,6 +114,9 @@ def validate_config(config: dict, *, live: bool = False) -> None:
 
 def next_page(content: str, item: dict, base: str) -> str | None:
     """Missing pagination is an error, not an assumption of a complete snapshot."""
+    if item["format"] == "kicpa_face_v1":
+        from .live_adapter import parse_live_page
+        return parse_live_page(content, item, base).next_url
     pagination = item["pagination"]
     if item["format"] == "html":
         soup = BeautifulSoup(content, "html.parser")
@@ -133,6 +140,14 @@ def next_page(content: str, item: dict, base: str) -> str | None:
     return source_url(value, base)
 
 
+def snapshot_metadata(content: str, item: dict, base_url: str) -> dict | None:
+    """Verified live-page totals and pre-filter IDs; generic fixtures have no totals contract."""
+    if item["format"] != "kicpa_face_v1":
+        return None
+    from .live_adapter import parse_live_page
+    return parse_live_page(content, item, base_url).metadata
+
+
 def parse_snapshot(content: str, board: str, config: dict, *, base_url: str | None = None,
                    firms: dict[str, int | None] | None = None) -> list[dict]:
     if board not in BOARD_URLS:
@@ -142,7 +157,11 @@ def parse_snapshot(content: str, board: str, config: dict, *, base_url: str | No
     # Enforce the allowlist before parsing, including direct/offline adapter use.
     fields = _field_mappings(item)
     parsed_rows: list[dict] = []
-    if item["format"] == "html":
+    if item["format"] == "kicpa_face_v1":
+        from .live_adapter import parse_live_page, validate_live_config
+        validate_live_config(item, board)
+        parsed_rows = parse_live_page(content, item, base).rows
+    elif item["format"] == "html":
         soup = BeautifulSoup(content, "html.parser")
         rows = soup.select(item["rows_selector"])
         if not rows and not soup.select_one(item["empty_selector"]):

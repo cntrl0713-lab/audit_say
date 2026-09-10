@@ -52,7 +52,7 @@ def main(argv: list[str] | None = None) -> int:
         store = Store(transport, env_required("SUPABASE_URL"), env_required("SUPABASE_SERVICE_ROLE_KEY"))
         summaries = collect(config, BoardClient(transport), store)
         print(json.dumps({"event": "collected", "boards": {
-            name: {key: values.get(key) for key in ("inserted", "queued", "baseline")}
+            name: {key: values.get(key) for key in ("inserted", "queued", "baseline", "fetched_pages", "scanned_rows", "matched_jobs")}
             for name, values in summaries.items()
         }}))
         provider = configured_provider()

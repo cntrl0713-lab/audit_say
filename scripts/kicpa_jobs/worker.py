@@ -13,11 +13,13 @@ from urllib.parse import urlencode, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 from zoneinfo import ZoneInfo
 
-from .adapters import BOARD_URLS, AdapterError, firm_index, next_page, parse_snapshot, source_url
+from .adapters import (BOARD_URLS, AdapterError, firm_index, next_page, parse_snapshot,
+                       snapshot_metadata, source_url)
 
 KST = ZoneInfo("Asia/Seoul")
 UTC = timezone.utc
 MAX_BODY_BYTES = 2_000_000
+MIN_REQUEST_INTERVAL_SECONDS = 1.0
 SUBSCRIBERS = "cpa_kicpa_jobs_subscribers"
 JOBS = "cpa_kicpa_jobs"
 
@@ -112,15 +114,24 @@ class Transport:
 
 
 class BoardClient:
-    def __init__(self, transport, clock: Callable = utcnow, sleep: Callable = time.sleep):
+    def __init__(self, transport, clock: Callable = utcnow, sleep: Callable = time.sleep,
+                 *, monotonic: Callable = time.monotonic):
         self.transport, self.clock, self.sleep = transport, clock, sleep
+        self.monotonic = monotonic
+        self.last_request_at: float | None = None
 
     def fetch(self, url: str, encoding: str = "utf-8") -> BoardPage:
         current = source_url(url, url)
         retries = redirects = 0
         while True:
+            if self.last_request_at is not None:
+                remaining = MIN_REQUEST_INTERVAL_SECONDS - (self.monotonic() - self.last_request_at)
+                if remaining > 0:
+                    self.sleep(remaining)
             # This guard is immediately before EVERY board request; no bypass flag.
+            # Pacing, retry backoff or a redirect may have crossed the closing time.
             require_scrape_window(self.clock())
+            self.last_request_at = self.monotonic()
             try:
                 response = self.transport.request("GET", current, headers={
                     "User-Agent": "audit-say-jobs/1.0 (public recruitment listings)",
@@ -218,6 +229,49 @@ class Store:
         })
 
 
+class _FullSnapshot:
+    """Check unfiltered identities, not just posts matching the CPA title filter."""
+
+    def __init__(self):
+        self.signature: tuple | None = None
+        self.pages = 0
+        self.rows = 0
+        self.ids: set[str] = set()
+
+    def add(self, metadata: dict) -> None:
+        page, pages, total, count, rows = (metadata[key] for key in
+                                         ("page", "total_pages", "total_rows", "list_count", "row_count"))
+        if (any(type(value) is not int for value in (page, pages, total, count, rows))
+                or page < 1 or pages < 0 or total < 0 or count < 1 or rows < 0):
+            raise AdapterError("snapshot_metadata_invalid")
+        signature = (pages, total, count)
+        if self.signature is not None and self.signature != signature:
+            raise AdapterError("snapshot_totals_changed")
+        self.signature = signature
+        if page != self.pages + 1 or pages != (total + count - 1) // count:
+            raise AdapterError("snapshot_page_out_of_order")
+        ids = tuple(metadata["regular_ids"])
+        ordinals = tuple(metadata["ordinal_numbers"])
+        expected_count = min(count, max(0, total - (page - 1) * count))
+        if rows != expected_count or len(ids) != rows or len(ordinals) != rows:
+            raise AdapterError("snapshot_row_count_mismatch")
+        if len(set(ids)) != len(ids) or self.ids.intersection(ids):
+            raise AdapterError("snapshot_duplicate_post")
+        first_ordinal = total - (page - 1) * count
+        if ordinals != tuple(range(first_ordinal, first_ordinal - rows, -1)):
+            raise AdapterError("snapshot_ordinal_mismatch")
+        self.ids.update(ids)
+        self.rows += rows
+        self.pages += 1
+
+    def complete(self) -> None:
+        if self.signature is None:
+            raise AdapterError("snapshot_metadata_missing")
+        pages, total, _ = self.signature
+        if self.pages != max(1, pages) or self.rows != total or len(self.ids) != total:
+            raise AdapterError("snapshot_incomplete")
+
+
 def collect(config: dict, board_client: BoardClient, store: Store) -> dict:
     index = firm_index(store.firms())
     summaries = {}
@@ -226,6 +280,10 @@ def collect(config: dict, board_client: BoardClient, store: Store) -> dict:
         combined = {}
         visited = set()
         pages_fetched = 0
+        snapshot = _FullSnapshot() if item["format"] == "kicpa_face_v1" else None
+        first_page = first_metadata = first_jobs = None
+        if snapshot is not None and len(item["urls"]) != 1:
+            raise AdapterError("snapshot_single_start_required")
         for start_url in item["urls"]:
             url = start_url
             while url is not None:
@@ -241,7 +299,15 @@ def collect(config: dict, board_client: BoardClient, store: Store) -> dict:
                 # Track request aliases and redirect destinations, but count each
                 # fetched page once when applying the configured page limit.
                 visited.add(page.final_url)
-                for job in parse_snapshot(page.content, board, config, base_url=page.final_url, firms=index):
+                jobs = parse_snapshot(page.content, board, config, base_url=page.final_url, firms=index)
+                metadata = snapshot_metadata(page.content, item, page.final_url)
+                if snapshot is not None:
+                    if metadata is None:
+                        raise AdapterError("snapshot_metadata_missing")
+                    snapshot.add(metadata)
+                    if first_page is None:
+                        first_page, first_metadata, first_jobs = page, metadata, jobs
+                for job in jobs:
                     previous = combined.get(job["id"])
                     if previous and previous != job:
                         raise AdapterError("conflicting_duplicate_post")
@@ -249,8 +315,23 @@ def collect(config: dict, board_client: BoardClient, store: Store) -> dict:
                 if len(combined) > 5000:
                     raise AdapterError("snapshot_too_large")
                 url = next_page(page.content, item, page.final_url)
+        if snapshot is not None:
+            snapshot.complete()
+            if snapshot.pages > 1:
+                # One bounded extra request detects a shifting head during pagination.
+                # It is verification, not another page in the configured page limit.
+                head = board_client.fetch(first_page.final_url, item.get("encoding", "utf-8"))
+                pages_fetched += 1
+                head_metadata = snapshot_metadata(head.content, item, head.final_url)
+                head_jobs = parse_snapshot(head.content, board, config, base_url=head.final_url, firms=index)
+                if (head.final_url != first_page.final_url or head_metadata != first_metadata
+                        or head_jobs != first_jobs):
+                    raise AdapterError("snapshot_head_changed")
         # The RPC initializes the baseline and queues only later inserts atomically.
-        summaries[board] = store.ingest(board, list(combined.values()))
+        result = store.ingest(board, list(combined.values()))
+        summaries[board] = {**result, "fetched_pages": pages_fetched,
+                            "scanned_rows": snapshot.rows if snapshot is not None else len(combined),
+                            "matched_jobs": len(combined)}
     return summaries
 
 
