@@ -200,7 +200,8 @@ class Store:
         return rows[0] if rows else None
 
     def job(self, board: str, identifier: str):
-        rows = self._select(JOBS, {"select": "*", "board": "eq." + board, "id": "eq." + identifier, "limit": 1})
+        rows = self._select(JOBS, {"select": "board,id,title,company,posted_at,source_url,firm_id,created_at",
+                                   "board": "eq." + board, "id": "eq." + identifier, "limit": 1})
         return rows[0] if rows else None
 
     def subscriber(self, identifier: str):

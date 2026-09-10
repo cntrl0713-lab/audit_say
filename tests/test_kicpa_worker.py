@@ -9,9 +9,11 @@ import os
 import sys
 import unittest
 from contextlib import redirect_stdout
+from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import Mock, patch
+from urllib.parse import parse_qs, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -105,7 +107,41 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(jobs[0]["title"], "가상 회계법인 채용")
         self.assertEqual(jobs[0]["firm_id"], 1)
         self.assertIsNone(jobs[1]["firm_id"])
-        self.assertEqual(jobs[0]["deadline"], "채용 시 마감")
+        self.assertEqual(set(jobs[0]), {"id", "board", "title", "company", "posted_at", "source_url", "firm_id"})
+
+    def test_raw_body_contact_email_deadline_and_attachments_are_not_extracted(self):
+        allowed_fields = {"id", "board", "title", "company", "posted_at", "source_url", "firm_id"}
+        for board, content in [("trainee_cpa", HTML), ("cpa", JSON)]:
+            with self.subTest(board=board):
+                self.assertIn("SYNTHETIC_EXCLUDED_BODY", content)
+                self.assertIn("fixture-only@example.invalid", content)
+                jobs = parse_snapshot(content, board, CONFIG)
+                self.assertTrue(jobs)
+                for job in jobs:
+                    self.assertEqual(set(job), allowed_fields)
+                serialized = json.dumps(jobs)
+                self.assertNotIn("SYNTHETIC_EXCLUDED_", serialized)
+                self.assertNotIn("fixture-only@example.invalid", serialized)
+
+    def test_additional_field_mappings_fail_before_any_field_is_extracted(self):
+        for board, content in [("trainee_cpa", HTML), ("cpa", JSON)]:
+            for extra_field in ["deadline", "body", "contact", "email", "attachments"]:
+                with self.subTest(board=board, extra_field=extra_field):
+                    config = copy.deepcopy(CONFIG)
+                    config["boards"][board]["fields"][extra_field] = (
+                        {"selector": ".synthetic-" + extra_field} if board == "trainee_cpa" else extra_field)
+                    with self.assertRaisesRegex(AdapterError, "field_mappings_must_match_minimal_scope"):
+                        validate_config(config)
+                    with patch("kicpa_jobs.adapters._html_field") as html_field, \
+                            patch("kicpa_jobs.adapters._path") as json_field, \
+                            self.assertRaisesRegex(AdapterError, "field_mappings_must_match_minimal_scope"):
+                        parse_snapshot(content, board, config)
+                    html_field.assert_not_called()
+                    json_field.assert_not_called()
+        config = copy.deepcopy(CONFIG)
+        del config["boards"]["cpa"]["fields"]["company"]
+        with self.assertRaisesRegex(AdapterError, "field_mappings_must_match_minimal_scope"):
+            validate_config(config)
 
     def test_cpa_keywords_and_stable_composite_identity(self):
         jobs = parse_snapshot(JSON, "cpa", CONFIG, firms=firm_index(FIRMS))
@@ -262,6 +298,15 @@ class CollectionTests(unittest.TestCase):
         self.assertEqual(payload["p_provider_message_id"], "test-provider-id")
         self.assertEqual(payload["p_retry_seconds"], 1200)
 
+    def test_store_reads_only_minimal_announcement_fields_and_internal_identity(self):
+        transport = Mock()
+        transport.request.return_value = response(200, "[]")
+        store = Store(transport, "https://database.example", "synthetic-service-key")
+        store.job("trainee_cpa", "101")
+        query = parse_qs(urlsplit(transport.request.call_args.args[1]).query)
+        self.assertEqual(set(query["select"][0].split(",")),
+                         {"board", "id", "title", "company", "posted_at", "source_url", "firm_id", "created_at"})
+
 
 class ProviderTests(unittest.TestCase):
     def setUp(self):
@@ -296,11 +341,24 @@ class ProviderTests(unittest.TestCase):
         self.assertEqual(provider.notifications[0].settings_url, "https://audit-say.example/settings")
         self.assertEqual(provider.notifications[0].board, "trainee_cpa")
         self.assertEqual(provider.notifications[0].posted_at, "2026-09-09")
-        self.assertEqual(provider.notifications[0].deadline, "채용 시 마감")
         self.assertEqual(provider.notifications[0].requested_boards, ("trainee_cpa", "cpa"))
         self.assertEqual(provider.notifications[0].requested_conditions,
                          "수습CPA 게시판의 전체 공고 / CPA 게시판의 수습·신입 공고")
         self.assertNotIn(self.subscriber["phone_e164"], repr(provider.notifications[0]))
+
+    def test_notification_excludes_legacy_extra_fields_and_keeps_direct_source_link(self):
+        self.store.job.return_value = self.job | {
+            "deadline": "SYNTHETIC_EXCLUDED_DEADLINE", "body": "SYNTHETIC_EXCLUDED_BODY",
+            "contact": "SYNTHETIC_EXCLUDED_CONTACT", "email": "fixture-only@example.invalid",
+            "attachments": ["SYNTHETIC_EXCLUDED_ATTACHMENT"],
+        }
+        provider = FakeProvider([DeliveryResult("accepted", "synthetic-provider-id")])
+        deliver_one(self.store, provider, self.delivery, "https://audit-say.example")
+        notification = asdict(provider.notifications[0])
+        self.assertEqual(notification["source_url"], self.job["source_url"])
+        self.assertFalse({"deadline", "body", "contact", "email", "attachments"} & set(notification))
+        self.assertNotIn("SYNTHETIC_EXCLUDED_", json.dumps(notification))
+        self.assertNotIn("fixture-only@example.invalid", json.dumps(notification))
 
     def test_confirmed_delivery_uses_sent_state(self):
         provider = FakeProvider([DeliveryResult("sent", "synthetic-provider-id")])
@@ -338,15 +396,22 @@ class ProviderTests(unittest.TestCase):
 
 class CliTests(unittest.TestCase):
     def test_offline_fixture_never_constructs_network_or_store(self):
-        with patch("kicpa_scraper.Transport") as transport, patch("kicpa_scraper.Store") as store:
-            output = io.StringIO()
-            with redirect_stdout(output):
-                code = kicpa_scraper.main(["--config", str(CONFIG_FILE), "--fixture",
-                                          str(FIXTURES / "synthetic-trainee.html"), "--board", "trainee_cpa"])
-        self.assertEqual(code, 0)
-        transport.assert_not_called()
-        store.assert_not_called()
-        self.assertEqual(json.loads(output.getvalue())["external_requests"], 0)
+        for board, filename in [("trainee_cpa", "synthetic-trainee.html"), ("cpa", "synthetic-cpa.json")]:
+            with self.subTest(board=board), patch("kicpa_scraper.Transport") as transport, \
+                    patch("kicpa_scraper.Store") as store:
+                output = io.StringIO()
+                with redirect_stdout(output):
+                    code = kicpa_scraper.main(["--config", str(CONFIG_FILE), "--fixture",
+                                              str(FIXTURES / filename), "--board", board])
+                self.assertEqual(code, 0)
+                transport.assert_not_called()
+                store.assert_not_called()
+                result = json.loads(output.getvalue())
+                self.assertEqual(result["external_requests"], 0)
+                self.assertEqual(set(result["jobs"][0]),
+                                 {"id", "board", "title", "company", "posted_at", "source_url", "firm_id"})
+                self.assertNotIn("SYNTHETIC_EXCLUDED_", output.getvalue())
+                self.assertNotIn("fixture-only@example.invalid", output.getvalue())
 
     def test_dry_run_without_fixture_is_also_offline(self):
         with patch("kicpa_scraper.Transport") as transport, redirect_stdout(io.StringIO()):

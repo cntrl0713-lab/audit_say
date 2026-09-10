@@ -3,7 +3,7 @@ import { getSupabaseServerClient } from '../supabaseServer';
 import type { KicpaJob, KicpaJobsResult } from './types';
 
 export const KICPA_JOBS_LIMIT = 50;
-const PUBLIC_COLUMNS = 'board, id, title, company, posted_at, deadline, source_url, firm_id, created_at';
+const PUBLIC_COLUMNS = 'board, id, title, company, posted_at, source_url, firm_id, created_at';
 
 /** Public RLS applies to this client; no privileged subscriber access is needed. */
 export async function getKicpaJobs(firmId?: number): Promise<KicpaJobsResult> {

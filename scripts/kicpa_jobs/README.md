@@ -2,6 +2,8 @@
 
 현재 **운영 수집·외부 발송 모두 미활성화**다. KICPA HTML/JSON 구조는 아직 확인하지 않았고, 이 폴더에는 실제 게시판용 설정이 없다. `tests/fixtures/kicpa-jobs/`는 전부 가상 응답이며 실제 KICPA 캡처나 채용공고가 아니다. 카카오 나에게 보내기 API/OAuth 발송 코드는 사용하지 않는다.
 
+공고 원천정보는 **제목·회사명·게시일·원문 URL**만 추출한다. 내부 식별용 게시판·게시글 ID, 법인명/별칭의 정확한 일치로 찾은 `firm_id`, DB 최초 감지 시각은 유지한다. 마감일·본문·연락처·이메일·첨부파일은 추출·적재·출력하지 않으며, 제목을 클릭하면 KICPA 공고 원문으로 직접 이동하도록 원문 URL을 제공한다.
+
 ## 오프라인 실행
 
 Python 3.12 이상을 사용한다.
@@ -20,7 +22,7 @@ python scripts/kicpa_scraper.py --config tests/fixtures/kicpa-jobs/synthetic-con
 
 1. 한국시간 **08:30 이상, 18:30 미만**에만 실제 게시판 응답을 확인한다. 알려진 URL은 `adapters.py`의 `BOARD_URLS`에 있다. 로그인 없이 목록·게시글 링크·게시글 ID·공지 구분·정렬·날짜·페이지 이동·마지막 페이지 표시가 어떻게 제공되는지 먼저 검증한다.
 2. 확인한 구조에 맞는 별도 JSON 설정을 작성한다. `synthetic-config.json`은 설정 형식의 예시일 뿐이다. 실제 HTML에 추정 선택자를 붙이거나 JavaScript 링크에서 번호를 추측하지 않는다. 현재 어댑터가 표현하지 못하는 사이트 구조나 POST 방식이 확인되면 어댑터를 추가하고 저장 응답으로 검증한다.
-3. HTML은 `rows_selector`, `empty_selector`, `pinned_selector`, 필드별 선택자/속성, pagination의 `next_selector`/`end_selector`를 명시한다. JSON은 `rows_path`, `pinned_path`/`pinned_values`, 필드별 경로, `pagination.next_path`를 명시하며 마지막 페이지는 명시적인 `null`이어야 한다. 모든 시작 URL과 링크는 KICPA HTTPS만 허용한다.
+3. HTML은 `rows_selector`, `empty_selector`, `pinned_selector`, 필드별 선택자/속성, pagination의 `next_selector`/`end_selector`를 명시한다. JSON은 `rows_path`, `pinned_path`/`pinned_values`, 필드별 경로, `pagination.next_path`를 명시하며 마지막 페이지는 명시적인 `null`이어야 한다. `fields`에는 정확히 `id`, `title`, `company`, `posted_at`, `source_url`만 있어야 한다. 추가 필드 선택자는 파싱 전에 차단한다. 모든 시작 URL과 링크는 KICPA HTTPS만 허용한다.
 4. 페이지는 명시적 마지막 표시까지 순회한다. 반복 링크, 누락된 마지막 표시, `max_pages` 초과, 공고 5,000건 초과는 해당 게시판의 적재 전에 실패한다. 부분 페이지로 최초 기준 목록을 초기화하지 않는다. 첫 적재는 SQL RPC에서 과거 공고 기준 목록으로 저장하여 발송을 만들지 않는다. 이후 `(board,id)`로 중복을 제거한다.
 5. 현재 구현은 모든 페이지를 순회하므로, **5분 주기 활성화 전 게시판 크기·요청량을 확인하고 검증된 정렬/기준 게시글을 이용한 증분 수집을 검토**한다. 페이지 제한을 단순히 늘려 전체 재수집을 계속하는 운영을 권장하지 않는다. 실제 구조 검증 전 증분 수집의 정확성을 주장하지 않는다.
 6. SQL migration과 서비스 키 등 배포 설정을 별도로 준비한 뒤 수집만 활성화한다. 실제 메시지 발송업체 선정·구현·승인은 별도 단계다.
@@ -45,7 +47,7 @@ GitHub Actions는 매일 KST 08:30–18:25에 5분 간격으로 예약된다. �
 
 `configured_provider()`는 환경변수와 무관하게 `DisabledProvider`만 반환한다. 비활성 업체는 큐 claim, 수신자 조회, 상태 변경조차 하지 않는다. 실제 업체를 구현한 코드나 메시지 API 주소·키는 없다. `FakeProvider`는 오프라인 테스트 주입 전용이며 CLI로 선택할 수 없다.
 
-`Notification`은 발송 ID, 수신번호, 해당 게시판, 회원이 선택한 게시판과 조건 문구, 제목, 회사, 게시일, 마감, KICPA 원문 URL, 서비스 공고 URL, 설정 URL을 전달한다. 수신번호는 객체 repr에도 표시하지 않는다. 회사·게시일·마감이 없는 경우 임의 데이터를 채우지 않으며, 향후 업체 템플릿에서 `원문 확인`으로 표시한다. 템플릿 초안은 `docs/kicpa-alimtalk-template.md`를 참고한다.
+`Notification`은 발송 ID, 수신번호, 해당 게시판, 회원이 선택한 게시판과 조건 문구, 제목, 회사, 게시일, KICPA 원문 URL, 서비스 공고 URL, 설정 URL을 전달한다. 원문 버튼은 `source_url`로 직접 연결한다. 수신번호는 객체 repr에도 표시하지 않는다. 회사·게시일이 없는 경우 임의 데이터를 채우지 않으며, 향후 업체 템플릿에서 `원문 확인`으로 표시한다. 템플릿 초안은 `docs/kicpa-alimtalk-template.md`를 참고한다.
 
 `DeliveryResult`는 다음 의미를 가진다.
 

@@ -8,7 +8,6 @@ export interface KicpaJob {
     title: string;
     company: string | null;
     posted_at: string | null;
-    deadline: string | null;
     source_url: string;
     firm_id: number | null;
     created_at: string;

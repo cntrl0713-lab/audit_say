@@ -14,6 +14,7 @@ BOARD_URLS = {
     "trainee_cpa": "https://www.kicpa.or.kr/portal/default/kicpa/gnb/kr_pc/menu05/menu09/menu07.page",
     "cpa": "https://www.kicpa.or.kr/portal/default/kicpa/gnb/kr_pc/menu05/menu09/menu01.page",
 }
+SOURCE_FIELDS = frozenset({"id", "title", "company", "posted_at", "source_url"})
 
 
 class AdapterError(ValueError):
@@ -72,6 +73,13 @@ def _html_field(row, field: dict) -> str:
     return _text(node.get(field["attribute"], "") if "attribute" in field else node.get_text(" ", strip=True))
 
 
+def _field_mappings(item: dict) -> dict:
+    fields = item.get("fields")
+    if not isinstance(fields, dict) or set(fields) != SOURCE_FIELDS:
+        raise AdapterError("field_mappings_must_match_minimal_scope")
+    return fields
+
+
 def validate_config(config: dict, *, live: bool = False) -> None:
     if not isinstance(config, dict) or set(config.get("boards", {})) != set(BOARD_URLS):
         raise AdapterError("both_board_configs_required")
@@ -85,9 +93,7 @@ def validate_config(config: dict, *, live: bool = False) -> None:
             raise AdapterError("explicit_snapshot_urls_required")
         for url in urls:
             source_url(url, BOARD_URLS[board])
-        fields = item.get("fields", {})
-        if not {"id", "title", "company", "posted_at", "source_url"}.issubset(fields):
-            raise AdapterError("required_field_mappings_missing")
+        _field_mappings(item)
         if item["format"] == "html":
             if not all(item.get(key) for key in ("rows_selector", "empty_selector", "pinned_selector")):
                 raise AdapterError("html_structure_markers_required")
@@ -133,7 +139,8 @@ def parse_snapshot(content: str, board: str, config: dict, *, base_url: str | No
         raise AdapterError("invalid_board")
     item = config["boards"][board]
     base = base_url or item["urls"][0]
-    fields = item["fields"]
+    # Enforce the allowlist before parsing, including direct/offline adapter use.
+    fields = _field_mappings(item)
     parsed_rows: list[dict] = []
     if item["format"] == "html":
         soup = BeautifulSoup(content, "html.parser")
@@ -188,7 +195,7 @@ def parse_snapshot(content: str, board: str, config: dict, *, base_url: str | No
             raise AdapterError("invalid_company")
         job = {
             "id": identifier, "board": board, "title": title, "company": company,
-            "posted_at": posted_at, "deadline": row.get("deadline") or None,
+            "posted_at": posted_at,
             "source_url": source_url(row["source_url"], base),
             "firm_id": (firms or {}).get(normalized_company(company)) if company else None,
         }

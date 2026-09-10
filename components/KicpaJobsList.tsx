@@ -34,26 +34,27 @@ export default function KicpaJobsList({ result, firmName }: { result: KicpaJobsR
                             const firmHref = !firmName ? firmJobsHref(job.firm_id) : null;
                             return (
                                 <li key={`${job.board}:${job.id}`} id={`job-${job.board}-${encodeURIComponent(job.id)}`} className="scroll-mt-24 rounded-lg border border-card-border bg-card p-4 sm:p-5">
-                                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-foreground/65">
-                                        <span className="rounded-md bg-foreground/5 px-2 py-1">{job.board === 'trainee_cpa' ? '수습CPA' : 'CPA'}</span>
-                                        {job.company ? <span className="break-words">{job.company}</span> : null}
-                                    </div>
-                                    <h3 className="mt-3 break-words text-lg font-medium leading-relaxed">{job.title}</h3>
+                                    <h3 className="break-words text-lg font-medium leading-relaxed">
+                                        {sourceUrl ? (
+                                            <a href={sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-primary hover:underline">
+                                                {job.title}
+                                            </a>
+                                        ) : job.title}
+                                    </h3>
                                     <dl className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                                        {job.company ? <div className="flex min-w-0 gap-2">
+                                            <dt className="shrink-0 text-foreground/60">회사명</dt>
+                                            <dd className="break-words">{job.company}</dd>
+                                        </div> : null}
                                         <div className="flex gap-2">
                                             <dt className="shrink-0 text-foreground/60">게시일</dt>
                                             <dd>{job.posted_at ? <time dateTime={job.posted_at}>{job.posted_at}</time> : '확인되지 않음'}</dd>
                                         </div>
-                                        <div className="flex min-w-0 gap-2">
-                                            <dt className="shrink-0 text-foreground/60">마감</dt>
-                                            <dd className="break-words">{job.deadline?.trim() ? job.deadline : '원문 확인'}</dd>
-                                        </div>
                                     </dl>
-                                    <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">
-                                        {sourceUrl ? <a href={sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-medium text-primary hover:underline">KICPA 원문 보기 ↗</a>
-                                            : <span className="py-3 text-foreground/60">원문 링크를 확인하고 있습니다.</span>}
+                                    {!sourceUrl || firmHref ? <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">
+                                        {!sourceUrl ? <span className="py-3 text-foreground/60">원문 링크를 확인하고 있습니다.</span> : null}
                                         {firmHref ? <Link href={firmHref} className="inline-flex min-h-11 items-center text-foreground/70 hover:text-primary">이 법인의 채용공고 →</Link> : null}
-                                    </div>
+                                    </div> : null}
                                 </li>
                             );
                         })}

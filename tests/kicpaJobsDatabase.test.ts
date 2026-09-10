@@ -6,7 +6,7 @@ import { PGlite } from '@electric-sql/pglite';
 const firstUser = '11111111-1111-4111-8111-111111111111';
 const secondUser = '22222222-2222-4222-8222-222222222222';
 const source = 'https://www.kicpa.or.kr/portal/default/kicpa/gnb/kr_pc/menu05/menu09/menu07.page';
-const job = (id: string) => ({ id, title: `수습CPA 모집 ${id}`, company: '테스트회계법인', source_url: `${source}?id=${id}`, firm_id: 1 });
+const job = (id: string) => ({ id, title: `수습CPA 모집 ${id}`, company: '테스트회계법인', posted_at: '2026-09-10', source_url: `${source}?id=${id}`, firm_id: 1 });
 
 async function fixture() {
     const db = new PGlite();
@@ -22,6 +22,7 @@ async function fixture() {
         insert into public.cpa_firm_registered values (1);
     `);
     await db.exec(fs.readFileSync(new URL('../supabase/migrations/20260909010000_kicpa_jobs.sql', import.meta.url), 'utf8'));
+    await db.exec(fs.readFileSync(new URL('../supabase/migrations/20260910020000_kicpa_jobs_summary_fields.sql', import.meta.url), 'utf8'));
     await db.exec(`insert into public.cpa_kicpa_jobs_subscribers(user_id,is_active,consent_version,consented_at,phone_e164,phone_verified_at)
         select id,true,'2026-09-09-v1',now(),'+821000000000',now() from public.cpa_users;`);
     return db;
@@ -56,6 +57,11 @@ test('KICPA public readers cannot read phone numbers, delivery metadata or invok
         for (const role of ['anon', 'authenticated']) {
             await db.exec(`set role ${role}`);
             assert.equal((await db.query('select title from public.cpa_kicpa_jobs')).rows.length, 1);
+            assert.deepEqual((await db.query('select title,company,posted_at::text,source_url from public.cpa_kicpa_jobs')).rows,
+                [{ title: job('1').title, company: job('1').company, posted_at: '2026-09-10', source_url: job('1').source_url }]);
+            for (const column of ['deadline','notified_at','is_baseline']) {
+                await assert.rejects(db.query(`select ${column} from public.cpa_kicpa_jobs`), /permission denied/);
+            }
             for (const table of ['cpa_kicpa_jobs_subscribers', 'cpa_kicpa_job_deliveries', 'cpa_kicpa_job_boards']) {
                 await assert.rejects(db.query(`select * from public.${table}`), /permission denied/);
             }
@@ -74,6 +80,21 @@ test('KICPA public readers cannot read phone numbers, delivery metadata or invok
         await db.exec('reset role; set role service_role');
         assert.equal((await db.query('select phone_e164 from cpa_kicpa_jobs_subscribers')).rows.length, 2);
         await ingest(db, 'cpa', []);
+    } finally { await db.close(); }
+});
+
+test('KICPA summary ingestion rejects additional source fields and leaves new deadline values empty', async () => {
+    const db = await fixture();
+    try {
+        await ingest(db, 'trainee_cpa', [job('1')]);
+        for (const field of ['deadline','body','email','contact_phone','attachments']) {
+            await assert.rejects(ingest(db, 'trainee_cpa', [job('2'), { ...job('3'), [field]: 'excluded source data' }]), /unsupported job fields/);
+            assert.equal((await db.query("select id from cpa_kicpa_jobs where id in ('2','3')")).rows.length, 0);
+            assert.equal((await db.query('select id from cpa_kicpa_job_deliveries')).rows.length, 0);
+        }
+        await ingest(db, 'trainee_cpa', [{ ...job('1'), title: '수정된 수습CPA 공고', posted_at: '2026-09-11' }]);
+        assert.deepEqual((await db.query('select title,company,posted_at::text,deadline from cpa_kicpa_jobs')).rows,
+            [{ title: '수정된 수습CPA 공고', company: job('1').company, posted_at: '2026-09-11', deadline: null }]);
     } finally { await db.close(); }
 });
 

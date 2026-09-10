@@ -26,7 +26,6 @@ class Notification:
     title: str
     company: str | None
     posted_at: str | None
-    deadline: str | None
     source_url: str
     app_url: str
     settings_url: str
@@ -122,7 +121,7 @@ def deliver_one(store, provider: NotificationProvider, delivery: dict, app_origi
             "trainee_cpa": "수습CPA 게시판의 전체 공고", "cpa": "CPA 게시판의 수습·신입 공고",
         }[board] for board in subscriber["boards"]),
         title=job["title"], company=job.get("company"),
-        posted_at=job.get("posted_at"), deadline=job.get("deadline"),
+        posted_at=job.get("posted_at"),
         source_url=source_url(job["source_url"], job["source_url"]), app_url=_app_url(job, app_origin),
         settings_url=app_origin.rstrip("/") + "/settings",
     )
