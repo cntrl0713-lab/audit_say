@@ -27,7 +27,7 @@
 
 기존 `KICPA recruitment collection` 워크플로는 KST 08:30~18:25에 5분 간격으로 예약돼 있다. GitHub 지연 실행에도 런타임 시간 검사를 적용한다. 겹치는 실행은 기존 concurrency 설정으로 직렬화한다.
 
-브라우저에서 `SUPABASE_URL` 시크릿과 `KICPA_BOARD_CONFIG=scripts/kicpa_jobs/live-config.json`, `KICPA_APP_ORIGIN=https://audit-say.vercel.app`, `KICPA_NOTIFICATIONS_ENABLED=false` 변수를 등록했다. 현재 GitHub API 토큰에는 시크릿 쓰기 권한이 없어 서비스 역할 키는 사용자가 직접 등록하도록 요청했다. 비밀키를 채팅이나 로그에 출력하지 않았다.
+브라우저에서 `SUPABASE_URL` 저장소 시크릿과 `KICPA_BOARD_CONFIG=scripts/kicpa_jobs/live-config.json`, `KICPA_APP_ORIGIN=https://audit-say.vercel.app`, `KICPA_NOTIFICATIONS_ENABLED=false` 변수를 등록했다. 사용자가 `SUPABASE_SERVICE_ROLE_KEY`를 기존 `Production – audit_say` 환경의 시크릿으로 등록했으므로 수집 작업의 `environment`를 해당 환경에 연결했다. 기존 환경은 승인자·대기 시간·브랜치 제한이 없으며 환경 보호 규칙은 변경하지 않았다. 비밀키를 채팅이나 로그에 출력하지 않았다.
 
 수집 활성화, 최초 적재, 예약 실행 결과는 아래 후속 검증 결과로 확정한다. 준비 설정만으로 실행 성공을 주장하지 않는다.
 

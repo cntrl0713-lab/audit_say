@@ -20,6 +20,8 @@ jobs:
     # Explicit activation only after real board layout, migrations and secrets are verified.
     if: vars.KICPA_SCRAPER_ENABLED == 'true'
     runs-on: ubuntu-latest
+    # The service-role secret is stored in this existing production environment.
+    environment: 'Production – audit_say'
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
