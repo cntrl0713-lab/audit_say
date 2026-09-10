@@ -80,7 +80,7 @@ export default async function FirmsPage({ searchParams }: { searchParams: Promis
             {rows.length === 0 ? (
                 <EmptyState title="조건에 맞는 회계법인이 없습니다." description={q ? `“${q}” 검색 결과가 없습니다.` : undefined} />
             ) : (
-                <div className="[&_th:nth-child(1)]:w-[34%] [&_th:nth-child(2)]:w-[46%] [&_th:nth-child(4)]:w-[20%] md:[&_th]:w-auto">
+                <div className="max-md:[&_th:nth-child(1)]:w-[34%] max-md:[&_th:nth-child(2)]:w-[46%] max-md:[&_th:nth-child(4)]:w-[20%]">
                 <DataTable
                     columns={[
                         { key: 'firm', label: '회계법인', header: sortHeader('name', '회계법인'), sortDirection: sort === 'name' ? order : undefined, priority: 'always' },
