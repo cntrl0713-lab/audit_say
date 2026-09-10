@@ -398,7 +398,7 @@ test('real submission orchestration and SQL agree on guest conversion, replay an
         assert.equal(await scalar(db, '(select count(*)::int from cpa_xp_events where user_id=$1)', [guestId]), 0);
         assert.equal((await gradeLearningSubmission(guestId, 'pilot-01-001', guestToken, answers, deps)).ok, true);
         assert.equal(modelCalls, 1); assert.equal(quotaCalls, 1);
-        const memberToken = issueSubmissionToken({ owner_user_id: guestId, actor_kind: 'member',
+        const memberToken = issueSubmissionToken({ owner_user_id: guestId, actor_kind: 'member', membership_version: 1,
             release_id: bank.release_id, set_version_id: version, questionSet: sampleQuestionSet(), answers }, signingKey);
         assert.equal((await gradeLearningSubmission(guestId, 'pilot-01-001', memberToken, answers, deps)).ok, true);
         assert.equal(await scalar(db, '(select exp::int from cpa_users where id=$1)', [guestId]), 2);

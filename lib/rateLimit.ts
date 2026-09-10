@@ -13,10 +13,10 @@ function consume(key: string, limit: number): Promise<boolean> {
 }
 
 export function consumeGradeQuota(userId: string): Promise<boolean> {
-    return consume(`grade:${userId}`, GRADE_RATE_LIMIT);
+    return consume(`cpa:grade:${userId}`, GRADE_RATE_LIMIT);
 }
 
 /** 빈 답안도 DB 기록을 생성하므로 AI 호출 한도와 별도로 제한한다. */
 export function consumeSubmissionQuota(userId: string): Promise<boolean> {
-    return consume(`submission:${userId}`, SUBMISSION_RATE_LIMIT);
+    return consume(`cpa:submission:${userId}`, SUBMISSION_RATE_LIMIT);
 }

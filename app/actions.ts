@@ -1,6 +1,8 @@
 'use server';
 
 import { assertAdmin, assertAuthenticated } from '../lib/supabaseServer';
+import { validateNickname } from '../lib/accountPolicy';
+import { getSupabaseAdmin } from '../lib/supabaseAdmin';
 import type { UserProfile } from '../lib/db';
 import {
     checkUsernameExists,
@@ -56,10 +58,7 @@ export async function getQuestionSetsV3(): Promise<PublicQuestionSetV3[]> {
 }
 
 export async function checkUsernameExistsAction(username: string): Promise<boolean> {
-    if (typeof username !== 'string' || username.length > 100) return true;
-    const trimmed = username.trim();
-    if (!trimmed) return true;
-    return checkUsernameExists(trimmed);
+    try { return await checkUsernameExists(validateNickname(username)); } catch { return true; }
 }
 
 export async function gradeQuestionSetV3Action(
@@ -154,6 +153,7 @@ export async function prepareQuestionSetSubmissionAction(input: SubmissionPrepar
         const questionSet = await findDatabaseQuestionVersion(input.release_id, input.set_version_id);
         return { ok: true, submission_token: issueSubmissionToken({
             owner_user_id: session.user.id, actor_kind: session.user.is_anonymous ? 'guest' : 'member',
+            membership_version: session.membership?.membership_version ?? null,
             release_id: input.release_id, set_version_id: input.set_version_id, questionSet, answers: input.answers,
         }, submissionSigningKeys()[0]) };
     } catch {
@@ -193,14 +193,14 @@ export async function getReviewItemsAction(status: ReviewItemStatus = 'open'): P
 
 export async function updateReviewItemAction(input: ReviewItemUpdateInput): Promise<ReviewItemUpdateResult> {
     const session = await assertAuthenticated();
-    if (session.user.is_anonymous) return { ok: false, code: 'member_required', message: '오답노트는 회원에게 제공됩니다.' };
+    if (session.user.is_anonymous || !session.membership) return { ok: false, code: 'member_required', message: '오답노트는 회원에게 제공됩니다.' };
     if (!learningDbEnabled()) return { ok: false, code: 'database_disabled', message: '오답노트 저장을 준비 중입니다.' };
     if (!input || typeof input.subquestion_id !== 'string' || !UUID_PATTERN.test(input.subquestion_id)
         || !['open', 'resolved', 'removed'].includes(input.status)
         || (input.memo !== undefined && (typeof input.memo !== 'string' || input.memo.length > 5000))) {
         return { ok: false, code: 'invalid_review_item', message: '물음·상태·메모를 확인해 주세요. 메모는 5,000자 이하입니다.' };
     }
-    try { await updateReviewItem(session.user.id, input.subquestion_id, input.status, input.memo); return { ok: true }; }
+    try { await updateReviewItem(session.user.id, input.subquestion_id, input.status, input.memo, session.membership.membership_version); return { ok: true }; }
     catch { return { ok: false, code: 'review_item_unavailable', message: '오답노트를 저장하지 못했습니다. 다시 시도해 주세요.' }; }
 }
 
@@ -212,10 +212,20 @@ export async function getAllUsersAction(): Promise<UserProfile[]> {
 export async function updateUserRoleAction(userId: string, newRole: string): Promise<boolean> {
     await assertAdmin();
 
-    const whitelist = ['MEMBER', 'ADMIN', 'PRO', 'GUEST'];
+    const whitelist = ['MEMBER', 'PRO'];
     if (!whitelist.includes(newRole)) {
         throw new Error('Invalid role');
     }
 
     return updateUserRole(userId, newRole);
+}
+
+export async function updateUserAdminAction(userId: string, isAdmin: boolean): Promise<boolean> {
+    await assertAdmin();
+    const session = await assertAuthenticated();
+    if (!UUID_PATTERN.test(userId) || typeof isAdmin !== 'boolean') throw new Error('올바르지 않은 관리자 권한 요청입니다.');
+    if (session.user.id === userId && !isAdmin) throw new Error('자신의 관리자 권한은 다른 감사 관리자에게 변경을 요청해 주세요.');
+    const { data, error } = await getSupabaseAdmin().from('cpa_users').update({ is_service_admin: isAdmin })
+        .eq('id', userId).eq('membership_status', 'active').select('id').maybeSingle();
+    return !error && Boolean(data);
 }

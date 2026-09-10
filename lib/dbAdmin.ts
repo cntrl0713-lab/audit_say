@@ -43,12 +43,13 @@ export async function incrementProgress(id: string, addedExp: number): Promise<b
 
 
 export async function updateUserRole(userId: string, newRole: string): Promise<boolean> {
+    if (!['MEMBER', 'PRO'].includes(newRole)) return false;
     try {
         const adminSupabase = getSupabaseAdmin();
         const { error } = await adminSupabase
             .from('cpa_users')
             .update({ role: newRole })
-            .eq('id', userId);
+            .eq('id', userId).eq('membership_status', 'active');
 
         if (error) {
             console.error('Error updating user role:', error);
@@ -65,9 +66,9 @@ export async function checkUsernameExists(username: string): Promise<boolean> {
     try {
         const adminSupabase = getSupabaseAdmin();
         const { data, error } = await adminSupabase
-            .from('cpa_users')
-            .select('username')
-            .eq('username', username);
+            .from('common_profiles')
+            .select('id')
+            .ilike('nickname', username);
 
         if (error) {
             console.error('Error checking username:', error);
@@ -85,6 +86,7 @@ export async function getLeaderboardData(): Promise<Omit<UserProfile, 'email'>[]
     const { data, error } = await adminSupabase
         .from('cpa_users')
         .select('id, username, role, level, exp')
+        .eq('membership_status', 'active')
         .order('exp', { ascending: false })
         .order('created_at', { ascending: true })
         .order('id', { ascending: true })
@@ -99,6 +101,7 @@ export async function getAllUsers(): Promise<UserProfile[]> {
     const { data, error } = await adminSupabase
         .from('cpa_users')
         .select('*')
+        .eq('membership_status', 'active')
         .order('username', { ascending: true });
 
     if (error) throw new Error(`Failed to load users: ${error.message}`);

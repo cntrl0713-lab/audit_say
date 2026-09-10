@@ -1,6 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
-import { getSupabaseAdmin } from "./supabaseAdmin";
+import { requireAuditMembership } from "./accountRepository";
 
 export async function getSupabaseServerClient() {
     const cookieStore = await cookies();
@@ -30,17 +30,8 @@ export async function getSupabaseServerClient() {
 }
 
 export async function assertAdmin() {
-    const { user } = await assertAuthenticated();
-
-    // Now check role using admin client
-    const supabaseAdmin = getSupabaseAdmin();
-    const { data, error } = await supabaseAdmin
-        .from('cpa_users')
-        .select('role')
-        .eq('id', user.id)
-        .single();
-
-    if (error || !data || data.role !== 'ADMIN') {
+    const { membership } = await assertAuthenticated();
+    if (!membership?.is_service_admin) {
         throw new Error('Forbidden: Admins only');
     }
 
@@ -48,9 +39,6 @@ export async function assertAdmin() {
 }
 
 export async function assertAuthenticated() {
-    if (process.env.DANGEROUSLY_BYPASS_AUTH_FOR_TESTS === 'true' && process.env.NODE_ENV !== 'production') {
-        return { user: { id: 'test-user-id' } } as any;
-    }
     const supabase = await getSupabaseServerClient();
 
     // getSession()이 아니라 getUser()를 쓴다. 서버에서 getSession()은 요청 쿠키를 그대로
@@ -58,8 +46,9 @@ export async function assertAuthenticated() {
     // 있다 — assertAdmin이 그 id로 역할을 조회하기 때문에 관리자 UUID를 넣으면 권한 상승이
     // 가능하다. getUser()는 Auth 서버에 토큰을 보내 검증한다.
     const { data: { user }, error } = await supabase.auth.getUser();
-    if (error || !user) {
+    if (error || !user || (!user.is_anonymous && !user.email_confirmed_at)) {
         throw new Error('Unauthorized');
     }
-    return { user };
+    const membership = user.is_anonymous ? null : await requireAuditMembership(user.id);
+    return { user, membership };
 }

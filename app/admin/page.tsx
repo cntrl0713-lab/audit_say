@@ -2,8 +2,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Search, Settings, ShieldAlert } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
-import { getAllUsersAction, getQuestionSetsV3, updateUserRoleAction } from '../actions';
-import { ROLE_NAMES } from '../../lib/utils';
+import { getAllUsersAction, getQuestionSetsV3, updateUserAdminAction, updateUserRoleAction } from '../actions';
 import { DataTable, type DataColumn } from '../(firm)/_components/ui';
 import type { UserProfile } from '../../lib/db';
 import type { PublicQuestionSetV3 } from '../../lib/questionV3';
@@ -12,7 +11,8 @@ type AdminTab = 'questions' | 'users';
 
 const USER_COLUMNS: DataColumn[] = [
     { key: 'username', label: '닉네임' },
-    { key: 'role', label: '권한' },
+    { key: 'role', label: '이용권' },
+    { key: 'is_service_admin', label: '감사 관리자' },
     { key: 'exp', label: '경험치', align: 'right' },
     { key: 'level', label: '레벨', align: 'right' },
 ];
@@ -25,7 +25,9 @@ export default function AdminPage() {
     const [partFilter, setPartFilter] = useState('전체');
     const [searchTitle, setSearchTitle] = useState('');
     const [selectedUser, setSelectedUser] = useState('');
-    const [newRole, setNewRole] = useState<UserProfile['role']>('MEMBER');
+    const [newRole, setNewRole] = useState<'MEMBER' | 'PRO'>('MEMBER');
+    const [newIsAdmin, setNewIsAdmin] = useState(false);
+    const [saving, setSaving] = useState<'entitlement' | 'admin' | null>(null);
     const [loaded, setLoaded] = useState(false);
     const [message, setMessage] = useState<string | null>(null);
 
@@ -47,17 +49,39 @@ export default function AdminPage() {
         return matchesPart && matchesTitle;
     }), [partFilter, questionSets, searchTitle]);
 
-    const changeRole = async () => {
-        if (!selectedUser) return;
-        const success = await updateUserRoleAction(selectedUser, newRole);
-        if (!success) {
-            setMessage('권한 변경에 실패했습니다.');
+    const selectUser = (userId: string) => {
+        const candidate = users.find((entry) => entry.id === userId);
+        setSelectedUser(userId);
+        setNewRole(candidate?.role === 'PRO' ? 'PRO' : 'MEMBER');
+        setNewIsAdmin(candidate?.is_service_admin === true);
+        setMessage(null);
+    };
+
+    const changeAccess = async (kind: 'entitlement' | 'admin') => {
+        if (!selectedUser || saving) return;
+        if (kind === 'admin' && selectedUser === user?.id && !newIsAdmin) {
+            setMessage('자신의 감사 관리자 권한은 해제할 수 없습니다.');
             return;
         }
-        setUsers((current) => current.map((candidate) => (
-            candidate.id === selectedUser ? { ...candidate, role: newRole } : candidate
-        )));
-        setMessage('사용자 권한을 변경했습니다.');
+        setSaving(kind);
+        setMessage(null);
+        try {
+            const success = kind === 'entitlement'
+                ? await updateUserRoleAction(selectedUser, newRole)
+                : await updateUserAdminAction(selectedUser, newIsAdmin);
+            if (!success) throw new Error(kind === 'entitlement' ? '감사 이용권 변경에 실패했습니다.' : '감사 관리자 권한 변경에 실패했습니다.');
+            const currentUsers = await getAllUsersAction();
+            setUsers(currentUsers);
+            const updated = currentUsers.find((candidate) => candidate.id === selectedUser);
+            setNewRole(updated?.role === 'PRO' ? 'PRO' : 'MEMBER');
+            setNewIsAdmin(updated?.is_service_admin === true);
+            if (!updated) setSelectedUser('');
+            setMessage(kind === 'entitlement' ? '감사 이용권을 변경했습니다.' : '감사 관리자 권한을 변경했습니다.');
+        } catch (error: unknown) {
+            setMessage(error instanceof Error ? error.message : '변경 내용을 확인하지 못했습니다. 잠시 후 다시 시도해 주세요.');
+        } finally {
+            setSaving(null);
+        }
     };
 
     if (authLoading || (user?.role === 'ADMIN' && !loaded)) {
@@ -79,11 +103,11 @@ export default function AdminPage() {
                 <Settings className="h-6 w-6 text-foreground/70" />
                 <div>
                     <h1 className="text-2xl font-normal">관리자 제어반</h1>
-                    <p className="mt-1 text-sm text-foreground/50">신규 v3 문제은행과 회원 권한을 관리합니다.</p>
+                    <p className="mt-1 text-sm text-foreground/50">신규 v3 문제은행과 감사 이용권·관리자 권한을 관리합니다.</p>
                 </div>
             </header>
 
-            {message && <div className="rounded-md border border-card-border bg-card p-3 text-sm">{message}</div>}
+            {message && <div role="status" className="rounded-md border border-card-border bg-card p-3 text-sm">{message}</div>}
 
             <div className="flex border-b border-card-border">
                 <button type="button" onClick={() => setActiveTab('questions')} className={`px-5 pb-3 text-sm ${activeTab === 'questions' ? 'border-b-2 border-primary text-foreground' : 'text-foreground/45'}`}>
@@ -129,24 +153,41 @@ export default function AdminPage() {
                         columns={USER_COLUMNS}
                         rows={users.map((candidate) => [
                             candidate.username,
-                            ROLE_NAMES[candidate.role],
+                            candidate.role === 'PRO' ? 'PRO' : '기본',
+                            candidate.is_service_admin ? '관리자' : '일반 사용자',
                             candidate.exp,
                             `Lv.${candidate.level}`,
                         ])}
                     />
-                    <div className="grid gap-3 rounded-lg border border-card-border bg-card p-5 md:grid-cols-[1fr_1fr_auto] md:items-end">
+                    <div className="space-y-5 rounded-lg border border-card-border bg-card p-5">
                         <label className="text-xs text-foreground/50">사용자
-                            <select value={selectedUser} onChange={(event) => setSelectedUser(event.target.value)} className="mt-1 block w-full rounded-md border border-card-border bg-card-border/20 px-3 py-2 text-sm text-foreground">
+                            <select value={selectedUser} onChange={(event) => selectUser(event.target.value)} disabled={!!saving} className="mt-1 block w-full rounded-md border border-card-border bg-card-border/20 px-3 py-2 text-sm text-foreground disabled:opacity-50">
                                 <option value="">선택</option>
                                 {users.map((candidate) => <option key={candidate.id} value={candidate.id}>{candidate.username}</option>)}
                             </select>
                         </label>
-                        <label className="text-xs text-foreground/50">권한
-                            <select value={newRole} onChange={(event) => setNewRole(event.target.value as UserProfile['role'])} className="mt-1 block w-full rounded-md border border-card-border bg-card-border/20 px-3 py-2 text-sm text-foreground">
-                                {Object.entries(ROLE_NAMES).map(([role, name]) => <option key={role} value={role}>{name}</option>)}
-                            </select>
-                        </label>
-                        <button type="button" onClick={changeRole} className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white">권한 적용</button>
+                        <div className="grid gap-5 border-t border-card-border pt-5 md:grid-cols-2">
+                            <fieldset disabled={!selectedUser || !!saving} className="space-y-3">
+                                <legend className="mb-3 text-sm">감사 이용권</legend>
+                                <label className="block text-xs text-foreground/50">이용 등급
+                                    <select value={newRole} onChange={(event) => setNewRole(event.target.value as 'MEMBER' | 'PRO')} className="mt-1 block w-full rounded-md border border-card-border bg-card-border/20 px-3 py-2 text-sm text-foreground disabled:opacity-50">
+                                        <option value="MEMBER">기본</option>
+                                        <option value="PRO">PRO</option>
+                                    </select>
+                                </label>
+                                <p className="text-xs leading-5 text-foreground/50">감사 서비스의 유료 기능 이용 여부에 적용됩니다.</p>
+                                <button type="button" onClick={() => void changeAccess('entitlement')} className="rounded-md bg-primary px-4 py-2 text-sm text-white disabled:cursor-not-allowed disabled:opacity-50">{saving === 'entitlement' ? '저장 중…' : '이용권 적용'}</button>
+                            </fieldset>
+                            <fieldset disabled={!selectedUser || !!saving || selectedUser === user.id} className="space-y-3">
+                                <legend className="mb-3 text-sm">감사 관리자 권한</legend>
+                                <label className="flex min-h-10 items-center gap-2 text-sm">
+                                    <input type="checkbox" checked={newIsAdmin} onChange={(event) => setNewIsAdmin(event.target.checked)} className="h-4 w-4 accent-primary" />
+                                    감사 관리자 권한 부여
+                                </label>
+                                <p className="text-xs leading-5 text-foreground/50">{selectedUser === user.id ? '자신의 감사 관리자 권한은 해제할 수 없습니다.' : '감사 서비스의 회원·문제 관리에 적용됩니다.'}</p>
+                                <button type="button" onClick={() => void changeAccess('admin')} className="rounded-md border border-card-border px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50">{saving === 'admin' ? '저장 중…' : '관리자 권한 적용'}</button>
+                            </fieldset>
+                        </div>
                     </div>
                 </section>
             )}

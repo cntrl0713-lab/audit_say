@@ -1,6 +1,7 @@
 'use client';
 
 import { Award, BookOpen, User } from 'lucide-react';
+import Link from 'next/link';
 import { useAuth } from '../../contexts/AuthContext';
 import { ROLE_NAMES } from '../../lib/utils';
 
@@ -19,6 +20,7 @@ export default function ProfilePage() {
                 <div className="flex-1">
                     <h1 className="text-xl font-normal">{user.username}</h1>
                     <p className="mt-1 text-sm text-foreground/50">{ROLE_NAMES[user.role]} · Lv.{user.level}</p>
+                    {user.role !== 'GUEST' && <Link href="/account" className="mt-3 inline-block text-sm text-primary underline underline-offset-4">통합 계정 관리</Link>}
                     <div className="mt-4 h-2 overflow-hidden rounded-full bg-card-border/60">
                         <div className="h-full rounded-full bg-primary" style={{ width: `${user.exp % 100}%` }} />
                     </div>

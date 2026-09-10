@@ -9,6 +9,7 @@ export interface SubmissionClaims {
     v: 1;
     owner_user_id: string;
     actor_kind: 'member' | 'guest';
+    membership_version: number | null;
     release_id: string;
     set_id: string;
     set_version_id: string;
@@ -60,6 +61,7 @@ export function submissionSigningKeys(): string[] {
 export function issueSubmissionToken(input: {
     owner_user_id: string;
     actor_kind: 'member' | 'guest';
+    membership_version?: number | null;
     release_id: string;
     set_version_id: string;
     questionSet: QuestionSetV3;
@@ -69,11 +71,15 @@ export function issueSubmissionToken(input: {
         if (!UUID_PATTERN.test(id)) throw new Error('제출 식별자가 올바르지 않습니다.');
     }
     const answers = normalizeSubmissionAnswers(input.questionSet, input.answers);
+    if (input.actor_kind === 'member' && (!Number.isSafeInteger(input.membership_version) || (input.membership_version ?? 0) < 1)) {
+        throw new Error('감사 서비스 가입 상태를 확인해 주세요.');
+    }
     const acceptUntil = new Date(now + SUBMISSION_TTL_MS).toISOString();
     const claims: SubmissionClaims = {
         v: 1,
         owner_user_id: input.owner_user_id,
         actor_kind: input.actor_kind,
+        membership_version: input.actor_kind === 'member' ? input.membership_version! : null,
         release_id: input.release_id,
         set_id: input.questionSet.id,
         set_version_id: input.set_version_id,
@@ -99,6 +105,7 @@ export function verifySubmissionToken(token: unknown, owner: string, keys: strin
     catch { throw invalid(); }
     if (!claims || claims.v !== 1 || claims.owner_user_id !== owner
         || !['member', 'guest'].includes(claims.actor_kind)
+        || (claims.actor_kind === 'member' ? !Number.isSafeInteger(claims.membership_version) || (claims.membership_version ?? 0) < 1 : claims.membership_version !== null)
         || ![claims.owner_user_id, claims.release_id, claims.set_version_id, claims.submission_key].every((id) => typeof id === 'string' && UUID_PATTERN.test(id))
         || typeof claims.set_id !== 'string' || !/^pilot-\d{2}-\d{3}$/.test(claims.set_id)
         || typeof claims.answers_hash !== 'string' || !/^[a-f0-9]{64}$/.test(claims.answers_hash)) throw invalid();

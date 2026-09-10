@@ -25,8 +25,18 @@ const judgment = { subquestions: [
 ] };
 
 function token(actor: 'member' | 'guest' = 'member', at = now, input = answers) {
-    return issueSubmissionToken({ owner_user_id: memberId, actor_kind: actor, release_id: release, set_version_id: version, questionSet: set, answers: input }, key, at);
+    return issueSubmissionToken({ owner_user_id: memberId, actor_kind: actor, membership_version: actor === 'member' ? 1 : null, release_id: release, set_version_id: version, questionSet: set, answers: input }, key, at);
 }
+
+test('member submissions bind the explicit service membership epoch; missing epoch is rejected', () => {
+    const input = { owner_user_id: memberId, actor_kind: 'member' as const, release_id: release, set_version_id: version, questionSet: set, answers };
+    assert.throws(() => issueSubmissionToken(input, key, now), /가입 상태/);
+    const first = verifySubmissionToken(issueSubmissionToken({ ...input, membership_version: 1 }, key, now), memberId, [key], now);
+    const rejoined = verifySubmissionToken(issueSubmissionToken({ ...input, membership_version: 2 }, key, now), memberId, [key], now);
+    assert.equal(first.membership_version, 1);
+    assert.equal(rejoined.membership_version, 2);
+    assert.equal(verifySubmissionToken(token('guest'), memberId, [key], now).membership_version, null);
+});
 
 test('submission token binds owner, version, exact answer and original guest expiry; new submission is distinct', () => {
     const first = token('guest');

@@ -29,6 +29,7 @@ export async function beginAttempt(claims: SubmissionClaims, answers: Record<str
     return learningRpc<{ attempt_id: string; status: string; current_grading_run_id: string | null }>('cpa_begin_attempt', {
         p_payload: {
             owner_user_id: claims.owner_user_id, actor_kind: claims.actor_kind,
+            membership_version: claims.membership_version,
             release_id: claims.release_id, set_id: claims.set_id, set_version_id: claims.set_version_id,
             submission_key: claims.submission_key, answers_hash: claims.answers_hash,
             submitted_at: claims.submitted_at, expires_at: claims.expires_at, answers,
@@ -96,9 +97,10 @@ export async function getReviewItems(owner: string, status: ReviewItemStatus): P
     }));
 }
 
-export async function updateReviewItem(owner: string, subquestion: string, status: ReviewItemStatus, memo?: string) {
+export async function updateReviewItem(owner: string, subquestion: string, status: ReviewItemStatus, memo: string | undefined, membershipVersion: number) {
     return learningRpc('cpa_update_review_item', {
         p_owner_user_id: owner, p_subquestion_id: subquestion, p_status: status, p_memo: memo ?? null,
+        p_membership_version: membershipVersion,
     });
 }
 

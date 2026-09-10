@@ -1,202 +1,97 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { getCombinedProfile, createPublicProfile, UserProfile } from '../lib/db';
-import { checkUsernameExistsAction } from '../app/actions';
+import type { UserProfile } from '../lib/db';
+import type { AccountSnapshot } from '../lib/accountPolicy';
 
 interface AuthContextType {
     user: UserProfile | null;
+    account: AccountSnapshot | null;
     loading: boolean;
-    login: (email: string, pass: string) => Promise<{ success: boolean; error?: string }>;
-    signUp: (email: string, pass: string, username: string) => Promise<{ success: boolean; msg?: string; error?: string }>;
+    login: (identifier: string, password: string) => Promise<{ success: boolean; error?: string }>;
+    signUp: (email: string, password: string, nickname: string) => Promise<{ success: boolean; msg?: string; error?: string }>;
     logout: () => Promise<void>;
     refreshProfile: () => Promise<void>;
     loginAsGuest: () => Promise<void>;
 }
-
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+async function accountRequest(operation: string, body: Record<string, unknown>) {
+    const response = await fetch('/api/account/' + operation, { method: 'POST', credentials: 'same-origin', cache: 'no-store',
+        headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(15000) });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || '계정 요청을 완료하지 못했습니다.');
+    return result;
+}
+
+export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<UserProfile | null>(null);
+    const [account, setAccount] = useState<AccountSnapshot | null>(null);
     const [loading, setLoading] = useState(true);
+    const requestVersion = useRef(0);
 
-    const fetchProfile = async (authUserId: string, email?: string, signupUsername?: string) => {
-        let profile = await getCombinedProfile(authUserId, email);
-
-        // Error Recovery (Deadlock fix): Auth user exists, but DB profile is missing.
-        // 이메일 인증이 필요한 가입은 이 경로로 프로필이 처음 생성된다. 가입 폼에서 받은
-        // 닉네임은 auth user_metadata.username에 남아 있으므로 그것을 먼저 쓴다 —
-        // 이메일 앞부분으로 덮어쓰면 사용자가 입력한 닉네임이 사라진다.
-        if (!profile) {
-            const fallbackUsername =
-                signupUsername?.trim() ||
-                (email ? email.split('@')[0] : `user_${authUserId.substring(0, 8)}`);
-            const recovered = await createPublicProfile(authUserId, fallbackUsername);
-            if (recovered) {
-                profile = await getCombinedProfile(authUserId, email);
-            }
-        }
-
-        setUser(profile);
-    };
-
-    // 세션을 화면 표시용 사용자 상태로 변환.
-    // 익명(게스트) 세션은 실제 Supabase 세션이지만 user_cpa에 영구 프로필을 만들지 않는다
-    // (게스트는 학습 기록·오답노트가 보관되지 않는다는 기존 원칙 유지) — 화면 표시용
-    // 고정 프로필만 세팅하고 DB 프로필 조회/생성 경로(fetchProfile)를 타지 않는다.
-    const resolveSessionUser = async (
-        session: {
-            user: {
-                id: string;
-                email?: string;
-                is_anonymous?: boolean;
-                user_metadata?: { username?: string };
-            };
-        } | null
-    ) => {
-        if (session?.user) {
-            if (session.user.is_anonymous) {
-                setUser({
-                    id: session.user.id,
-                    username: '비회원',
-                    role: 'GUEST',
-                    level: 1,
-                    exp: 0,
-                });
-            } else {
-                await fetchProfile(
-                    session.user.id,
-                    session.user.email,
-                    session.user.user_metadata?.username
-                );
-            }
-        } else {
-            setUser(null);
-        }
-    };
-
-    useEffect(() => {
-        // Check active session
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            resolveSessionUser(session).then(() => setLoading(false));
-        });
-
-        // Listen for auth changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            resolveSessionUser(session).then(() => setLoading(false));
-        });
-
-        return () => {
-            subscription.unsubscribe();
-        };
-    }, []);
-
-    const login = async (email: string, pass: string) => {
+    const refreshProfile = useCallback(async () => {
+        const version = ++requestVersion.current;
         try {
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email,
-                password: pass,
-            });
-
-            if (error) {
-                return { success: false, error: error.message };
-            }
-
-            if (data.user) {
-                await fetchProfile(data.user.id, data.user.email, data.user.user_metadata?.username);
-            }
-            return { success: true };
-        } catch (err: any) {
-            return { success: false, error: err.message || '로그인 중 오류가 발생했습니다.' };
-        }
-    };
-
-    const signUp = async (email: string, pass: string, username: string) => {
-        try {
-            // 1. Check Username (서버 액션 — user_cpa를 anon에게 열지 않기 위해 service role로 조회)
-            const exists = await checkUsernameExistsAction(username);
-            if (exists) {
-                return { success: false, error: '이미 사용 중인 닉네임입니다.' };
-            }
-
-            // 2. Auth Sign Up
-            const { data, error } = await supabase.auth.signUp({
-                email,
-                password: pass,
-                options: {
-                    data: { username },
-                },
-            });
-
-            if (error) {
-                return { success: false, error: error.message };
-            }
-
-            if (data.user) {
-                // If there's no session, it means email confirmation is required.
-                if (!data.session) {
-                    return { success: true, msg: 'CHECK_EMAIL' };
-                }
-
-                const profileCreated = await createPublicProfile(data.user.id, username);
-                if (profileCreated) {
-                    await fetchProfile(data.user.id, data.user.email, username);
-                    return { success: true, msg: 'SUCCESS' };
-                } else {
-                    return { success: false, error: '계정은 생성되었으나 프로필 설정에 실패했습니다.' };
-                }
-            }
-            return { success: false, error: '가입을 처리하는 도중 사용자 정보가 반환되지 않았습니다.' };
-        } catch (err: any) {
-            return { success: false, error: err.message || '회원가입 중 오류가 발생했습니다.' };
-        }
-    };
-
-    const logout = async () => {
-        await supabase.auth.signOut();
-        setUser(null);
-    };
-
-    const refreshProfile = async () => {
-        if (user?.id && user.role !== 'GUEST') {
-            await fetchProfile(user.id, user.email);
-        }
-    };
-
-    const loginAsGuest = async () => {
-        try {
-            // 실제 Supabase 익명 세션을 발급받아야 서버 측 assertAuthenticated()가
-            // 통과한다 — 이전에는 sessionStorage 플래그만 세팅해 클라이언트만 게스트로
-            // "보이고" 서버는 항상 Unauthorized를 던져 채점 자체가 동작하지 않았다.
-            const { data, error } = await supabase.auth.signInAnonymously();
-            if (error || !data.user) {
-                console.error('Guest login error:', error);
+            const response = await fetch('/api/account', { cache: 'no-store', credentials: 'same-origin', signal: AbortSignal.timeout(15000) });
+            if (response.ok) {
+                const value: AccountSnapshot = await response.json();
+                if (version !== requestVersion.current) return;
+                setAccount(value);
+                if (value.accountStatus === 'active' && value.membership?.status === 'active') {
+                    setUser({ id: value.user.id, email: value.user.email, username: value.user.nickname,
+                        role: value.membership.role, level: value.progress.level, exp: value.progress.exp });
+                } else setUser(null);
                 return;
             }
-            setUser({
-                id: data.user.id,
-                username: '비회원',
-                role: 'GUEST',
-                level: 1,
-                exp: 0,
-            });
-        } catch (err) {
-            console.error('Error in loginAsGuest:', err);
-        }
-    };
+            if (response.status !== 401) throw new Error('계정 상태 확인 실패');
+            const { data: { session } } = await supabase.auth.getSession();
+            if (version !== requestVersion.current) return;
+            setAccount(null);
+            setUser(session?.user.is_anonymous ? { id: session.user.id, username: '비회원', role: 'GUEST', level: 1, exp: 0 } : null);
+        } catch {
+            if (version !== requestVersion.current) return;
+            setAccount(null); setUser(null);
+        } finally { if (version === requestVersion.current) setLoading(false); }
+    }, []);
 
-    return (
-        <AuthContext.Provider value={{ user, loading, login, signUp, logout, refreshProfile, loginAsGuest }}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
+    useEffect(() => {
+        queueMicrotask(() => { void refreshProfile(); });
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
+            // Do not await Auth calls inside its lock-owning callback.
+            queueMicrotask(() => { void refreshProfile(); });
+        });
+        const onFocus = () => { void refreshProfile(); };
+        window.addEventListener('focus', onFocus);
+        return () => { requestVersion.current++; subscription.unsubscribe(); window.removeEventListener('focus', onFocus); };
+    }, [refreshProfile]);
 
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (context === undefined) {
-        throw new Error('useAuth must be used within an AuthProvider');
+    async function login(identifier: string, password: string) {
+        try { await accountRequest('login', { identifier, password }); await refreshProfile(); return { success: true }; }
+        catch (error) { return { success: false, error: error instanceof Error ? error.message : '로그인에 실패했습니다.' }; }
     }
+    async function signUp(email: string, password: string, nickname: string) {
+        try {
+            const result = await accountRequest('signup', { email, password, nickname });
+            if (result.msg === 'SUCCESS') await refreshProfile();
+            return { success: true, msg: result.msg };
+        } catch (error) { return { success: false, error: error instanceof Error ? error.message : '회원가입에 실패했습니다.' }; }
+    }
+    async function logout() {
+        await accountRequest('logout', {});
+        await supabase.auth.signOut({ scope: 'local' });
+        requestVersion.current++; setUser(null); setAccount(null);
+    }
+    async function loginAsGuest() {
+        const { error } = await supabase.auth.signInAnonymously();
+        if (error) throw new Error('비회원 체험을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.');
+        await refreshProfile();
+    }
+    return <AuthContext.Provider value={{ user, account, loading, login, signUp, logout, refreshProfile, loginAsGuest }}>{children}</AuthContext.Provider>;
+}
+export function useAuth() {
+    const context = useContext(AuthContext);
+    if (!context) throw new Error('useAuth must be used within an AuthProvider');
     return context;
-};
+}

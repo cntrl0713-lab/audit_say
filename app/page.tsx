@@ -8,7 +8,7 @@ import { Loading } from '../components/Loading';
 import { Eye, EyeOff } from 'lucide-react';
 
 export default function Home() {
-  const { user, login, signUp, loading, loginAsGuest } = useAuth();
+  const { user, account, login, signUp, loading, loginAsGuest, logout } = useAuth();
 
   // Auth Form State
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
@@ -27,7 +27,7 @@ export default function Home() {
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
-      setStatusMsg({ type: 'error', text: '이메일과 비밀번호를 입력해주세요.' });
+      setStatusMsg({ type: 'error', text: '이메일 또는 닉네임과 비밀번호를 입력해주세요.' });
       return;
     }
 
@@ -79,6 +79,15 @@ export default function Home() {
     return <Loading />;
   }
 
+  if (!user && account) {
+    return <div className="mx-auto w-full max-w-lg rounded-lg border border-card-border bg-card p-8 space-y-5">
+      <h1 className="text-xl">{account.user.nickname}님, 환영합니다.</h1>
+      <p className="text-sm text-foreground/65">통합 계정으로 로그인했습니다. 감사 서비스 가입과 계정 정보를 확인해 주세요.</p>
+      <Link href="/account" className="block rounded-md bg-primary px-4 py-3 text-center text-sm text-white">계정 관리 · 감사 서비스 이용 시작</Link>
+      <button onClick={() => { void logout(); }} className="text-sm text-foreground/60">로그아웃</button>
+    </div>;
+  }
+
   // --- Auth View (Not logged in) ---
   if (!user) {
     return (
@@ -127,14 +136,15 @@ export default function Home() {
             <form onSubmit={handleLoginSubmit} className="space-y-4">
               <div>
                 <label htmlFor="login-email" className="block text-sm text-foreground/70 mb-1.5">
-                  이메일
+                  이메일 또는 공통 닉네임
                 </label>
                 <input
                   id="login-email"
-                  type="email"
+                  type="text"
+                  autoComplete="username"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@example.com"
+                  placeholder="이메일 또는 닉네임"
                   className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-4 py-2.5 text-sm focus:outline-none transition-colors"
                   required
                 />
@@ -148,6 +158,8 @@ export default function Home() {
                   <input
                     id="login-password"
                     type={showPassword ? 'text' : 'password'}
+                    maxLength={128}
+                    autoComplete="current-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
@@ -177,6 +189,7 @@ export default function Home() {
                 )}
               </button>
 
+              <Link href="/account/recovery" className="block text-center text-xs text-foreground/60 hover:text-foreground">비밀번호를 잊으셨나요?</Link>
               <div className="relative flex py-2 items-center">
                 <div className="flex-grow border-t border-card-border"></div>
                 <span className="flex-shrink mx-4 text-foreground/40 text-xs font-medium">또는</span>
@@ -195,7 +208,7 @@ export default function Home() {
             /* Signup tab content */
             <form onSubmit={handleSignupSubmit} className="space-y-4">
               <div className="p-3 bg-card-border/40 border border-card-border text-foreground/70 rounded-md text-xs leading-relaxed">
-                기존 ID 사용자는 이메일로 새로 가입해야 합니다.
+                감사·세법에서 같은 계정을 사용합니다. 학습 기록과 이용권은 서비스별로 관리합니다.
               </div>
 
               <div>
@@ -220,9 +233,12 @@ export default function Home() {
                 <input
                   id="signup-username"
                   type="text"
+                  minLength={2}
+                  maxLength={12}
+                  pattern="[가-힣a-zA-Z0-9]{2,12}"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="닉네임 입력"
+                  placeholder="한글·영문·숫자 2~12자"
                   className="w-full bg-card-border/30 border border-card-border focus:border-primary text-foreground rounded-md px-4 py-2.5 text-sm focus:outline-none transition-colors"
                   required
                 />
@@ -235,6 +251,9 @@ export default function Home() {
                 <input
                   id="signup-password"
                   type="password"
+                  minLength={8}
+                  maxLength={128}
+                  autoComplete="new-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
@@ -250,6 +269,9 @@ export default function Home() {
                 <input
                   id="signup-password-confirm"
                   type="password"
+                  minLength={8}
+                  maxLength={128}
+                  autoComplete="new-password"
                   value={passwordConfirm}
                   onChange={(e) => setPasswordConfirm(e.target.value)}
                   placeholder="••••••••"
