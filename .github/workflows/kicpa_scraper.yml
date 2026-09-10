@@ -1,0 +1,42 @@
+name: KICPA recruitment collection
+
+on:
+  schedule:
+    # UTC -> KST: 08:30–08:55, 09:00–17:55, 18:00–18:25, every day.
+    - cron: '30-59/5 23 * * *'
+    - cron: '*/5 0-8 * * *'
+    - cron: '0-25/5 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kicpa-jobs-scraper
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    # Explicit activation only after real board layout, migrations and secrets are verified.
+    if: vars.KICPA_SCRAPER_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: scripts/kicpa_jobs/requirements.txt
+      - run: python -m pip install -r scripts/kicpa_jobs/requirements.txt
+      - name: Verify offline worker tests
+        run: python -m unittest discover -s tests -p 'test_kicpa*.py'
+      - name: Collect boards (messaging provider disabled)
+        run: python scripts/kicpa_scraper.py
+        env:
+          KICPA_BOARD_CONFIG: ${{ vars.KICPA_BOARD_CONFIG }}
+          KICPA_BOARD_LAYOUT_VERIFIED: ${{ vars.KICPA_BOARD_LAYOUT_VERIFIED }}
+          KICPA_NOTIFICATIONS_ENABLED: ${{ vars.KICPA_NOTIFICATIONS_ENABLED }}
+          KICPA_APP_ORIGIN: ${{ vars.KICPA_APP_ORIGIN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}

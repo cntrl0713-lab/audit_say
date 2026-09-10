@@ -17,8 +17,21 @@ test('상세 메뉴는 사업·고객과 인력·보수로 구분하고 고객 �
         ['clients', 'business', false],
         ['compensation', 'internal', true],
         ['people', 'internal', true],
+        ['jobs', 'jobs', false],
     ] as const) {
         assert.deepEqual(resolveFirmDetailView({ tab }), { tab, clientView: 'list', group, isFirmOwnTab });
+    }
+});
+
+test('채용공고는 독립 메뉴이며 보고기간·사업연도·기존 의견 필터에 종속되지 않는다', () => {
+    for (const query of [
+        { tab: 'jobs' },
+        { tab: 'jobs', year: '2024', fy_start_year: '2025', opinion: '한정' },
+        { tab: ['jobs', 'clients'], year: 'unknown', fy_year: 'unknown' },
+    ]) {
+        assert.deepEqual(resolveFirmDetailView(query), {
+            tab: 'jobs', clientView: 'list', group: 'jobs', isFirmOwnTab: false,
+        });
     }
 });
 

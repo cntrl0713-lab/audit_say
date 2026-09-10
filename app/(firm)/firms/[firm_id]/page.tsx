@@ -13,6 +13,7 @@ import CompensationTab from './CompensationTab';
 import PeopleTab from './PeopleTab';
 import OverviewTab from './OverviewTab';
 import FirmQuickSearch from './FirmQuickSearch';
+import JobsTab from './JobsTab';
 
 const TAB_LABEL: Record<FirmDetailTab, string> = {
     overview: '주요정보',
@@ -20,6 +21,7 @@ const TAB_LABEL: Record<FirmDetailTab, string> = {
     clients: '감사대상회사',
     compensation: '인건비·보수',
     people: '인력 구조',
+    jobs: '채용공고',
 };
 
 
@@ -35,24 +37,25 @@ export default async function FirmDetailPage({
     const firmId = Number(firm_id);
     if (!Number.isSafeInteger(firmId) || firmId <= 0) notFound();
 
+    const rawQuery = await searchParams;
+    const { tab, clientView, group, isFirmOwnTab } = resolveFirmDetailView(rawQuery);
+    const isJobsTab = tab === 'jobs';
     const [firm, summaries, years, annualSummaries, tenure, headcounts, firms] = await Promise.all([
         getRegisteredFirm(firmId),
-        getFirmSummaries(firmId),
-        listAllYears(),
-        getFirmAnnualSummaries(firmId),
-        getFirmCpaTenure(firmId),
-        getFirmHeadcount(firmId),
+        isJobsTab ? Promise.resolve([]) : getFirmSummaries(firmId),
+        isJobsTab ? Promise.resolve([]) : listAllYears(),
+        isJobsTab ? Promise.resolve([]) : getFirmAnnualSummaries(firmId),
+        isJobsTab ? Promise.resolve([]) : getFirmCpaTenure(firmId),
+        isJobsTab ? Promise.resolve([]) : getFirmHeadcount(firmId),
         listRegisteredFirms(),
     ]);
     if (!firm) notFound();
 
-    const rawQuery = await searchParams;
     const base = `/firms/${firmId}`;
     const requestedYear = readInt(rawQuery, 'year', 0);
     const year = years.includes(requestedYear) ? requestedYear : (years[0] ?? null);
     const listHref = years.includes(requestedYear) ? `/firms?year=${requestedYear}` : '/firms';
     const summary = summaries.find((row) => row.bsns_year === year) ?? null;
-    const { tab, clientView, group, isFirmOwnTab } = resolveFirmDetailView(rawQuery);
     const query = { ...rawQuery, tab, ...(tab === 'clients' ? { client_view: clientView } : {}), ...(year === null ? {} : { year: String(year) }) };
     const tabHref = (next: FirmDetailTab, view: ClientView = 'list') => `${base}${buildFilterQuery(query, {
         tab: next, client_view: next === 'clients' ? view : null,
@@ -74,7 +77,7 @@ export default async function FirmDetailPage({
                         ← 목록으로
                     </Link>
                 </div>
-                <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+                {!isJobsTab ? <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
                     <nav aria-label={isFirmOwnTab ? '보고기간 시작연도' : '감사대상회사 사업연도'} className="inline-flex max-w-full shrink-0 rounded-lg border border-card-border bg-foreground/5 p-1">
                         {selectableYears.map(candidate => (
                             <Link
@@ -97,7 +100,7 @@ export default async function FirmDetailPage({
                             </>
                         ) : <p>감사대상회사 사업연도 {year ?? '미확보'}</p>}
                     </div>
-                </div>
+                </div> : null}
                 <details className="mt-2 text-sm">
                     <summary className="w-fit cursor-pointer py-2 text-foreground/70">기본정보 더 보기</summary>
                 <dl className="mt-3 grid grid-cols-2 gap-x-6 gap-y-4 rounded-lg bg-card p-4 text-base sm:grid-cols-4">
@@ -122,11 +125,12 @@ export default async function FirmDetailPage({
                 </details>
             </header>
 
-            <nav aria-label="정보 구분" className="mb-4 flex gap-2 border-b border-card-border pb-4">
+            <nav aria-label="정보 구분" className="mb-4 flex flex-wrap gap-2 border-b border-card-border pb-4">
                 {([
                     { group: 'overview', label: '주요정보', target: 'overview' },
                     { group: 'business', label: '사업·고객', target: 'revenue' },
                     { group: 'internal', label: '인력·보수', target: 'compensation' },
+                    { group: 'jobs', label: '채용공고', target: 'jobs' },
                 ] as const).map(item => (
                     <Link key={item.group} href={tabHref(item.target)} aria-current={group === item.group ? 'page' : undefined}
                         className={`flex min-h-11 items-center justify-center rounded-lg px-4 py-2 text-sm ${group === item.group ? 'bg-foreground font-medium text-white' : 'text-foreground/75 hover:bg-card'}`}>
@@ -134,7 +138,7 @@ export default async function FirmDetailPage({
                     </Link>
                 ))}
             </nav>
-            {group !== 'overview' ? <nav aria-label={group === 'business' ? '사업·고객 상세' : '인력·보수 상세'} className="mb-6 flex gap-2">
+            {group === 'business' || group === 'internal' ? <nav aria-label={group === 'business' ? '사업·고객 상세' : '인력·보수 상세'} className="mb-6 flex flex-wrap gap-2">
                 {(group === 'business' ? ['revenue', 'clients'] as const : ['compensation', 'people'] as const).map(candidate => (
                     <Link key={candidate} href={tabHref(candidate)} aria-current={candidate === tab ? 'page' : undefined}
                         className={`flex min-h-11 items-center rounded-lg border px-4 py-2 text-sm ${candidate === tab ? 'border-primary bg-primary/5 font-medium text-primary' : 'border-card-border bg-card text-foreground/75'}`}>
@@ -151,7 +155,8 @@ export default async function FirmDetailPage({
                 ))}
             </nav> : null}
 
-            {tab === 'overview' ? <OverviewTab summaries={annualSummaries} periods={periods} tenure={tenure} headcounts={headcounts} />
+            {tab === 'jobs' ? <JobsTab firmId={firmId} firmName={firm.firm_name} />
+                : tab === 'overview' ? <OverviewTab summaries={annualSummaries} periods={periods} tenure={tenure} headcounts={headcounts} />
                 : tab === 'revenue' ? <RevenueTab summaries={annualSummaries} periods={periods} year={annualYear} />
                 : tab === 'compensation' ? <CompensationTab firmId={firmId} periods={periods} year={annualYear} />
                 : tab === 'people' ? <PeopleTab firmId={firmId} summaries={annualSummaries} periods={periods} year={annualYear} tenure={tenure} headcounts={headcounts} />

@@ -10,15 +10,18 @@ export const Navbar: React.FC = () => {
     const pathname = usePathname();
 
     const firmInfo = { name: '회계법인 정보', href: '/firms' };
+    const jobs = { name: '채용공고', href: '/jobs' };
     const navItems = user ? [
         { name: '문제 풀기', href: '/quiz' },
         firmInfo,
+        jobs,
         { name: '커리큘럼', href: '/curriculum' },
         { name: '풀이 기록', href: '/history' },
         { name: '오답노트', href: '/review-notes' },
         { name: '랭킹', href: '/ranking' },
         { name: '내 정보', href: '/profile' },
-    ] : [firmInfo];
+        { name: '알림 설정', href: '/settings' },
+    ] : [firmInfo, jobs];
 
     if (user?.role === 'ADMIN') {
         navItems.push({ name: '관리자', href: '/admin' });

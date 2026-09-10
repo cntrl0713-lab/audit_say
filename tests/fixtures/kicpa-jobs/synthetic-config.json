@@ -1,0 +1,37 @@
+{
+  "synthetic": true,
+  "boards": {
+    "trainee_cpa": {
+      "format": "html",
+      "urls": ["https://www.kicpa.or.kr/synthetic/trainee"],
+      "rows_selector": "table.synthetic-jobs tbody tr",
+      "empty_selector": "p.synthetic-empty",
+      "pinned_selector": ".synthetic-pinned",
+      "fields": {
+        "id": {"selector": "$", "attribute": "data-synthetic-id"},
+        "title": {"selector": "a.synthetic-title"},
+        "company": {"selector": ".synthetic-company", "optional": true},
+        "posted_at": {"selector": "time", "attribute": "datetime"},
+        "deadline": {"selector": ".synthetic-deadline", "optional": true},
+        "source_url": {"selector": "a.synthetic-title", "attribute": "href"}
+      },
+      "pagination": {"next_selector": "a.synthetic-next", "end_selector": ".synthetic-end", "max_pages": 10}
+    },
+    "cpa": {
+      "format": "json",
+      "urls": ["https://www.kicpa.or.kr/synthetic/cpa"],
+      "rows_path": "synthetic_posts",
+      "pinned_path": "pinned",
+      "pinned_values": [true],
+      "fields": {
+        "id": "post_id",
+        "title": "title",
+        "company": "company",
+        "posted_at": "posted_at",
+        "deadline": {"path": "deadline", "optional": true},
+        "source_url": "url"
+      },
+      "pagination": {"next_path": "synthetic_next_page", "max_pages": 10}
+    }
+  }
+}

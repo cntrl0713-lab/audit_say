@@ -1,7 +1,7 @@
 import { readEnum, readString, type SearchParams } from './params.ts';
 import { AUDIT_OPINIONS } from './types.ts';
 
-export const FIRM_DETAIL_TABS = ['overview', 'revenue', 'clients', 'compensation', 'people'] as const;
+export const FIRM_DETAIL_TABS = ['overview', 'revenue', 'clients', 'compensation', 'people', 'jobs'] as const;
 export type FirmDetailTab = (typeof FIRM_DETAIL_TABS)[number];
 export const CLIENT_VIEWS = ['list', 'opinions', 'kam'] as const;
 export type ClientView = (typeof CLIENT_VIEWS)[number];
@@ -18,6 +18,7 @@ export function resolveFirmDetailView(query: SearchParams) {
     const clientView: ClientView = tab === 'clients' && requestedClientView === 'list'
         && readEnum(query, 'opinion', AUDIT_OPINIONS) !== undefined ? 'opinions' : requestedClientView;
     const group = tab === 'revenue' || tab === 'clients' ? 'business'
-        : tab === 'compensation' || tab === 'people' ? 'internal' : 'overview';
-    return { tab, clientView, group, isFirmOwnTab: tab !== 'clients' };
+        : tab === 'compensation' || tab === 'people' ? 'internal'
+        : tab === 'jobs' ? 'jobs' : 'overview';
+    return { tab, clientView, group, isFirmOwnTab: tab !== 'clients' && tab !== 'jobs' };
 }
