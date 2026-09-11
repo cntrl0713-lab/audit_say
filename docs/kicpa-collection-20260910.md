@@ -45,3 +45,7 @@
 - 15:28:02 KST 읽기 전용 후속 검증: 수습CPA `last_checked_at=15:25:29.001023`, CPA `15:25:36.410950`으로 GitHub 실행 시각에 갱신됐다. 최초 기준 시각은 유지됐고 운영 DB·공개 목록 44건, 발송 기록·대기·성공 모두 0건이었다. `/jobs` HTTP 200과 공개 8개 필드·원문 경로/ID·실제 공고 표시도 통과했다.
 
 로컬 영수증은 저장소에서 제외된 `tmp/kicpa-live-run-*.json`, `tmp/kicpa-collected-verification.json`, `tmp/kicpa-cloud-verification-preactivation.json`, `tmp/kicpa-cloud-verification-postcloud.json`에 보존했다.
+
+## 2026-09-11 예약 보정
+
+9월 10일 예약 실행 두 건은 각각 KST 18:47과 22:21에 뒤늦게 시작해 런타임 시간 제한으로 수집을 건너뛰었다. GitHub가 문서화한 매시 정각의 혼잡·지연·누락 위험을 줄이고 불필요한 실행을 줄이기 위해 예약을 KST 08:37~18:22의 15분 간격으로 변경했다. 분 오프셋은 07·22·37·52를 사용하며, 실제 요청 직전의 08:30 이상 18:30 미만 제한과 수동 실행 경로는 유지한다.

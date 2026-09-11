@@ -2,10 +2,11 @@ name: KICPA recruitment collection
 
 on:
   schedule:
-    # UTC -> KST: 08:30–08:55, 09:00–17:55, 18:00–18:25, every day.
-    - cron: '30-59/5 23 * * *'
-    - cron: '*/5 0-8 * * *'
-    - cron: '0-25/5 9 * * *'
+    # UTC -> KST: 08:37–08:52, 09:07–17:52, 18:07–18:22, every day.
+    # Off-hour minute offsets reduce GitHub's documented top-of-hour delay/drop risk.
+    - cron: '37,52 23 * * *'
+    - cron: '7,22,37,52 0-8 * * *'
+    - cron: '7,22 9 * * *'
   workflow_dispatch:
 
 permissions:

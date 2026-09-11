@@ -34,7 +34,7 @@ python scripts/kicpa_scraper.py --config tests/fixtures/kicpa-jobs/synthetic-con
 2. 구조 변경 시 라이브 어댑터와 설정을 실제 응답에 맞춰 함께 변경한다. `synthetic-config.json`은 일반 어댑터 설정 형식의 예시일 뿐이며 운영에서 거부한다. 실제 HTML에 추정 선택자를 붙이거나 JavaScript 링크에서 번호를 추측하지 않는다.
 3. HTML은 `rows_selector`, `empty_selector`, `pinned_selector`, 필드별 선택자/속성, pagination의 `next_selector`/`end_selector`를 명시한다. JSON은 `rows_path`, `pinned_path`/`pinned_values`, 필드별 경로, `pagination.next_path`를 명시하며 마지막 페이지는 명시적인 `null`이어야 한다. `fields`에는 정확히 `id`, `title`, `company`, `posted_at`, `source_url`만 있어야 한다. 추가 필드 선택자는 파싱 전에 차단한다. 모든 시작 URL과 링크는 KICPA HTTPS만 허용한다.
 4. 페이지는 명시적 마지막 표시까지 순회한다. 반복 링크, 누락된 마지막 표시, `max_pages` 초과, 공고 5,000건 초과는 해당 게시판의 적재 전에 실패한다. 부분 페이지로 최초 기준 목록을 초기화하지 않는다. 첫 적재는 SQL RPC에서 과거 공고 기준 목록으로 저장하여 발송을 만들지 않는다. 이후 `(board,id)`로 중복을 제거한다.
-5. 현재 구현은 모든 페이지를 순회하므로, **5분 주기 활성화 전 게시판 크기·요청량을 확인하고 검증된 정렬/기준 게시글을 이용한 증분 수집을 검토**한다. 페이지 제한을 단순히 늘려 전체 재수집을 계속하는 운영을 권장하지 않는다. 실제 구조 검증 전 증분 수집의 정확성을 주장하지 않는다.
+5. 현재 구현은 모든 페이지를 순회하므로, **15분 주기에서도 게시판 크기·요청량을 계속 확인하고 검증된 정렬/기준 게시글을 이용한 증분 수집을 검토**한다. 페이지 제한을 단순히 늘려 전체 재수집을 계속하는 운영을 권장하지 않는다. 실제 구조 검증 전 증분 수집의 정확성을 주장하지 않는다.
 6. SQL migration과 서비스 키 등 배포 설정을 별도로 준비한 뒤 수집만 활성화한다. 실제 메시지 발송업체 선정·구현·승인은 별도 단계다.
 
 ## 수집 활성화 설정
@@ -49,7 +49,7 @@ python scripts/kicpa_scraper.py --config tests/fixtures/kicpa-jobs/synthetic-con
 | `KICPA_NOTIFICATIONS_ENABLED` | GitHub variable / CLI 환경 | 향후 업체 연결 시 사용할 추가 발송 스위치; 현재 `true`여도 발송 불가 |
 | `KICPA_APP_ORIGIN` | GitHub variable / CLI 환경 | 향후 메시지의 서비스 링크 origin; 예: `https://audit-say.vercel.app` |
 
-GitHub Actions는 매일 KST 08:30–18:25에 5분 간격으로 예약된다. 예약 실행은 정확한 시각을 보장하지 않는다. 지연 실행과 수동 실행도 런타임 검사를 통과해야 하며, **모든 게시판 HTTP 요청·재시도·리다이렉트 요청 직전** 시간대를 다시 검사한다. 시간 우회 옵션은 없다. 기본 HTTP 클라이언트의 자동 리다이렉트도 끈다.
+GitHub Actions는 정각 혼잡을 피해 매일 KST 08:37–18:22에 15분 간격으로 예약된다. 예약 실행은 정확한 시각을 보장하지 않는다. 지연 실행과 수동 실행도 런타임 검사를 통과해야 하며, **모든 게시판 HTTP 요청·재시도·리다이렉트 요청 직전** 시간대를 다시 검사한다. 시간 우회 옵션은 없다. 기본 HTTP 클라이언트의 자동 리다이렉트도 끈다.
 
 상대 게시글 링크와 다음 페이지 링크는 리다이렉트 후 최종 URL을 기준으로 해석한다. 페이지 순환 검사는 요청 URL과 최종 URL을 함께 추적하며, 페이지 수 제한에는 리다이렉트 별칭을 중복 계산하지 않는다.
 
