@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-01-006--sub3--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-01-006--sub3--standard",
+  "source_set_id": "pilot-01-006",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub3"
+  ],
+  "projected_body_hash": "d8f6d57390a37f4171b06f031473693c0b96a3abb3cb747ce6167c6912bba37f",
+  "answers": {
+    "sub3": "회계법인 정책에서 요구한 검토절차의 수행 여부는 기록하지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit8",
+          "verdict": "contradicted",
+          "reason": "명시적 반대 또는 조건의 부정이다. 같은 문장이 다른 판단도 반대로 함축하는 경우 함께 반대로 평가한다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "not_met",
+          "reason": "명시적 반대 또는 조건의 부정이다. 같은 문장이 다른 판단도 반대로 함축하는 경우 함께 반대로 평가한다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "not_met",
+          "reason": "명시적 반대 또는 조건의 부정이다. 같은 문장이 다른 판단도 반대로 함축하는 경우 함께 반대로 평가한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "f158f317d526896adf6ad9b8f2e14f70b09a187fcd034396ca0237a5f3572105",
+  "schema_hash": "1a08ed10bdb086707e3f51b5336f249e6d0c686478e92061f00249251162cd01",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit8",
+            "verdict": "contradicted",
+            "quote": "회계법인 정책에서 요구한 검토절차의 수행 여부는 기록하지 않는다.",
+            "reason": "정책에서 요구한 검토절차의 수행 여부를 기록하지 않는다고 명시적으로 반대하였다."
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "not_met",
+            "reason": "검토가 감사보고서일 또는 그 전에 종료되었음을 문서화한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "검토자가 부적합하다고 판단할 미해결 사항을 인지하지 않음을 문서화한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit8",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "정책에서 요구한 검토절차의 수행 여부를 기록하지 않는다고 명시적으로 반대하였다."
+              },
+              {
+                "criterion_id": "crit9",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "검토가 감사보고서일 또는 그 전에 종료되었음을 문서화한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "검토자가 부적합하다고 판단할 미해결 사항을 인지하지 않음을 문서화한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-01-006",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "종전 품질관리체계의 업무품질관리검토자가 검토한 감사업무에 관하여 문서화해야 할 사항을 모두 제시하시오. 감사인 일반의 문서화 목록이나 최종파일 취합기한을 묻는 것은 아니다.",
+        "user_answer": "회계법인 정책에서 요구한 검토절차의 수행 여부는 기록하지 않는다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit8",
+            "verdict": "contradicted",
+            "quote": "회계법인 정책에서 요구한 검토절차의 수행 여부는 기록하지 않는다.",
+            "reason": "정책에서 요구한 검토절차의 수행 여부를 기록하지 않는다고 명시적으로 반대하였다.",
+            "claim": "회계법인의 업무품질관리검토 정책에서 요구한 절차가 수행되었음을 문서화한다고 제시한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "not_met",
+            "reason": "검토가 감사보고서일 또는 그 전에 종료되었음을 문서화한다는 내용이 없다.",
+            "claim": "실제 업무품질관리검토가 감사보고서일 또는 그 전에 종료되었음을 문서화한다고 제시한다. 모든 문서의 최종 정리까지 보고서일 전에 끝나야 한다는 추가요건은 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "검토자가 부적합하다고 판단할 미해결 사항을 인지하지 않음을 문서화한다는 내용이 없다.",
+            "claim": "업무팀의 유의적 판단과 도달된 결론이 적합하지 않았다고 판단할 만한 미해결 사항을 검토자가 인지하고 있지 않음을 문서화한다고 제시한다. 알려진 유의적 미해결 사항을 단순히 적어두기만 하면 완료된다는 주장과 구별한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "업무품질관리검토에 관한 회계법인 정책에서 요구한 절차를 수행하였음을 문서화한다.",
+          "업무품질관리검토가 감사보고서일 또는 그 전에 종료되었음을 문서화한다.",
+          "업무팀의 유의적 판단과 결론이 부적합하다고 판단할 만한 어떠한 미해결 사항도 검토자가 인지하지 않고 있음을 문서화한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_05470139437e4cb8016aa4c734250487d0832ed43065669571",
+        "request_id": "req_48f7912dd0734255a93995230a26f49c",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2677,
+          "input_tokens_details": {
+            "cache_write_tokens": 2674,
+            "cached_tokens": 0
+          },
+          "output_tokens": 245,
+          "output_tokens_details": {
+            "reasoning_tokens": 49
+          },
+          "total_tokens": 2922
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009631,
+        "min_usd": 0.0009631,
+        "max_usd": 0.0009631,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-01-006--sub3--standard--wrong/input.json",
+      "sha256": "de85b09571baa7034d48e87362621fc4408df93d8d198572cf6fb6571fe46215"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-01-006--sub3--standard--wrong/transport.jsonl",
+      "sha256": "4e4756b9d7c62d8a8886e9c92e477b2e0987761c5b519a642d3d4357950d8f93"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-01-006--sub3--standard--wrong/traces.jsonl",
+      "sha256": "eb3ed151abb5612ae091fde7c49c0b290f1345b7fadb0ad069cc991a643aa570"
+    }
+  }
+}

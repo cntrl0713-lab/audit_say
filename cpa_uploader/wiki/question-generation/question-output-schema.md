@@ -1,7 +1,7 @@
 ---
 title: 문제 생성 출력 스키마
 created: 2026-08-07
-updated: 2026-09-09
+updated: 2026-09-12
 type: guide
 status: reviewed
 review_required: false
@@ -13,6 +13,8 @@ confidence: high
 # 문제 생성 출력 스키마
 
 실제 형상은 `lib/questionV3.ts`의 `QuestionSetV3`와 검증기가 기준이다. 아래는 필수 연결을 설명하는 **구조 예시**이며 출처 경로·원문·해시는 실제 자료로 채워야 한다. 그대로 은행에 넣는 검증 완료 문항이 아니다. 생성 스키마와 검증기는 모두 작성·순서 및 개수 무제한 계약만 허용하며, 과거 선택형 설정과 필수 정책 필드 누락을 거절한다.
+
+새 출력에는 같은 학습 유형의 1~4개 물음을 담는다. 각 물음의 `question_style`과 하나 이상의 `topic_ids`는 필수이며, 답안 형식인 `type`과 부모의 대표 `classification.topic_id`를 대신하지 않는다. 아래 예시는 부모 사실을 가진 `case`의 연결 구조다. `standard`를 작성할 때는 `shared_context.facts=[]`로 두고 각 발문만으로 답할 수 있게 한다. 기준서형을 여러 개 제작해도 실제 학습·제출은 한 물음씩 분리한다. 유형 판정·다주제·원문 계보·DB 독립 발문의 상세 계약은 [물음별 학습 단위](../../../docs/물음별-학습-단위와-분류-계약.md)를 따른다.
 
 ```json
 {
@@ -42,7 +44,7 @@ confidence: high
     "facts": [
       {
         "id": "f1",
-        "text": "여러 물음이 공유하는 최소 사실",
+        "text": "사례 판단에 실제로 필요한 주체·시점·상황의 사실",
         "scoreable": false
       }
     ]
@@ -52,6 +54,8 @@ confidence: high
     {
       "id": "q1",
       "type": "descriptive",
+      "question_style": "case",
+      "topic_ids": ["01"],
       "prompt": "물음 원문을 정확히 반영한 발문",
       "constraints": {
         "ordered": false,
@@ -117,16 +121,21 @@ confidence: high
 10. source/requirement/criterion 연결은 문자열 ID로 일치해야 한다. 한 requirement에 여러 독립 criterion이 연결될 수 있다.
 11. source fidelity는 실제 인용 처리에 맞게 정하고 최종 인용의 content_hash를 재계산한다. 예시의 문자열·자리표시자를 검수 완료 근거로 사용하지 않는다.
 12. 공개 변환에는 정답·criterion·requirements·source_quote·decision.correct를 노출하지 않는다. 작성 정본과 공개본을 혼용하지 않는다.
-13. `shared_context.facts`는 배열이며 각 fact는 고유한 id와 text를 가지고 `scoreable`은 항상 false다. 공통 지문에는 점수를 두지 않고 점수는 criterion으로만 부여한다. facts는 공개본에 그대로 나가므로 model_answer가 그대로 들어가면 검증 오류이고, model_answer 전문을 포함하면 경고가 발생한다. 사례형 세트는 이 지문에 결론 문장이 섞이지 않았는지 확인한다.
-14. 채점 프롬프트에는 `shared_context`가 함께 전달된다. 사례의 전제가 지문에만 있어도 평가자가 이를 보고 판정한다. 다만 공통 지문 자체는 채점 대상이 아니며 지문을 옮겨 적은 답안은 명제를 충족하지 않는다.
+13. `shared_context.facts`는 배열이며 각 fact는 고유한 id와 text를 가지고 `scoreable`은 항상 false다. 사례형은 필요한 부모 사실이 존재해야 하고 기준서형은 빈 배열이어야 한다. 공통 지문에는 점수를 두지 않고 점수는 criterion으로만 부여한다. facts는 공개본에 그대로 나가므로 model_answer가 그대로 들어가면 검증 오류이고, model_answer 전문을 포함하면 경고가 발생한다. 사례형 세트는 이 지문에 결론 문장이 섞이지 않았는지 확인한다.
+14. 사례형의 채점 프롬프트에는 부모 `shared_context`가 함께 전달된다. 사례의 전제가 지문에만 있어도 평가자가 이를 보고 판정한다. 기준서형은 사실관계 없이 독립 발문으로 평가한다. 공통 지문 자체는 채점 대상이 아니며 지문을 옮겨 적은 답안은 명제를 충족하지 않는다.
+15. 신규 물음의 `question_style`은 `case` 또는 `standard`이며 한 출력에 섞지 않는다. `topic_ids`는 등록된 OX 주제를 실제 물음 요구에 따라 하나 이상 연결하고 중복 없이 다주제를 허용한다. 기준서형은 특정 사례·다른 물음 없이 풀 수 있어야 하며, 특정 사실을 발문으로 옮겨 기준서형으로 표시하지 않는다.
 
 단독 신규 draft는 `npx tsx cpa_uploader/validate_draft_v3.ts --file <draft.json> --against-bank`로 검사한다. 기존 ID를 수정하는 draft는 신규 ID 중복 검사와 구분한다. 구조·인용 검증만으로 내용 적합이나 실제 채점 통과를 보장하지 않는다.
 
 이미 게시된 불변 DB 버전의 과거 constraints는 저장 기록을 바꾸지 않고 읽을 수 있다. 이 호환 처리는 저장 버전 조회에만 명시적으로 적용하며 신규 출제·정본 검증·승급·import에는 적용하지 않는다. 저장 버전도 `selection=all`로 전체 criterion 점수를 합산한다.
 
+`SubquestionV3`에서 학습 분류 필드가 선택형인 것은 메타데이터 없는 과거 불변 판본의 읽기 호환을 위한 것이다. 과거 판본의 학습 분류는 원문·receipt를 고치지 않고 sidecar와 봉인된 DB 메타데이터로 연결한다. 신규 생성에서는 두 필드를 생략하지 않는다. 주제 검색은 사례형 학습 단위 전체를 찾는 필터이며 사례 소속 물음의 풀이·채점 범위를 줄이지 않는다.
+
 ## 생성·의미검수 sidecar
 
 출제 계획·원문 문맥 패킷·의미검수 receipt는 위 문항 JSON과 별도 산출물이다. 문항 스키마에 임의 필드를 추가하거나 공개 문제본에 검수 원문·정답·사례를 넣지 않는다.
+
+현재 기본 검증·승급은 [공통 비용 통제 계약](../../../.agents/skills/audit-question-review/references/cost-controlled-verification.md)에 따른 agent의 전수 내용·출처·배점 검토와 실제 Luna 대표 채점을 `--efficient-review` 증거로 연결한다. agent 검토를 사람의 직접 확인으로 표시하지 않으며, 게시·DB 반영은 실제 사용자 승인 범위에서 수행한다. 95%·±1점은 채점 일관성 기준에만 적용하고 기반 자료·모범답안·배점·QA 기대값의 미해결 오류는 허용하지 않는다. 아래 `<review.json>` 형상과 `--review` 승급 요건은 **기준별 전수검사 경로를 선택했을 때** 적용하며 기존의 엄격한 수락 계약을 보존한다.
 
 - `<draft>.authoring-plan.json`: `artifact_type: question_authoring_plan`, version 1, 세트 ID가 연결된 `plans` 배열.
 - `<draft>.source-packet.json`: `artifact_type: question_source_packet`, version 1, 세트 ID와 계획 해시가 연결된 `packets` 배열. 선택 원문과 의존 문맥·근거 계층·판본·해시를 보존한다.

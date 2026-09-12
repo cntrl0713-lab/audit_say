@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "status": "proposal_record_api0_parent_applied_while_preparing",
+  "code_file": "cpa_uploader/questionSemanticReview.ts",
+  "code_sha256_before": "89aada95959c742054a7d415959049dbb652c154567146887868f4796ecd76f9",
+  "before_snapshot": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/grading-inference-followup-v2/cpa_uploader__questionSemanticReview.ts.before.txt",
+    "sha256": "89aada95959c742054a7d415959049dbb652c154567146887868f4796ecd76f9"
+  },
+  "parent_after_code": {
+    "file": "cpa_uploader/questionSemanticReview.ts",
+    "sha256": "33447f3df65a8e59d0d7b65d2d1ea515cc8bfb507f005eaea6bcc1f9895733a3"
+  },
+  "operation": "replace_exactly_one_sentence_with_two_sentences",
+  "before": "omission/opposite/condition_boundary는 목표 criterion의 필수 요소·조건을 실제로 바꾸는 사례로 설계한다.",
+  "after": "omission은 목표 명제를 실제로 빠뜨리되 부정하지 않는 중립적 누락으로 설계한다. 필요한 행위를 하지 않는다고 명시하거나 만·제외 등으로 그 의무를 실제 배제한 답은 목표 명제에 대한 반대이므로 omission/not_met으로 만들지 말고 opposite/contradicted로 구별하며, condition_boundary는 실제 적용을 가르는 조건을 바꾸고 그 조건에서의 필수 요구를 대조한다.",
+  "preserved_next_sentence": "답안 전체가 남은 이유나 조치로 명제를 충족하면 실제 누락이 아니므로 누락 사례를 다시 설계한다.",
+  "rationale": "실제 SDK 지침은 omission/opposite/condition_boundary를 한 문장에 묶으며 omission의 중립성과 명시적 요구 부정을 구별하지 않는다. 현재 validator는 omission=not_met/계약상 partial, opposite=contradicted를 요구하므로 생성 단계에서 기존 계약을 명시해야 한다.",
+  "unchanged_contracts": [
+    "기존 다섯 사례 종류와 개수, response schema와 필수 ID 검증을 유지한다.",
+    "criterion별 독립 판정과 점수계약을 유지한다. 다른 독립 요구의 오류를 맞는 목표 명제에 전가하지 않는다.",
+    "실제 조건·주체·시점을 바꾸는 condition_boundary의 기존 문맥 규칙을 유지한다. 단순 반대 문장을 경계라고 이름만 바꾸지 않는다.",
+    "condition_boundary의 not_met/contradicted 영점 비교 허용을 omission까지 확장하지 않는다.",
+    "원문·문항·계획·원 receipt·원 기대·원 답안·원시 실측은 덮어쓰지 않는다."
+  ],
+  "independent_partial_qa_scope": {
+    "decision": "이미 존재하는 중립 omit-crit4와 B의 원실패 보존 후속 QA를 사용한다. 아래 짧은 대조군은 제안만 두고 활성 QA를 추가하지 않는다.",
+    "existing_case_id": "pilot-05-003-sub2-omit-crit4",
+    "existing_case_points": 5,
+    "preserved_original_answer": "미비점의 잠재적 영향만 설명하고, 미비점 자체의 내역은 제시하지 않는다.",
+    "proposed_original_full_verdicts": [
+      {
+        "criterion_id": "crit4",
+        "verdict": "contradicted"
+      },
+      {
+        "criterion_id": "crit5",
+        "verdict": "met"
+      },
+      {
+        "criterion_id": "crit6",
+        "verdict": "not_met"
+      },
+      {
+        "criterion_id": "crit7",
+        "verdict": "not_met"
+      },
+      {
+        "criterion_id": "crit9",
+        "verdict": "not_met"
+      },
+      {
+        "criterion_id": "crit8",
+        "verdict": "not_met"
+      }
+    ],
+    "proposed_original_points": 1,
+    "optional_unactivated_companion": {
+      "answer": "미비점의 잠재적 영향을 설명한다.",
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met"
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "not_met"
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "not_met"
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "not_met"
+        }
+      ],
+      "expected_points": 1
+    },
+    "rule": "독립 요구 일부가 빠지면 남은 전체 답안으로 각 criterion을 별도로 판단하여 정수 점수를 합산한다. 옛 총점 0이나 하나의 목표 expected를 이웃 criterion에 복사하지 않는다. 기대를 정정할 때 원답안과 원 expected/receipt를 함께 연결한다."
+  },
+  "validation_recommendation": [
+    "정확 치환 한 번과 다른 코드 불변 확인",
+    "semantic schema의 기존 다섯 종류/기대 계약 회귀 유지",
+    "원답안을 보존한 반대 사례와 기존 중립 누락 사례를 별도로 검증",
+    "조건 경계/함축 정답의 기존 회귀 보존; 문자열 만의 유무로 판정하는 규칙 추가 금지"
+  ],
+  "execution": {
+    "new_api_calls": 0,
+    "proposed_code_applied": false,
+    "new_receipt_created": false
+  }
+}

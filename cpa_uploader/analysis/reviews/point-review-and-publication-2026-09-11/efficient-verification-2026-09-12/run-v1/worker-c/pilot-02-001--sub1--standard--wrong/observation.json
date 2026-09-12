@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/grading-manifest.json",
+    "sha256": "5920ef24babb0fb11a83322f280da66282a33b11f02ad7f87a3d6ebce62fce99"
+  },
+  "entry_id": "pilot-02-001--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-02-001--sub1--standard",
+  "source_set_id": "pilot-02-001",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "6395878e7a1a83009b390005c707d0b71ee1d858b4516166cadeb60940f80d83",
+  "answers": {
+    "sub1": "감사보고서의 글자 크기를 보기 좋게 맞춘다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "요구된 독립 명제가 실제 답안에 없음"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "요구된 독립 명제가 실제 답안에 없음"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "775531052a498c10754d954054d2f43c60847fd44ae5394455e1ca6c6a40d524",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "전문가적 의구심 유지 필요성에 대한 판단이 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "설득력이 낮은 감사증거에 만족할 수 없는지에 대한 판단이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전문가적 의구심 유지 필요성에 대한 판단이 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "설득력이 낮은 감사증거에 만족할 수 없는지에 대한 판단이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-02-001",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사인이 경영진의 정직성과 성실성을 신뢰하는 경우, 전문가적 의구심 유지의 필요성이 경감되는지와 설득력이 낮은 감사증거에 만족해도 되는지를 각각 판단하시오.",
+        "user_answer": "감사보고서의 글자 크기를 보기 좋게 맞춘다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "전문가적 의구심 유지 필요성에 대한 판단이 없다.",
+            "claim": "경영진을 신뢰해도 전문가적 의구심 유지 필요성은 경감되지 않는다고 판단함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "설득력이 낮은 감사증거에 만족할 수 없는지에 대한 판단이 없다.",
+            "claim": "설득력이 낮은 감사증거에 만족할 수 없음을 근거로 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진의 정직성과 성실성을 신뢰하더라도 전문가적 의구심을 유지할 필요성은 경감되지 않으며, 설득력이 낮은 감사증거에 만족할 수 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0287c68f041ea354016aa4c1c6fb8487d0b9667c44681132b8",
+        "request_id": "req_ef8ea6a6b26844faa80376c139bf2e3b",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2309,
+          "input_tokens_details": {
+            "cache_write_tokens": 2306,
+            "cached_tokens": 0
+          },
+          "output_tokens": 172,
+          "output_tokens_details": {
+            "reasoning_tokens": 42
+          },
+          "total_tokens": 2481
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0007835,
+        "min_usd": 0.0007835,
+        "max_usd": 0.0007835,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-c/pilot-02-001--sub1--standard--wrong/input.json",
+      "sha256": "9de8bc40ac83070977bb8176ce1c8a866c8dbd467e65d0dbb14912bbb2c16978"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-c/pilot-02-001--sub1--standard--wrong/transport.jsonl",
+      "sha256": "2e9681f7ebd82f29e677f0c8e4d95604449f1c9606ab30e4686d6982563dffb8"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-c/pilot-02-001--sub1--standard--wrong/traces.jsonl",
+      "sha256": "c324fa5341debcfec0c29a22544fec3d75372cf472d410d47cea5968250b0b6e"
+    }
+  }
+}

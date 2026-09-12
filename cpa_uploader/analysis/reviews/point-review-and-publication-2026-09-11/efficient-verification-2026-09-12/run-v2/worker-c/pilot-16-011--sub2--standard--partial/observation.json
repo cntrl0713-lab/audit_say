@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-16-011--sub2--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-011--sub2--standard",
+  "source_set_id": "pilot-16-011",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "68e310825b070e48a5e0d9dad971d776c39d17c63e6b1265971309b25894f94e",
+  "answers": {
+    "sub2": "을-2에서는 감사인의 법적 권리와 의무를 고려해야 한다.\n을-2에서는 감사보고서 이용자가 중요한 미수정왜곡표시에 적절하게 주의를 기울일 수 있도록 적절한 조치를 취해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "대상 독립 명제 전체를 생략했으며 나머지 명제는 유지하였다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "met",
+          "reason": "대상 독립 명제 전체를 생략했으며 나머지 명제는 유지하였다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "met",
+          "reason": "대상 독립 명제 전체를 생략했으며 나머지 명제는 유지하였다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "0dbfbda5f703e7d2a0baf70c806a633e2d7933303ad17725aad0ac3b2010d805",
+  "schema_hash": "c18a6102683648751084c1200cfb8b8e0a0f386942b1a00ac1e144b618fc3ff6",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "을-1에 관한 실제 수정 여부 확인 및 필요한 후속 절차가 답안에 없다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "을-2에서는 감사인의 법적 권리와 의무를 고려해야 한다.\n",
+            "reason": "을-2의 조치를 정할 때 감사인의 법적 권리와 의무를 고려한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "met",
+            "quote": "을-2에서는 감사보고서 이용자가 중요한 미수정왜곡표시에 적절하게 주의를 기울일 수 있도록 적절한 조치를 취해야 한다.",
+            "reason": "감사보고서 이용자가 중요한 미수정왜곡표시에 적절히 주의를 기울일 수 있도록 적절한 조치를 취한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "을-1에 관한 실제 수정 여부 확인 및 필요한 후속 절차가 답안에 없다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "을-2의 조치를 정할 때 감사인의 법적 권리와 의무를 고려한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "감사보고서 이용자가 중요한 미수정왜곡표시에 적절히 주의를 기울일 수 있도록 적절한 조치를 취한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-011",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사보고서일 후 입수한 기타정보에 중요한 왜곡표시가 있다고 결론을 내린 경우, ① 경영진이 수정에 동의하는 경우와 ② 경영진이 수정을 거부하여 지배기구와 커뮤니케이션한 후에도 수정되지 않는 경우에 감사인이 취할 후속 조치를 각각 설명하시오. ①은 수정 여부에 관한 확인을 포함하고, ②는 법적 권리·의무와 감사보고서 이용자에 대한 조치를 구별하여 작성하시오. 가능한 모든 조치의 예시를 열거할 필요는 없다.",
+        "user_answer": "을-2에서는 감사인의 법적 권리와 의무를 고려해야 한다.\n을-2에서는 감사보고서 이용자가 중요한 미수정왜곡표시에 적절하게 주의를 기울일 수 있도록 적절한 조치를 취해야 한다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "을-1에 관한 실제 수정 여부 확인 및 필요한 후속 절차가 답안에 없다.",
+            "claim": "을-1에서는 수정이 실제로 이루어졌는지 판단하는 것을 포함하여 상황에 필요한 절차를 수행함을 설명한다. 경영진의 수정 동의나 완료 주장만으로 끝내면 충족하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "을-2에서는 감사인의 법적 권리와 의무를 고려해야 한다.",
+            "reason": "을-2의 조치를 정할 때 감사인의 법적 권리와 의무를 고려한다고 명시했다.",
+            "claim": "을-2의 적절한 조치를 정할 때 감사인의 법적 권리와 의무를 고려함을 설명한다. 항상 소송 제기나 규제당국 신고가 의무라고 단정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "met",
+            "quote": "을-2에서는 감사보고서 이용자가 중요한 미수정왜곡표시에 적절하게 주의를 기울일 수 있도록 적절한 조치를 취해야 한다.",
+            "reason": "감사보고서 이용자가 중요한 미수정왜곡표시에 적절히 주의를 기울일 수 있도록 적절한 조치를 취한다고 명시했다.",
+            "claim": "을-2에서는 감사보고서 이용자에게 중요한 미수정왜곡표시가 적절히 알려지도록 조치를 취함을 설명한다. 특정 수단 하나를 법적 허용·상황 적합성 없이 언제나 수행해야 한다는 주장으로 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "을-1에서는 실제로 수정이 이루어졌는지 판단하는 등 해당 상황에 필요한 절차를 수행해야 한다.",
+          "을-2에서는 감사인의 법적 권리와 의무를 고려해야 한다.",
+          "을-2에서는 감사보고서 이용자가 중요한 미수정왜곡표시에 적절하게 주의를 기울일 수 있도록 적절한 조치를 취해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_05ccdc9b605fdf08016aa4d20156ac87d088033c9c5073cfd7",
+        "request_id": "req_cc56b90ed37d498582c58c66f955f267",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2956,
+          "input_tokens_details": {
+            "cache_write_tokens": 2953,
+            "cached_tokens": 0
+          },
+          "output_tokens": 240,
+          "output_tokens_details": {
+            "reasoning_tokens": 37
+          },
+          "total_tokens": 3196
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00102685,
+        "min_usd": 0.00102685,
+        "max_usd": 0.00102685,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-16-011--sub2--standard--partial/input.json",
+      "sha256": "bcadf3a2480bc612fe8ad56323f1078af8146fe0ab7c2201a1efd09eb1501336"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-16-011--sub2--standard--partial/transport.jsonl",
+      "sha256": "2554f0dab9446b6688b0f50a085ad6fc7a146390e75d54993393871ea94d4442"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-16-011--sub2--standard--partial/traces.jsonl",
+      "sha256": "05130468724dc2527f17c3d112ce989142a570584c24cf2e01ce1a29ab3ae062"
+    }
+  }
+}

@@ -1,0 +1,489 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-06-006--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-06-006--case",
+  "source_set_id": "pilot-06-006",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "229dfa16617681913c2ee4dc320199ac77a9b0e3530ac6854722705d3a36da11",
+  "answers": {
+    "sub1": "흐름 A의 담당자는 거래처 계좌를 변경하고 지급파일을 승인한다. 흐름 B의 담당자는 지급을 실행하고 채무를 반제하며 은행대사를 한다.",
+    "sub2": "계좌 변경자에게 지급승인 권한을 더 주고 독립 검토는 없애야 한다.",
+    "sub3": "담당자에게 물어보는 것만으로 실행 확인은 언제나 충분하다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 흐름 A의 결제계좌 변경과 그 계좌에 대한 지급승인은 서로 독립되게 수행·검토되어야 할 권한 조합이다. 현재 구조에서는 계좌를 변경한 본인이 그 계좌에 대한 지급을 승인하여 변경과 지급 사이의 독립된 견제가 없다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 흐름 A에서는 정상 거래처의 계좌를 임의 계좌로 바꾸고 그 지급을 스스로 승인하여 부당한 계좌로 자금을 지급할 위험이 있다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 흐름 B의 자금 지급 실행은 회계기록과 은행대사·조정의 독립된 검증으로 견제되어야 한다. 현재 구조에서는 자금을 집행한 사람이 자신의 집행 결과를 기록하고 검증하여 자산의 취급과 기록·검증이 서로 견제하지 못한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 흐름 B에서는 부당한 지급을 실행한 사람이 회계기록이나 대사 조정을 이용하여 그 지급·차이를 스스로 은폐할 위험이 있다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 흐름 A는 결제계좌 변경을 지급승인자와 독립된 권한자가 유효성을 확인해 승인하게 하는 등, 한 사람이 계좌 변경과 지급승인을 단독으로 오용하지 못하도록 권한분리·접근제한 또는 충분한 독립 검토를 마련한다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 흐름 A의 검증 흔적으로 변경 전후 계좌와 근거, 독립된 승인자·승인시점, 변경 후 지급내역의 검토 기록 등 변경·지급의 적정성을 확인한 증적을 남긴다."
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 흐름 B는 지급 실행과 회계기록·은행대사를 독립된 사람이 수행하도록 분리하거나, 실행자와 독립된 사람이 대사와 조정을 충분히 검토하는 보완 통제를 둔다."
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 흐름 B의 검증 흔적으로 은행자료와 회계기록의 대사표, 차이의 조사·조정 근거 및 독립된 검토자의 확인 기록 등 대사와 후속조치의 증적을 남긴다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit9",
+          "verdict": "contradicted",
+          "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 질문에 추가하여 계좌 변경·승인 기록이나 권한 설정·대사 검토기록을 검사하거나 실제 승인·대사 검토 절차를 관찰하는 등 통제의 적용에 관한 절차를 수행한다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 해당 통제가 규정이나 설계에만 존재하는 것이 아니라 기업에 실제 존재하며 사용되고 있는지 확인한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "489cbc0b99a92f7853662b7fab334b35db614766b5115f388c6eaa2993a50e2d",
+  "schema_hash": "6f000d26bbe85129744c9021df0fab3775c47d0919beb108d9502e6fdb5849ff",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "독립 수행·검토의 필요성과 현재 독립 견제의 부재를 설명하지 않았다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "계좌 변경 및 지급승인으로 인한 부당 지급 위험을 설명하지 않았다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "지급 실행과 회계기록·은행대사의 독립 검증 및 견제 부재를 설명하지 않았다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "부당 지급을 회계기록이나 대사 조정으로 은폐할 위험을 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "계좌 변경자에게 지급승인 권한을 더 주고 독립 검토는 없애야 한다.",
+            "reason": "독립 검토를 없애고 계좌 변경자에게 지급승인 권한을 더 주라고 하여 요구된 권한분리·독립 검토와 반대된다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "변경·지급의 적정성을 확인하는 검증 흔적을 제시하지 않았다."
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "not_met",
+            "reason": "지급 실행과 회계기록·은행대사의 분리 또는 독립 검토 통제를 제시하지 않았다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "not_met",
+            "reason": "대사표, 차이 조사·조정 근거 및 독립 검토 기록을 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit9",
+            "verdict": "contradicted",
+            "quote": "담당자에게 물어보는 것만으로 실행 확인은 언제나 충분하다.",
+            "reason": "담당자에게 묻는 것만으로 언제나 충분하다고 하여 기록 검사나 관찰 등 추가 절차의 필요성을 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "통제가 실제 존재하고 사용되는지 확인한다는 명제를 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "독립 수행·검토의 필요성과 현재 독립 견제의 부재를 설명하지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "계좌 변경 및 지급승인으로 인한 부당 지급 위험을 설명하지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "지급 실행과 회계기록·은행대사의 독립 검증 및 견제 부재를 설명하지 않았다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "부당 지급을 회계기록이나 대사 조정으로 은폐할 위험을 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "독립 검토를 없애고 계좌 변경자에게 지급승인 권한을 더 주라고 하여 요구된 권한분리·독립 검토와 반대된다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "변경·지급의 적정성을 확인하는 검증 흔적을 제시하지 않았다."
+              },
+              {
+                "criterion_id": "crit7",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "지급 실행과 회계기록·은행대사의 분리 또는 독립 검토 통제를 제시하지 않았다."
+              },
+              {
+                "criterion_id": "crit8",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "대사표, 차이 조사·조정 근거 및 독립 검토 기록을 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit9",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "담당자에게 묻는 것만으로 언제나 충분하다고 하여 기록 검사나 관찰 등 추가 절차의 필요성을 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "통제가 실제 존재하고 사용되는지 확인한다는 명제를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-06-006",
+    "score": 0,
+    "max_points": 10,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "흐름 A와 흐름 B 각각에서 어떤 권한들을 서로 독립되게 수행·검토해야 하는지 판단하고, 현재 조합이 없애는 내부 견제를 설명하시오. 이어 그 조합으로 한 사람이 일으키거나 은폐할 수 있는 오류·부정 위험을 연결하여 설명하시오. 주어진 권한 목록을 그대로 옮기거나 업무분장이 미흡하다는 명칭만 제시하지 마시오.",
+        "user_answer": "흐름 A의 담당자는 거래처 계좌를 변경하고 지급파일을 승인한다. 흐름 B의 담당자는 지급을 실행하고 채무를 반제하며 은행대사를 한다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "독립 수행·검토의 필요성과 현재 독립 견제의 부재를 설명하지 않았다.",
+            "claim": "흐름 A의 결제계좌 변경과 그 계좌에 대한 지급승인은 서로 독립되게 수행·검토되어야 할 권한 조합이다. 현재 구조에서는 계좌를 변경한 본인이 그 계좌에 대한 지급을 승인하여 변경과 지급 사이의 독립된 견제가 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "계좌 변경 및 지급승인으로 인한 부당 지급 위험을 설명하지 않았다.",
+            "claim": "흐름 A에서는 정상 거래처의 계좌를 임의 계좌로 바꾸고 그 지급을 스스로 승인하여 부당한 계좌로 자금을 지급할 위험이 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "지급 실행과 회계기록·은행대사의 독립 검증 및 견제 부재를 설명하지 않았다.",
+            "claim": "흐름 B의 자금 지급 실행은 회계기록과 은행대사·조정의 독립된 검증으로 견제되어야 한다. 현재 구조에서는 자금을 집행한 사람이 자신의 집행 결과를 기록하고 검증하여 자산의 취급과 기록·검증이 서로 견제하지 못한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "부당 지급을 회계기록이나 대사 조정으로 은폐할 위험을 설명하지 않았다.",
+            "claim": "흐름 B에서는 부당한 지급을 실행한 사람이 회계기록이나 대사 조정을 이용하여 그 지급·차이를 스스로 은폐할 위험이 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "흐름 A의 결제계좌 변경과 그 계좌에 대한 지급승인은 서로 독립되게 수행·검토되어야 할 권한 조합이다. 현재 구조에서는 계좌를 변경한 본인이 그 계좌에 대한 지급을 승인하여 변경과 지급 사이의 독립된 견제가 없다.",
+          "흐름 A에서는 정상 거래처의 계좌를 임의 계좌로 바꾸고 그 지급을 스스로 승인하여 부당한 계좌로 자금을 지급할 위험이 있다.",
+          "흐름 B의 자금 지급 실행은 회계기록과 은행대사·조정의 독립된 검증으로 견제되어야 한다. 현재 구조에서는 자금을 집행한 사람이 자신의 집행 결과를 기록하고 검증하여 자산의 취급과 기록·검증이 서로 견제하지 못한다.",
+          "흐름 B에서는 부당한 지급을 실행한 사람이 회계기록이나 대사 조정을 이용하여 그 지급·차이를 스스로 은폐할 위험이 있다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "각 흐름의 취약점에 대응하는 구체적인 개선 통제와, 그 통제가 수행되었는지 확인할 수 있는 검토·승인의 흔적을 각각 제시하시오. 인력이나 직함을 특정할 필요는 없으며 같은 위험을 충분히 다루는 보완 통제도 제시할 수 있다.",
+        "user_answer": "계좌 변경자에게 지급승인 권한을 더 주고 독립 검토는 없애야 한다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "계좌 변경자에게 지급승인 권한을 더 주고 독립 검토는 없애야 한다.",
+            "reason": "독립 검토를 없애고 계좌 변경자에게 지급승인 권한을 더 주라고 하여 요구된 권한분리·독립 검토와 반대된다.",
+            "claim": "흐름 A는 결제계좌 변경을 지급승인자와 독립된 권한자가 유효성을 확인해 승인하게 하는 등, 한 사람이 계좌 변경과 지급승인을 단독으로 오용하지 못하도록 권한분리·접근제한 또는 충분한 독립 검토를 마련한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "변경·지급의 적정성을 확인하는 검증 흔적을 제시하지 않았다.",
+            "claim": "흐름 A의 검증 흔적으로 변경 전후 계좌와 근거, 독립된 승인자·승인시점, 변경 후 지급내역의 검토 기록 등 변경·지급의 적정성을 확인한 증적을 남긴다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "not_met",
+            "reason": "지급 실행과 회계기록·은행대사의 분리 또는 독립 검토 통제를 제시하지 않았다.",
+            "claim": "흐름 B는 지급 실행과 회계기록·은행대사를 독립된 사람이 수행하도록 분리하거나, 실행자와 독립된 사람이 대사와 조정을 충분히 검토하는 보완 통제를 둔다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "not_met",
+            "reason": "대사표, 차이 조사·조정 근거 및 독립 검토 기록을 제시하지 않았다.",
+            "claim": "흐름 B의 검증 흔적으로 은행자료와 회계기록의 대사표, 차이의 조사·조정 근거 및 독립된 검토자의 확인 기록 등 대사와 후속조치의 증적을 남긴다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "흐름 A는 결제계좌 변경을 지급승인자와 독립된 권한자가 유효성을 확인해 승인하게 하는 등, 한 사람이 계좌 변경과 지급승인을 단독으로 오용하지 못하도록 권한분리·접근제한 또는 충분한 독립 검토를 마련한다.",
+          "흐름 A의 검증 흔적으로 변경 전후 계좌와 근거, 독립된 승인자·승인시점, 변경 후 지급내역의 검토 기록 등 변경·지급의 적정성을 확인한 증적을 남긴다.",
+          "흐름 B는 지급 실행과 회계기록·은행대사를 독립된 사람이 수행하도록 분리하거나, 실행자와 독립된 사람이 대사와 조정을 충분히 검토하는 보완 통제를 둔다.",
+          "흐름 B의 검증 흔적으로 은행자료와 회계기록의 대사표, 차이의 조사·조정 근거 및 독립된 검토자의 확인 기록 등 대사와 후속조치의 증적을 남긴다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "개선 통제가 적절하게 설계되었다고 평가한 뒤, 담당자의 설명에 추가하여 실행 여부를 확인할 구체적인 절차와 그 결과 확인하려는 통제의 상태를 각각 설명하시오. 기간 전체의 운영효과성 테스트를 설계할 필요는 없다.",
+        "user_answer": "담당자에게 물어보는 것만으로 실행 확인은 언제나 충분하다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit9",
+            "verdict": "contradicted",
+            "quote": "담당자에게 물어보는 것만으로 실행 확인은 언제나 충분하다.",
+            "reason": "담당자에게 묻는 것만으로 언제나 충분하다고 하여 기록 검사나 관찰 등 추가 절차의 필요성을 명시적으로 부정했다.",
+            "claim": "질문에 추가하여 계좌 변경·승인 기록이나 권한 설정·대사 검토기록을 검사하거나 실제 승인·대사 검토 절차를 관찰하는 등 통제의 적용에 관한 절차를 수행한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "통제가 실제 존재하고 사용되는지 확인한다는 명제를 제시하지 않았다.",
+            "claim": "해당 통제가 규정이나 설계에만 존재하는 것이 아니라 기업에 실제 존재하며 사용되고 있는지 확인한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "질문에 추가하여 계좌 변경·승인 기록이나 권한 설정·대사 검토기록을 검사하거나 실제 승인·대사 검토 절차를 관찰하는 등 통제의 적용에 관한 절차를 수행한다.",
+          "해당 통제가 규정이나 설계에만 존재하는 것이 아니라 기업에 실제 존재하며 사용되고 있는지 확인한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_06dbfa3f40e40723016aa4cb20b57087d08bee83f9990556eb",
+        "request_id": "req_9e84292eb6384edba62554defd11b004",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 5486,
+          "input_tokens_details": {
+            "cache_write_tokens": 5483,
+            "cached_tokens": 0
+          },
+          "output_tokens": 800,
+          "output_tokens_details": {
+            "reasoning_tokens": 211
+          },
+          "total_tokens": 6286
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00233135,
+        "min_usd": 0.00233135,
+        "max_usd": 0.00233135,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-06-006--case--wrong/input.json",
+      "sha256": "c16ba2869eb352a087a9d9c0187d52ca53f79897122ae841719e82a593ba1e12"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-06-006--case--wrong/transport.jsonl",
+      "sha256": "a1c34c7350891170a5b8f6e06cc7667b33478bc0842230592b07ccb17380e252"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-06-006--case--wrong/traces.jsonl",
+      "sha256": "dec32561feeee86f49dbbb298902b58b6bd5f4973f0a50d107faa7354fa20856"
+    }
+  }
+}

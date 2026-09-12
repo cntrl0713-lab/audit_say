@@ -1,0 +1,306 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/grading-manifest.json",
+    "sha256": "5920ef24babb0fb11a83322f280da66282a33b11f02ad7f87a3d6ebce62fce99"
+  },
+  "entry_id": "pilot-01-005--case--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-01-005--case",
+  "source_set_id": "pilot-01-005",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2"
+  ],
+  "projected_body_hash": "7c3b8dd868e8938dbc0dd6bd0e9542fdb57ce69998ee458cbdddd4d47156b2eb",
+  "answers": {
+    "sub1": "그 조건을 유지한 채 감사업무를 수임할 수 없다.\n회계법인 자체가 재무제표감사의뢰인의 주식을 직접 보유하게 되어 직접적인 재무적 이해관계가 발생한다. 이 위협은 보유금액이 작다는 이유나 별도의 검토자 투입으로 수용가능한 수준으로 낮출 수 없고 해당 관계의 청산이 필요하다.",
+    "sub2": "회계법인의 매출 비중만으로 사업관계를 유지한 수임을 허용한 판단은 부적절하다.\n예외를 적용하려면 재무적 이해관계가 회계법인과 감사의뢰인 모두에게 중요하지 않고 관계도 명백하게 경미해야 한다. 을회사에는 중요하므로 회계법인 측의 미미함만으로는 그 예외를 충족하지 못한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "공식 근거와 해당 criterion의 발문 범위·조건에 따른 작성자 기대값. 저장 모범답안 전체. 모든 독립 명제를 충족한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "공식 근거와 해당 criterion의 발문 범위·조건에 따른 작성자 기대값. 저장 모범답안 전체. 모든 독립 명제를 충족한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "공식 근거와 해당 criterion의 발문 범위·조건에 따른 작성자 기대값. 저장 모범답안 전체. 모든 독립 명제를 충족한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "공식 근거와 해당 criterion의 발문 범위·조건에 따른 작성자 기대값. 저장 모범답안 전체. 모든 독립 명제를 충족한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "eeb18035429c8836c0e07e4393a4b7f55e01a83e282b67ca2fad0e6f50525794",
+  "schema_hash": "b5fc85d15540637e66cc72480c759f830ad0657bd2102c246318032215373c35",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "그 조건을 유지한 채 감사업무를 수임할 수 없다.\n",
+            "reason": "조건 유지 수임이 불가하다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "회계법인 자체가 재무제표감사의뢰인의 주식을 직접 보유하게 되어 직접적인 재무적 이해관계가 발생한다. 이 위협은 보유금액이 작다는 이유나 별도의 검토자 투입으로 수용가능한 수준으로 낮출 수 없고 해당 관계의 청산이 필요하다.",
+            "reason": "회계법인 자체의 직접 보유와 직접 재무적 이해관계, 안전장치로 해결할 수 없고 관계 청산이 필요함을 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "회계법인의 매출 비중만으로 사업관계를 유지한 수임을 허용한 판단은 부적절하다.\n",
+            "reason": "회계법인 측 매출 비중만으로 관계 유지를 허용한 판단이 부적절하다고 명시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "예외를 적용하려면 재무적 이해관계가 회계법인과 감사의뢰인 모두에게 중요하지 않고 관계도 명백하게 경미해야 한다. 을회사에는 중요하므로 회계법인 측의 미미함만으로는 그 예외를 충족하지 못한다.",
+            "reason": "양측 모두에게 중요하지 않고 관계가 명백히 경미해야 하며, 을회사에 중요하므로 예외가 충족되지 않음을 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "조건 유지 수임이 불가하다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2",
+                  "sub1/e3"
+                ],
+                "reason": "회계법인 자체의 직접 보유와 직접 재무적 이해관계, 안전장치로 해결할 수 없고 관계 청산이 필요함을 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "회계법인 측 매출 비중만으로 관계 유지를 허용한 판단이 부적절하다고 명시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2",
+                  "sub2/e3"
+                ],
+                "reason": "양측 모두에게 중요하지 않고 관계가 명백히 경미해야 하며, 을회사에 중요하므로 예외가 충족되지 않음을 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-01-005",
+    "score": 4,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "갑회사의 제시 조건을 그대로 유지한 채 감사업무를 수임할 수 있는지 판단하고, 재무적 이해관계의 주체와 성격을 근거로 설명하시오.",
+        "user_answer": "그 조건을 유지한 채 감사업무를 수임할 수 없다.\n회계법인 자체가 재무제표감사의뢰인의 주식을 직접 보유하게 되어 직접적인 재무적 이해관계가 발생한다. 이 위협은 보유금액이 작다는 이유나 별도의 검토자 투입으로 수용가능한 수준으로 낮출 수 없고 해당 관계의 청산이 필요하다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "그 조건을 유지한 채 감사업무를 수임할 수 없다.",
+            "reason": "조건 유지 수임이 불가하다고 명시했다.",
+            "claim": "갑회사의 주식보수·보유 조건을 그대로 유지한 감사 수임은 허용되지 않는다고 판단한다. 관계 해소가 필요하다는 설명이 이를 분명히 함축하면 판단을 인정하되 명시적인 수임 허용 결론은 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "회계법인 자체가 재무제표감사의뢰인의 주식을 직접 보유하게 되어 직접적인 재무적 이해관계가 발생한다. 이 위협은 보유금액이 작다는 이유나 별도의 검토자 투입으로 수용가능한 수준으로 낮출 수 없고 해당 관계의 청산이 필요하다.",
+            "reason": "회계법인 자체의 직접 보유와 직접 재무적 이해관계, 안전장치로 해결할 수 없고 관계 청산이 필요함을 설명했다.",
+            "claim": "주식을 직접 보유하는 주체가 회계법인 자체이며 감사의뢰인에 대한 직접 재무적 이해관계라는 점을 들어, 보유를 유지하면서 안전장치로 해결할 수 없는 관계라고 설명한다. 적은 금액이면 허용된다는 설명은 반대이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "그 조건을 유지한 채 감사업무를 수임할 수 없다.",
+          "회계법인 자체가 재무제표감사의뢰인의 주식을 직접 보유하게 되어 직접적인 재무적 이해관계가 발생한다. 이 위협은 보유금액이 작다는 이유나 별도의 검토자 투입으로 수용가능한 수준으로 낮출 수 없고 해당 관계의 청산이 필요하다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "을회사에 관한 담당자의 판단이 적절한지 판단하고, 친밀한 사업관계에 대한 중요성 조건을 근거로 설명하시오.",
+        "user_answer": "회계법인의 매출 비중만으로 사업관계를 유지한 수임을 허용한 판단은 부적절하다.\n예외를 적용하려면 재무적 이해관계가 회계법인과 감사의뢰인 모두에게 중요하지 않고 관계도 명백하게 경미해야 한다. 을회사에는 중요하므로 회계법인 측의 미미함만으로는 그 예외를 충족하지 못한다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "회계법인의 매출 비중만으로 사업관계를 유지한 수임을 허용한 판단은 부적절하다.",
+            "reason": "회계법인 측 매출 비중만으로 관계 유지를 허용한 판단이 부적절하다고 명시했다.",
+            "claim": "회계법인 측 비중만으로 공동사업을 유지한 수임을 허용한 판단은 부적절하다고 판단한다. 관계의 유지 불가 또는 필요한 관계 해소를 분명히 설명하면 별도 결론 문구는 불필요하다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "예외를 적용하려면 재무적 이해관계가 회계법인과 감사의뢰인 모두에게 중요하지 않고 관계도 명백하게 경미해야 한다. 을회사에는 중요하므로 회계법인 측의 미미함만으로는 그 예외를 충족하지 못한다.",
+            "reason": "양측 모두에게 중요하지 않고 관계가 명백히 경미해야 하며, 을회사에 중요하므로 예외가 충족되지 않음을 설명했다.",
+            "claim": "재무적 이해관계가 회계법인과 의뢰인 모두에게 중요하지 않고 관계가 명백하게 경미해야 하는 조건을 설명하고, 을회사에 중요한 사실로 그 예외가 충족되지 않음을 연결한다. 회계법인 한쪽의 중요성만 고려하면 충족하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "회계법인의 매출 비중만으로 사업관계를 유지한 수임을 허용한 판단은 부적절하다.",
+          "예외를 적용하려면 재무적 이해관계가 회계법인과 감사의뢰인 모두에게 중요하지 않고 관계도 명백하게 경미해야 한다. 을회사에는 중요하므로 회계법인 측의 미미함만으로는 그 예외를 충족하지 못한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_074c4c2af1f8677b016aa4c2346d1887d0a6e69f2d719f78be",
+        "request_id": "req_9120abe90f514e53afb58e9b05936420",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 4411,
+          "input_tokens_details": {
+            "cache_write_tokens": 4408,
+            "cached_tokens": 0
+          },
+          "output_tokens": 338,
+          "output_tokens_details": {
+            "reasoning_tokens": 31
+          },
+          "total_tokens": 4749
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0015082,
+        "min_usd": 0.0015082,
+        "max_usd": 0.0015082,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-a/pilot-01-005--case--model/input.json",
+      "sha256": "7ff20288f395e3a8f4c264a2b328ab4787b35248a0c499411cd9bcf3dae0fd54"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-a/pilot-01-005--case--model/transport.jsonl",
+      "sha256": "f9a6ae247eaa071d1212cf9a893d07c2f08ead386f1cf74a276b1f40ef2f1e6d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-a/pilot-01-005--case--model/traces.jsonl",
+      "sha256": "fcdcf88d5e89dfe6b6411830cff953c99a0b3a6b0a1cf298cfa858bf1c919858"
+    }
+  }
+}

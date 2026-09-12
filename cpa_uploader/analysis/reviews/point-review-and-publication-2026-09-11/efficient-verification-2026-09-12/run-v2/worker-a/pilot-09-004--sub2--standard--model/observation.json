@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-09-004--sub2--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-09-004--sub2--standard",
+  "source_set_id": "pilot-09-004",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "27475a0c2358cf072bdf79c1248de70905a45c87a0e72329d43e474242125d52",
+  "answers": {
+    "sub2": "감사기준서 260에 따라 지배기구와 커뮤니케이션해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 505.9의 비합리적거부 또는 대체증거불가 조건이 발문에 있으므로 전달상대 지배기구1점이다. 감사의견결정은 묻지 않아 추가하지 않는다. 해당 기준 crit4의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "945f10be1c7f0bb0d290c016cb5115ea0153f5a109a20d0692fc1eef8007971e",
+  "schema_hash": "59cfd033cd4ad856425626785b77c0a751524681fe45bbc13be81ec2856707fe",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "감사기준서 260에 따라 지배기구와 커뮤니케이션해야 한다.",
+            "reason": "지배기구를 커뮤니케이션 대상으로 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "지배기구를 커뮤니케이션 대상으로 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-09-004",
+    "score": 1,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "경영진의 조회서 발송 거부가 비합리적이라고 결론 내렸거나, 대체절차로 관련성이 있고 신뢰할 수 있는 감사증거를 입수할 수 없다면 감사인은 누구와 커뮤니케이션해야 하는지 제시하시오.",
+        "user_answer": "감사기준서 260에 따라 지배기구와 커뮤니케이션해야 한다.",
+        "score": 1,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "감사기준서 260에 따라 지배기구와 커뮤니케이션해야 한다.",
+            "reason": "지배기구를 커뮤니케이션 대상으로 명시했다.",
+            "claim": "커뮤니케이션 대상인 지배기구를 제시함. 대상 명칭만으로 충족하며 기준서 번호는 별도 득점 요건이 아님",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "감사기준서 260에 따라 지배기구와 커뮤니케이션해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_09e2acbdc4ee877e016aa4cc41bbc887d0876bf7887482b655",
+        "request_id": "req_dffe44ec033441a79bd0633380514014",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2240,
+          "input_tokens_details": {
+            "cache_write_tokens": 2237,
+            "cached_tokens": 0
+          },
+          "output_tokens": 116,
+          "output_tokens_details": {
+            "reasoning_tokens": 24
+          },
+          "total_tokens": 2356
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00069905,
+        "min_usd": 0.00069905,
+        "max_usd": 0.00069905,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-09-004--sub2--standard--model/input.json",
+      "sha256": "baf1438232506dfe68d51257969136e0cda3ba8b7754a8e35da212393041092b"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-09-004--sub2--standard--model/transport.jsonl",
+      "sha256": "c4c8bac442408bfcd04d4e965f3e2ffe8e0df497706c9f786a7a48adcfdd5072"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-09-004--sub2--standard--model/traces.jsonl",
+      "sha256": "087d6782cc49f18e63a086af7479a738bdd899f950d8e43ba17a19d92e75d995"
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "method": "Unapplied source snapshots compiled in memory; selector mocks and immutable actual raw replay only.",
+  "created_at": "2026-09-12T03:44:30.991Z",
+  "api_calls": 0,
+  "production_changed": false,
+  "before_sha256": "142a5a6292d31188fd3bb5f8f4365705e9ed79208c1bfaa778264d7a52344ff3",
+  "proposed_sha256": "b97b17c7343e97e8af75d0d60d71bf6f1c372d32b47af51ebd7c723a859f0ed0",
+  "origin_manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "actual_replayed_observations": [
+    {
+      "entry_id": "pilot-01-006--sub1--standard--model",
+      "worker": "a",
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-01-006--sub1--standard--model/observation.json",
+        "sha256": "e70dd0a922240804e6c57cad044386d8d3a081f2d4e70f8faa28840714053de2"
+      },
+      "origin_manifest": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+        "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+      }
+    },
+    {
+      "entry_id": "pilot-02-001--sub1--standard--model",
+      "worker": "a",
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-a/pilot-02-001--sub1--standard--model/observation.json",
+        "sha256": "ecc4fe68262367822814868f59b047959e751d95fcb8e1b08600a8cc6101fc4c"
+      },
+      "origin_manifest": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/grading-manifest.json",
+        "sha256": "5920ef24babb0fb11a83322f280da66282a33b11f02ad7f87a3d6ebce62fce99"
+      }
+    }
+  ],
+  "all_original_runtime_files": 20,
+  "tests": 13,
+  "passed": 13,
+  "results": [
+    {
+      "name": "Current selector rejects actual run-v2 origin due to inherited v1 index",
+      "pass": true,
+      "rejected_with": "AssertionError [ERR_ASSERTION]: Original execution runtime snapshot missing"
+    },
+    {
+      "name": "Proposed selector replays actual run-v2 observation with all 20 original code identities",
+      "pass": true
+    },
+    {
+      "name": "Proposed selector preserves actual run-v1 observation reuse",
+      "pass": true
+    },
+    {
+      "name": "Changed expectation remains excluded even if answer/model/runtime are unchanged",
+      "pass": true,
+      "rejected_with": "AssertionError [ERR_ASSERTION]: Reused selected entry differs\n+ actual - expected\n\n+ 'edf6eaeb855e31e7770a3f00e2bb09dfefe30e0ca65642a2e8099f2ccca452f5'\n- '7b58752e296728e73e4c2d732428a0c1713b0efea38d2d5f217f3e2b58634ca0'\n"
+    },
+    {
+      "name": "Worker change remains rejected",
+      "pass": true,
+      "rejected_with": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'a' !== 'c'\n"
+    },
+    {
+      "name": "Old observation cannot claim a newer intermediate origin manifest",
+      "pass": true,
+      "rejected_with": "AssertionError [ERR_ASSERTION]: Reuse origin does not match observation\n+ actual - expected\n\n+ 'f69a958e52f4e0497f71a77238d10689e6e928424ace7d9acb47afbd2cbde863'\n- '289f0c82f138e1703157bde82a15ce96d08b55058a3b9a47ad68f58b8384addc'\n"
+    },
+    {
+      "name": "Unique exact sibling selected despite older suffix match first",
+      "pass": true
+    },
+    {
+      "name": "Input ordering does not change selected index",
+      "pass": true
+    },
+    {
+      "name": "No fallback to unrelated snapshot when sibling is absent",
+      "pass": true,
+      "rejected_with": "AssertionError [ERR_ASSERTION]: Exactly one original sibling runtime snapshot index required\n\n0 !== 1\n"
+    },
+    {
+      "name": "Duplicate exact sibling identities rejected",
+      "pass": true,
+      "rejected_with": "AssertionError [ERR_ASSERTION]: Exactly one original sibling runtime snapshot index required\n\n2 !== 1\n"
+    },
+    {
+      "name": "Normalized duplicate alias rejected",
+      "pass": true,
+      "rejected_with": "AssertionError [ERR_ASSERTION]: Exactly one original sibling runtime snapshot index required\n\n2 !== 1\n"
+    },
+    {
+      "name": "Nested index cannot impersonate sibling",
+      "pass": true,
+      "rejected_with": "AssertionError [ERR_ASSERTION]: Exactly one original sibling runtime snapshot index required\n\n0 !== 1\n"
+    },
+    {
+      "name": "Exact v3 archive supplies every declared 20 runtime file/hash",
+      "pass": true
+    }
+  ],
+  "guarded_files": 1767,
+  "not_a_publication_receipt": true
+}

@@ -18,7 +18,7 @@ type Notice = { type: 'success' | 'error'; text: string };
 type ApiResult = { ok?: boolean; message?: string; error?: string; cleanupPending?: boolean };
 
 const inputClass = 'w-full rounded-md border border-card-border bg-background px-3 py-2.5 text-sm focus:border-primary disabled:opacity-50';
-const buttonClass = 'rounded-md bg-primary px-4 py-2.5 text-sm text-white hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50';
+const buttonClass = 'rounded-md bg-primary px-4 py-2.5 text-sm text-primary-foreground hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50';
 const quietButtonClass = 'rounded-md border border-card-border px-4 py-2.5 text-sm hover:bg-background disabled:cursor-not-allowed disabled:opacity-50';
 const dangerButtonClass = 'rounded-md border border-danger/40 px-4 py-2.5 text-sm text-danger hover:bg-danger/5 disabled:cursor-not-allowed disabled:opacity-50';
 const withdrawalPhrase = '감사 서비스 탈퇴';

@@ -1,0 +1,435 @@
+
+
+
+   
+
+
+
+
+
+
+<!-- 2017.04.19 sskim : 게시판 카테고리 값 확인하기 위해 추가 -->
+   
+   
+   
+   
+
+<!-- 2017.02.09 sskim : 테마 입힌 게시판 상세페이지로 이동  -->
+
+
+<!-- 2017.04.19 sskim : 게시판 임의의 카테고리 값으로 초기 세팅 위해 추가 -->
+
+
+<!-- 2017.04.24 sskim : 게시판 관리자 역할 체크 후 세팅 -->
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=8">
+  <link type="text/css" rel="stylesheet" href="/board/css/style.css">
+  <link type="text/css" rel="stylesheet" href="/board/calendar/css/calendar.css">
+
+  
+  <script type="text/javascript" src="/javascript/common_new.js"></script>
+  <script type="text/javascript" src="/face/javascript/portlet.js"></script>
+  <script type="text/javascript" src="/javascript/portal_new.js"></script>  
+  <script type="text/javascript" src="/javascript/utility.js"></script>
+  
+  
+    <script type="text/javascript" src="/javascript/message/mrbun__mm.js"></script>
+    <script type="text/javascript" src="/javascript/message/mrbun__eb.js"></script>
+  
+
+  <script type="text/javascript" src="/board/javascript/enboard_util.js"></script>
+  <script type="text/javascript" src="/board/calendar/calendar.js"></script>
+  <script type="text/javascript" src="/board/calendar/ko-kr/generatecalendar.js"></script>
+  <script type="text/javascript">
+    <!--
+	function adminEventFree (win) {
+		// 관리자/중간관리자가 아니면 바로 return.
+		
+			return;
+		
+		ebUtil.eventReset (win.document);
+		for (var i=0; i<win.frames.length; i++) {
+			try {
+				adminEventFree (win.frames[i]);
+			} catch(e) {}
+		}
+	}
+	ebUtil.eventSet();
+	//-->
+  </script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+ 
+
+<script type="text/javascript" src="/board/javascript/enboard_list.js"></script>
+<script type="text/javascript" src="/board/javascript/enboard_read.js"></script>
+<script type="text/javascript">
+	if (window.attachEvent) {
+		window.attachEvent ("onload", ebRead.initRead);
+	} else if (window.addEventListener ) {
+		window.addEventListener ("load", ebRead.initRead, false);
+	} else {
+		window.onload = ebRead.initRead;
+	}
+</script>
+
+
+
+<!-- 2017.05.19 sskim : pc, mobile 스킨 분기 추가 -->
+
+
+
+
+		
+
+
+
+
+
+
+
+ 
+
+
+<script type="text/javascript" src="/javascript/jquery/jquery-1.10.2.min.js;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"></script>
+<script type="text/javascript" src="/kicpa/res/common/js/common.js;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1?ver=1788847462447"></script>
+<script type="text/javascript" src="/kicpa/res/common/js/aesUtil.js;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"></script>
+<div id="comm_section">
+	<input type="hidden" name="commSessionKEY"   id="commSessionKEY" value="23CAE2394C945219"/>
+</div>
+
+
+
+<!DOCTYPE HTML>
+<html lang="ko-KR">
+<head>
+	<meta charset="UTF-8">
+	<title>한국공인회계사회</title>
+	<link rel="stylesheet" href="/kicpa/res/board/css/reset.css;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"/>
+	<link rel="stylesheet" href="/kicpa/res/board/css/nav.css;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"/>
+	<link rel="stylesheet" href="/kicpa/res/board/css/sub.css;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"/>
+	<link rel="stylesheet" href="/kicpa/res/common/css/jquery-confirm.min.css;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"/>
+		
+	<link rel="stylesheet" href="/kicpa/res/common/css/kicpa_reset.css;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"/>
+	
+	<script type="text/javascript" src="/kicpa/res/common/js/jquery-1.9.1.js;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"></script>
+	<script type="text/javascript" src="/kicpa/res/board/js/jquery.dotdotdot.js;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"></script>
+	<script type="text/javascript" src="/kicpa/res/board/js/swiper.jquery.min.js;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"></script>
+	<script type="text/javascript" src="/kicpa/res/board/js/run.js;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"></script>
+	<script type="text/javascript" src="/ekr/js/jquery.PrintArea.js;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"></script>
+	<script type="text/javascript" src="/kicpa/res/common/js/jquery-confirm.min.js;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{ 
+			try
+			{
+				//본문 이미지 리사이즈 
+				fn_autoImgResize($("#bltnOrgCntt").find("img"),$("#bltnOrgCntt").width(),"kr");
+			}
+			catch(e) 
+			{  }
+			
+			try
+			{
+				//iframe resize 
+				parent.fn_childIframeAutoresize(parent.document.getElementById(window.name),parseInt($("#sub_contents").height()+200));
+				parent.fn_scrollTop();			
+			}
+			catch(e)
+			{
+				//4depth iframe resize 
+				var height = parseInt($("#sub_contents").height()+200);
+				parent.document.getElementById(window.name).setAttribute('style','height:'+height+';border: 0px;');
+				
+				parent.parent.fn_childIframeAutoresize(parent.document.getElementById(window.name),height);
+				parent.parent.fn_scrollTop();
+			}
+			
+			//2017.05.08 sskim : tab 으로 게시판이 들어갈 경우, iframe resize 처리 
+			try
+			{
+				parent.fn_frameResize(parseInt($("#sub_contents").height()+200));
+			}
+			catch(e)
+			{ }
+		});
+		
+		/**
+		 * 2017.02.22 sskim : 원하는 div 영역 프린트 
+		 * jquery.printArea.js 필수
+		 */
+		function fn_printBoard(printId) 
+		{
+			var options = {mode:"popup",popHt: 625,popWd: 780,popTitle:"공인회계사회",popClose: true};
+			$("#"+printId).printArea(options);
+		}
+		
+		
+		
+		
+	</script>
+</head>
+<body>
+
+
+  
+
+<!-- article_wrap -->
+<div id="sub_contents">
+	
+	
+	  
+	
+	<div class="article">
+<div class="print">
+	<button class="icon_print" onclick="javascript:fn_printBoard('printArea');">인쇄</button>
+		
+</div>
+		<div id="printArea">
+			<table class="table_st02" summary="" width=800 border="0" cellspacing="0" cellpadding="0">
+				<caption></caption>
+				<colgroup>
+					<col width="120px">
+					<col width="auto">
+					<col width="120px">
+					<col width="auto">
+					<col width="120px">
+					<col width="auto">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th class="txt_l" class="txt_l">제목</th>
+						<td colspan="5" class="txt_left last">
+							<strong>
+								
+					            회계감사기준 개정(2022) 안내 
+							</strong>
+						</td>
+					</tr>
+					<!-- 카테고리 사용시 -->
+					
+					<tr>
+	        			<!-- 담당부서 -->
+						
+							<th class="txt_l">담당부서</th>
+							<td class="txt_l">연구1본부</td>
+	        			
+						<!-- 이메일 -->
+						
+							
+							<th class="txt_l">이메일</th>
+							<td class="txt_l" >research@kicpa.or.kr</td>
+	        			
+	        			<!-- 문의전화 -->
+	        			
+							<th class="txt_l">문의전화</th>
+							<td class="txt_l">02-3149-0334,0328</td>
+	        			
+					</tr>			        
+					<tr>
+						<th class="txt_l">등록일</th>
+						<td class="txt_l">2022.05.03</td>
+						<th class="txt_l">조회</th>
+						<td class="txt_l" colspan="3">4215</td>
+					</tr>								
+					 <!-- 추가적인 확장필드 영역 -->
+					 
+					 	<!-- 확장필드 3 -->
+					 	
+					 	<!-- 확장필드 4 -->
+					 	
+					 	<!-- 확장필드 5 -->
+					 	
+					 	<!-- 확장필드 6 -->
+					 	
+					 	<!-- 확장필드 7 -->
+					 	
+					 	<!-- 확장필드 8 -->
+					 	
+					 	<!-- 확장필드 9 -->
+					 	
+					 
+					 <!-- //추가적인 확장필드 영역 -->
+					<tr>
+						<th class="txt_l">첨부파일</th>
+						<td class="txt_left last" colspan="5">
+							
+							
+					        	
+					        		   
+							        	<span class="addfile">
+							        		<img src="/kicpa/res/krhome/img/bul_07.png;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1" style="vertical-align: baseline;">
+							        		<a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11651558158726&fileSeq=1&subId=sub06' target='download'>공문(연구행정실-294).pdf</a>
+		
+							        	</span> 
+							        	<br/>
+					              	   
+							        	<span class="addfile">
+							        		<img src="/kicpa/res/krhome/img/bul_07.png;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1" style="vertical-align: baseline;">
+							        		<a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11651558158726&fileSeq=2&subId=sub06' target='download'>1. 회계감사기준 개정안_개정개요.pdf</a>
+		
+							        	</span> 
+							        	<br/>
+					              	   
+							        	<span class="addfile">
+							        		<img src="/kicpa/res/krhome/img/bul_07.png;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1" style="vertical-align: baseline;">
+							        		<a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11651558158726&fileSeq=3&subId=sub06' target='download'>2-1. 공시에 대한 감사_개정 기준 비교표.pdf</a>
+		
+							        	</span> 
+							        	<br/>
+					              	   
+							        	<span class="addfile">
+							        		<img src="/kicpa/res/krhome/img/bul_07.png;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1" style="vertical-align: baseline;">
+							        		<a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11651558158726&fileSeq=4&subId=sub06' target='download'>2-2. 법규미준수_개정 기준 비교표.pdf</a>
+		
+							        	</span> 
+							        	<br/>
+					              	   
+							        	<span class="addfile">
+							        		<img src="/kicpa/res/krhome/img/bul_07.png;jsessionid=23CAE2394C945219D9793A941145E399.tomcat-portal1" style="vertical-align: baseline;">
+							        		<a href='/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11651558158726&fileSeq=5&subId=sub06' target='download'>3. 회계감사기준(2022 개정)_Word 파일.zip</a>
+		
+							        	</span> 
+							        	<br/>
+					              	
+					        	
+					        	
+				        	 
+						</td>
+					</tr>
+					<!-- 내용 -->
+					<tr>
+						<td id="bltnOrgCntt" class="con_txt last" colspan="6">
+							<div class="kicpa_style_reset">
+								<p style="word-break: break-all; letter-spacing: -1px; background-color: rgb(255, 255, 255); font-family: &quot;맑은 고딕&quot;; font-size: 10pt; line-height: 1.2;"><span style="font-family: 바탕; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span style="font-size: 12pt; font-family: 바탕;">1. 귀 기관(회원)의 무궁한 발전을 기원합니다.</span></p><p style="word-break: break-all; letter-spacing: -1px; background-color: rgb(255, 255, 255); font-family: &quot;맑은 고딕&quot;; font-size: 10pt; line-height: 1.2;"><br><span style="font-size: 12pt; font-family: 바탕;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2. 본 회 회계감사기준위원회는 2022년 1월 19일 회계감사기준 개정을 의결하였으며 금융위원회는 2022년 4월 27일 동 개정을 승인하였습니다.</span></p><p style="word-break: break-all; letter-spacing: -1px; background-color: rgb(255, 255, 255); font-family: &quot;맑은 고딕&quot;; font-size: 10pt; line-height: 1.2;"><br></p><p style="word-break: break-all; letter-spacing: -1px; background-color: rgb(255, 255, 255); font-family: &quot;맑은 고딕&quot;; font-size: 10pt; line-height: 1.2;"><span style="font-size: 12pt; font-family: 바탕;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3. 개정 회계감사기준은 '재무제표 감사에서 공시에 대한 고려'와 '재무제표 감사에서 법률과 규정의 고려' 관련 국제감사기준 개정 내용을 반영하여, 재무제표감사에서 공시와 관련된 새로운 지침 등을 추가하고&nbsp;법규 또는 관련 윤리적 요구사항의 법규 미준수 관련 추가 책임 등을 고려하도록 하였습니다. 개정 기준은 2023년 1월 1일 이후 개시되는 보고기간의 재무제표 감사부터 적용될 예정입니다.</span><br><br></p><p style="word-break: break-all; letter-spacing: -1px; background-color: rgb(255, 255, 255); font-family: &quot;맑은 고딕&quot;; font-size: 10pt; line-height: 1.2;"><span style="font-size: 12pt; font-family: 바탕;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;4. 이에 개정 기준 전문과 개정 개요 및 개정 기준 비교표를&nbsp;붙임과 같이 안내드리오니 업무에 참고하시기 바랍니다.</span><br></p><p style="word-break: break-all; letter-spacing: -1px; background-color: rgb(255, 255, 255); font-family: &quot;맑은 고딕&quot;; font-size: 10pt; line-height: 1.2;"><br></p><p style="word-break: break-all; letter-spacing: -1px; background-color: rgb(255, 255, 255); font-family: &quot;맑은 고딕&quot;; font-size: 10pt; line-height: 1.2;"><span style="font-family: 바탕; font-size: 12pt;"><br></span></p><p style="word-break: break-all; letter-spacing: -1px; background-color: rgb(255, 255, 255); line-height: 1.2; font-family: 돋움체; font-size: 10pt;"><span style="font-size: 16px; font-family: 바탕;">붙임 : 1.&nbsp;</span><span style="font-family: 바탕; font-size: 16px;">회계감사기준 개정안 개정개요 1부.&nbsp;</span></p><p style="word-break: break-all; letter-spacing: -1px; background-color: rgb(255, 255, 255); line-height: 1.2; font-family: 돋움체; font-size: 10pt;"><span style="font-size: 16px; font-family: 바탕;">&nbsp; &nbsp; &nbsp; &nbsp;2.&nbsp;</span><span style="font-family: 바탕; font-size: 16px;">공시에 대한 감사 개정 기준 비교표 1부.&nbsp;</span></p><p style="word-break: break-all; letter-spacing: -1px; background-color: rgb(255, 255, 255); line-height: 1.2; font-family: 돋움체; font-size: 10pt;"><span style="font-size: 16px; font-family: 바탕;">&nbsp; &nbsp; &nbsp; &nbsp;3.&nbsp;</span><span style="font-family: 바탕; font-size: 16px;">법규미준수 개정 기준 비교표 1부.&nbsp;</span></p><p style="word-break: break-all; background-color: rgb(255, 255, 255); line-height: 1.2;"><span style="font-family: 바탕; font-size: 16px; letter-spacing: -1px;">&nbsp; &nbsp; &nbsp; &nbsp;4.&nbsp;</span><font face="바탕"><span style="font-size: 16px; letter-spacing: -1px;">&nbsp;회계감사기준(2022 개정)_Word 파일 1부. 끝.&nbsp;</span></font></p>							
+							</div>
+						</td>
+					</tr>
+					<!-- 게시승인 -->
+					
+				    <!-- 추천 반대 -->
+				    
+				   <!-- 글평가 --> 
+				   
+				</tbody>
+			</table> <!-- //table -->
+		</div>
+		<div class="btn_wrap_table">
+			<a class="fl btn btn_st01"  onclick="javascript:ebRead.actionBulletin('list',-1);" target="_self">목록</a>
+			
+
+				
+	            
+	            
+				  
+				  
+				    
+				  
+	              
+	              
+				      
+				  
+				
+	            
+
+		</div>
+	</div> <!-- //article -->
+	<!-- 이전/다음글 -->
+	<div class="article">
+		<table class="table_st02" summary="">
+			<caption></caption>
+			<colgroup>
+				<col width="120px">
+				<col width="auto">
+				<col width="130px">
+			</colgroup>
+			<tbody>
+				<tr>
+					
+				</tr>
+				<tr>
+					
+				</tr>
+			</tbody>
+		</table> <!-- //table -->
+	</div>
+	<!-- 댓글 영역 -->
+	
+	
+</div>
+<!-- //article_wrap -->
+</body>
+</html>
+
+
+
+<form name="setForm" method="post" action="">
+  <input type="hidden" name="boardId"        value="acc0102"/>
+  <input type="hidden" name="cmpBrdId"       value=""/>
+  <input type="hidden" name="srchKey"        value=""/>
+  <input type="hidden" name="srchType"       value=""/>
+  <input type="hidden" name="srchBgnReg"     value="2026.09.12"/>
+  <input type="hidden" name="srchEndReg"     value="2026.09.12"/>
+  <input type="hidden" name="srchReplYn"     value=""/>
+  <input type="hidden" name="srchMemoYn"     value=""/>
+  <input type="hidden" name="page"           value="1"/>
+  <input type="hidden" name="pageSize"       value="0"/>
+  <input type="hidden" name="cateId"         value=""/>
+  <input type="hidden" name="bltnCateId"     value="-1"/>
+  <input type="hidden" name="rtnBltnNo"      value="11651558158726"/>
+  <input type="hidden" name="bltnNo"         value="11651558158726"/>
+  <input type="hidden" name="cmd"            value=""/>
+  <input type="hidden" name="onlyReplYn"     value=""/>
+  <input type="hidden" name="onlyMemoYn"     value=""/>
+  <input type="hidden" name="wallUserId"     value=""/>
+  <input type="hidden" name="badNickDflt"    value=""/>
+  <input type="hidden" name="badCnttDflt"    value=""/>
+  <input type="hidden" name="boardSkinDflt"  value="kicpa_notice"/> 
+  <input type="hidden" name="boardWidth"     value="800"/>
+  <input type="hidden" name="writableYn"     value="N"/>
+  <input type="hidden" name="replyableYn"    value="N"/>
+  <input type="hidden" name="memoWritableYn" value="N"/>
+<input type=hidden name="srchKey1"       value=""/>
+<input type=hidden name="srchKey2"       value=""/>
+<input type=hidden name="srchKey3"       value=""/>
+<input type=hidden name="srchKey4"       value=""/>
+<input type=hidden name="srchType1"      value=""/>
+<input type=hidden name="srchType2"      value=""/>
+<input type=hidden name="srchType3"      value=""/>
+<input type=hidden name="srchType4"      value=""/>
+<input type=hidden name="sortColumn"      value=""/>
+<input type=hidden name="sortMethod"      value="ASC"/>
+ 
+  <input type="hidden" name="ext_str5">
+ 
+  <input type="hidden" name="userPass" />
+  <input type="hidden" name="userNick" />
+  <input type="hidden" name="memoCntt" />
+  <input type="hidden" name="memoSeq" value="0" />
+  <input type="hidden" name="memoGn" value="0" />
+  <input type="hidden" name="memoGq" value="0" />
+  <input type="hidden" name="memoLev" value="0" />
+  <input type="hidden" name="pollSeq" />
+  <input type="hidden" name="evalPnt" />
+  <input type="hidden" name="bltnBestLevel" />
+  <input type="hidden" name="rtnURI" />
+  <input type="hidden" name="befCmd" />
+  <input type="hidden" name="langKnd" value="ko"/>
+  <input type="hidden" name="viewMode" value=""/>
+  <input type="hidden" name="boardTtlYn" value=""/>
+</form>
+
+<script>ebRead.loadPoll();</script> 
+<iframe name="download" title="download" width=0 height=0 style="border:none;"></iframe>
+  
+
+
+
+	</body>
+</html>
+ 

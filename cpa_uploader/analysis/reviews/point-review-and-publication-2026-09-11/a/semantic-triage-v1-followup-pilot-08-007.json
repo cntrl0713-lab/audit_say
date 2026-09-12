@@ -1,0 +1,1978 @@
+{
+  "version": 1,
+  "reviewer": "plan_foundations",
+  "status": "independent_local_triage_proposal_not_model_pass",
+  "api_calls": 0,
+  "set_id": "pilot-08-007",
+  "original_log": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-new-resume-a-v1/semantic-a/pilot-08-007/semantic.json.chunks.jsonl",
+    "sha256": "aba60d9a8889f55240dc16a7492f6fb470291490c28621af194c73ad19a9fb47",
+    "rows": 20,
+    "successful_rows": 16,
+    "response_validation_error_rows": 4,
+    "reviewed_nonpass_responses": [
+      {
+        "line": 1,
+        "unit_id": "subquestion:sub1",
+        "attempt": 1,
+        "model": "gpt-5.6-luna",
+        "transport": "model",
+        "performed_at": "2026-09-11T08:55:32.458Z",
+        "input_hash": "97c4ee29a26c07e8a8a38fc009d12a17b33e617230cb39b060f295a6a67ebc5e",
+        "schema_hash": "5053cd4966ffaf13f468729ed6cee5a8a95794aabf7ebc09ba56355758adfc99",
+        "response": {
+          "id": "subquestion:sub1",
+          "checks": {
+            "alignment": "pass",
+            "source_support": "fail",
+            "conditions_exceptions": "pass",
+            "edition_scope": "pass",
+            "nonduplication": "pass"
+          },
+          "rationale": "발문과 모범답안은 발생사실, 기록→증빙 방향의 과대계상 검증, 기록 모집단만으로 완전성을 검증하기 어려운 이유를 모두 일치하게 요구한다. 다만 연결된 요구사항의 source_quote는 KGA 315 A190만 포함하여 주장 정의는 지지하지만, 기록→증빙 방향의 과대계상 관련성 및 기록 모집단의 완전성 한계는 직접 지지하지 않는다. 이 내용은 KGA 500 A31·A32가 보완하지만 요구사항 source_ref에는 반영되지 않았다. 명시된 2025년판 적용 가정과 사례 시점에는 적합하다. pilot-08-001/sub2는 매입채무 과소계상 방향을 다루므로 구체 명제가 달라 중복으로 보지 않는다.",
+          "reviewed_field_ids": [
+            "sub1.prompt",
+            "sub1.model_answer",
+            "sub1.req1.source_quote",
+            "sub1.req1.source_span",
+            "sub1.req2.source_quote",
+            "sub1.req2.source_span"
+          ],
+          "source_ref_ids": [
+            "src-09fd22479bc66ee351"
+          ],
+          "cases": [],
+          "notes": [
+            "source_span L425-L464와 source excerpt의 실제 인용 줄 L425-L464는 일치한다.",
+            "미래 시험의 최종 공고나 판본 확정 여부와는 별개로 authoring_plan의 명시적 2025년판 가정을 기준으로 판단했다."
+          ]
+        }
+      },
+      {
+        "line": 5,
+        "unit_id": "criterion:sub1:crit2",
+        "attempt": 1,
+        "model": "gpt-5.6-luna",
+        "transport": "model",
+        "performed_at": "2026-09-11T08:56:21.195Z",
+        "input_hash": "cf350b674e2391a36780c0eae3b3bdf8b5f952a6110257c92fe8ef1296cffbcd",
+        "schema_hash": "7d0ebe63f7d7b7d0c40c114b602f3ca9ff133ab41d814dff09b8e5855557f70f",
+        "response": {
+          "id": "criterion:sub1:crit2",
+          "checks": {
+            "alignment": "pass",
+            "source_support": "uncertain",
+            "conditions_exceptions": "pass",
+            "edition_scope": "pass",
+            "nonduplication": "pass"
+          },
+          "rationale": "발문·모범답안·claim은 기록된 매출 모집단만으로 완전성을 검증할 수 없다는 동일한 명제를 담고 있다. 다만 A190은 완전성의 정의를, A31·A32는 검증 방향과 주장별 증거 관련성을 뒷받침할 뿐, 해당 결론을 직접 명시하지 않아 source_support는 uncertain이다. crit10의 이유 명제와 분리되어 있으며 authoring_plan상 의도된 요소별 배점이다.",
+          "reviewed_field_ids": [
+            "sub1.prompt",
+            "sub1.model_answer",
+            "sub1.req1.source_quote",
+            "sub1.req1.source_span",
+            "sub1.req2.source_quote",
+            "sub1.req2.source_span",
+            "sub1.crit2.claim",
+            "sub1.crit2.cf2.expected"
+          ],
+          "source_ref_ids": [
+            "src-09fd22479bc66ee351",
+            "src-d17a554e2fd22ebefe",
+            "src-c47d70e5ee42de9db1"
+          ],
+          "cases": [
+            {
+              "kind": "model_answer",
+              "answer": null,
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "모범답안이 기록된 매출 모집단만으로 완전성을 충분히 검증할 수 없다고 명시한다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-d17a554e2fd22ebefe",
+                "src-c47d70e5ee42de9db1"
+              ]
+            },
+            {
+              "kind": "paraphrase",
+              "answer": "기록된 매출만을 모집단으로 검사하면 장부 밖 미기록 매출을 표본화할 수 없으므로 완전성을 입증할 수 없다.",
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "표현은 다르지만 목표 명제를 정확히 충족한다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-d17a554e2fd22ebefe",
+                "src-c47d70e5ee42de9db1"
+              ]
+            },
+            {
+              "kind": "omission",
+              "answer": "기록된 매출에서 출고·인도 증빙을 대조하여 발생사실과 과대계상 여부를 검증한다.",
+              "expected": "not_met",
+              "verdict": "pass",
+              "rationale": "완전성 검증의 한계를 언급하지 않아 독립 criterion이 누락된다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-d17a554e2fd22ebefe",
+                "src-c47d70e5ee42de9db1"
+              ]
+            },
+            {
+              "kind": "opposite",
+              "answer": "기록된 매출 모집단을 검사하면 미기록 매출도 포착되므로 매출의 완전성을 충분히 검증할 수 있다.",
+              "expected": "contradicted",
+              "verdict": "pass",
+              "rationale": "기록된 모집단에서 미기록 거래를 포착할 수 있다고 하여 목표 명제의 반대 결론을 제시한다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-d17a554e2fd22ebefe",
+                "src-c47d70e5ee42de9db1"
+              ]
+            },
+            {
+              "kind": "condition_boundary",
+              "answer": "매출원장 모집단에 모든 출고·운송 거래가 이미 빠짐없이 포함되어 있다면, 그 모집단만으로 완전성을 검증할 수 있다.",
+              "expected": "contradicted",
+              "verdict": "pass",
+              "rationale": "주어진 사례의 ‘미기록 거래가 모집단 밖에 있을 가능성’이라는 조건을 제거한 경계 사례에서는 원래의 불충분성 결론이 더 이상 성립하지 않는다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-d17a554e2fd22ebefe",
+                "src-c47d70e5ee42de9db1"
+              ]
+            }
+          ],
+          "notes": [
+            "source_span과 인용 줄 위치는 등록된 원문 범위와 일치한다."
+          ]
+        }
+      },
+      {
+        "line": 7,
+        "unit_id": "criterion:sub1:crit10",
+        "attempt": 2,
+        "model": "gpt-5.6-luna",
+        "transport": "model",
+        "performed_at": "2026-09-11T08:56:49.503Z",
+        "input_hash": "81705ee0b2bbfb98677c38ed15ec1b6fb4942afbb3768ac80ab15b23a28bcf26",
+        "schema_hash": "36e709221148e0cff3faa8a28f083fe729c71688330273e07cdf1eaba5fb1098",
+        "response": {
+          "id": "criterion:sub1:crit10",
+          "checks": {
+            "alignment": "pass",
+            "source_support": "uncertain",
+            "conditions_exceptions": "pass",
+            "edition_scope": "pass",
+            "nonduplication": "pass"
+          },
+          "rationale": "발문은 기록된 매출 모집단만으로 완전성을 검증할 수 없는 이유를 요구하며, 해당 criterion은 미기록 거래가 표본추출 대상에서 제외된다는 구체적 이유를 정확히 분리한다. A190은 완전성 주장을, A31·A32는 절차 방향과 주장별 관련성의 한계를 뒷받침하지만 ‘미기록 거래는 표본으로 선택될 수 없다’는 표본모집단 논리를 직접 명시하지 않아 source_support는 uncertain이다. crit2의 결론과 중복되지 않고 이유를 별도 배점하는 설계도 타당하다.",
+          "reviewed_field_ids": [
+            "sub1.prompt",
+            "sub1.model_answer",
+            "sub1.req1.source_quote",
+            "sub1.req1.source_span",
+            "sub1.req2.source_quote",
+            "sub1.req2.source_span",
+            "sub1.crit10.claim",
+            "sub1.crit10.cf10.expected"
+          ],
+          "source_ref_ids": [
+            "src-09fd22479bc66ee351",
+            "src-d17a554e2fd22ebefe",
+            "src-c47d70e5ee42de9db1"
+          ],
+          "cases": [
+            {
+              "kind": "model_answer",
+              "answer": null,
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "모범답안이 미기록 매출은 기록된 매출 모집단에 포함되지 않아 표본으로 선택될 수 없다고 명시한다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-d17a554e2fd22ebefe",
+                "src-c47d70e5ee42de9db1"
+              ]
+            },
+            {
+              "kind": "paraphrase",
+              "answer": "미기록 매출은 매출원장 모집단 밖에 있으므로 그 모집단에서 추출하는 표본에는 들어갈 수 없다.",
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "기록된 매출 모집단에서 미기록 거래를 선택할 수 없다는 동일한 이유를 표현한다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-d17a554e2fd22ebefe",
+                "src-c47d70e5ee42de9db1"
+              ]
+            },
+            {
+              "kind": "omission",
+              "answer": "기록된 매출 모집단만으로는 매출의 완전성을 충분히 검증할 수 없다.",
+              "expected": "not_met",
+              "verdict": "pass",
+              "rationale": "완전성 검증의 한계는 말하지만, 미기록 매출이 표본으로 선택될 수 없는 이유를 제시하지 않는다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-d17a554e2fd22ebefe",
+                "src-c47d70e5ee42de9db1"
+              ]
+            },
+            {
+              "kind": "opposite",
+              "answer": "미기록 매출도 기록된 매출 모집단에 포함될 수 있으므로 해당 모집단에서 표본으로 선택할 수 있다.",
+              "expected": "contradicted",
+              "verdict": "pass",
+              "rationale": "criterion의 핵심인 기록된 모집단에서의 선택 불가능성을 정반대로 진술한다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-d17a554e2fd22ebefe",
+                "src-c47d70e5ee42de9db1"
+              ]
+            },
+            {
+              "kind": "condition_boundary",
+              "answer": "감사인이 매출원장뿐 아니라 출고자료 전체를 모집단으로 삼아 표본을 추출한다면, 미기록 매출도 그 확대된 모집단에서는 선택될 수 있다.",
+              "expected": "not_met",
+              "verdict": "pass",
+              "rationale": "모집단이 기록된 매출로 한정된다는 조건을 출고자료까지 확장하면 해당 이유는 더 이상 성립하지 않는다. 이는 원래 criterion을 충족하지 않는 경계조건이다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-d17a554e2fd22ebefe",
+                "src-c47d70e5ee42de9db1"
+              ]
+            }
+          ],
+          "notes": [
+            "source_quote와 source_span은 A190 문단의 실제 인용 및 L425-L464 범위와 일치한다.",
+            "2025년 기준서 문맥과 authoring_plan의 2026년 개시 보고기간 가정을 전제로 검토했다."
+          ]
+        }
+      },
+      {
+        "line": 8,
+        "unit_id": "subquestion:sub2",
+        "attempt": 1,
+        "model": "gpt-5.6-luna",
+        "transport": "model",
+        "performed_at": "2026-09-11T08:57:10.059Z",
+        "input_hash": "d1c5c4f162183a0d3b6b3c6f2144a25c4c40214daa14083905c54f504d0a7777",
+        "schema_hash": "7031033bd38c5cfb57edc21dbf95dbc4655f158dc33fc8bfe5712ec45a172e78",
+        "response": {
+          "id": "subquestion:sub2",
+          "checks": {
+            "alignment": "pass",
+            "source_support": "fail",
+            "conditions_exceptions": "pass",
+            "edition_scope": "pass",
+            "nonduplication": "pass"
+          },
+          "rationale": "발문과 모범답안은 기초자료 모집단에서 회계기록으로 추적하는 완전성 절차, 관련성·신뢰성 확인, 고객 인수·통제이전 시점과 기록기간의 대조를 일관되게 요구한다. 지문 전제와도 부합한다. 다만 인용된 A31은 감사증거의 관련성과 테스트 방향만 직접 뒷받침하고, A190은 완전성·기간귀속 주장 정의만 제시한다. 출고·운송·인수 자료 모집단, 자료의 신뢰성 확인, 기초자료에서 원장으로 추적하는 절차 및 계약상 인수시점 대조의 구체적 근거가 해당 source_quote에 충분히 나타나지 않아 source_support는 fail이다. sub1의 발생·완전성 방향 및 sub3의 기간범위 조정과 주제가 연결되지만 구체 요구가 중복 배점되지는 않는다.",
+          "reviewed_field_ids": [
+            "sub2.prompt",
+            "sub2.model_answer",
+            "sub2.req3.source_quote",
+            "sub2.req3.source_span",
+            "sub2.req4.source_quote",
+            "sub2.req4.source_span",
+            "sub2.req5.source_quote",
+            "sub2.req5.source_span"
+          ],
+          "source_ref_ids": [
+            "src-d17a554e2fd22ebefe",
+            "src-09fd22479bc66ee351"
+          ],
+          "cases": [],
+          "notes": [
+            "source_span의 위치 자체는 제시된 파일·문단과 일치하나, 위치 일치만으로 구체 주장에 대한 의미상 지지가 확보되지는 않는다."
+          ]
+        }
+      },
+      {
+        "line": 9,
+        "unit_id": "criterion:sub2:crit3",
+        "attempt": 1,
+        "model": "gpt-5.6-luna",
+        "transport": "model",
+        "performed_at": "2026-09-11T08:57:18.887Z",
+        "input_hash": "7b765e02e6777c6867ebaaf6ff7311556595b3359e4a027a38a2d7dfcd7d6189",
+        "schema_hash": "74b0a1c72b53dcf298a8664d97f1e7ef2120b2d41bdef6974e0bffcdd20c369b",
+        "response": {
+          "id": "criterion:sub2:crit3",
+          "checks": {
+            "alignment": "pass",
+            "source_support": "uncertain",
+            "conditions_exceptions": "pass",
+            "edition_scope": "pass",
+            "nonduplication": "pass"
+          },
+          "rationale": "발문·모범답안·claim은 미기록 매출의 완전성을 위해 매출원장 밖에서 거래를 포착할 수 있는 모집단에서 출발한다는 동일한 명제를 담고 있다. 다만 A31과 문단 7은 관련성·신뢰성 및 테스트 방향을 뒷받침할 뿐, 출고·운송·인수 자료라는 매출 모집단을 직접 제시하지 않는다. 인용 줄과 문단 위치는 일치한다. crit11·crit12의 관련성·신뢰성 확인 및 crit4의 추적 방향과 구별되며, authoring_plan상 의도된 요소별 분리이다.",
+          "reviewed_field_ids": [
+            "sub2.prompt",
+            "sub2.model_answer",
+            "sub2.req3.source_quote",
+            "sub2.req3.source_span",
+            "sub2.req4.source_quote",
+            "sub2.req4.source_span",
+            "sub2.req5.source_quote",
+            "sub2.req5.source_span",
+            "sub2.crit3.claim",
+            "sub2.crit3.cf3.expected"
+          ],
+          "source_ref_ids": [
+            "src-d17a554e2fd22ebefe",
+            "src-234f2e471592718da0"
+          ],
+          "cases": [
+            {
+              "kind": "model_answer",
+              "answer": null,
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "모범답안은 별도 관리되는 출고·운송·고객 인수 자료 등에서 출발한다고 명확히 제시한다.",
+              "source_ref_ids": [
+                "src-d17a554e2fd22ebefe",
+                "src-234f2e471592718da0"
+              ]
+            },
+            {
+              "kind": "paraphrase",
+              "answer": "매출원장과 독립적으로 관리되는 출고·인도 자료의 모집단을 기초로 미기록 거래를 찾아간다.",
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "별도 관리 자료에서 출발해 미기록 거래를 포착한다는 핵심 명제를 보존한다.",
+              "source_ref_ids": [
+                "src-d17a554e2fd22ebefe",
+                "src-234f2e471592718da0"
+              ]
+            },
+            {
+              "kind": "omission",
+              "answer": "선정한 자료의 관련성과 신뢰성을 확인한 뒤 회계기록과 대조한다.",
+              "expected": "not_met",
+              "verdict": "pass",
+              "rationale": "관련성·신뢰성 확인과 대조만 제시하고 적격한 기초자료 모집단에서 출발한다는 필수 명제를 누락했다.",
+              "source_ref_ids": [
+                "src-d17a554e2fd22ebefe",
+                "src-234f2e471592718da0"
+              ]
+            },
+            {
+              "kind": "opposite",
+              "answer": "매출원장에 이미 기록된 매출원장 모집단에서만 출발하여 증빙과 대조한다.",
+              "expected": "contradicted",
+              "verdict": "pass",
+              "rationale": "매출원장 밖의 미기록 거래를 포착해야 한다는 criterion과 반대되는 모집단을 선택했다.",
+              "source_ref_ids": [
+                "src-d17a554e2fd22ebefe",
+                "src-234f2e471592718da0"
+              ]
+            },
+            {
+              "kind": "condition_boundary",
+              "answer": "매출원장 자체를 유일한 기초자료 모집단으로 삼고, 별도 출고·운송·인수 자료는 출발 모집단으로 사용하지 않는다.",
+              "expected": "not_met",
+              "verdict": "pass",
+              "rationale": "별도 관리되는 기초자료에서 출발해야 한다는 조건을 제거하므로 criterion을 충족하지 못한다.",
+              "source_ref_ids": [
+                "src-d17a554e2fd22ebefe",
+                "src-234f2e471592718da0"
+              ]
+            }
+          ],
+          "notes": [
+            "src-d17a554e2fd22ebefe의 A31 인용 위치 L319-L326과 src-234f2e471592718da0의 문단 7 인용 위치 L61-L62는 source_excerpts와 일치한다.",
+            "출처는 자료의 관련성·신뢰성 원칙을 직접 지지하지만, 매출의 출고·운송·고객 인수 모집단이라는 구체적 적용은 주어진 사례 사실에 의존한다."
+          ]
+        }
+      },
+      {
+        "line": 12,
+        "unit_id": "criterion:sub2:crit12",
+        "attempt": 2,
+        "model": "gpt-5.6-luna",
+        "transport": "model",
+        "performed_at": "2026-09-11T08:57:56.793Z",
+        "input_hash": "4eb2700c38cc67015e2e70388d53b92548dcff6e5065b9ba5c9c5739b7498c43",
+        "schema_hash": "23b0692398e7c80377f7ffbf9e1f945cafa398a0af96ae1c7088805978d1fb0e",
+        "response": {
+          "id": "criterion:sub2:crit12",
+          "checks": {
+            "alignment": "pass",
+            "source_support": "pass",
+            "conditions_exceptions": "pass",
+            "edition_scope": "pass",
+            "nonduplication": "fail"
+          },
+          "rationale": "발문과 모범답안은 기초자료의 신뢰성을 확인한 후 감사증거로 이용한다는 criterion과 일치한다. KGA 500 문단 7은 감사증거 정보의 관련성과 신뢰성을 고려하도록 명시하며, 등록된 인용 위치도 실제 원문과 일치한다. 다만 기존 pilot-08-001/sub1의 ‘감사증거의 신뢰성 고려’와 구체적으로 중복된다. authoring_plan에 이 중복을 의도된 복습으로 명시한 근거도 없다.",
+          "reviewed_field_ids": [
+            "sub2.prompt",
+            "sub2.model_answer",
+            "sub2.req3.source_quote",
+            "sub2.req3.source_span",
+            "sub2.req4.source_quote",
+            "sub2.req4.source_span",
+            "sub2.req5.source_quote",
+            "sub2.req5.source_span",
+            "sub2.crit12.claim",
+            "sub2.crit12.cf12.expected"
+          ],
+          "source_ref_ids": [
+            "src-d17a554e2fd22ebefe",
+            "src-234f2e471592718da0"
+          ],
+          "cases": [
+            {
+              "kind": "model_answer",
+              "answer": null,
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "모범답안은 선정 자료의 신뢰성을 확인하여 감사증거로 이용한다고 명시한다.",
+              "source_ref_ids": [
+                "src-d17a554e2fd22ebefe",
+                "src-234f2e471592718da0"
+              ]
+            },
+            {
+              "kind": "paraphrase",
+              "answer": "기초자료의 신뢰성을 평가·확인한 뒤 감사증거로 사용한다.",
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "신뢰성 확인 후 증거로 이용한다는 의미를 그대로 보존한다.",
+              "source_ref_ids": [
+                "src-d17a554e2fd22ebefe",
+                "src-234f2e471592718da0"
+              ]
+            },
+            {
+              "kind": "omission",
+              "answer": "별도 관리되는 출고자료가 완전성 검증 목적에 관련되는지 확인하고, 그 자료에서 매출원장으로 추적한다.",
+              "expected": "not_met",
+              "verdict": "pass",
+              "rationale": "관련성과 추적은 언급하지만 신뢰성 확인이 누락되어 목표 criterion을 충족하지 않는다.",
+              "source_ref_ids": [
+                "src-d17a554e2fd22ebefe",
+                "src-234f2e471592718da0"
+              ]
+            },
+            {
+              "kind": "opposite",
+              "answer": "자료의 신뢰성은 확인할 필요가 없으며, 관련성만 있으면 바로 감사증거로 이용한다.",
+              "expected": "contradicted",
+              "verdict": "pass",
+              "rationale": "신뢰성 확인을 명시적으로 부정하므로 criterion의 반대이다.",
+              "source_ref_ids": [
+                "src-d17a554e2fd22ebefe",
+                "src-234f2e471592718da0"
+              ]
+            },
+            {
+              "kind": "condition_boundary",
+              "answer": "신뢰성 확인이 완료된 기초자료만 감사증거로 이용하고, 아직 확인되지 않은 자료는 관련성이 있어도 이용하지 않는다.",
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "신뢰성 확인을 필수 조건으로 유지하며, 미확인 자료를 이용하지 않는 경계조건도 criterion과 일관된다.",
+              "source_ref_ids": [
+                "src-d17a554e2fd22ebefe",
+                "src-234f2e471592718da0"
+              ]
+            }
+          ],
+          "notes": [
+            "src-234f2e471592718da0의 KGA 500 문단 7이 관련성과 신뢰성 고려를 직접 뒷받침한다."
+          ]
+        }
+      },
+      {
+        "line": 15,
+        "unit_id": "criterion:sub2:crit5",
+        "attempt": 2,
+        "model": "gpt-5.6-luna",
+        "transport": "model",
+        "performed_at": "2026-09-11T08:58:39.472Z",
+        "input_hash": "5fdcef2c6e30ee4dcce5f257c67a1f167602ac8a179502f9399ad01727602262",
+        "schema_hash": "d998684c783a3976e05753b0be0565541261d044616a27ffecdae83883a59855",
+        "response": {
+          "id": "criterion:sub2:crit5",
+          "checks": {
+            "alignment": "pass",
+            "source_support": "pass",
+            "conditions_exceptions": "pass",
+            "edition_scope": "pass",
+            "nonduplication": "fail"
+          },
+          "rationale": "발문과 모범답안은 고객 인수·통제 이전 시점, 인수 증빙 날짜 및 매출 기록기간을 대조하여 기간귀속을 확인한다는 동일한 명제를 요구한다. A190은 기간귀속 주장을 직접 지지하고, A32·A34는 특정 주장에 맞는 감사증거와 절차 설계를 뒷받침한다. 출처 줄 범위와 문단·페이지는 일치한다. 다만 sub3/crit13 및 기존 pilot-08-008/sub1/crit1이 고객 인수·통제이전 시점과 기록기간의 대조를 사실상 동일하게 요구하여 구체 판단의 중복이 있다.",
+          "reviewed_field_ids": [
+            "sub2.prompt",
+            "sub2.model_answer",
+            "sub2.req3.source_quote",
+            "sub2.req3.source_span",
+            "sub2.req4.source_quote",
+            "sub2.req4.source_span",
+            "sub2.req5.source_quote",
+            "sub2.req5.source_span",
+            "sub2.crit5.claim",
+            "sub2.crit5.cf5.expected"
+          ],
+          "source_ref_ids": [
+            "src-09fd22479bc66ee351",
+            "src-c47d70e5ee42de9db1",
+            "src-fd7cf84445e2d33969"
+          ],
+          "cases": [
+            {
+              "kind": "model_answer",
+              "answer": null,
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "모범답안은 계약상 고객 인수·통제 이전 시점과 인수 증빙 날짜를 기록기간과 대조하여 적절한 기간 인식을 확인하므로 criterion을 충족한다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-c47d70e5ee42de9db1",
+                "src-fd7cf84445e2d33969"
+              ]
+            },
+            {
+              "kind": "paraphrase",
+              "answer": "고객이 실제로 물품을 인수해 통제가 넘어간 날을 인수확인서 등 증빙으로 확인하고, 그 날짜가 매출을 계상한 보고기간과 일치하는지 대조한다.",
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "표현은 다르지만 계약상 인수·통제이전 시점, 증빙 날짜, 기록기간 대조 및 기간귀속 확인을 모두 포함한다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-c47d70e5ee42de9db1",
+                "src-fd7cf84445e2d33969"
+              ]
+            },
+            {
+              "kind": "omission",
+              "answer": "인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 기간귀속을 확인한다.",
+              "expected": "not_met",
+              "verdict": "pass",
+              "rationale": "기록기간과 증빙 날짜의 대조는 제시했지만 계약상 고객 인수·통제 이전 시점이라는 필수 기준을 누락했으므로 복합 criterion 전체를 충족하지 못한다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-c47d70e5ee42de9db1",
+                "src-fd7cf84445e2d33969"
+              ]
+            },
+            {
+              "kind": "opposite",
+              "answer": "출고일을 매출 인식시점으로 보고, 고객 인수나 통제 이전 여부와 무관하게 출고일이 속한 회계기간에 매출을 기록한다.",
+              "expected": "contradicted",
+              "verdict": "pass",
+              "rationale": "주어진 전제인 고객 인수·통제 이전 시점을 명시적으로 배제하고 출고일을 기준으로 삼으므로 criterion과 반대된다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-c47d70e5ee42de9db1",
+                "src-fd7cf84445e2d33969"
+              ]
+            },
+            {
+              "kind": "condition_boundary",
+              "answer": "출고일과 고객 인수일이 항상 같다고 볼 수 있는 국내 거래라면 출고일과 기록기간만 대조하면 되지만, 국외 거래처럼 인수일이 늦어질 수 있는 경우에는 실제 고객 인수·통제 이전일과 인수 증빙 날짜를 기록기간과 대조한다.",
+              "expected": "not_met",
+              "verdict": "pass",
+              "rationale": "조건 경계를 인식하지만 국내 거래에 대해 고객 인수·통제 이전 시점과 증빙 대조를 면제한다. 지문은 출고일과 인수일이 같다고 가정하지 않으므로 전체 criterion을 충족하지 못한다.",
+              "source_ref_ids": [
+                "src-09fd22479bc66ee351",
+                "src-c47d70e5ee42de9db1",
+                "src-fd7cf84445e2d33969"
+              ]
+            }
+          ],
+          "notes": [
+            "nonduplication 실패는 sub3/crit13 및 기존 pilot-08-008/sub1/crit1과 고객 인수·통제이전일 및 기록기간 대조라는 구체 요구가 중복되기 때문이다."
+          ]
+        }
+      },
+      {
+        "line": 16,
+        "unit_id": "subquestion:sub3",
+        "attempt": 1,
+        "model": "gpt-5.6-luna",
+        "transport": "model",
+        "performed_at": "2026-09-11T08:58:57.781Z",
+        "input_hash": "e28861e830ea2afcc806570d6996fbb8e03a0542a0622a4aadf2e88055ca1136",
+        "schema_hash": "3a06d4b5cdf7f3ff07b6daf6835205a49d4b2c77477afeaa72174b4e33c62b15",
+        "response": {
+          "id": "subquestion:sub3",
+          "checks": {
+            "alignment": "pass",
+            "source_support": "pass",
+            "conditions_exceptions": "pass",
+            "edition_scope": "pass",
+            "nonduplication": "fail"
+          },
+          "rationale": "발문은 7일 범위의 적합성, 운송·인수기간 변화의 고려, 검사기간 조정 및 인식시점 증빙 대조를 요구하고 모범답안과 네 criterion이 이를 정확히 대응한다. KGA 500 문단 6과 A34의 인용·줄 위치는 실제 source excerpt와 일치하며, 상황에 적합한 절차 설계와 목적·관련성·왜곡표시 조건을 뒷받침한다. 다만 기존 bank의 pilot-08-008/sub1이 해외거래의 장기 운송, 결산 전후 7일 범위, 인수증빙 및 기간 확대라는 동일한 구체 명제를 이미 요구하여 의도된 복습으로 명시되지 않은 중복이다.",
+          "reviewed_field_ids": [
+            "sub3.prompt",
+            "sub3.model_answer",
+            "sub3.req6.source_quote",
+            "sub3.req6.source_span",
+            "sub3.req7.source_quote",
+            "sub3.req7.source_span",
+            "sub3.req8.source_quote",
+            "sub3.req8.source_span"
+          ],
+          "source_ref_ids": [
+            "src-1518221249f4db39b5",
+            "src-fd7cf84445e2d33969"
+          ],
+          "cases": [],
+          "notes": [
+            "source excerpt의 일반 원칙을 사례에 적용한 문항이며, 구체적인 추가 일수 계산은 요구하지 않는다."
+          ]
+        }
+      },
+      {
+        "line": 19,
+        "unit_id": "criterion:sub3:crit8",
+        "attempt": 1,
+        "model": "gpt-5.6-luna",
+        "transport": "model",
+        "performed_at": "2026-09-11T08:59:41.484Z",
+        "input_hash": "93b50d46414eed85f8deb2e7071d5f77c2d1a81f26a60a8eb1dd976a17baac6a",
+        "schema_hash": "1975e07a357d9697e46c2f4c0d7814f3eb3d6a8be0a322555a33fa790f853a70",
+        "response": {
+          "id": "criterion:sub3:crit8",
+          "checks": {
+            "alignment": "pass",
+            "source_support": "uncertain",
+            "conditions_exceptions": "pass",
+            "edition_scope": "pass",
+            "nonduplication": "pass"
+          },
+          "rationale": "발문은 국외 거래의 운송·인수기간 변화에 맞춘 검사 대상기간 조정을 요구하고, 모범답안과 criterion은 실제 기간과 계약상 인식시점에 맞춘 확장·조정을 정확히 제시한다. 다만 인용된 A34와 문단 6은 상황에 적합한 절차 설계의 일반 원칙을 지지할 뿐, 운송·인수기간에 따른 기간 확장을 직접 언급하지 않아 이 구체적 적용명제의 source support는 uncertain이다. source span과 인용 위치는 제공된 파일 줄 범위와 일치한다. crit6의 부적합 판단 및 crit7의 이유, crit13의 증빙 대조와 구별되는 독립 조치이며 중복 배점은 없다.",
+          "reviewed_field_ids": [
+            "sub3.prompt",
+            "sub3.model_answer",
+            "sub3.req6.source_quote",
+            "sub3.req6.source_span",
+            "sub3.req7.source_quote",
+            "sub3.req7.source_span",
+            "sub3.req8.source_quote",
+            "sub3.req8.source_span",
+            "sub3.crit8.claim",
+            "sub3.crit8.cf8.expected",
+            "sub3.crit8.cf8-scope.expected"
+          ],
+          "source_ref_ids": [
+            "src-1518221249f4db39b5",
+            "src-fd7cf84445e2d33969"
+          ],
+          "cases": [
+            {
+              "kind": "model_answer",
+              "answer": null,
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "모범답안은 실제 운송·인수기간과 계약상 인식시점에 맞춰 검사기간을 확장하거나 조정한다고 명시하여 criterion을 충족한다.",
+              "source_ref_ids": [
+                "src-1518221249f4db39b5",
+                "src-fd7cf84445e2d33969"
+              ]
+            },
+            {
+              "kind": "paraphrase",
+              "answer": "국외 거래의 실제 배송·고객 인수에 걸리는 기간과 계약상 매출 인식시점을 반영하여 결산일 전후의 검사기간을 필요한 범위로 넓히거나 재설정한다.",
+              "expected": "met",
+              "verdict": "pass",
+              "rationale": "확장 또는 적절한 조정, 실제 운송·인수기간 및 인식시점이라는 필수 의미를 모두 보존한 동의 표현이다.",
+              "source_ref_ids": [
+                "src-1518221249f4db39b5",
+                "src-fd7cf84445e2d33969"
+              ]
+            },
+            {
+              "kind": "omission",
+              "answer": "국외 거래의 운송·인수기간과 계약상 인식시점을 고려한다.",
+              "expected": "not_met",
+              "verdict": "pass",
+              "rationale": "기간을 확장하거나 조정하는 실행 조치가 누락되어 criterion의 독립 필수 요소를 충족하지 못한다.",
+              "source_ref_ids": [
+                "src-1518221249f4db39b5",
+                "src-fd7cf84445e2d33969"
+              ]
+            },
+            {
+              "kind": "opposite",
+              "answer": "국외 거래도 국내 거래와 동일하게 결산일 전후 7일만 검사하고, 실제 운송·인수기간에 따라 검사기간을 바꾸지 않는다.",
+              "expected": "contradicted",
+              "verdict": "pass",
+              "rationale": "실제 기간에 맞춘 조정을 명시적으로 부정하므로 criterion의 반대이다.",
+              "source_ref_ids": [
+                "src-1518221249f4db39b5",
+                "src-fd7cf84445e2d33969"
+              ]
+            },
+            {
+              "kind": "condition_boundary",
+              "answer": "국외 거래의 운송·인수기간이 결산일 전후 7일 안에 있고 계약상 인식시점도 변하지 않았다면, 기존 7일 범위를 유지해도 되며 별도 기간 조정은 하지 않는다.",
+              "expected": "not_met",
+              "verdict": "pass",
+              "rationale": "변경이 필요한 사실관계를 제거한 경계 사례에서는 기존 범위 유지가 가능하지만, 대상 criterion이 요구하는 확장·조정 조치를 제시하지 않았으므로 해당 criterion 자체는 not_met이다. 특정 추가 일수를 요구하지 않는 범위계약에도 부합한다.",
+              "source_ref_ids": [
+                "src-1518221249f4db39b5",
+                "src-fd7cf84445e2d33969"
+              ]
+            }
+          ],
+          "notes": [
+            "인용 출처는 상황에 적합한 감사절차 설계라는 일반 원칙을 제공하며, 운송·인수기간에 따른 구체적 기간 확장은 사례 사실과 적용 추론에 의존한다.",
+            "authoring_plan상 sub3의 대상기간 조정과 증빙·기록기간 대조는 의도적으로 별도 criterion으로 분리되어 있다."
+          ]
+        }
+      }
+    ],
+    "note": "부분 원시 로그의 유효한 단위 응답만 독립 대조했다. 오류 행의 checks=pass 및 전체 미완료를 완성 receipt로 간주하지 않는다."
+  },
+  "reviewed_inputs": {
+    "manifest": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-new-resume-a-v1/manifest.json",
+    "question": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-new-v1/sets/pilot-08-007.json",
+    "plan": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/point-policy-v1/t08-b/pilot-08-007.authoring-plan.json",
+    "qa": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/qa-prepared-v1/pilot-08-007.json",
+    "bank": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/prepared-reviewed-v3/candidate-authoring.json",
+    "manifest_hashes_match": true
+  },
+  "facts": [
+    {
+      "id": "fact1",
+      "text": "2026년 1월 1일에 개시하는 보고기간의 재무제표를 한국 회계감사기준에 따라 감사하는 상황이다.",
+      "scoreable": false
+    },
+    {
+      "id": "fact2",
+      "text": "12월 결산 제조기업의 감사팀은 매출원장에 기록된 거래에서만 표본을 뽑아 출고·인도 증빙과 대조했다. 창고의 출고 자료와 운송인의 인도 자료에는 아직 매출원장에 기록되지 않은 거래가 있을 가능성이 있다. 이 자료들은 매출원장과 별도로 관리되며 감사팀이 관련성과 신뢰성을 확인하여 이용할 수 있다.",
+      "scoreable": false
+    },
+    {
+      "id": "fact3",
+      "text": "종전 국내 거래는 출고 후 짧은 기간 안에 고객에게 인도되었지만, 당기 말 새로 시작한 국외 거래는 운송과 인수 확인에 더 오랜 시간이 걸린다. 이 문제에서는 국내·국외 거래 모두 계약상 고객이 물품을 인수하여 통제가 이전되는 때가 매출의 인식 시점이며 다른 수익인식 조건은 충족된다고 가정한다. 출고일이 인수일과 같다고 가정하지 않는다.",
+      "scoreable": false
+    },
+    {
+      "id": "fact4",
+      "text": "감사팀은 국내 거래에서 사용하던 결산일 전후 7일의 검사 범위를 국외 거래에도 변경 없이 적용하려 한다. 특정 추가 일수나 손익 금액의 계산은 요구하지 않는다.",
+      "scoreable": false
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-09fd22479bc66ee351",
+      "file": "cpa_uploader/data/official/delegated-n02-kga315-2025.txt",
+      "file_sha256": "853614e9dae546da8b9c7a730756327463399c62794e6354b49f5a45eb6d8dfc",
+      "source_span": "L425-L464; KGA 315 문단 A190 원문 페이지 252; L425-L464",
+      "quote": "A190. 감사인이 여러 가지 발생가능한 잠재적인 왜곡표시의 유형들을 고려하기 위해 이용하는 경\r\n영진주장은 다음과 같이 구분될 수 있다. \r\n(a) \r\n감사대상기간의 거래 및 사건의 유형과 관련 공시에 대한 경영진주장 \r\n(i) \r\n발생사실 – 기록되거나 공시된 거래와 사건은 발생되었고 기업에 귀속됨 \r\n(ii) \r\n완전성 – 기록되어야 하는 모든 거래와 사건은 기록되었으며 재무제표에 포함\r\n되어야 하는 모든 관련 공시는 재무제표에 포함되었음 \r\n(iii) \r\n정확성 – 기록된 거래와 사건에 관련된 금액 및 기타 데이터는 적합하게 기록\r\n되었고 관련 공시는 적합하게 측정되고 기술되었음 \r\n(iv) \r\n기간귀속 – 거래와 사건은 해당 보고기간에 기록되었음 \r\n(v) \r\n분류 – 거래와 사건은 적절한 계정으로 기록되었음  \r\n(vi) \r\n표시 – 거래와 사건은 적합하게 합해지거나 세분화되고 명확하게 기술되었으\r\n며 관련 공시는 해당 재무보고체계의 요구사항의 측면에서 관련성이 있으며 \r\n이해가능함  \r\n(b) \r\n보고기간말 계정잔액 및 관련 공시에 대한 경영진주장 \r\n(i) \r\n실재성 – 자산, 부채 및 주주지분은 실재함 \r\n(ii) \r\n권리와 의무 – 기업은 자산에 대한 권리를 보유하거나 통제하고 있으며 부채\r\n는 기업의 의무임 \r\n(iii) \r\n완전성 – 기록되어야 하는 자산, 부채 및 주주지분은 모두 기록되었으며 재무\r\n제표에 포함되어야 하는 모든 관련 공시는 재무제표에 포함되었음 \r\n(iv) \r\n정확성, 평가 및 배분 – 자산, 부채 및 주주지분은 적합한 금액으로 재무제표\r\n에 계상되어 있고 평가나 배분의 결과는 적합하게 기록되어 있으며, 관련 공\r\n시는 적합하게 측정되고 기술되어 있음 \r\n(v) \r\n분류 – 자산, 부채 및 주주지분은 적절한 계정으로 기록되었음  \r\n(vi) \r\n표시 – 자산, 부채 및 주주지분은 적합하게 합산되거나 세분화되고 명확하게 \r\n기술되었으며 관련 공시는 해당 재무보고체계의 요구사항의 측면에서 관련성\r\n이 있으며 이해가능함",
+      "catalog_authority": "official_transcription",
+      "catalog_locator": "KGA 315 문단 A190 원문 페이지 252; L425-L464",
+      "catalog_quote_sha256": "3cc0fe371b62d1cee090621f51d25b7524efb302878f7707d1500a8a88aa4ed1"
+    },
+    {
+      "id": "src-d17a554e2fd22ebefe",
+      "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+      "file_sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+      "source_span": "L319-L326; KGA 500 문단 A31 원문 페이지 378; L319-L326",
+      "quote": "A31. 관련성은 감사절차의 목적, 그리고 적절한 경우 고려 중인 경영진주장과의 논리적인 연결\r\n이나 관계에 관한 것이다. 감사증거로 사용될 정보의 관련성은 테스트의 방향에 영향을 받\r\n을 것이다. 예를 들어, 감사절차의 목적이 매입채무의 실재성이나 평가에 있어 과대계상 여\r\n부를 테스트하는 것이라면, 장부에 기록된 매입채무를 테스트하는 것이 관련성 있는 감사\r\n절차가 될 수 있다. 이와 달리, 매입채무의 실재성이나 평가에 있어 과소계상 여부를 테스\r\n트할 때 장부에 기록된 매입채무를 테스트하는 것은 관련성이 없을 것이며, 후속적인 지급\r\n거래, 미지급된 송장, 매입처 계산서 그리고 일치하지 않는 검수보고서 같은 정보를 테스트\r\n하는 것이 관련성이 있을 것이다.",
+      "catalog_authority": "official_transcription",
+      "catalog_locator": "KGA 500 문단 A31 원문 페이지 378; L319-L326",
+      "catalog_quote_sha256": "da426013d27a70e14591406ddf2a6061c731f4394727b42e61cc150b44dc4032"
+    },
+    {
+      "id": "src-c47d70e5ee42de9db1",
+      "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+      "file_sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+      "source_span": "L327-L334; KGA 500 문단 A32 원문 페이지 378; L327-L334",
+      "quote": "A32. 주어진 일군의 감사절차들은 경영진의 특정한 주장에는 관련성이 있는 감사증거를 제공할 \r\n수 있지만 다른 주장에는 그렇지 않을 수 있다. 예를 들어 보고기간말 후 매출채권의 회수\r\n에 관한 문서를 검사하는 것은 실재성과 평가에 관한 감사증거를 제공할 수 있지만, 기간\r\n귀속에 관해서도 반드시 그런 것은 아니다.  마찬가지로, 예를 들어 재고자산의 실재성과 \r\n같은 특정 경영진주장에 대하여 감사증거를 입수하는 것은 다른 경영진주장, 예를 들어 해\r\n당 재고자산의 평가에 관한 감사증거를 입수하는 대체수단이 될 수 없다. 이에 반해 서로 \r\n다른 원천으로부터 입수되었거나 서로 다른 성격을 가진 감사증거들이 종종 동일한 경영진\r\n주장과 관련성이 있을 수도 있다.",
+      "catalog_authority": "official_transcription",
+      "catalog_locator": "KGA 500 문단 A32 원문 페이지 378; L327-L334",
+      "catalog_quote_sha256": "ed83057c5793ea51eccc68718a48d355a1e6087084dc1bd5832bd0441278abbd"
+    },
+    {
+      "id": "src-234f2e471592718da0",
+      "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+      "file_sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+      "source_span": "L61-L62; KGA 500 문단 7 원문 페이지 370; L61-L62",
+      "quote": "7. 감사인은 감사절차를 설계하고 수행할 때, 외부 정보원천으로부터 입수한 정보를 포함한 \r\n감사증거로 사용될 정보의 관련성과 신뢰성을 고려하여야 한다. (문단 A30-A44 참조)",
+      "catalog_authority": "official_transcription",
+      "catalog_locator": "KGA 500 문단 7 원문 페이지 370; L61-L62",
+      "catalog_quote_sha256": "18a18b7e4c344eea056a121bc5b055c2b42601c937948381b1e32c4fd9bc881c"
+    },
+    {
+      "id": "src-fd7cf84445e2d33969",
+      "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+      "file_sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+      "source_span": "L340-L343; KGA 500 문단 A34 원문 페이지 378; L340-L343",
+      "quote": "A34. 실증절차는 경영진주장 수준의 중요한 왜곡표시를 발견하기 위하여 설계되며, 세부테스트\r\n와 실증적인 분석적절차가 포함된다. 실증절차의 설계에는 해당 테스트의 목적과 관련성이 \r\n있고 관련경영진주장의 왜곡표시를 구성하는 조건을 식별하는 것이 포함된다.  \r\n신뢰성",
+      "catalog_authority": "official_transcription",
+      "catalog_locator": "KGA 500 문단 A34 원문 페이지 378; L340-L343",
+      "catalog_quote_sha256": "f44d3ff63cb05608ad6bd2e0ce7f01aea8d9ba8442d4da13f4b0d5b9267d9ead"
+    },
+    {
+      "id": "src-1518221249f4db39b5",
+      "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+      "file_sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+      "source_span": "L58-L60; KGA 500 문단 6 원문 페이지 370; L58-L60",
+      "quote": "6. 감사인은 충분하고 적합한 감사증거를 입수하기 위하여 상황에 적합한 감사절차를 설계하\r\n고 수행하여야 한다. (문단 A5-A29 참조) \r\n감사증거로 사용되는 정보",
+      "catalog_authority": "official_transcription",
+      "catalog_locator": "KGA 500 문단 6 원문 페이지 370; L58-L60",
+      "catalog_quote_sha256": "55ffc81ad5a561a8be366e8ce0b08500ff7167d434a679fcdff28678a700fa9e"
+    }
+  ],
+  "requirements_and_criterion_links": [
+    {
+      "subquestion_id": "sub1",
+      "prompt": "기록된 매출에서 출고·인도 증빙으로 대조하는 절차가 주로 다루는 거래유형의 경영진주장과 검증 방향을 설명하시오. 또한 이 모집단만으로 미기록 거래에 관한 어떤 주장을 충분히 검증할 수 없는지와 그 이유를 설명하시오.",
+      "requirements": [
+        {
+          "id": "req1",
+          "source_ref_id": "src-09fd22479bc66ee351",
+          "source_span": "L425-L464; KGA 315 문단 A190 원문 페이지 252; L425-L464"
+        },
+        {
+          "id": "req2",
+          "source_ref_id": "src-09fd22479bc66ee351",
+          "source_span": "L425-L464; KGA 315 문단 A190 원문 페이지 252; L425-L464"
+        }
+      ],
+      "criteria": [
+        {
+          "id": "crit1",
+          "requirement_id": "req1",
+          "claim": "기록된 매출에서 출고·인도 증빙으로 대조하는 절차가 주로 다루는 거래유형의 주장은 발생사실이다.",
+          "critical_facts": [
+            {
+              "id": "cf1",
+              "type": "action",
+              "expected": "기록된 매출에서 출고·인도 증빙으로 대조하는 절차가 주로 다루는 거래유형의 주장은 발생사실이다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-09fd22479bc66ee351",
+            "src-d17a554e2fd22ebefe"
+          ]
+        },
+        {
+          "id": "crit9",
+          "requirement_id": "req1",
+          "claim": "기록된 매출에서 증빙으로 대조하는 방향은 매출의 과대계상 여부를 검증하는 데 관련된다.",
+          "critical_facts": [
+            {
+              "id": "cf9",
+              "type": "action",
+              "expected": "기록된 매출에서 증빙으로 대조하는 방향은 매출의 과대계상 여부를 검증하는 데 관련된다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-09fd22479bc66ee351",
+            "src-d17a554e2fd22ebefe"
+          ]
+        },
+        {
+          "id": "crit2",
+          "requirement_id": "req2",
+          "claim": "기록된 매출 모집단만으로는 매출의 완전성을 충분히 검증할 수 없다.",
+          "critical_facts": [
+            {
+              "id": "cf2",
+              "type": "action",
+              "expected": "기록된 매출 모집단만으로는 매출의 완전성을 충분히 검증할 수 없다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-09fd22479bc66ee351",
+            "src-d17a554e2fd22ebefe",
+            "src-c47d70e5ee42de9db1"
+          ]
+        },
+        {
+          "id": "crit10",
+          "requirement_id": "req2",
+          "claim": "미기록 매출은 기록된 매출 모집단에 포함되지 않아 표본으로 선택될 수 없기 때문이다.",
+          "critical_facts": [
+            {
+              "id": "cf10",
+              "type": "action",
+              "expected": "미기록 매출은 기록된 매출 모집단에 포함되지 않아 표본으로 선택될 수 없기 때문이다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-09fd22479bc66ee351",
+            "src-d17a554e2fd22ebefe",
+            "src-c47d70e5ee42de9db1"
+          ]
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "prompt": "미기록 매출의 완전성을 보완하려면 어떤 모집단에서 출발하여 어디로 추적해야 하는지 제시하시오. 선정한 기초자료를 감사증거로 이용할 수 있는 전제도 함께 설명하시오. 이어 기간귀속을 검증하기 위해 서로 대조해야 할 자료와 시점을 설명하시오.",
+      "requirements": [
+        {
+          "id": "req3",
+          "source_ref_id": "src-d17a554e2fd22ebefe",
+          "source_span": "L319-L326; KGA 500 문단 A31 원문 페이지 378; L319-L326"
+        },
+        {
+          "id": "req4",
+          "source_ref_id": "src-d17a554e2fd22ebefe",
+          "source_span": "L319-L326; KGA 500 문단 A31 원문 페이지 378; L319-L326"
+        },
+        {
+          "id": "req5",
+          "source_ref_id": "src-09fd22479bc66ee351",
+          "source_span": "L425-L464; KGA 315 문단 A190 원문 페이지 252; L425-L464"
+        }
+      ],
+      "criteria": [
+        {
+          "id": "crit3",
+          "requirement_id": "req3",
+          "claim": "매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있는 기초자료 모집단에서 출발한다.",
+          "critical_facts": [
+            {
+              "id": "cf3",
+              "type": "action",
+              "expected": "매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있는 기초자료 모집단에서 출발한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-d17a554e2fd22ebefe",
+            "src-234f2e471592718da0"
+          ]
+        },
+        {
+          "id": "crit11",
+          "requirement_id": "req3",
+          "claim": "선정한 기초자료가 미기록 매출의 완전성을 검증하는 목적과 관련성이 있는지 확인하여 이용한다.",
+          "critical_facts": [
+            {
+              "id": "cf11",
+              "type": "action",
+              "expected": "선정한 기초자료가 미기록 매출의 완전성을 검증하는 목적과 관련성이 있는지 확인하여 이용한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-d17a554e2fd22ebefe",
+            "src-234f2e471592718da0"
+          ]
+        },
+        {
+          "id": "crit12",
+          "requirement_id": "req3",
+          "claim": "선정한 기초자료의 신뢰성을 확인하여 감사증거로 이용한다.",
+          "critical_facts": [
+            {
+              "id": "cf12",
+              "type": "action",
+              "expected": "선정한 기초자료의 신뢰성을 확인하여 감사증거로 이용한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-d17a554e2fd22ebefe",
+            "src-234f2e471592718da0"
+          ]
+        },
+        {
+          "id": "crit4",
+          "requirement_id": "req4",
+          "claim": "그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다.",
+          "critical_facts": [
+            {
+              "id": "cf4",
+              "type": "action",
+              "expected": "그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-d17a554e2fd22ebefe",
+            "src-09fd22479bc66ee351"
+          ]
+        },
+        {
+          "id": "crit5",
+          "requirement_id": "req5",
+          "claim": "계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다.",
+          "critical_facts": [
+            {
+              "id": "cf5",
+              "type": "action",
+              "expected": "계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-09fd22479bc66ee351",
+            "src-c47d70e5ee42de9db1",
+            "src-fd7cf84445e2d33969"
+          ]
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "prompt": "국내 거래용 결산일 전후 7일의 검사 범위를 국외 거래에도 그대로 적용하는 계획을 평가하고, 계약조건과 운송·인수기간의 변화가 왜 고려되어야 하는지 및 기간귀속 절차의 대상기간·증빙을 어떻게 보완할지 설명하시오.",
+      "requirements": [
+        {
+          "id": "req6",
+          "source_ref_id": "src-1518221249f4db39b5",
+          "source_span": "L58-L60; KGA 500 문단 6 원문 페이지 370; L58-L60"
+        },
+        {
+          "id": "req7",
+          "source_ref_id": "src-fd7cf84445e2d33969",
+          "source_span": "L340-L343; KGA 500 문단 A34 원문 페이지 378; L340-L343"
+        },
+        {
+          "id": "req8",
+          "source_ref_id": "src-1518221249f4db39b5",
+          "source_span": "L58-L60; KGA 500 문단 6 원문 페이지 370; L58-L60"
+        }
+      ],
+      "criteria": [
+        {
+          "id": "crit6",
+          "requirement_id": "req6",
+          "claim": "국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다.",
+          "critical_facts": [
+            {
+              "id": "cf6",
+              "type": "conclusion",
+              "expected": "국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-1518221249f4db39b5",
+            "src-fd7cf84445e2d33969"
+          ]
+        },
+        {
+          "id": "crit7",
+          "requirement_id": "req7",
+          "claim": "계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다.",
+          "critical_facts": [
+            {
+              "id": "cf7",
+              "type": "conclusion",
+              "expected": "계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-fd7cf84445e2d33969",
+            "src-09fd22479bc66ee351"
+          ]
+        },
+        {
+          "id": "crit8",
+          "requirement_id": "req8",
+          "claim": "실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 검사 대상기간을 확장하거나 적절하게 조정한다.",
+          "critical_facts": [
+            {
+              "id": "cf8",
+              "type": "conclusion",
+              "expected": "실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 검사 대상기간을 확장하거나 적절하게 조정한다."
+            },
+            {
+              "id": "cf8-scope",
+              "type": "condition",
+              "expected": "대상기간 조정의 허용범위: 실제 운송·인수기간을 포착할 적절한 조정을 인정한다. 특정 추가 일수나 일수가 불필요하다는 문구의 재진술을 요구하지 않는다. 고객 인수·통제이전이 인식시점이라는 주어진 전제를 적용한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-1518221249f4db39b5",
+            "src-fd7cf84445e2d33969"
+          ]
+        },
+        {
+          "id": "crit13",
+          "requirement_id": "req8",
+          "claim": "계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다.",
+          "critical_facts": [
+            {
+              "id": "cf13",
+              "type": "conclusion",
+              "expected": "계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다."
+            },
+            {
+              "id": "cf13-scope",
+              "type": "condition",
+              "expected": "증빙 대조의 허용범위: 출고·인수 자료는 계약상 인식시점과 기록기간을 확인하는 목적을 충족할 수 있는 예시이며 두 명칭 모두의 열거를 요구하는 공동 필수목록이 아니다. 같은 목적을 충족하는 대체 증빙을 허용하며 주어진 고객 인수·통제이전 전제의 재진술을 요구하지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-1518221249f4db39b5",
+            "src-fd7cf84445e2d33969"
+          ]
+        }
+      ]
+    }
+  ],
+  "old_plan_overlap": [
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/pilot-08-007.authoring-plan.json",
+      "sha256": "df4c3bb2d8d379907b9993a2fd7fbb26825b1205caaee192e757c2f553df3c85",
+      "existing_question_difference": "pilot-08-001/sub2/crit3~crit4는 매입채무 과소계상 자료를 묻는다. 이 세트는 매출 방향과 계약상 인수시점의 적용이다. T07-C-Q1은 이 세트 sub3의 의도된 후속 적용복습이다."
+    },
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v2/pilot-08-007.authoring-plan.json",
+      "sha256": "2a6e061da5cdb5abbfe52625fce5021bad7a1990a1419a1a6709e4891b9f29e6",
+      "existing_question_difference": "pilot-08-001/sub2/crit3~crit4는 매입채무 과소계상 자료를 묻는다. 이 세트는 매출 방향과 계약상 인수시점의 적용이다. T07-C-Q1은 이 세트 sub3의 의도된 후속 적용복습이다."
+    },
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v3/pilot-08-007.authoring-plan.json",
+      "sha256": "0b3f1f5b6e66fcd17b9e13dc75f1b52f0c5df052e7320f3b0d7ee131eed3b06d",
+      "existing_question_difference": "pilot-08-001/sub2/crit3~crit4는 매입채무 과소계상 자료를 묻는다. 이 세트는 매출 방향과 계약상 인수시점의 적용이다. T07-C-Q1은 이 세트 sub3의 의도된 후속 적용복습이다."
+    }
+  ],
+  "peer_comparison": [
+    {
+      "set_id": "pilot-08-001",
+      "shared_context": {
+        "facts": [
+          {
+            "id": "fact1",
+            "text": "감사인은 매입채무의 완전성을 검증하기 위한 감사절차를 설계하고 있다.",
+            "scoreable": false
+          }
+        ]
+      },
+      "subquestion": {
+        "id": "sub1",
+        "type": "enumeration",
+        "prompt": "감사인이 감사절차를 설계하고 수행할 때 감사증거로 사용될 정보에 대하여 고려해야 할 두 가지 요소를 모두 제시하시오.",
+        "constraints": {
+          "ordered": false,
+          "max_entries": null,
+          "overflow_policy": "none"
+        },
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "model_answer": [
+          "감사증거로 사용될 정보의 관련성을 고려해야 한다.",
+          "감사증거로 사용될 정보의 신뢰성을 고려해야 한다."
+        ],
+        "requirements": [
+          {
+            "id": "req1",
+            "source_ref_id": "src7",
+            "source_quote": "7. 감사인은 감사절차를 설계하고 수행할 때, 외부 정보원천으로부터 입수한 정보를 포함한 \r\n감사증거로 사용될 정보의 관련성과 신뢰성을 고려하여야 한다. (문단 A30-A44 참조)",
+            "source_span": "500.7"
+          }
+        ],
+        "criteria": [
+          {
+            "id": "crit1",
+            "requirement_id": "req1",
+            "claim": "감사증거의 관련성을 고려해야 한다.",
+            "critical_facts": [
+              {
+                "id": "cf1",
+                "type": "conclusion",
+                "expected": "관련성"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src7"
+            ]
+          },
+          {
+            "id": "crit2",
+            "requirement_id": "req1",
+            "claim": "감사증거의 신뢰성을 고려해야 한다.",
+            "critical_facts": [
+              {
+                "id": "cf2",
+                "type": "conclusion",
+                "expected": "신뢰성"
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src7"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "set_id": "pilot-08-008",
+      "shared_context": {
+        "facts": [
+          {
+            "id": "fact1",
+            "text": "2026년 1월 1일에 개시하는 보고기간의 재무제표를 한국 회계감사기준에 따라 감사하며, 필요한 후속 업무는 2027년에 수행한다.",
+            "scoreable": false
+          },
+          {
+            "id": "fact2",
+            "text": "회사의 경영진은 중요한 비상장 투자자산의 결산일 공정가치를 평가하기 위해 외부 가치평가 전문가와 계약했다. 이 전문가는 감사팀이 고용한 감사인측 전문가가 아니라 기업의 재무제표 작성을 돕는 경영진측 전문가다. 보고서는 결산일을 기준으로 작성되었고 회사는 그 결론을 재무제표에 반영했다. 금액 계산은 요구하지 않는다.",
+            "scoreable": false
+          },
+          {
+            "id": "fact3",
+            "text": "감사팀은 해당 전문가의 가치평가 자격증만 확인했다. 해당 산업의 비상장 투자자산에 관한 경험과 업무를 수행할 시간·인력의 충분성은 아직 확인하지 않았다. 전문가 보수의 일부는 평가금액이 높아질수록 증가하도록 약정되어 있다. 이 약정만으로 평가결과가 잘못되었다고 확정한 것은 아니다.",
+            "scoreable": false
+          },
+          {
+            "id": "fact4",
+            "text": "보고서는 유의적인 성장률 가정과 평가방법, 회사가 제공한 원천데이터 및 외부 시장자료를 사용한다. 감사팀은 업무의 성격·범위·목적을 포함한 내용을 아직 이해하지 않았으며, 발견사항·결론이 관련 평가 주장에 적합한지도 검토하지 않았다. 회사 제공 원천데이터의 일부 수치는 감사팀이 별도로 입수한 거래자료와, 보고서의 시장전망은 다른 시장자료와 일치하지 않는다. 각 자료의 신뢰성 및 차이의 원인은 아직 판단하지 않았다.",
+            "scoreable": false
+          },
+          {
+            "id": "fact5",
+            "text": "각 물음은 이 중요한 평가업무의 유의성을 고려하여 감사목적에 필요한 정도로 수행할 사항을 묻는다. 특정 보고서의 즉시 폐기나 감사의견의 유형을 결정하는 문제는 아니다.",
+            "scoreable": false
+          }
+        ]
+      },
+      "subquestion": {
+        "id": "sub1",
+        "type": "descriptive",
+        "prompt": "자격증만 확인한 상태에서 해당 전문가에 관하여 추가로 평가해야 할 두 영역을 설명하시오. 첫째 영역은 해당 업무에 맞는 전문성과 이를 실제 발휘할 능력에, 둘째 영역은 제시된 보수 약정과 전문적 판단의 관계에 연결하시오.",
+        "constraints": {
+          "ordered": false,
+          "max_entries": null,
+          "overflow_policy": "none"
+        },
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "decision": null,
+        "answer_slots": [
+          {
+            "id": "answer",
+            "label": "답안",
+            "input": "textarea"
+          }
+        ],
+        "model_answer": [
+          "해당 산업·평가업무에 필요한 전문성의 성격과 수준인 전문가의 적격성을 평가한다. 일반적인 자격증 확인만으로 충분하다고 보지 않는다.",
+          "시간·인력 등 상황에 맞게 전문성을 실제 발휘할 능력인 전문가의 역량을 평가한다.",
+          "평가금액에 연동된 보수 등 이해관계가 편의·이해상충 또는 타인의 영향을 통해 전문가의 전문적 판단을 훼손할 수 있는지 객관성을 평가한다."
+        ],
+        "requirements": [
+          {
+            "id": "req1",
+            "source_ref_id": "src-2e8004cc75d626f9db",
+            "source_quote": "8. 감사증거로 사용될 정보가 경영진측 전문가가 수행한 업무를 이용하여 작성되었다면, 감사\r\n인은 감사목적에 필요한 정도로 경영진측 전문가가 수행한 업무의 유의성과 관련하여 다음\r\n의 절차를 수행하여야 한다. (문단 A45- A47 참조)  \r\n(a) 경영진측 전문가의 적격성, 역량 및 객관성을 평가함 (문단 A48- A54 참조) \r\n(b) 경영진측 전문가가 수행한 업무를 이해함 (문단 A55-A58 참조) \r\n(c) 관련경영진주장에 대한 감사증거로서, 경영진측 전문가가 수행한 업무의 적합성을 \r\n평가함 (문단 A59 참조) \r\n \r\n6 감사기준서 402 “서비스조직을 이용하는 기업에 관한 감사 고려사항” 문단 8. \r\n7 감사기준서 620 감사인측 전문가가 수행한 업무의 활용” 문단 6  \r\nPDF PAGE 371\r\n감사기준서 500 ‘감사증거’ \r\n371 / 974",
+            "source_span": "L63-L75; KGA 500 문단 8 원문 페이지 370; L63-L75"
+          },
+          {
+            "id": "req2",
+            "source_ref_id": "src-2e8004cc75d626f9db",
+            "source_quote": "8. 감사증거로 사용될 정보가 경영진측 전문가가 수행한 업무를 이용하여 작성되었다면, 감사\r\n인은 감사목적에 필요한 정도로 경영진측 전문가가 수행한 업무의 유의성과 관련하여 다음\r\n의 절차를 수행하여야 한다. (문단 A45- A47 참조)  \r\n(a) 경영진측 전문가의 적격성, 역량 및 객관성을 평가함 (문단 A48- A54 참조) \r\n(b) 경영진측 전문가가 수행한 업무를 이해함 (문단 A55-A58 참조) \r\n(c) 관련경영진주장에 대한 감사증거로서, 경영진측 전문가가 수행한 업무의 적합성을 \r\n평가함 (문단 A59 참조) \r\n \r\n6 감사기준서 402 “서비스조직을 이용하는 기업에 관한 감사 고려사항” 문단 8. \r\n7 감사기준서 620 감사인측 전문가가 수행한 업무의 활용” 문단 6  \r\nPDF PAGE 371\r\n감사기준서 500 ‘감사증거’ \r\n371 / 974",
+            "source_span": "L63-L75; KGA 500 문단 8 원문 페이지 370; L63-L75"
+          }
+        ],
+        "criteria": [
+          {
+            "id": "crit1",
+            "requirement_id": "req1",
+            "claim": "해당 산업·평가업무에 필요한 전문성의 성격과 수준인 전문가의 적격성을 평가한다. 일반적인 자격증 확인만으로 충분하다고 보지 않는다.",
+            "critical_facts": [
+              {
+                "id": "cf1",
+                "type": "action",
+                "expected": "해당 산업·평가업무에 필요한 전문성의 성격과 수준인 전문가의 적격성을 평가한다. 일반적인 자격증 확인만으로 충분하다고 보지 않는다."
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src-2e8004cc75d626f9db",
+              "src-c846a1c459c6c5586a",
+              "src-bab6aa013fc916a81e"
+            ]
+          },
+          {
+            "id": "crit8",
+            "requirement_id": "req1",
+            "claim": "시간·인력 등 상황에 맞게 전문성을 실제 발휘할 능력인 전문가의 역량을 평가한다.",
+            "critical_facts": [
+              {
+                "id": "cf8",
+                "type": "action",
+                "expected": "시간·인력 등 상황에 맞게 전문성을 실제 발휘할 능력인 전문가의 역량을 평가한다."
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src-2e8004cc75d626f9db",
+              "src-c846a1c459c6c5586a",
+              "src-bab6aa013fc916a81e"
+            ]
+          },
+          {
+            "id": "crit2",
+            "requirement_id": "req2",
+            "claim": "평가금액에 연동된 보수 등 이해관계가 편의·이해상충 또는 타인의 영향을 통해 전문가의 전문적 판단을 훼손할 수 있는지 객관성을 평가한다.",
+            "critical_facts": [
+              {
+                "id": "cf2",
+                "type": "action",
+                "expected": "평가금액에 연동된 보수 등 이해관계가 편의·이해상충 또는 타인의 영향을 통해 전문가의 전문적 판단을 훼손할 수 있는지 객관성을 평가한다."
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src-2e8004cc75d626f9db",
+              "src-c846a1c459c6c5586a",
+              "src-a97bacdec12c0c7d52"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "set_id": "pilot-07-008",
+      "shared_context": {
+        "facts": [
+          {
+            "id": "fact1",
+            "text": "2026년 1월 1일에 개시하는 보고기간의 재무제표를 한국 회계감사기준에 따라 감사하며, 필요한 후속 업무는 2027년에 수행한다.",
+            "scoreable": false
+          },
+          {
+            "id": "fact2",
+            "text": "감사팀은 전기 매출·매출채권 관련 통제의 운영효과성에 관한 감사조서를 바탕으로, 당기에도 통제가 효과적일 것이라는 기대와 그 통제에 대한 의존을 전제로 실증절차를 계획했다. 당기 9월 통제테스트에서 관련 프로그램의 무승인 변경·접근과 매출 승인통제의 반복 이탈을 확인했고, 원인과 영향을 평가한 결과 이 사례의 관련 IT 통제와 수작업통제에는 계획했던 정도로 의존할 수 없다고 판단했다. 이 사실을 회사의 모든 통제 실패로 확대하지 않는다.",
+            "scoreable": false
+          },
+          {
+            "id": "fact3",
+            "text": "기간귀속 계획: 종전 국내 거래는 출고 후5일 이내 고객 인수가 완료되었다. 계약상 수익인식 시점은 고객이 제품을 인수하여 통제가 이전되는 날이며 이 조건을 회계처리에도 적용한다. 당기에는 같은 인수 조건의 해외 거래가 추가되어 운송에 대체로20~30일이 걸리지만, 사전 계획은 국내·해외 모두 결산일 전후7일의 매출기록만 검사하는 것으로 되어 있다. 기록되지 않은 거래를 확인할 독립 출고·고객인수 자료도 이용할 수 있다.",
+            "scoreable": false
+          },
+          {
+            "id": "fact4",
+            "text": "조회 계획: 관련 매출채권의 실재성과 정확성에 관한 증거를 얻기 위해 외부조회를 계속 사용할 예정이다. 사전 계획은9월말 잔액을 기준으로 종전의 제한된 거래처에 조회하는 것이었다. 통제 의존의 근거가 약해진 것 외에 중요성·계정구성·목표 확신수준이나 다른 감사증거의 수준이 개선되었다는 사정은 없으며, 보고기간말 기준 외부조회도 실행할 수 있다. 구체적인 표본수나 금액을 계산할 필요는 없다.",
+            "scoreable": false
+          },
+          {
+            "id": "fact5",
+            "text": "자료 이용 계획: 회사가 생성한 연령분석표를 실증적 분석절차에 사용하려 한다. 담당자는 전기 감사에서 그 보고서를 사용했고 당기 합계도 총계정원장과 맞는다는 이유로, 기초자료의 정확성과 완전성에 관한 추가 확인 없이 사용하자고 제안했다. 보고서의 정밀도·상세도는 이번 분석목적에 충분한 것으로 별도 확인했으며, 물음은 기초자료의 정확성·완전성 증거에 한정한다.",
+            "scoreable": false
+          }
+        ]
+      },
+      "subquestion": {
+        "id": "sub1",
+        "type": "descriptive",
+        "prompt": "기간귀속 계획을 수정할 때 사용할 발생·인도 증거, 결산일 전후 검사 대상기간의 조정, 종전7일 범위를 그대로 둘 수 없는 이유를 각각 설명하시오. 계약에서 정한 인수·통제이전 조건과 길어진 배송기간을 반영하되 특정 정답 일수는 계산하지 마시오.",
+        "constraints": {
+          "ordered": false,
+          "max_entries": null,
+          "overflow_policy": "none"
+        },
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "decision": null,
+        "answer_slots": [
+          {
+            "id": "answer",
+            "label": "답안",
+            "input": "textarea"
+          }
+        ],
+        "model_answer": [
+          "매출기록의 날짜만 확인하지 않고 계약조건에 맞는 출고·고객인수 등 발생·인도 증거를 확인하여 실제 고객 인수·통제이전 시점과 기록기간을 대조한다.",
+          "길어진 운송·인수기간을 반영하도록 결산일 전후 검사 대상기간을 확대하거나 적절하게 조정한다.",
+          "운송기간이 길어지면 종전7일 범위 밖의 출고·인수와 관련된 거래가 결산일 부근의 기록기간 오류를 일으킬 수 있어 기존 범위만으로는 그 위험을 포착하지 못할 수 있기 때문이다."
+        ],
+        "requirements": [
+          {
+            "id": "req1",
+            "source_ref_id": "src-b9fb1f4cecefc55ca4",
+            "source_quote": "6. \r\n감사인은 경영진주장 수준의 평가된 중요왜곡표시위험을 기초로 하여 이에 대응하는 추가\r\n감사절차의 성격, 시기 및 범위를 설계하고 수행하여야 한다. (문단 A4-A8, A42-A52 참조) \r\n \r\n1 감사기준서 315 “중요왜곡표시위험의 식별과 평가” \r\n\r\n\r\n\r\n## PDF PAGE 314\r\n\r\n감사기준서 330 ‘평가된 위험에 대한 감사인의 대응’ \r\n314 / 974",
+            "source_span": "L44-L55; KGA 330 문단 6 원문 페이지 313; L44-L55"
+          },
+          {
+            "id": "req2",
+            "source_ref_id": "src-b9fb1f4cecefc55ca4",
+            "source_quote": "6. \r\n감사인은 경영진주장 수준의 평가된 중요왜곡표시위험을 기초로 하여 이에 대응하는 추가\r\n감사절차의 성격, 시기 및 범위를 설계하고 수행하여야 한다. (문단 A4-A8, A42-A52 참조) \r\n \r\n1 감사기준서 315 “중요왜곡표시위험의 식별과 평가” \r\n\r\n\r\n\r\n## PDF PAGE 314\r\n\r\n감사기준서 330 ‘평가된 위험에 대한 감사인의 대응’ \r\n314 / 974",
+            "source_span": "L44-L55; KGA 330 문단 6 원문 페이지 313; L44-L55"
+          },
+          {
+            "id": "req3",
+            "source_ref_id": "src-b9fb1f4cecefc55ca4",
+            "source_quote": "6. \r\n감사인은 경영진주장 수준의 평가된 중요왜곡표시위험을 기초로 하여 이에 대응하는 추가\r\n감사절차의 성격, 시기 및 범위를 설계하고 수행하여야 한다. (문단 A4-A8, A42-A52 참조) \r\n \r\n1 감사기준서 315 “중요왜곡표시위험의 식별과 평가” \r\n\r\n\r\n\r\n## PDF PAGE 314\r\n\r\n감사기준서 330 ‘평가된 위험에 대한 감사인의 대응’ \r\n314 / 974",
+            "source_span": "L44-L55; KGA 330 문단 6 원문 페이지 313; L44-L55"
+          }
+        ],
+        "criteria": [
+          {
+            "id": "crit1",
+            "requirement_id": "req1",
+            "claim": "매출기록의 날짜만 확인하지 않고 계약조건에 맞는 출고·고객인수 등 발생·인도 증거를 확인하여 실제 고객 인수·통제이전 시점과 기록기간을 대조한다.",
+            "critical_facts": [
+              {
+                "id": "cf1",
+                "type": "action",
+                "expected": "매출기록의 날짜만 확인하지 않고 계약조건에 맞는 출고·고객인수 등 발생·인도 증거를 확인하여 실제 고객 인수·통제이전 시점과 기록기간을 대조한다."
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src-b9fb1f4cecefc55ca4",
+              "src-b54e475de9357c2dde",
+              "src-278092b39121f3286c"
+            ]
+          },
+          {
+            "id": "crit2",
+            "requirement_id": "req2",
+            "claim": "길어진 운송·인수기간을 반영하도록 결산일 전후 검사 대상기간을 확대하거나 적절하게 조정한다.",
+            "critical_facts": [
+              {
+                "id": "cf2",
+                "type": "action",
+                "expected": "길어진 운송·인수기간을 반영하도록 결산일 전후 검사 대상기간을 확대하거나 적절하게 조정한다."
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src-b9fb1f4cecefc55ca4",
+              "src-c87ebb4b191de76df8",
+              "src-f08609d4a619d57460"
+            ]
+          },
+          {
+            "id": "crit3",
+            "requirement_id": "req3",
+            "claim": "운송기간이 길어지면 종전7일 범위 밖의 출고·인수와 관련된 거래가 결산일 부근의 기록기간 오류를 일으킬 수 있어 기존 범위만으로는 그 위험을 포착하지 못할 수 있기 때문이다.",
+            "critical_facts": [
+              {
+                "id": "cf3",
+                "type": "action",
+                "expected": "운송기간이 길어지면 종전7일 범위 밖의 출고·인수와 관련된 거래가 결산일 부근의 기록기간 오류를 일으킬 수 있어 기존 범위만으로는 그 위험을 포착하지 못할 수 있기 때문이다."
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src-b9fb1f4cecefc55ca4",
+              "src-c87ebb4b191de76df8",
+              "src-278092b39121f3286c"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "qa_evidence": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/qa-prepared-v1/pilot-08-007.json",
+    "total": 106,
+    "cases": [
+      {
+        "id": "point-v1-sub2-crit12-complete",
+        "subquestion_id": "sub2",
+        "kind": "full",
+        "answer": "선정한 기초자료의 신뢰성을 확인하여 감사증거로 이용한다.",
+        "expected_points": 1,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있는 기초자료 모집단에서 출발한다."
+          },
+          {
+            "criterion_id": "crit11",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 선정한 기초자료가 미기록 매출의 완전성을 검증하는 목적과 관련성이 있는지 확인하여 이용한다."
+          },
+          {
+            "criterion_id": "crit12",
+            "verdict": "met",
+            "reason": "직접 진술 또는 문맥상 명확한 함축; 선정한 기초자료의 신뢰성을 확인하여 감사증거로 이용한다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다."
+          }
+        ],
+        "note": "요소별 배점 후속의 작성자 회귀 기대; API 미실행. 이 기준의 독립 요구 전체를 표현한다. 다른 기준은 실제 함축되는 범위에서만 인정한다.",
+        "origin": {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/point-policy-v1/t08-b/qa-cases-t08-b.json",
+          "case_id": "point-v1-sub2-crit12-complete"
+        }
+      },
+      {
+        "id": "point-v1-sub2-crit12-paraphrase",
+        "subquestion_id": "sub2",
+        "kind": "paraphrase",
+        "answer": "그 자료를 감사증거로 믿고 쓸 수 있는지 검토한다.",
+        "expected_points": 1,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있는 기초자료 모집단에서 출발한다."
+          },
+          {
+            "criterion_id": "crit11",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 선정한 기초자료가 미기록 매출의 완전성을 검증하는 목적과 관련성이 있는지 확인하여 이용한다."
+          },
+          {
+            "criterion_id": "crit12",
+            "verdict": "met",
+            "reason": "직접 진술 또는 문맥상 명확한 함축; 선정한 기초자료의 신뢰성을 확인하여 감사증거로 이용한다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다."
+          }
+        ],
+        "note": "요소별 배점 후속의 작성자 회귀 기대; API 미실행. ",
+        "origin": {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/point-policy-v1/t08-b/qa-cases-t08-b.json",
+          "case_id": "point-v1-sub2-crit12-paraphrase"
+        }
+      },
+      {
+        "id": "point-v1-sub2-crit12-true-omission",
+        "subquestion_id": "sub2",
+        "kind": "omission",
+        "answer": "매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있는 기초자료 모집단에서 출발한다.\n선정한 기초자료가 미기록 매출의 완전성을 검증하는 목적과 관련성이 있는지 확인하여 이용한다.\n그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다.\n계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다.",
+        "expected_points": 4,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "reason": "직접 진술 또는 문맥상 명확한 함축; 매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있는 기초자료 모집단에서 출발한다."
+          },
+          {
+            "criterion_id": "crit11",
+            "verdict": "met",
+            "reason": "직접 진술 또는 문맥상 명확한 함축; 선정한 기초자료가 미기록 매출의 완전성을 검증하는 목적과 관련성이 있는지 확인하여 이용한다."
+          },
+          {
+            "criterion_id": "crit12",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 선정한 기초자료의 신뢰성을 확인하여 감사증거로 이용한다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "reason": "직접 진술 또는 문맥상 명확한 함축; 그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "reason": "직접 진술 또는 문맥상 명확한 함축; 계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다."
+          }
+        ],
+        "note": "요소별 배점 후속의 작성자 회귀 기대; API 미실행. 명확한 함축으로 목표 명제가 남을 수 있는 이웃 문장도 제외하여 실제 누락을 구성한다. 단순 문장 삭제와 구별한다.",
+        "origin": {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/point-policy-v1/t08-b/qa-cases-t08-b.json",
+          "case_id": "point-v1-sub2-crit12-true-omission"
+        }
+      },
+      {
+        "id": "point-v1-sub2-crit12-opposite",
+        "subquestion_id": "sub2",
+        "kind": "opposite",
+        "answer": "기초자료의 신뢰성은 확인하지 않아도 된다.",
+        "expected_points": 0,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있는 기초자료 모집단에서 출발한다."
+          },
+          {
+            "criterion_id": "crit11",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 선정한 기초자료가 미기록 매출의 완전성을 검증하는 목적과 관련성이 있는지 확인하여 이용한다."
+          },
+          {
+            "criterion_id": "crit12",
+            "verdict": "contradicted",
+            "reason": "필수 의미·대상·조건의 명시적 반대; 선정한 기초자료의 신뢰성을 확인하여 감사증거로 이용한다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다."
+          }
+        ],
+        "note": "요소별 배점 후속의 작성자 회귀 기대; API 미실행. 원인의 부정만으로 별도 결과를 자동 부정하지 않는다.",
+        "origin": {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/point-policy-v1/t08-b/qa-cases-t08-b.json",
+          "case_id": "point-v1-sub2-crit12-opposite"
+        }
+      },
+      {
+        "id": "point-v1-sub2-crit12-condition-boundary",
+        "subquestion_id": "sub2",
+        "kind": "condition_boundary",
+        "answer": "회사의 원장과 다른 파일이라는 이유 하나만으로 해당 자료의 신뢰성이 검증되었다고 단정한다.",
+        "expected_points": 0,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있는 기초자료 모집단에서 출발한다."
+          },
+          {
+            "criterion_id": "crit11",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 선정한 기초자료가 미기록 매출의 완전성을 검증하는 목적과 관련성이 있는지 확인하여 이용한다."
+          },
+          {
+            "criterion_id": "crit12",
+            "verdict": "contradicted",
+            "reason": "필수 의미·대상·조건의 명시적 반대; 선정한 기초자료의 신뢰성을 확인하여 감사증거로 이용한다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다."
+          }
+        ],
+        "note": "요소별 배점 후속의 작성자 회귀 기대; API 미실행. 실제 대상·범위·방법·적용조건을 바꾼 주장의 반대 효과를 해당 명제에 한정한다.",
+        "origin": {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/point-policy-v1/t08-b/qa-cases-t08-b.json",
+          "case_id": "point-v1-sub2-crit12-condition-boundary"
+        }
+      },
+      {
+        "id": "point-v1-sub3-crit13-complete",
+        "subquestion_id": "sub3",
+        "kind": "full",
+        "answer": "계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다.",
+        "expected_points": 1,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다."
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 검사 대상기간을 확장하거나 적절하게 조정한다."
+          },
+          {
+            "criterion_id": "crit13",
+            "verdict": "met",
+            "reason": "직접 진술 또는 문맥상 명확한 함축; 계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다."
+          }
+        ],
+        "note": "요소별 배점 후속의 작성자 회귀 기대; API 미실행. 이 기준의 독립 요구 전체를 표현한다. 다른 기준은 실제 함축되는 범위에서만 인정한다.",
+        "origin": {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/point-policy-v1/t08-b/qa-cases-t08-b.json",
+          "case_id": "point-v1-sub3-crit13-complete"
+        }
+      },
+      {
+        "id": "point-v1-sub3-crit13-paraphrase",
+        "subquestion_id": "sub3",
+        "kind": "paraphrase",
+        "answer": "계약상 인식일을 보여주는 고객 수령 확인 등과 매출 전기기간을 대사한다.",
+        "expected_points": 1,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다."
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "not_met",
+            "reason": "원답안에 해당 독립 내용 없음; 실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 검사 대상기간을 확장하거나 적절하게 조정한다."
+          },
+          {
+            "criterion_id": "crit13",
+            "verdict": "met",
+            "reason": "직접 진술 또는 문맥상 명확한 함축; 계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다."
+          }
+        ],
+        "note": "요소별 배점 후속의 작성자 회귀 기대; API 미실행. ",
+        "origin": {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/point-policy-v1/t08-b/qa-cases-t08-b.json",
+          "case_id": "point-v1-sub3-crit13-paraphrase"
+        }
+      }
+    ],
+    "note": "작성자 기대값을 로컬 대조했으며 새 실제 채점을 수행하지 않았다."
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "units": [
+        "subquestion:sub1",
+        "criterion:sub1:crit2",
+        "criterion:sub1:crit10"
+      ],
+      "assessment": "사례와 일반 기준의 정당한 적용 추론; 추가 기준서 문구 불필요",
+      "facts": [
+        "fact2"
+      ],
+      "sources": [
+        "src-09fd22479bc66ee351",
+        "src-d17a554e2fd22ebefe",
+        "src-c47d70e5ee42de9db1"
+      ],
+      "reason": "A190의 완전성은 기록되어야 할 모든 거래를 포함한다. fact2의 추출 모집단은 이미 기록된 거래만이고 미기록 거래가 별도 자료에 있을 가능성이 있으므로, 미기록 거래는 그 모집단에서 선택되지 않는다. A31의 방향·목적 관련성 및 A32의 다른 주장으로 증거를 대체할 수 없다는 원칙을 적용하면 완전성 검증에 충분하지 않다는 결론이 나온다. 이 집합 포함관계는 추가 표본규모 규정이나 숨은 사례 사실이 아니다. A190 하나만으로 방향까지 직접 설명했다고 주장하지 않는다."
+    },
+    {
+      "id": "F2",
+      "units": [
+        "subquestion:sub2",
+        "criterion:sub2:crit3"
+      ],
+      "assessment": "구체 자료는 제시 사실·허용 예시, 의무 근거와 구분 필요",
+      "facts": [
+        "fact2",
+        "fact3"
+      ],
+      "sources": [
+        "src-d17a554e2fd22ebefe",
+        "src-234f2e471592718da0",
+        "src-09fd22479bc66ee351"
+      ],
+      "reason": "원장 밖 출고·운송 자료와 인수 조건은 fact2·fact3에 주어졌다. 이를 출발 모집단으로 선정하고 원장으로 추적하는 것은 A31의 목적·방향 관련성을 완전성 주장에 적용한 것이다. 특정 자료 이름이 A31에 없다는 사실만으로 결함은 아니다. 관련성·신뢰성 확인은 500.7의 직접 의무이며 fact2는 확인 완료를 제공하지 않는다. 세 가지 문서명을 모두 요구하는 목록은 현 범위가 아니다."
+    },
+    {
+      "id": "F3",
+      "units": [
+        "criterion:sub3:crit8"
+      ],
+      "assessment": "상황 적합성 기준의 적용 추론, 특정 일수 요구 없음",
+      "facts": [
+        "fact3",
+        "fact4"
+      ],
+      "sources": [
+        "src-1518221249f4db39b5",
+        "src-fd7cf84445e2d33969"
+      ],
+      "reason": "국외 거래의 운송·인수 지연과 종전 7일 고정 범위를 500.6·A34에 대입하여 실제 기간에 맞게 검사 범위를 확장하거나 조정한다. 정확한 추가 일수나 모든 국외 거래에 일정 일수를 더하는 규칙은 답안에 없다. 따라서 기준서에 동일한 운송 사례가 직접 적혀 있어야 한다는 요구는 과도하다."
+    },
+    {
+      "id": "F4",
+      "units": [
+        "subquestion:sub1",
+        "subquestion:sub2"
+      ],
+      "assessment": "과거 단위별 출처 열거의 범위 차이 있음; 추가 공식 등록 문제와 다름",
+      "reason": "관측 로그 subquestion:sub1의 source_ref_ids는 A190만, subquestion:sub2는 A31·A190만이다. 실제 criterion.source_ref_ids 및 계획 source_unit_ids에는 보완 근거 A31/A32/500.7/A34가 이미 있다. 구문·위치의 정확성과 필요한 전체 근거의 전달을 나누어 대조해야 한다. 이 보고서는 과거 요청을 최신 코드로 재구성하여 동일 입력이었다고 주장하지 않는다."
+    },
+    {
+      "id": "F5",
+      "units": [
+        "criterion:sub2:crit12"
+      ],
+      "assessment": "실제 세트 간 부분 중복; 기존 계획의 명시 누락 확인",
+      "reason": "pilot-08-001/sub1/crit2의 신뢰성 고려와 본 crit12는 동일 일반 요건이다. 선정 자료라는 적용 문맥은 다르나 요건 자체가 새 것은 아니다. 활성 및 세 개 이전 plan 모두 08-001/sub2와의 차이만 기록하고 sub1 복습은 명시하지 않았다. 이번 대조 이후 적용복습으로 명시·커버리지 중복 제외하는 제안을 남긴다. 관련성 crit11↔08-001/sub1/crit1도 같은 관계다."
+    },
+    {
+      "id": "F6",
+      "units": [
+        "criterion:sub2:crit5",
+        "subquestion:sub3"
+      ],
+      "assessment": "모델의 외부 peer ID 오인용",
+      "reason": "pilot-08-008/sub1은 경영진측 전문가의 적격성·역량·객관성 물음이다. 7일 검사 사례가 아니다. 실제 관련 peer pilot-07-008/sub1은 T07-C-Q1이며 기존 plan에서 이미 의도된 적용복습으로 명시했다. 잘못된 08-008 인용을 유효한 중복 근거로 승계하지 않는다."
+    },
+    {
+      "id": "F7",
+      "units": [
+        "criterion:sub2:crit5",
+        "criterion:sub3:crit13"
+      ],
+      "assessment": "별도 처리 필요한 실제 세트 내부 중복",
+      "reason": "두 claim은 이 사례의 계약상 인수·통제이전 증빙 시점과 매출 기록기간을 대조한다는 같은 행동이다. sub3/crit13의 대체 증빙 허용은 별도 득점 명제가 아니며, 국외 거래라는 말만으로 새 절차가 추가되지 않는다. sub3 대상기간 조정 crit8과의 독립성은 인정하지만 그것이 crit5와의 중복을 해소하지는 않는다. plan-only 복습 설명으로 이 1점을 자동 정당화하지 말고 총괄의 문항별 배점 결정을 기다린다."
+    }
+  ],
+  "response_proposal": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/semantic-plan-proposals/pilot-08-007/authoring-plan.source-overlap.proposed.json",
+    "sha256": "9423afabe0f8e5919fca8646fff771bbe59dd2affeb93666899d4954cc65c8fc",
+    "status": "draft",
+    "changes": [
+      "scope.conditions에 기준·사실·적용의 역할 명시",
+      "scope.exceptions에 과거 requirement/criterion 근거 범위 차이 설명",
+      "existing_question_difference에 이번 발견의 08-001/sub1 부분 복습 및 정확한 07-008 peer 기록",
+      "실제 내부 중복을 unresolved_items에 기록하여 ready로 꾸미지 않음"
+    ],
+    "preserved": [
+      "원 질문·모범답안·criterion·배점·source_refs·QA·active plan·로그",
+      "계획의 objective·source_unit_ids·edition_assumption·required_answers"
+    ],
+    "activation": "총괄이 검토·결정한 뒤 별도 선택·검수 입력으로 연결해야 한다. 현재 활성화하지 않음"
+  },
+  "original_files": {
+    "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-new-resume-a-v1/manifest.json": "155871db07a4001d8ce48efdbad9d8dbe95a2a6bf9f4f29af5c5a02f1c62f333",
+    "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/prepared-reviewed-v3/candidate-authoring.json": "7c75453682959ce6bcd70df6d154283f7d85084f16fb405f799fcb545ab36b00",
+    "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-new-v1/sets/pilot-08-007.json": "da78517e9296c83437851e00b241d76165a31afdc879b7a8843e024fc2129443",
+    "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/point-policy-v1/t08-b/pilot-08-007.authoring-plan.json": "ad3eee448dd8ebe68500fac426efb57b8150a23cf2795392f86adf7c65b463a9",
+    "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/qa-prepared-v1/pilot-08-007.json": "e4a49bb17e7e13c11e035ed09646f2a385031da7ce5a774f31ddcd8926916cb5",
+    "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-new-resume-a-v1/semantic-a/pilot-08-007/semantic.json.chunks.jsonl": "aba60d9a8889f55240dc16a7492f6fb470291490c28621af194c73ad19a9fb47",
+    "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/pilot-08-007.authoring-plan.json": "df4c3bb2d8d379907b9993a2fd7fbb26825b1205caaee192e757c2f553df3c85",
+    "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v2/pilot-08-007.authoring-plan.json": "2a6e061da5cdb5abbfe52625fce5021bad7a1990a1419a1a6709e4891b9f29e6",
+    "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v3/pilot-08-007.authoring-plan.json": "0b3f1f5b6e66fcd17b9e13dc75f1b52f0c5df052e7320f3b0d7ee131eed3b06d",
+    "cpa_uploader/data/official/delegated-n02-kga315-2025.txt": "853614e9dae546da8b9c7a730756327463399c62794e6354b49f5a45eb6d8dfc",
+    "cpa_uploader/data/official/kga500-2025-review08.txt": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b"
+  },
+  "checks": {
+    "original_hashes_unchanged": true,
+    "source_quotes_exact": true,
+    "catalog_ids_all_exist": true,
+    "api_calls": 0
+  }
+}

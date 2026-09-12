@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "captured_at": "2026-09-12T05:10:29.032Z",
+  "project": "xvifzicrjmbfqaepcfpp",
+  "state": {
+    "active": [
+      {
+        "id": "2fe460a1-8107-40cd-8afd-e6eb539ef997",
+        "source_file_hash": "4891f97bcfc98cdeda77567b59657577da184317df199fd53c859004728acd80",
+        "bank_content_hash": "0086b8484ac8e609149faf54aadc77f557453544ff9f0ea8a04a60620ad5e92d",
+        "public_content_hash": "4266ae699fefc5a769da074b1087a555f71bd35fe779bf712a6c78b0e39ff1c4"
+      }
+    ],
+    "functions": [
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "signature": "cpa_get_active_question_bank()",
+        "definition": "CREATE OR REPLACE FUNCTION public.cpa_get_active_question_bank()\n RETURNS jsonb\n LANGUAGE sql\n STABLE\n SET search_path TO 'pg_catalog', 'public'\nAS $function$\n select coalesce(jsonb_agg(jsonb_build_object('release_id',r.id,'set_version_id',i.set_version_id,\n  'question_set',public.cpa_get_public_question_version(i.set_version_id)) order by i.position),'[]')\n from public.cpa_question_bank_releases r join public.cpa_question_bank_release_items i on i.release_id=r.id where r.status='active'\n$function$\n",
+        "security_definer": false,
+        "definition_sha256": "0edec9487d4b5044753cb00e6c4ddae04ab307eacc95cf86a20e099a25c6f9eb"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "signature": "cpa_get_public_question_version(uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public.cpa_get_public_question_version(p_version_id uuid)\n RETURNS jsonb\n LANGUAGE sql\n STABLE\n SET search_path TO 'pg_catalog', 'public'\nAS $function$\n select jsonb_build_object(\n  'id',v.set_id,'type','linked_question_set','title',v.title,\n  'classification',jsonb_build_object('topic_id',v.topic_id,'part',v.part,'chapter',v.chapter,'domain',v.domain,'standards',v.standards,'tags',v.tags),\n  'sources',(select coalesce(jsonb_agg(jsonb_strip_nulls(jsonb_build_object('id',s.code,\n   'title',coalesce(nullif(s.title,''),regexp_replace(regexp_replace(s.file_path,'^.*[/\\\\]',''),'\\.[^.]*$','')),\n   'page',s.page_label,'role',s.role)) order by s.position),'[]') from public.cpa_question_sources s where s.set_version_id=v.id),\n  'shared_context',jsonb_build_object('facts',v.shared_facts),\n  'learning_order',(select jsonb_agg(l.code order by q.learning_position) from public.cpa_subquestion_versions q join public.cpa_subquestions l on l.id=q.subquestion_id where q.set_version_id=v.id),\n  'subquestions',(select jsonb_agg(jsonb_build_object(\n   'id',l.code,'logical_subquestion_id',l.id,'type',q.type,'prompt',q.prompt,\n   'constraints',jsonb_build_object('ordered',q.ordered,'max_entries',q.max_entries,'overflow_policy',q.overflow_policy),\n   'selection',jsonb_build_object('type',q.selection_type,'n',null),\n   'answer_slots',case when jsonb_array_length(q.answer_slots)>0 then q.answer_slots else jsonb_build_array(jsonb_build_object('id',l.code||'.answer','label','답안','input','textarea')) end,\n   'max_points',q.max_points\n  ) || jsonb_strip_nulls(jsonb_build_object('question_style',q.authored_question_style,'topic_ids',q.authored_topic_ids))\n  || case when q.decision_options is not null then jsonb_build_object('decision',jsonb_build_object('options',q.decision_options)) else '{}'::jsonb end\n  order by q.position) from public.cpa_subquestion_versions q join public.cpa_subquestions l on l.id=q.subquestion_id where q.set_version_id=v.id),\n  'max_points',v.max_points\n ) from public.cpa_question_set_versions v where v.id=p_version_id and v.sealed_at is not null\n$function$\n",
+        "security_definer": false,
+        "definition_sha256": "982201bbdc1910d43f59ea3b3bc209cc65c37e18c1ebf1600dd33ceb3187d90c"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "signature": "cpa_get_question_version_document(uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public.cpa_get_question_version_document(p_version_id uuid)\n RETURNS jsonb\n LANGUAGE sql\n STABLE\n SET search_path TO 'pg_catalog', 'public'\nAS $function$\n select jsonb_strip_nulls(jsonb_build_object(\n  'schema_version',v.schema_version,'id',v.set_id,'type','linked_question_set','status',v.status,'title',v.title,\n  'classification',jsonb_build_object('topic_id',v.topic_id,'part',v.part,'chapter',v.chapter,'domain',v.domain,'standards',v.standards,'tags',v.tags),\n  'source_refs',(select coalesce(jsonb_agg(jsonb_strip_nulls(jsonb_build_object('id',s.code,'file',s.file_path,'title',s.title,'page',s.page_label,'source_quote',s.source_quote,'role',s.role,'content_hash',s.declared_quote_hash)) order by s.position),'[]') from public.cpa_question_sources s where s.set_version_id=v.id),\n  'shared_context',jsonb_build_object('facts',v.shared_facts),\n  'learning_order',(select jsonb_agg(l.code order by q.learning_position) from public.cpa_subquestion_versions q join public.cpa_subquestions l on l.id=q.subquestion_id where q.set_version_id=v.id),\n  'subquestions',(select jsonb_agg(jsonb_strip_nulls(jsonb_build_object(\n   'id',l.code,'type',q.type,'prompt',q.prompt,'question_style',q.authored_question_style,'topic_ids',q.authored_topic_ids,\n   'constraints',jsonb_build_object('ordered',q.ordered,'max_entries',q.max_entries,'overflow_policy',q.overflow_policy),\n   'selection',jsonb_build_object('type',q.selection_type,'n',q.selection_n),\n   'decision',case when q.decision_options is not null then jsonb_build_object('options',q.decision_options,'correct',a.decision_correct) end,\n   'answer_slots',q.answer_slots,'model_answer',a.model_answer,\n   'requirements',(select jsonb_agg(jsonb_strip_nulls(jsonb_build_object('id',r.code,'source_ref_id',s.code,'source_quote',r.source_quote,'source_span',r.source_span)) order by r.position) from public.cpa_requirements r join public.cpa_question_sources s on s.id=r.source_id where r.subquestion_version_id=q.id),\n   'criteria',(select jsonb_agg(jsonb_build_object(\n    'id',c.code,'requirement_id',r.code,'claim',c.claim,'max_points',c.max_points,\n    'scores',jsonb_strip_nulls(jsonb_build_object('met',c.max_points,'partial',c.partial_points,'not_met',0,'contradicted',0)),\n    'source_ref_ids',(select jsonb_agg(s.code order by cs.position) from public.cpa_criterion_sources cs join public.cpa_question_sources s on s.id=cs.source_id where cs.criterion_id=c.id),\n    'critical_facts',(select coalesce(jsonb_agg(jsonb_build_object('id',f.code,'type',f.type,'expected',f.expected) order by f.position),'[]') from public.cpa_criterion_facts f where f.criterion_id=c.id)\n   ) order by c.position) from public.cpa_criteria c join public.cpa_requirements r on r.id=c.requirement_id where c.subquestion_version_id=q.id)\n  )) order by q.position) from public.cpa_subquestion_versions q join public.cpa_subquestions l on l.id=q.subquestion_id join public.cpa_subquestion_answers a on a.subquestion_version_id=q.id where q.set_version_id=v.id),\n  'verification',jsonb_build_object('source_fidelity',v.source_fidelity,'review_status',v.review_status,'calculation_required',v.calculation_required,'notes',v.verification_notes)\n )) from public.cpa_question_set_versions v where v.id=p_version_id\n$function$\n",
+        "security_definer": false,
+        "definition_sha256": "133fab1df28a0b93b3834749fb4c7179c952424720bdf472e6b0f3229d5f0d42"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "signature": "cpa_get_question_version(uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public.cpa_get_question_version(p_version_id uuid)\n RETURNS jsonb\n LANGUAGE sql\n STABLE\n SET search_path TO 'pg_catalog', 'public'\nAS $function$\n select public.cpa_restore_v3_null_policy(public.cpa_get_question_version_document(p_version_id))\n$function$\n",
+        "security_definer": false,
+        "definition_sha256": "fe28b672775d5a6aa75e24e9be390efb6cdb66dd6c32df65d7bf792f24f12fd2"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "signature": "cpa_restore_v3_null_policy(jsonb)",
+        "definition": "CREATE OR REPLACE FUNCTION public.cpa_restore_v3_null_policy(p_set jsonb)\n RETURNS jsonb\n LANGUAGE sql\n IMMUTABLE STRICT\n SET search_path TO 'pg_catalog', 'public'\nAS $function$\n select jsonb_set(p_set,'{subquestions}',(select jsonb_agg(\n  jsonb_set(jsonb_set(q,'{constraints,max_entries}',coalesce(q#>'{constraints,max_entries}','null'::jsonb)),'{selection,n}','null') order by ordinal)\n  from jsonb_array_elements(p_set->'subquestions') with ordinality a(q,ordinal)))\n$function$\n",
+        "security_definer": false,
+        "definition_sha256": "2b4abdb7e198de23383f75d9678ea6e8abb51aa38d85734af7ac748722223480"
+      }
+    ],
+    "migration": null,
+    "item_fingerprint": "dc6a67a2f849d021064bbc3d44595fb572d54dff93540f1407b4837bebb085ad",
+    "release_fingerprint": "a02e75d87d0534d0d7458ec1dc2431de78c135b53eb96117d06c97f4221db22d",
+    "version_fingerprint": "e7760dcd6077084f0fc3eed88621900fe1aa19b50eb358c370c2f33171c244e5"
+  },
+  "query_sha256": "9346564aed90eabaaa4b6b87d8381c186b85ee7df8477306e9250a97e72f9180",
+  "db_writes": 0
+}

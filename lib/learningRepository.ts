@@ -33,6 +33,8 @@ export async function beginAttempt(claims: SubmissionClaims, answers: Record<str
             release_id: claims.release_id, set_id: claims.set_id, set_version_id: claims.set_version_id,
             submission_key: claims.submission_key, answers_hash: claims.answers_hash,
             submitted_at: claims.submitted_at, expires_at: claims.expires_at, answers,
+            ...(claims.v === 2 ? { learning_unit_id: claims.learning_unit_id,
+                selected_subquestion_ids: claims.selected_subquestion_ids, classification_version_ids: claims.classification_version_ids } : {}),
         },
     });
 }

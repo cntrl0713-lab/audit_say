@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-04-007--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-007--sub1--standard",
+  "source_set_id": "pilot-04-007",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "ec8b768f0ad87e960c66a53d6722e9c4f2fb4d2d4858a3bf5636037f04a34c73",
+  "answers": {
+    "sub1": "수행중요성은 감사인이 재무제표 전체 중요성보다 낮게 설정하는 금액 또는 금액들이다.\n미수정왜곡표시와 미발견왜곡표시의 합계가 재무제표 전체 중요성을 초과할 가능성을 대상으로 한다.\n그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "모든 독립 명제와 조건을 보존한다. 순서·문장 수·무관한 첫 문장은 득점을 제한하지 않는다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "모든 독립 명제와 조건을 보존한다. 순서·문장 수·무관한 첫 문장은 득점을 제한하지 않는다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "모든 독립 명제와 조건을 보존한다. 순서·문장 수·무관한 첫 문장은 득점을 제한하지 않는다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "3cd8245aa460fd1e6ca413f38ff38ae1113c56ce8407d1e96ba31f6d4754f354",
+  "schema_hash": "70352bfbe1be1719e5db73c06f51d936a518ded990f1fd8452e13d4fe049d4a1",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "수행중요성은 감사인이 재무제표 전체 중요성보다 낮게 설정하는 금액 또는 금액들이다.\n",
+            "reason": "전체 중요성보다 낮게 설정하는 금액 또는 금액들이라고 정확히 설명했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "미수정왜곡표시와 미발견왜곡표시의 합계가 재무제표 전체 중요성을 초과할 가능성을 대상으로 한다.\n",
+            "reason": "미수정왜곡표시와 미발견왜곡표시의 합계가 전체 중요성을 초과할 가능성을 설명했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이다.",
+            "reason": "초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이라고 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "전체 중요성보다 낮게 설정하는 금액 또는 금액들이라고 정확히 설명했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "미수정왜곡표시와 미발견왜곡표시의 합계가 전체 중요성을 초과할 가능성을 설명했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이라고 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-007",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "재무제표 전체 중요성을 기준으로 설정하는 수행중요성이 어떤 금액인지와 그 설정 목적을 정의하시오. 전체 중요성과의 크기 관계, 합산하여 고려하는 왜곡표시의 범위 및 통제하려는 가능성의 수준을 모두 설명하시오. 특정 거래유형·계정잔액·공시의 별도 중요성에 적용하는 경우는 제외한다.",
+        "user_answer": "수행중요성은 감사인이 재무제표 전체 중요성보다 낮게 설정하는 금액 또는 금액들이다.\n미수정왜곡표시와 미발견왜곡표시의 합계가 재무제표 전체 중요성을 초과할 가능성을 대상으로 한다.\n그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "수행중요성은 감사인이 재무제표 전체 중요성보다 낮게 설정하는 금액 또는 금액들이다.",
+            "reason": "전체 중요성보다 낮게 설정하는 금액 또는 금액들이라고 정확히 설명했다.",
+            "claim": "수행중요성을 재무제표 전체 중요성보다 낮게 설정한 금액 또는 금액들로 설명한다. 전체 중요성과 동일하거나 높은 금액으로 정의하면 반대이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "미수정왜곡표시와 미발견왜곡표시의 합계가 재무제표 전체 중요성을 초과할 가능성을 대상으로 한다.",
+            "reason": "미수정왜곡표시와 미발견왜곡표시의 합계가 전체 중요성을 초과할 가능성을 설명했다.",
+            "claim": "미수정왜곡표시와 미발견왜곡표시의 합계가 전체 중요성을 초과할 가능성을 고려한다는 범위를 설명한다. 미수정 또는 미발견 중 하나만으로 범위를 축소하면 부족하다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이다.",
+            "reason": "초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이라고 설명했다.",
+            "claim": "그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적임을 설명한다. 가능성을 영으로 제거해야 한다거나 높이는 것이 목적이라고 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "수행중요성은 감사인이 재무제표 전체 중요성보다 낮게 설정하는 금액 또는 금액들이다.",
+          "미수정왜곡표시와 미발견왜곡표시의 합계가 재무제표 전체 중요성을 초과할 가능성을 대상으로 한다.",
+          "그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_01563f5b34345da5016aa4c914fb9887d08ffe4404ce2dd531",
+        "request_id": "req_5a0d089d47aa48cc80ee9d08b43519a2",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2990,
+          "input_tokens_details": {
+            "cache_write_tokens": 2987,
+            "cached_tokens": 0
+          },
+          "output_tokens": 225,
+          "output_tokens_details": {
+            "reasoning_tokens": 29
+          },
+          "total_tokens": 3215
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00101735,
+        "min_usd": 0.00101735,
+        "max_usd": 0.00101735,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-04-007--sub1--standard--model/input.json",
+      "sha256": "44a8945a1f2ec64da0065e2f0693710bd764c2bed12572fc868b5e1fda86342a"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-04-007--sub1--standard--model/transport.jsonl",
+      "sha256": "9ac641e3e7f4944de5b7322fa5c03640e8026768f98316ee728a2c8d28894f2c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-04-007--sub1--standard--model/traces.jsonl",
+      "sha256": "7c81b629182bc289c8d29169659030afcc09c2541f6e499b24139927380be455"
+    }
+  }
+}

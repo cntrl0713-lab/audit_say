@@ -1,0 +1,252 @@
+{
+  "set_id": "pilot-19-005",
+  "case_id": "sub3/conflict",
+  "kind": "explicit-conflict",
+  "attempt": 1,
+  "started_at": "2026-09-11T03:43:35.024Z",
+  "finished_at": "2026-09-11T03:43:38.694Z",
+  "model": "gpt-5.6-luna",
+  "transport": "live_model",
+  "answers": {
+    "sub1": "",
+    "sub2": "",
+    "sub3": "을의 제안은 적절하다. 보고해야 하는 정보와 그 정보를 신뢰하고 이용하는 측의 요구에 따라 중요성을 판단한다. 검토에서 왜곡표시를 발견하지 못할 위험이 더 크고 제공 확신이 낮다는 사실은, 이용자가 중요하게 여길 사항의 기준을 느슨하게 만드는 근거가 아니다."
+  },
+  "expected": {
+    "id": "sub3/conflict",
+    "subquestion_id": "sub3",
+    "kind": "explicit-conflict",
+    "answer": "을의 제안은 적절하다. 보고해야 하는 정보와 그 정보를 신뢰하고 이용하는 측의 요구에 따라 중요성을 판단한다. 검토에서 왜곡표시를 발견하지 못할 위험이 더 크고 제공 확신이 낮다는 사실은, 이용자가 중요하게 여길 사항의 기준을 느슨하게 만드는 근거가 아니다.",
+    "expected_points": 1,
+    "expected_verdicts": [
+      {
+        "criterion_id": "crit4",
+        "verdict": "contradicted",
+        "reason": "반대결론과독립된올바른판단기준을분리평가한다."
+      },
+      {
+        "criterion_id": "crit5",
+        "verdict": "met",
+        "reason": "반대결론과독립된올바른판단기준을분리평가한다."
+      }
+    ],
+    "note": "반대결론과독립된올바른판단기준을분리평가한다."
+  },
+  "request_hash": "1854e51540039a2b52b633ec9e4c96117ebdfd07a1f5f238f33a701e9959aa50",
+  "schema_hash": "7611bed8fc6766d760c8a9f31bbda1ee2249dde1e4499729528b217efc02cd8b",
+  "raw_judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "답안이 없습니다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "답안이 없습니다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "답안이 없습니다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "을의 제안은 적절하다. ",
+            "reason": "을의 제안이 적절하다고 명시하여 부적절하다는 결론과 반대된다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "보고해야 하는 정보와 그 정보를 신뢰하고 이용하는 측의 요구에 따라 중요성을 판단한다. 검토에서 왜곡표시를 발견하지 못할 위험이 더 크고 제공 확신이 낮다는 사실은, 이용자가 중요하게 여길 사항의 기준을 느슨하게 만드는 근거가 아니다.",
+            "reason": "중요성 판단의 근거를 정보와 이용자의 요구로 설명하고, 낮은 확신과 높은 미발견위험이 완화 근거가 아님을 구별하였다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "trace": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없습니다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없습니다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없습니다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "을의 제안이 적절하다고 명시하여 부적절하다는 결론과 반대된다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e2",
+                  "sub3/e3"
+                ],
+                "reason": "중요성 판단의 근거를 정보와 이용자의 요구로 설명하고, 낮은 확신과 높은 미발견위험이 완화 근거가 아님을 구별하였다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-19-005",
+    "score": 1,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "필요한 나머지 종결절차도 완료되고 현재와 같이 중요한 수정·의견변형 사유가 없다는 전제에서, 이 검토의 확신 수준을 제시하고 초안의 적극적 감사의견을 대신할 소극적 결론 문구를 작성하시오. 대상 반기재무제표와 한국채택국제회계기준 및 중요성의 관점이 드러나도록 답하시오.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "답안이 없습니다.",
+            "claim": "중간검토의 확신은 감사의 합리적 확신보다 낮은 제한적 확신임을 제시한다. 이 준칙 보론4의 보통수준의 확신이라는 동의 표현도 허용한다. 무확신 업무나 합리적 확신으로 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "답안이 없습니다.",
+            "claim": "대상 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않았다고 믿게 하는 사항이 발견되지 않았다는 소극적 결론을 작성한다. 문구의 완전한 축자재현은 요구하지 않지만 적극적 공정표시 감사의견이나 발견된 중요한 왜곡이 없다는 무근거 보장으로 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "검토가 제공하는 확신은 감사보다 낮은 제한적 확신이다. 이 준칙의 보통수준의 확신이라는 표현도 같은 취지로 이해하며 합리적 확신의 감사의견을 표명하지 않는다.",
+          "우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "갑의 서면진술 생략 제안이 적절한지 판단하고, 이 중간검토에서 경영진 서면진술을 입수해야 하는지 제시하시오. 서면진술에 담을 모든 개별 항목의 열거는 요구하지 않는다.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "답안이 없습니다.",
+            "claim": "갑의 생략 제안을 부적절하다고 판단하고 이 중간검토에서도 경영진 서면진술을 입수해야 함을 제시한다. 의무를 설명하여 부적절성이 명확히 함축되면 별도의 결론 단어는 요구하지 않는다. 구두진술만으로 대체하거나 문제가 발견될 때에만 받는다는 답은 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "갑의 제안은 부적절하다. 감사가 아닌 중간재무제표 검토에서도 경영진으로부터 요구되는 서면진술을 입수하여야 하므로, 발견된 문제의 부재나 낮은 확신 수준만으로 생략할 수 없다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "을의 중요성 판단기준 완화 제안이 적절한지 판단하시오. 이어 이 검토에서 무엇을 바탕으로 중요성을 판단해야 하는지 설명하고, 제공하는 확신 수준의 차이와 구별하시오.",
+        "user_answer": "을의 제안은 적절하다. 보고해야 하는 정보와 그 정보를 신뢰하고 이용하는 측의 요구에 따라 중요성을 판단한다. 검토에서 왜곡표시를 발견하지 못할 위험이 더 크고 제공 확신이 낮다는 사실은, 이용자가 중요하게 여길 사항의 기준을 느슨하게 만드는 근거가 아니다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "을의 제안은 적절하다.",
+            "reason": "을의 제안이 적절하다고 명시하여 부적절하다는 결론과 반대된다.",
+            "claim": "검토업무이고 확신이 낮다는 이유만으로 중요성 판단기준을 완화하자는 을의 제안을 부적절하다고 판단한다. 기준상 완화금지를 명확히 설명해 결론이 함축되면 충족한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "보고해야 하는 정보와 그 정보를 신뢰하고 이용하는 측의 요구에 따라 중요성을 판단한다. 검토에서 왜곡표시를 발견하지 못할 위험이 더 크고 제공 확신이 낮다는 사실은, 이용자가 중요하게 여길 사항의 기준을 느슨하게 만드는 근거가 아니다.",
+            "reason": "중요성 판단의 근거를 정보와 이용자의 요구로 설명하고, 낮은 확신과 높은 미발견위험이 완화 근거가 아님을 구별하였다.",
+            "claim": "보고해야 하는 정보와 이를 신뢰·이용하는 측의 요구를 중요성 판단의 근거로 설명하여, 검토의 더 낮은 확신 또는 더 높은 미발견위험과 구별한다. 연간감사의 중요성 숫자를 기계적으로 그대로 적용한다는 주장이 아니다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "을의 제안은 부적절하다. 검토업무라는 이유만으로 감사업무에 비해 중요성의 판단기준을 완화해서는 안 된다.",
+          "보고해야 하는 정보와 그 정보를 신뢰하고 이용하는 측의 요구에 따라 중요성을 판단한다. 검토에서 왜곡표시를 발견하지 못할 위험이 더 크고 제공 확신이 낮다는 사실은, 이용자가 중요하게 여길 사항의 기준을 느슨하게 만드는 근거가 아니다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "exact_verdict_differences": [],
+  "verdict_differences": [],
+  "matched": true,
+  "boundary_policy": null
+}

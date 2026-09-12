@@ -1,0 +1,9 @@
+--- a/cpa_uploader/questionEfficientReview.ts
++++ b/cpa_uploader/questionEfficientReview.ts
+@@ -292,2 +292,4 @@
+-        const snapshotIndex = origin.inputs.find(i => i.file.endsWith('/runtime-snapshots.json'));
+-        assert(snapshotIndex, 'Original runtime snapshot index missing');
++        const snapshotPath = path.resolve(root, path.dirname(reuse.origin_manifest.file), 'runtime-snapshots.json');
++        const snapshotIndexes = origin.inputs.filter(i => path.resolve(root, i.file) === snapshotPath);
++        assert.equal(snapshotIndexes.length, 1, 'Exactly one original sibling runtime snapshot index required');
++        const snapshotIndex = snapshotIndexes[0];

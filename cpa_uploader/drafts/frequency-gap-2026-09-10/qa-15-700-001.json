@@ -1,0 +1,612 @@
+{
+  "set_id": "draft-15-700-001",
+  "method": "source_and_contract_review",
+  "human_approval": false,
+  "live_model_grading": "not_run",
+  "source_comparison": {
+    "description": "2025 PDF676–677 ↔ 2026 PDF703–704; 10개 인용 중 이 세트의5개 모두 일치. 번호·본문·조건/부정을 대조.",
+    "source_2025_pdf_sha256": "b6b3a965c25cdb5bfdc0bf54838ae1bcc642581eef2d2d9e306a67ac811b0989",
+    "source_2026_pdf_sha256": "59020bf1eba001c1fd0612f3af1098dbef4ca11dc22777b7266c80d39a615f84",
+    "normalization": "whitespace_only",
+    "final_2027_edition_confirmed": false,
+    "local_excerpt": {
+      "file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/dh-official.txt",
+      "sha256": "f2e627f019112731fdb26fbe85dc732d9a4dc500db4c1fe537f7ce4e060418d3",
+      "section_headers": [
+        "# KGA 505:",
+        "# KGA 700:"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "sub1-crit1-model_answer",
+      "subquestion_id": "sub1",
+      "kind": "model_answer",
+      "answer": "적정의견을 표명한다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit1 대조: 주어진 적정작성 결론에 대한 의견 판단이다. 조건 반복 없이 적정 명칭만으로 충족하며 한정·거절은 반대 결론이다. "
+    },
+    {
+      "id": "sub1-crit1-paraphrase",
+      "subquestion_id": "sub1",
+      "kind": "paraphrase",
+      "answer": "해당 결론에 따른 감사의견은 적정이다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit1 대조: 주어진 적정작성 결론에 대한 의견 판단이다. 조건 반복 없이 적정 명칭만으로 충족하며 한정·거절은 반대 결론이다. "
+    },
+    {
+      "id": "sub1-crit1-omission",
+      "subquestion_id": "sub1",
+      "kind": "omission",
+      "answer": "요구한 답안을 제시하지 않았습니다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met"
+        }
+      ],
+      "rationale": "crit1 대조: 주어진 적정작성 결론에 대한 의견 판단이다. 조건 반복 없이 적정 명칭만으로 충족하며 한정·거절은 반대 결론이다. 다른 독립 criterion의 정답은 유지하여 부분 득점을 확인한다."
+    },
+    {
+      "id": "sub1-crit1-opposite",
+      "subquestion_id": "sub1",
+      "kind": "opposite",
+      "answer": "해당 결론에도 불구하고 감사의견을 거절한다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted"
+        }
+      ],
+      "rationale": "crit1 대조: 주어진 적정작성 결론에 대한 의견 판단이다. 조건 반복 없이 적정 명칭만으로 충족하며 한정·거절은 반대 결론이다. "
+    },
+    {
+      "id": "sub1-crit1-condition_boundary",
+      "subquestion_id": "sub1",
+      "kind": "condition_boundary",
+      "answer": "재무제표가 중요성의 관점에서 해당 체계에 따라 작성되었다고 결론 내렸더라도 적정의견이 아닌 한정의견을 표명한다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted"
+        }
+      ],
+      "rationale": "crit1 대조: 주어진 적정작성 결론에 대한 의견 판단이다. 조건 반복 없이 적정 명칭만으로 충족하며 한정·거절은 반대 결론이다. "
+    },
+    {
+      "id": "sub1-empty",
+      "subquestion_id": "sub1",
+      "kind": "empty",
+      "answer": "",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met"
+        }
+      ],
+      "rationale": "빈 답안은 실제 모델 호출 없이0점이어야 한다. 이 파일은 기대값 설계이며 실제 채점 실행 기록은 아니다."
+    },
+    {
+      "id": "sub2-crit1-model_answer",
+      "subquestion_id": "sub2",
+      "kind": "model_answer",
+      "answer": "입수한 감사증거에 근거하여 재무제표가 전체적으로 중요하게 왜곡표시되었다고 결론을 내리는 경우이다.\n재무제표가 전체적으로 중요하게 왜곡표시되지 않았다고 결론을 내릴 수 있을 정도로 충분하고 적합한 감사증거를 입수할 수 없는 경우이다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit1 대조: 증거에 근거한 전체 재무제표의 중요한 왜곡표시 결론이 필요하다. 중요성을 생략한 경우 그 조건을 충족했다고 볼 수 없다. "
+    },
+    {
+      "id": "sub2-crit1-paraphrase",
+      "subquestion_id": "sub2",
+      "kind": "paraphrase",
+      "answer": "확보한 감사증거에 비추어 전체 재무제표에 중요한 왜곡표시가 있다고 판단한 때이다.\n전체 재무제표에 중요한 왜곡표시가 없다는 결론을 뒷받침할 증거를 충분하고 적합하게 확보할 수 없는 때이다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit1 대조: 증거에 근거한 전체 재무제표의 중요한 왜곡표시 결론이 필요하다. 중요성을 생략한 경우 그 조건을 충족했다고 볼 수 없다. "
+    },
+    {
+      "id": "sub2-crit1-omission",
+      "subquestion_id": "sub2",
+      "kind": "omission",
+      "answer": "재무제표가 전체적으로 중요하게 왜곡표시되지 않았다고 결론을 내릴 수 있을 정도로 충분하고 적합한 감사증거를 입수할 수 없는 경우이다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit1 대조: 증거에 근거한 전체 재무제표의 중요한 왜곡표시 결론이 필요하다. 중요성을 생략한 경우 그 조건을 충족했다고 볼 수 없다. 다른 독립 criterion의 정답은 유지하여 부분 득점을 확인한다."
+    },
+    {
+      "id": "sub2-crit1-opposite",
+      "subquestion_id": "sub2",
+      "kind": "opposite",
+      "answer": "충분한 증거로 전체 재무제표의 중요한 왜곡표시를 확인해도 의견을 변형할 필요는 없다.\n재무제표가 전체적으로 중요하게 왜곡표시되지 않았다고 결론을 내릴 수 있을 정도로 충분하고 적합한 감사증거를 입수할 수 없는 경우이다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit1 대조: 증거에 근거한 전체 재무제표의 중요한 왜곡표시 결론이 필요하다. 중요성을 생략한 경우 그 조건을 충족했다고 볼 수 없다. "
+    },
+    {
+      "id": "sub2-crit1-condition_boundary",
+      "subquestion_id": "sub2",
+      "kind": "condition_boundary",
+      "answer": "재무제표에 왜곡표시가 있다는 사실만 제시한다.\n재무제표가 전체적으로 중요하게 왜곡표시되지 않았다고 결론을 내릴 수 있을 정도로 충분하고 적합한 감사증거를 입수할 수 없는 경우이다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit1 대조: 증거에 근거한 전체 재무제표의 중요한 왜곡표시 결론이 필요하다. 중요성을 생략한 경우 그 조건을 충족했다고 볼 수 없다. "
+    },
+    {
+      "id": "sub2-crit2-model_answer",
+      "subquestion_id": "sub2",
+      "kind": "model_answer",
+      "answer": "입수한 감사증거에 근거하여 재무제표가 전체적으로 중요하게 왜곡표시되었다고 결론을 내리는 경우이다.\n재무제표가 전체적으로 중요하게 왜곡표시되지 않았다고 결론을 내릴 수 있을 정도로 충분하고 적합한 감사증거를 입수할 수 없는 경우이다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit2 대조: 단순 자료 수량이 아닌 중요한 왜곡표시 부재의 결론에 필요한 충분·적합 증거의 입수 불가가 핵심이다. "
+    },
+    {
+      "id": "sub2-crit2-paraphrase",
+      "subquestion_id": "sub2",
+      "kind": "paraphrase",
+      "answer": "확보한 감사증거에 비추어 전체 재무제표에 중요한 왜곡표시가 있다고 판단한 때이다.\n전체 재무제표에 중요한 왜곡표시가 없다는 결론을 뒷받침할 증거를 충분하고 적합하게 확보할 수 없는 때이다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit2 대조: 단순 자료 수량이 아닌 중요한 왜곡표시 부재의 결론에 필요한 충분·적합 증거의 입수 불가가 핵심이다. "
+    },
+    {
+      "id": "sub2-crit2-omission",
+      "subquestion_id": "sub2",
+      "kind": "omission",
+      "answer": "입수한 감사증거에 근거하여 재무제표가 전체적으로 중요하게 왜곡표시되었다고 결론을 내리는 경우이다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met"
+        }
+      ],
+      "rationale": "crit2 대조: 단순 자료 수량이 아닌 중요한 왜곡표시 부재의 결론에 필요한 충분·적합 증거의 입수 불가가 핵심이다. 다른 독립 criterion의 정답은 유지하여 부분 득점을 확인한다."
+    },
+    {
+      "id": "sub2-crit2-opposite",
+      "subquestion_id": "sub2",
+      "kind": "opposite",
+      "answer": "입수한 감사증거에 근거하여 재무제표가 전체적으로 중요하게 왜곡표시되었다고 결론을 내리는 경우이다.\n전체 재무제표에 중요한 왜곡표시가 없다는 결론을 내릴 충분하고 적합한 감사증거를 얻을 수 없어도 의견을 변형하지 않는다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted"
+        }
+      ],
+      "rationale": "crit2 대조: 단순 자료 수량이 아닌 중요한 왜곡표시 부재의 결론에 필요한 충분·적합 증거의 입수 불가가 핵심이다. "
+    },
+    {
+      "id": "sub2-crit2-condition_boundary",
+      "subquestion_id": "sub2",
+      "kind": "condition_boundary",
+      "answer": "입수한 감사증거에 근거하여 재무제표가 전체적으로 중요하게 왜곡표시되었다고 결론을 내리는 경우이다.\n감사증거의 적합성은 고려하지 않고 자료의 개수가 적다는 점만 제시한다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met"
+        }
+      ],
+      "rationale": "crit2 대조: 단순 자료 수량이 아닌 중요한 왜곡표시 부재의 결론에 필요한 충분·적합 증거의 입수 불가가 핵심이다. "
+    },
+    {
+      "id": "sub2-empty",
+      "subquestion_id": "sub2",
+      "kind": "empty",
+      "answer": "",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met"
+        }
+      ],
+      "rationale": "빈 답안은 실제 모델 호출 없이0점이어야 한다. 이 파일은 기대값 설계이며 실제 채점 실행 기록은 아니다."
+    },
+    {
+      "id": "sub2-reverse_order",
+      "subquestion_id": "sub2",
+      "kind": "reverse_order",
+      "answer": "재무제표가 전체적으로 중요하게 왜곡표시되지 않았다고 결론을 내릴 수 있을 정도로 충분하고 적합한 감사증거를 입수할 수 없는 경우이다.\n입수한 감사증거에 근거하여 재무제표가 전체적으로 중요하게 왜곡표시되었다고 결론을 내리는 경우이다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "항목 순서·줄바꿈·무관한 추가 문장으로 정상적인 독립 명제의 점수를 삭제하지 않는다. 실제 채점 미실행의 작성자 기대값이다."
+    },
+    {
+      "id": "sub2-single_sentence",
+      "subquestion_id": "sub2",
+      "kind": "single_sentence",
+      "answer": "입수한 감사증거에 근거하여 재무제표가 전체적으로 중요하게 왜곡표시되었다고 결론을 내리는 경우이다. 재무제표가 전체적으로 중요하게 왜곡표시되지 않았다고 결론을 내릴 수 있을 정도로 충분하고 적합한 감사증거를 입수할 수 없는 경우이다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "항목 순서·줄바꿈·무관한 추가 문장으로 정상적인 독립 명제의 점수를 삭제하지 않는다. 실제 채점 미실행의 작성자 기대값이다."
+    },
+    {
+      "id": "sub2-irrelevant_prefix",
+      "subquestion_id": "sub2",
+      "kind": "irrelevant_prefix",
+      "answer": "오늘은 맑은 날씨이다.\n입수한 감사증거에 근거하여 재무제표가 전체적으로 중요하게 왜곡표시되었다고 결론을 내리는 경우이다.\n재무제표가 전체적으로 중요하게 왜곡표시되지 않았다고 결론을 내릴 수 있을 정도로 충분하고 적합한 감사증거를 입수할 수 없는 경우이다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "항목 순서·줄바꿈·무관한 추가 문장으로 정상적인 독립 명제의 점수를 삭제하지 않는다. 실제 채점 미실행의 작성자 기대값이다."
+    },
+    {
+      "id": "sub3-crit1-model_answer",
+      "subquestion_id": "sub3",
+      "kind": "model_answer",
+      "answer": "공정한 표시목적을 달성하지 못한 사항을 경영진과 논의한다.\n해당 재무보고체계의 요구사항과 그 사항이 해결되는 방법을 고려하여 감사기준서 705에 따라 감사의견을 변형할 필요가 있는지 여부를 결정한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit1 대조: 문단18이 정한 논의 상대방은 경영진이다. 다른 조치의 충족 여부와 독립적으로 평가한다. "
+    },
+    {
+      "id": "sub3-crit1-paraphrase",
+      "subquestion_id": "sub3",
+      "kind": "paraphrase",
+      "answer": "공정하게 표시되지 못한 문제를 회사 경영진과 상의한다.\n재무보고체계가 요구하는 내용과 문제를 해소하는 방식을 함께 감안하여705에 따른 의견 수정이 필요한지를 판단한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit1 대조: 문단18이 정한 논의 상대방은 경영진이다. 다른 조치의 충족 여부와 독립적으로 평가한다. "
+    },
+    {
+      "id": "sub3-crit1-omission",
+      "subquestion_id": "sub3",
+      "kind": "omission",
+      "answer": "해당 재무보고체계의 요구사항과 그 사항이 해결되는 방법을 고려하여 감사기준서 705에 따라 감사의견을 변형할 필요가 있는지 여부를 결정한다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit1 대조: 문단18이 정한 논의 상대방은 경영진이다. 다른 조치의 충족 여부와 독립적으로 평가한다. 다른 독립 criterion의 정답은 유지하여 부분 득점을 확인한다."
+    },
+    {
+      "id": "sub3-crit1-opposite",
+      "subquestion_id": "sub3",
+      "kind": "opposite",
+      "answer": "공정표시 미달 사항을 경영진과 논의해서는 안 된다.\n해당 재무보고체계의 요구사항과 그 사항이 해결되는 방법을 고려하여 감사기준서 705에 따라 감사의견을 변형할 필요가 있는지 여부를 결정한다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit1 대조: 문단18이 정한 논의 상대방은 경영진이다. 다른 조치의 충족 여부와 독립적으로 평가한다. "
+    },
+    {
+      "id": "sub3-crit1-condition_boundary",
+      "subquestion_id": "sub3",
+      "kind": "condition_boundary",
+      "answer": "경영진이 아니라 지배기구와만 논의하면 된다.\n해당 재무보고체계의 요구사항과 그 사항이 해결되는 방법을 고려하여 감사기준서 705에 따라 감사의견을 변형할 필요가 있는지 여부를 결정한다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit1 대조: 문단18이 정한 논의 상대방은 경영진이다. 다른 조치의 충족 여부와 독립적으로 평가한다. "
+    },
+    {
+      "id": "sub3-crit2-model_answer",
+      "subquestion_id": "sub3",
+      "kind": "model_answer",
+      "answer": "공정한 표시목적을 달성하지 못한 사항을 경영진과 논의한다.\n해당 재무보고체계의 요구사항과 그 사항이 해결되는 방법을 고려하여 감사기준서 705에 따라 감사의견을 변형할 필요가 있는지 여부를 결정한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit2 대조: 체계 요구와 해결방법의 두 고려사항 및 필요 여부 결정이 결합된1점이다. 해결방법 누락은 이 criterion만0점이며 경영진 논의 점수는 유지된다. "
+    },
+    {
+      "id": "sub3-crit2-paraphrase",
+      "subquestion_id": "sub3",
+      "kind": "paraphrase",
+      "answer": "공정하게 표시되지 못한 문제를 회사 경영진과 상의한다.\n재무보고체계가 요구하는 내용과 문제를 해소하는 방식을 함께 감안하여705에 따른 의견 수정이 필요한지를 판단한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "crit2 대조: 체계 요구와 해결방법의 두 고려사항 및 필요 여부 결정이 결합된1점이다. 해결방법 누락은 이 criterion만0점이며 경영진 논의 점수는 유지된다. "
+    },
+    {
+      "id": "sub3-crit2-omission",
+      "subquestion_id": "sub3",
+      "kind": "omission",
+      "answer": "공정한 표시목적을 달성하지 못한 사항을 경영진과 논의한다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met"
+        }
+      ],
+      "rationale": "crit2 대조: 체계 요구와 해결방법의 두 고려사항 및 필요 여부 결정이 결합된1점이다. 해결방법 누락은 이 criterion만0점이며 경영진 논의 점수는 유지된다. 다른 독립 criterion의 정답은 유지하여 부분 득점을 확인한다."
+    },
+    {
+      "id": "sub3-crit2-opposite",
+      "subquestion_id": "sub3",
+      "kind": "opposite",
+      "answer": "공정한 표시목적을 달성하지 못한 사항을 경영진과 논의한다.\n재무보고체계 요구사항과 해결방법을 고려하지 않고 즉시 의견을 변형한다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted"
+        }
+      ],
+      "rationale": "crit2 대조: 체계 요구와 해결방법의 두 고려사항 및 필요 여부 결정이 결합된1점이다. 해결방법 누락은 이 criterion만0점이며 경영진 논의 점수는 유지된다. "
+    },
+    {
+      "id": "sub3-crit2-condition_boundary",
+      "subquestion_id": "sub3",
+      "kind": "condition_boundary",
+      "answer": "공정한 표시목적을 달성하지 못한 사항을 경영진과 논의한다.\n재무보고체계의 요구사항을 고려하여705상 의견변형 필요 여부를 결정한다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met"
+        }
+      ],
+      "rationale": "crit2 대조: 체계 요구와 해결방법의 두 고려사항 및 필요 여부 결정이 결합된1점이다. 해결방법 누락은 이 criterion만0점이며 경영진 논의 점수는 유지된다. "
+    },
+    {
+      "id": "sub3-empty",
+      "subquestion_id": "sub3",
+      "kind": "empty",
+      "answer": "",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met"
+        }
+      ],
+      "rationale": "빈 답안은 실제 모델 호출 없이0점이어야 한다. 이 파일은 기대값 설계이며 실제 채점 실행 기록은 아니다."
+    },
+    {
+      "id": "sub3-reverse_order",
+      "subquestion_id": "sub3",
+      "kind": "reverse_order",
+      "answer": "해당 재무보고체계의 요구사항과 그 사항이 해결되는 방법을 고려하여 감사기준서 705에 따라 감사의견을 변형할 필요가 있는지 여부를 결정한다.\n공정한 표시목적을 달성하지 못한 사항을 경영진과 논의한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "항목 순서·줄바꿈·무관한 추가 문장으로 정상적인 독립 명제의 점수를 삭제하지 않는다. 실제 채점 미실행의 작성자 기대값이다."
+    },
+    {
+      "id": "sub3-single_sentence",
+      "subquestion_id": "sub3",
+      "kind": "single_sentence",
+      "answer": "공정한 표시목적을 달성하지 못한 사항을 경영진과 논의한다. 해당 재무보고체계의 요구사항과 그 사항이 해결되는 방법을 고려하여 감사기준서 705에 따라 감사의견을 변형할 필요가 있는지 여부를 결정한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "항목 순서·줄바꿈·무관한 추가 문장으로 정상적인 독립 명제의 점수를 삭제하지 않는다. 실제 채점 미실행의 작성자 기대값이다."
+    },
+    {
+      "id": "sub3-irrelevant_prefix",
+      "subquestion_id": "sub3",
+      "kind": "irrelevant_prefix",
+      "answer": "오늘은 맑은 날씨이다.\n공정한 표시목적을 달성하지 못한 사항을 경영진과 논의한다.\n해당 재무보고체계의 요구사항과 그 사항이 해결되는 방법을 고려하여 감사기준서 705에 따라 감사의견을 변형할 필요가 있는지 여부를 결정한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met"
+        }
+      ],
+      "rationale": "항목 순서·줄바꿈·무관한 추가 문장으로 정상적인 독립 명제의 점수를 삭제하지 않는다. 실제 채점 미실행의 작성자 기대값이다."
+    }
+  ],
+  "draft_sha256": "ff1f0fc87b8af9b8d29c8cecd0f6a48bdc0fec866ac45a8875a045fb0ef93a37"
+}

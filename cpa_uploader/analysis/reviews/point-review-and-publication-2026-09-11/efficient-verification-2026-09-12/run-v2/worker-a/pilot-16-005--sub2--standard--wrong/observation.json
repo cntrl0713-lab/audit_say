@@ -1,0 +1,223 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-16-005--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-005--sub2--standard",
+  "source_set_id": "pilot-16-005",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "40df3f833211d0b145773f4fb98cd8b84ae19cd45e108275a4fd526a0bef8e3c",
+  "answers": {
+    "sub2": "핵심감사사항 각각에 대하여 별도의 감사의견을 제공한다고 도입 문구에 기술한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "답안 전체에 '핵심감사사항이 감사인의 전문가적 판단에 따라 당기 재무제표감사에서 가장 유의적인 사항임을 도입 문구에 기술함'의 내용이나 이를 분명히 함축하는 설명은 없다. 다른 명제의 반대만으로 이 명제를 반대로 판정하지 않는다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "답안 전체에 '핵심감사사항은 재무제표 전체 감사의 관점에서 전체 감사의견 형성 시 다루어진 사항이라고 기술한다.'의 내용이나 이를 분명히 함축하는 설명은 없다. 다른 명제의 반대만으로 이 명제를 반대로 판정하지 않는다."
+        },
+        {
+          "criterion_id": "crit5.p2",
+          "verdict": "contradicted",
+          "reason": "명시적 반대: 답안은 '핵심감사사항에 대하여 별도의 의견을 제공하지 않는다고 기술한다.'에 반하는 조건·조치·명칭 또는 관계를 제시한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "92bcd2a49a874fd21807a0a09e25910d961e15fa0c4ada8298e778e2eb4085d5",
+  "schema_hash": "3e333b2c6aee9d241d0ab2075d4c60c0bbc6444d8b3b02f37f375b05eb02a3cc",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "전문가적 판단에 따른 당기 감사에서 가장 유의적인 사항이라는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "재무제표 전체 감사와 전체 감사의견 형성 시 다루어진 사항이라는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "contradicted",
+            "quote": "핵심감사사항 각각에 대하여 별도의 감사의견을 제공한다고 도입 문구에 기술한다.",
+            "reason": "별도의 의견을 제공하지 않는다는 명제와 반대로 별도의 감사의견을 제공한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전문가적 판단에 따른 당기 감사에서 가장 유의적인 사항이라는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표 전체 감사와 전체 감사의견 형성 시 다루어진 사항이라는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit5.p2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "별도의 의견을 제공하지 않는다는 명제와 반대로 별도의 감사의견을 제공한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-005",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "핵심감사사항 단락의 도입 문구는 어떤 사항을 기술해야 하는지 설명하시오.",
+        "user_answer": "핵심감사사항 각각에 대하여 별도의 감사의견을 제공한다고 도입 문구에 기술한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "전문가적 판단에 따른 당기 감사에서 가장 유의적인 사항이라는 내용이 없다.",
+            "claim": "핵심감사사항이 감사인의 전문가적 판단에 따라 당기 재무제표감사에서 가장 유의적인 사항임을 도입 문구에 기술함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "재무제표 전체 감사와 전체 감사의견 형성 시 다루어진 사항이라는 내용이 없다.",
+            "claim": "핵심감사사항은 재무제표 전체 감사의 관점에서 전체 감사의견 형성 시 다루어진 사항이라고 기술한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "contradicted",
+            "quote": "핵심감사사항 각각에 대하여 별도의 감사의견을 제공한다고 도입 문구에 기술한다.",
+            "reason": "별도의 의견을 제공하지 않는다는 명제와 반대로 별도의 감사의견을 제공한다고 명시했다.",
+            "claim": "핵심감사사항에 대하여 별도의 의견을 제공하지 않는다고 기술한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "핵심감사사항은 감사인의 전문가적 판단에 따라 당기 재무제표감사에서 가장 유의적인 사항이라는 점을 기술한다.",
+          "해당 사항이 재무제표 전체에 대한 감사의 관점에서 전체 감사의견 형성 시 다루어졌으며, 해당 사항에 대해 별도의 의견을 제공하지 않는다는 점을 기술한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_01c449de9d27eb3e016aa4d1d4a8e087d0bc490225b66f958d",
+        "request_id": "req_ba3616c3c76140cead6d4acabc123387",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2509,
+          "input_tokens_details": {
+            "cache_write_tokens": 2506,
+            "cached_tokens": 0
+          },
+          "output_tokens": 263,
+          "output_tokens_details": {
+            "reasoning_tokens": 72
+          },
+          "total_tokens": 2772
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009427000000000001,
+        "min_usd": 0.0009427000000000001,
+        "max_usd": 0.0009427000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-16-005--sub2--standard--wrong/input.json",
+      "sha256": "a49e31ab25919877b3e041f7eea5220352cd115a849954ad089bc8a6703c1296"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-16-005--sub2--standard--wrong/transport.jsonl",
+      "sha256": "9443b3d896748d012d10e522ce50a944f07b39e8370ff6c3077e0ed9a1a67e8d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-16-005--sub2--standard--wrong/traces.jsonl",
+      "sha256": "7056082e3ae060b0b53f4184ae71ba6ac76e06fe06445e4a73d4d893c52b6a2f"
+    }
+  }
+}

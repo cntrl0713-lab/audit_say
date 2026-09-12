@@ -25,12 +25,19 @@ function fixture(context: TestContext): string {
     });
     fs.mkdirSync(path.join(root, 'cpa_uploader'), { recursive: true });
     fs.cpSync('cpa_uploader/data', path.join(root, 'cpa_uploader/data'), { recursive: true });
+    // The current bank may cite a retained authoring batch outside data/.
+    const currentBank = JSON.parse(fs.readFileSync('cpa_uploader/data/cpa_question_sets_v3.authoring.json', 'utf8')) as QuestionSetV3[];
+    for (const relative of new Set(currentBank.flatMap(set => set.source_refs.map(source => source.file)))) {
+        const source = path.resolve(relative);
+        assert.ok(source.startsWith(path.resolve('.') + path.sep));
+        if (!fs.existsSync(path.join(root, relative))) write(root, relative, fs.readFileSync(source, 'utf8'));
+    }
     write(root, 'cpa_uploader/config/question-source-registry.json', fs.readFileSync('cpa_uploader/config/question-source-registry.json', 'utf8'));
-    write(root, 'docs/reports/question-review-2027/kga220-effective-date-note.md', '# 판본 메모\n');
-    write(root, 'docs/reports/question-review-2027/standards-register.json', '{}\n');
+    write(root, 'docs/archive/과거-검토-증거/reports/question-review-2027/개정-감사기준서-220-시행일-별도-기록.md', '# 판본 메모\n');
+    write(root, 'cpa_uploader/analysis/reviews/question-review-2027/standards-register.json', '{}\n');
     write(root, 'cpa_uploader/wiki/SCHEMA.md', '# 스키마\n');
     write(root, 'cpa_uploader/wiki/log.md', '# 갱신 기록\n');
-    const guides = ['question-design', 'question-output-schema', 'llm-question-generation-prompt', 'question-generation-workflow', 'source-authoring-design'];
+    const guides = ['question-design', 'question-output-schema', 'llm-question-generation-prompt', 'question-generation-workflow', 'source-authoring-design', 'question-elements'];
     for (const slug of guides) {
         write(root, `cpa_uploader/wiki/question-generation/${slug}.md`, guide(slug));
     }
@@ -140,10 +147,10 @@ test('source review maps link historical bank snapshots without reproducing thei
         review_record_complete: true,
         target_exam_year: 2027,
     };
-    write(root, 'docs/reports/question-review-2027/05.json', JSON.stringify(ledger));
+    write(root, 'cpa_uploader/analysis/reviews/question-review-2027/05.json', JSON.stringify(ledger));
     const pages = buildWiki({ repoDir: root }).pages;
     const sourceReview = pages.get('_meta/source-review-map.md') as string;
-    assert.ok(sourceReview.includes('[05.json](../../../docs/reports/question-review-2027/05.json)'));
+    assert.ok(sourceReview.includes('[05.json](../../analysis/reviews/question-review-2027/05.json)'));
     assert.ok(sourceReview.includes('review_record_complete=true'));
     assert.ok(sourceReview.includes('target_exam_year=2027'));
     for (const content of pages.values()) {
@@ -154,7 +161,7 @@ test('source review maps link historical bank snapshots without reproducing thei
 
 test('wiki check detects review status and edition changes independently of build dates', (context) => {
     const root = fixture(context);
-    const relative = 'docs/reports/question-review-2027/05.json';
+    const relative = 'cpa_uploader/analysis/reviews/question-review-2027/05.json';
     const ledger = { review_record_complete: false, exam_2027_suitable: false, baseline: '2026-09-08', target_exam_year: 2027 };
     write(root, relative, JSON.stringify(ledger));
     recordPages(root);

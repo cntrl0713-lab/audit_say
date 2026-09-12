@@ -6,15 +6,15 @@ type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, quality]
-sources: [docs/reports/question-review-2027/04.md, docs/reports/question-review-2027/04.json]
+sources: [docs/archive/과거-검토-증거/reports/question-review-2027/주제-04-감사계획과-중요성-검토-수정-결과.md, cpa_uploader/analysis/reviews/question-review-2027/04.json]
 confidence: high
 ---
 
 # 주제04. 계획·문서화·중요성 문항의 범위와 조건
 
-[검토 보고서](../../../../docs/reports/question-review-2027/04.md) · [물음별 근거 장부](../../../../docs/reports/question-review-2027/04.json)
+[검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제-04-감사계획과-중요성-검토-수정-결과.md) · [물음별 근거 장부](../../../analysis/reviews/question-review-2027/04.json)
 
-주제04 검토에서 확인한 사항이다. [주제04 보고서](../../../../docs/reports/question-review-2027/04.md)와 [물음·criterion별 근거 장부](../../../../docs/reports/question-review-2027/04.json)에서 공식 판본·문단·페이지와 실측을 확인한다. 아래 문단 번호는 **2026년 시행 기준(2025년 전문)** 기준이며, 개정판에 그대로 옮기지 않는다.
+주제04 검토에서 확인한 사항이다. [주제04 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제-04-감사계획과-중요성-검토-수정-결과.md)와 [물음·criterion별 근거 장부](../../../analysis/reviews/question-review-2027/04.json)에서 공식 판본·문단·페이지와 실측을 확인한다. 아래 문단 번호는 **2026년 시행 기준(2025년 전문)** 기준이며, 개정판에 그대로 옮기지 않는다.
 
 | 구분 | 설계·검토할 내용 | 근거 |
 | --- | --- | --- |
@@ -28,7 +28,7 @@ confidence: high
 
 머리말만으로 하위 정답을 뒷받침하지 않는다. 230.8(a)–(c)와 320.14(a)–(d)처럼 실제 채점하는 하위 항목까지 source·requirement에 연결한다. 공식 원문과 로컬 편집 원문의 반복 생략 등 차이는 기록하며, 로컬 파일에서 인용이 검색된다는 사실을 공식 원문과의 완전 일치로 표시하지 않는다. 출처 필드 사용법은 [[question-output-schema]]의 ‘출처 위치와 인용의 충실성’을 따른다.
 
-2026년 개정 전문의 300.9에는 업무팀 지휘·감독·검토 항목이 추가되었고, 종전 12와 A10은 각각 11과 A12로 이동했다. 발행일·해당 개정의 시행 시기·시험 적용 판본을 구별한다. 2027년의 기존 동일 적용 가정을 유지하되, [개정220 시행일 기록](../../../../docs/reports/question-review-2027/kga220-effective-date-note.md)만으로 연계 개정이나 시험 판본을 확정하지 않는다. 최종 판본이 달라지면 항목 수·발문·정답·criterion·출처를 함께 재검토한다.
+2026년 개정 전문의 300.9에는 업무팀 지휘·감독·검토 항목이 추가되었고, 종전 12와 A10은 각각 11과 A12로 이동했다. 발행일·해당 개정의 시행 시기·시험 적용 판본을 구별한다. 2027년의 기존 동일 적용 가정을 유지하되, [개정220 시행일 기록](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/개정-감사기준서-220-시행일-별도-기록.md)만으로 연계 개정이나 시험 판본을 확정하지 않는다. 최종 판본이 달라지면 항목 수·발문·정답·criterion·출처를 함께 재검토한다.
 
 ## 사용 범위
 

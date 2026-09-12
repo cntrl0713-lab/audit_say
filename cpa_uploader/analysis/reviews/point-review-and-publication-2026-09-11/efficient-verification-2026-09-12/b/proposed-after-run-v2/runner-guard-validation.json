@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "method": "Only main/summarizeUsage declarations from preserved before/proposed source are type-erased in memory; prepare/fs/process/SDK/grading are explicit isolated mocks. No production import, model, network or source writes.",
+  "created_at": "2026-09-12T03:48:18.758Z",
+  "api_calls": 0,
+  "production_changes": 0,
+  "before_sha256": "47c4b7619c718d6ee9cdccf83be11e62437108a799dc7a8761d916ffabed8b69",
+  "proposed_sha256": "9160a000f375fa1be72c7dc0e54061ca6f29dc97081304ee46ba0800266b7f18",
+  "tests": 3,
+  "passed": 3,
+  "results": [
+    {
+      "name": "737 reuse entries preserve summary and original rows/accounting, with zero API/client and 739→2 full guard calls",
+      "pass": true,
+      "before_guard_calls": 739,
+      "after_guard_calls": 2,
+      "api_calls": 0
+    },
+    {
+      "name": "Drift introduced after the last reused row is caught by final guard and forbids completed summary",
+      "pass": true,
+      "status": "stopped",
+      "rows_preserved": 737,
+      "api_calls": 0
+    },
+    {
+      "name": "New-job, each SDK forward, after-actual and final guards remain: drift before forwarding makes zero mock calls; post-return drift cannot record completed observation",
+      "pass": true,
+      "normal_guard_sequence": [
+        "guard:1",
+        "guard:2",
+        "guard:3",
+        "mock_sdk",
+        "guard:4",
+        "guard:5"
+      ],
+      "prejob_mock_calls": 0,
+      "preforward_mock_calls": 0,
+      "postreturn_mock_calls": 1,
+      "real_api_calls": 0,
+      "all_transport_and_result_data": "SYNTHETIC OFFLINE MOCKS ONLY"
+    }
+  ],
+  "not_actual_grading_evidence": true
+}

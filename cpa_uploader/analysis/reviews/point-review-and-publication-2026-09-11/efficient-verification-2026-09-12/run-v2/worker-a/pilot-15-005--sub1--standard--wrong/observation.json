@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-15-005--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-15-005--sub1--standard",
+  "source_set_id": "pilot-15-005",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "37e2ec1b19e9ccdd242f94fd50257752dd2f6a9ca3427a960af636a33a4bc614",
+  "answers": {
+    "sub1": "의견거절"
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "답안이 해당 명제를 명시적으로 부정한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "c0410bcab876aad03b8a01d22806a31f738ada4496031265c5a07dcc0bff5468",
+  "schema_hash": "2d242d5946009c5201925c82ca350271bad8de0a08a6d9e10102364753515034",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "의견거절",
+            "reason": "적정의견이 아닌 의견거절을 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "적정의견이 아닌 의견거절을 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-15-005",
+    "score": 0,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사인은 재무제표가 중요성의 관점에서 해당 재무보고체계에 따라 작성되었다고 결론을 내렸다. 이 경우 감사기준서 700에 따라 표명할 감사의견을 제시하시오.",
+        "user_answer": "의견거절",
+        "score": 0,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "의견거절",
+            "reason": "적정의견이 아닌 의견거절을 명시했다.",
+            "claim": "주어진 결론에 대응하여 적정의견을 제시함. 의견 명칭만으로 인정하며 주어진 조건을 다시 쓰도록 요구하지 않음",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "적정의견을 표명한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_06084f934c37dd62016aa4d0ffc6f487d0b7e524631b8a6b24",
+        "request_id": "req_bf0284d2a6b74cb4a575e772d52e38e5",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2159,
+          "input_tokens_details": {
+            "cache_write_tokens": 2156,
+            "cached_tokens": 0
+          },
+          "output_tokens": 217,
+          "output_tokens_details": {
+            "reasoning_tokens": 123
+          },
+          "total_tokens": 2376
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008,
+        "min_usd": 0.0008,
+        "max_usd": 0.0008,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-15-005--sub1--standard--wrong/input.json",
+      "sha256": "1d8cd99e7a9f93210a2d67ff4deaf81c865a1ee383faf507d73505412b19cfa5"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-15-005--sub1--standard--wrong/transport.jsonl",
+      "sha256": "dee615e2c9a305174e149e16207f084f687cbaf92911063c0c2817e7dbac8700"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-15-005--sub1--standard--wrong/traces.jsonl",
+      "sha256": "5fc7d04e73f5b4ffc398bccdeed98471e08ee5362aa145f190712f4e3b6d7ce2"
+    }
+  }
+}

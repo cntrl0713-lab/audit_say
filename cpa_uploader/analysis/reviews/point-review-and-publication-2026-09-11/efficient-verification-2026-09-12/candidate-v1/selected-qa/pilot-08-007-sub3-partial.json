@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "set_id": "pilot-08-007",
+  "origin": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/pilot-08-007-remediation-v1/qa.json",
+    "sha256": "27d072aac0544fa203e9d7026d47bfce6ff865420e341ba0fd1ce761a69ab419",
+    "case_id": "point-v1-sub3-crit8-true-omission"
+  },
+  "normalization": "Only absent verdict reasons are supplied from the actual agent review; answer, verdict and expected score are unchanged.",
+  "cases": [
+    {
+      "id": "point-v1-sub3-crit8-true-omission",
+      "subquestion_id": "sub3",
+      "kind": "omission",
+      "answer": "국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다.\n계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit6",
+          "verdict": "met",
+          "reason": "직접 진술 또는 문맥상 명확한 함축; 국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다."
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "not_met",
+          "reason": "원답안에 해당 독립 내용 없음; 계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다."
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "not_met",
+          "reason": "원답안에 해당 독립 내용 없음; 실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 검사 대상기간을 확장하거나 적절하게 조정한다."
+        }
+      ],
+      "note": "요소별 배점 후속의 작성자 회귀 기대; API 미실행. 명확한 함축으로 목표 명제가 남을 수 있는 이웃 문장도 제외하여 실제 누락을 구성한다. 단순 문장 삭제와 구별한다. [중복 배점 후속] 원 ID·답안·소속 물음과 crit6/7/8 판정은 보존한다. sub3/crit13은 sub2/crit5와 같은 증빙·기록기간 대조의 중복 배점이므로 폐기했다. 그 판정만 기대값에서 제외했으며 답안 속 해당 설명·누락·반대는 남은 독립 기준을 자동 감점하지 않는다. 이 사례 이름과 kind가 폐기 기준을 가리키면 당시 테스트 분류의 계보이다.",
+      "origin": {
+        "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/point-policy-v1/t08-b/qa-cases-t08-b.json",
+        "case_id": "point-v1-sub3-crit8-true-omission"
+      }
+    }
+  ]
+}

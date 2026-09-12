@@ -1,0 +1,36 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {pathToFileURL} from 'node:url';
+import path from 'node:path';
+import {buildSourceCatalog,createSourcePacket} from '../../../../../questionSourceCatalog.mjs';
+import {validateQuestionAuthoringPlan} from '../../../../../questionAuthoringPlan.ts';
+import {validatePromotionLedger} from '../../../../../questionBankPublication.ts';
+import {validateRecordedSemanticReview} from '../../../../../questionSemanticReview.ts';
+async function main(){
+const D='cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11',out=`${D}/c/source-packet-expansion-v1`;
+const read=(f:string)=>JSON.parse(fs.readFileSync(f,'utf8')),hash=(f:string)=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const beforeFile=`${D}/source-parser-followup-v1/cpa_uploader__questionSourceCatalog.mjs.before.txt`;
+const beforeRegistry=`${D}/source-parser-followup-v1/cpa_uploader__config__question-source-registry.json.before.txt`;
+const beforeCode=fs.readFileSync(beforeFile,'utf8').replace("const DEFAULT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');","const DEFAULT_ROOT = process.cwd();").replace("const REGISTRY = 'cpa_uploader/config/question-source-registry.json';",`const REGISTRY = '${beforeRegistry}';`);
+const harness=`${out}/questionSourceCatalog.before-harness.mjs`;fs.writeFileSync(harness,beforeCode);
+const oldModule=await import(pathToFileURL(path.resolve(harness)).href),before=oldModule.buildSourceCatalog(),current=buildSourceCatalog();
+const byRange=(u:any)=>[u.file,u.startLine,u.endLine,u.contentHash].join('|');
+const currentRanges=new Map(current.units.map(u=>[byRange(u),u])),currentIds=new Set(current.units.map(u=>u.id));
+const remapped=before.units.flatMap((u:any)=>{const now=currentRanges.get(byRange(u));return now&&now.id!==u.id?[{old_id:u.id,new_id:now.id,file:u.file,lines:[u.startLine,u.endLine],before_standard:u.standard,after_standard:now.standard,paragraph:now.paragraph,old_locator:u.locator,new_locator:now.locator,quote_bytes_equal:u.quote===now.quote}]:[];});
+const unmatchedRanges=before.units.filter((u:any)=>!currentRanges.has(byRange(u))).map((u:any)=>({id:u.id,file:u.file,lines:[u.startLine,u.endLine]}));
+const manifestFile=`${D}/execution-all-v4/manifest.json`,manifest=read(manifestFile);
+const planChecks=manifest.jobs.map((j:any)=>{const raw=read(j.plan_file),plans=raw.plans??(Array.isArray(raw)?raw:[raw]),p=plans.find((p:any)=>p.set_id===j.set_id)??(plans.length===1?plans[0]:null);if(!p)throw Error('Plan selection missing '+j.set_id);return {set_id:j.set_id,plan_file:j.plan_file,plan_sha256:hash(j.plan_file),schema_errors:validateQuestionAuthoringPlan(p),missing_ids:p.source_unit_ids.filter((id:string)=>!currentIds.has(id)),remapped_old_ids:p.source_unit_ids.filter((id:string)=>remapped.some((u:any)=>u.old_id===id))};});
+const bank=read(`${D}/canonical-before.json`),ledger=read('cpa_uploader/data/cpa_question_sets_v3.promotions.json');
+const changed=new Set(read(`${D}/prepared-reviewed-v1/summary.json`).canonical.changed_sets),unchanged=bank.filter((s:any)=>!changed.has(s.id));
+const meta=(set:any,c:any)=>set.source_refs.map((source:any)=>({source_ref_id:source.id,registered_sources:c.sources.filter((item:any)=>item.file===source.file).map(({file,authority,edition,provenance}:any)=>({file,authority,edition,provenance})),matched_units:c.units.filter((u:any)=>u.file===source.file&&(u.quote.includes(source.source_quote)||source.source_quote.includes(u.quote))).map(({id,authority,edition,provenance,locator,warnings}:any)=>({id,authority,edition,provenance,locator,warnings})),note:'메타데이터는 로컬 등록정보이며 최종 공식 판본 확인을 대신하지 않음. 미등록 자료의 권위는 미확인.'}));
+const metadataChanges=bank.filter((s:any)=>JSON.stringify(meta(s,before))!==JSON.stringify(meta(s,current))).map((s:any)=>({set_id:s.id,is_unchanged_34:!changed.has(s.id),before_metadata:meta(s,before),after_metadata:meta(s,current)}));
+const receiptChecks=bank.flatMap((s:any)=>{const e=ledger.entries.filter((e:any)=>e.set_id===s.id&&e.to_status==='verified').at(-1);return e?.semantic_review?[{set_id:s.id,receipt_hash:e.semantic_review.receipt_hash,is_unchanged_34:!changed.has(s.id),errors:validateRecordedSemanticReview(e.semantic_review,s)}]:[];});
+const allLedgerErrors=validatePromotionLedger(bank,ledger,true),unchangedLedgerErrors=validatePromotionLedger(unchanged,ledger,true);
+const currentPacket=createSourcePacket({topicId:'13',catalog:current,maxChars:3_000_000});
+const oldPacket=oldModule.createSourcePacket({topicId:'13',catalog:before,maxChars:3_000_000});
+const official402=current.units.filter(u=>u.file.endsWith('point-review-b-source-followup-2026-09-11.txt')&&u.standard==='KGA 402'&&['9','10','12'].includes(u.paragraph||'')).map(u=>({id:u.id,paragraph:u.paragraph,quote_unchanged:before.units.find((old:any)=>old.id===u.id)?.quote===u.quote,cross_references:u.dependencies.filter(d=>d.standard!=='KGA 402')}));
+const result={method:'Current root-applied code, compared with saved exact before core/registry through a local read-only module harness. No bank/plan/receipt/source changes; dependency and known-source-metadata contracts inspected separately.',inputs:{before_core:{file:beforeFile,sha256:hash(beforeFile)},before_registry:{file:beforeRegistry,sha256:hash(beforeRegistry)},current_core:{file:'cpa_uploader/questionSourceCatalog.mjs',sha256:hash('cpa_uploader/questionSourceCatalog.mjs')},current_registry:{file:'cpa_uploader/config/question-source-registry.json',sha256:hash('cpa_uploader/config/question-source-registry.json')},manifest:{file:manifestFile,sha256:hash(manifestFile)}},unit_count:{before:before.units.length,after:current.units.length},remapped_units:remapped,unmatched_quote_ranges:unmatchedRanges,official402,plans:planChecks,canonical_metadata_changes:metadataChanges,recorded_receipt_checks:receiptChecks,all_104_ledger_errors:allLedgerErrors,unchanged_34_ledger_errors:unchangedLedgerErrors,packet:{before_units:oldPacket.dependencies.length+1,after_units:currentPacket.dependencies.length+1,before_chars_including_supporting:oldPacket.charCount,after_chars_including_supporting:currentPacket.charCount},model_api_calls:0,remote_calls:0};
+fs.writeFileSync(`${out}/impact-evidence.json`,JSON.stringify(result,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({units:result.unit_count,remapped:remapped.length,unmatched_ranges:unmatchedRanges.length,plans:planChecks.length,plan_failures:planChecks.filter((p:any)=>p.missing_ids.length||p.schema_errors.length),canonical_metadata_changed:metadataChanges.map((m:any)=>({set_id:m.set_id,unchanged:m.is_unchanged_34})),recorded_receipts:receiptChecks.length,receipt_failures:receiptChecks.filter((r:any)=>r.errors.length),all_ledger_errors:allLedgerErrors,unchanged_ledger_errors:unchangedLedgerErrors,packet:result.packet},null,2));
+}
+main().catch(error=>{console.error(error);process.exitCode=1;});

@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-14-005--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-14-005--sub2--standard",
+  "source_set_id": "pilot-14-005",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "b049923021c5c4c4d91cf7cf5f6b0928a03c5c77c746d9fe16020f34c9fbc816",
+  "answers": {
+    "sub2": "그룹재무제표에 모든 부문이 포함되어 있는지 평가할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "명시적 반대: 답안은 '그룹재무제표에 모든 부문이 포함되어 있는지 평가한다.'에 반하는 조건·조치·명칭 또는 관계를 제시한다."
+        },
+        {
+          "criterion_id": "crit5.p2",
+          "verdict": "not_met",
+          "reason": "답안 전체에 '부문감사인의 커뮤니케이션에서 식별된 재무정보가 그룹재무제표에 포함되어 있는지 결정한다.'의 내용이나 이를 분명히 함축하는 설명은 없다. 다른 명제의 반대만으로 이 명제를 반대로 판정하지 않는다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "85f2b9019a9f6a51e404c7e1b0d1941e7a3a9f5ab04df8e9f9f1183495ba25ad",
+  "schema_hash": "58db08828541fceb5487d1416d786f23a969b0c019b3e869c738296b31b18e97",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "그룹재무제표에 모든 부문이 포함되어 있는지 평가할 필요가 없다.",
+            "reason": "모든 부문 포함 여부를 평가할 필요가 없다고 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "not_met",
+            "reason": "부문감사인이 식별한 재무정보의 포함 여부를 결정한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "모든 부문 포함 여부를 평가할 필요가 없다고 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit5.p2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "부문감사인이 식별한 재무정보의 포함 여부를 결정한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-14-005",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "그룹재무제표에 부문재무정보가 포함되었는지 평가할 때, 전체 부문의 포함 여부와 부문감사인이 보고한 재무정보와의 대응 여부를 어떻게 확인해야 하는지 모두 서술하시오.",
+        "user_answer": "그룹재무제표에 모든 부문이 포함되어 있는지 평가할 필요가 없다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "그룹재무제표에 모든 부문이 포함되어 있는지 평가할 필요가 없다.",
+            "reason": "모든 부문 포함 여부를 평가할 필요가 없다고 명시적으로 부정했다.",
+            "claim": "그룹재무제표에 모든 부문이 포함되어 있는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "not_met",
+            "reason": "부문감사인이 식별한 재무정보의 포함 여부를 결정한다는 내용이 없다.",
+            "claim": "부문감사인의 커뮤니케이션에서 식별된 재무정보가 그룹재무제표에 포함되어 있는지 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "모든 부문이 그룹재무제표에 포함되어 있는지 평가하고, 부문감사인의 커뮤니케이션에서 식별된 보고대상 재무정보가 그룹재무제표에 포함되어 있는지 결정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0401056b302036d0016aa4d2a7989487d08685a09225de26b9",
+        "request_id": "req_5b57d122138c4ae390fead746212532c",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2350,
+          "input_tokens_details": {
+            "cache_write_tokens": 2347,
+            "cached_tokens": 0
+          },
+          "output_tokens": 207,
+          "output_tokens_details": {
+            "reasoning_tokens": 63
+          },
+          "total_tokens": 2557
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00083575,
+        "min_usd": 0.00083575,
+        "max_usd": 0.00083575,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-14-005--sub2--standard--wrong/input.json",
+      "sha256": "da81f24b594c1e5f3d67c0c2c28178752b486b8ca420a4a2affc3254df446dd7"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-14-005--sub2--standard--wrong/transport.jsonl",
+      "sha256": "e6cc0ab6d39be3826615ffd77c47aa2603c4d972576b30e922420e30bc229f1d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-14-005--sub2--standard--wrong/traces.jsonl",
+      "sha256": "b326b9c49e17869a02ad1ad8bd617234df23e490a9d452c78f56f14c77e5e700"
+    }
+  }
+}

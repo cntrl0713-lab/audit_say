@@ -1,0 +1,204 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-19-005--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-19-005--sub1--standard",
+  "source_set_id": "pilot-19-005",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "e040c68f88b2a6d9d0a5347abe65335bc967752f31b99a244993520001a77ef3",
+  "answers": {
+    "sub1": "검토가 제공하는 확신은 감사보다 낮은 제한적 확신이다. 이 준칙의 보통수준의 확신이라는 표현도 같은 취지로 이해하며 합리적 확신의 감사의견을 표명하지 않는다.\n우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안전체의각독립명제와필수조건을보존한다.순서·문장수·무관한첫문장으로점수를제한하지않는다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안전체의각독립명제와필수조건을보존한다.순서·문장수·무관한첫문장으로점수를제한하지않는다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "7e84a822ecc901c6bacd906b4605a234cb1e29fdf3de969b9b267406dbe5e687",
+  "schema_hash": "47d55bd5f254c8f9ab5e4d15f51ab6d7625da0e9c0da6bed353f2987a8e22c6b",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "검토가 제공하는 확신은 감사보다 낮은 제한적 확신이다. 이 준칙의 보통수준의 확신이라는 표현도 같은 취지로 이해하며 합리적 확신의 감사의견을 표명하지 않는다.\n",
+            "reason": "감사보다 낮은 제한적 확신과 보통수준의 확신을 제시하고 합리적 확신의 감사의견이 아님을 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다.",
+            "reason": "반기재무제표, 한국채택국제회계기준, 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 않았다는 소극적 결론을 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1",
+                  "sub1/e2"
+                ],
+                "reason": "감사보다 낮은 제한적 확신과 보통수준의 확신을 제시하고 합리적 확신의 감사의견이 아님을 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "반기재무제표, 한국채택국제회계기준, 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 않았다는 소극적 결론을 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-19-005",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "독립된 연간재무제표 감사인이 분·반기재무제표 검토준칙에 따라 한국채택국제회계기준으로 작성된 전체 형식의 반기재무제표를 검토하는 경우를 전제로 한다. 필요한 종결절차를 완료하고 중요한 수정이나 변형된 검토의견을 필요로 하는 사항이 없다면, 이 검토의 확신 수준을 제시하고 대상 반기재무제표·한국채택국제회계기준·중요성의 관점이 드러나는 소극적 결론 문구를 작성하시오.",
+        "user_answer": "검토가 제공하는 확신은 감사보다 낮은 제한적 확신이다. 이 준칙의 보통수준의 확신이라는 표현도 같은 취지로 이해하며 합리적 확신의 감사의견을 표명하지 않는다.\n우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "검토가 제공하는 확신은 감사보다 낮은 제한적 확신이다. 이 준칙의 보통수준의 확신이라는 표현도 같은 취지로 이해하며 합리적 확신의 감사의견을 표명하지 않는다.",
+            "reason": "감사보다 낮은 제한적 확신과 보통수준의 확신을 제시하고 합리적 확신의 감사의견이 아님을 명시했다.",
+            "claim": "중간검토의 확신은 감사의 합리적 확신보다 낮은 제한적 확신임을 제시한다. 이 준칙 보론4의 보통수준의 확신이라는 동의 표현도 허용한다. 무확신 업무나 합리적 확신으로 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다.",
+            "reason": "반기재무제표, 한국채택국제회계기준, 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 않았다는 소극적 결론을 제시했다.",
+            "claim": "대상 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않았다고 믿게 하는 사항이 발견되지 않았다는 소극적 결론을 작성한다. 문구의 완전한 축자재현은 요구하지 않지만 적극적 공정표시 감사의견이나 발견된 중요한 왜곡이 없다는 무근거 보장으로 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "검토가 제공하는 확신은 감사보다 낮은 제한적 확신이다. 이 준칙의 보통수준의 확신이라는 표현도 같은 취지로 이해하며 합리적 확신의 감사의견을 표명하지 않는다.",
+          "우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02eb94131df86aaa016aa4d39168cc87d0867e3af53df82664",
+        "request_id": "req_770cc6706f884404b7fdacac27e40a32",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3096,
+          "input_tokens_details": {
+            "cache_write_tokens": 3093,
+            "cached_tokens": 0
+          },
+          "output_tokens": 217,
+          "output_tokens_details": {
+            "reasoning_tokens": 27
+          },
+          "total_tokens": 3313
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00103425,
+        "min_usd": 0.00103425,
+        "max_usd": 0.00103425,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-19-005--sub1--standard--model/input.json",
+      "sha256": "7264b1d745b7078e883cc4ab224cc4f78f9aae5684af5b9cedf418267fdb9762"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-19-005--sub1--standard--model/transport.jsonl",
+      "sha256": "872006c5b0ff53201b292bed5530437c9d857115ecd0d793841453bbda6596d4"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-19-005--sub1--standard--model/traces.jsonl",
+      "sha256": "cc917ab029c338705ae731b29e00b2e2d20bc08c6432d42d4cae28d7bf10be6b"
+    }
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-08-005--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-08-005--sub1--standard",
+  "source_set_id": "pilot-08-005",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "4bc23465ffcda07cae25fe71c422ee99e6c5f3dc6dc9319a24171e2bb739b959",
+  "answers": {
+    "sub1": "그러한 문서를 검사한다고 해서 소유권이나 가치에 관한 감사증거가 반드시 입수되는 것은 아니다.\n주권이나 채권증서처럼 그 자체가 금융상품인 문서는 자산의 실재성에 대한 직접적인 감사증거를 제공한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "해당 명제를 답안에서 직접 충족한다: 금융상품인 문서를 검사해도 소유권에 대한 감사증거가 반드시 입수되는 것은 아니다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "met",
+          "reason": "해당 명제를 답안에서 직접 충족한다: 금융상품인 문서를 검사해도 가치에 대한 감사증거가 반드시 입수되는 것은 아니다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "해당 명제를 답안에서 직접 충족한다: 직접적인 증거가 되는 주장은 실재성이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ca2c165a99e4395a2a70a80e7c334ca32ee91ac35d8b7e3e215d1935b3704f5e",
+  "schema_hash": "783d6974933ebef28dc7632c7a8c57bbd195d130e525f13c8cd09d5730b661c8",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "그러한 문서를 검사한다고 해서 소유권이나 가치에 관한 감사증거가 반드시 입수되는 것은 아니다.\n",
+            "reason": "소유권에 관한 감사증거가 반드시 입수되는 것은 아니라고 명시했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "그러한 문서를 검사한다고 해서 소유권이나 가치에 관한 감사증거가 반드시 입수되는 것은 아니다.\n",
+            "reason": "가치에 관한 감사증거가 반드시 입수되는 것은 아니라고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "주권이나 채권증서처럼 그 자체가 금융상품인 문서는 자산의 실재성에 대한 직접적인 감사증거를 제공한다.",
+            "reason": "직접적인 감사증거를 제공하는 주장을 자산의 실재성으로 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "소유권에 관한 감사증거가 반드시 입수되는 것은 아니라고 명시했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "가치에 관한 감사증거가 반드시 입수되는 것은 아니라고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "직접적인 감사증거를 제공하는 주장을 자산의 실재성으로 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-08-005",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "주권이나 채권증서처럼 그 자체가 금융상품인 문서를 검사할 때, 소유권과 가치에 관한 감사증거도 반드시 입수되는지 판단하시오. 또한 그러한 문서가 직접적인 감사증거를 제공하는 경영진주장을 제시하시오.",
+        "user_answer": "그러한 문서를 검사한다고 해서 소유권이나 가치에 관한 감사증거가 반드시 입수되는 것은 아니다.\n주권이나 채권증서처럼 그 자체가 금융상품인 문서는 자산의 실재성에 대한 직접적인 감사증거를 제공한다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "그러한 문서를 검사한다고 해서 소유권이나 가치에 관한 감사증거가 반드시 입수되는 것은 아니다.",
+            "reason": "소유권에 관한 감사증거가 반드시 입수되는 것은 아니라고 명시했다.",
+            "claim": "금융상품인 문서를 검사해도 소유권에 대한 감사증거가 반드시 입수되는 것은 아니다. 반드시 제공하는 것은 아님과 전혀 제공할 수 없음을 구별한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "그러한 문서를 검사한다고 해서 소유권이나 가치에 관한 감사증거가 반드시 입수되는 것은 아니다.",
+            "reason": "가치에 관한 감사증거가 반드시 입수되는 것은 아니라고 명시했다.",
+            "claim": "금융상품인 문서를 검사해도 가치에 대한 감사증거가 반드시 입수되는 것은 아니다. 반드시 제공하는 것은 아님과 전혀 제공할 수 없음을 구별한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "주권이나 채권증서처럼 그 자체가 금융상품인 문서는 자산의 실재성에 대한 직접적인 감사증거를 제공한다.",
+            "reason": "직접적인 감사증거를 제공하는 주장을 자산의 실재성으로 제시했다.",
+            "claim": "직접적인 증거가 되는 주장은 실재성이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "그러한 문서를 검사한다고 해서 소유권이나 가치에 관한 감사증거가 반드시 입수되는 것은 아니다.",
+          "주권이나 채권증서처럼 그 자체가 금융상품인 문서는 자산의 실재성에 대한 직접적인 감사증거를 제공한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_066274f4e3929794016aa4c97a135887d093452b1d78d903b1",
+        "request_id": "req_bd1a85aad8d440148edf6ddace554935",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2715,
+          "input_tokens_details": {
+            "cache_write_tokens": 2712,
+            "cached_tokens": 0
+          },
+          "output_tokens": 215,
+          "output_tokens_details": {
+            "reasoning_tokens": 28
+          },
+          "total_tokens": 2930
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009366,
+        "min_usd": 0.0009366,
+        "max_usd": 0.0009366,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-08-005--sub1--standard--model/input.json",
+      "sha256": "43ff3b0260b07d5746997c3caaba5b84cb229edad2e66022252d122bec76b4b4"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-08-005--sub1--standard--model/transport.jsonl",
+      "sha256": "4d42fa1ff7077abef60f0ef11e205982911b7589663293cd65b6f6fc66fbf394"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-08-005--sub1--standard--model/traces.jsonl",
+      "sha256": "b50395b4d6d4cad475a75516a821790eb036c38cb45a208359152db643d90f1c"
+    }
+  }
+}

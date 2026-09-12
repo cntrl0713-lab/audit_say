@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-03-002--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-03-002--sub1--standard",
+  "source_set_id": "pilot-03-002",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "5d25bf966f01b03f19bacdbc5273600abda6786b283cfaa01feff88de43da21a",
+  "answers": {
+    "sub1": "그 범위제한으로 의견거절이 예상되면 해당 업무를 감사업무로 수임해서는 안 된다. 다만 법규에 의해 수임이 요구되는 경우는 예외이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안 전체가 해당 독립 명제를 직접 또는 분명한 함축으로 충족함"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안 전체가 해당 독립 명제를 직접 또는 분명한 함축으로 충족함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "b6b0e3ebc089f92ac5e9f200066e78e19d71434460e6e4f0642a9692441ec368",
+  "schema_hash": "450e5450f39cb179dc330749e1eda21d00cb61df1fdc3d16477169ae47fd8af5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "다만 법규에 의해 수임이 요구되는 경우는 예외이다.",
+            "reason": "법규에 의해 수임이 요구되는 경우를 예외로 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그 범위제한으로 의견거절이 예상되면 해당 업무를 감사업무로 수임해서는 안 된다. ",
+            "reason": "의견거절이 예상되는 범위제한 업무를 수임해서는 안 된다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "법규에 의해 수임이 요구되는 경우를 예외로 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "의견거절이 예상되는 범위제한 업무를 수임해서는 안 된다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-03-002",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "경영진 또는 지배기구가 제안된 감사업무의 범위를 제한하여 감사인이 재무제표에 대한 의견을 거절하게 될 것으로 판단하는 경우, 해당 업무의 수임 여부를 판단하고 예외를 설명하시오.",
+        "user_answer": "그 범위제한으로 의견거절이 예상되면 해당 업무를 감사업무로 수임해서는 안 된다. 다만 법규에 의해 수임이 요구되는 경우는 예외이다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "다만 법규에 의해 수임이 요구되는 경우는 예외이다.",
+            "reason": "법규에 의해 수임이 요구되는 경우를 예외로 명시했다.",
+            "claim": "수임 금지의 예외는 법규에 의해 수임이 요구되는 경우이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그 범위제한으로 의견거절이 예상되면 해당 업무를 감사업무로 수임해서는 안 된다.",
+            "reason": "의견거절이 예상되는 범위제한 업무를 수임해서는 안 된다고 명시했다.",
+            "claim": "그와 같이 제한된 감사업무를 수임해서는 안 된다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "그 범위제한으로 의견거절이 예상되면 해당 업무를 감사업무로 수임해서는 안 된다. 다만 법규에 의해 수임이 요구되는 경우는 예외이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_01f87d6c584bb0fd016aa4c751043487d0ab3ffaf15e63643d",
+        "request_id": "req_94b9da416afa43f3bd1626ec24830488",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2496,
+          "input_tokens_details": {
+            "cache_write_tokens": 2493,
+            "cached_tokens": 0
+          },
+          "output_tokens": 185,
+          "output_tokens_details": {
+            "reasoning_tokens": 41
+          },
+          "total_tokens": 2681
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00084585,
+        "min_usd": 0.00084585,
+        "max_usd": 0.00084585,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-03-002--sub1--standard--model/input.json",
+      "sha256": "a8d5b5e5e9970f404bc01d9bc83b7142187816dacbc36e635456b043370a32bf"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-03-002--sub1--standard--model/transport.jsonl",
+      "sha256": "ecc841b74acdc7357a0e1fbaba9bd04d34aa23c2b6a4106defe2e6d2e612103d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-03-002--sub1--standard--model/traces.jsonl",
+      "sha256": "f34780370a7a7d4e4f82cc94583dfb1cbc3bb0cc75d1c542c175e917f9664c29"
+    }
+  }
+}

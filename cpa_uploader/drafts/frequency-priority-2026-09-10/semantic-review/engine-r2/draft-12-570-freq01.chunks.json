@@ -1,0 +1,782 @@
+{
+  "events": [
+    {
+      "unit_id": "subquestion:q1",
+      "attempt": 1,
+      "response": {
+        "id": "subquestion:q1",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문, 모범답안, 기준서 570 문단 22의 인용이 일치한다. 적정의견, 별도 단락 제목, 주석 주의 환기, 중요한 불확실성의 존재 및 의견 미변형을 모두 포함하며 조건도 유지한다. 출처 발췌에 문단 22와 PDF 552쪽 위치가 확인된다. 판본은 2025 개정본을 사용하고 2026 시행 기준은 학습용 가정으로 명시되어 있어 범위상 적합하다.",
+        "reviewed_field_ids": [
+          "q1.prompt",
+          "q1.model_answer",
+          "q1.q1.r1.source_quote",
+          "q1.q1.r1.source_span"
+        ],
+        "source_ref_ids": [
+          "src1"
+        ],
+        "cases": [],
+        "notes": [
+          "기존 문항들과 의미상 중복이 확인되지 않는다."
+        ]
+      }
+    },
+    {
+      "unit_id": "criterion:q1:q1.c1",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q1:q1.c1",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "fail"
+        },
+        "rationale": "이 criterion은 적절한 공시와 적합한 계속기업전제라는 조건에서 적정의견이라는 결론을 정확히 반영한다. source_quote는 KGA 570 문단 22 원문 및 PDF 552쪽 locator와 일치한다. 2025 개정판을 2026 시행 학습사례에 적용한다는 명시적 가정도 적합하다. 다만 감사의견이 변형되지 않았음을 명시한다는 요소는 q1.c5와 중복되어 독립 criterion 분리가 훼손된다.",
+        "reviewed_field_ids": [
+          "q1.prompt",
+          "q1.model_answer",
+          "q1.q1.r1.source_quote",
+          "q1.q1.r1.source_span",
+          "q1.q1.c1.claim",
+          "q1.q1.c1.q1.c1.fact.expected",
+          "q1.q1.c1.q1.c1.scope.expected"
+        ],
+        "source_ref_ids": [
+          "src1"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안은 적절한 공시 및 적합한 전제하의 적정의견을 명시한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "계속기업전제의 사용이 적합하고 중요한 불확실성이 적절히 공시되었으므로 의견은 적정이다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "원문과 의미가 같은 조건부 결론이다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "중요한 불확실성이 적절히 공시되었다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "적정의견이라는 criterion의 결론을 제시하지 않았다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "중요한 불확실성이 적절히 공시되었더라도 부적정의견을 표명한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "문단 22의 적정의견 요구를 정면으로 반대한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "계속기업전제 사용이 부적합한 경우에는 이 적정의견 결론을 적용하지 않는다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "이 답은 대상 사례의 적합성 조건을 뒤집어 적정의견 criterion의 적용을 부정한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ],
+        "notes": [
+          "q1.c1의 비변형 의견 명시는 q1.c5와 중복된다."
+        ]
+      }
+    },
+    {
+      "unit_id": "criterion:q1:q1.c2",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q1:q1.c2",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문은 적절한 공시 상황에서 별도 단락을 요구하고, 모범답안은 해당 제목의 별도 단락을 정확히 제시한다. claim은 적합한 계속기업전제라는 조건과 일반 강조사항·핵심감사사항으로의 대체 불가를 보존한다. 출처의 KGA 570 문단 22 및 제시된 위치와 일치한다.",
+        "reviewed_field_ids": [
+          "q1.prompt",
+          "q1.model_answer",
+          "q1.q1.r1.source_quote",
+          "q1.q1.r1.source_span",
+          "q1.q1.c2.claim",
+          "q1.q1.c2.q1.c2.fact.expected",
+          "q1.q1.c2.q1.c2.scope.expected"
+        ],
+        "source_ref_ids": [
+          "src1"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안은 “계속기업 관련 중요한 불확실성”이라는 제목의 별도 단락을 포함한다고 명시한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "적절한 공시가 이루어진 경우 감사보고서에 계속기업의 중요한 불확실성을 알리는 별도 단락을 포함한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "제목 표현은 다소 축약되었지만 요구되는 별도 단락의 의미를 유지한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "적정의견을 표명하고, 관련 주석에 주의를 환기하며 감사의견을 변형하지 않는다고 명시한다.",
+            "expected": "not_met",
+            "verdict": "fail",
+            "rationale": "요구된 별도 단락의 포함 및 제목이 누락되었다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "일반 강조사항문단을 포함하고 “계속기업 관련 중요한 불확실성” 별도 단락은 포함하지 않는다.",
+            "expected": "contradicted",
+            "verdict": "fail",
+            "rationale": "필수 별도 단락을 일반 강조사항문단으로 대체하여 criterion의 핵심 요구를 명시적으로 부정한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "계속기업전제 사용이 부적합하더라도 “계속기업 관련 중요한 불확실성” 별도 단락을 포함하면 해결된다.",
+            "expected": "contradicted",
+            "verdict": "fail",
+            "rationale": "이 사례의 적합한 계속기업전제 조건을 뒤집고, 부적합한 전제에도 해당 단락으로 해결된다고 주장한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q1:q1.c3",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q1:q1.c3",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문과 모범답안은 재무제표 주석에 대한 주의 환기를 요구하고, claim은 그 독립된 요소를 정확히 반영한다. src1 문단 22(a)가 해당 주석에 주의를 기울이도록 명시적으로 요구한다. 2025 개정판·2026 시행 학습범위 가정과도 충돌하지 않으며, c4·c5의 별도 명시사항과 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q1.prompt",
+          "q1.model_answer",
+          "q1.q1.r1.source_quote",
+          "q1.q1.r1.source_span",
+          "q1.q1.c3.claim",
+          "q1.q1.c3.q1.c3.fact.expected"
+        ],
+        "source_ref_ids": [
+          "src1"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안은 해당 불확실성을 공시한 재무제표 주석에 주의를 기울이도록 한다고 명시한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "감사보고서의 별도 단락에서 중요한 불확실성 관련 공시가 있는 재무제표 주석을 이용자에게 주목하도록 한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "주석에 대한 주의 환기라는 핵심 의미가 보존된 적절한 바꾸어쓰기이다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "적정의견과 별도 단락의 제목, 중요한 불확실성의 존재 및 의견이 변형되지 않았다는 점은 제시하지만, 관련 재무제표 주석에 주의를 기울인다는 내용은 제시하지 않는다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "이 criterion의 독립된 주의 환기 요소가 누락되었으므로 충족하지 않는다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "별도 단락에서는 관련 재무제표 주석에 주의를 기울이지 않도록 명시한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "원문이 요구하는 주의 환기의 정반대 내용을 제시한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "중요한 불확실성이 재무제표에 적절히 공시된 경우에 한하여, 그 사항을 공시한 재무제표 주석에 주의를 기울이도록 한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "적절한 공시라는 적용 조건을 보존하면서 주석에 대한 주의 환기 요구를 충족한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q1:q1.c4",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q1:q1.c4",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문·모범답안은 별도 단락에 중요한 불확실성의 존재를 명시하라는 criterion과 일치한다. src1 문단 22에 동일한 요구가 직접 근거로 제시되며, c3·c5와도 구별된다. 2025 개정판을 2026년 학습 기준으로 적용한다는 명시적 가정 범위에도 부합한다.",
+        "reviewed_field_ids": [
+          "q1.prompt",
+          "q1.model_answer",
+          "q1.q1.r1.source_quote",
+          "q1.q1.r1.source_span",
+          "q1.q1.c4.claim",
+          "q1.q1.c4.q1.c4.fact.expected",
+          "q1.q1.c4.q1.c4.scope.expected"
+        ],
+        "source_ref_ids": [
+          "src1"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안은 별도 단락에 해당 사건·상황이 중요한 불확실성의 존재를 나타낸다는 점을 명시한다고 정확히 답한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "별도 단락에서 해당 사건이나 상황이 계속기업 존속능력에 유의적 의문을 초래할 수 있는 중요한 불확실성을 나타낸다는 점을 밝힌다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "표현은 달라도 별도 단락의 명시 내용과 핵심 의미가 보존된다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "적정의견을 표명하고 ‘계속기업 관련 중요한 불확실성’이라는 별도 단락을 포함하여 관련 주석에 주의를 환기한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "별도 단락과 주석 환기는 제시했지만 중요한 불확실성의 존재를 나타낸다는 명시 내용이 누락되었다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "별도 단락에는 해당 사건·상황이 중요한 불확실성의 존재를 나타내지 않는다고 명시한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "criterion의 핵심 결론을 명시적으로 부정한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "중요한 불확실성이 적절히 공시되지 않은 경우에는 별도 단락이 아니라 한정의견근거 또는 부적정의견근거 단락에 관련 불확실성과 부적절한 공시를 명시한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "이는 src1 문단 23의 별도 조건에 관한 답으로, 적절한 공시 상황의 별도 단락 내용인 이 criterion을 충족하지 않는다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q1:q1.c5",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q1:q1.c5",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "fail"
+        },
+        "rationale": "문항은 별도 단락에 감사의견이 변형되지 않았음을 명시하는 내용을 요구하고, claim과 모범답안이 원문과 정확히 일치한다. 다만 c1이 동일한 ‘감사의견이 변형되지 않음’ 내용을 이미 충족한다고 명시하여 c5와 의미가 중복된다.",
+        "reviewed_field_ids": [
+          "q1.prompt",
+          "q1.model_answer",
+          "q1.q1.r1.source_quote",
+          "q1.q1.r1.source_span",
+          "q1.q1.c5.claim",
+          "q1.q1.c5.q1.c5.fact.expected",
+          "q1.q1.c5.q1.c5.scope.expected"
+        ],
+        "source_ref_ids": [
+          "src1"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안은 별도 단락에 해당 사항과 관련하여 감사의견이 변형되지 않았음을 명시한다고 정확히 답한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "해당 계속기업 불확실성 때문에 감사의견을 수정하지 않았다는 내용을 별도 단락에 기재한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "감사의견이 해당 사항과 관련하여 변형되지 않았다는 의미를 보존한 적절한 paraphrase이다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "별도 단락에서 계속기업 관련 중요한 불확실성의 존재를 설명하고 관련 주석을 참조하게 한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "별도 단락과 주석 안내는 언급하지만, 감사의견이 변형되지 않았다는 필수 내용이 누락되었다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "별도 단락에 해당 사항으로 인해 감사의견이 변형되었다고 명시한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "원문과 반대로 감사의견 변형을 명시하므로 criterion을 정면으로 부정한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "적정의견을 표명한다고만 답한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "이는 의견 종류만 제시한 답으로, 별도 단락에 기재할 비변형 의견 내용을 제시하지 않았다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ],
+        "notes": [
+          "source_span은 KGA 570 문단 22 및 2025 개정 PDF 552쪽 locator로 source excerpt의 해당 문단과 일치한다.",
+          "c1의 claim이 c5의 핵심 내용을 중복 포함하므로 criterion 분리 측면에서 수정 검토가 필요하다."
+        ]
+      }
+    },
+    {
+      "unit_id": "subquestion:q2",
+      "attempt": 1,
+      "response": {
+        "id": "subquestion:q2",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문은 공시 부적절 시 가능한 두 의견과 의견근거 단락의 두 명시사항을 요구하며, 모범답안은 이를 모두 충족한다. 중요성·전반성 기준을 요구하지 않는 범위도 유지된다. 인용문과 문단 23의 내용·위치가 일치한다. 판본은 2025 개정본을 학습용 2026 시행 가정으로 사용하는 것으로 명시되어 있어 확정 판본으로 과장하지 않는다. 기존 15-003의 일반적 의견변형 기준과도 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "두 의견 유형과 의견근거 단락에 명시할 두 사항을 모두 제시한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "공시가 부적절한 경우 705에 따른 한정의견 또는 부적정의견을 내리고, 해당 근거 단락에 중요한 계속기업 불확실성과 그 사항이 재무제표에 적절히 공시되지 않았다는 점을 기재한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "원문과 표현은 다르지만 두 의견과 두 명시사항의 의미를 모두 보존한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "한정의견 또는 부적정의견을 표명하고, 의견근거 단락에 중요한 계속기업 불확실성이 존재한다고 명시한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "재무제표에 해당 사항이 적절히 공시되지 않았다는 두 번째 독립 요구가 누락되었다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "적절한 공시가 이루어지지 않았더라도 적정의견을 표명하고 별도 의견근거 단락에는 공시 부적절성을 명시하지 않는다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "문단 23의 한정 또는 부적정 의견 및 두 가지 명시 요구를 모두 반대로 바꾼 답이다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "중요한 불확실성이 재무제표에 적절히 공시된 경우에는 적정의견과 계속기업 관련 중요한 불확실성 단락을 포함한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "이는 문단 23의 공시 부적절 조건이 아니라 문단 22의 반대 조건에 대한 답으로, 본 문항의 조건을 뒤집는다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          }
+        ],
+        "notes": []
+      },
+      "error": "Error: 의미검수 응답 형식: data.cases[0].answer should NOT be shorter than 1 characters, data.cases[0].answer_quote should NOT be shorter than 1 characters"
+    },
+    {
+      "unit_id": "subquestion:q2",
+      "attempt": 2,
+      "response": {
+        "id": "subquestion:q2",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문은 KGA 570 문단 23의 미공시 상황에서 허용되는 한정의견·부적정의견과 의견근거 단락의 두 명시사항을 정확히 요구한다. 모범답안은 두 의견 유형과 두 명시사항을 모두 포함하며, 중요성·전반성 기준을 요구하지 않는 범위도 준수한다. source_quote는 제공된 src2의 문단 23 원문 및 source_span의 문단·쪽 정보와 일치한다. 2025 개정 전문을 사용하고 2026 시행 기준은 학습용 가정으로 명시되어 있어 판본 범위도 적합하다. q1의 적절한 공시 상황 및 기존 일반 의견변형 문항과 의미상 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q2:q2.c1",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q2:q2.c1",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문은 두 변형의견을 모두 제시하도록 요구하고, q2.c1은 그중 허용되는 의견 유형을 독립적으로 평가한다. 모범답안은 한정의견과 부적정의견을 대안으로 정확히 제시한다. src2 문단 23의 (a)와 직접 일치하며, source_span도 발췌문의 570.23 및 PDF 552 위치와 부합한다. 실제 판본 확정이 아닌 2025 개정·2026 시행 가정이라는 범위도 적절하다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span",
+          "q2.q2.c1.claim",
+          "q2.q2.c1.q2.c1.fact.expected",
+          "q2.q2.c1.q2.c1.scope.expected"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안은 한정의견 또는 부적정의견을 모두 제시하고, 동시에 표명한다는 의미로 오해하지 않는다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "공시가 적절하지 않은 경우 감사기준서 705에 따른 허용 가능한 의견은 한정의견과 부적정의견이다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "두 의견 유형을 대안으로 모두 제시하여 criterion의 핵심을 충족한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "감사인은 한정의견을 표명한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "허용되는 두 의견 유형 중 부적정의견을 누락했으므로 독립 criterion 전체를 충족하지 못한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "이 경우에는 적정의견 또는 의견거절을 표명한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "문단 23이 제시한 한정의견·부적정의견을 모두 배제하고 다른 의견 유형으로 바꾸었다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "문단 23 상황에서는 한정의견이나 부적정의견 중 상황에 맞는 하나를 표명하며, 두 의견을 동시에 표명하는 것은 아니다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "두 유형을 허용되는 대안으로 제시하면서 실제 보고서에는 하나를 선택한다는 조건까지 보존한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          }
+        ],
+        "notes": [
+          "q2.c2와 q2.c3의 의견근거 단락 기재사항은 이 criterion과 중복하지 않는다."
+        ]
+      }
+    },
+    {
+      "unit_id": "criterion:q2:q2.c2",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q2:q2.c2",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "모범답안과 claim은 부적절한 공시 상황에서 한정의견근거 또는 부적정의견근거 단락에 중요한 불확실성의 존재를 명시해야 한다는 독립 요구를 정확히 반영한다. src2의 문단 23(b)와 직접 일치하며, 의견 유형(c1) 및 공시 부적절성 기재(c3)와도 중복되지 않는다. source_span은 발췌문의 570.23 및 PDF 552쪽 locator와 일치한다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span",
+          "q2.q2.c2.claim",
+          "q2.q2.c2.q2.c2.fact.expected"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안은 한정의견근거 또는 부적정의견근거 단락에 중요한 불확실성의 존재를 명시한다고 정확히 답한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "공시가 적절하지 않은 경우 변형의견 근거 단락에 계속기업 존속능력에 유의적 의문을 초래할 수 있는 중요한 불확실성이 존재한다는 점을 기재한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "표현은 달라졌지만 대상 단락, 계속기업 관련 중요한 불확실성의 존재, 부적절한 공시라는 조건을 모두 보존한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "의견근거 단락에 재무제표에 해당 사항이 적절히 공시되지 않았음을 명시한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "공시 부적절성은 언급하지만, 이 criterion의 독립 요구인 중요한 불확실성의 존재를 누락했다. 부분점수 계약이 없으므로 not_met이다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "한정의견근거 또는 부적정의견근거 단락에 중요한 불확실성이 존재하지 않는다고 명시한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "source는 중요한 불확실성의 존재를 명시하도록 요구하므로 정반대의 결론이다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "중요한 불확실성이 재무제표에 적절하게 공시된 경우에도 한정의견근거 또는 부적정의견근거 단락에 그 불확실성의 존재를 명시한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "적절한 공시 상황은 문단 22의 별도 단락 상황이며 문단 23의 의견근거 단락 요구를 적용하는 조건이 아니다. 조건을 뒤집어 이 criterion을 적용했다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q2:q2.c3",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q2:q2.c3",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문은 의견근거 단락에 공시 부적절 사실을 명시할 것을 요구하고, 모범답안과 criterion이 이를 정확히 반영한다. src2 문단 23(b)의 원문 및 제시된 위치와 일치하며, q2.c2의 불확실성 존재 명시와도 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span",
+          "q2.q2.c3.claim",
+          "q2.q2.c3.q2.c3.fact.expected"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안은 의견근거 단락에 재무제표의 부적절한 공시를 명시한다고 정확히 답한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "한정의견근거 또는 부적정의견근거 단락에 해당 중요한 불확실성이 재무제표에 적절히 공시되지 않았다는 사실을 기재한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "원문의 의미를 동일하게 바꾸어 표현했다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "한정의견 또는 부적정의견을 표명하고, 의견근거 단락에 중요한 불확실성이 존재한다고 명시한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "공시가 적절하지 않다는 사항의 명시가 누락되어 독립 criterion을 충족하지 못한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "의견근거 단락에는 재무제표에 해당 사항이 적절하게 공시되었다고 명시한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "공시 부적절이라는 원문 조건을 정반대로 바꾼다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "중요한 불확실성이 재무제표에 적절하게 공시된 경우에는 의견근거 단락에 부적절한 공시라고 명시하지 않는다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "이는 q2.c3의 전제인 부적절한 공시 상황을 적절한 공시 상황으로 바꾼 답변이다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          }
+        ],
+        "notes": [
+          "판본은 authoring_plan의 2025 개정 문단 사용 및 2026 시행기준 학습용 가정에 따른다. 이는 특정 미래 시험의 최종 판본 확정 주장이 아니다."
+        ]
+      }
+    }
+  ]
+}

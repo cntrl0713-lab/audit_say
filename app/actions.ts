@@ -20,7 +20,8 @@ import type { QuestionBankV3LoadErrorCode } from '../lib/questionV3Store';
 import { gradeQuestionSetV3 } from '../lib/questionV3Grading';
 import { isQuestionSetAnswerPayloadV3, type PublicQuestionSetV3 } from '../lib/questionV3';
 import type { QuestionSetGradeResultV3 } from '../lib/questionV3Grading';
-import { findDatabaseQuestionVersion, loadLearningQuestionSetsV3 } from '../lib/questionV3Repository';
+import { findDatabaseLearningUnit, findDatabaseQuestionVersion, loadLearningQuestionSetsV3 } from '../lib/questionV3Repository';
+import { findFileLearningUnit } from '../lib/learningUnitStore';
 import { issueSubmissionToken, learningDbEnabled, submissionSigningKeys, UUID_PATTERN } from '../lib/learningSubmission';
 import { gradeLearningSubmission } from '../lib/learningService';
 import {
@@ -74,6 +75,7 @@ export async function gradeQuestionSetV3Action(
             return await gradeLearningSubmission(session.user.id, questionSetId, submissionToken, answers, {
                 signingKeys: submissionSigningKeys(), apiKey: process.env.OPENAI_API_KEY || '',
                 loadSet: findDatabaseQuestionVersion, findAttempt: findAttemptForSubmission,
+                loadUnit: findDatabaseLearningUnit,
                 begin: beginAttempt, readResult: getAttemptResult, claim: claimGradingRun,
                 complete: completeGradingRun, fail: failGradingRun,
                 consumeQuota: consumeGradeQuota, consumeSubmissionQuota, grade: gradeQuestionSetV3,
@@ -84,7 +86,7 @@ export async function gradeQuestionSetV3Action(
     }
     if (submissionToken) return { ok: false, code: 'database_disabled', message: 'DB 학습 기록이 일시 중단되었습니다. 기존 제출 정보를 보관해 주세요.' };
 
-    if (typeof questionSetId !== 'string' || !/^pilot-\d{2}-\d{3}$/.test(questionSetId)) {
+    if (typeof questionSetId !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,249}$/.test(questionSetId)) {
         throw new Error('유효하지 않은 v3 문제 세트 ID입니다.');
     }
     if (!isQuestionSetAnswerPayloadV3(answers)) {
@@ -93,7 +95,7 @@ export async function gradeQuestionSetV3Action(
     const answerEntries = Object.entries(answers);
     let questionSet;
     try {
-        questionSet = findAuthoringQuestionSetV3(questionSetId);
+        questionSet = questionSetId.includes('--') ? findFileLearningUnit(questionSetId) : findAuthoringQuestionSetV3(questionSetId);
     } catch (error) {
         const code = classifyQuestionBankV3LoadError(error);
         console.error(`[questionV3] authoring load failed (${code}):`, error);
@@ -150,11 +152,18 @@ export async function prepareQuestionSetSubmissionAction(input: SubmissionPrepar
         return { ok: false, code: 'invalid_submission', message: '문제 버전이나 답안이 올바르지 않습니다.' };
     }
     try {
-        const questionSet = await findDatabaseQuestionVersion(input.release_id, input.set_version_id);
+        const scoped = input.learning_unit_id !== undefined || input.classification_version_ids !== undefined;
+        if (scoped && (typeof input.learning_unit_id !== 'string' || !Array.isArray(input.classification_version_ids))) {
+            throw new Error('학습 물음 판본이 올바르지 않습니다.');
+        }
+        const questionSet = scoped
+            ? await findDatabaseLearningUnit(input.release_id, input.set_version_id, input.classification_version_ids!, input.learning_unit_id!, true)
+            : await findDatabaseQuestionVersion(input.release_id, input.set_version_id);
         return { ok: true, submission_token: issueSubmissionToken({
             owner_user_id: session.user.id, actor_kind: session.user.is_anonymous ? 'guest' : 'member',
             membership_version: session.membership?.membership_version ?? null,
             release_id: input.release_id, set_version_id: input.set_version_id, questionSet, answers: input.answers,
+            ...(scoped ? { learning_unit_id: input.learning_unit_id, classification_version_ids: input.classification_version_ids } : {}),
         }, submissionSigningKeys()[0]) };
     } catch {
         return { ok: false, code: 'submission_unavailable', message: '제출 정보를 준비하지 못했습니다. 문제를 다시 불러와 주세요.' };

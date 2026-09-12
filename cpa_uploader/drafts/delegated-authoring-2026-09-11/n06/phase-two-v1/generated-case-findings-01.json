@@ -1,0 +1,52 @@
+{
+  "recorded_at": "2026-09-11T01:34:28.793478+00:00",
+  "set_id": "pilot-16-010",
+  "receipt_file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\n06\\phase-two-v1\\pilot-16-010\\semantic-01.json",
+  "receipt_sha256": "8ec9225cf9afc5eec7d3f52f088d72f5e6c8089b1b1b2ed4327f5f316ac757da",
+  "finding_id": "N06-SEM-002",
+  "kind": "generated_case_expected_verdict_conflict",
+  "unit_id": "criterion:sub2:crit4",
+  "source": "KGA710.17",
+  "cases": [
+    {
+      "unit_id": "criterion:sub2:crit4",
+      "kind": "omission",
+      "answer": "전임감사인의 새 보고서가 함께 재발행되지 않으면 기타사항문단에 전임감사인 관련 정보를 기재한다.",
+      "answer_quote": "전임감사인의 새 보고서가 함께 재발행되지 않으면 기타사항문단에 전임감사인 관련 정보를 기재한다.",
+      "expected": "not_met",
+      "verdict": "pass",
+      "rationale": "함께 재발행되는 경우 기재 요구가 적용되지 않는다는 반대 조건이 누락되어 복합 criterion 전체를 충족하지 못한다.",
+      "source_quotes": [
+        {
+          "source_ref_id": "src-7b99818732f666766c",
+          "quote": "17. 전기재무제표가 전임감사인의 감사를 받은 경우, 전기재무제표에 대한 전임감사인의 감사\r\n보고서가 해당 재무제표와 함께 재발행되지 않는 한, 감사인은 당기재무제표에 대한 의견\r\n표명에 추가하여 기타사항문단에 다음 사항을 기재하여야 한다.  \r\n(a) 전기재무제표는 전임감사인이 감사하였음  \r\n(b) 전임감사인이 표명한 의견의 유형, 그리고 해당 의견이 변형되었으면 그 이유  \r\n(c) 전임감사인의 감사보고서일"
+        }
+      ]
+    },
+    {
+      "unit_id": "criterion:sub2:crit4",
+      "kind": "condition_boundary",
+      "answer": "전임감사인이 수정된 전기재무제표에 대한 새 보고서를 발행했더라도 그 보고서가 비교재무제표와 함께 재발행되지 않았다면, 기타사항문단에 전임감사인 관련 정보를 기재해야 한다.",
+      "answer_quote": "전임감사인이 수정된 전기재무제표에 대한 새 보고서를 발행했더라도 그 보고서가 비교재무제표와 함께 재발행되지 않았다면, 기타사항문단에 전임감사인 관련 정보를 기재해야 한다.",
+      "expected": "met",
+      "verdict": "pass",
+      "rationale": "새 보고서의 존재만으로 기재 면제가 되지 않고, 해당 재무제표와 함께 재발행되었는지가 결정적이라는 경계조건을 정확히 적용했다.",
+      "source_quotes": [
+        {
+          "source_ref_id": "src-7b99818732f666766c",
+          "quote": "17. 전기재무제표가 전임감사인의 감사를 받은 경우, 전기재무제표에 대한 전임감사인의 감사\r\n보고서가 해당 재무제표와 함께 재발행되지 않는 한, 감사인은 당기재무제표에 대한 의견\r\n표명에 추가하여 기타사항문단에 다음 사항을 기재하여야 한다.  \r\n(a) 전기재무제표는 전임감사인이 감사하였음  \r\n(b) 전임감사인이 표명한 의견의 유형, 그리고 해당 의견이 변형되었으면 그 이유  \r\n(c) 전임감사인의 감사보고서일"
+        }
+      ]
+    }
+  ],
+  "analysis": "현재 criterion과 발문은 전임감사인의 보고서가 해당 재무제표와 함께 재발행되는 경우와 그렇지 않은 경우를 모두 구별하도록 정했다. omission과 condition_boundary는 모두 함께 재발행되지 않는 경우의 기재만 답하고, 함께 재발행되는 경우의 요구 미적용은 답하지 않는다. boundary가 추가한 새보고서 존재만으로 면제되지 않는다는 사실은 올바르지만, 이 한 조건만으로 복합 criterion의 두 경우를 모두 충족하지는 않는다. 따라서 고정 계약을 유지하면 두 사례 모두 not_met가 적합하다.",
+  "proposed_change": {
+    "target": "generated condition_boundary expected",
+    "before": "met",
+    "after": "not_met",
+    "scope": "생성사례 후속교정 제안; 고정문항/plan/작성자QA/기존receipt는 수정하지 않음"
+  },
+  "actual_grading": "not_run",
+  "repeats_completed": 0,
+  "root_decision_pending": true
+}

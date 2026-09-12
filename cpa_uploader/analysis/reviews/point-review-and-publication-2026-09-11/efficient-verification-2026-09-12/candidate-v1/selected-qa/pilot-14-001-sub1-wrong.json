@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "set_id": "pilot-14-001",
+  "origin": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/wrong-zero-selection-v3/pilot-14-001.json",
+    "sha256": "7e52b9e425267309686fec60141e8db4c9081bfcc27c0e03d527ceb1cfc71813",
+    "case_id": "efficient-v3/sub1/topic-related-zero"
+  },
+  "normalization": "Only absent verdict reasons are supplied from the actual agent review; answer, verdict and expected score are unchanged.",
+  "cases": [
+    {
+      "id": "efficient-v3/sub1/topic-related-zero",
+      "subquestion_id": "sub1",
+      "kind": "explicit_wrong",
+      "answer": "부문감사인이 참여하면 그룹재무제표 전체 감사의견의 책임은 부문감사인에게 전부 이전되고 그룹업무수행이사와 그 회계법인의 책임은 없어진다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "명시적 반대: 답안은 '그룹재무제표 전체 감사의견의 책임은 그룹업무수행이사 또는 그가 속한 회계법인에 있다.'에 반하는 조건·조치·명칭 또는 관계를 제시한다."
+        },
+        {
+          "criterion_id": "crit1.p2",
+          "verdict": "contradicted",
+          "reason": "명시적 반대: 답안은 '부문감사인의 업무를 이용하더라도 그룹감사인의 책임은 감소하지 않는다.'에 반하는 조건·조치·명칭 또는 관계를 제시한다."
+        }
+      ],
+      "target_criterion_id": "crit1",
+      "note": "대표 wrong은 전체0점이어야 하는 효율실행 계약에 맞춘 새로운 주제 관련 오답이다. 기존 부분점수 경계 답안 및 원 기대값은 별도로 전부 보존한다.",
+      "origin": {
+        "reviewer": "agent",
+        "selection_contract": "model=max, 0<partial<max, wrong=0",
+        "related_source_ref_ids": [
+          "src1"
+        ]
+      }
+    }
+  ]
+}

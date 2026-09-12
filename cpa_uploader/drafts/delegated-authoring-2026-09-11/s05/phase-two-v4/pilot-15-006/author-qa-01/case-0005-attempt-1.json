@@ -1,0 +1,262 @@
+{
+  "set_id": "pilot-15-006",
+  "case_id": "sub1/irrelevant-prefix",
+  "kind": "irrelevant-prefix",
+  "attempt": 1,
+  "started_at": "2026-09-11T03:20:00.172Z",
+  "finished_at": "2026-09-11T03:20:05.452Z",
+  "model": "gpt-5.6-luna",
+  "transport": "live_model",
+  "answers": {
+    "sub1": "감사팀은 이번 주 금요일에 자료실을 정리한다.\n제목은 의견거절이다. 가는 별첨 재무제표의 감사를 수임하였다고 고친다. 다에는 별첨 재무제표에 대한 의견을 제시하지 않는다고 쓴다. 라는 거절근거에 기재된 사항이 유의적이어서 의견을 뒷받침할 충분하고 적합한 증거를 확보할 수 없었다는 문구로 고친다.",
+    "sub2": ""
+  },
+  "expected": {
+    "id": "sub1/irrelevant-prefix",
+    "subquestion_id": "sub1",
+    "kind": "irrelevant-prefix",
+    "answer": "감사팀은 이번 주 금요일에 자료실을 정리한다.\n제목은 의견거절이다. 가는 별첨 재무제표의 감사를 수임하였다고 고친다. 다에는 별첨 재무제표에 대한 의견을 제시하지 않는다고 쓴다. 라는 거절근거에 기재된 사항이 유의적이어서 의견을 뒷받침할 충분하고 적합한 증거를 확보할 수 없었다는 문구로 고친다.",
+    "expected_points": 4,
+    "expected_verdicts": [
+      {
+        "criterion_id": "sub1.crit1",
+        "verdict": "met",
+        "reason": "전체 답안이 발문에서 요구한 이 명제를 직접 또는 명확한 함축으로 충족한다."
+      },
+      {
+        "criterion_id": "sub1.crit2",
+        "verdict": "met",
+        "reason": "전체 답안이 발문에서 요구한 이 명제를 직접 또는 명확한 함축으로 충족한다."
+      },
+      {
+        "criterion_id": "sub1.crit3",
+        "verdict": "met",
+        "reason": "전체 답안이 발문에서 요구한 이 명제를 직접 또는 명확한 함축으로 충족한다."
+      },
+      {
+        "criterion_id": "sub1.crit4",
+        "verdict": "met",
+        "reason": "전체 답안이 발문에서 요구한 이 명제를 직접 또는 명확한 함축으로 충족한다."
+      }
+    ],
+    "note": ""
+  },
+  "request_hash": "ecce9d739d9a4cd7e06fd74fbb535878a80c6a546e2439c7f90a23ce530c5b13",
+  "schema_hash": "afdfdeaf7852cbc523b0c99c3c79c0bda4eb5195d44bda905de5a8b3a17dbdcd",
+  "raw_judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "met",
+            "quote": "제목은 의견거절이다. ",
+            "reason": "제목을 의견거절로 수정했다."
+          },
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "met",
+            "quote": "가는 별첨 재무제표의 감사를 수임하였다고 고친다. ",
+            "reason": "감사 수임 표현으로 수정했다."
+          },
+          {
+            "criterion_id": "sub1.crit3",
+            "verdict": "met",
+            "quote": "다에는 별첨 재무제표에 대한 의견을 제시하지 않는다고 쓴다. ",
+            "reason": "재무제표에 대한 의견을 제시하지 않는다고 수정했다."
+          },
+          {
+            "criterion_id": "sub1.crit4",
+            "verdict": "met",
+            "quote": "라는 거절근거에 기재된 사항이 유의적이어서 의견을 뒷받침할 충분하고 적합한 증거를 확보할 수 없었다는 문구로 고친다.",
+            "reason": "유의성 때문에 충분하고 적합한 감사증거를 확보할 수 없다고 수정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "trace": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "제목을 의견거절로 수정했다."
+              },
+              {
+                "criterion_id": "sub1.crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "감사 수임 표현으로 수정했다."
+              },
+              {
+                "criterion_id": "sub1.crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e4"
+                ],
+                "reason": "재무제표에 대한 의견을 제시하지 않는다고 수정했다."
+              },
+              {
+                "criterion_id": "sub1.crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e5"
+                ],
+                "reason": "유의성 때문에 충분하고 적합한 감사증거를 확보할 수 없다고 수정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "sub2.crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-15-006",
+    "score": 4,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "의견 단락 초안의 제목과 문장 가·다·라를 의견거절에 맞게 각각 수정하시오. 문장 나의 적정한 재무제표 명세는 유지하며, 나머지 단락을 새로 작성할 필요는 없다.",
+        "user_answer": "감사팀은 이번 주 금요일에 자료실을 정리한다.\n제목은 의견거절이다. 가는 별첨 재무제표의 감사를 수임하였다고 고친다. 다에는 별첨 재무제표에 대한 의견을 제시하지 않는다고 쓴다. 라는 거절근거에 기재된 사항이 유의적이어서 의견을 뒷받침할 충분하고 적합한 증거를 확보할 수 없었다는 문구로 고친다.",
+        "score": 4,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "met",
+            "quote": "제목은 의견거절이다.",
+            "reason": "제목을 의견거절로 수정했다.",
+            "claim": "의견 단락의 제목을 “의견거절”로 수정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "met",
+            "quote": "가는 별첨 재무제표의 감사를 수임하였다고 고친다.",
+            "reason": "감사 수임 표현으로 수정했다.",
+            "claim": "문장 가는 별첨 재무제표에 대한 감사계약을 체결하였다는 표현으로 수정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.crit3",
+            "verdict": "met",
+            "quote": "다에는 별첨 재무제표에 대한 의견을 제시하지 않는다고 쓴다.",
+            "reason": "재무제표에 대한 의견을 제시하지 않는다고 수정했다.",
+            "claim": "문장 다는 별첨 재무제표에 대하여 의견을 표명하지 않는다고 수정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.crit4",
+            "verdict": "met",
+            "quote": "라는 거절근거에 기재된 사항이 유의적이어서 의견을 뒷받침할 충분하고 적합한 증거를 확보할 수 없었다는 문구로 고친다.",
+            "reason": "유의성 때문에 충분하고 적합한 감사증거를 확보할 수 없다고 수정했다.",
+            "claim": "문장 라는 의견거절근거 단락에 기술된 사항의 유의성 때문에 재무제표에 대한 감사의견의 근거를 제공하기에 충분하고 적합한 감사증거를 입수할 수 없었다고 수정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "의견 단락의 제목을 “의견거절”로 수정한다.",
+          "문장 가는 별첨 재무제표에 대한 감사계약을 체결하였다는 표현으로 수정한다.",
+          "문장 다는 별첨 재무제표에 대하여 의견을 표명하지 않는다고 수정한다.",
+          "문장 라는 의견거절근거 단락에 기술된 사항의 유의성 때문에 재무제표에 대한 감사의견의 근거를 제공하기에 충분하고 적합한 감사증거를 입수할 수 없었다고 수정한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "기본 사례에서 핵심감사사항 단락과 기타정보 단락을 각각 포함할 수 있는지 제시하시오. 법규가 해당 단락을 요구하는 경우의 처리도 각 단락에 연결하여 설명하시오.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "법규가 요구하지 않는 기본 사례에서는 핵심감사사항 단락을 포함하지 않는다. 법규가 이 단락을 요구하면 포함한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "법규가 요구하지 않는 기본 사례에서는 기타정보 단락을 포함하지 않는다. 법규가 이 단락을 요구하면 포함한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "법규가 요구하지 않는 기본 사례에서는 핵심감사사항 단락을 포함하지 않는다. 법규가 이 단락을 요구하면 포함한다.",
+          "법규가 요구하지 않는 기본 사례에서는 기타정보 단락을 포함하지 않는다. 법규가 이 단락을 요구하면 포함한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "exact_verdict_differences": [],
+  "verdict_differences": [],
+  "matched": true,
+  "boundary_policy": null
+}

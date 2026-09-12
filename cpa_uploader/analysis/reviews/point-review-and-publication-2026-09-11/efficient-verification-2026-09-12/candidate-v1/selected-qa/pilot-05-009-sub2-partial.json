@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "set_id": "pilot-05-009",
+  "origin": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/qa-prepared-v1/pilot-05-009.json",
+    "sha256": "031935a6763f17805908ea9b38e68bf22711a1af27b5dcdfd33126eb832155f9",
+    "case_id": "sub2-wrong-comparison-right-reason"
+  },
+  "normalization": "Only absent verdict reasons are supplied from the actual agent review; answer, verdict and expected score are unchanged.",
+  "cases": [
+    {
+      "id": "sub2-wrong-comparison-right-reason",
+      "subquestion_id": "sub2",
+      "kind": "explicit_contradiction_with_valid_reason",
+      "answer": "경영진은 회계기록을 직·간접적으로 조작하고 허위 재무정보를 제공하거나, 종업원의 유사한 부정을 예방할 통제를 무력화할 수 있는 지위에 있는 경우가 많기 때문이다.\n그렇지만 감사인이 발견하지 못할 위험은 경영진의 부정이 일반 종업원의 부정보다 더 낮다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 감사인이 경영진의 부정으로 인한 중요한 왜곡표시를 발견하지 못할 위험은 종업원의 부정으로 인한 경우보다 크다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 경영진은 회계기록을 직·간접적으로 조작하고 허위 재무정보를 제공하거나, 종업원의 유사한 부정을 예방할 통제를 무력화할 수 있는 지위에 있는 경우가 많기 때문이다."
+        }
+      ],
+      "note": "명시적 반대 비교는0점이고 별도로 충족한 지위·조작·무력화 이유는1점이다. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다. [point-policy-v1] 원 ID·물음·답안 보존. 독립 부분별 기대를 원문과 답안 전체에서 재대조했으며 옛 복합 0점을 부분에 기계적으로 전파하지 않는다. 실제 모델 호출 전의 작성자 기대값이다.",
+      "origin": {
+        "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/learning-style-v2/t05-b/qa-cases.json",
+        "case_id": "sub2-wrong-comparison-right-reason"
+      }
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "artifact_type": "publication_preparation_change_review",
+  "status": "reviewed",
+  "reviewer": "root (agent; human_review_performed=false)",
+  "reviewed_at": "2026-09-12T04:34:01.703Z",
+  "changes": [
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/run-efficient-grading.ts",
+      "before_sha256": "47c4b7619c718d6ee9cdccf83be11e62437108a799dc7a8761d916ffabed8b69",
+      "after_sha256": "9160a000f375fa1be72c7dc0e54061ca6f29dc97081304ee46ba0800266b7f18",
+      "reason": "동일 원응답 재사용마다 전체 파일 guard를 반복하던 비용을 줄였다. 준비·새 API 직전·API 후·종료 guard 및 원응답의 개별 무결성 검증은 유지했다. all-reuse와 새API/최종변경 거부검사 및 통합87검사를 확인했다."
+    },
+    {
+      "file": "cpa_uploader/questionEfficientReview.ts",
+      "before_sha256": "142a5a6292d31188fd3bb5f8f4365705e9ed79208c1bfaa778264d7a52344ff3",
+      "after_sha256": "f560022e83a19fd59c1c8ebf52b488fc6e018a8c3aa20da3382ff61eae01d33b",
+      "reason": "원 manifest와 같은 폴더의 유일한 runtime snapshot index를 선택하여 다단계 재사용에서 앞선 실행의 index가 잘못 선택되는 문제를 수정했다. 8개 실제 채점 행동 파일은 그대로이며 원응답·버전·증거 검증을 완화하지 않았다. 실제001/002 재생과 경계13검사, 통합87검사를 확인했다. 후속 실제735건 준비74초와20건 측정에 따라 검증context 안의 동일 JSON 읽기·파싱만 불변 캐시로 묶었다. 최초 exact SHA 확인, 동일경로 hash충돌거부, 깊은불변화, 마지막 실바이트검사를 유지하고 원응답 재생·보안·합산 검사는 생략하지 않았다. 실제20건 동일통과 및88회귀·타입·l int통과를 확인했다."
+    }
+  ],
+  "validation_evidence": [
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/efficient-final003-tests.log",
+      "sha256": "7c58eace4c705c6d0f15fad7c1fc5a182bf3699a6a4668899c18ea96f0823090"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final003-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final003-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/before-final-recorder-v1/manifest.json",
+      "sha256": "e26c0a04ce54f01a6b23b110fb31ad30367ef23f1bb6a574577514ad5d2751a4"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/proposed-after-run-v2/validation.json",
+      "sha256": "3334ce889088abbf861a57bbbf3fe023486d92561a5eeb71c9a034a1587ce18b"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/proposed-after-run-v2/runner-guard-validation.json",
+      "sha256": "a25ee0c304aa3a1a7545035b2bee041951b6ceddd8c7266188025f0f62d34506"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/final-corrections.json",
+      "sha256": "47a166fe69e41638440a180d4481e2569000767a512a68b485450a76586aad2f"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/publication-workflow-v2/change-review-003.json",
+      "sha256": "f6897312b7450879006fb02615ac3246ac82a2c4140c5719aee6d6b6b1420b6e"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/followup-runtime-evidence.json",
+      "sha256": "d36df23b051b32f75fe84553665e2b7d8a4d44ee7254a3044f1cfd031e82e517"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/performance-review-v1/measurement.json",
+      "sha256": "ee1f8a468654a73f816390a9e19c86113a1701b3cd5f69c5d6943f9a986f443a"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/performance-review-v1/cache-validation.json",
+      "sha256": "aa87ea556cad8a9e89048060321a4a8cb4db53d0c571220da359d8be23b855b9"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/performance-review-v1/context-json-cache.patch",
+      "sha256": "1ffac835112657bad8398da88461c35f6b97b78414cf4f37aea88ce65a018a2a"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/efficient-final004-tests.log",
+      "sha256": "d3b4f1b355409b55384580574db86ca170746df8a471408ac08b685157491f08"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final004-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final004-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/before-final-recorder-v1/questionEfficientReview.before-cache.ts.txt",
+      "sha256": "b97b17c7343e97e8af75d0d60d71bf6f1c372d32b47af51ebd7c723a859f0ed0"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/publication-workflow-v2/preparation-003.json",
+      "sha256": "073032295f170177a5c7c4b262e12764d6ab552687bf436aa79df6f7162ba294"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/publication-workflow-v2/preparation-003-status.json",
+      "sha256": "604a831e09974280a38534858eb9ba0a6030582e16078d452dc38946f1fe1d51"
+    }
+  ]
+}

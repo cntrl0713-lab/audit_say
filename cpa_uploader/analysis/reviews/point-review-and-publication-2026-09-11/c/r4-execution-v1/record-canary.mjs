@@ -1,0 +1,55 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+import crypto from 'node:crypto';
+import assert from 'node:assert/strict';
+const { applyQuestionSetJudgment, buildGradingPrompt, buildGradingResponseSchema } = await import(pathToFileURL(path.resolve('lib/questionV3Grading.ts')));
+const D = 'cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11';
+const wave = `${D}/execution-resumes/resume-2026-09-12-v4/canary`;
+const qaDir = 'cpa_uploader/drafts/delegated-authoring-2026-09-11/validation-resumes/resume-2026-09-12-v4/canary/author-qa-c/pilot-03-001/author-qa';
+const json = file => JSON.parse(fs.readFileSync(file,'utf8'));
+const sha = v => crypto.createHash('sha256').update(v).digest('hex');
+const hash = f => sha(fs.readFileSync(f));
+const desc = f => ({file:f,sha256:hash(f)});
+const manifestFile=`${wave}/manifest.json`, manifest=json(manifestFile);
+assert.equal(hash(manifestFile),'6c7280e7aaf55e6b968d874ddb155e3342224bcff051b0ebd61d48ecfd5bc495');
+for(const c of manifest.code_files)assert.equal(hash(c.file),c.sha256);
+const job=manifest.jobs.find(j=>j.set_id==='pilot-03-001');
+for(const [file,expected] of [[job.file,job.sha256],[job.qa_file,job.qa_sha256],[job.plan_file,job.plan_sha256],...job.source_files.map(s=>[s.file,s.sha256])])assert.equal(hash(file),expected);
+const value=json(job.file),set=Array.isArray(value)?value[0]:value,qa=json(job.qa_file);
+const semanticFile=`${wave}/semantic-c/pilot-03-001/semantic.json`,semantic=json(semanticFile).reviews[0];
+assert.equal(semantic.verdict,'pass');assert.equal(semantic.units.length,8);assert.equal(semantic.cases.length,30);assert.equal(semantic.execution.transport,'model');assert.equal(semantic.execution.model,'gpt-5.6-luna');
+const gradingFile=`${wave}/grading-c/pilot-03-001/grading.json`,grading=json(gradingFile).reviews[0];
+assert.equal(grading.grading.status,'completed');assert.equal(grading.grading.model,'gpt-5.6-luna');assert.equal(grading.grading.transport,'model');
+const rawFile=`${wave}/grading-c/pilot-03-001/grading.json.grading.jsonl`;
+const generatedRaw=fs.readFileSync(rawFile,'utf8').trim().split('\n').map(x=>JSON.parse(x));
+assert.equal(generatedRaw.length,27);
+const generated=grading.grading.runs.map(run=>{
+  const raw=generatedRaw.find(r=>r.id===run.id);assert(raw);
+  assert.equal(run.matched,true);assert.equal(raw.matched,true);assert.deepEqual(raw.result,run.result);
+  assert.equal(run.result.security_flag,'none');
+  if(run.judgment)assert.deepEqual(applyQuestionSetJudgment(set,run.answers,run.judgment),run.result);
+  return {id:run.id,matched:run.matched,actual_points:run.result.score,nonempty:Object.values(run.answers).some(a=>a.trim()),raw_trace_response_count:raw.trace?.filter(t=>t.response).length??0};
+});
+const inputs=json(`${qaDir}/inputs.json`),summary=json(`${qaDir}/summary.json`);
+assert.deepEqual(inputs.question_set,set);assert.deepEqual(inputs.qa,qa);assert.equal(inputs.model,'gpt-5.6-luna');
+for(const[file,expected]of Object.entries(inputs.hashes))assert.equal(hash(file),expected);
+assert.deepEqual(summary.changed_inputs,[]);assert.equal(summary.stopped_on_execution_error,false);
+const policyFile=`${D}/grading-inference-followup-v2/minor-error-policy.json`,policy=json(policyFile);
+assert.equal(policy.max_absolute_score_delta_per_subquestion,1);
+const observations=summary.records.map(entry=>{
+  const file=`${qaDir}/${entry.file}`,r=json(file),test=qa.cases.find(c=>c.id===r.case_id);assert(test);
+  assert.deepEqual(r.expected,test);assert(!r.error);assert.equal(r.result.security_flag,'none');assert.equal(r.model,'gpt-5.6-luna');
+  const answers=Object.fromEntries(set.subquestions.map(q=>[q.id,q.id===test.subquestion_id?test.answer:'']));
+  assert.deepEqual(r.answers,answers);assert.equal(sha(buildGradingPrompt(set,answers)),r.request_hash);assert.equal(sha(JSON.stringify(buildGradingResponseSchema(set,answers))),r.schema_hash);
+  if(test.answer.trim())assert.deepEqual(applyQuestionSetJudgment(set,answers,r.raw_judgment),r.result);
+  else {assert.equal(r.result.score,0);assert.equal(r.trace.length,0);}
+  const pointComparison=r.result.subquestions.map(q=>({subquestion_id:q.subquestion_id,expected_points:q.subquestion_id===test.subquestion_id?test.expected_points:0,actual_points:q.score,delta:q.score-(q.subquestion_id===test.subquestion_id?test.expected_points:0)}));
+  const within=pointComparison.every(p=>Math.abs(p.delta)<=1);
+  return {...desc(file),case_id:r.case_id,attempt:r.attempt,model:r.model,transport:r.transport,strict_matched:r.matched,point_comparison:pointComparison,strict_differences:r.verdict_differences,policy_label:r.matched?'strict_runner_match':within?'accepted_with_grading_deviation':'outside_authorized_tolerance',security_flag:r.result.security_flag,request_hash:r.request_hash,schema_hash:r.schema_hash,actual_trace_responses:r.trace.filter(t=>t.response).length};
+});
+assert.equal(observations.length,24);assert.equal(new Set(observations.map(o=>o.case_id)).size,22);
+const mismatches=observations.filter(o=>!o.strict_matched);assert.equal(mismatches.length,3);
+for(const m of mismatches){assert.equal(m.policy_label,'accepted_with_grading_deviation');assert(m.point_comparison.every(p=>p.delta===0));}
+const result={version:1,checked_at:new Date().toISOString(),status:'canary_finished_with_preserved_verdict_only_deviation',model:'gpt-5.6-luna',manifest:desc(manifestFile),policy:desc(policyFile),semantic:{...desc(semanticFile),units:8,cases:30,verdict:'pass',transport:'model'},generated_grading:{...desc(gradingFile),raw:desc(rawFile),runs:27,nonempty_model_runs:26,empty_no_model:1,mismatches:0,security:0,runs_detail:generated},author_qa:{inputs:desc(`${qaDir}/inputs.json`),summary:desc(`${qaDir}/summary.json`),cases:22,observations:24,live_model_observations:observations.filter(o=>o.transport==='live_model').length,empty_no_model:observations.filter(o=>o.transport==='production_empty_answer_no_model').length,strict_matched_cases:21,strict_mismatched_cases:1,strict_mismatched_observations:3,observations_detail:observations},deviation_conclusion:'원반례의 crit5 expected contradicted와 actual not_met 구별은 세 관측 모두 엄격 불일치로 보존한다. 모든 물음의 점수 차이는0이며 원정답/criterion/source 결함이나 전송·보안 오류가 확인되지 않았다. 사용자 물음당±1점 허용 범위로 별도 기록하고 추가 반복하지 않는다.',old_receipts_rewritten:false,question_or_expected_modified:false,actual_human_review:false,publication_or_db:false,remaining:{phase:'semantic',sets:39,output:`${D}/execution-resumes/resume-2026-09-12-v4/remaining/semantic-c`,session_id:75787,status:'running',grading_and_author_qa:'not_started_pending_root_instruction_after_semantic'},api_calls_by_this_verifier:0,errors:[]};
+const file=`${D}/c/r4-execution-v1/canary-verification.json`;fs.writeFileSync(file,`${JSON.stringify(result,null,2)}\n`,{flag:'wx'});console.log(JSON.stringify({...desc(file),semantic:8,generated:27,author_cases:22,author_observations:24,strict_mismatched_cases:1,authorized_score_delta:0}));

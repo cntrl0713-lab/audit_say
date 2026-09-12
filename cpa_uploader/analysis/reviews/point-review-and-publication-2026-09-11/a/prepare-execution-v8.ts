@@ -1,0 +1,218 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import type { QuestionSetV3 } from '../../../../../lib/questionV3.ts';
+import { buildReviewChunkInput, prepareSemanticReview } from '../../../../questionSemanticReview.ts';
+import { buildSourceCatalog } from '../../../../questionSourceCatalog.mjs';
+import { validateQuestionAuthoringPlan } from '../../../../questionAuthoringPlan.ts';
+import type { QuestionAuthoringPlan } from '../../../../questionAuthoringPlan.ts';
+
+// Preparation only: no model calls, subprocesses, prior writes, or receipt reuse decisions.
+const BASE = 'cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11';
+const PREVIOUS = `${BASE}/a/execution-all-v7/manifest.json`;
+const RUNTIME = `${BASE}/execution-runtime-v6.json`;
+const OUTPUT = `${BASE}/a/execution-all-v8`;
+const SELF = fileURLToPath(import.meta.url);
+const MAXIMUM = 500000;
+type Identity = { file: string; sha256: string };
+type Job = { set_id: string; worker: string; file: string; sha256: string; plan_file: string; plan_sha256: string;
+    qa_file: string; qa_sha256: string; source_files: Identity[]; semantic_units: number; questions: number;
+    criteria: number; author_qa_cases: number };
+type Manifest = { bank_file: string; bank_sha256: string; code_files: Identity[]; jobs: Job[]; model: string;
+    review_model: string; max_input_chars: number; source_catalog_fingerprint: string; max_concurrent_workers: number;
+    preflight_file: string; preflight_sha256: string; workers: unknown; [key: string]: unknown };
+type Plan = QuestionAuthoringPlan & { metadata?: Record<string, unknown> };
+type QaCase = { id: string; subquestion_id: string; answer: string; expected_points: number;
+    expected_verdicts: { criterion_id: string; verdict: string }[] };
+type Qa = { version: number; artifact_type: string; set_id: string; cases: QaCase[]; [key: string]: unknown };
+type Runtime = { predecessor: Identity; grading_model: string; review_model: string; code_files: Identity[];
+    source_question_bank: Identity; preservation: Identity;
+    changed_predecessor_files: { file: string; before_sha256: string; after_sha256: string; snapshot: Identity }[];
+    policy_changes: { file: string; before_sha256: string; after_sha256: string; snapshot: Identity }[] };
+type Selection = { qa: Identity; count: number; plan?: Identity; changes: Identity };
+const selected: Record<string, Selection> = {
+    'pilot-01-002': { qa: { file: `${BASE}/a/canary-plan-followup-v1/qa-pilot-01-002.json`, sha256: 'f70d8d1dca26801ca24e7088c480db4c22f47ae568a1c709a7c0842bb245c6a7' }, count: 35,
+        changes: { file: `${BASE}/a/canary-plan-followup-v1/changes.json`, sha256: '462e38c80d7ff6e813f3165e74cb50a2a7fdb77ed1de7e62a53c39996966340f' } },
+    'pilot-05-003': { qa: { file: `${BASE}/b/canary-plan-followup-v1/qa-pilot-05-003.json`, sha256: '7ac435e1c7008924d0e17c1995be6b7f6204e2bf9a68b3612ea92571e9dcaf8f' }, count: 35,
+        plan: { file: `${BASE}/b/canary-plan-followup-v1/plan-pilot-05-003.json`, sha256: '95d4ee7fafc42a3dd81378706bdad243570fc70a1cd0ee3b497aff42138ebbdf' },
+        changes: { file: `${BASE}/b/canary-plan-followup-v1/changes.json`, sha256: '668fbb080cb6f0aec71b77e091afc7781ed63046a237bd83c6c3355d642c6778' } },
+    'pilot-03-001': { qa: { file: `${BASE}/c/canary-plan-followup-v1/pilot-03-001-qa.json`, sha256: 'b17a1821366f2393b0142ec4d969b02ec9adc20fff915a7aa03f14f9a8ceac40' }, count: 22,
+        plan: { file: `${BASE}/c/canary-plan-followup-v1/pilot-03-001-plan.json`, sha256: 'c89b2a9b6057cd361f3da5570ab4624ca2c86b8f4e72666c90749aba3209511c' },
+        changes: { file: `${BASE}/c/canary-plan-followup-v1/changes.json`, sha256: '181afc218e8846114151c6e611c4f39a35e7711a560e21e8490ef4187e358dba' } },
+};
+const read = <T,>(file: string): T => JSON.parse(fs.readFileSync(file, 'utf8')) as T;
+const sha = (value: string | Buffer) => createHash('sha256').update(value).digest('hex');
+const serial = (value: unknown) => JSON.stringify(value, null, 2) + '\n';
+const identity = (file: string): Identity => ({ file, sha256: sha(fs.readFileSync(file)) });
+const verify = (row: Identity) => assert.equal(identity(row.file).sha256, row.sha256, `Frozen input changed: ${row.file}`);
+function unique(rows: Identity[]) {
+    const map = new Map<string, Identity>();
+    for (const row of rows) { const key = path.resolve(row.file).toLowerCase();
+        if (map.has(key)) assert.equal(map.get(key)!.sha256, row.sha256, `Conflicting identity: ${row.file}`);
+        else map.set(key, row); }
+    return [...map.values()];
+}
+function loadPlan(file: string, setId: string): Plan {
+    const raw = read<Plan | { plans: (Plan & { set_id: string })[] }>(file);
+    const matches = 'plans' in raw ? raw.plans.filter(p => p.set_id === setId) : [raw];
+    assert.equal(matches.length, 1); assert.deepEqual(validateQuestionAuthoringPlan(matches[0]), []); return matches[0];
+}
+export function verifyQa(before: Qa, after: Qa, addition: number) {
+    assert.equal(after.cases.length, before.cases.length + addition);
+    assert.deepEqual(after.cases.slice(0, before.cases.length), before.cases, 'Original QA fields/order changed');
+    assert.equal(new Set(after.cases.map(row => row.id)).size, after.cases.length, 'Duplicate QA case ID');
+    for (const key of Object.keys(before).filter(key => key !== 'cases')) assert.deepEqual(after[key], before[key], `Old QA envelope changed: ${key}`);
+    const newKeys = Object.keys(after).filter(key => !(key in before));
+    const allowedKeys = before.set_id === 'pilot-03-001' ? ['generated_case_followup']
+        : before.set_id === 'pilot-05-003' ? ['followup_lineage'] : [];
+    assert.deepEqual(newKeys, allowedKeys, 'Undeclared QA envelope field');
+}
+export function verifyPlan(before: Plan, after: Plan, setId: string) {
+    const undo = structuredClone(after);
+    if (setId === 'pilot-05-003') {
+        assert.deepEqual(after.scope.exceptions.slice(0, before.scope.exceptions.length), before.scope.exceptions);
+        assert.equal(after.scope.exceptions.length, before.scope.exceptions.length + 2);
+        undo.scope.exceptions = before.scope.exceptions;
+        assert(!before.metadata?.diagnostic_followup_proposal && after.metadata?.diagnostic_followup_proposal);
+        delete undo.metadata!.diagnostic_followup_proposal;
+    } else if (setId === 'pilot-03-001') {
+        assert(!before.metadata?.semantic_case_interpretation_followup && after.metadata?.semantic_case_interpretation_followup);
+        delete undo.metadata!.semantic_case_interpretation_followup;
+    }
+    assert.deepEqual(undo, before, 'Undeclared plan field change');
+}
+export function verifyJob(before: Job, after: Job, permitted: boolean) {
+    const restored = { ...after };
+    if (permitted) Object.assign(restored, { qa_file: before.qa_file, qa_sha256: before.qa_sha256, author_qa_cases: before.author_qa_cases,
+        plan_file: before.plan_file, plan_sha256: before.plan_sha256 });
+    assert.deepEqual(restored, before, 'Job changed outside explicitly selected QA/plan');
+}
+function selfTest() {
+    const old: Qa = { version: 1, artifact_type: 'author_expected_judgments', set_id: 'fixture', cases: [{ id: 'a', subquestion_id: 'sub1', answer: 'old', expected_points: 0, expected_verdicts: [] }] };
+    const next = structuredClone(old); next.cases.push({ ...old.cases[0], id: 'b' }); verifyQa(old, next, 1);
+    let rejected = 0; const reject = (fn: () => void) => { assert.throws(fn); rejected++; };
+    const changed = structuredClone(next); changed.cases[0].answer = 'changed'; reject(() => verifyQa(old, changed, 1));
+    reject(() => verifyQa(old, next, 2)); const duplicate = structuredClone(next); duplicate.cases[1].id = 'a'; reject(() => verifyQa(old, duplicate, 1));
+    const hidden = { ...next, unapproved: true }; reject(() => verifyQa(old, hidden, 1));
+    const master = read<Manifest>(PREVIOUS), job = master.jobs[0]; verifyJob(job, job, false);
+    reject(() => verifyJob(job, { ...job, sha256: 'bad' }, true)); reject(() => verifyJob(job, { ...job, worker: 'other' }, true));
+    reject(() => verifyJob(job, { ...job, qa_file: 'other' }, false));
+    const plan = loadPlan(job.plan_file, job.set_id); verifyPlan(plan, plan, 'fixture');
+    const scope = structuredClone(plan); scope.scope.conditions.push('unauthorized'); reject(() => verifyPlan(plan, scope, 'fixture'));
+    console.log(JSON.stringify({ self_test: true, accepted: 3, rejected, api_calls: 0, writes: 0 }));
+}
+function main() {
+    if (process.argv.length === 3 && process.argv[2] === '--self-test') return selfTest();
+    const continuing = process.argv.length === 3 && process.argv[2] === '--after-local-failure';
+    assert(continuing || process.argv.length === 2, 'Only --self-test or --after-local-failure is supported');
+    const failureInputs: Identity[] = [];
+    const preflightName = continuing ? 'preflight-attempt-2.json' : 'preflight.json';
+    if (continuing) {
+        assert.deepEqual(fs.readdirSync(OUTPUT).sort(), ['preflight.json', 'preparation-attempt-1.ts.txt']);
+        const failed = read<{ errors: { set_id: string; error: string }[]; api_calls: number; preparation_inputs: Identity[] }>(`${OUTPUT}/preflight.json`);
+        assert.equal(failed.api_calls, 0); assert.equal(failed.errors.length, 1);
+        assert.equal(failed.errors[0].set_id, 'pilot-05-003'); assert(failed.errors[0].error.includes('followup_lineage'));
+        const priorTool = failed.preparation_inputs.find(row => path.resolve(row.file) === SELF); assert(priorTool);
+        assert.equal(identity(`${OUTPUT}/preparation-attempt-1.ts.txt`).sha256, priorTool.sha256);
+        failureInputs.push(identity(`${OUTPUT}/preflight.json`), identity(`${OUTPUT}/preparation-attempt-1.ts.txt`));
+    } else assert(!fs.existsSync(OUTPUT), 'Unused output directory required');
+    verify({ file: PREVIOUS, sha256: '8d0353c7ae441e82806efc1005fcdddf7b383e7d1646d4edbbf7927fbbe1fa49' });
+    verify({ file: RUNTIME, sha256: '5965bfc11dd440298431c418585b335828a23b10ed56fdca6832e8728ed70ba7' });
+    const previous = read<Manifest>(PREVIOUS), runtime = read<Runtime>(RUNTIME);
+    assert.equal(previous.jobs.length, 119); assert.equal(previous.max_input_chars, MAXIMUM); assert.equal(previous.max_concurrent_workers, 3);
+    assert.equal(runtime.grading_model, previous.model); assert.equal(runtime.review_model, previous.review_model);
+    assert.deepEqual(runtime.source_question_bank, { file: previous.bank_file, sha256: previous.bank_sha256 });
+    assert.equal(runtime.changed_predecessor_files.length, 1); const change = runtime.changed_predecessor_files[0];
+    assert.equal(change.file, 'lib/questionV3Grading.ts'); assert.equal(change.after_sha256, '0f685328ffa59248ed56e9ff77fafb84e1f5913a3b6e5d1c6c6a208f1f49e124');
+    assert.equal(change.snapshot.sha256, change.before_sha256); verify(change.snapshot);
+    const revisedCode = previous.code_files.map(row => {
+        if (row.file !== change.file) { verify(row); return row; }
+        assert.equal(row.sha256, change.before_sha256); return { file: row.file, sha256: change.after_sha256 };
+    });
+    assert.equal(revisedCode.filter(row => row.file === change.file).length, 1);
+    for (const row of runtime.code_files) assert.deepEqual(revisedCode.find(candidate => candidate.file === row.file), row, 'Runtime changed undeclared code');
+    const followupFiles = Object.values(selected).flatMap(choice => {
+        return [choice.qa, choice.changes, ...(choice.plan ? [choice.plan] : [])];
+    });
+    const policyFiles = runtime.policy_changes.flatMap(row => {
+        assert.equal(row.before_sha256, row.snapshot.sha256); return [row.snapshot, { file: row.file, sha256: row.after_sha256 }];
+    });
+    const inputs = unique([identity(SELF), identity(PREVIOUS), identity(RUNTIME), runtime.predecessor, runtime.preservation,
+        change.snapshot, runtime.source_question_bank, { file: previous.preflight_file, sha256: previous.preflight_sha256 },
+        ...revisedCode, ...policyFiles, ...followupFiles, ...failureInputs, ...previous.jobs.flatMap(j => [{ file: j.file, sha256: j.sha256 },
+            { file: j.plan_file, sha256: j.plan_sha256 }, { file: j.qa_file, sha256: j.qa_sha256 }, ...j.source_files])]);
+    inputs.forEach(verify); const bank = read<QuestionSetV3[]>(previous.bank_file); assert.equal(bank.length, 153);
+    const catalog = buildSourceCatalog(); assert.equal(catalog.fingerprint, previous.source_catalog_fingerprint, 'Source catalog changed');
+    const checks: Record<string, unknown>[] = [], errors: { set_id: string; error: string }[] = [], jobs: Job[] = [];
+    let questions = 0, criteria = 0, units = 0, largest = 0, qaCount = 0;
+    for (const oldJob of previous.jobs) {
+        try {
+            const setFile = read<QuestionSetV3 | QuestionSetV3[]>(oldJob.file), set = Array.isArray(setFile) ? setFile[0] : setFile;
+            assert.deepEqual(set, bank.find(row => row.id === oldJob.set_id), 'Question differs from unchanged bank');
+            const job = { ...oldJob }, selection = selected[job.set_id], beforePlan = loadPlan(oldJob.plan_file, job.set_id);
+            if (selection) {
+                job.qa_file = selection.qa.file; job.qa_sha256 = selection.qa.sha256; job.author_qa_cases = selection.count;
+                if (selection.plan) { job.plan_file = selection.plan.file; job.plan_sha256 = selection.plan.sha256; }
+                verifyQa(read<Qa>(oldJob.qa_file), read<Qa>(job.qa_file), job.author_qa_cases - oldJob.author_qa_cases);
+            }
+            verifyJob(oldJob, job, !!selection);
+            const plan = loadPlan(job.plan_file, job.set_id);
+            if (selection?.plan) verifyPlan(beforePlan, plan, job.set_id); else assert.deepEqual(plan, beforePlan);
+            const qa = read<Qa>(job.qa_file); assert.equal(qa.set_id, set.id); assert.equal(qa.cases.length, job.author_qa_cases);
+            assert.equal(new Set(qa.cases.map(c => c.id)).size, qa.cases.length);
+            for (const test of qa.cases) {
+                const sub = set.subquestions.find(s => s.id === test.subquestion_id); assert(sub);
+                assert.deepEqual(test.expected_verdicts.map(v => v.criterion_id).sort(), sub.criteria.map(c => c.id).sort());
+                const points = test.expected_verdicts.reduce((n, v) => { const c = sub.criteria.find(c => c.id === v.criterion_id)!;
+                    assert(['met', 'not_met', 'contradicted', 'partial'].includes(v.verdict));
+                    if (v.verdict === 'partial') assert(c.scores.partial !== undefined);
+                    return n + (v.verdict === 'met' ? c.scores.met : v.verdict === 'partial' ? c.scores.partial! : 0); }, 0);
+                assert.equal(points, test.expected_points, `QA total: ${test.id}`);
+            }
+            const prepared = prepareSemanticReview(set, { bank, authoringPlan: plan, maxInputChars: MAXIMUM });
+            const context = prepared.requestContext as { source_excerpts: { id: string; line_start: number | null; source_quote_line_start: number | null; quote: string }[];
+                authoring_plan: unknown; existing_bank: { id: string }[] };
+            assert.deepEqual(context.authoring_plan, plan); assert.deepEqual(context.existing_bank.map(p => p.id), bank.filter(p => p.id !== set.id).map(p => p.id).sort());
+            assert.deepEqual(context.source_excerpts.map(s => s.id).sort(), set.source_refs.map(s => s.id).sort());
+            for (const source of context.source_excerpts) { assert(source.line_start !== null && source.source_quote_line_start !== null);
+                assert(source.quote.includes(set.source_refs.find(ref => ref.id === source.id)!.source_quote)); }
+            const planFiles = plan.source_unit_ids.map(id => { const unit = catalog.units.find(u => u.id === id); assert(unit, `Missing source ${id}`); return unit.file; });
+            const sources = [...new Set([...prepared.sourceFiles.map(f => f.file), ...planFiles])].map(identity).sort((a, b) => a.file.localeCompare(b.file, 'en'));
+            assert.deepEqual(sources, [...oldJob.source_files].sort((a, b) => a.file.localeCompare(b.file, 'en')), 'Source scope changed');
+            const chunks = prepared.units.map(unit => { const input = buildReviewChunkInput(prepared, unit); assert(input.length <= MAXIMUM);
+                const chunk = JSON.parse(input); assert.deepEqual(chunk.authoring_plan, plan);
+                assert.deepEqual(chunk.target_reference_requirements.required_source_ref_ids, unit.sources);
+                assert.deepEqual(chunk.reference_catalog.sources.map((s: { id: string }) => s.id).sort(), [...unit.sources].sort());
+                assert.deepEqual(chunk.reference_catalog.fields, unit.fields);
+                return { unit_id: unit.id, input_chars: input.length, input_sha256: sha(input) }; });
+            assert.deepEqual([set.subquestions.length, set.subquestions.reduce((n, s) => n + s.criteria.length, 0), chunks.length], [job.questions, job.criteria, job.semantic_units]);
+            const max = Math.max(...chunks.map(c => c.input_chars)); largest = Math.max(largest, max);
+            questions += job.questions; criteria += job.criteria; units += job.semantic_units; qaCount += qa.cases.length; jobs.push(job);
+            checks.push({ set_id: set.id, status: 'local_preflight_pass', question_file_unchanged: true, source_context_omissions: 0,
+                max_chunk_chars: max, author_qa_cases: qa.cases.length, plan_file: job.plan_file, source_files: sources, chunks });
+        } catch (error) { errors.push({ set_id: oldJob.set_id, error: error instanceof Error ? error.message : String(error) }); }
+        if ((checks.length + errors.length) % 10 === 0) console.log(`Local preflight ${checks.length + errors.length}/119; errors ${errors.length}`);
+    }
+    inputs.forEach(verify);
+    if (!errors.length) assert.deepEqual([jobs.length, questions, criteria, units, qaCount], [119, 280, 1113, 1393, 6038]);
+    const declared = { code_changes: [change], qa_changes: Object.entries(selected).map(([set_id, s]) => ({ set_id, ...s.qa, cases: s.count })),
+        plan_changes: Object.entries(selected).filter(([, s]) => s.plan).map(([set_id, s]) => ({ set_id, ...s.plan })), unchanged_jobs: 116,
+        unchanged_bank_set_source_classification: true };
+    const preflight = { created_at: new Date().toISOString(), predecessor: identity(PREVIOUS), runtime: identity(RUNTIME),
+        bank: runtime.source_question_bank, declared_changes: declared, preparation_inputs: inputs, selected_sets: 119, checked_sets: checks.length,
+        questions, criteria, semantic_units: units, author_qa_cases: qaCount, largest_chunk_chars: largest, max_input_chars: MAXIMUM,
+        source_catalog_fingerprint: catalog.fingerprint, source_context_omissions: 0, api_calls: 0, errors, checks };
+    if (!continuing) fs.mkdirSync(OUTPUT);
+    const write = (name: string, value: unknown) => fs.writeFileSync(`${OUTPUT}/${name}`, serial(value), { flag: 'wx' });
+    write(preflightName, preflight); assert.equal(errors.length, 0, 'Partial preflight evidence saved; no manifest/model calls');
+    const code = unique([...revisedCode, identity(RUNTIME), runtime.predecessor, runtime.preservation, change.snapshot, ...policyFiles, ...followupFiles]);
+    const manifest = { ...previous, created_at: new Date().toISOString(), purpose: 'v8_local_preflight_new_runtime_not_model_validated',
+        predecessor: identity(PREVIOUS), preparation_tool: identity(SELF), runtime: identity(RUNTIME), declared_changes: declared,
+        code_files: code, jobs, preflight_file: `${OUTPUT}/${preflightName}`, preflight_sha256: identity(`${OUTPUT}/${preflightName}`).sha256 };
+    inputs.forEach(verify); write('manifest.json', manifest);
+    console.log(JSON.stringify({ manifest: identity(`${OUTPUT}/manifest.json`), sets: jobs.length, questions, criteria, semantic_units: units,
+        author_qa_cases: qaCount, largest_chunk_chars: largest, api_calls: 0 }));
+}
+if (process.argv[1] && path.resolve(process.argv[1]) === SELF) main();

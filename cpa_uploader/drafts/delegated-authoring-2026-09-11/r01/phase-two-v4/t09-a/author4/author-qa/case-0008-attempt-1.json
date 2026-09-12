@@ -1,0 +1,215 @@
+{
+  "set_id": "draft-09-501-freq01",
+  "case_id": "q1/condition-boundary",
+  "kind": "condition-boundary",
+  "attempt": 1,
+  "started_at": "2026-09-11T02:49:16.789Z",
+  "finished_at": "2026-09-11T02:49:20.866Z",
+  "model": "gpt-5.6-luna",
+  "transport": "live_model",
+  "answers": {
+    "q1": "실사일 이전 1개월의 재고변동만 확인하면 실사일부터 재무제표일까지의 기록 검사는 생략할 수 있다.",
+    "q2": ""
+  },
+  "expected": {
+    "id": "q1/condition-boundary",
+    "subquestion_id": "q1",
+    "kind": "condition-boundary",
+    "answer": "실사일 이전 1개월의 재고변동만 확인하면 실사일부터 재무제표일까지의 기록 검사는 생략할 수 있다.",
+    "expected_points": 0,
+    "note": "검증할 기간을 실사일 이전으로 바꿨다.",
+    "expected_verdicts": [
+      {
+        "criterion_id": "q1.c1",
+        "verdict": "contradicted",
+        "reason": "검증할 기간을 실사일 이전으로 바꿨다."
+      }
+    ]
+  },
+  "request_hash": "70a200562b593e76ea210d0b3290e11abf3f60b37461b71bbeba0775eebec95c",
+  "schema_hash": "6ae966d84ea02729a97e71a47e68bf277451047504a9a39bbe0b449ed30d6d1a",
+  "raw_judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "q1",
+        "verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "contradicted",
+            "quote": "실사일 이전 1개월의 재고변동만 확인하면 실사일부터 재무제표일까지의 기록 검사는 생략할 수 있다.",
+            "reason": "실사일 이전 기간만 확인하고 실사일부터 재무제표일까지의 기록 검사를 생략할 수 있다고 명시하여 요구 절차를 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "q2",
+        "verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "trace": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "q1",
+            "verdicts": [
+              {
+                "criterion_id": "q1.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q1/e0"
+                ],
+                "reason": "실사일 이전 기간만 확인하고 실사일부터 재무제표일까지의 기록 검사를 생략할 수 있다고 명시하여 요구 절차를 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "q2",
+            "verdicts": [
+              {
+                "criterion_id": "q2.c1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "q2.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "q2.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "q2.c4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-09-501-freq01",
+    "score": 0,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "q1",
+        "prompt": "실사일과 재무제표일이 다르므로 감사인이 추가로 수행해야 하는 감사절차를 설명하시오. 추가 절차의 대상 기간과 확인해야 할 사항을 함께 제시하시오.",
+        "user_answer": "실사일 이전 1개월의 재고변동만 확인하면 실사일부터 재무제표일까지의 기록 검사는 생략할 수 있다.",
+        "score": 0,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "contradicted",
+            "quote": "실사일 이전 1개월의 재고변동만 확인하면 실사일부터 재무제표일까지의 기록 검사는 생략할 수 있다.",
+            "reason": "실사일 이전 기간만 확인하고 실사일부터 재무제표일까지의 기록 검사를 생략할 수 있다고 명시하여 요구 절차를 부정했다.",
+            "claim": "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다."
+        ]
+      },
+      {
+        "subquestion_id": "q2",
+        "prompt": "재무제표일 외의 날짜에 실시한 재고실사가 감사목적에 적합한지 결정할 때 고려할 재고변동 통제의 효과성 세 측면을 모두 제시하시오. 이러한 고려가 계속기록법을 사용하는 경우에만 적용되는지도 설명하시오.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.",
+          "재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.",
+          "재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.",
+          "이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "exact_verdict_differences": [],
+  "verdict_differences": [],
+  "matched": true,
+  "boundary_policy": "조건 경계의 not_met/contradicted만 0점 동등 취급; 반대·누락 사례에는 적용하지 않음"
+}

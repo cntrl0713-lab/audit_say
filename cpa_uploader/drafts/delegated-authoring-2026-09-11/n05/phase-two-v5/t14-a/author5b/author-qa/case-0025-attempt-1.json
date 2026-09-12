@@ -1,0 +1,233 @@
+{
+  "set_id": "pilot-14-006",
+  "case_id": "sub2/mild-versus-serious",
+  "kind": "mild-versus-serious",
+  "attempt": 1,
+  "started_at": "2026-09-11T03:38:19.839Z",
+  "finished_at": "2026-09-11T03:38:24.006Z",
+  "model": "gpt-5.6-luna",
+  "transport": "live_model",
+  "answers": {
+    "sub1": "",
+    "sub2": "B의 경미한 우려에는 직접 위험평가에 참여하고 관련 조서를 검토할 수 있다. C도 우려가 심각하더라도 문서 검토만 강화하면 업무를 맡길 수 있다."
+  },
+  "expected": {
+    "id": "sub2/mild-versus-serious",
+    "subquestion_id": "sub2",
+    "kind": "mild-versus-serious",
+    "answer": "B의 경미한 우려에는 직접 위험평가에 참여하고 관련 조서를 검토할 수 있다. C도 우려가 심각하더라도 문서 검토만 강화하면 업무를 맡길 수 있다.",
+    "expected_points": 2,
+    "expected_verdicts": [
+      {
+        "criterion_id": "sub2.crit1",
+        "verdict": "met",
+        "reason": "답안 전체가 원문에 근거한 독립 명제를 충족한다."
+      },
+      {
+        "criterion_id": "sub2.crit2",
+        "verdict": "met",
+        "reason": "답안 전체가 원문에 근거한 독립 명제를 충족한다."
+      },
+      {
+        "criterion_id": "sub2.crit3",
+        "verdict": "contradicted",
+        "reason": "해당 명제의 대상·조건·행위를 명시적으로 부정한다."
+      }
+    ],
+    "note": "경미함과 심각함의 조건 경계"
+  },
+  "request_hash": "59b9865d872573588fa298f81a90213cebd134e6367c701f5d7b6d7ccdba07ab",
+  "schema_hash": "5805a3602d0dddcd0b9eb2e5a773dd2c0e31abd5bcb0838f4e704e3607609c38",
+  "raw_judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          },
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "met",
+            "quote": "B의 경미한 우려에는 직접 위험평가에 참여하고 관련 조서를 검토할 수 있다. ",
+            "reason": "B에 대해 직접 위험평가에 참여한다고 설명했다."
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "met",
+            "quote": "B의 경미한 우려에는 직접 위험평가에 참여하고 관련 조서를 검토할 수 있다. ",
+            "reason": "B 관련 조서를 검토할 수 있다고 설명했다."
+          },
+          {
+            "criterion_id": "sub2.crit3",
+            "verdict": "contradicted",
+            "quote": "C도 우려가 심각하더라도 문서 검토만 강화하면 업무를 맡길 수 있다.",
+            "reason": "심각한 우려가 있어도 문서 검토 강화로 C에게 업무를 맡길 수 있다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "trace": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "sub1.crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "B에 대해 직접 위험평가에 참여한다고 설명했다."
+              },
+              {
+                "criterion_id": "sub2.crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "B 관련 조서를 검토할 수 있다고 설명했다."
+              },
+              {
+                "criterion_id": "sub2.crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "심각한 우려가 있어도 문서 검토 강화로 C에게 업무를 맡길 수 있다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-14-006",
+    "score": 2,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "A 부문감사인에 대한 담당자의 제안이 가능한지 판단하시오. 또한 해당 부문재무정보의 감사증거를 입수하기 위하여 그룹감사인이 취해야 할 대안을 설명하시오.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "감사조서 검토를 강화하더라도 독립성 요구사항을 충족하지 못하는 A 부문감사인에게 해당 업무를 요청할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "그룹감사인이 해당 부문재무정보에 관하여 충분하고 적합한 감사증거를 입수하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사조서 검토를 강화하더라도 독립성 요구사항을 충족하지 못하는 A 부문감사인에게 해당 업무를 요청할 수 없다.",
+          "그룹감사인이 해당 부문재무정보에 관하여 충분하고 적합한 감사증거를 입수하여야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "B의 산업지식 부족에 관한 우려를 다루기 위하여 그룹업무팀이 취할 수 있는 관여를 ① 위험평가절차 수행과 ② 관련 감사문서 검토의 각 측면에서 구체적으로 설명하시오. 또한 C의 경우에는 C에게 부문재무정보에 관한 업무를 요청할 수 있는지 판단하시오.",
+        "user_answer": "B의 경미한 우려에는 직접 위험평가에 참여하고 관련 조서를 검토할 수 있다. C도 우려가 심각하더라도 문서 검토만 강화하면 업무를 맡길 수 있다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "met",
+            "quote": "B의 경미한 우려에는 직접 위험평가에 참여하고 관련 조서를 검토할 수 있다.",
+            "reason": "B에 대해 직접 위험평가에 참여한다고 설명했다.",
+            "claim": "B에 대한 심각하지 않은 우려에 대응하여 그룹업무팀은 직접 또는 B와 함께 부문 수준의 위험평가절차를 수행하는 등 위험평가에 관여할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "met",
+            "quote": "B의 경미한 우려에는 직접 위험평가에 참여하고 관련 조서를 검토할 수 있다.",
+            "reason": "B 관련 조서를 검토할 수 있다고 설명했다.",
+            "claim": "B에 대한 심각하지 않은 우려에 대응하여 그룹업무팀은 해당 산업의 중요한 계정 등과 관련된 B의 감사문서를 검토할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.crit3",
+            "verdict": "contradicted",
+            "quote": "C도 우려가 심각하더라도 문서 검토만 강화하면 업무를 맡길 수 있다.",
+            "reason": "심각한 우려가 있어도 문서 검토 강화로 C에게 업무를 맡길 수 있다고 명시했다.",
+            "claim": "전문가적 적격성에 심각한 우려가 해소되지 않은 C에게는 부문재무정보에 관한 업무를 요청할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "B에 대한 심각하지 않은 우려에 대응하여 그룹업무팀은 직접 또는 B와 함께 부문 수준의 위험평가절차를 수행하는 등 위험평가에 관여할 수 있다.",
+          "B에 대한 심각하지 않은 우려에 대응하여 그룹업무팀은 해당 산업의 중요한 계정 등과 관련된 B의 감사문서를 검토할 수 있다.",
+          "전문가적 적격성에 심각한 우려가 해소되지 않은 C에게는 부문재무정보에 관한 업무를 요청할 수 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "exact_verdict_differences": [],
+  "verdict_differences": [],
+  "matched": true,
+  "boundary_policy": null
+}

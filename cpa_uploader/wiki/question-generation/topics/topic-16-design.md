@@ -6,15 +6,15 @@ type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, quality]
-sources: [docs/reports/question-review-2027/16.md, docs/reports/question-review-2027/16.json]
+sources: [docs/archive/과거-검토-증거/reports/question-review-2027/주제16-감사보고-특수사항-검토-수정-결과.md, cpa_uploader/analysis/reviews/question-review-2027/16.json]
 confidence: high
 ---
 
 # 주제16. 감사보고 특수사항의 단계·문단·결합 요건
 
-[검토 보고서](../../../../docs/reports/question-review-2027/16.md) · [물음별 근거 장부](../../../../docs/reports/question-review-2027/16.json)
+[검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제16-감사보고-특수사항-검토-수정-결과.md) · [물음별 근거 장부](../../../analysis/reviews/question-review-2027/16.json)
 
-[주제16 검토 보고서](../../../../docs/reports/question-review-2027/16.md)과 [공식701·706·710·720 발췌](../../../data/official/kga701-706-710-720-2025-review16.txt)를 확인한다. 로컬 문항 검토·수정 기록은 작성되어 있으며, 2027년 최종 시험 적용 판본 확인은 별도로 남아 있다. 상세 상태와 물음별 실측은 보고서·근거 장부에서 확인한다.
+[주제16 검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제16-감사보고-특수사항-검토-수정-결과.md)과 [공식701·706·710·720 발췌](../../../data/official/kga701-706-710-720-2025-review16.txt)를 확인한다. 로컬 문항 검토·수정 기록은 작성되어 있으며, 2027년 최종 시험 적용 판본 확인은 별도로 남아 있다. 상세 상태와 물음별 실측은 보고서·근거 장부에서 확인한다.
 
 - 핵심감사사항은 지배기구와 커뮤니케이션한 사항 → 유의적 감사인 주의를 요구한 사항(701.9) → 당기 감사에서 가장 유의적인 사항(701.10)의 단계로 결정한다. 9의 세 고려 분야를 10의 별도 선정기준이라고 표현하지 않는다. 9의 머리말만 인용하여 (a)~(c)의 채점 근거로 삼지 않는다.
 - 도입 문구(701.11)는 전문가적 판단에 따른 당기 감사의 최유의 사항이라는 설명, 전체 재무제표 감사·의견형성 맥락, 별도 의견 미제공을 담는다. 개별 기술(701.13)의 관련 공시·선정 이유·감사에서 다룬 방법과 구분한다. 결합 criterion은 claim과 critical_facts에 결합 내용을 모두 명시하고, 한 부분만 쓴 답안을 실측한다.

@@ -6,15 +6,15 @@ type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, quality]
-sources: [docs/reports/question-review-2027/18.md, docs/reports/question-review-2027/18.json]
+sources: [docs/archive/과거-검토-증거/reports/question-review-2027/주제18-소규모기업-감사-검토-수정-결과.md, cpa_uploader/analysis/reviews/question-review-2027/18.json]
 confidence: high
 ---
 
 # 주제18. 소규모기업 감사의 적용 범위와 감사문서
 
-[검토 보고서](../../../../docs/reports/question-review-2027/18.md) · [물음별 근거 장부](../../../../docs/reports/question-review-2027/18.json)
+[검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제18-소규모기업-감사-검토-수정-결과.md) · [물음별 근거 장부](../../../analysis/reviews/question-review-2027/18.json)
 
-[주제18 검토 보고서](../../../../docs/reports/question-review-2027/18.md)을 확인한다. 로컬 문항 검토·수정 기록은 작성되어 있으며, 2027년 최종 시험 적용 판본 확인은 별도로 남아 있다. 상세 상태와 물음별 실측은 보고서·근거 장부에서 확인한다. KGA1200은 2023-01-01 이후 개시 보고기간 감사에 적용되며, 이번 대상 명제는 2025 전문과 2026 개정 전문에서 동일하다. 2027 최종 시험 판본 확정과 구별한다.
+[주제18 검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제18-소규모기업-감사-검토-수정-결과.md)을 확인한다. 로컬 문항 검토·수정 기록은 작성되어 있으며, 2027년 최종 시험 적용 판본 확인은 별도로 남아 있다. 상세 상태와 물음별 실측은 보고서·근거 장부에서 확인한다. KGA1200은 2023-01-01 이후 개시 보고기간 감사에 적용되며, 이번 대상 명제는 2025 전문과 2026 개정 전문에서 동일하다. 2027 최종 시험 판본 확정과 구별한다.
 
 - 문단2의 제외대상 여섯 범주에 해당하지 않는다는 조건과 규모 조건을 함께 확인한다. 규모는 직전 회계연도말 개별(별도) 자산 **200억원 미만 또는** 직전 회계연도 매출 **100억원 미만**이다. 둘 다 요구하거나 등호를 포함하지 않는다. 일반 감사기준서에서 말하는 소규모기업의 특성(200.A71)과 이 정의는 다르다.
 - 문단4의 전체 준수 표명 금지와 일반 감사기준서 또는 일부 언급 금지는 두 독립 판단이다. 두 번째 금지사항 자체를 첫 번째 판단의 설명 근거인 것처럼 숨겨 요구하지 않는다. 문단5는 적격 기업과의 **서면 합의**에 따른 **대체 적용**이며 일부 조항씩 혼용하는 선택권이 아니다.

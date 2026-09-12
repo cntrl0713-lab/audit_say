@@ -1,6 +1,6 @@
 -- Canonical shared-DB migration. The CTA repository carries an identical copy.
 -- Apply once, after both services' 2026-09-09 schema, with both applications stopped.
--- No existing Auth account is deleted. See docs/common-account-database.md.
+-- No existing Auth account is deleted. See docs/공통-계정-DB-구현-및-전환.md.
 begin;
 set local lock_timeout = '5s';
 

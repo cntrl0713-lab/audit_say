@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-18-002--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-18-002--sub2--standard",
+  "source_set_id": "pilot-18-002",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "8c5a4f7d6c3fd7c949cf957e3b64f10fd3da2a73f0454835318937f28c00536f",
+  "answers": {
+    "sub2": "일반 감사기준서는 당기가 아니라 다음 회계연도부터 적용한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "답안이 해당 명제를 명시적으로 부정한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "90bd590bfeaab2128a49f66c3b4477e9ac8948f435e64f10b36c0261543b387a",
+  "schema_hash": "e0e820e74971a317d40525089a97d0e8d569d4e18d6af214df55eac058d5e398",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "일반 감사기준서는 당기가 아니라 다음 회계연도부터 적용한다.",
+            "reason": "당기부터 적용해야 하나 다음 회계연도부터 적용한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "당기부터 적용해야 하나 다음 회계연도부터 적용한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-18-002",
+    "score": 0,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "직전 회계연도 감사에는 KGA 1200을 적용했으나 당기 감사에는 일반 감사기준서를 적용하는 경우, 일반 감사기준서의 적용 시점을 설명하시오.",
+        "user_answer": "일반 감사기준서는 당기가 아니라 다음 회계연도부터 적용한다.",
+        "score": 0,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "일반 감사기준서는 당기가 아니라 다음 회계연도부터 적용한다.",
+            "reason": "당기부터 적용해야 하나 다음 회계연도부터 적용한다고 명시했다.",
+            "claim": "일반 감사기준서를 해당 회계연도 감사부터 전진적으로 적용함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "일반 감사기준서는 당기 감사부터 전진적으로 적용한다. 적용 기준서의 변경 자체 때문에 기초잔액이나 비교재무제표에 관한 추가 고려 또는 추가 절차가 요구되는 것은 아니다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0e253e9bb1b93957016aa4d2ed36dc87d0ad6b5eca884ff110",
+        "request_id": "req_eb6362227766481399cea04d2f8cdba6",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2221,
+          "input_tokens_details": {
+            "cache_write_tokens": 2218,
+            "cached_tokens": 0
+          },
+          "output_tokens": 193,
+          "output_tokens_details": {
+            "reasoning_tokens": 95
+          },
+          "total_tokens": 2414
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0007867000000000001,
+        "min_usd": 0.0007867000000000001,
+        "max_usd": 0.0007867000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-18-002--sub2--standard--wrong/input.json",
+      "sha256": "6d3fb39c68703e8995051b526046b868a402d850915547ef5ceb77c26c681f57"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-18-002--sub2--standard--wrong/transport.jsonl",
+      "sha256": "0fb0f41354dddfc84f1c0180b1abe5840cd1beb944d26ac19fe74c76ba93e25b"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-18-002--sub2--standard--wrong/traces.jsonl",
+      "sha256": "b4f9436d3b657b76e0f29ffce5de78fd9a472b09fa2bcf9274d90498d7bebc24"
+    }
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "set_id": "pilot-14-006",
+  "case_id": "sub1/implicit-judgment",
+  "kind": "implicit-judgment",
+  "attempt": 1,
+  "started_at": "2026-09-11T04:00:33.572Z",
+  "finished_at": "2026-09-11T04:00:37.248Z",
+  "model": "gpt-5.6-luna",
+  "transport": "live_model",
+  "answers": {
+    "sub1": "A에게 의존하지 않고 그룹감사인이 직접 해당 부문의 재무정보에 관한 필요한 감사를 수행하여 충분하고 적합한 증거를 입수한다.",
+    "sub2": ""
+  },
+  "expected": {
+    "id": "sub1/implicit-judgment",
+    "subquestion_id": "sub1",
+    "kind": "implicit-judgment",
+    "answer": "A에게 의존하지 않고 그룹감사인이 직접 해당 부문의 재무정보에 관한 필요한 감사를 수행하여 충분하고 적합한 증거를 입수한다.",
+    "expected_points": 2,
+    "expected_verdicts": [
+      {
+        "criterion_id": "sub1.crit1",
+        "verdict": "met",
+        "reason": "답안 전체가 원문에 근거한 독립 명제를 충족한다."
+      },
+      {
+        "criterion_id": "sub1.crit2",
+        "verdict": "met",
+        "reason": "답안 전체가 원문에 근거한 독립 명제를 충족한다."
+      }
+    ],
+    "note": "판단 문구 없이 대안에서 결론이 분명하다."
+  },
+  "request_hash": "72ac4f1497fcf35d4f5e6b363ed7e7b9e1b4b9565deee3c7fdf8252b0675dcbe",
+  "schema_hash": "a9ee0025d3d2992c93249362b3df1add7a69f2fc2b6f40cb9acbc66760309d03",
+  "raw_judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "met",
+            "quote": "A에게 의존하지 않고 그룹감사인이 직접 해당 부문의 재무정보에 관한 필요한 감사를 수행하여 충분하고 적합한 증거를 입수한다.",
+            "reason": "A에게 의존하지 않고 직접 감사하여 업무 요청 불가를 함축한다."
+          },
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "met",
+            "quote": "A에게 의존하지 않고 그룹감사인이 직접 해당 부문의 재무정보에 관한 필요한 감사를 수행하여 충분하고 적합한 증거를 입수한다.",
+            "reason": "그룹감사인이 필요한 감사를 수행해 충분하고 적합한 증거를 입수한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          },
+          {
+            "criterion_id": "sub2.crit3",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "trace": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "A에게 의존하지 않고 직접 감사하여 업무 요청 불가를 함축한다."
+              },
+              {
+                "criterion_id": "sub1.crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "그룹감사인이 필요한 감사를 수행해 충분하고 적합한 증거를 입수한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "sub2.crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "sub2.crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-14-006",
+    "score": 2,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "A 부문감사인에 대한 담당자의 제안이 가능한지 판단하시오. 또한 해당 부문재무정보의 감사증거를 입수하기 위하여 그룹감사인이 취해야 할 대안을 설명하시오.",
+        "user_answer": "A에게 의존하지 않고 그룹감사인이 직접 해당 부문의 재무정보에 관한 필요한 감사를 수행하여 충분하고 적합한 증거를 입수한다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "met",
+            "quote": "A에게 의존하지 않고 그룹감사인이 직접 해당 부문의 재무정보에 관한 필요한 감사를 수행하여 충분하고 적합한 증거를 입수한다.",
+            "reason": "A에게 의존하지 않고 직접 감사하여 업무 요청 불가를 함축한다.",
+            "claim": "감사조서 검토를 강화하더라도 독립성 요구사항을 충족하지 못하는 A 부문감사인에게 해당 업무를 요청할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "met",
+            "quote": "A에게 의존하지 않고 그룹감사인이 직접 해당 부문의 재무정보에 관한 필요한 감사를 수행하여 충분하고 적합한 증거를 입수한다.",
+            "reason": "그룹감사인이 필요한 감사를 수행해 충분하고 적합한 증거를 입수한다고 명시했다.",
+            "claim": "그룹감사인이 해당 부문재무정보에 관하여 충분하고 적합한 감사증거를 입수하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "감사조서 검토를 강화하더라도 독립성 요구사항을 충족하지 못하는 A 부문감사인에게 해당 업무를 요청할 수 없다.",
+          "그룹감사인이 해당 부문재무정보에 관하여 충분하고 적합한 감사증거를 입수하여야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "B의 산업지식 부족에 관한 우려를 다루기 위하여 그룹업무팀이 취할 수 있는 관여를 ① 위험평가절차 수행과 ② 관련 감사문서 검토의 각 측면에서 구체적으로 설명하시오. 또한 C의 경우에는 C에게 부문재무정보에 관한 업무를 요청할 수 있는지 판단하시오.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "B에 대한 심각하지 않은 우려에 대응하여 그룹업무팀은 직접 또는 B와 함께 부문 수준의 위험평가절차를 수행하는 등 위험평가에 관여할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "B에 대한 심각하지 않은 우려에 대응하여 그룹업무팀은 해당 산업의 중요한 계정 등과 관련된 B의 감사문서를 검토할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.crit3",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "전문가적 적격성에 심각한 우려가 해소되지 않은 C에게는 부문재무정보에 관한 업무를 요청할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "B에 대한 심각하지 않은 우려에 대응하여 그룹업무팀은 직접 또는 B와 함께 부문 수준의 위험평가절차를 수행하는 등 위험평가에 관여할 수 있다.",
+          "B에 대한 심각하지 않은 우려에 대응하여 그룹업무팀은 해당 산업의 중요한 계정 등과 관련된 B의 감사문서를 검토할 수 있다.",
+          "전문가적 적격성에 심각한 우려가 해소되지 않은 C에게는 부문재무정보에 관한 업무를 요청할 수 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "exact_verdict_differences": [],
+  "verdict_differences": [],
+  "matched": true,
+  "boundary_policy": null
+}

@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+const base='cpa_uploader/drafts/delegated-authoring-2026-09-11/s02',out=base+'/phase-two-followup/t07-c-qa-v2';
+const read=f=>JSON.parse(fs.readFileSync(f,'utf8')),hash=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const original=base+'/qa-cases-t07-c.json',qa=read(original),before=structuredClone(qa);
+const changes=[
+ ['sub1-crit3-opposite','crit2','contradicted',0,'검사범위와 전혀 관련이 없다는 명시적 부정은 길어진 운송기간을 검사범위에 반영하는 관계도 직접 부정한다.'],
+ ['sub3-crit8-opposite','crit7','contradicted',0,'이 물음이 한정한 정확성·완전성 감사증거를 어떤 방법으로도 얻을 필요 없다는 주장은 확인 생략 계획이 부적절하다는 판단을 직접 부정한다.'],
+ ['sub1-crit2-omission','crit2','met',3,'기존7일 밖 거래의 오류를 기존 범위로 포착할 수 없다는 구체적 이유는 길어진 운송·인수기간을 반영하는 검사기간 조정 필요를 함축한다.']
+];
+for(const [id,criterion,verdict,points,reason] of changes){const c=qa.cases.find(c=>c.id===id);if(!c)throw Error(id);const v=c.expected_verdicts.find(v=>v.criterion_id===criterion);v.verdict=verdict;v.reason=reason;c.expected_points=points;c.note+=' 2026-09-11 총괄의 실제 발문·원답 대조에 따른 QA-only 정정. 원 답안과 ID를 보존한다. '+reason;if(id==='sub1-crit2-omission')c.kind='implicit_judgment';}
+if(qa.cases.length!==58||qa.cases.some((c,i)=>c.id!==before.cases[i].id||c.answer!==before.cases[i].answer))throw Error('Case/answer preservation failed');
+fs.mkdirSync(out,{recursive:true});fs.copyFileSync(original,out+'/qa-cases-t07-c.original.json',fs.constants.COPYFILE_EXCL);
+const qaFile=out+'/qa-cases-t07-c.followup-01.json';fs.writeFileSync(qaFile,JSON.stringify(qa,null,2)+'\n',{flag:'wx'});
+const run=base+'/evidence/phase2/phase-two-v5-bank-v3-after-refill-01-owned/pilot-07-008/author-qa-run1';
+const inputs=read(run+'/inputs.json'),records=fs.readdirSync(run).filter(f=>/^case-\d+-attempt-\d+\.json$/.test(f)).map(f=>({file:run+'/'+f,value:read(run+'/'+f)}));
+const ids=[...changes.map(c=>c[0]),'sub1-model-answer','sub3-model-answer'];
+const evidence=ids.map(id=>{const current=qa.cases.find(c=>c.id===id),rs=records.filter(r=>r.value.case_id===id&&!r.value.error);if(!current||rs.length<(id.includes('model-answer')?1:3))throw Error('Missing original observations '+id);return{case_id:id,current_expected_points:current.expected_points,current_expected_verdicts:current.expected_verdicts,observations:rs.map(({file,value:r})=>{const actual=r.result.subquestions.find(s=>s.subquestion_id===current.subquestion_id);return{file,sha256:hash(file),model:r.model,transport:r.transport,request_hash:r.request_hash,schema_hash:r.schema_hash,score:actual.score,original_recorded_match:r.matched,current_expected_match:actual.score===current.expected_points&&current.expected_verdicts.every(v=>actual.criteria.find(c=>c.criterion_id===v.criterion_id)?.verdict===v.verdict),actual_verdicts:actual.criteria.map(c=>({id:c.criterion_id,verdict:c.verdict})),security_flag:r.result.security_flag};})};});
+const result={created_at:new Date().toISOString(),authority:'Parent /root message explicitly approved these three QA-only corrections after independently reading actual prompt/criteria/answers. Existing same-setting 3 observations may be compared to the new expected contract.',original_QA:{file:original,sha256:hash(original)},followup_QA:{file:qaFile,sha256:hash(qaFile),required_cases:58},question_mutations:0,question_file:base+'/pilot-07-008.json',question_sha256:hash(base+'/pilot-07-008.json'),original_answers_preserved:true,original_cases_preserved:true,changed_cases:changes.map(([id])=>({id,before:before.cases.find(c=>c.id===id),after:qa.cases.find(c=>c.id===id)})),new_API_calls:0,comparison_mode:'Read-only final score/verdict comparison against approved expected values. Original observations and original matched/expected labels are preserved; no model response injection/replay and no new grading execution.',original_run_inputs:{file:run+'/inputs.json',sha256:hash(run+'/inputs.json'),hashes:inputs.hashes},evidence};
+fs.writeFileSync(out+'/lineage-diff-and-observations.json',JSON.stringify(result,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({qa_file:qaFile,sha256:hash(qaFile),cases:58,changed_cases:changes.length,observations:evidence.map(c=>({id:c.case_id,scores:c.observations.map(r=>r.score),current_expected_matches:c.observations.map(r=>r.current_expected_match)}))},null,2));

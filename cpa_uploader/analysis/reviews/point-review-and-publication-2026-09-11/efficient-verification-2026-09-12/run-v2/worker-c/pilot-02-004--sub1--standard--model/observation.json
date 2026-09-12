@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-02-004--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-02-004--sub1--standard",
+  "source_set_id": "pilot-02-004",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "39daf0090198b0471b63dfd73b75dc8fbd264b4639e32455c76012976d7e59e2",
+  "answers": {
+    "sub1": "충분성은 감사증거의 양적 척도이다.\n적합성은 감사증거의 질적 척도이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 200.A32·A33에서 충분성은 양, 적합성은 질이라는 두 척도를 직접 확인한다. 적합성의 목적적합성·신뢰성 상세까지 묻지 않으므로 2점 유지하며 실제 주제는 감사증거08이다. 해당 기준 crit1의 원 판정 met를 보존한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 200.A32·A33에서 충분성은 양, 적합성은 질이라는 두 척도를 직접 확인한다. 적합성의 목적적합성·신뢰성 상세까지 묻지 않으므로 2점 유지하며 실제 주제는 감사증거08이다. 해당 기준 crit2의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "bf0b6d6efb1eebf914d88f2f2cf7474ffb3f340f516fd72fe5909f430b868d28",
+  "schema_hash": "450e5450f39cb179dc330749e1eda21d00cb61df1fdc3d16477169ae47fd8af5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "충분성은 감사증거의 양적 척도이다.\n",
+            "reason": "충분성을 감사증거의 양적 척도로 설명했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "적합성은 감사증거의 질적 척도이다.",
+            "reason": "적합성을 감사증거의 질적 척도로 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "충분성을 감사증거의 양적 척도로 설명했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "적합성을 감사증거의 질적 척도로 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-02-004",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사증거의 충분성과 적합성이 각각 무엇을 측정하는지 제시하시오.",
+        "user_answer": "충분성은 감사증거의 양적 척도이다.\n적합성은 감사증거의 질적 척도이다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "충분성은 감사증거의 양적 척도이다.",
+            "reason": "충분성을 감사증거의 양적 척도로 설명했다.",
+            "claim": "감사증거의 충분성은 양적 척도라고 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "적합성은 감사증거의 질적 척도이다.",
+            "reason": "적합성을 감사증거의 질적 척도로 설명했다.",
+            "claim": "감사증거의 적합성은 질적 척도라고 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "충분성은 감사증거의 양적 척도이다.",
+          "적합성은 감사증거의 질적 척도이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0023689f95a7214a016aa4c95a77a887d0b7ec64145fefe65e",
+        "request_id": "req_180919aa6dc14b8b84aac52714684de2",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2392,
+          "input_tokens_details": {
+            "cache_write_tokens": 2389,
+            "cached_tokens": 0
+          },
+          "output_tokens": 159,
+          "output_tokens_details": {
+            "reasoning_tokens": 27
+          },
+          "total_tokens": 2551
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00078865,
+        "min_usd": 0.00078865,
+        "max_usd": 0.00078865,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-02-004--sub1--standard--model/input.json",
+      "sha256": "d57a5a646830b6669e3fcd1d76f651a94d8301475819677a2dcc973be5f1072d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-02-004--sub1--standard--model/transport.jsonl",
+      "sha256": "30cfadbde09b9c792a952f9181e3a09779e901930721262aa9783a0cde689181"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-02-004--sub1--standard--model/traces.jsonl",
+      "sha256": "74e6cdde9e25fb7054f6325aa9f871151e55f39994af9816a230684243af8c96"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "version": 2,
+  "status": "ready_for_new_execution_freeze",
+  "writer": "plan_procedures",
+  "new_api_calls": 0,
+  "production_db_writes": 0,
+  "old_observation_or_manifest_bytes_changed": false,
+  "shared_grading_engine_changed_by_this_writer": false,
+  "files": [
+    { "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/run-efficient-grading.ts", "sha256": "47c4b7619c718d6ee9cdccf83be11e62437108a799dc7a8761d916ffabed8b69" },
+    { "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/contract.ts", "sha256": "bff5fb3912378f6417b9bc6e6c26a0b8d69e6de151f0878e4bab480cb2437c00" },
+    { "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/runner.test.ts", "sha256": "2efec2bef08825d940a6d75695b62421e5340c112778bb306950753472f1793c" },
+    { "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/seal-results.ts", "sha256": "e0c697092e5f15bcc08ede4e184e97db355fb363308597a62e85d0ad54b86de9" },
+    { "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/seal-results.test.ts", "sha256": "49995e7ce651d35cf84d91deea3123136ec71c8bdb52df58511992285b147ec1" }
+  ],
+  "before_snapshots": [
+    "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/before-resume-v2/manifest.json",
+    "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/before-resume-v2/seal-manifest.json"
+  ],
+  "manifest_contract": {
+    "field": "reused_observations",
+    "optional": true,
+    "entry_shape": { "entry_id": "string", "worker": "a|b|c", "observation": { "file": "string", "sha256": "string" }, "origin_manifest": { "file": "string", "sha256": "string" } },
+    "requirements": [
+      "전체 entry·동결 scope·필수 대표 역할·원문과 출처 검사 후 재사용을 검증한다.",
+      "재사용 ID/관측 경로 중복, 현재 manifest 자기참조, 다른 worker, 없는 entry를 거절한다.",
+      "총괄의 공개 validateReusableEfficientObservation로 원 manifest·보존 runtime·동일 grading 8파일·은행·분류·entry·기대값·실제 prompt/schema·raw·보안·합산을 검증한다.",
+      "원 기대값이 달라진 entry에는 이 경로를 적용하지 않는다.",
+      "공개 core context에 읽힌 모든 과거 증거도 현재 실행 guard에 포함한다."
+    ]
+  },
+  "new_response_record": {
+    "body": "기존 response JSON 몸체를 변경하지 않는다.",
+    "metadata": "response_received.response_metadata.request_id = response._request_id ?? null",
+    "reason": "SDK addRequestID의 enumerable:false 속성이 JSON 몸체에서 빠져도 별도 메타데이터에는 실제 요청 ID를 기록한다.",
+    "old_records": "기존 누락 속성을 로그에 소급 추가하지 않는다. 총괄의 명시적 과거 SDK 계약을 통해 원 response.id/model/status/usage/traces를 대조한다."
+  },
+  "runner_summary_contract": {
+    "reused_row": "기존 within_tolerance 또는 outside_tolerance_or_security 상태, 원 observation FileIdentity, reused:true, origin_manifest, original_actual_sdk_calls",
+    "new_calls": "actual_sdk_calls 및 기존 flat provider_token_totals/usd 등은 new_calls_only이다.",
+    "separate_counts": ["new_observations", "reused_observations", "reused_actual_sdk_calls"],
+    "separate_accounting": ["new_accounting", "reused_accounting", "new_usage", "reused_usage"],
+    "preservation": "원 관측을 새 폴더에 복사하거나 다시 쓰지 않고 summary.rows에서 원 경로를 직접 연결한다. 재사용 entry의 새 실행 폴더·input·transport·trace·observation은 생성하지 않는다.",
+    "no_model_path": "모든 담당 entry가 검증된 재사용이면 API 키/SDK client 없이 완료할 수 있다. 일부 재사용인 경우 미재사용 entry만 실제 실행 대상으로 남는다."
+  },
+  "seal_contract": {
+    "acceptance": "manifest에 명시된 재사용과 row marker/원 manifest/원 observation이 정확히 같아야 과거 경로를 허용한다. 전체 core 검증과 고정 분모·95%·내용 오류 0 정책은 유지한다.",
+    "duplicates": "새 관측과 재사용 관측 전부에서 같은 provider response ID의 중복 계상, 재사용 entry의 별도 새 실행 폴더, 중복 재사용 ID/파일을 거절한다.",
+    "accounting_total": "accounting의 기본 합계는 최종 target 관측을 new+reused 각각 한 번씩 센다.",
+    "accounting_parts": ["new_actual_sdk_calls", "reused_actual_sdk_calls", "new_accounting", "reused_accounting"],
+    "prior_cost": "기대값 정정으로 최종 target에서 제외된 과거 02-007 case partial 1건의 비용은 이 봉인 cohort 합계에 넣지 않는다. 총괄의 전체 지출 보고에서 run-v1 전체 67건과 신규 호출을 별도로 합산한다. 재사용 66건을 다시 더하지 않는다."
+  },
+  "actual_read_only_check": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/resume-v2-actual-reuse-check.json",
+    "sha256": "377b274ca519a8dd09125f7921307e9e51e1ba44bb51bdc0ec3b60ed77f59dac",
+    "valid_original_observations": 66,
+    "excluded": ["pilot-02-007--case--partial"],
+    "errors": 0,
+    "new_api_calls": 0,
+    "new_manifest_or_formal_receipt_created": false
+  },
+  "validation": {
+    "runner_tests": { "passed": 22, "failed": 0 },
+    "seal_tests": { "passed": 19, "failed": 0 },
+    "core_tests": { "passed": 38, "failed": 0 },
+    "combined_final_tests": { "passed": 79, "failed": 0 },
+    "typecheck": "pass",
+    "target_lint": "pass",
+    "new_boundary_tests": [
+      "SDK 비열거 요청 ID를 별도 메타데이터로 직렬화하고 body/속성을 변경하지 않음",
+      "원 manifest/observation 해시·worker·entry 누락/중복 및 사후 원본 변경 거절",
+      "일부 재사용 dry-run에서 명시 entry만 건너뛰고 전체 역할과 미실행 범위 유지",
+      "전체 재사용은 키/API 없이 수행하고 기존 허용범위 초과 판정 및 비용을 그대로 보존",
+      "봉인 시 원 observation 바이트를 유지하고 new2+reused1의 비용·토큰을 한 번씩 합산",
+      "선언 없는 과거 관측, 동일 provider response 중복, 재사용과 신규 실행 폴더 충돌 거절"
+    ],
+    "synthetic_fixture_note": "회귀 테스트는 명시적 합성 transport 자료다. 실제 모델 관측은 위 별도 읽기 검증 66건뿐이며 새 API 실측으로 보고하지 않는다."
+  },
+  "next_step": "총괄이 새 실행 manifest/runtime/출력 경로를 고정한 후 진행한다. 기존 STOP·run-v1·기대값·관측 파일은 보존하며 이 작성자는 코드 쓰기를 종료한다."
+}

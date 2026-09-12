@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "method": "read-only actual historical receipt replay plus synthetic in-memory marker/source tampering probes; no prior receipt bytes or hashes altered",
+  "api_calls": 0,
+  "core_or_bank_or_ledger_writes": 0,
+  "input_files": [
+    {
+      "file": "cpa_uploader/questionSemanticReview.ts",
+      "sha256": "89aada95959c742054a7d415959049dbb652c154567146887868f4796ecd76f9"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/canonical-before.json",
+      "sha256": "0939e7a7834d277752eddde4d05bcfe2209c32a78a0dc1ab37f94a961fc97cb4"
+    },
+    {
+      "file": "cpa_uploader/data/cpa_question_sets_v3.promotions.json",
+      "sha256": "df23d44896a3edc0c1331e758ab489e7a9ab19c6a4139f182238c4497408ce19"
+    }
+  ],
+  "input_files_unchanged": true,
+  "original_receipt_hash": "8d300c20163efeba2dad97afa13e69961f1e03ca8626a194ee35e7dbdcaa73cc",
+  "assertions": {
+    "legacy_read_restored": true,
+    "marked_missing_source_rejected": true,
+    "new_acceptance_still_requires_union": true,
+    "marker_is_receipt_hash_bound": true,
+    "legacy_criterion_source_still_required": true,
+    "legacy_source_hash_still_bound": true,
+    "legacy_source_metadata_still_bound": true,
+    "new_completion_marked": true,
+    "new_template_marked": true,
+    "all_original_ledger_pass": true,
+    "unchanged_34_ledger_pass": true
+  },
+  "errors": {
+    "legacy": [],
+    "marked_missing": [
+      "subquestion:sub2: source src50515head에 연결된 전체 근거 인용 누락"
+    ],
+    "new_acceptance": [
+      "subquestion:sub2: source src50515head에 연결된 전체 근거 인용 누락",
+      "pilot-09-008: 의미검수 이후 비교 은행이 변경되었습니다.",
+      "검토 사례 또는 실제 채점 코드 해시가 변경되었습니다. 채점 사례를 다시 실행하십시오."
+    ],
+    "marker_without_rehash": [
+      "pilot-09-008: 의미검수 receipt/context 해시가 다릅니다.",
+      "subquestion:sub2: source src50515head에 연결된 전체 근거 인용 누락"
+    ],
+    "legacy_criterion_missing": [
+      "criterion:sub2:crit3: source src50515head에 연결된 전체 근거 인용 누락"
+    ],
+    "source_hash_changed": [
+      "pilot-09-008: 의미검수 이후 source 파일이 변경되었습니다."
+    ],
+    "source_metadata_changed": [
+      "pilot-09-008: 의미검수 이후 알려진 source 권위/판본 metadata가 변경되었습니다."
+    ],
+    "all_ledger": [],
+    "unchanged_ledger": []
+  }
+}

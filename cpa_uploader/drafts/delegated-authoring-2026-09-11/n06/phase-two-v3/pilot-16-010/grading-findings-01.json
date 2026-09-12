@@ -1,0 +1,323 @@
+{
+  "finding_id": "N06-GRADING-001",
+  "created_at": "2026-09-11T02:30:55.275352+00:00",
+  "set_id": "pilot-16-010",
+  "case_id": "sub3/explicit-conflict",
+  "status": "unresolved_grader_judgment_variance",
+  "question_qa_or_expectation_changed": false,
+  "expected_points": 1,
+  "expected_crit5": "contradicted",
+  "expected_crit6": "met",
+  "observed_points": [
+    2,
+    1,
+    2
+  ],
+  "same_request_schema_model": true,
+  "original_answer": "현재 제안은 적절하다.\n현재 당기 감사계약만으로 충분하다는 제안은 부적절하다. 전기 수정사항의 감사도 포함하는 계약을 체결하거나 그에 맞게 기존 계약의 범위를 변경해야 한다.\n해당 수정의 적절성에 대하여 만족할 만큼 충분하고 적합한 감사증거를 입수해야 한다.",
+  "source": {
+    "ref": "src-84e1f3d24325280a8f",
+    "paragraph": "KGA710.A12",
+    "role": "수정사항감사계약과충분하고적합한수정증거의서로다른두조건. 현재계약만으로표현할수있다는제안은조건미충족."
+  },
+  "rubric_contract": "crit5는현재당기계약만으로제안전제가충분하지않다는판단과계약범위조건. crit6는별도감사증거조건. 모순된적절판단은crit5만부정하며crit6정답은유지한다.",
+  "failure_stage": "raw model judgment",
+  "analysis": "1·3회 모델은 전체 답안에 있는 명시적 적절 결론(sub3/e1)을 배제하고 이후 부적절 판단 및 계약조건(e2/e3)만 선택해 crit5 met를 반환했다. 인용검증은 선택된실제답안인용을확인했고보안·합산도받은판정을그대로처리했다. 2회는모순을인식해crit5contra로정확히처리했다. 명시적인취소/정정표현은원답안에없다.",
+  "proposed_general_rule": "동일명제에양립불가한긍정·부정이함께있고명시적취소/정정이없으면정답부분만선택하지않고contradicted로판정한다. 이충돌을독립명제까지확대하지않는다.",
+  "records": [
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v3/pilot-16-010/author-qa-01/case-0041-attempt-1.json",
+      "sha256": "cb72e120642648dd0f1ace2abd804523fbac7b1f9fcc3ad968a4326efcb22b1f",
+      "score": 2,
+      "raw_target": {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "현재 당기 감사계약만으로 충분하다는 제안은 부적절하다. 전기 수정사항의 감사도 포함하는 계약을 체결하거나 그에 맞게 기존 계약의 범위를 변경해야 한다.\n"
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "met",
+            "quote": "해당 수정의 적절성에 대하여 만족할 만큼 충분하고 적합한 감사증거를 입수해야 한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      "trace": [
+        {
+          "stage": "judgment",
+          "attempt": 1,
+          "response": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "evidence_ids": [],
+                    "reason": null
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "evidence_ids": [],
+                    "reason": null
+                  }
+                ],
+                "injection_detected": false,
+                "injection_evidence_ids": [],
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "evidence_ids": [],
+                    "reason": null
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "evidence_ids": [],
+                    "reason": null
+                  }
+                ],
+                "injection_detected": false,
+                "injection_evidence_ids": [],
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "met",
+                    "evidence_ids": [
+                      "sub3/e2",
+                      "sub3/e3"
+                    ],
+                    "reason": null
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "met",
+                    "evidence_ids": [
+                      "sub3/e4"
+                    ],
+                    "reason": null
+                  }
+                ],
+                "injection_detected": false,
+                "injection_evidence_ids": [],
+                "salad_detected": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v3/pilot-16-010/author-qa-01/case-0041-attempt-2.json",
+      "sha256": "663612c74155c2434be43764b3e6d727a4d692a4a0a5e3ff916a54fd6cc5cd90",
+      "score": 1,
+      "raw_target": {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "현재 제안은 적절하다.\n",
+            "reason": "제안이 적절하다고 명시적으로 판단한 뒤 반대 내용을 서술하였다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "met",
+            "quote": "해당 수정의 적절성에 대하여 만족할 만큼 충분하고 적합한 감사증거를 입수해야 한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      "trace": [
+        {
+          "stage": "judgment",
+          "attempt": 1,
+          "response": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "evidence_ids": [],
+                    "reason": null
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "evidence_ids": [],
+                    "reason": null
+                  }
+                ],
+                "injection_detected": false,
+                "injection_evidence_ids": [],
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "evidence_ids": [],
+                    "reason": null
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "evidence_ids": [],
+                    "reason": null
+                  }
+                ],
+                "injection_detected": false,
+                "injection_evidence_ids": [],
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "evidence_ids": [
+                      "sub3/e1"
+                    ],
+                    "reason": "제안이 적절하다고 명시적으로 판단한 뒤 반대 내용을 서술하였다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "met",
+                    "evidence_ids": [
+                      "sub3/e4"
+                    ],
+                    "reason": null
+                  }
+                ],
+                "injection_detected": false,
+                "injection_evidence_ids": [],
+                "salad_detected": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v3/pilot-16-010/author-qa-01/case-0041-attempt-3.json",
+      "sha256": "92e890adb60691a30030edd420b7799dbea1e74a55b94ccccf17679f77a943d3",
+      "score": 2,
+      "raw_target": {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "현재 당기 감사계약만으로 충분하다는 제안은 부적절하다. 전기 수정사항의 감사도 포함하는 계약을 체결하거나 그에 맞게 기존 계약의 범위를 변경해야 한다.\n"
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "met",
+            "quote": "해당 수정의 적절성에 대하여 만족할 만큼 충분하고 적합한 감사증거를 입수해야 한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      "trace": [
+        {
+          "stage": "judgment",
+          "attempt": 1,
+          "response": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "evidence_ids": [],
+                    "reason": null
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "evidence_ids": [],
+                    "reason": null
+                  }
+                ],
+                "injection_detected": false,
+                "injection_evidence_ids": [],
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "evidence_ids": [],
+                    "reason": null
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "evidence_ids": [],
+                    "reason": null
+                  }
+                ],
+                "injection_detected": false,
+                "injection_evidence_ids": [],
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "met",
+                    "evidence_ids": [
+                      "sub3/e2",
+                      "sub3/e3"
+                    ],
+                    "reason": null
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "met",
+                    "evidence_ids": [
+                      "sub3/e4"
+                    ],
+                    "reason": null
+                  }
+                ],
+                "injection_detected": false,
+                "injection_evidence_ids": [],
+                "salad_detected": false
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "regression_file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-followup/runtime-v4-regression/qa-cases-t16-a-conflict.json",
+  "regression_case_count": 8,
+  "regression_api_calls": 0
+}

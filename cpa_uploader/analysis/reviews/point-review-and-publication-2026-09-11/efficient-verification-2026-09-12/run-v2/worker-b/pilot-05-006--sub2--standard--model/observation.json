@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-05-006--sub2--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-05-006--sub2--standard",
+  "source_set_id": "pilot-05-006",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "c98fa90a08b2b8ec8063ce39e0dfac02b260bc2f6f7c5c47f90914eea1f06c30",
+  "answers": {
+    "sub2": "형식적 적법성만 확인해서는 안 된다. 해당 거래의 사업상 논리적 근거(또는 그 결여)에 비추어, 그 거래가 부정한 재무보고를 수행하거나 자산횡령을 은폐하기 위해 체결되었음을 나타내는 것인지 여부를 평가해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안 전체가 해당 독립 명제를 직접 또는 분명한 함축으로 충족함"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "답안 전체가 해당 독립 명제를 직접 또는 분명한 함축으로 충족함"
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "답안 전체가 해당 독립 명제를 직접 또는 분명한 함축으로 충족함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "80557320e078fd5de23482f7693bc640c1fe8e6d98b51fe2cb9c2a067c1dc7ea",
+  "schema_hash": "8fb914076aab8cb95198604533c55ea158e8bcb9399e425f434e5092175beb3e",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "형식적 적법성만 확인해서는 안 된다. ",
+            "reason": "형식적 적법성만 확인해서는 안 된다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "해당 거래의 사업상 논리적 근거(또는 그 결여)에 비추어, 그 거래가 부정한 재무보고를 수행하거나 자산횡령을 은폐하기 위해 체결되었음을 나타내는 것인지 여부를 평가해야 한다.",
+            "reason": "사업상 논리적 근거에 비추어 부정한 재무보고를 위한 거래인지 평가한다고 설명했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "해당 거래의 사업상 논리적 근거(또는 그 결여)에 비추어, 그 거래가 부정한 재무보고를 수행하거나 자산횡령을 은폐하기 위해 체결되었음을 나타내는 것인지 여부를 평가해야 한다.",
+            "reason": "사업상 논리적 근거에 비추어 자산횡령 은폐를 위한 거래인지 평가한다고 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "형식적 적법성만 확인해서는 안 된다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "사업상 논리적 근거에 비추어 부정한 재무보고를 위한 거래인지 평가한다고 설명했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "사업상 논리적 근거에 비추어 자산횡령 은폐를 위한 거래인지 평가한다고 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-05-006",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "기업의 정상적인 사업과정을 벗어나는 거래, 또는 기업과 그 환경에 대한 이해와 감사 중 입수한 정보에 비추어 비경상적으로 보이는 유의적 거래를 발견하였다. 거래의 형식적 적법성만 확인해도 충분한지 판단하고, 기준서가 요구하는 평가를 설명하시오.",
+        "user_answer": "형식적 적법성만 확인해서는 안 된다. 해당 거래의 사업상 논리적 근거(또는 그 결여)에 비추어, 그 거래가 부정한 재무보고를 수행하거나 자산횡령을 은폐하기 위해 체결되었음을 나타내는 것인지 여부를 평가해야 한다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "형식적 적법성만 확인해서는 안 된다.",
+            "reason": "형식적 적법성만 확인해서는 안 된다고 명시했다.",
+            "claim": "거래의 형식적 적법성 확인만으로는 충분하지 않다. 필요한 추가 평가를 분명히 제시하여 형식적 적법성 확인만으로 불충분함을 함축해도 인정하되, 명시적 반대 결론은 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "해당 거래의 사업상 논리적 근거(또는 그 결여)에 비추어, 그 거래가 부정한 재무보고를 수행하거나 자산횡령을 은폐하기 위해 체결되었음을 나타내는 것인지 여부를 평가해야 한다.",
+            "reason": "사업상 논리적 근거에 비추어 부정한 재무보고를 위한 거래인지 평가한다고 설명했다.",
+            "claim": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 부정한 재무보고를 수행하기 위해 체결되었음을 나타내는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "해당 거래의 사업상 논리적 근거(또는 그 결여)에 비추어, 그 거래가 부정한 재무보고를 수행하거나 자산횡령을 은폐하기 위해 체결되었음을 나타내는 것인지 여부를 평가해야 한다.",
+            "reason": "사업상 논리적 근거에 비추어 자산횡령 은폐를 위한 거래인지 평가한다고 설명했다.",
+            "claim": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 자산횡령을 은폐하기 위해 체결되었음을 나타내는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "형식적 적법성만 확인해서는 안 된다. 해당 거래의 사업상 논리적 근거(또는 그 결여)에 비추어, 그 거래가 부정한 재무보고를 수행하거나 자산횡령을 은폐하기 위해 체결되었음을 나타내는 것인지 여부를 평가해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_04fc3cf28d4f57f3016aa4cd630ae887d081460315ec33da77",
+        "request_id": "req_2a8cc95a14a643f5a03054b311c9aed7",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2900,
+          "input_tokens_details": {
+            "cache_write_tokens": 2897,
+            "cached_tokens": 0
+          },
+          "output_tokens": 241,
+          "output_tokens_details": {
+            "reasoning_tokens": 45
+          },
+          "total_tokens": 3141
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010140499999999998,
+        "min_usd": 0.0010140499999999998,
+        "max_usd": 0.0010140499999999998,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-05-006--sub2--standard--model/input.json",
+      "sha256": "efd3808b8cdf41e0c21f16fbeb9436fae56785796ba803959f697323cab0c056"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-05-006--sub2--standard--model/transport.jsonl",
+      "sha256": "63bef746d23565bc30c00499e41570a2c1e3328f80520c65c7cdf14bfb71ecec"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-05-006--sub2--standard--model/traces.jsonl",
+      "sha256": "6fb5433a9b2c71d81b02254e18b414d285bf68a2105f0e5ccf35653afc364cfc"
+    }
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-12-006--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-006--sub1--standard",
+  "source_set_id": "pilot-12-006",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "58fc527daa7a891f6d53ba1f2a7d83b9f0b9431864de90d87bc2ffe0e8458a95",
+  "answers": {
+    "sub1": "경영진에게 재무제표의 적합한 수정을 요청할 수 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "답안이 '경영진에게 재무제표의 적합한 수정을 요청할 수 있다.'의 의미를 명시적으로 부정한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "이 명제를 직접 또는 함축하여 충족하는 내용이 없다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "이 명제를 직접 또는 함축하여 충족하는 내용이 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "6afbfda7b3c24fc20e7bb4587b8b3c7582f8d8e8bc84b36cb053765d44f7006d",
+  "schema_hash": "06d1dd668377c955ef20adca5f406d189ca7c87db79eb0c60afc682f95880513",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "경영진에게 재무제표의 적합한 수정을 요청할 수 없다.",
+            "reason": "재무제표의 적합한 수정을 요청할 수 없다고 명시하여 요구 명제와 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "왜곡표시 원인을 이해하기 위한 조사 요청이 답안에 없다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "실제 왜곡표시 금액 결정 절차 요청이 답안에 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "재무제표의 적합한 수정을 요청할 수 없다고 명시하여 요구 명제와 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "왜곡표시 원인을 이해하기 위한 조사 요청이 답안에 없다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "실제 왜곡표시 금액 결정 절차 요청이 답안에 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-006",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사인이 식별한 왜곡표시의 원인을 이해하고 실제 왜곡표시 금액을 결정하기 위해, 경영진에게 요청할 수 있는 조사·금액 결정 절차와 그 후의 수정 조치를 설명하시오.",
+        "user_answer": "경영진에게 재무제표의 적합한 수정을 요청할 수 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "경영진에게 재무제표의 적합한 수정을 요청할 수 없다.",
+            "reason": "재무제표의 적합한 수정을 요청할 수 없다고 명시하여 요구 명제와 반대된다.",
+            "claim": "경영진에게 재무제표의 적합한 수정을 요청할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "왜곡표시 원인을 이해하기 위한 조사 요청이 답안에 없다.",
+            "claim": "경영진에게 왜곡표시 원인을 이해하도록 관련 거래유형·계정잔액 또는 공시를 조사해 달라고 요청할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "실제 왜곡표시 금액 결정 절차 요청이 답안에 없다.",
+            "claim": "경영진에게 실제 왜곡표시 금액을 결정하는 절차를 수행하도록 요청할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사인은 경영진에게 재무제표에 적합한 수정을 하도록 요청할 수 있다.",
+          "이를 위해 경영진이 거래유형·계정잔액 또는 공시를 조사하여 식별된 왜곡표시의 원인을 이해할 수 있게 하고, 실제 왜곡표시 금액을 결정하는 절차를 수행하도록 요청할 수 있다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_06a629b710e94518016aa4cfa28da087d0b54b0916c164c3b1",
+        "request_id": "req_0dd44e2445084f6ca9157f21152d132f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2492,
+          "input_tokens_details": {
+            "cache_write_tokens": 2489,
+            "cached_tokens": 0
+          },
+          "output_tokens": 232,
+          "output_tokens_details": {
+            "reasoning_tokens": 51
+          },
+          "total_tokens": 2724
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00090125,
+        "min_usd": 0.00090125,
+        "max_usd": 0.00090125,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-12-006--sub1--standard--wrong/input.json",
+      "sha256": "7dc1dc0e425c84fce42cce9d7b97b1f72bf35d8b75b7d4a3f7b24b2177d19cd3"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-12-006--sub1--standard--wrong/transport.jsonl",
+      "sha256": "7234b7b1db2d4a45a77a571d8c83cf4486b7366937bc0c9aafd60d0b82b61520"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-12-006--sub1--standard--wrong/traces.jsonl",
+      "sha256": "1b075563a2d17ccefdcc3f2c73f4c03ea3b039c8babd4c328049a59e97792be4"
+    }
+  }
+}

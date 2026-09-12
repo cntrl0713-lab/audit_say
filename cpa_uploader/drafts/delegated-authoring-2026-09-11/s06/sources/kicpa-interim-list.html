@@ -1,0 +1,1272 @@
+
+
+
+
+
+
+
+
+
+
+<!-- 2017.04.19 sskim : 게시판 카테고리 값 확인하기 위해 추가 -->
+   
+   
+   
+   
+
+<!-- 2017.02.09 sskim : 테마 입힌 게시판 상세페이지로 이동  -->
+
+
+<!-- 2017.04.19 sskim : 게시판 임의의 카테고리 값으로 초기 세팅 위해 추가 -->
+
+
+<!-- 2017.04.24 sskim : 게시판 관리자 역할 체크 후 세팅 -->
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=8">
+  <link type="text/css" rel="stylesheet" href="/board/css/style.css">
+  <link type="text/css" rel="stylesheet" href="/board/calendar/css/calendar.css">
+
+  
+  <script type="text/javascript" src="/javascript/common_new.js"></script>
+  <script type="text/javascript" src="/face/javascript/portlet.js"></script>
+  <script type="text/javascript" src="/javascript/portal_new.js"></script>  
+  <script type="text/javascript" src="/javascript/utility.js"></script>
+  
+  
+    <script type="text/javascript" src="/javascript/message/mrbun__mm.js"></script>
+    <script type="text/javascript" src="/javascript/message/mrbun__eb.js"></script>
+  
+
+  <script type="text/javascript" src="/board/javascript/enboard_util.js"></script>
+  <script type="text/javascript" src="/board/calendar/calendar.js"></script>
+  <script type="text/javascript" src="/board/calendar/ko-kr/generatecalendar.js"></script>
+  <script type="text/javascript">
+    <!--
+	function adminEventFree (win) {
+		// 관리자/중간관리자가 아니면 바로 return.
+		
+			return;
+		
+		ebUtil.eventReset (win.document);
+		for (var i=0; i<win.frames.length; i++) {
+			try {
+				adminEventFree (win.frames[i]);
+			} catch(e) {}
+		}
+	}
+	ebUtil.eventSet();
+	//-->
+  </script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+ 
+
+<script type="text/javascript" src="/board/javascript/enboard_list.js"></script>
+<script type="text/javascript" src="/board/javascript/enboard_read.js"></script>
+
+<script type="text/javascript">
+	window.onload = ebList.initList;
+</script>
+
+<!-- 2017.05.19 sskim : pc, mobile 스킨 분기 추가 -->
+
+
+
+
+		
+
+ 
+   
+  
+  
+   
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/javascript/jquery/jquery-1.10.2.min.js;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"></script>
+<script type="text/javascript" src="/kicpa/res/common/js/common.js;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2?ver=1788847394254"></script>
+<script type="text/javascript" src="/kicpa/res/common/js/aesUtil.js;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"></script>
+<div id="comm_section">
+	<input type="hidden" name="commSessionKEY"   id="commSessionKEY" value="0A734DFD5F05C9D0"/>
+</div>
+ <!DOCTYPE HTML>
+<html lang="ko-KR">
+<head>
+	<meta charset="UTF-8">
+	<title>한국공인회계사회</title>
+	<link rel="stylesheet" href="/kicpa/res/krhome/css/sub_layout.css;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"/>
+	<link rel="stylesheet" href="/kicpa/res/krhome/css/reset.css;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"/>
+	<link rel="stylesheet" href="/kicpa/res/krhome/css/sub.css;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"/>
+	<link rel="stylesheet" href="/kicpa/res/krhome/css/sub_layout.css;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"/>
+	
+	<link rel="stylesheet" href="/kicpa/res/board/css/sub.css;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"/>
+	<link rel="stylesheet" href="/kicpa/res/common/css/jquery-confirm.min.css;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"/>
+	<script type="text/javascript" src="/kicpa/res/common/js/jquery-1.9.1.js;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"></script>
+	<script type="text/javascript" src="/kicpa/res/board/js/jquery.dotdotdot.js;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"></script>
+	<script type="text/javascript" src="/kicpa/res/board/js/swiper.jquery.min.js;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"></script>
+	<script type="text/javascript" src="/kicpa/res/board/js/run.js;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"></script>
+	<script type="text/javascript" src="/kicpa/res/common/js/jquery-confirm.min.js;jsessionid=0A734DFD5F05C9D0690DA66FDB656CA9.tomcat-portal2"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{ 
+			try
+			{
+				//페이징 세팅 
+				document.getElementById("pagingArea").innerHTML = fn_setPageInfo('1', '1', 10);
+				//즐겨찾기 관리 세팅
+				fn_setBookmarkManage("");
+			}
+			catch(e) 
+			{  } 
+			
+			try
+			{
+				//첨부파일 title 세팅 
+				$(".table_st02 > img").each(function()
+				{
+					$(this).attr("title",$(this).attr("alt"));
+				});	
+			}
+			catch(e)
+			{ }
+		});
+		
+		// 20180808 수정 : iframe resize 관련 함수를 window.load로 이동함. (document.load보다 window.load가 나중에 실행 됨.)  
+		$(window).load(function() {
+			try
+			{
+				//iframe resize 
+				parent.fn_childIframeAutoresize(parent.document.getElementById(window.name),parseInt($("#sub_contents").height()+100));
+				parent.fn_scrollTop();	
+			}
+			catch(e)
+			{
+				//4depth iframe resize 
+				var height = parseInt($("#sub_contents").height()+100);
+				parent.document.getElementById(window.name).setAttribute('style','height:'+height+';border: 0px;');
+				
+				parent.parent.fn_childIframeAutoresize(parent.document.getElementById(window.name),height);
+				parent.parent.fn_scrollTop();
+			}
+			
+			//2017.05.08 sskim : tab 으로 게시판이 들어갈 경우, iframe resize 처리 
+			try
+			{
+				parent.fn_frameResize(parseInt($("#sub_contents").height()+200));
+			}
+			catch(e)
+			{ }
+		});		
+	</script>
+</head>
+<body>
+<!-- article_wrap -->
+<div id="sub_contents">
+
+   
+
+	
+	<div class="article">	
+		
+		
+		<div class="board_top cf" style="border: none;"></div>
+		
+		
+		
+		<div class="board_top cf">
+			<div class="board_top_left cf">
+				<div class="total_wrap">
+					<p class="page">
+					
+						
+						
+							<strong>1</strong>/1 페이지
+						
+					
+					</p>
+					<p class="total">(총 6 건)</p>
+				</div>
+			</div>
+			<form name="setSrch" OnSubmit="return ebList.srchBulletin()">
+			<div class="board_top_right cf">
+				
+				<div class="select_wrap">
+						<label for="select_st01" class="d_none">선택하세요.</label>
+						<select id="select_st01" name="srchType">
+							
+								<option   value="Subj">
+									제목
+								</option>
+							
+								<option   value="Cntt">
+									본문
+								</option>
+							
+								<option   value="Extext_str1">
+									담당부서
+								</option>
+							
+						</select>
+				</div>
+				<div class="search_wrap cf">
+					<label>
+						<input id="in_search" name="srchKey" type="text" value=""/>
+			        </label>
+			        
+			          <button class="btn_search" onClick="javascript:ebList.srchBulletin();">검색</button>	
+					
+			        
+				</div>
+			</div> <!-- //board_top_right -->
+			</form>
+		</div> <!-- //board_top -->
+		<table class="table_st02" summary="" width=800 border="0" cellspacing="0" cellpadding="0" >
+			<caption></caption>
+			<colgroup>
+				<!-- 번호 -->
+				
+					<col width="10%">
+				
+				
+				<!-- 썸네일 -->
+				
+				<!-- 카테고리 -->
+				
+				<!-- 제목 -->
+				<col width="*%">
+				
+				<!-- 추가적인 확장필드 영역 -->
+				
+					<!-- 확장필드 1 -->
+					
+						<col width="15%">
+					
+						
+						
+				<!-- 작성자명 -->
+				
+				<!-- 등록일 -->
+				
+					 <col width="12%">
+		        
+				<!-- 첨부파일 -->
+				
+					<col width="10%">
+				
+				<!-- 추가적인 확장필드 영역 -->
+				
+					<!-- 확장필드 3 -->
+					
+					<!-- 확장필드 4 -->
+					
+					<!-- 확장필드 5 -->
+					
+					<!-- 확장필드 6 -->
+					
+					<!-- 확장필드 7 -->
+					
+					<!-- 확장필드 8 -->
+					
+					<!-- 확장필드 9 -->
+					
+				
+				<!-- //추가적인 확장필드 영역 -->
+				<!-- 조회수 -->
+				
+					<col width="10%">
+				
+			</colgroup>
+			<thead>
+				<tr>
+					
+					<!-- 번호 -->
+					
+							
+						<th>번호</th>
+					
+										
+					<!-- 썸네일 -->
+					
+					<!-- 카테고리 -->
+					
+					
+					<th>제목</th>
+					
+					<!-- 추가적인 확장필드 영역 -->
+					
+						<!-- 확장필드 1 -->
+						
+							
+							<th>담당부서</th>			
+						
+							
+									
+					<!-- 작성자명 -->
+					
+					<!-- 등록일 -->
+					
+						
+						 <th>등록일</th>
+			        
+					<!-- 첨부파일 -->
+					
+						
+						<th>첨부파일</th>
+					
+					<!-- 추가적인 확장필드 영역 -->
+					
+						<!-- 확장필드 3 -->
+						
+						<!-- 확장필드 4 -->
+						
+						<!-- 확장필드 5 -->
+						
+						<!-- 확장필드 6 -->
+						
+						<!-- 확장필드 7 -->
+						
+						<!-- 확장필드 8 -->
+						
+						<!-- 확장필드 9 -->
+						
+					
+					<!-- //추가적인 확장필드 영역 -->
+					<!-- 조회수 -->
+					
+						
+						<th class="last">조회</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				
+			    
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">6</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='분·반기재무제표검토준칙 개정내용(2014.12.30)' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc1401','11501851835462')"
+										  
+										  
+									    
+									    
+									  >
+									    분·반기재무제표검토준칙 개정내용(2014.12.30)
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">연구지원팀</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2015.06.01</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11501851835462 name=i11501851835462 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc1401&bltnNo=11501851835462&fileSeq=1&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconHWP.gif' alt='20141230_분반기재무제표 검토준칙(회계포탈)_.hwp' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	12067 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">5</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='분·반기 재무제표 검토준칙 적용관련 주요 유의사항 안내' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc1401','11501851835451')"
+										  
+										  
+									    
+									    
+									  >
+									    분·반기 재무제표 검토준칙 적용관련 주요 유의사항 안내
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">연구팀</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2011.05.04</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11501851835451 name=i11501851835451 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc1401&bltnNo=11501851835451&fileSeq=1&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconHWP.gif' alt='금융위 고시 2010-45호(분반기재무제표 검토준칙 개정준칙).hwp' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc1401&bltnNo=11501851835451&fileSeq=2&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconHWP.gif' alt='분반기 재무제표 검토준칙 적용관련 유의사항.hwp' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	8827 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">4</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='분ㆍ반기 별도재무제표 검토보고서 작성 관련 안내' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc1401','11501851835441')"
+										  
+										  
+									    
+									    
+									  >
+									    분ㆍ반기 별도재무제표 검토보고서 작성 관련 안내
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">연구팀</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2011.03.10</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11501851835441 name=i11501851835441 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc1401&bltnNo=11501851835441&fileSeq=1&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconHWP.gif' alt='분ㆍ반기 별도재무제표 검토보고서 작성 관련 안내사항.hwp' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	7601 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">3</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='반기재무제표검토준칙 개정내용(2003.3.26)' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc1401','11501851835429')"
+										  
+										  
+									    
+									    
+									  >
+									    반기재무제표검토준칙 개정내용(2003.3.26)
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">연구조사부</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2003.04.03</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11501851835429 name=i11501851835429 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc1401&bltnNo=11501851835429&fileSeq=1&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='반기재무제표검토준칙개정통지(2003_3_26).PDF' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc1401&bltnNo=11501851835429&fileSeq=2&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='반기재무제표검토준칙개정(2003_3_26)전문.PDF' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+								          <a href='/board/fileMngr?cmd=down&boardId=acc1401&bltnNo=11501851835429&fileSeq=3&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='반기재무제표검토준칙개정(2003_3_26)대비표.PDF' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	3781 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">2</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='반기재무제표검토준칙(개정)' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc1401','11501851835419')"
+										  
+										  
+									    
+									    
+									  >
+									    반기재무제표검토준칙(개정)
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">연구조사부</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2000.12.01</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11501851835419 name=i11501851835419 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc1401&bltnNo=11501851835419&fileSeq=1&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='반기재무제표검토준칙(개정2000_12_1).PDF' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	3941 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+						<!-- 추가적인 확장필드 영역 -->
+						
+					    	
+					    			    	
+			    		
+			    			
+			    			
+			    			
+			    				<!-- 일반글 일때 -->
+			    				<tr>
+			    			
+			    		
+							<!-- 번호 -->
+							
+								<!-- 공지글 일때 -->
+					     		
+					     		<!-- 일반글 일때 -->
+					     		
+					     			<td class="num">1</td>
+					     		
+					        
+							<!-- //번호 -->
+																
+							<!-- 썸네일 -->
+							  
+							<!-- //썸네일 -->
+							<!-- 카테고리 -->
+							
+							<!-- //카테고리 -->
+							<!-- 제목 -->
+							<td class="subject" >
+								<div class="subject_wrap">
+									<!-- 게시승인 관련 -->
+									
+									
+									  
+						              
+						              <a title='반기재무제표검토준칙' class="subject_tit" style="cursor: pointer;"
+									    
+									      
+										  
+									        onclick="ebList.readBulletin('acc1401','11501851835410')"
+										  
+										  
+									    
+									    
+									  >
+									    반기재무제표검토준칙
+										
+										
+						              </a>
+						              <div class="icon_wrap">
+						              	  <!-- 2017.07.03 sskim : 비밀글 일 경우 -->
+						              	  
+							              <!-- 답글개수 -->
+							              
+							              <!-- //답글개수 -->
+							              <!-- 메모개수 -->
+						                  
+							              <!-- //메모개수 -->
+						              	  <!-- 새글 -->
+							              
+							                
+							              
+						              	  <!-- //새글 -->
+						              </div>
+						              <!-- 본문글 -->
+						              
+						              <!-- //본문글 -->
+									
+									 
+								</div>
+							</td>
+							<!-- //제목 -->
+							
+							<!-- 추가적인 확장필드 영역 -->
+							
+								<!-- 확장필드 1 -->
+								
+									<td class="txt_c">연구조사부</td>
+								
+							
+																
+							<!-- 작성자명 -->
+							
+							<!-- //작성자명 -->
+							<!-- 등록일 -->
+							
+								
+							      <td class="day">2000.07.26</td>
+								
+					        
+							<!-- //등록일 -->
+							<!-- 첨부파일 -->
+							
+					            
+						          <td class="file txt_l" id=i11501851835410 name=i11501851835410 align=center>
+									
+					                  
+						    	        
+								          <a href='/board/fileMngr?cmd=down&boardId=acc1401&bltnNo=11501851835410&fileSeq=1&subId=sub06' target='download'><img src='/board/images/board/skin/kicpa_notice/iconPDF.gif' alt='반기재무제표검토준칙2000_7_26.PDF' align='absmiddle' onerror="this.src='/board/images/board/skin/kicpa_notice/iconNAN.gif'"></a>
+						                
+					                  
+									
+						          </td>
+								
+								
+						    
+							<!-- //첨부파일 -->
+							
+								<!-- 확장필드 3 -->
+								
+								<!-- 확장필드 4 -->
+								
+								<!-- 확장필드 5 -->
+								
+								<!-- 확장필드 6 -->
+								
+								<!-- 확장필드 7 -->
+								
+								<!-- 확장필드 8 -->
+								
+								<!-- 확장필드 9 -->
+								
+							
+							<!-- //추가적인 확장필드 영역 -->
+							<!-- 조회수 -->
+							
+					          <td class="hit last">
+								
+
+					              	4132 
+
+								
+					          </td>
+					        
+							<!-- 조회수 -->
+						</tr>
+			    	
+			    
+			</tbody>
+		</table>
+		<div class="btn_wrap_table">
+			
+		</div>
+	</div> <!-- //article -->
+	<div class="article article_last">
+		<!-- paging -->
+		<div class="paging" id="pagingArea">
+		</div> 
+		<!-- //paging -->
+	</div> <!-- //article_last -->
+</div>
+<!-- //article_wrap -->
+</body>
+</html>
+   
+  
+
+
+ 
+
+<form name="setForm" method=post>
+<input type="hidden" name="boardId"       value="acc1401"/>
+<input type="hidden" name="cmpBrdId"      value="acc1401"/>
+<input type="hidden" name="srchKey"       value=""/>
+<input type="hidden" name="srchType"      value=""/>
+<input type="hidden" name="srchBgnReg"    value="2026.09.11"/>
+<input type="hidden" name="srchEndReg"    value="2026.09.11"/>
+<input type="hidden" name="srchReplYn"    value=""/>
+<input type="hidden" name="srchMemoYn"    value=""/>
+<input type="hidden" name="page"          value="1"/>
+<input type="hidden" name="pageSize"      value="0"/>
+<input type="hidden" name="cateId"        value=""/>
+<input type="hidden" name="bltnCateId"    value="-1"/>
+<input type="hidden" name="listOpt"       value=""/>
+<input type="hidden" name="onlyReplYn"    value=""/>
+<input type="hidden" name="onlyMemoYn"    value=""/>
+<input type="hidden" name="wallUserId"    value=""/>
+<input type="hidden" name="systemCurrentTimeMillis" value="1789087468538"/>
+<input type="hidden" name="boardSkinDflt" value="kicpa_notice"/>
+<input type="hidden" name="miniTrgtWin"   value=""/>
+<input type="hidden" name="miniTrgtUrl"   value=""/>
+<input type=hidden name="srchKey1"       value=""/>
+<input type=hidden name="srchKey2"       value=""/>
+<input type=hidden name="srchKey3"       value=""/>
+<input type=hidden name="srchKey4"       value=""/>
+<input type=hidden name="srchType1"      value=""/>
+<input type=hidden name="srchType2"      value=""/>
+<input type=hidden name="srchType3"      value=""/>
+<input type=hidden name="srchType4"      value=""/>
+<input type=hidden name="sortColumn"      value=""/>
+<input type=hidden name="sortMethod"      value="ASC"/>
+<input type="hidden" name="bltnNo" value="" />
+
+<input type="hidden" name="rtnBltnNo" 	value=""/>
+<input type="hidden" name="cmd" 	value=""/>
+<input type="hidden" name="rtnURI" 	value=""/>
+<input type="hidden" name="userPass" 	value=""/>
+<input type="hidden" name="langKnd" value="ko"/>
+<input type="hidden" id="viewMode"  name="viewMode" value=""/>
+<input type="hidden" name="boardTtlYn" value=""/>
+</form>
+<iframe name="download" title="download" width=0 height=0 style="border: none;"></iframe>
+
+
+
+	</body>
+</html>
+ 

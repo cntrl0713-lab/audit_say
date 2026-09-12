@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-12-002--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-002--sub1--standard",
+  "source_set_id": "pilot-12-002",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "3345f563e6da5cb1ac2d850d844d8154ef25a8e88de4cf562e12d1d6286ca744",
+  "answers": {
+    "sub1": "경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안에 해당 독립 명제가 직접 제시되어 있다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "7b7b71e9dc79b6b5e8744f99435aa7a0962b65eb86d6f4c302d3546274045283",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다.",
+            "reason": "경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "재무제표 수정 필요성 결정이 제시되지 않았다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "수정이 필요한 경우 경영진의 재무제표 처리계획을 질문한다는 절차가 제시되지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표 수정 필요성 결정이 제시되지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "수정이 필요한 경우 경영진의 재무제표 처리계획을 질문한다는 절차가 제시되지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-002",
+    "score": 1,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사보고서일에 알았더라면 감사보고서를 수정할 원인이 될 수도 있었던 사실을 감사보고서일 후 재무제표 발행일 전에 알게 되었다. 감사기준서 560 문단 10에 따라 수행해야 할 세 가지 절차를 조건과 함께 모두 제시하시오.",
+        "user_answer": "경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다.",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다.",
+            "reason": "경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다고 명시했다.",
+            "claim": "경영진 및 적절한 경우 지배기구와 해당 사항을 토의함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "재무제표 수정 필요성 결정이 제시되지 않았다.",
+            "claim": "재무제표 수정이 필요한지 결정함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "수정이 필요한 경우 경영진의 재무제표 처리계획을 질문한다는 절차가 제시되지 않았다.",
+            "claim": "수정이 필요하면 경영진의 처리계획을 질문함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진과, 적절한 경우 지배기구와 해당 사항을 토의한다.",
+          "재무제표 수정이 필요한지 결정한다.",
+          "수정이 필요하다고 결정하면 경영진이 재무제표에서 해당 사항을 어떻게 다룰 계획인지 질문한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0d0e53fec2c571ab016aa4cf6e35c087d0ae61b9b916cd296b",
+        "request_id": "req_6e614a6f86e24434b37c2a46e6e4d098",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2427,
+          "input_tokens_details": {
+            "cache_write_tokens": 2424,
+            "cached_tokens": 0
+          },
+          "output_tokens": 215,
+          "output_tokens_details": {
+            "reasoning_tokens": 32
+          },
+          "total_tokens": 2642
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008646,
+        "min_usd": 0.0008646,
+        "max_usd": 0.0008646,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-12-002--sub1--standard--partial/input.json",
+      "sha256": "1f9558dc753758ef24df06594a48d744a7dd9640b2493afb2f05ab2260777015"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-12-002--sub1--standard--partial/transport.jsonl",
+      "sha256": "343df87c3df6ef3b081bdb03ed61a2a0a088fbc7e2c578a4d8d628ec481e293c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-12-002--sub1--standard--partial/traces.jsonl",
+      "sha256": "437b0b58034d16d122da38bcc9ef3bbbb8cabe45e5e4c05aeba000a1aad4d98d"
+    }
+  }
+}

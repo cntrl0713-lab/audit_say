@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-04-005--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-005--case",
+  "source_set_id": "pilot-04-005",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "236a840b4a75d39686f1d6197d1a07aa390fb87d271b5b6f57031f7c856c73ea",
+  "answers": {
+    "sub1": "충분성은 양이고 적합성은 질이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 요구나 이를 함축하는 설명을 제시하지 않음."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 요구나 이를 함축하는 설명을 제시하지 않음."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "f169be9c88ede5c7217593cf57a0bc5c4b912cb97ea3a526cd8d1fe1e34eef4c",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "보존기간 전 삭제·폐기 금지 판단이 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "취합 완료 후 모든 성격의 감사문서가 금지 대상이라는 설명이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "보존기간 전 삭제·폐기 금지 판단이 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "취합 완료 후 모든 성격의 감사문서가 금지 대상이라는 설명이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-005",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "회계법인이 저장 공간 확보를 이유로 최종감사파일의 취합이 완료된 지난 감사의 일부 감사문서를 삭제하려고 한다. 보존기간이 끝나기 전에 이러한 삭제가 허용되는지 판단하고, 금지 대상 감사문서의 범위를 근거로 설명하시오.",
+        "user_answer": "충분성은 양이고 적합성은 질이다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "보존기간 전 삭제·폐기 금지 판단이 없다.",
+            "claim": "보존기간 종료 전 삭제·폐기는 허용되지 않는다고 판단함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "취합 완료 후 모든 성격의 감사문서가 금지 대상이라는 설명이 없다.",
+            "claim": "판단 근거로 취합 완료 후 어떠한 성격의 감사문서도 대상이 됨을 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "허용되지 않는다. 최종감사파일 취합 완료 후에는 보존기간 종료 전까지 어떠한 성격의 감사문서도 삭제하거나 폐기해서는 안 된다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0e6dce6d2430dda9016aa4c892ca4487d0a87c44b86d2ce09d",
+        "request_id": "req_f42f8a01ef4942d3873eb2a2bb02cbc7",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2445,
+          "input_tokens_details": {
+            "cache_write_tokens": 2442,
+            "cached_tokens": 0
+          },
+          "output_tokens": 182,
+          "output_tokens_details": {
+            "reasoning_tokens": 54
+          },
+          "total_tokens": 2627
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008295,
+        "min_usd": 0.0008295,
+        "max_usd": 0.0008295,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-04-005--case--wrong/input.json",
+      "sha256": "825287c1ca559a8c458a7a62cbf46effec612dc7a17ee45f132f1cae538dc49a"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-04-005--case--wrong/transport.jsonl",
+      "sha256": "500374a4170fc91248678244ae6a87aba1bc40fd04fbe2df5ed8c0f283168e0c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-04-005--case--wrong/traces.jsonl",
+      "sha256": "ffb54190ed9fe39c058804f85bb2369a95e1505e4f5a4a5bdff65b988fa0668c"
+    }
+  }
+}

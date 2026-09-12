@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-13-005--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-005--sub1--standard",
+  "source_set_id": "pilot-13-005",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "e0009aae32179f4de91b3a1f9b1bcbbb04c52c6c6a954861a62808e4c9724759",
+  "answers": {
+    "sub1": "이 경우 내부감사기능의 업무를 활용할 수 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안에 해당 독립 명제가 직접 제시되어 있다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "01d47235519315073c0fe45944957644776abfe1e01f253665f8174f9dcc7e48",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "이 경우 내부감사기능의 업무를 활용할 수 없다.",
+            "reason": "업무를 활용할 수 없다고 명시적으로 판단했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "객관성을 지원하지 못하는 조직 내 위상과 정책·절차가 활용 금지 요건이라는 근거를 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "업무를 활용할 수 없다고 명시적으로 판단했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "객관성을 지원하지 못하는 조직 내 위상과 정책·절차가 활용 금지 요건이라는 근거를 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-005",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "내부감사기능의 객관성이 조직 내 위상과 정책·절차로 충분히 뒷받침되지 않는다고 외부감사인이 결정한 경우, 해당 기능이 수행한 업무를 계속 활용할 수 있는지 판단하고 근거를 제시하시오.",
+        "user_answer": "이 경우 내부감사기능의 업무를 활용할 수 없다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "이 경우 내부감사기능의 업무를 활용할 수 없다.",
+            "reason": "업무를 활용할 수 없다고 명시적으로 판단했다.",
+            "claim": "객관성 지원 미흡 시 업무 활용 불능이라고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "객관성을 지원하지 못하는 조직 내 위상과 정책·절차가 활용 금지 요건이라는 근거를 설명하지 않았다.",
+            "claim": "조직 내 위상과 관련 정책·절차가 객관성을 적절히 지원하지 않는 것이 활용 금지 요건임을 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "해당 내부감사기능이 수행한 업무를 활용할 수 없다.",
+          "조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 못하여 업무 활용의 필수 요건을 충족하지 못했기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_01c2ad0ff8b04110016aa4ce52220887d09137d26d3eddf459",
+        "request_id": "req_1a23a83599284299b63188d99dc7259a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2506,
+          "input_tokens_details": {
+            "cache_write_tokens": 2503,
+            "cached_tokens": 0
+          },
+          "output_tokens": 200,
+          "output_tokens_details": {
+            "reasoning_tokens": 58
+          },
+          "total_tokens": 2706
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00086635,
+        "min_usd": 0.00086635,
+        "max_usd": 0.00086635,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-13-005--sub1--standard--partial/input.json",
+      "sha256": "f861a34e92cc2fb746f8601735721c709f9f375d3a79c2ee23549adf88e52d9b"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-13-005--sub1--standard--partial/transport.jsonl",
+      "sha256": "907396d1c3810e65b756eb0583fe06d96e7f080408959cb09c804ca6b4245b3f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-13-005--sub1--standard--partial/traces.jsonl",
+      "sha256": "85c03bfc00a8b740688d01f5957d1f63e9641d07ac16f31222dba5478a64b952"
+    }
+  }
+}

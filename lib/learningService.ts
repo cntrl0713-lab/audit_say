@@ -12,6 +12,7 @@ export interface LearningServiceDependencies {
     apiKey: string;
     now?: () => number;
     loadSet: (release: string, version: string) => Promise<QuestionSetV3>;
+    loadUnit?: (release: string, version: string, classificationVersions: string[], unitId: string) => Promise<QuestionSetV3>;
     findAttempt: (owner: string, key: string) => Promise<string | null>;
     begin: (claims: SubmissionClaims, answers: Record<string, string>) => Promise<{ attempt_id: string }>;
     readResult: (owner: string, attempt: string) => Promise<StoredAttemptResult | null>;
@@ -41,7 +42,7 @@ export async function gradeLearningSubmission(
     let claims: SubmissionClaims;
     try { claims = verifySubmissionToken(token, owner, deps.signingKeys, now); }
     catch { return failure('submission_invalid', '제출 정보를 확인할 수 없습니다. 풀이 기록을 확인한 뒤 다시 제출해 주세요.'); }
-    if (claims.set_id !== questionSetId) return failure('submission_conflict', '다른 문제의 제출 정보입니다.');
+    if ((claims.v === 2 ? claims.learning_unit_id : claims.set_id) !== questionSetId) return failure('submission_conflict', '다른 문제의 제출 정보입니다.');
     if (claims.expires_at !== null && now >= Date.parse(claims.expires_at)) {
         return failure('submission_expired', '비회원 풀이 기록의 7일 보관기간이 지났습니다.');
     }
@@ -49,7 +50,10 @@ export async function gradeLearningSubmission(
     let answers: Record<string, string>;
     let attempt: string;
     try {
-        set = await deps.loadSet(claims.release_id, claims.set_version_id);
+        if (claims.v === 2) {
+            if (!deps.loadUnit) throw new Error('독립 물음 조회를 사용할 수 없습니다.');
+            set = await deps.loadUnit(claims.release_id, claims.set_version_id, claims.classification_version_ids!, claims.learning_unit_id!);
+        } else set = await deps.loadSet(claims.release_id, claims.set_version_id);
         answers = assertBoundAnswers(claims, set, input);
         const existing = await deps.findAttempt(owner, claims.submission_key);
         if (!existing && now >= Date.parse(claims.accept_until)) return failure('submission_expired', '제출 준비 정보가 만료되었습니다. 새 제출로 요청해 주세요.');

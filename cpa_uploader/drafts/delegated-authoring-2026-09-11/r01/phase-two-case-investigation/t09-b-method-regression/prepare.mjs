@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+const base=path.dirname(new URL(import.meta.url).pathname.replace(/^\/(\w:)/,'$1'));
+const root=process.cwd(),read=f=>JSON.parse(fs.readFileSync(f,'utf8'));
+const sha=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const relative=f=>path.relative(root,f).replaceAll('\\','/');
+const manifestFile='cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/final-153-v1/manifest.json';
+const entry=read(manifestFile).entries.find(x=>x.plan_id==='T09-B');
+const old=read(entry.qa_file),original=old.cases.find(x=>x.id==='q1/condition-boundary');
+const proposed=read(path.join(base,'../ledger.json')).companion_case_proposal;
+const qa={version:1,artifact_type:'author_expected_judgments',set_id:entry.set_id,draft_sha256:entry.sha256,live_model_grading:'not_run',human_approval:false,scope:'별도 회귀 비교 2사례. 원QA 및 정본의 변경이 아니다. 새 총괄 runtime lock 이전 API 호출금지.',cases:[structuredClone(original),{id:proposed.proposed_case_id,subquestion_id:proposed.subquestion_id,kind:proposed.kind,answer:proposed.answer,expected_points:proposed.expected_points,expected_verdicts:proposed.expected_verdicts,note:proposed.purpose}]};
+const qaFile=path.join(base,'qa-method-comparison.json');
+fs.writeFileSync(qaFile,JSON.stringify(qa,null,2)+'\n',{flag:'wx'});
+const locks=['cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/final-153-v1/runtime-lock.json','cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/runtime-v2-policy/runtime-lock.json'];
+const prepared={prepared_at:new Date().toISOString(),stage:'ready_for_future_frozen_runtime_not_executed',plan_id:'T09-B',set_id:entry.set_id,candidate:{file:entry.file,sha256:sha(entry.file)},original_qa:{file:entry.qa_file,sha256:sha(entry.qa_file),case_id:original.id},regression_qa:{file:relative(qaFile),sha256:sha(qaFile)},manifest:{file:manifestFile,sha256:sha(manifestFile)},source_files:entry.source_files,disallowed_prior_runtime_lock_hashes:locks.map(file=>({file,sha256:sha(file)})),model_calls:0,original_case_byte_structure_identical:JSON.stringify(qa.cases[0])===JSON.stringify(original),expected_points:[1,1],minimum_repetitions_each:3};
+fs.writeFileSync(path.join(base,'preparation.json'),JSON.stringify(prepared,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({cases:qa.cases.length,points:qa.cases.map(x=>x.expected_points),original_case_identical:prepared.original_case_byte_structure_identical,model_calls:0}));

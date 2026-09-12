@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-16-007--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-007--sub1--standard",
+  "source_set_id": "pilot-16-007",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "25462635fbd03e1ad1048f64e7716745b7b2fd3b4aaa1e9fa3171dfa783bbd63",
+  "answers": {
+    "sub1": "중요왜곡표시위험이 더 높거나 유의적 위험으로 식별된 분야를 고려한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안에 해당 독립 명제가 직접 제시되어 있다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "241e733be661bed122f39ff449a733e9ff80e880e0cf4e688bff9bec85ec350c",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "중요왜곡표시위험이 더 높거나 유의적 위험으로 식별된 분야를 고려한다.",
+            "reason": "중요왜곡표시위험이 더 높거나 유의적 위험으로 식별된 분야를 제시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "보고기간 중 유의적인 사건·거래가 감사에 미치는 영향에 대한 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "중요왜곡표시위험이 더 높거나 유의적 위험으로 식별된 분야를 제시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "보고기간 중 유의적인 사건·거래가 감사에 미치는 영향에 대한 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-007",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "지배기구와 커뮤니케이션한 사항 중 유의적 감사인 주의를 요구한 사항을 결정할 때 고려할 분야 중 다음 두 분야의 내용을 모두 제시하시오. ① 중요왜곡표시위험 관련 분야 ② 보고기간의 사건·거래 관련 분야",
+        "user_answer": "중요왜곡표시위험이 더 높거나 유의적 위험으로 식별된 분야를 고려한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "중요왜곡표시위험이 더 높거나 유의적 위험으로 식별된 분야를 고려한다.",
+            "reason": "중요왜곡표시위험이 더 높거나 유의적 위험으로 식별된 분야를 제시했다.",
+            "claim": "중요왜곡표시위험이 더 높게 평가되거나 유의적 위험으로 식별된 분야를 제시함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "보고기간 중 유의적인 사건·거래가 감사에 미치는 영향에 대한 내용이 없다.",
+            "claim": "보고기간 중 유의적인 사건·거래가 감사에 미치는 영향을 고려 분야로 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사기준서 315에 따라 중요왜곡표시위험이 더 높게 평가되거나 유의적 위험으로 식별된 분야를 고려한다.",
+          "보고기간 중 발생한 유의적인 사건이나 거래가 감사에 미치는 영향을 고려한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_023721ac2782cbf4016aa4d1b6393887d0a38b448639634005",
+        "request_id": "req_a7d1a9dfeda74ed693081d4ab86adb1b",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2364,
+          "input_tokens_details": {
+            "cache_write_tokens": 2361,
+            "cached_tokens": 0
+          },
+          "output_tokens": 179,
+          "output_tokens_details": {
+            "reasoning_tokens": 33
+          },
+          "total_tokens": 2543
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00080565,
+        "min_usd": 0.00080565,
+        "max_usd": 0.00080565,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-16-007--sub1--standard--partial/input.json",
+      "sha256": "9298abdaf5d3fa4662faff14c16a8f97d9c7714bb72d220c9ee161c96ed3f5ff"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-16-007--sub1--standard--partial/transport.jsonl",
+      "sha256": "2a56f249f773d4128ff6e7bb62a6ae1088f9d486a9351a643222146e4486585f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-16-007--sub1--standard--partial/traces.jsonl",
+      "sha256": "6ababab697237329d246c121cad06ddd04ad3b41f53c2ca87b710fa22ce31996"
+    }
+  }
+}

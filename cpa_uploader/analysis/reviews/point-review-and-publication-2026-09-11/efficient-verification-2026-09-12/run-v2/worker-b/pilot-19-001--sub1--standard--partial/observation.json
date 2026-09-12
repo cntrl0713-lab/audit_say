@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-19-001--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-19-001--sub1--standard",
+  "source_set_id": "pilot-19-001",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "8330a48c122b847f0ec895d89d3eb7f136d79b3f0740633fb557c77256205597",
+  "answers": {
+    "sub1": "재무정보 작성업무"
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안에 해당 독립 명제가 직접 제시되어 있다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "8c1e936c0dfbb2b840e31792b57b4d3afbfc111b896cbaa5d99e50991ceb67c9",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "재무정보 작성업무",
+            "reason": "재무정보 작성업무를 비인증업무로 선택했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "합의된 절차 수행업무를 제시하지 않았다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "세무조정계산서 작성업무를 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "재무정보 작성업무를 비인증업무로 선택했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "합의된 절차 수행업무를 제시하지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "세무조정계산서 작성업무를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-19-001",
+    "score": 1,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "다음 업무 중 인증결론을 표명하지 않는 비인증업무를 모두 고르시오: 재무제표 감사, 재무정보 작성업무, 합의된 절차 수행업무, 역사적 재무제표 검토, 세무조정계산서 작성업무.",
+        "user_answer": "재무정보 작성업무",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "재무정보 작성업무",
+            "reason": "재무정보 작성업무를 비인증업무로 선택했다.",
+            "claim": "재무정보 작성업무를 비인증업무로 선택함. 재무제표 작성업무·재무제표 작성 서비스·장부작성대리 등 같은 작성업무를 뜻하는 표현도 인정함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "합의된 절차 수행업무를 제시하지 않았다.",
+            "claim": "합의된 절차 수행업무를 비인증업무 예시로 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "세무조정계산서 작성업무를 제시하지 않았다.",
+            "claim": "세무조정계산서 작성업무를 비인증업무로 선택함. 세무업무라는 상위 표현도 이 보기의 업무를 지칭하면 인정함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재무정보 작성업무",
+          "합의된 절차 수행업무",
+          "세무조정계산서 작성업무"
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0759d3fc78b55896016aa4d36c460487d09cc338391197392d",
+        "request_id": "req_570292fec2064154a2863e973aafd98c",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2483,
+          "input_tokens_details": {
+            "cache_write_tokens": 2480,
+            "cached_tokens": 0
+          },
+          "output_tokens": 206,
+          "output_tokens_details": {
+            "reasoning_tokens": 42
+          },
+          "total_tokens": 2689
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008678,
+        "min_usd": 0.0008678,
+        "max_usd": 0.0008678,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-19-001--sub1--standard--partial/input.json",
+      "sha256": "e6845b8d3ece93b7417c2fb138ce86d8df52432e1ee1ea0f741f0073d92295ad"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-19-001--sub1--standard--partial/transport.jsonl",
+      "sha256": "4c88933716cb11b1af7202abe9f2e88a886bdc80ba5205e0d7bce2d5f7b47e47"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-19-001--sub1--standard--partial/traces.jsonl",
+      "sha256": "62b750cd06f82933c53e938fbe47b6657b09fd992b089b2823cdeff6e1767fb6"
+    }
+  }
+}

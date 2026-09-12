@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "set_id": "pilot-19-004",
+  "origin": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/wrong-zero-selection-v3/pilot-19-004.json",
+    "sha256": "dc7b660420b407fb99b3a5249293cc3eaf0d3fe7060212fe182f2264c2e71ccc",
+    "case_id": "efficient-v3/sub1/topic-related-zero"
+  },
+  "normalization": "Only absent verdict reasons are supplied from the actual agent review; answer, verdict and expected score are unchanged.",
+  "cases": [
+    {
+      "id": "efficient-v3/sub1/topic-related-zero",
+      "subquestion_id": "sub1",
+      "kind": "explicit_wrong",
+      "answer": "비인증업무에서는 객관성이나 공정성을 유지할 의무가 없다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "답안 전체에 '감사·인증 의뢰인 업무를 제외한 비인증업무 자체가 독립성을 일률적으로 요구하지는 않는다.'의 내용이나 이를 분명히 함축하는 설명은 없다. 다른 명제의 반대만으로 이 명제를 반대로 판정하지 않는다."
+        },
+        {
+          "criterion_id": "crit1.p2",
+          "verdict": "not_met",
+          "reason": "답안 전체에 '다만 법규나 계약의 조건·목적 등에 따라 별도로 독립성이 요구되면 이를 준수한다.'의 내용이나 이를 분명히 함축하는 설명은 없다. 다른 명제의 반대만으로 이 명제를 반대로 판정하지 않는다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "명시적 반대: 답안은 '비인증업무에서도 항상 객관성 또는 공정을 유지해야 함을 설명함'에 반하는 조건·조치·명칭 또는 관계를 제시한다."
+        }
+      ],
+      "target_criterion_id": "crit2",
+      "note": "대표 wrong은 전체0점이어야 하는 효율실행 계약에 맞춘 새로운 주제 관련 오답이다. 기존 부분점수 경계 답안 및 원 기대값은 별도로 전부 보존한다.",
+      "origin": {
+        "reviewer": "agent",
+        "selection_contract": "model=max, 0<partial<max, wrong=0",
+        "related_source_ref_ids": [
+          "src1",
+          "src3"
+        ]
+      }
+    }
+  ]
+}

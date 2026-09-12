@@ -1,0 +1,205 @@
+{
+  "schema_version": "3.0",
+  "id": "pilot-05-006",
+  "type": "linked_question_set",
+  "status": "needs_review",
+  "title": "경영진 편의의 소급 재검토와 비경상 거래 평가",
+  "classification": {
+    "topic_id": "05",
+    "part": "PART2",
+    "chapter": "부정과 커뮤니케이션",
+    "domain": "audit",
+    "standards": [
+      "KGA 240"
+    ],
+    "tags": [
+      "부정",
+      "통제무력화",
+      "회계추정치",
+      "비경상 거래"
+    ]
+  },
+  "source_refs": [
+    {
+      "id": "src1",
+      "file": "cpa_uploader/data/회계감사_통합학습자료/01_감사기준/02_감사의_기본원칙과_감사인책임.md",
+      "title": "02_감사의_기본원칙과_감사인책임",
+      "page": "KGA 240",
+      "source_quote": "(ii) 전기재무제표에 반영된 유의적 회계추정치에 관련된 경영진의 판단과 가정들을 소급해서 재검토함 (문단 A46-A48 참조)",
+      "role": "standard",
+      "content_hash": "1532ff2031faacf0382e712a9b4fbdd8a2e13f9715a7e1d50e54ea5a566a297b"
+    },
+    {
+      "id": "src2",
+      "file": "cpa_uploader/data/회계감사_통합학습자료/01_감사기준/02_감사의_기본원칙과_감사인책임.md",
+      "title": "02_감사의_기본원칙과_감사인책임",
+      "page": "KGA 240",
+      "source_quote": "(c) 기업의 정상적인 사업과정을 벗어나는 거래, 또는 기업과 그 환경에 대한 감사인의 이해와 감사 중에 입수한 정보에 근거했을 때 비경상적으로 보이는 유의적 거래의 경우, 감사인은 해당 거래의 사업상 논리적 근거 (또는 그 결여)에 비추어 볼 때 그러한 거래가 부정한 재무보고를 수행하거나 자산횡령을 은폐하기 위하여 체결되었음을 나타내는 것인지 여부를 평가하여야 한다. (문단 A49 참조)",
+      "role": "standard",
+      "content_hash": "0c7c8695e79e3c592d23ba3f3e484f596430f7bfa8931443ddb3830df3add47f"
+    }
+  ],
+  "shared_context": {
+    "facts": [
+      {
+        "id": "fact1",
+        "text": "경영진의 통제무력화 위험에 대응한 감사절차를 수행하는 중이다.",
+        "scoreable": false
+      }
+    ]
+  },
+  "learning_order": [
+    "sub1",
+    "sub2"
+  ],
+  "subquestions": [
+    {
+      "id": "sub1",
+      "type": "descriptive",
+      "prompt": "경영진 편의 가능성을 검토할 때 전기재무제표와 관련하여 수행해야 할 절차를 설명하시오.",
+      "constraints": {
+        "ordered": false,
+        "max_entries": null,
+        "overflow_policy": "none"
+      },
+      "selection": {
+        "type": "all",
+        "n": null
+      },
+      "model_answer": [
+        "전기재무제표에 반영된 유의적 회계추정치와 관련된 경영진의 판단과 가정을 소급하여 재검토해야 한다."
+      ],
+      "requirements": [
+        {
+          "id": "req1",
+          "source_ref_id": "src1",
+          "source_quote": "(ii) 전기재무제표에 반영된 유의적 회계추정치에 관련된 경영진의 판단과 가정들을 소급해서 재검토함 (문단 A46-A48 참조)",
+          "source_span": "KGA 240.33(b)(ii) / p.89 (2025 전문)"
+        }
+      ],
+      "criteria": [
+        {
+          "id": "crit1",
+          "requirement_id": "req1",
+          "claim": "전기재무제표의 유의적 회계추정치 관련 경영진 판단·가정의 소급 재검토를 제시함",
+          "critical_facts": [
+            {
+              "id": "cf1",
+              "type": "action",
+              "expected": "전기재무제표에 반영된 유의적 회계추정치에 관한 경영진 판단·가정의 소급 재검토"
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sub2",
+      "type": "judgment",
+      "prompt": "기업의 정상적인 사업과정을 벗어나는 거래, 또는 기업과 그 환경에 대한 이해와 감사 중 입수한 정보에 비추어 비경상적으로 보이는 유의적 거래를 발견하였다. 거래의 형식적 적법성만 확인해도 충분한지 판단하고, 기준서가 요구하는 평가를 설명하시오.",
+      "constraints": {
+        "ordered": false,
+        "max_entries": null,
+        "overflow_policy": "none"
+      },
+      "selection": {
+        "type": "all",
+        "n": null
+      },
+      "model_answer": [
+        "형식적 적법성만 확인해서는 안 된다. 해당 거래의 사업상 논리적 근거(또는 그 결여)에 비추어, 그 거래가 부정한 재무보고를 수행하거나 자산횡령을 은폐하기 위해 체결되었음을 나타내는 것인지 여부를 평가해야 한다."
+      ],
+      "requirements": [
+        {
+          "id": "req2",
+          "source_ref_id": "src2",
+          "source_quote": "(c) 기업의 정상적인 사업과정을 벗어나는 거래, 또는 기업과 그 환경에 대한 감사인의 이해와 감사 중에 입수한 정보에 근거했을 때 비경상적으로 보이는 유의적 거래의 경우, 감사인은 해당 거래의 사업상 논리적 근거 (또는 그 결여)에 비추어 볼 때 그러한 거래가 부정한 재무보고를 수행하거나 자산횡령을 은폐하기 위하여 체결되었음을 나타내는 것인지 여부를 평가하여야 한다. (문단 A49 참조)",
+          "source_span": "KGA 240.33(c) / p.90 (2025 전문)"
+        }
+      ],
+      "criteria": [
+        {
+          "id": "crit2",
+          "requirement_id": "req2",
+          "claim": "거래의 형식적 적법성 확인만으로는 충분하지 않다. 필요한 추가 평가를 분명히 제시하여 형식적 적법성 확인만으로 불충분함을 함축해도 인정하되, 명시적 반대 결론은 인정하지 않는다.",
+          "critical_facts": [
+            {
+              "id": "cf-crit2",
+              "type": "negation",
+              "expected": "거래의 형식적 적법성 확인만으로는 충분하지 않다. 필요한 추가 평가를 분명히 제시하여 형식적 적법성 확인만으로 불충분함을 함축해도 인정하되, 명시적 반대 결론은 인정하지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit3",
+          "requirement_id": "req2",
+          "claim": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 부정한 재무보고를 수행하기 위해 체결되었음을 나타내는지 평가한다.",
+          "critical_facts": [
+            {
+              "id": "cf-crit3",
+              "type": "action",
+              "expected": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 부정한 재무보고를 수행하기 위해 체결되었음을 나타내는지 평가한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit4",
+          "requirement_id": "req2",
+          "claim": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 자산횡령을 은폐하기 위해 체결되었음을 나타내는지 평가한다.",
+          "critical_facts": [
+            {
+              "id": "cf-crit4",
+              "type": "action",
+              "expected": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 자산횡령을 은폐하기 위해 체결되었음을 나타내는지 평가한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "source_fidelity": "exact",
+    "review_status": "needs_human_review",
+    "calculation_required": false,
+    "notes": [
+      "2026-08-24 수동 제작. KGA 240 문단 33(b)(ii)·(c) 원문 대조 완료. 게시 전 사람 의미 검수 필요.",
+      "2026-09-08 주제05 후속 검토: 로컬 인용을 공식 2025 전문과 대조. exact는 로컬 전재문 기준이며 원문 PDF의 서식·줄바꿈과 다름. 기존 검수 상태 유지. 변경·실측·2027 미확정 사항은 docs/reports/question-review-2027/05.md 참조.",
+      "2026-09-11 기존 배점 후속 후보. 과거 검수 메모는 과거 판본 기록이며 이번 수정은 로컬 검토·형상 확인 단계, 새 모델 의미검수·채점·사람 확인은 미실행이다."
+    ]
+  }
+}

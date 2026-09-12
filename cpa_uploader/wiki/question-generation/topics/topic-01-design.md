@@ -6,17 +6,17 @@ type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, quality]
-sources: [docs/reports/question-review-2027/01.md, docs/reports/question-review-2027/01.json]
+sources: [docs/archive/과거-검토-증거/reports/question-review-2027/주제-01-검토-결과-감사인의-책임과-품질관리.md, cpa_uploader/analysis/reviews/question-review-2027/01.json]
 confidence: high
 ---
 
 # 주제01. 감사인의 책임과 품질관리
 
-[검토 보고서](../../../../docs/reports/question-review-2027/01.md) · [물음별 근거 장부](../../../../docs/reports/question-review-2027/01.json)
+[검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제-01-검토-결과-감사인의-책임과-품질관리.md) · [물음별 근거 장부](../../../analysis/reviews/question-review-2027/01.json)
 
-주제01–03의 모두 작성·정수 배점·판단과 근거의 대응은 [수정 결정](../../../../docs/plans/question-review-01-03-remediation.md)을 따른다. 기존 검토 기록의 과거 실측을 수정 후 실측으로 대체해서 읽지 않는다.
+주제01–03의 모두 작성·정수 배점·판단과 근거의 대응은 [수정 결정](../../../../docs/plans/주제-01-03-검토에-따른-수정-결정.md)을 따른다. 기존 검토 기록의 과거 실측을 수정 후 실측으로 대체해서 읽지 않는다.
 
-개정220의 시행일과 시험 적용 판본은 [별도 메모](../../../../docs/reports/question-review-2027/kga220-effective-date-note.md)에서 구별한다.
+개정220의 시행일과 시험 적용 판본은 [별도 메모](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/개정-감사기준서-220-시행일-별도-기록.md)에서 구별한다.
 
 ## 사용 범위
 

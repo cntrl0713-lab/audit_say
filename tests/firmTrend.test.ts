@@ -93,3 +93,39 @@ test('전 임직원·공인회계사·등록회계사는 접수번호별 독립 
         null,
     );
 });
+
+test('공인회계사 1인당 매출 추이는 같은 시작연도의 두 공시를 각각 계산한다', () => {
+    const first = summary(2024, {
+        fy_start_date: '2024-01-01', fy_end_date: '2024-06-30', source_rcept_no: 'first',
+        revenue_total: 600, revenue_per_employee: 30,
+    });
+    const second = summary(2024, {
+        fy_start_date: '2024-07-01', fy_end_date: '2024-12-31', source_rcept_no: 'second',
+        revenue_total: 1000, revenue_per_employee: 25,
+    });
+    const headcount = (period: FirmAnnualSummary, count: number): FirmHeadcountRow => ({
+        ...period, code: 'HR_CPA_ALL', occurrence: 1, raw_text: null, numeric_value: count, unit_multiplier: 1,
+    });
+    const trend = buildAnnualTrend([second, first], [headcount(first, 10), headcount(second, 20)]);
+    const perCpa = trend.series.find(series => series.key === 'revenue_per_cpa');
+    assert.equal(perCpa?.label, '공인회계사 1인당 매출액');
+    assert.equal(perCpa?.unit, 'krw');
+    const points = perCpa!.points.filter(point => point.value !== null);
+    assert.deepEqual(points.map(point => point.value), [60, 50]);
+    assert.notEqual(points[0].x, points[1].x);
+    assert.match(points[0].label, /first/);
+    assert.match(points[1].label, /second/);
+    assert.deepEqual(trend.series.find(series => series.key === 'revenue_per_employee')!.points.filter(point => point.value !== null).map(point => point.value), [30, 25]);
+    assert.deepEqual(trend.multiPeriodYears, [2024]);
+});
+
+test('1인당 매출 추이는 실제 0을 보존하고 해당 공시 인원이 없으면 결측으로 둔다', () => {
+    const zero = summary(2024, { revenue_total: 0 });
+    const missing = summary(2025, { revenue_total: 100, revenue_per_employee: 5 });
+    const count: FirmHeadcountRow = {
+        ...zero, code: 'HR_CPA_ALL', occurrence: 1, raw_text: null, numeric_value: 10, unit_multiplier: 1,
+    };
+    const trend = buildAnnualTrend([zero, missing], [count]);
+    assert.deepEqual(trend.series.find(series => series.key === 'revenue_per_cpa')!.points.map(point => point.value), [null, 0, null, null]);
+    assert.equal(trend.series.find(series => series.key === 'revenue_per_employee')!.points.find(point => point.x === 2025)?.value, 5);
+});

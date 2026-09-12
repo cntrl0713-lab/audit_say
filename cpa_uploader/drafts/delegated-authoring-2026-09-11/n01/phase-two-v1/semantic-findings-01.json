@@ -1,0 +1,82 @@
+{
+  "findings": [
+    {
+      "id": "N01-SEM-001",
+      "unit_id": "subquestion:sub3",
+      "observed": {
+        "nonduplication": "fail"
+      },
+      "kind": "review_contract_ambiguity",
+      "source": "KGA200.A24/A25",
+      "analysis": "고정 plan.existing_question_difference가 pilot-02-001/sub1/crit1~2와 sub3의 신뢰 불경감을 의도된 복습으로 명시한다. 현재 비교은행의 그 실제 두 criterion도 같은 명제를 평가하므로 중복 관측 자체는 정확하다. 새 sub3/crit8은 납품확인서 신뢰성 의문 해결을 위한 조사·추가/변경절차 판단, crit9는 선언된 복습이다. 정의/sub1과 네 사례 적용/sub2는 별도 신규 범위다. 검수기 지시는 기존·같은세트 의미중복 대조만 요구하고 선언된 교육적 복습과 의도되지 않은 중복의 판정 경계를 정의하지 않는다. 승인된 복습을 숨기거나 신규범위로 세지 않고, 의미중복 존재와 부적절한 중복의 승인판정을 구별할 공통계약 확인이 필요하다.",
+      "existing_ids": [
+        "pilot-02-001/sub1/crit1",
+        "pilot-02-001/sub1/crit2"
+      ],
+      "proposed_change": "문항·plan·점수는 현재 수정하지 않음. 총괄이 nonduplication의 의도된복습 허용 정책을 검수입력에 명시할지 결정; 기존동일명제 연결은 근거와 함께 계속 보고. 이 장부로 fail을 pass로 바꾸지 않음.",
+      "repeats_completed": 1,
+      "repeats_pending": 2
+    },
+    {
+      "id": "N01-SEM-002",
+      "unit_id": "criterion:sub1:crit1",
+      "observed": {
+        "source_support": "uncertain"
+      },
+      "kind": "model_locator_uncertainty",
+      "analysis": "모델은 세부라인 독립대조가 어렵다고 했지만 동일 source_ref 및 요구 인용을 읽은 subquestion:sub1과 crit2/3는 locator일치 pass였다. 실제 등록파일156행(l),157~159행 의구심정의가 요구문단·인용과 일치함을 재확인했다. 실제 source_span 오류는 발견하지 못함.",
+      "source_file": "cpa_uploader/data/official/delegated-n01-kga200-210-230-2025.txt",
+      "source_sha256": "d73a24553dc65f8ffc106d324ec77dd99dd578426318213bfb249d957d67bd6f",
+      "proposed_change": "고정문항·등록출처 유지. 복구 후 동일 단위 총3회 실측해 변동과 reference_catalog 전달을 조사.",
+      "repeats_completed": 1,
+      "repeats_pending": 2
+    }
+  ],
+  "incident": {
+    "unit_id": "criterion:sub3:crit8",
+    "attempts": [
+      {
+        "attempt": 1,
+        "performed_at": "2026-09-11T01:29:44.360Z",
+        "input_hash": "de7f93ffbad6affca7644cc53a06c2cb85ffcc85e338d62cdb95eaaf04503325",
+        "schema_hash": "a666f0698178ae6dbef1022bf28044042b2905dca717d20e2a4d04eded47b6d8",
+        "error": "OpenAIRequestError: OpenAI API 요청에 실패했습니다.",
+        "error_code": "transport"
+      },
+      {
+        "attempt": 2,
+        "performed_at": "2026-09-11T01:29:45.263Z",
+        "input_hash": "de7f93ffbad6affca7644cc53a06c2cb85ffcc85e338d62cdb95eaaf04503325",
+        "schema_hash": "a666f0698178ae6dbef1022bf28044042b2905dca717d20e2a4d04eded47b6d8",
+        "error": "OpenAIRequestError: OpenAI API 요청에 실패했습니다.",
+        "error_code": "transport"
+      }
+    ],
+    "successful_chunk_responses": 10,
+    "receipt_written": false,
+    "recover_probe": "pilot-02-006/recovery-probe-01/summary.json",
+    "recovery_probe_result": {
+      "finished_at": "2026-09-11T01:31:19.198Z",
+      "set_id": "pilot-02-006",
+      "model": "gpt-5.6-luna",
+      "planned_cases": 1,
+      "recorded_cases": 1,
+      "actual_attempts": 1,
+      "mismatched_case_ids": [],
+      "stopped_on_execution_error": false,
+      "changed_inputs": [],
+      "records": [
+        {
+          "file": "case-0001-attempt-1.json",
+          "set_id": "pilot-02-006",
+          "case_id": "sub1/model",
+          "attempt": 1,
+          "matched": true,
+          "error": null
+        }
+      ]
+    },
+    "root_diagnosis_pending": true
+  },
+  "fixed_inputs_modified": false
+}

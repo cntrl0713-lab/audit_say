@@ -84,7 +84,7 @@ export default async function FirmDetailPage({
                                 key={candidate}
                                 href={`${base}${buildFilterQuery(query, isFirmOwnTab ? { fy_start_year: candidate, fy_year: null } : { year: candidate })}`}
                                 aria-current={candidate === selectedYear ? 'date' : undefined}
-                                className={`inline-flex min-h-11 min-w-14 items-center justify-center rounded-md px-3 text-sm tabular-nums transition-colors ${candidate === selectedYear ? 'bg-foreground font-medium text-white' : 'text-foreground/75 hover:bg-card'}`}
+                                className={`inline-flex min-h-11 min-w-14 items-center justify-center rounded-md px-3 text-sm tabular-nums transition-colors ${candidate === selectedYear ? 'bg-foreground font-medium text-primary-foreground' : 'text-foreground/75 hover:bg-card'}`}
                             >{candidate}</Link>
                         ))}
                     </nav>
@@ -133,7 +133,7 @@ export default async function FirmDetailPage({
                     { group: 'jobs', label: '채용공고', target: 'jobs' },
                 ] as const).map(item => (
                     <Link key={item.group} href={tabHref(item.target)} aria-current={group === item.group ? 'page' : undefined}
-                        className={`flex min-h-11 items-center justify-center rounded-lg px-4 py-2 text-sm ${group === item.group ? 'bg-foreground font-medium text-white' : 'text-foreground/75 hover:bg-card'}`}>
+                        className={`flex min-h-11 items-center justify-center rounded-lg px-4 py-2 text-sm ${group === item.group ? 'bg-foreground font-medium text-primary-foreground' : 'text-foreground/75 hover:bg-card'}`}>
                         {item.label}
                     </Link>
                 ))}
@@ -157,7 +157,7 @@ export default async function FirmDetailPage({
 
             {tab === 'jobs' ? <JobsTab firmId={firmId} firmName={firm.firm_name} />
                 : tab === 'overview' ? <OverviewTab summaries={annualSummaries} periods={periods} tenure={tenure} headcounts={headcounts} />
-                : tab === 'revenue' ? <RevenueTab summaries={annualSummaries} periods={periods} year={annualYear} />
+                : tab === 'revenue' ? <RevenueTab summaries={annualSummaries} periods={periods} year={annualYear} headcounts={headcounts} />
                 : tab === 'compensation' ? <CompensationTab firmId={firmId} periods={periods} year={annualYear} />
                 : tab === 'people' ? <PeopleTab firmId={firmId} summaries={annualSummaries} periods={periods} year={annualYear} tenure={tenure} headcounts={headcounts} />
                 : year === null || summary === null ? (

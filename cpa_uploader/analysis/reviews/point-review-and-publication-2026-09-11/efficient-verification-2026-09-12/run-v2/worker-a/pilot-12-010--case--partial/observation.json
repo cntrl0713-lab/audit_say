@@ -1,0 +1,220 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-12-010--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-010--case",
+  "source_set_id": "pilot-12-010",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "46d8286d5d86b1d904607d073acb052afa8ebe098a5db9d2754975cb524d9123",
+  "answers": {
+    "sub1": "진술 하나가 없다는 사실만으로 자동 의견거절은 아니고 특정 조건의 충족 여부를 봐야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 어느 서면진술이든 하나라도 제공되지 않으면 항상 의견을 거절해야 한다는 주장은 부적절하며, 미제공 범위와 해당 조건을 확인해야 한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 미제공 진술이 재무제표 작성책임 및 제공정보·거래완전성에 관한 필수 책임진술, 즉580.10·11에서 요구하는 진술에 해당하는지 확인한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 성실성에 대한 의문이580.10·11의 책임진술을 신뢰할 수 없을 정도라고 감사인이 결론내렸는지 확인한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "7205f4eeb58d79bd56a10c1eb4a2e6bd8517f8d3ff84144bc9cf254ce122f2e6",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "자동 의견거절이 아니라는 결론은 있으나 미제공 진술의 범위와 구체적 조건을 확인해야 한다는 내용이 충분히 제시되지 않았다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "필수 책임진술의 구체적 범위를 확인한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "경영진 성실성 의문이 책임진술을 신뢰할 수 없게 하는지 확인한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "자동 의견거절이 아니라는 결론은 있으나 미제공 진술의 범위와 구체적 조건을 확인해야 한다는 내용이 충분히 제시되지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "필수 책임진술의 구체적 범위를 확인한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진 성실성 의문이 책임진술을 신뢰할 수 없게 하는지 확인한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-010",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "상황 A에서 어느 서면진술이든 하나라도 없으면 항상 의견거절이라는 주장이 적절한지 판단하시오. 이어 특정 의견거절 조건의 해당 여부를 판단하려면 미제공 진술의 범위와 경영진 성실성에 관하여 무엇을 확인해야 하는지 각각 설명하시오. 일반 미제공 대응 목록은 요구하지 않는다.",
+        "user_answer": "진술 하나가 없다는 사실만으로 자동 의견거절은 아니고 특정 조건의 충족 여부를 봐야 한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "자동 의견거절이 아니라는 결론은 있으나 미제공 진술의 범위와 구체적 조건을 확인해야 한다는 내용이 충분히 제시되지 않았다.",
+            "claim": "어느 서면진술이든 하나라도 제공되지 않으면 항상 의견을 거절해야 한다는 주장은 부적절하며, 미제공 범위와 해당 조건을 확인해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "필수 책임진술의 구체적 범위를 확인한다는 내용이 없다.",
+            "claim": "미제공 진술이 재무제표 작성책임 및 제공정보·거래완전성에 관한 필수 책임진술, 즉580.10·11에서 요구하는 진술에 해당하는지 확인한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "경영진 성실성 의문이 책임진술을 신뢰할 수 없게 하는지 확인한다는 내용이 없다.",
+            "claim": "성실성에 대한 의문이580.10·11의 책임진술을 신뢰할 수 없을 정도라고 감사인이 결론내렸는지 확인한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "어느 서면진술이든 하나라도 제공되지 않으면 항상 의견을 거절해야 한다는 주장은 부적절하며, 미제공 범위와 해당 조건을 확인해야 한다.",
+          "미제공 진술이 재무제표 작성책임 및 제공정보·거래완전성에 관한 필수 책임진술, 즉580.10·11에서 요구하는 진술에 해당하는지 확인한다.",
+          "성실성에 대한 의문이580.10·11의 책임진술을 신뢰할 수 없을 정도라고 감사인이 결론내렸는지 확인한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 0,
+      "delta": -1,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_07e510fbee396c79016aa4d07e73d887d0bace79d1c996e675",
+        "request_id": "req_8e04b77117184ade8d013a425e1f0f9b",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3013,
+          "input_tokens_details": {
+            "cache_write_tokens": 3010,
+            "cached_tokens": 0
+          },
+          "output_tokens": 297,
+          "output_tokens_details": {
+            "reasoning_tokens": 98
+          },
+          "total_tokens": 3310
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0011095,
+        "min_usd": 0.0011095,
+        "max_usd": 0.0011095,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-12-010--case--partial/input.json",
+      "sha256": "55041373eb86c4bde230f3dac408434e368cfe16528b52d60b28dc36a35f476f"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-12-010--case--partial/transport.jsonl",
+      "sha256": "f1b21b007294034954472e08f83eb2a4175a1cf290454be141881acfda448a81"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-12-010--case--partial/traces.jsonl",
+      "sha256": "4a5927fe693e4c1a3a8943d15ded0af5c353e93e0c690088f739f911ffe6d2d2"
+    }
+  }
+}

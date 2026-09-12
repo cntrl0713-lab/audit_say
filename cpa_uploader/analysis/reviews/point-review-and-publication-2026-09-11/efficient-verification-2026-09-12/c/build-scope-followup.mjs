@@ -1,0 +1,18 @@
+import fs from 'node:fs';import crypto from 'node:crypto';import assert from 'node:assert/strict';
+const D='cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11',E=`${D}/efficient-verification-2026-09-12/c`,O=`${E}/scope-followups-v1/pilot-11-005`;
+const read=f=>JSON.parse(fs.readFileSync(f,'utf8')),sha=x=>crypto.createHash('sha256').update(x).digest('hex'),fh=f=>sha(fs.readFileSync(f)),write=(f,x)=>fs.writeFileSync(f,JSON.stringify(x,null,2)+'\n');
+fs.mkdirSync(O,{recursive:true});const j=read(`${D}/a/execution-all-v9/manifest.json`).jobs.find(j=>j.set_id==='pilot-11-005'),d=read(j.file),old=Array.isArray(d)?d[0]:d,s=structuredClone(old),q=s.subquestions.find(q=>q.id==='sub3'),c=q.criteria.find(c=>c.id==='sub3.crit4');
+const reason='발문은 공시에 대해 추가로 수행할 절차를 설명하도록 요구한다. 충분하고 적합한 증거를 얻는 추가 절차의 수행을 설명하면 이1점을 인정하며 별도 설계라는 단어의 반복을 숨은 필수요건으로 추가하지 않는다. 19-001/sub2처럼 설계·수행을 각각 명시 요구하는 발문과 다르다. 기준서의 설계·수행 의무 자체는 축소하지 않으며 수행 불필요를 명시한 답은 반대다.';
+c.critical_facts.push({id:'sub3.crit4.scope',type:'condition',expected:reason});
+const pr=read(j.plan_file),p=pr.plans?.find(p=>p.set_id===s.id)??pr;p.scope.conditions.push(reason);p.existing_question_difference+=' 후속 배점 타당성 대조: '+reason;
+const qaFile=`${E}/qa-expectation-followups-v1/pilot-11-005.json`,qa=read(qaFile);const originalCases=structuredClone(qa.cases);
+function cc(id,answer,met,contra){return {id,subquestion_id:'sub3',kind:'scope_boundary',answer,expected_points:met.length,expected_verdicts:q.criteria.map(c=>({criterion_id:c.id,verdict:met.includes(c.id)?'met':contra.includes(c.id)?'contradicted':'not_met',reason:met.includes(c.id)?(c.id==='sub3.crit1'?'추가 증거입수 절차를 수행한다는 조치는 현재 확인만으로 검증을 종료할 수 없음을 함축한다.':'공시 위험에 대응한 충분·적합 증거 입수 목적의 추가절차 수행을 제시하며 설계라는 단어의 반복은 필수가 아니다.'):contra.includes(c.id)?'현재 사실만으로 종료하고 추가절차 수행 불필요를 명시한다.':'금액의 증거 뒷받침 또는 합리성에 대해서는 언급하지 않는다.'})),target_criterion_id:'sub3.crit4',note:reason};}
+qa.cases.push(cc('efficient/sub3/disclosure-procedure-without-design-word','추정불확실성 공시의 평가된 중요왜곡표시위험에 대응하여 충분하고 적합한 감사증거를 입수하는 추가 감사절차를 수행한다.',['sub3.crit1','sub3.crit4'],[]));
+qa.cases.push(cc('efficient/sub3/no-performance-explicit','경영진 금액이 범위 안에 있으므로 검증을 종료할 수 있으며 공시에 대한 추가 감사절차는 설계만 하면 되고 수행할 필요는 없다.',[],['sub3.crit1','sub3.crit4']));
+assert.deepEqual(qa.cases.slice(0,originalCases.length),originalCases);assert.deepEqual(s.shared_context,old.shared_context);assert.deepEqual(s.source_refs,old.source_refs);assert.deepEqual(s.subquestions.map(x=>[x.prompt,x.model_answer]),old.subquestions.map(x=>[x.prompt,x.model_answer]));
+const reverted=structuredClone(s);reverted.subquestions.find(q=>q.id==='sub3').criteria.find(c=>c.id==='sub3.crit4').critical_facts.pop();assert.deepEqual(reverted,old);
+write(`${O}/question.json`,[s]);write(`${O}/authoring-plan.json`,p);write(`${O}/qa.json`,qa);
+const cls=read(`${D}/c/prepared-reviewed-v8/learning-question-classifications.json`).classifications.filter(c=>c.source_set_id===s.id);write(`${O}/classification.json`,{version:1,classifications:cls});
+const entry={set_id:s.id,file:`${O}/question.json`,sha256:fh(`${O}/question.json`),plan_file:`${O}/authoring-plan.json`,plan_sha256:fh(`${O}/authoring-plan.json`),qa_file:`${O}/qa.json`,qa_sha256:fh(`${O}/qa.json`)};
+write(`${O}/changes.json`,{version:1,reviewer:'agent',reason,before:j,after:entry,changed_path:'subquestions[sub3].criteria[sub3.crit4].critical_facts[scope]',prompt_answer_claim_points_unchanged:true,original_qa_answers_preserved:qa.cases.length-2,prior_qa_expectation_followup:`${E}/qa-expectation-followups-v1/changes.json`,new_cases:qa.cases.slice(-2),api_calls:0});
+write(`${E}/scope-followups-v1/index.json`,{version:1,entries:[entry]});console.log(JSON.stringify(entry));

@@ -48,6 +48,16 @@ export interface SourceTopic { id: string; title: string; keywords: string[] }
 export interface SourceRegistry {
   version: number;
   editionPolicy: string;
+  referenceFootnotes?: {
+    file: string;
+    source_hash: string;
+    standard: string;
+    from_paragraph: string;
+    owner_paragraph: string;
+    footnote_number: string;
+    footnote_text: string;
+    owner_callout: string;
+  }[];
   topics: { id: string; standards: string[]; defaultSource: { standard: string; paragraph: string }; priorityReason?: string }[];
   coherenceGroups: { standard: string; paragraphs: string[]; reason: string }[];
   topic19: { file: string; metadataFile: string; sections: { prefix: string; standard: string; metadataName?: string; metadataUrlIncludes?: string; warning?: string }[] };

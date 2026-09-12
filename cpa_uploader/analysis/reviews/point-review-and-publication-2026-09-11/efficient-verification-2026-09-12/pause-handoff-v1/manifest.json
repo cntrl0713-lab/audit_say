@@ -1,0 +1,461 @@
+{
+  "checkpoint_version": "question-verification-2026-09-12-paused-005",
+  "created_at": "2026-09-12T05:23:45.635Z",
+  "status": "paused_by_user_after_local_fix_validation",
+  "user_resume_required": true,
+  "report": "docs/reports/question-points-and-publication-2026-09-12.md",
+  "instructions": "docs/plans/question-verification-resume-after-pause-2026-09-12.md",
+  "completed": {
+    "content_and_points_questions": 351,
+    "newly_reviewed": 281,
+    "unchanged_prior_reviews": 70,
+    "fixed_grading_answers": 830,
+    "exact_points": 821,
+    "within_one_point": 830,
+    "canonical_installed": true,
+    "analysis_wiki_checks_passed": true,
+    "bank_import_applied": true,
+    "local_metadata_fix_sql_tests": 40,
+    "final_real_bank_payload_test": 1,
+    "local_current_and_retired_sets": 258
+  },
+  "production": {
+    "last_observed_at": "2026-09-12T05:10:29.032Z",
+    "project": "xvifzicrjmbfqaepcfpp",
+    "release_id": "2fe460a1-8107-40cd-8afd-e6eb539ef997",
+    "source_file_hash": "4891f97bcfc98cdeda77567b59657577da184317df199fd53c859004728acd80",
+    "questions": 351,
+    "points": 1298,
+    "standard_questions": 279,
+    "case_questions": 72,
+    "learning_units": 320,
+    "first_independent_postcheck": "failed_private_metadata_missing",
+    "unresolved_source_spans": 319,
+    "unresolved_grading_scopes": 13,
+    "affected_scope_sets": {
+      "pilot-16-011": 2,
+      "pilot-17-005": 2,
+      "pilot-10-007": 4,
+      "pilot-10-007-standards": 5
+    },
+    "metadata_migration_applied": false,
+    "followup_postcheck_performed": false,
+    "live_state_requeried_after_user_stop": false
+  },
+  "remaining": [
+    "Read current state after explicit resume and compare checkpoint",
+    "Apply reviewed metadata SQL in guarded transaction",
+    "Read all sealed production versions and verify historical compatibility",
+    "Run new complete active-bank postcheck and grading payload comparison",
+    "Write final publication completion only after all postchecks pass"
+  ],
+  "model_api": {
+    "model": "gpt-5.6-luna",
+    "actual_calls_in_efficient_batch": 742,
+    "usage_based_estimate_usd": 0.8456149,
+    "new_calls_planned_for_metadata_restore": 0,
+    "provider_invoice_amount": false
+  },
+  "ownership": {
+    "subagents_completed_and_stopped": [
+      "plan_foundations",
+      "plan_procedures",
+      "plan_completion"
+    ],
+    "root_remaining_action": "Write this local checkpoint and finish the turn",
+    "no_automation_created": true
+  },
+  "verification_scope": "Hashes below were checked locally now. Older full grading/source input inventories remain in the separately hashed execution manifest and receipts; this checkpoint did not re-run API, DB, or the entire older inventory.",
+  "files": [
+    {
+      "file": ".agents/skills/audit-question-author/SKILL.md",
+      "sha256": "633d8fa29e1790c3b2b527d637472d2cb28698c8ddb849b4ab770302e52dd653",
+      "bytes": 21000
+    },
+    {
+      "file": ".agents/skills/audit-question-review/SKILL.md",
+      "sha256": "1f199ee1d1abb3eb68148fdf35c43c2ee207a896e32e631fc9d8a815cdd78c69",
+      "bytes": 23787
+    },
+    {
+      "file": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+      "sha256": "e66386ad386479b168d50dc2fe470381243478d8ded1d2f95872cf0746635d74",
+      "bytes": 10485
+    },
+    {
+      "file": "AGENTS.md",
+      "sha256": "919458c282d4fc5119ca0aeab1ac11112466226616bb52be16bce4aa3a991d75",
+      "bytes": 13719
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/README.md",
+      "sha256": "7abd6bf5235056dac12e3af70f8658da37d05a8000dac3e3bf00406adb64b50f",
+      "bytes": 11192
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/c/verify-final-learning-rollout.ts",
+      "sha256": "f45280a30bde211ee0bdf09bcedf2e0356fe2fb3c30824bea7309278254e0140",
+      "bytes": 23292
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/README.md",
+      "sha256": "50d97731e23bc0b79a0e5ba17e2af3756005f51774b4ad8e7e7c0f08e4c176ff",
+      "bytes": 4285
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/bankwide-point-coverage.json",
+      "sha256": "b0943063cf7f8016436ee4d1e11344921e545b5c52db6a65b6feac322ba2cc2f",
+      "bytes": 356597
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/operational-point-diff-v1.json",
+      "sha256": "97342ea38cb27adad7b0ccfe9bd03588ec6450e7687ce9fa04fe0f8de1791141",
+      "bytes": 992904
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/operational-point-diff-v1.md",
+      "sha256": "8dca81dd49b5d6eb0689684933588091d37e48e7138c9c48b527902d7df350fd",
+      "bytes": 125018
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/policy-final-check-v1.json",
+      "sha256": "6ab4a04c10b4ec024ebf0510abe130b838bbb853e8c4e1f7af4fc6a857b4ff0a",
+      "bytes": 67211
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/topic-19-point-detail.md",
+      "sha256": "3fab60aca81d1934c4a4e006412a65ae1a919b74e8ecabda43578fd412403efb",
+      "bytes": 15161
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/final-api-accounting-v1.json",
+      "sha256": "f010045640e58166599fe44a74803e5dfc6398f8e0dbd31629bc183fe27ca81a",
+      "bytes": 2304211
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/private-metadata-rollout-review-v1.json",
+      "sha256": "f14e7610200d80bbbae3f3f563800e7a40e59c49f3fcf20ac383501d0457d9f3",
+      "bytes": 6400
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/private-metadata-rollout-review-v1.md",
+      "sha256": "97d4f6ff121370f72c4f5fb520ec29476fa6e473a372a87e8c6e593bc23a63fb",
+      "bytes": 6143
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/handoff.json",
+      "sha256": "3c9df80e6e18035caf4e6e21ee843c7922ccfdf39f444104f34c40e6452fb95b",
+      "bytes": 8549
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/handoff.md",
+      "sha256": "0b87e104907d3d632436c391e6b7c0f39dcef69c3d6dbec69120bb7c28bd3b61",
+      "bytes": 5279
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/lint-v1.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration-test-v1.log",
+      "sha256": "20ffa5b03a890fb827356e0f00a7ce2458dde18a6b9c7f0898d98c5d3ae7b92f",
+      "bytes": 2629
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration-test-v2.log",
+      "sha256": "1cdb9a27278c69d2d5c1f8152c4b53b46bf78cfa01f57c647db9d179e39c778a",
+      "bytes": 635
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration.test.ts",
+      "sha256": "f7a67eae4d494567599aebc3172f49e0e69690a120a2b9a08ea2fd16ebbde8c7",
+      "bytes": 19951
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/typecheck-v1.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/publication-stages/production-stage-004/completion.json",
+      "sha256": "9579fadd3518ad82d690e36c137ba438a984a1cec95ac9da5d548fe9775d294f",
+      "bytes": 9170
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/publication-workflow-v2/preparation-004.json",
+      "sha256": "5ecd32647b7ebc1ecc92a5661c6d3a4f07f3f7431cb7edd1eb3e0376fc253063",
+      "bytes": 3524047
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v5/candidate-authoring.json",
+      "sha256": "16cfa40be7e2aeb1d4543729efe17bcbbeae2da866a580c7d42f2136e29762e8",
+      "bytes": 3702942
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v5/grading-manifest.json",
+      "sha256": "920e6956a0ae97903853189edc91383ecda793ed90e1b6003ed37f90e9541a04",
+      "bytes": 4166965
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/canonical-install-v1/install-004/backup/authoring.json",
+      "sha256": "6f7453e0915d42f80c2c2e0799b7beb83be563fabe1ea7fb0f35cdbcb87fa1d1",
+      "bytes": 1393976
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/canonical-install-v1/install-004/backup/catalog.json",
+      "sha256": "498639b5a625d815c46b0d538133c762a4c468f1882731e3422833c8e2a5db71",
+      "bytes": 207402
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/canonical-install-v1/install-004/backup/encrypted.json",
+      "sha256": "e66b7b9b8192370b48df567b232550dd083cec88621ccd629074123e35a58885",
+      "bytes": 1850388
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/canonical-install-v1/install-004/backup/ledger.json",
+      "sha256": "df23d44896a3edc0c1331e758ab489e7a9ab19c6a4139f182238c4497408ce19",
+      "bytes": 6373546
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/canonical-install-v1/install-004/backup/previous-classification-review.json",
+      "sha256": "bccc47279127fba417081fa08e134593bba949c62c28e81f8427fced190b8e4d",
+      "bytes": 103178
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/canonical-install-v1/install-004/backup/public.json",
+      "sha256": "39f7dc822a600c0e5a72a9ea297cde24edfd59b0a4c882bd01f10c1218bdb505",
+      "bytes": 301627
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/canonical-install-v1/install-004/classification-review.json",
+      "sha256": "1b123abb0b3d1d9e542c9d4151c0b43f868d49c9187750bc4754f88fb72c84fb",
+      "bytes": 376620
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/canonical-install-v1/install-004/completion.json",
+      "sha256": "6333e4820650f7ce4b05d4159bc14f8c923aff81fc4a4e1a2054649cce007f1b",
+      "bytes": 9194
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/efficient-final004-tests.log",
+      "sha256": "d3b4f1b355409b55384580574db86ca170746df8a471408ac08b685157491f08",
+      "bytes": 9116
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-analysis-build.log",
+      "sha256": "e4ecf6eea32f456e3aab6754e618e308953f37feda205616ddfd494750a55796",
+      "bytes": 383
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-analysis-check.log",
+      "sha256": "e941417901a8f0b4e80af1ccc3371c8f4fa3a0199382f323d5dcd7febc68872b",
+      "bytes": 574
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-build-results.json",
+      "sha256": "01a95aa12bf99c6764d8b8983826a163c2d570f656d10afb2248eb71bf107439",
+      "bytes": 943
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-canonical-dry-run.log",
+      "sha256": "a70a17fcd3e0ee591fadaae369771ca5bbb2ade0d5761769988a7e87e47a6ff3",
+      "bytes": 3991
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-canonical-install.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-db-apply.log",
+      "sha256": "e3d81de2b8becba805e8c40b2ea00e54a2d659892104e2226011082ef72070ba",
+      "bytes": 1358
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-db-postverify-derived-v1.log",
+      "sha256": "c5e1674ee1eba80a988fb10e174932f5f0954b6d75dc2f7f038c8d79b2af998f",
+      "bytes": 2605
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-db-postverify.log",
+      "sha256": "be66d94ce04ceb16ddbea484700f1836d697927e58dbe83ed3582fb050c18614",
+      "bytes": 45
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-wiki-build.log",
+      "sha256": "251c11d26b77a3ff7a36f47208ab7af0bec4902df0b8b4e9111ef7782dfc7cf9",
+      "bytes": 419
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-wiki-check.log",
+      "sha256": "218cd07e2bf75ef4c3d6837289179daaac66e8f0470e97d0776ba244943e991c",
+      "bytes": 1143
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final004-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final004-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/private-metadata-preflight.log",
+      "sha256": "3a6b34e309e754a924726b15a31b42cbf7ca61f5e49c5096d4dcbc144a32a294",
+      "bytes": 186
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/db-private-metadata-v1/before.json",
+      "sha256": "90446134f72bf5ce440cf536e5604f4901367194da0869e317ded5187b1c5f63",
+      "bytes": 9168
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/db-publication-v4/private-projection-diagnosis-all-v1.json",
+      "sha256": "5b576af4848d9bf0fe6f4e250f39dd20d24c01bfbb2fc0618469619ff47b24c0",
+      "bytes": 85643
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/db-publication-v4/readiness.json",
+      "sha256": "eb8d31f6355033d653de13d13fc6979ec12ee24cee9e70d04902348cb89b9619",
+      "bytes": 555
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/db-publication-v4/receipt.json",
+      "sha256": "c52e0789a97884909df0fb56817c0a368d2a50b6ef4d98b664cf485950b7ce46",
+      "bytes": 17311
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/db-publication-v4/verification-evidence.json",
+      "sha256": "f8f808c0a791879e8034a2e3250829344f7adf5680b58d0e09572ca35f20ec2b",
+      "bytes": 19397
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/db-publication-v4/verification-release-read.json",
+      "sha256": "1c00f428e655fda56d579678d9146f41e20225844a57311e55f25a0b024fcb7c",
+      "bytes": 1071
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/db-publication-v4/verification.json",
+      "sha256": "e189f31d26a55047ae8a540653bdbe9ae2b2cc285ffcdd2c0ccb70c9be691799",
+      "bytes": 86773
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/execution-lock-v4.json",
+      "sha256": "448abcc2eb1f6cd8b9fd314e5d9db7f98534fdcf3176ebf75c4b1c8ab9677d3a",
+      "bytes": 1213
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/finalize-publication-report.mjs",
+      "sha256": "cf4f9c6a55a87c0351fbaac9a275bfc5cd02dcf828e546dcfc5cc24cc91a77c2",
+      "bytes": 8001
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/live-before-publication-v3/live-source.json",
+      "sha256": "c24cac7136fac692d2361279c05265b6fbcadf4c42a97fb2e9471b6e26b87549",
+      "bytes": 1387459
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/pause-handoff-v1/create-manifest.mjs",
+      "sha256": "7eff75a05e029e22b6ab6aa82969a0fad5d9d16481399b86229fdcd532b9c080",
+      "bytes": 8139
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/point-allocation-review.md",
+      "sha256": "425d90afce3eb9eac74b627a27a7d8aa4b36512528349b0fce8915fb22e3afac",
+      "bytes": 176878
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/private-metadata-rollout.mjs",
+      "sha256": "4632c1c6b80292ea42197d252ab529a679e5241b4ce2e6ce024ccea581a51c0a",
+      "bytes": 9223
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/sealed-results-v4/batch.json",
+      "sha256": "ef625af577bf4046655586243f4a2615dbeff05bedf6dfe1a5302fe08a00f4fc",
+      "bytes": 646715
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/sealed-results-v4/readiness.json",
+      "sha256": "321134637dd683428022bb7ada99f53dd52657952e975f63164b41617c20668a",
+      "bytes": 466
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/sealed-results-v4/summary.json",
+      "sha256": "76e37edcfc830b9a6a61210f23e5764433cf8fc6a08214b269ccc4fdd96bb24c",
+      "bytes": 339225
+    },
+    {
+      "file": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+      "sha256": "4891f97bcfc98cdeda77567b59657577da184317df199fd53c859004728acd80",
+      "bytes": 3701382
+    },
+    {
+      "file": "cpa_uploader/data/cpa_question_sets_v3.promotions.json",
+      "sha256": "5a6b185364ef86105ca13e608f2029bc202a3c885d7947154f3645959fe71862",
+      "bytes": 6687450
+    },
+    {
+      "file": "cpa_uploader/data/cpa_question_sets_v3.public.json",
+      "sha256": "dadf488bfeb5ce1e3f3fea77f28b66cf9b128250104ddaf561be817457045e3c",
+      "bytes": 657188
+    },
+    {
+      "file": "cpa_uploader/data/learning-question-classifications.json",
+      "sha256": "6db2a33c3c1bd1e3c9a4d2826f274b6644f20eb1a6c3a25233dbe1acc532c7af",
+      "bytes": 338157
+    },
+    {
+      "file": "cpa_uploader/questionEfficientReview.ts",
+      "sha256": "f560022e83a19fd59c1c8ebf52b488fc6e018a8c3aa20da3382ff61eae01d33b",
+      "bytes": 39807
+    },
+    {
+      "file": "data/cpa_question_sets_v3.authoring.enc.json",
+      "sha256": "8beb05b7891c4be188ebe9d92c524f67b0b6037328991e7557ac7ef37e3c13e5",
+      "bytes": 4935328
+    },
+    {
+      "file": "docs/plans/question-verification-resume-after-pause-2026-09-12.md",
+      "sha256": "bf9dcaef62afdf066c2060c477f7d1f2047243c113054480c79931700a9c287a",
+      "bytes": 16238
+    },
+    {
+      "file": "docs/reports/question-points-and-publication-2026-09-12.md",
+      "sha256": "407432d46068feffee47b18f829102a71c00e4800d62d597614b30537b9a57ca",
+      "bytes": 8046
+    },
+    {
+      "file": "lib/questionV3.ts",
+      "sha256": "dec5e73a4ec5b3b07421069c0aa60a7e406108cb4e74b15a206bf06f9b843b6e",
+      "bytes": 26231
+    },
+    {
+      "file": "lib/questionV3Grading.ts",
+      "sha256": "aae10461df894ccbad948f55e25787c15775be40c8337638f161ac2389394d2c",
+      "bytes": 24356
+    },
+    {
+      "file": "lib/questionV3Repository.ts",
+      "sha256": "eaceb96404095c6e71c1e492d662da0c909e04cdf24d0f656215d233731ce893",
+      "bytes": 6414
+    },
+    {
+      "file": "scripts/import-question-bank-v3.ts",
+      "sha256": "d8a80ed992e91b627bac6419895bd5d0b286d3fd15cbeca57499a5da03b65446",
+      "bytes": 14329
+    },
+    {
+      "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+      "sha256": "6e45c144bf661fa10afd0d001cd0879d3d09c0b2d67d91ef45c70801e96f837b",
+      "bytes": 83955
+    },
+    {
+      "file": "supabase/migrations/20260912060000_cpa_private_source_metadata.sql",
+      "sha256": "a6a6300fd1f1df32fe822f137f832f07f306ed1ada5ecb9c98c301882c35a789",
+      "bytes": 9423
+    }
+  ]
+}

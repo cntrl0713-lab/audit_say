@@ -1,0 +1,291 @@
+{
+  "set_id": "pilot-14-008",
+  "case_id": "sub2/boundary-2",
+  "kind": "condition_boundary",
+  "attempt": 1,
+  "started_at": "2026-09-11T03:29:46.391Z",
+  "finished_at": "2026-09-11T03:29:51.001Z",
+  "model": "gpt-5.6-luna",
+  "transport": "live_model",
+  "answers": {
+    "sub1": "",
+    "sub2": "보고한도의 최종 결정을 부문감사인에게 넘기자는 제안은 부적절하다.\n부문감사인이 그룹업무팀의 조언을 듣기만 하면 자신이 해당 보고한도를 최종 결정해도 된다.",
+    "sub3": ""
+  },
+  "expected": {
+    "id": "sub2/boundary-2",
+    "subquestion_id": "sub2",
+    "kind": "condition_boundary",
+    "answer": "보고한도의 최종 결정을 부문감사인에게 넘기자는 제안은 부적절하다.\n부문감사인이 그룹업무팀의 조언을 듣기만 하면 자신이 해당 보고한도를 최종 결정해도 된다.",
+    "expected_points": 1,
+    "expected_verdicts": [
+      {
+        "criterion_id": "sub2.crit1",
+        "verdict": "met",
+        "reason": "전체 답안이 발문에서 요구한 이 명제를 직접 또는 명확한 함축으로 충족한다."
+      },
+      {
+        "criterion_id": "sub2.crit2",
+        "verdict": "contradicted",
+        "reason": "명시적으로 바꾼 주체·대상·조건·결론이 공식 요구와 반대다."
+      }
+    ],
+    "note": "실제 주체·대상·충족조건·예외를 변경한 사례. 단순한 정답 부정 사례와 별도로 대조한다."
+  },
+  "request_hash": "975ab13af5c2d5950ccdbc21409187773ecfee4fc12503d7d596079210e0331b",
+  "schema_hash": "2631857f211d98b9df78cdff90aa2213f1800a993339af6ae4eeb3f056112edd",
+  "raw_judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          },
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "not_met",
+            "reason": "검증 내용이 제시되지 않았다."
+          },
+          {
+            "criterion_id": "sub1.crit3",
+            "verdict": "not_met",
+            "reason": "검증 내용이 제시되지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "met",
+            "quote": "보고한도의 최종 결정을 부문감사인에게 넘기자는 제안은 부적절하다.\n",
+            "reason": "제안이 부적절하다고 명시했다."
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "contradicted",
+            "quote": "부문감사인이 그룹업무팀의 조언을 듣기만 하면 자신이 해당 보고한도를 최종 결정해도 된다.",
+            "reason": "부문감사인이 최종 결정해도 된다고 하여 책임 주체를 반대로 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.crit1",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          },
+          {
+            "criterion_id": "sub3.crit2",
+            "verdict": "not_met",
+            "reason": "부문중요성과 그 합계의 관계에 대한 설명이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "trace": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "sub1.crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "검증 내용이 제시되지 않았다."
+              },
+              {
+                "criterion_id": "sub1.crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "검증 내용이 제시되지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "제안이 부적절하다고 명시했다."
+              },
+              {
+                "criterion_id": "sub2.crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "부문감사인이 최종 결정해도 된다고 하여 책임 주체를 반대로 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "sub3.crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "부문중요성과 그 합계의 관계에 대한 설명이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-14-008",
+    "score": 1,
+    "max_points": 7,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "물음 1에서 중요성에 관하여 검증할 주체를 제시하고, 제시된 두 중요성 각각에 대해 무엇을 검증해야 하는지 설명하시오. 중요성의 명칭만 나열하지 말고 검증 내용을 제시하시오.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "두 중요성을 검증할 책임 주체는 그룹업무팀이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "not_met",
+            "reason": "검증 내용이 제시되지 않았다.",
+            "claim": "해당 부문재무제표 전체에 대하여 결정된 중요성이 그룹감사기준의 요구사항을 충족하는지 검증한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.crit3",
+            "verdict": "not_met",
+            "reason": "검증 내용이 제시되지 않았다.",
+            "claim": "부문 수준에서 결정된 수행중요성이 그룹감사기준의 요구사항을 충족하며 적합한지 검증한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "두 중요성을 검증할 책임 주체는 그룹업무팀이다.",
+          "해당 부문재무제표 전체에 대하여 결정된 중요성이 그룹감사기준의 요구사항을 충족하는지 검증한다.",
+          "부문 수준에서 결정된 수행중요성이 그룹감사기준의 요구사항을 충족하며 적합한지 검증한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "물음 2처럼 보고한도의 최종 결정을 부문감사인에게 넘기자는 제안이 적절한지 판단하고, 그 판단의 근거로 한도를 최종 결정할 책임 주체를 제시하시오.",
+        "user_answer": "보고한도의 최종 결정을 부문감사인에게 넘기자는 제안은 부적절하다.\n부문감사인이 그룹업무팀의 조언을 듣기만 하면 자신이 해당 보고한도를 최종 결정해도 된다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "met",
+            "quote": "보고한도의 최종 결정을 부문감사인에게 넘기자는 제안은 부적절하다.",
+            "reason": "제안이 부적절하다고 명시했다.",
+            "claim": "보고한도의 최종 결정을 부문감사인에게 넘기자는 제안은 부적절하다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "contradicted",
+            "quote": "부문감사인이 그룹업무팀의 조언을 듣기만 하면 자신이 해당 보고한도를 최종 결정해도 된다.",
+            "reason": "부문감사인이 최종 결정해도 된다고 하여 책임 주체를 반대로 제시했다.",
+            "claim": "해당 보고한도를 최종 결정할 책임 주체는 그룹업무팀이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "보고한도의 최종 결정을 부문감사인에게 넘기자는 제안은 부적절하다.",
+          "해당 보고한도를 최종 결정할 책임 주체는 그룹업무팀이다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "물음 3의 합계 일치가 반드시 필요하다는 제안이 적절한지 판단하고, 부문중요성의 설정과 그 합계가 그룹재무제표 전체 중요성에 대해 가질 수 있는 관계를 이유로 설명하시오.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub3.crit1",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "모든 부문중요성의 합계를 그룹재무제표 전체 중요성과 반드시 일치시키려는 제안은 부적절하다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub3.crit2",
+            "verdict": "not_met",
+            "reason": "부문중요성과 그 합계의 관계에 대한 설명이 없다.",
+            "claim": "부문중요성은 그룹재무제표 전체 중요성의 일정 비율로 배분할 필요가 없으므로 그 합계가 그룹재무제표 전체 중요성을 초과할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "모든 부문중요성의 합계를 그룹재무제표 전체 중요성과 반드시 일치시키려는 제안은 부적절하다.",
+          "부문중요성은 그룹재무제표 전체 중요성의 일정 비율로 배분할 필요가 없으므로 그 합계가 그룹재무제표 전체 중요성을 초과할 수 있다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "exact_verdict_differences": [],
+  "verdict_differences": [],
+  "matched": true,
+  "boundary_policy": "조건 경계의 not_met/contradicted만 0점 동등 취급; 반대·누락 사례에는 적용하지 않음"
+}

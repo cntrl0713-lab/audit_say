@@ -1,12 +1,12 @@
 ---
 title: 원자료에서 새 학습목표와 문제를 설계하기
 created: 2026-09-09
-updated: 2026-09-09
+updated: 2026-09-12
 type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, source-map, quality]
-sources: [cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md, cpa_uploader/data/cpa_question_sets_v3.authoring.json, docs/plans/question-review-01-03-remediation.md]
+sources: [cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md, cpa_uploader/data/cpa_question_sets_v3.authoring.json, docs/plans/주제-01-03-검토에-따른-수정-결정.md]
 confidence: high
 ---
 
@@ -15,6 +15,8 @@ confidence: high
 이 문서는 원자료를 고른 뒤 **학습목표 → 조건·예외 → 발문 → 답안 명제 → criterion → 공식 근거**를 설계하는 내부 제작 기록이다. 아래 서식을 채워도 문제의 정답이나 시험 적용 판본이 자동으로 승인되지 않는다. 새 초안은 `needs_review` / `needs_human_review`로 두고 [[question-generation-workflow]]의 검증·편입 절차를 따른다.
 
 ## 1. 원자료 단위에서 시작하기
+
+연습·기출에 실제로 나왔던 요구를 찾으려면 [[question-elements]]의 구체 요구사항과 재수록 제거 빈도를 먼저 확인할 수 있다. 연결된 발문·공통지문·원자료 단위 ID를 읽고 아래 설계 절차에 사용한다. 추출된 요소는 정답이나 공식 근거를 대체하지 않는다.
 
 [[source-catalog]]에서 주제와 원자료 단위를 찾고 연결된 파일의 실제 위치를 읽는다. 기준서 단위 외에도 기본이론·문제연습·기출의 원문 페이지를 탐색한다. 카탈로그의 단위는 원문을 찾기 위한 경계이며, 한 단위가 하나의 완전한 학습목표 또는 출제 가능한 문제라는 뜻은 아니다. 페이지 경계에서 사례·발문·해설이 끊겼으면 전후 페이지까지 확보한다.
 
@@ -117,6 +119,8 @@ npx tsx cpa_uploader/generate_cpa_v3.ts --plan plan.json --output draft.json
 
 ## 6. 의미검수·실제 사례 채점·사람 검수 근거
 
+현재 기본 검증·승급 경로는 [공통 비용 통제 계약](../../../.agents/skills/audit-question-review/references/cost-controlled-verification.md)을 따른다. agent가 전수 내용·출처·배점을 대조한 뒤 실제 Luna 대표 채점을 수행하고, `--efficient-review` 증거로 별도 승급한다. 아래 명령과 criterion별 전수 API·수동 receipt 설명은 **기준별 전수검사 경로를 선택했을 때** 적용한다. 기존 receipt의 수락 계약을 바꾸거나 agent 확인을 사람의 직접 검수로 표시하지 않는다.
+
 `npx tsx cpa_uploader/validate_draft_v3.ts --file draft.json --against-bank`로 편입 전 형상·원문 인용·ID 및 동일 발문 중복을 확인한다. 다음 명령은 draft와 계획·패킷·실제 출처 파일·비교 은행을 읽어 의미검수하고, 실제 사례 채점까지 실행해 receipt를 기록한다. 생성 sidecar는 draft 옆에서 자동으로 찾으며 별도 입력에는 `--plan`, `--packet`, `--bank`를 지정한다.
 
 ```sh
@@ -143,7 +147,30 @@ npx tsx --env-file=.env.local cpa_uploader/review_question_draft_v3.ts --file dr
 
 ## Related
 
+- [[question-elements]]
 - [[source-catalog]]
 - [[requirement-coverage]]
 - [[question-generation-workflow]]
 - [[question-output-schema]]
+
+
+## 7. 채점 오류와 분할 검수의 처리
+
+채점 오류·인용·보안·원시 기록의 보존 원칙은 두 검증 경로에 공통으로 적용한다. 이 절의 criterion별 분할 모델 의미검수와 `execution.transport`·`grading.transport`를 갖춘 기존 receipt의 신규 수락 요건은 **기준별 전수검사 경로에 한정**한다. 비용 통제 경로는 [공통 계약](../../../.agents/skills/audit-question-review/references/cost-controlled-verification.md)의 agent 내용 검토·실제 대표 채점·별도 재사용 및 승급 증거를 따르며, 기반 자료·모범답안·배점·QA 기대값의 미해결 오류는 어느 경로에서도 허용하지 않는다.
+
+실제 채점 응답은 답안의 원문 구간 ID를 선택한다. 서버가 해당 답안의 원문으로 인용을 복원하며, 다른 물음의 ID·없는 ID·판정 누락·허용하지 않은 부분점수는 응답 오류다. 형식·근거 오류는 제한된 재시도 후에도 남으면 채점 서비스 오류로 반환하고 학생 점수로 확정하지 않는다. 전송 실패도 점수로 바꾸지 않는다. 전체 빈 답안은 기존처럼 모델 없이 0점 처리한다.
+
+보안 의심은 실제 답안 근거와 독립 재확인을 요구한다. 감사인의 판단이나 경영진의 조치를 설명한 오답은 채점자에 대한 조작 지시와 구분한다. 확인된 공격은 해당 물음에만 적용하며 불확실하면 채점을 확정하지 않는다. 기존 세트 전체 보안 플래그와 물음별 보안 플래그의 범위는 유지한다.
+
+의미검수는 물음·criterion별로 요청을 나눈다. 비교 은행과 원문 문맥은 유지하고, 모델이 선택한 필드·출처 ID를 실제 문자열로 연결한 뒤 전체 필드·출처·5종 사례를 다시 검사한다. 사례의 pass는 답안의 정답 여부가 아니라 기대 판정의 타당성이다. CLI는 `<output>.chunks.jsonl`에 의미검수 중간 응답과 실패를 보존하고, `<output>.grading.jsonl`에는 각 실제 채점의 성공·불일치·실패와 원시 응답을 즉시 기록한다. 중간 실패의 부분 로그는 완료 receipt가 아니다. 기존 로그가 있으면 새 출력 이름을 사용한다. 분할 응답이 모두 유효해도 의미상 fail·uncertain은 승급을 차단한다.
+
+현재 코드로 새 검수를 수락할 때는 사례·채점 코드·모델의 일치를 요구한다. 과거 승인 기록 조회에서는 당시 코드 해시를 보존하면서 내용·사례·기록 무결성과 점수 재현을 검사한다. 과거 기록의 보존 통과를 현재 모델 품질의 재검증으로 표시하지 않는다.
+
+
+### 검수 증거의 경계
+
+모델 의미검수의 `execution.transport`와 사례 채점의 `grading.transport`를 각각 기록한다. 신규 수락·승급은 두 값 모두 `model`이어야 하며, 실제 수동 의미검수는 별도 실행 방법·근거 계약을 따른다. 주입 응답이나 transport 미기록 모델 의미검수에 실제 채점만 추가해 신규 수락하지 않는다. 과거 기록은 누락 필드·당시 실행 종류를 그대로 보존하고 새 수락이 필요하면 실제 의미검수를 새로 수행한다.
+
+정상 검수 사례에서 세트 또는 물음별 보안 플래그가 있으면 기대 0점과 같더라도 일치로 보지 않는다. 모델 요청의 일시적 전송·SDK 연결/시간초과·빈 응답·JSON 오류도 제한 재시도와 오류 기록의 대상이며, 인증·설정·거절·출력 한도·사용자 중단은 동일 요청을 반복하지 않는다. 기록용 콜백에는 독립 스냅샷을 전달하고, 기록 실패로 모델을 재호출하거나 판정·점수를 바꾸지 않는다. CLI는 기존 최종 출력과 중간 로그를 덮어쓰지 않으므로 새 출력 경로를 사용한다.
+
+사례 문구 교체 시 원답안을 전체 문맥과 원자료로 다시 판단한다. 유효한 원답안은 교체답안과 함께 회귀 대상으로 남기며, 불완전 원답안의 과대채점도 별도로 확인한다. 안정적으로 통과하는 문장으로 바꿨다는 이유만으로 원 사례의 실패를 해결 처리하지 않는다. AI가 수행한 의미 대조와 실제 사람 확인은 구분한다.

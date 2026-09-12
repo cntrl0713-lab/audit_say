@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-12-007--sub2--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-007--sub2--standard",
+  "source_set_id": "pilot-12-007",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "36c60a011752586bf3dd81bce4d9e1304c8c16db8d7b7669d612ba9d969712f7",
+  "answers": {
+    "sub2": "수정된 재무제표에 대해 새로운 감사보고서를 제출하며, 새로운 감사보고서의 일자는 수정된 재무제표의 승인일보다 빠르지 않아야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 560.11(b)(ii)의 수정재무제표 승인일보다 새 보고서일이 빠를 수 없다는 한 시간관계이다.560.12의 절차한정 예외는 발문에서 제외하였다. 해당 기준 crit3의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "903297cc79f434bab4eda6d8642caa6eed50d445e4f58f82729de4f4ac65863c",
+  "schema_hash": "e551eac672b8e53739134c37a5ef244005ef9526d08bf181a43cdb0cc9f34ee8",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "수정된 재무제표에 대해 새로운 감사보고서를 제출하며, 새로운 감사보고서의 일자는 수정된 재무제표의 승인일보다 빠르지 않아야 한다.",
+            "reason": "새로운 감사보고서일이 수정된 재무제표 승인일보다 빠르지 않아야 한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "새로운 감사보고서일이 수정된 재무제표 승인일보다 빠르지 않아야 한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-007",
+    "score": 1,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사보고서일에 알았더라면 감사보고서를 수정할 원인이 될 수도 있었던 사실을 감사보고서일 후 재무제표 발행일 전에 알게 되어 경영진이 재무제표를 수정하였다. 감사절차를 해당 수정사항에만 한정하는 감사기준서 560 문단 12의 예외 상황은 아니라고 할 때, 새로운 감사보고서일은 어떤 일자보다 빠르지 않아야 하는지 설명하시오.",
+        "user_answer": "수정된 재무제표에 대해 새로운 감사보고서를 제출하며, 새로운 감사보고서의 일자는 수정된 재무제표의 승인일보다 빠르지 않아야 한다.",
+        "score": 1,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "수정된 재무제표에 대해 새로운 감사보고서를 제출하며, 새로운 감사보고서의 일자는 수정된 재무제표의 승인일보다 빠르지 않아야 한다.",
+            "reason": "새로운 감사보고서일이 수정된 재무제표 승인일보다 빠르지 않아야 한다고 명시했다.",
+            "claim": "새로운 감사보고서 일자는 수정된 재무제표 승인일보다 빠르지 않아야 한다고 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "수정된 재무제표에 대해 새로운 감사보고서를 제출하며, 새로운 감사보고서의 일자는 수정된 재무제표의 승인일보다 빠르지 않아야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0107aec540317a3f016aa4cfe5c77887d0b5fef5d8cb502e1c",
+        "request_id": "req_cfdf7a1bad1c433e9d6fe514b9ce5b22",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2302,
+          "input_tokens_details": {
+            "cache_write_tokens": 2299,
+            "cached_tokens": 0
+          },
+          "output_tokens": 168,
+          "output_tokens_details": {
+            "reasoning_tokens": 63
+          },
+          "total_tokens": 2470
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00077695,
+        "min_usd": 0.00077695,
+        "max_usd": 0.00077695,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-12-007--sub2--standard--model/input.json",
+      "sha256": "1ffc895721b8775931538bb61d909330485640a66fa6158dce93ed26ae485c9b"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-12-007--sub2--standard--model/transport.jsonl",
+      "sha256": "a96eb750a48c1ba8360319795055e84ee280675f083f99bfcc4c96cfc33cacda"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-12-007--sub2--standard--model/traces.jsonl",
+      "sha256": "01c5aca9963e0f453ecae13f017bc3f22ecf1576088e3624880498e3fc6f944e"
+    }
+  }
+}

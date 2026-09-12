@@ -1,0 +1,439 @@
+{
+  "status": "completed",
+  "transport": "model",
+  "model": "gpt-5.6-luna",
+  "performed_at": "2026-09-11T22:38:29.498Z",
+  "description": "설정된 채점 모델과 실제 gradeQuestionSetV3를 실행하고 코드 인용검증·점수 결과를 기대 판정과 대조함.",
+  "cases_hash": "3d722c2037e3fa2ba086beb09a94f1a0e1f3d3e0c190b4370b4eb6451a6bc8b3",
+  "grader_hash": "d3eb34ba798a5d558af849470405c9fb02dd77e22ff63a710b70432bf4bbb966",
+  "runs": [
+    {
+      "id": "c9767546e817ef2d5c31b9d2e74ca34370fac276ff8165099f62b77792680c8e",
+      "answers": {
+        "sub1": "경영진이 책임을 인정하지 않았더라도 법규가 감사인에게 수임을 강제하는 경우에는, 이 사유만으로 수임 부적합이라고 결론 내리지 않는다.",
+        "sub2": ""
+      },
+      "expected": [
+        {
+          "unit_id": "criterion:sub1:crit4",
+          "case_kind": "condition_boundary",
+          "subquestion_id": "sub1",
+          "criterion_id": "crit4",
+          "verdict": "met"
+        }
+      ],
+      "judgment": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "reason": "재무제표 작성 책임을 언급하지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "reason": "관련 내부통제 책임을 언급하지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "reason": "감사에 필요한 정보 제공 또는 확보 책임을 언급하지 않았다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "reason": "법규상 강제되지 않는 경우의 수임 부적합 결론을 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "reason": "답안이 없어 변경 요청의 정당성을 고려한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "reason": "답안이 없어 감사업무 범위제한의 시사점 고려 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      "result": {
+        "question_set_id": "pilot-03-001",
+        "score": 0,
+        "max_points": 6,
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "prompt": "경영진이 감사에 필요한 정보를 제공하거나 확보할 능력이 있다는 일반적 전제 아래, 감사인이 감사업무를 수임하기 위해 경영진으로부터 확인받아야 하는 전제조건의 핵심 내용을 기술하고, 경영진이 이러한 책임을 인정하지 않을 경우 해당 업무 수임의 적합성을 법규상 예외와 함께 설명하시오. 수임 후 경영진에게 전달할 사항은 답안 범위에서 제외한다.",
+            "user_answer": "경영진이 책임을 인정하지 않았더라도 법규가 감사인에게 수임을 강제하는 경우에는, 이 사유만으로 수임 부적합이라고 결론 내리지 않는다.",
+            "score": 0,
+            "max_points": 4,
+            "criteria": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "reason": "재무제표 작성 책임을 언급하지 않았다.",
+                "claim": "경영진의 재무제표 작성 책임을 확인함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "reason": "관련 내부통제 책임을 언급하지 않았다.",
+                "claim": "경영진의 관련 내부통제 책임을 확인함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "reason": "감사에 필요한 정보 제공 또는 확보 책임을 언급하지 않았다.",
+                "claim": "경영진이 감사에 필요한 정보를 제공하거나 확보할 책임을 확인함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "reason": "법규상 강제되지 않는 경우의 수임 부적합 결론을 설명하지 않았다.",
+                "claim": "책임 불인정 시 법규상 강제되지 않는 한 수임이 부적합하다고 설명함",
+                "max_points": 1,
+                "awarded_points": 0
+              }
+            ],
+            "model_answer": [
+              "감사인은 경영진이 재무제표 작성, 관련 내부통제, 감사에 필요한 정보의 제공 또는 확보에 대한 책임을 인정하고 이해함을 확인해야 한다.",
+              "경영진이 책임을 인정하지 않거나 서면진술 제공에 동의하지 않으면, 법규상 강제 수임이 아닌 한 해당 업무를 수임하는 것은 적합하지 않다."
+            ]
+          },
+          {
+            "subquestion_id": "sub2",
+            "prompt": "기업이 감사업무 도중 감사업무 조건을 변경해 달라고 요청한 경우, 감사인이 고려해야 할 사항을 기술하시오.",
+            "user_answer": "",
+            "score": 0,
+            "max_points": 2,
+            "criteria": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "reason": "답안이 없어 변경 요청의 정당성을 고려한다는 내용이 없다.",
+                "claim": "감사업무 조건 변경 요청의 정당성을 고려함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "reason": "답안이 없어 감사업무 범위제한의 시사점 고려 내용이 없다.",
+                "claim": "감사업무 범위제한의 시사점을 고려함",
+                "max_points": 1,
+                "awarded_points": 0
+              }
+            ],
+            "model_answer": [
+              "감사인은 요청의 정당성을 고려해야 하며, 특히 감사업무 범위제한이 발생하는 경우 그 시사점을 평가해야 한다."
+            ]
+          }
+        ],
+        "security_flag": "none"
+      },
+      "matched": false
+    },
+    {
+      "id": "edd3754b3289a3fb2fac31bd3d8e84d4d3013770c0110b412ed65a0be0dbdba7",
+      "answers": {
+        "sub1": "",
+        "sub2": "감사인은 감사업무 범위제한이 발생할 때 그 시사점만 평가한다."
+      },
+      "expected": [
+        {
+          "unit_id": "criterion:sub2:crit5",
+          "case_kind": "omission",
+          "subquestion_id": "sub2",
+          "criterion_id": "crit5",
+          "verdict": "not_met"
+        }
+      ],
+      "judgment": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "reason": "답안이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "quote": "감사인은 감사업무 범위제한이 발생할 때 그 시사점만 평가한다.",
+                "reason": "변경 요청의 정당성은 고려하지 않고 범위제한의 시사점만 평가한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "met",
+                "quote": "감사인은 감사업무 범위제한이 발생할 때 그 시사점만 평가한다.",
+                "reason": "감사업무 범위제한이 발생할 때 그 시사점을 평가한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      "result": {
+        "question_set_id": "pilot-03-001",
+        "score": 1,
+        "max_points": 6,
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "prompt": "경영진이 감사에 필요한 정보를 제공하거나 확보할 능력이 있다는 일반적 전제 아래, 감사인이 감사업무를 수임하기 위해 경영진으로부터 확인받아야 하는 전제조건의 핵심 내용을 기술하고, 경영진이 이러한 책임을 인정하지 않을 경우 해당 업무 수임의 적합성을 법규상 예외와 함께 설명하시오. 수임 후 경영진에게 전달할 사항은 답안 범위에서 제외한다.",
+            "user_answer": "",
+            "score": 0,
+            "max_points": 4,
+            "criteria": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "reason": "답안이 없다.",
+                "claim": "경영진의 재무제표 작성 책임을 확인함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "reason": "답안이 없다.",
+                "claim": "경영진의 관련 내부통제 책임을 확인함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "reason": "답안이 없다.",
+                "claim": "경영진이 감사에 필요한 정보를 제공하거나 확보할 책임을 확인함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "reason": "답안이 없다.",
+                "claim": "책임 불인정 시 법규상 강제되지 않는 한 수임이 부적합하다고 설명함",
+                "max_points": 1,
+                "awarded_points": 0
+              }
+            ],
+            "model_answer": [
+              "감사인은 경영진이 재무제표 작성, 관련 내부통제, 감사에 필요한 정보의 제공 또는 확보에 대한 책임을 인정하고 이해함을 확인해야 한다.",
+              "경영진이 책임을 인정하지 않거나 서면진술 제공에 동의하지 않으면, 법규상 강제 수임이 아닌 한 해당 업무를 수임하는 것은 적합하지 않다."
+            ]
+          },
+          {
+            "subquestion_id": "sub2",
+            "prompt": "기업이 감사업무 도중 감사업무 조건을 변경해 달라고 요청한 경우, 감사인이 고려해야 할 사항을 기술하시오.",
+            "user_answer": "감사인은 감사업무 범위제한이 발생할 때 그 시사점만 평가한다.",
+            "score": 1,
+            "max_points": 2,
+            "criteria": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "quote": "감사인은 감사업무 범위제한이 발생할 때 그 시사점만 평가한다.",
+                "reason": "변경 요청의 정당성은 고려하지 않고 범위제한의 시사점만 평가한다고 명시했다.",
+                "claim": "감사업무 조건 변경 요청의 정당성을 고려함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "met",
+                "quote": "감사인은 감사업무 범위제한이 발생할 때 그 시사점만 평가한다.",
+                "reason": "감사업무 범위제한이 발생할 때 그 시사점을 평가한다고 명시했다.",
+                "claim": "감사업무 범위제한의 시사점을 고려함",
+                "max_points": 1,
+                "awarded_points": 1
+              }
+            ],
+            "model_answer": [
+              "감사인은 요청의 정당성을 고려해야 하며, 특히 감사업무 범위제한이 발생하는 경우 그 시사점을 평가해야 한다."
+            ]
+          }
+        ],
+        "security_flag": "none"
+      },
+      "matched": false
+    },
+    {
+      "id": "empty-answer",
+      "answers": {
+        "sub1": "",
+        "sub2": ""
+      },
+      "expected": [
+        {
+          "unit_id": "criterion:sub1:crit1",
+          "case_kind": "empty_answer",
+          "subquestion_id": "sub1",
+          "criterion_id": "crit1",
+          "verdict": "not_met"
+        },
+        {
+          "unit_id": "criterion:sub1:crit2",
+          "case_kind": "empty_answer",
+          "subquestion_id": "sub1",
+          "criterion_id": "crit2",
+          "verdict": "not_met"
+        },
+        {
+          "unit_id": "criterion:sub1:crit3",
+          "case_kind": "empty_answer",
+          "subquestion_id": "sub1",
+          "criterion_id": "crit3",
+          "verdict": "not_met"
+        },
+        {
+          "unit_id": "criterion:sub1:crit4",
+          "case_kind": "empty_answer",
+          "subquestion_id": "sub1",
+          "criterion_id": "crit4",
+          "verdict": "not_met"
+        },
+        {
+          "unit_id": "criterion:sub2:crit5",
+          "case_kind": "empty_answer",
+          "subquestion_id": "sub2",
+          "criterion_id": "crit5",
+          "verdict": "not_met"
+        },
+        {
+          "unit_id": "criterion:sub2:crit6",
+          "case_kind": "empty_answer",
+          "subquestion_id": "sub2",
+          "criterion_id": "crit6",
+          "verdict": "not_met"
+        }
+      ],
+      "judgment": null,
+      "result": {
+        "question_set_id": "pilot-03-001",
+        "score": 0,
+        "max_points": 6,
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "prompt": "경영진이 감사에 필요한 정보를 제공하거나 확보할 능력이 있다는 일반적 전제 아래, 감사인이 감사업무를 수임하기 위해 경영진으로부터 확인받아야 하는 전제조건의 핵심 내용을 기술하고, 경영진이 이러한 책임을 인정하지 않을 경우 해당 업무 수임의 적합성을 법규상 예외와 함께 설명하시오. 수임 후 경영진에게 전달할 사항은 답안 범위에서 제외한다.",
+            "user_answer": "",
+            "score": 0,
+            "max_points": 4,
+            "criteria": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "claim": "경영진의 재무제표 작성 책임을 확인함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "claim": "경영진의 관련 내부통제 책임을 확인함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "claim": "경영진이 감사에 필요한 정보를 제공하거나 확보할 책임을 확인함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "claim": "책임 불인정 시 법규상 강제되지 않는 한 수임이 부적합하다고 설명함",
+                "max_points": 1,
+                "awarded_points": 0
+              }
+            ],
+            "model_answer": [
+              "감사인은 경영진이 재무제표 작성, 관련 내부통제, 감사에 필요한 정보의 제공 또는 확보에 대한 책임을 인정하고 이해함을 확인해야 한다.",
+              "경영진이 책임을 인정하지 않거나 서면진술 제공에 동의하지 않으면, 법규상 강제 수임이 아닌 한 해당 업무를 수임하는 것은 적합하지 않다."
+            ]
+          },
+          {
+            "subquestion_id": "sub2",
+            "prompt": "기업이 감사업무 도중 감사업무 조건을 변경해 달라고 요청한 경우, 감사인이 고려해야 할 사항을 기술하시오.",
+            "user_answer": "",
+            "score": 0,
+            "max_points": 2,
+            "criteria": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "claim": "감사업무 조건 변경 요청의 정당성을 고려함",
+                "max_points": 1,
+                "awarded_points": 0
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "claim": "감사업무 범위제한의 시사점을 고려함",
+                "max_points": 1,
+                "awarded_points": 0
+              }
+            ],
+            "model_answer": [
+              "감사인은 요청의 정당성을 고려해야 하며, 특히 감사업무 범위제한이 발생하는 경우 그 시사점을 평가해야 한다."
+            ]
+          }
+        ],
+        "security_flag": "none"
+      },
+      "matched": true
+    }
+  ]
+}

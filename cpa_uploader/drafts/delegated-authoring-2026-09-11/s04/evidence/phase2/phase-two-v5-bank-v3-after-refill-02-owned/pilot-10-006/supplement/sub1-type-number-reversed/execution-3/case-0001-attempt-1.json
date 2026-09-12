@@ -1,0 +1,272 @@
+{
+  "set_id": "pilot-10-006",
+  "case_id": "sub1-type-number-reversed",
+  "kind": "opposite",
+  "attempt": 1,
+  "started_at": "2026-09-11T05:08:18.974Z",
+  "finished_at": "2026-09-11T05:08:23.422Z",
+  "model": "gpt-5.6-luna",
+  "transport": "live_model",
+  "answers": {
+    "sub1": "A는 제1종, B는 제2종이다.",
+    "sub2": "",
+    "sub3": ""
+  },
+  "expected": {
+    "id": "sub1-type-number-reversed",
+    "subquestion_id": "sub1",
+    "kind": "opposite",
+    "answer": "A는 제1종, B는 제2종이다.",
+    "expected_points": 0,
+    "expected_verdicts": [
+      {
+        "criterion_id": "crit1",
+        "verdict": "contradicted",
+        "reason": "동일한 세부테스트 문맥의 두 표본위험 분류를 반대로 답했다."
+      },
+      {
+        "criterion_id": "crit2",
+        "verdict": "contradicted",
+        "reason": "동일한 세부테스트 문맥의 두 표본위험 분류를 반대로 답했다."
+      }
+    ],
+    "note": "총괄 승인 번호분류 정정의 실제 역전 대조군. 번호를 배제하지 않으면서 그 반대 의미는 구별한다."
+  },
+  "request_hash": "7f3e78baf373099179207707ce3d280ec7358b7e9513cdd76214872bf61a6662",
+  "schema_hash": "edbbf7358f921461d29df754da997a0afe18288047262740bfa196abcd323b76",
+  "raw_judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "A는 제1종, B는 제2종이다.",
+            "reason": "A를 제1종으로 분류했으나 부당수용위험은 제2종 위험이다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "A는 제1종, B는 제2종이다.",
+            "reason": "B를 제2종으로 분류했으나 부당기각위험은 제1종 위험이다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "trace": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "A를 제1종으로 분류했으나 부당수용위험은 제2종 위험이다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "B를 제2종으로 분류했으나 부당기각위험은 제1종 위험이다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-10-006",
+    "score": 0,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "상황 A와 B의 잘못된 결론을 세부테스트의 표본위험 유형으로 각각 분류하시오. 부당하게 수용하는 위험인지 기각하는 위험인지가 드러나는 동등한 분류 표현을 허용한다. 지문에 제시된 모집단 상태와 표본결론만 그대로 반복하는 답은 분류를 제시한 것으로 보지 않는다. 감사의 효과성·효율성에 미치는 영향은 다음 물음에서 답하시오.",
+        "user_answer": "A는 제1종, B는 제2종이다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "A는 제1종, B는 제2종이다.",
+            "reason": "A를 제1종으로 분류했으나 부당수용위험은 제2종 위험이다.",
+            "claim": "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "A는 제1종, B는 제2종이다.",
+            "reason": "B를 제2종으로 분류했으나 부당기각위험은 제1종 위험이다.",
+            "claim": "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+          "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "A와 B의 잘못된 결론이 각각 감사의 효과성 또는 효율성에 어떠한 영향을 미치는지 설명하시오. A의 방향을 감사인이 특히 유의해야 하는 이유도 그 영향과 연결하시오. 유형 명칭을 다시 쓰는 것만으로는 충분하지 않다.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이어서 감사의 효율성을 저해한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+          "B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이어서 감사의 효율성을 저해한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "상황 C에서 감사기준이 제시하는 후속 대응의 두 경로를 모두 설명하시오. 경영진에게 요청할 조치와 감사인 자신의 추가감사절차 조정을 구별하되, 두 경로를 반드시 동시에 실행해야 한다는 뜻으로 답하지 마시오.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하고 필요한 수정을 하도록 요구할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하고 필요한 수정을 하도록 요구할 수 있다.",
+          "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "exact_verdict_differences": [],
+  "verdict_differences": [],
+  "matched": true,
+  "boundary_policy": null,
+  "reference": null
+}

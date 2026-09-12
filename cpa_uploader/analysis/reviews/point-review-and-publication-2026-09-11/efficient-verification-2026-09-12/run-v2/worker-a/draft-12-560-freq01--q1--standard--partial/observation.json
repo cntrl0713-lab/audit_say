@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "draft-12-560-freq01--q1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-12-560-freq01--q1--standard",
+  "source_set_id": "draft-12-560-freq01",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "q1"
+  ],
+  "projected_body_hash": "334b95f3d6c492d7168327ef0276458322ad15500f354401169bdf786783f622",
+  "answers": {
+    "q1": "재무제표 승인권자가 그 수정사항에 대해서만 승인하는 것이 법규나 재무보고체계에서 금지되지 않아야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "q1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "q1.c1",
+          "verdict": "not_met",
+          "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+        },
+        {
+          "criterion_id": "q1.c2",
+          "verdict": "met",
+          "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "d751a04659cffc0df7c8bef3a0038a54b110a9ab15975baa7f3d0f69ee9e7dd5",
+  "schema_hash": "70af6af346ad36a221c5c63a002c6a13469aaa8ee39efa6ab6978d28a40059d2",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "q1",
+        "verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "not_met",
+            "reason": "경영진의 수정 허용 조건이 답안에 없다."
+          },
+          {
+            "criterion_id": "q1.c2",
+            "verdict": "met",
+            "quote": "재무제표 승인권자가 그 수정사항에 대해서만 승인하는 것이 법규나 재무보고체계에서 금지되지 않아야 한다.",
+            "reason": "승인권자가 해당 수정사항에만 승인하는 것이 법규·재무보고체계상 금지되지 않아야 한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "q1",
+            "verdicts": [
+              {
+                "criterion_id": "q1.c1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진의 수정 허용 조건이 답안에 없다."
+              },
+              {
+                "criterion_id": "q1.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "q1/e0"
+                ],
+                "reason": "승인권자가 해당 수정사항에만 승인하는 것이 법규·재무보고체계상 금지되지 않아야 한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-12-560-freq01",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "q1",
+        "prompt": "후속사건에 대한 감사절차를 재무제표의 해당 수정사항에만 한정할 수 있으려면, 법규나 재무보고체계상 경영진의 수정과 재무제표 승인권자의 승인에 관하여 어떤 조건을 충족해야 하는지 모두 제시하시오.",
+        "user_answer": "재무제표 승인권자가 그 수정사항에 대해서만 승인하는 것이 법규나 재무보고체계에서 금지되지 않아야 한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "not_met",
+            "reason": "경영진의 수정 허용 조건이 답안에 없다.",
+            "claim": "경영진이 해당 후속사건 영향에만 한정하여 수정하는 것이 허용되어야 한다. 이 발문 문맥에서는 “수정할 수 있어야 한다”도 법규·재무보고체계상 금지되지 않음을 표현한 정답으로 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "q1.c2",
+            "verdict": "met",
+            "quote": "재무제표 승인권자가 그 수정사항에 대해서만 승인하는 것이 법규나 재무보고체계에서 금지되지 않아야 한다.",
+            "reason": "승인권자가 해당 수정사항에만 승인하는 것이 법규·재무보고체계상 금지되지 않아야 한다고 명시했다.",
+            "claim": "승인권자가 해당 수정사항에만 한정하여 승인하는 것이 허용되어야 한다. 이 발문 문맥에서는 “승인도 한정할 수 있어야 한다”도 법규·재무보고체계상 금지되지 않음을 표현한 정답으로 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "경영진이 재무제표 수정을 발생시키는 후속사건의 영향에 대해서만 재무제표를 수정하는 것이 법규나 재무보고체계에서 금지되지 않아야 한다.",
+          "재무제표 승인권자가 그 수정사항에 대해서만 승인하는 것이 법규나 재무보고체계에서 금지되지 않아야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "q1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_035e0ed85a5c9ca2016aa4d01189a487d0b729c7ab71a5277f",
+        "request_id": "req_096d37e3abd645bb92be98b5c79fca07",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2751,
+          "input_tokens_details": {
+            "cache_write_tokens": 2748,
+            "cached_tokens": 0
+          },
+          "output_tokens": 186,
+          "output_tokens_details": {
+            "reasoning_tokens": 38
+          },
+          "total_tokens": 2937
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009107999999999999,
+        "min_usd": 0.0009107999999999999,
+        "max_usd": 0.0009107999999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/draft-12-560-freq01--q1--standard--partial/input.json",
+      "sha256": "8119cd448f6095538a70e4f26590c432031d05587d1a0292376f28121a9c9223"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/draft-12-560-freq01--q1--standard--partial/transport.jsonl",
+      "sha256": "a13c3e8944ab9858a22eb3209c8304412e0e09f1fae30464b2cb7ce057dec336"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/draft-12-560-freq01--q1--standard--partial/traces.jsonl",
+      "sha256": "d9758a53b654168ca892375457ddaea5a46225971d929d68fd10b3f9d499a964"
+    }
+  }
+}

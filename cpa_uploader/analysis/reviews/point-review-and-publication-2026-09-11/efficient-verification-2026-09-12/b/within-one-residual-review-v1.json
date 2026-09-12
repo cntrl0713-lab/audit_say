@@ -1,0 +1,2605 @@
+{
+  "version": 1,
+  "artifact_type": "within_one_point_residual_content_review",
+  "reviewer": "plan_procedures",
+  "created_at": "2026-09-12T04:18:11.847Z",
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "scope": {
+    "inventory_at": "2026-09-12T04:14:18.592Z",
+    "completed_observations_at_inventory": 633,
+    "evaluated_answers_at_inventory": 716,
+    "fixed_total_evaluated_answers": 830,
+    "unobserved_answers_at_inventory": 114,
+    "point_exact_answers_at_inventory": 704,
+    "within_one_deviations_reviewed": 11,
+    "known_outside_one_excluded": [
+      {
+        "set_id": "pilot-04-007",
+        "reason": "Root/A already adjudicated old partial expected2→0 and are preparing a valid partial1; excluded from this review."
+      }
+    ],
+    "selection": "All nonzero deviations with absolute delta1 found at the stated inventory; subsequent observations not reviewed."
+  },
+  "method": {
+    "api_calls": 0,
+    "db_calls": 0,
+    "production_files_modified": 0,
+    "original_evidence_modified": 0,
+    "human_review_performed": false,
+    "reviewed": "Actual projected prompt/facts, stored model answer, all criteria for each selected question, fixed QA expectation, raw provider judgment reasons, and 31 direct registered official source uses.",
+    "source_quote_and_frozen_hash_checks": 31,
+    "final_read_guard_files": 78,
+    "encrypted_reasoning_not_inspected": true,
+    "formal_receipt_created": false
+  },
+  "summary": {
+    "grading_consistency_cases": 9,
+    "expectation_boundary_needs_root_adjudication": [
+      {
+        "entry_id": "pilot-08-008--sub2--standard--partial",
+        "subquestion_id": "sub2"
+      },
+      {
+        "entry_id": "pilot-10-006--sub3--standard--partial",
+        "subquestion_id": "sub3"
+      }
+    ],
+    "confirmed_source_or_model_answer_errors": 0,
+    "no_extra_repeats": true,
+    "not_final_95_percent_acceptance": true
+  },
+  "rows": [
+    {
+      "entry_id": "pilot-02-007--case--partial",
+      "subquestion_id": "sub2",
+      "review_status": "grading_consistency",
+      "pattern": "판단 범위의 과도한 재진술 요구",
+      "rationale": "갑의 필요한 절차 생략 제안을 받아들일 수 없다는 답은 그 제안에 대한 거절 판단을 직접 제시한다. 기준 200.A53의 두 독립 이유는 쓰지 않아 이유0점은 맞다. 현 기대1점과 root의 기대정정 근거를 유지한다. 모델은 낮은 설득력 증거 수용까지 함께 부정해야 판단점수를 준 것으로 보인다.",
+      "current_expected_points": 1,
+      "actual_points": 0,
+      "delta": -1,
+      "expectation_changed": false,
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-02-007--case--partial/observation.json",
+        "sha256": "67eae6135172c4810189a7d22f8268a04d775f90e3d74644bac895ab93416154"
+      },
+      "original_files": {
+        "input": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-02-007--case--partial/input.json",
+          "sha256": "b1aa966b43fe6c933ea7562b6050bf6721368970c611faf935560865bc668030"
+        },
+        "transport": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-02-007--case--partial/transport.jsonl",
+          "sha256": "ddd4935a60509366fb252e589c2423f679433e1ae4db8cb335429f42ee543930"
+        },
+        "traces": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-02-007--case--partial/traces.jsonl",
+          "sha256": "28d25853e2a54f8f124e4f50f7fc1131589186137572a4ae1b97628a02b3393d"
+        }
+      },
+      "prompt": "갑의 제안이 적절한지 판단하고, 필요한 절차와 증거의 설득력에 관하여 그 이유를 설명하시오.",
+      "actual_shared_facts": [
+        {
+          "id": "f1",
+          "text": "한결회계법인은 2026년 1월 1일 개시하는 재무제표를 감사하였다. 다음 갑·을은 서로 독립된 상황이다. 물음은 감사기준상 요구와 감사수행 평가에 한정하며 법률상 배상책임이나 면책 여부는 판단하지 않는다.",
+          "scoreable": false
+        },
+        {
+          "id": "f2",
+          "text": "갑: 팀원은 대체적인 절차가 없는 필요한 감사절차를 확인하였다. 그러나 예산과 일정이 부족하다는 이유만으로 그 절차를 생략하고, 해당 목적에 관한 설득력이 더 낮은 증거에 만족하자고 제안하였다.",
+          "scoreable": false
+        },
+        {
+          "id": "f3",
+          "text": "을: 감사보고서 발행 후 정교한 공모와 문서조작에 따른 중요한 왜곡표시가 발견되었다. 외부인은 그 발견 사실 하나만으로 감사인이 감사기준에 따라 감사를 수행하지 않았음이 확정된다고 주장한다. 당시의 절차·감사증거·보고서에 대한 검토는 아직 이루어지지 않았다.",
+          "scoreable": false
+        }
+      ],
+      "stored_model_answer": [
+        "예산·일정 부족만을 이유로 한 갑의 절차 생략 및 낮은 설득력 증거 수용 제안을 부적절하다고 판단한다.",
+        "시간·비용·어려움 자체는 대체적인 절차가 없는 필요한 감사절차를 생략하는 정당한 근거가 되지 못한다.",
+        "시간·비용·어려움 자체는 더 낮은 설득력의 감사증거에 만족하는 정당한 근거가 되지 못한다."
+      ],
+      "student_answer": "갑의 필요한 절차를 생략하자는 제안은 받아들일 수 없다.",
+      "criteria": [
+        {
+          "id": "crit4",
+          "requirement_id": "sub2.req1",
+          "claim": "예산·일정 부족만을 이유로 한 갑의 절차 생략 및 낮은 설득력 증거 수용 제안을 부적절하다고 판단한다. 이유에서 그 제안을 받아들일 수 없음이 명확하면 별도 결론 문구를 요구하지 않는다.",
+          "critical_facts": [
+            {
+              "id": "crit4.fact",
+              "type": "conclusion",
+              "expected": "예산·일정 부족만을 이유로 한 갑의 절차 생략 및 낮은 설득력 증거 수용 제안을 부적절하다고 판단한다. 이유에서 그 제안을 받아들일 수 없음이 명확하면 별도 결론 문구를 요구하지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-d1afdfdf9ea032ce85"
+          ]
+        },
+        {
+          "id": "crit5",
+          "requirement_id": "sub2.req1",
+          "claim": "시간·비용·어려움 자체는 대체적인 절차가 없는 필요한 감사절차를 생략하는 정당한 근거가 되지 못한다.",
+          "critical_facts": [
+            {
+              "id": "crit5.fact",
+              "type": "negation",
+              "expected": "시간·비용·어려움 자체는 대체적인 절차가 없는 필요한 감사절차를 생략하는 정당한 근거가 되지 못한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-d1afdfdf9ea032ce85"
+          ]
+        },
+        {
+          "id": "crit10",
+          "requirement_id": "sub2.req1",
+          "claim": "시간·비용·어려움 자체는 더 낮은 설득력의 감사증거에 만족하는 정당한 근거가 되지 못한다.",
+          "critical_facts": [
+            {
+              "id": "crit10.fact",
+              "type": "negation",
+              "expected": "시간·비용·어려움 자체는 더 낮은 설득력의 감사증거에 만족하는 정당한 근거가 되지 못한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-d1afdfdf9ea032ce85"
+          ]
+        }
+      ],
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "갑의 특정 제안을 받아들일 수 없다고 직접 거절하므로 부적절 판단1점은 인정한다. 이 결론만으로 별도 요구된 기준상의 이유를 설명했다고 역으로 추정하지 않는다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "원답안은 절차 생략 제안의 거절만 제시한다. 시간·비용·어려움 자체가 대체절차 없는 필요한 감사절차를 생략하는 정당한 근거가 될 수 없다는 이유는 서술하지 않았다. f2의 주어진 조건을 이유 설명 자체로 대체하지 않는다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "not_met",
+          "reason": "낮은 설득력의 감사증거에 만족하는 것을 시간·비용·어려움만으로 정당화할 수 없다는 별도 이유를 제시하지 않았다."
+        }
+      ],
+      "actual_raw": [
+        {
+          "response_id": "resp_0036f4dae763a18d016aa4c6de4b3887d08d7a10d32b76dfcc",
+          "request_id": "req_58907ca2874948a1ad44cfd9b8f1fb14",
+          "model": "gpt-5.6-luna",
+          "judgment": {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "필요한 절차 생략만 언급하고 낮은 설득력 증거 수용 제안의 부적절성은 언급하지 않았다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "시간·비용·어려움이 생략의 정당한 근거가 아니라는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "시간·비용·어려움이 낮은 설득력의 증거를 수용할 정당한 근거가 아니라는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "id": "src-d1afdfdf9ea032ce85",
+          "file": "cpa_uploader/data/official/delegated-s01-kga200-210-220-320-2025.txt",
+          "sha256": "852ac43ac61dd800e78c31f674c025663cde23780b7510dc05b54539e0acc515",
+          "quote_sha256": "0f54180fecd7376f2c6c17ac8b46a193ab0d80a5471ba672c348a9e3cd9892bf",
+          "exact_quote": true,
+          "line_start": 61,
+          "line_end": 72,
+          "requirement_spans": [
+            "L61-L72; KGA 200 문단 A53 원문 페이지 24; L61-L72; 수동 확인한 연속 인용"
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/expectation-correction-v2/pilot-02-007-sub2-partial.json",
+          "sha256": "730aa79f20dcc0cab064d7bcc40870565693f359997fe229817e4b0cca617feb",
+          "subquestion_id": "sub2",
+          "case_id": "sub2/boundary-crit4",
+          "kind": "partial",
+          "reason": "공식 A53 및 판단·이유 분리 계약에 따라 판단만 쓴 원답안은 1점으로 정정했다. 원 2점 기대·실측은 보존하고 새 기대표로 한 차례 표적 검사한다."
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-02-007-sub3-partial.json",
+          "sha256": "c35f59904f7b708838a92eebe7432c554f7f26ec55ea24d45604e88c338f8177",
+          "subquestion_id": "sub3",
+          "case_id": "sub3/omission-crit6",
+          "kind": "partial",
+          "reason": "정확하게 제시한 독립 요구만 합산하고 나머지의 누락·반대와 분리되는지 확인한다."
+        }
+      ]
+    },
+    {
+      "entry_id": "pilot-16-010--case--partial",
+      "subquestion_id": "sub3",
+      "review_status": "grading_consistency",
+      "pattern": "필수 선행조치의 판단 함축 미인정",
+      "rationale": "병은 수정사항 감사에 관한 계약/증거 검토 전이며, 710.A12는 충분하고 적합한 증거를 표현의 선행 조건으로 둔다. 먼저 해당 증거를 입수해야 한다는 답은 현 상태의 즉시 표현 사용이 부적절함을 함축한다. 계약 조건 자체는 빠져0점이나 증거1+판단1의 현 기대를 지지한다.",
+      "current_expected_points": 2,
+      "actual_points": 1,
+      "delta": -1,
+      "expectation_changed": false,
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-16-010--case--partial/observation.json",
+        "sha256": "f2d0a694506b78154efd3a2f9eddde4b6ba494784d305b4f33e079b049203f35"
+      },
+      "original_files": {
+        "input": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-16-010--case--partial/input.json",
+          "sha256": "f04e94cba96ffc52fea8aa223a19d49952860c9d996b38291b976675edbca7a3"
+        },
+        "transport": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-16-010--case--partial/transport.jsonl",
+          "sha256": "5ea909894242225e742d022145f8af06b46b3247f1d6e6fb7a15327b221d3130"
+        },
+        "traces": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-16-010--case--partial/traces.jsonl",
+          "sha256": "52c8fa94159b7502d927161ee2eb09bbb25d9692dbdfedf7c11cd888c867aece"
+        }
+      },
+      "prompt": "병의 제안이 현재 상태에서 적절한지 판단하고, 수정 조정사항을 감사하여 그 적절성에 관한 표현을 포함하기 위해 먼저 갖추어야 할 계약 및 감사증거의 조건을 모두 설명하시오.",
+      "actual_shared_facts": [
+        {
+          "id": "f1",
+          "text": "한결회계법인은 새봄회사의 2026년 1월 1일 개시하는 당기 재무제표에 대한 감사계약을 체결하였다. 회사는 2025년 전기 재무제표를 비교재무제표 방식으로 제시한다. 전기 전체 재무제표는 다른 회계법인인 전임감사인이 감사하여 적정의견을 표명하였다. 한결회계법인은 전기 전체 재무제표에 대한 감사나 검토 등 확신업무 계약을 체결하지 않았다.",
+          "scoreable": false
+        },
+        {
+          "id": "f2",
+          "text": "당기감사 중 전기 재무제표의 중요한 오류가 발견되었다. 경영진과 필요한 지배기구에 이를 알리고 전임감사인에게 알리도록 요청하는 절차는 이행되었다. 다음 갑·을·병은 서로 독립된 상황이다. 각 상황에서 당기 재무제표에는 오류수정의 영향이 적절하게 반영되었으며, 당기감사의 증거 부족이나 미수정왜곡표시는 없다.",
+          "scoreable": false
+        },
+        {
+          "id": "f3",
+          "text": "갑: 전임감사인은 수정된 전기 재무제표에 대한 감사보고서의 재발행을 거절하였다. 당기감사인은 전기 수정사항만을 대상으로 하는 별도 감사계약도 체결하지 않았다. 팀원은 기타사항문단의 설명 초안으로 다음 두 문장을 작성했다. ① 전임감사인은 수정된 2025년 재무제표에 대하여 의견을 표명하였다. ② 당기감사인은 당기감사를 수행하였으므로 2025년 재무제표 전체에 대해서도 감사의견이나 기타 확신을 표명한다.",
+          "scoreable": false
+        },
+        {
+          "id": "f4",
+          "text": "을: 전임감사인은 수정된 전기 재무제표에 대하여 새로운 감사보고서를 발행하는 데 동의하여 실제로 발행하였다. 그 보고서를 비교재무제표와 함께 제시할지 여부에 따른 차이를 검토 중이다.",
+          "scoreable": false
+        },
+        {
+          "id": "f5",
+          "text": "병: 전임감사인이 재발행을 거절하자 팀원은 현재의 당기 감사계약만으로 다음 취지의 문구를 사용할 수 있다고 제안했다. 전기 재무제표 수정에 적용한 조정사항을 감사하였으며 그 조정사항은 적절하고 바르게 적용되었다는 문구이다. 수정사항을 대상으로 하는 추가 계약 체결이나 필요한 증거 확보에 관한 별도 검토는 아직 이루어지지 않았다.",
+          "scoreable": false
+        }
+      ],
+      "stored_model_answer": [
+        "현재 상태에서 수정 조정사항을 감사했다는 표현을 포함하자는 병의 제안은 적절하지 않다.",
+        "수정 조정사항의 감사를 포함하는 계약상 업무 범위를 확보해야 한다.",
+        "수정의 적절성에 대하여 만족할 만큼 충분하고 적합한 감사증거를 얻어야 한다고 설명한다."
+      ],
+      "student_answer": "해당 수정의 적절성에 대하여 만족할 만큼 충분하고 적합한 감사증거를 입수해야 한다.",
+      "criteria": [
+        {
+          "id": "crit5",
+          "requirement_id": "sub3.req1",
+          "claim": "현재 상태에서 수정 조정사항을 감사했다는 표현을 포함하자는 병의 제안은 적절하지 않다. 필요한 계약 범위 확보 조치가 이를 명확히 함축하면 결론 문구를 반복할 필요는 없다.",
+          "critical_facts": [
+            {
+              "id": "crit5.fact",
+              "type": "conclusion",
+              "expected": "현재 상태에서 수정 조정사항을 감사했다는 표현을 포함하자는 병의 제안은 적절하지 않다. 필요한 계약 범위 확보 조치가 이를 명확히 함축하면 결론 문구를 반복할 필요는 없다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-84e1f3d24325280a8f"
+          ]
+        },
+        {
+          "id": "crit7",
+          "requirement_id": "sub3.req1",
+          "claim": "수정 조정사항의 감사를 포함하는 계약상 업무 범위를 확보해야 한다. 추가 계약 또는 기존 계약의 범위 변경이 가능하며 물리적으로 별도 계약서가 있어야 하는 것은 아니다.",
+          "critical_facts": [
+            {
+              "id": "crit7.fact",
+              "type": "negation",
+              "expected": "수정 조정사항의 감사를 포함하는 계약상 업무 범위를 확보해야 한다. 추가 계약 또는 기존 계약의 범위 변경이 가능하며 물리적으로 별도 계약서가 있어야 하는 것은 아니다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-84e1f3d24325280a8f"
+          ]
+        },
+        {
+          "id": "crit6",
+          "requirement_id": "sub3.req1",
+          "claim": "수정의 적절성에 대하여 만족할 만큼 충분하고 적합한 감사증거를 얻어야 한다고 설명한다. 계약 체결만으로 충족하거나 전기 전체의 감사를 완료해야 한다는 요건으로 바꾸지 않는다.",
+          "critical_facts": [
+            {
+              "id": "crit6.fact",
+              "type": "condition",
+              "expected": "수정의 적절성에 대하여 만족할 만큼 충분하고 적합한 감사증거를 얻어야 한다고 설명한다. 계약 체결만으로 충족하거나 전기 전체의 감사를 완료해야 한다는 요건으로 바꾸지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-84e1f3d24325280a8f"
+          ]
+        }
+      ],
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "met",
+          "reason": "아직 수정 감사의 전제를 갖추지 못한 현재 상황에서 충분하고 적합한 증거를 먼저 입수해야 한다는 조치는 즉시 문구 사용 불가 판단을 함축한다. 계약 범위 조건은 누락되었다."
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "not_met",
+          "reason": "아직 수정 감사의 전제를 갖추지 못한 현재 상황에서 충분하고 적합한 증거를 먼저 입수해야 한다는 조치는 즉시 문구 사용 불가 판단을 함축한다. 계약 범위 조건은 누락되었다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "met",
+          "reason": "대상 독립 명제 전체를 생략했으며 나머지 명제는 유지하였다."
+        }
+      ],
+      "actual_raw": [
+        {
+          "response_id": "resp_0d08cf4a3a6e2c4e016aa4c81b594887d0995c4e9e08e522a5",
+          "request_id": "req_156a406175374a2fa773d996e0df78c3",
+          "model": "gpt-5.6-luna",
+          "judgment": {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "현재 상태에서 제안이 부적절하다는 결론이 없다."
+              },
+              {
+                "criterion_id": "crit7",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "수정사항 감사를 포함하는 계약상 업무 범위 확보에 관한 설명이 없다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "수정의 적절성에 대해 충분하고 적합한 감사증거를 입수해야 한다고 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "id": "src-84e1f3d24325280a8f",
+          "file": "cpa_uploader/data/official/delegated-n06-kga710-720-1100-supplement-2025.txt",
+          "sha256": "57d6643f6bc2b7917309ac2749d14ba4406a0a411a11c29503337d7e1b3060d4",
+          "quote_sha256": "bbc41ef231250a493e92471b6c557526664f8c589587e35bab3f0a8340535332",
+          "exact_quote": true,
+          "line_start": 11,
+          "line_end": 22,
+          "requirement_spans": [
+            "L11-L22; KGA 710 문단 A12 원문 페이지 793; L11-L22; 수동 확인한 연속 인용"
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-16-010-sub1-partial.json",
+          "sha256": "be806be2e4508b5b3d262cef2c926a333ea2bfa9c3ec69a4e6d7e5d7a65ac51f",
+          "subquestion_id": "sub1",
+          "case_id": "sub1/omission-crit1",
+          "kind": "partial",
+          "reason": "정확한 독립 명제의 부분점수와 누락 명제의 경계를 확인한다."
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-16-010-sub2-partial.json",
+          "sha256": "b9edcbd1fb26e8dab334b5eab14a94a649850b577847980954e564b27407eabc",
+          "subquestion_id": "sub2",
+          "case_id": "sub2/omission-crit3",
+          "kind": "partial",
+          "reason": "정확한 독립 명제의 부분점수와 누락 명제의 경계를 확인한다."
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-16-010-sub3-partial.json",
+          "sha256": "46097e33f38b2d5c04c30eb17ad6f5a0735ee8767157f29a1d449ec8d476a499",
+          "subquestion_id": "sub3",
+          "case_id": "sub3/omission-crit5",
+          "kind": "partial",
+          "reason": "정확한 독립 명제의 부분점수와 누락 명제의 경계를 확인한다."
+        }
+      ]
+    },
+    {
+      "entry_id": "pilot-04-006--case--partial",
+      "subquestion_id": "sub1",
+      "review_status": "grading_consistency",
+      "pattern": "명확한 반대 조치의 판단 함축 미인정",
+      "rationale": "갑의 최초 작성을 미루자는 제안에 대해 미뤄서는 안 된다고 직접 답하고 적시 기록을 요구했다. 230.7 및 해당 crit1의 명시된 함축 허용 범위와 일치한다. 별도 부적절 단어가 없다는 모델 이유로 판단1점을 빼는 것은 과도하다. A22 최종 취합 성격은 답에 없어0점 유지.",
+      "current_expected_points": 2,
+      "actual_points": 1,
+      "delta": -1,
+      "expectation_changed": false,
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-04-006--case--partial/observation.json",
+        "sha256": "180a30c98b93b86accaa015a9fa1917d002196ed59b743ba4c64048ac5cf57d5"
+      },
+      "original_files": {
+        "input": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-04-006--case--partial/input.json",
+          "sha256": "5234809a9104b7fa85bf3621a8a9f47cad600ab9938c7cae2eeb744e60647a93"
+        },
+        "transport": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-04-006--case--partial/transport.jsonl",
+          "sha256": "d6ae52020fb4c5288384c91d24dae0c3966168d91d3dd8916100238e1dd78245"
+        },
+        "traces": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-04-006--case--partial/traces.jsonl",
+          "sha256": "a8697c3d88f83455809f1010a554830dafab8bfb53bb2c1cf750964aeadc6a43"
+        }
+      },
+      "prompt": "갑의 제안이 적절한지 판단하고, 감사문서의 최초 작성과 최종감사파일 취합의 성격을 구별하여 이유를 설명하시오.",
+      "actual_shared_facts": [
+        {
+          "id": "f1",
+          "text": "한결회계법인은 2026년 1월 1일 개시하는 한빛회사의 재무제표를 감사한다. 감사보고서일은 2027년 3월 15일이고 최종감사파일 취합 완료 예정일은 2027년 4월 20일이다. 다음 갑·을·병의 상황은 서로 독립적이다.",
+          "scoreable": false
+        },
+        {
+          "id": "f2",
+          "text": "갑: 감사절차를 수행 중인 팀원이 결과와 판단 내용을 현재 기록하지 않고 기억해 두었다가 4월 20일에 처음 작성하자고 제안하였다.",
+          "scoreable": false
+        },
+        {
+          "id": "f3",
+          "text": "을: 3월 15일 후 최종파일 취합을 진행하고 있다. 감사보고서일 후 새로운 감사절차나 추가적인 감사절차를 수행하거나 새로운 결론을 도출하는 상황은 아니다.",
+          "scoreable": false
+        },
+        {
+          "id": "f4",
+          "text": "병: 4월 20일에 취합을 완료한 뒤인 5월 10일에 기존 문서의 오기를 발견하여 수정·추가할 필요가 생겼다. 여기에서도 새로운 감사절차·추가적인 감사절차 또는 새로운 결론은 없으며, 감사문서 보존기간은 종료되지 않았다.",
+          "scoreable": false
+        }
+      ],
+      "stored_model_answer": [
+        "갑과 같이 최초 문서화를 최종 취합 때까지 일괄 미루는 처리는 부적절하다고 판단한다.",
+        "감사문서의 최초 작성은 적시에 이루어져야 함을 설명한다.",
+        "보고서일 후의 최종감사파일 취합은 새로운 감사절차나 결론 도출과 관계없는 행정적 정리라는 성격을 설명한다."
+      ],
+      "student_answer": "취합 완료일까지 최초 작성을 미뤄서는 안 되고 적시에 기록해야 한다.",
+      "criteria": [
+        {
+          "id": "crit1",
+          "requirement_id": "sub1.req1",
+          "claim": "갑과 같이 최초 문서화를 최종 취합 때까지 일괄 미루는 처리는 부적절하다고 판단한다. 지금 적시에 문서화해야 한다는 명확한 조치로 판단을 함축할 수 있으나 명시적인 적절 결론은 인정하지 않는다.",
+          "critical_facts": [
+            {
+              "id": "crit1.fact",
+              "type": "conclusion",
+              "expected": "갑과 같이 최초 문서화를 최종 취합 때까지 일괄 미루는 처리는 부적절하다고 판단한다. 지금 적시에 문서화해야 한다는 명확한 조치로 판단을 함축할 수 있으나 명시적인 적절 결론은 인정하지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-486c61dad20d1c3349"
+          ]
+        },
+        {
+          "id": "crit2",
+          "requirement_id": "sub1.req2",
+          "claim": "감사문서의 최초 작성은 적시에 이루어져야 함을 설명한다. 최종 취합기한까지 최초 작성을 일괄 미뤄도 된다는 주장은 반대이다.",
+          "critical_facts": [
+            {
+              "id": "crit2.fact",
+              "type": "condition",
+              "expected": "감사문서의 최초 작성은 적시에 이루어져야 함을 설명한다. 최종 취합기한까지 최초 작성을 일괄 미뤄도 된다는 주장은 반대이다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-b54be20acba919f30f",
+            "src-486c61dad20d1c3349"
+          ]
+        },
+        {
+          "id": "crit10",
+          "requirement_id": "sub1.req2",
+          "claim": "보고서일 후의 최종감사파일 취합은 새로운 감사절차나 결론 도출과 관계없는 행정적 정리라는 성격을 설명한다. 최초 문서화의 대체가 아니며 보고서일 후 행정 취합조차 불가능하다는 주장은 반대이다.",
+          "critical_facts": [
+            {
+              "id": "crit10.fact",
+              "type": "action",
+              "expected": "보고서일 후의 최종감사파일 취합은 새로운 감사절차나 결론 도출과 관계없는 행정적 정리라는 성격을 설명한다. 최초 문서화의 대체가 아니며 보고서일 후 행정 취합조차 불가능하다는 주장은 반대이다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-b54be20acba919f30f",
+            "src-486c61dad20d1c3349"
+          ]
+        }
+      ],
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "공식 근거와 해당 criterion의 발문 범위·조건에 따른 작성자 기대값. 조치가 제안의 부적절성을 분명히 함축한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "최초 기록의 적시 의무를 명시했고 최종 취합의 행정적 성격은 누락했다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "not_met",
+          "reason": "최초 기록의 적시 의무를 명시했고 최종 취합의 행정적 성격은 누락했다."
+        }
+      ],
+      "actual_raw": [
+        {
+          "response_id": "resp_0181de717f184fdd016aa4c8e97c6487d0a8b4269fdb56c83d",
+          "request_id": "req_a99c8fc148964db89daa4f246f52714a",
+          "model": "gpt-5.6-luna",
+          "judgment": {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "최초 작성을 미뤄서는 안 된다는 조치는 제시했지만, 갑의 제안이 부적절하다는 명시적 판단은 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "최초 작성을 취합 완료일까지 미루지 말고 적시에 기록해야 한다고 설명했다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "최종감사파일 취합이 새로운 절차나 결론 도출과 무관한 행정적 정리라는 성격을 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "id": "src-486c61dad20d1c3349",
+          "file": "cpa_uploader/data/official/delegated-n01-kga230-supplement-2025.txt",
+          "sha256": "f0dc1bae9defddc953bad9ddf8a1013c10309891f6e046bcb15021102fb15ebe",
+          "quote_sha256": "fc4f24894408b271c47eb318e35bd634a137e4e64a7b8e795a8b9608dbf7aceb",
+          "exact_quote": true,
+          "line_start": 10,
+          "line_end": 10,
+          "requirement_spans": [
+            "L10-L10; KGA 230 문단 7; PDF 71쪽; 수동 확인한 연속 인용"
+          ]
+        },
+        {
+          "id": "src-b54be20acba919f30f",
+          "file": "cpa_uploader/data/official/delegated-n01-kga230-supplement-2025.txt",
+          "sha256": "f0dc1bae9defddc953bad9ddf8a1013c10309891f6e046bcb15021102fb15ebe",
+          "quote_sha256": "3ea6ff2bc2f0ebe14614959e53c0aa2e50ea21ac413a5489cd893d103a0e5253",
+          "exact_quote": true,
+          "line_start": 20,
+          "line_end": 27,
+          "requirement_spans": [
+            "L20-L27; KGA 230 문단 A22; PDF 79쪽; 수동 확인한 연속 인용"
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-04-006-sub1-partial.json",
+          "sha256": "2fa60156d54a847c5d35fd6d6a152c24acbb8e55132190dbdc41e658543ab7ae",
+          "subquestion_id": "sub1",
+          "case_id": "sub1/boundary-crit1",
+          "kind": "partial",
+          "reason": "정확하게 제시한 독립 요구만 합산하고 나머지의 누락·반대와 분리되는지 확인한다."
+        }
+      ]
+    },
+    {
+      "entry_id": "pilot-08-008--sub2--standard--partial",
+      "subquestion_id": "sub2",
+      "review_status": "expected_answer_boundary_needs_adjudication",
+      "pattern": "업무 성격과 범위의 독립 의미 경계",
+      "rationale": "500.A55는 전문영역 이해, A57은 성격·범위·목적을 구분한다. 범위·목적·전문영역의3점은 분명하다. 원답안의 무엇을 평가했는지는 평가업무의 종류까지 뜻할 수도, 평가대상만 뜻할 수도 있다. 기준서형 발문은 구체 평가사례 제시를 요구하지 않으므로 모델의 구체적 설명 요구도 과도할 수 있다. 업무 성격1점을 대상/범위와 중복 보충한 기대 오류인지 현4점을 유지할지는 총괄의 원답안 의미 판정으로 남긴다. 자동 정정하거나 ±1로 내용 쟁점을 닫지 않는다.",
+      "current_expected_points": 4,
+      "actual_points": 3,
+      "delta": -1,
+      "expectation_changed": false,
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-08-008--sub2--standard--partial/observation.json",
+        "sha256": "7fd53039e1520cc14320622e8871e5d9ec2e1c8054b0bd68efcb6f28eab520aa"
+      },
+      "original_files": {
+        "input": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-08-008--sub2--standard--partial/input.json",
+          "sha256": "35b0b1d1b12db5afb438e48c8ae52f11dc9dd8ae9735e9f5573d0d179965f60e"
+        },
+        "transport": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-08-008--sub2--standard--partial/transport.jsonl",
+          "sha256": "dfd36f90393ae1fc1cc0b6e2c625b3d5c366ee1ecd2db5ae78a0ee0197594d3c"
+        },
+        "traces": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-08-008--sub2--standard--partial/traces.jsonl",
+          "sha256": "6a97e8f0179255892f51a3de14ea7b411711f599848710db83ea2abd967d8604"
+        }
+      },
+      "prompt": "경영진측 전문가의 업무를 관련 경영진주장에 대한 감사증거로 사용하려고 한다. 감사기준서 500에 따라 다음 두 영역에서 수행할 사항을 설명하시오. ① 수행업무의 성격·범위·목적 및 관련 전문영역의 이해, ② 발견사항·결론의 적합성 평가.",
+      "actual_shared_facts": [],
+      "stored_model_answer": [
+        "경영진측 전문가가 수행한 업무의 성격, 즉 어떤 종류의 평가업무를 수행했는지 이해한다.",
+        "경영진측 전문가가 수행한 업무의 범위, 즉 평가 대상과 수행 범위를 이해한다.",
+        "경영진측 전문가가 수행한 업무의 목적을 이해한다.",
+        "경영진측 전문가가 수행한 업무와 관련된 전문영역을 이해한다.",
+        "전문가의 발견사항·결론이 관련 평가 주장에 대한 감사증거로서 관련성이 있는지 평가한다.",
+        "전문가의 발견사항·결론이 합리적인지 평가한다.",
+        "전문가의 발견사항·결론이 다른 감사증거와 일관되는지 평가한다.",
+        "전문가의 발견사항·결론이 재무제표에 적절하게 반영되었는지 평가한다."
+      ],
+      "student_answer": "어떤 전문영역에서 무엇을 어느 범위와 목적으로 평가했는지 해당 업무를 파악한다.",
+      "criteria": [
+        {
+          "id": "crit3",
+          "requirement_id": "req3",
+          "claim": "경영진측 전문가가 수행한 업무의 성격, 즉 어떤 종류의 평가업무를 수행했는지 이해한다.",
+          "critical_facts": [
+            {
+              "id": "cf3",
+              "type": "action",
+              "expected": "경영진측 전문가가 수행한 업무의 성격, 즉 어떤 종류의 평가업무를 수행했는지 이해한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-2e8004cc75d626f9db",
+            "src-379ff6e196897bab12",
+            "src-4d4957fa581656d0dd"
+          ]
+        },
+        {
+          "id": "crit9",
+          "requirement_id": "req3",
+          "claim": "경영진측 전문가가 수행한 업무의 범위, 즉 평가 대상과 수행 범위를 이해한다.",
+          "critical_facts": [
+            {
+              "id": "cf9",
+              "type": "action",
+              "expected": "경영진측 전문가가 수행한 업무의 범위, 즉 평가 대상과 수행 범위를 이해한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-2e8004cc75d626f9db",
+            "src-379ff6e196897bab12",
+            "src-4d4957fa581656d0dd"
+          ]
+        },
+        {
+          "id": "crit10",
+          "requirement_id": "req3",
+          "claim": "경영진측 전문가가 수행한 업무의 목적을 이해한다.",
+          "critical_facts": [
+            {
+              "id": "cf10",
+              "type": "action",
+              "expected": "경영진측 전문가가 수행한 업무의 목적을 이해한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-2e8004cc75d626f9db",
+            "src-379ff6e196897bab12",
+            "src-4d4957fa581656d0dd"
+          ]
+        },
+        {
+          "id": "crit11",
+          "requirement_id": "req3",
+          "claim": "경영진측 전문가가 수행한 업무와 관련된 전문영역을 이해한다.",
+          "critical_facts": [
+            {
+              "id": "cf11",
+              "type": "action",
+              "expected": "경영진측 전문가가 수행한 업무와 관련된 전문영역을 이해한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-2e8004cc75d626f9db",
+            "src-379ff6e196897bab12",
+            "src-4d4957fa581656d0dd"
+          ]
+        },
+        {
+          "id": "crit4",
+          "requirement_id": "req4",
+          "claim": "전문가의 발견사항·결론이 관련 평가 주장에 대한 감사증거로서 관련성이 있는지 평가한다.",
+          "critical_facts": [
+            {
+              "id": "cf4",
+              "type": "action",
+              "expected": "전문가의 발견사항·결론이 관련 평가 주장에 대한 감사증거로서 관련성이 있는지 평가한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-2e8004cc75d626f9db",
+            "src-5aa72e77f5f4f9d048"
+          ]
+        },
+        {
+          "id": "crit12",
+          "requirement_id": "req4",
+          "claim": "전문가의 발견사항·결론이 합리적인지 평가한다.",
+          "critical_facts": [
+            {
+              "id": "cf12",
+              "type": "action",
+              "expected": "전문가의 발견사항·결론이 합리적인지 평가한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-2e8004cc75d626f9db",
+            "src-5aa72e77f5f4f9d048"
+          ]
+        },
+        {
+          "id": "crit13",
+          "requirement_id": "req4",
+          "claim": "전문가의 발견사항·결론이 다른 감사증거와 일관되는지 평가한다.",
+          "critical_facts": [
+            {
+              "id": "cf13",
+              "type": "action",
+              "expected": "전문가의 발견사항·결론이 다른 감사증거와 일관되는지 평가한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-2e8004cc75d626f9db",
+            "src-5aa72e77f5f4f9d048"
+          ]
+        },
+        {
+          "id": "crit14",
+          "requirement_id": "req4",
+          "claim": "전문가의 발견사항·결론이 재무제표에 적절하게 반영되었는지 평가한다.",
+          "critical_facts": [
+            {
+              "id": "cf14",
+              "type": "action",
+              "expected": "전문가의 발견사항·결론이 재무제표에 적절하게 반영되었는지 평가한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-2e8004cc75d626f9db",
+            "src-5aa72e77f5f4f9d048"
+          ]
+        }
+      ],
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "원답안 전체의 해당 완전 명제 또는 허용 동의표현이 이 독립 부분을 포함한다. 대상: 경영진측 전문가가 수행한 업무의 성격, 즉 어떤 종류의 평가업무를 수행했는지 이해한다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "met",
+          "reason": "원답안 전체의 해당 완전 명제 또는 허용 동의표현이 이 독립 부분을 포함한다. 대상: 경영진측 전문가가 수행한 업무의 범위, 즉 평가 대상과 수행 범위를 이해한다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "met",
+          "reason": "원답안 전체의 해당 완전 명제 또는 허용 동의표현이 이 독립 부분을 포함한다. 대상: 경영진측 전문가가 수행한 업무의 목적을 이해한다."
+        },
+        {
+          "criterion_id": "crit11",
+          "verdict": "met",
+          "reason": "원답안 전체의 해당 완전 명제 또는 허용 동의표현이 이 독립 부분을 포함한다. 대상: 경영진측 전문가가 수행한 업무와 관련된 전문영역을 이해한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 대조했으며 이 독립 요구를 표현하거나 함축하는 내용이 없다. 대상: 전문가의 발견사항·결론이 관련 평가 주장에 대한 감사증거로서 관련성이 있는지 평가한다."
+        },
+        {
+          "criterion_id": "crit12",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 대조했으며 이 독립 요구를 표현하거나 함축하는 내용이 없다. 대상: 전문가의 발견사항·결론이 합리적인지 평가한다."
+        },
+        {
+          "criterion_id": "crit13",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 대조했으며 이 독립 요구를 표현하거나 함축하는 내용이 없다. 대상: 전문가의 발견사항·결론이 다른 감사증거와 일관되는지 평가한다."
+        },
+        {
+          "criterion_id": "crit14",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 대조했으며 이 독립 요구를 표현하거나 함축하는 내용이 없다. 대상: 전문가의 발견사항·결론이 재무제표에 적절하게 반영되었는지 평가한다."
+        }
+      ],
+      "actual_raw": [
+        {
+          "response_id": "resp_0fcefd8cb9c80449016aa4c9e0736087d0ba1938dc24ac038a",
+          "request_id": "req_17929c2774bd44349109858fe8a0b792",
+          "model": "gpt-5.6-luna",
+          "judgment": {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "평가업무의 성격이나 종류를 구체적으로 설명하지 않았다."
+              },
+              {
+                "criterion_id": "crit9",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "평가 대상과 업무 범위를 파악한다고 설명했다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "업무의 목적을 파악한다고 설명했다."
+              },
+              {
+                "criterion_id": "crit11",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "관련 전문영역을 파악한다고 설명했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "발견사항·결론의 관련성 평가를 언급하지 않았다."
+              },
+              {
+                "criterion_id": "crit12",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "발견사항·결론의 합리성 평가를 언급하지 않았다."
+              },
+              {
+                "criterion_id": "crit13",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "다른 감사증거와의 일관성 평가를 언급하지 않았다."
+              },
+              {
+                "criterion_id": "crit14",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표에 적절히 반영되었는지 평가를 언급하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "id": "src-2e8004cc75d626f9db",
+          "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+          "sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+          "quote_sha256": "c7d74dda042636669aceb404825c1cc481f2ff3501f09db835228b9b1882bc53",
+          "exact_quote": true,
+          "line_start": 63,
+          "line_end": 75,
+          "requirement_spans": [
+            "L63-L75; KGA 500 문단 8 원문 페이지 370; L63-L75",
+            "L63-L75; KGA 500 문단 8 원문 페이지 370; L63-L75"
+          ]
+        },
+        {
+          "id": "src-379ff6e196897bab12",
+          "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+          "sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+          "quote_sha256": "9b710c785dbe76e211d78a1316de5896773de7b2913d4016f26aa0daa4f6943c",
+          "exact_quote": true,
+          "line_start": 542,
+          "line_end": 545,
+          "requirement_spans": []
+        },
+        {
+          "id": "src-4d4957fa581656d0dd",
+          "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+          "sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+          "quote_sha256": "37d940d67dc2486416cb14a63bc29965c4585727104438027c908d33b193841c",
+          "exact_quote": true,
+          "line_start": 559,
+          "line_end": 566,
+          "requirement_spans": []
+        },
+        {
+          "id": "src-5aa72e77f5f4f9d048",
+          "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+          "sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+          "quote_sha256": "e557ec067dca4108efe695abd2b6a4f9d0151492256972690fbb5eb4576eb8a6",
+          "exact_quote": true,
+          "line_start": 571,
+          "line_end": 581,
+          "requirement_spans": []
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-08-008-sub2-partial.json",
+          "sha256": "91f19f1ded983b739cc42fc7b95a73bca14fcf79b5307f3cedc2fde64678494f",
+          "subquestion_id": "sub2",
+          "case_id": "sub2-crit3-paraphrase--sub2",
+          "kind": "partial",
+          "reason": "정확하게 제시한 독립 요구만 합산하고 나머지의 누락·반대와 분리되는지 확인한다."
+        }
+      ]
+    },
+    {
+      "entry_id": "pilot-10-007--case--partial",
+      "subquestion_id": "sub2",
+      "review_status": "grading_consistency",
+      "pattern": "미완료 보완조치의 판단 함축 미인정",
+      "rationale": "상황 B는 계산·비교 외 검토가 없다고 명시했다. 현 발문에 답해 중요한 왜곡표시를 식별할 기대치 정확성을 평가해야 한다고 제시한 것은 520.5(c)에 따른 미완료 조치를 요구하므로 현재 종료계획의 부적절성을 함축한다. 판단1+정확성1 기대를 유지하며 차이 결정·요인 점수는 없다.",
+      "current_expected_points": 2,
+      "actual_points": 1,
+      "delta": -1,
+      "expectation_changed": false,
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-10-007--case--partial/observation.json",
+        "sha256": "68929f975634de3b22fd252c0d7c0aca0b7388ab4f36f4c3535f14c9244187cd"
+      },
+      "original_files": {
+        "input": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-10-007--case--partial/input.json",
+          "sha256": "98f6588aece1cf84657b1bf35577a8764db7ba3037f33083c79b75542027a25b"
+        },
+        "transport": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-10-007--case--partial/transport.jsonl",
+          "sha256": "a73a9c3996da21112de0a9c9e3b76558fd65a76da8140205914eccaf36b6603e"
+        },
+        "traces": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-10-007--case--partial/traces.jsonl",
+          "sha256": "6ddd992dff9bf9cbf70f7b8eb2ed4c92b256592cf03076d6f6806909424415eb"
+        }
+      },
+      "prompt": "상황 B의 종료 계획이 적절한지 판단하시오. 이미 계산한 값을 감사인의 기대치로 이용할 때 보완할 정확성 평가와 추가조사 없이 수용할 차이의 결정 및 그 결정에 고려할 요인을 설명하시오. 이미 완료한 절차 적합성 판단과 기초자료 신뢰성 평가의 고려사항 목록은 답안 범위에서 제외한다.",
+      "actual_shared_facts": [
+        {
+          "id": "fact1",
+          "text": "2026년 1월 1일에 개시하는 보고기간의 재무제표를 한국 회계감사기준에 따라 감사하며, 필요한 후속 업무는 2027년에 수행한다.",
+          "scoreable": false
+        },
+        {
+          "id": "fact2",
+          "text": "영리기업인 회사는 차입거래가 많고 이자비용이 중요하다. 상황 A는 계획단계의 위험평가, 상황 B는 이자비용에 관한 실증적 분석절차의 설계, 상황 C는 그 분석에서 식별한 차이의 조사에 관한 독립 상황이다. 종결단계의 전반적 분석적절차도 수행할 예정이다. 구체적 금액·평균·비율 계산은 요구하지 않는다.",
+          "scoreable": false
+        },
+        {
+          "id": "fact3",
+          "text": "상황 A: 담당자는 분석적절차가 위험평가·실증·감사종결의 각 단계에서 어떤 목적으로 사용되며 어느 단계에서 반드시 수행되어야 하는지 확인하려 한다. 위험평가절차와 종결절차만으로 필요한 실증절차가 모두 대체되는 상황은 아니다.",
+          "scoreable": false
+        },
+        {
+          "id": "fact4",
+          "text": "상황 B: 특정 이자비용 주장에 대하여 평가된 중요왜곡표시위험과 관련 세부테스트를 고려한 결과, 이 사례에서는 실증적 분석절차를 이용하는 것이 적합하다는 판단까지는 마쳤다. 이후 회사가 제공한 평균차입금·평균이자율 자료로 단순 계산한 값이 장부금액과 비슷하다는 이유로 절차를 마치려 한다. 이 계산표 외에 검증 근거나 차이를 수용할 기준을 정한 기록은 없고, 담당자에게 확인한 결과 계산과 비교 외의 검토도 수행하지 않았다. 여기서 비슷하다는 말은 적절한 수용 기준이 이미 충족되었다는 뜻이 아니다.",
+          "scoreable": false
+        },
+        {
+          "id": "fact5",
+          "text": "상황 C: 별도의 분석에서 다른 관련정보와 일관되지 않거나 기대치와 유의적인 금액만큼 다른 변동을 식별하였다. 감사인은 경영진에게 질문하여 설명을 받았지만, 설명과 관련한 증거의 적합성과 기타 감사절차의 필요성은 아직 검토하지 않았다. 질문을 다시 했다는 사실만을 답할 필요는 없다.",
+          "scoreable": false
+        }
+      ],
+      "stored_model_answer": [
+        "계산값과 장부금액이 비슷하다는 이유만으로 필요한 검토를 마치지 않고 절차를 종료하는 계획은 부적절하다.",
+        "이미 계산한 값을 감사인의 기대치로 이용할 때, 그 기대치가 개별적으로 또는 다른 왜곡표시와 합쳐 재무제표를 중요하게 왜곡표시시킬 수 있는 왜곡표시를 식별할 정도로 충분히 정확한지 평가한다.",
+        "추가 조사 없이 수용할 수 있는 기록금액과 감사인 기대치의 차이금액을 결정해야 한다.",
+        "수용할 차이금액을 결정할 때 중요성을 고려한다.",
+        "수용할 차이금액을 결정할 때 요구되는 확신수준을 고려한다.",
+        "수용할 차이금액을 결정할 때 평가된 중요왜곡표시위험을 고려한다."
+      ],
+      "student_answer": "이미 계산한 값을 감사인의 기대치로 이용할 때, 그 기대치가 개별적으로 또는 다른 왜곡표시와 합쳐 재무제표를 중요하게 왜곡표시시킬 수 있는 왜곡표시를 식별할 정도로 충분히 정확한지 평가한다.",
+      "criteria": [
+        {
+          "id": "crit4",
+          "requirement_id": "req4",
+          "claim": "계산값과 장부금액이 비슷하다는 이유만으로 필요한 검토를 마치지 않고 절차를 종료하는 계획은 부적절하다.",
+          "critical_facts": [
+            {
+              "id": "cf4",
+              "type": "action",
+              "expected": "계산값과 장부금액이 비슷하다는 이유만으로 필요한 검토를 마치지 않고 절차를 종료하는 계획은 부적절하다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-b5481cdcc415319fcf"
+          ]
+        },
+        {
+          "id": "crit6",
+          "requirement_id": "req6",
+          "claim": "이미 계산한 값을 감사인의 기대치로 이용할 때, 그 기대치가 개별적으로 또는 다른 왜곡표시와 합쳐 재무제표를 중요하게 왜곡표시시킬 수 있는 왜곡표시를 식별할 정도로 충분히 정확한지 평가한다.",
+          "critical_facts": [
+            {
+              "id": "cf6",
+              "type": "conclusion",
+              "expected": "이미 계산한 값을 감사인의 기대치로 이용할 때, 그 기대치가 개별적으로 또는 다른 왜곡표시와 합쳐 재무제표를 중요하게 왜곡표시시킬 수 있는 왜곡표시를 식별할 정도로 충분히 정확한지 평가한다."
+            },
+            {
+              "id": "cf6-calculation-scope",
+              "type": "condition",
+              "expected": "이미 계산한 값의 도출 행위 자체를 다시 쓰는 것은 추가 득점요건이 아니다. 중요한 왜곡표시를 식별할 충분한 정확성의 평가를 요구한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-b5481cdcc415319fcf",
+            "src-25610cb1397cb3355d"
+          ]
+        },
+        {
+          "id": "crit7",
+          "requirement_id": "req7",
+          "claim": "추가 조사 없이 수용할 수 있는 기록금액과 감사인 기대치의 차이금액을 결정해야 한다.",
+          "critical_facts": [
+            {
+              "id": "cf7",
+              "type": "conclusion",
+              "expected": "추가 조사 없이 수용할 수 있는 기록금액과 감사인 기대치의 차이금액을 결정해야 한다.",
+              "scope": "차이를 결정한다는 행위와 결정요인을 분리한다. 추가조사 없이 수용할 차이금액을 정한다는 뜻이면 이 기준을 인정하며 중요성·확신수준·평가위험의 누락이나 잘못된 설명만으로 이 행위 점수까지 중복 감점하지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-b5481cdcc415319fcf",
+            "src-4b0e398ec0a4fad77f"
+          ]
+        },
+        {
+          "id": "crit15",
+          "requirement_id": "req7",
+          "claim": "수용할 차이금액을 결정할 때 중요성을 고려한다.",
+          "critical_facts": [
+            {
+              "id": "crit15.fact",
+              "type": "conclusion",
+              "expected": "수용할 차이금액을 결정할 때 중요성을 고려한다.",
+              "scope": "수용 차이 결정의 해당 요인을 정확히 식별하거나 같은 뜻으로 설명하면 1점이다. 다른 요인이나 결정행위 문구는 이 기준의 추가 필수조건이 아니다. 위험이 높을수록 다른 조건이 같을 때 차이를 늘린다는 설명은 위험의 관계를 반대로 적용한 것이므로 crit17은 반대이다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-b5481cdcc415319fcf",
+            "src-4b0e398ec0a4fad77f"
+          ]
+        },
+        {
+          "id": "crit16",
+          "requirement_id": "req7",
+          "claim": "수용할 차이금액을 결정할 때 요구되는 확신수준을 고려한다.",
+          "critical_facts": [
+            {
+              "id": "crit16.fact",
+              "type": "conclusion",
+              "expected": "수용할 차이금액을 결정할 때 요구되는 확신수준을 고려한다.",
+              "scope": "수용 차이 결정의 해당 요인을 정확히 식별하거나 같은 뜻으로 설명하면 1점이다. 다른 요인이나 결정행위 문구는 이 기준의 추가 필수조건이 아니다. 위험이 높을수록 다른 조건이 같을 때 차이를 늘린다는 설명은 위험의 관계를 반대로 적용한 것이므로 crit17은 반대이다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-b5481cdcc415319fcf",
+            "src-4b0e398ec0a4fad77f"
+          ]
+        },
+        {
+          "id": "crit17",
+          "requirement_id": "req7",
+          "claim": "수용할 차이금액을 결정할 때 평가된 중요왜곡표시위험을 고려한다.",
+          "critical_facts": [
+            {
+              "id": "crit17.fact",
+              "type": "conclusion",
+              "expected": "수용할 차이금액을 결정할 때 평가된 중요왜곡표시위험을 고려한다.",
+              "scope": "수용 차이 결정의 해당 요인을 정확히 식별하거나 같은 뜻으로 설명하면 1점이다. 다른 요인이나 결정행위 문구는 이 기준의 추가 필수조건이 아니다. 위험이 높을수록 다른 조건이 같을 때 차이를 늘린다는 설명은 위험의 관계를 반대로 적용한 것이므로 crit17은 반대이다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-b5481cdcc415319fcf",
+            "src-4b0e398ec0a4fad77f"
+          ]
+        }
+      ],
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "원문·발문·분리 명제와 답안 전체를 직접 대조했다. 독립적인 누락과 명시적 반대를 구별한다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "met",
+          "reason": "원문·발문·분리 명제와 답안 전체를 직접 대조했다. 독립적인 누락과 명시적 반대를 구별한다."
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "not_met",
+          "reason": "원문·발문·분리 명제와 답안 전체를 직접 대조했다. 독립적인 누락과 명시적 반대를 구별한다."
+        },
+        {
+          "criterion_id": "crit15",
+          "verdict": "not_met",
+          "reason": "원문·발문·분리 명제와 답안 전체를 직접 대조했다. 독립적인 누락과 명시적 반대를 구별한다."
+        },
+        {
+          "criterion_id": "crit16",
+          "verdict": "not_met",
+          "reason": "원문·발문·분리 명제와 답안 전체를 직접 대조했다. 독립적인 누락과 명시적 반대를 구별한다."
+        },
+        {
+          "criterion_id": "crit17",
+          "verdict": "not_met",
+          "reason": "원문·발문·분리 명제와 답안 전체를 직접 대조했다. 독립적인 누락과 명시적 반대를 구별한다."
+        }
+      ],
+      "actual_raw": [
+        {
+          "response_id": "resp_084b5c50ab809bb7016aa4ca2bf6b487d0b7f364900c08464e",
+          "request_id": "req_7617cd7ed5a34ba28a6dbc696c352496",
+          "model": "gpt-5.6-luna",
+          "judgment": {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "계산값과 장부금액이 비슷하다는 이유로 절차를 종료하는 계획의 부적절성을 언급하지 않았다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "기대치가 중요한 왜곡표시를 식별할 정도로 충분히 정확한지 평가한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit7",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "추가 조사 없이 수용할 차이금액을 결정한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit15",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "수용할 차이금액 결정 시 중요성을 고려한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit16",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "수용할 차이금액 결정 시 요구되는 확신수준을 고려한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit17",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "수용할 차이금액 결정 시 평가된 중요왜곡표시위험을 고려한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "id": "src-b5481cdcc415319fcf",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "4f3ca31c9f784b7279b799ec1bd05b642f28c6a68f19d86b72e7cdcfec40d41b",
+          "exact_quote": true,
+          "line_start": 314,
+          "line_end": 329,
+          "requirement_spans": [
+            "L314-L329; KGA 520 문단 5 원문 페이지 424; L314-L329",
+            "L314-L329; KGA 520 문단 5 원문 페이지 424; L314-L329",
+            "L314-L329; KGA 520 문단 5 원문 페이지 424; L314-L329"
+          ]
+        },
+        {
+          "id": "src-25610cb1397cb3355d",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "4b805fcb0f52d35a119c819d802a7410ffa51eba8b65a8e1e3f2a2813ade2a56",
+          "exact_quote": true,
+          "line_start": 488,
+          "line_end": 503,
+          "requirement_spans": []
+        },
+        {
+          "id": "src-4b0e398ec0a4fad77f",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "74f427f8fb36c8cbed9c661d11b58c80ca1a59737055971c76b58169e7c75973",
+          "exact_quote": true,
+          "line_start": 505,
+          "line_end": 513,
+          "requirement_spans": []
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-10-007-sub2-partial.json",
+          "sha256": "1d4e1b5c2ea743e206309bdb67e513e7c270b24cc9a60eaa32d691cbcc9f9a75",
+          "subquestion_id": "sub2",
+          "case_id": "efficient/sub2/precision-only",
+          "kind": "partial",
+          "reason": "정확한 독립 명제의 부분점수와 누락 명제의 경계를 확인한다."
+        }
+      ]
+    },
+    {
+      "entry_id": "pilot-06-001--sub2--standard--partial",
+      "subquestion_id": "sub2",
+      "review_status": "grading_consistency",
+      "pattern": "일반 영향 판단에서 단정형 문구 요구",
+      "rationale": "315.A97–A98의 핵심은 통제환경 미비점의 전반적인 영향이다. 원답안은 재무제표 전반에 영향을 미칠 수 있다고 정확한 범위를 제시하며 그 영향을 부정하거나 특정 주장에 한정하지 않았다. 일반 영향 판단 문맥에서 반드시 단정형으로 다시 쓰라는 추가 요구는 두지 않는다. 기반 설명은 없어0점.",
+      "current_expected_points": 1,
+      "actual_points": 0,
+      "delta": -1,
+      "expectation_changed": false,
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-06-001--sub2--standard--partial/observation.json",
+        "sha256": "ae123484c6ddae0de56eb691c9d1bd2e68aa9f6f1048e74dd699b771f8426985"
+      },
+      "original_files": {
+        "input": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-06-001--sub2--standard--partial/input.json",
+          "sha256": "6c6139f2f19060a28c47c1b5baee91b26a1fa13af16f294fe0d50ba570dd8322"
+        },
+        "transport": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-06-001--sub2--standard--partial/transport.jsonl",
+          "sha256": "927619a42c221c874aadf9ac4d5282ae8ef17d43eb620a6adced3083641ed6fe"
+        },
+        "traces": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-06-001--sub2--standard--partial/traces.jsonl",
+          "sha256": "164fc03ae363ea53302404b8a0d3c53063f9309c9844a7333c50142762a8dea5"
+        }
+      },
+      "prompt": "통제환경의 미비점이 재무제표에 미치는 영향을 판단하고 그 근거를 설명하시오.",
+      "actual_shared_facts": [],
+      "stored_model_answer": [
+        "통제환경의 미비점은 재무제표의 작성에 전반적인 영향을 미친다.",
+        "통제환경은 내부통제시스템의 다른 구성요소가 운영되는 전반적인 기초를 제공하고, 그 구성요소의 통제 효과성에 영향을 미치기 때문이다."
+      ],
+      "student_answer": "통제환경의 미비점은 재무제표 전반에 영향을 미칠 수 있다.",
+      "criteria": [
+        {
+          "id": "crit3",
+          "requirement_id": "req2",
+          "claim": "통제환경의 미비점이 재무제표 전반에 영향을 미친다고 판단함",
+          "critical_facts": [
+            {
+              "id": "cf3",
+              "type": "conclusion",
+              "expected": "통제환경의 미비점은 재무제표 전반에 영향"
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src7"
+          ]
+        },
+        {
+          "id": "crit4",
+          "requirement_id": "req2",
+          "claim": "통제환경이 내부통제시스템의 전반적인 기초를 제공한다는 근거를 설명함",
+          "critical_facts": [
+            {
+              "id": "cf4",
+              "type": "condition",
+              "expected": "통제환경은 내부통제시스템의 전반적인 기초"
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src7"
+          ]
+        }
+      ],
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 독립 요구를 직접 제시함."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 요구나 이를 함축하는 설명을 제시하지 않음."
+        }
+      ],
+      "actual_raw": [
+        {
+          "response_id": "resp_03b157cf3bbcfb24016aa4ca6d07d087d0b3947d8bc261b6d9",
+          "request_id": "req_1ee169b57aa9483babbf6e8514680c36",
+          "model": "gpt-5.6-luna",
+          "judgment": {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표 전반에 영향을 미칠 수 있다고만 하여 요구된 판단을 단정적으로 제시하지 않음."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "통제환경이 내부통제시스템의 전반적인 기초를 제공한다는 근거가 없음."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "id": "src7",
+          "file": "cpa_uploader/data/official/kga315-330-2025-review06.txt",
+          "sha256": "486c1df843af6d74e0acdaec995501e6f40f24ae9dd8dc23415007d90d5affe1",
+          "quote_sha256": "970b740afd8cb37a6757930d3bd505e0620cdba2634a554ecfc414938d857f6c",
+          "exact_quote": true,
+          "line_start": 363,
+          "line_end": 373,
+          "requirement_spans": [
+            "315.A97–A98"
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-06-001-sub2-partial.json",
+          "sha256": "00d27cd7e845b04f62b1858e02aa72e43cd64a7a85e3627cfd93fce0281c7834",
+          "subquestion_id": "sub2",
+          "case_id": "efficient/sub2/source_based_partial",
+          "kind": "partial",
+          "reason": "정확하게 제시한 독립 요구만 합산하고 나머지의 누락·반대와 분리되는지 확인한다."
+        }
+      ]
+    },
+    {
+      "entry_id": "pilot-10-007--sub1--standard--partial",
+      "subquestion_id": "sub1",
+      "review_status": "grading_consistency",
+      "pattern": "중요왜곡표시위험의 의미상 범위를 축자 누락으로 처리",
+      "rationale": "315.13(a)/14(b)와520.6의 단계별 목적을 묻는 발문이다. 답은 위험평가에 분석을 필수로 포함하고 재무제표·주장 수준 위험의 식별·평가 근거를 얻는다고 썼다. 부정·오류라는 원인 목록을 별도 답으로 요구하지 않았으며 어느 원인을 배제하지도 않았다. 원1점 기대 유지.",
+      "current_expected_points": 1,
+      "actual_points": 0,
+      "delta": -1,
+      "expectation_changed": false,
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-10-007--sub1--standard--partial/observation.json",
+        "sha256": "438fd90d2d8ad49f2054152cd4a5c4e4d98ffbaafacb5af85b0d61bb845af158"
+      },
+      "original_files": {
+        "input": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-10-007--sub1--standard--partial/input.json",
+          "sha256": "96dc8741c5dd5f4365b182723ff04e04941d5242babb7394b0db3b7b237abf89"
+        },
+        "transport": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-10-007--sub1--standard--partial/transport.jsonl",
+          "sha256": "067f2072c1223030989b9e30bbdf97152e8813b0e497496fb9a93a7d26bb096c"
+        },
+        "traces": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-10-007--sub1--standard--partial/traces.jsonl",
+          "sha256": "77b959dc26288f7c67820102af765709ead4c9f00dd9cf16ff90eac1bb8a6d0f"
+        }
+      },
+      "prompt": "분석적절차를 반드시 수행하여야 하는 위험평가단계와 감사종료시점에 근접한 단계의 목적을 각각 설명하시오. 실증단계에서도 실증적 분석절차가 언제나 의무인지, 사용 여부를 정하는 기준과 함께 설명하시오.",
+      "actual_shared_facts": [],
+      "stored_model_answer": [
+        "위험평가절차에 분석적절차를 포함하여, 재무제표 수준과 경영진주장 수준에서 부정이나 오류로 인한 중요왜곡표시위험을 식별·평가하는 적합한 근거를 얻는다.",
+        "감사종료시점에 근접하여 기업에 대하여 이해한 바와 재무제표가 일관되는지에 관한 전반적인 결론을 내리기 위해 분석적절차를 설계하고 수행한다.",
+        "실증적 분석절차는 모든 실증단계에서 항상 의무인 것은 아니다.",
+        "주어진 주장에 대한 평가위험과 관련 세부테스트 등을 고려한 적합성에 따라 실증적 분석절차를 단독으로 또는 세부테스트와 결합하여 사용할지 결정한다."
+      ],
+      "student_answer": "위험평가 과정에서는 분석을 필수로 포함해 재무제표와 주장 수준의 중요왜곡표시위험을 찾아 평가할 근거를 마련한다.",
+      "criteria": [
+        {
+          "id": "crit1",
+          "requirement_id": "req1",
+          "claim": "위험평가절차에 분석적절차를 포함하여, 재무제표 수준과 경영진주장 수준에서 부정이나 오류로 인한 중요왜곡표시위험을 식별·평가하는 적합한 근거를 얻는다.",
+          "critical_facts": [
+            {
+              "id": "cf1",
+              "type": "action",
+              "expected": "위험평가절차에 분석적절차를 포함하여, 재무제표 수준과 경영진주장 수준에서 부정이나 오류로 인한 중요왜곡표시위험을 식별·평가하는 적합한 근거를 얻는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-c842dcb46341299780",
+            "src-70f91e8e899580bf2e"
+          ]
+        },
+        {
+          "id": "crit2",
+          "requirement_id": "req2",
+          "claim": "감사종료시점에 근접하여 기업에 대하여 이해한 바와 재무제표가 일관되는지에 관한 전반적인 결론을 내리기 위해 분석적절차를 설계하고 수행한다.",
+          "critical_facts": [
+            {
+              "id": "cf2",
+              "type": "action",
+              "expected": "감사종료시점에 근접하여 기업에 대하여 이해한 바와 재무제표가 일관되는지에 관한 전반적인 결론을 내리기 위해 분석적절차를 설계하고 수행한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-e67ae1831db41aa655"
+          ]
+        },
+        {
+          "id": "crit3",
+          "requirement_id": "req3",
+          "claim": "실증적 분석절차는 모든 실증단계에서 항상 의무인 것은 아니다.",
+          "critical_facts": [
+            {
+              "id": "cf3",
+              "type": "action",
+              "expected": "실증적 분석절차는 모든 실증단계에서 항상 의무인 것은 아니다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-b5481cdcc415319fcf",
+            "src-ae84cc0f30958fe270"
+          ]
+        },
+        {
+          "id": "crit10",
+          "requirement_id": "req3",
+          "claim": "주어진 주장에 대한 평가위험과 관련 세부테스트 등을 고려한 적합성에 따라 실증적 분석절차를 단독으로 또는 세부테스트와 결합하여 사용할지 결정한다.",
+          "critical_facts": [
+            {
+              "id": "cf10",
+              "type": "action",
+              "expected": "주어진 주장에 대한 평가위험과 관련 세부테스트 등을 고려한 적합성에 따라 실증적 분석절차를 단독으로 또는 세부테스트와 결합하여 사용할지 결정한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-b5481cdcc415319fcf",
+            "src-ae84cc0f30958fe270"
+          ]
+        }
+      ],
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 위험평가절차에 분석적절차를 포함하여, 재무제표 수준과 경영진주장 수준에서 부정이나 오류로 인한 중요왜곡표시위험을 식별·평가하는 적합한 근거를 얻는다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 감사종료시점에 근접하여 기업에 대하여 이해한 바와 재무제표가 일관되는지에 관한 전반적인 결론을 내리기 위해 분석적절차를 설계하고 수행한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 대조했으며 이 독립 요구를 표현하거나 함축하는 내용이 없다. 대상: 실증적 분석절차는 모든 실증단계에서 항상 의무인 것은 아니다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 대조했으며 이 독립 요구를 표현하거나 함축하는 내용이 없다. 대상: 주어진 주장에 대한 평가위험과 관련 세부테스트 등을 고려한 적합성에 따라 실증적 분석절차를 단독으로 또는 세부테스트와 결합하여 사용할지 결정한다."
+        }
+      ],
+      "actual_raw": [
+        {
+          "response_id": "resp_010e04dacc8352cc016aa4cb7c3d5887d0aee348c98e499d90",
+          "request_id": "req_b70eb11600154f168b212a7f43eefc44",
+          "model": "gpt-5.6-luna",
+          "judgment": {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "부정이나 오류로 인한 위험이라는 구체 내용이 누락되었다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사종료시점 근접 분석절차의 목적과 수행이 언급되지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "실증적 분석절차가 항상 의무가 아니라는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "사용 여부를 정하는 평가위험·세부테스트 고려 및 단독 또는 결합 수행 기준이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "id": "src-c842dcb46341299780",
+          "file": "cpa_uploader/data/official/kga315-330-2025-review06.txt",
+          "sha256": "486c1df843af6d74e0acdaec995501e6f40f24ae9dd8dc23415007d90d5affe1",
+          "quote_sha256": "b5c402c298a06e4a0c165e7b9d24aaace1e5749d7f4ba3da9c7cba44493e1df0",
+          "exact_quote": true,
+          "line_start": 91,
+          "line_end": 98,
+          "requirement_spans": [
+            "L91-L98; KGA 315 문단 13; L91-L98"
+          ]
+        },
+        {
+          "id": "src-70f91e8e899580bf2e",
+          "file": "cpa_uploader/data/official/kga315-330-2025-review06.txt",
+          "sha256": "486c1df843af6d74e0acdaec995501e6f40f24ae9dd8dc23415007d90d5affe1",
+          "quote_sha256": "efbdfa6bb9f444c5a4c7609a8eae10fde5faf5acc78d685a0259386a578296bb",
+          "exact_quote": true,
+          "line_start": 99,
+          "line_end": 110,
+          "requirement_spans": []
+        },
+        {
+          "id": "src-e67ae1831db41aa655",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "cde804bab8f99e176f561500e89f6c1dbb2ea0a496985c624a16c00e0d026f1d",
+          "exact_quote": true,
+          "line_start": 331,
+          "line_end": 336,
+          "requirement_spans": [
+            "L331-L336; KGA 520 문단 6 원문 페이지 424; L331-L336"
+          ]
+        },
+        {
+          "id": "src-b5481cdcc415319fcf",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "4f3ca31c9f784b7279b799ec1bd05b642f28c6a68f19d86b72e7cdcfec40d41b",
+          "exact_quote": true,
+          "line_start": 314,
+          "line_end": 329,
+          "requirement_spans": [
+            "L314-L329; KGA 520 문단 5 원문 페이지 424; L314-L329"
+          ]
+        },
+        {
+          "id": "src-ae84cc0f30958fe270",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "0787b577a8b76d1c036b2ac0c5aa6aad6cc4c9a47089b9866841678f978382f5",
+          "exact_quote": true,
+          "line_start": 374,
+          "line_end": 379,
+          "requirement_spans": []
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-10-007-sub1-partial.json",
+          "sha256": "e2dca8ec38f49e9279ac68d30d455ea9f8c1e1bd4a2db9a6f59a90baee110b2e",
+          "subquestion_id": "sub1",
+          "case_id": "sub1-crit1-paraphrase",
+          "kind": "partial",
+          "reason": "정확한 독립 명제의 부분점수와 누락 명제의 경계를 확인한다."
+        }
+      ]
+    },
+    {
+      "entry_id": "pilot-10-006--sub3--standard--partial",
+      "subquestion_id": "sub3",
+      "review_status": "expected_answer_boundary_needs_adjudication",
+      "pattern": "조사 주체와 필요한 수정 범위의 경계",
+      "rationale": "530.A23은 경영진에게 식별된·잠재적인 추가 왜곡표시를 조사하고 필요한 수정을 요구하는 경로와 감사인 추가절차 조정을 제시한다. 감사인이 직접 조사를 끝내고 발견 오류의 분개만 고치도록 한다는 답에는 경영진의 조사 요구가 없다. 그 누락만으로 수정 점수를 없애면 안 되지만, 분개만이라는 제한이 잠재적 추가 왜곡표시를 포함한 필요한 수정까지 포괄하는지는 별개 쟁점이다. 현 c9 met1 및 c5 not_met와 모델 c9 not_met/c5 contra 중 어떤 해석이 원 요구에 맞는지 총괄 판정 전까지 미확정이다. 조사 주체 차이만을 c9 자동감점 근거로 삼거나 실제0에 맞춰 기대를 바꾸지 않는다.",
+      "current_expected_points": 1,
+      "actual_points": 0,
+      "delta": -1,
+      "expectation_changed": false,
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-10-006--sub3--standard--partial/observation.json",
+        "sha256": "5c9517c1ae4df8ec8d970720803981c8ed5791dfe15c4138e0986376bcffb9dd"
+      },
+      "original_files": {
+        "input": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-10-006--sub3--standard--partial/input.json",
+          "sha256": "8986661fc4f9fd273242dc08be22974425c426e2e9f27fe664a9d03b031bf403"
+        },
+        "transport": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-10-006--sub3--standard--partial/transport.jsonl",
+          "sha256": "c0a5d2ec171b53a992a31c8c438f125a86d228e013f07e26513505e857db9986"
+        },
+        "traces": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-10-006--sub3--standard--partial/traces.jsonl",
+          "sha256": "e0561ea1d53aeefe550ccd6715c18eb56fc1ea25161d3a99d89c398b4374960f"
+        }
+      },
+      "prompt": "감사기준서 530에 따라 표본감사가 테스트 대상 모집단에 대한 결론의 합리적인 근거를 제공하지 못한다고 결론 내린 경우, 기준서가 제시하는 후속 대응의 두 경로를 모두 설명하시오. 경영진에게 요청할 조치와 감사인 자신의 추가감사절차 조정을 구별하되, 두 경로를 반드시 동시에 실행해야 한다는 뜻으로 답하지 마시오.",
+      "actual_shared_facts": [],
+      "stored_model_answer": [
+        "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하도록 요구할 수 있다.",
+        "경영진에게 조사 결과에 따른 필요한 수정을 하도록 요구할 수 있다.",
+        "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다."
+      ],
+      "student_answer": "감사인이 직접 조사를 끝내고 경영진에게 발견한 오류의 분개만 고치도록 한다.",
+      "criteria": [
+        {
+          "id": "crit5",
+          "requirement_id": "req5",
+          "claim": "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하도록 요구할 수 있다.",
+          "critical_facts": [
+            {
+              "id": "cf5",
+              "type": "action",
+              "expected": "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하도록 요구할 수 있다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-43bfe6cfb2d0fe299c"
+          ]
+        },
+        {
+          "id": "crit9",
+          "requirement_id": "req5",
+          "claim": "경영진에게 조사 결과에 따른 필요한 수정을 하도록 요구할 수 있다.",
+          "critical_facts": [
+            {
+              "id": "cf9",
+              "type": "action",
+              "expected": "경영진에게 조사 결과에 따른 필요한 수정을 하도록 요구할 수 있다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-43bfe6cfb2d0fe299c"
+          ]
+        },
+        {
+          "id": "crit6",
+          "requirement_id": "req6",
+          "claim": "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다.",
+          "critical_facts": [
+            {
+              "id": "cf6",
+              "type": "action",
+              "expected": "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-43bfe6cfb2d0fe299c"
+          ]
+        }
+      ],
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "경영진 조사 요구는 없지만 필요한 분개 수정 요구는 독립적으로 맞다. 조사 없음 때문에 수정의 점수를 취소하지 않는다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "met",
+          "reason": "경영진 조사 요구는 없지만 필요한 분개 수정 요구는 독립적으로 맞다. 조사 없음 때문에 수정의 점수를 취소하지 않는다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다."
+        }
+      ],
+      "actual_raw": [
+        {
+          "response_id": "resp_0b7bb8466a4a1032016aa4cc124e9c87d0a4a5c038baec874d",
+          "request_id": "req_8943c44803014f53b2aa9c29d9e4a017",
+          "model": "gpt-5.6-luna",
+          "judgment": {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "감사인이 직접 조사한다고 하여 경영진에게 조사를 요구하는 경로와 반대된다."
+              },
+              {
+                "criterion_id": "crit9",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "조사 결과에 따른 필요한 수정이 아니라 발견된 오류의 분개만 수정하도록 한다고 답했다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "추가감사절차의 성격·시기·범위 조정에 대한 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "id": "src-43bfe6cfb2d0fe299c",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "893cc4392b0c7e6399eb93298af5363e350fe8aa131b145baaa84f87b1e5edb7",
+          "exact_quote": true,
+          "line_start": 636,
+          "line_end": 642,
+          "requirement_spans": [
+            "L636-L642; KGA 530 문단 A23 원문 페이지 437; L636-L642",
+            "L636-L642; KGA 530 문단 A23 원문 페이지 437; L636-L642"
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-10-006-sub3-partial.json",
+          "sha256": "6c0ae7e11bc43070dbd1e6f9e9cf8e3148269a7e441d3b7fb0aed694053fc5ff",
+          "subquestion_id": "sub3",
+          "case_id": "sub3-management-adjustment-only",
+          "kind": "partial",
+          "reason": "정확한 독립 명제의 부분점수와 누락 명제의 경계를 확인한다."
+        }
+      ]
+    },
+    {
+      "entry_id": "pilot-10-007--sub3--standard--partial",
+      "subquestion_id": "sub3",
+      "review_status": "grading_consistency",
+      "pattern": "목적을 갖춘 증거 확보의 평가 의미 미인정",
+      "rationale": "520.7(a)는 설명 관련 적합한 증거의 입수를, A20은 기업·환경 이해와 다른 증거를 통한 설명 평가를 연결한다. 원답안은 바로 그 이해/다른 증거를 활용해 설명을 뒷받침하는 관련 증거를 확보한다고 썼으므로 일반 무목적 수집과 다르다. 평가한다는 축자 재진술 없이 현1점 유지. 기타절차0 유지.",
+      "current_expected_points": 1,
+      "actual_points": 0,
+      "delta": -1,
+      "expectation_changed": false,
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-10-007--sub3--standard--partial/observation.json",
+        "sha256": "45ee6ce879026b6e4496f88f1f68734436f728ad3597da54c8d8a61f8cd11b93"
+      },
+      "original_files": {
+        "input": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-10-007--sub3--standard--partial/input.json",
+          "sha256": "6439e9bc7ec9692c435e94aa0b3a0c18bc54299a8376cb913e278678cfa18b6c"
+        },
+        "transport": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-10-007--sub3--standard--partial/transport.jsonl",
+          "sha256": "dd5c8e74e566138d98554ed95b45205c2ab4fe493bdcf01539c38bec2ba96d6e"
+        },
+        "traces": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-10-007--sub3--standard--partial/traces.jsonl",
+          "sha256": "f9bf75a0ebf1107a8713a1135d5755f4866e2854ac8b3274285385e90ed87d0b"
+        }
+      },
+      "prompt": "분석적절차에서 다른 관련정보와 일관되지 않거나 기대치와 유의적인 금액만큼 다른 변동이나 관계를 식별하여 경영진에게 질문하고 설명을 받은 경우, 그 차이를 조사하기 위하여 수행할 사항을 모두 설명하시오. 설명과 관련한 감사증거와 상황에 필요한 기타절차를 구별하시오.",
+      "actual_shared_facts": [],
+      "stored_model_answer": [
+        "경영진의 설명과 관련성이 있는 적합한 감사증거를 입수하여 설명을 평가한다.",
+        "경영진 설명을 증거가 뒷받침하지 못하는 경우 등 해당 상황에 필요한 기타 감사절차를 수행한다."
+      ],
+      "student_answer": "기업과 환경에 대한 이해 및 다른 감사증거 등을 활용하여 설명을 뒷받침하는 관련 증거를 확보한다.",
+      "criteria": [
+        {
+          "id": "crit8",
+          "requirement_id": "req8",
+          "claim": "경영진의 설명과 관련성이 있는 적합한 감사증거를 입수하여 설명을 평가한다.",
+          "critical_facts": [
+            {
+              "id": "cf8",
+              "type": "action",
+              "expected": "경영진의 설명과 관련성이 있는 적합한 감사증거를 입수하여 설명을 평가한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-e7d17e54be2d240805",
+            "src-610dfeb49d38af086d"
+          ]
+        },
+        {
+          "id": "crit9",
+          "requirement_id": "req9",
+          "claim": "경영진 설명을 증거가 뒷받침하지 못하는 경우 등 해당 상황에 필요한 기타 감사절차를 수행한다.",
+          "critical_facts": [
+            {
+              "id": "cf9",
+              "type": "action",
+              "expected": "경영진 설명을 증거가 뒷받침하지 못하는 경우 등 해당 상황에 필요한 기타 감사절차를 수행한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-e7d17e54be2d240805",
+            "src-6c6cc0b55e6b722cad"
+          ]
+        }
+      ],
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit8",
+          "verdict": "met",
+          "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 경영진의 설명과 관련성이 있는 적합한 감사증거를 입수하여 설명을 평가한다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 경영진 설명을 증거가 뒷받침하지 못하는 경우 등 해당 상황에 필요한 기타 감사절차를 수행한다."
+        }
+      ],
+      "actual_raw": [
+        {
+          "response_id": "resp_08bc81663bc39737016aa4cf42662087d0b5f492ca49d0c4d3",
+          "request_id": "req_d0653bb3df084768916dd9afacaca38f",
+          "model": "gpt-5.6-luna",
+          "judgment": {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit8",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "관련 증거를 확보한다고만 했고, 그 증거로 경영진의 설명을 평가한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit9",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "설명이 증거로 뒷받침되지 않는 경우 필요한 기타 감사절차를 수행한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "id": "src-e7d17e54be2d240805",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "d5712ca8c13323bb8755194fa021d224af57e447759cc453db4befe88a0e0e7b",
+          "exact_quote": true,
+          "line_start": 338,
+          "line_end": 348,
+          "requirement_spans": [
+            "L338-L348; KGA 520 문단 7 원문 페이지 424; L338-L348",
+            "L338-L348; KGA 520 문단 7 원문 페이지 424; L338-L348"
+          ]
+        },
+        {
+          "id": "src-610dfeb49d38af086d",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "a8401b2028f1968b838f9acd737cf1dc7c9b2e62f4fc6d1a1b546de5eda829fb",
+          "exact_quote": true,
+          "line_start": 538,
+          "line_end": 542,
+          "requirement_spans": []
+        },
+        {
+          "id": "src-6c6cc0b55e6b722cad",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "1b575d92616b5ddb718d3027597faddea2f01e38b8994cf04e85d0f0ba05b62c",
+          "exact_quote": true,
+          "line_start": 544,
+          "line_end": 546,
+          "requirement_spans": []
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-10-007-sub3-partial.json",
+          "sha256": "b61d3a8965dc683e55b5c989e0c1ea79fc02eafc13b0c4eb6e645ff51f1c1ed7",
+          "subquestion_id": "sub3",
+          "case_id": "sub3-crit8-paraphrase",
+          "kind": "partial",
+          "reason": "정확한 독립 명제의 부분점수와 누락 명제의 경계를 확인한다."
+        }
+      ]
+    },
+    {
+      "entry_id": "pilot-12-010--case--partial",
+      "subquestion_id": "sub1",
+      "review_status": "grading_consistency",
+      "pattern": "판단점수에 후속 확인사항의 구체 목록을 중복 요구",
+      "rationale": "580.19는 일반 대응,20은 특정 의견거절 조건을 구분한다. 어느 진술 하나라도 없으면 자동 의견거절이라는 명제를 원답안이 명확히 부정하며 특정 조건을 확인한다고 했다. 구체 미제공 책임진술 범위와 성실성 결론은 각각 c2/c3으로 별도 요구된다. 그 두 점수를 못 받은 것을 다시 일반 판단점수의 필수 목록으로 적용하지 않는다. 기대1 유지.",
+      "current_expected_points": 1,
+      "actual_points": 0,
+      "delta": -1,
+      "expectation_changed": false,
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-12-010--case--partial/observation.json",
+        "sha256": "d2fbefc7b320b3ba45b710d6e58563062bb657a63ad73c4c20c64cb7ccfe7813"
+      },
+      "original_files": {
+        "input": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-12-010--case--partial/input.json",
+          "sha256": "55041373eb86c4bde230f3dac408434e368cfe16528b52d60b28dc36a35f476f"
+        },
+        "transport": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-12-010--case--partial/transport.jsonl",
+          "sha256": "f1b21b007294034954472e08f83eb2a4175a1cf290454be141881acfda448a81"
+        },
+        "traces": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-12-010--case--partial/traces.jsonl",
+          "sha256": "4a5927fe693e4c1a3a8943d15ded0af5c353e93e0c690088f739f911ffe6d2d2"
+        }
+      },
+      "prompt": "상황 A에서 어느 서면진술이든 하나라도 없으면 항상 의견거절이라는 주장이 적절한지 판단하시오. 이어 특정 의견거절 조건의 해당 여부를 판단하려면 미제공 진술의 범위와 경영진 성실성에 관하여 무엇을 확인해야 하는지 각각 설명하시오. 일반 미제공 대응 목록은 요구하지 않는다.",
+      "actual_shared_facts": [
+        {
+          "id": "fact1",
+          "text": "2026년 1월 1일에 개시하는 보고기간의 재무제표를 한국 회계감사기준에 따라 감사하며, 필요한 후속 업무는 2027년에 수행한다.",
+          "scoreable": false
+        },
+        {
+          "id": "fact2",
+          "text": "상황 A: 감사인이 요청한 특정 사항에 관한 서면진술 하나가 아직 제공되지 않았다. 감사팀에는 경영진의 성실성에 관한 우려도 제기되었다. 현재 제시된 정보는 이 두 사실뿐이며 후속 판단은 이루어지지 않았다. 담당자는 어느 서면진술이든 하나라도 없으면 항상 의견을 거절해야 한다고 주장한다.",
+          "scoreable": false
+        },
+        {
+          "id": "fact3",
+          "text": "상황 A에서는 요청한 문구와 일부 다르게 진술되었다는 사실만으로 진술 전체를 미제공이라고 단정하지 않는다. 감사인은 미제공 사항의 토의·성실성 재평가·증거 신뢰성 및 감사의견 영향의 고려 등 일반 대응도 수행해야 한다. 다음 물음은 일반 대응의 목록을 다시 열거하는 대신 특정 의견거절 조건의 적용 범위를 묻는다.",
+          "scoreable": false
+        },
+        {
+          "id": "fact4",
+          "text": "상황 B는 상황 A와 독립적이다. 감사팀은 경영진에게 요청해야 할 핵심 책임진술의 범위와, 이 책임진술에 관련하여 감사의견을 거절하여야 하는 조건을 후임자에게 설명하려 한다. 본문에 모든 세부항목을 그대로 인용하거나 기준서 번호만 암기하여 쓸 필요는 없다.",
+          "scoreable": false
+        }
+      ],
+      "stored_model_answer": [
+        "어느 서면진술이든 하나라도 제공되지 않으면 항상 의견을 거절해야 한다는 주장은 부적절하며, 미제공 범위와 해당 조건을 확인해야 한다.",
+        "미제공 진술이 재무제표 작성책임 및 제공정보·거래완전성에 관한 필수 책임진술, 즉580.10·11에서 요구하는 진술에 해당하는지 확인한다.",
+        "성실성에 대한 의문이580.10·11의 책임진술을 신뢰할 수 없을 정도라고 감사인이 결론내렸는지 확인한다."
+      ],
+      "student_answer": "진술 하나가 없다는 사실만으로 자동 의견거절은 아니고 특정 조건의 충족 여부를 봐야 한다.",
+      "criteria": [
+        {
+          "id": "crit1",
+          "requirement_id": "req1",
+          "claim": "어느 서면진술이든 하나라도 제공되지 않으면 항상 의견을 거절해야 한다는 주장은 부적절하며, 미제공 범위와 해당 조건을 확인해야 한다.",
+          "critical_facts": [
+            {
+              "id": "cf1",
+              "type": "conclusion",
+              "expected": "어느 서면진술이든 하나라도 제공되지 않으면 항상 의견을 거절해야 한다는 주장은 부적절하며, 미제공 범위와 해당 조건을 확인해야 한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-52b0ea317d89703ff5",
+            "src-e23aa9f4e31b30cf97",
+            "src-3c07d4c1cf9cc6ca35"
+          ]
+        },
+        {
+          "id": "crit2",
+          "requirement_id": "req2",
+          "claim": "미제공 진술이 재무제표 작성책임 및 제공정보·거래완전성에 관한 필수 책임진술, 즉580.10·11에서 요구하는 진술에 해당하는지 확인한다.",
+          "critical_facts": [
+            {
+              "id": "cf2",
+              "type": "conclusion",
+              "expected": "미제공 진술이 재무제표 작성책임 및 제공정보·거래완전성에 관한 필수 책임진술, 즉580.10·11에서 요구하는 진술에 해당하는지 확인한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-e720e7bded286b27d5",
+            "src-a88769f5ef6ef03ccf",
+            "src-e23aa9f4e31b30cf97"
+          ]
+        },
+        {
+          "id": "crit3",
+          "requirement_id": "req3",
+          "claim": "성실성에 대한 의문이580.10·11의 책임진술을 신뢰할 수 없을 정도라고 감사인이 결론내렸는지 확인한다.",
+          "critical_facts": [
+            {
+              "id": "cf3",
+              "type": "conclusion",
+              "expected": "성실성에 대한 의문이580.10·11의 책임진술을 신뢰할 수 없을 정도라고 감사인이 결론내렸는지 확인한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-e23aa9f4e31b30cf97",
+            "src-2f57a155a542f2fa3d",
+            "src-6c82931285349fa6e4"
+          ]
+        }
+      ],
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 어느 서면진술이든 하나라도 제공되지 않으면 항상 의견을 거절해야 한다는 주장은 부적절하며, 미제공 범위와 해당 조건을 확인해야 한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 미제공 진술이 재무제표 작성책임 및 제공정보·거래완전성에 관한 필수 책임진술, 즉580.10·11에서 요구하는 진술에 해당하는지 확인한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 성실성에 대한 의문이580.10·11의 책임진술을 신뢰할 수 없을 정도라고 감사인이 결론내렸는지 확인한다."
+        }
+      ],
+      "actual_raw": [
+        {
+          "response_id": "resp_07e510fbee396c79016aa4d07e73d887d0bace79d1c996e675",
+          "request_id": "req_8e04b77117184ade8d013a425e1f0f9b",
+          "model": "gpt-5.6-luna",
+          "judgment": {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "자동 의견거절이 아니라는 결론은 있으나 미제공 진술의 범위와 구체적 조건을 확인해야 한다는 내용이 충분히 제시되지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "필수 책임진술의 구체적 범위를 확인한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진 성실성 의문이 책임진술을 신뢰할 수 없게 하는지 확인한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "id": "src-52b0ea317d89703ff5",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "c00c09427bd7201606b93d94e7e0a770b68592b3a180c54013b97a2f0b7cb481",
+          "exact_quote": true,
+          "line_start": 758,
+          "line_end": 767,
+          "requirement_spans": [
+            "L758-L767; KGA 580 문단 19 원문 페이지 578; L758-L767"
+          ]
+        },
+        {
+          "id": "src-e23aa9f4e31b30cf97",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "c7f10ea02ce30fe120fa2f42dfed34df30b26c1dc2ecb249c21952b31601ecab",
+          "exact_quote": true,
+          "line_start": 769,
+          "line_end": 777,
+          "requirement_spans": [
+            "L769-L777; KGA 580 문단 20 원문 페이지 578; L769-L777"
+          ]
+        },
+        {
+          "id": "src-3c07d4c1cf9cc6ca35",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "a1c69ced971d7087fce5b7f986e37952afd129bb9b8a135b50f5aad185ec1b47",
+          "exact_quote": true,
+          "line_start": 1027,
+          "line_end": 1044,
+          "requirement_spans": []
+        },
+        {
+          "id": "src-e720e7bded286b27d5",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "7852919d9c9b8faaeb229dea60670efadb166b9950cd9f07e87a2263cd5690e9",
+          "exact_quote": true,
+          "line_start": 687,
+          "line_end": 692,
+          "requirement_spans": [
+            "L687-L692; KGA 580 문단 10 원문 페이지 576; L687-L692"
+          ]
+        },
+        {
+          "id": "src-a88769f5ef6ef03ccf",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "be8cbd4ea84a21a80e8a0fdcc41c8f37c74db4eb5a3da18f038655bf90e776e2",
+          "exact_quote": true,
+          "line_start": 694,
+          "line_end": 703,
+          "requirement_spans": []
+        },
+        {
+          "id": "src-2f57a155a542f2fa3d",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "955141ea2fb9695a9c3cb06b25813eb45a43e03d03655a97c7385803e0df1270",
+          "exact_quote": true,
+          "line_start": 1004,
+          "line_end": 1015,
+          "requirement_spans": []
+        },
+        {
+          "id": "src-6c82931285349fa6e4",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+          "quote_sha256": "2bcf01a1372eb37cd18c8011c1a3e6fcaf578798c512055d2522ab21843fdb12",
+          "exact_quote": true,
+          "line_start": 1017,
+          "line_end": 1025,
+          "requirement_spans": []
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-12-010-sub1-partial.json",
+          "sha256": "a18b3bd305d238f6c9994383426291e46c928ce50f36c2b8a3edf8d2ad3d9254",
+          "subquestion_id": "sub1",
+          "case_id": "sub1-crit1-paraphrase",
+          "kind": "partial",
+          "reason": "정확한 독립 명제의 부분점수와 누락 명제의 경계를 확인한다."
+        }
+      ]
+    },
+    {
+      "entry_id": "pilot-15-005--sub2--standard--wrong",
+      "subquestion_id": "sub2",
+      "review_status": "grading_consistency",
+      "pattern": "명시적 반대 결론을 무시한 조건만의 과다 인정",
+      "rationale": "700.17 본문은 다음 경우 의견을 변형하여야 한다고 명시하고(a)는 충분한 증거에 근거한 전체 중요왜곡표시 결론을 제시한다. 발문도 의견변형을 해야 하는 경우를 묻는다. 답안의 변형하지 않는다는 결론은 해당 조건에 대한 적용을 직접 부정하므로 c2 contradicted0을 유지한다. 독립적으로 맞는 다른 근거를 일괄 감점하는 사례가 아니다.",
+      "current_expected_points": 0,
+      "actual_points": 1,
+      "delta": 1,
+      "expectation_changed": false,
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-15-005--sub2--standard--wrong/observation.json",
+        "sha256": "632fd60d4192b031024571250f57b7d4f16e6cd95e7f856fea53d80bbcc978d2"
+      },
+      "original_files": {
+        "input": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-15-005--sub2--standard--wrong/input.json",
+          "sha256": "258ef1f8f295c3f375689737b7c74070b4e159328d27d40a38e2002b48f20c62"
+        },
+        "transport": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-15-005--sub2--standard--wrong/transport.jsonl",
+          "sha256": "66f47ce01fd9a2786706e902a7dbfed0500874edd86290189b8b4cff1443e1f8"
+        },
+        "traces": {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-15-005--sub2--standard--wrong/traces.jsonl",
+          "sha256": "1b2b80cbc993de9e2a9f7c9baee67e7de206acb1c69feb299518dadf0f264d81"
+        }
+      },
+      "prompt": "감사기준서 700 문단 17에 따라, 감사기준서 705를 적용하여 감사의견을 변형하여야 하는 두 경우를 모두 제시하시오.",
+      "actual_shared_facts": [],
+      "stored_model_answer": [
+        "입수한 감사증거에 근거하여 재무제표가 전체적으로 중요하게 왜곡표시되었다고 결론을 내리는 경우이다.",
+        "재무제표가 전체적으로 중요하게 왜곡표시되지 않았다고 결론을 내릴 수 있을 정도로 충분하고 적합한 감사증거를 입수할 수 없는 경우이다."
+      ],
+      "student_answer": "충분한 증거로 재무제표 전체의 중요한 왜곡표시를 확인해도 의견을 변형하지 않는다.",
+      "criteria": [
+        {
+          "id": "crit2",
+          "requirement_id": "sub2-req2",
+          "claim": "증거에 근거하여 재무제표 전체의 중요한 왜곡표시를 결론 내린 경우를 제시함",
+          "critical_facts": [
+            {
+              "id": "crit1-fact",
+              "type": "condition",
+              "expected": "입수한 감사증거에 근거한 재무제표 전체의 중요한 왜곡표시 결론"
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src70017a",
+            "src70017head"
+          ]
+        },
+        {
+          "id": "crit3",
+          "requirement_id": "sub2-req3",
+          "claim": "재무제표 전체에 중요한 왜곡표시가 없다고 결론 내리기에 충분하고 적합한 증거를 입수할 수 없는 경우를 제시함",
+          "critical_facts": [
+            {
+              "id": "crit2-fact",
+              "type": "condition",
+              "expected": "재무제표 전체가 중요하게 왜곡표시되지 않았다고 결론 내리기에 충분하고 적합한 감사증거의 입수 불가"
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src70017b",
+            "src70017head"
+          ]
+        }
+      ],
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "답안이 해당 명제를 명시적으로 부정한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        }
+      ],
+      "actual_raw": [
+        {
+          "response_id": "resp_039ccbc38f8d8847016aa4d10ef1c487d0839995a276b1997e",
+          "request_id": "req_64e9eb8edcde4614a7e2ea2d4e103bb8",
+          "model": "gpt-5.6-luna",
+          "judgment": {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "충분한 증거로 재무제표 전체의 중요한 왜곡표시를 확인한다고 제시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "충분하고 적합한 감사증거를 입수할 수 없는 경우를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "id": "src70017head",
+          "file": "cpa_uploader/data/official/point-review-b-source-followup-2026-09-11.txt",
+          "sha256": "56aeba5c45a513ef53a4a6596b7726d350897eeb9002734ddae0ada224089dcb",
+          "quote_sha256": "5a8916684b2251c14a0894015d53799a6e48d800b1c89b15e03acd3fba24afe9",
+          "exact_quote": true,
+          "line_start": 246,
+          "line_end": 248,
+          "requirement_spans": [
+            "한국공인회계사회 회계감사기준 전문(2025년 11월 개정) / 700.17 본문 / PDF p.676; cpa_uploader/data/official/point-review-b-source-followup-2026-09-11.txt L246–L248"
+          ]
+        },
+        {
+          "id": "src70017a",
+          "file": "cpa_uploader/data/official/point-review-b-source-followup-2026-09-11.txt",
+          "sha256": "56aeba5c45a513ef53a4a6596b7726d350897eeb9002734ddae0ada224089dcb",
+          "quote_sha256": "c42f5661d01617680778a5886bc7f8a194fd82a1abca6c13e489144cfedff305",
+          "exact_quote": true,
+          "line_start": 255,
+          "line_end": 257,
+          "requirement_spans": [
+            "한국공인회계사회 회계감사기준 전문(2025년 11월 개정) / 700.17(a) / PDF p.677; cpa_uploader/data/official/point-review-b-source-followup-2026-09-11.txt L255–L257"
+          ]
+        },
+        {
+          "id": "src70017b",
+          "file": "cpa_uploader/data/official/point-review-b-source-followup-2026-09-11.txt",
+          "sha256": "56aeba5c45a513ef53a4a6596b7726d350897eeb9002734ddae0ada224089dcb",
+          "quote_sha256": "3411c46fb08881989971ea7a3a61bd251108c6af57e90253b8f8ebfe419c3561",
+          "exact_quote": true,
+          "line_start": 258,
+          "line_end": 260,
+          "requirement_spans": [
+            "한국공인회계사회 회계감사기준 전문(2025년 11월 개정) / 700.17(b) / PDF p.677; cpa_uploader/data/official/point-review-b-source-followup-2026-09-11.txt L258–L260"
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/selected-qa/pilot-15-005-sub2-wrong.json",
+          "sha256": "bddd565a99ad751ffb4e0fe91943972e592eda83d2aa91f002db476dd5ef0d82",
+          "subquestion_id": "sub2",
+          "case_id": "efficient/sub2/source-based-wrong",
+          "kind": "wrong",
+          "reason": "원문과 다른 명시적 반대 또는 발문 대상 밖 답안을 검증한다. 독립적으로 맞는 다른 명제의 점수는 보존한다."
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "±1점 편차라고 해서 내용 쟁점 두 건을 면제하지 않는다. 미확정 기대 경계는 별도 판단이 필요하다.",
+    "정확점수 관측 및 아직 완료되지 않은 관측 전체의 내용검수나 실행 검증을 대신하지 않는다.",
+    "고정 정책과 원 기대값·원실측은 그대로이며 본 보고서로 어떤 observation도 승급하지 않는다."
+  ]
+}

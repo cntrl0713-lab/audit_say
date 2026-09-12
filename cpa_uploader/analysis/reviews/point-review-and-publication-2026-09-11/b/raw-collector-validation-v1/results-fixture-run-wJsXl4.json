@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-09-11T10:15:12.991Z",
+  "api_calls": 0,
+  "actual_materials_collected": 0,
+  "fixture_root": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/raw-collector-validation-v1/fixture-run-wJsXl4",
+  "collector_file": "cpa_uploader/raw/collect.mjs",
+  "collector_sha256": "d693856f95569de62e8be14e298edf8989ce821d608fa54736faa8bd695808cb",
+  "script_sha256": "22c3313e35a94d3072da1b571946f76b57543c9f25c74b5f706b55afd8bdb1d0",
+  "summary": {
+    "total": 35,
+    "passed": 35,
+    "failed": 0
+  },
+  "results": [
+    {
+      "id": "binary-and-inventory-byte-preserving-copy",
+      "pass": true,
+      "detail": {
+        "original_paths": 1,
+        "unique_files": 1,
+        "duplicate_paths": 0,
+        "archived_bytes": 8,
+        "against_originals": true,
+        "missing_source_records": 1,
+        "errors": []
+      }
+    },
+    {
+      "id": "intra-collection-dedup-across-names-categories-and-provenance",
+      "pass": true
+    },
+    {
+      "id": "distinct-bytes-never-dedup",
+      "pass": true
+    },
+    {
+      "id": "existing-collection-refused-and-all-bytes-preserved",
+      "pass": true
+    },
+    {
+      "id": "repeat-new-collection-reuses-same-material-path-without-write",
+      "pass": true
+    },
+    {
+      "id": "second-missing-source-preflight-produces-no-archive",
+      "pass": true
+    },
+    {
+      "id": "inventory-sha-mismatch-preflight-produces-no-archive",
+      "pass": true
+    },
+    {
+      "id": "directory-source-preflight-produces-no-archive",
+      "pass": true
+    },
+    {
+      "id": "duplicate-resolved-source-refused-before-write",
+      "pass": true
+    },
+    {
+      "id": "invalid-inventory-empty-preflight",
+      "pass": true
+    },
+    {
+      "id": "invalid-inventory-version-preflight",
+      "pass": true
+    },
+    {
+      "id": "invalid-inventory-category-preflight",
+      "pass": true
+    },
+    {
+      "id": "invalid-inventory-role-preflight",
+      "pass": true
+    },
+    {
+      "id": "conflicting-existing-material-preflight-refuses-all-writes",
+      "pass": true
+    },
+    {
+      "id": "archive-tamper-detected",
+      "pass": true
+    },
+    {
+      "id": "archived-file-missing-detected",
+      "pass": true
+    },
+    {
+      "id": "inventory-tamper-detected",
+      "pass": true
+    },
+    {
+      "id": "index-tamper-detected",
+      "pass": true
+    },
+    {
+      "id": "summary-tamper-detected",
+      "pass": true
+    },
+    {
+      "id": "historical-check-preserves-original-change-distinction",
+      "pass": true
+    },
+    {
+      "id": "historical-check-preserves-original-missing-distinction",
+      "pass": true
+    },
+    {
+      "id": "known-missing-records-retained-without-false-successful-copy",
+      "pass": true
+    },
+    {
+      "id": "collection-output-outside-refused-before-write",
+      "pass": true
+    },
+    {
+      "id": "collection-output-nested-refused-before-write",
+      "pass": true
+    },
+    {
+      "id": "collection-output-base-refused-before-write",
+      "pass": true
+    },
+    {
+      "id": "collection-output-traversal-refused-before-write",
+      "pass": true
+    },
+    {
+      "id": "manifest-archived-path-traversal-refused",
+      "pass": true
+    },
+    {
+      "id": "manifest-archived-namespace-refused",
+      "pass": true
+    },
+    {
+      "id": "source-archive-recollection-refused",
+      "pass": true
+    },
+    {
+      "id": "source-change-during-copy-detected-no-completed-collection",
+      "pass": true
+    },
+    {
+      "id": "index-special-filename-links-percent-encode-delimiters",
+      "pass": true
+    },
+    {
+      "id": "cross-collection-dedup-scope-observed",
+      "pass": true
+    },
+    {
+      "id": "external-original-source-policy-observed-with-synthetic-sibling",
+      "pass": true
+    },
+    {
+      "id": "material-directory-junction-cannot-escape-archive",
+      "pass": true
+    },
+    {
+      "id": "collector-source-unchanged-by-test",
+      "pass": true
+    }
+  ],
+  "observations": [
+    {
+      "id": "non-atomic-material-preparation",
+      "severity": "information",
+      "detail": "A source changed after copying is rejected before a collection receipt is written; the already verified material copy remains. This is not a completed collection or rollback guarantee."
+    },
+    {
+      "id": "dedup-is-per-collection",
+      "severity": "documentation",
+      "actual_material_files": 2,
+      "detail": "Identical bytes under a different filename/category in a later collection produce a second physical file. README should qualify dedup as per-collection, or implement archive-wide lookup if intended."
+    },
+    {
+      "id": "external-source-path-accepted",
+      "severity": "policy-choice",
+      "detail": "Original input paths can leave repoDir. Only synthetic sibling fixture was read. Archive output containment and explicit external-source authorization should be documented separately."
+    },
+    {
+      "id": "material-ancestor-link-path-escape",
+      "severity": "none",
+      "rejected": true,
+      "error": "Refusing an archive symlink or junction: C:\\Users\\cntrl\\Workspace\\study\\audit_say\\cpa_uploader\\analysis\\reviews\\point-review-and-publication-2026-09-11\\b\\raw-collector-validation-v1\\fixture-run-wJsXl4\\junction-escape\\cpa_uploader\\raw\\materials",
+      "actual_files_outside_fixture_repo": 0,
+      "physical_target": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/raw-collector-validation-v1/fixture-run-wJsXl4/synthetic-junction-target",
+      "detail": "All targets remain under this test-owned fixture root. A junction at materials redirects archive writes outside the lexical repo/archive root; lstat on the final file does not catch a linked ancestor."
+    }
+  ],
+  "limitations": [
+    "Filesystem race resistance is bounded to the tested simulated source-change hook, not a concurrency proof.",
+    "No existing source or actual raw collection was modified or collected.",
+    "Missing/changed source tests mutate synthetic fixture files only.",
+    "No CLI default-root execution and no network/API calls."
+  ]
+}

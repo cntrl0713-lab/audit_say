@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-12-002--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-002--sub1--standard",
+  "source_set_id": "pilot-12-002",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "3345f563e6da5cb1ac2d850d844d8154ef25a8e88de4cf562e12d1d6286ca744",
+  "answers": {
+    "sub1": "경영진과, 적절한 경우 지배기구와 해당 사항을 토의한다.\n재무제표 수정이 필요한지 결정한다.\n수정이 필요하다고 결정하면 경영진이 재무제표에서 해당 사항을 어떻게 다룰 계획인지 질문한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 560.10의 보고서일 후·발행 전 새 사실 인지 조건에서 토의·수정 필요 결정·필요 시 처리계획 질문을 모두 요구한다. 해당 기준 crit1의 원 판정 met를 보존한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 560.10의 보고서일 후·발행 전 새 사실 인지 조건에서 토의·수정 필요 결정·필요 시 처리계획 질문을 모두 요구한다. 해당 기준 crit2의 원 판정 met를 보존한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 560.10의 보고서일 후·발행 전 새 사실 인지 조건에서 토의·수정 필요 결정·필요 시 처리계획 질문을 모두 요구한다. 해당 기준 crit3의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "861309c52064f99034d4820cc4af7fd5e8794fdc1e5c5598893d442146605af2",
+  "schema_hash": "70352bfbe1be1719e5db73c06f51d936a518ded990f1fd8452e13d4fe049d4a1",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "경영진과, 적절한 경우 지배기구와 해당 사항을 토의한다.\n",
+            "reason": "경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "재무제표 수정이 필요한지 결정한다.\n",
+            "reason": "재무제표 수정 필요성을 결정한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "수정이 필요하다고 결정하면 경영진이 재무제표에서 해당 사항을 어떻게 다룰 계획인지 질문한다.",
+            "reason": "수정이 필요하면 경영진의 재무제표 처리계획을 질문한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "재무제표 수정 필요성을 결정한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "수정이 필요하면 경영진의 재무제표 처리계획을 질문한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-002",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사보고서일에 알았더라면 감사보고서를 수정할 원인이 될 수도 있었던 사실을 감사보고서일 후 재무제표 발행일 전에 알게 되었다. 감사기준서 560 문단 10에 따라 수행해야 할 세 가지 절차를 조건과 함께 모두 제시하시오.",
+        "user_answer": "경영진과, 적절한 경우 지배기구와 해당 사항을 토의한다.\n재무제표 수정이 필요한지 결정한다.\n수정이 필요하다고 결정하면 경영진이 재무제표에서 해당 사항을 어떻게 다룰 계획인지 질문한다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "경영진과, 적절한 경우 지배기구와 해당 사항을 토의한다.",
+            "reason": "경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다고 명시했다.",
+            "claim": "경영진 및 적절한 경우 지배기구와 해당 사항을 토의함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "재무제표 수정이 필요한지 결정한다.",
+            "reason": "재무제표 수정 필요성을 결정한다고 명시했다.",
+            "claim": "재무제표 수정이 필요한지 결정함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "수정이 필요하다고 결정하면 경영진이 재무제표에서 해당 사항을 어떻게 다룰 계획인지 질문한다.",
+            "reason": "수정이 필요하면 경영진의 재무제표 처리계획을 질문한다고 명시했다.",
+            "claim": "수정이 필요하면 경영진의 처리계획을 질문함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "경영진과, 적절한 경우 지배기구와 해당 사항을 토의한다.",
+          "재무제표 수정이 필요한지 결정한다.",
+          "수정이 필요하다고 결정하면 경영진이 재무제표에서 해당 사항을 어떻게 다룰 계획인지 질문한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_015c063cff9e9e1a016aa4cfa035bc87d0ab3af56e0da5109a",
+        "request_id": "req_0e45fcbd011a41c586f9e56d8d7b3bf6",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2707,
+          "input_tokens_details": {
+            "cache_write_tokens": 2704,
+            "cached_tokens": 0
+          },
+          "output_tokens": 211,
+          "output_tokens_details": {
+            "reasoning_tokens": 26
+          },
+          "total_tokens": 2918
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009297999999999999,
+        "min_usd": 0.0009297999999999999,
+        "max_usd": 0.0009297999999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-12-002--sub1--standard--model/input.json",
+      "sha256": "26b248da34c6a00605357916729217084c4df1eabb14bf3bc9cf87c5e4387ed7"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-12-002--sub1--standard--model/transport.jsonl",
+      "sha256": "c4e0ace51655ffc912e5cad8b5801ab90b89e1caf2966068e998b546655f946a"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-12-002--sub1--standard--model/traces.jsonl",
+      "sha256": "7803272217337fb23b61ea13642177e05537ac07cf4c743ed686e52d6d95546a"
+    }
+  }
+}

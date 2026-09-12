@@ -43,7 +43,7 @@ function generatedResponse(params: ResponseCreateParamsNonStreaming) {
     return { schema_version: '3.0', id, type: 'linked_question_set', status: 'needs_review', title: '출제 전송 계약 오프라인 검증',
         classification: { topic_id: topic, part: 'PART1', chapter: '검증', domain: 'audit', standards: source.page?.startsWith('KGA ') ? [source.page] : [], tags: [] },
         source_refs: [{ ...source, title: source.title ?? null, page: source.page ?? null, content_hash: source.content_hash ?? null }], shared_context: { facts: [] }, learning_order: ['q1', 'q2'],
-        subquestions: ['q1', 'q2'].map(qid => ({ id: qid, type: 'descriptive', prompt: `${id}/${qid} 제공된 기준서의 요구사항을 서술하시오.`,
+        subquestions: ['q1', 'q2'].map(qid => ({ id: qid, type: 'descriptive', question_style: 'standard', topic_ids: [topic], prompt: `${id}/${qid} 제공된 기준서의 요구사항을 서술하시오.`,
             constraints: { ordered: false, max_entries: null as number | null, overflow_policy: 'none' }, selection: { type: 'all', n: null as number | null }, model_answer: [source.source_quote],
             requirements: [{ id: `${qid}.req1`, source_ref_id: source.id, source_quote: source.source_quote, source_span: locators[source.id] }],
             criteria: [{ id: `${qid}.c1`, requirement_id: `${qid}.req1`, claim: source.source_quote, critical_facts: [{ id: 'action', type: 'action', expected: source.source_quote }], max_points: 1, scores: { met: 1, partial: null, not_met: 0, contradicted: 0 }, source_ref_ids: [source.id] }] })),
@@ -69,6 +69,17 @@ test('generation includes five guides, bounded plan and source context with stri
         const format = params.text?.format; if (format?.type !== 'json_schema') throw new Error('Missing schema');
         const validate = new Ajv({ allErrors: true }).compile(format.schema); const valid = generatedResponse(params);
         assert.equal(validate(valid), true, JSON.stringify(validate.errors));
+        const split = structuredClone(valid);
+        for (const id of ['q3', 'q4']) {
+            const sub = structuredClone(valid.subquestions[0]);
+            sub.id = id;
+            sub.prompt = `${id} 분할 물음`;
+            split.subquestions.push(sub);
+            split.learning_order.push(id);
+        }
+        assert.equal(validate(split), true, 'Four independently answered subquestions are allowed');
+        split.subquestions.push(structuredClone(split.subquestions[0]));
+        assert.equal(validate(split), false, 'Five subquestions still exceed the generation contract');
         for (const policy of [{ selection: { type: 'best_n', n: 1 } }, { selection: { type: 'at_least_n', n: 1 } }, { selection: { type: 'all', n: 1 } },
             { constraints: { ordered: true, max_entries: null, overflow_policy: 'none' } }, { constraints: { ordered: false, max_entries: 1, overflow_policy: 'none' } }, { constraints: { ordered: false, max_entries: null, overflow_policy: 'ignore_after_limit' } }]) {
             const invalid = structuredClone(valid); Object.assign(invalid.subquestions[0], policy); assert.equal(validate(invalid), false, JSON.stringify(policy));

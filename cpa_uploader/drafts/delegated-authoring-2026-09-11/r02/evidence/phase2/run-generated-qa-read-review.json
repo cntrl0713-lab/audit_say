@@ -1,0 +1,61 @@
+{
+  "reviewed_at": "2026-09-11T01:58:59.201750+00:00",
+  "mode": "read_only_no_API",
+  "file": "cpa_uploader\\analysis\\reviews\\delegated-authoring-2026-09-11\\run-generated-qa.ts",
+  "sha256": "4af35ac654fcecac6803283e5e65bf0b25864c734950bc4148121ff1328a4185",
+  "findings": [
+    {
+      "id": "GQA-1",
+      "priority": "P1",
+      "area": "local preflight / actual model provenance",
+      "finding": "semanticReceiptIntegrityErrors(false)와 rebuilt hash 확인만으로는 최신 execution.transport=model 요구를 검사하지 않는다. 따라서 transport 없는 과거 model_reasoned receipt가 로컬 preflight를 통과한 뒤 gradeSemanticReviewReceipt 실행 시에만 거부될 수 있다.",
+      "proposal": "미채점 pass/model_reasoned/model 이름 조건과 함께 receipt.execution.transport === model을 preflight에서 검사. resumer 채택본도 completeSemanticReview에 transport:model을 명시.",
+      "basis": [
+        "cpa_uploader/questionSemanticReview.ts validateReceipt checkCurrentBank guard",
+        "run-generated-qa.ts receipt preflight"
+      ]
+    },
+    {
+      "id": "GQA-2",
+      "priority": "P2",
+      "area": "runtime evidence validation",
+      "finding": "원 semantic runtime의 code_hashes를 열거만 하므로 빈 객체/일부 해시만 있는 runtime은 현재 코드별 증거 누락을 탐지하지 않는다. 원 runtime args의 file/plan/bank/output 및 max_input_chars도 현재 manifest와 직접 대조하지 않는다.",
+      "proposal": "최소 공통 코드 파일 집합 존재, 원 file/plan/bank/output 경로, 500000 예산을 검사. 원 runtime과 receipt의 대응을 명시하여 잘못 복사한 보조 파일도 거부.",
+      "basis": [
+        "run-generated-qa.ts runtime read and Object.entries(runtime.code_hashes)",
+        "resume-semantic.ts requiredRuntimeCode and runtimeArg checks"
+      ]
+    },
+    {
+      "id": "GQA-3",
+      "priority": "P2",
+      "area": "transport failure evidence",
+      "finding": "바깥 catch가 stopped.json에 String(error)만 남겨 실제 OpenAIRequestError의 status/code/retryable/cause 정보를 잃는다. 현재 전송장애 원인 구분에는 이 구조화 메타가 필요하다.",
+      "proposal": "프로토타입 safeError처럼 허용한 상태/코드/retryable/request_id와 안전 헤더만 원인 체인에서 기록. provider body/전체 headers/credentials는 보존하지 않음. 기존 event.error는 당시 기록대로 유지.",
+      "basis": [
+        "run-generated-qa.ts catch(error)",
+        "lib/ai/openaiStructured.ts OpenAIRequestError"
+      ]
+    },
+    {
+      "id": "GQA-4",
+      "priority": "P2",
+      "area": "execution counters",
+      "finding": "summary.model_executions는 nonempty 답안의 grading event 수다. 한 gradeQuestionSetV3 실행에서 구조 검증 재시도 등 실제 API가 여러 번 발생하거나 설정 실패로 API가 0번일 수 있어 실제 API 요청 수와 같다고 볼 수 없다.",
+      "proposal": "이 값을 nonempty_grading_executions처럼 정확히 명명하고 실제 API 수는 별도 계측 있을 때만 표시. trace judgment attempt는 실제 관측 가능한 보조 수치로 구분. 재실행 executeReviewGrading이 매번 추가하는 empty-answer 실행도 현재처럼 별도 집계.",
+      "basis": [
+        "run-generated-qa.ts summary model_executions",
+        "lib/questionV3Grading.ts judgment attempt loop",
+        "cpa_uploader/questionReviewGrading.ts casePlan empty-answer"
+      ]
+    }
+  ],
+  "confirmed": [
+    "createResponse를 제공하지 않아 실제 production grader 경로를 사용한다.",
+    "미채점 pass receipt를 현재 전체 준비 문맥으로 다시 조립해 receipt_hash를 대조한다.",
+    "최초 불일치와 2·3차 결과를 별도 파일에 보존하고 첫 receipt를 후속 통과로 덮어쓰지 않는다.",
+    "onRun 로그/guard는 executeReviewGrading의 실제 grade try/catch 바깥에서 호출되므로 observer 오류가 추가 모델 재시도로 바뀌지 않는다.",
+    "새 디렉터리 및 wx 쓰기로 기존 증거를 덮어쓰지 않는다."
+  ],
+  "changed_files": []
+}

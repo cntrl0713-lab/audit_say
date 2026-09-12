@@ -1,0 +1,50 @@
+{
+  "artifact_type": "publication_preparation_change_review",
+  "status": "reviewed",
+  "reviewer": "root (agent; human_review_performed=false)",
+  "reviewed_at": "2026-09-12T04:25:06.895Z",
+  "changes": [
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/run-efficient-grading.ts",
+      "before_sha256": "47c4b7619c718d6ee9cdccf83be11e62437108a799dc7a8761d916ffabed8b69",
+      "after_sha256": "9160a000f375fa1be72c7dc0e54061ca6f29dc97081304ee46ba0800266b7f18",
+      "reason": "동일 원응답 재사용마다 전체 파일 guard를 반복하던 비용을 줄였다. 준비·새 API 직전·API 후·종료 guard 및 원응답의 개별 무결성 검증은 유지했다. all-reuse와 새API/최종변경 거부검사 및 통합87검사를 확인했다."
+    },
+    {
+      "file": "cpa_uploader/questionEfficientReview.ts",
+      "before_sha256": "142a5a6292d31188fd3bb5f8f4365705e9ed79208c1bfaa778264d7a52344ff3",
+      "after_sha256": "b97b17c7343e97e8af75d0d60d71bf6f1c372d32b47af51ebd7c723a859f0ed0",
+      "reason": "원 manifest와 같은 폴더의 유일한 runtime snapshot index를 선택하여 다단계 재사용에서 앞선 실행의 index가 잘못 선택되는 문제를 수정했다. 8개 실제 채점 행동 파일은 그대로이며 원응답·버전·증거 검증을 완화하지 않았다. 실제001/002 재생과 경계13검사, 통합87검사를 확인했다."
+    }
+  ],
+  "validation_evidence": [
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/efficient-final003-tests.log",
+      "sha256": "7c58eace4c705c6d0f15fad7c1fc5a182bf3699a6a4668899c18ea96f0823090"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final003-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final003-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/before-final-recorder-v1/manifest.json",
+      "sha256": "e26c0a04ce54f01a6b23b110fb31ad30367ef23f1bb6a574577514ad5d2751a4"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/proposed-after-run-v2/validation.json",
+      "sha256": "3334ce889088abbf861a57bbbf3fe023486d92561a5eeb71c9a034a1587ce18b"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/proposed-after-run-v2/runner-guard-validation.json",
+      "sha256": "a25ee0c304aa3a1a7545035b2bee041951b6ceddd8c7266188025f0f62d34506"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/final-corrections.json",
+      "sha256": "47a166fe69e41638440a180d4481e2569000767a512a68b485450a76586aad2f"
+    }
+  ]
+}

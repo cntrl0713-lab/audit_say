@@ -1,0 +1,21 @@
+import fs from 'node:fs';import path from 'node:path';import{createHash}from'node:crypto';import{spawn}from'node:child_process';
+import{gradingModelName}from'../../../../../../lib/questionV3Grading.ts';
+const read=f=>JSON.parse(fs.readFileSync(f,'utf8')),hash=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const base='cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11',draft='cpa_uploader/drafts/delegated-authoring-2026-09-11';
+const manifestFile=base+'/final-153-v1/manifest.json',lockFile=base+'/runtime-v4-stable/runtime-lock.json',manifest=read(manifestFile),lock=read(lockFile);
+const groups=[{owner:'r02',id:'pilot-05-008',qa:draft+'/r02/evidence/phase2/phase-two-v4-proposals/qa-v4-focused-written-representations.json'},{owner:'n02',id:'pilot-08-006',qa:draft+'/n02/evidence/phase2/phase-two-v4-proposals/qa-v4-focused-precision-detail.json'}].map(g=>({...g,entry:manifest.entries.find(e=>e.set_id===g.id)}));
+const identities=[{file:manifestFile,sha256:lock.manifest_sha256},{file:lockFile,sha256:hash(lockFile)},lock.comparison_bank,...lock.code_files,...lock.source_files,...groups.flatMap(g=>[{file:g.entry.file,sha256:g.entry.sha256},{file:g.qa,sha256:hash(g.qa)},...g.entry.source_files])];
+const control=draft+'/r02/evidence/phase2/phase-two-v4-focused-control';if(fs.existsSync(control))throw Error('new output required');
+const guard=()=>{if(gradingModelName()!==lock.settings.grading_model)throw Error('model changed');for(const v of identities)if(hash(v.file)!==v.sha256)throw Error('fixed hash changed: '+v.file);if(fs.existsSync(control+'/STOP-BEFORE-NEXT-JOB'))throw Error('owner pause');};guard();fs.mkdirSync(control,{recursive:true});
+const write=(name,value)=>fs.writeFileSync(control+'/'+name,JSON.stringify(value,null,2)+'\n',{flag:'wx'});
+write('inputs.json',{started_at:new Date().toISOString(),runtime_lock:lockFile,identities,groups:groups.map(g=>({owner:g.owner,set_id:g.id,QA:g.qa,cases:read(g.qa).cases.length})),minimum_grading_executions_each_case:3,concurrency:1,note:'A helper invocation automatically completes three repetitions when a mismatch occurs. If a prior normal run exists, total observations can exceed three by one; all preserved.'});
+let job=0;const results=[];
+try{for(const group of groups){for(const test of read(group.qa).cases){let observed=0,invocation=0;while(observed<3){guard();job++;invocation++;const n=String(job).padStart(3,'0');const output=draft+'/'+group.owner+'/evidence/phase2/phase-two-v4/'+group.id+'/'+test.id+'/execution-'+invocation;
+write('job-'+n+'-start.json',{started_at:new Date().toISOString(),set_id:group.id,case_id:test.id,output,observations_before:observed});console.log(JSON.stringify({job,set_id:group.id,case_id:test.id,invocation,observed}));
+const fd=fs.openSync(control+'/job-'+n+'-console.log','wx');let code;
+try{code=await new Promise((resolve,reject)=>{const child=spawn(process.execPath,['--import','tsx',base+'/run-author-qa.ts','--file',group.entry.file,'--qa',group.qa,'--only',test.id,'--output',output],{stdio:['ignore',fd,fd],env:process.env});child.once('error',reject);child.once('exit',(code,signal)=>signal?reject(Error(signal)):resolve(code));});}finally{fs.closeSync(fd);}
+const sf=output+'/summary.json';const summary=fs.existsSync(sf)?read(sf):null;write('job-'+n+'-result.json',{finished_at:new Date().toISOString(),set_id:group.id,case_id:test.id,code,summary_file:sf,summary});
+if(!summary||summary.stopped_on_execution_error||summary.changed_inputs.length||summary.recorded_cases!==1)throw Error('execution failed; no next API call');if(code!==0&&!(code===1&&summary.mismatched_case_ids.length))throw Error('unexpected exit');
+observed+=summary.actual_attempts;results.push({set_id:group.id,case_id:test.id,invocation,summary_file:sf,attempts:summary.actual_attempts,mismatched:summary.mismatched_case_ids.length>0});console.log(JSON.stringify({job,set_id:group.id,case_id:test.id,observed,mismatched:summary.mismatched_case_ids}));guard();}}}
+write('completed.json',{finished_at:new Date().toISOString(),results,all_original_evidence_preserved:true});
+}catch(error){write('stopped.json',{finished_at:new Date().toISOString(),error:String(error),results});console.error(String(error));process.exitCode=1;}

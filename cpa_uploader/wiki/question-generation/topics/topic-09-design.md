@@ -6,15 +6,15 @@ type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, quality]
-sources: [docs/reports/question-review-2027/09.md, docs/reports/question-review-2027/09.json]
+sources: [docs/archive/과거-검토-증거/reports/question-review-2027/주제09-특정항목-감사증거-검토-수정-결과.md, cpa_uploader/analysis/reviews/question-review-2027/09.json]
 confidence: high
 ---
 
 # 주제09. 특정항목 감사증거의 조건과 채점 단위
 
-[검토 보고서](../../../../docs/reports/question-review-2027/09.md) · [물음별 근거 장부](../../../../docs/reports/question-review-2027/09.json)
+[검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제09-특정항목-감사증거-검토-수정-결과.md) · [물음별 근거 장부](../../../analysis/reviews/question-review-2027/09.json)
 
-주제09의 제작·수정에서는 [주제09 보고서](../../../../docs/reports/question-review-2027/09.md)와 [공식501·505·510 발췌](../../../data/official/kga501-505-510-2025-review09.txt)를 확인한다. 아래 구분을 발문 범위에 맞게 보존하며 묻지 않은 사항을 숨은 채점 요건으로 추가하지 않는다.
+주제09의 제작·수정에서는 [주제09 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제09-특정항목-감사증거-검토-수정-결과.md)와 [공식501·505·510 발췌](../../../data/official/kga501-505-510-2025-review09.txt)를 확인한다. 아래 구분을 발문 범위에 맞게 보존하며 묻지 않은 사항을 숨은 채점 요건으로 추가하지 않는다.
 
 | 구분 | 설계·검토 시 보존할 사항 | 근거 |
 | --- | --- | --- |

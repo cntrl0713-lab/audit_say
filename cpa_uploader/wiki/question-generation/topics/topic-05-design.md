@@ -6,15 +6,15 @@ type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, quality]
-sources: [docs/reports/question-review-2027/05.md, docs/reports/question-review-2027/05.json]
+sources: [docs/archive/과거-검토-증거/reports/question-review-2027/주제-05-부정과-커뮤니케이션-검토-수정-기록.md, cpa_uploader/analysis/reviews/question-review-2027/05.json]
 confidence: high
 ---
 
 # 주제05. 부정·법규·커뮤니케이션 문항의 조건과 예외
 
-[검토 보고서](../../../../docs/reports/question-review-2027/05.md) · [물음별 근거 장부](../../../../docs/reports/question-review-2027/05.json)
+[검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제-05-부정과-커뮤니케이션-검토-수정-기록.md) · [물음별 근거 장부](../../../analysis/reviews/question-review-2027/05.json)
 
-주제05를 제작·수정할 때의 주의사항이다. [주제05 검토 보고서](../../../../docs/reports/question-review-2027/05.md)와 [기준대장](../../../../docs/reports/question-review-2027/standards-register.json)의 공식 URL·판본·문단을 확인한다. 아래 내용을 발문이 요구하지 않은 추가 득점 요건으로 넣지 않는다.
+주제05를 제작·수정할 때의 주의사항이다. [주제05 검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제-05-부정과-커뮤니케이션-검토-수정-기록.md)와 [기준대장](../../../analysis/reviews/question-review-2027/standards-register.json)의 공식 URL·판본·문단을 확인한다. 아래 내용을 발문이 요구하지 않은 추가 득점 요건으로 넣지 않는다.
 
 | 구분 | 보존할 내용 | 근거 |
 | --- | --- | --- |

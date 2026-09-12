@@ -1,0 +1,707 @@
+{
+  "recorded_at": "2026-09-11T05:03:21.370Z",
+  "plan_id": "T09-A",
+  "api_calls": 0,
+  "semantic": {
+    "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\r01\\phase-two-v5\\draft-09-501-freq01\\semantic-v5-bank-v3-root-01-1\\review\\semantic.json",
+    "sha256": "d2aa8f68d50bc7f78c416f488685d0eabea4a18d51f49fe54c5bd02cc25f642c",
+    "receipt_hash": "15b68c5d98d4eed418cc617ff178f598895ac1a0aae36e71ff7f50b653e59229"
+  },
+  "inputs": {
+    "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\r01\\phase-two-v5\\t09-a\\generated-bank-v3-refill02-01\\inputs.json",
+    "sha256": "44abf698c21d8bf32aa2b53f92e8e3e09a3cb0d817ed66f7d96c328e07dfa9dc"
+  },
+  "summary": {
+    "finished_at": "2026-09-11T05:00:11.653Z",
+    "status": "executed",
+    "set_id": "draft-09-501-freq01",
+    "initial_cases": 23,
+    "initial_mismatched_case_ids": [
+      "fc3ad8857887ce1fbcfca58351637294a58365acac105fbf0010e142b3c908d0"
+    ],
+    "recorded_executions": 27,
+    "nonempty_grader_executions": 24,
+    "blank_production_executions": 3,
+    "validation_errors": [
+      "fc3ad8857887ce1fbcfca58351637294a58365acac105fbf0010e142b3c908d0: 실제 채점 결과가 검토 사례의 기대 판정과 다릅니다."
+    ],
+    "first_receipt": "graded-initial.json",
+    "all_prior_results_preserved": true
+  },
+  "failed": [
+    {
+      "id": "fc3ad8857887ce1fbcfca58351637294a58365acac105fbf0010e142b3c908d0",
+      "expected": [
+        {
+          "unit_id": "criterion:q2:q2.c1",
+          "case_kind": "condition_boundary",
+          "subquestion_id": "q2",
+          "criterion_id": "q2.c1",
+          "verdict": "contradicted"
+        }
+      ],
+      "answers": {
+        "q1": "",
+        "q2": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다."
+      },
+      "observations": [
+        {
+          "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\r01\\phase-two-v5\\t09-a\\generated-bank-v3-refill02-01\\initial.grading.jsonl",
+          "line": 10,
+          "event": {
+            "id": "fc3ad8857887ce1fbcfca58351637294a58365acac105fbf0010e142b3c908d0",
+            "answers": {
+              "q1": "",
+              "q2": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다."
+            },
+            "expected": [
+              {
+                "unit_id": "criterion:q2:q2.c1",
+                "case_kind": "condition_boundary",
+                "subquestion_id": "q2",
+                "criterion_id": "q2.c1",
+                "verdict": "contradicted"
+              }
+            ],
+            "transport": "model",
+            "model": "gpt-5.6-luna",
+            "performed_at": "2026-09-11T04:58:48.129Z",
+            "grader_hash": "9acee676d62f52894f08b50b7741167bbc36a2a93e356492fdd2ffced3ee47a6",
+            "judgment": {
+              "subquestions": [
+                {
+                  "subquestion_id": "q1",
+                  "verdicts": [
+                    {
+                      "criterion_id": "q1.c1",
+                      "verdict": "not_met",
+                      "reason": "답안이 없어 실사일과 재무제표일 사이 변동의 적절한 기록을 검증하는 절차를 제시하지 않았다."
+                    }
+                  ],
+                  "injection_detected": false,
+                  "salad_detected": false
+                },
+                {
+                  "subquestion_id": "q2",
+                  "verdicts": [
+                    {
+                      "criterion_id": "q2.c1",
+                      "verdict": "met",
+                      "quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                      "reason": "재고변동 통제의 설계 효과성을 고려한다고 명시했다."
+                    },
+                    {
+                      "criterion_id": "q2.c2",
+                      "verdict": "not_met",
+                      "reason": "통제 실행의 효과성을 제시하지 않았다."
+                    },
+                    {
+                      "criterion_id": "q2.c3",
+                      "verdict": "not_met",
+                      "reason": "통제 유지의 효과성을 제시하지 않았다."
+                    },
+                    {
+                      "criterion_id": "q2.c4",
+                      "verdict": "contradicted",
+                      "quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                      "reason": "고려 대상이 계속기록법을 사용하는 경우에만 해당한다고 하여, 두 경우 모두 적용된다는 명제와 반대된다."
+                    }
+                  ],
+                  "injection_detected": false,
+                  "salad_detected": false
+                }
+              ],
+              "injection_detected": false,
+              "salad_detected": false
+            },
+            "result": {
+              "question_set_id": "draft-09-501-freq01",
+              "score": 1,
+              "max_points": 5,
+              "subquestions": [
+                {
+                  "subquestion_id": "q1",
+                  "prompt": "실사일과 재무제표일이 다르므로 감사인이 추가로 수행해야 하는 감사절차를 설명하시오. 추가 절차의 대상 기간과 확인해야 할 사항을 함께 제시하시오.",
+                  "user_answer": "",
+                  "score": 0,
+                  "max_points": 1,
+                  "criteria": [
+                    {
+                      "criterion_id": "q1.c1",
+                      "verdict": "not_met",
+                      "reason": "답안이 없어 실사일과 재무제표일 사이 변동의 적절한 기록을 검증하는 절차를 제시하지 않았다.",
+                      "claim": "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다.",
+                      "max_points": 1,
+                      "awarded_points": 0
+                    }
+                  ],
+                  "model_answer": [
+                    "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다."
+                  ]
+                },
+                {
+                  "subquestion_id": "q2",
+                  "prompt": "재무제표일 외의 날짜에 실시한 재고실사가 감사목적에 적합한지 결정할 때 고려할 재고변동 통제의 효과성 세 측면을 모두 제시하시오. 이러한 고려가 계속기록법을 사용하는 경우에만 적용되는지도 설명하시오.",
+                  "user_answer": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                  "score": 1,
+                  "max_points": 4,
+                  "criteria": [
+                    {
+                      "criterion_id": "q2.c1",
+                      "verdict": "met",
+                      "quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                      "reason": "재고변동 통제의 설계 효과성을 고려한다고 명시했다.",
+                      "claim": "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.",
+                      "max_points": 1,
+                      "awarded_points": 1
+                    },
+                    {
+                      "criterion_id": "q2.c2",
+                      "verdict": "not_met",
+                      "reason": "통제 실행의 효과성을 제시하지 않았다.",
+                      "claim": "재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.",
+                      "max_points": 1,
+                      "awarded_points": 0
+                    },
+                    {
+                      "criterion_id": "q2.c3",
+                      "verdict": "not_met",
+                      "reason": "통제 유지의 효과성을 제시하지 않았다.",
+                      "claim": "재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.",
+                      "max_points": 1,
+                      "awarded_points": 0
+                    },
+                    {
+                      "criterion_id": "q2.c4",
+                      "verdict": "contradicted",
+                      "quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                      "reason": "고려 대상이 계속기록법을 사용하는 경우에만 해당한다고 하여, 두 경우 모두 적용된다는 명제와 반대된다.",
+                      "claim": "이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.",
+                      "max_points": 1,
+                      "awarded_points": 0
+                    }
+                  ],
+                  "model_answer": [
+                    "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.",
+                    "재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.",
+                    "재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.",
+                    "이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다."
+                  ]
+                }
+              ],
+              "security_flag": "none"
+            },
+            "matched": false,
+            "status": "completed",
+            "trace": [
+              {
+                "stage": "judgment",
+                "attempt": 1,
+                "response": {
+                  "subquestions": [
+                    {
+                      "subquestion_id": "q1",
+                      "verdicts": [
+                        {
+                          "criterion_id": "q1.c1",
+                          "verdict": "not_met",
+                          "evidence_ids": [],
+                          "reason": "답안이 없어 실사일과 재무제표일 사이 변동의 적절한 기록을 검증하는 절차를 제시하지 않았다."
+                        }
+                      ],
+                      "injection_detected": false,
+                      "injection_evidence_ids": [],
+                      "salad_detected": false
+                    },
+                    {
+                      "subquestion_id": "q2",
+                      "verdicts": [
+                        {
+                          "criterion_id": "q2.c1",
+                          "verdict": "met",
+                          "evidence_ids": [
+                            "q2/e0"
+                          ],
+                          "reason": "재고변동 통제의 설계 효과성을 고려한다고 명시했다."
+                        },
+                        {
+                          "criterion_id": "q2.c2",
+                          "verdict": "not_met",
+                          "evidence_ids": [],
+                          "reason": "통제 실행의 효과성을 제시하지 않았다."
+                        },
+                        {
+                          "criterion_id": "q2.c3",
+                          "verdict": "not_met",
+                          "evidence_ids": [],
+                          "reason": "통제 유지의 효과성을 제시하지 않았다."
+                        },
+                        {
+                          "criterion_id": "q2.c4",
+                          "verdict": "contradicted",
+                          "evidence_ids": [
+                            "q2/e0"
+                          ],
+                          "reason": "고려 대상이 계속기록법을 사용하는 경우에만 해당한다고 하여, 두 경우 모두 적용된다는 명제와 반대된다."
+                        }
+                      ],
+                      "injection_detected": false,
+                      "injection_evidence_ids": [],
+                      "salad_detected": false
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "file_sha256": "b86a4f41c141cf1447865d745fbcac18da0f7e49cc62e027024bfd1e0d925331"
+        },
+        {
+          "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\r01\\phase-two-v5\\t09-a\\generated-bank-v3-refill02-01\\repeat.grading.jsonl",
+          "line": 1,
+          "event": {
+            "id": "fc3ad8857887ce1fbcfca58351637294a58365acac105fbf0010e142b3c908d0",
+            "answers": {
+              "q1": "",
+              "q2": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다."
+            },
+            "expected": [
+              {
+                "unit_id": "criterion:q2:q2.c1",
+                "case_kind": "condition_boundary",
+                "subquestion_id": "q2",
+                "criterion_id": "q2.c1",
+                "verdict": "contradicted"
+              }
+            ],
+            "transport": "model",
+            "model": "gpt-5.6-luna",
+            "performed_at": "2026-09-11T04:59:59.776Z",
+            "grader_hash": "9acee676d62f52894f08b50b7741167bbc36a2a93e356492fdd2ffced3ee47a6",
+            "judgment": {
+              "subquestions": [
+                {
+                  "subquestion_id": "q1",
+                  "verdicts": [
+                    {
+                      "criterion_id": "q1.c1",
+                      "verdict": "not_met",
+                      "reason": "답안이 없어 실사일과 재무제표일 사이 변동의 적절한 기록을 확인하는 절차가 제시되지 않았다."
+                    }
+                  ],
+                  "injection_detected": false,
+                  "salad_detected": false
+                },
+                {
+                  "subquestion_id": "q2",
+                  "verdicts": [
+                    {
+                      "criterion_id": "q2.c1",
+                      "verdict": "met",
+                      "quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                      "reason": "재고변동 통제의 설계 효과성을 고려한다고 명시했다."
+                    },
+                    {
+                      "criterion_id": "q2.c2",
+                      "verdict": "not_met",
+                      "reason": "통제 실행의 효과성에 대한 내용이 없다."
+                    },
+                    {
+                      "criterion_id": "q2.c3",
+                      "verdict": "not_met",
+                      "reason": "통제 유지의 효과성에 대한 내용이 없다."
+                    },
+                    {
+                      "criterion_id": "q2.c4",
+                      "verdict": "contradicted",
+                      "quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                      "reason": "해당 고려가 계속기록법을 사용하는 경우에만 적용된다고 명시하여, 두 경우 모두 적용된다는 명제와 반대된다."
+                    }
+                  ],
+                  "injection_detected": false,
+                  "salad_detected": false
+                }
+              ],
+              "injection_detected": false,
+              "salad_detected": false
+            },
+            "result": {
+              "question_set_id": "draft-09-501-freq01",
+              "score": 1,
+              "max_points": 5,
+              "subquestions": [
+                {
+                  "subquestion_id": "q1",
+                  "prompt": "실사일과 재무제표일이 다르므로 감사인이 추가로 수행해야 하는 감사절차를 설명하시오. 추가 절차의 대상 기간과 확인해야 할 사항을 함께 제시하시오.",
+                  "user_answer": "",
+                  "score": 0,
+                  "max_points": 1,
+                  "criteria": [
+                    {
+                      "criterion_id": "q1.c1",
+                      "verdict": "not_met",
+                      "reason": "답안이 없어 실사일과 재무제표일 사이 변동의 적절한 기록을 확인하는 절차가 제시되지 않았다.",
+                      "claim": "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다.",
+                      "max_points": 1,
+                      "awarded_points": 0
+                    }
+                  ],
+                  "model_answer": [
+                    "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다."
+                  ]
+                },
+                {
+                  "subquestion_id": "q2",
+                  "prompt": "재무제표일 외의 날짜에 실시한 재고실사가 감사목적에 적합한지 결정할 때 고려할 재고변동 통제의 효과성 세 측면을 모두 제시하시오. 이러한 고려가 계속기록법을 사용하는 경우에만 적용되는지도 설명하시오.",
+                  "user_answer": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                  "score": 1,
+                  "max_points": 4,
+                  "criteria": [
+                    {
+                      "criterion_id": "q2.c1",
+                      "verdict": "met",
+                      "quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                      "reason": "재고변동 통제의 설계 효과성을 고려한다고 명시했다.",
+                      "claim": "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.",
+                      "max_points": 1,
+                      "awarded_points": 1
+                    },
+                    {
+                      "criterion_id": "q2.c2",
+                      "verdict": "not_met",
+                      "reason": "통제 실행의 효과성에 대한 내용이 없다.",
+                      "claim": "재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.",
+                      "max_points": 1,
+                      "awarded_points": 0
+                    },
+                    {
+                      "criterion_id": "q2.c3",
+                      "verdict": "not_met",
+                      "reason": "통제 유지의 효과성에 대한 내용이 없다.",
+                      "claim": "재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.",
+                      "max_points": 1,
+                      "awarded_points": 0
+                    },
+                    {
+                      "criterion_id": "q2.c4",
+                      "verdict": "contradicted",
+                      "quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                      "reason": "해당 고려가 계속기록법을 사용하는 경우에만 적용된다고 명시하여, 두 경우 모두 적용된다는 명제와 반대된다.",
+                      "claim": "이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.",
+                      "max_points": 1,
+                      "awarded_points": 0
+                    }
+                  ],
+                  "model_answer": [
+                    "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.",
+                    "재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.",
+                    "재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.",
+                    "이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다."
+                  ]
+                }
+              ],
+              "security_flag": "none"
+            },
+            "matched": false,
+            "status": "completed",
+            "trace": [
+              {
+                "stage": "judgment",
+                "attempt": 1,
+                "response": {
+                  "subquestions": [
+                    {
+                      "subquestion_id": "q1",
+                      "verdicts": [
+                        {
+                          "criterion_id": "q1.c1",
+                          "verdict": "not_met",
+                          "evidence_ids": [],
+                          "reason": "답안이 없어 실사일과 재무제표일 사이 변동의 적절한 기록을 확인하는 절차가 제시되지 않았다."
+                        }
+                      ],
+                      "injection_detected": false,
+                      "injection_evidence_ids": [],
+                      "salad_detected": false
+                    },
+                    {
+                      "subquestion_id": "q2",
+                      "verdicts": [
+                        {
+                          "criterion_id": "q2.c1",
+                          "verdict": "met",
+                          "evidence_ids": [
+                            "q2/e0"
+                          ],
+                          "reason": "재고변동 통제의 설계 효과성을 고려한다고 명시했다."
+                        },
+                        {
+                          "criterion_id": "q2.c2",
+                          "verdict": "not_met",
+                          "evidence_ids": [],
+                          "reason": "통제 실행의 효과성에 대한 내용이 없다."
+                        },
+                        {
+                          "criterion_id": "q2.c3",
+                          "verdict": "not_met",
+                          "evidence_ids": [],
+                          "reason": "통제 유지의 효과성에 대한 내용이 없다."
+                        },
+                        {
+                          "criterion_id": "q2.c4",
+                          "verdict": "contradicted",
+                          "evidence_ids": [
+                            "q2/e0"
+                          ],
+                          "reason": "해당 고려가 계속기록법을 사용하는 경우에만 적용된다고 명시하여, 두 경우 모두 적용된다는 명제와 반대된다."
+                        }
+                      ],
+                      "injection_detected": false,
+                      "injection_evidence_ids": [],
+                      "salad_detected": false
+                    }
+                  ]
+                }
+              }
+            ],
+            "repeat_of": "fc3ad8857887ce1fbcfca58351637294a58365acac105fbf0010e142b3c908d0",
+            "attempt": 2
+          },
+          "file_sha256": "1ac337a9bb28bf7e368dd3001b60a20f6553e3249bfde3135243e36749702069"
+        },
+        {
+          "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\r01\\phase-two-v5\\t09-a\\generated-bank-v3-refill02-01\\repeat.grading.jsonl",
+          "line": 3,
+          "event": {
+            "id": "fc3ad8857887ce1fbcfca58351637294a58365acac105fbf0010e142b3c908d0",
+            "answers": {
+              "q1": "",
+              "q2": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다."
+            },
+            "expected": [
+              {
+                "unit_id": "criterion:q2:q2.c1",
+                "case_kind": "condition_boundary",
+                "subquestion_id": "q2",
+                "criterion_id": "q2.c1",
+                "verdict": "contradicted"
+              }
+            ],
+            "transport": "model",
+            "model": "gpt-5.6-luna",
+            "performed_at": "2026-09-11T05:00:04.782Z",
+            "grader_hash": "9acee676d62f52894f08b50b7741167bbc36a2a93e356492fdd2ffced3ee47a6",
+            "judgment": {
+              "subquestions": [
+                {
+                  "subquestion_id": "q1",
+                  "verdicts": [
+                    {
+                      "criterion_id": "q1.c1",
+                      "verdict": "not_met",
+                      "reason": "답안이 비어 있어 기간 사이 재고변동의 적절한 기록을 확인하는 절차와 목적을 제시하지 않았다."
+                    }
+                  ],
+                  "injection_detected": false,
+                  "salad_detected": false
+                },
+                {
+                  "subquestion_id": "q2",
+                  "verdicts": [
+                    {
+                      "criterion_id": "q2.c1",
+                      "verdict": "met",
+                      "quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                      "reason": "재고변동 통제의 설계 효과성을 고려한다고 명시하였다."
+                    },
+                    {
+                      "criterion_id": "q2.c2",
+                      "verdict": "not_met",
+                      "reason": "통제 실행의 효과성에 대한 언급이 없다."
+                    },
+                    {
+                      "criterion_id": "q2.c3",
+                      "verdict": "not_met",
+                      "reason": "통제 유지의 효과성에 대한 언급이 없다."
+                    },
+                    {
+                      "criterion_id": "q2.c4",
+                      "verdict": "contradicted",
+                      "quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                      "reason": "고려 대상이 계속기록법을 사용하는 경우에만 해당한다고 명시하여, 두 경우 모두 적용된다는 명제와 반대된다."
+                    }
+                  ],
+                  "injection_detected": false,
+                  "salad_detected": false
+                }
+              ],
+              "injection_detected": false,
+              "salad_detected": false
+            },
+            "result": {
+              "question_set_id": "draft-09-501-freq01",
+              "score": 1,
+              "max_points": 5,
+              "subquestions": [
+                {
+                  "subquestion_id": "q1",
+                  "prompt": "실사일과 재무제표일이 다르므로 감사인이 추가로 수행해야 하는 감사절차를 설명하시오. 추가 절차의 대상 기간과 확인해야 할 사항을 함께 제시하시오.",
+                  "user_answer": "",
+                  "score": 0,
+                  "max_points": 1,
+                  "criteria": [
+                    {
+                      "criterion_id": "q1.c1",
+                      "verdict": "not_met",
+                      "reason": "답안이 비어 있어 기간 사이 재고변동의 적절한 기록을 확인하는 절차와 목적을 제시하지 않았다.",
+                      "claim": "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다.",
+                      "max_points": 1,
+                      "awarded_points": 0
+                    }
+                  ],
+                  "model_answer": [
+                    "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다."
+                  ]
+                },
+                {
+                  "subquestion_id": "q2",
+                  "prompt": "재무제표일 외의 날짜에 실시한 재고실사가 감사목적에 적합한지 결정할 때 고려할 재고변동 통제의 효과성 세 측면을 모두 제시하시오. 이러한 고려가 계속기록법을 사용하는 경우에만 적용되는지도 설명하시오.",
+                  "user_answer": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                  "score": 1,
+                  "max_points": 4,
+                  "criteria": [
+                    {
+                      "criterion_id": "q2.c1",
+                      "verdict": "met",
+                      "quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                      "reason": "재고변동 통제의 설계 효과성을 고려한다고 명시하였다.",
+                      "claim": "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.",
+                      "max_points": 1,
+                      "awarded_points": 1
+                    },
+                    {
+                      "criterion_id": "q2.c2",
+                      "verdict": "not_met",
+                      "reason": "통제 실행의 효과성에 대한 언급이 없다.",
+                      "claim": "재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.",
+                      "max_points": 1,
+                      "awarded_points": 0
+                    },
+                    {
+                      "criterion_id": "q2.c3",
+                      "verdict": "not_met",
+                      "reason": "통제 유지의 효과성에 대한 언급이 없다.",
+                      "claim": "재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.",
+                      "max_points": 1,
+                      "awarded_points": 0
+                    },
+                    {
+                      "criterion_id": "q2.c4",
+                      "verdict": "contradicted",
+                      "quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+                      "reason": "고려 대상이 계속기록법을 사용하는 경우에만 해당한다고 명시하여, 두 경우 모두 적용된다는 명제와 반대된다.",
+                      "claim": "이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.",
+                      "max_points": 1,
+                      "awarded_points": 0
+                    }
+                  ],
+                  "model_answer": [
+                    "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.",
+                    "재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.",
+                    "재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.",
+                    "이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다."
+                  ]
+                }
+              ],
+              "security_flag": "none"
+            },
+            "matched": false,
+            "status": "completed",
+            "trace": [
+              {
+                "stage": "judgment",
+                "attempt": 1,
+                "response": {
+                  "subquestions": [
+                    {
+                      "subquestion_id": "q1",
+                      "verdicts": [
+                        {
+                          "criterion_id": "q1.c1",
+                          "verdict": "not_met",
+                          "evidence_ids": [],
+                          "reason": "답안이 비어 있어 기간 사이 재고변동의 적절한 기록을 확인하는 절차와 목적을 제시하지 않았다."
+                        }
+                      ],
+                      "injection_detected": false,
+                      "injection_evidence_ids": [],
+                      "salad_detected": false
+                    },
+                    {
+                      "subquestion_id": "q2",
+                      "verdicts": [
+                        {
+                          "criterion_id": "q2.c1",
+                          "verdict": "met",
+                          "evidence_ids": [
+                            "q2/e0"
+                          ],
+                          "reason": "재고변동 통제의 설계 효과성을 고려한다고 명시하였다."
+                        },
+                        {
+                          "criterion_id": "q2.c2",
+                          "verdict": "not_met",
+                          "evidence_ids": [],
+                          "reason": "통제 실행의 효과성에 대한 언급이 없다."
+                        },
+                        {
+                          "criterion_id": "q2.c3",
+                          "verdict": "not_met",
+                          "evidence_ids": [],
+                          "reason": "통제 유지의 효과성에 대한 언급이 없다."
+                        },
+                        {
+                          "criterion_id": "q2.c4",
+                          "verdict": "contradicted",
+                          "evidence_ids": [
+                            "q2/e0"
+                          ],
+                          "reason": "고려 대상이 계속기록법을 사용하는 경우에만 해당한다고 명시하여, 두 경우 모두 적용된다는 명제와 반대된다."
+                        }
+                      ],
+                      "injection_detected": false,
+                      "injection_evidence_ids": [],
+                      "salad_detected": false
+                    }
+                  ]
+                }
+              }
+            ],
+            "repeat_of": "fc3ad8857887ce1fbcfca58351637294a58365acac105fbf0010e142b3c908d0",
+            "attempt": 3
+          },
+          "file_sha256": "1ac337a9bb28bf7e368dd3001b60a20f6553e3249bfde3135243e36749702069"
+        }
+      ],
+      "source_cases": [
+        {
+          "unit_id": "criterion:q2:q2.c1",
+          "kind": "condition_boundary",
+          "answer": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+          "answer_quote": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+          "expected": "contradicted",
+          "verdict": "pass",
+          "rationale": "원문은 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다고 하므로, 계속기록법에만 한정하는 것은 조건을 잘못 바꾼다.",
+          "source_quotes": [
+            {
+              "source_ref_id": "src2",
+              "quote": "A9. \n실무상 이유로, 재고자산 실사가 재무제표일 외의 날에 수행될 수 있다. 이것은 경영진이 \n재고자산 수량을 실사에 의해 결정하는지 또는 계속기록법을 유지하는지 여부와 관계없이 \n그렇게 될 수가 있다. 어느 경우이든, 재고자산 변동에 대한 통제의 설계, 실행 및 유지의 \n효과성은 재무제표일 외의 특정일에 수행되는 재고자산 실사가 감사목적에 적합한지 여부\n를 결정하게 된다. 감사기준서330은 기중에 수행되는 실증절차에 관한 요구사항을 정하고 \n관련 지침을 제공한다. 6"
+            }
+          ]
+        }
+      ],
+      "analysis_status": "pending_original_source_target_and_full_answer_review"
+    }
+  ],
+  "original_receipts_unchanged": true
+}

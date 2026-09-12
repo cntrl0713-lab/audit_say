@@ -4,7 +4,7 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
  * 수집 결과 적재.
  *
  * 전부 service_role 로 쓴다 — firm_* 테이블에는 쓰기 RLS 정책이 없고, 클라이언트
- * 역할로는 INSERT 가 막혀 있다 (docs/firm-platform-schema.md §2).
+ * 역할로는 INSERT 가 막혀 있다 (docs/회계법인-리서치-플랫폼-스키마-설계-기록.md §2).
  *
  * 모든 쓰기는 자연키 기준 upsert 라 같은 사업연도를 다시 수집해도 행이 늘지 않는다
  * (PRD §11 신뢰성: "동일 사업연도 재수집 시 중복 방지").

@@ -1,0 +1,225 @@
+{
+  "set_id": "pilot-07-007",
+  "case_id": "sub1-crit3-opposite",
+  "kind": "opposite",
+  "attempt": 1,
+  "started_at": "2026-09-11T04:22:36.739Z",
+  "finished_at": "2026-09-11T04:22:40.219Z",
+  "model": "gpt-5.6-luna",
+  "transport": "live_model",
+  "answers": {
+    "sub1": "통제가 효과적으로 운영되면 경영진의 통제무력화를 포함한 내부통제의 모든 고유한계가 사라진다.",
+    "sub2": ""
+  },
+  "expected": {
+    "id": "sub1-crit3-opposite",
+    "subquestion_id": "sub1",
+    "kind": "opposite",
+    "answer": "통제가 효과적으로 운영되면 경영진의 통제무력화를 포함한 내부통제의 모든 고유한계가 사라진다.",
+    "expected_points": 0,
+    "expected_verdicts": [
+      {
+        "criterion_id": "crit1",
+        "verdict": "not_met",
+        "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 평가된 중요왜곡표시위험과 관계없이 중요한 각 거래유형·계정잔액·공시에 실증절차를 설계하고 수행해야 하므로, 제시된 종결단계 총괄 검토만 남기고 실증절차를 전부 생략할 수 없다."
+      },
+      {
+        "criterion_id": "crit2",
+        "verdict": "not_met",
+        "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 감사인의 위험평가에는 판단이 수반되므로 모든 중요왜곡표시위험이 식별되지 않을 수 있기 때문이다."
+      },
+      {
+        "criterion_id": "crit3",
+        "verdict": "contradicted",
+        "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 경영진의 통제무력화 등 내부통제에 고유한계가 존재하기 때문이다."
+      }
+    ],
+    "note": "target=crit3; 명시적 반대. 다른 명제까지 직접 부정하면 그 판정도 반영했다. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다."
+  },
+  "request_hash": "dbf3dbf28c2f62802b9c08e989f34f0a93f763a6f7b73d2e7bbdfe76890a8db6",
+  "schema_hash": "c0fafea16430599cb7975661857a0b15a1d6575222b207e646bf4436586fabc1",
+  "raw_judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "중요 항목에 대한 실증절차 수행 및 생략 불가 원칙을 제시하지 않았다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "위험평가의 판단 한계와 위험 미식별 가능성을 설명하지 않았다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "통제가 효과적으로 운영되면 경영진의 통제무력화를 포함한 내부통제의 모든 고유한계가 사라진다.",
+            "reason": "내부통제의 고유한계가 사라진다고 하여 고유한계의 존재를 명시적으로 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "답안이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "trace": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "중요 항목에 대한 실증절차 수행 및 생략 불가 원칙을 제시하지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "위험평가의 판단 한계와 위험 미식별 가능성을 설명하지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "내부통제의 고유한계가 사라진다고 하여 고유한계의 존재를 명시적으로 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "답안이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-07-007",
+    "score": 0,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "팀장의 실증절차 생략 계획을 평가하고, 중요한 거래유형·계정잔액·공시에 관한 수행 원칙을 제시하시오. 이어 이 원칙이 필요한 이유를 감사인의 위험평가와 내부통제의 고유한계 측면으로 나누어 설명하시오.",
+        "user_answer": "통제가 효과적으로 운영되면 경영진의 통제무력화를 포함한 내부통제의 모든 고유한계가 사라진다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "중요 항목에 대한 실증절차 수행 및 생략 불가 원칙을 제시하지 않았다.",
+            "claim": "평가된 중요왜곡표시위험과 관계없이 중요한 각 거래유형·계정잔액·공시에 실증절차를 설계하고 수행해야 하므로, 제시된 종결단계 총괄 검토만 남기고 실증절차를 전부 생략할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "위험평가의 판단 한계와 위험 미식별 가능성을 설명하지 않았다.",
+            "claim": "감사인의 위험평가에는 판단이 수반되므로 모든 중요왜곡표시위험이 식별되지 않을 수 있기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "통제가 효과적으로 운영되면 경영진의 통제무력화를 포함한 내부통제의 모든 고유한계가 사라진다.",
+            "reason": "내부통제의 고유한계가 사라진다고 하여 고유한계의 존재를 명시적으로 부정했다.",
+            "claim": "경영진의 통제무력화 등 내부통제에 고유한계가 존재하기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "평가된 중요왜곡표시위험과 관계없이 중요한 각 거래유형·계정잔액·공시에 실증절차를 설계하고 수행해야 하므로, 제시된 종결단계 총괄 검토만 남기고 실증절차를 전부 생략할 수 없다.",
+          "감사인의 위험평가에는 판단이 수반되므로 모든 중요왜곡표시위험이 식별되지 않을 수 있기 때문이다.",
+          "경영진의 통제무력화 등 내부통제에 고유한계가 존재하기 때문이다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "기업의 재무제표 결산절차와 관련된 실증절차에 포함해야 하는 두 절차를 모두 설명하시오. 재무제표와 기초 회계기록의 관계를 확인하는 절차에는 원장 안팎에서 얻은 공시정보의 범위도 포함하시오.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "재무제표 정보가 기초 회계기록과 일치하는지 확인하거나 차이를 조정하며, 총계정원장·보조원장 안에서 얻었든 그 밖에서 얻었든 공시에 포함된 정보도 일치 여부 확인이나 차이 조정에 포함한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "답안이 없다.",
+            "claim": "재무제표를 작성하는 과정에서 행한 중요한 분개 및 기타 수정사항을 조사한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재무제표 정보가 기초 회계기록과 일치하는지 확인하거나 차이를 조정하며, 총계정원장·보조원장 안에서 얻었든 그 밖에서 얻었든 공시에 포함된 정보도 일치 여부 확인이나 차이 조정에 포함한다.",
+          "재무제표를 작성하는 과정에서 행한 중요한 분개 및 기타 수정사항을 조사한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "exact_verdict_differences": [],
+  "verdict_differences": [],
+  "matched": true,
+  "boundary_policy": null
+}

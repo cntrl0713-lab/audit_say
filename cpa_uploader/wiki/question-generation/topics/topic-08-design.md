@@ -1,20 +1,20 @@
 ---
 title: "주제08 감사증거 문항의 범위와 한계"
 created: 2026-09-09
-updated: 2026-09-09
+updated: 2026-09-11
 type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, quality]
-sources: [docs/reports/question-review-2027/08.md, docs/reports/question-review-2027/08.json]
+sources: [docs/archive/과거-검토-증거/reports/question-review-2027/주제08-감사증거-검토-수정-결과.md, cpa_uploader/analysis/reviews/question-review-2027/08.json]
 confidence: high
 ---
 
 # 주제08. 감사증거 문항의 범위와 한계
 
-[검토 보고서](../../../../docs/reports/question-review-2027/08.md) · [물음별 근거 장부](../../../../docs/reports/question-review-2027/08.json)
+[검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제08-감사증거-검토-수정-결과.md) · [물음별 근거 장부](../../../analysis/reviews/question-review-2027/08.json)
 
-주제08은 [검토 보고서](../../../../docs/reports/question-review-2027/08.md)와 공식 KGA 500 직접 인용을 함께 확인한다.
+주제08은 [검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제08-감사증거-검토-수정-결과.md)와 공식 KGA 500 직접 인용을 함께 확인한다. 경영진주장과 증거의 추출 방향을 연결하는 문항에는 KGA 315의 주장 정의를 직접 근거로 함께 사용할 수 있다. 실제 사용한 두 기준서를 `source_refs`와 `classification.standards`에 기록하며, 주제06으로 재분류하거나 정의의 직접 근거를 생략하지 않는다. [T08-B 계획](../../../../docs/plans/question-authoring-by-topic-2026-09-11/topics/08-감사증거와-경영진주장-출제-계획.md)의 해당 요구와 연결하고 선택 판본의 공식 문단을 확인한다.
 
 | 구분 | 보존할 출제·채점 계약 | 근거 |
 | --- | --- | --- |

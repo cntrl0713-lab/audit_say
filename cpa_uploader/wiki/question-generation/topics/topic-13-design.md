@@ -6,15 +6,15 @@ type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, quality]
-sources: [docs/reports/question-review-2027/13.md, docs/reports/question-review-2027/13.json]
+sources: [docs/archive/과거-검토-증거/reports/question-review-2027/주제13-타인의-업무-활용-검토-수정-결과.md, cpa_uploader/analysis/reviews/question-review-2027/13.json]
 confidence: high
 ---
 
 # 주제13. 타인의 업무 활용의 국내 제한과 평가 범위
 
-[검토 보고서](../../../../docs/reports/question-review-2027/13.md) · [물음별 근거 장부](../../../../docs/reports/question-review-2027/13.json)
+[검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제13-타인의-업무-활용-검토-수정-결과.md) · [물음별 근거 장부](../../../analysis/reviews/question-review-2027/13.json)
 
-주제13에서는 [주제13 보고서](../../../../docs/reports/question-review-2027/13.md)와 [공식610·620 발췌](../../../data/official/kga610-620-2025-review13.txt)를 함께 확인한다.
+주제13에서는 [주제13 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제13-타인의-업무-활용-검토-수정-결과.md)와 [공식610·620 발췌](../../../data/official/kga610-620-2025-review13.txt)를 함께 확인한다.
 
 - KGA610.5의 국내 추가문단은 우리나라 회계감사기준에 따른 감사와 그룹감사의 부문감사에서 직접적 보조를 금지한다. 서면동의·지시·감독으로 이 금지가 해제되지 않는다. 33의 서면동의 내용을 비교 학습하려면 직접적 보조가 허용되고 활용 요건을 충족한 국가라는 가정을 명시하고 국내 적용 판단과 분리한다. 국내에서는 27–35·37 및 A32–A41이 적용되지 않는다는 각주도 확인한다.
 - 로컬 통합학습자료의 610 본문 번호는 첫 부분의 중복 번호 때문에 공식 PDF와 다르다. 책임은11, 기능 평가는15, 활용 금지는16, 범위 조정은18, 서면동의는33이다. 로컬 번호를 그대로 정답의 숨은 암기 요건으로 쓰지 않는다.

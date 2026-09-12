@@ -1,0 +1,43 @@
+{
+  "created_at": "2026-09-11T09:14:13.819Z",
+  "version": "review-source-coverage-2026-09-11-v1",
+  "changes": [
+    "Include criterion-only supplementary sources in whole-question review",
+    "Explicit complete field/source ID lists and schema lengths; no automatic verdict or ID repair",
+    "Distinguish given case facts, standards, and supported application inferences",
+    "Preserve transport status and retryable flag in chunk error logs",
+    "New receipt source_coverage marker; requirement-only historical reading only, current union always required for new acceptance"
+  ],
+  "files": [
+    {
+      "file": "cpa_uploader/questionSemanticReview.ts",
+      "sha256": "89aada95959c742054a7d415959049dbb652c154567146887868f4796ecd76f9"
+    },
+    {
+      "file": "tests/questionSemanticReview.test.ts",
+      "sha256": "6f2211d3d3396570fcdd0e40880c6528c34cb9013defefc1a5d6bfb61cec6973"
+    }
+  ],
+  "validation": {
+    "initial_full_suite": {
+      "passed": 469,
+      "failed": 1,
+      "total": 470,
+      "failure": "Historical pilot-09-008 whole-question supplementary source read compatibility"
+    },
+    "after_correction": {
+      "targeted_tests": 31,
+      "passed": 31,
+      "failed": 0,
+      "files": [
+        "tests/questionSemanticReview.test.ts",
+        "tests/questionV3SourceReuse.test.ts",
+        "tests/questionV3Publication.test.ts"
+      ],
+      "typecheck": "passed",
+      "targeted_lint": "passed"
+    },
+    "api_calls_for_code_tests": 0
+  },
+  "preservation": "Prior receipts, locks, raw response and grading code bytes unchanged. New runtime and output are required."
+}

@@ -1,0 +1,15 @@
+import fs from 'node:fs';import crypto from 'node:crypto';import assert from 'node:assert/strict';
+import {buildSourceCatalog} from '../../../../../questionSourceCatalog.mjs';
+const D='cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12',O=`${D}/c/kga800-followup-v1`,A=`${D}/a/kga800-investigation`,reg='cpa_uploader/config/question-source-registry.json',target='cpa_uploader/data/official/efficient-review-kga800-2020.txt';
+const sha=x=>crypto.createHash('sha256').update(x).digest('hex'),read=f=>JSON.parse(fs.readFileSync(f,'utf8')),write=(f,x)=>fs.writeFileSync(f,JSON.stringify(x,null,2)+'\n');
+assert.equal(read(`${O}/xml-independent-check.json`).errors.length,0);
+const raw='cpa_uploader/raw/collections/2026-09-12-kga800-edition-followup/manifest.json';assert.equal(sha(fs.readFileSync(raw)),'957314516391d841b7e64613ea4146943b9d5fa67db70a3419c217ac129e0aa7');
+const before=buildSourceCatalog(),beforeReg=fs.readFileSync(reg),registry=JSON.parse(beforeReg);assert(!fs.existsSync(target));
+fs.writeFileSync(`${O}/question-source-registry.json.before.txt`,beforeReg,{flag:'wx'});
+const bytes=fs.readFileSync(`${A}/official-kga800-2020-stage.txt`);assert.equal(sha(bytes),'84912c557e9225bc645589c356e527ce6248b54ffab75c95baff74ad08d3fb1c');
+fs.writeFileSync(target,bytes,{flag:'wx'});assert(!registry.topics.find(t=>t.id==='19').standards.includes('KGA 800'));registry.topics.find(t=>t.id==='19').standards.push('KGA 800');
+fs.writeFileSync(reg,JSON.stringify(registry,null,2)+'\n');const after=buildSourceCatalog(),oldUnits=new Map(before.units.map(u=>[u.id,u]));
+const removed=[],changed=[];for(const [id,u] of oldUnits){const n=after.units.find(n=>n.id===id);if(!n){removed.push(id);continue;}for(const k of ['file','quote','contentHash','startLine','endLine','page','standard','paragraph'])if(JSON.stringify(n[k])!==JSON.stringify(u[k]))changed.push({id,key:k});}
+assert.deepEqual(removed,[]);assert.deepEqual(changed,[]);const units=after.units.filter(u=>u.file===target);assert.equal(units.length,35);assert(units.every(u=>u.authority==='official_transcription'&&u.topicIds.includes('19')));
+write(`${O}/registration.json`,{version:1,reviewer:'agent',raw_manifest:raw,raw_manifest_sha256:sha(fs.readFileSync(raw)),file:target,sha256:sha(fs.readFileSync(target)),stage_file:`${A}/official-kga800-2020-stage.txt`,registry_before_sha256:sha(beforeReg),registry_after_sha256:sha(fs.readFileSync(reg)),registry_change:'topics[19].standards에 KGA 800 추가. 새 data/official 파일은 현행 카탈로그의 자동 수집 계약을 따른다.',before_units:before.units.length,after_units:after.units.length,old_units_removed:removed,old_content_or_location_changes:changed,units:units.map(u=>({id:u.id,paragraph:u.paragraph,file:u.file,startLine:u.startLine,endLine:u.endLine,quote:u.quote,contentHash:u.contentHash,locator:u.locator,authority:u.authority,topicIds:u.topicIds})),api_calls:0});
+console.log(JSON.stringify({file:target,sha256:sha(bytes),registry_sha256:sha(fs.readFileSync(reg)),units:units.length,old_units_unchanged:before.units.length}));

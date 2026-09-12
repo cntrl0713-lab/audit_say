@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import ts from 'typescript';
+import {createHash} from 'node:crypto';
+const file='cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/run-author-qa-after-refill.ts',source=fs.readFileSync(file,'utf8'),ast=ts.createSourceFile(file,source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);
+const fn=ast.statements.find(n=>ts.isFunctionDeclaration(n)&&n.name?.text==='safeError');if(!fn)throw Error('safeError missing');
+const js=ts.transpileModule(fn.getText(ast),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.None}}).outputText;
+const check=new Function(js+'; return safeError;')();
+const credit=check(Object.assign(new Error('outer'),{code:'transport',status:429,retryable:true,cause:{error:{code:'credit_balance_exhausted'},request_id:'req_test'}}));
+const quota=check(Object.assign(new Error('outer'),{code:'transport',status:429,cause:{body:JSON.stringify({error:{code:'insufficient_quota'},omitted_secret:'SYNTHETIC_SECRET_SENTINEL'})}}));
+const transient=check(Object.assign(new Error('outer'),{code:'transport',status:503,retryable:true,cause:{code:'ECONNRESET'}}));
+const checks={nested_credit_over_transport:credit.code==='credit_balance_exhausted'&&credit.credit_or_quota_exhausted&&credit.retryable===false,nested_quota_over_transport:quota.code==='insufficient_quota'&&quota.credit_or_quota_exhausted&&quota.retryable===false,transient_not_credit:transient.code==='transport'&&!transient.credit_or_quota_exhausted&&transient.retryable===true,no_raw_body_or_secret:!JSON.stringify(quota).includes('SYNTHETIC_SECRET_SENTINEL')};
+if(Object.values(checks).some(v=>!v))throw Error(JSON.stringify(checks));
+const out='cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/refill-error-classification-check.json';fs.writeFileSync(out,JSON.stringify({created_at:new Date().toISOString(),helper_file:file,helper_sha256:createHash('sha256').update(source).digest('hex'),API_calls:0,checks,scope:'Only local error metadata precedence and safe fields; production grading unchanged.'},null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(checks));

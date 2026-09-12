@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-15-001--subq1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-15-001--subq1--standard",
+  "source_set_id": "pilot-15-001",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "subq1"
+  ],
+  "projected_body_hash": "68aa2fa167496e3e9209325a58f7cfc75a9532ff929187a045da78b81a971ed4",
+  "answers": {
+    "subq1": "감사의견은 첫 번째 단락에 포함하면 안 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "subq1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "답안이 해당 명제를 명시적으로 부정한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "abe814cee22ed055398035ce7e7d2cce0ef3021f723751bf56b42e80859f003e",
+  "schema_hash": "2e9926496cb46ee5978e21bdd296dde5e21b07e16d74d815a2b649b586df0b06",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "subq1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "감사의견은 첫 번째 단락에 포함하면 안 된다.",
+            "reason": "첫 번째 단락에 감사의견을 포함하면 안 된다고 명시하여 요구사항을 반대함."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "감사의견 단락의 제목 명칭을 제시하지 않음."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "감사의견 단락 다음에 근거 단락을 배치한다는 내용이 없음."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "근거 단락의 제목을 제시하지 않음."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "subq1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "subq1/e0"
+                ],
+                "reason": "첫 번째 단락에 감사의견을 포함하면 안 된다고 명시하여 요구사항을 반대함."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사의견 단락의 제목 명칭을 제시하지 않음."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사의견 단락 다음에 근거 단락을 배치한다는 내용이 없음."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "근거 단락의 제목을 제시하지 않음."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-15-001",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "subq1",
+        "prompt": "적정의견을 표명하는 감사보고서에서 감사의견 단락과 감사의견근거 단락의 배치 및 제목에 관한 요구사항을 설명하시오.",
+        "user_answer": "감사의견은 첫 번째 단락에 포함하면 안 된다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "감사의견은 첫 번째 단락에 포함하면 안 된다.",
+            "reason": "첫 번째 단락에 감사의견을 포함하면 안 된다고 명시하여 요구사항을 반대함.",
+            "claim": "감사보고서 첫 번째 단락에 감사의견을 포함함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "감사의견 단락의 제목 명칭을 제시하지 않음.",
+            "claim": "감사의견을 담는 단락의 제목이 감사의견임을 제시함. 제목 명칭을 평가하는 독립 요소로서 첫 번째 배치 여부는 crit1에서만 평가함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "감사의견 단락 다음에 근거 단락을 배치한다는 내용이 없음.",
+            "claim": "감사의견 단락 바로 다음에 근거 단락을 배치함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "근거 단락의 제목을 제시하지 않음.",
+            "claim": "근거 단락의 제목을 감사의견근거로 함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사보고서의 첫 번째 단락은 '감사의견'이라는 제목으로 감사의견을 포함해야 하며, 그 바로 다음 단락으로 '감사의견근거'라는 제목의 단락을 포함해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "subq1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0c10068b15d40c76016aa4d0b8fef887d0a4d7114bb69c14ec",
+        "request_id": "req_1c20d21c41174f7e88da1328eac7882b",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2519,
+          "input_tokens_details": {
+            "cache_write_tokens": 2516,
+            "cached_tokens": 0
+          },
+          "output_tokens": 265,
+          "output_tokens_details": {
+            "reasoning_tokens": 50
+          },
+          "total_tokens": 2784
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009476,
+        "min_usd": 0.0009476,
+        "max_usd": 0.0009476,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-15-001--subq1--standard--wrong/input.json",
+      "sha256": "9fe1b502487a9a486218a14732cecbea1ffaa77e38b5312e3f94958bd988f00b"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-15-001--subq1--standard--wrong/transport.jsonl",
+      "sha256": "2c4657e6c71c494c51ba9a15b5ea04146e3f6cc270461485336f2050a49dd7bb"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-15-001--subq1--standard--wrong/traces.jsonl",
+      "sha256": "dbedc281eea8bddeb6b25cf549d542ab99229ce5b086715463528b53d08d60d6"
+    }
+  }
+}

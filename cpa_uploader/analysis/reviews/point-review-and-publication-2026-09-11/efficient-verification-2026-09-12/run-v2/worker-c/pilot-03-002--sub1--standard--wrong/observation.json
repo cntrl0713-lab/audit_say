@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-03-002--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-03-002--sub1--standard",
+  "source_set_id": "pilot-03-002",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "5d25bf966f01b03f19bacdbc5273600abda6786b283cfaa01feff88de43da21a",
+  "answers": {
+    "sub1": "감사보고서의 글자 크기를 보기 좋게 맞춘다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "요구된 독립 명제가 실제 답안에 없음"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "요구된 독립 명제가 실제 답안에 없음"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "b21608572d18dc517f1d7f17a6064c6aefaf8e54f9dc740ef7a6eee21cceb0fc",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "법규상 수임 의무라는 예외를 제시하지 않았다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "제한된 감사업무의 수임 금지 결론을 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "법규상 수임 의무라는 예외를 제시하지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "제한된 감사업무의 수임 금지 결론을 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-03-002",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "경영진 또는 지배기구가 제안된 감사업무의 범위를 제한하여 감사인이 재무제표에 대한 의견을 거절하게 될 것으로 판단하는 경우, 해당 업무의 수임 여부를 판단하고 예외를 설명하시오.",
+        "user_answer": "감사보고서의 글자 크기를 보기 좋게 맞춘다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "법규상 수임 의무라는 예외를 제시하지 않았다.",
+            "claim": "수임 금지의 예외는 법규에 의해 수임이 요구되는 경우이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "제한된 감사업무의 수임 금지 결론을 제시하지 않았다.",
+            "claim": "그와 같이 제한된 감사업무를 수임해서는 안 된다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "그 범위제한으로 의견거절이 예상되면 해당 업무를 감사업무로 수임해서는 안 된다. 다만 법규에 의해 수임이 요구되는 경우는 예외이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0be1798263f9da09016aa4c75b9c9c87d09a28ae98459af0b7",
+        "request_id": "req_9ce9cbfebf6a4500b6c8087e99439046",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2309,
+          "input_tokens_details": {
+            "cache_write_tokens": 2306,
+            "cached_tokens": 0
+          },
+          "output_tokens": 176,
+          "output_tokens_details": {
+            "reasoning_tokens": 47
+          },
+          "total_tokens": 2485
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0007882999999999999,
+        "min_usd": 0.0007882999999999999,
+        "max_usd": 0.0007882999999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-03-002--sub1--standard--wrong/input.json",
+      "sha256": "4f420b4dcc92432cd83b941298fe2bcc5da7bcc6ac7fb508d83a7b5d3382bab4"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-03-002--sub1--standard--wrong/transport.jsonl",
+      "sha256": "265c61b9ea5b8531ef6944f69fb66af6fe74d101efce883abe69b3035eb25c5c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-03-002--sub1--standard--wrong/traces.jsonl",
+      "sha256": "74f7208297ce36d01f7a8c27322a9da8bbee1236c84bcb58c104758c4e032bc5"
+    }
+  }
+}

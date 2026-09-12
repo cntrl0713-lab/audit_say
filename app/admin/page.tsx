@@ -176,7 +176,7 @@ export default function AdminPage() {
                                     </select>
                                 </label>
                                 <p className="text-xs leading-5 text-foreground/50">감사 서비스의 유료 기능 이용 여부에 적용됩니다.</p>
-                                <button type="button" onClick={() => void changeAccess('entitlement')} className="rounded-md bg-primary px-4 py-2 text-sm text-white disabled:cursor-not-allowed disabled:opacity-50">{saving === 'entitlement' ? '저장 중…' : '이용권 적용'}</button>
+                                <button type="button" onClick={() => void changeAccess('entitlement')} className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground disabled:cursor-not-allowed disabled:opacity-50">{saving === 'entitlement' ? '저장 중…' : '이용권 적용'}</button>
                             </fieldset>
                             <fieldset disabled={!selectedUser || !!saving || selectedUser === user.id} className="space-y-3">
                                 <legend className="mb-3 text-sm">감사 관리자 권한</legend>

@@ -36,7 +36,7 @@ export default async function FirmsPage({ searchParams }: { searchParams: Promis
                                 aria-label={`${option.label} ${direction.label}`}
                                 title={`${option.label} ${direction.label}`}
                                 aria-current={active ? 'true' : undefined}
-                                className={`inline-flex min-h-8 min-w-8 items-center justify-center rounded-md text-base transition-colors ${active ? 'bg-foreground font-medium text-white' : 'text-foreground/65 hover:bg-foreground/5'}`}>
+                                className={`inline-flex min-h-8 min-w-8 items-center justify-center rounded-md text-base transition-colors ${active ? 'bg-foreground font-medium text-primary-foreground' : 'text-foreground/65 hover:bg-foreground/5'}`}>
                                 <span aria-hidden="true">{direction.arrow}</span>
                             </Link>
                         );
@@ -61,7 +61,7 @@ export default async function FirmsPage({ searchParams }: { searchParams: Promis
                         <Link key={candidate}
                             href={`/firms${buildFilterQuery(query, { year: candidate })}`}
                             aria-current={candidate === year ? 'date' : undefined}
-                            className={`inline-flex min-h-11 min-w-14 items-center justify-center rounded-md px-3 text-sm tabular-nums transition-colors ${candidate === year ? 'bg-foreground font-medium text-white' : 'text-foreground/75 hover:bg-card'}`}>
+                            className={`inline-flex min-h-11 min-w-14 items-center justify-center rounded-md px-3 text-sm tabular-nums transition-colors ${candidate === year ? 'bg-foreground font-medium text-primary-foreground' : 'text-foreground/75 hover:bg-card'}`}>
                             {candidate}
                         </Link>
                     ))}

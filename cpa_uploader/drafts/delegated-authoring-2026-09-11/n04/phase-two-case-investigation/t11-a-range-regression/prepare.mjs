@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
+const base=path.dirname(fileURLToPath(import.meta.url)),read=file=>JSON.parse(fs.readFileSync(file,'utf8'));
+const sha=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const control='cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11',manifestFile=control+'/final-153-v1/manifest.json';
+const entry=read(manifestFile).entries.find(entry=>entry.plan_id==='T11-A');
+const original=read(entry.qa_file),ids=['sub3/omit-1','sub3/model-answer','sub3/opposite-1'];
+const cases=ids.map(id=>{const sample=original.cases.find(sample=>sample.id===id);if(!sample)throw Error('Missing case '+id);return sample;});
+const file=path.join(base,'qa-range-comparison.json');
+const qa={version:1,artifact_type:'author_expected_judgments',set_id:entry.set_id,draft_sha256:entry.sha256,live_model_grading:'not_run',human_approval:false,scope:'T11-A v4 후속 검증용 원 QA 3사례를 변경 없이 추출. 준비 시 API 0, v4 고정 전 실행 금지.',cases};
+fs.writeFileSync(file,JSON.stringify(qa,null,2)+'\n',{flag:'wx'});
+const priorLocks=['runtime-lock.json','runtime-v2-policy/runtime-lock.json','runtime-v3-stable/runtime-lock.json'].map(file=>control+'/'+file).filter(file=>fs.existsSync(file));
+const prep={prepared_at:new Date().toISOString(),plan_id:entry.plan_id,manifest:{file:manifestFile,sha256:sha(manifestFile)},candidate:{file:entry.file,sha256:entry.sha256},original_qa:{file:entry.qa_file,sha256:entry.qa_sha256,case_ids:ids},plan_files:entry.plan_files,source_files:entry.source_files,regression_qa:{file,sha256:sha(file)},disallowed_prior_runtime_lock_hashes:priorLocks.map(file=>({file,sha256:sha(file)})),planned_cases:3,repetitions_each:3,planned_executions:9,api_calls_at_preparation:0,original_cases_identical:cases.every(sample=>JSON.stringify(sample)===JSON.stringify(original.cases.find(item=>item.id===sample.id)))};
+fs.writeFileSync(path.join(base,'preparation.json'),JSON.stringify(prep,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({cases:cases.length,points:cases.map(sample=>sample.expected_points),original_cases_identical:prep.original_cases_identical,api_calls:0}));

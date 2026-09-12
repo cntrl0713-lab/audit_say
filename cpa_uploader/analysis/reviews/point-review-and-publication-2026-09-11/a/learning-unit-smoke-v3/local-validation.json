@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "api_calls": 0,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/learning-unit-smoke-v3/manifest.json",
+    "sha256": "33b03f712e8fea314318fd1b75851dafcdef02fabf0b014aa059c0089b77b273"
+  },
+  "checks": [
+    {
+      "command": "node --check cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/prepare-learning-unit-smoke-v3.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node --import tsx cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/prepare-learning-unit-smoke-v3.mjs",
+      "exit_code": 0,
+      "result": "119세트·280물음의249단위, 생산 빈답안249개0점·not_met·보안none, 비빈채점0회"
+    },
+    {
+      "command": "npx eslint cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/prepare-learning-unit-smoke-v3.mjs",
+      "exit_code": 0
+    },
+    {
+      "check": "후속 독립 아티팩트·원입력·기존smoke snapshot 전수 SHA 대조",
+      "errors": 0
+    }
+  ],
+  "v4_v6": {
+    "code_changed_files": 0,
+    "student_input_changed_units": 1,
+    "grading_prompt_changed_units": 1,
+    "response_schema_changed_units": 0,
+    "source_body_changed_units": 45,
+    "explanation": "출처 교체에 따른45단위의 원세트/투영body hash 변화와 실제 채점 입력 변화를 구분했다. 학생입력 및 실제 채점prompt는 pilot-03-001/sub1 명료화1개만 변경; 모범답안·criteria·기대값·총점1113은 동일."
+  },
+  "ready_for_root_nonempty_execution": {
+    "units": 249,
+    "status": "prepared_not_run",
+    "manifest": {
+      "status": "prepared_not_executed",
+      "entries": 249,
+      "execution_owner": "root",
+      "prerequisite": "The root must bind the current runtime lock and verify every input/artifact hash before real execution.",
+      "case_selector": "cases[kind=stored_model_answers]",
+      "api_calls_in_preparation": 0,
+      "prior_receipt_reuse_approved": false
+    },
+    "requirement": "총괄의 실제 실행 잠금과 입력hash 확인 후 새 출력에서 실행하며 이번 빈답안 실행을 비빈답안 모델 검증으로 집계하지 않는다."
+  }
+}

@@ -1,18 +1,18 @@
 ---
 title: "18. 소규모기업 감사 원자료 단위 1/1"
 created: 2026-08-08
-updated: 2026-09-09
+updated: 2026-09-12
 type: source-map
 status: generated
 review_required: true
 tags: [audit, question-generation, quality]
-sources: ["cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md","cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/data/official/kga1200-2025-review18.txt","cpa_uploader/data/회계감사_통합학습자료/01_감사기준/01_품질관리와_비재무정보업무.md","cpa_uploader/data/회계감사_통합학습자료/02_기본이론/회계감사_기본이론.md","cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md","cpa_uploader/data/회계감사_통합학습자료/03_문제연습/주제별_회계감사_연습.md","cpa_uploader/data/회계감사_통합학습자료/03_문제연습/필수암기_OX_200제.md","cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md","cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md","cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_주제별_해설.md"]
+sources: ["cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md","cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/data/official/delegated-s06-kga1100-1200-2025.txt","cpa_uploader/data/official/kga1200-2025-review18.txt","cpa_uploader/data/회계감사_통합학습자료/01_감사기준/01_품질관리와_비재무정보업무.md","cpa_uploader/data/회계감사_통합학습자료/02_기본이론/회계감사_기본이론.md","cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md","cpa_uploader/data/회계감사_통합학습자료/03_문제연습/주제별_회계감사_연습.md","cpa_uploader/data/회계감사_통합학습자료/03_문제연습/필수암기_OX_200제.md","cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md","cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md","cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_주제별_해설.md"]
 confidence: medium
 ---
 
 # 18. 소규모기업 감사 원자료 단위 1/1
 
-주제 전체 125개: 기준서 87, 이론 2, 연습 19, 기출 17. 이 페이지는 125개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
+주제 전체 129개: 기준서 91, 이론 2, 연습 19, 기출 17. 이 페이지는 129개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
 
 [[source-catalog-topic-18]] (1/1)
 
@@ -22,6 +22,10 @@ confidence: medium
 
 | 원자료 ID | 종류·근거 계층 | 실제 파일·위치 | 절·판본·원문 한계 | 참조 의존 | 은행 인용 연결 | 원문 인용 SHA-256 |
 |---|---|---|---|---|---|---|
+| <a id="src-eefc15ac2516338307"></a>`src-eefc15ac2516338307` | standard / official_transcription | [delegated-s06-kga1100-1200-2025.txt · KGA 1200 문단 2 원문 페이지 909; L239-L262](../../data/official/delegated-s06-kga1100-1200-2025.txt); KGA 1200: 소규모기업 재무제표에 대한 감사 | KGA 1200: 소규모기업 재무제표에 대한 감사 / 서론 / 적용대상; 출처 등록일: 2026-09-11. 원본 전사: cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/official-kga1100-1200-proposed.txt 공식2025 전문27문단,2026전문과공백제거동일. 시행일/대상기업범위는발문사례와별도로대조. 원PDF해시및URL은원본제안장부. 본문 바이트의 UTF-8 전사는 아래에 그대로 보존했다. 판본·범위·공식 URL은 발췌의 출처 기록을 따른다. 부터 시행한다1 . 시행일 이전 재무제표감사에 감사기준서 315 개정사항을 조기적용한 경우; | 0개 / 미확보 0개 | [[pilot-18-005]] | 625b65d5c20d184678ca427e61621feb93f0bca56cf26fe070e8aff9ab119831 |
+| <a id="src-5d149516e009fdc5f1"></a>`src-5d149516e009fdc5f1` | standard / official_transcription | [delegated-s06-kga1100-1200-2025.txt · KGA 1200 문단 3 원문 페이지 909; L264-L276](../../data/official/delegated-s06-kga1100-1200-2025.txt); KGA 1200: 소규모기업 재무제표에 대한 감사 | KGA 1200: 소규모기업 재무제표에 대한 감사 / 서론 / 적용대상; 출처 등록일: 2026-09-11. 원본 전사: cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/official-kga1100-1200-proposed.txt 공식2025 전문27문단,2026전문과공백제거동일. 시행일/대상기업범위는발문사례와별도로대조. 원PDF해시및URL은원본제안장부. 본문 바이트의 UTF-8 전사는 아래에 그대로 보존했다. 판본·범위·공식 URL은 발췌의 출처 기록을 따른다. 부터 시행한다1 . 시행일 이전 재무제표감사에 감사기준서 315 개정사항을 조기적용한 경우; | 1개 / 미확보 1개 | [[pilot-18-005]] | b0bc79ed564678a24dc8b686b1ead18e36b202c9dfcb546707d44ffbe2d6a428 |
+| <a id="src-32dca8fe23fd2241ac"></a>`src-32dca8fe23fd2241ac` | standard / official_transcription | [delegated-s06-kga1100-1200-2025.txt · KGA 1200 문단 5 원문 페이지 910; L278-L283](../../data/official/delegated-s06-kga1100-1200-2025.txt); KGA 1200: 소규모기업 재무제표에 대한 감사 | KGA 1200: 소규모기업 재무제표에 대한 감사 / 서론 / 적용대상; 출처 등록일: 2026-09-11. 원본 전사: cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/official-kga1100-1200-proposed.txt 공식2025 전문27문단,2026전문과공백제거동일. 시행일/대상기업범위는발문사례와별도로대조. 원PDF해시및URL은원본제안장부. 본문 바이트의 UTF-8 전사는 아래에 그대로 보존했다. 판본·범위·공식 URL은 발췌의 출처 기록을 따른다. 부터 시행한다1 . 시행일 이전 재무제표감사에 감사기준서 315 개정사항을 조기적용한 경우; | 1개 / 미확보 0개 | [[pilot-18-005]] | 7ddd9953c05687516ad5b28791e1aefc061afb4a991f4bbfc511303d78e818de |
+| <a id="src-a03eca7464b949b2ec"></a>`src-a03eca7464b949b2ec` | standard / official_transcription | [delegated-s06-kga1100-1200-2025.txt · KGA 1200 문단 8 원문 페이지 910; L285-L288](../../data/official/delegated-s06-kga1100-1200-2025.txt); KGA 1200: 소규모기업 재무제표에 대한 감사 | KGA 1200: 소규모기업 재무제표에 대한 감사 / 서론 / 시행일; 출처 등록일: 2026-09-11. 원본 전사: cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/official-kga1100-1200-proposed.txt 공식2025 전문27문단,2026전문과공백제거동일. 시행일/대상기업범위는발문사례와별도로대조. 원PDF해시및URL은원본제안장부. 본문 바이트의 UTF-8 전사는 아래에 그대로 보존했다. 판본·범위·공식 URL은 발췌의 출처 기록을 따른다. 부터 시행한다1 . 시행일 이전 재무제표감사에 감사기준서 315 개정사항을 조기적용한 경우; | 0개 / 미확보 0개 | [[pilot-18-005]] | 5adbe12dbf012d74ccf2291d703dc435e4931fdc3b8d8579e5723309a990fb73 |
 | <a id="src-9b57c9abfac18a2c04"></a>`src-9b57c9abfac18a2c04` | standard / official_transcription | [kga1200-2025-review18.txt · KGA 1200 문단 1 원문 페이지 909; L12-L15](../../data/official/kga1200-2025-review18.txt); KGA 1200: 소규모기업 재무제표에 대한 감사 | KGA 1200: 소규모기업 재무제표에 대한 감사 / 서론 / 목적; 한국공인회계사회 회계감사기준 전문(2025 개정) Checked: 2026-09-08; pypdf exact extraction. URL: https://www.kicpa.or.kr/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11762493343340&fileSeq=7&subId=sub06; | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 5e3ce7233c76fbc5e1db1914eb063f191d3779a665ae1debc243c4d7052715a3 |
 | <a id="src-d79482f6fd560d02dd"></a>`src-d79482f6fd560d02dd` | standard / official_transcription | [kga1200-2025-review18.txt · KGA 1200 문단 2 원문 페이지 909; L16-L28](../../data/official/kga1200-2025-review18.txt); KGA 1200: 소규모기업 재무제표에 대한 감사 | KGA 1200: 소규모기업 재무제표에 대한 감사 / 서론 / 적용대상; 한국공인회계사회 회계감사기준 전문(2025 개정) Checked: 2026-09-08; pypdf exact extraction. URL: https://www.kicpa.or.kr/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11762493343340&fileSeq=7&subId=sub06; | 0개 / 미확보 0개 | [[pilot-18-001]] | 4a009380211e7fcf5a4c8f30dd27673e2e1b7dd494a1ec16ba810e3af30c9ffc |
 | <a id="src-07eb1901c4a4df8ccc"></a>`src-07eb1901c4a4df8ccc` | standard / official_transcription | [kga1200-2025-review18.txt · KGA 1200 문단 3 원문 페이지 909; L29-L42](../../data/official/kga1200-2025-review18.txt); KGA 1200: 소규모기업 재무제표에 대한 감사 | KGA 1200: 소규모기업 재무제표에 대한 감사 / 서론 / 적용대상; 한국공인회계사회 회계감사기준 전문(2025 개정) Checked: 2026-09-08; pypdf exact extraction. URL: https://www.kicpa.or.kr/board/fileMngr?cmd=down&boardId=acc0102&bltnNo=11762493343340&fileSeq=7&subId=sub06; | 1개 / 미확보 1개 | [[pilot-18-001]] | 9cfb70e5299216976e3fb2d347a2ab62d670542d7e3f133327a7787835ba4a40 |

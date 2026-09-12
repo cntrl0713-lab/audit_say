@@ -1,0 +1,150 @@
+{
+  "created_at": "2026-09-11T02:33:23.718398+00:00",
+  "status": "proposal_only_not_applied",
+  "plan_id": "T08-B",
+  "set_id": "pilot-08-007",
+  "reason": "현행 sub2 발문은 모집단·추적방향·기간귀속 자료/시점을 요구한다. crit3은 관련성·신뢰성이 확인된 기초자료를 요구하지만 shared fact2의 확인하여 이용할 수 있다는 말은 확인 완료 사실이 아니다. QA만 강화하면 숨은 조건이 남으므로 자료 이용 전제를 발문에 명시한다.",
+  "scope": "기존 모집단1점·추적1점·기간귀속1점 내에서 요구를 명료화한다. 새 검증 절차나 추가 점수는 요구하지 않으며 수익인식 계약조건과 명제/공식refs는 유지한다.",
+  "original_inputs": [
+    {
+      "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\n02\\pilot-08-007.json",
+      "sha256": "15a2fa5903d5eeed08af3e6a89be967c02b8cce8db6af1d9d5eaacb696a84e68"
+    },
+    {
+      "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\n02\\pilot-08-007.authoring-plan.json",
+      "sha256": "df4c3bb2d8d379907b9993a2fd7fbb26825b1205caaee192e757c2f553df3c85"
+    },
+    {
+      "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\n02\\qa-cases-t08-b.json",
+      "sha256": "83d3ccaf022844b243fc386fc0c85c19d98c880858216e234406d2c31d69f6ba"
+    }
+  ],
+  "question_patch": [
+    {
+      "op": "replace",
+      "path": "/0/subquestions/1/prompt",
+      "before": "미기록 매출의 완전성을 보완하려면 어떤 모집단에서 출발하여 어디로 추적해야 하는지 제시하시오. 이어 기간귀속을 검증하기 위해 서로 대조해야 할 자료와 시점을 설명하시오.",
+      "value": "미기록 매출의 완전성을 보완하려면 어떤 모집단에서 출발하여 어디로 추적해야 하는지 제시하시오. 선정한 기초자료를 감사증거로 이용할 수 있는 전제도 함께 설명하시오. 이어 기간귀속을 검증하기 위해 서로 대조해야 할 자료와 시점을 설명하시오."
+    }
+  ],
+  "plan_patch": [
+    {
+      "op": "replace",
+      "path": "/objective",
+      "before": "매출의 발생사실·완전성·기간귀속에 맞는 모집단과 증거 방향을 설계하고 인도조건·운송기간 변화에 맞춰 절차를 조정한다.",
+      "value": "매출의 발생사실·완전성·기간귀속에 맞는 모집단과 증거 방향을 설계하고, 선정 자료를 이용할 수 있는 전제를 설명하며, 인도조건·운송기간 변화에 맞춰 절차를 조정한다."
+    },
+    {
+      "op": "add",
+      "path": "/scope/conditions/-",
+      "value": "sub2는 선정한 기초자료를 이용할 수 있는 전제도 답안에서 설명하도록 요구한다. 지문은 관련성·신뢰성의 확인 완료를 주지 않으므로 이 전제를 자동 충족으로 보지 않는다. 이는 기존 crit3의 적격 모집단 요건이며 별도 신규 배점은 아니다."
+    }
+  ],
+  "QA_two_answer_repairs": [
+    {
+      "op": "replace",
+      "path": "/cases/21/answer",
+      "case_id": "sub2-all-paraphrases",
+      "before": "원장에 의존하지 않는 창고 출고목록이나 고객 인수자료를 기초 모집단으로 삼는다.\n출고나 인수목록의 각 대상 거래를 매출기록으로 따라가 누락 여부를 확인한다.\n계약과 고객의 실제 인수 확인일을 매출 전기일의 회계기간과 비교한다.",
+      "value": "관련성과 신뢰성을 확인한 자료 중 원장에 의존하지 않는 창고 출고목록이나 고객 인수자료를 기초 모집단으로 삼는다.\n출고나 인수목록의 각 대상 거래를 매출기록으로 따라가 누락 여부를 확인한다.\n계약과 고객의 실제 인수 확인일을 매출 전기일의 회계기간과 비교한다.",
+      "expected_points_unchanged": 3
+    },
+    {
+      "op": "replace",
+      "path": "/cases/22/answer",
+      "case_id": "sub2-crit3-paraphrase",
+      "before": "원장에 의존하지 않는 창고 출고목록이나 고객 인수자료를 기초 모집단으로 삼는다.",
+      "value": "관련성과 신뢰성을 확인한 자료 중 원장에 의존하지 않는 창고 출고목록이나 고객 인수자료를 기초 모집단으로 삼는다.",
+      "expected_points_unchanged": 1
+    }
+  ],
+  "preserve_original_answers_as_additional_incomplete_cases": [
+    {
+      "id": "sub2-original-all-paraphrases-missing-precondition",
+      "subquestion_id": "sub2",
+      "kind": "omission",
+      "answer": "원장에 의존하지 않는 창고 출고목록이나 고객 인수자료를 기초 모집단으로 삼는다.\n출고나 인수목록의 각 대상 거래를 매출기록으로 따라가 누락 여부를 확인한다.\n계약과 고객의 실제 인수 확인일을 매출 전기일의 회계기간과 비교한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "선정자료의 관련성·신뢰성 확인 전제를 설명하지 않은 원래 표현을 불완전 답안 경계로 보존한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "met",
+          "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다."
+        }
+      ],
+      "note": "원QA의 원문을 변경하지 않고, 명료화한 sub2 발문 및 기존 crit3의 확인 전제가 빠진 별도 경계 사례로 추가할 제안."
+    },
+    {
+      "id": "sub2-original-single-paraphrase-missing-precondition",
+      "subquestion_id": "sub2",
+      "kind": "omission",
+      "answer": "원장에 의존하지 않는 창고 출고목록이나 고객 인수자료를 기초 모집단으로 삼는다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "선정자료의 관련성·신뢰성 확인 전제를 설명하지 않은 원래 표현을 불완전 답안 경계로 보존한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다."
+        }
+      ],
+      "note": "원QA의 원문을 변경하지 않고, 명료화한 sub2 발문 및 기존 crit3의 확인 전제가 빠진 별도 경계 사례로 추가할 제안."
+    }
+  ],
+  "additional_QA_closure_review": [
+    {
+      "case_id": "sub2-crit3-surface-omission-implicit",
+      "before_points": 3,
+      "proposed_points": 2,
+      "criterion": "crit3",
+      "before": "met",
+      "proposed": "not_met",
+      "reason": "trace 방향만 남긴 답이 자료 관련성·신뢰성 확인 전제까지 함축하지는 않는다."
+    },
+    {
+      "case_id": "sub2-crit4-paraphrase",
+      "before_points": 2,
+      "proposed_points": 1,
+      "criterion": "crit3",
+      "before": "met",
+      "proposed": "not_met",
+      "reason": "독립 출고·인수 목록에서 원장으로 추적하는 방향은 있으나 확인 전제까지 제시하지 않았다."
+    }
+  ],
+  "generator_followup": {
+    "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\n02\\content.mjs",
+    "action": "crit3의 paraphrase 원문에 확인 전제를 복구하고 새 sub2 발문을 동기화할 제안. build-qa.mjs의 T08-B/sub2 {0:[1]} 자동함축은 확인 전제가 없는 경우 적용되지 않도록 분리. 이 작업에서는 원 생성 소스를 수정하지 않았다."
+  },
+  "verification_after_adoption": [
+    "정본/게시 없이 후보/계획 형상 및 발문-criterion 대응 검증",
+    "2개 조건복구 답안 및 보존한 원 불완전 답안의 실제 v4 채점",
+    "독립 모집단/추적방향 각1점과 조건을 합친2점 사례 확인",
+    "새 비교은행에서 전수 의미검수 재준비/실행"
+  ],
+  "counts_if_all_QA_proposals_adopted": {
+    "sets_unchanged": 1,
+    "subquestions_unchanged": 3,
+    "set_points_unchanged": 8,
+    "QA_cases_before": 55,
+    "QA_cases_after": 57
+  }
+}

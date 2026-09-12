@@ -1,0 +1,2 @@
+// Fixed application code, applied before first paint; no user content is interpolated.
+export const themeInitScript = `(function(){var p='light';try{var s=localStorage.getItem('auditsay-theme');if(s==='dark'||s==='light'||s==='system')p=s}catch{}var d=document.documentElement;d.dataset.themePreference=p;d.dataset.theme=p==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):p})()`;

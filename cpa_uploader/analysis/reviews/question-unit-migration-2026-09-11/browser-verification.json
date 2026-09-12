@@ -1,0 +1,47 @@
+{
+  "checked_on": "2026-09-11",
+  "environment": "local Next.js app connected to migrated DB; dev-only draft preview",
+  "method": "CUA browser accessibility inspection and case screen screenshot",
+  "checks": [
+    {
+      "url": "http://127.0.0.1:3000/curriculum",
+      "action": "Open the preliminary audit activities question under topic 01",
+      "result": "pass",
+      "observed": "212 questions / 208 standard / 4 cases; link opens /quiz?set=pilot-04-002--sub1--standard with one question and topics 01, 03, 04"
+    },
+    {
+      "url": "http://127.0.0.1:3000/quiz",
+      "result": "pass",
+      "observed": "19 topics / 212 questions; separate standard and case selectors; topic 01 includes a standard question mapped to topics 01, 03 and 04"
+    },
+    {
+      "url": "http://127.0.0.1:3000/quiz",
+      "action": "Open the preliminary audit activities standard question from topic 01",
+      "result": "pass",
+      "observed": "One 3-point question, one answer box, all three topic labels, no case facts"
+    },
+    {
+      "url": "http://127.0.0.1:3000/quiz?set=pilot-13-007--case",
+      "result": "pass",
+      "observed": "Case facts and the single case question together, total 2 points; source standard question excluded"
+    },
+    {
+      "url": "http://127.0.0.1:3000/quiz/draft-preview?set=pilot-08-008&style=standard&sub=sub4",
+      "result": "pass",
+      "observed": "Only original sub4, 9 points and 9 criteria, no case facts; links to the other independent standard questions"
+    },
+    {
+      "url": "http://127.0.0.1:3000/quiz/draft-preview/catalog?style=case&topic=08",
+      "result": "pass",
+      "observed": "101 total learning units: 64 standalone standard questions and 37 cases/68 case questions; topic 08 retrieves 8 complete cases including T07-C"
+    },
+    {
+      "url": "http://127.0.0.1:3000/quiz/draft-preview?set=pilot-07-008&style=case&topic=08#sub1",
+      "result": "pass",
+      "observed": "Full case facts and sub1, sub2, sub3 all shown, 3+3+3=9 points; sub2 with topics 07 and 09 retained despite topic 08 filter"
+    }
+  ],
+  "answer_submissions": 0,
+  "model_api_calls": 0,
+  "limitations": ["No new real model grading or live grading submission was run in this schema/UI task; submission behavior was covered by offline and isolated database tests."]
+}

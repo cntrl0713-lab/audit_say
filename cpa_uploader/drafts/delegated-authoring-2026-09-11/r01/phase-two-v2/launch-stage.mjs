@@ -1,0 +1,34 @@
+/** Explicit single-stage launcher. Creating this file does not initiate API calls. */
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {spawn} from 'node:child_process';
+
+const [planId,phase,label='run1',lockPath='cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/runtime-v2-policy/runtime-lock.json',priorSemantic,onlyCase]=process.argv.slice(2);
+if(!planId||!['semantic','generated','author'].includes(phase)||!/^[-a-z0-9]+$/.test(label))throw Error('Arguments: PLAN_ID semantic|generated|author RUN_LABEL [runtime-lock.json] [prior-semantic.json]');
+if(phase==='generated'&&!priorSemantic)throw Error('Generated-case grading requires an explicit prior semantic receipt');
+const read=f=>JSON.parse(fs.readFileSync(f,'utf8'));
+const sha=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const lock=read(lockPath),manifest=read(lock.manifest_file);
+const entry=manifest.entries.find(x=>x.plan_id===planId);
+if(!entry||!['R01','N04','N05','S03'].includes(entry.package))throw Error('Unassigned set');
+const inputRecords=[{file:lock.manifest_file,sha256:lock.manifest_sha256},lock.comparison_bank,...lock.code_files,...lock.source_files,{file:entry.file,sha256:entry.sha256},...entry.plan_files,{file:entry.qa_file,sha256:entry.qa_sha256}];
+const changed=inputRecords.filter(x=>sha(x.file)!==x.sha256).map(x=>x.file);
+if(changed.length)throw Error('Frozen input changed: '+changed.join(', '));
+if(!process.env.OPENAI_API_KEY)throw Error('Credential absent; use node --env-file=.env.local');
+if(process.env.CPA_REVIEW_MODEL&&process.env.CPA_REVIEW_MODEL!==lock.settings.review_model)throw Error('Review model environment differs from lock');
+if(process.env.CPA_REVIEW_INPUT_MAX_CHARS&&Number(process.env.CPA_REVIEW_INPUT_MAX_CHARS)!==lock.settings.review_input_max_chars)throw Error('Review input limit differs from lock');
+const folder=path.join(path.dirname(entry.file),'phase-two-v2',planId.toLowerCase(),label);
+fs.mkdirSync(folder,{recursive:true});
+const write=(name,value)=>fs.writeFileSync(path.join(folder,name),JSON.stringify(value,null,2)+'\n',{flag:'wx'});
+const output=path.join(folder,phase==='author'?'author-qa':phase+'.json');
+const cli=phase==='author'?'run-author-qa.ts':'run-review.ts';
+const control='cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11';
+const cliArgs=phase==='author'?['--file',entry.file,'--qa',entry.qa_file,'--output',output,...(onlyCase?['--only',onlyCase]:[])]:['--file',entry.file,'--plan',entry.plan_files[0].file,'--bank',lock.comparison_bank.file,...(phase==='generated'?['--review-input',priorSemantic,'--grade-cases']:[]),'--output',output];
+write(phase+'-input-lock.json',{started_at:new Date().toISOString(),package:entry.package,plan_id:planId,set_id:entry.set_id,phase,lock_file:lockPath,lock_sha256:sha(lockPath),entry,inputRecords,settings:lock.settings,prior_semantic:priorSemantic?{file:priorSemantic,sha256:sha(priorSemantic)}:null,launcher_sha256:sha(new URL(import.meta.url)),credential_logged:false});
+const out=fs.createWriteStream(path.join(folder,phase+'.stdout.log'),{flags:'wx'}),err=fs.createWriteStream(path.join(folder,phase+'.stderr.log'),{flags:'wx'});
+const child=spawn(process.execPath,['--import','tsx',path.join(control,cli),...cliArgs],{stdio:['ignore','pipe','pipe'],env:process.env,windowsHide:true});
+child.stdout.on('data',b=>{out.write(b);process.stdout.write(b);});
+child.stderr.on('data',b=>{err.write(b);process.stderr.write(b);});
+child.on('error',error=>{write(phase+'-launcher-error.json',{name:error.name,message:error.message});process.exitCode=1;});
+child.on('close',code=>{out.end();err.end();const changedAfter=inputRecords.filter(x=>sha(x.file)!==x.sha256).map(x=>x.file);write(phase+'-stage-result.json',{finished_at:new Date().toISOString(),exit_code:code,changed_inputs:changedAfter,output,stage_completed:fs.existsSync(output),model_calls_asserted_from_launcher:false});process.exitCode=changedAfter.length?1:code??1;});

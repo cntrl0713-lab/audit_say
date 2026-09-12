@@ -6,15 +6,15 @@ type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, quality]
-sources: [docs/reports/question-review-2027/11.md, docs/reports/question-review-2027/11.json]
+sources: [docs/archive/과거-검토-증거/reports/question-review-2027/주제11-회계추정과-특수관계자-검토-및-수정.md, cpa_uploader/analysis/reviews/question-review-2027/11.json]
 confidence: high
 ---
 
 # 주제11. 회계추정과 특수관계자 문항의 대안·조건·근거
 
-[검토 보고서](../../../../docs/reports/question-review-2027/11.md) · [물음별 근거 장부](../../../../docs/reports/question-review-2027/11.json)
+[검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제11-회계추정과-특수관계자-검토-및-수정.md) · [물음별 근거 장부](../../../analysis/reviews/question-review-2027/11.json)
 
-주제11은 [검토 보고서](../../../../docs/reports/question-review-2027/11.md)와 [공식540·550 발췌](../../../data/official/kga540-550-2025-review11.txt)에 근거한다. 실제로 수행할 접근방법의 수와 수험생이 열거할 답안 범위를 구별한다.
+주제11은 [검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제11-회계추정과-특수관계자-검토-및-수정.md)와 [공식540·550 발췌](../../../data/official/kga540-550-2025-review11.txt)에 근거한다. 실제로 수행할 접근방법의 수와 수험생이 열거할 답안 범위를 구별한다.
 
 - 540.18의 세 접근방법 중 **하나 이상을 수행**하는 것과, 발문에서 **선택 가능한 세 방법을 모두 제시**하도록 요구하는 것은 양립한다. 경영진 도출방법 테스트와 감사인의 추정치 도출을 하나의 ‘또는’ criterion으로 묶어 두 방법 중 하나의 누락을 만점 처리하지 않는다. 감사인의 점추정치와 범위추정치는 한 접근방법 안의 대안이다.
 - 고유위험요소의 명칭과 설명은 다르다. 설명을 요구한다면 추정불확실성의 지식·정보 한계, 주관성의 판단 개입, 복잡성의 기법·가정·데이터 적용 양상을 대응시킨다. 전문가적 의구심의 중요성이 증가하려면 모든 요소가 동시에 높아야 한다고 제한하지 않는다(540.2,8).

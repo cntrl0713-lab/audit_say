@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-16-011--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-011--case",
+  "source_set_id": "pilot-16-011",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "eb60a0ee21c024107b490689b3283e32125ec3bcc0f10cc0c3fdc3fde328a57e",
+  "answers": {
+    "sub1": "이 기타정보 수정거부만으로 재무제표감사의견을 반드시 거절해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "720.18의 일반 보고영향 고려와 구체 기타정보 단락의 처리는 같은 대응의 일반·구체 관계이므로 중복 2점으로 세지 않는다. 3점은 자동 재무제표 의견거절 부정(crit1), 중요한 미수정 기타정보를 보고서에 표시하는 구체 처리(crit2, 보고영향 고려 포함), 그 보고계획의 지배기구 전달(crit3)이다. 원발문 요구를 보존하면서 합성 crit1의 판단 점수를 복원하고 일반 고려 문구를 별도 추가점수로 늘리지 않는다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "720.18의 일반 보고영향 고려와 구체 기타정보 단락의 처리는 같은 대응의 일반·구체 관계이므로 중복 2점으로 세지 않는다. 3점은 자동 재무제표 의견거절 부정(crit1), 중요한 미수정 기타정보를 보고서에 표시하는 구체 처리(crit2, 보고영향 고려 포함), 그 보고계획의 지배기구 전달(crit3)이다. 원발문 요구를 보존하면서 합성 crit1의 판단 점수를 복원하고 일반 고려 문구를 별도 추가점수로 늘리지 않는다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "720.18의 일반 보고영향 고려와 구체 기타정보 단락의 처리는 같은 대응의 일반·구체 관계이므로 중복 2점으로 세지 않는다. 3점은 자동 재무제표 의견거절 부정(crit1), 중요한 미수정 기타정보를 보고서에 표시하는 구체 처리(crit2, 보고영향 고려 포함), 그 보고계획의 지배기구 전달(crit3)이다. 원발문 요구를 보존하면서 합성 crit1의 판단 점수를 복원하고 일반 고려 문구를 별도 추가점수로 늘리지 않는다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "c05cb30d1b1465a82cc791dc66ae366d7854a5d45573311c8a675782566f26d8",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "이 기타정보 수정거부만으로 재무제표감사의견을 반드시 거절해야 한다.",
+            "reason": "재무제표 감사의견을 반드시 거절해야 한다고 하여 요구 결론과 반대이다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "기타정보 단락에 미수정왜곡표시를 기술하는 조치가 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "지배기구에 보고계획을 전달한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "재무제표 감사의견을 반드시 거절해야 한다고 하여 요구 결론과 반대이다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "기타정보 단락에 미수정왜곡표시를 기술하는 조치가 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "지배기구에 보고계획을 전달한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-011",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "갑의 단계에서 ① 감사보고서에 미치는 영향과 재무제표감사 의견거절이 자동으로 필요한지 여부 ② 기타정보 단락에 기술할 내용 ③ 보고계획에 관하여 지배기구에 전달할 사항을 각각 설명하시오. 이미 이행한 최초 수정요구는 반복하지 않아도 된다.",
+        "user_answer": "이 기타정보 수정거부만으로 재무제표감사의견을 반드시 거절해야 한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "이 기타정보 수정거부만으로 재무제표감사의견을 반드시 거절해야 한다.",
+            "reason": "재무제표 감사의견을 반드시 거절해야 한다고 하여 요구 결론과 반대이다.",
+            "claim": "갑의 기타정보 수정거부만으로 재무제표 감사의견을 자동으로 거절해야 하는 것은 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "기타정보 단락에 미수정왜곡표시를 기술하는 조치가 없다.",
+            "claim": "감사보고서의 기타정보 단락에 기타정보의 중요한 미수정왜곡표시를 기술하는 설명을 포함함을 제시한다. 재무제표 의견을 자동으로 부적정으로 바꾸거나 보고할 내용이 없다고 쓰면 반대이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "지배기구에 보고계획을 전달한다는 내용이 없다.",
+            "claim": "감사보고서에서 중요한 왜곡표시를 어떻게 다룰 계획인지 지배기구에 전달함을 설명한다. 수정해 달라는 요청의 반복만으로는 이 보고계획 전달을 충족하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "갑의 기타정보 수정거부만으로 재무제표 감사의견을 자동으로 거절해야 하는 것은 아니다.",
+          "감사보고서의 기타정보 단락에는 기타정보의 중요한 미수정왜곡표시를 기술하는 설명을 포함해야 한다.",
+          "감사보고서에서 중요한 왜곡표시를 어떻게 다룰 계획인지 지배기구와 커뮤니케이션해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_09e33a26e47fe477016aa4d14eae8c87d0b23d5bbd32c2ea61",
+        "request_id": "req_b0d275e4d92e4cdba478e8b175e7f445",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3084,
+          "input_tokens_details": {
+            "cache_write_tokens": 3081,
+            "cached_tokens": 0
+          },
+          "output_tokens": 222,
+          "output_tokens_details": {
+            "reasoning_tokens": 41
+          },
+          "total_tokens": 3306
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00103725,
+        "min_usd": 0.00103725,
+        "max_usd": 0.00103725,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-16-011--case--wrong/input.json",
+      "sha256": "1efd7790bc5ad1d0f62e41d75951069e2dc6f1a495511c66309501b4a0121505"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-16-011--case--wrong/transport.jsonl",
+      "sha256": "3b41c271e2b5c792cc2706c001f20c9e1dac5163c953f4fa5fff50e0208510c3"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-16-011--case--wrong/traces.jsonl",
+      "sha256": "4d9fd88e6582df0c571b060d59dce6d890ab1a4d72ce8b3ec8bb827f3dde902d"
+    }
+  }
+}

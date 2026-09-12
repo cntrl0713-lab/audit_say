@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "artifact_type": "author_expected_judgments",
+  "set_id": "draft-09-505-freq01",
+  "draft_sha256": "2adb8ea89ad4e8ede6c790b81bb44b4cf1b2e7f684be9ec9078e62c05f409138",
+  "live_model_grading": "not_run",
+  "human_approval": false,
+  "scope": "별도 회귀 비교 2사례. 원QA 및 정본의 변경이 아니다. 새 총괄 runtime lock 이전 API 호출금지.",
+  "cases": [
+    {
+      "id": "q1/condition-boundary",
+      "subquestion_id": "q1",
+      "kind": "condition-boundary",
+      "answer": "공란형은 상대방이 직접 금액을 적으므로 무검증 회신위험을 완전히 제거하고 회신율도 반드시 높인다.",
+      "expected_points": 1,
+      "note": "방식은 설명했지만 위험 감소와 회신율 가능성을 절대적 보장으로 바꿨다.",
+      "expected_verdicts": [
+        {
+          "criterion_id": "q1.c1",
+          "verdict": "met",
+          "reason": "방식은 설명했지만 위험 감소와 회신율 가능성을 절대적 보장으로 바꿨다."
+        },
+        {
+          "criterion_id": "q1.c2",
+          "verdict": "contradicted",
+          "reason": "방식은 설명했지만 위험 감소와 회신율 가능성을 절대적 보장으로 바꿨다."
+        },
+        {
+          "criterion_id": "q1.c3",
+          "verdict": "contradicted",
+          "reason": "방식은 설명했지만 위험 감소와 회신율 가능성을 절대적 보장으로 바꿨다."
+        }
+      ]
+    },
+    {
+      "id": "q1/full-method-condition-boundary",
+      "subquestion_id": "q1",
+      "kind": "condition_boundary",
+      "answer": "감사인이 조회서에 금액이나 기타 정보를 미리 기재하지 않고 조회처가 해당 금액을 직접 기재하거나 정보를 제공하도록 요청한다. 이 방식은 정보의 정확성을 검증하지 않은 회신 위험을 완전히 제거하고 회신율도 반드시 높인다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "q1.c1",
+          "verdict": "met",
+          "reason": "공식505.A5의 작성·회신 방식을 모두 명시했다."
+        },
+        {
+          "criterion_id": "q1.c2",
+          "verdict": "contradicted",
+          "reason": "위험 감소 가능성을 완전 제거로 바꿨다."
+        },
+        {
+          "criterion_id": "q1.c3",
+          "verdict": "contradicted",
+          "reason": "회신율이 낮을 수 있다는 한계를 반드시 증가로 뒤집었다."
+        }
+      ],
+      "note": "c1의 간결 표현 인정 여부와 분리하여 c2/c3의 절대적 보장 오답이 올바른 방식 설명의 점수를 침범하는지 확인한다."
+    }
+  ]
+}

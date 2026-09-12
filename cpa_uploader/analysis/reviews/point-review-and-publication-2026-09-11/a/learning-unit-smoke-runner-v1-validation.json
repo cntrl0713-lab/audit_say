@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "status": "implementation_complete_live_execution_not_run",
+  "model_api_calls": 0,
+  "files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/run-learning-unit-smoke-v3.ts",
+      "sha256": "dcf5e6b2eb132a529aeb47ab6d53d9217b6f9bb3d57634fc921bb848e2b8a923"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/run-learning-unit-smoke-v3.test.ts",
+      "sha256": "ce20da3d5986e0de081016d05173ea9a509ed102ece9ea17a7e6ba1a94c6c569"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/learning-unit-smoke-v3/manifest.json",
+      "sha256": "33b03f712e8fea314318fd1b75851dafcdef02fabf0b014aa059c0089b77b273"
+    }
+  ],
+  "checks": [
+    {
+      "command": "node --import tsx --test cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/run-learning-unit-smoke-v3.test.ts",
+      "exit_code": 0,
+      "tests": 18,
+      "pass": 18,
+      "fail": 0,
+      "fixture_response_injection": "one nonretryable quota fixture exercises production grader control flow; no actual API, no production model observation"
+    },
+    {
+      "command": "npx tsc --noEmit --incremental false",
+      "exit_code": 0
+    },
+    {
+      "command": "npx eslint cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/run-learning-unit-smoke-v3.ts cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/run-learning-unit-smoke-v3.test.ts",
+      "exit_code": 0
+    }
+  ],
+  "current_cli_fixtures": {
+    "dir": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/learning-unit-runner-fixtures-FOyf6f",
+    "runner_sha256": "dcf5e6b2eb132a529aeb47ab6d53d9217b6f9bb3d57634fc921bb848e2b8a923",
+    "workers": [
+      {
+        "worker": "a",
+        "summary": {
+          "status": "dry_run_complete",
+          "worker": "a",
+          "selected_jobs": 83,
+          "model_calls": 0,
+          "nonempty_cases_executed": 0,
+          "runtime_guards_passed": true
+        },
+        "preflight_file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/learning-unit-runner-fixtures-FOyf6f/dry-a/preflight.json",
+        "preflight_sha256": "2f8d0e8ee339c88c31c85735f7c58fb7986a94f2e81b5a5ee500cf3e25302abb"
+      },
+      {
+        "worker": "b",
+        "summary": {
+          "status": "dry_run_complete",
+          "worker": "b",
+          "selected_jobs": 83,
+          "model_calls": 0,
+          "nonempty_cases_executed": 0,
+          "runtime_guards_passed": true
+        },
+        "preflight_file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/learning-unit-runner-fixtures-FOyf6f/dry-b/preflight.json",
+        "preflight_sha256": "62bb76d769303744689b75204ab745a0028d9f51024342d2b8608441e9aa3987"
+      },
+      {
+        "worker": "c",
+        "summary": {
+          "status": "dry_run_complete",
+          "worker": "c",
+          "selected_jobs": 83,
+          "model_calls": 0,
+          "nonempty_cases_executed": 0,
+          "runtime_guards_passed": true
+        },
+        "preflight_file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/learning-unit-runner-fixtures-FOyf6f/dry-c/preflight.json",
+        "preflight_sha256": "dbbfa37672006a732a00572533074855f46f72c0093a68f04783f054a7df729f"
+      }
+    ],
+    "stop_summary": {
+      "status": "stopped",
+      "selected_jobs": 83,
+      "remaining_jobs": 83,
+      "model_calls": 0,
+      "reason": "stop_file_exists_before_execution"
+    }
+  },
+  "older_fixture_cohorts_preserved": [
+    "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/learning-unit-runner-fixtures-vq5rRv"
+  ],
+  "contract": {
+    "manifest_sha256": "33b03f712e8fea314318fd1b75851dafcdef02fabf0b014aa059c0089b77b273",
+    "partition": "global manifest index modulo3: a=0,b=1,c=2;83 jobs each",
+    "same_input_mismatch_observations": 3,
+    "execution_errors_are_not_scores": true,
+    "raw_security_flags": "per-subquestion required booleans are inspected; absent top-level flags are normal",
+    "hash_guard": "all frozen manifest inputs, artifacts, source snapshots/files, classifications, bank, student grading/app-projection code and runner; before/after jobs and final boundary; actual SDK request also checked",
+    "source_catalog_parser": "not locked; not part of actual student grading input",
+    "actual_response_forwarding": "OpenAI SDK response is logged and returned unchanged; author expected values are never injected",
+    "model": "manifest configured model must match environment and actual provider response",
+    "shared_stop": "existing stop-file prevents requests; quota/configuration/recording/hash failures stop queue; quota propagates nonretryable to prevent core retry; optional shared stop-file records fatal cause",
+    "signals": "SIGINT/SIGTERM abort the pending SDK request and prevent new requests",
+    "resumption": "existing outputs are immutable; no automatic reuse/resume selection in this bounded CLI"
+  },
+  "remaining": "Root must select a new output, verify runtime compatibility and run live grading. All249 nonempty stored answers remain not_run in the frozen preparation manifest."
+}

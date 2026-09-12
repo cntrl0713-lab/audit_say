@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "set_id": "pilot-08-007",
+  "origin": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/pilot-08-007-remediation-v1/qa.json",
+    "sha256": "27d072aac0544fa203e9d7026d47bfce6ff865420e341ba0fd1ce761a69ab419",
+    "case_id": "sub1-crit1-paraphrase"
+  },
+  "normalization": "Only absent verdict reasons are supplied from the actual agent review; answer, verdict and expected score are unchanged.",
+  "cases": [
+    {
+      "id": "sub1-crit1-paraphrase",
+      "subquestion_id": "sub1",
+      "kind": "paraphrase",
+      "answer": "장부에 적힌 매출이 실제 인도 거래로 뒷받침되는지를 보므로 거래의 발생사실과 과대계상 검증 방향이다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "원답안 전체의 해당 완전 명제 또는 허용 동의표현이 이 독립 부분을 포함한다. 대상: 기록된 매출에서 출고·인도 증빙으로 대조하는 절차가 주로 다루는 거래유형의 주장은 발생사실이다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "met",
+          "reason": "원답안 전체의 해당 완전 명제 또는 허용 동의표현이 이 독립 부분을 포함한다. 대상: 기록된 매출에서 증빙으로 대조하는 방향은 매출의 과대계상 여부를 검증하는 데 관련된다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 대조했으며 이 독립 요구를 표현하거나 함축하는 내용이 없다. 대상: 기록된 매출 모집단만으로는 매출의 완전성을 충분히 검증할 수 없다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 대조했으며 이 독립 요구를 표현하거나 함축하는 내용이 없다. 대상: 미기록 매출은 기록된 매출 모집단에 포함되지 않아 표본으로 선택될 수 없기 때문이다."
+        }
+      ],
+      "note": "target=crit1; 한 명제의 동의 표현을 독립 입력한다. 관련 판단을 함께 함축하면 그 명제도 득점한다. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다. [point-policy-v1] 원 ID·물음·답안 보존. 독립 부분별 기대를 원문과 답안 전체에서 재대조했으며 옛 복합 0점을 부분에 기계적으로 전파하지 않는다. 실제 모델 호출 전의 작성자 기대값이다.",
+      "origin": {
+        "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/point-policy-v1/t08-b/qa-cases-t08-b.json",
+        "case_id": "sub1-crit1-paraphrase"
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import { formatKrw, formatNumber, formatRatio } from '../../../../lib/firm/format';
 import type { TenureSegmentView } from '../../../../lib/firm/personnel';
 
-const REVENUE_COLORS = ['#f54e00', '#26251e', '#82765f', '#d6c3a4'];
+const REVENUE_COLORS = ['var(--chart-1)', 'var(--chart-2)', 'var(--chart-3)', 'var(--chart-4)'];
 
 type RevenueSegment = {
     key: string;
@@ -124,7 +124,7 @@ export function RevenuePieChart({
 export function TenureDistribution({ tenure }: { tenure: TenureSegmentView | null }) {
     const hasObservedBands = tenure !== null && tenure.bands.some((band) => band.count !== null);
     const partial = hasObservedBands && tenure!.bands.some((band) => band.count === null);
-    const colors = ['#f54e00', '#26251e', '#70634f', '#9b8463', '#c4ad88', '#e2d3bb'];
+    const colors = ['var(--chart-1)', 'var(--chart-2)', 'var(--chart-3)', 'var(--chart-4)', 'var(--chart-5)', 'var(--chart-6)'];
     const hasShares = tenure !== null && tenure.bands.some((band) => band.share !== null && band.share > 0);
 
     return (

@@ -1,0 +1,175 @@
+{
+  "schema_version": "3.0",
+  "id": "pilot-12-002",
+  "type": "linked_question_set",
+  "status": "needs_review",
+  "title": "서면진술일의 시기와 서면진술이 대상으로 해야 하는 재무제표 및 기간의 범위를 설명하시오.",
+  "classification": {
+    "topic_id": "12",
+    "part": "PART3",
+    "chapter": "감사종결",
+    "domain": "audit",
+    "standards": [
+      "KGA 560",
+      "KGA 580"
+    ],
+    "tags": [
+      "후속사건",
+      "감사보고서일",
+      "재무제표 발행일",
+      "서면진술",
+      "대상기간"
+    ]
+  },
+  "source_refs": [
+    {
+      "id": "src1",
+      "file": "cpa_uploader/data/official/kga450-560-570-580-2025-review12.txt",
+      "title": "한국공인회계사회 회계감사기준 전문(2025 개정), 주제12 직접 발췌",
+      "page": "KGA 560",
+      "source_quote": "10. 감사인은 감사보고서일 후에는 재무제표에 대하여 어떠한 감사절차도 수행할 의무가 없다. \n그러나 감사인이 감사보고서일에 알았더라면 감사보고서를 수정할 원인이 될 수도 있었던 \n사실을 감사보고서일 후 재무제표 발행일 전에 알게 된 경우, 감사인은 다음의 절차를 수\n행하여야 한다. (문단 A11-A12 참조) \n(a) 경영진(적절한 경우 지배기구 포함)과 이 사항을 토의함 \n(b) 재무제표의 수정이 필요한지 여부를 결정함 \n(c) 재무제표의 수정이 필요하다고 결정했다면, 경영진이 재무제표에 이 사항을 어떻게 \n다룰 계획인지에 대하여 질문함",
+      "role": "standard",
+      "content_hash": "853323fcab1f9f73b2ad445076f689ef759f223c66ba50418ed6f28e46fd63b1"
+    },
+    {
+      "id": "src2",
+      "file": "cpa_uploader/data/official/kga450-560-570-580-2025-review12.txt",
+      "title": "한국공인회계사회 회계감사기준 전문(2025 개정), 주제12 직접 발췌",
+      "page": "KGA 580",
+      "source_quote": "14. 서면진술일은 가능한 재무제표에 대한 감사보고서일에 실행가능한 가장 근접한 날로 하되, \n감사보고서일보다 늦지 않아야 한다. 서면진술은 감사보고서에서 언급된 모든 재무제표와 \n기간을 대상으로 하여야 한다. (문단 A15-A18 참조)",
+      "role": "standard",
+      "content_hash": "7eb5b291cb47eb7edb62b0d4d810e728a62bdb9e0fd5343552371f1e12889f9e"
+    }
+  ],
+  "shared_context": {
+    "facts": []
+  },
+  "learning_order": [
+    "sub2"
+  ],
+  "subquestions": [
+    {
+      "id": "sub2",
+      "type": "descriptive",
+      "prompt": "서면진술일의 시기와 서면진술이 대상으로 해야 하는 재무제표 및 기간의 범위를 설명하시오.",
+      "constraints": {
+        "ordered": false,
+        "max_entries": null,
+        "overflow_policy": "none"
+      },
+      "selection": {
+        "type": "all",
+        "n": null
+      },
+      "model_answer": [
+        "서면진술일은 감사보고서일에 실행가능한 가장 근접한 날이어야 한다.",
+        "서면진술일은 감사보고서일보다 늦어서는 안 된다.",
+        "감사보고서에서 언급된 모든 재무제표와 기간을 대상으로 해야 한다."
+      ],
+      "requirements": [
+        {
+          "id": "req2",
+          "source_ref_id": "src2",
+          "source_quote": "14. 서면진술일은 가능한 재무제표에 대한 감사보고서일에 실행가능한 가장 근접한 날로 하되, \n감사보고서일보다 늦지 않아야 한다. 서면진술은 감사보고서에서 언급된 모든 재무제표와 \n기간을 대상으로 하여야 한다. (문단 A15-A18 참조)",
+          "source_span": "KGA 580.14; 2025 개정 PDF 577쪽; 2026년7월 개정과 대조; 2027 동일 적용 가정"
+        }
+      ],
+      "criteria": [
+        {
+          "id": "crit4",
+          "requirement_id": "req2",
+          "claim": "감사보고서일에 실행가능한 가장 근접한 날로 한다.",
+          "critical_facts": [
+            {
+              "id": "crit4-core",
+              "type": "condition",
+              "expected": "감사보고서일에 실행가능한 가장 근접한 날로 한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit5",
+          "requirement_id": "req2",
+          "claim": "감사보고서일보다 늦지 않아야 한다.",
+          "critical_facts": [
+            {
+              "id": "crit5-core",
+              "type": "negation",
+              "expected": "감사보고서일보다 늦지 않아야 한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit6",
+          "requirement_id": "req2",
+          "claim": "감사보고서에서 언급된 모든 재무제표를 대상으로 한다.",
+          "critical_facts": [
+            {
+              "id": "crit6-core",
+              "type": "condition",
+              "expected": "감사보고서에서 언급된 모든 재무제표를 대상으로 한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit7",
+          "requirement_id": "req2",
+          "claim": "감사보고서에서 언급된 모든 기간을 대상으로 한다.",
+          "critical_facts": [
+            {
+              "id": "crit7-core",
+              "type": "condition",
+              "expected": "감사보고서에서 언급된 모든 기간을 대상으로 한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "source_fidelity": "exact",
+    "review_status": "needs_human_review",
+    "calculation_required": false,
+    "notes": [
+      "원문 직접 대조를 거쳐 추가 제작한 v3 파일럿 세트. 원문·구조·2차 의미 검수 완료.",
+      "2026-09-08 주제12 전수 검토: 공식 2025 개정 및 2026년7월 개정 전문 대조, 출처·조건·발문/채점 정합성 수정. 기존 검수·게시 상태 유지. 실측 및 미확정 사항은 docs/archive/과거-검토-증거/reports/question-review-2027/주제12-감사종결-검토-수정-결과.md 참조.",
+      "2026-09-11 기존 배점 B 후속 후보: 이전 원본과 검수 기록은 canonical-before.json에 보존. 이 후보의 수정 기준은 작성자 원문 대조·로컬 합산만 수행했으며 새 모델 의미검수/채점·사람 확인·게시/DB 반영은 미수행."
+    ]
+  }
+}

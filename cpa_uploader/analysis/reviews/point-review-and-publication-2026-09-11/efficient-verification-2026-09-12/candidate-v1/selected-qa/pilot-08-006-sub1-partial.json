@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "set_id": "pilot-08-006",
+  "origin": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/qa-prepared-v1/pilot-08-006.json",
+    "sha256": "2969652ace22ea6d8f22e935107d2cbfdee1824221e6077284c577f86f07dd02",
+    "case_id": "sub1-crit1-paraphrase"
+  },
+  "normalization": "Only absent verdict reasons are supplied from the actual agent review; answer, verdict and expected score are unchanged.",
+  "cases": [
+    {
+      "id": "sub1-crit1-paraphrase",
+      "subquestion_id": "sub1",
+      "kind": "paraphrase",
+      "answer": "원래 만기일과 결산 기준일을 확인하여 연체일수 계산을 다시 해 보고 원천 거래금액도 대조한다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 정확성을 확인하기 위해 보고기간말·만기일 등 연령 계산의 기준과 원천 금액을 대조하고 연령 또는 금액 계산을 재계산하는 등 계산이나 입력값을 검증한다. 상황에 적합하다면 해당 계산·입력의 정확성에 관한 통제를 테스트하여 증거를 얻는 절차도 허용한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 완전성을 확인하기 위해 원천 거래 모집단과 추출 필터·범위를 확인하고, 포함되어야 할 거래나 거래처가 보고서에 빠짐없이 반영되었는지 추적·대조한다. 상황에 적합하다면 전체 거래의 추출·반영에 관한 통제를 테스트하여 완전성 증거를 얻는 절차도 허용한다."
+        }
+      ],
+      "note": "target=crit1; 한 명제의 동의 표현을 독립 입력한다. 관련 판단을 함께 함축하면 그 명제도 득점한다. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다.",
+      "origin": {
+        "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/phase-two-v4-proposals/qa-cases-t08-a.followup-02-reasons.json",
+        "case_id": "sub1-crit1-paraphrase"
+      }
+    }
+  ]
+}

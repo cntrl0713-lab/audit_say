@@ -1,0 +1,226 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-05-003--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-05-003--sub1--standard",
+  "source_set_id": "pilot-05-003",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "59afc79c57bcccb1747129ffe871fab4d29cf8d87eafabd46f0036bb741e4bee",
+  "answers": {
+    "sub1": "감사인은 감사 중 식별된 유의적 내부통제 미비점을 지배기구에 서면으로 커뮤니케이션해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "지배기구를 전달 상대방으로 제시한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "감사 중은 미비점 식별을 수식한다. 전달의 적시성은 진술하지 않았으며 다른 맞는 명제로 보충하지 않는다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "서면 전달을 제시한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "1d065dbfb6aaa60b1ee4c709fa5ac5dca5486310746bd7c63a195c72f996175c",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사인은 감사 중 식별된 유의적 내부통제 미비점을 지배기구에 서면으로 커뮤니케이션해야 한다.",
+            "reason": "지배기구를 커뮤니케이션 상대방으로 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "적시에 커뮤니케이션한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "감사인은 감사 중 식별된 유의적 내부통제 미비점을 지배기구에 서면으로 커뮤니케이션해야 한다.",
+            "reason": "서면으로 커뮤니케이션한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "지배기구를 커뮤니케이션 상대방으로 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "적시에 커뮤니케이션한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "서면으로 커뮤니케이션한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-05-003",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 265 문단 9에 따라 감사 중 식별된 유의적 내부통제 미비점을 커뮤니케이션해야 하는 상대방, 시점 및 형태를 기술하시오.",
+        "user_answer": "감사인은 감사 중 식별된 유의적 내부통제 미비점을 지배기구에 서면으로 커뮤니케이션해야 한다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사인은 감사 중 식별된 유의적 내부통제 미비점을 지배기구에 서면으로 커뮤니케이션해야 한다.",
+            "reason": "지배기구를 커뮤니케이션 상대방으로 명시했다.",
+            "claim": "유의적 내부통제 미비점의 커뮤니케이션 상대방으로 지배기구를 제시함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "적시에 커뮤니케이션한다는 내용이 없다.",
+            "claim": "유의적 내부통제 미비점을 적시에 커뮤니케이션한다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "감사인은 감사 중 식별된 유의적 내부통제 미비점을 지배기구에 서면으로 커뮤니케이션해야 한다.",
+            "reason": "서면으로 커뮤니케이션한다고 명시했다.",
+            "claim": "유의적 내부통제 미비점을 서면으로 커뮤니케이션한다고 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "감사인은 감사 중 식별된 유의적 내부통제 미비점을 지배기구에 적시에 서면으로 커뮤니케이션해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_00a4384411303aa9016aa4cd0c9b0087d08b30ab37013d096d",
+        "request_id": "req_64ee1b0c08624f1d96bcb3582db28e74",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2385,
+          "input_tokens_details": {
+            "cache_write_tokens": 2382,
+            "cached_tokens": 0
+          },
+          "output_tokens": 211,
+          "output_tokens_details": {
+            "reasoning_tokens": 49
+          },
+          "total_tokens": 2596
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008493,
+        "min_usd": 0.0008493,
+        "max_usd": 0.0008493,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-05-003--sub1--standard--partial/input.json",
+      "sha256": "3d5f634db45f129ea83fe901b69572b2342e2cbc2a70e2ec37781a12bd5c0263"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-05-003--sub1--standard--partial/transport.jsonl",
+      "sha256": "ba93f70c4f419ef7303639c384e6c1b8ec408b72437be420e5a5cb020bf257a1"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-05-003--sub1--standard--partial/traces.jsonl",
+      "sha256": "29a7abfc56523ce2aab4743f7b09a05dea090d6f41323a4d89ba9ade52f187f5"
+    }
+  }
+}

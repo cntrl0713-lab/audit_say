@@ -1,7 +1,8 @@
 import { buildFirmOverview } from '../../../../lib/firm/overview';
 import { buildAnnualTrend } from '../../../../lib/firm/trend';
+import { revenuePerCpa } from '../../../../lib/firm/revenue';
 import { formatKrw, formatRatio } from '../../../../lib/firm/format';
-import type { FirmAnnualSummary } from '../../../../lib/firm/types';
+import type { FirmAnnualSummary, FirmHeadcountRow } from '../../../../lib/firm/types';
 import { TrendChart } from '../../_components/charts';
 import { Basis, DataTable, EmptyState, Footnote, StatTile } from '../../_components/ui';
 import { RevenuePieChart } from './OverviewCharts';
@@ -10,12 +11,14 @@ export default function RevenueTab({
     summaries,
     periods,
     year,
+    headcounts,
 }: {
     summaries: FirmAnnualSummary[];
     periods: FirmAnnualSummary[];
     year: number;
+    headcounts: FirmHeadcountRow[];
 }) {
-    const trend = buildAnnualTrend(summaries);
+    const trend = buildAnnualTrend(summaries, headcounts);
 
     return (
         <div className="space-y-8">
@@ -29,7 +32,7 @@ export default function RevenueTab({
                 {periods.length ? (
                     <div className="space-y-8">
                         {periods.map((period) => (
-                            <RevenuePeriod key={period.source_rcept_no} period={period} summaries={summaries} />
+                            <RevenuePeriod key={period.source_rcept_no} period={period} summaries={summaries} headcounts={headcounts} />
                         ))}
                     </div>
                 ) : (
@@ -43,7 +46,7 @@ export default function RevenueTab({
             <section className="space-y-4 border-t border-card-border pt-6">
                 <h3 className="text-xl sm:text-2xl">매출 추이</h3>
                 {summaries.length ? (
-                    <div className="grid gap-5 lg:grid-cols-2">
+                    <div className="grid gap-5 lg:grid-cols-3">
                         <TrendChart
                             title="총매출"
                             latestFirst
@@ -58,22 +61,35 @@ export default function RevenueTab({
                             series={trend.series.filter((series) => series.key === 'revenue_per_employee')}
                             multiPeriodYears={trend.multiPeriodYears}
                         />
+                        <TrendChart
+                            title="공인회계사 1인당 매출액"
+                            latestFirst
+                            years={trend.years}
+                            series={trend.series.filter((series) => series.key === 'revenue_per_cpa')}
+                            multiPeriodYears={trend.multiPeriodYears}
+                        />
                     </div>
                 ) : (
                     <EmptyState title="매출 추이 미확보" description="비교할 보고기간의 매출 자료가 아직 없습니다." />
                 )}
                 <Footnote>
                     가로축은 보고기간 시작연도입니다. 금액은 각 보고기간의 회계법인 자체 실적이며, 기간 길이를
-                    환산하거나 같은 연도의 여러 기수를 합산하지 않습니다. 1인당 매출액의 분모는 해당 보고기간 말
-                    전 임직원입니다. 결측은 0으로 표시하지 않습니다.
+                    환산하거나 같은 연도의 여러 기수를 합산하지 않습니다. 임직원 1인당 매출액은 보고기간 말 전 임직원 수로,
+                    공인회계사 1인당 매출액은 같은 보고기간 말 공인회계사 수로 나눕니다. 공인회계사 수에는 출자사원과
+                    수습회계사가 포함됩니다. 결측이나 분모가 0인 경우에는 계산하지 않습니다.
                 </Footnote>
             </section>
         </div>
     );
 }
 
-function RevenuePeriod({ period, summaries }: { period: FirmAnnualSummary; summaries: FirmAnnualSummary[] }) {
+function RevenuePeriod({ period, summaries, headcounts }: {
+    period: FirmAnnualSummary;
+    summaries: FirmAnnualSummary[];
+    headcounts: FirmHeadcountRow[];
+}) {
     const revenueMix = buildFirmOverview(period, summaries, [], []).revenueMix;
+    const perCpa = revenuePerCpa(period, headcounts);
     const hasFinancialData = [
         period.revenue_total,
         period.revenue_per_employee,
@@ -90,13 +106,19 @@ function RevenuePeriod({ period, summaries }: { period: FirmAnnualSummary; summa
             </p>
             {hasFinancialData ? (
                 <>
-                    <dl className="grid gap-3 sm:grid-cols-2 sm:gap-5">
+                    <dl className="grid gap-3 sm:grid-cols-3 sm:gap-5">
                         <StatTile size="lead" label="총매출" value={formatKrw(period.revenue_total)} />
                         <StatTile
                             size="lead"
                             label="임직원 1인당 매출액"
                             value={formatKrw(period.revenue_per_employee)}
                             hint="총매출 ÷ 보고기간 말 전 임직원"
+                        />
+                        <StatTile
+                            size="lead"
+                            label="공인회계사 1인당 매출액"
+                            value={formatKrw(perCpa)}
+                            hint="총매출 ÷ 보고기간 말 공인회계사 · 출자사원·수습 포함"
                         />
                     </dl>
                     <dl className="grid gap-3 sm:grid-cols-3">
@@ -140,8 +162,9 @@ function RevenuePeriod({ period, summaries }: { period: FirmAnnualSummary; summa
                         구분하며, 보고기간 길이를 연간으로 환산하지 않습니다.
                     </p>
                     <p>
-                        임직원 1인당 매출액은 총매출을 보고기간 말 전 임직원으로 나눈 값입니다. 공인회계사 수를
-                        분모로 사용한 수치가 아닙니다. 감사부문 매출 비중은 감사매출 ÷ 총매출입니다.
+                        임직원 1인당 매출액은 총매출을 보고기간 말 전 임직원 수로 나눕니다. 공인회계사 1인당 매출액은
+                        같은 공시의 보고기간 말 공인회계사 수로 나누며, 출자사원과 수습회계사를 포함합니다.
+                        인원이 미확보·확인 보류이거나 0명이면 계산하지 않습니다. 감사부문 매출 비중은 감사매출 ÷ 총매출입니다.
                     </p>
                     <p>금액은 원 단위 공시 값을 조·억·만 단위로 표시합니다. ‘-’와 ‘미확보’는 결측으로 0과 다릅니다.</p>
                     <p>

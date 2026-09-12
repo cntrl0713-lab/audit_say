@@ -19,6 +19,171 @@ const actual = (standard: string, paragraph: string, authority?: string): Source
   return unit;
 };
 
+test('repeated direct excerpts recover same-file paragraph pages without changing their bytes or identity', (t) => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-direct-excerpt-page-test-'));
+  t.after(() => {
+    assert.ok(path.resolve(temp).startsWith(`${path.resolve(os.tmpdir())}${path.sep}audit-direct-excerpt-page-test-`));
+    fs.rmSync(temp, { recursive: true, force: true });
+  });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/config'), { recursive: true });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/data/official'), { recursive: true });
+  fs.mkdirSync(path.join(temp, learning), { recursive: true });
+  fs.writeFileSync(path.join(temp, 'cpa_uploader/config/question-source-registry.json'), JSON.stringify(catalog.registry));
+  fs.writeFileSync(path.join(temp, learning, '00_통합_목차.md'), '### 09. 조회\n');
+  const file = 'cpa_uploader/data/official/repeated.txt';
+  const source = '# KGA 505: 외부조회\n### PDF 402\n8. 거부사유를 질문하고 증거를 구한다.\n### PDF 403\n10. 추가 감사증거를 입수한다.\n### PDF 409\nA24. 다른 페이지의 내용.\n### 직접 문단 발췌\n[505.8]\n8. 거부사유를 질문하고 증거를 구한다.\n[505.10]\n10. 추가 감사증거를 입수한다.\n[505.99]\n99. 앞선 원문이 없는 발췌.\n### PDF 450\n[505.8]\n8. 거부사유를 질문하고 증거를 구한다.\n';
+  fs.writeFileSync(path.join(temp, file), source);
+  const result = buildSourceCatalog({ repoDir: temp });
+  const eights = result.units.filter(unit => unit.paragraph === '8');
+  assert.deepEqual(eights.map(unit => unit.page), [402, 402, 450]);
+  const expectedId = `src-${hash(`${file}\nKGA 505:p8`).slice(0, 18)}-2`;
+  assert.equal(eights[1].id, expectedId);
+  assert.equal(eights[1].quote, '8. 거부사유를 질문하고 증거를 구한다.');
+  assert.equal(eights[1].contentHash, hash(eights[1].quote));
+  assert.equal(eights[1].startLine, 10);
+  assert.match(eights[1].locator, /원문 페이지 402; L10-L10$/);
+  assert.equal(result.units.filter(unit => unit.paragraph === '10')[1].page, 403);
+  const unmatched = result.units.find(unit => unit.paragraph === '99')!;
+  assert.equal(unmatched.page, null);
+  assert.doesNotMatch(unmatched.locator, /409/);
+  assert.ok(unmatched.warnings.some(w => w.includes('고유하게 확인하지 못함')));
+  assert.equal(fs.readFileSync(path.join(temp, file), 'utf8'), source);
+});
+
+test('ambiguous pages and cross-page interrupted text are not guessed for direct excerpts', (t) => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-direct-excerpt-ambiguous-test-'));
+  t.after(() => {
+    assert.ok(path.resolve(temp).startsWith(`${path.resolve(os.tmpdir())}${path.sep}audit-direct-excerpt-ambiguous-test-`));
+    fs.rmSync(temp, { recursive: true, force: true });
+  });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/config'), { recursive: true });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/data/official'), { recursive: true });
+  fs.mkdirSync(path.join(temp, learning), { recursive: true });
+  fs.writeFileSync(path.join(temp, 'cpa_uploader/config/question-source-registry.json'), JSON.stringify(catalog.registry));
+  fs.writeFileSync(path.join(temp, learning, '00_통합_목차.md'), '### 09. 조회\n');
+  fs.writeFileSync(path.join(temp, 'cpa_uploader/data/official/ambiguous.txt'),
+    '# KGA 505: 구판\n### PDF 20\n8. 동일한 내용.\n# KGA 505: 다른 판본\n### PDF 30\n8. 동일한 내용.\n### PDF 408\nA23. 앞부분의 문장과\n20 쪽말 각주를 본문으로 합치지 않는다.\n### PDF 409\n뒷부분의 문장.\n### 직접 문단 발췌\n[505.8]\n8. 동일한 내용.\n[505.A23]\nA23. 앞부분의 문장과 뒷부분의 문장.\n');
+  const result = buildSourceCatalog({ repoDir: temp });
+  const repeated = result.units.filter(unit => unit.startLine >= 14);
+  assert.equal(repeated.length, 2);
+  assert.ok(repeated.every(unit => unit.page === null));
+  assert.ok(repeated.every(unit => unit.warnings.length > 0));
+  assert.equal(repeated[1].quote, 'A23. 앞부분의 문장과 뒷부분의 문장.');
+});
+
+test('registered topic09 repeated excerpts retain stable IDs and explicitly verified multi-page provenance', () => {
+  const known = [
+    ['src-32f27450c2d0f4b4a2-2', 402],
+    ['src-44aec85adb95f6501a-2', 403],
+    ['src-62e0e3d061fc3f459c-2', 403],
+    ['src-44aec85adb95f6501a-3', 403],
+    ['src-62e0e3d061fc3f459c-3', 403],
+  ] as const;
+  for (const [id, page] of known) {
+    const unit = catalog.units.find(unit => unit.id === id)!;
+    assert.ok(unit, id);
+    assert.equal(unit.page, page);
+    assert.match(unit.locator, new RegExp(`원문 페이지 ${page};`));
+    assert.equal(unit.contentHash, hash(unit.quote));
+  }
+  const acrossPages = catalog.units.find(unit => unit.id === 'src-39490171470b453a20-2')!;
+  assert.equal(acrossPages.page, 408);
+  assert.match(acrossPages.locator, /원문 페이지 408–409; L413-L423$/);
+  assert.equal(acrossPages.warnings.length, 0);
+  assert.equal(acrossPages.contentHash, hash(acrossPages.quote));
+});
+
+test('confirmed page ranges bind source, unit, quote and actual page-marked fragments', (t) => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-confirmed-page-range-test-'));
+  t.after(() => {
+    assert.ok(path.resolve(temp).startsWith(`${path.resolve(os.tmpdir())}${path.sep}audit-confirmed-page-range-test-`));
+    fs.rmSync(temp, { recursive: true, force: true });
+  });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/config'), { recursive: true });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/data/official'), { recursive: true });
+  fs.mkdirSync(path.join(temp, learning), { recursive: true });
+  fs.writeFileSync(path.join(temp, learning, '00_통합_목차.md'), '### 09. 조회\n');
+  const file = 'cpa_uploader/data/official/range.txt';
+  const source = '# KGA 505: 외부조회\n### PDF 408\nA23. 첫 문장과\n20 다른 문단의 각주\n### PDF 409\n뒤 문장.\n### 직접 문단 발췌\n[505.A23]\nA23. 첫 문장과 뒤 문장.\n';
+  fs.writeFileSync(path.join(temp, file), source);
+  const assignment = { file, source_hash: hash(source), unit_id: `src-${hash(`${file}\nKGA 505:pA23`).slice(0, 18)}-2`, quote_hash: hash('A23. 첫 문장과 뒤 문장.'),
+    fragments: [{ page: 408, start_line: 3, end_line: 3, quote_hash: hash('A23. 첫 문장과') }, { page: 409, start_line: 6, end_line: 6, quote_hash: hash('뒤 문장.') }] };
+  const registryFile = path.join(temp, 'cpa_uploader/config/question-source-registry.json');
+  const run = (entry: typeof assignment) => {
+    fs.writeFileSync(registryFile, JSON.stringify({ ...catalog.registry, confirmedPageRanges: [entry] }));
+    return buildSourceCatalog({ repoDir: temp });
+  };
+  const unit = run(assignment).units.find(u => u.id === assignment.unit_id)!;
+  assert.equal(unit.page, 408);
+  assert.match(unit.locator, /408–409/);
+  assert.equal(unit.quote, 'A23. 첫 문장과 뒤 문장.');
+  assert.equal(unit.startLine, 9);
+  assert.equal(unit.contentHash, assignment.quote_hash);
+  assert.equal(unit.warnings.length, 0);
+  for (const changed of [
+    { ...assignment, source_hash: 'wrong' },
+    { ...assignment, unit_id: 'missing' },
+    { ...assignment, quote_hash: 'wrong' },
+    { ...assignment, fragments: [{ ...assignment.fragments[0], page: 409 }, assignment.fragments[1]] },
+    { ...assignment, fragments: [assignment.fragments[0]] },
+    { ...assignment, fragments: [{ ...assignment.fragments[0], quote_hash: 'wrong' }, assignment.fragments[1]] },
+  ]) assert.throws(() => run(changed), /원문 페이지 범위의 근거가 일치하지 않습니다/);
+  assert.equal(fs.readFileSync(path.join(temp, file), 'utf8'), source);
+});
+
+test('ethics decimal paragraphs retain their own identity and topic without becoming KGA numbers', (t) => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-ethics-catalog-test-'));
+  t.after(() => {
+    assert.ok(path.resolve(temp).startsWith(`${path.resolve(os.tmpdir())}${path.sep}audit-ethics-catalog-test-`));
+    fs.rmSync(temp, { recursive: true, force: true });
+  });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/config'), { recursive: true });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/data/official'), { recursive: true });
+  fs.mkdirSync(path.join(temp, learning), { recursive: true });
+  fs.writeFileSync(path.join(temp, 'cpa_uploader/config/question-source-registry.json'), JSON.stringify(catalog.registry));
+  fs.writeFileSync(path.join(temp, learning, '00_통합_목차.md'), '### 01. 윤리\n');
+  const file = 'cpa_uploader/data/official/ethics.txt';
+  fs.writeFileSync(path.join(temp, file), '# ETHICS: 공인회계사윤리기준\n## PDF PAGE 53\n290.113 직접적 재무적 이해관계의 금지 조건.\n290.114 다른 독립된 요건.\n');
+  const result = buildSourceCatalog({ repoDir: temp });
+  assert.deepEqual(result.units.map(unit => unit.paragraph), ['290.113', '290.114']);
+  const first = result.units[0];
+  assert.equal(first.standard, '공인회계사윤리기준');
+  assert.deepEqual(first.topicIds, ['01']);
+  assert.equal(first.page, 53);
+  assert.equal(first.quote, '290.113 직접적 재무적 이해관계의 금지 조건.');
+  assert.notEqual(first.id, result.units[1].id);
+  assert.equal(sourceUnitToRef(first).page, '공인회계사윤리기준');
+  const packet = createSourcePacket({ repoDir: temp, catalog: result, topicId: '01', sourceIds: [first.id] });
+  assert.equal(packet.completeness, 'complete');
+  assert.equal(packet.primary[0].id, first.id);
+});
+
+test('prose references to appendices do not turn following requirements into appendix items', (t) => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-appendix-heading-test-'));
+  t.after(() => {
+    assert.ok(path.resolve(temp).startsWith(`${path.resolve(os.tmpdir())}${path.sep}audit-appendix-heading-test-`));
+    fs.rmSync(temp, { recursive: true, force: true });
+  });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/config'), { recursive: true });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/data/official'), { recursive: true });
+  fs.mkdirSync(path.join(temp, learning), { recursive: true });
+  fs.writeFileSync(path.join(temp, 'cpa_uploader/config/question-source-registry.json'), JSON.stringify(catalog.registry));
+  fs.writeFileSync(path.join(temp, learning, '00_통합_목차.md'), '### 06. 통제\n');
+  fs.writeFileSync(path.join(temp, 'cpa_uploader/data/official/control.txt'),
+    '# KGA 315: 통제\n## 적용자료\n## PDF PAGE 240\nA146. 통제활동에 대한 설명.\n보론 3의 문단 20과 21은 추가 고려사항을 제시한다.\nA147. 뒤따르는 적용자료.\n보론 6은 IT 일반통제 고려사항을 제시한다.\nA148. 다른 적용자료.\n보론 6 (문단 26 참조)\n1. 실제 보론의 첫 항목.\n');
+  const result = buildSourceCatalog({ repoDir: temp });
+  for (const paragraph of ['A146', 'A147', 'A148']) {
+    const unit = result.units.find(unit => unit.paragraph === paragraph)!;
+    assert.ok(unit, paragraph);
+    assert.equal(unit.context.section.includes('보론'), false);
+    assert.match(unit.locator, /문단 A14/);
+  }
+  assert.ok(result.units.find(unit => unit.paragraph === 'A147')!.quote.includes('보론 6은'));
+  const appendix = result.units.find(unit => unit.paragraph === '1')!;
+  assert.match(appendix.context.section, /보론 6/);
+  assert.match(appendix.locator, /항목 1/);
+});
+
 test('all 151 indented TOC source links map their actual pages into the 19 topics', () => {
   const tocText = fs.readFileSync(path.join(repoDir, learning, '00_통합_목차.md'), 'utf8');
   const rawLinks = tocText.split(/\r?\n/).filter((line) => /^\s+- `(?:02_|03_|04_)/.test(line));
@@ -56,16 +221,86 @@ test('catalog quotations and hashes preserve source bytes and full child lists',
   assert.match(ref.source_span, /L343-L349/);
 });
 
-test('new topic 13 packet selects KGA 402 without requiring any bank citation', () => {
-  const packet = createSourcePacket({ repoDir, topicId: '13', catalog });
+test('topic 13 preserves the full-section budget guard and permits an explicit official KGA 402 paragraph', () => {
+  // The registered official 402.9/10 footnotes legitimately lead into 315.
+  // Selecting that entire section now exceeds the bounded input budget.
+  assert.throws(() => createSourcePacket({ repoDir, topicId: '13', catalog }), /원문을 자르지 않았습니다.*더 좁은/);
+  const source = actual('KGA 402', '12', 'official_transcription');
+  const packet = createSourcePacket({ repoDir, topicId: '13', catalog, sourceIds: [source.id] });
   assert.equal(packet.primary[0].standard, 'KGA 402');
-  assert.equal(packet.primary[0].authority, 'learning_material');
+  assert.equal(packet.primary[0].authority, 'official_transcription');
+  assert.equal(packet.primary[0].quote, source.quote);
   assert.ok(packet.primary[0].quote.includes('충분한 이해'));
-  assert.ok(packet.dependencies.length > 14);
+  for (const paragraph of ['A15', 'A16', 'A17', 'A18', 'A19', 'A20']) {
+    assert.ok(packet.dependencies.some(unit => unit.standard === 'KGA 402' && unit.paragraph === paragraph));
+  }
+  assert.ok(!source.dependencies.some(dependency => dependency.standard === 'KGA 315'));
   assert.ok(packet.supporting.some((unit) => unit.kind === 'practice'));
   assert.ok(packet.supporting.some((unit) => unit.kind === 'past_exam'));
   assert.ok(packet.warnings.some((warning) => warning.includes('공식 원문')));
   assert.ok(!fs.readFileSync(path.join(repoDir, 'cpa_uploader/questionSourceCatalog.mjs'), 'utf8').includes('readQuestionBank'));
+});
+
+test('headings about a cited standard preserve the actual enclosing standard', (t) => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-standard-heading-test-'));
+  t.after(() => {
+    assert.ok(path.resolve(temp).startsWith(`${path.resolve(os.tmpdir())}${path.sep}audit-standard-heading-test-`));
+    fs.rmSync(temp, { recursive: true, force: true });
+  });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/config'), { recursive: true });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/data/official'), { recursive: true });
+  fs.mkdirSync(path.join(temp, learning), { recursive: true });
+  fs.writeFileSync(path.join(temp, 'cpa_uploader/config/question-source-registry.json'), JSON.stringify(catalog.registry));
+  fs.writeFileSync(path.join(temp, learning, '00_통합_목차.md'), '### 13. 타인\n');
+  fs.writeFileSync(path.join(temp, 'cpa_uploader/data/official/headings.txt'),
+    '# KGA 610: 내부감사\n### 감사기준서 315와 감사기준서 610 간의 관계\n9. 내부감사기능의 조건을 이해한다.\n'
+    + '# 감사기준서 701\n### 감사기준서 315에 따라 유의적인 위험으로 식별된 영역\n10. 핵심감사사항을 결정한다.\n'
+    + '# KGA 315: 실제 기준서의 시작\n9. 실제 위험평가 기준서의 문단이다.\n');
+  const result = buildSourceCatalog({ repoDir: temp });
+  assert.deepEqual(result.units.map(unit => [unit.standard, unit.paragraph]), [['KGA 610', '9'], ['KGA 701', '10'], ['KGA 315', '9']]);
+  assert.ok(result.units[0].locator.startsWith('KGA 610 문단 9'));
+  assert.ok(result.units[1].topicIds.includes('16'));
+});
+
+test('confirmed page footnotes belong to their calling paragraph while original quotations remain intact', (t) => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-footnote-owner-test-'));
+  t.after(() => {
+    assert.ok(path.resolve(temp).startsWith(`${path.resolve(os.tmpdir())}${path.sep}audit-footnote-owner-test-`));
+    fs.rmSync(temp, { recursive: true, force: true });
+  });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/config'), { recursive: true });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/data/official'), { recursive: true });
+  fs.mkdirSync(path.join(temp, learning), { recursive: true });
+  fs.writeFileSync(path.join(temp, learning, '00_통합_목차.md'), '### 13. 서비스조직\n');
+  const file = 'cpa_uploader/data/official/footnotes.txt';
+  const text = '# KGA 402: 서비스조직\n9. 감사기준서 315 3에 따라 기업을 이해한다.\n'
+    + '10. 관련 통제를 이해한다.5\n12. 이해를 얻을 수 없으면 다음 대안을 사용한다.\n(a) 보고서를 입수한다.\n3 감사기준서 315 문단 9\n'
+    + '## PDF PAGE 340\n(d) 타감사인의 업무를 활용한다.\n# KGA 315: 위험평가\n9. 위험평가의 실제 문단이다.\n';
+  fs.writeFileSync(path.join(temp, file), text);
+  const assignment = { file, source_hash: hash(text), standard: 'KGA 402', from_paragraph: '12', owner_paragraph: '9',
+    footnote_number: '3', footnote_text: '3 감사기준서 315 문단 9', owner_callout: '감사기준서 315 3' };
+  const registryFile = path.join(temp, 'cpa_uploader/config/question-source-registry.json');
+  const writeRegistry = (entry: typeof assignment) => fs.writeFileSync(registryFile, JSON.stringify({ ...catalog.registry, referenceFootnotes: [entry] }));
+  writeRegistry(assignment);
+  const result = buildSourceCatalog({ repoDir: temp });
+  const owner = result.units.find(unit => unit.standard === 'KGA 402' && unit.paragraph === '9')!;
+  const enclosing = result.units.find(unit => unit.standard === 'KGA 402' && unit.paragraph === '12')!;
+  const target = result.units.find(unit => unit.standard === 'KGA 315' && unit.paragraph === '9')!;
+  assert.ok(owner.dependencies.some(dependency => dependency.targetId === target.id));
+  assert.ok(!enclosing.dependencies.some(dependency => dependency.standard === 'KGA 315'));
+  assert.ok(enclosing.quote.includes(assignment.footnote_text));
+  assert.ok(enclosing.quote.includes('(d) 타감사인의 업무를 활용한다.'));
+  assert.ok(text.includes(enclosing.quote));
+  assert.equal(enclosing.contentHash, hash(enclosing.quote));
+  assert.equal(fs.readFileSync(path.join(temp, file), 'utf8'), text);
+  for (const bad of [{ ...assignment, source_hash: '0'.repeat(64) }, { ...assignment, owner_paragraph: '99' },
+    { ...assignment, owner_callout: '존재하지 않는 호출' }, { ...assignment, footnote_text: '3 다른 각주 본문' },
+    { ...assignment, footnote_number: '5' }, { ...assignment, footnote_number: '3|5' },
+    { ...assignment, owner_callout: '감사기준서 315' },
+    { ...assignment, owner_paragraph: '10', owner_callout: '이해한다.5' }]) {
+    writeRegistry(bad);
+    assert.throws(() => buildSourceCatalog({ repoDir: temp }), /각주/);
+  }
 });
 
 test('completion and reporting packets retain required conditions and subsequent actions', () => {
@@ -82,13 +317,43 @@ test('completion and reporting packets retain required conditions and subsequent
 });
 
 test('unavailable references remain explicit, and no arbitrary unit/character truncation occurs', () => {
-  const packet = createSourcePacket({ topicId: '15', catalog });
+  // Availability in the real catalog changes when official excerpts are added.
+  // Isolate a missing dependency so this checks the unresolved-reference contract.
+  const source = actual('KGA 705', '29');
+  const missingDependency = { standard: 'KGA 705', paragraph: 'A999', reason: 'test-only unavailable dependency', targetId: null };
+  const fixtureCatalog = { ...catalog, units: catalog.units.map((unit) => unit.id === source.id
+    ? { ...unit, dependencies: [missingDependency] } : unit) };
+  const packet = createSourcePacket({ topicId: '15', sourceIds: [source.id], catalog: fixtureCatalog });
   assert.equal(packet.completeness, 'unresolved');
-  assert.ok(packet.unresolved.some((reference) => reference.standard === 'KGA 705' && reference.paragraph === 'A26' && reference.targetId === null));
+  assert.ok(packet.unresolved.some((reference) => reference.standard === 'KGA 705' && reference.paragraph === 'A999' && reference.targetId === null));
   assert.throws(() => createSourcePacket({ topicId: '13', catalog, maxChars: 200 }), /원문을 자르지 않았습니다.*더 좁은/);
   assert.throws(() => createSourcePacket({ topicId: '13', catalog, sourceIds: ['missing'] }), /원자료 ID/);
   assert.throws(() => createSourcePacket({ topicId: '13', catalog, sourceIds: [actual('KGA 210', '10').id] }), /연결되어 있지 않습니다/);
   assert.ok(catalog.units.some((unit) => unit.dependencies.some((reference) => reference.standard === 'IFRS 7' && reference.paragraph === '42H' && reference.targetId === null)));
+});
+
+test('an additional official interim-review file retains its standard and embedded 46-1 exception', (t) => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-interim-catalog-test-'));
+  t.after(() => {
+    assert.ok(path.resolve(temp).startsWith(`${path.resolve(os.tmpdir())}${path.sep}audit-interim-catalog-test-`));
+    fs.rmSync(temp, { recursive: true, force: true });
+  });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/config'), { recursive: true });
+  fs.mkdirSync(path.join(temp, 'cpa_uploader/data/official'), { recursive: true });
+  fs.mkdirSync(path.join(temp, learning), { recursive: true });
+  fs.writeFileSync(path.join(temp, 'cpa_uploader/config/question-source-registry.json'), JSON.stringify(catalog.registry));
+  fs.writeFileSync(path.join(temp, learning, '00_통합_목차.md'), '### 19. 관련 서비스\n');
+  const file = 'cpa_uploader/data/official/interim-new.txt';
+  const quote = '46. 전체형식 보고에 관한 요구.\n(46-1) 요약재무제표에 관한 별도 조건.';
+  fs.writeFileSync(path.join(temp, file), `# 분·반기재무제표 검토준칙: 추가 공식 판본\n\n${quote}\n\n47. 다음 요구.\n`);
+  const result = buildSourceCatalog({ repoDir: temp });
+  const unit = result.units.find((u) => u.file === file && u.paragraph === '46');
+  assert.ok(unit);
+  assert.equal(unit.standard, '분·반기재무제표 검토준칙');
+  assert.equal(unit.authority, 'official_transcription');
+  assert.deepEqual(unit.topicIds, ['19']);
+  assert.equal(unit.quote, quote);
+  assert.equal(result.units.filter((u) => u.file === file && u.paragraph).length, 2);
 });
 
 test('appendix cases do not replace numbered requirements and absent appendices stay unresolved', () => {
@@ -124,7 +389,7 @@ test('explicit practice/past exam selections preserve full OCR pages and private
   }
 });
 
-test('topic 19 mappings retain official URLs and unresolved domestic edition boundaries', () => {
+test('topic 19 retains historical edition boundaries and separately registers the official domestic KGA 800', () => {
   const isa = actual('ISA 800 (국내 판본 미확인)', '8');
   assert.ok(isa.topicIds.includes('19'));
   assert.ok(isa.provenance.includes('irba.co.za'));
@@ -132,7 +397,17 @@ test('topic 19 mappings retain official URLs and unresolved domestic edition bou
   const interim = actual('분·반기재무제표 검토준칙', '1');
   assert.ok(interim.edition.includes('2014-12-30'));
   assert.ok(interim.warnings.some((warning) => warning.includes('2015')));
-  assert.equal(catalog.registry.topics.at(-1)!.standards.length, 5);
+  assert.deepEqual(catalog.registry.topics.at(-1)!.standards, [
+    '인증업무개념체계', '검토업무기준', '분·반기재무제표 검토준칙', '합의된 절차 수행업무기준',
+    'ISA 800 (국내 판본 미확인)', 'KGA 800',
+  ]);
+  const domestic = actual('KGA 800', '8');
+  assert.ok(domestic.topicIds.includes('19'));
+  assert.equal(domestic.authority, 'official_transcription');
+  assert.ok(domestic.provenance.includes('kicpa.or.kr'));
+  assert.ok(actual('KGA 800', '4').quote.includes('2020년 12월 31일 이후 개시'));
+  assert.ok(domestic.quote.includes('(c) 해당 상황에서 해당 재무보고체계가 수용될 수 있는지 여부를 결정하기 위해 경영진이 취한 조치'));
+  assert.equal(catalog.units.filter(unit => unit.file === domestic.file && unit.paragraph).length, 35);
   const agreedProcedures = actual('합의된 절차 수행업무기준', '7');
   assert.ok(agreedProcedures.quote.includes('(5) 전문가적 품위'));
   assert.ok(agreedProcedures.quote.includes('독립성'));

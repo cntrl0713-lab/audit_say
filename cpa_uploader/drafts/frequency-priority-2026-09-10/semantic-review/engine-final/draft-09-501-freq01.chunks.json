@@ -1,0 +1,452 @@
+{
+  "events": [
+    {
+      "unit_id": "subquestion:q1",
+      "attempt": 1,
+      "response": {
+        "id": "subquestion:q1",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "uncertain",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문은 실사일과 재무제표일 사이의 대상 기간 및 변동 기록 확인 절차를 요구하며, 모범답안은 이를 정확히 제시한다. 인용문은 KGA 501 문단 5의 내용 및 지정된 페이지와 일치하지만, 등록 원문·판본의 독립 확인은 제한되어 source_span은 uncertain으로 판단한다. 2025 개정 문단을 사용하고 2026 시행 학습 기준으로 삼는 가정은 명시되어 있으며, 기존 문항의 실사 입회 절차와 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q1.prompt",
+          "q1.model_answer",
+          "q1.q1.r1.source_quote",
+          "q1.q1.r1.source_span"
+        ],
+        "source_ref_ids": [
+          "src1"
+        ],
+        "cases": [],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q1:q1.c1",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q1:q1.c1",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문, 모범답안 및 criterion이 모두 실사일과 재무제표일 사이의 기간 변동과 그 적절한 기록을 검증하는 추가절차를 요구한다. 인용문은 KGA 501 문단 5의 실제 내용과 일치하며, 2025 개정 판본을 2026년 학습 사례에 적용한다는 범위도 명시되어 있다. q2의 통제 설계·실행·유지 기준과도 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q1.prompt",
+          "q1.model_answer",
+          "q1.q1.r1.source_quote",
+          "q1.q1.r1.source_span",
+          "q1.q1.c1.claim",
+          "q1.q1.c1.q1.c1.fact.expected",
+          "q1.q1.c1.q1.c1.scope.expected"
+        ],
+        "source_ref_ids": [
+          "src1"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안 전체가 기간, 검증 대상인 변동의 적절한 기록, 감사절차 수행을 모두 포함한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "11월 30일 실사 후 12월 31일까지 발생한 재고 변동이 재고기록에 적절히 반영되었는지 확인하는 추가 감사절차를 수행한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "원문의 기간과 목적·조치를 의미상 정확히 보존한 답안이다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "11월 30일부터 12월 31일까지의 재고자산 변동을 검토한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "기간만 제시하고 변동이 적절하게 기록되었는지 확인하는 목적과 감사절차를 제시하지 않아 criterion을 충족하지 못한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "재무제표일 전의 재고 변동만 확인하면 되므로 11월 30일 이후 12월 31일까지의 변동에 대한 추가절차는 수행하지 않는다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "대상 기간을 반대로 바꾸고 기준서상 추가절차를 부정한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "재고실사가 12월 31일 재무제표일에 수행되었다면, 실사일과 재무제표일 사이의 기간이 없으므로 이 criterion에 따른 추가절차는 요구되지 않는다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "실사일과 재무제표일이 다른 경우에만 적용되는 criterion의 조건 경계를 정확히 설명하며, 해당 조건이 없으므로 criterion 자체는 충족하지 않는 답안이다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "subquestion:q2",
+      "attempt": 1,
+      "response": {
+        "id": "subquestion:q2",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문은 통제의 설계·실행·유지 세 측면과 실사 방식에 관계없이 적용되는지를 요구하며, 모범답안이 네 요소를 모두 정확히 제시한다. source_quote는 src2 원문과 일치하고 source_span도 KGA 501 A9 및 2025 개정 PDF 394쪽으로 연결된다. authoring_plan의 2025 개정 기준 사용 및 2026 시행 학습용 가정과도 부합하며, 기존 문항과 실질적으로 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q2:q2.c1",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q2:q2.c1",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문은 재고변동 통제의 세 측면과 계속기록법 적용 여부를 요구하며, 대상 criterion은 그중 ‘설계의 효과성’이라는 독립 요소만 정확히 평가한다. 모범답안과 claim은 A9의 설계·실행·유지 및 두 기록방식 모두 적용된다는 내용과 일치한다. 제공된 원문과 문단·쪽수 locator도 일치하며, 2025 개정판을 사용하고 2026 시행기준에 적용한다는 명시적 가정에도 부합한다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span",
+          "q2.q2.c1.claim",
+          "q2.q2.c1.q2.c1.fact.expected"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안에는 재고변동 통제의 설계가 효과적인지 고려한다는 내용이 명시되어 있다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "재무제표일 외의 실사를 적합한 것으로 볼 수 있는지 판단할 때 재고변동 통제가 효과적으로 설계되었는지를 평가한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "‘설계가 효과적인지 고려’라는 criterion의 의미를 정확히 보존한 표현이다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "재고변동 통제가 실제로 운영되는지와 계속 유지되는지를 평가하고, 재고수량 결정 방식과 관계없이 이를 고려한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "실행·유지는 언급했지만 독립 criterion인 통제 설계의 효과성 고려가 누락되었으므로 not_met이 타당하다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "재고변동 통제의 설계가 효과적인지는 재무제표일 외 실사의 적합성 판단과 무관하므로 고려하지 않는다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "설계 효과성을 고려해야 한다는 원문과 정반대이므로 contradicted가 타당하다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "재고변동 통제의 설계 효과성은 계속기록법을 사용하는 경우에만 고려하고, 재고수량을 실사로 결정하는 경우에는 고려하지 않는다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "A9는 두 경우와 관계없이 적용된다고 명시하므로 적용 조건을 계속기록법으로 한정한 답은 조건을 뒤집는다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q2:q2.c2",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q2:q2.c2",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문·모범답안·claim은 재고변동 통제의 ‘실행’ 효과성 고려라는 동일한 의미를 정확히 담고 있다. A9 원문은 설계·실행·유지의 효과성을 명시하며, source_span도 2025 개정 PDF 394쪽의 A9 문단과 일치한다. 계속기록법 여부와 관계없이 적용된다는 조건도 전체 발문 및 인접 criterion과 충돌하지 않는다. 설계·유지 criterion과도 의미가 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span",
+          "q2.q2.c2.claim",
+          "q2.q2.c2.q2.c2.fact.expected"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안은 재고변동 통제의 실행 효과성을 명시적으로 고려한다고 답하므로 criterion을 충족한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "재고자산 변동 통제가 실제로 효과적으로 작동하는지를 평가한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "통제의 실행 효과성을 평가한다는 의미를 정확히 유지한 바꾸어 쓴 답안이다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "재고자산 변동 통제의 설계와 유지가 효과적인지 고려한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "실행 효과성 criterion을 누락하고 설계와 유지만 언급했으므로 독립 criterion은 충족하지 않는다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "재고자산 변동 통제의 실행 효과성은 고려하지 않는다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "A9의 실행 효과성 고려 요구를 명시적으로 부정하므로 반대 결론이다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "계속기록법을 사용하는 경우에만 재고자산 변동 통제의 실행 효과성을 고려한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "A9는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다고 하므로, 계속기록법에만 한정한 조건은 원문의 범위를 왜곡한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q2:q2.c3",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q2:q2.c3",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문·모범답안·claim은 재고자산 변동 통제의 ‘유지’ 효과성을 고려한다는 독립 요소에 정확히 대응한다. src2 A9은 설계·실행·유지의 효과성을 명시하고, 재고수량 결정 방식과 관계없이 적용된다고 설명한다. source_span은 문단 A9 및 PDF 394쪽으로 제시된 실제 위치와 일치한다. 다른 criterion의 설계·실행과도 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span",
+          "q2.q2.c3.claim",
+          "q2.q2.c3.q2.c3.fact.expected"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안에 재고자산 변동 통제의 유지 효과성을 고려한다는 내용이 포함되어 있어 met 판정이 타당하다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "재무제표일 외 실사의 적합성을 판단하기 위해 재고변동 통제가 계속 효과적으로 유지되는지를 평가한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "‘유지의 효과성 고려’의 의미를 보존한 적절한 바꿔쓰기이다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "재고자산 변동 통제의 설계와 실행이 효과적인지 고려한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "유지의 효과성 요소가 빠졌으므로 독립 criterion 전체가 충족되지 않는다는 판정이 타당하다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "재고자산 변동 통제의 유지가 효과적인지는 고려하지 않는다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "source가 요구하는 유지 효과성 고려를 명시적으로 부정하므로 contradicted 판정이 타당하다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "재고자산 변동 통제의 유지 효과성은 계속기록법을 사용하는 경우에만 고려한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "A9은 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다고 하므로, 계속기록법에만 한정하는 것은 조건을 뒤집는다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q2:q2.c4",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q2:q2.c4",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문은 계속기록법에 한정되는지 여부를 묻고, 모범답안과 criterion은 실사로 수량을 결정하는 경우와 계속기록법을 유지하는 경우 모두 적용된다는 예외 없는 범위를 정확히 제시한다. src2의 A9 원문이 이를 직접 뒷받침하며, 다른 criterion의 설계·실행·유지 요소와도 중복되지 않는다. source_span은 문단 및 PDF 쪽수 locator로 일치한다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span",
+          "q2.q2.c4.claim",
+          "q2.q2.c4.q2.c4.fact.expected"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안이 실사 결정 방식과 계속기록법 모두에 적용된다고 명시한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "재고수량을 실사로 정하든 계속기록법으로 관리하든, 재고변동 통제의 효과성을 고려해야 한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "두 적용 상황을 모두 보존한 의미상 동의 표현이다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "재고변동 통제의 설계·실행·유지 효과성을 고려해야 한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "통제 측면은 제시했지만 두 기록 방식 모두에 적용된다는 독립 criterion을 누락했다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "이 고려사항은 계속기록법을 사용하는 경우에만 적용된다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "원문이 실사로 수량을 결정하는 경우에도 적용된다고 하므로 적용 범위를 반대로 제한한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에서 재고변동 통제의 효과성을 고려한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "원문의 ‘여부와 관계없이’라는 조건 경계를 정확히 보존한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "draft-09-501-freq01--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-09-501-freq01--case",
+  "source_set_id": "draft-09-501-freq01",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "q1"
+  ],
+  "projected_body_hash": "6195cd9908efa1aa2b2682024140d4c1a0ec3f5576a488d111b4429191c0f3b6",
+  "answers": {
+    "q1": "11월 30일에 실사에 입회했으므로 그 이후부터 결산일까지의 재고변동 기록에 대한 추가 절차는 필요 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "q1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "q1.c1",
+          "verdict": "contradicted",
+          "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "535173a6a085e18f025822851abbc8141dbace4a21c06ff9ea39dcfcd6c2b3c2",
+  "schema_hash": "ab9ea0d4c80fc4be9d63fa4c2bb229f07fcd50e883e8fbfb6707dae5c546df78",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "q1",
+        "verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "contradicted",
+            "quote": "11월 30일에 실사에 입회했으므로 그 이후부터 결산일까지의 재고변동 기록에 대한 추가 절차는 필요 없다.",
+            "reason": "실사일 이후 재무제표일까지의 재고변동 기록에 대한 추가 절차가 필요 없다고 명시하여 요구사항을 반대로 판단했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "q1",
+            "verdicts": [
+              {
+                "criterion_id": "q1.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q1/e0"
+                ],
+                "reason": "실사일 이후 재무제표일까지의 재고변동 기록에 대한 추가 절차가 필요 없다고 명시하여 요구사항을 반대로 판단했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-09-501-freq01",
+    "score": 0,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "q1",
+        "prompt": "실사일과 재무제표일이 다르므로 감사인이 추가로 수행해야 하는 감사절차를 설명하시오. 추가 절차의 대상 기간과 확인해야 할 사항을 함께 제시하시오.",
+        "user_answer": "11월 30일에 실사에 입회했으므로 그 이후부터 결산일까지의 재고변동 기록에 대한 추가 절차는 필요 없다.",
+        "score": 0,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "contradicted",
+            "quote": "11월 30일에 실사에 입회했으므로 그 이후부터 결산일까지의 재고변동 기록에 대한 추가 절차는 필요 없다.",
+            "reason": "실사일 이후 재무제표일까지의 재고변동 기록에 대한 추가 절차가 필요 없다고 명시하여 요구사항을 반대로 판단했다.",
+            "claim": "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "q1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0ad0fe852bb595c9016aa4cc8e79d487d0b629063643b2286f",
+        "request_id": "req_ddccf121dcfc48798412de78d79d48b9",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2555,
+          "input_tokens_details": {
+            "cache_write_tokens": 2552,
+            "cached_tokens": 0
+          },
+          "output_tokens": 171,
+          "output_tokens_details": {
+            "reasoning_tokens": 54
+          },
+          "total_tokens": 2726
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008437999999999999,
+        "min_usd": 0.0008437999999999999,
+        "max_usd": 0.0008437999999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/draft-09-501-freq01--case--wrong/input.json",
+      "sha256": "120fa63bb6dff0eb87e8abb3b4939cd636f6dcfcdb2f6f33780bab49a54cb2b9"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/draft-09-501-freq01--case--wrong/transport.jsonl",
+      "sha256": "d77b4ffacdf6d103fb6cce142d953c86d47549e3c2b04449d346eae6808df5a3"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/draft-09-501-freq01--case--wrong/traces.jsonl",
+      "sha256": "dbac0c0a874c11611a81522498c093a8e18b6cf951430af74f301f84b6d38cee"
+    }
+  }
+}

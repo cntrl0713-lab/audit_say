@@ -1,15 +1,26 @@
 import type { PublicQuestionSetV3 } from './questionV3.ts';
 import type { QuestionSetGradeResultV3 } from './questionV3Grading.ts';
+import type { LearningTopic, QuestionStyle } from './learningUnits.ts';
 
 export type RankingPeriod = 'all' | 'week' | 'month';
 export type ReviewItemStatus = 'open' | 'resolved' | 'removed';
 export type AttemptStatus = 'queued' | 'grading' | 'completed' | 'failed';
 
 export interface PublicLearningQuestionSetV3 extends PublicQuestionSetV3 {
+    source_set_id?: string;
+    learning_unit_id?: string;
+    question_style?: QuestionStyle;
+    case_set_id?: string | null;
+    topics?: LearningTopic[];
+    classification_version_ids?: string[];
     release_id?: string;
     set_version_id?: string;
     subquestions: Array<PublicQuestionSetV3['subquestions'][number] & {
         logical_subquestion_id?: string;
+        learning_question_id?: string;
+        classification_version_id?: string;
+        question_style?: QuestionStyle;
+        topic_ids?: string[];
     }>;
 }
 
@@ -52,6 +63,8 @@ export interface AttemptHistoryCursor { submitted_at: string; id: string }
 export interface SubmissionPreparationInput {
     release_id: string;
     set_version_id: string;
+    learning_unit_id?: string;
+    classification_version_ids?: string[];
     answers: Record<string, string>;
 }
 

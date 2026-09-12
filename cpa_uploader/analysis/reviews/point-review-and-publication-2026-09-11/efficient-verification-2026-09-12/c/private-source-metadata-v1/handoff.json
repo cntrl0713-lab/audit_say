@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "reviewer": "plan_completion",
+  "completed_at": "2026-09-12T05:21:22.689Z",
+  "status": "local_fix_validated_work_stopped",
+  "user_stop_honored": true,
+  "migration_applied_to_production": false,
+  "model_api_calls": 0,
+  "remote_database_calls_during_migration_work": 0,
+  "production_database_writes": 0,
+  "active_owned_test_processes": 0,
+  "migration": {
+    "file": "supabase/migrations/20260912060000_cpa_private_source_metadata.sql",
+    "sha256": "a6a6300fd1f1df32fe822f137f832f07f306ed1ada5ecb9c98c301882c35a789",
+    "bytes": 9423
+  },
+  "helper": {
+    "name": "public.cpa_get_question_version_with_source_metadata",
+    "arguments": "p_version_id uuid",
+    "returns": "jsonb",
+    "wrapper": "public.cpa_get_question_version(uuid)",
+    "access": "service_role only"
+  },
+  "artifacts": [
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration.test.ts",
+      "sha256": "f7a67eae4d494567599aebc3172f49e0e69690a120a2b9a08ea2fd16ebbde8c7",
+      "bytes": 19951
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/handoff.md",
+      "sha256": "0b87e104907d3d632436c391e6b7c0f39dcef69c3d6dbec69120bb7c28bd3b61",
+      "bytes": 5279
+    }
+  ],
+  "inputs": {
+    "canonical_bank": {
+      "file": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+      "sha256": "4891f97bcfc98cdeda77567b59657577da184317df199fd53c859004728acd80",
+      "bytes": 3701382
+    },
+    "retired_bank": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/live-before-publication-v3/live-source.json",
+      "sha256": "c24cac7136fac692d2361279c05265b6fbcadf4c42a97fb2e9471b6e26b87549",
+      "bytes": 1387459
+    },
+    "old_migration": {
+      "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+      "sha256": "6e45c144bf661fa10afd0d001cd0879d3d09c0b2d67d91ef45c70801e96f837b",
+      "bytes": 83955
+    },
+    "grading_code_unchanged": {
+      "file": "lib/questionV3Grading.ts",
+      "sha256": "aae10461df894ccbad948f55e25787c15775be40c8337638f161ac2389394d2c",
+      "bytes": 24356
+    },
+    "canonical_catalog": {
+      "file": "cpa_uploader/data/learning-question-classifications.json",
+      "sha256": "6db2a33c3c1bd1e3c9a4d2826f274b6644f20eb1a6c3a25233dbe1acc532c7af",
+      "bytes": 338157
+    }
+  },
+  "preserved_failure_evidence": [
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/db-publication-v4/verification.json",
+      "sha256": "e189f31d26a55047ae8a540653bdbe9ae2b2cc285ffcdd2c0ccb70c9be691799",
+      "bytes": 86773
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/db-publication-v4/private-projection-diagnosis-all-v1.json",
+      "sha256": "5b576af4848d9bf0fe6f4e250f39dd20d24c01bfbb2fc0618469619ff47b24c0",
+      "bytes": 85643
+    }
+  ],
+  "tests": [
+    {
+      "name": "production_SQL_and_synthetic_boundaries",
+      "command": "node --import tsx --test cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration.test.ts",
+      "exit_code": 0,
+      "tests": 40,
+      "passed": 40,
+      "failed": 0,
+      "duration_ms": 70851.7333,
+      "log": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration-test-v1.log",
+        "sha256": "20ffa5b03a890fb827356e0f00a7ce2458dde18a6b9c7f0898d98c5d3ae7b92f",
+        "bytes": 2629
+      },
+      "source_state": "before final test-only grading payload comparison addition; identical final migration bytes"
+    },
+    {
+      "name": "production_current_and_retired_full_payload_final",
+      "command": "node --import tsx --test --test-name-pattern=\"actual current154\" cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration.test.ts",
+      "exit_code": 0,
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "duration_ms": 33500.1056,
+      "log": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration-test-v2.log",
+        "sha256": "1cdb9a27278c69d2d5c1f8152c4b53b46bf78cfa01f57c647db9d179e39c778a",
+        "bytes": 635
+      },
+      "source_state": "final test source; 258 sets within one test"
+    },
+    {
+      "name": "target_lint",
+      "command": "node node_modules/eslint/bin/eslint.js cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration.test.ts",
+      "exit_code": 0,
+      "log": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/lint-v1.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "typescript",
+      "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+      "exit_code": 0,
+      "log": {
+        "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/typecheck-v1.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  ],
+  "results": {
+    "current_sets": 154,
+    "retired_sets": 104,
+    "private_DTO_comparisons": 258,
+    "grading_payload_and_outer_text_comparisons": 258,
+    "affected_current_sets": 37,
+    "source_spans_restored": 319,
+    "critical_fact_scopes_restored": 13,
+    "ordinary_table_snapshots_unchanged": 8,
+    "protected_function_definitions_unchanged": 6,
+    "public_payload_unchanged": true,
+    "parsed_payload_values_and_array_order_equal": true,
+    "outside_payload_instructions_and_example_exact": true,
+    "raw_whole_prompt_byte_equality_claimed": false,
+    "final_test_source_full_suite_rerun": false
+  },
+  "scope": {
+    "allowed_restoration_paths": [
+      "source_refs[*].source_span",
+      "subquestions[*].criteria[*].critical_facts[*].scope"
+    ],
+    "normalized_rows_modified": false,
+    "source_document_modified": false,
+    "canonical_modified": false,
+    "old_migration_modified": false,
+    "grading_code_modified": false,
+    "optional_null": "absent under existing strip-null contract",
+    "empty_string": "preserved",
+    "broken_document_fallback": false,
+    "zero_document_legacy_fallback": true,
+    "all_linked_archives_checked": true
+  },
+  "not_performed": [
+    "production migration apply",
+    "all sealed production versions post-migration compatibility query",
+    "verification-v2 postcheck",
+    "new model grading",
+    "human content approval"
+  ],
+  "resume_steps": [
+    "Recheck this migration and protected inputs against recorded hashes; inspect current production release/functions/permissions read-only before any mutation.",
+    "Root applies only the reviewed migration in its guarded transaction, retaining before snapshots and exact SQL bytes; do not alter sealed rows or source_document.",
+    "Read every sealed version with the new private helper and compare optional metadata plus ordinary fields; retain any exception as failure.",
+    "Verify active public/source/classification/learning-unit payload and private grading payload values/order; preserve prior grading records.",
+    "Write a new verification-v2.json rather than overwrite original verification.json, and distinguish DB apply from successful postverification."
+  ],
+  "limitations": [
+    "The new migration has only run in isolated PGlite databases, including actual current154 and retired104 source fixtures.",
+    "Live private metadata loss remains unresolved until the migration is explicitly resumed, applied and verified.",
+    "The first 40-test log predates the final test-only full payload assertions; the affected real-bank test was subsequently rerun and passed.",
+    "Object key order may differ under PostgreSQL JSONB. Parsed grading payloads and outer text, not whole prompt raw byte equality, were verified."
+  ]
+}

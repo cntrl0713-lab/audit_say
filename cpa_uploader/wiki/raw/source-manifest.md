@@ -1,18 +1,30 @@
 ---
 title: "원자료 매니페스트"
 created: 2026-08-08
-updated: 2026-09-10
+updated: 2026-09-12
 type: source-map
 status: generated
 review_required: true
 tags: [audit, question-generation, quality]
-sources: ["cpa_uploader/data"]
+sources: ["cpa_uploader/data","cpa_uploader/raw/collections/2026-09-11-initial/manifest.json","cpa_uploader/raw/collections/2026-09-12-kga250-edition-followup/manifest.json","cpa_uploader/raw/collections/2026-09-12-kga800-edition-followup/manifest.json"]
 confidence: high
 ---
 
 # 원자료 매니페스트
 
-파일 39개 · 동일 해시 중복 0그룹 · NUL 포함 0개. 원자료를 수정하지 않고 읽는다. 편집 정본과 배포물은 각각의 생성·검수 절차로만 갱신한다.
+## 원자료·검증 출처 보관소
+
+[cpa_uploader/raw 안내](../../raw/README.md)에서 기반 자료·검증 원본·추출본·페이지 이미지와 원래 경로의 연결을 찾는다. 기존 출처 경로를 유지한 보존 복사이며 수집·해시 검사는 의미검수·실제 채점 완료와 별개다.
+
+| 수집 | 원래 경로 | 고유 보존 파일 | 미보관 기록 |
+|---|---|---|---|
+| [2026-09-11-initial](../../raw/collections/2026-09-11-initial/index.md) | 471 | 458 | 0 |
+| [2026-09-12-kga250-edition-followup](../../raw/collections/2026-09-12-kga250-edition-followup/index.md) | 11 | 11 | 0 |
+| [2026-09-12-kga800-edition-followup](../../raw/collections/2026-09-12-kga800-edition-followup/index.md) | 16 | 14 | 0 |
+
+## 현행 등록 입력
+
+파일 67개 · 동일 해시 중복 0그룹 · NUL 포함 0개. 아래는 현재 data 입력이고 raw의 과거 시점 사본과 구분한다. 원자료를 수정하지 않고 읽으며 편집 정본과 배포물은 각각의 생성·검수 절차로만 갱신한다.
 
 | 경로 | bytes | SHA-256 | NUL | 중복 그룹 |
 |---|---|---|---|---|
@@ -38,10 +50,33 @@ confidence: high
 | [data/회계감사_통합학습자료/99_문자_판독_검토대상.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EB%AC%B8%EC%9E%90_%ED%8C%90%EB%8F%85_%EA%B2%80%ED%86%A0%EB%8C%80%EC%83%81.md) | 32547 | b7ada42c94d11d0685af07fd97f447cb536cb2479445e29a7a831b80d36f4b1e | 0 | - |
 | [data/회계감사_통합학습자료/99_완전성_검증.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EC%99%84%EC%A0%84%EC%84%B1_%EA%B2%80%EC%A6%9D.md) | 3806 | d645692493fa616bdbdb386018d26c4f14f91dd18536cd84f8233446f541f21f | 0 | - |
 | [data/회계감사_통합학습자료/README.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/README.md) | 3608 | 73089ee49076f373e38fc33f5be4b30f5f2ed3b33e9763a62b4d77de70dac306 | 0 | - |
-| [data/cpa_question_sets_v3.authoring.json](../../data/cpa_question_sets_v3.authoring.json) | 1240967 | 039a1a68c39b48d692d78d0980c6d2efaa9f68d2f7e32cbab973df95b7234d0a | 0 | - |
-| [data/cpa_question_sets_v3.promotions.json](../../data/cpa_question_sets_v3.promotions.json) | 36487 | edb2173d12ef9da1cfe9bbf05a142f32fa363eae887faae38fd611ccad0dfbbc | 0 | - |
-| [data/cpa_question_sets_v3.public.json](../../data/cpa_question_sets_v3.public.json) | 269561 | 29fecf12bde61d1b4799c031ef0345f256ab4137d3e2a6e1ec9ebc0578e13056 | 0 | - |
+| [data/cpa_question_sets_v3.authoring.json](../../data/cpa_question_sets_v3.authoring.json) | 3701382 | 4891f97bcfc98cdeda77567b59657577da184317df199fd53c859004728acd80 | 0 | - |
+| [data/cpa_question_sets_v3.promotions.json](../../data/cpa_question_sets_v3.promotions.json) | 6687450 | 5a6b185364ef86105ca13e608f2029bc202a3c885d7947154f3645959fe71862 | 0 | - |
+| [data/cpa_question_sets_v3.public.json](../../data/cpa_question_sets_v3.public.json) | 657188 | dadf488bfeb5ce1e3f3fea77f28b66cf9b128250104ddaf561be817457045e3c | 0 | - |
+| [data/learning-question-classifications.json](../../data/learning-question-classifications.json) | 338157 | 6db2a33c3c1bd1e3c9a4d2826f274b6644f20eb1a6c3a25233dbe1acc532c7af | 0 | - |
 | [data/official/assurance-review-2027-topic19.txt](../../data/official/assurance-review-2027-topic19.txt) | 7954 | 864546d0b2a109a3b0a254ef83ec4c13954d240a111025ccc0c4502dccea93a5 | 0 | - |
+| [data/official/delegated-n01-ethics-2024.txt](../../data/official/delegated-n01-ethics-2024.txt) | 18807 | e941e356c3f22b580424fa2b34a908e04296c90e10a6fac0f1a56194d5e485cd | 0 | - |
+| [data/official/delegated-n01-kga200-210-230-2025.txt](../../data/official/delegated-n01-kga200-210-230-2025.txt) | 49542 | d73a24553dc65f8ffc106d324ec77dd99dd578426318213bfb249d957d67bd6f | 0 | - |
+| [data/official/delegated-n01-kga230-supplement-2025.txt](../../data/official/delegated-n01-kga230-supplement-2025.txt) | 2995 | f0dc1bae9defddc953bad9ddf8a1013c10309891f6e046bcb15021102fb15ebe | 0 | - |
+| [data/official/delegated-n02-kga315-2025.txt](../../data/official/delegated-n02-kga315-2025.txt) | 52961 | 853614e9dae546da8b9c7a730756327463399c62794e6354b49f5a45eb6d8dfc | 0 | - |
+| [data/official/delegated-n03-kga240-2025.txt](../../data/official/delegated-n03-kga240-2025.txt) | 18416 | 6afe7a89f8f53dbedd71460c68118f350db8e04cdfd12376e7f6fed34694ff1b | 0 | - |
+| [data/official/delegated-n03-kga330-2025.txt](../../data/official/delegated-n03-kga330-2025.txt) | 31680 | 838412c826535ff70dc61add7c5264eaf1ae35030146bdf67af8d08040be4660 | 0 | - |
+| [data/official/delegated-n04-kga-2025.txt](../../data/official/delegated-n04-kga-2025.txt) | 69398 | a2351553eddcefaa2b00074698768338fd95f81867ae857d8313ce6a2158ac58 | 0 | - |
+| [data/official/delegated-n06-kga710-720-1100-supplement-2025.txt](../../data/official/delegated-n06-kga710-720-1100-supplement-2025.txt) | 9045 | 57d6643f6bc2b7917309ac2749d14ba4406a0a411a11c29503337d7e1b3060d4 | 0 | - |
+| [data/official/delegated-r01-kga-2025.txt](../../data/official/delegated-r01-kga-2025.txt) | 15108 | 267a4d66fee3fbabbc5610b41da6bc442a1793a678eeaf94b59da40f0cdd1e34 | 0 | - |
+| [data/official/delegated-r02-kga260-2026.txt](../../data/official/delegated-r02-kga260-2026.txt) | 31345 | b15db5194e1b83ba433c7df4ced46f83a01b13c02843b2617b92c6fc600fa52b | 0 | - |
+| [data/official/delegated-s01-kga200-210-220-320-2025.txt](../../data/official/delegated-s01-kga200-210-220-320-2025.txt) | 33656 | 852ac43ac61dd800e78c31f674c025663cde23780b7510dc05b54539e0acc515 | 0 | - |
+| [data/official/delegated-s02-kga315-2025.txt](../../data/official/delegated-s02-kga315-2025.txt) | 35050 | 53ccadf484fe7a2c00859b79676321af7d884e9267c900ca8c906fb575a4ca37 | 0 | - |
+| [data/official/delegated-s02-kga315-appendix2-2025.txt](../../data/official/delegated-s02-kga315-appendix2-2025.txt) | 6858 | 17eb426c7f2c15b578bc77ceb864bb0aa5e4c7c406d3c1bc964f8401941aaaef | 0 | - |
+| [data/official/delegated-s02-kga330-2025.txt](../../data/official/delegated-s02-kga330-2025.txt) | 12922 | 424149e18c0414120397a7d81687257a2f038a1cc20335d2bb0460070d3d7093 | 0 | - |
+| [data/official/delegated-s03-kga-2025.txt](../../data/official/delegated-s03-kga-2025.txt) | 69795 | cc98d534ed8a81cdaf625502c0177d1d193ce7b5193763acd97b3e538a96fbaf | 0 | - |
+| [data/official/delegated-s04-kga-2025.txt](../../data/official/delegated-s04-kga-2025.txt) | 69746 | 821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb | 0 | - |
+| [data/official/delegated-s04-kga315-2025.txt](../../data/official/delegated-s04-kga315-2025.txt) | 3835 | 9446f6eb8fcfbb3e226555a3f4970679223137758f1f450a4a06683fae752aea | 0 | - |
+| [data/official/delegated-s05-kga-2025.txt](../../data/official/delegated-s05-kga-2025.txt) | 40915 | 8f4f3820e8bd54e296b89a25f0bb66532402e93bcf8ea5a73f6b8ad2b650d982 | 0 | - |
+| [data/official/delegated-s05-kga230-context-2025.txt](../../data/official/delegated-s05-kga230-context-2025.txt) | 2437 | fd18516457255fd7a28a41dd13a0a53af99617b2411d9d9a132a632b092e444e | 0 | - |
+| [data/official/delegated-s06-interim-2015.txt](../../data/official/delegated-s06-interim-2015.txt) | 8460 | b24d45161ca8da8804603b3fa6e70d5ff054ade89d4271f3d5c0b7b09068fd23 | 0 | - |
+| [data/official/delegated-s06-kga1100-1200-2025.txt](../../data/official/delegated-s06-kga1100-1200-2025.txt) | 15087 | 889c9cf23591328a3b6e7a13a5ebb72d0b33c00c44d0b17d7c8eb364b0bf1a1a | 0 | - |
+| [data/official/efficient-review-kga800-2020.txt](../../data/official/efficient-review-kga800-2020.txt) | 19315 | 84912c557e9225bc645589c356e527ce6248b54ffab75c95baff74ad08d3fb1c | 0 | - |
 | [data/official/kga1100-2025-review17.txt](../../data/official/kga1100-2025-review17.txt) | 59992 | 9747034fdf13f62e889c0f642bc47429f59f28a98b4f8f7a4544b83a52d0a870 | 0 | - |
 | [data/official/kga1200-2025-review18.txt](../../data/official/kga1200-2025-review18.txt) | 17657 | 5fce04684438b0168ed6461c68a9d3eac594704c20f891874d9838a41ce44a17 | 0 | - |
 | [data/official/kga315-330-2025-review06.txt](../../data/official/kga315-330-2025-review06.txt) | 28801 | 486c1df843af6d74e0acdaec995501e6f40f24ae9dd8dc23415007d90d5affe1 | 0 | - |
@@ -55,6 +90,11 @@ confidence: high
 | [data/official/kga610-620-2025-review13.txt](../../data/official/kga610-620-2025-review13.txt) | 7486 | 63ffc64219818a639269cf4b20be5c8853d2ce29778afb94db8e04324ceced4f | 0 | - |
 | [data/official/kga700-705-2025-review15.txt](../../data/official/kga700-705-2025-review15.txt) | 8934 | b36f384703555e86d0b05570eaf08c35cddfc457b4b8bbc35962da469f863c69 | 0 | - |
 | [data/official/kga701-706-710-720-2025-review16.txt](../../data/official/kga701-706-710-720-2025-review16.txt) | 51680 | 9e7889d4b5fe783967691105828379c034cbee5c9c45c917ef5526a6d118efc0 | 0 | - |
+| [data/official/point-review-710-appendix-2026-09-11.txt](../../data/official/point-review-710-appendix-2026-09-11.txt) | 22157 | 55bd9712354877ee8993ac7fe20474140baa71ec38000fb5fd08a4419f32e59e | 0 | - |
+| [data/official/point-review-a-source-followup-2026-09-11.txt](../../data/official/point-review-a-source-followup-2026-09-11.txt) | 22854 | afc799d716e3e643251a5768525eef6f6c35eb73aea78fe3dc786b3388f4e177 | 0 | - |
+| [data/official/point-review-a-supplement-2026-09-11.txt](../../data/official/point-review-a-supplement-2026-09-11.txt) | 8369 | 0cced263e2fd992ee6868bdb7445f032a126bec524d202f64902c33ce9fd1a9c | 0 | - |
+| [data/official/point-review-b-source-followup-2026-09-11.txt](../../data/official/point-review-b-source-followup-2026-09-11.txt) | 17266 | 56aeba5c45a513ef53a4a6596b7726d350897eeb9002734ddae0ada224089dcb | 0 | - |
+| [data/official/point-review-c-source-followup-2026-09-11.txt](../../data/official/point-review-c-source-followup-2026-09-11.txt) | 12825 | 04800954742798494f1ffa5c8c3ac0a3126b3011760dbc172d97a799b4421b01 | 0 | - |
 
 ## Related
 

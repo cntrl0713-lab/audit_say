@@ -1,0 +1,39 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {gradingModelName} from '../../../../lib/questionV3Grading.ts';
+import {buildSourceCatalog} from '../../../questionSourceCatalog.mjs';
+
+const manifestFile=process.argv[2];
+if(!manifestFile)throw Error('고정 은행 manifest 필요');
+const read=(file:string)=>JSON.parse(fs.readFileSync(file,'utf8'));
+const sha=(file:string)=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const manifest=read(manifestFile);
+if(manifest.purpose!=='fixed_comparison_bank'||manifest.collected_sets!==49||manifest.collected_questions!==131||manifest.errors.length)throw Error('최종49/131 고정 상태가 아님');
+const directory=path.dirname(manifestFile),bank=path.join(directory,'comparison-bank.json');
+const output=process.argv[3]||path.join(directory,'runtime-lock.json');
+if(fs.existsSync(output))throw Error('기존 runtime-lock을 덮어쓸 수 없습니다.');
+for(const entry of manifest.entries){
+ const checks=[{file:entry.file,sha256:entry.sha256},{file:entry.qa_file,sha256:entry.qa_sha256},...entry.plan_files,...entry.source_files];
+ for(const check of checks)if(sha(check.file)!==check.sha256)throw Error(`고정 입력 변경: ${check.file}`);
+}
+const codeFiles=['lib/questionV3Grading.ts','lib/questionV3Evidence.ts','lib/questionV3Answer.ts','lib/questionV3.ts','lib/ai/openaiStructured.ts',
+ 'cpa_uploader/questionSemanticReview.ts','cpa_uploader/questionReviewGrading.ts','cpa_uploader/review_question_draft_v3.ts',
+ 'cpa_uploader/questionBankPublication.ts','cpa_uploader/questionAuthoringPlan.ts','cpa_uploader/questionSourceCatalog.mjs',
+ 'cpa_uploader/config/question-source-registry.json',
+ 'cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/run-review.ts',
+ 'cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/run-author-qa.ts'];
+const baseline=read('cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/input-baseline.json');
+const protectedFiles=baseline.files.filter((row:{file:string})=>/cpa_question_sets_v3\.(?:authoring|public)\.json$/.test(row.file))
+ .map((row:{file:string;sha256:string})=>({...row,current_sha256:sha(row.file),unchanged:sha(row.file)===row.sha256}));
+if(protectedFiles.some((file:{unchanged:boolean})=>!file.unchanged))throw Error('초기 정본·공개본 이후 변경을 재대조해야 함');
+const sourceFiles=[...new Set<string>(manifest.entries.flatMap((entry:{source_files:Array<{file:string}>})=>entry.source_files.map(source=>source.file)))];
+const result={created_at:new Date().toISOString(),manifest_file:manifestFile,manifest_sha256:sha(manifestFile),
+ phase_directory:`phase-two-v${/runtime-v(\d+)/.exec(output)?.[1] || '1'}`,
+ comparison_bank:{file:bank,sha256:sha(bank),sets:read(bank).length},
+ settings:{grading_model:gradingModelName(),review_model:process.env.CPA_REVIEW_MODEL||gradingModelName(),review_input_max_chars:500000,general_cli_default_chars:160000},
+ code_files:codeFiles.map(file=>({file,sha256:sha(file)})),source_files:sourceFiles.map(file=>({file,sha256:sha(file)})),
+ source_catalog_fingerprint:buildSourceCatalog().fingerprint,protected_files:protectedFiles,
+ policy:'이 고정 시점의 실제 코드·자료·모델을 기록했다. 호출 결과·의미판정·채점 통과는 실행별 원시 증거로 별도 확인한다. 정본/공개본/배포 권한 없음.'};
+fs.writeFileSync(output,JSON.stringify(result,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({output,bank:result.comparison_bank,settings:result.settings,protected_unchanged:true}));

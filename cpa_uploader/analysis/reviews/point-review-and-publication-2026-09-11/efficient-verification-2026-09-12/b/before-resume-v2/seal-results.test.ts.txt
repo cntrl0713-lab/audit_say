@@ -1,0 +1,134 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fixture } from './seal-fixture.ts';
+import { sealResults, parseSealArgs } from './seal-results.ts';
+import { buildGradingPrompt, buildGradingResponseSchema, groundJudgment, applyQuestionSetJudgment } from '../../../../../../lib/questionV3Grading.ts';
+import type { EfficientReviewBatch } from '../../../../../../cpa_uploader/questionEfficientReview.ts';
+
+const E = 'cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12';
+const synthetic = 'OFFLINE TEST ONLY: all model records are synthesized; no API or content approval is performed.';
+function setup(count = 1) {
+    const f = fixture(count);
+    f.jobs.forEach((j, i) => { j.entry.worker = (['a', 'b', 'c'] as const)[i % 3]; });
+    const options = { candidate: 'candidate', runs: ['worker-a', 'worker-b', 'worker-c'], output: 'seal-output' };
+    const flush = (residuals?: EfficientReviewBatch['residual_grading_findings']) => {
+        const manifest = f.write('candidate/grading-manifest.json', f.manifest);
+        f.write('candidate/agent-reviews.json', f.reviews);
+        f.write('candidate/runtime-snapshots.json', f.batch.runtime_snapshots);
+        f.write(E + '/authorization.md', synthetic, true);
+        for (const worker of ['a', 'b', 'c']) {
+            const owned = f.jobs.filter(j => j.entry.worker === worker);
+            const rows = owned.map(job => {
+                const folder = `worker-${worker}/${job.entry.id}`, obs = job.observation;
+                obs.manifest = manifest;
+                obs.files.input = f.write(folder + '/input.json', { entry: job.entry, set: job.projected,
+                    prompt: buildGradingPrompt(job.projected, job.entry.answers), schema: buildGradingResponseSchema(job.projected, job.entry.answers), model: f.manifest.model });
+                obs.files.transport = f.write(folder + '/transport.jsonl', job.rows.map(r => JSON.stringify(r)).join('\n') + '\n', true);
+                obs.files.traces = f.write(folder + '/traces.jsonl', job.traces.map(r => JSON.stringify(r)).join('\n') + '\n', true);
+                f.write(folder + '/usage.jsonl', obs.usage.map(r => JSON.stringify(r)).join('\n') + '\n', true);
+                return { id: job.entry.id, status: obs.within_tolerance ? 'within_tolerance' : 'outside_tolerance_or_security', observation: f.write(folder + '/observation.json', obs) };
+            });
+            f.write(`worker-${worker}/preflight.json`, { version: 1, manifest, worker, mode: 'actual_sdk_forwarding', jobs: owned.map(j => j.entry.id), inputs: [manifest, ...f.manifest.inputs, ...f.manifest.code_files] });
+            f.write(`worker-${worker}/summary.json`, { version: 1, status: 'completed', worker, selected_entries: owned.length, completed_observations: owned.length,
+                actual_sdk_calls: owned.length, remaining_entry_ids: [], rows, frozen_input_error: null });
+        }
+        if (residuals) f.write('residual-findings.json', residuals);
+    };
+    const load = (file: string) => JSON.parse(fs.readFileSync(path.join(f.root, file), 'utf8'));
+    flush();
+    return { f, options, flush, load, run: () => sealResults(options, f.root) };
+}
+function check(name: string, action: (f: ReturnType<typeof setup>) => void, count = 1) {
+    test(name, () => { const f = setup(count); try { action(f); } finally { f.f.cleanup(); } });
+}
+function turnWrongIntoTwoPoints(f: ReturnType<typeof setup>) {
+    const j = f.f.jobs.find(j => j.entry.kind === 'wrong')!;
+    for (const v of j.raw.subquestions[0].verdicts) { v.verdict = 'met'; v.evidence_ids = ['q1/e0']; }
+    const text = JSON.stringify(j.raw); j.response.output_text = text;
+    (j.response.output[0] as { content: { text: string }[] }).content[0].text = text;
+    j.observation.judgment = groundJudgment(j.raw, j.projected, j.entry.answers);
+    j.observation.result = applyQuestionSetJudgment(j.projected, j.entry.answers, j.observation.judgment);
+    j.observation.subquestions[0] = { ...j.observation.subquestions[0], actual_points: 2, delta: 2, strict_matched: false, within_tolerance: false };
+    j.observation.strict_matched = false; j.observation.within_tolerance = false;
+    return j;
+}
+
+check('seals a full three-worker synthetic cohort using the production replay; context-only answers do not inflate five-answer denominator', t => {
+    assert.equal(t.run().ready, true);
+    const s = t.load('seal-output/summary.json');
+    assert.equal(s.fixed_evaluated_answers, 5); assert.equal(s.scores.length, 6);
+    assert.equal(s.within_tolerance, 5); assert.equal(s.strict_verdict_matches, 5);
+    assert.equal(s.accounting.actual_sdk_calls_from_transport, 3);
+    assert.equal(s.accounting.output_tokens_including_reasoning, 90);
+    assert.equal(s.accounting.reasoning_tokens_already_in_output, 60);
+    assert.equal(t.load('seal-output/receipts.json').receipts.length, 1);
+    assert.throws(() => t.run(), /new directory/);
+});
+check('missing original entry leaves the fixed denominator and readiness false, never changes an execution error into zero points', t => {
+    const s = t.load('worker-b/summary.json'); s.rows = []; s.completed_observations = 0; t.f.write('worker-b/summary.json', s);
+    assert.equal(t.run().ready, false);
+    const out = t.load('seal-output/summary.json'); assert.equal(out.fixed_evaluated_answers, 5);
+    assert.equal(out.scores.find((r: { entry_id: string }) => r.entry_id.endsWith('partial')).actual_points, null);
+});
+check('duplicate row is rejected', t => {
+    const s = t.load('worker-a/summary.json'); s.rows.push(s.rows[0]); t.f.write('worker-a/summary.json', s);
+    assert.equal(t.run().ready, false);
+});
+check('missing worker summary leaves accounting explicitly incomplete and total cost unknown', t => {
+    fs.renameSync(path.join(t.f.root, 'worker-a/summary.json'), path.join(t.f.root, 'worker-a/summary.preserved.json'));
+    assert.equal(t.run().ready, false);
+    const a = t.load('seal-output/summary.json').accounting;
+    assert.equal(a.all_worker_call_logs_accounted, false); assert.equal(a.complete_cost_known, false); assert.equal(a.usd, null);
+});
+check('dry-run and unrelated manifest are rejected', t => {
+    const p = t.load('worker-a/preflight.json'); p.mode = 'dry_run_no_model'; t.f.write('worker-a/preflight.json', p);
+    assert.equal(t.run().ready, false);
+});
+check('summary cannot point to another worker observation', t => {
+    const s = t.load('worker-a/summary.json'); s.rows[0].observation = t.load('worker-b/summary.json').rows[0].observation; t.f.write('worker-a/summary.json', s);
+    assert.equal(t.run().ready, false);
+});
+check('tampered observation hash and request body cannot be accepted', t => {
+    const job = t.f.jobs[0]; job.observation.prompt_sha256 = '0'.repeat(64); t.flush();
+    assert.equal(t.run().ready, false); assert(t.load('seal-output/readiness.json').problems.some((p: { stage: string }) => p.stage === 'core_replay'));
+});
+check('execution-error rows and stopped summaries cannot be accepted', t => {
+    const s = t.load('worker-b/summary.json'); s.status = 'stopped'; s.completed_observations = 0;
+    s.rows = [{ id: s.rows[0].id, status: 'execution_error', error: { code: 'credit_balance_exhausted' } }]; t.f.write('worker-b/summary.json', s);
+    const r = t.run(); assert.equal(r.ready, false); assert(r.problems.some(p => p.stage === 'execution_error'));
+});
+check('source or agent content failures are not waived by perfect score ratio', t => {
+    t.f.reviews[0].questions[0].checks.points = 'fail' as 'pass'; t.flush(); assert.equal(t.run().ready, false);
+});
+check('security detection is rejected by production replay, even at identical numeric score', t => {
+    t.f.jobs[0].raw.subquestions[0].salad_detected = true; t.flush(); assert.equal(t.run().ready, false);
+});
+check('95 percent without an explicit residual source investigation remains false', t => {
+    turnWrongIntoTwoPoints(t); t.flush(); const r = t.run(); assert.equal(r.ready, false);
+    assert(r.problems.some(p => p.stage === 'residual_findings')); assert.equal(t.load('seal-output/summary.json').ratio_over_frozen_denominator, .95);
+}, 4);
+check('explicit synthetic investigated residual allows exactly 95 percent but never rewrites the original expected or actual score', t => {
+    const j = turnWrongIntoTwoPoints(t);
+    const findings: EfficientReviewBatch['residual_grading_findings'] = [{ entry_id: j.entry.id, subquestion_id: 'q1', delta: 2,
+        classification: 'grading_consistency_only', rationale: synthetic, content_rechecked: true, disposition: 'accepted_within_batch_95_percent' }];
+    t.flush(findings);
+    const r = sealResults({ ...t.options, residualFindings: 'residual-findings.json' }, t.f.root); assert.equal(r.ready, true);
+    const score = t.load('seal-output/summary.json').outside_tolerance[0]; assert.equal(score.expected_points, 0); assert.equal(score.actual_points, 2);
+    assert.equal(t.load('seal-output/seal-inputs.json').residual_findings.file, 'residual-findings.json');
+}, 4);
+check('unknown cost is preserved without making an extra model call', t => {
+    const j = t.f.jobs[0]; j.observation.usage[0].cost = { status: 'unknown', usd: null, min_usd: null, max_usd: null, reason: 'Unknown endpoint test' }; t.flush();
+    assert.equal(t.run().ready, true); const a = t.load('seal-output/summary.json').accounting;
+    assert.equal(a.usd, null); assert.equal(a.unknown_cost_responses, 1); assert.equal(a.complete_cost_known, false);
+});
+check('candidate overlap and duplicate run paths reject before writing any batch', t => {
+    assert.throws(() => sealResults({ ...t.options, output: 'candidate/new-output' }, t.f.root), /overlaps/);
+    assert.throws(() => sealResults({ ...t.options, runs: ['worker-a', 'worker-a', 'worker-c'] }, t.f.root), /Repeated/);
+    assert.throws(() => sealResults({ ...t.options, output: '../escape' }, t.f.root), /outside/);
+});
+test('strict CLI parsing rejects missing, unknown, duplicate, and malformed run arguments', () => {
+    const args = ['--candidate', 'candidate', '--runs', 'a,b,c', '--output', 'out']; assert.equal(parseSealArgs(args).runs.length, 3);
+    for (const x of [[], [...args, '--api'], [...args, '--output', 'different'], ['--candidate', 'c', '--runs', 'a,b', '--output', 'out']]) assert.throws(() => parseSealArgs(x));
+});

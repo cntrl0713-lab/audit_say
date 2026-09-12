@@ -1,0 +1,64 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+import { pathToFileURL } from 'node:url';
+import ts from 'typescript';
+import Ajv from 'ajv';
+const E='cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12';
+const dir=E+'/b/proposed-after-run-v2', ROOT=process.cwd();
+const sha256=x=>crypto.createHash('sha256').update(x).digest('hex');
+const hashes=new Map();
+function read(file){const b=fs.readFileSync(file);hashes.set(path.resolve(file),sha256(b));return b;}
+const meta=JSON.parse(read(dir+'/proposal.json'));
+assert.equal(sha256(read(meta.production_file)),meta.before_sha256,'Active production changed');
+const before=read(dir+'/questionEfficientReview.before.ts.txt').toString('utf8');
+const after=read(dir+'/questionEfficientReview.proposed.ts.txt').toString('utf8');
+assert.equal(sha256(before),meta.before_sha256);assert.equal(sha256(after),meta.proposed_sha256);
+const importAt=f=>import(pathToFileURL(path.resolve(f)).href);
+const grading=await importAt('lib/questionV3Grading.ts');
+const {contentHash}=await importAt('lib/learningSubmission.ts');
+const {learningUnitId,selectLearningQuestionSet}=await importAt('lib/learningUnits.ts');
+const names=new Set(['same','nonempty','record','readFile','readJson','replayObservation','createEfficientValidationContext','validateReusableEfficientObservation']);
+function compile(source){const ast=ts.createSourceFile('isolated.ts',source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);
+ const declarations=ast.statements.filter(s=>ts.isFunctionDeclaration(s)&&s.name&&names.has(s.name.text)||ts.isVariableStatement(s)&&s.declarationList.declarations.some(d=>ts.isIdentifier(d.name)&&names.has(d.name.text)));
+ assert.equal(declarations.length,8);
+ const body=ts.transpileModule(declarations.map(s=>s.getText(ast)).join('\n'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;
+ const deps={fs,path,assert,Ajv,contentHash,sha256,learningUnitId,selectLearningQuestionSet,...grading,exports:{}};
+ return Function(...Object.keys(deps),body+'\nreturn validateReusableEfficientObservation;')(...Object.values(deps));}
+const baselineValidator=compile(before), proposedValidator=compile(after);
+const mf=E+'/candidate-v3/grading-manifest.json',mh='d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c';
+const manifest=JSON.parse(read(mf));assert.equal(sha256(fs.readFileSync(mf)),mh);
+const file=E+'/run-v2/worker-a/pilot-01-006--sub1--standard--model/observation.json';
+const newReuse={entry_id:'pilot-01-006--sub1--standard--model',worker:'a',observation:{file,sha256:sha256(read(file))},origin_manifest:{file:mf,sha256:mh}};
+const results=[];const contexts=[];
+const context=()=>{const c={files:new Map(),batches:new Map()};contexts.push(c);return c;};
+function pass(name,fn){fn();results.push({name,pass:true});}
+function rejects(name,fn,pattern){let caught;try{fn();}catch(e){caught=String(e);}assert(caught&&pattern.test(caught),name+' expected rejection: '+caught);results.push({name,pass:true,rejected_with:caught});}
+rejects('Current selector rejects actual run-v2 origin due to inherited v1 index',()=>baselineValidator(newReuse,manifest,context(),ROOT),/Original execution runtime snapshot missing/);
+pass('Proposed selector replays actual run-v2 observation with all 20 original code identities',()=>proposedValidator(newReuse,manifest,context(),ROOT));
+pass('Proposed selector preserves actual run-v1 observation reuse',()=>proposedValidator(manifest.reused_observations[0],manifest,context(),ROOT));
+const changed=structuredClone(manifest);changed.entries.find(e=>e.id===newReuse.entry_id).expected_by_subquestion[0].expected_points-=1;
+rejects('Changed expectation remains excluded even if answer/model/runtime are unchanged',()=>proposedValidator(newReuse,changed,context(),ROOT),/Reused selected entry differs/);
+const alteredWorker={...newReuse,worker:'c'};
+rejects('Worker change remains rejected',()=>proposedValidator(alteredWorker,manifest,context(),ROOT),/AssertionError/);
+const wrongOrigin={...manifest.reused_observations[0],origin_manifest:newReuse.origin_manifest};
+rejects('Old observation cannot claim a newer intermediate origin manifest',()=>proposedValidator(wrongOrigin,manifest,context(),ROOT),/Reuse origin does not match observation/);
+const start=after.indexOf('        const snapshotPath ='),end=after.indexOf('        const snapshots =',start);
+assert(start>=0&&end>start);
+const selector=Function('origin','reuse','root','path','assert',after.slice(start,end)+'\nreturn snapshotIndex;');
+const exact=manifest.inputs.find(i=>path.resolve(i.file)===path.resolve(path.dirname(mf),'runtime-snapshots.json'));
+const old=manifest.inputs.find(i=>i.file.endsWith('/candidate-v1/runtime-snapshots.json'));
+pass('Unique exact sibling selected despite older suffix match first',()=>assert.deepEqual(selector({inputs:[old,exact]},newReuse,ROOT,path,assert),exact));
+pass('Input ordering does not change selected index',()=>assert.deepEqual(selector({inputs:[exact,old]},newReuse,ROOT,path,assert),exact));
+rejects('No fallback to unrelated snapshot when sibling is absent',()=>selector({inputs:[old]},newReuse,ROOT,path,assert),/Exactly one original sibling/);
+rejects('Duplicate exact sibling identities rejected',()=>selector({inputs:[exact,exact]},newReuse,ROOT,path,assert),/Exactly one original sibling/);
+rejects('Normalized duplicate alias rejected',()=>selector({inputs:[exact,{...exact,file:path.posix.dirname(exact.file)+'/./runtime-snapshots.json'}]},newReuse,ROOT,path,assert),/Exactly one original sibling/);
+rejects('Nested index cannot impersonate sibling',()=>selector({inputs:[{...exact,file:path.posix.dirname(exact.file)+'/nested/runtime-snapshots.json'}]},newReuse,ROOT,path,assert),/Exactly one original sibling/);
+const index=JSON.parse(read(exact.file));
+pass('Exact v3 archive supplies every declared 20 runtime file/hash',()=>{assert.equal(manifest.code_files.length,20);assert.equal(index.length,20);for(const code of manifest.code_files){const rows=index.filter(s=>s.runtime_file===code.file&&s.sha256===code.sha256);assert.equal(rows.length,1);assert.equal(sha256(read(rows[0].file)),code.sha256);}});
+for(const c of contexts)for(const [file,hash]of c.files){assert(!hashes.has(file)||hashes.get(file)===hash);hashes.set(file,hash);}
+for(const [file,hash]of hashes)assert.equal(sha256(fs.readFileSync(file)),hash,'Read evidence changed during isolated validation');
+const report={version:1,method:'Unapplied source snapshots compiled in memory; selector mocks and immutable actual raw replay only.',created_at:new Date().toISOString(),api_calls:0,production_changed:false,before_sha256:meta.before_sha256,proposed_sha256:meta.proposed_sha256,origin_manifest:newReuse.origin_manifest,actual_replayed_observations:[newReuse,manifest.reused_observations[0]],all_original_runtime_files:20,tests:results.length,passed:results.filter(r=>r.pass).length,results,guarded_files:hashes.size,not_a_publication_receipt:true};
+fs.writeFileSync(dir+'/validation.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({tests:report.tests,passed:report.passed,api_calls:0,output:dir+'/validation.json',sha256:sha256(fs.readFileSync(dir+'/validation.json'))},null,2));

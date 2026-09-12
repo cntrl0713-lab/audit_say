@@ -69,6 +69,10 @@ ENV/
 !/docs/reports/cpa-learning-db-applied.json
 # 외부 기준서 원문은 로컬 참고용으로만 둔다
 /docs/reports/question-review-2027/sources/
+/cpa_uploader/analysis/reviews/question-review-2027/sources/*
+# 이전 전부터 추적하던 두 근거 파일은 새 위치에서도 추적한다.
+!/cpa_uploader/analysis/reviews/question-review-2027/sources/fsc-2027-scope.pdf
+!/cpa_uploader/analysis/reviews/question-review-2027/sources/kicpa-list.html
 
 .vercel
 .env*
@@ -83,6 +87,15 @@ ENV/
 # docs/reports/.../sources/ 와 같은 이유이며, 인용은 문항·리뷰 문서에 남는다.
 /cpa_uploader/data/official/
 
+# raw 원본·보존 사본은 로컬 참고용. 수집 목록과 절차만 추적한다.
+/cpa_uploader/raw/materials/
+/cpa_uploader/raw/originals/
+
 # 채점 API 요청·응답 원문 로그는 로컬 기록으로만 둔다.
 # 케이스·판정 기록은 검토 근거로 추적한다.
 /docs/reports/question-review-2027/grading-cases/*-live.jsonl
+/cpa_uploader/analysis/reviews/question-review-2027/grading-cases/*-live.jsonl
+
+# 초안 배치에 함께 내려받은 서드파티 도구(vendored pip 패키지 등). 저작물이 아니라
+# 로컬 추출 작업에 쓰인 도구이며 필요하면 다시 설치할 수 있다.
+/cpa_uploader/drafts/**/tools/python/

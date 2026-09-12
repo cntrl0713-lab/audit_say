@@ -57,6 +57,8 @@ export function publicLearningSet(value: unknown): PublicLearningQuestionSetV3 {
                 || selection.type !== 'all' || selection.n !== null) throw new Error('저장된 물음의 제한 형식이 올바르지 않습니다.');
             return {
                 id: str(sub.id), type: choice(sub.type, ['descriptive', 'enumeration', 'judgment']), prompt: str(sub.prompt),
+                ...(sub.question_style === undefined ? {} : { question_style: choice(sub.question_style, ['case', 'standard'] as const) }),
+                ...(sub.topic_ids === undefined ? {} : { topic_ids: list(sub.topic_ids).map(str) }),
                 ...(sub.logical_subquestion_id == null ? {} : { logical_subquestion_id: str(sub.logical_subquestion_id) }),
                 constraints: { ordered: constraints.ordered, max_entries: maxEntries, overflow_policy: choice(constraints.overflow_policy, ['none', 'ignore_after_limit']) },
                 selection: { type: 'all' as const, n: null },

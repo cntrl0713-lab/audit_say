@@ -1,0 +1,36 @@
+// Read-only reconstruction of the frozen request; no API imports or calls.
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import {prepareSemanticReview,reviewChunkSchema} from '../../../../../../cpa_uploader/questionSemanticReview.ts';
+import {jsonHash} from '../../../../../../cpa_uploader/questionReviewIdentity.ts';
+const dir=path.dirname(fileURLToPath(import.meta.url));
+const control='cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11';
+const read=(f:string)=>JSON.parse(fs.readFileSync(f,'utf8'));
+const hash=(v:string|Buffer)=>createHash('sha256').update(v).digest('hex');
+const sha=(f:string)=>hash(fs.readFileSync(f));
+const ref=(file:string)=>({file,sha256:sha(file)});
+const lockFile=control+'/runtime-v5-bank-v3-after-refill-01/runtime-lock.json';
+const lock=read(lockFile),manifest=read(lock.manifest_file),entry=manifest.entries.find((e:any)=>e.plan_id==='T11-B');
+for(const r of [...lock.code_files,...lock.source_files,{file:lock.manifest_file,sha256:lock.manifest_sha256},lock.comparison_bank,{file:entry.file,sha256:entry.sha256},...entry.plan_files])if(sha(r.file)!==r.sha256)throw Error('Frozen input changed: '+r.file);
+const set=read(entry.file),plan=read(entry.plan_files[0].file).plans.find((p:any)=>p.set_id===set.id),bank=read(lock.comparison_bank.file);
+const semanticFile=path.join(entry.output_directory,'phase-two-v5',entry.set_id,'semantic-v5-bank-v3-complete-units-root-01-1/review/semantic.json');
+const receipt=read(semanticFile).reviews.find((r:any)=>r.set_id===set.id),chunksFile=semanticFile+'.chunks.jsonl';
+const chunks=fs.readFileSync(chunksFile,'utf8').trim().split(/\r?\n/).map(line=>JSON.parse(line));
+const prepared=prepareSemanticReview(set,{bank:[...bank.filter((s:any)=>s.id!==set.id),set],authoringPlan:plan,maxInputChars:500000});
+const units=receipt.units.filter((u:any)=>Object.values(u.checks).some(v=>v!=='pass')).map((u:any)=>{
+ const unit=prepared.units.find(x=>x.id===u.id)!;
+ const input=JSON.stringify({...prepared.requestContext as Record<string,unknown>,target_unit:unit.id,reference_catalog:{fields:unit.fields,sources:prepared.sources.filter(s=>unit.sources.includes(s.source_ref_id)).map(s=>({id:s.source_ref_id,quote:s.declared_metadata.source_quote}))}});
+ const prior=chunks.find((c:any)=>c.unit_id===u.id&&!c.error);
+ if(!prior||hash(input)!==prior.input_hash||jsonHash(reviewChunkSchema(unit))!==prior.schema_hash||prepared.contentHash!==prior.content_hash||prepared.bankHash!==prior.bank_hash)throw Error('Prior request identity mismatch: '+u.id);
+ return {...u,direct_prior_input_hash:prior.input_hash,current_rebuilt_input_hash:hash(input),direct_prior_schema_hash:prior.schema_hash,current_rebuilt_schema_hash:jsonHash(reviewChunkSchema(unit)),prior_model:prior.model,prior_attempt:prior.attempt};
+});
+const excerpts=(prepared.requestContext as any).source_excerpts.filter((e:any)=>['std-550-22','std-550-23'].includes(e.id));
+const source=set.source_refs.find((r:any)=>r.id==='std-550-23'),text=fs.readFileSync(source.file,'utf8'),index=text.indexOf(source.source_quote);
+if(index<0)throw Error('Missing exact quote');
+const q=set.subquestions.find((q:any)=>q.id==='sub3'),peer=bank.find((s:any)=>s.id==='pilot-05-006'),peerQ=peer.subquestions.find((q:any)=>q.id==='sub2');
+const actualStart=text.slice(0,index).split('\n').length,actualEnd=text.slice(0,index+source.source_quote.length-1).split('\n').length;
+const output={recorded_at:new Date().toISOString(),api_calls:0,method:'Frozen source, actual prompts/criteria and current 153-set bank read directly; exact semantic input/schema reconstruction. This is a limited independent investigation, not a full manual review or replacement receipt.',runtime_lock:ref(lockFile),manifest:ref(lock.manifest_file),bank:ref(lock.comparison_bank.file),question:ref(entry.file),plan:ref(entry.plan_files[0].file),semantic:{...ref(semanticFile),verdict:receipt.verdict,units:receipt.units.length,cases:receipt.cases.length},chunks:ref(chunksFile),nonpass_units:units,actual_excerpts:excerpts,source_23:{...source,file_sha256:sha(source.file),actual_quote_start:actualStart,actual_quote_end:actualEnd,declared_spans:q.requirements.map((r:any)=>({id:r.id,source_span:r.source_span}))},comparison:{new_question:{id:q.id,prompt:q.prompt,model_answer:q.model_answer,criteria:q.criteria},same_set_sub2:set.subquestions.find((s:any)=>s.id==='sub2'),existing_peer:{set_id:peer.id,question:peerQ,source_refs:peer.source_refs.filter((s:any)=>peerQ.requirements.some((r:any)=>r.source_ref_id===s.id))},plan_existing_difference:plan.existing_question_difference,findings:[{kind:'locator_confusion',conclusion:'550.23 실제 문단 인용은 L621 이후이고 선언 위치 안에 있다. 595–613은 이웃 550.22 인용의 위치이다. 원 입력은 현재 재구성과 동일하다.'},{kind:'incorrect_peer_identification',conclusion:'현재 pilot-11-006/sub2는 550.15에 따른 확인서·의사록·기타 문서의 검사 목록이다. 사업상 이유와 부정 징후의 평가는 배점하지 않는다.'},{kind:'real_cross_topic_proposition_overlap',relationship:'partial_question_direct_criterion',new:'pilot-11-006/sub3/sub3.crit1',existing:'pilot-05-006/sub2/crit3',conclusion:'기존 240.33(c)의 사업상 논리적 근거/결여에 비춘 부정재무보고·자산횡령 은폐 징후 평가와 새 550.23(a)(i)의 사업상 이유/결여에 비춘 같은 징후 평가는 실제로 겹친다. 특수관계자·계약검사 문맥과 나머지 네 명제의 추가 범위는 명제 자체의 중복을 없애지 않는다.'},{kind:'plan_gap',conclusion:'현행 계획은 pilot-11-001/003과의 차이를 설명하나 pilot-05-006/sub2/crit3의 명시적 복습 재사용을 기록하지 않았다. 이 누락을 모델 오류라고 처리하거나 사후 복습 표지만 붙여 원 fail을 pass로 바꾸지 않는다.'}],proposed_next_decision:'총괄이 이 명제를 특수관계자 거래의 완전한 550.23 적용 안에서 의도적 복습으로 유지할지, 기존 평가를 이미 수행한 후속 발문으로 바꿔 새 배점 범위를 좁힐지 결정한다. 어느 경우든 원 계획·receipt를 보존한 후속 변경 및 해당 의미/채점 재검증이 필요하다. 현재 파일은 바꾸지 않았다.'},additional_exact_unit_diagnostics:{planned:4,executed:0,reason:'추가 2회씩이 승인됐으나 2차 잔액 소진 전역 중단으로 미실행'},full_manual_review:{all_units_cases_sources_compared:false,manual_receipt_created:false},question_plan_source_bank_changed:false};
+fs.writeFileSync(path.join(dir,'evidence.json'),JSON.stringify(output,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({api_calls:0,nonpass:units.map((u:any)=>u.id),source23:{actualStart,actualEnd},excerpt_locators:excerpts.map(({id,source_quote_line_start,source_quote_line_end}:any)=>({id,source_quote_line_start,source_quote_line_end})),exact_original_input_schema:true,real_overlap:'pilot-05-006/sub2/crit3'}));

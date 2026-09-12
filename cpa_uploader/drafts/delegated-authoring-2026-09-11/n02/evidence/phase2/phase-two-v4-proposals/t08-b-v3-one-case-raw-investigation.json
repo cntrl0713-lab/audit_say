@@ -1,0 +1,888 @@
+{
+  "created_at": "2026-09-11T03:46:14.045Z",
+  "set_id": "pilot-08-007",
+  "inputs_file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/phase-two-v5-bank-v3/pilot-08-007/author-qa-run1/inputs.json",
+  "inputs_sha256": "9b385e2c3c709dce0989b311948b9340a38a12d6882e5c6a8e269dc9fbb36ad3",
+  "summary_file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/phase-two-v5-bank-v3/pilot-08-007/author-qa-run1/summary.json",
+  "summary_sha256": "55852a569ccc34b53066f8cec527e66113f4876b116f6a1e5762312fb74e29cb",
+  "fixed_input_hashes": {
+    "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v3/pilot-08-007.json": "7779f552dcc7fcc30a0b34de13045a8d383df386a5c9fe21f41df37bc33dc1a3",
+    "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v3/qa-cases-t08-b.json": "0f8fceb7b9168b127bbcc1b8fb43a9316aabc2fcc4b82422402600e5b5556831",
+    "lib/questionV3Grading.ts": "6a3033f9a5a6e408ebb8251787a5daeef3b478e287b5ae5c0aecc94d967a2dd7",
+    "lib/questionV3Evidence.ts": "9f7428a97fcd5f1f8e8e14627abbb8845fe5a1e7488631ccd7107b0d75cfef7b",
+    "lib/questionV3.ts": "546a05ed630a92c1da859dbfcb89caee629028bfc4216fc5794a2e395cd4acf4",
+    "lib/questionV3Answer.ts": "01dcada58a9c372dd7778056789e1a3327bb5fc6ce0521682a2f62bb6d830cbf",
+    "lib/ai/openaiStructured.ts": "2e392cc74045e88148edca2959172fece77e5c431cb7f8a56dd29e56640632b1",
+    "cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/run-author-qa.ts": "b1910b213fe52f7842d6f2df50c3d2c93d8e78cb2e5bae193d70a329d6087cf2",
+    "cpa_uploader/data/official/delegated-n02-kga315-2025.txt": "853614e9dae546da8b9c7a730756327463399c62794e6354b49f5a45eb6d8dfc",
+    "cpa_uploader/data/official/kga500-2025-review08.txt": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b"
+  },
+  "model": "gpt-5.6-luna",
+  "completed_unique_cases": 55,
+  "grading_executions": 57,
+  "actual_HTTP_requests": "not inferred from grading executions",
+  "mismatched_unique_cases": 1,
+  "all_mismatches_at_least_three": true,
+  "all_original_evidence_preserved": true,
+  "API_calls_by_this_analysis": 0,
+  "shared_context": {
+    "facts": [
+      {
+        "id": "fact1",
+        "text": "2026년 1월 1일에 개시하는 보고기간의 재무제표를 한국 회계감사기준에 따라 감사하는 상황이다.",
+        "scoreable": false
+      },
+      {
+        "id": "fact2",
+        "text": "12월 결산 제조기업의 감사팀은 매출원장에 기록된 거래에서만 표본을 뽑아 출고·인도 증빙과 대조했다. 창고의 출고 자료와 운송인의 인도 자료에는 아직 매출원장에 기록되지 않은 거래가 있을 가능성이 있다. 이 자료들은 매출원장과 별도로 관리되며 감사팀이 관련성과 신뢰성을 확인하여 이용할 수 있다.",
+        "scoreable": false
+      },
+      {
+        "id": "fact3",
+        "text": "종전 국내 거래는 출고 후 짧은 기간 안에 고객에게 인도되었지만, 당기 말 새로 시작한 국외 거래는 운송과 인수 확인에 더 오랜 시간이 걸린다. 이 문제에서는 국내·국외 거래 모두 계약상 고객이 물품을 인수하여 통제가 이전되는 때가 매출의 인식 시점이며 다른 수익인식 조건은 충족된다고 가정한다. 출고일이 인수일과 같다고 가정하지 않는다.",
+        "scoreable": false
+      },
+      {
+        "id": "fact4",
+        "text": "감사팀은 국내 거래에서 사용하던 결산일 전후 7일의 검사 범위를 국외 거래에도 변경 없이 적용하려 한다. 특정 추가 일수나 손익 금액의 계산은 요구하지 않는다.",
+        "scoreable": false
+      }
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "sub3-crit7-paraphrase",
+      "subquestion_id": "sub3",
+      "manual_review_status": "needs_reasoned_adjudication",
+      "prompt": "국내 거래용 결산일 전후 7일의 검사 범위를 국외 거래에도 그대로 적용하는 계획을 평가하고, 계약조건과 운송·인수기간의 변화가 왜 고려되어야 하는지 및 기간귀속 절차의 대상기간·증빙을 어떻게 보완할지 설명하시오.",
+      "answer": "고객 인수까지 오래 걸리면 출고와 인식이 다른 기간에 걸칠 수 있어 짧은 종전 구간으로 관련 거래를 놓칠 수 있다.",
+      "expected": {
+        "id": "sub3-crit7-paraphrase",
+        "subquestion_id": "sub3",
+        "kind": "paraphrase",
+        "answer": "고객 인수까지 오래 걸리면 출고와 인식이 다른 기간에 걸칠 수 있어 짧은 종전 구간으로 관련 거래를 놓칠 수 있다.",
+        "expected_points": 2,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit6",
+            "verdict": "met",
+            "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다."
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "met",
+            "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "not_met",
+            "reason": "해당 목적의 기간 조정과 인식시점·기록 연결을 충족하는 구체 의미가 충분히 제시되지 않았다. 출고·인수 자료는 목적을 충족하는 예시이고, 주어진 인수=인식 전제나 특정 추가일수 불필요를 재진술할 필요는 없다."
+          }
+        ],
+        "note": "target=crit7; 한 명제의 동의 표현을 독립 입력한다. 관련 판단을 함께 함축하면 그 명제도 득점한다. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다."
+      },
+      "criteria": [
+        {
+          "id": "crit6",
+          "requirement_id": "req6",
+          "claim": "국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다.",
+          "critical_facts": [
+            {
+              "id": "cf6",
+              "type": "conclusion",
+              "expected": "국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-1518221249f4db39b5",
+            "src-fd7cf84445e2d33969"
+          ]
+        },
+        {
+          "id": "crit7",
+          "requirement_id": "req7",
+          "claim": "계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다.",
+          "critical_facts": [
+            {
+              "id": "cf7",
+              "type": "conclusion",
+              "expected": "계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-fd7cf84445e2d33969",
+            "src-09fd22479bc66ee351"
+          ]
+        },
+        {
+          "id": "crit8",
+          "requirement_id": "req8",
+          "claim": "실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 대상기간을 확장·조정하고, 계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다.",
+          "critical_facts": [
+            {
+              "id": "cf8",
+              "type": "conclusion",
+              "expected": "실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 대상기간을 확장·조정하고, 계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다."
+            },
+            {
+              "id": "cf8-scope",
+              "type": "condition",
+              "expected": "허용범위(scope): 출고·인수 자료는 계약상 인식시점과 기록된 기간을 확인하는 목적을 충족할 수 있는 증빙의 예시이며, 두 자료의 명칭을 모두 별도로 열거해야 하는 공동 필수목록이 아니다. 고객이 인수하여 통제가 이전되는 때가 매출 인식시점이라는 지문의 전제를 적용하고, 이를 답안에 재진술하도록 요구하지 않는다. 특정 추가 일수를 제시하거나 그러한 일수가 불필요하다는 문구를 다시 쓰도록 요구하지 않는다. 이 범위 설명 자체는 학생에게 추가로 요구하는 답안 명제가 아니다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-1518221249f4db39b5",
+            "src-fd7cf84445e2d33969"
+          ]
+        }
+      ],
+      "source_refs": [
+        {
+          "id": "src-09fd22479bc66ee351",
+          "file": "cpa_uploader/data/official/delegated-n02-kga315-2025.txt",
+          "title": "KGA 315: 중요왜곡표시위험의 식별과 평가",
+          "page": "KGA 315",
+          "source_quote": "A190. 감사인이 여러 가지 발생가능한 잠재적인 왜곡표시의 유형들을 고려하기 위해 이용하는 경\r\n영진주장은 다음과 같이 구분될 수 있다. \r\n(a) \r\n감사대상기간의 거래 및 사건의 유형과 관련 공시에 대한 경영진주장 \r\n(i) \r\n발생사실 – 기록되거나 공시된 거래와 사건은 발생되었고 기업에 귀속됨 \r\n(ii) \r\n완전성 – 기록되어야 하는 모든 거래와 사건은 기록되었으며 재무제표에 포함\r\n되어야 하는 모든 관련 공시는 재무제표에 포함되었음 \r\n(iii) \r\n정확성 – 기록된 거래와 사건에 관련된 금액 및 기타 데이터는 적합하게 기록\r\n되었고 관련 공시는 적합하게 측정되고 기술되었음 \r\n(iv) \r\n기간귀속 – 거래와 사건은 해당 보고기간에 기록되었음 \r\n(v) \r\n분류 – 거래와 사건은 적절한 계정으로 기록되었음  \r\n(vi) \r\n표시 – 거래와 사건은 적합하게 합해지거나 세분화되고 명확하게 기술되었으\r\n며 관련 공시는 해당 재무보고체계의 요구사항의 측면에서 관련성이 있으며 \r\n이해가능함  \r\n(b) \r\n보고기간말 계정잔액 및 관련 공시에 대한 경영진주장 \r\n(i) \r\n실재성 – 자산, 부채 및 주주지분은 실재함 \r\n(ii) \r\n권리와 의무 – 기업은 자산에 대한 권리를 보유하거나 통제하고 있으며 부채\r\n는 기업의 의무임 \r\n(iii) \r\n완전성 – 기록되어야 하는 자산, 부채 및 주주지분은 모두 기록되었으며 재무\r\n제표에 포함되어야 하는 모든 관련 공시는 재무제표에 포함되었음 \r\n(iv) \r\n정확성, 평가 및 배분 – 자산, 부채 및 주주지분은 적합한 금액으로 재무제표\r\n에 계상되어 있고 평가나 배분의 결과는 적합하게 기록되어 있으며, 관련 공\r\n시는 적합하게 측정되고 기술되어 있음 \r\n(v) \r\n분류 – 자산, 부채 및 주주지분은 적절한 계정으로 기록되었음  \r\n(vi) \r\n표시 – 자산, 부채 및 주주지분은 적합하게 합산되거나 세분화되고 명확하게 \r\n기술되었으며 관련 공시는 해당 재무보고체계의 요구사항의 측면에서 관련성\r\n이 있으며 이해가능함",
+          "content_hash": "3cc0fe371b62d1cee090621f51d25b7524efb302878f7707d1500a8a88aa4ed1",
+          "role": "standard",
+          "source_span": "L425-L464; KGA 315 문단 A190 원문 페이지 252; L425-L464"
+        },
+        {
+          "id": "src-fd7cf84445e2d33969",
+          "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+          "title": "KGA 500 감사증거",
+          "page": "KGA 500",
+          "source_quote": "A34. 실증절차는 경영진주장 수준의 중요한 왜곡표시를 발견하기 위하여 설계되며, 세부테스트\r\n와 실증적인 분석적절차가 포함된다. 실증절차의 설계에는 해당 테스트의 목적과 관련성이 \r\n있고 관련경영진주장의 왜곡표시를 구성하는 조건을 식별하는 것이 포함된다.  \r\n신뢰성",
+          "content_hash": "f44d3ff63cb05608ad6bd2e0ce7f01aea8d9ba8442d4da13f4b0d5b9267d9ead",
+          "role": "standard",
+          "source_span": "L340-L343; KGA 500 문단 A34 원문 페이지 378; L340-L343"
+        },
+        {
+          "id": "src-1518221249f4db39b5",
+          "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+          "title": "KGA 500 감사증거",
+          "page": "KGA 500",
+          "source_quote": "6. 감사인은 충분하고 적합한 감사증거를 입수하기 위하여 상황에 적합한 감사절차를 설계하\r\n고 수행하여야 한다. (문단 A5-A29 참조) \r\n감사증거로 사용되는 정보",
+          "content_hash": "55ffc81ad5a561a8be366e8ce0b08500ff7167d434a679fcdff28678a700fa9e",
+          "role": "standard",
+          "source_span": "L58-L60; KGA 500 문단 6 원문 페이지 370; L58-L60"
+        }
+      ],
+      "scores": [
+        0,
+        0,
+        1
+      ],
+      "request_hashes": [
+        "853e91dcb5fa994bb4ce3d398ebbe24f2e57b4301cb4a7bb342e66ffb4bd66ca"
+      ],
+      "schema_hashes": [
+        "0a09bf4e01e188c0ec3f3220bbf71e3c8945e5231b85a8c809aabe01507eeef9"
+      ],
+      "runs": [
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/phase-two-v5-bank-v3/pilot-08-007/author-qa-run1/case-0048-attempt-1.json",
+          "sha256": "7c936c4d8794dfd3fa9b3ceec9669073e4cd8f953f022e1029a0474d765f9a41",
+          "attempt": 1,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T03:43:58.086Z",
+          "finished_at": "2026-09-11T03:44:08.700Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "7일 범위를 그대로 적용할 수 없고 재검토해야 한다는 결론이 없다."
+                  },
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "기간 차이와 누락 가능성은 설명했지만 변경된 조건과 기간을 검사 범위 결정에 반영해야 한다는 요구가 없다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "대상기간을 조정하거나 관련 증빙을 매출기록과 대조하는 절차가 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-08-007",
+            "score": 0,
+            "max_points": 8,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "기록된 매출에서 출고·인도 증빙으로 대조하는 절차가 주로 다루는 거래유형의 경영진주장과 검증 방향을 설명하시오. 또한 이 모집단만으로 미기록 거래에 관한 어떤 주장을 충분히 검증할 수 없는지와 그 이유를 설명하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "기록된 매출에서 증빙으로 대조하는 방향은 그 매출거래가 실제 발생했는지라는 발생사실 주장과 과대계상 여부를 검증하는 데 관련된다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "미기록 매출은 기록된 매출 모집단에 포함되지 않아 선택될 수 없으므로, 그 모집단만으로는 매출의 완전성을 충분히 검증할 수 없다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "기록된 매출에서 증빙으로 대조하는 방향은 그 매출거래가 실제 발생했는지라는 발생사실 주장과 과대계상 여부를 검증하는 데 관련된다.",
+                  "미기록 매출은 기록된 매출 모집단에 포함되지 않아 선택될 수 없으므로, 그 모집단만으로는 매출의 완전성을 충분히 검증할 수 없다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "미기록 매출의 완전성을 보완하려면 어떤 모집단에서 출발하여 어디로 추적해야 하는지 제시하시오. 선정한 기초자료를 감사증거로 이용할 수 있는 전제도 함께 설명하시오. 이어 기간귀속을 검증하기 위해 서로 대조해야 할 자료와 시점을 설명하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 3,
+                "criteria": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있고 관련성과 신뢰성이 확인된 기초자료 모집단에서 출발한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있고 관련성과 신뢰성이 확인된 기초자료 모집단에서 출발한다.",
+                  "그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다.",
+                  "계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "국내 거래용 결산일 전후 7일의 검사 범위를 국외 거래에도 그대로 적용하는 계획을 평가하고, 계약조건과 운송·인수기간의 변화가 왜 고려되어야 하는지 및 기간귀속 절차의 대상기간·증빙을 어떻게 보완할지 설명하시오.",
+                "user_answer": "고객 인수까지 오래 걸리면 출고와 인식이 다른 기간에 걸칠 수 있어 짧은 종전 구간으로 관련 거래를 놓칠 수 있다.",
+                "score": 0,
+                "max_points": 3,
+                "criteria": [
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "7일 범위를 그대로 적용할 수 없고 재검토해야 한다는 결론이 없다.",
+                    "claim": "국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "기간 차이와 누락 가능성은 설명했지만 변경된 조건과 기간을 검사 범위 결정에 반영해야 한다는 요구가 없다.",
+                    "claim": "계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "대상기간을 조정하거나 관련 증빙을 매출기록과 대조하는 절차가 없다.",
+                    "claim": "실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 대상기간을 확장·조정하고, 계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다.",
+                  "계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다.",
+                  "실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 대상기간을 확장·조정하고, 계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "met",
+              "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        },
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/phase-two-v5-bank-v3/pilot-08-007/author-qa-run1/case-0048-attempt-2.json",
+          "sha256": "fce1eaaf3f2bc99c6e9b40339a7fa57fd9fa475f7fb82be25aea88f1e854b08d",
+          "attempt": 2,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T03:44:08.705Z",
+          "finished_at": "2026-09-11T03:44:16.163Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "종전 검사 범위를 그대로 적용할 수 없다는 결론과 범위 재검토가 명시되지 않았다."
+                  },
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "기간 차이와 누락 위험은 언급했지만 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다는 명제가 완전하게 제시되지 않았다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "대상기간을 확장·조정하거나 관련 증빙을 매출기록 및 회계기간과 대조하는 절차가 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-08-007",
+            "score": 0,
+            "max_points": 8,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "기록된 매출에서 출고·인도 증빙으로 대조하는 절차가 주로 다루는 거래유형의 경영진주장과 검증 방향을 설명하시오. 또한 이 모집단만으로 미기록 거래에 관한 어떤 주장을 충분히 검증할 수 없는지와 그 이유를 설명하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "기록된 매출에서 증빙으로 대조하는 방향은 그 매출거래가 실제 발생했는지라는 발생사실 주장과 과대계상 여부를 검증하는 데 관련된다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "미기록 매출은 기록된 매출 모집단에 포함되지 않아 선택될 수 없으므로, 그 모집단만으로는 매출의 완전성을 충분히 검증할 수 없다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "기록된 매출에서 증빙으로 대조하는 방향은 그 매출거래가 실제 발생했는지라는 발생사실 주장과 과대계상 여부를 검증하는 데 관련된다.",
+                  "미기록 매출은 기록된 매출 모집단에 포함되지 않아 선택될 수 없으므로, 그 모집단만으로는 매출의 완전성을 충분히 검증할 수 없다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "미기록 매출의 완전성을 보완하려면 어떤 모집단에서 출발하여 어디로 추적해야 하는지 제시하시오. 선정한 기초자료를 감사증거로 이용할 수 있는 전제도 함께 설명하시오. 이어 기간귀속을 검증하기 위해 서로 대조해야 할 자료와 시점을 설명하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 3,
+                "criteria": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있고 관련성과 신뢰성이 확인된 기초자료 모집단에서 출발한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있고 관련성과 신뢰성이 확인된 기초자료 모집단에서 출발한다.",
+                  "그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다.",
+                  "계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "국내 거래용 결산일 전후 7일의 검사 범위를 국외 거래에도 그대로 적용하는 계획을 평가하고, 계약조건과 운송·인수기간의 변화가 왜 고려되어야 하는지 및 기간귀속 절차의 대상기간·증빙을 어떻게 보완할지 설명하시오.",
+                "user_answer": "고객 인수까지 오래 걸리면 출고와 인식이 다른 기간에 걸칠 수 있어 짧은 종전 구간으로 관련 거래를 놓칠 수 있다.",
+                "score": 0,
+                "max_points": 3,
+                "criteria": [
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "종전 검사 범위를 그대로 적용할 수 없다는 결론과 범위 재검토가 명시되지 않았다.",
+                    "claim": "국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "기간 차이와 누락 위험은 언급했지만 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다는 명제가 완전하게 제시되지 않았다.",
+                    "claim": "계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "대상기간을 확장·조정하거나 관련 증빙을 매출기록 및 회계기간과 대조하는 절차가 없다.",
+                    "claim": "실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 대상기간을 확장·조정하고, 계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다.",
+                  "계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다.",
+                  "실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 대상기간을 확장·조정하고, 계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "met",
+              "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        },
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/phase-two-v5-bank-v3/pilot-08-007/author-qa-run1/case-0048-attempt-3.json",
+          "sha256": "bea8dab61aa46a09ac9b21b2505d1d7514d949669315de6f4e2266a1b1fde3df",
+          "attempt": 3,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T03:44:16.168Z",
+          "finished_at": "2026-09-11T03:44:24.433Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "met",
+                    "quote": "고객 인수까지 오래 걸리면 출고와 인식이 다른 기간에 걸칠 수 있어 짧은 종전 구간으로 관련 거래를 놓칠 수 있다.",
+                    "reason": "종전의 짧은 검사 범위로 관련 거래를 놓칠 수 있음을 제시하여 그대로 적용할 수 없다는 결론을 함축한다."
+                  },
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "운송·인수기간의 변화를 검사 범위 결정에 반영해야 한다는 조치가 없다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "대상기간을 확장·조정하거나 관련 증빙을 매출기록 및 회계기간과 대조하는 절차가 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-08-007",
+            "score": 1,
+            "max_points": 8,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "기록된 매출에서 출고·인도 증빙으로 대조하는 절차가 주로 다루는 거래유형의 경영진주장과 검증 방향을 설명하시오. 또한 이 모집단만으로 미기록 거래에 관한 어떤 주장을 충분히 검증할 수 없는지와 그 이유를 설명하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "기록된 매출에서 증빙으로 대조하는 방향은 그 매출거래가 실제 발생했는지라는 발생사실 주장과 과대계상 여부를 검증하는 데 관련된다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "미기록 매출은 기록된 매출 모집단에 포함되지 않아 선택될 수 없으므로, 그 모집단만으로는 매출의 완전성을 충분히 검증할 수 없다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "기록된 매출에서 증빙으로 대조하는 방향은 그 매출거래가 실제 발생했는지라는 발생사실 주장과 과대계상 여부를 검증하는 데 관련된다.",
+                  "미기록 매출은 기록된 매출 모집단에 포함되지 않아 선택될 수 없으므로, 그 모집단만으로는 매출의 완전성을 충분히 검증할 수 없다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "미기록 매출의 완전성을 보완하려면 어떤 모집단에서 출발하여 어디로 추적해야 하는지 제시하시오. 선정한 기초자료를 감사증거로 이용할 수 있는 전제도 함께 설명하시오. 이어 기간귀속을 검증하기 위해 서로 대조해야 할 자료와 시점을 설명하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 3,
+                "criteria": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있고 관련성과 신뢰성이 확인된 기초자료 모집단에서 출발한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "매출원장과 별도로 관리되는 출고·운송·고객 인수 자료 등 기록되어야 할 거래를 포착할 수 있고 관련성과 신뢰성이 확인된 기초자료 모집단에서 출발한다.",
+                  "그 기초자료의 거래가 빠짐없이 매출원장 등 회계기록에 반영되었는지 기초자료에서 기록으로 추적한다.",
+                  "계약상 고객 인수·통제 이전 시점과 이를 뒷받침하는 인수 증빙의 날짜를 매출이 기록된 회계기간과 대조하여 적절한 기간에 인식되었는지 확인한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "국내 거래용 결산일 전후 7일의 검사 범위를 국외 거래에도 그대로 적용하는 계획을 평가하고, 계약조건과 운송·인수기간의 변화가 왜 고려되어야 하는지 및 기간귀속 절차의 대상기간·증빙을 어떻게 보완할지 설명하시오.",
+                "user_answer": "고객 인수까지 오래 걸리면 출고와 인식이 다른 기간에 걸칠 수 있어 짧은 종전 구간으로 관련 거래를 놓칠 수 있다.",
+                "score": 1,
+                "max_points": 3,
+                "criteria": [
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "met",
+                    "quote": "고객 인수까지 오래 걸리면 출고와 인식이 다른 기간에 걸칠 수 있어 짧은 종전 구간으로 관련 거래를 놓칠 수 있다.",
+                    "reason": "종전의 짧은 검사 범위로 관련 거래를 놓칠 수 있음을 제시하여 그대로 적용할 수 없다는 결론을 함축한다.",
+                    "claim": "국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 1
+                  },
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "운송·인수기간의 변화를 검사 범위 결정에 반영해야 한다는 조치가 없다.",
+                    "claim": "계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "대상기간을 확장·조정하거나 관련 증빙을 매출기록 및 회계기간과 대조하는 절차가 없다.",
+                    "claim": "실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 대상기간을 확장·조정하고, 계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다.",
+                  "계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다.",
+                  "실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 대상기간을 확장·조정하고, 계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit7",
+              "verdict": "met",
+              "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        }
+      ]
+    }
+  ]
+}

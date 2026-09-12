@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-04-004--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-004--sub1--standard",
+  "source_set_id": "pilot-04-004",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "23dc14b5f0110e53723eacc29fe2ca1a815707ffc1bc84f2292491a883e6baa5",
+  "answers": {
+    "sub1": "작성시기는 중요하지 않으므로 언제까지나 작성을 미뤄도 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 요구를 명시적으로 부정함."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "93cf29f3cf42d906aab517defb8c44c9707d94dc483768da16382b942d4e06d9",
+  "schema_hash": "2d242d5946009c5201925c82ca350271bad8de0a08a6d9e10102364753515034",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "작성시기는 중요하지 않으므로 언제까지나 작성을 미뤄도 된다.",
+            "reason": "감사문서 작성 시기가 중요하지 않으며 언제까지나 미뤄도 된다고 명시하여 적시 작성 요구를 반대로 서술함."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "감사문서 작성 시기가 중요하지 않으며 언제까지나 미뤄도 된다고 명시하여 적시 작성 요구를 반대로 서술함."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-004",
+    "score": 0,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사문서는 언제 작성해야 하는지 감사기준서의 요구사항을 서술하시오.",
+        "user_answer": "작성시기는 중요하지 않으므로 언제까지나 작성을 미뤄도 된다.",
+        "score": 0,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "작성시기는 중요하지 않으므로 언제까지나 작성을 미뤄도 된다.",
+            "reason": "감사문서 작성 시기가 중요하지 않으며 언제까지나 미뤄도 된다고 명시하여 적시 작성 요구를 반대로 서술함.",
+            "claim": "적시에 감사문서를 작성해야 한다는 요구를 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사인은 적시에 감사문서를 작성해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0adc541a27d9856c016aa4c876b44887d0b89607f01fd43347",
+        "request_id": "req_25c72d7eb0324a92a1a5c10d6a7192a4",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2135,
+          "input_tokens_details": {
+            "cache_write_tokens": 2132,
+            "cached_tokens": 0
+          },
+          "output_tokens": 166,
+          "output_tokens_details": {
+            "reasoning_tokens": 52
+          },
+          "total_tokens": 2301
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0007327999999999999,
+        "min_usd": 0.0007327999999999999,
+        "max_usd": 0.0007327999999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-04-004--sub1--standard--wrong/input.json",
+      "sha256": "b04134d17a719d3bdef9794ec20f68686bfcdfc5d61fc65b6692fe8394816257"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-04-004--sub1--standard--wrong/transport.jsonl",
+      "sha256": "7bf476f67d9ace3f794f0e3c1b824919c63b40612199d768533cf2c793f318c8"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-04-004--sub1--standard--wrong/traces.jsonl",
+      "sha256": "3d63a197843742d9eaa8ba6dd78a83e072db408f54e13d3612976a02234bc85e"
+    }
+  }
+}

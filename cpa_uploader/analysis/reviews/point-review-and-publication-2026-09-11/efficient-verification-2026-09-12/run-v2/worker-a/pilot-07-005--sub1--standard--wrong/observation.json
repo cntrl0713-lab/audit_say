@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-07-005--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-07-005--sub1--standard",
+  "source_set_id": "pilot-07-005",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "79eb5d835939df94cf9885d3cc5595d40800a9a454b265a67b861e1cb980aaec",
+  "answers": {
+    "sub1": "경영진주장 수준의 세부테스트만을 의미한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "답안이 '전반적인 대응.'의 의미를 명시적으로 부정한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "28f011a94dab3594a59daef5b89eef49bda744692f57d1f5a4f71914012249cb",
+  "schema_hash": "2d242d5946009c5201925c82ca350271bad8de0a08a6d9e10102364753515034",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "경영진주장 수준의 세부테스트만을 의미한다.",
+            "reason": "전반적인 대응이 아니라 경영진주장 수준의 세부테스트만을 의미한다고 명시하였다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "전반적인 대응이 아니라 경영진주장 수준의 세부테스트만을 의미한다고 명시하였다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-07-005",
+    "score": 0,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "재무제표 수준의 평가된 중요왜곡표시위험에 대하여 감사인이 무엇을 설계하고 실행해야 하는지 설명하시오.",
+        "user_answer": "경영진주장 수준의 세부테스트만을 의미한다.",
+        "score": 0,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "경영진주장 수준의 세부테스트만을 의미한다.",
+            "reason": "전반적인 대응이 아니라 경영진주장 수준의 세부테스트만을 의미한다고 명시하였다.",
+            "claim": "전반적인 대응. 발문에 설계·실행이 주어졌으므로 전반적인 대응이라는 대상 제시만으로 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사인은 재무제표 수준의 평가된 중요왜곡표시위험에 대처하기 위한 전반적인 대응을 설계하고 실행해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_098752321d8ab4e2016aa4cb8b5e6087d0ae375bd15d88c937",
+        "request_id": "req_1f538cbfb9b6435693311479b826bd1e",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2178,
+          "input_tokens_details": {
+            "cache_write_tokens": 2175,
+            "cached_tokens": 0
+          },
+          "output_tokens": 345,
+          "output_tokens_details": {
+            "reasoning_tokens": 240
+          },
+          "total_tokens": 2523
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009583500000000001,
+        "min_usd": 0.0009583500000000001,
+        "max_usd": 0.0009583500000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-07-005--sub1--standard--wrong/input.json",
+      "sha256": "760067a0435405a6564761c68d25d58a3b192a4c5b29648d4307e5c9c4b56c8c"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-07-005--sub1--standard--wrong/transport.jsonl",
+      "sha256": "2e86dfd73f669fa407b7e3078fbed4a8730a072e76d1e9a98708bfd56775775e"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-07-005--sub1--standard--wrong/traces.jsonl",
+      "sha256": "8d9392ab39b7c47fbc4e8f955affb19c023e0036b500a3a732ce5c16c3bd3cf5"
+    }
+  }
+}

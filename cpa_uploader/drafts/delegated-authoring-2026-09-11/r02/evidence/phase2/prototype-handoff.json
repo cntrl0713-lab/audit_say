@@ -1,0 +1,33 @@
+{
+  "completed_at": "2026-09-11T01:58:00.768016+00:00",
+  "status": "prototype_ready_for_parent_adoption_no_API_executed",
+  "script": {
+    "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\r02\\evidence\\phase2\\resume-semantic.ts",
+    "sha256": "f99f756d357201aa249ca115b7e1489c2adc0b6656c251acffd2c200d417556a"
+  },
+  "local_tests": {
+    "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\r02\\evidence\\phase2\\prototype-local-validation-1789091786242.json",
+    "sha256": "090593a7a6cfd7598da6e0b3da4c730681a5f9cad16b9de48b0193da5abf5cf3",
+    "passed": 8,
+    "actual_api_requests": 0
+  },
+  "checks": [
+    "npx tsc --noEmit --incremental false: pass after observer-boundary patch",
+    "npx eslint resume-semantic.ts resume-semantic.local-check.ts: pass"
+  ],
+  "historical_cache_validation": {
+    "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\r02\\evidence\\phase2\\prototype-cache-check-r02-1\\cache-audit.json",
+    "reused_real_model_units_grounded": 9,
+    "missing_units": 5,
+    "new_API": 0,
+    "usable_after_policy_change": false
+  },
+  "adoption_notes": [
+    "Adjust relative imports when copying to common review folder.",
+    "Use explicit --runtime-lock matching current code; original v1/v2 files now correctly refuse external common-code changes.",
+    "New actual API responses only in semantic.json.chunks.jsonl; reused evidence in separate reused-actual-model-evidence.jsonl. To resume again, pass both original logs and newer actual-response chunks; never the reuse ledger itself.",
+    "Current newly changed semantic validation requires execution.transport model. Parent must add transport:model in the adopted version before producing new receipts; prototype was frozen as requested after its prior local tests.",
+    "Cache-only is default and never constructs OpenAI client. --execute was not run in this prototype."
+  ],
+  "scope": "Only r02 evidence files modified; common files, fixed inputs, prior receipts untouched."
+}

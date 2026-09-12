@@ -1,0 +1,38 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+const base='cpa_uploader/drafts/delegated-authoring-2026-09-11/n02';
+const prior=base+'/phase-two-followup/t08-b-v2',out=base+'/phase-two-followup/t08-b-v3';
+const read=f=>JSON.parse(fs.readFileSync(f,'utf8')),sha=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const write=(name,v)=>fs.writeFileSync(path.join(out,name),JSON.stringify(v,null,2)+'\n',{flag:'wx'});
+if(fs.existsSync(out))throw Error('Fresh followup directory required');fs.mkdirSync(out+'/prior-inputs',{recursive:true});
+const names=['pilot-08-007.json','pilot-08-007.authoring-plan.json','qa-cases-t08-b.json'];
+for(const n of names)fs.copyFileSync(prior+'/'+n,out+'/prior-inputs/'+n,fs.constants.COPYFILE_EXCL);
+const array=read(prior+'/'+names[0]),set=array[0],plan=read(prior+'/'+names[1]),qa=read(prior+'/'+names[2]);
+const q=set.subquestions.find(q=>q.id==='sub3'),crit=q.criteria.find(c=>c.id==='crit8'),oldClaim=crit.claim;
+const core='실제 운송·인수기간과 계약상 인식시점에 맞춰 결산일 전후 대상기간을 확장·조정하고, 계약상 인식시점을 확인할 수 있는 관련 증빙을 매출기록과 연결하여 해당 시점과 기록된 회계기간을 대조한다.';
+const scope='허용범위(scope): 출고·인수 자료는 계약상 인식시점과 기록된 기간을 확인하는 목적을 충족할 수 있는 증빙의 예시이며, 두 자료의 명칭을 모두 별도로 열거해야 하는 공동 필수목록이 아니다. 고객이 인수하여 통제가 이전되는 때가 매출 인식시점이라는 지문의 전제를 적용하고, 이를 답안에 재진술하도록 요구하지 않는다. 특정 추가 일수를 제시하거나 그러한 일수가 불필요하다는 문구를 다시 쓰도록 요구하지 않는다. 이 범위 설명 자체는 학생에게 추가로 요구하는 답안 명제가 아니다.';
+const changes=[{path:'/0/subquestions/2/model_answer/2',before:q.model_answer[2],after:core},{path:'/0/subquestions/2/criteria/2/claim',before:oldClaim,after:core},{path:'/0/subquestions/2/criteria/2/critical_facts/0/expected',before:crit.critical_facts[0].expected,after:core},{path:'/0/subquestions/2/criteria/2/critical_facts/1',before:null,after:{id:'cf8-scope',type:'condition',expected:scope}}];
+q.model_answer[2]=core;crit.claim=core;crit.critical_facts[0].expected=core;crit.critical_facts.push({id:'cf8-scope',type:'condition',expected:scope});
+const oldRequired=plan.scope.required_answers.find(x=>x.startsWith('sub3/crit8:'));
+plan.scope.required_answers=plan.scope.required_answers.map(x=>x.startsWith('sub3/crit8:')?'sub3/crit8: '+core:x);
+plan.scope.exceptions.push(scope);
+const qaChanges=[];
+for(const c of qa.cases){
+ if(c.id==='sub3-crit8-opposite'){const v=c.expected_verdicts.find(v=>v.criterion_id==='crit7');qaChanges.push({case_id:c.id,criterion_id:'crit7',before:{...v},after:{...v,verdict:'contradicted',reason:'표본수만 늘리고 대상기간과 인수증빙을 종전대로 고정하면 된다는 답은 변경된 운송·인수기간을 검사 범위에 반영해야 한다는 crit7도 배제한다. 총괄 승인에 따라 contradicted로 정정하며 총점0은 유지한다.'}});v.verdict='contradicted';v.reason=qaChanges.at(-1).after.reason;}
+ const v=c.expected_verdicts.find(v=>v.criterion_id==='crit8');if(v){const before=v.reason;v.reason=(v.verdict==='met'?'대상기간을 실제 운송·인수기간에 맞추고 계약상 인식시점을 확인할 관련 증빙과 기록된 회계기간을 연결하는 목적을 충족한다.':v.verdict==='contradicted'?'해당 목적의 기간 조정 또는 인식시점·기록 연결을 명시적으로 배제한다.':'해당 목적의 기간 조정과 인식시점·기록 연결을 충족하는 구체 의미가 충분히 제시되지 않았다.')+' 출고·인수 자료는 목적을 충족하는 예시이고, 주어진 인수=인식 전제나 특정 추가일수 불필요를 재진술할 필요는 없다.';qaChanges.push({case_id:c.id,criterion_id:'crit8',field:'reason_only',before,after:v.reason,answer_verdict_points_unchanged:true});}
+}
+write(names[0],array);write(names[1],plan);qa.draft_sha256=sha(out+'/'+names[0]);qa.followup_scope_note=scope;write(names[2],qa);
+const make=(id,answer,verdicts,reason)=>({id,subquestion_id:'sub3',kind:'scope_regression',answer,expected_points:verdicts.reduce((n,v,i)=>n+q.criteria[i].scores[v],0),expected_verdicts:q.criteria.map((c,i)=>({criterion_id:c.id,verdict:verdicts[i],reason})),note:'기존55 필수사례와 별도인 v3 후속 회귀다. 기존 답안과 기대는 원본 및 prior-inputs에 보존한다. 새은행·lock에서 실제 채점 전까지 작성자 기대이다.'});
+const supplemental=[
+ make('sub3-v3-current-model-answer',q.model_answer.join('\n'),['met','met','met'],'현재 저장 모범답안 전체는 판단·변화의 이유·목적에 맞는 기간과 증빙 보완을 모두 제시한다.'),
+ make('sub3-shipment-date-without-acceptance-evidence','국외 거래의 실제 인수기간에 맞춰 검사 대상기간을 확장하고 출고일과 매출기록일을 대조한다.',['met','not_met','not_met'],'기간 확장으로 종전범위 재검토는 표현한다. 그러나 출고일만 비교해서는 지문상 고객 인수시점인 인식시점을 확인하지 못하며, 변화의 이유도 별도로 설명하지 않는다. 명시적 배제 표현이 없는 진짜 불완전 답안이다.'),
+ make('sub3-carrier-confirmed-delivery-alternative','국외 거래의 실제 인수기간을 반영하여 검사 대상기간을 늘린 뒤, 운송인이 확인한 고객 인도완료일을 해당 매출이 기록된 회계기간과 대조한다.',['met','not_met','met'],'기간 조정과 지문상 고객 인수에 대응하는 인도완료 증거를 기록기간과 연결한다. 별도의 출고문서 명칭을 더하지 않아도 목적을 충족한다. 변화의 이유 명제는 별도 제시하지 않았다.'),
+ make('sub3-customer-receipt-no-restated-date-exemption','대상기간은 실제 운송·인수기간에 맞춰 늘리고, 고객 인수확인서의 일자와 매출원장에 기록된 회계기간을 대조한다.',['met','not_met','met'],'주어진 인수=인식 전제를 적용하여 인수 증거와 기록기간을 비교한다. 특정 추가일수가 불필요하다는 문구를 반복하지 않아도 된다. 변화의 이유 자체는 별도로 제시하지 않았다.'),
+];
+write('qa-supplement-t08-b-v3-evidence-scope.json',{version:1,artifact_type:'author_expected_judgments',artifact_role:'supplement_not_required_55',set_id:set.id,plan_id:'T08-B',draft_sha256:qa.draft_sha256,live_model_grading:'not_run',cases:supplemental});
+const oldExtra=read(prior+'/qa-supplement-t08-b-original-expressions.json');oldExtra.draft_sha256=qa.draft_sha256;oldExtra.followup_note='기존 v2 발문의 자료 이용 전제 누락 회귀2개를 답안·기대 그대로 보존하여 v3에서도 적용한다.';write('qa-supplement-t08-b-original-expressions.json',oldExtra);
+const coverage=read(prior+'/coverage-proposal-followup.json');coverage.entries=coverage.entries.map(e=>({...e,target:{...e.target,file:out+'/'+names[0]},review_status:'needs_review'}));coverage.created_at=new Date().toISOString();coverage.target_file_sha256=qa.draft_sha256;coverage.followup_reason='c8 목적에 맞는 관련증빙 예시 범위를 최초계획대로 명료화했다. 요소/source/관계/빈도/배점은 불변.';write('coverage-proposal-followup.json',coverage);
+write('lineage-and-change-record.json',{created_at:new Date().toISOString(),status:'prepared_waiting_root_bank_and_runtime_selection',set_id:set.id,plan_id:'T08-B',original_files:names.map(n=>({file:prior+'/'+n,sha256:sha(prior+'/'+n),preserved_copy:out+'/prior-inputs/'+n})),followup_files:[...names,'qa-supplement-t08-b-v3-evidence-scope.json','qa-supplement-t08-b-original-expressions.json'].map(n=>({file:out+'/'+n,sha256:sha(out+'/'+n)})),question_changes:changes,plan_changes:[{path:'/scope/required_answers/sub3-crit8',before:oldRequired,after:'sub3/crit8: '+core},{path:'/scope/exceptions/-',after:scope}],QA_changes:qaChanges,required_QA_count:55,new_supplement_QA_count:4,preserved_prior_supplement_QA_count:2,old_required_answers_all_preserved:true,prompts_sources_points_and_c7_unchanged:true,questions:3,criteria:8,points:8,original_design_basis:[{file:'docs/plans/question-authoring-by-topic-2026-09-11/topics/08-감사증거와-경영진주장-출제-계획.md',lines:[34,35,41],meaning:'특정 자료명 하나 고정 금지, 목적 달성, 대상기간·증빙 조정 및 대체증빙 경계'},{element_id:'element-28cfd73c262d1eb8',source_unit_id:'src-f3304ffcc0063092e3',original_exam:'cpa_exam:2024:7:3',source_file:'cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md',pages:[106,108],meaning:'원발문·학습해설은 운송기간 변화에 맞춘 모집단 기간 조정이며 출고·인수 문서 모두를 필수목록으로 요구하지 않음'}],official_basis:['KGA500.6','KGA500.A34'],API_calls:0,bank_written:false});
+fs.writeFileSync(out+'/README.md','# T08-B v3 목적에 맞는 증빙 범위 명료화\n\nc8은 대상기간 조정과 계약상 인식시점을 확인할 관련 증빙·매출기록의 연결을 요구한다. 출고·인수 자료는 예시라는 최초 상세계획의 허용범위를 별도 cf8-scope로 실제 채점 입력에 담았다. 지문상 인수=인식 전제와 특정 추가일수 불필요 문구를 학생이 반복할 필요가 없다. 발문·3물음·8기준·8점·출처 및 c7은 유지했다.\n\n기존 필수55개의 답안을 모두 그대로 보존했고, 승인된 crit8-opposite의 c7 기대만 contradicted로 정정했다. c8 기대 이유 설명은 목적 기반 명제에 맞췄으며 verdict와 점수는 바꾸지 않았다. 새 저장 모범답안과 진짜 불완전 출고일 답안, 운송인 인도완료/고객 인수확인서의 목적 충족 대안을 별도4개로 준비했다. 기존 v2 전제누락 보충2개도 별도로 보존했다.\n\n[변경·해시 장부](lineage-and-change-record.json)에 원본 바이트와 최초계획·원출제 근거를 연결했다. 새 비교은행·실행lock을 총괄이 전달하기 전에는 이 새문항의 API 검수·채점을 수행하지 않는다.\n',{flag:'wx'});
+console.log(JSON.stringify({out,question_sha256:qa.draft_sha256,plan_sha256:sha(out+'/'+names[1]),qa_sha256:sha(out+'/'+names[2]),required:55,supplement:4,prior_supplement:2,questions:3,criteria:8,points:8}));

@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-06-001--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-06-001--sub2--standard",
+  "source_set_id": "pilot-06-001",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "9057c770753a406bace071973651e7c4d3112afdfb9e425ba78139fadb06b18e",
+  "answers": {
+    "sub2": "감사보고서의 발행 부수를 결정한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 요구나 이를 함축하는 설명을 제시하지 않음."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 요구나 이를 함축하는 설명을 제시하지 않음."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "2eddba656920533ee0306bc5bf6552a6c157b74292072b9db4b5580cc43c3fe9",
+  "schema_hash": "d11fa709d4bb59744462d5bf3dbad02c3329bc615bbd47c30ca7e01097bc56b5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "재무제표 전반에 미치는 영향을 판단하지 않았다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "통제환경이 내부통제시스템의 전반적인 기초라는 근거를 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표 전반에 미치는 영향을 판단하지 않았다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "통제환경이 내부통제시스템의 전반적인 기초라는 근거를 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-06-001",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "통제환경의 미비점이 재무제표에 미치는 영향을 판단하고 그 근거를 설명하시오.",
+        "user_answer": "감사보고서의 발행 부수를 결정한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "재무제표 전반에 미치는 영향을 판단하지 않았다.",
+            "claim": "통제환경의 미비점이 재무제표 전반에 영향을 미친다고 판단함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "통제환경이 내부통제시스템의 전반적인 기초라는 근거를 설명하지 않았다.",
+            "claim": "통제환경이 내부통제시스템의 전반적인 기초를 제공한다는 근거를 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "통제환경의 미비점은 재무제표의 작성에 전반적인 영향을 미친다.",
+          "통제환경은 내부통제시스템의 다른 구성요소가 운영되는 전반적인 기초를 제공하고, 그 구성요소의 통제 효과성에 영향을 미치기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_00c3a9016e27790f016aa4caa74d8487d0b3bdde5b04cfb7e6",
+        "request_id": "req_596fc91e9b044aebbdaad2a9729ad323",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2299,
+          "input_tokens_details": {
+            "cache_write_tokens": 2296,
+            "cached_tokens": 0
+          },
+          "output_tokens": 186,
+          "output_tokens_details": {
+            "reasoning_tokens": 55
+          },
+          "total_tokens": 2485
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0007978,
+        "min_usd": 0.0007978,
+        "max_usd": 0.0007978,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-06-001--sub2--standard--wrong/input.json",
+      "sha256": "6a514104f3e6765d3e384a9917ded866884d39a01940310634735e39f5c9035e"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-06-001--sub2--standard--wrong/transport.jsonl",
+      "sha256": "8df8c82c332dccb376f46b7a7fd2f5dbae6d1b2bd53e080f3355a5bfd6dd110e"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-06-001--sub2--standard--wrong/traces.jsonl",
+      "sha256": "ed427ec1333daf141972013a999ec4148db57f344fb75d4aa9fac926672f9191"
+    }
+  }
+}

@@ -6,15 +6,15 @@ type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, quality]
-sources: [docs/reports/question-review-2027/12.md, docs/reports/question-review-2027/12.json]
+sources: [docs/archive/과거-검토-증거/reports/question-review-2027/주제12-감사종결-검토-수정-결과.md, cpa_uploader/analysis/reviews/question-review-2027/12.json]
 confidence: high
 ---
 
 # 주제12. 감사종결 문항의 주체·날짜·조건
 
-[검토 보고서](../../../../docs/reports/question-review-2027/12.md) · [물음별 근거 장부](../../../../docs/reports/question-review-2027/12.json)
+[검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제12-감사종결-검토-수정-결과.md) · [물음별 근거 장부](../../../analysis/reviews/question-review-2027/12.json)
 
-주제12는 [검토 보고서](../../../../docs/reports/question-review-2027/12.md)와 [공식450·560·570·580 발췌](../../../data/official/kga450-560-570-580-2025-review12.txt)를 함께 확인한다.
+주제12는 [검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제12-감사종결-검토-수정-결과.md)와 [공식450·560·570·580 발췌](../../../data/official/kga450-560-570-580-2025-review12.txt)를 함께 확인한다.
 
 - 왜곡표시의 원인 조사와 실제 금액 결정 절차를 경영진에게 요청할 수 있다는 설명은 **450.A9**이며, 수정 거절 시 사유를 이해·고려하는 요구사항 **450.9**와 다르다. 감사인이 직접 조사한 뒤 수정만 요청하는 답안으로 경영진 수행 절차의 요청을 대체하지 않는다. 제목에만 있는 수정 거절 대응을 실제 출제 커버리지로 계산하지 않는다.
 - 미수정왜곡표시와 감사의견 영향의 지배기구 커뮤니케이션, 중요한 미수정왜곡표시의 개별 식별, 수정 요청은 세 독립 명제다(450.12). 발문·정답에 세 명제가 있으면 채점에서도 빠짐없이 대응시킨다. 법규상 커뮤니케이션 금지 예외를 보존한다. 명백하게 사소함은 중요하지 않음과 다르다(450.5,A2).

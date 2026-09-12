@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-12-008--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-008--sub1--standard",
+  "source_set_id": "pilot-12-008",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "dd95d42d8969b49c90fc8add3ccfa7faf8687d967332e553b77f8e3750dc5d6c",
+  "answers": {
+    "sub1": "모두 제외할 수 없다. 명백하게 사소한(clearly trivial) 것을 제외하고는 감사 중 식별된 왜곡표시를 집계해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 450.5/A2의 명백하게 사소함은 작은 금액 또는 비중요성과 같지 않다. 잘못된 전부제외 판단과 올바른 집계 경계를 구별한다. 해당 기준 crit1의 원 판정 met를 보존한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 450.5/A2의 명백하게 사소함은 작은 금액 또는 비중요성과 같지 않다. 잘못된 전부제외 판단과 올바른 집계 경계를 구별한다. 해당 기준 crit2의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "0c0d68d18d69b51d959b390f93d69ce59310f629136e0be5fcf05768fcafec11",
+  "schema_hash": "450e5450f39cb179dc330749e1eda21d00cb61df1fdc3d16477169ae47fd8af5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "모두 제외할 수 없다. ",
+            "reason": "작은 왜곡표시를 모두 제외할 수 없다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "명백하게 사소한(clearly trivial) 것을 제외하고는 감사 중 식별된 왜곡표시를 집계해야 한다.",
+            "reason": "명백하게 사소한 것만 제외하고 나머지는 집계해야 한다는 기준을 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "작은 왜곡표시를 모두 제외할 수 없다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "명백하게 사소한 것만 제외하고 나머지는 집계해야 한다는 기준을 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-008",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "금액이 작아 눈에 띄지 않는 왜곡표시라면 집계 대상에서 모두 제외해도 되는지 판단하고, 집계 기준을 설명하시오.",
+        "user_answer": "모두 제외할 수 없다. 명백하게 사소한(clearly trivial) 것을 제외하고는 감사 중 식별된 왜곡표시를 집계해야 한다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "모두 제외할 수 없다.",
+            "reason": "작은 왜곡표시를 모두 제외할 수 없다고 명시했다.",
+            "claim": "작은 왜곡표시를 무조건 집계 제외하는 것은 허용되지 않는다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "명백하게 사소한(clearly trivial) 것을 제외하고는 감사 중 식별된 왜곡표시를 집계해야 한다.",
+            "reason": "명백하게 사소한 것만 제외하고 나머지는 집계해야 한다는 기준을 제시했다.",
+            "claim": "명백하게 사소한 것만 제외하고 나머지는 집계함을 기준으로 제시함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "모두 제외할 수 없다. 명백하게 사소한(clearly trivial) 것을 제외하고는 감사 중 식별된 왜곡표시를 집계해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_009c41acf62c23d6016aa4cfbeef1c87d0a33515c3c8aa3494",
+        "request_id": "req_0dfdea6486a843ae942ee8c29fa4688f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2459,
+          "input_tokens_details": {
+            "cache_write_tokens": 2456,
+            "cached_tokens": 0
+          },
+          "output_tokens": 168,
+          "output_tokens_details": {
+            "reasoning_tokens": 25
+          },
+          "total_tokens": 2627
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008162,
+        "min_usd": 0.0008162,
+        "max_usd": 0.0008162,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-12-008--sub1--standard--model/input.json",
+      "sha256": "51b25e90abaec9ab5c80c295541eaa4f5322cce20c9b7408e1681ce36b7b3723"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-12-008--sub1--standard--model/transport.jsonl",
+      "sha256": "e7bf02e03761a60f3501b1f65e5c60896e7267126cd280e5252f97bf4344322c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-12-008--sub1--standard--model/traces.jsonl",
+      "sha256": "42b5081b1f1cd28d39653ccdc45df928edf7332c52bcc0129d73af9f12fd467b"
+    }
+  }
+}

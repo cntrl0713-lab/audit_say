@@ -1,0 +1,374 @@
+{
+  "events": [
+    {
+      "unit_id": "subquestion:q1",
+      "attempt": 1,
+      "response": {
+        "id": "subquestion:q1",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문은 정상화된 이익 수치와 그 근거를 요구하며, 모범답안은 두 요소를 모두 제시한다. A6 원문 및 PDF 310쪽 위치와 일치하고, 일시적·예외적 감소라는 조건도 사례 사실과 부합한다. 2025 개정 기준을 사용하고 2026 시행기준은 가정으로 대조한다는 범위도 적절하며, 기존 은행의 중요성 인하·문서화 문항과 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q1.prompt",
+          "q1.model_answer",
+          "q1.q1.r1.source_quote",
+          "q1.q1.r1.source_span"
+        ],
+        "source_ref_ids": [
+          "src1"
+        ],
+        "cases": [],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q1:q1.c1",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q1:q1.c1",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문과 모범답안은 예외적 이익 감소 상황에서 과거 실적에 기초한 정상화 이익을 벤치마크로 사용할 수 있는지를 묻고 답한다. KGA 320 A6 원문이 해당 결론을 직접 뒷받침하며, 지속적 구조 변화가 아닌 경우라는 조건도 적절하다. 2025 개정판을 기준으로 하되 2026 시행기준은 확정 판본으로 주장하지 않는 범위에서 적합하다. 기존 은행의 중요성 인하 후속조치 문항과도 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q1.prompt",
+          "q1.model_answer",
+          "q1.q1.r1.source_quote",
+          "q1.q1.r1.source_span",
+          "q1.q1.c1.claim",
+          "q1.q1.c1.q1.c1.fact.expected",
+          "q1.q1.c1.q1.c1.scope.expected"
+        ],
+        "source_ref_ids": [
+          "src1"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안은 과거 실적에 기초한 정상적 수준의 조정 이익을 사용할 수 있다고 명시한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "당기 이익의 일회성 감소가 정상적인 수익성을 반영하지 않으므로, 과거 실적을 정상화한 세전 계속영업이익을 중요성 벤치마크로 사용할 수 있다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "표현은 다르지만 과거 실적에 기초한 정상화 이익의 사용이라는 핵심 결론을 보존한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "이익 감소가 예외적·일시적이라는 사실을 확인하였다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "예외성만 언급하고 정상화된 과거 실적을 사용할 수 있다는 독립 criterion을 제시하지 않는다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "당기 이익이 감소했으므로 정상화된 과거 실적을 사용해서는 안 되고 감소한 당기 이익을 그대로 사용해야 한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "A6의 정상화된 과거 실적 사용 가능성 및 모범답안의 결론을 정면으로 부정한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "이익 감소가 일회성이 아니라 지속적인 사업구조 변화에서 비롯된 경우에는 과거 실적을 정상화한 이익을 벤치마크로 사용할 수 없다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "구조적 변화라는 경계조건은 정확히 제시하지만, 주어진 사례에서 정상화 이익을 사용할 수 있다는 criterion의 결론을 답하지 않는다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q1:q1.c2",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q1:q1.c2",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문은 적합한 이익 수치의 근거를 요구하고, criterion은 예외적·일시적 감소와 정상 수익성 벤치마크의 연결을 정확히 평가한다. A6은 예외적 변동 시 과거 실적에 기초한 정상화 이익이 적합할 수 있음을 직접 뒷받침한다. 2025 개정판을 사용하고 2026 시행기준은 학습용 가정으로 명시되어 범위상 문제없다.",
+        "reviewed_field_ids": [
+          "q1.prompt",
+          "q1.model_answer",
+          "q1.q1.r1.source_quote",
+          "q1.q1.r1.source_span",
+          "q1.q1.c2.claim",
+          "q1.q1.c2.q1.c2.fact.expected",
+          "q1.q1.c2.q1.c2.scope.expected"
+        ],
+        "source_ref_ids": [
+          "src1"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안은 손실의 예외적·일시적 성격과 지속적 수익구조 변화가 아님을 정상화 이익의 벤치마크 적합성과 연결한다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "당기의 일회성 손실은 정상적인 수익력의 변화를 의미하지 않으므로, 과거 실적을 정상 수준으로 조정한 이익이 중요성 벤치마크로 더 적절하다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "예외적 변동과 정상 수익성 벤치마크의 연결을 의미상 정확히 표현했다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "당기 손실은 일시적이고 예외적이었다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "일시성만 반복하고 정상화된 과거 실적이 이용자 관련 벤치마크가 되는 이유를 설명하지 않았다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "이익 감소는 지속적인 수익구조 변화이므로 정상화된 과거 실적을 벤치마크로 사용해서는 안 된다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "주어진 조건과 criterion의 핵심 결론을 정반대로 바꾼 답안이다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "손실이 예외적이어도 실제로 지속적인 수익구조 변화가 확인된다면, 과거 실적을 정상 수준으로 조정해 사용하는 근거가 약해진다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "조건 경계를 정확히 제시하지만, 주어진 사례의 정상화 벤치마크 결론을 답한 것은 아니므로 이 criterion은 충족하지 않는다.",
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "subquestion:q2",
+      "attempt": 1,
+      "response": {
+        "id": "subquestion:q2",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문과 모범답안은 집단으로서 이용자의 공통 정보수요를 고려하고 특정 개인의 특수한 영향은 고려하지 않는다는 두 요소를 정확히 대응한다. src2의 문단 2 원문 및 ‘KGA 320 문단/보론 2; 2025 개정 PDF 305쪽’ 위치가 발췌자료와 일치한다. 2025 개정판을 기준으로 하고 2026년 시행기준은 학습용 가정으로 명시되어 범위상 적합하다. 기존 은행의 문항과도 의미가 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q2:q2.c1",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q2:q2.c1",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문과 모범답안은 집단으로서 이용자의 공통적인 재무정보 수요를 고려한다는 criterion과 정확히 일치한다. src2의 KGA 320 문단 2 원문과 source_span도 일치하며, 개별 이용자 영향 배제는 별도 criterion으로 분리되어 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span",
+          "q2.q2.c1.claim",
+          "q2.q2.c1.q2.c1.fact.expected"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안의 첫 문장이 집단으로서 공통적인 재무정보 수요를 고려한다는 criterion을 충족한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "중요성은 특정 개인이 아니라 재무제표 이용자 집단 전체의 공통된 정보수요를 기준으로 판단한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "집단적 공통 정보수요를 고려한다는 의미를 정확히 보존한 표현이다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "중요성 판단은 이용자들의 정보수요를 고려한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "이용자 집단과 공통적인 수요라는 독립 criterion의 핵심 범위가 누락되어 충분하지 않다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "특정 개인 이용자의 독특한 정보수요를 우선적으로 고려한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "집단의 공통 수요가 아니라 개별 이용자의 특수 수요를 기준으로 삼아 criterion과 반대된다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "재무제표 이용자 집단의 공통적인 재무정보 수요를 고려하되, 특정 개인에게만 고유한 요구는 집단 기준에 추가하지 않는다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "집단 공통 수요를 유지하면서 개별 이용자 고려 배제라는 인접 조건도 혼동 없이 제시한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    },
+    {
+      "unit_id": "criterion:q2:q2.c2",
+      "attempt": 1,
+      "response": {
+        "id": "criterion:q2:q2.c2",
+        "checks": {
+          "alignment": "pass",
+          "source_support": "pass",
+          "conditions_exceptions": "pass",
+          "edition_scope": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "발문은 개별 이용자의 특수한 정보요구가 중요성 판단에 미치는 취급을 요구하며, claim과 모범답안은 이를 정확히 ‘고려하지 않음’으로 제시한다. src2 원문이 개별 이용자별 요구의 다양성과 특정 개인에 대한 영향은 고려하지 않는다는 결론을 직접 뒷받침한다. c1의 집단 공통 수요와도 의미상 중복되지 않는다.",
+        "reviewed_field_ids": [
+          "q2.prompt",
+          "q2.model_answer",
+          "q2.q2.r1.source_quote",
+          "q2.q2.r1.source_span",
+          "q2.q2.c2.claim",
+          "q2.q2.c2.q2.c2.fact.expected"
+        ],
+        "source_ref_ids": [
+          "src2"
+        ],
+        "cases": [
+          {
+            "kind": "model_answer",
+            "answer": null,
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "모범답안은 개별 이용자의 정보요구가 다양하므로 특정 개별 이용자에게 미치는 영향을 고려하지 않는다는 criterion을 정확히 충족한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "paraphrase",
+            "answer": "개별 이용자마다 특수한 정보수요가 다를 수 있으므로, 특정 개인에게 유리하거나 불리한 영향은 중요성 판단에 반영하지 않는다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "개별 요구의 다양성과 특정 개인 영향의 배제라는 핵심 의미를 모두 보존한 타당한 바꾸어쓰기이다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "omission",
+            "answer": "중요성은 재무제표 이용자 집단의 공통적인 재무정보 수요를 기준으로 판단한다.",
+            "expected": "not_met",
+            "verdict": "pass",
+            "rationale": "집단 공통 수요만 언급하고 특정 개별 이용자 영향의 배제는 제시하지 않아 이 독립 criterion을 충족하지 않는다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "opposite",
+            "answer": "특정 개인의 독특한 정보요구가 다른 이용자와 다르더라도 그 개인에게 미치는 영향을 중요성 판단에 반영한다.",
+            "expected": "contradicted",
+            "verdict": "pass",
+            "rationale": "원문과 criterion의 명시적 부정으로, 특정 개별 이용자 영향은 고려하지 않는다는 결론과 반대이다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "kind": "condition_boundary",
+            "answer": "개별 이용자의 정보요구가 집단의 공통 수요와 다르더라도 그 개인의 특수한 영향은 고려하지 않지만, 집단으로서 공통적인 정보수요는 고려한다.",
+            "expected": "met",
+            "verdict": "pass",
+            "rationale": "개별 특수수요와 집단 공통수요를 구분하여, criterion의 적용 경계를 정확히 보존한다.",
+            "source_ref_ids": [
+              "src2"
+            ]
+          }
+        ],
+        "notes": []
+      }
+    }
+  ]
+}

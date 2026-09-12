@@ -1,0 +1,26 @@
+import fs from 'node:fs';
+const own='cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2';
+let code=fs.readFileSync(own+'/write-credit-balance-stop-index.mjs','utf8');
+code=code.replace("out=base+'/r02/evidence/phase2/credit-balance-stop-2026-09-11'","out=base+'/r02/evidence/phase2/credit-balance-stop-after-refill-2026-09-11'");
+code=code.replace("lockFile=control+'/runtime-v5-bank-v3/runtime-lock.json'","lockFile=control+'/runtime-v5-bank-v3-after-refill-01/runtime-lock.json'");
+code=code.replace("const graderFiles=",`for(const owner of owners)visit(base+'/'+owner+'/evidence/phase2/phase-two-v5-bank-v3-after-refill-01-owned');
+visit(base+'/n03/evidence/phase2/phase-two-v5-bank-v3-after-refill-01/pilot-07-006');
+const graderFiles=`);
+code=code.replace("const qaFile=e.plan_id==='T07-A'?t07qa:e.qa_file",`const overrides={'T07-A':t07qa,'T07-C':base+'/s02/phase-two-followup/t07-c-qa-v2/qa-cases-t07-c.followup-01.json','T10-B':base+'/s04/phase-two-followup/t10-b-qa-v2/qa-cases-t10-b.followup-01.json'},qaFile=overrides[e.plan_id]||e.qa_file`);
+const oldAssert=code.indexOf('if(report.required_unique_with_valid_execution!==');
+if(oldAssert<0)throw Error('Expected source assertion');
+code=code.slice(0,oldAssert)+`
+report.status='stopped_credit_balance_exhausted_after_refill_no_new_API';
+report.source_of_credit_reason='Own valid error metadata: 2026-09-11T04:51:02Z, HTTP429, nested credit_balance_exhausted, req_e5274c4bf8714d53bb9916999fed9de8. Parent and foundation independently observed same credit exhaustion.';
+report.processes={active_owned_API_processes:0,exec_sessions:[{id:19700,status:'exited1_HTTP429_credit_guard'}],status_evidence:base+'/r02/evidence/phase2/phase-two-v5-bank-v3-after-refill-01-owned-control/queue-stopped.json'};
+report.pending_new_API=[{task:'T10-C last partial mismatch: reach3 valid observations',plan_id:'T10-C',case_id:'sub2-crit7-paraphrase',valid_executions:1,remaining_valid_executions:2,failed_execution_excluded:true},...pending.map(s=>({task:'Unexecuted required author QA only',plan_id:s.plan_id,set_id:s.set_id,file:s.question_file,qa_file:s.selected_QA_file,remaining_unique_cases:s.required_unexecuted_cases.length,case_ids:s.required_unexecuted_cases})),{task:'T10-B number reversal and conventional-name supplemental contrasts',file:base+'/s04/phase-two-followup/t10-b-qa-v2/qa-supplement-t10-b-number-classification.json',cases:2,remaining_valid_executions:6},{task:'Exact-instructions repeat semantic nonpass observations',sets:['T06-A','T06-B','T05-B'],units:6,additional_observations_each:2,status:'not_started'},{task:'Current v3 selected-bank semantic-generated QA grading',status:'not_started; do not count any older-version generated QA as current'}];
+report.do_not_restart_completed=['12 whole required sets are covered; preserve all current unresolved model differences.','T10-C first46 required IDs have valid observations; only19 unexecuted IDs and2 missing repetitions of the last mismatch remain.','Approved T07-C three expectation corrections reuse existing3 observations each; two direct-opposite cases match, period-adjustment implication remains0/2/2 versus new3.','Approved T10-B number-name expectation reuses existing2/2/2, all3 match new2.','T07-A c6 and c12 corrections plus supplementary factors completed; existing model differences on other cases remain.','R02 and T08-A prior current-grader actual evidence is linked; no v3-grader evidence inherited.'];
+report.completed_whole_required_sets=sets.filter(s=>s.required_unexecuted_cases.length===0).length;
+report.required_current_expected_unresolved_count=sets.reduce((n,s)=>n+s.current_expected_comparison_unresolved.length,0);
+report.required_mismatch_repetition_audit=sets.flatMap(s=>s.cases.filter(c=>c.unresolved).map(c=>({plan_id:s.plan_id,set_id:s.set_id,case_id:c.case_id,valid_executions:c.valid_executions,at_least_three:c.valid_executions>=3,evidence:c.evidence})));
+report.required_mismatches_missing_three=report.required_mismatch_repetition_audit.filter(c=>!c.at_least_three);
+if(report.required_unique_with_valid_execution!==715||report.required_unexecuted!==120||report.valid_grading_executions!==883||report.valid_raw_model_judgments!==847||report.failed_grading_executions!==3||report.completed_whole_required_sets!==12)throw Error('Unexpected current counts '+JSON.stringify({covered:report.required_unique_with_valid_execution,pending:report.required_unexecuted,valid:report.valid_grading_executions,raw:report.valid_raw_model_judgments,failed:report.failed_grading_executions,whole:report.completed_whole_required_sets}));
+fs.mkdirSync(out,{recursive:true});fs.writeFileSync(out+'/owned-current-author-qa-stop-index.json',JSON.stringify(report,null,2)+'\\n',{flag:'wx'});
+console.log(JSON.stringify({out,covered:report.required_unique_with_valid_execution,pending:report.required_unexecuted,valid:report.valid_grading_executions,raw:report.valid_raw_model_judgments,empty:report.valid_empty_no_model,failed:report.failed_grading_executions,whole:report.completed_whole_required_sets,unresolved:report.required_current_expected_unresolved_count,missing_three:report.required_mismatches_missing_three.map(c=>({set:c.set_id,case:c.case_id,valid:c.valid_executions}))}));
+`;
+fs.writeFileSync(own+'/write-refill-credit-stop-index.mjs',code,{flag:'wx'});

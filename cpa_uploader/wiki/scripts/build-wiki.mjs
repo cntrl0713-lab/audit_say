@@ -3,8 +3,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { topicDefinitions } from './topic-definitions.mjs';
+import { oxBookRelative, oxStudyChapters, studyTopics } from './ox-study-order.mjs';
 import { scanGaps } from './gap-scan.mjs';
 import { buildSourceCatalog } from '../../questionSourceCatalog.mjs';
+import { buildQuestionElements } from '../../questionElements.mjs';
+import { buildCoverage, renderDashboard } from '../../analysis/coverage/build-coverage.mjs';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const bankRelative = 'cpa_uploader/data/cpa_question_sets_v3.authoring.json';
@@ -32,6 +35,8 @@ export function buildWiki({ repoDir = path.resolve(scriptDir, '../../..'), date 
   const bank = JSON.parse(read(bankRelative));
   const catalog = buildSourceCatalog({ repoDir });
   const definitions = parseTopics(read(tocRelative));
+  const studyRank = new Map(studyTopics.map((topic, index) => [topic.id, index + 1]));
+  const orderedBank = [...bank].sort((a, b) => studyRank.get(a.classification.topic_id) - studyRank.get(b.classification.topic_id));
   const pages = new Map();
   const byTopic = new Map(topicDefinitions.map((t) => [t.id, []]));
   const ids = new Set();
@@ -42,10 +47,12 @@ export function buildWiki({ repoDir = path.resolve(scriptDir, '../../..'), date 
     byTopic.get(set.classification.topic_id).push(set);
   }
   const link = (from, relative, label = relative) => `[${cell(label)}](${encodeURI(slash(path.relative(path.dirname(path.join(wikiDir, from)), path.join(repoDir, relative))))})`;
+  const bookPageLink = (from, page, label) => link(from, oxBookRelative, label).replace(/\)$/u, `#${encodeURIComponent(`원문-페이지-${page}`)})`);
+  const chaptersFor = (id) => oxStudyChapters.filter((chapter) => chapter.topics.some(([topicId]) => topicId === id));
   const reviewPaths = (id) => [
-    `docs/reports/question-review-2027/${id}.md`,
-    `docs/reports/question-review-2027/${id}.json`,
-    ...allFiles(path.join(repoDir, 'docs/reports/question-review-2027')).filter((p) => path.dirname(p) === path.join(repoDir, 'docs/reports/question-review-2027') && new RegExp(`^${id}[-.]`).test(path.basename(p)) && /\.(md|json)$/.test(p)).map((p) => slash(path.relative(repoDir, p))),
+    `docs/archive/과거-검토-증거/reports/question-review-2027/${id}.md`,
+    `cpa_uploader/analysis/reviews/question-review-2027/${id}.json`,
+    ...allFiles(path.join(repoDir, 'docs/archive/과거-검토-증거/reports/question-review-2027')).filter((p) => path.dirname(p) === path.join(repoDir, 'docs/archive/과거-검토-증거/reports/question-review-2027') && new RegExp(`^${id}[-.]`).test(path.basename(p)) && /\.(md|json)$/.test(p)).map((p) => slash(path.relative(repoDir, p))),
   ].filter((p, i, all) => all.indexOf(p) === i && fs.existsSync(path.join(repoDir, p)));
   const reviews = new Map(topicDefinitions.map((t) => [t.id, reviewPaths(t.id)]));
   const reviewLinks = (from, id) => reviews.get(id).map((p) => link(from, p, path.basename(p))).join(' · ') || '검토 기록 없음';
@@ -85,12 +92,15 @@ export function buildWiki({ repoDir = path.resolve(scriptDir, '../../..'), date 
     put(file, body.join('\n'));
   }
 
-  for (const topic of topicDefinitions) {
+  for (const [studyIndex, topic] of studyTopics.entries()) {
     const definition = definitions.get(topic.id);
     if (!definition) throw new Error(`Missing TOC topic ${topic.id}`);
     if (!definition.sourceLines.length) throw new Error(`Missing source navigation for TOC topic ${topic.id}`);
     const sets = byTopic.get(topic.id), n = counts(sets), file = `concepts/${topic.slug}.md`;
-    const body = [front(`${topic.id}. ${definition.title}`, 'concept', [tocRelative, bankRelative, ...reviews.get(topic.id)], 'medium'),
+    const neighbors = [studyTopics[studyIndex - 1] && `이전 [[${studyTopics[studyIndex - 1].slug}]]`, studyTopics[studyIndex + 1] && `다음 [[${studyTopics[studyIndex + 1].slug}]]`].filter(Boolean).join(' · ');
+    const body = [front(`${definition.title} (주제 ID ${topic.id})`, 'concept', [tocRelative, oxBookRelative, bankRelative, ...reviews.get(topic.id)], 'medium'),
+      `학습 순서 ${studyIndex + 1}/${studyTopics.length} · 주제 ID ${topic.id} · [[ox-study-order]]\n\n${neighbors}\n`,
+      `교재 연결: ${chaptersFor(topic.id).map((chapter) => `${bookPageLink(file, chapter.page, chapter.label)} — ${chapter.topics.find(([id]) => id === topic.id)[1]}`).join(' · ')}\n`,
       '## 범위\n', `- 탐색 기준 축: ${axis(topic)}`, `- 목차 기준 축: ${definition.axis}`, `- 정본 직접 출처: ${actualAxes(sets).join(' · ') || '연결 없음'}`, `- 탐색어: ${definition.terms}`, `- 세트 ${n.sets} · 물음 ${n.questions} · criterion ${n.criteria} · ${types(sets)}`,
       '\n## 출제 전 확인\n', `- 원자료 단위와 새 목표 설계: [[source-catalog-topic-${topic.id}]] · [[source-authoring-design]]`, `- 주제별 조건·예외: [[topic-${topic.id}-design]]`, `- 문항별 검토·판본·실측: ${reviewLinks(file, topic.id)}`,
       '- 기존 세트 색인의 공통 사실 → 발문 → 모범답안 → 핵심 조건 → requirement·출처를 함께 읽는다. 명제 목록만으로 적용 범위와 정답을 확정하지 않는다.',
@@ -106,8 +116,23 @@ export function buildWiki({ repoDir = path.resolve(scriptDir, '../../..'), date 
     put(file, body.join('\n'));
   }
 
-  put('_meta/topic-map.md', front('회계감사 주제 지도', 'source-map', [tocRelative, bankRelative]) + table(['ID', '주제', '기준 축', '설계 지침', '세트'], topicDefinitions.map((t) => [t.id, `[[${t.slug}]]`, axis(t), `[[topic-${t.id}-design]]`, byTopic.get(t.id).length])) + '\n\n## Related\n\n- [[coverage-map]]\n- [[source-review-map]]\n- [[question-generation-workflow]]');
-  const coverageRows = topicDefinitions.map((t) => {
+  const studyFile = '_meta/ox-study-order.md';
+  put(studyFile, front('필수암기·OX 200제에 맞춘 학습 순서', 'source-map', [oxBookRelative, tocRelative], 'medium')
+    + `교재의 필수암기 200제 장별 흐름을 기준으로 위키의 탐색 순서를 구성했다. ${bookPageLink(studyFile, 12, '전체 200제 목차(원문 12–19쪽)')}와 ${bookPageLink(studyFile, 119, 'OX 기출 본문(원문 119–151쪽)')}을 대조했다. 아래 페이지는 인쇄면 쪽수가 아닌 원자료의 ‘원문 페이지’ 번호이며, 링크는 해당 범위의 첫 페이지로 이동한다.\n\n`
+    + 'CM1–13은 책의 큰 구분인 필수암기·OX·빈출 핵심정리 안에서 필수암기 부분의 장을 가리킨다. 현재 19개 주제는 여러 장의 내용을 묶은 경우가 있으므로, 첫 화면에서는 대표 순서로 한 번씩 보여주고 아래 장별 표에서는 필요한 주제를 다시 연결한다. 학습 순서와 기존 주제 ID는 별개이며 문제·출처 ID와 정본 JSON 위치는 유지한다.\n\n'
+    + '## 교재 장별로 찾아가기\n\n'
+    + table(['교재 장', '원문 페이지', '필수암기 물음', '위키 주제와 이 장에서 볼 내용'], oxStudyChapters.map((chapter) => [chapter.label, bookPageLink(studyFile, chapter.page, chapter.page === chapter.endPage ? `${chapter.page}쪽` : `${chapter.page}–${chapter.endPage}쪽`), chapter.questions, chapter.topics.map(([id, focus]) => `[[${studyTopics.find((topic) => topic.id === id).slug}]]: ${focus}`).join(' / ')]))
+    + '\n\n## 위키의 대표 학습 순서\n\n'
+    + table(['순서', '기존 주제 ID', '주제', '출제 지침'], studyTopics.map((topic, index) => [index + 1, topic.id, `[[${topic.slug}]]`, `[[topic-${topic.id}-design]]`]))
+    + '\n\n## 여러 장에 걸친 주제 읽기\n\n'
+    + '- 계획·문서화·중요성은 CM4와 CM5에서 필요한 부분을 나누어 읽는다.\n'
+    + '- 분석적절차는 CM4, 표본감사는 CM9에 있다. 외부조회는 CM4, 기초잔액·재고는 CM7, 소송은 CM8에 있다.\n'
+    + `- 서비스조직은 CM6, 전문가 활용은 CM8에 있다. 내부감사기능 활용은 ${bookPageLink(studyFile, 137, 'OX 원문 137쪽')}에서도 확인한다.\n`
+    + '- 통제미비점 커뮤니케이션은 CM6, 부정·법규는 CM8, 지배기구 커뮤니케이션은 CM10에 있다. 왜곡표시 평가는 CM11에서 종결 주제로 다시 연결한다.\n'
+    + '- 소규모기업은 필수암기 200번의 정의를 시작점으로 연결한다. 보충 검토 OX와 함께 각 wiki 주제 전체의 출제 범위를 포괄하는 자료로 해석하지 않는다. 출제 범위는 주제별 원자료·기준서와 함께 확인한다.\n'
+    + '\n## Related\n\n- [[topic-map]]\n- [[source-catalog]]\n- [[source-authoring-design]]');
+  put('_meta/topic-map.md', front('회계감사 주제 지도', 'source-map', [tocRelative, oxBookRelative, bankRelative]) + '[[ox-study-order]]의 교재 흐름을 따른다. 학습 순서는 탐색용이며 기존 주제 ID와 구분한다. 여러 장에 걸친 내용은 장별 안내에서 다시 연결한다.\n\n' + table(['학습 순서', '주제 ID', '주제', '기준 축', '설계 지침', '세트'], studyTopics.map((t, index) => [index + 1, t.id, `[[${t.slug}]]`, axis(t), `[[topic-${t.id}-design]]`, byTopic.get(t.id).length])) + '\n\n## Related\n\n- [[coverage-map]]\n- [[source-review-map]]\n- [[question-generation-workflow]]');
+  const coverageRows = studyTopics.map((t) => {
     const sets = byTopic.get(t.id), n = counts(sets);
     const linked = new Set(sets.flatMap((s) => s.source_refs.map((r) => r.page)));
     const missing = t.standards.filter((s) => s.startsWith('KGA ') && !linked.has(s));
@@ -118,15 +143,15 @@ export function buildWiki({ repoDir = path.resolve(scriptDir, '../../..'), date 
   put('_meta/coverage-map.md', front('문제은행 커버리지 맵', 'coverage') + '세트 수는 분포이며 출제 범위 충족 판정이 아니다. 기준서별 직접 연결과 요구사항·학습목표의 대응은 [[requirement-coverage]], 판본·조건 검토 기록은 [[source-review-map]]을 먼저 확인한다. 유형 부재는 보강 검토 신호이며 모든 주제에 세 유형을 의무로 만드는 규칙은 아니다.\n\n' + table(['ID', '주제', '세트', '물음', 'criterion', 'published', '유형 분포', '직접 출처 미연결', '검토 우선순위'], coverageRows) + '\n\n## Related\n\n- [[topic-map]]\n- [[requirement-coverage]]\n- [[source-review-map]]\n- [[question-generation-workflow]]');
 
   const sourceMapFile = '_meta/source-review-map.md';
-  const reviewRows = topicDefinitions.map((t) => {
-    const sets = byTopic.get(t.id), ledgerPath = `docs/reports/question-review-2027/${t.id}.json`;
+  const reviewRows = studyTopics.map((t) => {
+    const sets = byTopic.get(t.id), ledgerPath = `cpa_uploader/analysis/reviews/question-review-2027/${t.id}.json`;
     const ledger = fs.existsSync(path.join(repoDir, ledgerPath)) ? JSON.parse(read(ledgerPath)) : {};
     // Some historical ledgers embed the entire pre-review bank under baseline.
     // Only scalar status/edition fields belong in this current-state index.
     const status = ['review_record_complete', 'exam_2027_suitable', 'baseline', 'target_exam_year'].filter((k) => ledger[k] !== undefined).map((k) => `${k}=${ledger[k] !== null && typeof ledger[k] === 'object' ? '구조화된 과거 기록: 근거 장부 참조' : String(ledger[k])}`).join('; ');
     return [t.id, `[[${t.slug}]] · [[topic-${t.id}-design]]`, reviewLinks(sourceMapFile, t.id), [...new Set(sets.flatMap((s) => s.source_refs.map((r) => r.file)))].map((p) => link(sourceMapFile, p, path.basename(p))).join(' · '), status || '보고서·장부 본문의 상태 확인'];
   });
-  put(sourceMapFile, front('직접 출처·검토·판본 지도', 'source-map', [bankRelative, ...[...reviews.values()].flat()]) + `검토 기록 작성과 최종 시험 적용은 별개다. 아래 상태는 장부의 실제 필드를 옮긴 것이며, 필드가 없는 장부는 보고서 본문에서 확인한다. 주제별 세트 색인에는 출처 제목·문단·페이지·인용 해시와 검수 메모를 함께 보존한다.\n\n2027년의 2026년 시행 기준 동일 적용은 기존 작업 가정이다. ${link(sourceMapFile, 'docs/reports/question-review-2027/kga220-effective-date-note.md', '개정220 시행일·판본 메모')} 및 ${link(sourceMapFile, 'docs/reports/question-review-2027/standards-register.json', '기준대장')}의 적용 조건을 확인한다.\n\n` + table(['주제', '색인·지침', '검토·근거 기록', '실제 연결 출처 파일', '장부 상태·적용 가정'], reviewRows) + '\n\n## Related\n\n- [[coverage-map]]\n- [[requirement-coverage]]\n- [[question-output-schema]]');
+  put(sourceMapFile, front('직접 출처·검토·판본 지도', 'source-map', [bankRelative, ...[...reviews.values()].flat()]) + `검토 기록 작성과 최종 시험 적용은 별개다. 아래 상태는 장부의 실제 필드를 옮긴 것이며, 필드가 없는 장부는 보고서 본문에서 확인한다. 주제별 세트 색인에는 출처 제목·문단·페이지·인용 해시와 검수 메모를 함께 보존한다.\n\n2027년의 2026년 시행 기준 동일 적용은 기존 작업 가정이다. ${link(sourceMapFile, 'docs/archive/과거-검토-증거/reports/question-review-2027/개정-감사기준서-220-시행일-별도-기록.md', '개정220 시행일·판본 메모')} 및 ${link(sourceMapFile, 'cpa_uploader/analysis/reviews/question-review-2027/standards-register.json', '기준대장')}의 적용 조건을 확인한다.\n\n` + table(['주제', '색인·지침', '검토·근거 기록', '실제 연결 출처 파일', '장부 상태·적용 가정'], reviewRows) + '\n\n## Related\n\n- [[coverage-map]]\n- [[requirement-coverage]]\n- [[question-output-schema]]');
 
   // This inventory starts from source files, even when the bank has no questions.
   // A same-file quote containment link is traceability, never a semantic coverage score.
@@ -142,7 +167,7 @@ export function buildWiki({ repoDir = path.resolve(scriptDir, '../../..'), date 
     const matches = (bankQuotes.get(unit.file) || []).filter((entry) => quote && entry.quote && (quote.includes(entry.quote) || entry.quote.includes(quote)));
     return [unit.id, [...new Set(matches.map((entry) => entry.set))]];
   }));
-  const unitGroups = topicDefinitions.map((topic) => ({ id: `topic-${topic.id}`, topic, units: catalog.units.filter((unit) => unit.topicIds.includes(topic.id)) }));
+  const unitGroups = studyTopics.map((topic) => ({ id: `topic-${topic.id}`, topic, units: catalog.units.filter((unit) => unit.topicIds.includes(topic.id)) }));
   const unmapped = catalog.units.filter((unit) => !unit.topicIds.length);
   if (unmapped.length) unitGroups.push({ id: 'unmapped', topic: null, units: unmapped });
   const catalogFiles = [];
@@ -208,13 +233,42 @@ export function buildWiki({ repoDir = path.resolve(scriptDir, '../../..'), date 
   const groups = new Map();
   for (const r of records) groups.set(r.sha, [...(groups.get(r.sha) || []), r.file]);
   const duplicates = new Map([...groups].filter(([, files]) => files.length > 1).map(([sha], i) => [sha, `D${i + 1}`]));
-  put('raw/source-manifest.md', front('원자료 매니페스트', 'source-map', ['cpa_uploader/data']) + `파일 ${records.length}개 · 동일 해시 중복 ${duplicates.size}그룹 · NUL 포함 ${records.filter((r) => r.nul).length}개. 원자료를 수정하지 않고 읽는다. 편집 정본과 배포물은 각각의 생성·검수 절차로만 갱신한다.\n\n` + table(['경로', 'bytes', 'SHA-256', 'NUL', '중복 그룹'], records.map((r) => [link('raw/source-manifest.md', r.file, r.file.replace('cpa_uploader/', '')), r.bytes, r.sha, r.nul, duplicates.get(r.sha) || '-'])) + '\n\n## Related\n\n- [[topic-map]]\n- [[coverage-map]]\n- [[source-review-map]]');
+  const rawCollections = 'cpa_uploader/raw/collections';
+  const collectionManifests = fs.existsSync(path.join(repoDir, rawCollections))
+    ? fs.readdirSync(path.join(repoDir, rawCollections), { withFileTypes: true }).filter(entry => entry.isDirectory())
+      .map(entry => `${rawCollections}/${entry.name}/manifest.json`).filter(file => fs.existsSync(path.join(repoDir, file))).sort() : [];
+  const rawArchive = fs.existsSync(path.join(repoDir, 'cpa_uploader/raw/README.md'))
+    ? '## 원자료·검증 출처 보관소\n\n' + link('raw/source-manifest.md', 'cpa_uploader/raw/README.md', 'cpa_uploader/raw 안내')
+      + '에서 기반 자료·검증 원본·추출본·페이지 이미지와 원래 경로의 연결을 찾는다. 기존 출처 경로를 유지한 보존 복사이며 수집·해시 검사는 의미검수·실제 채점 완료와 별개다.\n\n'
+      + table(['수집', '원래 경로', '고유 보존 파일', '미보관 기록'], collectionManifests.map(file => {
+        const collection = JSON.parse(read(file));
+        return [link('raw/source-manifest.md', file.replace('manifest.json', 'index.md'), path.basename(path.dirname(file))),
+          collection.summary.original_paths, collection.summary.unique_files, collection.missing.length];
+      })) + '\n\n' : '';
+  put('raw/source-manifest.md', front('원자료 매니페스트', 'source-map', ['cpa_uploader/data', ...collectionManifests]) + rawArchive
+    + `## 현행 등록 입력\n\n파일 ${records.length}개 · 동일 해시 중복 ${duplicates.size}그룹 · NUL 포함 ${records.filter((r) => r.nul).length}개. 아래는 현재 data 입력이고 raw의 과거 시점 사본과 구분한다. 원자료를 수정하지 않고 읽으며 편집 정본과 배포물은 각각의 생성·검수 절차로만 갱신한다.\n\n`
+    + table(['경로', 'bytes', 'SHA-256', 'NUL', '중복 그룹'], records.map((r) => [link('raw/source-manifest.md', r.file, r.file.replace('cpa_uploader/', '')), r.bytes, r.sha, r.nul, duplicates.get(r.sha) || '-'])) + '\n\n## Related\n\n- [[topic-map]]\n- [[coverage-map]]\n- [[source-review-map]]');
+
+  const dashboardFile = '_meta/authoring-dashboard.md';
+  const overlayFile = 'cpa_uploader/analysis/coverage/links.json';
+  const hasAnalysisInputs = fs.existsSync(path.join(repoDir, overlayFile))
+    && fs.existsSync(path.join(repoDir, 'cpa_uploader/analysis/question-elements/past-exam.json'));
+  if (hasAnalysisInputs) {
+    const currentCoverage = buildCoverage({ repoDir, catalog, dataset: buildQuestionElements({ repoDir }) });
+    put(dashboardFile, front('출제 요소·빈도·문항 상태 통합 현황', 'coverage', [bankRelative, overlayFile]) + renderDashboard(currentCoverage)
+      + '\n## Related\n\n- [[ox-study-order]]\n- [[source-catalog]]\n- [[question-elements]]\n- [[requirement-coverage]]\n');
+  } else {
+    put(dashboardFile, front('출제 요소·빈도·문항 상태 통합 현황', 'coverage')
+      + '통합 분석 입력이 이 작업 공간에 없다. 추출 데이터와 관계 장부를 준비한 뒤 analysis:build를 실행한다.\n\n## Related\n\n- [[source-catalog]]\n- [[question-elements]]\n- [[requirement-coverage]]\n');
+  }
 
   const manualPages = allFiles(wikiDir).filter((p) => p.endsWith('.md')).map((p) => slash(path.relative(wikiDir, p))).filter((p) => !pages.has(p) && !/^(concepts|questions|_meta|raw)\//.test(p) && !['index.md', 'log.md', 'SCHEMA.md'].includes(p));
+  const guideRank = (file) => studyRank.get(file.match(/(?:^|\/)topic-(\d+)-design\.md$/u)?.[1]) || 0;
+  const orderedGuides = [...manualPages].sort((a, b) => guideRank(a) - guideRank(b) || a.localeCompare(b, 'en'));
   const contentPages = pages.size + manualPages.length;
   const summary = { wikiDir, topics: topicDefinitions.length, questionSets: bank.length, subquestions: counts(bank).questions, criteria: counts(bank).criteria, requirements: requirementCount, sourceFiles: catalog.sources.length, sourceUnits: catalog.units.length, sourceCatalogPages: catalogFiles.length + 1, sourceNavigationLinks: catalog.tocLinks.length, contentPages };
   const catalogIndex = unitGroups.map((group) => `- ${catalogFiles.filter((file) => file.startsWith(`_meta/source-catalog-${group.id}.`) || file.startsWith(`_meta/source-catalog-${group.id}-part-`)).map((file) => `[[${path.basename(file, '.md')}]]`).join(' · ')}`).join('\n');
-  put('index.md', `# CPA 회계감사 문제 출제 LLM Wiki\n\n> Last updated: ${date} | Content pages: ${contentPages} | v3 문제은행: 세트 ${bank.length}개 · 물음 ${summary.subquestions}개 · criterion ${summary.criteria}개\n\n출제·검토용 내부 지식베이스다. 세트 색인은 정답과 비공개 채점 조건을 포함한다.\n\n## Start Here\n\n- [[source-catalog]] — 원자료 단위에서 새 목표 탐색\n- [[source-authoring-design]] — 두 설계 경로와 계획서\n- [[topic-map]] — 주제와 설계 지침\n- [[coverage-map]] — 분포·직접 출처 미연결·유형\n- [[requirement-coverage]] — 요구사항·학습목표와 공백 후보\n- [[source-review-map]] — 검토 기록·공식 출처·판본 상태\n- [[question-generation-workflow]] — 생성부터 게시까지\n- [스키마](SCHEMA.md) · [갱신 기록](log.md)\n\n## Concepts\n\n${topicDefinitions.map((t) => `- [[${t.slug}]] — ${axis(t)}`).join('\n')}\n\n## Question Generation\n\n${manualPages.sort().map((p) => `- [[${path.basename(p, '.md')}]]`).join('\n')}\n\n## Questions\n\n${bank.map((s) => `- [[${s.id}]] — ${inline(s.title)}`).join('\n')}\n\n## Meta\n\n- [[topic-map]]\n- [[coverage-map]]\n- [[requirement-coverage]]\n- [[source-review-map]]\n- [[source-manifest]]\n- [[source-catalog]]\n${catalogIndex}`);
+  put('index.md', `# CPA 회계감사 문제 출제 LLM Wiki\n\n> Last updated: ${date} | Content pages: ${contentPages} | v3 문제은행: 세트 ${bank.length}개 · 물음 ${summary.subquestions}개 · criterion ${summary.criteria}개\n\n출제·검토용 내부 지식베이스다. 세트 색인은 정답과 비공개 채점 조건을 포함한다.\n\n## Start Here\n\n- [[authoring-dashboard]] — 요구사항·빈도·은행 대응·검토/게시 상태 통합 현황\n- [[ox-study-order]] — 필수암기·OX 200제의 장별 흐름과 학습 순서\n- [[source-catalog]] — 원자료 단위에서 새 목표 탐색\n- [[question-elements]] — 연습·기출의 구체 요구사항과 재수록 제거 빈도\n- [[source-authoring-design]] — 두 설계 경로와 계획서\n- [[topic-map]] — 주제와 설계 지침\n- [[coverage-map]] — 분포·직접 출처 미연결·유형\n- [[requirement-coverage]] — 요구사항·학습목표와 공백 후보\n- [[source-review-map]] — 검토 기록·공식 출처·판본 상태\n- [[question-generation-workflow]] — 생성부터 게시까지\n- [스키마](SCHEMA.md) · [갱신 기록](log.md)\n\n## Concepts\n\n교재 흐름에 따른 학습 순서다. 주제 ID와 장별 연결은 [[ox-study-order]]에서 확인한다.\n\n${studyTopics.map((t, index) => `${index + 1}. ${definitions.get(t.id).title} — [[${t.slug}]] · ${axis(t)}`).join('\n')}\n\n## Question Generation\n\n${orderedGuides.map((p) => `- [[${path.basename(p, '.md')}]]`).join('\n')}\n\n## Questions\n\n${orderedBank.map((s) => `- [[${s.id}]] — ${inline(s.title)}`).join('\n')}\n\n## Meta\n\n- [[topic-map]]\n- [[coverage-map]]\n- [[requirement-coverage]]\n- [[source-review-map]]\n- [[source-manifest]]\n- [[source-catalog]]\n${catalogIndex}`);
   return { pages, summary };
 }
 

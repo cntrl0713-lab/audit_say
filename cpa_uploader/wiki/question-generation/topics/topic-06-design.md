@@ -6,15 +6,15 @@ type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, quality]
-sources: [docs/reports/question-review-2027/06.md, docs/reports/question-review-2027/06.json]
+sources: [docs/archive/과거-검토-증거/reports/question-review-2027/주제06-위험평가-검토-수정-결과.md, cpa_uploader/analysis/reviews/question-review-2027/06.json]
 confidence: high
 ---
 
 # 주제06. 위험평가 문항의 조건과 이유
 
-[검토 보고서](../../../../docs/reports/question-review-2027/06.md) · [물음별 근거 장부](../../../../docs/reports/question-review-2027/06.json)
+[검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제06-위험평가-검토-수정-결과.md) · [물음별 근거 장부](../../../analysis/reviews/question-review-2027/06.json)
 
-주제06의 기존 문항 수정에서 확인한 설계 주의사항이다. 상세 전후 문안과 실측은 [주제06 보고서](../../../../docs/reports/question-review-2027/06.md), 직접 출처는 [공식315·330 발췌](../../../data/official/kga315-330-2025-review06.txt)를 따른다. 해당 발문이 요구하는 범위에만 적용하며 다른 물음에 숨은 득점 요건으로 추가하지 않는다.
+주제06의 기존 문항 수정에서 확인한 설계 주의사항이다. 상세 전후 문안과 실측은 [주제06 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제06-위험평가-검토-수정-결과.md), 직접 출처는 [공식315·330 발췌](../../../data/official/kga315-330-2025-review06.txt)를 따른다. 해당 발문이 요구하는 범위에만 적용하며 다른 물음에 숨은 득점 요건으로 추가하지 않는다.
 
 | 구분 | 보존할 내용 | 근거 |
 | --- | --- | --- |

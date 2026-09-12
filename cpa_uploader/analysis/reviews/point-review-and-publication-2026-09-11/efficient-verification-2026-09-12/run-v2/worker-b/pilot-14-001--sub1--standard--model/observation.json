@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-14-001--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-14-001--sub1--standard",
+  "source_set_id": "pilot-14-001",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "a99ae5fae0dfe8a97ed27fff51a116e6198a7ad77aa9c55b7947cde06681efc6",
+  "answers": {
+    "sub1": "그룹업무수행이사 또는 그가 속한 회계법인이 그룹재무제표 전체에 대한 감사의견을 책임지며, 부문감사인의 참여로 그 책임이 경감되지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 600.11의 그룹의견 책임 주체와 부문감사인 참여로 책임이 경감되지 않는다는 결과2개다. 법규상 언급 예외가 책임 분담을 만들지 않는다. 해당 기준 crit1의 원 판정 met를 보존한다."
+        },
+        {
+          "criterion_id": "crit1.p2",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 600.11의 그룹의견 책임 주체와 부문감사인 참여로 책임이 경감되지 않는다는 결과2개다. 법규상 언급 예외가 책임 분담을 만들지 않는다. 해당 기준 crit1.p2의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "073fb0e32ff26dd5cac4f0167197f790a29deea7d74797a1db1dd03647d7e681",
+  "schema_hash": "8dce5c6a9209e5ee2003b419d88c1b5032b5cd2b6ca6647efd2c6121ab97a41b",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "그룹업무수행이사 또는 그가 속한 회계법인이 그룹재무제표 전체에 대한 감사의견을 책임지며, 부문감사인의 참여로 그 책임이 경감되지 않는다.",
+            "reason": "그룹업무수행이사 또는 소속 회계법인이 그룹재무제표 전체 감사의견에 책임진다고 명시했다."
+          },
+          {
+            "criterion_id": "crit1.p2",
+            "verdict": "met",
+            "quote": "그룹업무수행이사 또는 그가 속한 회계법인이 그룹재무제표 전체에 대한 감사의견을 책임지며, 부문감사인의 참여로 그 책임이 경감되지 않는다.",
+            "reason": "부문감사인의 참여로 그 책임이 경감되지 않는다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "그룹업무수행이사 또는 소속 회계법인이 그룹재무제표 전체 감사의견에 책임진다고 명시했다."
+              },
+              {
+                "criterion_id": "crit1.p2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "부문감사인의 참여로 그 책임이 경감되지 않는다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-14-001",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "부문감사인이 그룹감사에 참여하더라도 그룹재무제표 전체에 대한 감사의견의 책임은 누구에게 있는지, 그 책임이 경감되는지 서술하시오.",
+        "user_answer": "그룹업무수행이사 또는 그가 속한 회계법인이 그룹재무제표 전체에 대한 감사의견을 책임지며, 부문감사인의 참여로 그 책임이 경감되지 않는다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "그룹업무수행이사 또는 그가 속한 회계법인이 그룹재무제표 전체에 대한 감사의견을 책임지며, 부문감사인의 참여로 그 책임이 경감되지 않는다.",
+            "reason": "그룹업무수행이사 또는 소속 회계법인이 그룹재무제표 전체 감사의견에 책임진다고 명시했다.",
+            "claim": "그룹재무제표 전체 감사의견의 책임은 그룹업무수행이사 또는 그가 속한 회계법인에 있다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit1.p2",
+            "verdict": "met",
+            "quote": "그룹업무수행이사 또는 그가 속한 회계법인이 그룹재무제표 전체에 대한 감사의견을 책임지며, 부문감사인의 참여로 그 책임이 경감되지 않는다.",
+            "reason": "부문감사인의 참여로 그 책임이 경감되지 않는다고 명시했다.",
+            "claim": "부문감사인의 업무를 이용하더라도 그룹감사인의 책임은 감소하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "그룹업무수행이사 또는 그가 속한 회계법인이 그룹재무제표 전체에 대한 감사의견을 책임지며, 부문감사인의 참여로 그 책임이 경감되지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_081f18dfd4cb79da016aa4d24ceb5c87d087efdddfd28bf8a8",
+        "request_id": "req_a39dca90c1a84529a531427cdde1687a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2401,
+          "input_tokens_details": {
+            "cache_write_tokens": 2398,
+            "cached_tokens": 0
+          },
+          "output_tokens": 177,
+          "output_tokens_details": {
+            "reasoning_tokens": 22
+          },
+          "total_tokens": 2578
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008125,
+        "min_usd": 0.0008125,
+        "max_usd": 0.0008125,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-14-001--sub1--standard--model/input.json",
+      "sha256": "8bfb5794238b70f9135f1b51d3d3de2f064e03162c8737f26ffe070065af3bb8"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-14-001--sub1--standard--model/transport.jsonl",
+      "sha256": "b528be39d3bdcb21e4a6a810b92818ecaaf55d6415a41673b93e249b36e64cb9"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-14-001--sub1--standard--model/traces.jsonl",
+      "sha256": "703e9d8d67d178a3bb3fa87ff846d81c80c96e437a3a355d3b87696ff2b99d28"
+    }
+  }
+}

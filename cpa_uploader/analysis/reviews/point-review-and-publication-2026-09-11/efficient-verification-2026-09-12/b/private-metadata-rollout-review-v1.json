@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "reviewer": "plan_procedures",
+  "reviewed_at": "2026-09-12T05:20:28.050Z",
+  "status": "read_only_review_complete_stopped_before_remote_apply",
+  "reason_stopped": "User requested current work closure and stop; no further remote/model calls or DB application",
+  "reviewed_inputs": {
+    "runner": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/private-metadata-rollout.mjs",
+      "sha256": "4632c1c6b80292ea42197d252ab529a679e5241b4ce2e6ce024ccea581a51c0a"
+    },
+    "migration": {
+      "file": "supabase/migrations/20260912060000_cpa_private_source_metadata.sql",
+      "sha256": "a6a6300fd1f1df32fe822f137f832f07f306ed1ada5ecb9c98c301882c35a789"
+    },
+    "before": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/db-private-metadata-v1/before.json",
+      "sha256": "90446134f72bf5ce440cf536e5604f4901367194da0869e317ded5187b1c5f63"
+    },
+    "c_test_log": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration-test-v1.log",
+      "sha256": "20ffa5b03a890fb827356e0f00a7ce2458dde18a6b9c7f0898d98c5d3ae7b92f"
+    }
+  },
+  "reviewer_actions": {
+    "api_calls": 0,
+    "db_reads": 0,
+    "db_writes": 0,
+    "model_calls": 0,
+    "production_file_writes": 0,
+    "tests_executed_by_reviewer": 0
+  },
+  "runner_findings": [
+    {
+      "id": "transaction_snapshot_toctou",
+      "initial": "Full state compare occurred before transaction/locks; the in-transaction guard covered only active identity and function definition hashes",
+      "resolution": "After advisory import lock and three table share locks, rerun the complete snapshotQuery and require JSONB equality with the exact before state",
+      "status": "resolved_in_reviewed_bytes"
+    },
+    {
+      "id": "strict_cli",
+      "resolution": "Unknown/duplicate/missing/malformed SHA and prepare-with-extra-arguments rejected",
+      "status": "confirmed"
+    },
+    {
+      "id": "helper_search_path",
+      "resolution": "Actual helper proconfig must equal search_path=pg_catalog,public after space normalization",
+      "status": "confirmed"
+    },
+    {
+      "id": "uncertain_apply",
+      "resolution": "wx request record precedes write; no automatic retry; applied/pending receipt separate from postcondition success; existing artifacts never overwritten",
+      "status": "confirmed"
+    }
+  ],
+  "sql_findings": [
+    {
+      "id": "source_version_binding",
+      "status": "confirmed",
+      "detail": "Exact release_items version/set/position, file UTF8 SHA and original PostgreSQL JSONB content hash including v.applicability; all non-null linked archives must be valid and normalized content identical"
+    },
+    {
+      "id": "ordinary_field_equivalence",
+      "initial": "Earlier draft compared only optional-value collision",
+      "status": "resolved_in_reviewed_bytes",
+      "detail": "Set/source/subquestion/criterion/fact ordinary fields are compared without overwrite; lifecycle labels, known optional null cleanup and answer_slots default follow existing DTO semantics"
+    },
+    {
+      "id": "allowlist_and_id_path",
+      "status": "confirmed",
+      "detail": "Only source_refs.source_span and critical_facts.scope restored at exact source ID or q/criterion/fact ID path; cardinality checks; null optional absent, empty string preserved"
+    },
+    {
+      "id": "legacy_and_public_boundary",
+      "status": "confirmed",
+      "detail": "Document-less legacy returns normalized DTO; broken non-null archive never falls back; normalized/public serializer and common membership wrappers unchanged; helper/wrapper service-only, stable/security invoker"
+    }
+  ],
+  "test_evidence": {
+    "executed_by": "plan_completion",
+    "independently_executed_by_this_reviewer": false,
+    "log": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration-test-v1.log",
+      "sha256": "20ffa5b03a890fb827356e0f00a7ce2458dde18a6b9c7f0898d98c5d3ae7b92f"
+    },
+    "observed_summary": {
+      "tests": 40,
+      "pass": 40,
+      "fail": 0
+    },
+    "observed_fixture_scope": "Actual current154 and retired104 source banks = 258 set queries via local production importer and SQL wrapper; boundaries include content hash, ID path, ordinary-field mismatch, multi-release, null and overwrite rejection",
+    "followup_prompt_payload_check": "C had already started an additional local check; completion not claimed by this report",
+    "scope_limit": "This local fixture is not every historical sealed remote version and does not satisfy the separately requested whole-remote postcheck"
+  },
+  "reviewed_exact_apply_command": "node cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/private-metadata-rollout.mjs --apply --expected-before-sha256 90446134f72bf5ce440cf536e5604f4901367194da0869e317ded5187b1c5f63 --expected-migration-sha256 a6a6300fd1f1df32fe822f137f832f07f306ed1ada5ecb9c98c301882c35a789",
+  "apply_command_status": "Audited syntax/inputs only; do not execute under current stop instruction. Recheck current state and explicit authorization at resume.",
+  "not_completed": [
+    "Remote DDL application",
+    "Whole operational DB postcheck (root next-task scope described as 158; current C fixture is 154+104 and is not conflated with it)",
+    "Compatibility of every historical sealed source version in the remote DB",
+    "Post-application RPC-to-grading payload/source equality",
+    "C followup prompt-payload test result not independently confirmed here"
+  ],
+  "observation_at_close": {
+    "apply_request_file_exists": false,
+    "apply_receipt_file_exists": false,
+    "remote_after_file_exists": false
+  },
+  "limitations": [
+    "Read-only code review is not DDL execution or operational success.",
+    "The release/version/item fingerprints cover their declared identity fields, not a byte-for-byte snapshot of every database table. Subsequent whole private/public payload comparison remains necessary.",
+    "No new model grading is justified merely by this projection fix; first demonstrate exact restored payload identity with previously tested source."
+  ]
+}

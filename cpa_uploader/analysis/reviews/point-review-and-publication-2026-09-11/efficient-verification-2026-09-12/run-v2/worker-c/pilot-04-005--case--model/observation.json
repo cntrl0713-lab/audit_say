@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-04-005--case--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-005--case",
+  "source_set_id": "pilot-04-005",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "236a840b4a75d39686f1d6197d1a07aa390fb87d271b5b6f57031f7c856c73ea",
+  "answers": {
+    "sub1": "허용되지 않는다. 최종감사파일 취합 완료 후에는 보존기간 종료 전까지 어떠한 성격의 감사문서도 삭제하거나 폐기해서는 안 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 230.15를 저장공간 이유의 삭제 제안에 적용해 금지 판단과 모든 성격 문서라는 범위2점을 묻는다. 보존기간 숫자는 미요구이나 명시하는 경우 취합완료일을 기산점으로 왜곡하면 안 된다. 원발문에만 있던 삭제 제안·보존기간 미종료를 의미 추가 없이 부모 fact2에도 제공하고 사례 분류에서 연결했다. 발문·모범답안·2점 및 QA는 동일하다. 해당 기준 crit1의 원 판정 met를 보존한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 230.15를 저장공간 이유의 삭제 제안에 적용해 금지 판단과 모든 성격 문서라는 범위2점을 묻는다. 보존기간 숫자는 미요구이나 명시하는 경우 취합완료일을 기산점으로 왜곡하면 안 된다. 원발문에만 있던 삭제 제안·보존기간 미종료를 의미 추가 없이 부모 fact2에도 제공하고 사례 분류에서 연결했다. 발문·모범답안·2점 및 QA는 동일하다. 해당 기준 crit2의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "de5379ca20bb22468af1cff22fc53f7f6c737471d866dc8f3f5ceed71d47e4ee",
+  "schema_hash": "450e5450f39cb179dc330749e1eda21d00cb61df1fdc3d16477169ae47fd8af5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "허용되지 않는다. ",
+            "reason": "보존기간 종료 전 삭제·폐기가 허용되지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "최종감사파일 취합 완료 후에는 보존기간 종료 전까지 어떠한 성격의 감사문서도 삭제하거나 폐기해서는 안 된다.",
+            "reason": "취합 완료 후 어떠한 성격의 감사문서도 금지 대상이라고 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "보존기간 종료 전 삭제·폐기가 허용되지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "취합 완료 후 어떠한 성격의 감사문서도 금지 대상이라고 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-005",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "회계법인이 저장 공간 확보를 이유로 최종감사파일의 취합이 완료된 지난 감사의 일부 감사문서를 삭제하려고 한다. 보존기간이 끝나기 전에 이러한 삭제가 허용되는지 판단하고, 금지 대상 감사문서의 범위를 근거로 설명하시오.",
+        "user_answer": "허용되지 않는다. 최종감사파일 취합 완료 후에는 보존기간 종료 전까지 어떠한 성격의 감사문서도 삭제하거나 폐기해서는 안 된다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "허용되지 않는다.",
+            "reason": "보존기간 종료 전 삭제·폐기가 허용되지 않는다고 명시했다.",
+            "claim": "보존기간 종료 전 삭제·폐기는 허용되지 않는다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "최종감사파일 취합 완료 후에는 보존기간 종료 전까지 어떠한 성격의 감사문서도 삭제하거나 폐기해서는 안 된다.",
+            "reason": "취합 완료 후 어떠한 성격의 감사문서도 금지 대상이라고 설명했다.",
+            "claim": "판단 근거로 취합 완료 후 어떠한 성격의 감사문서도 대상이 됨을 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "허용되지 않는다. 최종감사파일 취합 완료 후에는 보존기간 종료 전까지 어떠한 성격의 감사문서도 삭제하거나 폐기해서는 안 된다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f675bfd56a731e3016aa4c87676c487d0862cb426a2b621a7",
+        "request_id": "req_b66cc5da56474b979d2c62273dc961f3",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2626,
+          "input_tokens_details": {
+            "cache_write_tokens": 2623,
+            "cached_tokens": 0
+          },
+          "output_tokens": 207,
+          "output_tokens_details": {
+            "reasoning_tokens": 66
+          },
+          "total_tokens": 2833
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00090475,
+        "min_usd": 0.00090475,
+        "max_usd": 0.00090475,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-04-005--case--model/input.json",
+      "sha256": "a09eaf1ddf97c5787c5f4d0785212e37e1bb0144f4e5ac18989e8d9df2d8a5dd"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-04-005--case--model/transport.jsonl",
+      "sha256": "2b6cfc43c37b73810bd6d99c75f4aa0730b760f940449fba16226f8a0048b27f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-04-005--case--model/traces.jsonl",
+      "sha256": "36e84699ce64c5a62916ffaf5f0c60206c882091f7c6846141be9bb86e9793b7"
+    }
+  }
+}

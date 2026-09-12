@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-13-005--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-005--sub1--standard",
+  "source_set_id": "pilot-13-005",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "e0009aae32179f4de91b3a1f9b1bcbbb04c52c6c6a954861a62808e4c9724759",
+  "answers": {
+    "sub1": "객관성을 적절히 지원하지 못해도 내부감사기능 업무를 활용할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "답안이 해당 명제를 명시적으로 부정한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "답안이 해당 명제를 명시적으로 부정한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "b6eca8ca01f1f15bf8c82adec6da5f7b946a54714756e397ea5cf5a89d8b2550",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "객관성을 적절히 지원하지 못해도 내부감사기능 업무를 활용할 수 있다.",
+            "reason": "객관성 지원이 미흡해도 내부감사기능 업무를 활용할 수 있다고 명시하여 활용 불능 판단과 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "객관성을 적절히 지원하지 못해도 내부감사기능 업무를 활용할 수 있다.",
+            "reason": "객관성 지원 미흡이 활용 금지 요건임을 부정하고 오히려 활용 가능하다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "객관성 지원이 미흡해도 내부감사기능 업무를 활용할 수 있다고 명시하여 활용 불능 판단과 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "객관성 지원 미흡이 활용 금지 요건임을 부정하고 오히려 활용 가능하다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-005",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "내부감사기능의 객관성이 조직 내 위상과 정책·절차로 충분히 뒷받침되지 않는다고 외부감사인이 결정한 경우, 해당 기능이 수행한 업무를 계속 활용할 수 있는지 판단하고 근거를 제시하시오.",
+        "user_answer": "객관성을 적절히 지원하지 못해도 내부감사기능 업무를 활용할 수 있다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "객관성을 적절히 지원하지 못해도 내부감사기능 업무를 활용할 수 있다.",
+            "reason": "객관성 지원이 미흡해도 내부감사기능 업무를 활용할 수 있다고 명시하여 활용 불능 판단과 반대된다.",
+            "claim": "객관성 지원 미흡 시 업무 활용 불능이라고 판단함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "객관성을 적절히 지원하지 못해도 내부감사기능 업무를 활용할 수 있다.",
+            "reason": "객관성 지원 미흡이 활용 금지 요건임을 부정하고 오히려 활용 가능하다고 명시했다.",
+            "claim": "조직 내 위상과 관련 정책·절차가 객관성을 적절히 지원하지 않는 것이 활용 금지 요건임을 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "해당 내부감사기능이 수행한 업무를 활용할 수 없다.",
+          "조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 못하여 업무 활용의 필수 요건을 충족하지 못했기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_03f715a224a54b08016aa4ce64ccd087d09cbf4ad2acc2055b",
+        "request_id": "req_2020b938f9e4419cbc8406b04a42c805",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2522,
+          "input_tokens_details": {
+            "cache_write_tokens": 2519,
+            "cached_tokens": 0
+          },
+          "output_tokens": 245,
+          "output_tokens_details": {
+            "reasoning_tokens": 79
+          },
+          "total_tokens": 2767
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00092435,
+        "min_usd": 0.00092435,
+        "max_usd": 0.00092435,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-13-005--sub1--standard--wrong/input.json",
+      "sha256": "c5b48a3cefd89f46120986b22fbd7dfb7b8fea779aba9da784a39f66de0504cd"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-13-005--sub1--standard--wrong/transport.jsonl",
+      "sha256": "ef4c6eab9b1b6ac2b0bb3f63beb55dcd9bde33bc270681d040a0c9188c9bdec7"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-13-005--sub1--standard--wrong/traces.jsonl",
+      "sha256": "a6a716d86c532d2329fe4c76ca455366f7f210166340b23b08c1cdeb5a944f49"
+    }
+  }
+}

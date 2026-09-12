@@ -6,15 +6,15 @@ type: guide
 status: reviewed
 review_required: false
 tags: [audit, question-generation, quality]
-sources: [docs/reports/question-review-2027/15.md, docs/reports/question-review-2027/15.json]
+sources: [docs/archive/과거-검토-증거/reports/question-review-2027/주제15-감사의견과-보고-검토-수정.md, cpa_uploader/analysis/reviews/question-review-2027/15.json]
 confidence: high
 ---
 
 # 주제15. 감사의견과 보고 문항의 조건·채점 범위
 
-[검토 보고서](../../../../docs/reports/question-review-2027/15.md) · [물음별 근거 장부](../../../../docs/reports/question-review-2027/15.json)
+[검토 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제15-감사의견과-보고-검토-수정.md) · [물음별 근거 장부](../../../analysis/reviews/question-review-2027/15.json)
 
-[주제15 보고서](../../../../docs/reports/question-review-2027/15.md)와 [공식700·705 발췌](../../../data/official/kga700-705-2025-review15.txt)를 확인한다.
+[주제15 보고서](../../../../docs/archive/과거-검토-증거/reports/question-review-2027/주제15-감사의견과-보고-검토-수정.md)와 [공식700·705 발췌](../../../data/official/kga700-705-2025-review15.txt)를 확인한다.
 
 - 의견형성 평가(700.13–15)와 보고서 구성(700.23,28)을 구별한다. 공정한 표시 달성의 평가를 묻는다면 전반적 표시·구조·내용 및 기초 거래·사건의 표시 방식도 정답에 대응시킨다. 13의 여섯 상위 항목과 그 고려사항을 구별하고, 고려사항까지 채점할 때는 발문에 밝힌다.
 - 적정의견의 일반 제목과 변형의견의 제목 수정(705.20)을 구별한다. 배치와 제목을 독립 배점하면 제목 명제의 점수에 배치 요건을 다시 결합하지 않는다.

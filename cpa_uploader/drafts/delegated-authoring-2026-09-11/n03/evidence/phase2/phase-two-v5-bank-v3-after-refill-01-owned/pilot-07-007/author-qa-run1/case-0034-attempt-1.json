@@ -1,0 +1,229 @@
+{
+  "set_id": "pilot-07-007",
+  "case_id": "sub2-crit5-condition-boundary",
+  "kind": "condition_boundary",
+  "attempt": 1,
+  "started_at": "2026-09-11T04:23:35.757Z",
+  "finished_at": "2026-09-11T04:23:39.651Z",
+  "model": "gpt-5.6-luna",
+  "transport": "live_model",
+  "answers": {
+    "sub1": "",
+    "sub2": "중요한 결산분개만 검사하고 재무제표 작성 중의 기타 수정사항은 모두 검사대상에서 제외한다."
+  },
+  "expected": {
+    "id": "sub2-crit5-condition-boundary",
+    "subquestion_id": "sub2",
+    "kind": "condition_boundary",
+    "answer": "중요한 결산분개만 검사하고 재무제표 작성 중의 기타 수정사항은 모두 검사대상에서 제외한다.",
+    "expected_points": 0,
+    "expected_verdicts": [
+      {
+        "criterion_id": "crit4",
+        "verdict": "not_met",
+        "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 재무제표 정보가 기초 회계기록과 일치하는지 확인하거나 차이를 조정하며, 총계정원장·보조원장 안에서 얻었든 그 밖에서 얻었든 공시에 포함된 정보도 일치 여부 확인이나 차이 조정에 포함한다."
+      },
+      {
+        "criterion_id": "crit5",
+        "verdict": "not_met",
+        "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 재무제표를 작성하는 과정에서 행한 중요한 분개 및 기타 수정사항을 조사한다."
+      }
+    ],
+    "note": "target=crit5; 필요 대상·목적·조건·인과·방법이 빠지거나 적용 전제를 바꾼 경계 답안. 정확한 0점 명칭의 not_met/contradicted만 총괄 runner 정책상 동등하게 볼 수 있다. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다."
+  },
+  "request_hash": "bf41120ed8d0fdd0cb2cb48361710fc392621259003ad8d2cb0d37e6888f3e67",
+  "schema_hash": "611049fb76b158ceaa75b84f7f79b4adfcb5c110770de62937362f4aff793af5",
+  "raw_judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met"
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met"
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met"
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "중요한 결산분개만 검사하고 재무제표 작성 중의 기타 수정사항은 모두 검사대상에서 제외한다.",
+            "reason": "재무제표 정보와 기초 회계기록의 일치 확인 또는 차이 조정 절차를 언급하지 않고, 공시정보의 범위도 다루지 않았다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "중요한 결산분개만 검사하고 재무제표 작성 중의 기타 수정사항은 모두 검사대상에서 제외한다.",
+            "reason": "중요한 결산분개만 검사하고 기타 수정사항은 모두 제외한다고 명시하여, 기타 수정사항 조사 의무를 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "trace": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": null
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": null
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": null
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "재무제표 정보와 기초 회계기록의 일치 확인 또는 차이 조정 절차를 언급하지 않고, 공시정보의 범위도 다루지 않았다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "중요한 결산분개만 검사하고 기타 수정사항은 모두 제외한다고 명시하여, 기타 수정사항 조사 의무를 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-07-007",
+    "score": 0,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "팀장의 실증절차 생략 계획을 평가하고, 중요한 거래유형·계정잔액·공시에 관한 수행 원칙을 제시하시오. 이어 이 원칙이 필요한 이유를 감사인의 위험평가와 내부통제의 고유한계 측면으로 나누어 설명하시오.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "claim": "평가된 중요왜곡표시위험과 관계없이 중요한 각 거래유형·계정잔액·공시에 실증절차를 설계하고 수행해야 하므로, 제시된 종결단계 총괄 검토만 남기고 실증절차를 전부 생략할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "claim": "감사인의 위험평가에는 판단이 수반되므로 모든 중요왜곡표시위험이 식별되지 않을 수 있기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "claim": "경영진의 통제무력화 등 내부통제에 고유한계가 존재하기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "평가된 중요왜곡표시위험과 관계없이 중요한 각 거래유형·계정잔액·공시에 실증절차를 설계하고 수행해야 하므로, 제시된 종결단계 총괄 검토만 남기고 실증절차를 전부 생략할 수 없다.",
+          "감사인의 위험평가에는 판단이 수반되므로 모든 중요왜곡표시위험이 식별되지 않을 수 있기 때문이다.",
+          "경영진의 통제무력화 등 내부통제에 고유한계가 존재하기 때문이다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "기업의 재무제표 결산절차와 관련된 실증절차에 포함해야 하는 두 절차를 모두 설명하시오. 재무제표와 기초 회계기록의 관계를 확인하는 절차에는 원장 안팎에서 얻은 공시정보의 범위도 포함하시오.",
+        "user_answer": "중요한 결산분개만 검사하고 재무제표 작성 중의 기타 수정사항은 모두 검사대상에서 제외한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "중요한 결산분개만 검사하고 재무제표 작성 중의 기타 수정사항은 모두 검사대상에서 제외한다.",
+            "reason": "재무제표 정보와 기초 회계기록의 일치 확인 또는 차이 조정 절차를 언급하지 않고, 공시정보의 범위도 다루지 않았다.",
+            "claim": "재무제표 정보가 기초 회계기록과 일치하는지 확인하거나 차이를 조정하며, 총계정원장·보조원장 안에서 얻었든 그 밖에서 얻었든 공시에 포함된 정보도 일치 여부 확인이나 차이 조정에 포함한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "중요한 결산분개만 검사하고 재무제표 작성 중의 기타 수정사항은 모두 검사대상에서 제외한다.",
+            "reason": "중요한 결산분개만 검사하고 기타 수정사항은 모두 제외한다고 명시하여, 기타 수정사항 조사 의무를 부정했다.",
+            "claim": "재무제표를 작성하는 과정에서 행한 중요한 분개 및 기타 수정사항을 조사한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재무제표 정보가 기초 회계기록과 일치하는지 확인하거나 차이를 조정하며, 총계정원장·보조원장 안에서 얻었든 그 밖에서 얻었든 공시에 포함된 정보도 일치 여부 확인이나 차이 조정에 포함한다.",
+          "재무제표를 작성하는 과정에서 행한 중요한 분개 및 기타 수정사항을 조사한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "exact_verdict_differences": [
+    {
+      "criterion_id": "crit4",
+      "verdict": "not_met",
+      "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 재무제표 정보가 기초 회계기록과 일치하는지 확인하거나 차이를 조정하며, 총계정원장·보조원장 안에서 얻었든 그 밖에서 얻었든 공시에 포함된 정보도 일치 여부 확인이나 차이 조정에 포함한다."
+    },
+    {
+      "criterion_id": "crit5",
+      "verdict": "not_met",
+      "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 재무제표를 작성하는 과정에서 행한 중요한 분개 및 기타 수정사항을 조사한다."
+    }
+  ],
+  "verdict_differences": [],
+  "matched": true,
+  "boundary_policy": "조건 경계의 not_met/contradicted만 0점 동등 취급; 반대·누락 사례에는 적용하지 않음"
+}

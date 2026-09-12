@@ -1,5 +1,6 @@
 import { ANNUAL_DISPLAY_YEARS, annualPeriodsForYear } from './annualYears.ts';
 import { buildHeadcounts, rowsForReceipt } from './personnel.ts';
+import { revenuePerCpa } from './revenue.ts';
 import type { FirmAnnualSummary, FirmCpaTenureRow, FirmHeadcountRow } from './types.ts';
 import type { Point } from './chart.ts';
 
@@ -52,6 +53,12 @@ export function buildAnnualTrend(
             label: '임직원 1인당 매출액',
             unit: 'krw',
             value: (p: FirmAnnualSummary) => p.revenue_per_employee,
+        },
+        {
+            key: 'revenue_per_cpa',
+            label: '공인회계사 1인당 매출액',
+            unit: 'krw',
+            value: (p: FirmAnnualSummary) => revenuePerCpa(p, headcounts),
         },
         {
             key: 'employee_per_director',

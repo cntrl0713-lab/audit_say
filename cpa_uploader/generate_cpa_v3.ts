@@ -155,15 +155,17 @@ const QUESTION_SET_RESPONSE_SCHEMA: unknown = {
         learning_order: { type: 'array', items: { type: 'string' } },
         subquestions: {
             type: 'array',
-            minItems: 2,
-            maxItems: 3,
+            minItems: 1,
+            maxItems: 4,
             items: {
                 type: 'object',
                 additionalProperties: false,
-                required: ['id', 'type', 'prompt', 'constraints', 'selection', 'model_answer', 'requirements', 'criteria'],
+                required: ['id', 'type', 'question_style', 'topic_ids', 'prompt', 'constraints', 'selection', 'model_answer', 'requirements', 'criteria'],
                 properties: {
                     id: { type: 'string' },
                     type: { type: 'string', enum: ['descriptive', 'enumeration', 'judgment'] },
+                    question_style: { type: 'string', enum: ['case', 'standard'] },
+                    topic_ids: { type: 'array', minItems: 1, items: { type: 'string', enum: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19'] } },
                     prompt: { type: 'string' },
                     constraints: {
                         type: 'object',
@@ -334,7 +336,9 @@ function buildPrompt(topic: TopicDefinition, packet: SourcePacket, plan: Questio
         '- 문서가 요구하는 사람 검수·공식 판본 확인을 자동 완료했다고 기록하지 않는다. 제공 자료로 확인하지 못하는 사항은 verification.notes에 남긴다.',
         '- 문서의 수동 입력 자리표시자 대신 이 요청의 concept와 SOURCE_BUNDLE을 사용한다. 제공되지 않은 문제·해설 원문은 만들어 넣지 않는다.',
         '- SOURCE_BUNDLE 밖의 기준, 수치, 기한, 주체, 결론을 만들지 않는다.',
-        '- 2~3개의 서로 연계된 subquestion을 만든다.',
+        '- subquestion마다 question_style(case 또는 standard)과 실제 요구에 대응하는 topic_ids(하나 이상)를 기록한다. type(descriptive/enumeration/judgment)은 답안 형식이며 학습 유형과 별개다.',
+        '- 사실관계와 연계해 답해야 하면 case, 기준서만 보고 답할 수 있으면 standard다. 한 출력에는 같은 학습 유형만 담는다. case는 사실관계를 가진 부모 문제 아래 1~4개 물음으로 구성하며 서로 다른 주제를 섞을 수 있다.',
+        '- standard는 공통 사실관계를 빈 배열로 두고 각 물음만으로 풀 수 있게 쓴다. 한 물음만 제작할 수 있으며 별도의 부모 사례나 다른 물음 답안을 요구하지 않는다. 독립된 답안 범위가 과도하게 묶이면 별도 물음으로 분리한다.',
         "- 모든 물음은 selection={type:'all',n:null}, constraints={ordered:false,max_entries:null,overflow_policy:'none'}이다. 답안 전체에서 충족한 독립 criterion을 정수 합산하며 의미상의 절차 순서·시점은 보존한다.",
         '- 각 requirement는 SOURCE_BUNDLE의 source_ref_id 하나를 가리키고 source_quote를 글자 그대로 복사한다. source_span은 SOURCE_LOCATORS의 해당 ID 값과 정확히 같아야 한다.',
         '- 주어진 AUTHORING_PLAN의 학습목표·조건·예외·답안범위·물음유형을 지킨다. 기존 문제 재구성에서는 선택한 원문의 실제 발문/해설을 구별한다.',
@@ -391,6 +395,9 @@ export function enforceTrustedMetadata(raw: unknown, topicId: string, sourceBund
     const standards = [...new Set(draft.source_refs.map(source => source.page).filter((page): page is string => !!page?.startsWith('KGA ')))].sort();
     if (JSON.stringify([...draft.classification.standards].sort()) !== JSON.stringify(standards)) throw new Error('classification.standards는 사용한 직접 KGA 출처와 일치해야 합니다.');
     for (const q of draft.subquestions ?? []) {
+        if (!['case', 'standard'].includes(q.question_style ?? '') || !Array.isArray(q.topic_ids) || q.topic_ids.length === 0) {
+            throw new Error(q.id + ': 신규 물음의 학습 유형·주제가 필요합니다.');
+        }
         if (!plan.question_types.includes(q.type)) throw new Error(q.id + ': 계획에서 선택하지 않은 물음 유형입니다.');
         const requirements = new Map((q.requirements ?? []).map(req => [req.id, req]));
         for (const req of q.requirements ?? []) {

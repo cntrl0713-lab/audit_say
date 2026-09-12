@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-01-006--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-01-006--sub1--standard",
+  "source_set_id": "pilot-01-006",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "4470f027d5a545ed49f00b93bfa1691347f516ec4fc3d840b6e7d5b8b6afbbcc",
+  "answers": {
+    "sub1": "업무수행이사는 검토자의 선임 여부를 확인할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "명시적 반대 또는 조건의 부정이다. 같은 문장이 다른 판단도 반대로 함축하는 경우 함께 반대로 평가한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "명시적 반대 또는 조건의 부정이다. 같은 문장이 다른 판단도 반대로 함축하는 경우 함께 반대로 평가한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "명시적 반대 또는 조건의 부정이다. 같은 문장이 다른 판단도 반대로 함축하는 경우 함께 반대로 평가한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "22d862ec91faac943e256c0b795579ddd89e62b39768d53acfbc26e07e6ba1f9",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "업무수행이사는 검토자의 선임 여부를 확인할 필요가 없다.",
+            "reason": "선임 여부를 확인할 필요가 없다고 명시하여 요구사항을 반대로 제시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "유의적 사항을 업무품질관리검토자와 논의한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "감사보고서일과 검토 종료일의 관계에 대한 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "선임 여부를 확인할 필요가 없다고 명시하여 요구사항을 반대로 제시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "유의적 사항을 업무품질관리검토자와 논의한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사보고서일과 검토 종료일의 관계에 대한 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-01-006",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "종전 품질관리체계를 적용하고 업무품질관리검토를 받아야 하는 재무제표감사에서 업무수행이사가 수행해야 할 사항을 모두 제시하시오. 검토자 선임, 유의적 사항 및 감사보고서일에 관한 의무를 구별하시오.",
+        "user_answer": "업무수행이사는 검토자의 선임 여부를 확인할 필요가 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "업무수행이사는 검토자의 선임 여부를 확인할 필요가 없다.",
+            "reason": "선임 여부를 확인할 필요가 없다고 명시하여 요구사항을 반대로 제시했다.",
+            "claim": "업무수행이사가 업무품질관리검토자의 선임 여부를 결정·확인함을 제시한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "유의적 사항을 업무품질관리검토자와 논의한다는 내용이 없다.",
+            "claim": "업무수행이사가 검토 중 식별된 사항 등 감사업무의 유의적 사항을 업무품질관리검토자와 논의함을 제시한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "감사보고서일과 검토 종료일의 관계에 대한 내용이 없다.",
+            "claim": "감사보고서일을 업무품질관리검토의 실제 종료일 전으로 하지 않는다고 제시한다. 보고서 발송 전에만 끝내면 된다는 시점으로 늦추지 않는다. 검토 문서의 최종 취합 완료일과 실제 검토 종료일을 혼동하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "업무품질관리검토자가 선임되었는지 결정한다.",
+          "검토 중 식별된 사항을 포함하여 감사 수행 중 생긴 유의적 사항을 업무품질관리검토자와 논의한다.",
+          "감사보고서일자를 업무품질관리검토의 실제 종료일보다 앞선 일자로 하지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_050fa79a13b093b4016aa4c716334887d09286ebbc5c12198a",
+        "request_id": "req_77ef8de08c1f43be84346850f1d93514",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2615,
+          "input_tokens_details": {
+            "cache_write_tokens": 2612,
+            "cached_tokens": 0
+          },
+          "output_tokens": 233,
+          "output_tokens_details": {
+            "reasoning_tokens": 52
+          },
+          "total_tokens": 2848
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009332,
+        "min_usd": 0.0009332,
+        "max_usd": 0.0009332,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-01-006--sub1--standard--wrong/input.json",
+      "sha256": "5b2010a5e0c903d1c8068d3d5836584e18c780da31e09df61b822b0b6c073142"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-01-006--sub1--standard--wrong/transport.jsonl",
+      "sha256": "b72796551003c5778fdf103bcb4a21aff5103c46373e14163e70f7a6d0798901"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-01-006--sub1--standard--wrong/traces.jsonl",
+      "sha256": "38ce99de6b8d60ba4d0cde38cb40265412d8225e2385d955ac323af52791460e"
+    }
+  }
+}

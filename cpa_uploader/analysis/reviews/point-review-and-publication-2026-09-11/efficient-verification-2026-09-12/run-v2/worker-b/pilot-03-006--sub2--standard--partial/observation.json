@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-03-006--sub2--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-03-006--sub2--standard",
+  "source_set_id": "pilot-03-006",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "50befed574c31855e9cb13c05806d34a84938c0b368119a42f50a4acef9fc443",
+  "answers": {
+    "sub2": "지배기구·소유주·규제기관 등 다른 이해관계자에게 그 상황을 보고해야 할 계약상 또는 기타 의무가 존재하는지 결정한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "대상 명제의 진짜 누락 여부를 남은 답안 전체로 확인한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "대상 명제의 진짜 누락 여부를 남은 답안 전체로 확인한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "3ca3fb6538fc4b83ad0fda6c8111523e7dce493d04877055b70b8522e2d189e1",
+  "schema_hash": "d11fa709d4bb59744462d5bf3dbad02c3329bc615bbd47c30ca7e01097bc56b5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "감사업무 해지에 관한 내용이 없다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "지배기구·소유주·규제기관 등 다른 이해관계자에게 그 상황을 보고해야 할 계약상 또는 기타 의무가 존재하는지 결정한다.",
+            "reason": "계약상 또는 기타 보고 의무의 존재 여부를 결정한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사업무 해지에 관한 내용이 없다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "계약상 또는 기타 보고 의무의 존재 여부를 결정한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-03-006",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사인이 업무변경에 동의할 수 없고 원래 감사업무의 계속도 허용되지 않을 때 수행할 후속 조치를 모두 설명하시오. 법규상 해지 가능성과 다른 이해관계자에게 보고할 의무를 구별하시오.",
+        "user_answer": "지배기구·소유주·규제기관 등 다른 이해관계자에게 그 상황을 보고해야 할 계약상 또는 기타 의무가 존재하는지 결정한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "감사업무 해지에 관한 내용이 없다.",
+            "claim": "변경 거절과 원래업무 계속 불허가 함께 있는 경우, 해당 법규에서 허용하면 감사업무를 해지함을 설명한다. 법규상 허용 여부와 무관하게 언제나 해지한다고 하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "지배기구·소유주·규제기관 등 다른 이해관계자에게 그 상황을 보고해야 할 계약상 또는 기타 의무가 존재하는지 결정한다.",
+            "reason": "계약상 또는 기타 보고 의무의 존재 여부를 결정한다고 명시했다.",
+            "claim": "다른 이해관계자에게 그 상황을 보고해야 할 계약상 또는 기타 의무가 존재하는지 결정함을 설명한다. 지배기구·소유주·규제기관은 예시이며 각각에 대한 자동 통보의무를 뜻하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "해당 법규에서 허용하는 경우 감사업무를 해지한다.",
+          "지배기구·소유주·규제기관 등 다른 이해관계자에게 그 상황을 보고해야 할 계약상 또는 기타 의무가 존재하는지 결정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a8694b314de97bd016aa4c83f74d887d0ba30d49ce0265343",
+        "request_id": "req_b36a7fbd9b844627ba54b6a5aa86e3cb",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2518,
+          "input_tokens_details": {
+            "cache_write_tokens": 2515,
+            "cached_tokens": 0
+          },
+          "output_tokens": 165,
+          "output_tokens_details": {
+            "reasoning_tokens": 37
+          },
+          "total_tokens": 2683
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00082735,
+        "min_usd": 0.00082735,
+        "max_usd": 0.00082735,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-03-006--sub2--standard--partial/input.json",
+      "sha256": "23123bdaa9d46f05ae3507aa1ce759919c2b08ea0b413f6aab7f73c4db83a762"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-03-006--sub2--standard--partial/transport.jsonl",
+      "sha256": "e716f8900db335069faacbb23cd8b37a552304813abf5f2c258c4b45b1d1ebe0"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-03-006--sub2--standard--partial/traces.jsonl",
+      "sha256": "733bf2c448d8f64d55939c0930d2cf7a2b2d1e1b2dc9e026799487c76c4e9a48"
+    }
+  }
+}

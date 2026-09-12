@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-07-005--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-07-005--sub2--standard",
+  "source_set_id": "pilot-07-005",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "985923b0be31cfe8560522ce7624c438db679b1347ea954723536f6bfa2026cb",
+  "answers": {
+    "sub2": "위험이 높을수록 덜 설득력 있는 감사증거로 충분하다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 요구를 명시적으로 부정함."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "e92d9bad75dd31a9a23d405f1019560e692ee49ecd5c658bc4281c2b5d842423",
+  "schema_hash": "e551eac672b8e53739134c37a5ef244005ef9526d08bf181a43cdb0cc9f34ee8",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "위험이 높을수록 덜 설득력 있는 감사증거로 충분하다.",
+            "reason": "위험이 높을수록 덜 설득력 있는 증거로 충분하다고 하여 요구 명제와 반대로 작성했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "위험이 높을수록 덜 설득력 있는 증거로 충분하다고 하여 요구 명제와 반대로 작성했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-07-005",
+    "score": 0,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "경영진주장 수준의 평가된 중요왜곡표시위험에 대응하는 추가감사절차를 설계할 때, 위험평가 수준과 입수해야 할 감사증거의 설득력 사이의 관계를 설명하시오.",
+        "user_answer": "위험이 높을수록 덜 설득력 있는 감사증거로 충분하다.",
+        "score": 0,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "위험이 높을수록 덜 설득력 있는 감사증거로 충분하다.",
+            "reason": "위험이 높을수록 덜 설득력 있는 증거로 충분하다고 하여 요구 명제와 반대로 작성했다.",
+            "claim": "위험평가 수준이 높을수록 더욱 설득력 있는 감사증거가 필요함을 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "위험평가 수준이 높을수록 더욱 설득력 있는 감사증거를 입수해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f455ee8b253a755016aa4cb86f1cc87d0b5ab4bba63bfaa78",
+        "request_id": "req_5844f2dfa9974a86a1721a85eb2764f9",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2198,
+          "input_tokens_details": {
+            "cache_write_tokens": 2195,
+            "cached_tokens": 0
+          },
+          "output_tokens": 179,
+          "output_tokens_details": {
+            "reasoning_tokens": 69
+          },
+          "total_tokens": 2377
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00076415,
+        "min_usd": 0.00076415,
+        "max_usd": 0.00076415,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-07-005--sub2--standard--wrong/input.json",
+      "sha256": "d7b91880b98b0ed96e812c161e6ea48cd888909eaa0e43f2cb10955628fab93a"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-07-005--sub2--standard--wrong/transport.jsonl",
+      "sha256": "baaecc701f3430389a846c53c58bc77426ab1189bfb74c064dd8b09695a67e9e"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-07-005--sub2--standard--wrong/traces.jsonl",
+      "sha256": "bc552f21438e0ac7330a959a3d5b785006226cd17696fa440858ad1cd16eaaeb"
+    }
+  }
+}

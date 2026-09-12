@@ -1,0 +1,765 @@
+{
+  "created_at": "2026-09-11T04:47:26.197Z",
+  "set_id": "pilot-10-006",
+  "inputs_file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase2/phase-two-v5-bank-v3-after-refill-01-owned/pilot-10-006/author-qa-run1/inputs.json",
+  "inputs_sha256": "df06d0fd44c1bb23b60f59b81eef5391663dc1c7c1d7515793c109f0d76e4000",
+  "summary_file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase2/phase-two-v5-bank-v3-after-refill-01-owned/pilot-10-006/author-qa-run1/summary.json",
+  "summary_sha256": "9b556dd061ff63b2a3138c89ba53629a2995ddd81fb69fd3fe478637cf260b71",
+  "fixed_input_hashes": {
+    "cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/pilot-10-006.json": "643dccc84920234e0ee13ae91de591b21060e82569ebeb6a6d26162930c246ae",
+    "cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/qa-cases-t10-b.json": "c05454d93fff4efe4af7730aaf6da174aabe955ddc5f7a411ae767711e3d61e0",
+    "lib/questionV3Grading.ts": "6a3033f9a5a6e408ebb8251787a5daeef3b478e287b5ae5c0aecc94d967a2dd7",
+    "lib/questionV3Evidence.ts": "9f7428a97fcd5f1f8e8e14627abbb8845fe5a1e7488631ccd7107b0d75cfef7b",
+    "lib/questionV3.ts": "546a05ed630a92c1da859dbfcb89caee629028bfc4216fc5794a2e395cd4acf4",
+    "lib/questionV3Answer.ts": "01dcada58a9c372dd7778056789e1a3327bb5fc6ce0521682a2f62bb6d830cbf",
+    "lib/ai/openaiStructured.ts": "2e392cc74045e88148edca2959172fece77e5c431cb7f8a56dd29e56640632b1",
+    "cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/run-author-qa.ts": "b1910b213fe52f7842d6f2df50c3d2c93d8e78cb2e5bae193d70a329d6087cf2",
+    "cpa_uploader/data/official/delegated-s04-kga-2025.txt": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+    "C:\\Users\\cntrl\\Workspace\\study\\audit_say\\cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\r02\\evidence\\phase2\\run-author-qa-after-refill.ts": "b42f96e51e73f57d4526c6cbc294105bb2a628e3aecbcb6e1849837f1e56ee85"
+  },
+  "model": "gpt-5.6-luna",
+  "completed_unique_cases": 51,
+  "grading_executions": 53,
+  "actual_HTTP_requests": "not inferred from grading executions",
+  "mismatched_unique_cases": 1,
+  "all_mismatches_at_least_three": true,
+  "all_original_evidence_preserved": true,
+  "API_calls_by_this_analysis": 0,
+  "shared_context": {
+    "facts": [
+      {
+        "id": "fact1",
+        "text": "2026년 1월 1일에 개시하는 보고기간의 재무제표를 한국 회계감사기준에 따라 감사하며, 필요한 후속 업무는 2027년에 수행한다.",
+        "scoreable": false
+      },
+      {
+        "id": "fact2",
+        "text": "감사팀은 매출채권의 특정 주장에 관한 세부테스트를 위해 전체항목보다 적은 표본을 검사하였다. 아래 A·B·C는 서로 독립된 가상 상황이며, 동일한 모집단에서 동시에 발생했다는 뜻이 아니다. 금액·표본수 계산은 요구하지 않는다.",
+        "scoreable": false
+      },
+      {
+        "id": "fact3",
+        "text": "상황 A: 표본에 근거하여 중요한 왜곡표시가 없다고 결론내렸으나, 모집단 전체에 같은 감사절차를 적용하였다면 중요한 왜곡표시가 있다고 결론내렸을 것이다. 상황 B: 표본에 근거하여 중요한 왜곡표시가 있다고 결론내렸으나, 모집단 전체에 같은 절차를 적용하였다면 중요한 왜곡표시가 없다고 결론내렸을 것이다. 두 차이는 표본추출에 따른 것이며 절차의 오적용이나 증거 해석의 실수 때문은 아니다.",
+        "scoreable": false
+      },
+      {
+        "id": "fact4",
+        "text": "상황 C: 감사인은 표본의 결과와 다른 절차의 결과를 평가한 뒤, 이번 표본감사가 테스트 대상 모집단의 결론에 합리적인 근거를 제공하지 못한다고 결론내렸다. 이 사실만으로 모집단의 모든 항목이 오류이거나 감사의견의 유형이 확정되었다고 보지는 않는다.",
+        "scoreable": false
+      }
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "sub1-numbers-only",
+      "subquestion_id": "sub1",
+      "manual_review_status": "needs_reasoned_adjudication",
+      "prompt": "상황 A와 B의 잘못된 결론을 세부테스트의 표본위험 유형으로 각각 분류하시오. 부당하게 수용하는 위험인지 기각하는 위험인지가 드러나는 동등한 분류 표현을 허용한다. 지문에 제시된 모집단 상태와 표본결론만 그대로 반복하는 답은 분류를 제시한 것으로 보지 않는다. 감사의 효과성·효율성에 미치는 영향은 다음 물음에서 답하시오.",
+      "answer": "A는 제2종, B는 제1종이다.",
+      "expected": {
+        "id": "sub1-numbers-only",
+        "subquestion_id": "sub1",
+        "kind": "condition_boundary",
+        "answer": "A는 제2종, B는 제1종이다.",
+        "expected_points": 0,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다."
+          }
+        ],
+        "note": "교재별 번호만으로 위험방향을 확정하지 않는다. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다."
+      },
+      "criteria": [
+        {
+          "id": "crit1",
+          "requirement_id": "req1",
+          "claim": "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+          "critical_facts": [
+            {
+              "id": "cf1",
+              "type": "action",
+              "expected": "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-cb562ec1b3841eb8d7"
+          ]
+        },
+        {
+          "id": "crit2",
+          "requirement_id": "req2",
+          "claim": "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다.",
+          "critical_facts": [
+            {
+              "id": "cf2",
+              "type": "action",
+              "expected": "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-cb562ec1b3841eb8d7"
+          ]
+        }
+      ],
+      "source_refs": [
+        {
+          "id": "src-cb562ec1b3841eb8d7",
+          "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+          "title": "KGA 530: 감사표본추출",
+          "page": "KGA 530",
+          "source_quote": "5. 감사기준에서 사용하는 용어의 정의는 다음과 같다. \r\n(a) 표본감사 - 감사인에게 모집단 전체에 대한 결론을 도출할 수 있는 합리적인 근거를 \r\n제공하기 위해, 감사와 관련이 있는 모집단에 속한 모든 표본단위가 추출될 기회를 \r\n가지도록 하여 전체항목(100％)보다 적은 수의 항목에 대하여 감사절차를 적용하는 \r\n것 \r\n(b) 모집단- 감사인이 표본을 추출하고 결론을 도출하려고 하는 데이터의 전체집합 \r\n(c) 표본위험- 표본에 근거한 감사인의 결론이 모집단 전체에 동일한 감사절차를 적용하\r\n였을 경우 도달하였을 결론과 다를 수 있는 위험. 표본위험은 다음 두 가지 형태의 \r\n잘못된 결론에 이르게 할 수 있다.  \r\n \r\n1 감사기준서 500 “감사증거” \r\n(i) 통제테스트에서 통제가 실제보다 더 효과적이라고 평가하거나, 세부테스트에\r\n서 실제로 중요한 왜곡표시가 존재함에도 불구하고 중요한 왜곡표시가 존재하\r\n지 않는다고 결론을 내림. 이것은 감사의 효과성에 영향을 미치며 부적합한 \r\n감사의견에 이르게 할 수 있으므로 감사인은 주로 이런 형태의 잘못된 결론에 \r\n유의하여야 한다. \r\n(ii) 통제테스트에서 통제가 실제보다 덜 효과적이라고 평가하거나, 세부테스트에\r\n서 실제로 중요한 왜곡표시가 존재하지 않음에도 불구하고 중요한 왜곡표시가 \r\n존재한다고 결론을 내림. 이러한 형태의 잘못된 결론에 대하여는 일반적으로 \r\n최초의 결론이 부정확한지 확인하기 위한 추가적인 업무로 이어지기 때문에 \r\n감사의 효율성에 영향을 미친다. \r\n(d) 비표본위험- 감사인이 표본위험과 관련이 없는 다른 이유에 의해 잘못된 결론에 도\r\n달할 위험 (문단 A1 참조) \r\n(e) 변이- 모집단의 왜곡표시나 이탈을 명백하게 대표하지는 아니하는 왜곡표시나 이탈 \r\n(f) 표본단위- 모집단을 구성하는 개별 항목 (문단 A2 참조) \r\n(g) 통계적 표본감사- 다음의 특성을 모두 갖는 표본감사 접근법 \r\n(i) 표본항목을 무작위로 추출함 \r\n(ii) 표본위험의 측정 등 표본결과의 평가에 확률이론을 적용함 \r\n(i)과 (ii)의 특성을 갖추지 않은 표본감사 접근법은 비통계적 표본감사로 간주된다. \r\n(h) 계층화- 모집단을 여러 개의 하위모집단으로 나누는 과정으로서 각각의 하위모집단\r\n은 비슷한 특성(종종 화폐가액)을 갖는 표본단위들의 집단으로 구성된다. \r\n(i) 허용왜곡표시 - 모집단의 실제 왜곡표시가 감사인이 설정한 화폐금액을 초과하지 않\r\n는다는 적합한 수준의 확신을 얻기 위한 관점에서 감사인이 설정한 화폐금액 (문단 \r\nA3 참조) \r\n(j) 허용이탈률- 모집단의 실제 이탈률이 감사인이 설정한 이탈률을 초과하지 않는다는 \r\n적합한 수준의 확신을 얻기 위한 관점에서 감사인이 설정한 내부통제절차의 이탈률 \r\n요구사항 \r\n표본설계, 표본규모 및 테스트항목의 추출\r\n\r\n## PDF PAGE 433",
+          "content_hash": "86cb4b0efdf331d84d5a40f269dfd5d2185c95afaf335d9aae79b01ecb20d6e3",
+          "role": "standard",
+          "source_span": "L564-L603; KGA 530 문단 5 원문 페이지 431; L564-L603"
+        }
+      ],
+      "scores": [
+        2,
+        2,
+        2
+      ],
+      "request_hashes": [
+        "3e9984582a74784b2e649389ebeff42a015cda0bfc2224f0ab3197edc4fbac2a"
+      ],
+      "schema_hashes": [
+        "edbbf7358f921461d29df754da997a0afe18288047262740bfa196abcd323b76"
+      ],
+      "runs": [
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase2/phase-two-v5-bank-v3-after-refill-01-owned/pilot-10-006/author-qa-run1/case-0010-attempt-1.json",
+          "sha256": "7610a86aa65683aa8a8211848dc9be75a5de0994667341faf532e4a30f55236e",
+          "attempt": 1,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T04:43:10.751Z",
+          "finished_at": "2026-09-11T04:43:14.898Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "met",
+                    "quote": "A는 제2종, B는 제1종이다.",
+                    "reason": "A를 제2종 위험으로 분류하여 부당수용위험을 나타냈다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "met",
+                    "quote": "A는 제2종, B는 제1종이다.",
+                    "reason": "B를 제1종 위험으로 분류하여 부당기각위험을 나타냈다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-10-006",
+            "score": 2,
+            "max_points": 6,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A와 B의 잘못된 결론을 세부테스트의 표본위험 유형으로 각각 분류하시오. 부당하게 수용하는 위험인지 기각하는 위험인지가 드러나는 동등한 분류 표현을 허용한다. 지문에 제시된 모집단 상태와 표본결론만 그대로 반복하는 답은 분류를 제시한 것으로 보지 않는다. 감사의 효과성·효율성에 미치는 영향은 다음 물음에서 답하시오.",
+                "user_answer": "A는 제2종, B는 제1종이다.",
+                "score": 2,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "met",
+                    "quote": "A는 제2종, B는 제1종이다.",
+                    "reason": "A를 제2종 위험으로 분류하여 부당수용위험을 나타냈다.",
+                    "claim": "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+                    "max_points": 1,
+                    "awarded_points": 1
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "met",
+                    "quote": "A는 제2종, B는 제1종이다.",
+                    "reason": "B를 제1종 위험으로 분류하여 부당기각위험을 나타냈다.",
+                    "claim": "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다.",
+                    "max_points": 1,
+                    "awarded_points": 1
+                  }
+                ],
+                "model_answer": [
+                  "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+                  "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "A와 B의 잘못된 결론이 각각 감사의 효과성 또는 효율성에 어떠한 영향을 미치는지 설명하시오. A의 방향을 감사인이 특히 유의해야 하는 이유도 그 영향과 연결하시오. 유형 명칭을 다시 쓰는 것만으로는 충분하지 않다.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이어서 감사의 효율성을 저해한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+                  "B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이어서 감사의 효율성을 저해한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 감사기준이 제시하는 후속 대응의 두 경로를 모두 설명하시오. 경영진에게 요청할 조치와 감사인 자신의 추가감사절차 조정을 구별하되, 두 경로를 반드시 동시에 실행해야 한다는 뜻으로 답하지 마시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하고 필요한 수정을 하도록 요구할 수 있다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하고 필요한 수정을 하도록 요구할 수 있다.",
+                  "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        },
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase2/phase-two-v5-bank-v3-after-refill-01-owned/pilot-10-006/author-qa-run1/case-0010-attempt-2.json",
+          "sha256": "65285bbfa942cd4743e8a91d60fef8e6aae0237870b5baa6bb09401c7668a305",
+          "attempt": 2,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T04:43:14.901Z",
+          "finished_at": "2026-09-11T04:43:18.066Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "met",
+                    "quote": "A는 제2종, B는 제1종이다.",
+                    "reason": "A를 제2종 위험으로 분류하여 부당수용위험을 나타냈다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "met",
+                    "quote": "A는 제2종, B는 제1종이다.",
+                    "reason": "B를 제1종 위험으로 분류하여 부당기각위험을 나타냈다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-10-006",
+            "score": 2,
+            "max_points": 6,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A와 B의 잘못된 결론을 세부테스트의 표본위험 유형으로 각각 분류하시오. 부당하게 수용하는 위험인지 기각하는 위험인지가 드러나는 동등한 분류 표현을 허용한다. 지문에 제시된 모집단 상태와 표본결론만 그대로 반복하는 답은 분류를 제시한 것으로 보지 않는다. 감사의 효과성·효율성에 미치는 영향은 다음 물음에서 답하시오.",
+                "user_answer": "A는 제2종, B는 제1종이다.",
+                "score": 2,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "met",
+                    "quote": "A는 제2종, B는 제1종이다.",
+                    "reason": "A를 제2종 위험으로 분류하여 부당수용위험을 나타냈다.",
+                    "claim": "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+                    "max_points": 1,
+                    "awarded_points": 1
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "met",
+                    "quote": "A는 제2종, B는 제1종이다.",
+                    "reason": "B를 제1종 위험으로 분류하여 부당기각위험을 나타냈다.",
+                    "claim": "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다.",
+                    "max_points": 1,
+                    "awarded_points": 1
+                  }
+                ],
+                "model_answer": [
+                  "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+                  "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "A와 B의 잘못된 결론이 각각 감사의 효과성 또는 효율성에 어떠한 영향을 미치는지 설명하시오. A의 방향을 감사인이 특히 유의해야 하는 이유도 그 영향과 연결하시오. 유형 명칭을 다시 쓰는 것만으로는 충분하지 않다.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이어서 감사의 효율성을 저해한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+                  "B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이어서 감사의 효율성을 저해한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 감사기준이 제시하는 후속 대응의 두 경로를 모두 설명하시오. 경영진에게 요청할 조치와 감사인 자신의 추가감사절차 조정을 구별하되, 두 경로를 반드시 동시에 실행해야 한다는 뜻으로 답하지 마시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하고 필요한 수정을 하도록 요구할 수 있다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하고 필요한 수정을 하도록 요구할 수 있다.",
+                  "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        },
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase2/phase-two-v5-bank-v3-after-refill-01-owned/pilot-10-006/author-qa-run1/case-0010-attempt-3.json",
+          "sha256": "967a6c9a60bcbc4e9590e28ca05aa2209abacc05887cc387177d69c298867a91",
+          "attempt": 3,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T04:43:18.068Z",
+          "finished_at": "2026-09-11T04:43:22.581Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "met",
+                    "quote": "A는 제2종, B는 제1종이다.",
+                    "reason": "A를 제2종 오류로 분류하여 부당수용위험에 해당함을 제시했다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "met",
+                    "quote": "A는 제2종, B는 제1종이다.",
+                    "reason": "B를 제1종 오류로 분류하여 부당기각위험에 해당함을 제시했다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-10-006",
+            "score": 2,
+            "max_points": 6,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A와 B의 잘못된 결론을 세부테스트의 표본위험 유형으로 각각 분류하시오. 부당하게 수용하는 위험인지 기각하는 위험인지가 드러나는 동등한 분류 표현을 허용한다. 지문에 제시된 모집단 상태와 표본결론만 그대로 반복하는 답은 분류를 제시한 것으로 보지 않는다. 감사의 효과성·효율성에 미치는 영향은 다음 물음에서 답하시오.",
+                "user_answer": "A는 제2종, B는 제1종이다.",
+                "score": 2,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "met",
+                    "quote": "A는 제2종, B는 제1종이다.",
+                    "reason": "A를 제2종 오류로 분류하여 부당수용위험에 해당함을 제시했다.",
+                    "claim": "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+                    "max_points": 1,
+                    "awarded_points": 1
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "met",
+                    "quote": "A는 제2종, B는 제1종이다.",
+                    "reason": "B를 제1종 오류로 분류하여 부당기각위험에 해당함을 제시했다.",
+                    "claim": "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다.",
+                    "max_points": 1,
+                    "awarded_points": 1
+                  }
+                ],
+                "model_answer": [
+                  "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+                  "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "A와 B의 잘못된 결론이 각각 감사의 효과성 또는 효율성에 어떠한 영향을 미치는지 설명하시오. A의 방향을 감사인이 특히 유의해야 하는 이유도 그 영향과 연결하시오. 유형 명칭을 다시 쓰는 것만으로는 충분하지 않다.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이어서 감사의 효율성을 저해한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+                  "B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이어서 감사의 효율성을 저해한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 감사기준이 제시하는 후속 대응의 두 경로를 모두 설명하시오. 경영진에게 요청할 조치와 감사인 자신의 추가감사절차 조정을 구별하되, 두 경로를 반드시 동시에 실행해야 한다는 뜻으로 답하지 마시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하고 필요한 수정을 하도록 요구할 수 있다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하고 필요한 수정을 하도록 요구할 수 있다.",
+                  "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        }
+      ]
+    }
+  ]
+}

@@ -10,7 +10,7 @@ export default function KicpaJobsList({ result, firmName }: { result: KicpaJobsR
                     <p className="font-medium">받고 싶은 수습CPA 채용공고를 선택하세요.</p>
                     <p className="mt-1 text-sm text-foreground/65">채용 소식 설정에서 신청 상태를 확인할 수 있습니다.</p>
                 </div>
-                <Link href="/settings" className="inline-flex min-h-11 shrink-0 items-center rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-white">
+                <Link href="/settings" className="inline-flex min-h-11 shrink-0 items-center rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-primary-foreground">
                     채용 소식 설정
                 </Link>
             </div>

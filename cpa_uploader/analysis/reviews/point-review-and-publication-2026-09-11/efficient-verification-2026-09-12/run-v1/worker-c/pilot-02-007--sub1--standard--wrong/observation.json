@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/grading-manifest.json",
+    "sha256": "5920ef24babb0fb11a83322f280da66282a33b11f02ad7f87a3d6ebce62fce99"
+  },
+  "entry_id": "pilot-02-007--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-02-007--sub1--standard",
+  "source_set_id": "pilot-02-007",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "4385c576ea5fd85e3406a6d122fca27361e5d009099f25d21710e95f6fae3258",
+  "answers": {
+    "sub1": "재무보고의 추정에는 주관성과 불확실성이 전혀 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "명시적 반대 또는 조건의 부정이다. 같은 문장이 다른 판단도 반대로 함축하는 경우 함께 반대로 평가한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "명시적 반대 또는 조건의 부정이다. 같은 문장이 다른 판단도 반대로 함축하는 경우 함께 반대로 평가한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "명시적 반대 또는 조건의 부정이다. 같은 문장이 다른 판단도 반대로 함축하는 경우 함께 반대로 평가한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "e33f55e1ee610efb22ec51ef94e513ed1e610da45ab5b7f6178eff3b14460c48",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "재무보고의 추정에는 주관성과 불확실성이 전혀 없다.",
+            "reason": "주관성과 불확실성이 전혀 없다고 명시하여 요구 명제와 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "감사절차에 의한 증거입수의 한계에 관한 내용이 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "시간·비용 제약과 합리적 기간 내 의견형성에 관한 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "주관성과 불확실성이 전혀 없다고 명시하여 요구 명제와 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사절차에 의한 증거입수의 한계에 관한 내용이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "시간·비용 제약과 합리적 기간 내 의견형성에 관한 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-02-007",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사에서 절대적 확신을 얻을 수 없게 하는 고유한계의 세 원인 범주와 각 범주의 의미를 설명하시오. 명칭만 나열하지 말고, 재무보고·증거입수 절차·시간과 비용 각각에서 어떤 한계가 생기는지 서술하시오.",
+        "user_answer": "재무보고의 추정에는 주관성과 불확실성이 전혀 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "재무보고의 추정에는 주관성과 불확실성이 전혀 없다.",
+            "reason": "주관성과 불확실성이 전혀 없다고 명시하여 요구 명제와 반대된다.",
+            "claim": "재무보고에는 경영진 판단·주관적 평가 또는 불확실성에 따른 고유한 가변성이 있어 추가 감사절차로도 완전히 제거되지 않는다는 의미를 설명한다. 범주 명칭만으로는 부족하다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "감사절차에 의한 증거입수의 한계에 관한 내용이 없다.",
+            "claim": "감사절차에 의한 증거입수에 실무적 또는 법률적 한계가 있음을 설명하고 정보의 불완전 제공, 정교한 공모·조작의 은폐, 수사기관과 같은 법적 권한 부재 중 적합한 구체 내용을 연결한다. 세 예시 전부의 별도 열거는 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "시간·비용 제약과 합리적 기간 내 의견형성에 관한 내용이 없다.",
+            "claim": "합리적인 기간과 비용 내 의견형성이 필요하며 정보의 적시성·가치 및 모든 정보를 빠짐없이 추적하는 것의 실행가능성 사이에 제약이 있음을 설명한다. 단순히 예산이 부족하다는 명칭만으로는 부족하다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재무보고의 성격: 재무제표 작성에는 경영진의 판단과 주관적 평가·불확실성이 수반되며 일부 항목의 고유한 가변성은 추가 감사절차로도 제거되지 않는다.",
+          "감사절차의 성격: 정보가 완전하게 제공되지 않거나 정교한 공모·조작을 절차로 발견하지 못할 수 있고 수사기관과 같은 법적 권한도 없어 증거입수에 실무적·법률적 한계가 있다.",
+          "시간·비용의 제약: 이용자는 합리적인 기간과 비용 안에 의견이 형성되기를 기대하고 정보의 가치는 시간에 따라 감소하므로 가능한 모든 정보를 빠짐없이 추적하는 것은 실행가능하지 않다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_091bd83f880e9170016aa4c1ffa25087d0a17d4422fefa0b0d",
+        "request_id": "req_5de896696df5405d9d079468fdbb732a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2837,
+          "input_tokens_details": {
+            "cache_write_tokens": 2834,
+            "cached_tokens": 0
+          },
+          "output_tokens": 246,
+          "output_tokens_details": {
+            "reasoning_tokens": 63
+          },
+          "total_tokens": 3083
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010042999999999999,
+        "min_usd": 0.0010042999999999999,
+        "max_usd": 0.0010042999999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-c/pilot-02-007--sub1--standard--wrong/input.json",
+      "sha256": "b6b05c45baeb14c210f9ccb956c56b540ab9160a0560c4a696b1fe88a8c53c0c"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-c/pilot-02-007--sub1--standard--wrong/transport.jsonl",
+      "sha256": "fdca5a52e36b2a5415518db0b7c5a45f2ea573c0e16a427bddc6c2b4a062a28d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-c/pilot-02-007--sub1--standard--wrong/traces.jsonl",
+      "sha256": "f68464ff2e83a18e9defaa457043dc6d1e05b135525640cbe87089d8c1cc1595"
+    }
+  }
+}

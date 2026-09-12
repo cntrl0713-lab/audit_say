@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-17-004--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-17-004--sub1--standard",
+  "source_set_id": "pilot-17-004",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "a09630b2dbfa59b0115691873307cdbfb0df2466c9c80c830f0d5d906640fa69",
+  "answers": {
+    "sub1": "통합감사는 재무제표감사의 목적만 달성하면 되고 내부회계관리제도감사 목적은 고려하지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "답안이 해당 명제를 명시적으로 부정한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "4d881deb0725aa1cc44f29b0853ee62bc0ef4c35e9acce21d071796759e4461c",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "통합감사는 재무제표감사의 목적만 달성하면 되고 내부회계관리제도감사 목적은 고려하지 않는다.",
+            "reason": "내부회계관리제도감사 목적을 고려하지 않는다고 명시하여 두 목적을 동시에 달성하도록 계획·수행한다는 명제와 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "통제테스트의 설계 원칙을 언급하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "내부회계관리제도감사 목적을 고려하지 않는다고 명시하여 두 목적을 동시에 달성하도록 계획·수행한다는 명제와 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "통제테스트의 설계 원칙을 언급하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-17-004",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "내부회계관리제도감사와 재무제표감사의 목적을 함께 달성하기 위한 통합감사의 계획·수행과 통제테스트의 설계 원칙을 각각 설명하시오. 두 감사의 구체적인 목적은 열거하지 않아도 된다.",
+        "user_answer": "통합감사는 재무제표감사의 목적만 달성하면 되고 내부회계관리제도감사 목적은 고려하지 않는다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "통합감사는 재무제표감사의 목적만 달성하면 되고 내부회계관리제도감사 목적은 고려하지 않는다.",
+            "reason": "내부회계관리제도감사 목적을 고려하지 않는다고 명시하여 두 목적을 동시에 달성하도록 계획·수행한다는 명제와 반대된다.",
+            "claim": "두 감사목적을 동시에 달성하도록 통합감사를 계획·수행해야 함을 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "통제테스트의 설계 원칙을 언급하지 않았다.",
+            "claim": "통제테스트가 모든 목적을 달성하도록 설계되어야 함을 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사인은 각각의 감사목적을 동시에 달성할 수 있도록 통합감사를 계획하고 수행해야 한다.",
+          "통제테스트는 두 감사의 목적을 모두 달성하도록 설계한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0d4914e07b54a0b7016aa4d3033ed087d0b50767615eb81958",
+        "request_id": "req_20006361b80047eb947539f172f2ea1f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2359,
+          "input_tokens_details": {
+            "cache_write_tokens": 2356,
+            "cached_tokens": 0
+          },
+          "output_tokens": 245,
+          "output_tokens_details": {
+            "reasoning_tokens": 92
+          },
+          "total_tokens": 2604
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008836,
+        "min_usd": 0.0008836,
+        "max_usd": 0.0008836,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-17-004--sub1--standard--wrong/input.json",
+      "sha256": "ae39e0303f1e343ed7c86e662a652926ae265393ea6e1c05ddb85b6ececcea9d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-17-004--sub1--standard--wrong/transport.jsonl",
+      "sha256": "af29ec96b4a7ed0669efdbfc0a59964091402f16aa77fa63aaf8aa0b86da6e5b"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-17-004--sub1--standard--wrong/traces.jsonl",
+      "sha256": "a9eb04a835fd85ffa2483f77f8e324e91f9f8f8af8f1b75448889275d1e5b399"
+    }
+  }
+}

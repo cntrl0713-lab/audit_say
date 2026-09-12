@@ -1,0 +1,38 @@
+// Agent-authored answers and exact expected targets after reading each full question, criterion, and official quote.
+// [partial answer (null for one-point questions), met IDs, wrong answer, contradicted IDs]. Unlisted criteria are not_met.
+export const supplements={
+ 'pilot-10-003/sub1':['①은 적절하게 선택한 대체항목에 감사절차를 수행한다.',['crit1'],'①은 적절한 대체항목에도 절차를 수행하면 안 된다.',['crit1']],
+ 'pilot-10-004/sub1':['표본결론이 모집단 전체에 절차를 적용했을 때의 결론과 달라질 수 있는 위험이다.',['crit1'],'표본위험은 표본과 무관한 감사절차 자체의 수행착오만을 뜻한다.',['crit1']],
+ 'pilot-11-001/sub2':['정상적인 사업과정을 벗어난 유의적인 특수관계자 거래를 유의적 위험으로 취급한다.',['crit4'],'정상적인 사업과정을 벗어난 유의적인 특수관계자 거래는 유의적 위험으로 취급하지 않는다.',['crit4']],
+ 'pilot-11-004/sub1':['최소 하나 이상의 접근방법을 포함해야 하며 세 가지 모두를 반드시 수행해야 하는 것은 아니다.',['crit1'],'접근방법은 한 가지도 포함하지 않아도 된다.',['crit1']],
+ 'pilot-12-001/subq2':['제시된 10개월은 재무제표일로부터 최소 12개월에 못 미치므로 부족하다.',['crit3'],'제시된 10개월이면 최소 평가기간을 충족하므로 충분하다.',['crit3']],
+ 'pilot-12-002/sub1':['경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다.',['crit1'],'경영진 및 지배기구와 해당 사항을 토의할 필요가 없다.',['crit1']],
+ 'pilot-12-004/sub2':[null,[],'수정이나 공시가 필요한 후속사건이 재무보고체계에 맞게 반영되었는지 결정할 필요가 없다.',['crit5']],
+ 'pilot-12-006/sub2':['중요한 미수정왜곡표시는 개별적으로 식별한다.',['crit3'],'중요한 미수정왜곡표시는 개별적으로 식별할 필요가 없다.',['crit3']],
+ 'pilot-12-007/sub2':[null,[],'새 감사보고서일은 수정된 재무제표 승인일보다 반드시 앞서야 한다.',['crit3']],
+ 'pilot-12-008/sub1':['작은 왜곡표시라고 해서 무조건 집계에서 제외할 수는 없다.',['crit1'],'왜곡표시가 작으면 명백히 사소한지와 관계없이 전부 집계에서 제외한다.',['crit1','crit2']],
+ 'pilot-13-002/sub1':['조직 내 위상과 관련 정책·절차가 객관성을 지원하는 정도를 평가한다.',['crit1'],'내부감사인의 객관성 지원 정도는 평가할 필요가 없다.',['crit1']],
+ 'pilot-13-003/sub1':['내부감사인이 외부감사인의 지시를 따른다는 기업의 권한 있는 대표자의 서면동의를 받는다.',['crit1'],'기업의 권한 있는 대표자가 내부감사인의 지시 준수를 서면으로 동의할 필요는 없다.',['crit1']],
+ 'pilot-13-005/sub1':['이 경우 내부감사기능의 업무를 활용할 수 없다.',['crit1'],'객관성을 적절히 지원하지 못해도 내부감사기능 업무를 활용할 수 있다.',['crit1','crit2']],
+ 'pilot-13-006/sub2':['입수할 수 있는 경우 유형 1 또는 유형 2 보고서를 입수한다.',['crit5'],'입수할 수 있는 유형 1 또는 유형 2 보고서도 입수해서는 안 된다.',['crit5']],
+ 'pilot-15-001/subq1':['감사보고서의 첫 번째 단락에 감사의견을 포함한다.',['crit1'],'감사의견은 첫 번째 단락에 포함하면 안 된다.',['crit1']],
+ 'pilot-15-005/sub1':[null,[],'의견거절',['crit1']],
+ 'pilot-15-005/sub2':['입수한 감사증거에 기초해 재무제표 전체에 중요한 왜곡표시가 있다고 결론내린 경우이다.',['crit2'],'충분한 증거로 재무제표 전체의 중요한 왜곡표시를 확인해도 의견을 변형하지 않는다.',['crit2']],
+ 'pilot-16-004/sub1':['강조사항문단은 재무제표에 적절하게 표시되거나 공시된 사항을 다룬다.',['crit1'],'강조사항문단은 재무제표에 표시되거나 공시되지 않은 사항만을 다룬다.',['crit1']],
+ 'pilot-16-005/sub1':['더 높게 평가된 중요왜곡표시위험 또는 유의적 위험 분야를 고려한다.',['crit1'],'더 높게 평가된 중요왜곡표시위험과 유의적 위험 분야는 고려해서는 안 된다.',['crit1']],
+ 'pilot-16-007/sub1':['중요왜곡표시위험이 더 높거나 유의적 위험으로 식별된 분야를 고려한다.',['crit1'],'유의적 위험으로 식별된 분야는 고려 대상에서 제외한다.',['crit1']],
+ 'pilot-16-008/sub3':['전기재무제표가 전임감사인의 감사를 받았다는 사실을 기타사항문단에 기재한다.',['crit6'],'전기재무제표가 전임감사인의 감사를 받았다는 사실은 기타사항문단에 기재할 필요가 없다.',['crit6']],
+ 'pilot-17-004/sub1':['두 감사목적을 동시에 달성하도록 통합감사를 계획하고 수행한다.',['crit1'],'통합감사는 재무제표감사의 목적만 달성하면 되고 내부회계관리제도감사 목적은 고려하지 않는다.',['crit1']],
+ 'pilot-18-002/sub2':[null,[],'일반 감사기준서는 당기가 아니라 다음 회계연도부터 적용한다.',['crit5']],
+ 'pilot-19-001/sub1':['재무정보 작성업무',['crit1'],'재무정보 작성업무는 비인증업무가 아니다.',['crit1']],
+ 'pilot-19-003/sub1':['해당 재무제표가 작성되는 목적을 이해한다.',['crit1'],'해당 재무제표의 작성 목적은 이해할 필요가 없다.',['crit1']],
+ 'pilot-19-004/sub2':['① 연간재무제표 감사에는 회계감사기준을 적용한다.',['crit3'],'① 연간재무제표 감사에는 회계감사기준 대신 분·반기재무제표 검토준칙을 적용한다.',['crit3']],
+};
+export const caseOverrides={
+ 'draft-10-530-freq01/q1':{partial:'q1/omit-2'},
+ 'draft-10-530-freq01/q2':{partial:'q2/omit-2'},
+ 'pilot-10-007/sub2':{model:'efficient/sub2/stored-model',partial:'efficient/sub2/precision-only',wrong:'efficient/sub2/close-is-enough'},
+ 'pilot-10-007-standards/sub4':{model:'efficient/sub4/stored-model',partial:'efficient/sub4/nature-only',wrong:'efficient/sub4/irrelevant'},
+ 'pilot-16-011/sub1':{model:'efficient/sub1/stored-model',partial:'efficient/sub1/no-automatic-disclaimer-only'},
+ 'pilot-17-005/sub2':{model:'efficient/sub2/stored-model',partial:'efficient/sub2/no-automatic-opinion-only'},
+};

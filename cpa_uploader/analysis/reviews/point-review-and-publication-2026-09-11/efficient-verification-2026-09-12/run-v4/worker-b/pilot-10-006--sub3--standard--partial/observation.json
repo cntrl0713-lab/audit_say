@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v5/grading-manifest.json",
+    "sha256": "920e6956a0ae97903853189edc91383ecda793ed90e1b6003ed37f90e9541a04"
+  },
+  "entry_id": "pilot-10-006--sub3--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-10-006--sub3--standard",
+  "source_set_id": "pilot-10-006",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub3"
+  ],
+  "projected_body_hash": "89f7aecb3eb06aa1d8d5dae2ba9e77c735df8bca181a3a75b56e2e8781b8dfdb",
+  "answers": {
+    "sub3": "감사인이 직접 조사를 마친 후, 경영진에게 조사 결과에 따라 필요한 수정을 모두 하도록 요구한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "감사인이 직접 조사했다는 내용만 있으며 경영진에게 식별된·잠재적 추가 왜곡표시를 조사하도록 요청하지 않았다. 경영진 조사를 하지 말라고 명시하지도 않아 not_met이다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "met",
+          "reason": "경영진에게 조사 결과에 따라 필요한 수정을 모두 하도록 요구하므로 필요한 수정 요구를 분명히 충족한다. 조사 주체에 관한 다른 기준의 누락을 이 독립 점수에 중복 적용하지 않는다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "감사인 자신의 추가감사절차 성격·시기·범위를 요구 확신에 맞추어 조정하는 내용은 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "0b8cbb79db6674a8d47e88e93c14a4be7c272ba761ec28c32d96bc55f8a8cfb4",
+  "schema_hash": "1579c87dc601e8f079421f9b999264686e45b9d32132287d395d5bf729e885fd",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "감사인이 직접 조사를 마친 후, 경영진에게 조사 결과에 따라 필요한 수정을 모두 하도록 요구한다.",
+            "reason": "조사를 경영진이 아니라 감사인이 직접 수행했다고 명시했다."
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "met",
+            "quote": "감사인이 직접 조사를 마친 후, 경영진에게 조사 결과에 따라 필요한 수정을 모두 하도록 요구한다.",
+            "reason": "경영진에게 조사 결과에 따른 필요한 수정을 하도록 요구한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "추가감사절차의 성격·시기·범위 조정이 언급되지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "조사를 경영진이 아니라 감사인이 직접 수행했다고 명시했다."
+              },
+              {
+                "criterion_id": "crit9",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "경영진에게 조사 결과에 따른 필요한 수정을 하도록 요구한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "추가감사절차의 성격·시기·범위 조정이 언급되지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-10-006",
+    "score": 1,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "감사기준서 530에 따라 표본감사가 테스트 대상 모집단에 대한 결론의 합리적인 근거를 제공하지 못한다고 결론 내린 경우, 기준서가 제시하는 후속 대응의 두 경로를 모두 설명하시오. 경영진에게 요청할 조치와 감사인 자신의 추가감사절차 조정을 구별하되, 두 경로를 반드시 동시에 실행해야 한다는 뜻으로 답하지 마시오.",
+        "user_answer": "감사인이 직접 조사를 마친 후, 경영진에게 조사 결과에 따라 필요한 수정을 모두 하도록 요구한다.",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "감사인이 직접 조사를 마친 후, 경영진에게 조사 결과에 따라 필요한 수정을 모두 하도록 요구한다.",
+            "reason": "조사를 경영진이 아니라 감사인이 직접 수행했다고 명시했다.",
+            "claim": "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하도록 요구할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "met",
+            "quote": "감사인이 직접 조사를 마친 후, 경영진에게 조사 결과에 따라 필요한 수정을 모두 하도록 요구한다.",
+            "reason": "경영진에게 조사 결과에 따른 필요한 수정을 하도록 요구한다고 명시했다.",
+            "claim": "경영진에게 조사 결과에 따른 필요한 수정을 하도록 요구할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "추가감사절차의 성격·시기·범위 조정이 언급되지 않았다.",
+            "claim": "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하도록 요구할 수 있다.",
+          "경영진에게 조사 결과에 따른 필요한 수정을 하도록 요구할 수 있다.",
+          "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0713507c5d42ec2e016aa4d6e987b087d09b73f68c9963402b",
+        "request_id": "req_011a963b918d47dda7fcb3505e1dddc0",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2549,
+          "input_tokens_details": {
+            "cache_write_tokens": 2546,
+            "cached_tokens": 0
+          },
+          "output_tokens": 293,
+          "output_tokens_details": {
+            "reasoning_tokens": 111
+          },
+          "total_tokens": 2842
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009887000000000001,
+        "min_usd": 0.0009887000000000001,
+        "max_usd": 0.0009887000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v4/worker-b/pilot-10-006--sub3--standard--partial/input.json",
+      "sha256": "0ed9b30c1015490036bdce24138fb96686c8743e10e1b8aea715e746845b3765"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v4/worker-b/pilot-10-006--sub3--standard--partial/transport.jsonl",
+      "sha256": "d92e7d7052d2aacf5738bccc94237225aa8b99d12bf295dada5b2063ee4e3e82"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v4/worker-b/pilot-10-006--sub3--standard--partial/traces.jsonl",
+      "sha256": "7f27ca6e08d7294a19e5b103092176bda62b324d2e2f67004570b4b239da23ca"
+    }
+  }
+}

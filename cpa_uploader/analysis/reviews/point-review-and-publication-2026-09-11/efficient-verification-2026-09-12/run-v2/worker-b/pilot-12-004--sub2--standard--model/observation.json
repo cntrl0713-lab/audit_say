@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-12-004--sub2--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-004--sub2--standard",
+  "source_set_id": "pilot-12-004",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "21d5ffcca2313276006cd8580b225198aceb79fdba03b3c8170812d766fc22fd",
+  "answers": {
+    "sub2": "식별된 사건이 해당 재무보고체계에 따라 재무제표에 적합하게 반영되었는지 여부를 결정해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 560.8은 식별 사건이 해당 재무보고체계에 따라 적합하게 반영되었는지 결정하는 한 평가이다. 실제 수정분개 작성까지 요구하지 않는다. 해당 기준 crit5의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "7f9994de4f476f3d5ebd939b9d9064131fae1541b3a70727ff4bcacd71ea12f4",
+  "schema_hash": "e0e820e74971a317d40525089a97d0e8d569d4e18d6af214df55eac058d5e398",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "식별된 사건이 해당 재무보고체계에 따라 재무제표에 적합하게 반영되었는지 여부를 결정해야 한다.",
+            "reason": "재무보고체계에 따른 재무제표의 적합한 반영 여부를 결정한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "재무보고체계에 따른 재무제표의 적합한 반영 여부를 결정한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-004",
+    "score": 1,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "재무제표일부터 감사보고서일 또는 감사보고서일에 가장 가까운 실행가능한 일자까지의 기간에 대한 후속사건 감사절차에서, 재무제표의 수정이나 공시가 요구되는 사건을 식별하였다. 이 경우 감사인이 확인하고 결정해야 할 사항을 설명하시오.",
+        "user_answer": "식별된 사건이 해당 재무보고체계에 따라 재무제표에 적합하게 반영되었는지 여부를 결정해야 한다.",
+        "score": 1,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "식별된 사건이 해당 재무보고체계에 따라 재무제표에 적합하게 반영되었는지 여부를 결정해야 한다.",
+            "reason": "재무보고체계에 따른 재무제표의 적합한 반영 여부를 결정한다고 명시했다.",
+            "claim": "수정·공시 요구 사건이 재무보고체계에 따라 재무제표에 적합하게 반영되었는지 여부를 결정한다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "식별된 사건이 해당 재무보고체계에 따라 재무제표에 적합하게 반영되었는지 여부를 결정해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_057bc609648156fd016aa4cfd717a887d093792ec3ce2c4095",
+        "request_id": "req_e6d547495e14428d8c902be1219bb038",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2261,
+          "input_tokens_details": {
+            "cache_write_tokens": 2258,
+            "cached_tokens": 0
+          },
+          "output_tokens": 163,
+          "output_tokens_details": {
+            "reasoning_tokens": 60
+          },
+          "total_tokens": 2424
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0007607,
+        "min_usd": 0.0007607,
+        "max_usd": 0.0007607,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-12-004--sub2--standard--model/input.json",
+      "sha256": "a1c5d60a49d4e84e8d507fc569e2d59b015065dc68c4b8e8240fd0673a99a8dc"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-12-004--sub2--standard--model/transport.jsonl",
+      "sha256": "019c21fd792bdfa148ec41c1f109b722185fc205d62741a8252cf64768b42031"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-12-004--sub2--standard--model/traces.jsonl",
+      "sha256": "38f2b29b6ca2d2bbf54703a6c57eb7f331d51ca551fb624e697ca55917a7eace"
+    }
+  }
+}

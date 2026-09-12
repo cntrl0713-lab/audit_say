@@ -1,0 +1,200 @@
+{
+  "set_id": "draft-04-320-freq01",
+  "case_id": "q2/condition-boundary",
+  "kind": "condition-boundary",
+  "attempt": 1,
+  "started_at": "2026-09-11T01:51:54.917Z",
+  "finished_at": "2026-09-11T01:52:00.011Z",
+  "model": "gpt-5.6-luna",
+  "transport": "live_model",
+  "answers": {
+    "q1": "",
+    "q2": "지배주주 한 사람의 특수한 재무정보 요구를 모든 이용자의 공통 수요보다 우선하여 전체 중요성을 결정한다."
+  },
+  "expected": {
+    "id": "q2/condition-boundary",
+    "subquestion_id": "q2",
+    "kind": "condition-boundary",
+    "answer": "지배주주 한 사람의 특수한 재무정보 요구를 모든 이용자의 공통 수요보다 우선하여 전체 중요성을 결정한다.",
+    "expected_points": 0,
+    "note": "특정 개인과 이용자 집단의 공통 수요를 바꿨다.",
+    "expected_verdicts": [
+      {
+        "criterion_id": "q2.c1",
+        "verdict": "contradicted",
+        "reason": "특정 개인과 이용자 집단의 공통 수요를 바꿨다."
+      },
+      {
+        "criterion_id": "q2.c2",
+        "verdict": "contradicted",
+        "reason": "특정 개인과 이용자 집단의 공통 수요를 바꿨다."
+      }
+    ]
+  },
+  "request_hash": "948f327c8561c1427c84ef0cb0b918cbcfb6ea230d134243748c1113593aaa4b",
+  "schema_hash": "f0284e202d18bbfd355ef89b6ec6b25cb9c505d7c1f62b5df2a65ef4db372ce8",
+  "raw_judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "q1",
+        "verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "not_met"
+          },
+          {
+            "criterion_id": "q1.c2",
+            "verdict": "not_met"
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "q2",
+        "verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "contradicted",
+            "quote": "지배주주 한 사람의 특수한 재무정보 요구를 모든 이용자의 공통 수요보다 우선하여 전체 중요성을 결정한다.",
+            "reason": "개별 이용자의 특수한 요구를 공통 수요보다 우선한다고 명시하여 반대된다."
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "contradicted",
+            "quote": "지배주주 한 사람의 특수한 재무정보 요구를 모든 이용자의 공통 수요보다 우선하여 전체 중요성을 결정한다.",
+            "reason": "특정 개인의 특수한 정보요구를 우선하여 고려한다고 명시하였다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "trace": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "q1",
+            "verdicts": [
+              {
+                "criterion_id": "q1.c1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": null
+              },
+              {
+                "criterion_id": "q1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": null
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "q2",
+            "verdicts": [
+              {
+                "criterion_id": "q2.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q2/e0"
+                ],
+                "reason": "개별 이용자의 특수한 요구를 공통 수요보다 우선한다고 명시하여 반대된다."
+              },
+              {
+                "criterion_id": "q2.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q2/e0"
+                ],
+                "reason": "특정 개인의 특수한 정보요구를 우선하여 고려한다고 명시하였다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-04-320-freq01",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "q1",
+        "prompt": "법인세비용차감전계속영업이익을 중요성 결정의 벤치마크로 이용하려 한다. 당기의 감소한 이익을 그대로 사용하는 대신 선택할 수 있는 보다 적합한 이익 수치와, 주어진 상황에서 그 수치를 사용할 수 있는 근거를 설명하시오. 금액이나 백분율을 계산할 필요는 없다.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "not_met",
+            "claim": "과거 실적에 기초하여 정상적 수준으로 조정한 법인세비용차감전계속영업이익을 사용할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "q1.c2",
+            "verdict": "not_met",
+            "claim": "이익 감소가 예외적·일시적이며 지속적인 수익구조의 변화가 아니므로, 조정된 과거 실적이 이용자들이 중점을 두는 정상적인 수익성과 관련된 벤치마크를 제공할 수 있기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "과거 실적에 기초하여 정상적 수준으로 조정한 법인세비용차감전계속영업이익을 사용할 수 있다.",
+          "이익 감소가 예외적·일시적이며 지속적인 수익구조의 변화가 아니므로, 조정된 과거 실적이 이용자들이 중점을 두는 정상적인 수익성과 관련된 벤치마크를 제공할 수 있기 때문이다."
+        ]
+      },
+      {
+        "subquestion_id": "q2",
+        "prompt": "중요성 판단에서는 어떤 범위의 재무제표 이용자와 어떤 정보수요를 고려해야 하는가? 특정 개인 이용자의 특수한 정보요구가 다른 이용자들과 다른 경우 그 개인에게 미치는 영향을 어떻게 취급하는지도 설명하시오.",
+        "user_answer": "지배주주 한 사람의 특수한 재무정보 요구를 모든 이용자의 공통 수요보다 우선하여 전체 중요성을 결정한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "contradicted",
+            "quote": "지배주주 한 사람의 특수한 재무정보 요구를 모든 이용자의 공통 수요보다 우선하여 전체 중요성을 결정한다.",
+            "reason": "개별 이용자의 특수한 요구를 공통 수요보다 우선한다고 명시하여 반대된다.",
+            "claim": "집단으로서 재무제표 이용자들의 공통적인 재무정보 수요를 고려한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "contradicted",
+            "quote": "지배주주 한 사람의 특수한 재무정보 요구를 모든 이용자의 공통 수요보다 우선하여 전체 중요성을 결정한다.",
+            "reason": "특정 개인의 특수한 정보요구를 우선하여 고려한다고 명시하였다.",
+            "claim": "개별 이용자의 정보요구는 다양할 수 있으므로 특정 개별 이용자에게 미치는 영향은 고려하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "집단으로서 재무제표 이용자들의 공통적인 재무정보 수요를 고려한다.",
+          "개별 이용자의 정보요구는 다양할 수 있으므로 특정 개별 이용자에게 미치는 영향은 고려하지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "exact_verdict_differences": [],
+  "verdict_differences": [],
+  "matched": true,
+  "boundary_policy": "조건 경계의 not_met/contradicted만 0점 동등 취급; 반대·누락 사례에는 적용하지 않음"
+}

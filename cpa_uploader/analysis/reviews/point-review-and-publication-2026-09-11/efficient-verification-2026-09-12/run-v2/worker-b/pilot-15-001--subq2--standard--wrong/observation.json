@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-15-001--subq2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-15-001--subq2--standard",
+  "source_set_id": "pilot-15-001",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "subq2"
+  ],
+  "projected_body_hash": "38fc34e162529273d32a0cdf456acc65e24e16291d4b2c5f13291c1ad0c59e2a",
+  "answers": {
+    "subq2": "의견거절인 경우 근거단락의 제목은 의견거절근거가 아니라 적정의견근거로 기재해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "subq2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "답안 전체에 '한정의견의 경우 근거단락 제목을 한정의견근거로 수정한다.'의 내용이나 이를 분명히 함축하는 설명은 없다. 다른 명제의 반대만으로 이 명제를 반대로 판정하지 않는다."
+        },
+        {
+          "criterion_id": "crit5.p2",
+          "verdict": "not_met",
+          "reason": "답안 전체에 '부적정의견의 경우 근거단락 제목을 부적정의견근거로 수정한다.'의 내용이나 이를 분명히 함축하는 설명은 없다. 다른 명제의 반대만으로 이 명제를 반대로 판정하지 않는다."
+        },
+        {
+          "criterion_id": "crit5.p3",
+          "verdict": "contradicted",
+          "reason": "명시적 반대: 답안은 '의견거절의 경우 근거단락 제목을 의견거절근거로 수정한다.'에 반하는 조건·조치·명칭 또는 관계를 제시한다."
+        },
+        {
+          "criterion_id": "crit5.p4",
+          "verdict": "not_met",
+          "reason": "답안 전체에 '변형의견을 초래한 사항을 근거단락에서 설명한다.'의 내용이나 이를 분명히 함축하는 설명은 없다. 다른 명제의 반대만으로 이 명제를 반대로 판정하지 않는다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "aa2a65756b587545b6586579883e2db52c935370a2fc57a9cf8f90062427045d",
+  "schema_hash": "fd73fb6422d6dda33cbe4dbed3a2967b7bbcdcf8bc3b9b9e76d386960548cb05",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "subq2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "한정의견근거 제목 수정이 없다."
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "not_met",
+            "reason": "부적정의견근거 제목 수정이 없다."
+          },
+          {
+            "criterion_id": "crit5.p3",
+            "verdict": "contradicted",
+            "quote": "의견거절인 경우 근거단락의 제목은 의견거절근거가 아니라 적정의견근거로 기재해야 한다.",
+            "reason": "의견거절근거가 아니라 적정의견근거로 기재한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit5.p4",
+            "verdict": "not_met",
+            "reason": "변형의견을 초래한 사항의 설명이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "subq2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "한정의견근거 제목 수정이 없다."
+              },
+              {
+                "criterion_id": "crit5.p2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "부적정의견근거 제목 수정이 없다."
+              },
+              {
+                "criterion_id": "crit5.p3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "subq2/e0"
+                ],
+                "reason": "의견거절근거가 아니라 적정의견근거로 기재한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit5.p4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "변형의견을 초래한 사항의 설명이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-15-001",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "subq2",
+        "prompt": "감사의견이 변형된 경우, 감사기준서 705 문단 20에 따라 감사의견근거 단락의 제목을 어떻게 수정하고 어떤 사항의 설명을 포함해야 하는지 서술하시오.",
+        "user_answer": "의견거절인 경우 근거단락의 제목은 의견거절근거가 아니라 적정의견근거로 기재해야 한다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "한정의견근거 제목 수정이 없다.",
+            "claim": "한정의견의 경우 근거단락 제목을 한정의견근거로 수정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "not_met",
+            "reason": "부적정의견근거 제목 수정이 없다.",
+            "claim": "부적정의견의 경우 근거단락 제목을 부적정의견근거로 수정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5.p3",
+            "verdict": "contradicted",
+            "quote": "의견거절인 경우 근거단락의 제목은 의견거절근거가 아니라 적정의견근거로 기재해야 한다.",
+            "reason": "의견거절근거가 아니라 적정의견근거로 기재한다고 명시했다.",
+            "claim": "의견거절의 경우 근거단락 제목을 의견거절근거로 수정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5.p4",
+            "verdict": "not_met",
+            "reason": "변형의견을 초래한 사항의 설명이 없다.",
+            "claim": "변형의견을 초래한 사항을 근거단락에서 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "의견 유형에 따라 제목을 한정의견근거, 부적정의견근거 또는 의견거절근거로 수정하고, 해당 단락에 의견변형을 발생시킨 사항에 대한 설명을 포함한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "subq2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_07c179fb960c1b25016aa4d0c69ff087d0aa25601b6b940f11",
+        "request_id": "req_cb8fffb881b1447bb058e7480a98e471",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2579,
+          "input_tokens_details": {
+            "cache_write_tokens": 2576,
+            "cached_tokens": 0
+          },
+          "output_tokens": 254,
+          "output_tokens_details": {
+            "reasoning_tokens": 47
+          },
+          "total_tokens": 2833
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009494000000000001,
+        "min_usd": 0.0009494000000000001,
+        "max_usd": 0.0009494000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-15-001--subq2--standard--wrong/input.json",
+      "sha256": "53d08dff50384d1cb5fe36adbf0e35e31a07fa937de02782b85a6dc42e27c4e2"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-15-001--subq2--standard--wrong/transport.jsonl",
+      "sha256": "5a73dbbf9782eb69455714dffc29cd03da7d47cb8d9dbf7e3d4c3491e131ba60"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-15-001--subq2--standard--wrong/traces.jsonl",
+      "sha256": "9ea319f66d996e200bf8f77a26d86f4d7780c1dfb756eaadf1059ba036ba5813"
+    }
+  }
+}

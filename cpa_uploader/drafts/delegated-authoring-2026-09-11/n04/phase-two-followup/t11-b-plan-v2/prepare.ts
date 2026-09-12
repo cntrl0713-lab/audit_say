@@ -1,0 +1,26 @@
+// A proposed plan-only followup; no shared-file mutation and no model call.
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import {prepareSemanticReview} from '../../../../../../cpa_uploader/questionSemanticReview.ts';
+const dir=path.dirname(fileURLToPath(import.meta.url));
+const control='cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11';
+const read=(f:string)=>JSON.parse(fs.readFileSync(f,'utf8'));
+const sha=(f:string)=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const ref=(file:string)=>({file,sha256:sha(file)});
+const lockFile=control+'/runtime-v5-bank-v3-after-refill-02/runtime-lock.json',lock=read(lockFile),manifest=read(lock.manifest_file),entry=manifest.entries.find((e:any)=>e.plan_id==='T11-B');
+for(const r of [lock.comparison_bank,...lock.code_files,...lock.source_files,{file:entry.file,sha256:entry.sha256},{file:entry.qa_file,sha256:entry.qa_sha256},...entry.plan_files])if(sha(r.file)!==r.sha256)throw Error('Frozen input changed: '+r.file);
+const originalFile=entry.plan_files[0].file,original=read(originalFile),followup=structuredClone(original),plan=followup.plans.find((p:any)=>p.set_id===entry.set_id),set=read(entry.file),bank=read(lock.comparison_bank.file);
+plan.scope.exceptions.push('후속 검토에서 발견한 명제 중복의 재분류: sub3.crit1은 기존 pilot-05-006/sub2/crit3(KGA 240.33(c))의 사업상 논리적 근거 또는 그 결여에 비춘 부정재무보고·자산횡령 은폐 징후 평가와 요구가 겹친다. 이 계획 사본부터 이를 KGA 550.23(a)(i)의 특수관계자 거래·근거 계약 검사 문맥에서 수행하는 명시적 적용 복습으로 유지한다. 이 한 명제를 새 출제 공백 해소 또는 신규 커버리지 증가로 세지 않는다. 최초 계획에 이 비교가 이미 명시되어 있었다는 뜻은 아니다.');
+plan.scope.exceptions.push('sub3의 복습 선정 이유와 독립 추가 범위: 정상적인 사업과정을 벗어난 유의적인 특수관계자 거래의 근거 계약·약정을 실제로 검사하는 550.23 전체 절차에서, 이미 학습한 사업상 이유의 부정 징후 평가를 거래조건의 설명 일관성(sub3.crit2), 재무보고체계에 따른 회계처리(sub3.crit3), 공시(sub3.crit4), 권한부여·승인 증거 입수(sub3.crit5)와 결합하여 적용한다. 복습 한 점은 점수에서 삭제하지 않으며 나머지 네 독립 요구의 기존 ID·점수·답안도 그대로 유지한다. 승인 사실은 사업상 이유나 회계처리·공시 평가를 면제하지 않는다.');
+plan.existing_question_difference += ' 이번 후속 검토에서 pilot-05-006/sub2/crit3와 sub3.crit1의 실제 명제 중복을 새로 확인하였다. 이 사본은 sub3.crit1을 550.23 특수관계자 계약 검사에 적용하는 명시적 복습으로 재분류하며 신규 커버리지로 계산하지 않는다. 특수관계자라는 사례명만으로 새로운 명제라고 주장하지 않는다. sub3.crit2~5는 거래조건, 회계처리, 공시 및 권한 있는 승인 증거의 네 추가 요구이다. 같은 세트 sub2의 확인서·의사록 검사(550.15)는 이 사업상 이유 평가를 배점하지 않아 그 비교 지적은 적용되지 않는다.';
+const file=path.join(dir,'pilot-11-006.json.authoring-plan.v2.json');
+fs.writeFileSync(file,JSON.stringify(followup,null,2)+'\n',{flag:'wx'});
+const before=prepareSemanticReview(set,{bank,authoringPlan:original.plans.find((p:any)=>p.set_id===set.id),maxInputChars:500000});
+const after=prepareSemanticReview(set,{bank,authoringPlan:plan,maxInputChars:500000});
+const changedPaths=['plans[0].scope.exceptions (+2 entries)','plans[0].existing_question_difference (append explicit after-discovery classification)'];
+const evidenceFile='cpa_uploader/drafts/delegated-authoring-2026-09-11/n04/phase-two-case-investigation/t11-b-source-and-overlap/evidence.json';
+const lineage={recorded_at:new Date().toISOString(),api_calls:0,stage:'proposed_followup_plan_pending_coordinator_selection',authorization:'총괄이 2026-09-11 후속 검토에서 발견된 실제 명제 중복을 특수관계자 계약 검사 적용 복습으로 별도 계획 사본에 명시하고 나머지 네 요구·기존 ID·점수를 유지하도록 승인하였다. 공통 manifest 변경은 총괄 소유이다.',runtime_lock:ref(lockFile),manifest:ref(lock.manifest_file),comparison_bank:ref(lock.comparison_bank.file),question:ref(entry.file),qa:ref(entry.qa_file),original_plan:ref(originalFile),followup_plan:ref(file),original_investigation:ref(evidenceFile),changed_paths:changedPaths,classification:{set_id:set.id,subquestion_id:'sub3',criterion_id:'sub3.crit1',existing_set_id:'pilot-05-006',existing_subquestion_id:'sub2',existing_criterion_id:'crit3',relationship:'explicit_application_review_after_discovery',counts_as_new_coverage:false,retained_points:1,additional_criterion_ids:['sub3.crit2','sub3.crit3','sub3.crit4','sub3.crit5']},unchanged:{question_file:true,question_ids:true,criteria:true,points:16,sub3_points:5,qa_cases:66,source_files:true,bank_file:true},preflight:{api_calls:0,before_units:before.units.length,after_units:after.units.length,before_content_hash:before.contentHash,after_content_hash:after.contentHash,before_bank_hash:before.bankHash,after_bank_hash:after.bankHash,same_content:before.contentHash===after.contentHash,same_bank:before.bankHash===after.bankHash,request_context_changed:JSON.stringify(before.requestContext)!==JSON.stringify(after.requestContext)},semantic_status:'Old receipt remains fail with a real overlap; this plan has not received actual semantic review and is not selected by the shared manifest.',publication_or_canonical_change:false};
+fs.writeFileSync(path.join(dir,'lineage.json'),JSON.stringify(lineage,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({followup:ref(file),lineage:ref(path.join(dir,'lineage.json')),units:after.units.length,points:16,api_calls:0}));

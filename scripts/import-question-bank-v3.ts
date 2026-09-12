@@ -8,6 +8,26 @@ import { compilePublicQuestionSet, computeQuestionSetMaxPoints, validateQuestion
 import type { QuestionSetV3 } from '../lib/questionV3.ts';
 import { canonicalJson, contentHash } from '../lib/learningSubmission.ts';
 import { publicLearningSet } from '../lib/learningPublic.ts';
+import { buildLearningUnits, validateLearningClassification } from '../lib/learningUnits.ts';
+import type { LearningClassification, LearningTopic } from '../lib/learningUnits.ts';
+
+export function learningCatalogForBank(sets: QuestionSetV3[], catalog: { topics: LearningTopic[]; classifications: LearningClassification[] }) {
+    const knownTopics = new Set(catalog.topics.map(topic => topic.id));
+    const entries = sets.flatMap(set => set.subquestions.map(sub => {
+        if (sub.question_style && sub.topic_ids?.length) {
+            if (sub.topic_ids.some(id => !knownTopics.has(id))) throw new Error(`${set.id}/${sub.id}: 등록되지 않은 물음 주제입니다.`);
+            return { set_id: set.id, subquestion_id: sub.id, question_style: sub.question_style, topic_ids: sub.topic_ids,
+                standalone_prompt: sub.question_style === 'standard' ? sub.prompt : null, case_fact_ids: [] as string[] };
+        }
+        const row = catalog.classifications.find(row => row.source_set_id === set.id && row.subquestion_id === sub.id);
+        if (!row || row.source_content_hash !== contentHash(set)) throw new Error(`${set.id}/${sub.id}: 원본과 일치하는 검토된 물음 분류가 필요합니다.`);
+        validateLearningClassification(row);
+        if (row.topic_ids.some(id => !knownTopics.has(id))) throw new Error('물음별 등록 주제가 일치하지 않습니다.');
+        return { set_id: set.id, subquestion_id: sub.id, question_style: row.question_style, topic_ids: row.topic_ids,
+            standalone_prompt: row.standalone_prompt, case_fact_ids: row.case_fact_ids ?? [] };
+    }));
+    return { learning_topics: catalog.topics, learning_classifications: entries };
+}
 
 export interface BankReadiness {
     checked_at: string;
@@ -96,6 +116,13 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
     const authoring = fs.readFileSync(authoringPath, 'utf8');
     const preserveSource = args.includes('--preserve-source');
     const snapshot = inspectBankSnapshot(authoring, fs.readFileSync(publicPath, 'utf8'), { cwd: root, applicability, contentReview: !preserveSource });
+    let learningCatalog: ReturnType<typeof learningCatalogForBank> | undefined;
+    try {
+        const catalogFile = path.resolve(argument(args, '--learning-catalog') ?? 'cpa_uploader/data/learning-question-classifications.json');
+        learningCatalog = learningCatalogForBank(snapshot.sets, JSON.parse(fs.readFileSync(catalogFile, 'utf8')));
+    } catch (error) {
+        snapshot.report.errors.push(error instanceof Error ? error.message : '물음 유형·주제 분류를 준비하지 못했습니다.');
+    }
     if (!preserveSource) {
       const fullValidation = spawnSync(process.execPath, [path.join(root, 'node_modules/tsx/dist/cli.mjs'), path.join(root, 'cpa_uploader/validate_cpa_v3.ts')], {
         cwd: root, encoding: 'utf8', timeout: 60_000,
@@ -120,8 +147,9 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
     const expectedHost = argument(args, '--project-host');
     if (!expectedHost || new URL(url).hostname !== expectedHost) throw new Error('--project-host에 적용할 Supabase 호스트를 명시해야 합니다.');
     const client = createClient(url, secret, { auth: { persistSession: false, autoRefreshToken: false } });
-    const { data, error } = await client.rpc('cpa_import_question_bank', { p_payload: {
+    const { data, error } = await client.rpc('cpa_import_learning_question_bank', { p_payload: {
         sets: snapshot.sets, applicability: snapshot.applicability,
+        ...learningCatalog,
         source_document: authoring,
         source_file_hash: snapshot.report.source_file_hash, bank_content_hash: snapshot.report.bank_content_hash,
         public_content_hash: snapshot.report.public_content_hash, evidence,
@@ -138,6 +166,9 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
         return set;
     });
     if (canonicalJson(projected) !== canonicalJson(snapshot.compiled)) throw new Error('이관된 공개 문제은행이 검증본과 다릅니다. 서비스 전환을 중단하세요.');
+    const { data: classifications, error: classificationError } = await client.rpc('cpa_get_learning_classifications', { p_release_id: data.release_id });
+    if (classificationError || !Array.isArray(classifications) || !learningCatalog) throw new Error('물음 분류 이관 결과를 읽을 수 없습니다.');
+    const units = buildLearningUnits(bank.map(publicLearningSet), classifications.map(validateLearningClassification), learningCatalog.learning_topics);
     const { data: storedSource, error: sourceReadError } = await client.from('cpa_question_bank_releases')
         .select('source_document, source_file_hash').eq('id', data.release_id).single();
     if (sourceReadError || storedSource?.source_document !== authoring || storedSource?.source_file_hash !== snapshot.report.source_file_hash) {
@@ -146,6 +177,7 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
     const receipt = { applied_at: new Date().toISOString(), project_host: expectedHost, applied: true,
         ...data, source_file_hash: snapshot.report.source_file_hash, bank_content_hash: snapshot.report.bank_content_hash,
         public_round_trip: true, source_bytes_identical: true, content_review_performed: !preserveSource, progress_initialized: false };
+    Object.assign(receipt, { learning_classification_count: classifications.length, learning_unit_count: units.length });
     fs.writeFileSync(path.resolve(argument(args, '--receipt') || 'docs/reports/cpa-learning-db-applied.json'), `${JSON.stringify(receipt, null, 2)}\n`, 'utf8');
     console.log(JSON.stringify({ ...receipt, question_versions: undefined }, null, 2));
 }

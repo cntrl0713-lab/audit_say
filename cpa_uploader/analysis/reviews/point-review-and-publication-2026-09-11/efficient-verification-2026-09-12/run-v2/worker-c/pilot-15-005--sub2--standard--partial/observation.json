@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-15-005--sub2--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-15-005--sub2--standard",
+  "source_set_id": "pilot-15-005",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "309ac5d73f169c4d070c003856b3c50d6d7b3862f7dd4b5bf2546f0a1182d1a2",
+  "answers": {
+    "sub2": "입수한 감사증거에 기초해 재무제표 전체에 중요한 왜곡표시가 있다고 결론내린 경우이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안에 해당 독립 명제가 직접 제시되어 있다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "f1164485977fa8c708e2b5d7940753c438c6509109f0b27e877bc138b7e6d601",
+  "schema_hash": "02f2ae67aec11ef468f0b0dff383bce8b6cab4c84baec75792140419d493f672",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "입수한 감사증거에 기초해 재무제표 전체에 중요한 왜곡표시가 있다고 결론내린 경우이다.",
+            "reason": "입수한 감사증거에 기초해 재무제표 전체의 중요한 왜곡표시를 결론 내린 경우를 제시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "충분하고 적합한 감사증거를 입수할 수 없는 경우를 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "입수한 감사증거에 기초해 재무제표 전체의 중요한 왜곡표시를 결론 내린 경우를 제시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "충분하고 적합한 감사증거를 입수할 수 없는 경우를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-15-005",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 700 문단 17에 따라, 감사기준서 705를 적용하여 감사의견을 변형하여야 하는 두 경우를 모두 제시하시오.",
+        "user_answer": "입수한 감사증거에 기초해 재무제표 전체에 중요한 왜곡표시가 있다고 결론내린 경우이다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "입수한 감사증거에 기초해 재무제표 전체에 중요한 왜곡표시가 있다고 결론내린 경우이다.",
+            "reason": "입수한 감사증거에 기초해 재무제표 전체의 중요한 왜곡표시를 결론 내린 경우를 제시했다.",
+            "claim": "증거에 근거하여 재무제표 전체의 중요한 왜곡표시를 결론 내린 경우를 제시함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "충분하고 적합한 감사증거를 입수할 수 없는 경우를 제시하지 않았다.",
+            "claim": "재무제표 전체에 중요한 왜곡표시가 없다고 결론 내리기에 충분하고 적합한 증거를 입수할 수 없는 경우를 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "입수한 감사증거에 근거하여 재무제표가 전체적으로 중요하게 왜곡표시되었다고 결론을 내리는 경우이다.",
+          "재무제표가 전체적으로 중요하게 왜곡표시되지 않았다고 결론을 내릴 수 있을 정도로 충분하고 적합한 감사증거를 입수할 수 없는 경우이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_08b62cc843bdbe9d016aa4d0e0797487d0821a26e0a5bb9a39",
+        "request_id": "req_cf03befcd2ec41efb33e42c536e422ed",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2408,
+          "input_tokens_details": {
+            "cache_write_tokens": 2405,
+            "cached_tokens": 0
+          },
+          "output_tokens": 193,
+          "output_tokens_details": {
+            "reasoning_tokens": 41
+          },
+          "total_tokens": 2601
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00083345,
+        "min_usd": 0.00083345,
+        "max_usd": 0.00083345,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-15-005--sub2--standard--partial/input.json",
+      "sha256": "11590747565543e718cbc1a3732b3ebc1138532b55bf7a2b9665544846114028"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-15-005--sub2--standard--partial/transport.jsonl",
+      "sha256": "715a182ed5835ac2011f6c1f6cb832eff3f118bb2f523f7b0921b6e3e2e4ce26"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-15-005--sub2--standard--partial/traces.jsonl",
+      "sha256": "986a04eb25c2f8caf475d9d9dc2d5e5aa7ebb1fa024c39708c50436469c03ebe"
+    }
+  }
+}

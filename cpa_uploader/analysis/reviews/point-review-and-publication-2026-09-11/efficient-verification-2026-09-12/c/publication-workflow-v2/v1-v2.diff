@@ -1,0 +1,88 @@
+diff --git a/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/stage-publication-v1.ts b/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/stage-publication-v2.ts
+index afc4696..a7119dc 100644
+--- a/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/stage-publication-v1.ts
++++ b/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/stage-publication-v2.ts
+@@ -16,12 +16,12 @@ const C = `${E}/c`, CANDIDATE = `${E}/candidate-v1/candidate-authoring.json`;
+ const ORIGINAL = 'cpa_uploader/data/cpa_question_sets_v3.authoring.json';
+ const ORIGINAL_LEDGER = 'cpa_uploader/data/cpa_question_sets_v3.promotions.json';
+ const REVIEW = `${E}/candidate-v1/classification-review.json`;
+-const PREPARATION = `${C}/publication-workflow-v1/preparation-lock.json`;
++const PREDECESSOR_PREPARATION = `${C}/publication-workflow-v1/preparation-lock.json`;
+ export const hash = (bytes: Buffer | string) => createHash('sha256').update(bytes).digest('hex');
+ type FileRef = { file: string; sha256: string | null; real_path: string };
+ type Cohorts = { reverify_existing_ids: string[]; verify_new_ids: string[]; publish_ids: string[] };
+ type NoteCorrection = { set_id: string; before_hash: string; after_hash: string; before_notes: string[]; after_notes: string[] };
+-interface Options { batch: string; batchSha: string; readiness: string; sealInputs: string; output: string; execute: boolean }
++interface Options { batch: string; batchSha: string; readiness: string; sealInputs: string; preparation: string; preparationSha: string; output: string; execute: boolean }
+ interface Step { id: string; args: string[] }
+ const slash = (file: string) => file.replaceAll('\\', '/');
+ function exists(file: string) { try { fs.lstatSync(file); return true; } catch (e) { if ((e as NodeJS.ErrnoException).code === 'ENOENT') return false; throw e; } }
+@@ -40,7 +40,7 @@ export function assertNewOutput(output: string, root = process.cwd()) {
+ }
+ export function parseOptions(args: string[]): Options {
+     const options: Record<string, string | boolean> = { execute: false };
+-    const names: Record<string, string> = { '--batch': 'batch', '--batch-sha256': 'batchSha', '--readiness': 'readiness', '--seal-inputs': 'sealInputs', '--output': 'output' };
++    const names: Record<string, string> = { '--batch': 'batch', '--batch-sha256': 'batchSha', '--readiness': 'readiness', '--seal-inputs': 'sealInputs', '--preparation-lock': 'preparation', '--preparation-sha256': 'preparationSha', '--output': 'output' };
+     const seen = new Set<string>();
+     for (let i = 0; i < args.length; i++) {
+         const arg = args[i];
+@@ -56,6 +56,7 @@ export function parseOptions(args: string[]): Options {
+     assert(!(seen.has('--execute') && seen.has('--dry-run')), 'Choose execute or dry-run, not both');
+     for (const name of Object.values(names)) assert(typeof options[name] === 'string', `Missing ${name}`);
+     assert(/^[a-f0-9]{64}$/.test(String(options.batchSha)), 'Explicit sealed batch SHA-256 is required');
++    assert(/^[a-f0-9]{64}$/.test(String(options.preparationSha)), 'Explicit reviewed preparation lock SHA-256 is required');
+     return options as unknown as Options;
+ }
+ export function deriveCohorts(original: QuestionSetV3[], candidate: QuestionSetV3[], selected: string[], noteCorrections: NoteCorrection[] = []): Cohorts {
+@@ -149,7 +150,15 @@ export function main(args = process.argv.slice(2)) {
+         if (!snapshot) { snapshot = { bytes: fs.readFileSync(full), identity: key(full) }; snapshots.set(full, snapshot); }
+         return JSON.parse(snapshot.bytes.toString('utf8')) as T;
+     };
+-    const lock = read<{ inputs: FileRef[]; allowed_unselected_note_changes: NoteCorrection[] }>(PREPARATION);
++    assert(key(opts.preparation).startsWith(key(E) + path.sep), 'Preparation lock must belong to this batch');
++    const lock = read<{ inputs: FileRef[]; allowed_unselected_note_changes: NoteCorrection[] }>(opts.preparation);
++    assert.equal(hash(snapshots.get(path.resolve(opts.preparation))!.bytes), opts.preparationSha, 'Selected preparation lock byte SHA mismatch');
++    // Preserve the original protected input surface; only an explicitly reviewed successor can change expected hashes.
++    const predecessor = read<{ inputs: FileRef[] }>(PREDECESSOR_PREPARATION);
++    for (const file of [...predecessor.inputs.map(r => r.file), fileURLToPath(import.meta.url), PREDECESSOR_PREPARATION]) {
++        assert(lock.inputs.some(r => path.resolve(r.file) === path.resolve(file)), `Preparation protection missing: ${file}`);
++    }
++    assert.equal(new Set(lock.inputs.map(r => path.resolve(r.file))).size, lock.inputs.length, 'Duplicate preparation input paths');
+     assertInputRefs(lock.inputs);
+     const guard = () => {
+         assertInputRefs(lock.inputs);
+@@ -161,6 +170,7 @@ export function main(args = process.argv.slice(2)) {
+     const original = read<QuestionSetV3[]>(ORIGINAL), candidate = read<QuestionSetV3[]>(CANDIDATE);
+     const scope = read<{ targets: { set_id: string; subquestion_ids: string[] }[] }>(`${E}/candidate-v1/target-scope.json`);
+     const cohorts = deriveCohorts(original, candidate, scope.targets.map(t => t.set_id), lock.allowed_unselected_note_changes);
++    const preparationIdentity = { file: slash(path.relative(root, path.resolve(opts.preparation))), sha256: opts.preparationSha };
+     for (const target of scope.targets) assert.deepEqual(candidate.find(s => s.id === target.set_id)!.subquestions.map(q => q.id), target.subquestion_ids);
+     const batch = read<{ grading_manifest: { file: string; sha256: string } }>(opts.batch);
+     assert.equal(hash(snapshots.get(path.resolve(opts.batch))!.bytes), opts.batchSha, 'Sealed batch byte SHA mismatch');
+@@ -191,7 +201,7 @@ export function main(args = process.argv.slice(2)) {
+     guard();
+     const offlineReceiptPreflightMs = Date.now() - workflowStartedMs;
+     if (!opts.execute) {
+-        console.log(JSON.stringify({ status: 'validated_dry_run_no_stage_writes', cohorts, steps, offline_receipt_preflight_ms: offlineReceiptPreflightMs, canonical_writes: 0, db_calls: 0, api_calls: 0 }));
++        console.log(JSON.stringify({ status: 'validated_dry_run_no_stage_writes', preparation_lock: preparationIdentity, cohorts, steps, offline_receipt_preflight_ms: offlineReceiptPreflightMs, canonical_writes: 0, db_calls: 0, api_calls: 0 }));
+         return;
+     }
+     assert(process.env.CPA_QUESTION_V3_ENCRYPTION_KEY?.trim(), 'Encryption key is required in the process environment; its value is never printed');
+@@ -200,7 +210,7 @@ export function main(args = process.argv.slice(2)) {
+     const outputIdentity = key(output);
+     const write = (name: string, value: unknown) => fs.writeFileSync(path.join(output, name), JSON.stringify(value, null, 2) + '\n', { flag: 'wx' });
+     const runGuard = () => { guard(); assert.equal(key(output), outputIdentity); assertEfficientEvidenceUnchanged(context); };
+-    write('execution-plan.json', { status: 'local_staging_started_not_installed', created_at: workflowStartedAt, offline_receipt_preflight_ms: offlineReceiptPreflightMs, cohorts, steps,
++    write('execution-plan.json', { status: 'local_staging_started_not_installed', preparation_lock: preparationIdentity, created_at: workflowStartedAt, offline_receipt_preflight_ms: offlineReceiptPreflightMs, cohorts, steps,
+         inputs: [...snapshots].map(([file, value]) => ({ file: slash(path.relative(root, file)), sha256: hash(value.bytes) })),
+         env_path_overrides: Object.fromEntries(Object.entries(pathEnvironment(stage)).filter(([name]) => /^CPA_QUESTION_V3_(AUTHORING|PROMOTIONS|PUBLIC|ENCRYPTED)_PATH$/.test(name))) });
+     const oldLedger = read<{ entries: unknown[] }>(ORIGINAL_LEDGER);
+@@ -247,7 +257,7 @@ export function main(args = process.argv.slice(2)) {
+         assert.equal(ready.source_file_hash, hash(fs.readFileSync(path.join(stage, 'authoring.json'))));
+         runGuard();
+         write('completion.json', { status: 'isolated_published_stage_validated_not_installed_not_db_applied', completed_at: new Date().toISOString(), elapsed_ms: Date.now() - workflowStartedMs,
+-            cohorts, set_count: final.length, question_count: final.reduce((n, s) => n + s.subquestions.length, 0),
++            preparation_lock: preparationIdentity, cohorts, set_count: final.length, question_count: final.reduce((n, s) => n + s.subquestions.length, 0),
+             files: [...stages].map(([file, bytes]) => ({ file: slash(path.relative(root, file)), sha256: hash(bytes) })), result_files: resultFiles,
+             canonical_writes: 0, db_calls: 0, api_calls: 0, historical_ledger_prefix_preserved: true,
+             next_step: 'Root independent review. Canonical installation and DB apply are separate, unexecuted actions.' });

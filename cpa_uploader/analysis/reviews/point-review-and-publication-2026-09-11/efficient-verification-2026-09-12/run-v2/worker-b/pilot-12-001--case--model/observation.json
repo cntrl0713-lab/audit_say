@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-12-001--case--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-001--case",
+  "source_set_id": "pilot-12-001",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "subq2"
+  ],
+  "projected_body_hash": "014ece860ae268aa6b01cf2650e3776fcea17fe99bbb35886a438a4a1e168e46",
+  "answers": {
+    "subq2": "재무제표일로부터 10개월은 요구되는 최소 12개월에 미달한다.\n감사인은 경영진에게 평가기간을 재무제표일로부터 적어도 12개월로 확장하도록 요청해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "subq2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 570.13의 재무제표일 기준12개월을10개월에 적용한다. 최소12개월로 확장 요청하는 이유가 부족 판단을 명확히 함축하면 두 명제를 인정한다. 해당 기준 crit3의 원 판정 met를 보존한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 570.13의 재무제표일 기준12개월을10개월에 적용한다. 최소12개월로 확장 요청하는 이유가 부족 판단을 명확히 함축하면 두 명제를 인정한다. 해당 기준 crit4의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "60ca92de1c5662ee8e8592b770f54c71a126ad65592fc01c942e491f73e48d05",
+  "schema_hash": "d2b2317d4ab13175a6127299a5a404316ff8edc1fb61a0d6b29475e4fe37e8cd",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "subq2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "재무제표일로부터 10개월은 요구되는 최소 12개월에 미달한다.\n",
+            "reason": "10개월이 최소 12개월에 미달한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "감사인은 경영진에게 평가기간을 재무제표일로부터 적어도 12개월로 확장하도록 요청해야 한다.",
+            "reason": "경영진에게 재무제표일로부터 적어도 12개월로 확장하도록 요청했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "subq2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "subq2/e1"
+                ],
+                "reason": "10개월이 최소 12개월에 미달한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "subq2/e2"
+                ],
+                "reason": "경영진에게 재무제표일로부터 적어도 12개월로 확장하도록 요청했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-001",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "subq2",
+        "prompt": "경영진이 계속기업 존속능력을 평가한 기간이 재무제표일로부터 10개월인 경우, 감사인은 어떤 조치를 취해야 하는지 근거와 함께 서술하시오.",
+        "user_answer": "재무제표일로부터 10개월은 요구되는 최소 12개월에 미달한다.\n감사인은 경영진에게 평가기간을 재무제표일로부터 적어도 12개월로 확장하도록 요청해야 한다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "재무제표일로부터 10개월은 요구되는 최소 12개월에 미달한다.",
+            "reason": "10개월이 최소 12개월에 미달한다고 명시했다.",
+            "claim": "10개월은 재무제표일로부터 최소 12개월에 미달한다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "감사인은 경영진에게 평가기간을 재무제표일로부터 적어도 12개월로 확장하도록 요청해야 한다.",
+            "reason": "경영진에게 재무제표일로부터 적어도 12개월로 확장하도록 요청했다.",
+            "claim": "경영진에게 평가기간을 적어도 12개월로 확장하도록 요청함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "재무제표일로부터 10개월은 요구되는 최소 12개월에 미달한다.",
+          "감사인은 경영진에게 평가기간을 재무제표일로부터 적어도 12개월로 확장하도록 요청해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "subq2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f79794aaa42b090016aa4cf9311e887d09f87f2fd1463b6e6",
+        "request_id": "req_52e564a6cfd242a8b45abda1d2f81007",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2670,
+          "input_tokens_details": {
+            "cache_write_tokens": 2667,
+            "cached_tokens": 0
+          },
+          "output_tokens": 171,
+          "output_tokens_details": {
+            "reasoning_tokens": 27
+          },
+          "total_tokens": 2841
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008725499999999999,
+        "min_usd": 0.0008725499999999999,
+        "max_usd": 0.0008725499999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-12-001--case--model/input.json",
+      "sha256": "010928d808828cbd2f5653728f3b2281bba33c8a883b6cf48d14c3604116e6a8"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-12-001--case--model/transport.jsonl",
+      "sha256": "0b25c0c42ca57004330b07fb6e7e31a4361d9cdff3b687003e429991eb84ede2"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-12-001--case--model/traces.jsonl",
+      "sha256": "84d9a76b029fdb59af3adf216e4c1914d2005c01a3699c98b8bfc6a9237f67de"
+    }
+  }
+}

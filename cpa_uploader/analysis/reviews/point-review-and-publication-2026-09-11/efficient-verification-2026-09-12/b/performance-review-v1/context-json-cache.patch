@@ -1,0 +1,42 @@
+diff --git a/cpa_uploader/questionEfficientReview.ts b/cpa_uploader/questionEfficientReview.ts
+index 42c0df2..9723985 100644
+--- a/cpa_uploader/questionEfficientReview.ts
++++ b/cpa_uploader/questionEfficientReview.ts
+@@ -87,6 +87,8 @@ export interface EfficientValidationContext {
+     batches: Map<string, ValidatedBatch>;
+     files: Map<string, string>;
+     reuseOrigins?: Map<string, GradingManifest>;
++    /** Immutable JSON cache is local to this validation transaction. The caller must run the final byte guard. */
++    jsonFiles?: Map<string, { sha256: string; value: unknown }>;
+ }
+ interface ValidatedBatch { batch: EfficientReviewBatch; bank: QuestionSetV3[]; counts: Map<string, number>; total: number; within: number }
+ export const createEfficientValidationContext = (): EfficientValidationContext => ({ batches: new Map(), files: new Map() });
+@@ -108,8 +110,27 @@ function readFile(identity: ReviewFile, context: EfficientValidationContext, roo
+     context.files.set(file, identity.sha256);
+     return bytes.toString('utf8');
+ }
++function freezeEvidenceJson<T>(value: T): T {
++    if (value !== null && typeof value === 'object' && !Object.isFrozen(value)) {
++        for (const child of Object.values(value)) freezeEvidenceJson(child);
++        Object.freeze(value);
++    }
++    return value;
++}
+ function readJson<T>(identity: ReviewFile, context: EfficientValidationContext, root: string): T {
+-    return JSON.parse(readFile(identity, context, root)) as T;
++    assert(identity && nonempty(identity.file) && /^[a-f\d]{64}$/.test(identity.sha256), 'Evidence file/hash required');
++    const file = path.resolve(root, identity.file), relative = path.relative(root, file);
++    assert(relative && !relative.startsWith('..') && !path.isAbsolute(relative), 'Evidence must stay inside the repository');
++    assert(!context.files.has(file) || context.files.get(file) === identity.sha256, 'Conflicting file identities');
++    const cached = context.jsonFiles?.get(file);
++    if (cached) {
++        assert.equal(cached.sha256, identity.sha256, 'Conflicting JSON file identities');
++        return cached.value as T;
++    }
++    const value = freezeEvidenceJson(JSON.parse(readFile(identity, context, root)) as T);
++    context.jsonFiles ??= new Map();
++    context.jsonFiles.set(file, { sha256: identity.sha256, value });
++    return value;
+ }
+ export function assertEfficientEvidenceUnchanged(context: EfficientValidationContext): void {
+     for (const [file, hash] of context.files) assert.equal(sha256(fs.readFileSync(file)), hash, `Evidence changed during validation: ${file}`);

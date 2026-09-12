@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "set_id": "pilot-18-003",
+  "origin": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/wrong-zero-selection-v3/pilot-18-003.json",
+    "sha256": "90a95e9f26d8c085e7de176ebef89989f6ec0db201e3194074680d64bc635918",
+    "case_id": "efficient-v3/sub1/topic-related-zero"
+  },
+  "normalization": "Only absent verdict reasons are supplied from the actual agent review; answer, verdict and expected score are unchanged.",
+  "cases": [
+    {
+      "id": "efficient-v3/sub1/topic-related-zero",
+      "subquestion_id": "sub1",
+      "kind": "explicit_wrong",
+      "answer": "KGA 1200만 적용하였더라도 감사보고서에 회계감사기준 전체를 준수하였다고 기술한다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "명시적 반대: 답안은 'KGA 1200 적용 시 회계감사기준 전체를 준수했다고 기술하지 않음'에 반하는 조건·조치·명칭 또는 관계를 제시한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "답안 전체에 'KGA 1200 적용 시 일반 감사기준서 또는 그 일부를 언급하지 않음'의 내용이나 이를 분명히 함축하는 설명은 없다. 다른 명제의 반대만으로 이 명제를 반대로 판정하지 않는다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "답안 전체에 'KGA 1200 적용 조건을 충족하는 기업과 서면으로 합의해야 한다.'의 내용이나 이를 분명히 함축하는 설명은 없다. 다른 명제의 반대만으로 이 명제를 반대로 판정하지 않는다."
+        },
+        {
+          "criterion_id": "crit3.p2",
+          "verdict": "not_met",
+          "reason": "답안 전체에 'KGA 1200 대신 일반 감사기준서를 대체 적용할 수 있다.'의 내용이나 이를 분명히 함축하는 설명은 없다. 다른 명제의 반대만으로 이 명제를 반대로 판정하지 않는다."
+        }
+      ],
+      "target_criterion_id": "crit1",
+      "note": "대표 wrong은 전체0점이어야 하는 효율실행 계약에 맞춘 새로운 주제 관련 오답이다. 기존 부분점수 경계 답안 및 원 기대값은 별도로 전부 보존한다.",
+      "origin": {
+        "reviewer": "agent",
+        "selection_contract": "model=max, 0<partial<max, wrong=0",
+        "related_source_ref_ids": [
+          "src1",
+          "src3"
+        ]
+      }
+    }
+  ]
+}

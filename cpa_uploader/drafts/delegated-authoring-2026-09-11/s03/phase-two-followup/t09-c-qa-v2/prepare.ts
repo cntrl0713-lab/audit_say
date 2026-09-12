@@ -1,0 +1,30 @@
+// Authorized QA-only correction; original artifacts remain immutable. No API.
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import {buildGradingPrompt,buildGradingResponseSchema,gradingModelName} from '../../../../../../lib/questionV3Grading.ts';
+const dir=path.dirname(fileURLToPath(import.meta.url)),control='cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11';
+const read=(f:string)=>JSON.parse(fs.readFileSync(f,'utf8')),hash=(v:string|Buffer)=>createHash('sha256').update(v).digest('hex'),sha=(f:string)=>hash(fs.readFileSync(f));
+const lockFile=control+'/runtime-v5-bank-v3-after-refill-01/runtime-lock.json',lock=read(lockFile),m=read(lock.manifest_file),e=m.entries.find((e:any)=>e.plan_id==='T09-C');
+const original=read(e.qa_file),qa=structuredClone(original),target=qa.cases.find((c:any)=>c.id==='sub2/boundary-1'),before=structuredClone(target);
+target.expected_points=1;const c5=target.expected_verdicts.find((v:any)=>v.criterion_id==='sub2.crit5');c5.verdict='met';c5.reason='외부 법률고문에게 직접 회신을 요구한다는 감사인의 행위는 독립 회신경로 명제를 충족한다. 별도 발동조건 오류를 이 방법 명제에 전가하지 않는다.';
+target.note+=' 총괄이501.10·발문·c5·대조군을 독립 대조하여 c5만 not_met→met,0→1 정정했다. c1/c2의 기존 0점 경계 정책과 답안은 그대로다.';
+const qDoc=read(e.file),set=Array.isArray(qDoc)?qDoc[0]:qDoc,sub=set.subquestions.find((q:any)=>q.id==='sub2');
+const make=(id:string,kind:string,answer:string,c5verdict:string)=>({id,subquestion_id:'sub2',kind,answer,expected_points:c5verdict==='met'?1:0,expected_verdicts:sub.criteria.map((c:any)=>({criterion_id:c.id,verdict:c.id==='sub2.crit5'?c5verdict:'not_met',reason:c.id==='sub2.crit5'?'외부 법률고문의 직접 회신 경로가 명시된 독립 대조군이다.':'해당 발동조건·작성자·발송자·금지시대안은 쓰지 않았다.'})),note:'추가 회귀 대조군; 원래 필수 QA 고유사례 65개에 합산하지 않는다.'});
+const regression={version:1,artifact_type:'author_expected_judgments',set_id:set.id,cases:[structuredClone(target),make('sub2/direct-reply-only-positive','independent_positive','외부 법률고문이 감사인에게 직접 회신하도록 요청한다.','met'),make('sub2/management-reply-only-opposite','opposite','외부 법률고문은 경영진에게만 회신하고 감사인은 경영진의 요약만 받으면 된다.','contradicted')]};
+const rawDir=path.join(e.output_directory,'phase-two-v5/t09-c/author5d/author-qa');
+const observations=fs.readdirSync(rawDir).filter(f=>/^case-/.test(f)).map(f=>({file:path.join(rawDir,f),record:read(path.join(rawDir,f))})).filter(x=>x.record.case_id===target.id).map(({file,record:r})=>{
+ if(r.error||r.model!==gradingModelName()||r.transport!=='live_model'||r.request_hash!==hash(buildGradingPrompt(set,r.answers))||r.schema_hash!==hash(JSON.stringify(buildGradingResponseSchema(set,r.answers))))throw Error('Cannot reuse exact original observation');
+ const actual=r.result.subquestions.find((s:any)=>s.subquestion_id==='sub2'),zero=new Set(['not_met','contradicted']);
+ const differences=target.expected_verdicts.filter((v:any)=>{const actualVerdict=actual.criteria.find((c:any)=>c.criterion_id===v.criterion_id)?.verdict;return v.verdict!==actualVerdict&&!(zero.has(v.verdict)&&zero.has(actualVerdict));});
+ return{file,sha256:sha(file),case_id:r.case_id,model:r.model,transport:r.transport,request_hash:r.request_hash,schema_hash:r.schema_hash,original_expected_points:r.expected.expected_points,original_matched:r.matched,corrected_expected_points:1,actual_points:r.result.score,corrected_expected_matched:differences.length===0&&r.result.score===1&&r.result.security_flag==='none',new_api_request:false,reuse_reason:'문항·답안·모델·채점 입력/스키마 직접 캡처와 현재 빌더가 동일. 기대 메타데이터만 원문에 따라 정정.'};
+});
+if(observations.length!==3||qa.cases.length!==65)throw Error('Extent mismatch');
+for(const c of qa.cases)if(c.id!==target.id&&JSON.stringify(c)!==JSON.stringify(original.cases.find((p:any)=>p.id===c.id)))throw Error('Unrelated QA changed');
+const qaFile=path.join(dir,'qa-cases-t09-c-v2.json'),regressionFile=path.join(dir,'regression-qa.json');
+for(const [file,value]of [[qaFile,qa],[regressionFile,regression]] as const)fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n',{flag:'wx'});
+const evidenceFile=path.join(e.output_directory,'phase-two-case-investigation/t09-c-direct-reply-boundary/evidence-and-proposal.json');
+const lineage={recorded_at:new Date().toISOString(),api_calls:0,root_authorization:'총괄이501.10·발문·c5전체claim/critical_facts·4대조군을 독립대조하여 원답안 유지 c5만 met/총1점으로 정정, c1/c2 기존0점경계정책유지, 동일답/정상직접회신/경영진만회신 각3회 확인하며 기존동일설정관측연결허용.',runtime_lock:{file:lockFile,sha256:sha(lockFile)},question:{file:e.file,sha256:e.sha256},original_qa:{file:e.qa_file,sha256:e.qa_sha256,cases:65},followup_qa:{file:qaFile,sha256:sha(qaFile),cases:65},regression_qa:{file:regressionFile,sha256:sha(regressionFile),cases:3},before,after:target,source_investigation:{file:evidenceFile,sha256:sha(evidenceFile)},reused_original_observations:observations,reused_current_expectation_scores:observations.map(o=>o.actual_points),reused_current_expectation_matches:observations.map(o=>o.corrected_expected_matched),new_control_cases:regression.cases.slice(1).map(c=>c.id),new_control_minimum_observations:6,original_case_variation_remains:true,question_source_plan_bank_changed:false};
+fs.writeFileSync(path.join(dir,'lineage.json'),JSON.stringify(lineage,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({qaFile,qa_sha256:sha(qaFile),regressionFile,original_reused:observations.length,original_scores:observations.map(o=>o.actual_points),corrected_matches:observations.map(o=>o.corrected_expected_matched),controls_to_run:6,api_calls:0}));

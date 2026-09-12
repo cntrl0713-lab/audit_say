@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-18-002--sub2--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-18-002--sub2--standard",
+  "source_set_id": "pilot-18-002",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "8c5a4f7d6c3fd7c949cf957e3b64f10fd3da2a73f0454835318937f28c00536f",
+  "answers": {
+    "sub2": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다. 적용 기준서의 변경 자체 때문에 기초잔액이나 비교재무제표에 관한 추가 고려 또는 추가 절차가 요구되는 것은 아니다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 1200.6의 당기부터 전진적 적용 시점1점이다. 기준전환 자체로 전기재감사를 요구하지 않는 설명은 숨은 추가점수가 아니다. 해당 기준 crit5의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "75c0d5825f044f7af6c819c7593bbdfd3f33355c81fbdf922338a4bfb3b9eb65",
+  "schema_hash": "44eadde023272b8ddfbb52685c870b1e4b9297f5663fc2d1b87a9fcac4069f2c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다. ",
+            "reason": "당기 감사부터 전진적으로 적용한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "당기 감사부터 전진적으로 적용한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-18-002",
+    "score": 1,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "직전 회계연도 감사에는 KGA 1200을 적용했으나 당기 감사에는 일반 감사기준서를 적용하는 경우, 일반 감사기준서의 적용 시점을 설명하시오.",
+        "user_answer": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다. 적용 기준서의 변경 자체 때문에 기초잔액이나 비교재무제표에 관한 추가 고려 또는 추가 절차가 요구되는 것은 아니다.",
+        "score": 1,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "일반 감사기준서는 당기 감사부터 전진적으로 적용한다.",
+            "reason": "당기 감사부터 전진적으로 적용한다고 명시했다.",
+            "claim": "일반 감사기준서를 해당 회계연도 감사부터 전진적으로 적용함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "일반 감사기준서는 당기 감사부터 전진적으로 적용한다. 적용 기준서의 변경 자체 때문에 기초잔액이나 비교재무제표에 관한 추가 고려 또는 추가 절차가 요구되는 것은 아니다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0d82b7366a52bc36016aa4d320f16087d0806cc42010d924cd",
+        "request_id": "req_7029e9dcdb6f490097553839a12bd05f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2414,
+          "input_tokens_details": {
+            "cache_write_tokens": 2411,
+            "cached_tokens": 0
+          },
+          "output_tokens": 134,
+          "output_tokens_details": {
+            "reasoning_tokens": 43
+          },
+          "total_tokens": 2548
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00076415,
+        "min_usd": 0.00076415,
+        "max_usd": 0.00076415,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-18-002--sub2--standard--model/input.json",
+      "sha256": "22f2b45166f2918f24c29ae242f2e2881da117d60ec2d9c61bee209f83c0b6ce"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-18-002--sub2--standard--model/transport.jsonl",
+      "sha256": "1e07e91ae6081959dc0593bc00e85756eb491f4f05caf73bb539fb72b9c45694"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-18-002--sub2--standard--model/traces.jsonl",
+      "sha256": "c47b4287af86eeff4d7ae7c4bb1d852b61a820cf84cf5ba81f53b50f99a4dd84"
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-07-005--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-07-005--sub1--standard",
+  "source_set_id": "pilot-07-005",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "79eb5d835939df94cf9885d3cc5595d40800a9a454b265a67b861e1cb980aaec",
+  "answers": {
+    "sub1": "감사인은 재무제표 수준의 평가된 중요왜곡표시위험에 대처하기 위한 전반적인 대응을 설계하고 실행해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "해당 명제를 답안에서 직접 충족한다: 전반적인 대응."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "a866e51625e9618e6d768d74989781c3a72996cd7f4e4bd64a383329d36777cb",
+  "schema_hash": "2d242d5946009c5201925c82ca350271bad8de0a08a6d9e10102364753515034",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사인은 재무제표 수준의 평가된 중요왜곡표시위험에 대처하기 위한 전반적인 대응을 설계하고 실행해야 한다.",
+            "reason": "전반적인 대응을 설계하고 실행해야 한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "전반적인 대응을 설계하고 실행해야 한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-07-005",
+    "score": 1,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "재무제표 수준의 평가된 중요왜곡표시위험에 대하여 감사인이 무엇을 설계하고 실행해야 하는지 설명하시오.",
+        "user_answer": "감사인은 재무제표 수준의 평가된 중요왜곡표시위험에 대처하기 위한 전반적인 대응을 설계하고 실행해야 한다.",
+        "score": 1,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사인은 재무제표 수준의 평가된 중요왜곡표시위험에 대처하기 위한 전반적인 대응을 설계하고 실행해야 한다.",
+            "reason": "전반적인 대응을 설계하고 실행해야 한다고 명시했다.",
+            "claim": "전반적인 대응. 발문에 설계·실행이 주어졌으므로 전반적인 대응이라는 대상 제시만으로 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "감사인은 재무제표 수준의 평가된 중요왜곡표시위험에 대처하기 위한 전반적인 대응을 설계하고 실행해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_03202c0d2159a641016aa4cb7a439887d09e10671c164e301a",
+        "request_id": "req_5115eaef50dc41ab9a306603911774fd",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2216,
+          "input_tokens_details": {
+            "cache_write_tokens": 2213,
+            "cached_tokens": 0
+          },
+          "output_tokens": 147,
+          "output_tokens_details": {
+            "reasoning_tokens": 53
+          },
+          "total_tokens": 2363
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00073025,
+        "min_usd": 0.00073025,
+        "max_usd": 0.00073025,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-07-005--sub1--standard--model/input.json",
+      "sha256": "10987213a7aa7538f65faf20795680cb5af7fa3f12f0318a624dc23a2760af09"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-07-005--sub1--standard--model/transport.jsonl",
+      "sha256": "dbbb39ad2e189ec726739b6a8f74f4a72247594d674fdf06a80cc92b26fd30a5"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-07-005--sub1--standard--model/traces.jsonl",
+      "sha256": "f0dea66a79b30286bc2a06b4107df8a922ea8eb96bcbcaf81df798356ad4251c"
+    }
+  }
+}

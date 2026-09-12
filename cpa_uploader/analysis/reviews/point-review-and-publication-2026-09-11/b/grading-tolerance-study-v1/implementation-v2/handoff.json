@@ -1,0 +1,101 @@
+{
+  "version": 2,
+  "created_at": "2026-09-11T23:57:52.659Z",
+  "production_edits": 0,
+  "api_calls": 0,
+  "scope": "Four existing validation/publication files plus one new generated-receipt adapter. All are unapplied snapshots.",
+  "entries": [
+    {
+      "target": "cpa_uploader/promote_cpa_v3.ts",
+      "snapshot": "proposed/cpa_uploader/promote_cpa_v3.ts.txt",
+      "before_sha256": "e48c22e1c2daeb82432c4116b97aa3af70dd4998a98db957beac8b2b9a223e5a",
+      "proposed_sha256": "502467aca89cf4b93246c6d732fb13d9345aec42e79d6552a1424a0b6e92fed7"
+    },
+    {
+      "target": "cpa_uploader/questionBankPublication.ts",
+      "snapshot": "proposed/cpa_uploader/questionBankPublication.ts.txt",
+      "before_sha256": "40aee2de71a8955c16b8c7c3eeb11fdb19f3ffa9379335180fa9906eb4213d14",
+      "proposed_sha256": "d7e64aa63abd7eda4a247774f9539e8b15e3d8e93da63b4857b1743034d2613b"
+    },
+    {
+      "target": "cpa_uploader/questionGradingAcceptance.ts",
+      "snapshot": "proposed/cpa_uploader/questionGradingAcceptance.ts.txt",
+      "before_sha256": null,
+      "proposed_sha256": "de0b120e70e65496a3068e55ca130f36e75c4034c7a1a96fe51e7e8ab6cb8576"
+    },
+    {
+      "target": "cpa_uploader/questionReviewGrading.ts",
+      "snapshot": "proposed/cpa_uploader/questionReviewGrading.ts.txt",
+      "before_sha256": "1192ce4766289c1d24534f0cc9bc60e063d894fc726e9a6f71fbf93a02e2dc3f",
+      "proposed_sha256": "df9ae1e7b913c5ff34c828ef839b1d2ce42c84da6d463addc62b8b2a4a6423bd"
+    },
+    {
+      "target": "cpa_uploader/questionSemanticReview.ts",
+      "snapshot": "proposed/cpa_uploader/questionSemanticReview.ts.txt",
+      "before_sha256": "33447f3df65a8e59d0d7b65d2d1ea515cc8bfb507f005eaea6bcc1f9895733a3",
+      "proposed_sha256": "d6fc021f5e3dc20e33240353c143df9b50b512427e1ef95a3a67592213674fb4"
+    }
+  ],
+  "patch": {
+    "file": "proposed.patch",
+    "sha256": "20046c05bbafb85dadc101a095a19a521fa67d043ed98b901309ec2c13f81094"
+  },
+  "lint": [
+    {
+      "file": "cpa_uploader/promote_cpa_v3.ts",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "cpa_uploader/questionBankPublication.ts",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "cpa_uploader/questionGradingAcceptance.ts",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "cpa_uploader/questionReviewGrading.ts",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "cpa_uploader/questionSemanticReview.ts",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "predecessor": {
+    "file": "predecessor.json",
+    "sha256": "90bf9388c5327ae62cca7ad598fc70bd8efd4b38833956e352cb80e72331e8aa",
+    "preserved_files": 13
+  },
+  "changes_from_v1": [
+    "Mirror all groundJudgment negative evidence/partial conditions",
+    "Enforce exactly one first-attempt judgment trace for the supported no-recovery producer path",
+    "Capture acceptance path snapshot before reading and verify/parse the same Buffer",
+    "Hash and parse artifact JSON/JSONL from the same captured Buffer"
+  ],
+  "fixture": {
+    "file": "fixture-results-v2.json",
+    "sha256": "5be848a24311c0f5efa310e7fbc0a22538ed961e652e2d323a17c6d0698061a7",
+    "checks": 88
+  },
+  "typecheck": {
+    "file": "typecheck.json",
+    "sha256": "02e103a907cbdd95b1525b01c86298e3cc93d25248da3ad77df39f9ac9140565"
+  },
+  "limitations": [
+    "Additional diagnostic producer logs deliberately rejected until their own origin adapter is implemented.",
+    "Author-QA adapter belongs to root separate assessment task.",
+    "No policy expansion; source review normalization requires real selected source/whole-answer review before production use.",
+    "Production apply/typecheck/whole regression and promotion CLI write guards remain required."
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "set_id": "pilot-19-003",
+  "origin": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/wrong-zero-selection-v3/pilot-19-003.json",
+    "sha256": "26c97cb73a9e301df6ac7fb46bc07c20fc54fb7a5c68690ae0cf7392540db6f2",
+    "case_id": "efficient-v3/sub2/topic-related-zero"
+  },
+  "normalization": "Only absent verdict reasons are supplied from the actual agent review; answer, verdict and expected score are unchanged.",
+  "cases": [
+    {
+      "id": "efficient-v3/sub2/topic-related-zero",
+      "subquestion_id": "sub2",
+      "kind": "explicit_wrong",
+      "answer": "특정목적 재무제표라는 이유만으로 관련 감사기준의 요구를 마음대로 이탈해도 되며, 해당 목적을 달성하는 대체적 감사절차도 수행하지 않아도 된다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "명시적 반대: 답안은 '관련된 모든 감사기준서를 준수해야 한다고 설명함'에 반하는 조건·조치·명칭 또는 관계를 제시한다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "명시적 반대: 답안은 '예외적 상황에서 요구된 특정 절차가 해당 요구사항의 목적 달성에 비효과적이어서 이탈할 필요가 있을 때만 관련 요구사항을 이탈할 수 있다.'에 반하는 조건·조치·명칭 또는 관계를 제시한다."
+        },
+        {
+          "criterion_id": "crit5.p2",
+          "verdict": "contradicted",
+          "reason": "명시적 반대: 답안은 '그 예외적 이탈 시 해당 요구사항의 목적을 달성할 대체적 감사절차를 수행한다.'에 반하는 조건·조치·명칭 또는 관계를 제시한다."
+        }
+      ],
+      "target_criterion_id": "crit4",
+      "note": "대표 wrong은 전체0점이어야 하는 효율실행 계약에 맞춘 새로운 주제 관련 오답이다. 기존 부분점수 경계 답안 및 원 기대값은 별도로 전부 보존한다.",
+      "origin": {
+        "reviewer": "agent",
+        "selection_contract": "model=max, 0<partial<max, wrong=0",
+        "related_source_ref_ids": [
+          "src2",
+          "src3",
+          "src4",
+          "src-kga800-a9"
+        ]
+      }
+    }
+  ]
+}

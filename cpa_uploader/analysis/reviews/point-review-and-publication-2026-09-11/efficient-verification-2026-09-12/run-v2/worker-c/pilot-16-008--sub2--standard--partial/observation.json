@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-16-008--sub2--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-008--sub2--standard",
+  "source_set_id": "pilot-16-008",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "60d3833f139653911963bf1c9eebf2c0288e697a5e64329c305b0fe7a65e15fb",
+  "answers": {
+    "sub2": "당기재무제표에 표명할 수 있는 변형의견으로 한정의견을 제시한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(partial 답안): 710.12의 전기중요왜곡 미재작성/미공시 대응수치에서 한정·부적정 두 허용의견을 각각 평가한다. 해당 기준 crit5의 원 판정 met를 보존한다."
+        },
+        {
+          "criterion_id": "crit5.p2",
+          "verdict": "not_met",
+          "reason": "담당 agent의 원문 대조 결론(partial 답안): 710.12의 전기중요왜곡 미재작성/미공시 대응수치에서 한정·부적정 두 허용의견을 각각 평가한다. 해당 기준 crit5.p2의 원 판정 not_met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "d0ee18fe6a60b516a4bd7df82d3e1b9869299c0b447bde58b4486ad5bfb852e1",
+  "schema_hash": "58db08828541fceb5487d1416d786f23a969b0c019b3e869c738296b31b18e97",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "당기재무제표에 표명할 수 있는 변형의견으로 한정의견을 제시한다.",
+            "reason": "한정의견을 명시적으로 제시했다."
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "not_met",
+            "reason": "부적정의견을 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "한정의견을 명시적으로 제시했다."
+              },
+              {
+                "criterion_id": "crit5.p2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "부적정의견을 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-008",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 710의 대응수치 방식이 적용되는 감사이다. 이전에 적정의견이 표명된 전기재무제표에 중요한 왜곡표시가 있다는 감사증거를 입수하였으나 대응수치가 적절하게 재작성되지 않았거나 적절한 공시가 이루어지지 않았다. 감사기준서 710 문단 12에 따라 당기재무제표에 표명하여야 하는 감사의견의 범위를 제시하시오. 왜곡표시의 전반성에 따른 세부 선택 근거는 요구하지 않는다.",
+        "user_answer": "당기재무제표에 표명할 수 있는 변형의견으로 한정의견을 제시한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "당기재무제표에 표명할 수 있는 변형의견으로 한정의견을 제시한다.",
+            "reason": "한정의견을 명시적으로 제시했다.",
+            "claim": "당기재무제표에 표명할 수 있는 변형의견으로 한정의견을 제시한다. 구체적 상황에서 둘 중 하나를 선택하는 근거는 요구하지 않는다. 한정의견을 두 허용 대안 중 하나로 제시하면 충족하며 한정의견만 유일하게 가능하다고 단정한 부분은 다른 대안 명제와 구분한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "not_met",
+            "reason": "부적정의견을 제시하지 않았다.",
+            "claim": "당기재무제표에 표명할 수 있는 변형의견으로 부적정의견을 제시한다. 구체적 상황에서 둘 중 하나를 선택하는 근거는 요구하지 않는다. 부적정의견을 두 허용 대안 중 하나로 제시하면 충족하며 부적정의견만 유일하게 가능하다고 단정한 부분은 다른 대안 명제와 구분한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "당기재무제표에 대하여 한정의견이나 부적정의견을 표명한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_01b1fde7e3faa488016aa4d112675887d0b1d0b59817ff1551",
+        "request_id": "req_a1abc27168914b1fac480eb7dc24dd07",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2556,
+          "input_tokens_details": {
+            "cache_write_tokens": 2553,
+            "cached_tokens": 0
+          },
+          "output_tokens": 183,
+          "output_tokens_details": {
+            "reasoning_tokens": 60
+          },
+          "total_tokens": 2739
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008584500000000001,
+        "min_usd": 0.0008584500000000001,
+        "max_usd": 0.0008584500000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-16-008--sub2--standard--partial/input.json",
+      "sha256": "525c39e7f3b7a7a0598ad8446dc2b3159578f7eb8c7f55850285b791b8a763b3"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-16-008--sub2--standard--partial/transport.jsonl",
+      "sha256": "ac2b753d0bcc81d4163f4f6929ffbf373e6e9aa133ab186893a28a7c4cfecb5c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-16-008--sub2--standard--partial/traces.jsonl",
+      "sha256": "ccd7bc77699dcd52258eeb8792964df1f7edba4f95824b706ea441427f22e44c"
+    }
+  }
+}

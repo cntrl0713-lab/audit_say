@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-04-001--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-001--sub1--standard",
+  "source_set_id": "pilot-04-001",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "48a1fd47c1ceb3a0d8a51f192f4fc93776ee45000ca290c08f640c67c6d304dc",
+  "answers": {
+    "sub1": "완전성은 기록되어야 하는 거래가 모두 기록되었다는 주장이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 요구나 이를 함축하는 설명을 제시하지 않음."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 요구나 이를 함축하는 설명을 제시하지 않음."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "f4d37cd162ad72e6ffccbc079df448fe5b10b9b9ca232a8f0ed270b3c41a69f1",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "순차적일 필요가 없다는 내용이 답안에 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "상호 밀접한 관련성이나 변경 시 영향에 대한 설명이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "순차적일 필요가 없다는 내용이 답안에 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "상호 밀접한 관련성이나 변경 시 영향에 대한 설명이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-001",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "전반감사전략과 감사계획의 수립 과정이 반드시 순차적이어야 하는지 여부와 그 이유를 설명하시오.",
+        "user_answer": "완전성은 기록되어야 하는 거래가 모두 기록되었다는 주장이다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "순차적일 필요가 없다는 내용이 답안에 없다.",
+            "claim": "전반감사전략과 감사계획은 반드시 순차적일 필요가 없음을 명시함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "상호 밀접한 관련성이나 변경 시 영향에 대한 설명이 없다.",
+            "claim": "상호 밀접한 관련성 및 변경 시 영향에 대해 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "전반감사전략과 세부적인 감사계획은 반드시 개별적이거나 순차적인 과정으로 수립할 필요는 없다. 한쪽이 변경되면 다른 쪽도 변경될 수 있으므로 서로 밀접하게 관련되어 있기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_05d9deb273ec0ded016aa4c841b34c87d0811c7b7be404c96c",
+        "request_id": "req_1ea8acd258ad41179010802f22757a61",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2293,
+          "input_tokens_details": {
+            "cache_write_tokens": 2290,
+            "cached_tokens": 0
+          },
+          "output_tokens": 173,
+          "output_tokens_details": {
+            "reasoning_tokens": 47
+          },
+          "total_tokens": 2466
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0007807000000000001,
+        "min_usd": 0.0007807000000000001,
+        "max_usd": 0.0007807000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-04-001--sub1--standard--wrong/input.json",
+      "sha256": "9e86d72d72fb0065fed7eeffe506d14c0d86a7386f182971965c4f8c9c11cfb6"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-04-001--sub1--standard--wrong/transport.jsonl",
+      "sha256": "ef59262bc454d9a1069fd6ddf4858ec08be8d3881bfe1111b374e76fecf4711f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-04-001--sub1--standard--wrong/traces.jsonl",
+      "sha256": "85e872d546b9b188571e999b178ac29ccbca38a49c12a879d2352aefac01933e"
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-12-006--sub2--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-006--sub2--standard",
+  "source_set_id": "pilot-12-006",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "d222e829ac398227376db12b3d83c7bed94367d80246c50a5fe28e2791d7cf0e",
+  "answers": {
+    "sub2": "중요한 미수정왜곡표시는 개별적으로 식별한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "답안에 해당 독립 명제가 직접 제시되어 있다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "이 명제 또는 이를 분명하게 함축하는 설명은 제시되지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "e5b23c3c5ddf0cca0d0bfea760840cb90f4657c7f42e2106e3de0570a7ddc207",
+  "schema_hash": "d11fa709d4bb59744462d5bf3dbad02c3329bc615bbd47c30ca7e01097bc56b5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "중요한 미수정왜곡표시는 개별적으로 식별한다.",
+            "reason": "중요한 미수정왜곡표시를 개별적으로 식별한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "미수정왜곡표시의 수정 요청 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "중요한 미수정왜곡표시를 개별적으로 식별한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "미수정왜곡표시의 수정 요청 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-006",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "지배기구와의 커뮤니케이션에서 중요한 미수정왜곡표시를 식별하는 방법과 미수정왜곡표시의 수정 요청에 관하여 설명하시오.",
+        "user_answer": "중요한 미수정왜곡표시는 개별적으로 식별한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "중요한 미수정왜곡표시는 개별적으로 식별한다.",
+            "reason": "중요한 미수정왜곡표시를 개별적으로 식별한다고 명시했다.",
+            "claim": "중요한 미수정왜곡표시를 개별적으로 식별함을 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "미수정왜곡표시의 수정 요청 내용이 없다.",
+            "claim": "해당 왜곡표시들의 수정을 요청함을 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "중요한 미수정왜곡표시들을 개별적으로 식별하여야 하며, 해당 미수정왜곡표시들의 수정을 요청해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_077c6c66b07d0f25016aa4cd566d0487d08cc61d45f89b0310",
+        "request_id": "req_b08334e6fbd34b97aeed454ca5946c97",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2274,
+          "input_tokens_details": {
+            "cache_write_tokens": 2271,
+            "cached_tokens": 0
+          },
+          "output_tokens": 173,
+          "output_tokens_details": {
+            "reasoning_tokens": 40
+          },
+          "total_tokens": 2447
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0007759500000000001,
+        "min_usd": 0.0007759500000000001,
+        "max_usd": 0.0007759500000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-12-006--sub2--standard--partial/input.json",
+      "sha256": "cc8b4d3e438d5aadecf582232890ba08481b286e28f69d62a593c991222b5462"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-12-006--sub2--standard--partial/transport.jsonl",
+      "sha256": "c88a0dc5017c65041c31a6589d7977783b4ac3d57cf82526df2d746a6122ef25"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-12-006--sub2--standard--partial/traces.jsonl",
+      "sha256": "db9ab3ed9ef36d42142abaa8e405b403bdc7ded6b81fae7a8fe25b561760857a"
+    }
+  }
+}

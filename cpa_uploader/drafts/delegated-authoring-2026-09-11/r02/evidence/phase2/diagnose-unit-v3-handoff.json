@@ -1,0 +1,35 @@
+{
+  "completed_at": "2026-09-11T02:20:57.450633+00:00",
+  "script": {
+    "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\r02\\evidence\\phase2\\diagnose-unit-v3.ts",
+    "sha256": "b71853fcd0bfdee1c0f6e98e0c8bc3e6d62445546eb5027b66aa939ab8fcb691"
+  },
+  "status": "ready_for_common_adoption",
+  "model_API_calls": 0,
+  "positive_preflight": {
+    "file": "cpa_uploader\\drafts\\delegated-authoring-2026-09-11\\r02\\evidence\\phase2\\diagnose-unit-v3-preflight-t04-a.json",
+    "sha256": "c079e6f844272d2ba7af6a0f58efe595658cc29b3614989ac6a8aaec1129f33f",
+    "source_support_result_preserved": "uncertain"
+  },
+  "negative_checks": [
+    {
+      "name": "existing_output_refused",
+      "passed": true,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "{\"error\":{\"name\":\"Error\",\"status\":null,\"code\":null,\"retryable\":null,\"request_id\":null,\"headers\":{}},\"validation_error\":\"Error: A new output file in a delegated draft folder is required\"}\n",
+      "actual_API_requests": 0
+    },
+    {
+      "name": "wrong_runtime_policy_refused",
+      "passed": true,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "{\"error\":{\"name\":\"Error\",\"status\":null,\"code\":null,\"retryable\":null,\"request_id\":null,\"headers\":{}},\"validation_error\":\"Error: Fixed hash mismatch: lib/questionV3Grading.ts\"}\n",
+      "actual_API_requests": 0
+    }
+  ],
+  "typecheck": "pass",
+  "target_lint": "pass",
+  "adoption": "Adjust relative imports when copying to common review folder. It imports extractProductionInstructions/safeHeaders/safeError from sibling resume-semantic.ts and snapshots that helper. --execute performs only one actual SDK request; valid fail/uncertain stays a valid response, never retried here. Original files untouched."
+}

@@ -1,0 +1,3895 @@
+{
+  "created_at": "2026-09-11T03:41:04.117Z",
+  "set_id": "pilot-07-006",
+  "inputs_file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/inputs.json",
+  "inputs_sha256": "737631b15e4538b354a7af83497c1237b39b727d01e0de16087f5a31d4857265",
+  "summary_file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/summary.json",
+  "summary_sha256": "5e20a05213df0544f9cb05473e591904a3691c65c5285fdcac97991bbdaed3e3",
+  "fixed_input_hashes": {
+    "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/pilot-07-006.json": "7ebf35fd2811783379c3a01f61ac2d31c79b19eb86dbae0274ce96b1c6c0709a",
+    "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/qa-cases-t07-a.json": "35929077d9d5634f48e09bb041ac2ff35066d596924191977ff5cd0d280dd196",
+    "lib/questionV3Grading.ts": "6a3033f9a5a6e408ebb8251787a5daeef3b478e287b5ae5c0aecc94d967a2dd7",
+    "lib/questionV3Evidence.ts": "9f7428a97fcd5f1f8e8e14627abbb8845fe5a1e7488631ccd7107b0d75cfef7b",
+    "lib/questionV3.ts": "546a05ed630a92c1da859dbfcb89caee629028bfc4216fc5794a2e395cd4acf4",
+    "lib/questionV3Answer.ts": "01dcada58a9c372dd7778056789e1a3327bb5fc6ce0521682a2f62bb6d830cbf",
+    "lib/ai/openaiStructured.ts": "2e392cc74045e88148edca2959172fece77e5c431cb7f8a56dd29e56640632b1",
+    "cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/run-author-qa.ts": "b1910b213fe52f7842d6f2df50c3d2c93d8e78cb2e5bae193d70a329d6087cf2",
+    "cpa_uploader/data/official/delegated-n03-kga330-2025.txt": "838412c826535ff70dc61add7c5264eaf1ae35030146bdf67af8d08040be4660"
+  },
+  "model": "gpt-5.6-luna",
+  "completed_unique_cases": 73,
+  "grading_executions": 81,
+  "actual_HTTP_requests": "not inferred from grading executions",
+  "mismatched_unique_cases": 4,
+  "all_mismatches_at_least_three": true,
+  "all_original_evidence_preserved": true,
+  "API_calls_by_this_analysis": 0,
+  "shared_context": {
+    "facts": [
+      {
+        "id": "fact1",
+        "text": "2026년 1월 1일에 개시하는 보고기간의 재무제표를 한국 회계감사기준에 따라 감사하며, 필요한 후속 업무는 2027년에 수행한다.",
+        "scoreable": false
+      },
+      {
+        "id": "fact2",
+        "text": "계속감사의 감사팀은 다음 세 독립 상황을 검토한다. 통제의 설계와 실행 자체를 처음 이해하는 단계는 마쳤으며, 통제의 운영효과성에 관한 증거의 이용 범위가 쟁점이다.",
+        "scoreable": false
+      },
+      {
+        "id": "fact3",
+        "text": "상황 A: 유의적 위험에 대응하는 통제는 아닌 매출승인 통제에 의존하려 한다. 팀원은 담당자에게 변경된 사항이 없다는 설명만 듣고, 직전 감사의 통제테스트 결과를 앞으로도 횟수 제한 없이 사용하자고 제안했다. 아직 변경 여부를 뒷받침하는 관찰이나 검사는 하지 않았다. 재사용 판단의 다른 고려요소 전체를 나열하는 것은 물음의 범위에서 제외한다. 주기를 답할 때는 달력상의 연수가 아닌 재무제표감사가 실시되는 횟수를 기준으로 한다.",
+        "scoreable": false
+      },
+      {
+        "id": "fact4",
+        "text": "상황 B: 당기 매출채권의 회수가능성에 관한 위험을 유의적 위험으로 결정했고 그 위험에 대응하는 통제에 의존할 계획이다. 담당자는 통제가 직전 감사 이후 바뀌지 않았다는 이유로 직전 감사의 통제테스트 결과만 이용하려 한다.",
+        "scoreable": false
+      },
+      {
+        "id": "fact5",
+        "text": "상황 C: 당기 1~9월에 통제의 운영효과성에 관한 증거를 입수했으나 10~12월의 잔여기간이 남아 있다. 감사팀은 잔여기간의 추가 증거를 결정하려 한다. 특정 통제의 변경, 증거의 정도와 잔여기간 등을 고려한 결론은 아직 내리지 않았다.",
+        "scoreable": false
+      }
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "sub2-crit5-opposite",
+      "subquestion_id": "sub2",
+      "manual_review_status": "needs_reasoned_adjudication",
+      "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+      "answer": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+      "expected": {
+        "id": "sub2-crit5-opposite",
+        "subquestion_id": "sub2",
+        "kind": "opposite",
+        "answer": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+        "expected_points": 0,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+          }
+        ],
+        "note": "target=crit5; 명시적 반대. 다른 명제까지 직접 부정하면 그 판정도 반영했다. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다."
+      },
+      "criteria": [
+        {
+          "id": "crit5",
+          "requirement_id": "req5",
+          "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+          "critical_facts": [
+            {
+              "id": "cf5",
+              "type": "conclusion",
+              "expected": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-3839a593a5ba230eb2"
+          ]
+        },
+        {
+          "id": "crit6",
+          "requirement_id": "req6",
+          "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+          "critical_facts": [
+            {
+              "id": "cf6",
+              "type": "conclusion",
+              "expected": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-3839a593a5ba230eb2"
+          ]
+        }
+      ],
+      "source_refs": [
+        {
+          "id": "src-3839a593a5ba230eb2",
+          "file": "cpa_uploader/data/official/delegated-n03-kga330-2025.txt",
+          "title": "KGA 330: 평가된 위험에 대한 감사인의 대응",
+          "page": "KGA 330",
+          "source_quote": "15. \r\n감사인은 유의적이라고 결정한 위험에 대하여 그 통제에 의존하려고 계획한 경우, 당기에 \r\n해당 통제를 테스트하여야 한다. \r\n통제의 운영효과성 평가",
+          "content_hash": "a4ba58ebccaed5f5fd3f6b68fe98de17e0ce0bc92951cdeb253239e44f9a78df",
+          "role": "standard",
+          "source_span": "L169-L172; KGA 330 문단 15 원문 페이지 316; L169-L172"
+        }
+      ],
+      "scores": [
+        0,
+        0,
+        0
+      ],
+      "request_hashes": [
+        "bf0a008c9c8901b4a27bdb182ab4c877c5d66a952751bc46cc154672edc6d032"
+      ],
+      "schema_hashes": [
+        "825be5e6e7ffd4af8902d63a1fc0aa401af684cdbaff19bab4760627048ad4df"
+      ],
+      "runs": [
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/case-0034-attempt-1.json",
+          "sha256": "ed35b5107fb1510228f8b17263030d24355a6d0fd0440b43052e6adf6c48539e",
+          "attempt": 1,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T03:35:43.934Z",
+          "finished_at": "2026-09-11T03:35:49.480Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "quote": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                    "reason": "전기 결과만으로 언제나 충분하다고 명시하여 요구 결론과 반대입니다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "당기 테스트가 필요하다는 내용이 없습니다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-07-006",
+            "score": 0,
+            "max_points": 12,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A의 무기한 재사용 제안을 평가하고, 전기 통제증거를 이용하기 전에 확인할 목적과 방법, 관련 변화가 있는 경우의 조치, 변화가 없는 경우의 최소 재테스트 주기와 매 감사의 통제테스트 배분 원칙을 모두 설명하시오. 주기는 감사 횟수로 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 4,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                  "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                  "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                  "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+                "user_answer": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "quote": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                    "reason": "전기 결과만으로 언제나 충분하다고 명시하여 요구 결론과 반대입니다.",
+                    "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "당기 테스트가 필요하다는 내용이 없습니다.",
+                    "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                  "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 6,
+                "criteria": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "기업의 통제환경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                  "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                  "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                  "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                  "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                  "기업의 통제환경을 고려한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit6",
+              "verdict": "contradicted",
+              "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        },
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/case-0034-attempt-2.json",
+          "sha256": "0914ae1bdfd692cd8fb1222f8d0751e3abb6c0157926fe2e92a159331107c9d9",
+          "attempt": 2,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": true,
+          "started_at": "2026-09-11T03:35:49.485Z",
+          "finished_at": "2026-09-11T03:35:54.850Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "quote": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                    "reason": "전기 결과만으로 언제나 충분하다고 명시하여 요구 결론과 반대된다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "contradicted",
+                    "quote": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                    "reason": "당기 테스트가 필요하다는 명제를 부정하는 결론이다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-07-006",
+            "score": 0,
+            "max_points": 12,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A의 무기한 재사용 제안을 평가하고, 전기 통제증거를 이용하기 전에 확인할 목적과 방법, 관련 변화가 있는 경우의 조치, 변화가 없는 경우의 최소 재테스트 주기와 매 감사의 통제테스트 배분 원칙을 모두 설명하시오. 주기는 감사 횟수로 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 4,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                  "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                  "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                  "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+                "user_answer": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "quote": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                    "reason": "전기 결과만으로 언제나 충분하다고 명시하여 요구 결론과 반대된다.",
+                    "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "contradicted",
+                    "quote": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                    "reason": "당기 테스트가 필요하다는 명제를 부정하는 결론이다.",
+                    "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                  "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 6,
+                "criteria": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "기업의 통제환경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                  "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                  "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                  "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                  "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                  "기업의 통제환경을 고려한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        },
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/case-0034-attempt-3.json",
+          "sha256": "608274a8bf3240742193c68a9522f8bc5ce1484600b01d39b2b1aac98c6079ea",
+          "attempt": 3,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": true,
+          "started_at": "2026-09-11T03:35:54.853Z",
+          "finished_at": "2026-09-11T03:36:00.956Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "quote": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                    "reason": "전기 결과만으로 언제나 충분하다고 명시하여 요구 결론과 반대된다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "contradicted",
+                    "quote": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                    "reason": "당기 테스트가 필요하다는 명제가 제시되지 않았고, 전기 결과만으로 충분하다고 명시했다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-07-006",
+            "score": 0,
+            "max_points": 12,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A의 무기한 재사용 제안을 평가하고, 전기 통제증거를 이용하기 전에 확인할 목적과 방법, 관련 변화가 있는 경우의 조치, 변화가 없는 경우의 최소 재테스트 주기와 매 감사의 통제테스트 배분 원칙을 모두 설명하시오. 주기는 감사 횟수로 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 4,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                  "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                  "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                  "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+                "user_answer": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "quote": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                    "reason": "전기 결과만으로 언제나 충분하다고 명시하여 요구 결론과 반대된다.",
+                    "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "contradicted",
+                    "quote": "유의적 위험에 대응하는 통제에 의존하여도 전기 결과만으로 언제나 충분하다.",
+                    "reason": "당기 테스트가 필요하다는 명제가 제시되지 않았고, 전기 결과만으로 충분하다고 명시했다.",
+                    "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                  "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 6,
+                "criteria": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "기업의 통제환경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                  "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                  "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                  "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                  "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                  "기업의 통제환경을 고려한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        }
+      ]
+    },
+    {
+      "case_id": "sub2-crit5-condition-boundary",
+      "subquestion_id": "sub2",
+      "manual_review_status": "needs_reasoned_adjudication",
+      "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+      "answer": "유의적 위험에 대응한다는 사실을 빼고 모든 통제에 전기 증거 이용이 언제나 금지된다고 설명한다.",
+      "expected": {
+        "id": "sub2-crit5-condition-boundary",
+        "subquestion_id": "sub2",
+        "kind": "condition_boundary",
+        "answer": "유의적 위험에 대응한다는 사실을 빼고 모든 통제에 전기 증거 이용이 언제나 금지된다고 설명한다.",
+        "expected_points": 0,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+          }
+        ],
+        "note": "target=crit5; 필요 대상·목적·조건·인과·방법이 빠지거나 적용 전제를 바꾼 경계 답안. 정확한 0점 명칭의 not_met/contradicted만 총괄 runner 정책상 동등하게 볼 수 있다. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다."
+      },
+      "criteria": [
+        {
+          "id": "crit5",
+          "requirement_id": "req5",
+          "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+          "critical_facts": [
+            {
+              "id": "cf5",
+              "type": "conclusion",
+              "expected": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-3839a593a5ba230eb2"
+          ]
+        },
+        {
+          "id": "crit6",
+          "requirement_id": "req6",
+          "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+          "critical_facts": [
+            {
+              "id": "cf6",
+              "type": "conclusion",
+              "expected": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-3839a593a5ba230eb2"
+          ]
+        }
+      ],
+      "source_refs": [
+        {
+          "id": "src-3839a593a5ba230eb2",
+          "file": "cpa_uploader/data/official/delegated-n03-kga330-2025.txt",
+          "title": "KGA 330: 평가된 위험에 대한 감사인의 대응",
+          "page": "KGA 330",
+          "source_quote": "15. \r\n감사인은 유의적이라고 결정한 위험에 대하여 그 통제에 의존하려고 계획한 경우, 당기에 \r\n해당 통제를 테스트하여야 한다. \r\n통제의 운영효과성 평가",
+          "content_hash": "a4ba58ebccaed5f5fd3f6b68fe98de17e0ce0bc92951cdeb253239e44f9a78df",
+          "role": "standard",
+          "source_span": "L169-L172; KGA 330 문단 15 원문 페이지 316; L169-L172"
+        }
+      ],
+      "scores": [
+        1,
+        1,
+        0
+      ],
+      "request_hashes": [
+        "430cf98c5caa3baecfbb1d1977266ef3febfef0e93a8c163293f6f2b13fd7b61"
+      ],
+      "schema_hashes": [
+        "825be5e6e7ffd4af8902d63a1fc0aa401af684cdbaff19bab4760627048ad4df"
+      ],
+      "runs": [
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/case-0035-attempt-1.json",
+          "sha256": "cd32c72af38f587ea338d0117565764b290a25c1c13dd25c568dda3e8dd0641a",
+          "attempt": 1,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T03:36:00.959Z",
+          "finished_at": "2026-09-11T03:36:09.547Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "met",
+                    "quote": "유의적 위험에 대응한다는 사실을 빼고 모든 통제에 전기 증거 이용이 언제나 금지된다고 설명한다.",
+                    "reason": "전기 증거 이용을 금지한다고 하여 전기 테스트 결과만 이용하는 것이 충분하지 않다는 결론을 충족한다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "당기에 해당 통제를 테스트해야 한다는 요구가 제시되지 않았다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-07-006",
+            "score": 1,
+            "max_points": 12,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A의 무기한 재사용 제안을 평가하고, 전기 통제증거를 이용하기 전에 확인할 목적과 방법, 관련 변화가 있는 경우의 조치, 변화가 없는 경우의 최소 재테스트 주기와 매 감사의 통제테스트 배분 원칙을 모두 설명하시오. 주기는 감사 횟수로 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 4,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                  "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                  "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                  "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+                "user_answer": "유의적 위험에 대응한다는 사실을 빼고 모든 통제에 전기 증거 이용이 언제나 금지된다고 설명한다.",
+                "score": 1,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "met",
+                    "quote": "유의적 위험에 대응한다는 사실을 빼고 모든 통제에 전기 증거 이용이 언제나 금지된다고 설명한다.",
+                    "reason": "전기 증거 이용을 금지한다고 하여 전기 테스트 결과만 이용하는 것이 충분하지 않다는 결론을 충족한다.",
+                    "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 1
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "당기에 해당 통제를 테스트해야 한다는 요구가 제시되지 않았다.",
+                    "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                  "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 6,
+                "criteria": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "기업의 통제환경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                  "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                  "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                  "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                  "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                  "기업의 통제환경을 고려한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        },
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/case-0035-attempt-2.json",
+          "sha256": "244101b59e79ce3913bb4af5e74b5f12369f466c988ae2c2343fe3e56b517fe7",
+          "attempt": 2,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T03:36:09.551Z",
+          "finished_at": "2026-09-11T03:36:19.641Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met"
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "met",
+                    "quote": "유의적 위험에 대응한다는 사실을 빼고 모든 통제에 전기 증거 이용이 언제나 금지된다고 설명한다.",
+                    "reason": "전기 증거만 이용하는 것이 허용되지 않는다고 명시하였다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met"
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met"
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-07-006",
+            "score": 1,
+            "max_points": 12,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A의 무기한 재사용 제안을 평가하고, 전기 통제증거를 이용하기 전에 확인할 목적과 방법, 관련 변화가 있는 경우의 조치, 변화가 없는 경우의 최소 재테스트 주기와 매 감사의 통제테스트 배분 원칙을 모두 설명하시오. 주기는 감사 횟수로 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 4,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "claim": "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                  "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                  "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                  "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+                "user_answer": "유의적 위험에 대응한다는 사실을 빼고 모든 통제에 전기 증거 이용이 언제나 금지된다고 설명한다.",
+                "score": 1,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "met",
+                    "quote": "유의적 위험에 대응한다는 사실을 빼고 모든 통제에 전기 증거 이용이 언제나 금지된다고 설명한다.",
+                    "reason": "전기 증거만 이용하는 것이 허용되지 않는다고 명시하였다.",
+                    "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 1
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                  "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 6,
+                "criteria": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "claim": "기업의 통제환경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                  "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                  "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                  "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                  "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                  "기업의 통제환경을 고려한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        },
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/case-0035-attempt-3.json",
+          "sha256": "82bd19e85303db43b3175b6a0ab8e09f090aa7c049ca152d3f8978d139e771e3",
+          "attempt": 3,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": true,
+          "started_at": "2026-09-11T03:36:19.644Z",
+          "finished_at": "2026-09-11T03:36:26.091Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met"
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met"
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met"
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met"
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-07-006",
+            "score": 0,
+            "max_points": 12,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A의 무기한 재사용 제안을 평가하고, 전기 통제증거를 이용하기 전에 확인할 목적과 방법, 관련 변화가 있는 경우의 조치, 변화가 없는 경우의 최소 재테스트 주기와 매 감사의 통제테스트 배분 원칙을 모두 설명하시오. 주기는 감사 횟수로 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 4,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "claim": "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                  "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                  "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                  "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+                "user_answer": "유의적 위험에 대응한다는 사실을 빼고 모든 통제에 전기 증거 이용이 언제나 금지된다고 설명한다.",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                  "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 6,
+                "criteria": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "claim": "기업의 통제환경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                  "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                  "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                  "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                  "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                  "기업의 통제환경을 고려한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        }
+      ]
+    },
+    {
+      "case_id": "sub2-crit6-opposite",
+      "subquestion_id": "sub2",
+      "manual_review_status": "needs_reasoned_adjudication",
+      "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+      "answer": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+      "expected": {
+        "id": "sub2-crit6-opposite",
+        "subquestion_id": "sub2",
+        "kind": "opposite",
+        "answer": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+        "expected_points": 0,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+          }
+        ],
+        "note": "target=crit6; 명시적 반대. 다른 명제까지 직접 부정하면 그 판정도 반영했다. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다."
+      },
+      "criteria": [
+        {
+          "id": "crit5",
+          "requirement_id": "req5",
+          "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+          "critical_facts": [
+            {
+              "id": "cf5",
+              "type": "conclusion",
+              "expected": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-3839a593a5ba230eb2"
+          ]
+        },
+        {
+          "id": "crit6",
+          "requirement_id": "req6",
+          "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+          "critical_facts": [
+            {
+              "id": "cf6",
+              "type": "conclusion",
+              "expected": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-3839a593a5ba230eb2"
+          ]
+        }
+      ],
+      "source_refs": [
+        {
+          "id": "src-3839a593a5ba230eb2",
+          "file": "cpa_uploader/data/official/delegated-n03-kga330-2025.txt",
+          "title": "KGA 330: 평가된 위험에 대한 감사인의 대응",
+          "page": "KGA 330",
+          "source_quote": "15. \r\n감사인은 유의적이라고 결정한 위험에 대하여 그 통제에 의존하려고 계획한 경우, 당기에 \r\n해당 통제를 테스트하여야 한다. \r\n통제의 운영효과성 평가",
+          "content_hash": "a4ba58ebccaed5f5fd3f6b68fe98de17e0ce0bc92951cdeb253239e44f9a78df",
+          "role": "standard",
+          "source_span": "L169-L172; KGA 330 문단 15 원문 페이지 316; L169-L172"
+        }
+      ],
+      "scores": [
+        0,
+        0,
+        0
+      ],
+      "request_hashes": [
+        "e7e4fbc30bd41c72ecbea01bb607dfd6dd46a211c1521d81bdf41071080a16ab"
+      ],
+      "schema_hashes": [
+        "825be5e6e7ffd4af8902d63a1fc0aa401af684cdbaff19bab4760627048ad4df"
+      ],
+      "runs": [
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/case-0039-attempt-1.json",
+          "sha256": "7d8ab4d8c40c54ad4ad16233bf99a0ddc93dbcbd27957ad22fcc1aadd017fc0c",
+          "attempt": 1,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T03:36:41.836Z",
+          "finished_at": "2026-09-11T03:36:47.302Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "quote": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                    "reason": "전기 결과만으로 충분하지 않다는 명제와 반대로, 다음 감사까지 기다려야 한다고 명시했다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "contradicted",
+                    "quote": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                    "reason": "당기 테스트를 해야 한다는 명제와 반대로 당기 테스트를 하면 안 된다고 명시했다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-07-006",
+            "score": 0,
+            "max_points": 12,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A의 무기한 재사용 제안을 평가하고, 전기 통제증거를 이용하기 전에 확인할 목적과 방법, 관련 변화가 있는 경우의 조치, 변화가 없는 경우의 최소 재테스트 주기와 매 감사의 통제테스트 배분 원칙을 모두 설명하시오. 주기는 감사 횟수로 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 4,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                  "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                  "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                  "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+                "user_answer": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "quote": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                    "reason": "전기 결과만으로 충분하지 않다는 명제와 반대로, 다음 감사까지 기다려야 한다고 명시했다.",
+                    "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "contradicted",
+                    "quote": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                    "reason": "당기 테스트를 해야 한다는 명제와 반대로 당기 테스트를 하면 안 된다고 명시했다.",
+                    "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                  "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 6,
+                "criteria": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "기업의 통제환경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                  "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                  "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                  "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                  "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                  "기업의 통제환경을 고려한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        },
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/case-0039-attempt-2.json",
+          "sha256": "b33c1ec7ff74faa6e91b2baf56ca66284a504e5b9c17aeae4d71a267abbac1a5",
+          "attempt": 2,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T03:36:47.306Z",
+          "finished_at": "2026-09-11T03:36:52.325Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "quote": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                    "reason": "전기 결과만으로 충분하지 않다는 명제와 반대로, 당기 테스트를 하지 말고 다음 감사까지 기다리라고 했다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "contradicted",
+                    "quote": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                    "reason": "당기에 테스트해야 한다는 명제와 반대로, 당기 테스트를 하지 말라고 했다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-07-006",
+            "score": 0,
+            "max_points": 12,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A의 무기한 재사용 제안을 평가하고, 전기 통제증거를 이용하기 전에 확인할 목적과 방법, 관련 변화가 있는 경우의 조치, 변화가 없는 경우의 최소 재테스트 주기와 매 감사의 통제테스트 배분 원칙을 모두 설명하시오. 주기는 감사 횟수로 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 4,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                  "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                  "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                  "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+                "user_answer": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "quote": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                    "reason": "전기 결과만으로 충분하지 않다는 명제와 반대로, 당기 테스트를 하지 말고 다음 감사까지 기다리라고 했다.",
+                    "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "contradicted",
+                    "quote": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                    "reason": "당기에 테스트해야 한다는 명제와 반대로, 당기 테스트를 하지 말라고 했다.",
+                    "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                  "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 6,
+                "criteria": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "기업의 통제환경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                  "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                  "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                  "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                  "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                  "기업의 통제환경을 고려한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        },
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/case-0039-attempt-3.json",
+          "sha256": "55e0ce0794c3b1264ed7bf476a4ab81e4d2a0d296956dc690a602118da482d3a",
+          "attempt": 3,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T03:36:52.332Z",
+          "finished_at": "2026-09-11T03:36:57.666Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "quote": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                    "reason": "전기 결과만으로 충분하지 않다는 명제와 반대로, 다음 감사까지 기다리겠다고 명시했다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "contradicted",
+                    "quote": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                    "reason": "당기 테스트가 필요하다는 명제와 반대로 당기 테스트를 하면 안 된다고 명시했다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-07-006",
+            "score": 0,
+            "max_points": 12,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A의 무기한 재사용 제안을 평가하고, 전기 통제증거를 이용하기 전에 확인할 목적과 방법, 관련 변화가 있는 경우의 조치, 변화가 없는 경우의 최소 재테스트 주기와 매 감사의 통제테스트 배분 원칙을 모두 설명하시오. 주기는 감사 횟수로 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 4,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                  "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                  "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                  "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+                "user_answer": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "contradicted",
+                    "quote": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                    "reason": "전기 결과만으로 충분하지 않다는 명제와 반대로, 다음 감사까지 기다리겠다고 명시했다.",
+                    "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "contradicted",
+                    "quote": "상황 B의 통제는 당기 테스트를 하면 안 되며 다음 감사까지 기다려야 한다.",
+                    "reason": "당기 테스트가 필요하다는 명제와 반대로 당기 테스트를 하면 안 된다고 명시했다.",
+                    "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                  "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 6,
+                "criteria": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "기업의 통제환경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                  "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                  "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                  "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                  "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                  "기업의 통제환경을 고려한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        }
+      ]
+    },
+    {
+      "case_id": "sub3-crit12-condition-boundary",
+      "subquestion_id": "sub3",
+      "manual_review_status": "needs_reasoned_adjudication",
+      "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+      "answer": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+      "expected": {
+        "id": "sub3-crit12-condition-boundary",
+        "subquestion_id": "sub3",
+        "kind": "condition_boundary",
+        "answer": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+        "expected_points": 0,
+        "expected_verdicts": [
+          {
+            "criterion_id": "crit7",
+            "verdict": "not_met",
+            "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "not_met",
+            "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다."
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "not_met",
+            "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다."
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다."
+          },
+          {
+            "criterion_id": "crit11",
+            "verdict": "not_met",
+            "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다."
+          },
+          {
+            "criterion_id": "crit12",
+            "verdict": "not_met",
+            "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 기업의 통제환경을 고려한다."
+          }
+        ],
+        "note": "target=crit12; 필요 대상·목적·조건·인과·방법이 빠지거나 적용 전제를 바꾼 경계 답안. 정확한 0점 명칭의 not_met/contradicted만 총괄 runner 정책상 동등하게 볼 수 있다. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다."
+      },
+      "criteria": [
+        {
+          "id": "crit7",
+          "requirement_id": "req7",
+          "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+          "critical_facts": [
+            {
+              "id": "cf7",
+              "type": "action",
+              "expected": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-15d06b1c85e6eb9944"
+          ]
+        },
+        {
+          "id": "crit8",
+          "requirement_id": "req8",
+          "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+          "critical_facts": [
+            {
+              "id": "cf8",
+              "type": "action",
+              "expected": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-15d06b1c85e6eb9944"
+          ]
+        },
+        {
+          "id": "crit9",
+          "requirement_id": "req9",
+          "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+          "critical_facts": [
+            {
+              "id": "cf9",
+              "type": "action",
+              "expected": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-15d06b1c85e6eb9944"
+          ]
+        },
+        {
+          "id": "crit10",
+          "requirement_id": "req10",
+          "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+          "critical_facts": [
+            {
+              "id": "cf10",
+              "type": "action",
+              "expected": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-15d06b1c85e6eb9944"
+          ]
+        },
+        {
+          "id": "crit11",
+          "requirement_id": "req11",
+          "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+          "critical_facts": [
+            {
+              "id": "cf11",
+              "type": "action",
+              "expected": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-15d06b1c85e6eb9944"
+          ]
+        },
+        {
+          "id": "crit12",
+          "requirement_id": "req12",
+          "claim": "기업의 통제환경을 고려한다.",
+          "critical_facts": [
+            {
+              "id": "cf12",
+              "type": "action",
+              "expected": "기업의 통제환경을 고려한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-15d06b1c85e6eb9944"
+          ]
+        }
+      ],
+      "source_refs": [
+        {
+          "id": "src-15d06b1c85e6eb9944",
+          "file": "cpa_uploader/data/official/delegated-n03-kga330-2025.txt",
+          "title": "KGA 330: 평가된 위험에 대한 감사인의 대응",
+          "page": "KGA 330",
+          "source_quote": "A34. 중간기간 후 잔여기간 동안 운영되고 있는 통제에 대하여 어떤 추가적인 감사증거를 입수\r\n할지 여부를 결정할 때, 관련 요소에는 다음이 포함된다. \r\n\r\n\r\n\r\n## PDF PAGE 327\r\n\r\n감사기준서 330 ‘평가된 위험에 대한 감사인의 대응’ \r\n327 / 974 \r\n \r\n경영진주장 수준의 평가된 중요왜곡표시위험의 유의성 \r\n \r\n중간기간에 테스트하였던 특정 통제, 그리고 정보시스템·절차 ·담당자의 변경 등 테\r\n스트 이후 특정 통제의 유의적 변경 \r\n \r\n통제의 운영효과성에 대한 감사증거의 입수 정도  \r\n \r\n잔여기간의 정도 \r\n \r\n감사인이 후속실증절차를 감소시키기 위해 통제에 의존하려는 정도 \r\n \r\n통제환경",
+          "content_hash": "346a5bf8716c89844fc64f1f74611c5b8d97e163e30ffab7a89db7ee88860a58",
+          "role": "standard",
+          "source_span": "L281-L302; KGA 330 문단 A34 원문 페이지 326; L281-L302"
+        }
+      ],
+      "scores": [
+        1,
+        1,
+        1
+      ],
+      "request_hashes": [
+        "5806fe8e97cb1b2348802ab4e72c6de4eecef695b7beede502ceae9bf4b4b849"
+      ],
+      "schema_hashes": [
+        "adbf35166045270add28e8fa1abdda8ff1d1b37cf048a1f0c59dab3a65698a0c"
+      ],
+      "runs": [
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/case-0072-attempt-1.json",
+          "sha256": "7900d0b13d3686b4a1fc88dc0e061855177b0de5abb9f701072dcb20e4e98a30",
+          "attempt": 1,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T03:39:35.178Z",
+          "finished_at": "2026-09-11T03:39:42.323Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "평가된 중요왜곡표시위험의 유의성을 언급하지 않았다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "contradicted",
+                    "quote": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                    "reason": "테스트 이후 통제변경을 고려하지 않고 관계없다고 명시했다."
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "이미 입수한 운영효과성 증거의 정도를 언급하지 않았다."
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "잔여기간의 정도 또는 길이를 언급하지 않았다."
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "통제 의존 정도를 언급하지 않았다."
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "met",
+                    "quote": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                    "reason": "기업의 통제환경을 고려 요소로 언급했다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-07-006",
+            "score": 1,
+            "max_points": 12,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A의 무기한 재사용 제안을 평가하고, 전기 통제증거를 이용하기 전에 확인할 목적과 방법, 관련 변화가 있는 경우의 조치, 변화가 없는 경우의 최소 재테스트 주기와 매 감사의 통제테스트 배분 원칙을 모두 설명하시오. 주기는 감사 횟수로 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 4,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                  "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                  "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                  "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                  "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+                "user_answer": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                "score": 1,
+                "max_points": 6,
+                "criteria": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "평가된 중요왜곡표시위험의 유의성을 언급하지 않았다.",
+                    "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "contradicted",
+                    "quote": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                    "reason": "테스트 이후 통제변경을 고려하지 않고 관계없다고 명시했다.",
+                    "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "이미 입수한 운영효과성 증거의 정도를 언급하지 않았다.",
+                    "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "잔여기간의 정도 또는 길이를 언급하지 않았다.",
+                    "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "통제 의존 정도를 언급하지 않았다.",
+                    "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "met",
+                    "quote": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                    "reason": "기업의 통제환경을 고려 요소로 언급했다.",
+                    "claim": "기업의 통제환경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 1
+                  }
+                ],
+                "model_answer": [
+                  "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                  "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                  "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                  "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                  "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                  "기업의 통제환경을 고려한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다."
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 기업의 통제환경을 고려한다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        },
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/case-0072-attempt-2.json",
+          "sha256": "7f0f322ca91b61ddc5a1972bd3985aaf377504298a5be53c6a6a0909011ee307",
+          "attempt": 2,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T03:39:42.326Z",
+          "finished_at": "2026-09-11T03:39:48.942Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "평가된 중요왜곡표시위험의 유의성을 언급하지 않았다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "contradicted",
+                    "quote": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                    "reason": "통제변경과 관계없이 추가 증거를 면제한다고 하여 테스트 이후 통제의 유의적 변경 고려를 명시적으로 부정했다."
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "이미 입수한 운영효과성 증거의 정도를 언급하지 않았다."
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "잔여기간의 정도 또는 길이를 언급하지 않았다."
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "통제 의존 정도를 언급하지 않았다."
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "met",
+                    "quote": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                    "reason": "기업의 통제환경을 고려 요소로 명시했다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-07-006",
+            "score": 1,
+            "max_points": 12,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A의 무기한 재사용 제안을 평가하고, 전기 통제증거를 이용하기 전에 확인할 목적과 방법, 관련 변화가 있는 경우의 조치, 변화가 없는 경우의 최소 재테스트 주기와 매 감사의 통제테스트 배분 원칙을 모두 설명하시오. 주기는 감사 횟수로 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 4,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                  "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                  "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                  "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "답안이 없다.",
+                    "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                  "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+                "user_answer": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                "score": 1,
+                "max_points": 6,
+                "criteria": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "평가된 중요왜곡표시위험의 유의성을 언급하지 않았다.",
+                    "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "contradicted",
+                    "quote": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                    "reason": "통제변경과 관계없이 추가 증거를 면제한다고 하여 테스트 이후 통제의 유의적 변경 고려를 명시적으로 부정했다.",
+                    "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "이미 입수한 운영효과성 증거의 정도를 언급하지 않았다.",
+                    "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "잔여기간의 정도 또는 길이를 언급하지 않았다.",
+                    "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "통제 의존 정도를 언급하지 않았다.",
+                    "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "met",
+                    "quote": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                    "reason": "기업의 통제환경을 고려 요소로 명시했다.",
+                    "claim": "기업의 통제환경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 1
+                  }
+                ],
+                "model_answer": [
+                  "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                  "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                  "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                  "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                  "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                  "기업의 통제환경을 고려한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다."
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 기업의 통제환경을 고려한다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        },
+        {
+          "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase2/phase-two-v5-source-ranges/pilot-07-006/author-qa-run1/case-0072-attempt-3.json",
+          "sha256": "14fd32bf7de122f730045da1b607a84ff85681a15f94e3a19f4fbb40a27ab8c9",
+          "attempt": 3,
+          "model": "gpt-5.6-luna",
+          "transport": "live_model",
+          "matched": false,
+          "started_at": "2026-09-11T03:39:48.947Z",
+          "finished_at": "2026-09-11T03:39:55.394Z",
+          "raw_judgment": {
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub2",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              },
+              {
+                "subquestion_id": "sub3",
+                "verdicts": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "평가된 중요왜곡표시위험의 유의성을 언급하지 않았습니다."
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "contradicted",
+                    "quote": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                    "reason": "통제변경과 관계없이 추가 증거를 면제한다고 명시하여 테스트 이후 통제의 유의적 변경을 고려해야 한다는 명제와 반대됩니다."
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "이미 입수한 운영효과성 증거의 정도를 언급하지 않았습니다."
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "잔여기간의 정도 또는 길이를 언급하지 않았습니다."
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "통제 의존 정도를 언급하지 않았습니다."
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "met",
+                    "quote": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                    "reason": "통제환경을 고려 대상으로 명시했습니다."
+                  }
+                ],
+                "injection_detected": false,
+                "salad_detected": false
+              }
+            ],
+            "injection_detected": false,
+            "salad_detected": false
+          },
+          "result": {
+            "question_set_id": "pilot-07-006",
+            "score": 1,
+            "max_points": 12,
+            "subquestions": [
+              {
+                "subquestion_id": "sub1",
+                "prompt": "상황 A의 무기한 재사용 제안을 평가하고, 전기 통제증거를 이용하기 전에 확인할 목적과 방법, 관련 변화가 있는 경우의 조치, 변화가 없는 경우의 최소 재테스트 주기와 매 감사의 통제테스트 배분 원칙을 모두 설명하시오. 주기는 감사 횟수로 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 4,
+                "criteria": [
+                  {
+                    "criterion_id": "crit1",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit2",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit3",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit4",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "전기 이후 유의적 변화에 관한 증거를 얻어 전기 증거의 계속적인 관련성과 신뢰성을 확인해야 하며, 통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+                  "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+                  "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+                  "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub2",
+                "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+                "user_answer": "",
+                "score": 0,
+                "max_points": 2,
+                "criteria": [
+                  {
+                    "criterion_id": "crit5",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit6",
+                    "verdict": "not_met",
+                    "reason": "답안이 없습니다.",
+                    "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  }
+                ],
+                "model_answer": [
+                  "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+                  "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+                ]
+              },
+              {
+                "subquestion_id": "sub3",
+                "prompt": "상황 C에서 잔여기간 동안 운영되는 통제에 관하여 입수할 추가 감사증거를 결정할 때, 감사기준서 330 문단 A34에 열거된 관련 요소를 모두 제시하시오. 전기 증거의 재사용 판단요소와 구별하고, 테스트한 통제에 관한 요소에는 테스트 이후의 변화도 포함하시오.",
+                "user_answer": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                "score": 1,
+                "max_points": 6,
+                "criteria": [
+                  {
+                    "criterion_id": "crit7",
+                    "verdict": "not_met",
+                    "reason": "평가된 중요왜곡표시위험의 유의성을 언급하지 않았습니다.",
+                    "claim": "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit8",
+                    "verdict": "contradicted",
+                    "quote": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                    "reason": "통제변경과 관계없이 추가 증거를 면제한다고 명시하여 테스트 이후 통제의 유의적 변경을 고려해야 한다는 명제와 반대됩니다.",
+                    "claim": "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit9",
+                    "verdict": "not_met",
+                    "reason": "이미 입수한 운영효과성 증거의 정도를 언급하지 않았습니다.",
+                    "claim": "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit10",
+                    "verdict": "not_met",
+                    "reason": "잔여기간의 정도 또는 길이를 언급하지 않았습니다.",
+                    "claim": "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit11",
+                    "verdict": "not_met",
+                    "reason": "통제 의존 정도를 언급하지 않았습니다.",
+                    "claim": "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 0
+                  },
+                  {
+                    "criterion_id": "crit12",
+                    "verdict": "met",
+                    "quote": "통제환경이 좋다는 사실 하나로 중간 테스트 이후 통제변경과 관계없이 추가 증거를 모두 면제한다.",
+                    "reason": "통제환경을 고려 대상으로 명시했습니다.",
+                    "claim": "기업의 통제환경을 고려한다.",
+                    "max_points": 1,
+                    "awarded_points": 1
+                  }
+                ],
+                "model_answer": [
+                  "경영진주장 수준의 평가된 중요왜곡표시위험의 유의성을 고려한다.",
+                  "중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다.",
+                  "통제의 운영효과성에 관한 감사증거를 이미 어느 정도 입수했는지 고려한다.",
+                  "중간기간 이후 남아 있는 잔여기간의 정도 또는 길이를 고려한다.",
+                  "후속 실증절차를 감소시키기 위해 통제에 의존하려는 정도를 고려한다.",
+                  "기업의 통제환경을 고려한다."
+                ]
+              }
+            ],
+            "security_flag": "none"
+          },
+          "exact_differences": [
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 중간기간에 테스트한 특정 통제와, 정보시스템·절차·담당자 변경 등 테스트 이후 그 통제의 유의적 변경을 고려한다."
+            },
+            {
+              "criterion_id": "crit12",
+              "verdict": "not_met",
+              "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 기업의 통제환경을 고려한다."
+            }
+          ],
+          "quote_check": true,
+          "sum_check": true,
+          "security": {
+            "raw_set": {
+              "injection": false,
+              "salad": false
+            },
+            "raw_subquestions": [
+              {
+                "id": "sub1",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub2",
+                "injection": false,
+                "salad": false
+              },
+              {
+                "id": "sub3",
+                "injection": false,
+                "salad": false
+              }
+            ],
+            "final_set": "none"
+          },
+          "error": null
+        }
+      ]
+    }
+  ]
+}

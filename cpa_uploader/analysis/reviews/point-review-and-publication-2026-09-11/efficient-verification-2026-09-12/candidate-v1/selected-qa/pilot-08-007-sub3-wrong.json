@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "set_id": "pilot-08-007",
+  "origin": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/pilot-08-007-remediation-v1/qa.json",
+    "sha256": "27d072aac0544fa203e9d7026d47bfce6ff865420e341ba0fd1ce761a69ab419",
+    "case_id": "sub3-crit6-opposite"
+  },
+  "normalization": "Only absent verdict reasons are supplied from the actual agent review; answer, verdict and expected score are unchanged.",
+  "cases": [
+    {
+      "id": "sub3-crit6-opposite",
+      "subquestion_id": "sub3",
+      "kind": "opposite",
+      "answer": "계약과 운송기간이 바뀌어도 국내용 전후 7일은 항상 충분하다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit6",
+          "verdict": "contradicted",
+          "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 국외 거래에도 종전 전후 7일 범위를 그대로 적용해 적합하다고 단정할 수 없으며 검사 범위를 재검토해야 한다."
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "contradicted",
+          "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 계약상 인수·통제 이전을 기다리는 기간이 길어져 출고일과 매출 인식시점의 차이가 종전 범위를 벗어날 수 있으므로, 변경된 조건과 운송·인수기간을 검사 범위 결정에 반영해야 한다."
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "contradicted",
+          "reason": "기존 7일을 항상 충분하다고 고정하므로 기간 조정은 부정하지만 인수증빙·기록기간 대조 자체는 언급하지 않았다."
+        }
+      ],
+      "note": "target=crit6; 명시적 반대. 다른 명제까지 직접 부정하면 그 판정도 반영했다. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다. [point-policy-v1] 원 ID·물음·답안 보존. 독립 부분별 기대를 원문과 답안 전체에서 재대조했으며 옛 복합 0점을 부분에 기계적으로 전파하지 않는다. 실제 모델 호출 전의 작성자 기대값이다. [중복 배점 후속] 원 ID·답안·소속 물음과 crit6/7/8 판정은 보존한다. sub3/crit13은 sub2/crit5와 같은 증빙·기록기간 대조의 중복 배점이므로 폐기했다. 그 판정만 기대값에서 제외했으며 답안 속 해당 설명·누락·반대는 남은 독립 기준을 자동 감점하지 않는다. 이 사례 이름과 kind가 폐기 기준을 가리키면 당시 테스트 분류의 계보이다.",
+      "origin": {
+        "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/point-policy-v1/t08-b/qa-cases-t08-b.json",
+        "case_id": "sub3-crit6-opposite"
+      }
+    }
+  ]
+}

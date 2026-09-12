@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "status": "ready_for_final_manifest_freeze",
+  "writer": "plan_procedures",
+  "actual_api_calls": 0,
+  "common_grading_engine_or_acceptance_core_changed": false,
+  "scope": "실제 유료 실행 이전 prepare 단계의 대표 역할별 점수·고정 범위 커버 검사",
+  "files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/run-efficient-grading.ts",
+      "sha256": "b00e13f75f650adc99b5c5617bbe1b895056492c2418ec3564bacd1c62a0791d"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/runner.test.ts",
+      "sha256": "b6115afa6366439fed2bb0769b4243a3852d1ebc33e06f9d6ca6e39296ab0e4b"
+    }
+  ],
+  "before": {
+    "manifest": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/before-role-check/manifest.json",
+    "old_runner_sha256": "f938e234d29f0b5757c64b560ebe72ec07b1e7fb514205b5309c7b7d6d2667d4",
+    "old_test_sha256": "96a52b6526bb60d975e3324cf0250965d53ab0e8d45a8cd3222237734a73ef4c",
+    "old_handoff_and_readme_unchanged": true,
+    "preservation": "변경 전 runner·tests·handoff·README 바이트를 before-role-check의 .txt 사본에 보존. 기존 동결 manifest와 실행 기록은 수정하지 않음."
+  },
+  "checks_added": [
+    "policy.scope의 실제 파일·SHA-256을 읽어 동결하고 target set 중복·은행 실존·물음 전체 범위를 대조한다.",
+    "동결 target 밖의 대표를 거절한다.",
+    "평가 대상 partial은 0 < 기대점수 < 물음 만점이어야 한다.",
+    "평가 대상 wrong은 기대점수가 0이어야 한다.",
+    "model은 저장 모범답안 바이트·모든 met·기대 만점을 요구한다.",
+    "동결 target의 모든 물음에 model과 wrong, 만점이 1보다 큰 물음에 partial을 요구한다. 전체 학습단위의 누락도 거절한다.",
+    "context-only 사례 물음은 기존 전체 투영·빈 답안·전 criterion not_met/0점 계약을 유지하며 해당 partial 회차의 평가 분모에 넣지 않는다."
+  ],
+  "unchanged_contracts": [
+    "validateExpected의 모든 물음·criterion 완전 커버와 정수 기대 합계 검사를 유지한다.",
+    "실제 요청 함수·응답 처리·관측 저장·usage·제한 재시도는 변경하지 않았다.",
+    "export async function main 이후의 소스 문자열이 변경 전 사본과 완전히 동일함을 비교했다.",
+    "원 기대값·원 답안·원 실측·기존 승급/수락 core를 바꾸지 않는다."
+  ],
+  "validation": {
+    "synthetic_fixtures_only": true,
+    "runner_tests": { "passed": 18, "failed": 0 },
+    "related_total_tests": { "passed": 68, "failed": 0, "groups": ["runner.test.ts 18", "seal-results.test.ts 15", "tests/questionEfficientReview.test.ts 35"] },
+    "typecheck": "pass",
+    "target_lint": "pass",
+    "negative_boundaries": ["positive wrong", "zero partial", "full-score partial", "missing model", "missing wrong", "missing partial", "entire learning unit omitted"],
+    "positive_boundaries": ["one-point model/wrong without partial", "multi-point partial remains required", "all case children preserved with blank context-only neighbors", "production dry-run records zero API calls"],
+    "failed_prepare_outputs_created": 0,
+    "request_main_bytes_unchanged": true
+  },
+  "integration": "총괄은 새 final manifest/runtime freeze에 새 runner 해시를 포함해야 한다. 과거 manifest의 해시만 바꿔 재개하지 않는다. A/C 대표 수정 완료 여부 및 최종 candidate 실제 준비 검사는 별도이며 이 인계는 실제 모델 검증 완료가 아니다."
+}

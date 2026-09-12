@@ -1,0 +1,24 @@
+// Reconstruct exact prior semantic input without an API request.
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import {prepareSemanticReview,reviewChunkSchema} from '../../../../../../cpa_uploader/questionSemanticReview.ts';
+import {jsonHash} from '../../../../../../cpa_uploader/questionReviewIdentity.ts';
+const dir=path.dirname(fileURLToPath(import.meta.url)),control='cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11';
+const read=(f:string)=>JSON.parse(fs.readFileSync(f,'utf8')),hash=(t:string|Buffer)=>createHash('sha256').update(t).digest('hex'),sha=(f:string)=>hash(fs.readFileSync(f));
+const lockFile=control+'/runtime-v5-bank-v3-after-refill-01/runtime-lock.json',lock=read(lockFile),manifest=read(lock.manifest_file),entry=manifest.entries.find((e:any)=>e.plan_id==='T11-A');
+const semanticFile=path.join(entry.output_directory,'phase-two-v5',entry.set_id,'semantic-v5-bank-v3-after-refill-root-01-1/review/semantic.json'),receipt=read(semanticFile).reviews[0],chunksFile=semanticFile+'.chunks.jsonl',chunks=fs.readFileSync(chunksFile,'utf8').trim().split(/\r?\n/).map(line=>JSON.parse(line));
+for(const r of [...lock.code_files,...lock.source_files,{file:entry.file,sha256:entry.sha256},...entry.plan_files])if(sha(r.file)!==r.sha256)throw Error('Fixed input changed');
+const doc=read(entry.file),set=Array.isArray(doc)?doc[0]:doc,p=read(entry.plan_files[0].file),plan=p.plans?p.plans.find((p:any)=>p.set_id===set.id):p,bank=read(lock.comparison_bank.file);
+const prepared=prepareSemanticReview(set,{bank:[...bank.filter((s:any)=>s.id!==set.id),set],authoringPlan:plan,maxInputChars:500000});
+const checks=receipt.units.filter((u:any)=>Object.values(u.checks).some(v=>v!=='pass'));
+const units=checks.map((u:any)=>{const unit=prepared.units.find(x=>x.id===u.id)!;
+ const input=JSON.stringify({...prepared.requestContext as Record<string,unknown>,target_unit:unit.id,reference_catalog:{fields:unit.fields,sources:prepared.sources.filter(source=>unit.sources.includes(source.source_ref_id)).map(source=>({id:source.source_ref_id,quote:source.declared_metadata.source_quote}))}});
+ const rows=chunks.filter((c:any)=>c.unit_id===u.id),prior=rows.find((c:any)=>!c.error);if(!prior||hash(input)!==prior.input_hash||jsonHash(reviewChunkSchema(unit))!==prior.schema_hash||prepared.contentHash!==prior.content_hash||prepared.bankHash!==prior.bank_hash)throw Error('Not exact original input');
+ return{id:u.id,checks:u.checks,rationale:u.rationale,direct_prior_input_hash:prior.input_hash,current_rebuilt_input_hash:hash(input),direct_prior_schema_hash:prior.schema_hash,current_rebuilt_schema_hash:jsonHash(reviewChunkSchema(unit)),all_prior_rows:rows.map((r:any)=>({attempt:r.attempt,transport:r.transport,model:r.model,http_status:r.http_status,request_id:r.request_id}))};});
+const excerpts=(prepared.requestContext as any).source_excerpts.filter((e:any)=>['std-540-27','std-540-29'].includes(e.id)).map((e:any)=>({id:e.id,file:e.file,line_start:e.line_start,line_end:e.line_end,source_quote_line_start:e.source_quote_line_start,source_quote_line_end:e.source_quote_line_end,quote:e.quote}));
+const source=set.source_refs.find((r:any)=>r.id==='std-540-29'),text=fs.readFileSync(source.file,'utf8'),index=text.indexOf(source.source_quote),actualStart=text.slice(0,index).split('\n').length,actualEnd=text.slice(0,index+source.source_quote.length-1).split('\n').length;
+const output={recorded_at:new Date().toISOString(),api_calls:0,runtime_lock:{file:lockFile,sha256:sha(lockFile)},semantic:{file:semanticFile,sha256:sha(semanticFile),verdict:receipt.verdict,units:receipt.units.length,cases:receipt.cases.length},chunks:{file:chunksFile,sha256:sha(chunksFile)},nonpass_units:units,actual_excerpts:excerpts,source_29:{...source,file_sha256:sha(source.file),actual_source_quote_start:actualStart,actual_source_quote_end:actualEnd,exact_quote_present:index>=0,declared_spans:set.subquestions.find((q:any)=>q.id==='sub3').requirements.map((r:any)=>({id:r.id,source_span:r.source_span}))},comparison:'Two uncertain rationales assign the 540.27 location to 540.29. Actual declared 29 locator includes the exact 29 quote; original request reconstruction verifies supplied locations. This is a local investigation, not a rewritten or manual_reasoned pass receipt.',question_or_plan_or_source_changed:false};
+fs.writeFileSync(path.join(dir,'evidence.json'),JSON.stringify(output,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({nonpass:units.map((u:any)=>u.id),source29:{actualStart,actualEnd},excerpts:excerpts.map(({quote,...e}:any)=>e),same_prior_input_and_schema:true,api_calls:0}));

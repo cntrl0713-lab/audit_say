@@ -1,0 +1,304 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { createHash, randomUUID } from 'node:crypto';
+import { computeQuestionSetMaxPoints, validateQuestionSetV3 } from '../lib/questionV3.ts';
+import type { QuestionSetV3 } from '../lib/questionV3.ts';
+import { reviewedContentHash } from './questionReviewIdentity.ts';
+import { semanticReceiptIntegrityErrors, validateRecordedSemanticReview } from './questionSemanticReview.ts';
+import type { SemanticReviewReceipt } from './questionSemanticReview.ts';
+export { reviewedContentHash } from './questionReviewIdentity.ts';
+
+const allowedStandardsByTopic: Record<string, string[]> = {
+    '01': ['KGA 200', 'KGA 220'],
+    '02': ['KGA 200'],
+    '03': ['KGA 210'],
+    '04': ['KGA 230', 'KGA 300', 'KGA 320'],
+    '05': ['KGA 240', 'KGA 250', 'KGA 260', 'KGA 265'],
+    '06': ['KGA 315', 'KGA 330'],
+    '07': ['KGA 330', 'KGA 500'],
+    '08': ['KGA 315', 'KGA 500'],
+    '09': ['KGA 501', 'KGA 505', 'KGA 510'],
+    '10': ['KGA 315', 'KGA 520', 'KGA 530'],
+    '11': ['KGA 540', 'KGA 550'],
+    '12': ['KGA 450', 'KGA 560', 'KGA 570', 'KGA 580'],
+    '13': ['KGA 402', 'KGA 610', 'KGA 620'],
+    '14': ['KGA 600'],
+    '15': ['KGA 700', 'KGA 705'],
+    '16': ['KGA 701', 'KGA 706', 'KGA 710', 'KGA 720'],
+    '17': ['KGA 1100'],
+    '18': ['KGA 1200'],
+    '19': ['KGA 200'],
+};
+
+function normalize(value: string): string {
+    return value.replace(/\s+/g, '').toLowerCase();
+}
+
+function stableJson(value: unknown): string {
+    return JSON.stringify(value);
+}
+
+function quoteBelongsToStandardSection(root: string, source: QuestionSetV3['source_refs'][number]): boolean {
+    if (!source.page?.startsWith('KGA ')) return true;
+    const file = path.resolve(root, source.file);
+    if (!fs.existsSync(file)) return false;
+    const content = fs.readFileSync(file, 'utf8');
+    const headings = [...content.matchAll(/^#{1,3}\s+(KGA\s+\d+)(?:\s|:)/gmu)];
+    return headings.some((heading, index) => {
+        if (heading[1] !== source.page) return false;
+        const sectionEnd = headings[index + 1]?.index ?? content.length;
+        const section = content.slice(heading.index, sectionEnd);
+        return normalize(section).includes(normalize(source.source_quote));
+    });
+}
+
+export function validateAuthoringBank(raw: unknown, root = process.cwd()) {
+    if (!Array.isArray(raw)) throw new Error('v3 authoring 루트는 배열이어야 합니다.');
+    const errors: string[] = [];
+    const ids = new Set<string>();
+    const topicCounts = new Map<string, number>();
+    const promptOwners = new Map<string, string>();
+    let subquestionCount = 0;
+    let criterionCount = 0;
+    let totalPoints = 0;
+
+    for (const [index, value] of raw.entries()) {
+        const result = validateQuestionSetV3(value, { verifySourceQuotes: true, cwd: root });
+        const set = value as QuestionSetV3;
+        if (result.errors.length > 0) {
+            errors.push(...result.errors.map((error) => `[index ${index}, ${set.id || 'id 없음'}] ${error}`));
+            continue;
+        }
+        if (ids.has(set.id)) errors.push(`중복 문제 세트 id: ${set.id}`);
+        ids.add(set.id);
+        const topicId = set.classification.topic_id;
+        topicCounts.set(topicId, (topicCounts.get(topicId) ?? 0) + 1);
+        if (set.subquestions.length < 2 || set.subquestions.length > 3) {
+            errors.push(`${set.id}: linked set은 세부 물음 2~3개를 가져야 합니다.`);
+        }
+        const sourceStandards = [...new Set(
+            set.source_refs
+                .map((source) => source.page)
+                .filter((page): page is string => Boolean(page?.startsWith('KGA '))),
+        )].sort();
+        const classifiedStandards = [...set.classification.standards].sort();
+        if (stableJson(sourceStandards) !== stableJson(classifiedStandards)) {
+            errors.push(`${set.id}: classification.standards와 실제 사용한 KGA source가 다릅니다.`);
+        }
+        const allowedStandards = new Set(allowedStandardsByTopic[set.classification.topic_id] || []);
+        const outOfScopeStandards = sourceStandards.filter((standard) => !allowedStandards.has(standard));
+        if (outOfScopeStandards.length > 0) {
+            errors.push(`${set.id}: 주제 범위 밖 KGA source를 사용했습니다: ${outOfScopeStandards.join(', ')}`);
+        }
+        // Separate sets may legitimately cite the same standard paragraph.
+        // Redundant source entries within one set still indicate a data defect.
+        const sourceQuoteOwners = new Map<string, string>();
+        for (const source of set.source_refs) {
+            if (!quoteBelongsToStandardSection(root, source)) {
+                errors.push(`${set.id}/${source.id}: source_quote가 ${source.page || '지정된 기준서'} 구간에 존재하지 않습니다.`);
+            }
+            const sourceKey = normalize(source.source_quote);
+            const existingOwner = sourceQuoteOwners.get(sourceKey);
+            if (existingOwner) {
+                errors.push(`${set.id}/${source.id}: source_quote가 ${existingOwner}와 중복됩니다.`);
+            } else {
+                sourceQuoteOwners.set(sourceKey, `${set.id}/${source.id}`);
+            }
+        }
+        for (const subquestion of set.subquestions) {
+            const promptKey = normalize(subquestion.prompt);
+            const existingOwner = promptOwners.get(promptKey);
+            if (existingOwner) {
+                errors.push(`${set.id}/${subquestion.id}: 발문이 ${existingOwner}와 중복됩니다.`);
+            } else {
+                promptOwners.set(promptKey, `${set.id}/${subquestion.id}`);
+            }
+            if (/계산하시오|산출하시오|금액을\s*구하시오/u.test(subquestion.prompt)) {
+                errors.push(`${set.id}/${subquestion.id}: 계산형 발문은 파일럿 범위에서 제외됩니다.`);
+            }
+        }
+        const setMaxPoints = computeQuestionSetMaxPoints(set);
+        // Reviewed requirements determine the total. The pilot's eight-point
+        // ceiling must not discard independent, source-backed grading elements.
+        subquestionCount += set.subquestions.length;
+        criterionCount += set.subquestions.reduce((sum, subquestion) => sum + subquestion.criteria.length, 0);
+        totalPoints += setMaxPoints;
+    }
+
+    // 파일럿 당시 주제별 세트 수를 하한으로 유지한다. 은행이 성장해도 기존 커버리지가
+    // 줄어들지는 못하게 하는 계약이다(신규 추가는 자유, 기존 축소·삭제는 게이트에서 차단).
+    const minimumTopicCounts = new Map<string, number>([
+        ['01', 3],
+        ['02', 4],
+        ['03', 3],
+        ['04', 3],
+        ['05', 4],
+        ['06', 4],
+        ['07', 3],
+        ['08', 4],
+        ['09', 3],
+        ['10', 3],
+        ['11', 3],
+        ['12', 3],
+        ['13', 3],
+        ['14', 4],
+        ['15', 4],
+        ['16', 4],
+        ['17', 3],
+        ['18', 3],
+        ['19', 4],
+    ]);
+    for (const [topicId, minimumCount] of minimumTopicCounts) {
+        const actualCount = topicCounts.get(topicId) ?? 0;
+        if (actualCount < minimumCount) {
+            errors.push(`topic_id ${topicId} 세트 수는 최소 ${minimumCount}개여야 하지만 ${actualCount}개입니다.`);
+        }
+    }
+    if (raw.length < 65) errors.push(`문제 은행은 최소 65개 세트를 유지해야 하지만 ${raw.length}개입니다.`);
+
+    return { errors, sets: raw as QuestionSetV3[], subquestionCount, criterionCount, totalPoints };
+}
+
+export interface PromotionEntry {
+    set_id: string;
+    from_status: string;
+    to_status: 'verified' | 'published';
+    date: string;
+    evidence: string;
+    content_hash?: string;
+    semantic_review?: SemanticReviewReceipt;
+    review_receipt_hash?: string;
+    review_summary?: { units: number; cases: number; method: string; verdict: 'pass' };
+}
+export interface PromotionLedger { version: 1; entries: PromotionEntry[] }
+
+export function publicationPaths(root = process.cwd()) {
+    const resolve = (key: string, fallback: string) => path.resolve(root, process.env[key] || fallback);
+    return {
+        authoring: resolve('CPA_QUESTION_V3_AUTHORING_PATH', 'cpa_uploader/data/cpa_question_sets_v3.authoring.json'),
+        public: resolve('CPA_QUESTION_V3_PUBLIC_PATH', 'cpa_uploader/data/cpa_question_sets_v3.public.json'),
+        encrypted: resolve('CPA_QUESTION_V3_ENCRYPTED_PATH', 'data/cpa_question_sets_v3.authoring.enc.json'),
+        ledger: resolve('CPA_QUESTION_V3_PROMOTIONS_PATH', 'cpa_uploader/data/cpa_question_sets_v3.promotions.json'),
+    };
+}
+
+export function loadPromotionLedger(file: string): PromotionLedger {
+    if (!fs.existsSync(file)) return { version: 1, entries: [] };
+    const value = JSON.parse(fs.readFileSync(file, 'utf8')) as PromotionLedger;
+    if (value?.version !== 1 || !Array.isArray(value.entries) || value.entries.some((entry) => (
+        !entry || typeof entry.set_id !== 'string' || !entry.set_id.trim()
+        || !['needs_review', 'verified', 'published'].includes(entry.from_status)
+        || !['verified', 'published'].includes(entry.to_status)
+        || typeof entry.evidence !== 'string' || !entry.evidence.trim()
+        || typeof entry.date !== 'string' || !entry.date.trim()
+        || entry.content_hash !== undefined && !/^[a-f\d]{64}$/.test(entry.content_hash)
+        || entry.review_receipt_hash !== undefined && !/^[a-f\d]{64}$/.test(entry.review_receipt_hash)
+    ))) throw new Error(`승급 장부 형식 또는 검수 근거가 올바르지 않습니다: ${file}`);
+    for (const entry of value.entries) {
+        // Legacy receipts are absent, not partially populated. A new hash-bearing
+        // verified entry cannot impersonate the historical no-hash records.
+        if (entry.to_status === 'verified' && entry.content_hash && !entry.semantic_review) throw new Error(`${entry.set_id}: 의미검수 receipt가 없는 신규 검수 장부입니다.`);
+        if (entry.semantic_review) {
+            const errors = semanticReceiptIntegrityErrors(entry.semantic_review);
+            if (errors.length || entry.semantic_review.set_id !== entry.set_id || entry.semantic_review.content_hash !== entry.content_hash
+                || entry.review_receipt_hash !== entry.semantic_review.receipt_hash
+                || entry.review_summary?.units !== entry.semantic_review.units.length || entry.review_summary?.cases !== entry.semantic_review.cases.length
+                || entry.review_summary?.method !== entry.semantic_review.execution.method || entry.review_summary?.verdict !== 'pass') throw new Error(`${entry.set_id}: 의미검수 장부 receipt/hash/summary가 올바르지 않습니다. ${errors.join('; ')}`);
+        } else if (entry.review_summary || entry.to_status === 'verified' && entry.review_receipt_hash) throw new Error(`${entry.set_id}: 불완전한 의미검수 장부입니다.`);
+    }
+    return value;
+}
+
+export function validatePromotionLedger(
+    sets: QuestionSetV3[], ledger: PromotionLedger, requirePublished = false,
+    options: { pendingReverificationIds?: ReadonlySet<string> } = {},
+): string[] {
+    const errors: string[] = [];
+    for (const set of sets) {
+        const entries = ledger.entries.filter((entry) => entry.set_id === set.id);
+        const last = entries.at(-1);
+        const verified = entries.filter((entry) => entry.to_status === 'verified').at(-1);
+        if (requirePublished && set.status !== 'published') errors.push(`${set.id}: status=published가 필요합니다.`);
+        if (set.status === 'needs_review') {
+            if (entries.length) errors.push(`${set.id}: 승급 장부와 needs_review 상태가 불일치합니다.`);
+            if (set.verification.review_status !== 'needs_human_review') errors.push(`${set.id}: 미검수 초안은 review_status=needs_human_review여야 합니다.`);
+            continue;
+        }
+        if (set.verification.review_status !== 'verified') errors.push(`${set.id}: review_status=verified가 필요합니다.`);
+        if (!verified) errors.push(`${set.id}: 검수 근거가 있는 verified 승급 장부가 필요합니다.`);
+        if (set.status === 'verified' && last?.to_status === 'published') errors.push(`${set.id}: published 장부와 verified 상태가 불일치합니다.`);
+        // Existing backfilled entries lack a hash. Preserve those historical records;
+        // every transition made by the current tool records and enforces content identity.
+        // Explicit re-review may replace only the requested set's reviewed content
+        // identity. Lifecycle labels, prior evidence and other sets remain checked.
+        if (!options.pendingReverificationIds?.has(set.id)) {
+            if (verified?.content_hash && verified.content_hash !== reviewedContentHash(set)) errors.push(`${set.id}: 검수 후 문항 내용이 변경되었습니다. 새 검수 근거가 필요합니다.`);
+            if (last?.content_hash && last.content_hash !== reviewedContentHash(set)) errors.push(`${set.id}: 최종 승급 장부의 내용 해시와 정본이 다릅니다.`);
+            if (verified?.semantic_review) errors.push(...validateRecordedSemanticReview(verified.semantic_review, set));
+        }
+        if (verified?.content_hash && !verified.semantic_review) errors.push(`${set.id}: 신규 검수 장부에 의미검수 receipt가 필요합니다.`);
+        if (verified?.semantic_review && last?.to_status === 'published' && last.review_receipt_hash !== verified.semantic_review.receipt_hash) errors.push(`${set.id}: 게시 장부의 의미검수 receipt 해시가 다릅니다.`);
+        if (set.status === 'published' && verified?.content_hash && last?.to_status !== 'published') errors.push(`${set.id}: published 승급 장부가 필요합니다.`);
+    }
+    return errors;
+}
+
+export interface FileSnapshot { file: string; hash: string | null }
+export function snapshotFile(file: string): FileSnapshot {
+    return { file, hash: fs.existsSync(file) ? createHash('sha256').update(fs.readFileSync(file)).digest('hex') : null };
+}
+export function snapshotSources(sets: QuestionSetV3[], root = process.cwd()): FileSnapshot[] {
+    return [...new Set(sets.flatMap((set) => (set.source_refs || []).map((source) => path.resolve(root, source.file))))].map(snapshotFile);
+}
+export function assertSnapshotsUnchanged(snapshots: FileSnapshot[]): void {
+    for (const before of snapshots) {
+        if (snapshotFile(before.file).hash !== before.hash) throw new Error(`검증 중 파일이 변경되었습니다. 다시 검증하십시오: ${before.file}`);
+    }
+}
+
+/** Stage every output, then replace; synchronous failures restore the previous bytes.
+ * The authoring lock serializes these CLIs. This is not a cross-file crash transaction. */
+export function writePublicationFiles(writes: Array<{ file: string; content: string }>, guards: FileSnapshot[] = []): void {
+    const paths = writes.map((write) => path.resolve(write.file));
+    if (new Set(paths).size !== paths.length) throw new Error('서로 다른 출력 파일 경로가 필요합니다.');
+    const staged: Array<{ file: string; temp: string; previous: Buffer | null }> = [];
+    const committed: typeof staged = [];
+    try {
+        for (const [index, write] of writes.entries()) {
+            const file = paths[index];
+            const previous = fs.existsSync(file) ? fs.readFileSync(file) : null;
+            fs.mkdirSync(path.dirname(file), { recursive: true });
+            const temp = `${file}.${process.pid}.${randomUUID()}.tmp`;
+            staged.push({ file, temp, previous });
+            fs.writeFileSync(temp, write.content, { encoding: 'utf8', flag: 'wx' });
+        }
+        assertSnapshotsUnchanged(guards);
+        for (const entry of staged) {
+            fs.renameSync(entry.temp, entry.file);
+            committed.push(entry);
+        }
+    } catch (error) {
+        const restoreErrors: string[] = [];
+        for (const entry of committed.reverse()) {
+            try {
+                if (entry.previous === null) fs.unlinkSync(entry.file);
+                else {
+                    fs.writeFileSync(entry.temp, entry.previous);
+                    fs.renameSync(entry.temp, entry.file);
+                }
+            } catch (restoreError) { restoreErrors.push(`${entry.file}: ${String(restoreError)}`); }
+        }
+        if (restoreErrors.length) throw new Error(`${String(error)}\n이전 파일 복원 실패: ${restoreErrors.join('; ')}`);
+        throw error;
+    } finally {
+        for (const entry of staged) if (fs.existsSync(entry.temp)) fs.unlinkSync(entry.temp);
+    }
+}
+
+export function withPublicationLock<T>(authoring: string, run: () => T): T {
+    const lock = `${authoring}.publication.lock`;
+    fs.mkdirSync(path.dirname(lock), { recursive: true });
+    const descriptor = fs.openSync(lock, 'wx');
+    try { return run(); }
+    finally { fs.closeSync(descriptor); fs.unlinkSync(lock); }
+}

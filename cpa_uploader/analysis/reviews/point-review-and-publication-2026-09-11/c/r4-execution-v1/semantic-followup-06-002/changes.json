@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "status": "proposed_not_activated",
+  "before": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/c/review-plans/pilot-06-002.json",
+    "sha256": "eb857b024470d4ae047e49d82fcb1d6b735e765fdbedb5abe81b6949e4063976"
+  },
+  "after": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/c/r4-execution-v1/semantic-followup-06-002/pilot-06-002-plan.json",
+    "sha256": "7634b822b15dd3414b18b63dbd5c1327c818eb8918dac6dd93a255ccece297db"
+  },
+  "patch": [
+    {
+      "op": "add",
+      "path": "/metadata/source_location_and_edition_clarification",
+      "value": {
+        "source_file": "cpa_uploader/data/official/kga315-330-2025-review06.txt",
+        "source_file_sha256": "486c1df843af6d74e0acdaec995501e6f40f24ae9dd8dc23415007d90d5affe1",
+        "locations": [
+          {
+            "source_ref_id": "src1",
+            "source_quote_lines": "L99–L109",
+            "catalog_paragraph_lines": "L99–L110",
+            "note": "직접 인용은315.14(a)~(c)를 모두 포함하는 L99–L109이다. catalog의 L110은 다음 소제목 기타 원천의 정보이므로 카탈로그 문단 범위와 직접 인용 끝줄의 차이는 인용 누락이 아니다."
+          },
+          {
+            "source_ref_id": "src2",
+            "source_quote_lines": "L115–L122",
+            "quotation_paragraphs": "315.16–18",
+            "requirement_direct_locations": [
+              {
+                "requirement_id": "req2",
+                "existing_source_span": "315.16",
+                "direct_paragraph_lines": "315.16; L115–L117",
+                "related_criteria": [
+                  "crit4",
+                  "crit5"
+                ]
+              },
+              {
+                "requirement_id": "req3",
+                "existing_source_span": "315.17–18",
+                "direct_paragraph_lines": "315.17–18; L119–L122",
+                "related_criteria": [
+                  "crit6",
+                  "crit7",
+                  "crit8"
+                ]
+              }
+            ],
+            "note": "req2와req3의 source_span은 각 요구의 직접 담당 문단을 가리킨다. 두 requirement의 source_quote는 공유 문맥인315.16–18 전체이며, 그 전체 인용의 실제 위치는 L115–L122이다. 직접 담당 문단과 공유 인용 전체의 위치를 구별하며, 공유 인용을 잘라내거나 요구·배점을 추가하지 않는다."
+          }
+        ],
+        "edition_evidence": {
+          "paragraph": "KGA315.10",
+          "source_span": "cpa_uploader/data/official/kga315-330-2025-review06.txt; L8–L10",
+          "source_quote": "10. 이 감사기준서는 2026년 1월 1일 이후 개시하는 보고기간의 재무제표에 대한 감사부터 시\r\n행하며, 2025 년 1월 1일 이후 개시하는 보고기간의 재무제표에 대한 감사에 조기적용 할 \r\n수 있다.  ",
+          "source_quote_sha256": "7adfb3e815377ee30461c23debd555d523977131a41d521baea297d51aa13e1c",
+          "note": "이 기존 배치의 적용 전제는2026-01-01개시 보고기간이며,315.10은2026-01-01이후 개시 보고기간부터 시행을 정한다. 보존2025/2026 전문의315.10·14·16–18을 공백·PDF페이지 표지 차이를 구분해 대조했으며 본문이 같다. 이는 기존 edition_assumption의 근거를 명료화하는 것이고,2027시험의 최종 별도 판본 지정을 확정하지 않는다."
+        }
+      }
+    }
+  ],
+  "inverse_patch": [
+    {
+      "op": "remove",
+      "path": "/metadata/source_location_and_edition_clarification"
+    }
+  ],
+  "inverse_deep_equal": true,
+  "bank_or_requirement_changes": [],
+  "source_ref_changes": [],
+  "question_answer_criteria_points_changes": [],
+  "rationale": "내용·원문 위치 미확보는 발견하지 않았다. 카탈로그 범위 포함·직접 담당 문단과 공유 인용 범위·명시 판본 전제라는 기존 정보를 구분하고, 같은 원문315.10의 시행 근거를 계획에 명료화한다. 기존 fail/uncertain을 pass로 바꾸지 않는다."
+}

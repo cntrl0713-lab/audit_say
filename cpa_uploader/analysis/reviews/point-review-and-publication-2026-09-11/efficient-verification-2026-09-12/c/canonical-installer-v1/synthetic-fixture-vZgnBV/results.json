@@ -1,0 +1,58 @@
+{
+  "scope": "Synthetic files only; no actual bank validation, publication, model API or DB invocation",
+  "results": [
+    {
+      "name": "Five synthetic files restored byte-exact through production writer under publication lock",
+      "pass": true
+    },
+    {
+      "name": "Four installed / catalog untouched can roll back all five safely",
+      "pass": true
+    },
+    {
+      "name": "One foreign edit refuses every rollback write and preserves all current bytes",
+      "pass": true
+    },
+    {
+      "name": "Missing or unknown partial file refuses rollback",
+      "pass": true
+    },
+    {
+      "name": "Changed real-path declaration refuses restoration",
+      "pass": true
+    },
+    {
+      "name": "Production writer stale guard leaves synthetic originals unchanged",
+      "pass": true
+    },
+    {
+      "name": "Publication lock refuses second installer and preserves lock owner",
+      "pass": true
+    },
+    {
+      "name": "Synthetic synchronous error triggers byte rollback before lock release",
+      "pass": true
+    },
+    {
+      "name": "Non-lossless UTF-8 original is not transcoded during rollback",
+      "pass": true
+    },
+    {
+      "name": "Child canonical path scope overrides prior staging and never mutates parent env",
+      "pass": true
+    },
+    {
+      "name": "Installer defaults dry-run and rejects apply/options without exact completion SHA",
+      "pass": true
+    },
+    {
+      "name": "Only a fresh child of root-owned canonical-install-v1 can be selected",
+      "pass": true
+    }
+  ],
+  "passed": 12,
+  "failed": 0,
+  "actual_bank_writes": 0,
+  "api_calls": 0,
+  "db_calls": 0
+}

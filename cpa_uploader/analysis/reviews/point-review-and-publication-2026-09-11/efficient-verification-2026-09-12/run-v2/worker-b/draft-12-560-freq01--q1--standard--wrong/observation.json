@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "draft-12-560-freq01--q1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-12-560-freq01--q1--standard",
+  "source_set_id": "draft-12-560-freq01",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "q1"
+  ],
+  "projected_body_hash": "334b95f3d6c492d7168327ef0276458322ad15500f354401169bdf786783f622",
+  "answers": {
+    "q1": "법규가 일부 수정만 하는 것을 금지해도 경영진이 원하면 해당 사건만 수정할 수 있다.\n승인권자가 재무제표 전체를 다시 승인해야만 하는 경우에도 승인 범위를 한정할 수 있는 것으로 본다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "q1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "q1.c1",
+          "verdict": "contradicted",
+          "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+        },
+        {
+          "criterion_id": "q1.c2",
+          "verdict": "contradicted",
+          "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "e7ab293de908b257941fd216eec6ca39c675ba4bc780e490d4c8d7a90eabaae0",
+  "schema_hash": "ed989f6ce58ae6e683984be2f7e3d1bec81407d68af1586db1f49a540297e495",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "q1",
+        "verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "contradicted",
+            "quote": "법규가 일부 수정만 하는 것을 금지해도 경영진이 원하면 해당 사건만 수정할 수 있다.\n",
+            "reason": "법규가 일부 수정만 하는 것을 금지해도 수정할 수 있다고 명시하여 허용 조건을 반대로 서술했다."
+          },
+          {
+            "criterion_id": "q1.c2",
+            "verdict": "contradicted",
+            "quote": "승인권자가 재무제표 전체를 다시 승인해야만 하는 경우에도 승인 범위를 한정할 수 있는 것으로 본다.",
+            "reason": "재무제표 전체 재승인이 필요한 경우에도 승인 범위를 한정할 수 있다고 하여 승인 허용 조건을 반대로 서술했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "q1",
+            "verdicts": [
+              {
+                "criterion_id": "q1.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q1/e1"
+                ],
+                "reason": "법규가 일부 수정만 하는 것을 금지해도 수정할 수 있다고 명시하여 허용 조건을 반대로 서술했다."
+              },
+              {
+                "criterion_id": "q1.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q1/e2"
+                ],
+                "reason": "재무제표 전체 재승인이 필요한 경우에도 승인 범위를 한정할 수 있다고 하여 승인 허용 조건을 반대로 서술했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-12-560-freq01",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "q1",
+        "prompt": "후속사건에 대한 감사절차를 재무제표의 해당 수정사항에만 한정할 수 있으려면, 법규나 재무보고체계상 경영진의 수정과 재무제표 승인권자의 승인에 관하여 어떤 조건을 충족해야 하는지 모두 제시하시오.",
+        "user_answer": "법규가 일부 수정만 하는 것을 금지해도 경영진이 원하면 해당 사건만 수정할 수 있다.\n승인권자가 재무제표 전체를 다시 승인해야만 하는 경우에도 승인 범위를 한정할 수 있는 것으로 본다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "contradicted",
+            "quote": "법규가 일부 수정만 하는 것을 금지해도 경영진이 원하면 해당 사건만 수정할 수 있다.",
+            "reason": "법규가 일부 수정만 하는 것을 금지해도 수정할 수 있다고 명시하여 허용 조건을 반대로 서술했다.",
+            "claim": "경영진이 해당 후속사건 영향에만 한정하여 수정하는 것이 허용되어야 한다. 이 발문 문맥에서는 “수정할 수 있어야 한다”도 법규·재무보고체계상 금지되지 않음을 표현한 정답으로 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "q1.c2",
+            "verdict": "contradicted",
+            "quote": "승인권자가 재무제표 전체를 다시 승인해야만 하는 경우에도 승인 범위를 한정할 수 있는 것으로 본다.",
+            "reason": "재무제표 전체 재승인이 필요한 경우에도 승인 범위를 한정할 수 있다고 하여 승인 허용 조건을 반대로 서술했다.",
+            "claim": "승인권자가 해당 수정사항에만 한정하여 승인하는 것이 허용되어야 한다. 이 발문 문맥에서는 “승인도 한정할 수 있어야 한다”도 법규·재무보고체계상 금지되지 않음을 표현한 정답으로 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진이 재무제표 수정을 발생시키는 후속사건의 영향에 대해서만 재무제표를 수정하는 것이 법규나 재무보고체계에서 금지되지 않아야 한다.",
+          "재무제표 승인권자가 그 수정사항에 대해서만 승인하는 것이 법규나 재무보고체계에서 금지되지 않아야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "q1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0bbbfd268d435b9a016aa4d02f461487d0a3b89e096d89186f",
+        "request_id": "req_14fc78e1a7b547ea81ffe66f5598bcb2",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2942,
+          "input_tokens_details": {
+            "cache_write_tokens": 2939,
+            "cached_tokens": 0
+          },
+          "output_tokens": 220,
+          "output_tokens_details": {
+            "reasoning_tokens": 49
+          },
+          "total_tokens": 3162
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00099935,
+        "min_usd": 0.00099935,
+        "max_usd": 0.00099935,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/draft-12-560-freq01--q1--standard--wrong/input.json",
+      "sha256": "bb87a096fc19e9f7661fb2c712e05924943c5f96f8b07e68990ec0d1a2cb597a"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/draft-12-560-freq01--q1--standard--wrong/transport.jsonl",
+      "sha256": "f5bf8ab90eaa1472d65b226c89207245ab303d8098f27045fbad046a2c48fcc8"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/draft-12-560-freq01--q1--standard--wrong/traces.jsonl",
+      "sha256": "4d5ac7b4c48dfc69f0d4367b86b032f6140fb35e735638c2245d3511b299ec72"
+    }
+  }
+}

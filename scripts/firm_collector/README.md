@@ -1,9 +1,9 @@
 # firm_collector — 회계법인 리서치 데이터 수집기 (M1)
 
-`docs/PLAN_PRD_v2.md` §4 의 수집 설계를 구현한 연 1회 배치다.
-적재 대상 스키마는 `docs/firm-platform-schema.md` 를 본다.
+`docs/auditsay-v2-통합-기획-PRD-문서.md` §4 의 수집 설계를 구현한 연 1회 배치다.
+적재 대상 스키마는 `docs/회계법인-리서치-플랫폼-스키마-설계-기록.md` 를 본다.
 
-실제 적재 테이블은 `cpa_firm_*`다. 연간 RPC와 캐시 payload의 `tables.firm_*` 키는 기존 계약을 유지하고 DB 접근 시 새 이름으로 연결한다. [테이블 이름과 호환 규칙](../../docs/cpa-table-prefix.md)을 참고한다.
+실제 적재 테이블은 `cpa_firm_*`다. 연간 RPC와 캐시 payload의 `tables.firm_*` 키는 기존 계약을 유지하고 DB 접근 시 새 이름으로 연결한다. [테이블 이름과 호환 규칙](../../docs/프로젝트-테이블-cpa-접두어-전환.md)을 참고한다.
 
 ---
 

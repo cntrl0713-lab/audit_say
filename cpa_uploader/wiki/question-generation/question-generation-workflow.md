@@ -1,7 +1,7 @@
 ---
 title: 출처 기반 문제 생성 워크플로
 created: 2026-08-07
-updated: 2026-09-09
+updated: 2026-09-12
 type: guide
 status: reviewed
 review_required: false
@@ -30,7 +30,7 @@ confidence: high
 
 concept와 세트 색인의 정본 명제는 원자료 확인 전에는 확정 정답으로 취급하지 않는다. 통합학습자료는 탐색·대조 계층이며 공식 발췌가 없는 주제의 fallback 사용은 검토 메모에 남긴다. 해당 `topics/topic-XX-design.md`의 주체·조건·예외·시점 지침도 함께 읽는다.
 
-공식 시험 적용 공고와 국내 기준서 본문·부칙을 먼저 확인한다. 로컬 통합본·wiki는 탐색 자료다. 2027년의 2026년 시행 기준 동일 적용은 기존 작업 가정이며, 개정220의 보고기간 기준 시행과 시험 적용은 [별도 메모](../../../docs/reports/question-review-2027/kga220-effective-date-note.md)로 구분한다.
+공식 시험 적용 공고와 국내 기준서 본문·부칙을 먼저 확인한다. 로컬 통합본·wiki는 탐색 자료다. 2027년의 2026년 시행 기준 동일 적용은 기존 작업 가정이며, 개정220의 보고기간 기준 시행과 시험 적용은 [별도 메모](../../../docs/archive/과거-검토-증거/reports/question-review-2027/개정-감사기준서-220-시행일-별도-기록.md)로 구분한다.
 
 ## 3. 발문만 보고 요구사항 추출
 
@@ -48,7 +48,7 @@ concept와 세트 색인의 정본 명제는 원자료 확인 전에는 확정 �
 
 각 요구사항은 원문에 존재하는 `source_quote`를 가져야 한다.
 
-원문에 일부 선택·초과 항목 제한이 있으면 과거 요구로 기록하고 [확정 수정 정책](../../../docs/plans/question-review-01-03-remediation.md)에 따라 범위를 명확히 한 모두 작성 발문으로 전환한다. 원문 인용 자체는 고쳐 쓰지 않는다.
+원문에 일부 선택·초과 항목 제한이 있으면 과거 요구로 기록하고 [확정 수정 정책](../../../docs/plans/주제-01-03-검토에-따른-수정-결정.md)에 따라 범위를 명확히 한 모두 작성 발문으로 전환한다. 원문 인용 자체는 고쳐 쓰지 않는다.
 
 ## 4. 관련 물음 묶기
 
@@ -94,7 +94,7 @@ ID는 정본과 미편입 JSON·체크포인트를 조회하여 배정한다. �
 ### 신규 초안 편입과 게시 순서
 
 1. `npx tsx cpa_uploader/validate_draft_v3.ts --file <draft.json> --against-bank`로 검증한다. 정본이 없으면 실패하며, 편입 전 신규 초안에 사용한다.
-2. `npx tsx --env-file=.env.local cpa_uploader/review_question_draft_v3.ts --file <draft.json> --grade-cases --output <review.json>`으로 별도 의미검수와 실제 사례 채점을 실행한다. 의미검수 모델 설정과 별도로 실제 채점은 CPA_GRADING_MODEL을 따르며 API 호출이 발생한다. draft 옆의 계획·패킷 sidecar는 자동으로 읽고 별도 파일은 `--plan`, `--packet`으로 지정한다. 수동 의미 대조를 먼저 하는 경로는 [[source-authoring-design]]을 따른다.
+2. 현재 기본 경로는 [공통 비용 통제 계약](../../../.agents/skills/audit-question-review/references/cost-controlled-verification.md)에 따른 agent의 전수 내용·출처·배점 검토와 실제 Luna 대표 채점이다. 해당 경로는 실제 원응답과 사전 선정·내용검토 증거를 묶어 `--efficient-review <batch.json>`으로 승급한다. 95%·±1점은 채점 일관성만 평가하며 내용 오류는 허용하지 않는다. 아래 3~5의 기준별 전수 API receipt 절차는 이 경로 대신 **기준별 전수검사 경로를 선택한 경우** 적용한다. 그 경우 `npx tsx --env-file=.env.local cpa_uploader/review_question_draft_v3.ts --file <draft.json> --grade-cases --output <review.json>`으로 실행하고 기존 엄격한 계약을 유지한다.
 3. 모든 물음·criterion의 의미 대조, criterion당 다섯 사례와 빈 답안의 실제 채점·인용 검증·점수를 사람이 원문·판본·조건에 비추어 확인한다. 의미검수만 pass인 receipt는 grading.status=not_run이며 승급할 수 없다. 완료된 의미검수는 `--review-input <의미검수.json> --grade-cases --output <다른 review.json>`으로 실제 채점을 이어간다. completed 표시뿐 아니라 모든 기대 판정과 기록 점수의 코드 재현이 일치해야 한다. 그 통과도 정확성 보증은 아니며 실제 사람 검수 근거를 기록한다.
 4. 검수한 초안을 정본에 편입한 뒤 `npm run questions:v3:validate:authoring`으로 public 갱신 전 전체 정본·출처·장부를 검사한다. 의미검수 이후 비교 은행이나 배치가 달라졌다면 현재 비교 대상을 반영한 새 receipt가 필요하다.
 5. `npx tsx cpa_uploader/promote_cpa_v3.ts --to verified --sets <ID> --review <review.json> --evidence "실제 사람 검수 기록"`을 실행한다. 의미검수 pass와 실제 사례 채점·점수 재현 검증을 통과한 receipt가 필요하다. status와 review_status를 함께 갱신하고 내용 해시·receipt·검수 요약을 장부에 기록한다.
@@ -102,7 +102,9 @@ ID는 정본과 미편입 JSON·체크포인트를 조회하여 배정한다. �
 7. `npm run questions:v3:compile` 후 `npm run questions:v3:validate`로 암호화본·공개본과 정본의 일치를 확인한다.
 8. `npm run wiki:build` 후 `npm run wiki:check`로 생성 색인을 동기화한다.
 
-내용 해시·receipt가 기록된 문항은 기록 이후 문항·출처 파일·등록 메타데이터의 불일치를 검사한다. 사례나 채점 코드 해시가 달라졌다면 실제 사례 채점도 재실행한다. 실제 재검수를 마친 기존 verified/published 대상은 `npx tsx cpa_uploader/promote_cpa_v3.ts --reverify --to verified --sets <ID> --review <새 review.json> --evidence "새 검수 기록"`으로 근거를 기록하고 다시 게시·컴파일한다. 기존 96세트의 무해시 소급 장부는 읽기 호환을 유지하므로 과거 검수 내용과 현재 내용의 동일성이나 모든 변경의 탐지를 보장하지 않는다. 기존 문항 수정도 실제 재검수와 실제 사례 채점을 완료한 새 receipt로 기록한다. `--backfill-verified`는 기존 기록 확인용이며 신규 승인을 만들지 않는다.
+내용 해시·검수 근거가 기록된 문항은 기록 이후 문항·출처 파일·등록 메타데이터의 불일치를 검사한다. 비용 통제 경로의 기존 verified/published 수정은 [공통 계약](../../../.agents/skills/audit-question-review/references/cost-controlled-verification.md)에 따라 내용 검토·대표 채점의 동일성과 재사용 가능성을 확인하고 `--reverify --efficient-review <batch.json>`으로 새 근거를 기록한다. 변경한 답안 계약이나 기대값을 해시만 바꾸어 재사용하지 않는다.
+
+**기준별 전수검사 경로를 선택한 경우**에는 사례나 채점 코드 해시가 달라지면 해당 경로의 실제 사례 채점도 재실행한다. 실제 재검수를 마친 기존 verified/published 대상은 `npx tsx cpa_uploader/promote_cpa_v3.ts --reverify --to verified --sets <ID> --review <새 review.json> --evidence "새 검수 기록"`으로 근거를 기록하고 다시 게시·컴파일한다. 기존 문항 수정도 이 경로의 실제 재검수와 실제 사례 채점을 완료한 새 receipt로 기록한다. 기존 96세트의 무해시 소급 장부는 읽기 호환을 유지하므로 과거 검수 내용과 현재 내용의 동일성이나 모든 변경의 탐지를 보장하지 않는다. `--backfill-verified`는 기존 기록 확인용이며 신규 승인을 만들지 않는다.
 
 ## 10. 검증·수정과 wiki 동기화
 

@@ -1,0 +1,80 @@
+{
+  "finding_id": "N01-QA-004",
+  "recorded_at": "2026-09-11T02:20:04.107006+00:00",
+  "set_id": "pilot-01-005",
+  "case_id": "sub2/opposite-crit3",
+  "classification": "author_expected_verdict_error_due_to_explicit_two_proposition_negation",
+  "answer": "회계법인 매출 비중만으로 사업관계를 유지한 수임을 허용한 판단은 적절하다.",
+  "same_request_schema_model": true,
+  "observations": [
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-01-005/author-qa-01/case-0025-attempt-1.json",
+      "sha256": "673e5723cca8ac80b5b3125b423aea27325316f35547df77f4bfa4190695bbe6",
+      "score": 0,
+      "security_flag": "none",
+      "actual_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "quote": "회계법인 매출 비중만으로 사업관계를 유지한 수임을 허용한 판단은 적절하다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "quote": "회계법인 매출 비중만으로 사업관계를 유지한 수임을 허용한 판단은 적절하다."
+        }
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-01-005/author-qa-01/case-0025-attempt-2.json",
+      "sha256": "826449a0698b393b3926a6286b45390e37ac2802401c04651befa593d6a2d0b2",
+      "score": 0,
+      "security_flag": "none",
+      "actual_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "quote": "회계법인 매출 비중만으로 사업관계를 유지한 수임을 허용한 판단은 적절하다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "quote": "회계법인 매출 비중만으로 사업관계를 유지한 수임을 허용한 판단은 적절하다."
+        }
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-01-005/author-qa-01/case-0025-attempt-3.json",
+      "sha256": "47ec0787b4c3cc4d212a5fc7bfdc09cd644e216e945e4c5a0f612b0f9cfeb886",
+      "score": 0,
+      "security_flag": "none",
+      "actual_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "quote": "회계법인 매출 비중만으로 사업관계를 유지한 수임을 허용한 판단은 적절하다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "quote": "회계법인 매출 비중만으로 사업관계를 유지한 수임을 허용한 판단은 적절하다."
+        }
+      ]
+    }
+  ],
+  "direct_source": "윤리기준290.132: 재무적 이해관계가 회계법인과 의뢰인 모두에게 중요하지 않고 관계가 명백하게 경미해야 한다는 예외",
+  "analysis": "원반대답안은 결론만 적절하다고 하지 않고 회계법인 매출 비중만으로 사업관계를 유지한 수임을 허용한다는 이유를 명시한다. 이는 crit3 판단과 더불어 crit4의 양쪽 중요성 조건에 대한 명시적인 반대다. 따라서 crit4 not_met 사전기대값이 문장에 실제로 있는 반대 주장을 무시했다. 관측은 세 번 모두 crit3/crit4 contradicted이며 점수0·보안없음이다. T02-A의 문맥적 함축만 있는 사례보다 직접적인 조건 부정으로 판단한다.",
+  "proposal": {
+    "requires_coordinator_acceptance": true,
+    "question_or_plan_change": false,
+    "answer_change": false,
+    "expected_verdict_change": {
+      "criterion_id": "crit4",
+      "before": "not_met",
+      "after": "contradicted"
+    },
+    "expected_points": 0,
+    "reason": "회계법인 쪽 매출 비중만으로 판단한다는 원답안의 명시조건이 양쪽에 중요하지 않아야 한다는 윤리290.132 예외와 반대이므로 두 명제 동시반대 사례로 기대값을 정정한다. 원QA와3회실측은보존하고독립후속QA sidecar로원문근거를연결한다.",
+    "alternative": "순수 판단명제의 반대만 따로 검사하려면 이유를 빼고 수임 결론이 적절하다고만 서술하는 별도후속답안이 가능하다. 현행원답안을삭제할필요는없다."
+  }
+}

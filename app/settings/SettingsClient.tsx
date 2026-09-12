@@ -137,7 +137,7 @@ export default function SettingsClient() {
                         <div><label htmlFor="settings-password" className="mb-1.5 block text-sm">비밀번호</label>
                             <input id="settings-password" type="password" autoComplete="current-password" required value={password} disabled={busy}
                                 onChange={(event) => setPassword(event.target.value)} className="w-full rounded-md border border-card-border px-3 py-2.5 text-sm" /></div>
-                        <div className="flex items-center gap-4"><button disabled={busy} className={`${buttonStyle} bg-primary text-white hover:bg-primary-hover`}>{busy ? '로그인 중…' : '로그인'}</button>
+                        <div className="flex items-center gap-4"><button disabled={busy} className={`${buttonStyle} bg-primary text-primary-foreground hover:bg-primary-hover`}>{busy ? '로그인 중…' : '로그인'}</button>
                             <Link href="/" className="text-sm text-foreground/60 underline underline-offset-4">회원가입</Link></div>
                     </form>
                 </section>
@@ -174,7 +174,7 @@ export default function SettingsClient() {
                                     </label> : <p className="mt-3 text-success">현재 동의 내용으로 신청한 기록이 있습니다.</p>}
                                 </div>
                                 <div className="flex flex-wrap gap-3">
-                                    <button type="submit" disabled={busy || !canSave} className={`${buttonStyle} bg-primary text-white hover:bg-primary-hover`}>
+                                    <button type="submit" disabled={busy || !canSave} className={`${buttonStyle} bg-primary text-primary-foreground hover:bg-primary-hover`}>
                                         <Save className="h-4 w-4" aria-hidden="true" />{busy ? '처리 중…' : '설정 저장'}</button>
                                     {status.saved && <button type="button" onClick={() => updateSubscription(true)} disabled={busy} className={buttonStyle}>
                                         <Trash2 className="h-4 w-4" aria-hidden="true" />설정 삭제</button>}

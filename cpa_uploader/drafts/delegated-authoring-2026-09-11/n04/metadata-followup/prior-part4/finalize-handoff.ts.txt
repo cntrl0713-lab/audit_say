@@ -1,0 +1,52 @@
+/** N04 no-call handoff evidence; writes this package only. */
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {readPendingDrafts,draftConflicts} from '../../../questionDraftInventory.ts';
+import {buildSourceCatalog} from '../../../questionSourceCatalog.mjs';
+const base=path.resolve('cpa_uploader/drafts/delegated-authoring-2026-09-11/n04');
+const read=(f:string)=>JSON.parse(fs.readFileSync(f,'utf8'));
+const sha=(f:string)=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const rel=(f:string)=>path.relative(process.cwd(),f).replaceAll('\\','/');
+const write=(f:string,v:any)=>fs.writeFileSync(path.join(base,f),JSON.stringify(v,null,2)+'\n');
+const lineage=read(path.join(base,'lineage.json')),check=read(path.join(base,'static-check.json'));
+if(check.errors.length||check.review_preparation_issues.length)throw Error('Static gate failed');
+const sets=lineage.sets.map((s:any)=>read(s.actual_file)),ids=new Set(sets.map((s:any)=>s.id));
+const excluded:any[]=[];
+for(const p of ['n02','n03']){const file=`cpa_uploader/drafts/delegated-authoring-2026-09-11/${p}/draft-manifest.json`,r=read(file);if(!r.sets.every((s:any)=>typeof s.set_id==='string'&&typeof s.file==='string'&&!s.subquestions&&fs.existsSync(s.file)))throw Error('Unexpected manifest content');excluded.push({file,sha256:sha(file),reason:'세트 파일·계획·해시를 가리키는 제작 장부이며 문항 본문이 아님',keys:Object.keys(r)});}
+for(const phase of ['engine-final','engine-r1','engine-r2']){const dir=`cpa_uploader/drafts/frequency-priority-2026-09-10/semantic-review/${phase}`;for(const name of fs.readdirSync(dir).filter(n=>/\.(?:chunks|error)\.json$/u.test(n))){const file=path.join(dir,name),r=read(file);if(!Array.isArray(r.events)&&!(typeof r.error==='string'&&'completed_units'in r))throw Error('Unexpected review artifact');excluded.push({file:rel(file),sha256:sha(file),reason:r.events?'과거 모델 실행 이벤트 로그':'과거 모델 실행 오류 로그',keys:Object.keys(r)});}}
+write('inventory-exclusions.json',{initial_failure:'readPendingDrafts(data+drafts) rejected n02/draft-manifest.json as a malformed draft/checkpoint. No model call. Metadata files were read and explicitly excluded; no source file renamed or modified.',excluded});
+const globalDrafts=readPendingDrafts(process.cwd(),path.resolve('cpa_uploader/drafts'),excluded.map(e=>e.file));
+const errors:string[]=[];
+for(const id of ids)if(globalDrafts.filter(s=>s.id===id).length!==1)errors.push('Global inventory duplicate/missing '+id);
+errors.push(...draftConflicts(sets,globalDrafts.filter(s=>!ids.has(s.id))));
+const catalog=buildSourceCatalog(),relations=read(path.join(base,'coverage-proposal.json')).relationships;
+const elements=read('cpa_uploader/analysis/question-elements/question-elements.json');
+for(const r of relations){
+ if(!elements.elements.some((e:any)=>e.id===r.element_id))errors.push('Missing element '+r.element_id);
+ for(const id of r.source_unit_ids)if(!catalog.units.some(u=>u.id===id))errors.push('Missing source '+id);
+ const s=read(r.target.file),q=s.subquestions.find((q:any)=>q.id===r.target.subquestion_id);
+ if(s.id!==r.target.set_id||!q)errors.push('Missing relation target');
+ for(const id of r.target.criterion_ids)if(!q.criteria.some((c:any)=>c.id===id))errors.push('Missing criterion '+id);
+ for(const f of Object.values(r.evidence) as string[])if(!fs.existsSync(f))errors.push('Missing evidence '+f);
+}
+const cli=lineage.sets.map((s:any)=>({file:s.actual_file,sha256:sha(s.actual_file),command:`node --import tsx cpa_uploader/validate_draft_v3.ts --file ${s.actual_file} --against-bank`,output:execFileSync(process.execPath,['--import','tsx','cpa_uploader/validate_draft_v3.ts','--file',s.actual_file,'--against-bank'],{encoding:'utf8'})}));
+write('cli-validation.json',{recorded_at:new Date().toISOString(),phase:'static_only',model_calls:0,results:cli});
+write('inventory-and-relations-check.json',{recorded_at:new Date().toISOString(),model_calls:0,global_inventory_raw_sets:globalDrafts.length,global_inventory_unique_ids:new Set(globalDrafts.map(s=>s.id)).size,policy:'data+drafts 명시 탐색. 역사본·사본 포함의 원자료 수이며 전역 활성 세트 수가 아니다. 실제 의미검수 비교은행은 총괄이 선택·고정한다.',n04_inventory_ids:globalDrafts.filter(s=>ids.has(s.id)).map(s=>s.id),other_topic11_13:globalDrafts.filter(s=>!ids.has(s.id)&&['11','13'].includes(s.classification?.topic_id)).map(s=>({set_id:s.id,title:s.title})),unclassified_inventory_ids:globalDrafts.filter(s=>!s.classification).map(s=>s.id),relationship_rows:relations.length,errors});
+if(errors.length)throw Error(errors.join('\n'));
+lineage.stage='draft_ready';
+for(const s of lineage.sets){s.stage='draft_ready';s.evidence_sha256=sha(s.evidence_file);s.sha256=sha(s.actual_file);s.plan_sha256=sha(s.plan_file);s.qa_sha256=sha(s.qa_file);s.semantic_review='not_run';s.live_grading='not_run';}
+write('lineage.json',lineage);
+const source='cpa_uploader/data/official/delegated-n04-kga-2025.txt';
+const files=['lib/questionV3.ts','lib/questionV3Grading.ts','cpa_uploader/questionSemanticReview.ts','cpa_uploader/questionAuthoringPlan.ts','cpa_uploader/questionDraftInventory.ts','cpa_uploader/questionBankPublication.ts','cpa_uploader/questionSourceCatalog.mjs','cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/edition-policy.md','cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/runtime-settings.json','cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/id-ledger.json','cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/comparison-initial.json'];
+write('execution-inputs.json',{recorded_at:new Date().toISOString(),phase:'draft_ready_no_model',model_calls:0,source_file:source,source_sha256:sha(source),bank_sha256:check.bank_sha256,preflight_input_budget_chars:400000,openai_api_key_present:!!process.env.OPENAI_API_KEY,review_model_env_present:!!process.env.CPA_REVIEW_MODEL,model_policy:'총괄 현행 앱 기본 gpt-5.6-luna. 이 단계에서 임의 모델 선택·호출 없음.',input_hashes:files.map(file=>({file,sha256:sha(file)}))});
+const rows=lineage.sets.map((s:any)=>`| ${s.plan_id} | ${s.set_id} | 공식2025/2026 대조·조건에 따른2025 | \`${s.sha256}\` | 오류0 | 미실행 | 0 / 미실측 | 최종49 고정 후2차 | [초안](${path.basename(s.actual_file)}) · [QA](${path.basename(s.qa_file)}) |`).join('\n');
+const chars=check.per_set.map((s:any)=>s.review_preparation.request_chars.toLocaleString('en-US'));
+const text=`# N04 1차 인계\n\n**draft_ready: 신규3세트·9물음·53점·작성자 QA214사례.** 실제 의미검수·모델채점·정본 반영은 미실행이다. 사용자 승인된 전체 제작 범위 중1차 인계이며 제작 완료 선언이 아니다.\n\n| 계획 ID | 실제 ID | 출처·판본 | 초안 버전·SHA-256 | 정적검사 | 의미검수 | 실제 채점 사례 수·불일치 | 남은 일 | 증거 경로 |\n|---|---|---|---|---|---|---|---|---|\n${rows}\n\n총괄49행 ID 장부의 N04/T11-A·T11-B·T13-A 배정에 대응한다. [lineage](lineage.json)는 실제 파일·version1계획·QA·수동근거 파일의 최신 해시와9개 계획물음 대응을 보존한다. 문항 상태는needs_review/needs_human_review다.\n\n배점은31→53점(+22), 세트별18/16/19점이다. 잠정 상한 없이 실제 독립 요구를 분리하라는 총괄 지시에 따라 방법·가정·데이터의 선택/적용, 요청/대응평가, 미비점평가/존재시전달, 서로 다른 평가대상과 독립 속성을 분리했다. 권한부여·승인은 A40~A41과 현재 사례에 별도 승인단계/주체가 없으므로 권한 있는 거래승인 증거라는 한 행위로 유지했다. [변경표](design-changes.json)에9물음 전수명제를 기록했다. T13의 지문·발문에서 회상해야 할3특성 목록을 미리 주지 않도록 수정했고, T11의 판단 문장에 다른criterion의 선택·적용 답이 그대로 남아 가짜 누락을 만드는 표현도 제거했다.\n\n[정적 결과](static-check.json), [CLI 실제 결과](cli-validation.json), [전역 탐색·관계제안 검사](inventory-and-relations-check.json)는 오류0이다. 현재정본+N04 메모리 검증, exact quote, registered src ID·계획·정수합계·QA해시·53criterion별 경계범위·비어있지않은not_met, 명시적data+drafts탐색 및 준비비교본과 동일ID/발문 충돌을 확인했다. 전체49의 의미적 중복검수 결과는 아니다.\n\n400,000자 명시 한도에서 준비용111세트+N04로 무호출 의미검수 입력을 준비했다. 순서대로 ${chars.join(' / ')}자이며 공식 등록 메타데이터가 모두 확인됐다. 기본160,000자 예산을 공용으로 바꾸거나 비교본문을 줄이지 않았다. 최종49 비교본을 받으면 다시 준비한다. API 호출은0회이며 의미검수 receipt나 실제채점결과는 만들지 않았다.\n\n공식 등록파일 \`${source}\` SHA-256은 \`${sha(source)}\`다.86등록단위 중 양판본74문단은 공백제거기준같고12개는 표현·각주·품질관리체계가 다르다. [공식 증거](sources/official-investigation.json)와 [차이](sources/edition-differences.json), [등록단위](sources/registered-catalog.json)를 인계한다. 620 정합수정의 별도일괄 시행공고까지 확보했다는 주장을 하지 않고, 개정체계 선제적용을 하지 않는2026보고기간의 종전품질관리 사례로 정답범위를 한정했다. 시스템 동의표현은 허용하며 외부전문가 항상미적용을 추가점수로 두지 않는다.\n\n540.27/29의 정답을 좌우하는265 전달범위와540.A139~A144 문맥은 추가로 공식PDF에서 직접 읽어 [의존문맥](sources/dependency-context.json)에 보존했고 실제plan의scope.exceptions에 원문을 넣었다. 이 추가문맥은 별도 등록source ID를 꾸며내지 않은 수동계획 근거이며 상세 커뮤니케이션 방식·의견·계산을 숨은 요구로 만들지 않는다.\n\n수동제작이므로 각초안의version1계획을--plan으로, 총괄고정비교본을--bank로 전달한다. evidence-packet 파일은 생성기패킷이 아니므로--packet으로 넣지 않는다. 실제 source_refs·requirement·plan이 모델에 들어가는 경로를 준비했으며 독립 장부파일이 자동입력된다고 가정하지 않는다.\n\n[빈도 증거](frequency-evidence.json)는10요소의 실제 기출/모의/연습/OX·원발문·공통지문·재수록을 분리한다. [coverage 제안](coverage-proposal.json)의10관계는 실제draft/criterion/src ID를 사용하고 모두needs_review다. 최종content 의미대조와snapshot·공통links통합은총괄소유다. A302해설까지확인하여범위의기계적상한으로잘못읽지않았고, 선택형기출을완전열거로확대한부분은각명제의직접빈도로세지않았다.\n\n[S02/S03 인계](s02-s03-handoff.md)에 전문가·내부감사·서비스조직의주체와500/620경계를전달한다. [후속메모](phase2-followups.md)는N04실측요건과총괄이전달한R01/N05 QA보완사항을보존한다. 해당패키지원본은수정하지않았다.\n\n키는node --env-file=.env.local에서존재만확인했고값은기록하지않았다. 실제모델은총괄현행기본gpt-5.6-luna정책을이어받는다. [실행입력](execution-inputs.json)은인계당시코드·정책·원문해시이며2차실제실행시다시고정한다. 이단계의쓰기범위는n04/뿐이다. 정본·공개본·기존배치원본·공용source·coverage·wiki수정은하지않았다.\n`;
+fs.writeFileSync(path.join(base,'handoff.md'),text);
+const readme=path.join(base,'README.md');fs.writeFileSync(readme,fs.readFileSync(readme,'utf8').replace('298,467 / 264,671 / 319,802',chars.join(' / ')));
+let links=0;for(const file of fs.readdirSync(base).filter(f=>f.endsWith('.md'))){const t=fs.readFileSync(path.join(base,file),'utf8');for(const m of t.matchAll(/\]\(([^)]+)\)/gu)){let dest=m[1].split('#')[0];if(!dest||/^[a-z]+:/iu.test(dest))continue;links++;if(!fs.existsSync(path.resolve(base,dest)))errors.push('Missing link '+file+' '+dest);}}
+write('handoff-check.json',{recorded_at:new Date().toISOString(),local_markdown_links:links,sets:sets.length,questions:sets.reduce((n:number,s:any)=>n+s.subquestions.length,0),points:check.points,qa:check.qa_cases,errors,source_sha256:sha(source),bank_sha256:check.bank_sha256});
+if(errors.length)throw Error(errors.join('\n'));
+console.log(JSON.stringify({stage:lineage.stage,sets:3,questions:9,points:check.points,qa:check.qa_cases,links,errors,hashes:lineage.sets.map((s:any)=>({id:s.set_id,sha256:s.sha256}))}));

@@ -1,0 +1,837 @@
+{
+  "created_at": "2026-09-11T02:50:29.918Z",
+  "model": "gpt-5.6-luna",
+  "question_set": {
+    "schema_version": "3.0",
+    "id": "draft-09-501-freq01",
+    "type": "linked_question_set",
+    "status": "needs_review",
+    "title": "재무제표일과 다른 날짜의 재고실사 및 재고변동 통제",
+    "classification": {
+      "topic_id": "09",
+      "part": "PART3",
+      "chapter": "특정항목 감사증거",
+      "domain": "audit",
+      "standards": [
+        "KGA 501"
+      ],
+      "tags": [
+        "요구사항별 기출빈도",
+        "보완 출제",
+        "검토 전 초안"
+      ]
+    },
+    "source_refs": [
+      {
+        "id": "src1",
+        "file": "cpa_uploader/data/official/delegated-r01-kga-2025.txt",
+        "title": "KGA 501 문단/보론 5; 2025 개정 PDF 391쪽",
+        "page": "KGA 501",
+        "role": "standard",
+        "source_quote": "5. \n재고자산 실사가 재무제표일이 아닌 일자에 수행될 경우, 감사인은 문단 4에서 요구하는 \n절차에 추가하여 실사일과 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지 여\n부에 대한 감사증거를 얻기 위한 감사절차를 수행하여야 한다. (문단 A9 – A11 참조)",
+        "content_hash": "642ba0cac5c1f2abab48433408a9ea91b2ae15d0066ccc27171ba9212fd9df93"
+      },
+      {
+        "id": "src2",
+        "file": "cpa_uploader/data/official/delegated-r01-kga-2025.txt",
+        "title": "KGA 501 문단/보론 A9; 2025 개정 PDF 394쪽",
+        "page": "KGA 501",
+        "role": "standard",
+        "source_quote": "A9. \n실무상 이유로, 재고자산 실사가 재무제표일 외의 날에 수행될 수 있다. 이것은 경영진이 \n재고자산 수량을 실사에 의해 결정하는지 또는 계속기록법을 유지하는지 여부와 관계없이 \n그렇게 될 수가 있다. 어느 경우이든, 재고자산 변동에 대한 통제의 설계, 실행 및 유지의 \n효과성은 재무제표일 외의 특정일에 수행되는 재고자산 실사가 감사목적에 적합한지 여부\n를 결정하게 된다. 감사기준서330은 기중에 수행되는 실증절차에 관한 요구사항을 정하고 \n관련 지침을 제공한다. 6",
+        "content_hash": "09520b733a3a6210868e76c6bb42d9099c2fdd7d8bca36b4f15210e8461f9ca7"
+      }
+    ],
+    "shared_context": {
+      "facts": [
+        {
+          "id": "f0",
+          "text": "이 사례는 2026년 1월 1일부터 12월 31일까지의 보고기간에 대한 재무제표감사이다. 감사보고서일 후의 후속 업무는 2027년에 수행한다.",
+          "scoreable": false
+        },
+        {
+          "id": "f1",
+          "text": "나래회사의 재무제표일은 12월 31일이다. 중요한 재고자산의 실무상 실사일을 11월 30일로 정하였고 감사인은 이날 실사에 입회하였다.",
+          "scoreable": false
+        },
+        {
+          "id": "f2",
+          "text": "감사인은 재고실사 입회 시 수행할 절차와 최종 재고기록 검사를 별도로 계획하였다. 다음 물음은 실사일과 재무제표일이 다르다는 사실로 인해 필요한 추가 고려사항을 다룬다.",
+          "scoreable": false
+        }
+      ]
+    },
+    "learning_order": [
+      "q1",
+      "q2"
+    ],
+    "subquestions": [
+      {
+        "id": "q1",
+        "type": "descriptive",
+        "prompt": "실사일과 재무제표일이 다르므로 감사인이 추가로 수행해야 하는 감사절차를 설명하시오. 추가 절차의 대상 기간과 확인해야 할 사항을 함께 제시하시오.",
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "constraints": {
+          "ordered": false,
+          "max_entries": null,
+          "overflow_policy": "none"
+        },
+        "decision": null,
+        "model_answer": [
+          "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다."
+        ],
+        "requirements": [
+          {
+            "id": "q1.r1",
+            "source_ref_id": "src1",
+            "source_quote": "5. \n재고자산 실사가 재무제표일이 아닌 일자에 수행될 경우, 감사인은 문단 4에서 요구하는 \n절차에 추가하여 실사일과 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지 여\n부에 대한 감사증거를 얻기 위한 감사절차를 수행하여야 한다. (문단 A9 – A11 참조)",
+            "source_span": "KGA 501 문단/보론 5; 2025 개정 PDF 391쪽; KGA 501 문단 5 원문 페이지 391; L51-L57"
+          }
+        ],
+        "criteria": [
+          {
+            "id": "q1.c1",
+            "requirement_id": "q1.r1",
+            "claim": "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다.",
+            "critical_facts": [
+              {
+                "id": "q1.c1.fact",
+                "type": "conclusion",
+                "expected": "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다."
+              },
+              {
+                "id": "q1.c1.scope",
+                "type": "condition",
+                "expected": "기간만 옮겨 쓰면 득점하지 않는다. 그 기간 변동의 적절한 기록을 검증하는 목적·조치를 함께 제시해야 한다."
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src1"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "q2",
+        "type": "descriptive",
+        "prompt": "재무제표일 외의 날짜에 실시한 재고실사가 감사목적에 적합한지 결정할 때 고려할 재고변동 통제의 효과성 세 측면을 모두 제시하시오. 이러한 고려가 계속기록법을 사용하는 경우에만 적용되는지도 설명하시오.",
+        "selection": {
+          "type": "all",
+          "n": null
+        },
+        "constraints": {
+          "ordered": false,
+          "max_entries": null,
+          "overflow_policy": "none"
+        },
+        "decision": null,
+        "model_answer": [
+          "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.",
+          "재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.",
+          "재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.",
+          "이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다."
+        ],
+        "requirements": [
+          {
+            "id": "q2.r1",
+            "source_ref_id": "src2",
+            "source_quote": "A9. \n실무상 이유로, 재고자산 실사가 재무제표일 외의 날에 수행될 수 있다. 이것은 경영진이 \n재고자산 수량을 실사에 의해 결정하는지 또는 계속기록법을 유지하는지 여부와 관계없이 \n그렇게 될 수가 있다. 어느 경우이든, 재고자산 변동에 대한 통제의 설계, 실행 및 유지의 \n효과성은 재무제표일 외의 특정일에 수행되는 재고자산 실사가 감사목적에 적합한지 여부\n를 결정하게 된다. 감사기준서330은 기중에 수행되는 실증절차에 관한 요구사항을 정하고 \n관련 지침을 제공한다. 6",
+            "source_span": "KGA 501 문단/보론 A9; 2025 개정 PDF 394쪽; KGA 501 문단 A9 원문 페이지 394; L58-L64"
+          }
+        ],
+        "criteria": [
+          {
+            "id": "q2.c1",
+            "requirement_id": "q2.r1",
+            "claim": "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.",
+            "critical_facts": [
+              {
+                "id": "q2.c1.fact",
+                "type": "conclusion",
+                "expected": "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다."
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "id": "q2.c2",
+            "requirement_id": "q2.r1",
+            "claim": "재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.",
+            "critical_facts": [
+              {
+                "id": "q2.c2.fact",
+                "type": "conclusion",
+                "expected": "재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다."
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "id": "q2.c3",
+            "requirement_id": "q2.r1",
+            "claim": "재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.",
+            "critical_facts": [
+              {
+                "id": "q2.c3.fact",
+                "type": "conclusion",
+                "expected": "재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다."
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src2"
+            ]
+          },
+          {
+            "id": "q2.c4",
+            "requirement_id": "q2.r1",
+            "claim": "이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.",
+            "critical_facts": [
+              {
+                "id": "q2.c4.fact",
+                "type": "conclusion",
+                "expected": "이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다."
+              }
+            ],
+            "max_points": 1,
+            "scores": {
+              "met": 1,
+              "not_met": 0,
+              "contradicted": 0
+            },
+            "source_ref_ids": [
+              "src2"
+            ]
+          }
+        ]
+      }
+    ],
+    "verification": {
+      "source_fidelity": "reconstructed",
+      "review_status": "needs_human_review",
+      "calculation_required": false,
+      "notes": [
+        "2027년 CPA 시험 대비. 기본 사례는 2026년 1월 1일 개시 보고기간의 재무제표감사이며 필요한 후속 업무는 2027년에 수행한다. 2025 개정 전문의 해당 본문을 사용하고 2026년 7월 개정 전문의 대응 문단·시행일과 독립 대조했다. 이 6개 기준서는 2026년 1월 1일 이후 개시 보고기간부터 시행되며 570.20/A24-A25의 별도 시행 예외는 이번 22/23의 적용을 바꾸지 않는다. 금융위원회 2027 출제범위 공고에는 특정 기준서 판본 지정이 없다. sources/official-comparison.json 및 총괄 edition-policy.md 참조.",
+        "기존 세트는 입회 중 절차와 입회 실행불가능성에 대한 대응을 다룬다. 이번에는 정상적으로 입회한 실사일과 재무제표일 사이의 변동 기록 및 다른 실사일의 적합성을 정하는 통제를 평가한다.",
+        "공식 인용은 발췌 원문과 일치한다. 사례·발문·답안은 범위를 명료화하여 재구성하였다.",
+        "독립 요구별 정수 1점. 의미가 같은 표현과 답안 전체에서 분명한 판단을 인정한다. 명시적 반대 결론은 해당 criterion에서 불인정한다.",
+        "작성자 QA 기대 판정의 점수 재생은 실제 모델 의미 채점이나 사람 승인·정식 검수 receipt가 아니다.",
+        "기존 cpa_uploader/drafts/frequency-priority-2026-09-10/draft-09-501-freq01.json의 R01 검증용 후속본. 원본·정본·과거 receipt를 수정하지 않았다. 1차 작성자 원문 대조·정적검사 단계이며 최종 모델 의미검수·실제 채점은 아직 하지 않았다."
+      ]
+    }
+  },
+  "qa": {
+    "version": 1,
+    "artifact_type": "author_expected_judgments",
+    "set_id": "draft-09-501-freq01",
+    "draft_sha256": "175bf7f8e4af59bcd7accb054739f80184ea7f5ff7916f2ab32338cb32e92784",
+    "live_model_grading": "not_run",
+    "human_approval": false,
+    "interpretation": "작성자가 원문·현행 함축 정책으로 선확정한 기대값이다. 모델 실측이나 정식 의미검수 receipt가 아니다. 과거 기대값 변경은 expected-value-changes.json에서 이유·이전값을 보존한다.",
+    "cases": [
+      {
+        "id": "q1/model",
+        "subquestion_id": "q1",
+        "kind": "model",
+        "answer": "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다.",
+        "expected_points": 1,
+        "note": "",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          }
+        ]
+      },
+      {
+        "id": "q1/equivalent",
+        "subquestion_id": "q1",
+        "kind": "equivalent",
+        "answer": "실사일부터 결산일까지의 입출고 등 재고 증감을 연결하여 그 변동의 회계기록이 적절한지 증거를 확보한다.",
+        "expected_points": 1,
+        "note": "",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          }
+        ]
+      },
+      {
+        "id": "q1/reverse-order",
+        "subquestion_id": "q1",
+        "kind": "reverse-order",
+        "answer": "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다.",
+        "expected_points": 1,
+        "note": "",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          }
+        ]
+      },
+      {
+        "id": "q1/single-paragraph",
+        "subquestion_id": "q1",
+        "kind": "single-paragraph",
+        "answer": "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다.",
+        "expected_points": 1,
+        "note": "",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          }
+        ]
+      },
+      {
+        "id": "q1/empty",
+        "subquestion_id": "q1",
+        "kind": "empty",
+        "answer": "",
+        "expected_points": 0,
+        "note": "",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "not_met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          }
+        ]
+      },
+      {
+        "id": "q1/omit-1",
+        "subquestion_id": "q1",
+        "kind": "omit-1",
+        "answer": "",
+        "expected_points": 0,
+        "note": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다.",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "not_met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          }
+        ]
+      },
+      {
+        "id": "q1/opposite",
+        "subquestion_id": "q1",
+        "kind": "opposite",
+        "answer": "11월 30일에 실사에 입회했으므로 그 이후부터 결산일까지의 재고변동 기록에 대한 추가 절차는 필요 없다.",
+        "expected_points": 0,
+        "note": "",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "contradicted",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          }
+        ]
+      },
+      {
+        "id": "q1/condition-boundary",
+        "subquestion_id": "q1",
+        "kind": "condition-boundary",
+        "answer": "실사일 이전 1개월의 재고변동만 확인하면 실사일부터 재무제표일까지의 기록 검사는 생략할 수 있다.",
+        "expected_points": 0,
+        "note": "검증할 기간을 실사일 이전으로 바꿨다.",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "contradicted",
+            "reason": "검증할 기간을 실사일 이전으로 바꿨다."
+          }
+        ]
+      },
+      {
+        "id": "q2/model",
+        "subquestion_id": "q2",
+        "kind": "model",
+        "answer": "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.\n재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.\n재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.\n이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.",
+        "expected_points": 4,
+        "note": "",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          }
+        ]
+      },
+      {
+        "id": "q2/equivalent",
+        "subquestion_id": "q2",
+        "kind": "equivalent",
+        "answer": "재고 증감을 관리하는 통제가 효과적으로 설계되었는지 본다.\n설계한 재고변동 통제가 효과적으로 실행되는지 확인한다.\n해당 재고변동 통제가 효과적으로 유지되는지 검토한다.\n실사법이든 계속기록법이든 다른 날짜의 실사가 적합한지는 재고변동 통제의 효과성에 달려 있다.",
+        "expected_points": 4,
+        "note": "",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          }
+        ]
+      },
+      {
+        "id": "q2/reverse-order",
+        "subquestion_id": "q2",
+        "kind": "reverse-order",
+        "answer": "이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.\n재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.\n재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.\n재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.",
+        "expected_points": 4,
+        "note": "",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          }
+        ]
+      },
+      {
+        "id": "q2/single-paragraph",
+        "subquestion_id": "q2",
+        "kind": "single-paragraph",
+        "answer": "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다. 재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다. 재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다. 이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.",
+        "expected_points": 4,
+        "note": "",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          }
+        ]
+      },
+      {
+        "id": "q2/empty",
+        "subquestion_id": "q2",
+        "kind": "empty",
+        "answer": "",
+        "expected_points": 0,
+        "note": "",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "not_met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "not_met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "not_met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "not_met",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          }
+        ]
+      },
+      {
+        "id": "q2/omit-1",
+        "subquestion_id": "q2",
+        "kind": "omit-1",
+        "answer": "재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.\n재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.\n이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.",
+        "expected_points": 3,
+        "note": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다.",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "not_met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          }
+        ]
+      },
+      {
+        "id": "q2/omit-2",
+        "subquestion_id": "q2",
+        "kind": "omit-2",
+        "answer": "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.\n재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.\n이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.",
+        "expected_points": 3,
+        "note": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다.",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "not_met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          }
+        ]
+      },
+      {
+        "id": "q2/omit-3",
+        "subquestion_id": "q2",
+        "kind": "omit-3",
+        "answer": "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.\n재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.\n이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.",
+        "expected_points": 3,
+        "note": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다.",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "not_met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          }
+        ]
+      },
+      {
+        "id": "q2/omit-4",
+        "subquestion_id": "q2",
+        "kind": "omit-4",
+        "answer": "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.\n재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.\n재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.",
+        "expected_points": 3,
+        "note": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다.",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "not_met",
+            "reason": "다른 독립 명제는 유지하고 해당 요구를 생략한 작성자 기대 사례. 실제 모델 판정은 별도 실행 기록에서 대조한다."
+          }
+        ]
+      },
+      {
+        "id": "q2/opposite",
+        "subquestion_id": "q2",
+        "kind": "opposite",
+        "answer": "재고변동 통제의 설계 효과성은 실사일 적합성과 무관하다.\n재고변동 통제의 실행 효과성은 고려할 필요가 없다.\n재고변동 통제의 유지 효과성은 고려할 필요가 없다.\n이러한 재고변동 통제 고려는 계속기록법을 사용하는 경우에만 적용된다.",
+        "expected_points": 0,
+        "note": "",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "contradicted",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "contradicted",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "contradicted",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "contradicted",
+            "reason": "공식 근거와 작성자 기준에 따라 정한 기대 판정"
+          }
+        ]
+      },
+      {
+        "id": "q2/condition-boundary",
+        "subquestion_id": "q2",
+        "kind": "condition-boundary",
+        "answer": "실사법 기업에서는 재고변동 통제의 효과성을 고려할 필요가 없고 계속기록법 기업에서만 고려한다.",
+        "expected_points": 0,
+        "note": "기록방식에 따라 통제 고려를 면제했다.",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "not_met",
+            "reason": "기록방식에 따라 통제 고려를 면제했다."
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "not_met",
+            "reason": "기록방식에 따라 통제 고려를 면제했다."
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "not_met",
+            "reason": "기록방식에 따라 통제 고려를 면제했다."
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "contradicted",
+            "reason": "기록방식에 따라 통제 고려를 면제했다."
+          }
+        ]
+      },
+      {
+        "id": "q1/irrelevant-prefix",
+        "subquestion_id": "q1",
+        "kind": "irrelevant-prefix",
+        "answer": "이 회사의 사무실 벽은 흰색이다.\n11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다.",
+        "expected_points": 1,
+        "note": "무관한 사실 뒤 정답 전체를 평가한다. 추가 문장·항목수로 정상 명제 점수를 제한하지 않는다.",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "met",
+            "reason": "무관한 사실 뒤 정답 전체를 평가한다. 추가 문장·항목수로 정상 명제 점수를 제한하지 않는다."
+          }
+        ]
+      },
+      {
+        "id": "q2/irrelevant-prefix",
+        "subquestion_id": "q2",
+        "kind": "irrelevant-prefix",
+        "answer": "이 회사의 사무실 벽은 흰색이다.\n재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다.\n재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다.\n재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다.\n이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.",
+        "expected_points": 4,
+        "note": "무관한 사실 뒤 정답 전체를 평가한다. 추가 문장·항목수로 정상 명제 점수를 제한하지 않는다.",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "met",
+            "reason": "무관한 사실 뒤 정답 전체를 평가한다. 추가 문장·항목수로 정상 명제 점수를 제한하지 않는다."
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "met",
+            "reason": "무관한 사실 뒤 정답 전체를 평가한다. 추가 문장·항목수로 정상 명제 점수를 제한하지 않는다."
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "met",
+            "reason": "무관한 사실 뒤 정답 전체를 평가한다. 추가 문장·항목수로 정상 명제 점수를 제한하지 않는다."
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "met",
+            "reason": "무관한 사실 뒤 정답 전체를 평가한다. 추가 문장·항목수로 정상 명제 점수를 제한하지 않는다."
+          }
+        ]
+      },
+      {
+        "id": "q1/root-single-sentence",
+        "kind": "single-sentence",
+        "subquestion_id": "q1",
+        "answer": "11월 30일 실사일과 12월 31일 재무제표일 사이의 재고자산 변동이 적절하게 기록되었는지에 관한 감사증거를 얻기 위한 감사절차를 수행한다.",
+        "expected_points": 1,
+        "note": "여러 독립 명제를 세미콜론으로 연결한 한 문장이다. 순서·문장 수로 득점을 제한하지 않는다.",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "met",
+            "reason": "여러 독립 명제를 세미콜론으로 연결한 한 문장이다. 순서·문장 수로 득점을 제한하지 않는다."
+          }
+        ]
+      },
+      {
+        "id": "q2/root-single-sentence",
+        "kind": "single-sentence",
+        "subquestion_id": "q2",
+        "answer": "재고자산 변동에 대한 통제의 설계가 효과적인지 고려한다; 재고자산 변동에 대한 통제의 실행이 효과적인지 고려한다; 재고자산 변동에 대한 통제의 유지가 효과적인지 고려한다; 이 고려는 재고수량을 실사로 결정하는 경우와 계속기록법을 유지하는 경우 모두에 적용된다.",
+        "expected_points": 4,
+        "note": "여러 독립 명제를 세미콜론으로 연결한 한 문장이다. 순서·문장 수로 득점을 제한하지 않는다.",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "met",
+            "reason": "여러 독립 명제를 세미콜론으로 연결한 한 문장이다. 순서·문장 수로 득점을 제한하지 않는다."
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "met",
+            "reason": "여러 독립 명제를 세미콜론으로 연결한 한 문장이다. 순서·문장 수로 득점을 제한하지 않는다."
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "met",
+            "reason": "여러 독립 명제를 세미콜론으로 연결한 한 문장이다. 순서·문장 수로 득점을 제한하지 않는다."
+          },
+          {
+            "criterion_id": "q2.c4",
+            "verdict": "met",
+            "reason": "여러 독립 명제를 세미콜론으로 연결한 한 문장이다. 순서·문장 수로 득점을 제한하지 않는다."
+          }
+        ]
+      },
+      {
+        "id": "q1/root-period-only",
+        "kind": "omission",
+        "subquestion_id": "q1",
+        "answer": "대상 기간은 11월 30일부터 12월 31일까지이다.",
+        "expected_points": 0,
+        "note": "501.5는 해당 기간의 재고변동이 적절하게 기록되었는지 증거를 얻을 절차를 요구한다. 주어진 날짜만 반복했고 목적·행동은 모두 빠졌다. 기존 빈 문자열 누락과 별도의 비어 있지 않은 누락 사례다.",
+        "expected_verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "not_met",
+            "reason": "501.5는 해당 기간의 재고변동이 적절하게 기록되었는지 증거를 얻을 절차를 요구한다. 주어진 날짜만 반복했고 목적·행동은 모두 빠졌다. 기존 빈 문자열 누락과 별도의 비어 있지 않은 누락 사례다."
+          }
+        ]
+      }
+    ],
+    "predecessor": {
+      "file": "cpa_uploader/drafts/frequency-priority-2026-09-10/qa-09-501-freq01.json",
+      "sha256": "3b53020e7d8f1b5c6cca3598c2a629bfdec405270e1fd3b5fa54115a166e99e1"
+    },
+    "authoring_plan_id": "T09-A"
+  },
+  "hashes": {
+    "cpa_uploader/drafts/delegated-authoring-2026-09-11/r01/draft-09-501-freq01.json": "175bf7f8e4af59bcd7accb054739f80184ea7f5ff7916f2ab32338cb32e92784",
+    "cpa_uploader/drafts/delegated-authoring-2026-09-11/r01/qa-cases-t09-a.json": "a137f08485ee2125e8496dd7a68082106d6cc89b992fab1dc6bb13ebc3e17a53",
+    "lib/questionV3Grading.ts": "6a3033f9a5a6e408ebb8251787a5daeef3b478e287b5ae5c0aecc94d967a2dd7",
+    "lib/questionV3Evidence.ts": "9f7428a97fcd5f1f8e8e14627abbb8845fe5a1e7488631ccd7107b0d75cfef7b",
+    "lib/questionV3.ts": "546a05ed630a92c1da859dbfcb89caee629028bfc4216fc5794a2e395cd4acf4",
+    "lib/questionV3Answer.ts": "01dcada58a9c372dd7778056789e1a3327bb5fc6ce0521682a2f62bb6d830cbf",
+    "lib/ai/openaiStructured.ts": "2e392cc74045e88148edca2959172fece77e5c431cb7f8a56dd29e56640632b1",
+    "cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/run-author-qa.ts": "b1910b213fe52f7842d6f2df50c3d2c93d8e78cb2e5bae193d70a329d6087cf2",
+    "cpa_uploader/data/official/delegated-r01-kga-2025.txt": "267a4d66fee3fbabbc5610b41da6bc442a1793a678eeaf94b59da40f0cdd1e34"
+  },
+  "selected": "q1/opposite",
+  "transport": "production_gradeQuestionSetV3",
+  "mock": false
+}

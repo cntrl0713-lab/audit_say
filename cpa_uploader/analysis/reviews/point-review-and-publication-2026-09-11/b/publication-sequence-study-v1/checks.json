@@ -1,0 +1,440 @@
+{
+  "version": 1,
+  "purpose": "in-memory publication sequence contract study",
+  "api_calls": 0,
+  "cli_promotions": 0,
+  "approvals_created": 0,
+  "ledgers_or_receipts_written": 0,
+  "synthetic_fixture_warning": "Only transport/validation-gate mechanics were exercised using existing test helpers. No model reviewed content; no person approved it. Synthetic receipts and ledger entries remain exclusively in memory.",
+  "code_and_input_snapshots": [
+    {
+      "file": "cpa_uploader/promote_cpa_v3.ts",
+      "sha256": "e48c22e1c2daeb82432c4116b97aa3af70dd4998a98db957beac8b2b9a223e5a"
+    },
+    {
+      "file": "cpa_uploader/questionSemanticReview.ts",
+      "sha256": "89aada95959c742054a7d415959049dbb652c154567146887868f4796ecd76f9"
+    },
+    {
+      "file": "cpa_uploader/questionBankPublication.ts",
+      "sha256": "40aee2de71a8955c16b8c7c3eeb11fdb19f3ffa9379335180fa9906eb4213d14"
+    },
+    {
+      "file": "cpa_uploader/questionReviewIdentity.ts",
+      "sha256": "7d3cc754347ac15e6b07feef29c0b853856ab09f9d7512c2d18fe5753bb297ac"
+    },
+    {
+      "file": "cpa_uploader/questionReviewGrading.ts",
+      "sha256": "1192ce4766289c1d24534f0cc9bc60e063d894fc726e9a6f71fbf93a02e2dc3f"
+    },
+    {
+      "file": "lib/questionV3Grading.ts",
+      "sha256": "6a3033f9a5a6e408ebb8251787a5daeef3b478e287b5ae5c0aecc94d967a2dd7"
+    },
+    {
+      "file": "tests/helpers/questionSemanticReviewFixture.ts",
+      "sha256": "d2ba83238c1442df7d7101ebcf06ec852c57718fbfc98fe780ba87d0a755cfcf"
+    },
+    {
+      "file": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+      "sha256": "6f7453e0915d42f80c2c2e0799b7beb83be563fabe1ea7fb0f35cdbcb87fa1d1"
+    },
+    {
+      "file": "cpa_uploader/data/cpa_question_sets_v3.promotions.json",
+      "sha256": "df23d44896a3edc0c1331e758ab489e7a9ab19c6a4139f182238c4497408ce19"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/prepared-reviewed-v6/candidate-authoring.json",
+      "sha256": "e43cd491c08faebd70c02eb67bfe15198e669b66a6372b723ed539da229fd94a"
+    }
+  ],
+  "checks": [
+    {
+      "id": "fresh_acceptance_original_bank",
+      "passed": true
+    },
+    {
+      "id": "unrecorded_old_receipt_rejected_after_peer_content_change",
+      "passed": true,
+      "observed_errors": [
+        "sequence-contract-a: 의미검수 이후 비교 은행이 변경되었습니다."
+      ]
+    },
+    {
+      "id": "recorded_reader_ignores_peer_bank_but_is_not_a_new_acceptance_path",
+      "passed": true
+    },
+    {
+      "id": "only_lifecycle_labels_do_not_change_bank_hash",
+      "passed": true
+    },
+    {
+      "id": "bank_order_does_not_change_peer_hash",
+      "passed": true
+    },
+    {
+      "id": "own_lifecycle_does_not_change_content_hash",
+      "passed": true
+    },
+    {
+      "id": "record_A_while_new_B_is_pending",
+      "passed": true
+    },
+    {
+      "id": "later_pending_B_content_change_preserves_recorded_A",
+      "passed": true
+    },
+    {
+      "id": "cannot_publish_full_bank_while_other_set_pending",
+      "passed": true,
+      "observed_errors": [
+        "sequence-contract-a: status=published가 필요합니다.",
+        "sequence-contract-b: status=published가 필요합니다."
+      ]
+    },
+    {
+      "id": "new_B_receipt_accepted_against_updated_bank",
+      "passed": true
+    },
+    {
+      "id": "different_epoch_recorded_receipts_coexist",
+      "passed": true
+    },
+    {
+      "id": "earlier_receipt_bytes_not_refreshed",
+      "passed": true
+    },
+    {
+      "id": "own_content_change_still_invalidates_recorded_receipt",
+      "passed": true,
+      "observed_errors": [
+        "subquestion:sub1: draft 인용이 해당 검토 필드 전체와 일치하지 않습니다: sub1.prompt",
+        "criterion:sub1:crit1: draft 인용이 해당 검토 필드 전체와 일치하지 않습니다: sub1.prompt",
+        "criterion:sub1:crit2: draft 인용이 해당 검토 필드 전체와 일치하지 않습니다: sub1.prompt",
+        "criterion:sub1:crit3: draft 인용이 해당 검토 필드 전체와 일치하지 않습니다: sub1.prompt",
+        "criterion:sub1:crit4: draft 인용이 해당 검토 필드 전체와 일치하지 않습니다: sub1.prompt",
+        "sequence-contract-a: 의미검수 문항 내용 해시가 다릅니다.",
+        "ad6c61b6259a1f613c9e2146c8f9f5aad80ed2290920ed2419ac8a65787fb413: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "bb10aebf8b4cb6941ca0915ef4653e220a0afd2a2971a66bc7626550010c7424: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "c2fcb91cf7de7caaf68ba76ab6d0c782fcf8e9e8138d561765fa77f5a3efaa3a: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "2726c9ef16659a4f0cfa810c5eb6390b617dffe72103f582cd57ab101675bddc: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "e9bd5b4241d772dcd0f26843e57a8134ca0c4e8d45c13ddfeaeed4398dfda61d: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "c621664fa5ba92fac35ced925af414c4d715ef164e603683ef63fe05b77ae540: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "587aa70a425cd14a240871a717dccc71d99986a4ec257c975c7b65f4e5a50707: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "4420f5791ef1aaa79dbc276cf3b36fddbdba96702c21894af17826d09a81c7cb: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "082e380eb6b47aa66984d48911cfe67d36d916ee2025f83246c7a312e4b8724a: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "ea95762196587c53060d5bf586b975daf44972cd868f2270d3be6436b83ce410: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "51347d741e07f36a6ff95d8f6570b9389aca04917df1df36e7d3281f8c485c98: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "52f40e886d687546646d2a862bbfd10e6453643a62be7c9cba7670094ad74142: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "107115a4c48b34eb5eab72d73be531fa830ace75df66e092f8beb1b83d1e3a1d: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "b53deced99745dc55b0ffed4a2128015cb7df24403a75e59f4bd36d0bb513975: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "33c8c6ef35d193c663ba47f540518b0a9c57ad02611b7766818a03ae9c0eadfd: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "2f7e1aa2ba0ae5a1e765f8e6e7828da6e4f6f49b4798bb9d0fb7ad0e04b553fa: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "8b4c9c93519b5c176776262ce1cef1f54e950d0d827d585e6d1c918455bad0da: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "772a561e15ddb5f9bb6c2d574084ce0fd1694f3086d22d027cfc5865a3b9891a: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "a9ea3326436d2cb49ac80dc06bb3546ab9d3bc285186d020bd60a280e776bbd9: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "97cb216c39bb8109d6a1d1e09bf94776962dc1faebc956226b760fb21d09894b: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "dc7b4aa6a4a59dd39f9e3527af3ab2f01ef94fb3fabbfc49ecac28f670f2ce35: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "ab733553618a0050ab62a18049f0afffeacea3d3f256c70531c59d6e24111543: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "empty-answer: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다."
+      ]
+    },
+    {
+      "id": "recorded_reader_still_checks_actual_source_files",
+      "passed": true,
+      "observed_errors": [
+        "sequence-contract-a: 의미검수 이후 source 파일이 변경되었습니다."
+      ]
+    },
+    {
+      "id": "recorded_reader_still_checks_source_authority_metadata",
+      "passed": true,
+      "observed_errors": [
+        "sequence-contract-a: 의미검수 이후 알려진 source 권위/판본 metadata가 변경되었습니다."
+      ]
+    },
+    {
+      "id": "injected_grading_cannot_be_new_approval",
+      "passed": true,
+      "observed_errors": [
+        "신규 검수 수락에는 실제 모델 채점이 필요합니다. 주입 응답은 검증용 기록이며 승급 근거로 사용할 수 없습니다."
+      ]
+    },
+    {
+      "id": "new_acceptance_requires_current_grader_model",
+      "passed": true,
+      "observed_errors": [
+        "현재 채점 모델 설정과 실제 채점 사례 실행 모델이 다릅니다. 현재 모델로 사례를 다시 실행하십시오."
+      ]
+    },
+    {
+      "id": "historical_record_preserves_prior_grader_model_but_replays_scores",
+      "passed": true
+    },
+    {
+      "id": "partial_reverification_does_not_waive_other_changed_approved_set",
+      "passed": true,
+      "observed_errors": [
+        "sequence-contract-b: 검수 후 문항 내용이 변경되었습니다. 새 검수 근거가 필요합니다.",
+        "sequence-contract-b: 최종 승급 장부의 내용 해시와 정본이 다릅니다.",
+        "subquestion:sub1: draft 인용이 해당 검토 필드 전체와 일치하지 않습니다: sub1.prompt",
+        "criterion:sub1:crit1: draft 인용이 해당 검토 필드 전체와 일치하지 않습니다: sub1.prompt",
+        "criterion:sub1:crit2: draft 인용이 해당 검토 필드 전체와 일치하지 않습니다: sub1.prompt",
+        "criterion:sub1:crit3: draft 인용이 해당 검토 필드 전체와 일치하지 않습니다: sub1.prompt",
+        "sequence-contract-b: 의미검수 문항 내용 해시가 다릅니다.",
+        "9c34c0337f5f394d0c15f7ad2d3f4ec7b1002784347455d224c2e58dc70d0a70: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "bb10aebf8b4cb6941ca0915ef4653e220a0afd2a2971a66bc7626550010c7424: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "c2fcb91cf7de7caaf68ba76ab6d0c782fcf8e9e8138d561765fa77f5a3efaa3a: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "2726c9ef16659a4f0cfa810c5eb6390b617dffe72103f582cd57ab101675bddc: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "e9bd5b4241d772dcd0f26843e57a8134ca0c4e8d45c13ddfeaeed4398dfda61d: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "c621664fa5ba92fac35ced925af414c4d715ef164e603683ef63fe05b77ae540: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "587aa70a425cd14a240871a717dccc71d99986a4ec257c975c7b65f4e5a50707: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "4420f5791ef1aaa79dbc276cf3b36fddbdba96702c21894af17826d09a81c7cb: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "082e380eb6b47aa66984d48911cfe67d36d916ee2025f83246c7a312e4b8724a: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "ea95762196587c53060d5bf586b975daf44972cd868f2270d3be6436b83ce410: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "51347d741e07f36a6ff95d8f6570b9389aca04917df1df36e7d3281f8c485c98: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "52f40e886d687546646d2a862bbfd10e6453643a62be7c9cba7670094ad74142: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "107115a4c48b34eb5eab72d73be531fa830ace75df66e092f8beb1b83d1e3a1d: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "6d19231a2c9bacb3bd27c675879f70ca38d274acb3868a4e206941d2f65590ac: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "5cc6b56aa913ec30cbbe95a7b728c294e25c4f6d77cb305774ebb6f5627e3e36: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "8cf9d535c7c74237e48b255e570ea8063c81dd1f7da2765fce8f0158bd4349c9: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "973cdb00b20702319bd92a1aedc1bd56601cae813d00d60a4232e071b46ba77f: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "fefac12bd96d05cb4d2157351b5ff07fe39d44ca8c45fffbc5a77eca11a97a01: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "a9ea3326436d2cb49ac80dc06bb3546ab9d3bc285186d020bd60a280e776bbd9: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "97cb216c39bb8109d6a1d1e09bf94776962dc1faebc956226b760fb21d09894b: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "dc7b4aa6a4a59dd39f9e3527af3ab2f01ef94fb3fabbfc49ecac28f670f2ce35: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "ab733553618a0050ab62a18049f0afffeacea3d3f256c70531c59d6e24111543: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "196a7e3f782ceae1ccaa233da64ed5c5d19420eca9d9155d1a9dfda807b29852: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "68db32d4f5c61d9db4e8e86146356a5d15e47a2b997996374a0320ae4705a28e: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "ee8ca9d63a20a02fd29375bb11dc454f27193ee60df00acecff38b872dbc5765: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "fd68148fa3616f6183152285617b6949ede44a8d2e776167601f8edb817d433a: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "019c53cb94c66844c0ed268dff0995a79d0c0fdb0a938a075bbbc32dffeb1d9a: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "b42e14f345fece4a0913160e396e9058638a28ec604f94e895812abeee58a424: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "dd6680253d69ee7f4fca219e3616caf64ca7f883c86a4578b4666d815c4e2251: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "af585c4275a39159adfae40eb6584be360d66b4c5028c9a948f52b978b8ea005: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "822d9768a211dfa7d24aef96b9d0b0dacbcf10517a868df1547752d78a6aaecd: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "2f57e6ad4220a52121cf6e9dc42500ef031f797d78879df10a11bce2fa26f688: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "b179fedb5100583b072a67f17081c1293200c0e8849be5fe387fe66613db5de4: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "4f8928df424b5fe36a9b3eddb2293c8d66728c52b5f9d1b8e1ff2d409fdbfb89: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.",
+        "empty-answer: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다."
+      ]
+    },
+    {
+      "id": "all_changed_approved_ids_can_clear_precheck_only",
+      "passed": true
+    },
+    {
+      "id": "resetting_approved_id_to_draft_does_not_erase_history",
+      "passed": true,
+      "observed_errors": [
+        "sequence-contract-b: 승급 장부와 needs_review 상태가 불일치합니다."
+      ]
+    },
+    {
+      "id": "real_candidate_history_conflicts_are_reported",
+      "passed": true
+    },
+    {
+      "id": "network_calls_zero",
+      "passed": true
+    },
+    {
+      "id": "protected_bytes:cpa_uploader/promote_cpa_v3.ts",
+      "passed": true
+    },
+    {
+      "id": "protected_bytes:cpa_uploader/questionSemanticReview.ts",
+      "passed": true
+    },
+    {
+      "id": "protected_bytes:cpa_uploader/questionBankPublication.ts",
+      "passed": true
+    },
+    {
+      "id": "protected_bytes:cpa_uploader/questionReviewIdentity.ts",
+      "passed": true
+    },
+    {
+      "id": "protected_bytes:cpa_uploader/questionReviewGrading.ts",
+      "passed": true
+    },
+    {
+      "id": "protected_bytes:lib/questionV3Grading.ts",
+      "passed": true
+    },
+    {
+      "id": "protected_bytes:tests/helpers/questionSemanticReviewFixture.ts",
+      "passed": true
+    },
+    {
+      "id": "protected_bytes:cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+      "passed": true
+    },
+    {
+      "id": "protected_bytes:cpa_uploader/data/cpa_question_sets_v3.promotions.json",
+      "passed": true
+    },
+    {
+      "id": "protected_bytes:cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/prepared-reviewed-v6/candidate-authoring.json",
+      "passed": true
+    }
+  ],
+  "real_candidate_diagnosis": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/prepared-reviewed-v6/candidate-authoring.json",
+    "sha256": "e43cd491c08faebd70c02eb67bfe15198e669b66a6372b723ed539da229fd94a",
+    "status_counts": {
+      "published": 34,
+      "needs_review": 119
+    },
+    "original_ledger_file": "cpa_uploader/data/cpa_question_sets_v3.promotions.json",
+    "history_conflict_ids": [
+      "pilot-01-002",
+      "pilot-01-004",
+      "pilot-02-001",
+      "pilot-02-004",
+      "pilot-02-005",
+      "pilot-03-001",
+      "pilot-03-002",
+      "pilot-03-004",
+      "pilot-04-001",
+      "pilot-04-002",
+      "pilot-04-004",
+      "pilot-04-005",
+      "pilot-05-001",
+      "pilot-05-002",
+      "pilot-05-003",
+      "pilot-05-005",
+      "pilot-05-006",
+      "pilot-05-007",
+      "pilot-06-001",
+      "pilot-06-002",
+      "pilot-06-003",
+      "pilot-06-005",
+      "pilot-07-005",
+      "pilot-08-002",
+      "pilot-08-005",
+      "pilot-09-002",
+      "pilot-09-003",
+      "pilot-09-004",
+      "pilot-09-005",
+      "pilot-09-007",
+      "pilot-09-008",
+      "pilot-10-002",
+      "pilot-10-003",
+      "pilot-10-004",
+      "pilot-11-001",
+      "pilot-11-004",
+      "pilot-12-001",
+      "pilot-12-002",
+      "pilot-12-004",
+      "pilot-12-005",
+      "pilot-12-006",
+      "pilot-12-007",
+      "pilot-12-008",
+      "pilot-13-002",
+      "pilot-13-003",
+      "pilot-13-005",
+      "pilot-13-006",
+      "pilot-14-001",
+      "pilot-14-002",
+      "pilot-14-003",
+      "pilot-14-004",
+      "pilot-14-005",
+      "pilot-15-001",
+      "pilot-15-002",
+      "pilot-15-004",
+      "pilot-15-005",
+      "pilot-16-003",
+      "pilot-16-004",
+      "pilot-16-005",
+      "pilot-16-007",
+      "pilot-16-008",
+      "pilot-16-009",
+      "pilot-17-002",
+      "pilot-17-004",
+      "pilot-18-002",
+      "pilot-18-003",
+      "pilot-19-001",
+      "pilot-19-002",
+      "pilot-19-003",
+      "pilot-19-004"
+    ],
+    "prior_validation_errors": [
+      "pilot-01-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-01-004: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-02-001: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-02-004: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-02-005: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-03-001: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-03-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-03-004: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-04-001: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-04-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-04-004: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-04-005: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-05-001: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-05-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-05-003: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-05-005: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-05-006: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-05-007: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-06-001: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-06-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-06-003: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-06-005: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-07-005: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-08-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-08-005: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-09-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-09-003: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-09-004: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-09-005: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-09-007: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-09-008: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-10-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-10-003: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-10-004: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-11-001: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-11-004: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-12-001: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-12-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-12-004: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-12-005: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-12-006: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-12-007: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-12-008: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-13-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-13-003: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-13-005: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-13-006: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-14-001: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-14-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-14-003: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-14-004: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-14-005: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-15-001: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-15-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-15-004: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-15-005: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-16-003: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-16-004: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-16-005: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-16-007: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-16-008: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-16-009: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-17-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-17-004: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-18-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-18-003: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-19-001: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-19-002: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-19-003: 승급 장부와 needs_review 상태가 불일치합니다.",
+      "pilot-19-004: 승급 장부와 needs_review 상태가 불일치합니다."
+    ]
+  },
+  "limits": [
+    "CLI entire-bank topic/count/structure gate is inspected in source but the 2-set fixture does not call it.",
+    "There is no source-file mutation fixture; the stored identity is tampered in memory to exercise comparison without editing originals.",
+    "No runtime provenance or independent human evidence is manufactured or promoted."
+  ]
+}

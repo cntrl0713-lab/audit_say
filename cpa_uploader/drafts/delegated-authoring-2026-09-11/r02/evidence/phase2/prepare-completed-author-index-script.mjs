@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+const own='cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2';
+let code=fs.readFileSync(own+'/write-refill-credit-stop-index.mjs','utf8');
+code=code.replace("out=base+'/r02/evidence/phase2/credit-balance-stop-after-refill-2026-09-11'","out=base+'/r02/evidence/phase2/author-qa-completed-refill02-2026-09-11'");
+code=code.replace("lockFile=control+'/runtime-v5-bank-v3-after-refill-01/runtime-lock.json'","lockFile=control+'/runtime-v5-bank-v3-after-refill-02/runtime-lock.json'");
+code=code.replace('const graderFiles=',`visit(base+'/s04/evidence/phase2/phase-two-v5-bank-v3-after-refill-02');
+visit(base+'/s04/evidence/phase2/phase-two-v5-bank-v3-after-refill-02-owned');
+const graderFiles=`);
+const start=code.indexOf('report.status=');if(start<0)throw Error('Expected snapshot continuation');
+code=code.slice(0,start)+`
+report.status='required_author_QA_observation_coverage_complete_with_unresolved_model_differences';
+delete report.source_of_credit_reason;
+report.processes={active_author_QA_processes:0,author_session85723:'completed_exit0',separate_semantic_diagnostic_stream:'not included in this author-QA index'};
+report.completed_whole_required_sets=sets.filter(s=>s.required_unexecuted_cases.length===0).length;
+report.required_current_expected_unresolved_count=sets.reduce((n,s)=>n+s.current_expected_comparison_unresolved.length,0);
+report.required_mismatch_repetition_audit=sets.flatMap(s=>s.cases.filter(c=>c.unresolved).map(c=>({plan_id:s.plan_id,set_id:s.set_id,case_id:c.case_id,valid_executions:c.valid_executions,at_least_three:c.valid_executions>=3,evidence:c.evidence})));
+report.required_mismatches_missing_three=report.required_mismatch_repetition_audit.filter(c=>!c.at_least_three);
+report.pending_new_API=[{task:'Resolve current expected/model mismatches through independent source/answer adjudication and any authorized code or content followup',cases:report.required_current_expected_unresolved_count},{task:'Current-bank semantic-generated QA grading',status:'not started by owned author runner; separate selected receipts required'}];
+report.do_not_restart_completed=['All835 required case IDs have actual current-grader observations.','All current required mismatches have at least3 valid observations.','Approved T07-A/T07-C/T10-B QA corrections use original actual evidence with current expected-value comparison; original records untouched.','T10-B number reversal and conventional-name supplement each3 matched.','Failed transport/credit attempts never count as score or valid repetition.'];
+report.QA_expectation_snapshot='Includes parent-approved T07-A, T07-C and T10-B followups. Pending T12-C/T12-D proposals are not applied in this snapshot.';
+if(report.required_unique_with_valid_execution!==835||report.required_unexecuted!==0||report.valid_grading_executions!==1033||report.valid_raw_model_judgments!==991||report.valid_empty_no_model!==42||report.failed_grading_executions!==3||report.completed_whole_required_sets!==15||report.required_mismatches_missing_three.length)throw Error('Unexpected completed counts '+JSON.stringify({covered:report.required_unique_with_valid_execution,valid:report.valid_grading_executions,raw:report.valid_raw_model_judgments,empty:report.valid_empty_no_model,failed:report.failed_grading_executions,whole:report.completed_whole_required_sets,missing:report.required_mismatches_missing_three}));
+fs.mkdirSync(out,{recursive:true});fs.writeFileSync(out+'/owned-current-author-qa-evidence-index.json',JSON.stringify(report,null,2)+'\\n',{flag:'wx'});
+console.log(JSON.stringify({out,covered:report.required_unique_with_valid_execution,valid:report.valid_grading_executions,raw:report.valid_raw_model_judgments,empty:report.valid_empty_no_model,failed:report.failed_grading_executions,unresolved:report.required_current_expected_unresolved_count,all_mismatches_three:!report.required_mismatches_missing_three.length}));
+`;
+fs.writeFileSync(own+'/write-completed-author-evidence-index.mjs',code,{flag:'wx'});

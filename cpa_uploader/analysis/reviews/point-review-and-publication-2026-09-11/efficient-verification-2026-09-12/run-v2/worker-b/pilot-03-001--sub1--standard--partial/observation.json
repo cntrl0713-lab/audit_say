@@ -1,0 +1,247 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-03-001--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-03-001--sub1--standard",
+  "source_set_id": "pilot-03-001",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "0a74a2054e2e4774f4bf6d483d614c6b3e1332cea99c6de1d5a2f313f9557496",
+  "answers": {
+    "sub1": "감사인은 경영진이 감사에 필요한 정보를 제공하거나 확보할 책임을 인정하고 이해하고 있음을 확인해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "재무제표 작성 책임을 경영진이 인정·이해함을 확인한다는 요구가 답안에 없다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "관련 내부통제 책임을 경영진이 인정·이해함을 확인한다는 요구가 답안에 없다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "정보 제공·확보 책임의 인정·이해를 확인하는 행위를 직접 썼다. 능력 전제를 다시 쓰지 않아도 충족한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "책임 불인정 시 수임 부적합과 법규상 예외를 설명하지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "7ff64c81efa5105354eec044bffb22fbc7eb2a803664f7c5a59896877be175c6",
+  "schema_hash": "95927f22b9183a4de751fba4a57ac9d0c2eeea99ce206606bc0d87e7b3c205cb",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "재무제표 작성 책임이 언급되지 않았다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "관련 내부통제 책임이 언급되지 않았다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "감사인은 경영진이 감사에 필요한 정보를 제공하거나 확보할 책임을 인정하고 이해하고 있음을 확인해야 한다.",
+            "reason": "감사에 필요한 정보를 제공하거나 확보할 책임을 명시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "책임 불인정 시 법규상 강제되지 않는 한 수임이 부적합하다는 결론이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표 작성 책임이 언급되지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "관련 내부통제 책임이 언급되지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "감사에 필요한 정보를 제공하거나 확보할 책임을 명시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "책임 불인정 시 법규상 강제되지 않는 한 수임이 부적합하다는 결론이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-03-001",
+    "score": 1,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "경영진이 감사에 필요한 정보를 제공하거나 확보할 능력이 있다는 일반적 전제 아래, 감사인이 감사업무를 수임하기 위해 경영진으로부터 확인받아야 하는 전제조건의 핵심 내용을 기술하고, 경영진이 이러한 책임을 인정하지 않을 경우 해당 업무 수임의 적합성을 법규상 예외와 함께 설명하시오. 수임 후 경영진에게 전달할 사항은 답안 범위에서 제외한다.",
+        "user_answer": "감사인은 경영진이 감사에 필요한 정보를 제공하거나 확보할 책임을 인정하고 이해하고 있음을 확인해야 한다.",
+        "score": 1,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "재무제표 작성 책임이 언급되지 않았다.",
+            "claim": "경영진의 재무제표 작성 책임을 확인함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "관련 내부통제 책임이 언급되지 않았다.",
+            "claim": "경영진의 관련 내부통제 책임을 확인함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "감사인은 경영진이 감사에 필요한 정보를 제공하거나 확보할 책임을 인정하고 이해하고 있음을 확인해야 한다.",
+            "reason": "감사에 필요한 정보를 제공하거나 확보할 책임을 명시했다.",
+            "claim": "경영진이 감사에 필요한 정보를 제공하거나 확보할 책임을 확인함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "책임 불인정 시 법규상 강제되지 않는 한 수임이 부적합하다는 결론이 없다.",
+            "claim": "책임 불인정 시 법규상 강제되지 않는 한 수임이 부적합하다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사인은 경영진이 재무제표 작성, 관련 내부통제, 감사에 필요한 정보의 제공 또는 확보에 대한 책임을 인정하고 이해함을 확인해야 한다.",
+          "경영진이 책임을 인정하지 않거나 서면진술 제공에 동의하지 않으면, 법규상 강제 수임이 아닌 한 해당 업무를 수임하는 것은 적합하지 않다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_07921647e8f37045016aa4c74cb2c887d094570fdead8bdec8",
+        "request_id": "req_0f7755e1a93245e1830dfbd42db55b7e",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2582,
+          "input_tokens_details": {
+            "cache_write_tokens": 2579,
+            "cached_tokens": 0
+          },
+          "output_tokens": 249,
+          "output_tokens_details": {
+            "reasoning_tokens": 46
+          },
+          "total_tokens": 2831
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00094415,
+        "min_usd": 0.00094415,
+        "max_usd": 0.00094415,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-03-001--sub1--standard--partial/input.json",
+      "sha256": "e9d4b2557eb4ce515fa44b2a36f8d7a83fbed1d733d3b7f338d3efbbdcc819f2"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-03-001--sub1--standard--partial/transport.jsonl",
+      "sha256": "86d53ddbafa2f322ede659eec1501d6ecc290c2db0a8a3359269960516dadf20"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-03-001--sub1--standard--partial/traces.jsonl",
+      "sha256": "53aff8f25b78d1ddc0be40af6d517eefde62624c59fdd4dddf8bd3c165b548c5"
+    }
+  }
+}

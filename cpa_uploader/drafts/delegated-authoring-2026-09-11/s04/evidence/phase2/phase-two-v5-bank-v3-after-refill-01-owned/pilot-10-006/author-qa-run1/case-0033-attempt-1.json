@@ -1,0 +1,267 @@
+{
+  "set_id": "pilot-10-006",
+  "case_id": "sub2-crit4-omission",
+  "kind": "omission",
+  "attempt": 1,
+  "started_at": "2026-09-11T04:44:48.425Z",
+  "finished_at": "2026-09-11T04:44:52.763Z",
+  "model": "gpt-5.6-luna",
+  "transport": "live_model",
+  "answers": {
+    "sub1": "",
+    "sub2": "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+    "sub3": ""
+  },
+  "expected": {
+    "id": "sub2-crit4-omission",
+    "subquestion_id": "sub2",
+    "kind": "omission",
+    "answer": "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+    "expected_points": 1,
+    "expected_verdicts": [
+      {
+        "criterion_id": "crit3",
+        "verdict": "met",
+        "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다."
+      },
+      {
+        "criterion_id": "crit4",
+        "verdict": "not_met",
+        "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이어서 감사의 효율성을 저해한다."
+      }
+    ],
+    "note": "target=crit4; 한 명제를 누락하고 다른 독립 요구는 보존한 답안. 작성자 원문 기반 기대판정이며 모델실측 결과가 아니다. 순서·개수 상한과 여분답안 절단을 적용하지 않는다."
+  },
+  "request_hash": "6204827957652202c914357eae5340229edafc552babc7a61ed67c6a2d82b957",
+  "schema_hash": "1d1aaafa722441749dc0ef0beff0c9df752c1180392feaa8249ded149ea93695",
+  "raw_judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "A의 표본위험 분류가 답안에 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "B의 표본위험 분류가 답안에 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+            "reason": "A가 중요한 왜곡표시를 놓쳐 효과성을 저해하고 부적합한 의견에 이를 수 있어 유의해야 한다고 설명했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "B의 추가업무 및 효율성 저해에 대한 설명이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "경영진에게 왜곡표시 조사와 수정 조치를 요구하는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "추가감사절차의 성격·시기·범위 조정에 대한 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "trace": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "A의 표본위험 분류가 답안에 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "B의 표본위험 분류가 답안에 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "A가 중요한 왜곡표시를 놓쳐 효과성을 저해하고 부적합한 의견에 이를 수 있어 유의해야 한다고 설명했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "B의 추가업무 및 효율성 저해에 대한 설명이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진에게 왜곡표시 조사와 수정 조치를 요구하는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "추가감사절차의 성격·시기·범위 조정에 대한 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-10-006",
+    "score": 1,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "상황 A와 B의 잘못된 결론을 세부테스트의 표본위험 유형으로 각각 분류하시오. 부당하게 수용하는 위험인지 기각하는 위험인지가 드러나는 동등한 분류 표현을 허용한다. 지문에 제시된 모집단 상태와 표본결론만 그대로 반복하는 답은 분류를 제시한 것으로 보지 않는다. 감사의 효과성·효율성에 미치는 영향은 다음 물음에서 답하시오.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "A의 표본위험 분류가 답안에 없다.",
+            "claim": "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "B의 표본위험 분류가 답안에 없다.",
+            "claim": "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+          "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "A와 B의 잘못된 결론이 각각 감사의 효과성 또는 효율성에 어떠한 영향을 미치는지 설명하시오. A의 방향을 감사인이 특히 유의해야 하는 이유도 그 영향과 연결하시오. 유형 명칭을 다시 쓰는 것만으로는 충분하지 않다.",
+        "user_answer": "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+            "reason": "A가 중요한 왜곡표시를 놓쳐 효과성을 저해하고 부적합한 의견에 이를 수 있어 유의해야 한다고 설명했다.",
+            "claim": "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "B의 추가업무 및 효율성 저해에 대한 설명이 없다.",
+            "claim": "B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이어서 감사의 효율성을 저해한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해하고 부적합한 감사의견에 이를 수 있으므로 특히 유의하여야 한다.",
+          "B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이어서 감사의 효율성을 저해한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "상황 C에서 감사기준이 제시하는 후속 대응의 두 경로를 모두 설명하시오. 경영진에게 요청할 조치와 감사인 자신의 추가감사절차 조정을 구별하되, 두 경로를 반드시 동시에 실행해야 한다는 뜻으로 답하지 마시오.",
+        "user_answer": "",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "경영진에게 왜곡표시 조사와 수정 조치를 요구하는 내용이 없다.",
+            "claim": "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하고 필요한 수정을 하도록 요구할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "추가감사절차의 성격·시기·범위 조정에 대한 내용이 없다.",
+            "claim": "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하고 필요한 수정을 하도록 요구할 수 있다.",
+          "요구되는 확신을 가장 잘 달성하도록 추가감사절차의 성격·시기·범위를 조정할 수 있다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "exact_verdict_differences": [],
+  "verdict_differences": [],
+  "matched": true,
+  "boundary_policy": null
+}

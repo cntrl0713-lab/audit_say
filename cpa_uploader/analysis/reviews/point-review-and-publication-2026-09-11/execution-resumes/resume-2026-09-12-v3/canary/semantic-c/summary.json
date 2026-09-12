@@ -1,0 +1,74 @@
+{
+  "version": 3,
+  "started_at": "2026-09-11T22:54:46.077Z",
+  "worker": "c",
+  "phase": "semantic",
+  "manifest_file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-resumes/resume-2026-09-12-v3/canary/manifest.json",
+  "manifest_sha256": "dc2deafcd2804c55054ddbb7e405b3439ceef9de883a9ba59f5ee8f281e54452",
+  "worker_file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/validation-worker-v3.mjs",
+  "worker_sha256": "c3c6aa47085eae4f9aac7502ed1a7523f8d2ef84c59e486f498a1537dcad2926",
+  "model": "gpt-5.6-luna",
+  "review_model": "gpt-5.6-luna",
+  "max_input_chars": 500000,
+  "set_ids": [
+    "pilot-03-001"
+  ],
+  "output": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-resumes/resume-2026-09-12-v3/canary/semantic-c",
+  "transport": "production_cli_subprocess",
+  "mock": false,
+  "credentials_logged": false,
+  "stop_file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-resumes/resume-2026-09-12-v3/canary/STOP",
+  "receipt_provenance": null,
+  "finished_at": "2026-09-11T22:56:37.827Z",
+  "interrupted": false,
+  "gracefully_stopped": false,
+  "stopped_on_execution_error": false,
+  "planned_sets": 1,
+  "recorded_sets": 1,
+  "not_started_set_ids": [],
+  "results": [
+    {
+      "set_id": "pilot-03-001",
+      "started_at": "2026-09-11T22:54:46.080Z",
+      "phase": "semantic",
+      "outcome": "semantic_nonpass",
+      "input_sha256": "b2f12a59abfa9e6ac9860587dfe99fd9dc157ba83db60ff441dcc3b25f636112",
+      "child_exit_code": 1,
+      "child_signal": null,
+      "child_pid": 37148,
+      "guard_or_observer_error": null,
+      "stderr_tail": "",
+      "receipt_file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-resumes/resume-2026-09-12-v3/canary/semantic-c/pilot-03-001/semantic.json",
+      "receipt_sha256": "0570904c32a6647c84a70ada56272999854522b2df9489a249612ae88ea1152f",
+      "semantic_verdict": "fail",
+      "nonpass_units": [
+        {
+          "id": "criterion:sub1:crit3",
+          "checks": {
+            "alignment": "pass",
+            "source_support": "uncertain",
+            "conditions_exceptions": "pass",
+            "edition_scope": "pass",
+            "nonduplication": "pass"
+          },
+          "rationale": "발문은 감사 전제조건의 핵심 내용을 묻고, 모범답안과 criterion은 정보 제공·확보 책임의 확인을 독립 요소로 요구하여 서로 정렬된다. A11은 경영진의 책임 인정·이해 전제와 필요한 정보 제공·확보 능력 및 정보 입수에 대한 합리적 기대를 명시하지만, ‘정보 제공·확보 책임’이라는 표현은 문단 6(b)의 직접 원문 없이 A11에서 일부 추론한 것이므로 source_support는 uncertain이다. 정보 제공·확보 능력이라는 발문의 일반 전제와 책임 인정·이해를 구별하므로 조건 누락은 없다. crit1·crit2와도 별개 책임 범주이며 authoring_plan상 의도되지 않은 중복은 없다."
+        },
+        {
+          "id": "subquestion:sub2",
+          "checks": {
+            "alignment": "pass",
+            "source_support": "pass",
+            "conditions_exceptions": "pass",
+            "edition_scope": "pass",
+            "nonduplication": "fail"
+          },
+          "rationale": "발문은 조건 변경 요청 시 정당성과 특히 범위제한의 시사점을 묻고, 모범답안은 두 요소를 모두 정확히 제시한다. src13의 KGA 210 A31 원문이 이를 직접 뒷받침하며, 인용 위치도 PDF 45, L149-L155와 일치한다. 2027년 대비 2026-01-01 개시 보고기간이라는 판본 가정에도 부합한다. 다만 기존 pilot-03-006/sub1에서 변경 요청의 합리적 정당성을 이미 구체적으로 요구하여 crit5·crit6과 구체 명제가 중복되며, authoring_plan에 해당 ID를 의도된 복습으로 명시하지 않았다."
+        }
+      ],
+      "nonpass_cases": [],
+      "grading_status": "not_run",
+      "mismatched_run_ids": [],
+      "finished_at": "2026-09-11T22:56:37.821Z"
+    }
+  ]
+}

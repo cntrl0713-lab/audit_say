@@ -1,0 +1,31 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+const out=path.dirname(fileURLToPath(import.meta.url));
+const root=process.cwd();
+const h=b=>crypto.createHash('sha256').update(b).digest('hex');
+const r=p=>JSON.parse(fs.readFileSync(path.join(out,p),'utf8'));
+const write=(p,j)=>fs.writeFileSync(path.join(out,p),JSON.stringify(j,null,2)+'\n');
+const c=r('candidates.json'), errors=[];
+for(const e of c.entries){const b=fs.readFileSync(path.resolve(root,e.original_path));if(b.length!==e.bytes||h(b)!==e.sha256)errors.push(e.original_path);if(/\/b\/.*fixture/i.test(e.original_path))errors.push('synthetic_fixture:'+e.original_path);}
+const record='cpa_uploader/analysis/reviews/question-review-2027/grading-cases/19-sources.json';
+const historical=JSON.parse(fs.readFileSync(record,'utf8'));
+const missing=r('missing-recorded-files.json');
+const mapped=historical.filter(x=>x.file).map(x=>({record,recorded_path:x.file,expected_sha256:x.sha256,url:x.url,matching_current_paths:c.entries.filter(e=>e.sha256===x.sha256).map(e=>e.original_path)}));
+const recoveryRecord='cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/raw-collection-v1/recovery.json';
+const recovered=fs.existsSync(recoveryRecord)?JSON.parse(fs.readFileSync(recoveryRecord,'utf8')).entries.map(x=>({...x,independently_checked_sha256:h(fs.readFileSync(x.saved_path))})):[];
+for(const x of recovered)if(x.independently_checked_sha256!==x.expected_sha256)errors.push('recovery:'+x.saved_path);
+for(const x of mapped){const hit=recovered.find(y=>y.historical_path===x.recorded_path&&y.independently_checked_sha256===x.expected_sha256);if(hit){x.matching_current_paths.push(hit.saved_path);x.recovery_record=recoveryRecord;x.status='recovered_by_root_after_C_candidate_snapshot';}}
+const missingFinal=mapped.filter(x=>!x.matching_current_paths.length).map(x=>({...x,status:'historical_original_not_preserved_in_current_inventory',limitation:'원본 URL과 당시 해시는 남아 있으나 현재 후보에 같은 바이트 없음. 공식 전사본은 별도 보관.'}));
+const sourceRefs=JSON.parse(fs.readFileSync('cpa_uploader/data/cpa_question_sets_v3.authoring.json','utf8')).flatMap(s=>s.source_refs||[]);
+const selected=new Set(c.entries.map(e=>e.original_path));
+const sourceRefMissing=[...new Set(sourceRefs.map(s=>s.file))].filter(p=>!selected.has(p));
+const s06Record='cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/download-manifest-initial.json';
+const relativeResolutions=JSON.parse(fs.readFileSync(s06Record,'utf8')).map(x=>{const p=path.join(path.dirname(s06Record),x.file).replaceAll('\\','/');return {record:s06Record,recorded_path:x.file,resolved_path:p,sha256:x.sha256,exact_hash_match:h(fs.readFileSync(p))===x.sha256};});
+const gaps={version:1,api_calls:0,user_excluded:[{category:'original_textbook_pdfs',count:8,reason:'2026-09-11 사용자 확인: 통합학습자료 자체가 기반이며 최초 PDF는 필요 없음. 8권은 미보관 결함에서 제외하고 추가 추적 종료.',retained_basis:'cpa_uploader/data/회계감사_통합학습자료/ 전체22파일'}],historical_path_resolutions:mapped.filter(x=>x.matching_current_paths.length),relative_path_resolutions:relativeResolutions,historical_originals_not_preserved:missingFinal,url_only_references:historical.filter(x=>!x.file).map(x=>({url:x.url,scope:x.scope,version:x.version,status:'historical_url_only_record; no historical file path or byte hash',note:x.url.includes('fsc.go.kr')?'후속 s06 sources에 FSC 게시 HTML과 2015 HWP 별도 보관. 당시 다운로드 실패와 후속 원문 확보를 구별.':'국제기준 보조근거 URL; 국내 적용판본 원문으로 대체하지 않음'})),failed_or_partial_response_records:[{record,url:'https://www.fsc.go.kr/po040200/84640',status:'historical_2015_download_returned_HTML',current_preservation:'s06/sources의 fsc-interim-2015.html(게시물)과 interim-2015.hwp(후속 실제 전문)을 구분'},{file:'cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/external-audit-law.html',status:'iframe_navigation_wrapper_not_statute_body',body_file:'cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/external-audit-law-view.html',text_file:'cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/external-audit-law-text.txt',evidence:'보존 HTML의 iframe lawService가 실제본문을 별도 요청함'}],reference_edition_uncertainty:'references39와 최초 통합 원본 기준서36의 판본·내용 동일성을 이번 보존 인벤토리에서 확정하지 않음. 36 번호별+control/Ethics/law 3파일 역할만 확인.',scan_candidate_resolution:missing.entries.length+' machine-record paths were only investigation candidates; this final gap assessment resolves relative filenames and matching SHA-256 aliases.'};
+write('gap-assessment-final.json',gaps);
+write('recovery-byte-check.json',{record:recoveryRecord,entries:recovered,all_four_exact:recovered.length===4&&recovered.every(x=>x.independently_checked_sha256===x.expected_sha256),note:'Root의 후속 재확보 파일을 로컬에서 독립 hash 대조. C 후보390은 당시 목록대로 유지하며 root 최종수집에 4파일을 추가한다.',api_calls_by_this_agent:0});
+const exclusions=r('exclusions.json');exclusions.groups.find(x=>x.path==='cpa_uploader/data/cpa_question_sets_v3.*.json').reason='원문 출처가 아니므로 C 원자료 후보에서 제외. 실제 wiki 읽기 입력의 시점 사본은 A 추가 wiki-input 목록에 별도 포함되며 그 역할로 통합한다.';write('exclusions.json',exclusions);
+const check={checked_at:new Date().toISOString(),candidate_count:c.entries.length,all_candidate_bytes_and_sha256_current:errors.length===0,errors,canonical_source_ref_files_not_selected:sourceRefMissing,catalog_source_files:c.source_catalog_files,catalog_source_files_not_selected:c.catalog_files_not_selected,synthetic_b_fixtures_selected:0,api_calls:0,source_copies_created:0,original_files_modified:0,candidate_sha256:h(fs.readFileSync(path.join(out,'candidates.json'))),category_counts:c.categories,unique_sha256:c.unique_sha256,documented_url_in_header_or_json: c.entries.filter(e=>e.original_url_present).length,direct_file_url_json_pairs:c.entries.filter(e=>e.recorded_url_links.length).length,limits:'URL existence means a preserved local record, not a current download/official-edition audit. A supplemental wiki-input and outside-source extraction inventory remains a separate union input.'};
+write('validation.json',check);console.log(JSON.stringify(check,null,2));

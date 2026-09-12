@@ -1,0 +1,25 @@
+{
+  "version": "question-grading-tolerance-2026-09-12-v1",
+  "scope": "Selected 119 sets in point-review-and-publication-2026-09-11",
+  "authorization": {
+    "source": "user reply in this task",
+    "confirmed_text": "물음당 1점 이내 수용",
+    "included_example": "시점 누락 답안의 기대 2점, 실제 3점",
+    "model_instruction": "모델은 luna를 사용해. 모델 상향하면 비용 감당이 안돼"
+  },
+  "grading_model": "gpt-5.6-luna",
+  "review_model": "gpt-5.6-luna",
+  "max_absolute_score_delta_per_subquestion": 1,
+  "preserve_expected_and_actual": true,
+  "acceptance_label": "accepted_with_grading_deviation",
+  "not_a_strict_match": true,
+  "does_not_accept": [
+    "Question, model answer, rubric or direct source defects",
+    "Transport, schema, evidence persistence or security failures",
+    "Unverifiable score difference where required expected scores are unavailable",
+    "Any subquestion score deviation exceeding one point"
+  ],
+  "reporting": "Retain original strict receipts and all mismatches. Record justified comparable expected/actual per-question scores and accepted deviations separately. This policy is not human confirmation of question content or proof of publication. Do not relabel historical model calls or rewrite old expected verdicts to match outputs.",
+  "retries": "Do not add diagnostic repetitions solely to eliminate a deviation within this authorized range. Existing runner-internal observations remain visible and are counted as actually executed.",
+  "global_default_policy": false
+}

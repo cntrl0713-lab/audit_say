@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-13-005--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-005--sub1--standard",
+  "source_set_id": "pilot-13-005",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "e0009aae32179f4de91b3a1f9b1bcbbb04c52c6c6a954861a62808e4c9724759",
+  "answers": {
+    "sub1": "해당 내부감사기능이 수행한 업무를 활용할 수 없다.\n조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 못하여 업무 활용의 필수 요건을 충족하지 못했기 때문이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 610.16의 객관성 기본요건 미충족은 활용금지다. 단순 부족사실 반복보다 필수요건 미충족이라는 규칙과 연결한 근거를 평가한다. 해당 기준 crit1의 원 판정 met를 보존한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 610.16의 객관성 기본요건 미충족은 활용금지다. 단순 부족사실 반복보다 필수요건 미충족이라는 규칙과 연결한 근거를 평가한다. 해당 기준 crit2의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "bb2acf4a453916dde3ef3e9a322363e62cfc5ab8216b60af52348a2a37fc51dc",
+  "schema_hash": "450e5450f39cb179dc330749e1eda21d00cb61df1fdc3d16477169ae47fd8af5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "해당 내부감사기능이 수행한 업무를 활용할 수 없다.\n",
+            "reason": "객관성 지원 요건 미충족으로 내부감사기능의 업무를 활용할 수 없다고 판단했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 못하여 업무 활용의 필수 요건을 충족하지 못했기 때문이다.",
+            "reason": "조직 내 위상과 관련 정책·절차가 객관성을 적절히 지원하지 못해 필수 요건을 충족하지 못했다고 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "객관성 지원 요건 미충족으로 내부감사기능의 업무를 활용할 수 없다고 판단했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "조직 내 위상과 관련 정책·절차가 객관성을 적절히 지원하지 못해 필수 요건을 충족하지 못했다고 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-005",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "내부감사기능의 객관성이 조직 내 위상과 정책·절차로 충분히 뒷받침되지 않는다고 외부감사인이 결정한 경우, 해당 기능이 수행한 업무를 계속 활용할 수 있는지 판단하고 근거를 제시하시오.",
+        "user_answer": "해당 내부감사기능이 수행한 업무를 활용할 수 없다.\n조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 못하여 업무 활용의 필수 요건을 충족하지 못했기 때문이다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "해당 내부감사기능이 수행한 업무를 활용할 수 없다.",
+            "reason": "객관성 지원 요건 미충족으로 내부감사기능의 업무를 활용할 수 없다고 판단했다.",
+            "claim": "객관성 지원 미흡 시 업무 활용 불능이라고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 못하여 업무 활용의 필수 요건을 충족하지 못했기 때문이다.",
+            "reason": "조직 내 위상과 관련 정책·절차가 객관성을 적절히 지원하지 못해 필수 요건을 충족하지 못했다고 설명했다.",
+            "claim": "조직 내 위상과 관련 정책·절차가 객관성을 적절히 지원하지 않는 것이 활용 금지 요건임을 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "해당 내부감사기능이 수행한 업무를 활용할 수 없다.",
+          "조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 못하여 업무 활용의 필수 요건을 충족하지 못했기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0b0b8971a1f6cb2c016aa4ce7f64a087d09857d82756893476",
+        "request_id": "req_c0ee2519639d4acb9135fe2200311497",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2743,
+          "input_tokens_details": {
+            "cache_write_tokens": 2740,
+            "cached_tokens": 0
+          },
+          "output_tokens": 230,
+          "output_tokens_details": {
+            "reasoning_tokens": 67
+          },
+          "total_tokens": 2973
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009616000000000001,
+        "min_usd": 0.0009616000000000001,
+        "max_usd": 0.0009616000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-13-005--sub1--standard--model/input.json",
+      "sha256": "af126ed2af7446579147aa61f68d6b84d346f54c06b724ff381dbd1fdc01f541"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-13-005--sub1--standard--model/transport.jsonl",
+      "sha256": "bb2888b9072fb2b57c8a001b46f1bcfc61a741d02f2561502e90a227561cc84f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-b/pilot-13-005--sub1--standard--model/traces.jsonl",
+      "sha256": "aef9f03be5579e71c2e1c57daaacbba97082cb6159b93e3ef81b73bd52dfd33d"
+    }
+  }
+}

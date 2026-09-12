@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-09-005--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-09-005--sub1--standard",
+  "source_set_id": "pilot-09-005",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "f9d2aa69682a8a864d7d35e8f755cbad28503dd6ebe3b5bb121fd734579d1ea6",
+  "answers": {
+    "sub1": "의문을 해결하기 위한 추가적인 감사증거를 입수해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 505.10의 신뢰성 의문을 해결할 추가증거 입수라는1점이다. 불신뢰 확정의 위험평가 영향까지 요구하지 않고 단독기준서형을 유지한다. 해당 기준 crit1의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "87d5d4235e947874641cca518c9b0872faf0885ba1b7df99e62519a01fd9c80d",
+  "schema_hash": "2d242d5946009c5201925c82ca350271bad8de0a08a6d9e10102364753515034",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "의문을 해결하기 위한 추가적인 감사증거를 입수해야 한다.",
+            "reason": "의문을 해결하기 위한 추가 감사증거를 입수해야 한다고 명시하였다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "의문을 해결하기 위한 추가 감사증거를 입수해야 한다고 명시하였다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-09-005",
+    "score": 1,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "조회 회신의 신뢰성에 의문을 제기하는 요소를 식별한 경우, 그 의문에 대응하여 감사인이 수행할 조치를 서술하시오.",
+        "user_answer": "의문을 해결하기 위한 추가적인 감사증거를 입수해야 한다.",
+        "score": 1,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "의문을 해결하기 위한 추가적인 감사증거를 입수해야 한다.",
+            "reason": "의문을 해결하기 위한 추가 감사증거를 입수해야 한다고 명시하였다.",
+            "claim": "의문 해결을 위한 추가 감사증거 입수를 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "의문을 해결하기 위한 추가적인 감사증거를 입수해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0b0157f0c8f82310016aa4cc43d88887d093d8596aa39c0e9a",
+        "request_id": "req_9ad0990ab2024f6c8967da96a5389b53",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2155,
+          "input_tokens_details": {
+            "cache_write_tokens": 2152,
+            "cached_tokens": 0
+          },
+          "output_tokens": 118,
+          "output_tokens_details": {
+            "reasoning_tokens": 20
+          },
+          "total_tokens": 2273
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0006802,
+        "min_usd": 0.0006802,
+        "max_usd": 0.0006802,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-09-005--sub1--standard--model/input.json",
+      "sha256": "8ac8758d28e17976b87e625c1bf7544b591c7ceb75229e31ff46ce9d70b1c0ab"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-09-005--sub1--standard--model/transport.jsonl",
+      "sha256": "c6fc605ffa0ba8804ee1534582160f5d0bfe60b0a9a36b8820348643b433758a"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-09-005--sub1--standard--model/traces.jsonl",
+      "sha256": "4869f349499b07d2618dc4369b22a9f597eaec295cd601774f1d6031840374bf"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "reviewer": "plan_foundations",
+  "created_at": "2026-09-11T22:38:26.327Z",
+  "status": "independent_local_triage_repeat_pending",
+  "human_review": false,
+  "api_calls_in_this_triage": 0,
+  "set_id": "pilot-01-002",
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-resumes/resume-2026-09-12-v2/canary/manifest.json",
+    "sha256": "9fab5fb3effbb1fa1838de75ea5c5118c2fbda3df41278a51fc1bd5d055cb62d"
+  },
+  "original_record": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-resumes/resume-2026-09-12-v2/canary/grading-a/pilot-01-002/grading.json.grading.jsonl",
+    "sha256": "a7bf198bceb7b45915fd31b6e3778edbeffb0259071cd3642835c7100315c453",
+    "run_id": "6353734d9f3ecb15d377f757ed44eae54e223d32338e44241ae278a734694806"
+  },
+  "prompt": "업무수행이사가 감사업무의 독립성 요구사항 준수에 관한 결론을 내리기 위해 수행해야 할 절차를 기술하시오.",
+  "model_answer": [
+    "회계법인 및 해당되는 경우 네트워크 회계법인으로부터 관련 정보를 입수하고, 독립성 위협을 일으키는 상황과 관계를 식별·평가한다.",
+    "정책·절차 위반정보를 평가하여 감사업무의 독립성에 위협이 발생하는지 결정한다.",
+    "안전장치를 적용하여 위협을 제거하거나 수용가능한 수준으로 감소시키는 조치를 취한다. 또는 적합하며 법규상 가능하면 감사업무 해지 조치를 취한다. 적합한 조치로 해결할 수 없으면 회계법인에 신속히 보고한다."
+  ],
+  "target_criterion": {
+    "id": "crit7",
+    "requirement_id": "req2",
+    "claim": "또는 적합하다고 고려되며 법규상 가능한 경우 감사업무 해지를 위한 조치를 취한다.",
+    "critical_facts": [
+      {
+        "id": "cf-crit7",
+        "type": "action",
+        "expected": "또는 적합하다고 고려되며 법규상 가능한 경우 감사업무 해지를 위한 조치를 취한다."
+      }
+    ],
+    "max_points": 1,
+    "scores": {
+      "met": 1,
+      "not_met": 0,
+      "contradicted": 0
+    },
+    "source_ref_ids": [
+      "src2"
+    ]
+  },
+  "original_answer": "감사업무 해지가 적합하다고 판단되지만 관련 법규가 해지를 허용하지 않으므로 해지 조치를 취하지 않는다.",
+  "original_expected": [
+    {
+      "unit_id": "criterion:sub2:crit7",
+      "case_kind": "condition_boundary",
+      "subquestion_id": "sub2",
+      "criterion_id": "crit7",
+      "verdict": "not_met"
+    }
+  ],
+  "actual_verdict": {
+    "criterion_id": "crit7",
+    "verdict": "met",
+    "quote": "감사업무 해지가 적합하다고 판단되지만 관련 법규가 해지를 허용하지 않으므로 해지 조치를 취하지 않는다.",
+    "reason": "법규상 해지가 허용되지 않는 경우 해지 조치를 취하지 않는다는 조건부 판단을 명시했다."
+  },
+  "source_refs": [
+    {
+      "id": "src1",
+      "file": "cpa_uploader/data/official/point-review-a-source-followup-2026-09-11.txt",
+      "title": "공식 2025 전문 KGA 220 문단 9, 10 (PDF 56)",
+      "page": "KGA 220",
+      "source_quote": "9. \r\n업무수행이사는 감사업무의 전 과정에 걸쳐 필요한 관찰과 질문을 통해 업무팀원이 관련 \r\n윤리적 요구사항을 위반하고 있다는 증거에 대하여 주의를 유지하여야 한다. (문단 A4-A5 \r\n참조) \r\n10. \r\n업무수행이사는 회계법인의 품질관리시스템 등을 통해 업무팀원이 관련 윤리적 요구사항을 \r\n위반하고 있음을 시사하는 사항을 알게 되면, 회계법인 내부의 다른 사람들로부터 자문을 \r\n받아 적합한 조치를 결정하여야 한다. (문단 A5 참조)",
+      "role": "standard",
+      "content_hash": "e289de4be56bdfd4a8a37f402740cba3cd4fb2c0dfe5e2c7a5e4cb50c9eed033",
+      "source_span": "KGA 220 문단 9, 10; 공식 2025 전문 PDF 56; L257-L264",
+      "actual_file_sha256": "afc799d716e3e643251a5768525eef6f6c35eb73aea78fe3dc786b3388f4e177"
+    },
+    {
+      "id": "src2",
+      "file": "cpa_uploader/data/official/point-review-a-source-followup-2026-09-11.txt",
+      "title": "공식 2025 전문 KGA 220 문단 11 (PDF 56–57)",
+      "page": "KGA 220",
+      "source_quote": "11. \r\n업무수행이사는 감사업무에 적용되는 독립성 요구사항의 준수에 관한 결론을 내려야 한다. \r\n이와 관련하여 업무수행이사는 다음의 절차를 수행하여야 한다.  \r\n(a) \r\n회계법인, 그리고 해당되는 경우 네트워크 회계법인으로부터 관련 정보를 입수하여 \r\n독립성에 위협을 일으키는 상황과 관계를 식별하고 평가함 \r\n\r\n\r\n## PDF page 57\r\n감사기준서 220 ‘재무제표감사의 품질관리’ \r\n57 / 974 \r\n(b) \r\n회계법인의 독립성 정책과 절차를 위반한 사실이 식별된 경우, 위반사실에 관한 정\r\n보를 평가하여 이 사실이 감사업무의 독립성에 위협을 발생시키는지 여부를 결정함  \r\n(c) \r\n안전장치를 적용하여 그러한 위협을 제거하거나 수용가능한 수준으로 감소시키기 위\r\n한 적합한 조치를 취함. 또는, 적합하다고 고려되면, 법규상 가능한 경우 해당 감사\r\n업무를 해지하기 위한 적합한 조치를 취함. 업무수행이사는 적합한 조치를 통하여 \r\n해당 사항을 해결할 수 없다면 신속히 이를 회계법인에 보고한다. (문단 A5-A7 참조)",
+      "role": "standard",
+      "content_hash": "36e0fb6e823ec121febe1106a6ebeaf79f0d0f88606104c1356eeed99d662f03",
+      "source_span": "KGA 220 문단 11; 공식 2025 전문 PDF 56–57; L266-L284",
+      "actual_file_sha256": "afc799d716e3e643251a5768525eef6f6c35eb73aea78fe3dc786b3388f4e177"
+    }
+  ],
+  "analysis": {
+    "required_meaning": "적합하다고 판단되고 법규상 허용되는 경우 감사업무 해지를 위한 적합한 조치를 취한다는 양의 조건부 행위 전체.",
+    "answer_meaning": "해지가 적합하더라도 법규상 허용하지 않는 상황에서는 해지하지 않는다는 법규상 제한의 준수.",
+    "missing_meaning": "허용되고 적합한 경우 실제 해지 조치를 취해야 한다는 양의 행위가 명시되거나 필연적으로 함축되지 않는다.",
+    "logic": "법규상 불허→해지하지 않음은 적합+허용→해지 조치를 취함과 동치가 아니다. 모든 경우에 해지 조치를 하지 않는 사람도 앞 명제만 말할 수 있다. 따라서 조건의 경계 인식만으로 전체 절차의 제시는 되지 않는다.",
+    "question_scope": "기준서형 발문은 독립성 준수 결론을 위해 수행할 절차를 기술하라고 요구한다. 특정 불허 사례에 대한 해지 가능 여부만 묻는 질문이 아니다.",
+    "classification": "grader_overrecognition_candidate",
+    "recommended_expected": "not_met",
+    "change_proposal": "현재 문항·모범답안·criterion·생성 기대표를 유지한다. 같은 입력 3회 관측을 마친 뒤 조건 인식만으로 양의 행위를 인정한 모델 오판인지 최종 보고한다. 원 receipt 판정은 수정하지 않는다.",
+    "alternative_considered": "조건부 행위의 적용 제외를 정확히 말한 사실만으로 정답인지를 검토했으나 현 발문과 critical_facts는 조건 인식 자체에 독립 1점을 배정하지 않아 충분하지 않다."
+  },
+  "counts": {
+    "generated_cases": 45,
+    "unique_runs": 39,
+    "nonempty_answers": 38,
+    "empty_answers": 1,
+    "model_response_events": 39,
+    "recoverable_validation_error_events": 1,
+    "terminal_execution_errors": 0,
+    "matched": 38,
+    "mismatched": 1,
+    "security_false_positives": 0
+  },
+  "preservation": "은행/문항/계획/QA/원시로그/receipt/공통코드는 변경하지 않았다."
+}

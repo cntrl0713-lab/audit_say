@@ -1,0 +1,100 @@
+{
+  "created_at": "2026-09-11T23:14:15.030Z",
+  "status": "local_preparation_complete_not_model_validated",
+  "api_calls": 0,
+  "preparation_tool": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/prepare-execution-v9.ts",
+    "sha256": "335724c4f7350012b812bbb79cf5fc63d4d800a1ecb37cb43089fa3d720164ba"
+  },
+  "runtime": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-runtime-v7.json",
+    "sha256": "17e99d1dff7f6ecaba48658796788be0b1f47b03364cc23c348932474d18a250"
+  },
+  "bank": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/c/prepared-reviewed-v8/candidate-authoring.json",
+    "sha256": "11618f57625ae6ec71630f6413411ad513291674573e4eb0f028d129c0eab90b"
+  },
+  "files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/execution-all-v9/manifest.json",
+      "sha256": "0f53ec0878acff9a0c1045679df374ab2eea8021d2d8224e6a6bd0fd1077ef37"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/execution-all-v9/preflight.json",
+      "sha256": "57bb2d0939502513ac244b73269dc3a253182a3477529f06be7632fe92ea569b"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/execution-all-v9/historical-qa92-preservation.json",
+      "sha256": "dfc35daa57f748ad6e0297153108bfb04ef564d88b9dc6d593a8d7188ea8e47c"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/execution-all-v9/execution-requirements.json",
+      "sha256": "47c479f1e8bac3db75e3660b1bebdbc8bcdc5b1a7bab1c1e0ac7945702dc4209"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/execution-all-v9/worker-dry-runs.json",
+      "sha256": "c659d7edfe15c6d4867f3dfd9688f0d62ead81a25afc443e9597c93c101f5e8d"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/execution-all-v9/checks.json",
+      "sha256": "ad52b57268dd8709e2fb3f02e9c1aa61f2fa6586572441b864af3b33a0344860"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/execution-all-v9/sets/pilot-03-001.json",
+      "sha256": "719325ca1f712a7b9477fb6af142e578b7d11618b658906cb9e012bfbb3b2aab"
+    }
+  ],
+  "counts": {
+    "sets": 119,
+    "questions": 280,
+    "criteria": 1113,
+    "semantic_units": 1393,
+    "author_qa_cases": 6040,
+    "canary_qa_cases": 94,
+    "max_input_chars": 476203,
+    "input_limit": 500000,
+    "preflight_errors": 0,
+    "source_context_omissions": 0,
+    "unchanged_jobs": 117,
+    "unchanged_question_files": 118,
+    "unchanged_qa_files": 118,
+    "old_qa_objects_preserved": 6038,
+    "added_qa_cases": 2
+  },
+  "previous_actual_qa": {
+    "preserved": 92,
+    "live_model": 86,
+    "empty_no_model": 6,
+    "current_request_hash_changed": 92,
+    "reused_as_current_validation": 0
+  },
+  "validation": {
+    "created_at": "2026-09-11T23:14:15.017Z",
+    "api_calls": 0,
+    "commands": [
+      {
+        "command": "node --import tsx cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/prepare-execution-v9.ts --self-test",
+        "exit_code": 0,
+        "accepted": 3,
+        "rejected": 7,
+        "writes": 0
+      },
+      {
+        "command": "npx tsc --noEmit --incremental false",
+        "exit_code": 0
+      },
+      {
+        "command": "npx eslint cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/prepare-execution-v9.ts",
+        "exit_code": 0
+      }
+    ],
+    "all_preflight_input_hashes_rechecked": 587,
+    "manifest_job_code_source_hashes_rechecked": true,
+    "worker_dry_runs": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/execution-all-v9/worker-dry-runs.json",
+      "sha256": "c659d7edfe15c6d4867f3dfd9688f0d62ead81a25afc443e9597c93c101f5e8d"
+    }
+  },
+  "remaining": "Root creates a fresh canary/remaining wave. All 119 semantic reviews, generated cases from new full-pass receipts, and all 6040 author QA need current-epoch execution. No historical semantic or grading receipt is relabeled. Source candidate and original evidence remain immutable.",
+  "ownership": "Only new A preparation tool/output written; common code, bank, plans, QA, official sources, runtime locks, DB and historical outputs unchanged."
+}

@@ -1,0 +1,422 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-16-010--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-010--case",
+  "source_set_id": "pilot-16-010",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "a82fb3eee8379383dd2c2ed1a66235a11ca8ee18a648be69f251d41b30ca4c58",
+  "answers": {
+    "sub1": "전임감사인의 기존 의견은 오류를 수정한 뒤의 전기 재무제표에 대한 것이다.",
+    "sub2": "전임감사인이 새 보고서를 발행해도 당기감사인이 당기와 전기 전체 모두에 보고해야 한다.",
+    "sub3": "수정사항의 감사계약은 필요하지 않으며 현재 당기계약만으로 그 문구를 사용할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "대상 명제를 명시적으로 뒤집었다. 쓰지 않은 다른 독립 명제는 미충족이다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "대상 명제를 명시적으로 뒤집었다. 쓰지 않은 다른 독립 명제는 미충족이다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "대상 명제를 명시적으로 뒤집었다. 쓰지 않은 다른 독립 명제는 미충족이다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "대상 명제를 명시적으로 뒤집었다. 쓰지 않은 다른 독립 명제는 미충족이다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "현재 계약만으로 문구 사용을 허용하며 수정 감사의 계약 범위 필요를 명시적으로 부정한다."
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "contradicted",
+          "reason": "현재 계약만으로 문구 사용을 허용하며 수정 감사의 계약 범위 필요를 명시적으로 부정한다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "대상 명제를 명시적으로 뒤집었다. 쓰지 않은 다른 독립 명제는 미충족이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "f11817cf44b2ba59c649972a1ef54186d58e03abdc1a179ee42c793fcb116ae1",
+  "schema_hash": "0e45e1ecf4c4ad09338e9141baa477f6e4ae5abc70a50a515e886708e190c80f",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "전임감사인의 기존 의견은 오류를 수정한 뒤의 전기 재무제표에 대한 것이다.",
+            "reason": "기존 의견의 대상이 수정 후 재무제표라고 하여 요구 내용과 반대이다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "전기 전체 재무제표에 대한 확신 범위를 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "전임감사인이 새 보고서를 발행해도 당기감사인이 당기와 전기 전체 모두에 보고해야 한다.",
+            "reason": "당기와 전기 전체 모두에 보고해야 한다고 하여 당기에 대해서만 보고한다는 내용과 반대이다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "보고서의 함께 재발행 여부에 따른 기타사항문단 기재 여부를 구별하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "수정사항의 감사계약은 필요하지 않으며 현재 당기계약만으로 그 문구를 사용할 수 있다.",
+            "reason": "현재 당기계약만으로 문구를 사용할 수 있다고 하여 제안이 부적절하다는 결론과 반대이다."
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "contradicted",
+            "quote": "수정사항의 감사계약은 필요하지 않으며 현재 당기계약만으로 그 문구를 사용할 수 있다.",
+            "reason": "수정사항 감사계약이 필요하지 않다고 명시하여 필요한 계약상 업무 범위를 부정했다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "수정의 적절성에 관한 충분하고 적합한 감사증거 요건을 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "기존 의견의 대상이 수정 후 재무제표라고 하여 요구 내용과 반대이다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전기 전체 재무제표에 대한 확신 범위를 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "당기와 전기 전체 모두에 보고해야 한다고 하여 당기에 대해서만 보고한다는 내용과 반대이다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "보고서의 함께 재발행 여부에 따른 기타사항문단 기재 여부를 구별하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "현재 당기계약만으로 문구를 사용할 수 있다고 하여 제안이 부적절하다는 결론과 반대이다."
+              },
+              {
+                "criterion_id": "crit7",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "수정사항 감사계약이 필요하지 않다고 명시하여 필요한 계약상 업무 범위를 부정했다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "수정의 적절성에 관한 충분하고 적합한 감사증거 요건을 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-010",
+    "score": 0,
+    "max_points": 7,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "갑의 초안 ①과 ②를 각각 바로잡아, 전임감사인 의견의 대상과 당기감사인이 전기 전체 재무제표에 관하여 표명하는 확신의 범위를 설명하시오. 기타사항문단의 전체 필수항목을 열거하는 물음은 아니다.",
+        "user_answer": "전임감사인의 기존 의견은 오류를 수정한 뒤의 전기 재무제표에 대한 것이다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "전임감사인의 기존 의견은 오류를 수정한 뒤의 전기 재무제표에 대한 것이다.",
+            "reason": "기존 의견의 대상이 수정 후 재무제표라고 하여 요구 내용과 반대이다.",
+            "claim": "전임감사인의 기존 의견은 수정된 전기 재무제표가 아니라 수정 전 전기 재무제표에 대한 것임을 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "전기 전체 재무제표에 대한 확신 범위를 설명하지 않았다.",
+            "claim": "당기감사인이 당기 감사계약과 그 감사만으로 전기 전체 재무제표에 대한 감사의견이나 기타 확신을 표명하지 않음을 설명한다. 당기감사를 이유로 전기 전체의 확신을 확대하면 반대이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "① 전임감사인이 의견을 표명한 대상은 수정 전 전기 재무제표이다.",
+          "② 당기감사인은 당기감사를 수행했다는 사실만으로 전기 전체 재무제표에 대한 감사의견이나 기타 어떠한 형태의 확신을 표명하지 않는다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "을에서 당기감사인이 보고할 재무제표의 기간을 제시하시오. 또 전임감사인의 새 보고서가 해당 비교재무제표와 함께 재발행되는 경우와 그렇지 않은 경우를 구별하여, 전임감사인에 관한 정보를 당기 감사보고서의 기타사항문단에 기재해야 하는지 설명하시오. 그 정보의 개별 항목은 열거하지 않아도 된다.",
+        "user_answer": "전임감사인이 새 보고서를 발행해도 당기감사인이 당기와 전기 전체 모두에 보고해야 한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "전임감사인이 새 보고서를 발행해도 당기감사인이 당기와 전기 전체 모두에 보고해야 한다.",
+            "reason": "당기와 전기 전체 모두에 보고해야 한다고 하여 당기에 대해서만 보고한다는 내용과 반대이다.",
+            "claim": "수정된 전기 재무제표에 대한 새 보고서의 발행에 전임감사인이 동의한 경우 당기감사인은 당기에 대해서만 보고함을 제시한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "보고서의 함께 재발행 여부에 따른 기타사항문단 기재 여부를 구별하지 않았다.",
+            "claim": "전임감사인의 보고서가 해당 재무제표와 함께 재발행되면 710.17의 기타사항문단 정보 기재 요구가 적용되지 않고, 함께 재발행되지 않으면 그 기재가 필요함을 모두 구별한다. 새 보고서가 존재한다는 사실만으로 함께 제시 여부를 생략하면 부족하다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "당기감사인은 당기에 대해서만 보고한다.",
+          "전임감사인의 감사보고서가 해당 재무제표와 함께 재발행되면 710.17의 전임감사인 정보 기재 요구가 적용되지 않는다. 함께 재발행되지 않는다면 기타사항문단에 그 정보를 기재해야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "병의 제안이 현재 상태에서 적절한지 판단하고, 수정 조정사항을 감사하여 그 적절성에 관한 표현을 포함하기 위해 먼저 갖추어야 할 계약 및 감사증거의 조건을 모두 설명하시오.",
+        "user_answer": "수정사항의 감사계약은 필요하지 않으며 현재 당기계약만으로 그 문구를 사용할 수 있다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "수정사항의 감사계약은 필요하지 않으며 현재 당기계약만으로 그 문구를 사용할 수 있다.",
+            "reason": "현재 당기계약만으로 문구를 사용할 수 있다고 하여 제안이 부적절하다는 결론과 반대이다.",
+            "claim": "현재 상태에서 수정 조정사항을 감사했다는 표현을 포함하자는 병의 제안은 적절하지 않다. 필요한 계약 범위 확보 조치가 이를 명확히 함축하면 결론 문구를 반복할 필요는 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "contradicted",
+            "quote": "수정사항의 감사계약은 필요하지 않으며 현재 당기계약만으로 그 문구를 사용할 수 있다.",
+            "reason": "수정사항 감사계약이 필요하지 않다고 명시하여 필요한 계약상 업무 범위를 부정했다.",
+            "claim": "수정 조정사항의 감사를 포함하는 계약상 업무 범위를 확보해야 한다. 추가 계약 또는 기존 계약의 범위 변경이 가능하며 물리적으로 별도 계약서가 있어야 하는 것은 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "수정의 적절성에 관한 충분하고 적합한 감사증거 요건을 설명하지 않았다.",
+            "claim": "수정의 적절성에 대하여 만족할 만큼 충분하고 적합한 감사증거를 얻어야 한다고 설명한다. 계약 체결만으로 충족하거나 전기 전체의 감사를 완료해야 한다는 요건으로 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "현재 상태에서 수정 조정사항을 감사했다는 표현을 포함하자는 병의 제안은 적절하지 않다.",
+          "수정 조정사항의 감사를 포함하는 계약상 업무 범위를 확보해야 한다.",
+          "수정의 적절성에 대하여 만족할 만큼 충분하고 적합한 감사증거를 얻어야 한다고 설명한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_066353ba4481d693016aa4c80fc9b887d08981b8e15af360f2",
+        "request_id": "req_76c06de3ed9340bfba4e52c904e1c325",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 4770,
+          "input_tokens_details": {
+            "cache_write_tokens": 4767,
+            "cached_tokens": 0
+          },
+          "output_tokens": 651,
+          "output_tokens_details": {
+            "reasoning_tokens": 199
+          },
+          "total_tokens": 5421
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0019735499999999997,
+        "min_usd": 0.0019735499999999997,
+        "max_usd": 0.0019735499999999997,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-16-010--case--wrong/input.json",
+      "sha256": "7b2ccee759b71687ec3252f4e9793e834737ec83a169a1dc31a2cfc8e63993d2"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-16-010--case--wrong/transport.jsonl",
+      "sha256": "0a6b30c32bb16ef16d1d402e4d5e165883e7b3d5398ace4ea7b813e374e3f524"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-16-010--case--wrong/traces.jsonl",
+      "sha256": "60f62786ca59946a4e77557c41a0f93b77edd5d0380df4ce70a0b8431bdc9f5c"
+    }
+  }
+}

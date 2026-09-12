@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-04-004--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-004--sub1--standard",
+  "source_set_id": "pilot-04-004",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "23dc14b5f0110e53723eacc29fe2ca1a815707ffc1bc84f2292491a883e6baa5",
+  "answers": {
+    "sub1": "감사인은 적시에 감사문서를 작성해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "담당 agent의 원문 대조 결론(model 답안): 230.7의 적시 작성만 묻는1점이다. 이유를 추가하지 않고 0·1만 가능한 물음이므로 수치상 중간 부분점수 사례는 만들지 않는다. 해당 기준 crit1의 원 판정 met를 보존한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "12950dbf58a866241e2d658c34f887e4c66481c21c335ffe7bf2bd5727fb4fb3",
+  "schema_hash": "2d242d5946009c5201925c82ca350271bad8de0a08a6d9e10102364753515034",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사인은 적시에 감사문서를 작성해야 한다.",
+            "reason": "감사문서를 적시에 작성해야 한다는 요구를 정확히 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "감사문서를 적시에 작성해야 한다는 요구를 정확히 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-004",
+    "score": 1,
+    "max_points": 1,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사문서는 언제 작성해야 하는지 감사기준서의 요구사항을 서술하시오.",
+        "user_answer": "감사인은 적시에 감사문서를 작성해야 한다.",
+        "score": 1,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사인은 적시에 감사문서를 작성해야 한다.",
+            "reason": "감사문서를 적시에 작성해야 한다는 요구를 정확히 제시했다.",
+            "claim": "적시에 감사문서를 작성해야 한다는 요구를 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "감사인은 적시에 감사문서를 작성해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0c319a1c071bd3be016aa4c85e29ec87d0bd52751481767688",
+        "request_id": "req_e928e62e129044adac3e7c8b8ae6722d",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2121,
+          "input_tokens_details": {
+            "cache_write_tokens": 2118,
+            "cached_tokens": 0
+          },
+          "output_tokens": 133,
+          "output_tokens_details": {
+            "reasoning_tokens": 37
+          },
+          "total_tokens": 2254
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0006897,
+        "min_usd": 0.0006897,
+        "max_usd": 0.0006897,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-04-004--sub1--standard--model/input.json",
+      "sha256": "c58a523d5d33401fc63150dbb9bc0bf4805c6e6e660e7e776bfd48913e081abd"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-04-004--sub1--standard--model/transport.jsonl",
+      "sha256": "c1395059e95107baef98473dd21a71ab96bb0368bce98b32e00e5f0be3faf78f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-a/pilot-04-004--sub1--standard--model/traces.jsonl",
+      "sha256": "ba28f5e0ceb03679191e6a7ad9c57bc22a4f351f079f48634b2a354926133935"
+    }
+  }
+}

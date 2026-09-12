@@ -1,0 +1,91 @@
+import type { CriterionVerdictV3 } from '../../../../../../lib/questionV3.ts';
+import type { QuestionSetGradeResultV3, QuestionSetJudgmentV3, GradingTraceV3 } from '../../../../../../lib/questionV3Grading.ts';
+import type { OpenAIUsageEvent } from '../../../../../../lib/ai/openaiStructured.ts';
+
+export interface FileIdentity { file: string; sha256: string }
+export type RepresentativeKind = 'model' | 'partial' | 'wrong';
+export interface ExpectedSubquestion {
+    subquestion_id: string;
+    expected_points: number;
+    expected_verdicts: { criterion_id: string; verdict: CriterionVerdictV3['verdict']; reason: string }[];
+}
+export interface SelectionEvidence extends FileIdentity {
+    subquestion_id: string;
+    /** A source QA case ID; model answers use the stored model_answer instead. */
+    case_id: string | null;
+    kind: RepresentativeKind;
+    reason: string;
+}
+export interface EfficientEntry {
+    id: string;
+    worker: 'a' | 'b' | 'c';
+    learning_unit_id: string;
+    source_set_id: string;
+    projected_file: string;
+    projected_sha256: string;
+    kind: RepresentativeKind;
+    /** Other case children remain in the projection with empty context-only answers. */
+    evaluated_subquestion_ids: string[];
+    answers: Record<string, string>;
+    expected_by_subquestion: ExpectedSubquestion[];
+    selection_evidence: SelectionEvidence[];
+}
+export interface EfficientManifest {
+    version: 1;
+    artifact_type: 'efficient_grading_manifest';
+    model: 'gpt-5.6-luna';
+    budget_usd: 20;
+    budget_enforcement: 'provider_limit';
+    bank: FileIdentity;
+    classifications: FileIdentity;
+    policy: FileIdentity;
+    inputs: FileIdentity[];
+    code_files: FileIdentity[];
+    entries: EfficientEntry[];
+}
+export interface CostAssessment {
+    status: 'calculated' | 'bounded_missing_cache_write' | 'unknown';
+    usd: number | null;
+    min_usd: number | null;
+    max_usd: number | null;
+    reason: string;
+}
+export interface UsageObservation { provider: OpenAIUsageEvent; cost: CostAssessment }
+export interface SubquestionComparison {
+    subquestion_id: string;
+    evaluated: boolean;
+    expected_points: number;
+    actual_points: number;
+    delta: number;
+    strict_matched: boolean;
+    within_tolerance: boolean;
+}
+export interface EfficientObservation {
+    version: 1;
+    artifact_type: 'efficient_grading_observation';
+    transport: 'model';
+    response_injection: false;
+    manifest: FileIdentity;
+    entry_id: string;
+    model: 'gpt-5.6-luna';
+    learning_unit_id: string;
+    source_set_id: string;
+    kind: RepresentativeKind;
+    evaluated_subquestion_ids: string[];
+    projected_body_hash: string;
+    answers: Record<string, string>;
+    original_expected: ExpectedSubquestion[];
+    prompt_sha256: string;
+    schema_hash: string;
+    actual_sdk_calls: number;
+    extra_quality_repeats: 0;
+    judgment: QuestionSetJudgmentV3;
+    traces: GradingTraceV3[];
+    result: QuestionSetGradeResultV3;
+    strict_matched: boolean;
+    within_tolerance: boolean;
+    subquestions: SubquestionComparison[];
+    security_findings: string[];
+    usage: UsageObservation[];
+    files: { input: FileIdentity; transport: FileIdentity; traces: FileIdentity };
+}

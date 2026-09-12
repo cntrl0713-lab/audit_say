@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {validateQuestionAuthoringPlan} from '../../../../../questionAuthoringPlan.ts';
+import {prepareSemanticReview} from '../../../../../questionSemanticReview.ts';
+const dir='cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v3';
+const read=n=>JSON.parse(fs.readFileSync(dir+'/'+n,'utf8'));
+const hash=n=>createHash('sha256').update(fs.readFileSync(dir+'/'+n)).digest('hex');
+const set=read('pilot-08-007.json')[0],old=read('prior-inputs/pilot-08-007.json')[0],plan=read('pilot-08-007.authoring-plan.json'),qa=read('qa-cases-t08-b.json'),oldqa=read('prior-inputs/qa-cases-t08-b.json');
+const errors=validateQuestionAuthoringPlan(plan);
+if(JSON.stringify(set.source_refs)!==JSON.stringify(old.source_refs)||set.subquestions.some((q,i)=>q.prompt!==old.subquestions[i].prompt))errors.push('Sources/prompts changed');
+if(set.subquestions.length!==3||set.subquestions.flatMap(q=>q.criteria).length!==8||set.subquestions.flatMap(q=>q.criteria).reduce((n,c)=>n+c.max_points,0)!==8)errors.push('Count or points changed');
+if(qa.cases.length!==55||qa.cases.some(c=>oldqa.cases.find(x=>x.id===c.id)?.answer!==c.answer))errors.push('55 original answers not preserved');
+const qaChecks=[];
+for(const name of ['qa-cases-t08-b.json','qa-supplement-t08-b-v3-evidence-scope.json','qa-supplement-t08-b-original-expressions.json']){const a=read(name);for(const c of a.cases){const q=set.subquestions.find(q=>q.id===c.subquestion_id);if(!q||c.expected_verdicts.length!==q.criteria.length||new Set(c.expected_verdicts.map(v=>v.criterion_id)).size!==q.criteria.length)errors.push(c.id+' criterion shape');const sum=c.expected_verdicts.reduce((n,v)=>n+(q.criteria.find(x=>x.id===v.criterion_id)?.scores[v.verdict]??NaN),0);if(!Number.isInteger(sum)||sum!==c.expected_points)errors.push(c.id+' score sum');}qaChecks.push({file:name,cases:a.cases.length,sha256:hash(name)});}
+const bank=JSON.parse(fs.readFileSync('cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/final-153-v2/comparison-bank.json','utf8'));
+const prepared=prepareSemanticReview(set,{bank:[...bank.filter(s=>s.id!==set.id),set],authoringPlan:plan,maxInputChars:500000});
+const target=prepared.units.find(u=>u.id==='criterion:sub3:crit8');
+if(!Object.values(target.fields).some(v=>String(v).includes('허용범위(scope)')))errors.push('Scope absent from actual semantic input');
+const result={created_at:new Date().toISOString(),status:errors.length?'fail':'pass',errors,plan_version:plan.version,questions:3,criteria:8,points:8,required_QA_count:55,original55answers_preserved:true,source_refs_and_prompts_unchanged:true,qaChecks,prepared_semantic_units:prepared.units.length,scope_visible_in_target_fields:true,preparation_only:true,comparison:'Read-only memory replacement in153v2; root final cohort not yet selected',actual_model_calls:0};
+fs.writeFileSync(dir+'/static-check.json',JSON.stringify(result,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify(result));if(errors.length)process.exitCode=1;

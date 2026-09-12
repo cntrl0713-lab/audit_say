@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "artifact_type": "unapplied_cache_validation_and_performance",
+  "created_at": "2026-09-12T04:31:09.570Z",
+  "api_calls": 0,
+  "production_changes": 0,
+  "source_before_sha256": "b97b17c7343e97e8af75d0d60d71bf6f1c372d32b47af51ebd7c723a859f0ed0",
+  "proposed_sha256": "f560022e83a19fd59c1c8ebf52b488fc6e018a8c3aa20da3382ff61eae01d33b",
+  "tests": 6,
+  "passed": 6,
+  "results": [
+    {
+      "name": "First exact-hash read cached once and nested values are immutable",
+      "pass": true
+    },
+    {
+      "name": "Same path with another declared hash is rejected before cached return",
+      "pass": true
+    },
+    {
+      "name": "Changed underlying bytes cannot pass mandatory final guard even when same-transaction cache returns original snapshot",
+      "pass": true
+    },
+    {
+      "name": "Fresh context cannot inherit old cached pass for modified bytes",
+      "pass": true
+    },
+    {
+      "name": "Cached path validation still rejects repository escape",
+      "pass": true
+    },
+    {
+      "name": "Same twenty actual observations pass unchanged production raw replay under isolated proposed cache; final real-byte guard passes",
+      "pass": true
+    }
+  ],
+  "actual_evidence_sample": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v4/grading-manifest.json",
+    "sha256": "50287a7729405c6157c962ee30f58b683fb5b58cfcc93d299e20e854e8365d1c"
+  },
+  "actual_observations_checked": 20,
+  "baseline": {
+    "module_import_ms": 570.4982,
+    "validation_elapsed_ms": 5287.7702,
+    "cpu_user_ms": 2281,
+    "cpu_system_ms": 937,
+    "cold_origin_ms": 4293.876899999999,
+    "warm_mean_ms": 55.038866666666614,
+    "warm_min_ms": 44.88180000000011,
+    "warm_max_ms": 72.41340000000037,
+    "read_calls": 3252,
+    "read_bytes": 219966084,
+    "read_ms": 3129.9875000000306,
+    "unique_read_files": 1836,
+    "ajv_compile_calls": 20,
+    "ajv_compile_ms": 88.76850000000377,
+    "final_shared_guard_ms": 1548.8653999999997,
+    "guarded_files": 1836,
+    "all20_passed": true,
+    "rough_735_one_replay_ms": 44637.36616666663,
+    "projection_warning": "Linear warm-sample extrapolation is a risk indicator only; full batch replays reused evidence a second time and adds other validation/guards. Final staging wall time is authoritative."
+  },
+  "proposed": {
+    "validation_ms": 4672.599999999999,
+    "warm_mean_ms": 18.904088888888865,
+    "cold_origin_ms": 4332.2069,
+    "read_calls": 3213,
+    "read_bytes": 143183127,
+    "read_ms": 3139.6496999999745,
+    "ajv_compiles": 20,
+    "ajv_compile_ms": 124.76240000000189,
+    "final_guard_ms": 1324.7489999999998,
+    "context_json_cache_entries": 49,
+    "bank_reads": 3,
+    "catalog_reads": 3,
+    "rough_735_one_replay_ms": 18188.904055555537
+  },
+  "rows": [
+    {
+      "entry_id": "pilot-02-001--sub1--standard--model",
+      "cold_origin": true,
+      "ms": 1989.8978,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-01-006--sub1--standard--model",
+      "cold_origin": true,
+      "ms": 2342.3091,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-01-006--sub2--standard--model",
+      "cold_origin": false,
+      "ms": 94.34630000000016,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-01-006--sub3--standard--model",
+      "cold_origin": false,
+      "ms": 21.606300000000374,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-03-001--sub1--standard--model",
+      "cold_origin": false,
+      "ms": 25.331600000000435,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-03-001--sub2--standard--model",
+      "cold_origin": false,
+      "ms": 17.295199999999568,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-03-002--sub1--standard--model",
+      "cold_origin": false,
+      "ms": 18.2524999999996,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-03-002--sub2--standard--model",
+      "cold_origin": false,
+      "ms": 10.095899999999347,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-03-004--sub1--standard--model",
+      "cold_origin": false,
+      "ms": 8.993899999999485,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-03-004--sub2--standard--model",
+      "cold_origin": false,
+      "ms": 12.842200000000048,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-05-007--sub1--standard--model",
+      "cold_origin": false,
+      "ms": 10.036600000000362,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-05-007--sub2--standard--model",
+      "cold_origin": false,
+      "ms": 10.908899999999448,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-14-004--sub1--standard--model",
+      "cold_origin": false,
+      "ms": 9.954799999999523,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-18-002--sub1--standard--model",
+      "cold_origin": false,
+      "ms": 17.16229999999996,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-19-003--sub1--standard--model",
+      "cold_origin": false,
+      "ms": 13.828500000000531,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-03-005--sub1--standard--model",
+      "cold_origin": false,
+      "ms": 14.378099999999904,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-03-005--sub2--standard--model",
+      "cold_origin": false,
+      "ms": 15.584000000000742,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-03-005--case--model",
+      "cold_origin": false,
+      "ms": 10.96559999999954,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-16-010--case--model",
+      "cold_origin": false,
+      "ms": 15.363000000000284,
+      "pass": true
+    },
+    {
+      "entry_id": "pilot-03-006--case--model",
+      "cold_origin": false,
+      "ms": 13.327900000000227,
+      "pass": true
+    }
+  ],
+  "limitations": [
+    "The baseline ran earlier while root preflight may have been active; OS cache/load differs. Only the read count change is deterministic.",
+    "No full validator or publication receipt was run; final whole-staging timing must determine the 60s outcome.",
+    "Both replay passes and schema validation remain; no acceptance conditions weakened."
+  ]
+}

@@ -1,0 +1,88 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {buildSourceCatalog} from '../../../questionSourceCatalog.mjs';
+import {specifications} from './content.mjs';
+import {boundaries} from './boundary-cases.mjs';
+const base=path.dirname(new URL(import.meta.url).pathname.replace(/^\/(\w:)/,'$1'));
+const read=f=>JSON.parse(fs.readFileSync(f,'utf8'));
+const sha=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const hash=s=>createHash('sha256').update(s).digest('hex');
+const write=(f,v)=>fs.writeFileSync(path.join(base,f),JSON.stringify(v,null,2)+'\n');
+const rel=f=>path.relative(process.cwd(),f).replaceAll('\\','/');
+const sourceFile='cpa_uploader/data/official/delegated-n04-kga-2025.txt';
+const sourceText=fs.readFileSync(sourceFile,'utf8');
+const catalog=buildSourceCatalog();
+const investigation=read(path.join(base,'sources/official-investigation.json'));
+const dependencyContext=read(path.join(base,'sources/dependency-context.json'));
+const frequency=read(path.join(base,'frequency-evidence.json'));
+const ledger=Object.values(read('cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/id-ledger.json')).find(Array.isArray);
+const unit=key=>{const [st,p]=key.split('.');const u=catalog.units.find(x=>x.file===sourceFile&&x.standard===`KGA ${st}`&&x.paragraph===p);if(!u)throw Error(`Unregistered ${key}`);return u;};
+const block=key=>{const [st,p]=key.split('.');return investigation.blocks[st]['2025'][p];};
+const srcId=key=>'std-'+key.replace('.','-');
+const quote=key=>block(key).quote;
+const between=(text,start,end)=>{const a=text.indexOf(start),b=end?text.indexOf(end,a+start.length):text.length;if(a<0||b<a)throw Error('Exact quote locator missing');return text.slice(a,b).trimEnd();};
+const requirementQuote=(key,i)=>{
+ const q=quote(key);
+ const section=(label,next)=>between(q,`(${label})`,next?`(${next})`:null);
+ if(key==='540.22')return i===0?q:i<=6?section('a','b'):section('b',null);
+ if(key==='540.27')return i<=1?section('a','b'):i===2?section('b','c'):section('c',null);
+ if(key==='540.29')return i===0?q:i<=2?section('a','b'):section('b',null);
+ if(key==='550.13')return i<=1?section('a','b'):i===2?section('b','c'):section('c',null);
+ if(key==='550.15')return i<=1?section('a','b'):i<=3?section('b','c'):section('c',null);
+ if(key==='550.23')return i===0?section('i','ii'):i===1?section('ii','iii'):i<=3?section('iii','b'):section('b',null);
+ if(key==='620.8')return section('abcde'[i],'abcde'[i+1]);
+ if(key==='620.12')return i<3?section('a','b'):i<7?section('b','c'):section('c',null);
+ return q;
+};
+const policy='2027년 CPA 시험 대비. 기본 사례는 2026년 1월 1일 개시·12월 31일 종료 보고기간의 재무제표를 2027년에 감사한다. 2025 공식 전문을 선택하고 2026 공식 전문의 해당 본문 및 적용자료를 직접 대조했다. 540.10/550.8/620.4는 2026년 1월 1일 이후 개시 보고기간 시행을 명시한다. 2027 금융위원회 시험범위 공고는 특정 기준서 판본을 지정한 공고와 구별한다. 총괄 edition-policy.md의 사례설계 정책을 적용하며 시험당국이 모든 판본을 확정했다는 의미로 사용하지 않는다.';
+const expertPolicy='620.8(e)와 A10~A15는 2026 전문에서 품질관리정책·절차를 품질관리시스템으로 바꾸고 관련 설명도 개정했다. 공고 4항의 단계적 시행표와5항의 관련기준서 개정, 개정개요37~46/75 및 변경표29~33을 종합한 총괄의 사례설계 해석에 따라, 이 사례는 2026년 개시 보고기간이며 개정 품질관리체계를 선제 적용하지 않는 종전 정책·절차 체계로 한정한다. 확보한 공고에620 전체 정합수정의 별도 일괄 시행일 문구까지 있는 것은 아니며 이를 별도 공식 시행일 확정으로 표현하지 않는다. 적용대상 여부를 고려한다는 핵심 명제는 양판본 모두 같다. 시스템이라는 동의 표현을 허용하며 외부전문가의 언제나 미적용이라는 판본 의존 일반명제는 배점하지 않는다.';
+const lineage=[],coverage=[];
+for(const s of specifications){
+ const assigned=ledger.find(x=>x.plan_id===s.plan_id);if(!assigned||assigned.set_id!==s.id)throw Error('ID ledger mismatch');
+ const refs=s.source_keys.map(key=>{const u=unit(key),q=quote(key);if(!sourceText.includes(q))throw Error(`Quote not exact ${key}`);return {id:srcId(key),file:sourceFile,title:`KGA ${key}, 2025 개정 전문, PDF ${block(key).pdf_start_page}쪽부터; ${u.locator}`,page:`KGA ${key.split('.')[0]}`,source_quote:q,content_hash:hash(q),role:'standard'};});
+ const set={schema_version:'3.0',id:s.id,type:'linked_question_set',status:'needs_review',title:s.title,
+ classification:{topic_id:s.topic_id,part:s.topic_id==='11'?'PART3':'PART4',chapter:s.topic_id==='11'?'회계추정과 특수관계자':'감사인측 전문가',domain:'audit',standards:[...new Set(s.source_keys.map(k=>'KGA '+k.split('.')[0]))],tags:s.topic_id==='13'?['감사인측 전문가','활용절차','적격성','역량','객관성','업무 적합성']:s.plan_id==='T11-A'?['회계추정치','추정불확실성','점추정치','범위추정치','공시']:['특수관계자','미공개 관계 탐색','비경상 거래','계약검사']},source_refs:refs,
+ shared_context:{facts:s.facts.map((text,i)=>({id:'f'+(i+1),text,scoreable:false}))},learning_order:s.questions.map((_,i)=>'sub'+(i+1)),
+ subquestions:s.questions.map((q,qi)=>({id:'sub'+(qi+1),type:q.type,prompt:q.prompt,constraints:{ordered:false,max_entries:null,overflow_policy:'none'},selection:{type:'all',n:null},decision:q.type==='judgment'?{options:q.decision_options??['가능하다','가능하지 않다'],correct:q.decision_correct??'가능하지 않다'}:null,answer_slots:[{id:`sub${qi+1}.answer`,label:'답안',input:'textarea'}],model_answer:q.claims.map(c=>c.claim),requirements:q.claims.map((c,i)=>({id:`sub${qi+1}.req${i+1}`,source_ref_id:srcId(c.key),source_quote:requirementQuote(c.key,i),source_span:unit(c.key).locator})),criteria:q.claims.map((c,i)=>({id:`sub${qi+1}.crit${i+1}`,requirement_id:`sub${qi+1}.req${i+1}`,claim:c.claim,critical_facts:[{id:`sub${qi+1}.crit${i+1}.fact`,type:'action',expected:c.claim},...(c.scope?[{id:`sub${qi+1}.crit${i+1}.scope`,type:'condition',expected:c.scope}]:[])],max_points:1,scores:{met:1,not_met:0,contradicted:0},source_ref_ids:[srcId(c.key)]}))})),
+ verification:{source_fidelity:'reconstructed',review_status:'needs_human_review',calculation_required:false,notes:[policy,...(s.topic_id==='13'?[expertPolicy]:[]),'총괄 ID 장부에 따른 수동 제작. source_refs와 requirement 인용은 등록 공식 파일의 exact 부분문자열이며 사례·발문·답안은 재구성했다.','1차 정적 초안 준비. 실제 의미검수와 모델 채점은 전체49 비교은행 고정 후 수행한다.','수동 evidence-packet은 생성기 source packet이 아니다. 생성 당시 해시 표시를 만들거나 자동 의존패킷 완결성을 사칭하지 않는다.']}};
+ const filename=s.id+'.json';write(filename,set);
+ const exceptions=[
+ '빈도 자료와 기존 답안은 설계 근거이며 공식 문단의 대체물이 아니다. 독립 명제는 각각1점이고 주어진 사실의 반복은 점수로 만들지 않는다.',
+ 'N02의 기업생성정보 정확성·완전성 증거 및 목적상 정밀도·상세도 평가, 통제의 설계·실행·운영효과성 구분은 선행 학습이다. 이 세트의 고유 평가요구를 일반 정보품질 절차와 혼동하지 않는다.',
+ ...(s.plan_id==='T11-A'?['540.27(a)의 경영진 추가대응 요구와 대응평가,27(b)의 충분하지 않은 대응·실행가능성 조건,27(c)의 미비점 평가와 존재 시265에 따른 전달을 모두 보존한다. 세 자유선택 대안으로 줄이지 않는다.','540.29의 모든 금액의 증거와 재무보고체계상 합리성을 구별한다. A125는 중요성의 여러 배인 범위가 상황상 적합할 수 있음을 설명하며 범위폭의 기계적 상한을 만들지 않는다.','540 A111/A118/A125는 2026 전문에서 표현이 교정되었음을 대조했다. 직접 요구22/27/29는 공백 제외 동일하다. 2026.A125 원문: '+investigation.blocks['540']['2026']['A125'].quote]:[]),
+ ...(s.plan_id==='T11-B'?['Q1~Q2는 관계가 확정되기 전 탐색 단계이다. 은행조회서에서 이미 발견했다고 지문에 써서 검사할 문서의 정답을 미리 제공하지 않는다.','Q3의 비경상 유의적 특수관계자 거래와 계약 존재는 조건이다. 승인 증거가 있어도 사업상 이유·거래조건·회계처리·공시 평가가 생략되지 않는다. A38~A41의 예외·승인의 한계를 참조한다.']:[]),
+ ...(s.topic_id==='13'?[expertPolicy,'2026 전문 KGA620.8(e) 직접 비교 인용: '+investigation.blocks['620']['2026']['8'].quote,'2026 전문 KGA620.A12 직접 비교 인용: '+investigation.blocks['620']['2026']['A12'].quote,'품질관리 개정 적용판단의 공식 출처: https://www.kicpa.or.kr/board/read.brd?boardId=acc0102&bltnNo=11786003927937 ; 개정개요 PDF SHA256 4a2c7e329c6aa8d82ec5f117a98cab4142e379ab2d86c0ae14a9fe04bbc577ea, 타기준 변경표 SHA256 610e069a84eccb88c3ed5cd4a7473983853a882d27d62b6b9e3b974036a9fa56. 총괄 edition-policy.md의 확인범위·해석한계를 따른다.','620.12(b)·(c)의 유의적인 가정·방법과 유의적인 원천데이터 조건을 보존한다. 그 조건이 현재 사례에서 충족되었으므로 대상과 평가특성을 간결하게 적어도 인정한다. 내부전문가·외부전문가의 차이를 경영진측 전문가500.8과 혼합하지 않는다.']:[])
+ ];
+ if(s.plan_id==='T11-A')exceptions.push('직접 배점은 등록된540.22/27/29에 한정한다. 다음은 265 전달의 범위 및 범위추정치·공시의 필수 의존 문맥을 모델에 실제 전달하기 위한 공식2025 PDF 인용이다. 전문 파일·공식URL·SHA는 edition evidence와 동일하며 2026 PDF도 별도로 대조했다. 상세 전달방식·의견 또는 왜곡표시액 계산을 추가 정답으로 만들지 않는다.',...dependencyContext.blocks.filter(b=>b.edition==='2025').map(b=>`KGA ${b.standard}.${b.paragraph}, 공식2025 PDF 직접추출${b.pdf_start_page?' 물리쪽 '+b.pdf_start_page:''}, 인용SHA256 ${b.quote_sha256}: ${b.quote}`));
+ const priorEvidence=frequency.elements.filter(e=>e.plan_id===s.plan_id);
+ exceptions.push(...priorEvidence.map(e=>`학습자료 원발문과의 관계(공식근거 아님): ${e.element_id}, ${e.relationship}. ${e.relationship_limit} E=${e.exam_frequency}, M=${e.mock_frequency}, 비OX연습=${e.practice_non_ox}, OX=${e.ox_occurrences}. 실제 원기출·모의 질문키=${[...e.exam_questions,...e.mock_questions].join(',')||'원출제 연도 미확정'}.`));
+ const plan={version:1,set_id:s.id,topic_id:s.topic_id,mode:s.mode,status:'ready',objective:s.title,scope:{actors:s.topic_id==='13'?['감사증거를 얻기 위해 외부 계리전문가를 활용하는 감사인','감사인측 외부전문가; 경영진측 전문가 아님']:['재무제표감사의 감사인','기업 경영진과 필요한 경우 지배기구'],timing:[s.facts[0]],conditions:s.facts.slice(1),exceptions,required_answers:s.questions.map(q=>q.prompt),exclusions:s.exclusions},question_types:[...new Set(s.questions.map(q=>q.type))],source_unit_ids:[...new Set([...s.source_keys.map(k=>unit(k).id),...priorEvidence.flatMap(e=>e.source_unit_ids)])],existing_question_difference:s.difference,edition_assumption:policy+(s.topic_id==='13'?' '+expertPolicy:''),unresolved_items:[]};
+ write(filename+'.authoring-plan.json',{version:1,artifact_type:'question_authoring_plan',plans:[plan]});
+ write('evidence-packet-'+s.plan_id.toLowerCase()+'.json',{artifact_type:'manual_source_evidence_packet',set_id:s.id,plan_id:s.plan_id,automatic_packet_completeness:'not_claimed',not_generated_source_packet:true,model_input:'정답에 필요한 문단은 실제 source_refs에, 조건·판본차이·해석한계는 실제version1 plan에 포함. 이 파일 자체를 자동 모델 입력으로 간주하지 않는다.',source_file:sourceFile,source_sha256:sha(sourceFile),bindings:set.subquestions.map(q=>({subquestion_id:q.id,prompt:q.prompt,criteria:q.criteria.map(c=>({id:c.id,points:1,claim:c.claim,requirement:q.requirements.find(r=>r.id===c.requirement_id)}))})),source_units:s.source_keys.map(k=>({key:k,id:unit(k).id,locator:unit(k).locator,quote:quote(k),quote_sha256:hash(quote(k)),pdf_start_page:block(k).pdf_start_page})),edition_comparison:'sources/official-investigation.json'});
+ const cases=[];
+ for(let qi=0;qi<s.questions.length;qi++){
+  const q=s.questions[qi],sq=set.subquestions[qi],n=q.claims.length,clauses=q.claims.map(x=>x.claim),yes=()=>Array(n).fill('met'),no=()=>Array(n).fill('not_met');
+  const add=(id,kind,answer,vs,note='')=>{cases.push({id:`${sq.id}/${id}`,subquestion_id:sq.id,kind,answer,expected_points:vs.filter(x=>x==='met').length,expected_verdicts:vs.map((v,i)=>({criterion_id:sq.criteria[i].id,verdict:v,reason:v==='met'?'답안 전체에서 해당 독립 명제를 충족한다.':v==='contradicted'?'해당 대상·조건·행위를 명시적으로 부정한다.':'해당 요구를 나타내는 의미가 없거나 다른 대상·목적·조건을 다룬다.'})),note});return `${sq.id}/${id}`;};
+  const full=add('model-answer','model_answer',clauses.join('\n'),yes());const eq=add('equivalent','equivalent',q.equivalent,yes());add('reverse','reverse',clauses.toReversed().join('\n'),yes());add('single-sentence','single_sentence',clauses.map(x=>x.replace(/\.$/,'')).join('; ')+'.',yes());add('irrelevant-prefix','irrelevant_prefix','감사조서는 수행한 업무를 기록한다.\n'+q.equivalent,yes());add('empty','empty','',no());
+  for(let i=0;i<n;i++){
+   const vs=yes();vs[i]='not_met';let note='다른 답안 문장까지 읽어 누락 여부를 판단한다.';
+   if((s.plan_id==='T11-A'&&[0,2].includes(qi)&&i===0)||(s.plan_id==='T13-A'&&qi===1&&i===2)){vs[i]='met';note='다른 요구 조치에서 판단 또는 평가대상이 분명하게 함축된다. 문장 하나의 삭제를 진짜 명제 누락으로 오표시하지 않는다.';}
+   const omission=add(`omit-${i+1}`,'omission',clauses.filter((_,j)=>j!==i).join('\n'),vs,note);
+   const contra=yes();contra[i]='contradicted';const opposite=add(`opposite-${i+1}`,'opposite',clauses.map((x,j)=>j===i?q.claims[i].opposite:x).join('\n'),contra,'명시적 반대 명제와 별개로 충족한 정답의 점수는 유지한다.');
+   const bv=no();
+   if(s.plan_id==='T11-A'&&qi===0&&i>=1&&i<=6)bv[i%2===1?i+1:i-1]='met';
+   if(s.plan_id==='T13-A'&&qi===2&&i>=3&&i<=6)bv[i<5?i+2:i-2]='met';
+   if(s.plan_id==='T13-A'&&qi===2&&i===8)bv[9]='met';
+   if(s.plan_id==='T13-A'&&qi===2&&i===9)bv[8]='met';
+   const boundary=add(`boundary-${i+1}`,'condition_boundary',boundaries[s.plan_id][qi][i],bv,`target=${sq.criteria[i].id}; 같은 반대문장을 재분류하지 않았다. 주체·평가대상·목적·범위·유의성 조건 또는 증거수준을 바꾼 입력이다. 다른 평가특성을 실제로 충족한 경우 해당 점수만 유지한다.`);
+   coverage.push({plan_id:s.plan_id,set_id:s.id,subquestion_id:sq.id,criterion_id:sq.criteria[i].id,model_answer:full,equivalent:eq,omission,omission_is_genuine:vs[i]!=='met',opposite,condition_boundary:boundary,boundary_answer:boundaries[s.plan_id][qi][i]});
+  }
+  if(s.plan_id==='T13-A'&&qi===0)add('quality-system-wording','equivalent',q.equivalent.replace('품질관리정책·절차','품질관리시스템'),yes(),'시스템이라는 단어만으로 오답 처리하지 않는다. 적용대상 여부 고려 명제는 동일하다.');
+ }
+ const qafile='qa-cases-'+s.plan_id.toLowerCase()+'.json';write(qafile,{version:1,artifact_type:'author_expected_judgments',set_id:s.id,draft_sha256:sha(path.join(base,filename)),live_model_grading:'not_run',human_approval:false,expectation_policy:'공식 원문·독립 명제·G1/G3에 따른 작성자 사전 기대값. 실제 모델 결과 아님. condition_boundary의not_met/contradicted 0점 동등은 총괄 runner 정책을 따르되 나머지 판정은 구별한다.',cases});
+ lineage.push({plan_id:s.plan_id,set_id:s.id,kind:'new',stage:'candidate_prepared',actual_file:rel(path.join(base,filename)),sha256:sha(path.join(base,filename)),plan_file:rel(path.join(base,filename+'.authoring-plan.json')),plan_sha256:sha(path.join(base,filename+'.authoring-plan.json')),qa_file:rel(path.join(base,qafile)),qa_sha256:sha(path.join(base,qafile)),evidence_file:rel(path.join(base,'evidence-packet-'+s.plan_id.toLowerCase()+'.json')),plan_question_map:set.subquestions.map((q,i)=>({plan_question_id:`${s.plan_id}-Q${i+1}`,subquestion_id:q.id,points:q.criteria.length})),points:set.subquestions.reduce((n,q)=>n+q.criteria.length,0),qa_cases:cases.length});
+}
+write('lineage.json',{package:'N04',stage:'candidate_prepared',sets:lineage});write('qa-coverage.json',{artifact_type:'author_qa_criterion_coverage',criterion_count:coverage.length,rows:coverage,limitations:'사례가 준비되어 있다는 범위표이다. 실제 모델검수·채점의 통과 증거가 아니다.'});
+write('design-changes.json',{package:'N04',original:{sets:3,questions:9,points:31},current:{sets:3,questions:9,points:lineage.reduce((n,s)=>n+s.points,0)},policy:'총괄은 잠정31점을 상한으로 삼지 않고 서로 독립적으로 충족/미충족 가능한 행위·대상·속성을 발문에 대응시켜각1점으로 분리하도록 승인했다.',rows:specifications.flatMap((s,si)=>s.questions.map((q,i)=>({plan_question_id:`${s.plan_id}-Q${i+1}`,before:[[3,3,3],[3,3,4],[5,4,3]][si][i],after:q.claims.length,claims:q.claims.map(c=>({claim:c.claim,points:1,source:c.key}))}))),note:'한 평가의 동의어를 중복 배점하지 않았다. 방법·가정·데이터의 선택과 적용은 각각의 위험 테스트로, 전문가의 가정과 방법은 각각의 관련성·합리성 평가로 분리했다. 권한부여·승인은 이 사례에서 별도 단계나 주체를 구분한 이중 절차가 아니라 권한 있는 거래 승인이 있었다는 하나의 증거 입수로 유지한다.'});
+console.log(JSON.stringify({sets:lineage.length,questions:9,points:lineage.reduce((n,s)=>n+s.points,0),qa_cases:lineage.reduce((n,s)=>n+s.qa_cases,0),per_set:lineage.map(s=>({id:s.set_id,points:s.points,qa:s.qa_cases}))}));

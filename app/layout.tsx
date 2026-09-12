@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "../contexts/AuthContext";
 import { Navbar } from "../components/Navbar";
+import { themeInitScript } from "../lib/themeScript";
 
-// CursorGothic(라이선스 폰트) 대체로 Inter 단일 패밀리 사용 (DESIGN.md 권장 사항).
-const inter = Inter({
-  variable: "--font-inter",
+const korean = Noto_Sans_KR({
+  variable: "--font-korean",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Audit Say",
+  title: "AuditSay · 회계감사 서술형 학습",
   description: "KICPA 회계감사 문제 풀이와 서술형 답안 채점 서비스",
 };
 
@@ -23,12 +24,14 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${inter.variable} h-full antialiased`}
+      className={`${korean.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head><script dangerouslySetInnerHTML={{ __html: themeInitScript }} /></head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <AuthProvider>
           <Navbar />
-          <main className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-8 py-6 flex flex-col">
+          <main id="main-content" className="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-8 py-6 flex flex-col">
             {children}
           </main>
         </AuthProvider>

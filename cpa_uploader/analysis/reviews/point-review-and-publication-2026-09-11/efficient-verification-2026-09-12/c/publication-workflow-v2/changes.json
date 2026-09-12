@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "checked_at": "2026-09-12T04:18:57.612Z",
+  "before": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/stage-publication-v1.ts",
+    "sha256": "ed7eb55b9d43dff113e53884ba9d4bf7dfadb15611c4e037705096d70f0ec584"
+  },
+  "after": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/stage-publication-v2.ts",
+    "sha256": "b2daddacb0442722acd90afde6f548ac8683cd56681354f2c8aa27044579f6ec"
+  },
+  "changed_functions": [
+    "main",
+    "parseOptions"
+  ],
+  "unchanged_functions": [
+    "exists",
+    "realIdentity",
+    "key",
+    "assertNewOutput",
+    "deriveCohorts",
+    "assertLifecycleOnly",
+    "pathEnvironment",
+    "commands",
+    "assertOfflineSteps",
+    "assertInputRefs",
+    "assertStepResult",
+    "readBank"
+  ],
+  "expected_changes": [
+    "Explicit preparation-lock path and SHA arguments",
+    "Require all predecessor protected paths plus v2/self and predecessor lock",
+    "Record selected preparation identity in dry-run, execution plan, completion"
+  ],
+  "unchanged_contracts": [
+    "70 reverify FIRST /50 verify /120 publish",
+    "All nine CLI argv and child environment",
+    "Sealed batch readiness/core replay and source input guards",
+    "Per-step lifecycle, ledger prefix/count and final validation",
+    "No API, no DB apply, no canonical installation"
+  ],
+  "old_lock_sha256": "fd0c3dee251ce23a49db8eab97afa0e48ba3f891490f0951ce990c34c09a142f",
+  "actual_successor_lock_created": false
+}

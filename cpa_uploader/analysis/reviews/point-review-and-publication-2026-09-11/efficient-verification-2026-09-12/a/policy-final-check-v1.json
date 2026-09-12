@@ -1,0 +1,1713 @@
+{
+  "version": 1,
+  "artifact_type": "agent_policy_document_review",
+  "reviewer": "plan_foundations",
+  "reviewer_type": "agent",
+  "status": "pass_after_document_clarification",
+  "scope": {
+    "core_policy_files": 7,
+    "api_calls": 0,
+    "db_calls": 0,
+    "question_or_qa_changes": 0,
+    "common_code_changes": 0,
+    "manual_wiki_files_changed": 4,
+    "raw_source_changes": 0,
+    "total_documents": 14
+  },
+  "checks": [
+    {
+      "id": "deviation_scope",
+      "status": "pass",
+      "reason": "물음별 ±1점·대표 95%는 실제 채점 일관성의 관측 목표이며 모든 답안 정확도나 내용 오류 허용률이 아니다.",
+      "evidence": {
+        "file": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "line": 5,
+        "text": "**95%·±1점은 채점의 일관성만을 위한 허용 기준이다.** wiki·기준서 해석·발문·모범답안·배점 기준·시험 답안의 기대값은 정확해야 하며 오류 허용률을 적용하지 않는다. 전수 내용 검토에서 발견한 오류와 미확인 근거를 해결하고, 기반 자료에 미해결 결함이 있으면 채점 통과율이 높아도 게시하지 않는다. 검토 범위·확인한 근거를 남기며, 형식 검사만으로 완전성을 주장하지 않는다."
+      }
+    },
+    {
+      "id": "foundation_no_unresolved_errors",
+      "status": "pass",
+      "reason": "wiki·기준서 해석·발문·모범답안·배점·QA 기대값에 허용 오류율을 적용하지 않으며 미해결 결함·미확인 출처가 있으면 높은 채점 통과율로 게시하지 않는다.",
+      "evidence": {
+        "file": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "line": 5,
+        "text": "**95%·±1점은 채점의 일관성만을 위한 허용 기준이다.** wiki·기준서 해석·발문·모범답안·배점 기준·시험 답안의 기대값은 정확해야 하며 오류 허용률을 적용하지 않는다. 전수 내용 검토에서 발견한 오류와 미확인 근거를 해결하고, 기반 자료에 미해결 결함이 있으면 채점 통과율이 높아도 게시하지 않는다. 검토 범위·확인한 근거를 남기며, 형식 검사만으로 완전성을 주장하지 않는다."
+      }
+    },
+    {
+      "id": "integer_independent_points",
+      "status": "pass",
+      "reason": "열거는 실제 독립 요소, 서술은 독립 의미 단위, 판단과 근거는 구별하여 기본 1점 정수 합산한다. 부분 누락 때문에 전체를 0점 처리하지 않는다.",
+      "evidence": {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 44,
+        "text": "기본 독립 criterion은 `met=1`, `not_met=0`, `contradicted=0`이다. 부분정답은 충족한 criterion의 **정수 점수 합계**로 표현한다. 소수 partial은 사용하지 않는다. 별도 가중치나 결합 기준이 필요한 경우에는 근거, 완전·부분 충족 조건과 정수 점수를 명시하고 현재 엔진이 지원하는지 확인한다. 독립 요건을 묶어 만점/0점만 주는 방식은 먼저 분리 가능성을 검토한다."
+      }
+    },
+    {
+      "id": "no_duplicate_or_mechanical_split",
+      "status": "pass",
+      "reason": "동일 의미·포함 관계 표현을 중복 배점하거나 단어·조건을 기계적으로 쪼개지 않으며 원문·발문의 별도 요구 여부로 판단한다.",
+      "evidence": {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 50,
+        "text": "포괄적인 “영향을 고려한다”와 이를 구체적으로 이행하는 조치가 포함 관계라면, 같은 조치의 설명에 일반 표현을 덧붙였다는 이유만으로 별도 점수를 늘리지 않는다. 원문·발문이 별도의 판단이나 다른 수행 내용을 요구하는지 대조한다. 함축 관계를 억지로 차단해 독립 기준처럼 만들거나, 독립적인 판단과 조치의 부분정답을 한꺼번에 없애지 않는다."
+      }
+    },
+    {
+      "id": "point_proportionality",
+      "status": "pass",
+      "reason": "물음마다 최소 충분 답안·설명 및 추론 부담·유사 요구 점수를 대조하고 유지/조정/분리 이유를 기록한다. 산술 합계만으로 타당성을 확정하지 않는다.",
+      "evidence": {
+        "file": ".agents/skills/audit-question-review/SKILL.md",
+        "line": 43,
+        "text": "[공통 배점 계약](../../../docs/물음별-학습-단위와-분류-계약.md#배점과-물음별-타당성)을 읽고 열거 요소별 득점, 서술의 독립 의미 단위별 부분점수, 판단·근거의 독립 득점을 검토한다. 물음마다 최소 충분 답안과 서술·추론 부담, 독립 요구 수, 유사한 물음의 배점을 비교해 **유지/조정/분리와 이유**를 남긴다. 과도한 요구 묶음·중복 배점·언어 조각 분해·숨은 요건을 따로 확인한다. 총점 계산 통과만으로 배점 타당성 검토를 끝내지 않는다."
+      }
+    },
+    {
+      "id": "learning_style",
+      "status": "pass",
+      "reason": "기준서형 독립 풀이·사례형 부모 사실·주제 검색 후 사례 전체 물음 유지가 일치하며 학습 유형과 답안 type을 구분한다.",
+      "evidence": {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 30,
+        "text": "**주제는 검색 필터이며 풀이 범위를 자르는 기준이 아니다.** 특정 주제와 연결된 사례형 물음 때문에 사례가 검색되면, 그 사례형 학습 단위에 속한 모든 물음을 사실관계와 함께 보여 준다. 다른 주제의 사례형 물음도 포함하며 표시 최대점수·제출·채점 범위를 검색 주제에 맞춰 줄이지 않는다. 원문 세트에서 분리된 기준서형은 사례 아래에 다시 붙이지 않는다."
+      }
+    },
+    {
+      "id": "agent_model_human_separation",
+      "status": "pass",
+      "reason": "agent 전수 내용 대조, 선택적인 별도 API 의미검수, Luna 실제 대표 채점, 실제 사람 확인과 사용자 게시 승인을 각각 구분한다.",
+      "evidence": {
+        "file": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "line": 12,
+        "text": "4. **사람 확인·게시·DB**: 실제 사람의 내용 확인 여부와 사용자의 게시 승인 범위를 따로 기록한다. agent 검토와 대표 실측 후 게시를 사용자가 승인했다면 해당 증거 경로로 진행할 수 있지만, 이를 사람이 모든 내용을 읽은 것으로 기록하지 않는다."
+      }
+    },
+    {
+      "id": "representative_expected_contract",
+      "status": "pass",
+      "reason": "모범답안은 저장 바이트 그대로, 부분정답은 0점과 만점 사이, 오답은 0점이며 대표 선정·합산·커버 검사를 호출 전에 수행한다. 1점 물음은 모범·오답 2종이다.",
+      "evidence": {
+        "file": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "line": 17,
+        "text": "- 현행 효율 실행의 세 역할은 저장 모범답안 만점, `0 < 기대점수 < 만점`인 부분정답, 0점 오답이다. 조건 경계 답안이라도 맞는 요소가 남아 있으면 부분정답이며 0점 역할로 이름만 바꾸지 않는다. 원 경계 답안·기대값을 보존하고 실행 역할에 맞는 대표를 선택한다. 저장 모범답안 시험은 `model_answer.join('\\n')` 바이트 그대로 사용하며 뜻이 비슷한 다른 QA 답안으로 대신하지 않는다."
+      }
+    },
+    {
+      "id": "expected_grounding",
+      "status": "pass",
+      "reason": "평가 대상 명칭과 필요한 판단·행위를 구분하고 기대값을 원문과 최소 충분 명제로 정한다. 출력에 맞춘 기대값 변경을 금지하며 정당한 정정은 옛 입력·관측을 보존한다.",
+      "evidence": {
+        "file": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "line": 19,
+        "text": "- 명칭·요소의 열거를 요구한 물음과 적합성 평가·필요성 판단이라는 행위를 요구한 물음을 구별한다. 후자에서 평가 대상 이름만 적었다고 행위 점수를 자동 부여하지 않는다. “확인한다”처럼 여러 뜻으로 읽히는 답안은 발문 문맥과 최소 충분 명제를 대조해 기대값을 정한다. criterion을 분리하거나 ID를 이관했으면 기대판정의 이유도 현재 기준에 맞는지 각각 확인하며, 합계가 같다는 이유로 옛 기준의 설명을 그대로 복사하지 않는다."
+      }
+    },
+    {
+      "id": "cost_security_errors",
+      "status": "pass",
+      "reason": "실행·형상·보안·인용 귀속 오류는 ±1/5%로 면제하지 않는다. Luna·사용자 예산을 유지하고 허용 편차 제거를 위한 자동 반복을 금지한다.",
+      "evidence": {
+        "file": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "line": 25,
+        "text": "- 허용 범위 밖의 나머지 관측은 원인과 학습 영향을 기록해 수정·표적 재검사·잔여 제한을 결정한다. 출처·정답·발문·배점 결함, 실행·응답 형상·보안·인용 귀속 오류를 5%의 점수 오차로 면제하지 않는다. 특정 유형에 집중된 반복 오류는 전체 비율이 95%여도 조사한다."
+      }
+    },
+    {
+      "id": "evidence_reuse",
+      "status": "pass",
+      "reason": "원 기대값·raw·엄격 판정을 보존하며 재사용은 실제 입력·모델·동작 동일성 및 재처리를 확인한다. 누락 usage는 unknown이고 재처리는 새 유료 호출로 세지 않는다.",
+      "evidence": {
+        "file": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "line": 40,
+        "text": "- 기록기나 수락 코드만 수정한 재개는 원 실행 manifest·입력·코드 보존본·원 응답 경로와 해시를 명시적으로 연결한다. 재사용할 답안·기대표·모델·실제 채점 동작의 동일성을 검사하고 원 응답을 새 수락 계약으로 재처리한다. 기대값을 정정한 사례는 이 동일성 재사용 대상에서 제외하고, 원 기대값과 결과를 보존한 채 필요한 표적 검사만 새로 수행한다. 재사용·새 호출·제외된 과거 호출의 건수와 비용을 각각 기록하여 중복 계산하지 않는다."
+      }
+    },
+    {
+      "id": "default_vs_legacy",
+      "status": "pass_after_document_clarification",
+      "reason": "공통 지침의 효율 기본 경로와 기준별 전수 모델 receipt 선택 경로를 구분한다. 연결된 수동 wiki 네 파일에도 이를 명시하여 엄격 경로 요건이 효율 경로로 확대되지 않도록 보완했다.",
+      "evidence": {
+        "file": ".agents/skills/audit-question-review/SKILL.md",
+        "line": 14,
+        "text": "현재 프로젝트의 기본 경로는 [비용 통제 검증 지침](references/cost-controlled-verification.md)이다. agent의 실제 내용 대조와 별도 유료 API 의미검수를 구분하고, Luna의 대표 답안 채점으로 물음별 ±1점·검증 답안 95% 목표를 확인한다. 아래 전통적 criterion별 모델 receipt·전수 반례 경로는 사용자가 그 강도를 명시하거나 위험에 맞춰 선택한 경우에 적용한다. 옛 실행 스크립트가 더 많은 호출을 요구한다는 이유로 새 정책보다 우선하지 않는다."
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "question-output-schema",
+      "status": "resolved",
+      "type": "unscoped_strict_requirement",
+      "before_location": {
+        "file": "cpa_uploader/wiki/question-generation/question-output-schema.md",
+        "line": 142
+      },
+      "before_sha256": "29ba64495d1351ae316394d8c1caa914bb010f1764300cbe635a420ca41d014f",
+      "after_sha256": "1ad27a1a145df27a7a2ed76c5a23d1703ab8033fd573f54d38fe1480b97cdaa1",
+      "resolution": "신규 승급의 --review·실제 사람 검수 요건 앞에 효율 경로와 이후 엄격 receipt 설명의 적용 범위를 명시했다.",
+      "authorization": "Root explicitly authorized minimal manual-wiki edits after initial read-only findings; current execution002 excludes these wiki inputs per root."
+    },
+    {
+      "id": "llm-question-generation-prompt",
+      "status": "resolved",
+      "type": "unscoped_strict_requirement",
+      "before_location": {
+        "file": "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md",
+        "line": 82
+      },
+      "before_sha256": "c71a4480a0ec12f0f247b5cf9c4e10e99077d040059af6321aff9bb3e8812448",
+      "after_sha256": "6ae573ea21ecec3b3295d2160aa83451622c088005f2fbf5725d1649ebf0d9ab",
+      "resolution": "생성 이후 검증을 선택 경로로 구분하고 별도 의미검수·사람 근거 요구를 엄격 경로 선택 시에 한정했다. 생성용 템플릿 내부 규칙은 그대로다.",
+      "authorization": "Root explicitly authorized minimal manual-wiki edits after initial read-only findings; current execution002 excludes these wiki inputs per root."
+    },
+    {
+      "id": "source-authoring-design",
+      "status": "resolved",
+      "type": "scope_ambiguity",
+      "before_location": {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 163
+      },
+      "before_sha256": "4e7a0c12d16893b9bf9b4d7d04599fc687e5b6e0ab0af42788b27fdf5e468312",
+      "after_sha256": "21f7290cad6b12e1de10cccfdfd6bbff0673401c6c5882f6d1feb5b1b186a642",
+      "resolution": "§7에 일반 오류 원칙은 공통, 분할 모델 의미검수·두 model transport 요건은 엄격 경로라는 적용 범위를 명시했다.",
+      "authorization": "Root explicitly authorized minimal manual-wiki edits after initial read-only findings; current execution002 excludes these wiki inputs per root."
+    },
+    {
+      "id": "question-generation-workflow",
+      "status": "resolved",
+      "type": "scope_ambiguity",
+      "before_location": {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 105
+      },
+      "before_sha256": "ddd4e592d6d1cce6c7165f94c795bc318dca22f9a4161562f768e7ab3fd69595",
+      "after_sha256": "1cfdc45a6c2632329c5910fe91a76d5fd9df4a25cc06330e741449999a1ff41c",
+      "resolution": "기존 승인 문항 재검수 문단에서 효율 경로의 재사용·승급과 엄격 경로의 기존 새 receipt·실측 명령을 구분했다.",
+      "authorization": "Root explicitly authorized minimal manual-wiki edits after initial read-only findings; current execution002 excludes these wiki inputs per root."
+    }
+  ],
+  "limits": [
+    "문서 정책의 정합성만 확인했다. 문항 정확성·실제 실행002 완료·사람 확인·운영 DB 완료의 새 인증이 아니다.",
+    "API·DB·전체 테스트·wiki build/check는 실행하지 않았다. 총괄이 최종 정본 변경 후 wiki 재생성과 변경 기록을 일괄 처리한다.",
+    "스킬의 일반/과거 경로에 있는 환경 모델 설정 설명은 사용자와 프로젝트의 명시적 Luna 고정을 변경할 권한이 아니다.",
+    "문서 링크 검사는 코드 펜스 밖 Markdown/wikilink 및 실제 frontmatter sources의 로컬 실존·명시 헤딩 앵커를 확인한다. 실행 명령·가상 템플릿 값·외부 URL의 가용성은 이 검사에 포함하지 않는다."
+  ],
+  "unresolved_policy_conflicts": [],
+  "reviewed_at": "2026-09-12T04:19:16.573Z",
+  "inputs": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "919458c282d4fc5119ca0aeab1ac11112466226616bb52be16bce4aa3a991d75",
+      "review_scope": "full_policy_read"
+    },
+    {
+      "file": ".agents/skills/audit-question-author/SKILL.md",
+      "sha256": "633d8fa29e1790c3b2b527d637472d2cb28698c8ddb849b4ab770302e52dd653",
+      "review_scope": "full_policy_read"
+    },
+    {
+      "file": ".agents/skills/audit-question-review/SKILL.md",
+      "sha256": "1f199ee1d1abb3eb68148fdf35c43c2ee207a896e32e631fc9d8a815cdd78c69",
+      "review_scope": "full_policy_read"
+    },
+    {
+      "file": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+      "sha256": "e66386ad386479b168d50dc2fe470381243478d8ded1d2f95872cf0746635d74",
+      "review_scope": "full_policy_read"
+    },
+    {
+      "file": ".agents/skills/audit-question-review/references/regression-cases.md",
+      "sha256": "2d24056d0be96012da2fdb2e3ecdf14480e4b592ab2e1f1704ec4d77ea2f4f16",
+      "review_scope": "full_policy_read"
+    },
+    {
+      "file": ".agents/skills/audit-question-review/references/source-evidence.md",
+      "sha256": "809b91c7de9c224a6d9bd55f568d073b8b681532595b398477e0719a36e387b9",
+      "review_scope": "full_policy_read"
+    },
+    {
+      "file": "docs/물음별-학습-단위와-분류-계약.md",
+      "sha256": "a2bb355311638ad42eb2ee3dd81f6518c304b896c3f8a7da07bbd65d7ba5bea8",
+      "review_scope": "full_policy_read"
+    },
+    {
+      "file": "cpa_uploader/wiki/question-generation/question-design.md",
+      "sha256": "195babe7b67ec32f10e8f60834f76012ff5dab1d816754829f17e2f9b156a7f0",
+      "review_scope": "policy_sections_and_surrounding_scope"
+    },
+    {
+      "file": "cpa_uploader/wiki/question-generation/question-output-schema.md",
+      "sha256": "1ad27a1a145df27a7a2ed76c5a23d1703ab8033fd573f54d38fe1480b97cdaa1",
+      "review_scope": "policy_sections_and_surrounding_scope"
+    },
+    {
+      "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+      "sha256": "21f7290cad6b12e1de10cccfdfd6bbff0673401c6c5882f6d1feb5b1b186a642",
+      "review_scope": "policy_sections_and_surrounding_scope"
+    },
+    {
+      "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+      "sha256": "1cfdc45a6c2632329c5910fe91a76d5fd9df4a25cc06330e741449999a1ff41c",
+      "review_scope": "policy_sections_and_surrounding_scope"
+    },
+    {
+      "file": "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md",
+      "sha256": "6ae573ea21ecec3b3295d2160aa83451622c088005f2fbf5725d1649ebf0d9ab",
+      "review_scope": "policy_sections_and_surrounding_scope"
+    },
+    {
+      "file": "docs/출제-검토-자료-관리.md",
+      "sha256": "9d94645a64556532f0155bdc8b25f0065783add3e3618456b7336c63902f1e28",
+      "review_scope": "ownership_contract_read"
+    },
+    {
+      "file": "cpa_uploader/wiki/SCHEMA.md",
+      "sha256": "ed690bf0092b53833f4171f660ada4290dd0df121714e6932028151e16465bac",
+      "review_scope": "ownership_contract_read"
+    }
+  ],
+  "local_validation": {
+    "markdown_links": 77,
+    "wikilinks": 66,
+    "total_links": 143,
+    "broken_links": 0,
+    "frontmatter_sources": 9,
+    "missing_frontmatter_sources": 0,
+    "frontmatter_checks": [
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-output-schema.md",
+        "status_reviewed": true,
+        "updated_current": true,
+        "manual_ownership": "SCHEMA Update Policy explicitly identifies common/topic guides as manual.",
+        "outbound_wikilinks": 6
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md",
+        "status_reviewed": true,
+        "updated_current": true,
+        "manual_ownership": "SCHEMA Update Policy explicitly identifies common/topic guides as manual.",
+        "outbound_wikilinks": 4
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "status_reviewed": true,
+        "updated_current": true,
+        "manual_ownership": "SCHEMA Update Policy explicitly identifies common/topic guides as manual.",
+        "outbound_wikilinks": 15
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "status_reviewed": true,
+        "updated_current": true,
+        "manual_ownership": "SCHEMA Update Policy explicitly identifies common/topic guides as manual.",
+        "outbound_wikilinks": 14
+      }
+    ],
+    "links": [
+      {
+        "file": "AGENTS.md",
+        "line": 7,
+        "kind": "markdown",
+        "target": ".agents/skills/audit-question-author/SKILL.md",
+        "resolved": ".agents/skills/audit-question-author/SKILL.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "AGENTS.md",
+        "line": 8,
+        "kind": "markdown",
+        "target": ".agents/skills/audit-question-review/SKILL.md",
+        "resolved": ".agents/skills/audit-question-review/SKILL.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "AGENTS.md",
+        "line": 9,
+        "kind": "markdown",
+        "target": "docs/출제-검토-자료-관리.md",
+        "resolved": "docs/출제-검토-자료-관리.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "AGENTS.md",
+        "line": 9,
+        "kind": "markdown",
+        "target": "cpa_uploader/wiki/SCHEMA.md",
+        "resolved": "cpa_uploader/wiki/SCHEMA.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "AGENTS.md",
+        "line": 10,
+        "kind": "markdown",
+        "target": "README.md",
+        "resolved": "README.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "AGENTS.md",
+        "line": 11,
+        "kind": "markdown",
+        "target": "docs/물음별-학습-단위와-분류-계약.md",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "AGENTS.md",
+        "line": 21,
+        "kind": "markdown",
+        "target": "docs/물음별-학습-단위와-분류-계약.md#배점과-물음별-타당성",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": true
+      },
+      {
+        "file": "AGENTS.md",
+        "line": 31,
+        "kind": "markdown",
+        "target": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "resolved": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "AGENTS.md",
+        "line": 48,
+        "kind": "markdown",
+        "target": "cpa_uploader/raw/README.md",
+        "resolved": "cpa_uploader/raw/README.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "AGENTS.md",
+        "line": 48,
+        "kind": "markdown",
+        "target": ".agents/skills/audit-question-review/references/source-evidence.md",
+        "resolved": ".agents/skills/audit-question-review/references/source-evidence.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "AGENTS.md",
+        "line": 52,
+        "kind": "markdown",
+        "target": "cpa_uploader/wiki/_meta/authoring-dashboard.md",
+        "resolved": "cpa_uploader/wiki/_meta/authoring-dashboard.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "AGENTS.md",
+        "line": 55,
+        "kind": "markdown",
+        "target": "cpa_uploader/analysis/coverage/README.md",
+        "resolved": "cpa_uploader/analysis/coverage/README.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "AGENTS.md",
+        "line": 67,
+        "kind": "markdown",
+        "target": ".agents/skills/audit-question-review/references/regression-cases.md",
+        "resolved": ".agents/skills/audit-question-review/references/regression-cases.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-author/SKILL.md",
+        "line": 19,
+        "kind": "markdown",
+        "target": "../audit-question-review/SKILL.md",
+        "resolved": ".agents/skills/audit-question-review/SKILL.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-author/SKILL.md",
+        "line": 28,
+        "kind": "markdown",
+        "target": "../../../docs/물음별-학습-단위와-분류-계약.md",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-author/SKILL.md",
+        "line": 33,
+        "kind": "markdown",
+        "target": "../audit-question-review/references/source-evidence.md",
+        "resolved": ".agents/skills/audit-question-review/references/source-evidence.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-author/SKILL.md",
+        "line": 54,
+        "kind": "markdown",
+        "target": "../../../docs/물음별-학습-단위와-분류-계약.md#배점과-물음별-타당성",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": true
+      },
+      {
+        "file": ".agents/skills/audit-question-author/SKILL.md",
+        "line": 75,
+        "kind": "markdown",
+        "target": "../audit-question-review/references/cost-controlled-verification.md",
+        "resolved": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-author/SKILL.md",
+        "line": 77,
+        "kind": "markdown",
+        "target": "../../../docs/물음별-학습-단위와-분류-계약.md#배점과-물음별-타당성",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": true
+      },
+      {
+        "file": ".agents/skills/audit-question-author/SKILL.md",
+        "line": 84,
+        "kind": "markdown",
+        "target": "../audit-question-review/SKILL.md",
+        "resolved": ".agents/skills/audit-question-review/SKILL.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-review/SKILL.md",
+        "line": 10,
+        "kind": "markdown",
+        "target": "../audit-question-author/SKILL.md",
+        "resolved": ".agents/skills/audit-question-author/SKILL.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-review/SKILL.md",
+        "line": 12,
+        "kind": "markdown",
+        "target": "references/regression-cases.md",
+        "resolved": ".agents/skills/audit-question-review/references/regression-cases.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-review/SKILL.md",
+        "line": 14,
+        "kind": "markdown",
+        "target": "references/cost-controlled-verification.md",
+        "resolved": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-review/SKILL.md",
+        "line": 16,
+        "kind": "markdown",
+        "target": "references/source-evidence.md",
+        "resolved": ".agents/skills/audit-question-review/references/source-evidence.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-review/SKILL.md",
+        "line": 27,
+        "kind": "markdown",
+        "target": "../audit-question-author/SKILL.md",
+        "resolved": ".agents/skills/audit-question-author/SKILL.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-review/SKILL.md",
+        "line": 36,
+        "kind": "markdown",
+        "target": "../../../docs/물음별-학습-단위와-분류-계약.md",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-review/SKILL.md",
+        "line": 43,
+        "kind": "markdown",
+        "target": "../../../docs/물음별-학습-단위와-분류-계약.md#배점과-물음별-타당성",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": true
+      },
+      {
+        "file": ".agents/skills/audit-question-review/SKILL.md",
+        "line": 63,
+        "kind": "markdown",
+        "target": "references/regression-cases.md",
+        "resolved": ".agents/skills/audit-question-review/references/regression-cases.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-review/SKILL.md",
+        "line": 71,
+        "kind": "markdown",
+        "target": "references/regression-cases.md",
+        "resolved": ".agents/skills/audit-question-review/references/regression-cases.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "line": 3,
+        "kind": "markdown",
+        "target": "../../../../AGENTS.md",
+        "resolved": "AGENTS.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-review/references/regression-cases.md",
+        "line": 5,
+        "kind": "markdown",
+        "target": "cost-controlled-verification.md",
+        "resolved": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": ".agents/skills/audit-question-review/references/regression-cases.md",
+        "line": 9,
+        "kind": "markdown",
+        "target": "../../../../docs/물음별-학습-단위와-분류-계약.md#배점과-물음별-타당성",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": true
+      },
+      {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 5,
+        "kind": "markdown",
+        "target": "../lib/questionV3.ts",
+        "resolved": "lib/questionV3.ts",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 5,
+        "kind": "markdown",
+        "target": "../cpa_uploader/generate_cpa_v3.ts",
+        "resolved": "cpa_uploader/generate_cpa_v3.ts",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 5,
+        "kind": "markdown",
+        "target": "../lib/learningUnits.ts",
+        "resolved": "lib/learningUnits.ts",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 5,
+        "kind": "markdown",
+        "target": "../supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+        "resolved": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 13,
+        "kind": "markdown",
+        "target": "../cpa_uploader/wiki/scripts/topic-definitions.mjs",
+        "resolved": "cpa_uploader/wiki/scripts/topic-definitions.mjs",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 61,
+        "kind": "markdown",
+        "target": "../.agents/skills/audit-question-review/SKILL.md",
+        "resolved": ".agents/skills/audit-question-review/SKILL.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 65,
+        "kind": "markdown",
+        "target": "../supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+        "resolved": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 95,
+        "kind": "markdown",
+        "target": "../lib/learningSubmission.ts",
+        "resolved": "lib/learningSubmission.ts",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 97,
+        "kind": "markdown",
+        "target": "../lib/learningService.ts",
+        "resolved": "lib/learningService.ts",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 109,
+        "kind": "markdown",
+        "target": "../.agents/skills/audit-question-review/SKILL.md",
+        "resolved": ".agents/skills/audit-question-review/SKILL.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 116,
+        "kind": "markdown",
+        "target": "출제-검토-자료-관리.md",
+        "resolved": "docs/출제-검토-자료-관리.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/물음별-학습-단위와-분류-계약.md",
+        "line": 116,
+        "kind": "markdown",
+        "target": "../cpa_uploader/wiki/SCHEMA.md",
+        "resolved": "cpa_uploader/wiki/SCHEMA.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 17,
+        "kind": "markdown",
+        "target": "../../../docs/물음별-학습-단위와-분류-계약.md",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 48,
+        "kind": "markdown",
+        "target": "../../../docs/물음별-학습-단위와-분류-계약.md",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 50,
+        "kind": "markdown",
+        "target": "../../analysis/reviews/delegated-authoring-2026-09-11/question-style-v2/README.md",
+        "resolved": "cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/question-style-v2/README.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 84,
+        "kind": "markdown",
+        "target": "../../../docs/plans/주제-01-03-검토에-따른-수정-결정.md",
+        "resolved": "docs/plans/주제-01-03-검토에-따른-수정-결정.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 84,
+        "kind": "wiki",
+        "target": "source-authoring-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/source-authoring-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 86,
+        "kind": "wiki",
+        "target": "topic-01-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-01-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 87,
+        "kind": "wiki",
+        "target": "topic-02-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-02-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 88,
+        "kind": "wiki",
+        "target": "topic-03-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-03-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 89,
+        "kind": "wiki",
+        "target": "topic-04-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-04-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 90,
+        "kind": "wiki",
+        "target": "topic-05-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-05-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 91,
+        "kind": "wiki",
+        "target": "topic-06-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-06-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 92,
+        "kind": "wiki",
+        "target": "topic-07-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-07-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 93,
+        "kind": "wiki",
+        "target": "topic-08-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-08-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 94,
+        "kind": "wiki",
+        "target": "topic-09-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-09-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 95,
+        "kind": "wiki",
+        "target": "topic-10-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-10-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 96,
+        "kind": "wiki",
+        "target": "topic-11-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-11-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 97,
+        "kind": "wiki",
+        "target": "topic-12-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-12-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 98,
+        "kind": "wiki",
+        "target": "topic-13-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-13-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 99,
+        "kind": "wiki",
+        "target": "topic-14-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-14-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 100,
+        "kind": "wiki",
+        "target": "topic-15-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-15-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 101,
+        "kind": "wiki",
+        "target": "topic-16-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-16-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 102,
+        "kind": "wiki",
+        "target": "topic-17-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-17-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 103,
+        "kind": "wiki",
+        "target": "topic-18-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-18-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 104,
+        "kind": "wiki",
+        "target": "topic-19-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-19-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 108,
+        "kind": "wiki",
+        "target": "question-generation-workflow",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-generation-workflow.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 109,
+        "kind": "wiki",
+        "target": "question-output-schema",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-output-schema.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "line": 110,
+        "kind": "wiki",
+        "target": "coverage-map",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/coverage-map.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-output-schema.md",
+        "line": 17,
+        "kind": "markdown",
+        "target": "../../../docs/물음별-학습-단위와-분류-계약.md",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-output-schema.md",
+        "line": 138,
+        "kind": "markdown",
+        "target": "../../../.agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "resolved": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-output-schema.md",
+        "line": 144,
+        "kind": "wiki",
+        "target": "source-authoring-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/source-authoring-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-output-schema.md",
+        "line": 144,
+        "kind": "wiki",
+        "target": "question-generation-workflow",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-generation-workflow.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-output-schema.md",
+        "line": 150,
+        "kind": "wiki",
+        "target": "question-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-output-schema.md",
+        "line": 154,
+        "kind": "wiki",
+        "target": "question-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-output-schema.md",
+        "line": 155,
+        "kind": "wiki",
+        "target": "question-generation-workflow",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-generation-workflow.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-output-schema.md",
+        "line": 156,
+        "kind": "wiki",
+        "target": "llm-question-generation-prompt",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 15,
+        "kind": "wiki",
+        "target": "question-generation-workflow",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-generation-workflow.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 19,
+        "kind": "wiki",
+        "target": "question-elements",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-elements.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 21,
+        "kind": "wiki",
+        "target": "source-catalog",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/source-catalog.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 23,
+        "kind": "wiki",
+        "target": "requirement-coverage",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/requirement-coverage.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 25,
+        "kind": "wiki",
+        "target": "source-review-map",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/source-review-map.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 115,
+        "kind": "wiki",
+        "target": "source-review-map",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/source-review-map.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 116,
+        "kind": "wiki",
+        "target": "topic-13-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-13-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 117,
+        "kind": "wiki",
+        "target": "topic-18-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-18-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 118,
+        "kind": "wiki",
+        "target": "topic-19-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/topics/topic-19-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 122,
+        "kind": "markdown",
+        "target": "../../../.agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "resolved": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 146,
+        "kind": "markdown",
+        "target": "../../README.md",
+        "resolved": "cpa_uploader/README.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 146,
+        "kind": "wiki",
+        "target": "question-generation-workflow",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-generation-workflow.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 150,
+        "kind": "wiki",
+        "target": "question-elements",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-elements.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 151,
+        "kind": "wiki",
+        "target": "source-catalog",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/source-catalog.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 152,
+        "kind": "wiki",
+        "target": "requirement-coverage",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/requirement-coverage.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 153,
+        "kind": "wiki",
+        "target": "question-generation-workflow",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-generation-workflow.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 154,
+        "kind": "wiki",
+        "target": "question-output-schema",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-output-schema.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "line": 159,
+        "kind": "markdown",
+        "target": "../../../.agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "resolved": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 17,
+        "kind": "wiki",
+        "target": "topic-map",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/topic-map.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 17,
+        "kind": "wiki",
+        "target": "coverage-map",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/coverage-map.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 19,
+        "kind": "wiki",
+        "target": "source-catalog",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/source-catalog.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 19,
+        "kind": "wiki",
+        "target": "source-authoring-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/source-authoring-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 25,
+        "kind": "wiki",
+        "target": "source-review-map",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/source-review-map.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 33,
+        "kind": "markdown",
+        "target": "../../../docs/archive/과거-검토-증거/reports/question-review-2027/개정-감사기준서-220-시행일-별도-기록.md",
+        "resolved": "docs/archive/과거-검토-증거/reports/question-review-2027/개정-감사기준서-220-시행일-별도-기록.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 37,
+        "kind": "wiki",
+        "target": "source-authoring-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/source-authoring-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 51,
+        "kind": "markdown",
+        "target": "../../../docs/plans/주제-01-03-검토에-따른-수정-결정.md",
+        "resolved": "docs/plans/주제-01-03-검토에-따른-수정-결정.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 67,
+        "kind": "wiki",
+        "target": "question-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 86,
+        "kind": "wiki",
+        "target": "question-output-schema",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-output-schema.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 90,
+        "kind": "markdown",
+        "target": "../../README.md",
+        "resolved": "cpa_uploader/README.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 90,
+        "kind": "wiki",
+        "target": "source-authoring-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/source-authoring-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 97,
+        "kind": "markdown",
+        "target": "../../../.agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "resolved": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 105,
+        "kind": "markdown",
+        "target": "../../../.agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "resolved": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 119,
+        "kind": "wiki",
+        "target": "llm-question-generation-prompt",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 120,
+        "kind": "wiki",
+        "target": "source-manifest",
+        "resolved": [
+          "cpa_uploader/wiki/raw/source-manifest.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 121,
+        "kind": "wiki",
+        "target": "question-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 122,
+        "kind": "wiki",
+        "target": "source-authoring-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/source-authoring-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "line": 123,
+        "kind": "wiki",
+        "target": "source-catalog",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/source-catalog.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md",
+        "line": 15,
+        "kind": "wiki",
+        "target": "source-authoring-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/source-authoring-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md",
+        "line": 84,
+        "kind": "markdown",
+        "target": "../../../.agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "resolved": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md",
+        "line": 88,
+        "kind": "markdown",
+        "target": "../../../docs/plans/주제-01-03-검토에-따른-수정-결정.md",
+        "resolved": "docs/plans/주제-01-03-검토에-따른-수정-결정.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md",
+        "line": 92,
+        "kind": "wiki",
+        "target": "question-generation-workflow",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-generation-workflow.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md",
+        "line": 93,
+        "kind": "wiki",
+        "target": "question-output-schema",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-output-schema.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md",
+        "line": 94,
+        "kind": "wiki",
+        "target": "source-manifest",
+        "resolved": [
+          "cpa_uploader/wiki/raw/source-manifest.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "docs/출제-검토-자료-관리.md",
+        "line": 22,
+        "kind": "markdown",
+        "target": "../cpa_uploader/raw/README.md",
+        "resolved": "cpa_uploader/raw/README.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/출제-검토-자료-관리.md",
+        "line": 28,
+        "kind": "markdown",
+        "target": "../.agents/skills/audit-question-review/references/source-evidence.md",
+        "resolved": ".agents/skills/audit-question-review/references/source-evidence.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/출제-검토-자료-관리.md",
+        "line": 30,
+        "kind": "markdown",
+        "target": "물음별-학습-단위와-분류-계약.md",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/출제-검토-자료-관리.md",
+        "line": 34,
+        "kind": "markdown",
+        "target": "../cpa_uploader/analysis/coverage/README.md",
+        "resolved": "cpa_uploader/analysis/coverage/README.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "docs/출제-검토-자료-관리.md",
+        "line": 55,
+        "kind": "markdown",
+        "target": "../cpa_uploader/wiki/_meta/authoring-dashboard.md",
+        "resolved": "cpa_uploader/wiki/_meta/authoring-dashboard.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 5,
+        "kind": "markdown",
+        "target": "../../docs/물음별-학습-단위와-분류-계약.md",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 11,
+        "kind": "markdown",
+        "target": "../raw/README.md",
+        "resolved": "cpa_uploader/raw/README.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 11,
+        "kind": "markdown",
+        "target": "../../.agents/skills/audit-question-review/references/source-evidence.md",
+        "resolved": ".agents/skills/audit-question-review/references/source-evidence.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 35,
+        "kind": "wiki",
+        "target": "ox-study-order",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/ox-study-order.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 37,
+        "kind": "markdown",
+        "target": "scripts/ox-study-order.mjs",
+        "resolved": "cpa_uploader/wiki/scripts/ox-study-order.mjs",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 37,
+        "kind": "markdown",
+        "target": "scripts/topic-definitions.mjs",
+        "resolved": "cpa_uploader/wiki/scripts/topic-definitions.mjs",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 46,
+        "kind": "markdown",
+        "target": "../config/question-source-registry.json",
+        "resolved": "cpa_uploader/config/question-source-registry.json",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 103,
+        "kind": "wiki",
+        "target": "question-output-schema",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/question-output-schema.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 105,
+        "kind": "wiki",
+        "target": "source-authoring-design",
+        "resolved": [
+          "cpa_uploader/wiki/question-generation/source-authoring-design.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 107,
+        "kind": "markdown",
+        "target": "../../.agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "resolved": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 111,
+        "kind": "wiki",
+        "target": "authoring-dashboard",
+        "resolved": [
+          "cpa_uploader/wiki/_meta/authoring-dashboard.md"
+        ],
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 112,
+        "kind": "markdown",
+        "target": "../../docs/출제-검토-자료-관리.md",
+        "resolved": "docs/출제-검토-자료-관리.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 114,
+        "kind": "markdown",
+        "target": "../../docs/프로젝트-테이블-cpa-접두어-전환.md",
+        "resolved": "docs/프로젝트-테이블-cpa-접두어-전환.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 115,
+        "kind": "markdown",
+        "target": "../../docs/물음별-학습-단위와-분류-계약.md",
+        "resolved": "docs/물음별-학습-단위와-분류-계약.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 117,
+        "kind": "markdown",
+        "target": "../../docs/plans/주제-01-03-검토에-따른-수정-결정.md",
+        "resolved": "docs/plans/주제-01-03-검토에-따른-수정-결정.md",
+        "ok": true,
+        "anchor_ok": null
+      },
+      {
+        "file": "cpa_uploader/wiki/SCHEMA.md",
+        "line": 118,
+        "kind": "markdown",
+        "target": "../../docs/archive/과거-검토-증거/reports/question-review-2027/개정-감사기준서-220-시행일-별도-기록.md",
+        "resolved": "docs/archive/과거-검토-증거/reports/question-review-2027/개정-감사기준서-220-시행일-별도-기록.md",
+        "ok": true,
+        "anchor_ok": null
+      }
+    ],
+    "frontmatter_source_checks": [
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-design.md",
+        "target": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-output-schema.md",
+        "target": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "target": "cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md",
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "target": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/source-authoring-design.md",
+        "target": "docs/plans/주제-01-03-검토에-따른-수정-결정.md",
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "target": "cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md",
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/question-generation-workflow.md",
+        "target": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md",
+        "target": "cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md",
+        "ok": true
+      },
+      {
+        "file": "cpa_uploader/wiki/question-generation/llm-question-generation-prompt.md",
+        "target": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+        "ok": true
+      }
+    ]
+  }
+}

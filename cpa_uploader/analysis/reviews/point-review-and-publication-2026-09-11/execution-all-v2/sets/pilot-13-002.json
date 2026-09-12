@@ -1,0 +1,380 @@
+{
+  "schema_version": "3.0",
+  "id": "pilot-13-002",
+  "type": "linked_question_set",
+  "status": "needs_review",
+  "title": "내부감사기능 평가와 감사인측 전문가 합의",
+  "classification": {
+    "topic_id": "13",
+    "part": "PART3",
+    "chapter": "타인의 업무 활용",
+    "domain": "audit",
+    "standards": [
+      "KGA 610",
+      "KGA 620"
+    ],
+    "tags": [
+      "내부감사기능",
+      "객관성",
+      "적격성",
+      "감사인측 전문가",
+      "업무합의"
+    ]
+  },
+  "source_refs": [
+    {
+      "id": "src1",
+      "file": "cpa_uploader/data/official/kga610-620-2025-review13.txt",
+      "title": "회계감사기준 전문(2025 개정) KGA 610",
+      "page": "KGA 610",
+      "source_quote": "15. 외부감사인은 다음 사항을 평가하여 내부감사기능이 수행한 업무가 감사목적을 위하여 활\n용될 수 있는지 여부를 결정하여야 한다. \n(a) 내부감사기능의 조직 내 위상과 관련 정책 및 절차가 내부감사인의 객관성을 지원하\n는 정도 (문단 A5-A9 참조) \n(b) 내부감사기능의 적격성 수준 (문단 A5-A9 참조) \n(c) 품질관리를 포함하여 내부감사기능이 체계적이고 규율된 접근법을 적용하는지 여부 \n(문단 A10-A11 참조)",
+      "role": "standard",
+      "content_hash": "850afb3d6c221a06eb1ca2b89e6e997a4dec80bafa8753c556a57a8e24528ea7"
+    },
+    {
+      "id": "src2",
+      "file": "cpa_uploader/data/official/kga610-620-2025-review13.txt",
+      "title": "회계감사기준 전문(2025 개정) KGA 620",
+      "page": "KGA 620",
+      "source_quote": "11. 감사인은 다음과 같은 내용에 대하여 감사인측 전문가와 (적합한 경우 문서로) 합의하여야 \n한다. (문단 A23-A26 참조) \n(a) 감사인측 전문가 업무의 성격, 범위 및 목적 (문단 A27 참조) \n(b) 감사인과 감사인측 전문가 각자의 역할과 책임 (문단 A28-A29 참조) \n(c) 감사인측 전문가가 작성하는 보고서의 형태 등 감사인과 감사인측 전문가간 커뮤니\n케이션의 성격, 시기 및 범위(감사인측 전문가가 작성하는 보고서의 형태 포함) (문단 \nA30 참조) \n(d) 감사인측 전문가가 비밀유지 요구사항을 준수할 필요성 (문단 A31 참조)",
+      "role": "standard",
+      "content_hash": "007f20b8a63b2713c71ef5c913c3cfe7248ea4ca6e460b99608ef2eefbceef62"
+    }
+  ],
+  "shared_context": {
+    "facts": [
+      {
+        "id": "fact1",
+        "text": "외부감사인은 내부감사기능과 감사인측 전문가의 업무를 활용하기 전에 평가 및 합의사항을 점검하고 있다.",
+        "scoreable": false
+      }
+    ]
+  },
+  "learning_order": [
+    "sub1",
+    "sub2"
+  ],
+  "subquestions": [
+    {
+      "id": "sub1",
+      "type": "enumeration",
+      "prompt": "내부감사기능이 수행한 업무를 감사목적에 활용할 수 있는지 결정하기 위해 외부감사인이 평가해야 할 세 가지 사항을 제시하시오.",
+      "constraints": {
+        "ordered": false,
+        "max_entries": null,
+        "overflow_policy": "none"
+      },
+      "selection": {
+        "type": "all",
+        "n": null
+      },
+      "model_answer": [
+        "조직 내 위상과 관련 정책 및 절차가 내부감사인의 객관성을 지원하는 정도를 평가한다.",
+        "내부감사기능의 적격성 수준을 평가한다.",
+        "품질관리를 포함하여 체계적이고 규율된 접근법을 적용하는지 평가한다."
+      ],
+      "requirements": [
+        {
+          "id": "req1",
+          "source_ref_id": "src1",
+          "source_quote": "15. 외부감사인은 다음 사항을 평가하여 내부감사기능이 수행한 업무가 감사목적을 위하여 활\n용될 수 있는지 여부를 결정하여야 한다. \n(a) 내부감사기능의 조직 내 위상과 관련 정책 및 절차가 내부감사인의 객관성을 지원하\n는 정도 (문단 A5-A9 참조) \n(b) 내부감사기능의 적격성 수준 (문단 A5-A9 참조) \n(c) 품질관리를 포함하여 내부감사기능이 체계적이고 규율된 접근법을 적용하는지 여부 \n(문단 A10-A11 참조)",
+          "source_span": "KGA 610.15, PDF 637쪽, 2025 개정 전문; 2026-09-08 확인"
+        }
+      ],
+      "criteria": [
+        {
+          "id": "crit1",
+          "requirement_id": "req1",
+          "claim": "조직 내 위상과 정책·절차가 내부감사인의 객관성을 지원하는 정도를 평가함",
+          "critical_facts": [
+            {
+              "id": "cf1",
+              "type": "condition",
+              "expected": "조직 내 위상과 정책·절차의 객관성 지원 정도"
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src1"
+          ]
+        },
+        {
+          "id": "crit2",
+          "requirement_id": "req1",
+          "claim": "내부감사기능의 적격성 수준을 평가함",
+          "critical_facts": [
+            {
+              "id": "cf2",
+              "type": "condition",
+              "expected": "내부감사기능의 적격성 수준"
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src1"
+          ]
+        },
+        {
+          "id": "crit3",
+          "requirement_id": "req1",
+          "claim": "품질관리를 포함한 체계적이고 규율된 접근법 적용 여부를 평가함",
+          "critical_facts": [
+            {
+              "id": "cf3",
+              "type": "condition",
+              "expected": "품질관리를 포함한 체계적이고 규율된 접근법 적용"
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sub2",
+      "type": "enumeration",
+      "prompt": "감사인이 감사인측 전문가와 합의해야 할 네 가지 사항을 제시하시오.",
+      "constraints": {
+        "ordered": false,
+        "max_entries": null,
+        "overflow_policy": "none"
+      },
+      "selection": {
+        "type": "all",
+        "n": null
+      },
+      "model_answer": [
+        "전문가 업무의 성격, 범위 및 목적을 합의한다.",
+        "감사인과 전문가 각자의 역할과 책임을 합의한다.",
+        "전문가 보고서의 형태를 포함하여 양자 간 커뮤니케이션의 성격, 시기 및 범위를 합의한다.",
+        "전문가가 비밀유지 요구사항을 준수할 필요성을 합의한다."
+      ],
+      "requirements": [
+        {
+          "id": "req2",
+          "source_ref_id": "src2",
+          "source_quote": "11. 감사인은 다음과 같은 내용에 대하여 감사인측 전문가와 (적합한 경우 문서로) 합의하여야 \n한다. (문단 A23-A26 참조) \n(a) 감사인측 전문가 업무의 성격, 범위 및 목적 (문단 A27 참조) \n(b) 감사인과 감사인측 전문가 각자의 역할과 책임 (문단 A28-A29 참조) \n(c) 감사인측 전문가가 작성하는 보고서의 형태 등 감사인과 감사인측 전문가간 커뮤니\n케이션의 성격, 시기 및 범위(감사인측 전문가가 작성하는 보고서의 형태 포함) (문단 \nA30 참조) \n(d) 감사인측 전문가가 비밀유지 요구사항을 준수할 필요성 (문단 A31 참조)",
+          "source_span": "KGA 620.11, PDF 657쪽, 2025 개정 전문; 2026-09-08 확인"
+        }
+      ],
+      "criteria": [
+        {
+          "id": "crit4",
+          "requirement_id": "req2",
+          "claim": "감사인측 전문가가 수행할 업무의 성격을 합의한다.",
+          "critical_facts": [
+            {
+              "id": "cf4",
+              "type": "action",
+              "expected": "감사인측 전문가가 수행할 업무의 성격을 합의한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit4.p2",
+          "requirement_id": "req2",
+          "claim": "감사인측 전문가가 수행할 업무의 범위를 합의한다.",
+          "critical_facts": [
+            {
+              "id": "cf4.p2",
+              "type": "action",
+              "expected": "감사인측 전문가가 수행할 업무의 범위를 합의한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit4.p3",
+          "requirement_id": "req2",
+          "claim": "감사인측 전문가가 수행할 업무의 목적을 합의한다.",
+          "critical_facts": [
+            {
+              "id": "cf4.p3",
+              "type": "action",
+              "expected": "감사인측 전문가가 수행할 업무의 목적을 합의한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit5",
+          "requirement_id": "req2",
+          "claim": "감사인 자신의 역할과 책임을 전문가와 합의한다.",
+          "critical_facts": [
+            {
+              "id": "cf5",
+              "type": "action",
+              "expected": "감사인 자신의 역할과 책임을 전문가와 합의한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit5.p2",
+          "requirement_id": "req2",
+          "claim": "감사인측 전문가의 역할과 책임을 합의한다.",
+          "critical_facts": [
+            {
+              "id": "cf5.p2",
+              "type": "action",
+              "expected": "감사인측 전문가의 역할과 책임을 합의한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit6",
+          "requirement_id": "req2",
+          "claim": "전문가 보고서의 형태를 포함한 감사인과 전문가 간 커뮤니케이션의 성격을 합의한다.",
+          "critical_facts": [
+            {
+              "id": "cf6",
+              "type": "action",
+              "expected": "전문가 보고서의 형태를 포함한 감사인과 전문가 간 커뮤니케이션의 성격을 합의한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit6.p2",
+          "requirement_id": "req2",
+          "claim": "감사인과 전문가 간 커뮤니케이션의 시기를 합의한다.",
+          "critical_facts": [
+            {
+              "id": "cf6.p2",
+              "type": "action",
+              "expected": "감사인과 전문가 간 커뮤니케이션의 시기를 합의한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit6.p3",
+          "requirement_id": "req2",
+          "claim": "감사인과 전문가 간 커뮤니케이션의 범위를 합의한다.",
+          "critical_facts": [
+            {
+              "id": "cf6.p3",
+              "type": "action",
+              "expected": "감사인과 전문가 간 커뮤니케이션의 범위를 합의한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit7",
+          "requirement_id": "req2",
+          "claim": "전문가의 비밀유지 요구사항 준수 필요성을 합의함",
+          "critical_facts": [
+            {
+              "id": "cf7",
+              "type": "action",
+              "expected": "전문가의 비밀유지 요구사항 준수 필요성 합의"
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "source_fidelity": "exact",
+    "review_status": "needs_human_review",
+    "calculation_required": false,
+    "notes": [
+      "원문 직접 대조를 거쳐 추가 제작한 v3 파일럿 세트. 원문·구조·2차 의미 검수 완료.",
+      "2026-09-08 주제13 전수 수정: 공식 2025 전문 인용·문단·해시 대조. 기존 게시/검수 상태 유지(승급 아님). 실측 및 미확인 범위: docs/reports/question-review-2027/13.md. 2027 시험 판본은 별도 확인.",
+      "2026-09-11 C 배점 재검토 후보: 독립 답안 단위별 정수 부분점수 복원. 원문·기존 발문·모범답안 보존, 모델 API 미실행. 과거 검수 기록은 이전 판본 이력이다."
+    ]
+  }
+}

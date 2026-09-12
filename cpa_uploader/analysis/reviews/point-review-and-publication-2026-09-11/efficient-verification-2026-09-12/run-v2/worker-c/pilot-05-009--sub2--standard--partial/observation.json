@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/grading-manifest.json",
+    "sha256": "d1a7509a18076bfc776b8092877dcc0686b06c209f8d0741347d5aedf6dafc4c"
+  },
+  "entry_id": "pilot-05-009--sub2--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-05-009--sub2--standard",
+  "source_set_id": "pilot-05-009",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "92697896f4d9b5cb7ad844322dc89f3e323184057a5c46ec5dd0dffed4ae50f1",
+  "answers": {
+    "sub2": "경영진은 회계기록을 직·간접적으로 조작하고 허위 재무정보를 제공하거나, 종업원의 유사한 부정을 예방할 통제를 무력화할 수 있는 지위에 있는 경우가 많기 때문이다.\n그렇지만 감사인이 발견하지 못할 위험은 경영진의 부정이 일반 종업원의 부정보다 더 낮다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 감사인이 경영진의 부정으로 인한 중요한 왜곡표시를 발견하지 못할 위험은 종업원의 부정으로 인한 경우보다 크다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 경영진은 회계기록을 직·간접적으로 조작하고 허위 재무정보를 제공하거나, 종업원의 유사한 부정을 예방할 통제를 무력화할 수 있는 지위에 있는 경우가 많기 때문이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "919ca86129262049f0126e5b92eb366e9a6e25fdc3c52a8d5b6c0fd900dda1a6",
+  "schema_hash": "0e4902f95461155e1a8f680a60b1a5a94d1f1756391f2334562b67f3a60160bf",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "경영진은 회계기록을 직·간접적으로 조작하고 허위 재무정보를 제공하거나, 종업원의 유사한 부정을 예방할 통제를 무력화할 수 있는 지위에 있는 경우가 많기 때문이다.\n그렇지만 감사인이 발견하지 못할 위험은 경영진의 부정이 일반 종업원의 부정보다 더 낮다.",
+            "reason": "경영진 부정의 미발견 위험이 종업원 부정보다 더 낮다고 명시하여 요구 결론과 반대된다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "경영진은 회계기록을 직·간접적으로 조작하고 허위 재무정보를 제공하거나, 종업원의 유사한 부정을 예방할 통제를 무력화할 수 있는 지위에 있는 경우가 많기 때문이다.\n그렇지만 감사인이 발견하지 못할 위험은 경영진의 부정이 일반 종업원의 부정보다 더 낮다.",
+            "reason": "회계기록 조작, 허위 재무정보 제공 및 통제 무력화 가능성을 경영진의 지위와 연결하여 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e2"
+                ],
+                "reason": "경영진 부정의 미발견 위험이 종업원 부정보다 더 낮다고 명시하여 요구 결론과 반대된다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e1"
+                ],
+                "reason": "회계기록 조작, 허위 재무정보 제공 및 통제 무력화 가능성을 경영진의 지위와 연결하여 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-05-009",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사인이 경영진 부정과 종업원 부정으로 인한 중요한 왜곡표시를 발견하지 못할 위험을 비교하시오. 차이가 생기는 이유를 조직 내 지위가 회계기록·제공정보 또는 정상 통제에 미칠 수 있는 영향과 연결하여 설명하시오.",
+        "user_answer": "경영진은 회계기록을 직·간접적으로 조작하고 허위 재무정보를 제공하거나, 종업원의 유사한 부정을 예방할 통제를 무력화할 수 있는 지위에 있는 경우가 많기 때문이다.\n그렇지만 감사인이 발견하지 못할 위험은 경영진의 부정이 일반 종업원의 부정보다 더 낮다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "경영진은 회계기록을 직·간접적으로 조작하고 허위 재무정보를 제공하거나, 종업원의 유사한 부정을 예방할 통제를 무력화할 수 있는 지위에 있는 경우가 많기 때문이다.\n그렇지만 감사인이 발견하지 못할 위험은 경영진의 부정이 일반 종업원의 부정보다 더 낮다.",
+            "reason": "경영진 부정의 미발견 위험이 종업원 부정보다 더 낮다고 명시하여 요구 결론과 반대된다.",
+            "claim": "감사인이 경영진의 부정으로 인한 중요한 왜곡표시를 발견하지 못할 위험은 종업원의 부정으로 인한 경우보다 크다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "경영진은 회계기록을 직·간접적으로 조작하고 허위 재무정보를 제공하거나, 종업원의 유사한 부정을 예방할 통제를 무력화할 수 있는 지위에 있는 경우가 많기 때문이다.\n그렇지만 감사인이 발견하지 못할 위험은 경영진의 부정이 일반 종업원의 부정보다 더 낮다.",
+            "reason": "회계기록 조작, 허위 재무정보 제공 및 통제 무력화 가능성을 경영진의 지위와 연결하여 설명했다.",
+            "claim": "경영진은 회계기록을 직·간접적으로 조작하고 허위 재무정보를 제공하거나, 종업원의 유사한 부정을 예방할 통제를 무력화할 수 있는 지위에 있는 경우가 많기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "감사인이 경영진의 부정으로 인한 중요한 왜곡표시를 발견하지 못할 위험은 종업원의 부정으로 인한 경우보다 크다.",
+          "경영진은 회계기록을 직·간접적으로 조작하고 허위 재무정보를 제공하거나, 종업원의 유사한 부정을 예방할 통제를 무력화할 수 있는 지위에 있는 경우가 많기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f09ed0e5b08bfe9016aa4cd8d846887d09c4ab8fc61df30f9",
+        "request_id": "req_e38e1df3826244fa9ab6df0de84e9a57",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2784,
+          "input_tokens_details": {
+            "cache_write_tokens": 2781,
+            "cached_tokens": 0
+          },
+          "output_tokens": 221,
+          "output_tokens_details": {
+            "reasoning_tokens": 43
+          },
+          "total_tokens": 3005
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00096105,
+        "min_usd": 0.00096105,
+        "max_usd": 0.00096105,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-05-009--sub2--standard--partial/input.json",
+      "sha256": "8e83ce8b09ed8008ef5f0bef7f12ff1b154ab05b80033a4c3ca31224f3ce073d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-05-009--sub2--standard--partial/transport.jsonl",
+      "sha256": "d313b16253d5e550c22ab39130091e3cb216038f8571b575f57c261728b8a34f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v2/worker-c/pilot-05-009--sub2--standard--partial/traces.jsonl",
+      "sha256": "c9e471eba497a241c81edc0dfe0e75f9b70d72afda00665bd2be50b57188fce4"
+    }
+  }
+}

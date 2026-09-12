@@ -7,15 +7,37 @@ import assert from 'node:assert/strict';
 import { compilePublicQuestionSet } from '../lib/questionV3.ts';
 import type { QuestionSetV3 } from '../lib/questionV3.ts';
 import { decryptAuthoringQuestionBankV3 } from '../lib/questionV3Encryption.ts';
-import { reviewedContentHash, snapshotFile, writePublicationFiles } from '../cpa_uploader/questionBankPublication.ts';
+import { reviewedContentHash, snapshotFile, validateAuthoringBank, writePublicationFiles } from '../cpa_uploader/questionBankPublication.ts';
 import type { PromotionLedger } from '../cpa_uploader/questionBankPublication.ts';
 import { offlineReviewReceipt } from './helpers/questionSemanticReviewFixture.ts';
 import { completeSemanticReview, prepareSemanticReview } from '../cpa_uploader/questionSemanticReview.ts';
+import type { SemanticReviewReceipt } from '../cpa_uploader/questionSemanticReview.ts';
+import { jsonHash } from '../cpa_uploader/questionReviewIdentity.ts';
 
 const root = process.cwd();
 const authoringFile = path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.authoring.json');
 const ledgerFile = path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.promotions.json');
 const secret = 'isolated-publication-regression-test-secret';
+
+test('a split fourth subquestion is accepted while five subquestions exceed the linked-set limit', () => {
+    const bank = JSON.parse(fs.readFileSync(authoringFile, 'utf8')) as QuestionSetV3[];
+    const set = bank[0];
+    const template = structuredClone(set.subquestions[0]);
+    while (set.subquestions.length < 4) {
+        const sub = structuredClone(template);
+        sub.id = `split-${set.subquestions.length + 1}`;
+        sub.prompt = `${sub.id} 격리 분할 검사: ${template.prompt}`;
+        set.subquestions.push(sub);
+    }
+    set.learning_order = set.subquestions.map(sub => sub.id);
+    assert.deepEqual(validateAuthoringBank(bank).errors, []);
+    const fifth = structuredClone(template);
+    fifth.id = 'split-5';
+    fifth.prompt = `다섯째 격리 분할 검사: ${template.prompt}`;
+    set.subquestions.push(fifth);
+    set.learning_order.push(fifth.id);
+    assert.ok(validateAuthoringBank(bank).errors.some(error => error.includes('세부 물음 2~4개')));
+});
 const scripts = {
     validate: 'cpa_uploader/validate_cpa_v3.ts',
     promote: 'cpa_uploader/promote_cpa_v3.ts',
@@ -26,7 +48,15 @@ function fixture() {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-publication-'));
     const files = { authoring: path.join(directory, 'authoring.json'), ledger: path.join(directory, 'ledger.json'),
         public: path.join(directory, 'public.json'), encrypted: path.join(directory, 'authoring.enc.json') };
-    const sets = JSON.parse(fs.readFileSync(authoringFile, 'utf8')) as QuestionSetV3[];
+    // Real CLIs enforce the original 65-set topic minima. Pin those pilot IDs so
+    // every supplied peer is reviewed without inheriting later corpus growth.
+    const fixtureTopicCounts = [3, 4, 3, 3, 4, 4, 3, 4, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3, 4];
+    const fixturePeerIds = fixtureTopicCounts.flatMap((count, topic) => Array.from({ length: count }, (_, index) =>
+        `pilot-${String(topic + 1).padStart(2, '0')}-${String(index + 1).padStart(3, '0')}`));
+    const sets = (JSON.parse(fs.readFileSync(authoringFile, 'utf8')) as QuestionSetV3[])
+        .filter(set => fixturePeerIds.includes(set.id));
+    assert.equal(sets.length, fixturePeerIds.length, 'publication fixture peers must exist');
+    assert.ok(sets.every(set => set.status === 'published'), 'publication fixture peers must be published');
     const draft = structuredClone(sets[0]);
     draft.id = 'draft-publication-regression';
     draft.status = 'needs_review';
@@ -35,7 +65,9 @@ function fixture() {
     for (const sub of draft.subquestions) sub.prompt = `격리 신규 문항: ${sub.prompt}`;
     sets.push(draft);
     fs.writeFileSync(files.authoring, `${JSON.stringify(sets, null, 2)}\n`);
-    fs.copyFileSync(ledgerFile, files.ledger);
+    const ledger = JSON.parse(fs.readFileSync(ledgerFile, 'utf8')) as PromotionLedger;
+    ledger.entries = ledger.entries.filter(entry => fixturePeerIds.includes(entry.set_id));
+    fs.writeFileSync(files.ledger, `${JSON.stringify(ledger, null, 2)}\n`);
     const env = { ...process.env, CPA_QUESTION_V3_AUTHORING_PATH: files.authoring,
         CPA_QUESTION_V3_PUBLIC_PATH: files.public, CPA_QUESTION_V3_ENCRYPTED_PATH: files.encrypted,
         CPA_QUESTION_V3_PROMOTIONS_PATH: files.ledger, CPA_QUESTION_V3_ENCRYPTION_KEY: secret };
@@ -44,7 +76,7 @@ function fixture() {
 
 function cli(f: ReturnType<typeof fixture>, command: keyof typeof scripts, args: string[] = [], success = true) {
     const result = spawnSync(process.execPath, ['--disable-warning=MODULE_TYPELESS_PACKAGE_JSON', scripts[command], ...args], {
-        cwd: root, env: f.env, encoding: 'utf8', timeout: 30_000,
+        cwd: root, env: f.env, encoding: 'utf8', timeout: 120_000,
     });
     const output = `${result.stdout}\n${result.stderr}`;
     assert.equal(result.error, undefined, output);
@@ -80,6 +112,14 @@ test('actual CLI publishes an added draft without a preexisting public snapshot 
         assert.match(cli(f, 'promote', ['--to', 'verified', '--sets', f.draft.id], false), /evidence/);
         assert.match(cli(f, 'promote', ['--to', 'verified', '--sets', f.draft.id, '--evidence', 'receipt 없는 검수'], false), /--review/);
         assert.deepEqual(bytes(f), before, 'failed gates must not write bank, ledger or artifacts');
+        const injected = await offlineReviewReceipt(f.draft, f.sets);
+        injected.grading.transport = 'injected_response';
+        const unhashed = { ...injected } as Partial<SemanticReviewReceipt>; delete unhashed.receipt_hash;
+        injected.receipt_hash = jsonHash(unhashed);
+        const injectedFile = path.join(f.directory, 'injected-review.json');
+        fs.writeFileSync(injectedFile, JSON.stringify({ schema_version: '1.0', reviews: [injected] }));
+        assert.match(cli(f, 'promote', ['--to', 'verified', '--sets', f.draft.id, '--evidence', '주입 응답 승급 차단 확인', '--review', injectedFile], false), /주입 응답.*승급 근거/);
+        assert.deepEqual(bytes(f), before, 'injected model responses cannot approve a new draft');
         await verify(f);
         let sets = JSON.parse(fs.readFileSync(f.files.authoring, 'utf8')) as QuestionSetV3[];
         const reviewed = sets.at(-1)!;

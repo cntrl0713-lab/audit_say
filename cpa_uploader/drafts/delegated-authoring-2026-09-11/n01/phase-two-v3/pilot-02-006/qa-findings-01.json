@@ -1,0 +1,83 @@
+{
+  "created_at": "2026-09-11T02:13:57.084644+00:00",
+  "finding_id": "N01-QA-003",
+  "set_id": "pilot-02-006",
+  "case_id": "sub3/opposite-crit9",
+  "classification": "author_qa_non_target_zero_classification_ambiguity",
+  "answer": "경영진을 과거부터 신뢰했으므로 의구심을 낮추고 설득력이 낮은 증거에도 만족할 수 있다.",
+  "expected_points": 0,
+  "target_criterion": "crit9",
+  "non_target_criterion": "crit8",
+  "same_input_schema_model": true,
+  "observations": [
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-02-006/author-qa-01/case-0047-attempt-1.json",
+      "sha256": "9c7798fe0fa2310febd994cede73675a0c57a96fe8835895f6752a93ba5dd15c",
+      "actual_score": 0,
+      "security_flag": "none",
+      "verdicts": [
+        {
+          "criterion_id": "crit8",
+          "verdict": "contradicted",
+          "quote": "경영진을 과거부터 신뢰했으므로 의구심을 낮추고 설득력이 낮은 증거에도 만족할 수 있다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "contradicted",
+          "quote": "경영진을 과거부터 신뢰했으므로 의구심을 낮추고 설득력이 낮은 증거에도 만족할 수 있다."
+        }
+      ],
+      "matched": false
+    },
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-02-006/author-qa-01/case-0047-attempt-2.json",
+      "sha256": "472315f88f3509d36504fd9f2cd4d987ed5150fc048c5571bc8023ba444cb9cc",
+      "actual_score": 0,
+      "security_flag": "none",
+      "verdicts": [
+        {
+          "criterion_id": "crit8",
+          "verdict": "contradicted",
+          "quote": "경영진을 과거부터 신뢰했으므로 의구심을 낮추고 설득력이 낮은 증거에도 만족할 수 있다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "contradicted",
+          "quote": "경영진을 과거부터 신뢰했으므로 의구심을 낮추고 설득력이 낮은 증거에도 만족할 수 있다."
+        }
+      ],
+      "matched": false
+    },
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-02-006/author-qa-01/case-0047-attempt-3.json",
+      "sha256": "ce8f71ba1b7f4c52174fa7ef36f02bd49fc5ccb7d2386c6fbd4d49b7175b0641",
+      "actual_score": 0,
+      "security_flag": "none",
+      "verdicts": [
+        {
+          "criterion_id": "crit8",
+          "verdict": "not_met"
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "contradicted",
+          "quote": "경영진을 과거부터 신뢰했으므로 의구심을 낮추고 설득력이 낮은 증거에도 만족할 수 있다."
+        }
+      ],
+      "matched": true
+    }
+  ],
+  "source_basis": [
+    "KGA200.A24: 서류 신뢰성 문제의 추가 조사 및 절차 변경·추가 필요성 결정",
+    "KGA200.A25: 과거 신뢰는 의구심 유지 필요성 경감이나 낮은 설득력의 증거에 만족할 근거가 아님"
+  ],
+  "analysis": "원답안은 A25의 두 금지 모두를 반대로 서술한다. 특히 낮은 설득력의 증거에 만족할 수 있다는 결론은 이 지문의 서류 신뢰성 의문을 더 조사한다는 A24 조치와도 충돌한다고 해석될 수 있다. 대상crit9은3회모두contradicted, 비대상crit8만contradicted/contradicted/not_met로변동했고점수는모두0이다. 분류오류를확정하거나원QA를관측값으로덮어쓰지않는다.",
+  "proposal": {
+    "requires_coordinator_acceptance": true,
+    "question_or_plan_change": false,
+    "narrow_answer": "경영진의 정직성과 성실성을 과거부터 신뢰했다면 전문가적 의구심을 유지할 필요성이 줄어든다.",
+    "expected_target": "crit9 contradicted",
+    "expected_non_target": "crit8 not_met",
+    "reason": "A25 첫번째금지의명시적반대만남기고 낮은증거에만족해도된다는후반판단을빼 대상독립명제반대검사범위를좁힌다. 현행원답안은별도exploratory로보존하고같은정책에서후속검증한다."
+  }
+}

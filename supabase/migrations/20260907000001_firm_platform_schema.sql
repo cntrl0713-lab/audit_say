@@ -1,5 +1,5 @@
 -- audit_say v2 — 회계법인 리서치 플랫폼 스키마 (M0)
--- 근거 문서: docs/PLAN_PRD_v2.md §6, docs/firm-platform-schema.md
+-- 근거 문서: docs/auditsay-v2-통합-기획-PRD-문서.md §6, docs/회계법인-리서치-플랫폼-스키마-설계-기록.md
 --
 -- 네임스페이스 규칙
 --   이 Supabase 프로젝트(CTA_tax_law)는 두 앱이 같은 public 스키마를 공유한다.
@@ -7,7 +7,7 @@
 --     cpa_*/user_cpa  audit_say 채점 시스템
 --   그래서 PRD가 적은 무접두어 이름(company·users·subscriptions·chat_messages 등)을
 --   그대로 쓰지 않는다. 리서치 플랫폼 테이블은 전부 firm_* 로 둔다.
---   PRD ↔ 실제 테이블 대조표는 docs/firm-platform-schema.md 에 있다.
+--   PRD ↔ 실제 테이블 대조표는 docs/회계법인-리서치-플랫폼-스키마-설계-기록.md 에 있다.
 --
 -- 계정 테이블(PRD §6.3 users)은 새로 만들지 않는다. audit_say는 이미
 -- public.user_cpa 가 auth.users 를 참조하며, 같은 사이트의 같은 계정이므로 재사용한다.
@@ -218,7 +218,7 @@ create index if not exists firm_review_firm_idx on public.firm_review (firm_id) 
 
 comment on column public.firm_review.score_workload is '업무 강도 1-5. 낮을수록 과중하다는 뜻이라 다른 항목과 방향이 같다(높을수록 좋음).';
 comment on column public.firm_review.is_hidden is '관리자 숨김 처리. 숨김 행은 공개 SELECT 정책에서 제외된다.';
-comment on column public.firm_review.user_id is '작성자. 공개 조회 시에도 컬럼 자체는 노출되므로 같은 작성자의 리뷰끼리 상관관계는 드러난다 — 실명·이메일은 담지 않는다. docs/firm-platform-schema.md "남은 판단거리" 참고.';
+comment on column public.firm_review.user_id is '작성자. 공개 조회 시에도 컬럼 자체는 노출되므로 같은 작성자의 리뷰끼리 상관관계는 드러난다 — 실명·이메일은 담지 않는다. docs/회계법인-리서치-플랫폼-스키마-설계-기록.md "남은 판단거리" 참고.';
 
 -- ---------------------------------------------------------------------------
 -- 3. RLS

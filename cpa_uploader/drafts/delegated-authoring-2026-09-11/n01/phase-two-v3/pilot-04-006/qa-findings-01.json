@@ -1,0 +1,84 @@
+{
+  "finding_id": "N01-QA-005",
+  "created_at": "2026-09-11T02:24:07.194722+00:00",
+  "set_id": "pilot-04-006",
+  "case_id": "sub1/opposite-crit1",
+  "classification": "author_expected_verdict_error_explicit_timing_negation",
+  "answer": "문서의 최초 작성을 최종 취합 때까지 모두 미루는 것은 적절하다.",
+  "same_request_schema_model": true,
+  "observations": [
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-04-006/author-qa-01/case-0010-attempt-1.json",
+      "sha256": "9f559458d82ee0665f46f9cd35d52ca3ad8c534599acfbc7597d6bbc27c22e42",
+      "score": 0,
+      "security_flag": "none",
+      "verdicts": [
+        [
+          "crit1",
+          "contradicted"
+        ],
+        [
+          "crit2",
+          "contradicted"
+        ]
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-04-006/author-qa-01/case-0010-attempt-2.json",
+      "sha256": "da4a85162c72e41e4a46e837b1130686dc01e6b7565e13790a88bd7e2c42ada0",
+      "score": 0,
+      "security_flag": "none",
+      "verdicts": [
+        [
+          "crit1",
+          "contradicted"
+        ],
+        [
+          "crit2",
+          "contradicted"
+        ]
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-04-006/author-qa-01/case-0010-attempt-3.json",
+      "sha256": "c6da5bb8adf78271f3b45b658f48edb50c5d36f6a7678de930497ef3e2182347",
+      "score": 0,
+      "security_flag": "none",
+      "verdicts": [
+        [
+          "crit1",
+          "contradicted"
+        ],
+        [
+          "crit2",
+          "contradicted"
+        ]
+      ]
+    }
+  ],
+  "direct_sources": [
+    {
+      "source_ref": "src-486c61dad20d1c3349",
+      "paragraph": "KGA230.7",
+      "source_quote": "7. 감사인은 적시에 감사문서를 작성하여야 한다. (문단 A1 참조)"
+    },
+    {
+      "source_ref": "src-b54be20acba919f30f",
+      "paragraph": "KGA230.A22",
+      "role": "최종 취합은새로운감사절차·결론과관계없는행정적절차라는이유의직접근거"
+    }
+  ],
+  "analysis": "원답안은 문서화 일괄 지연을 명시적으로 허용한다. 이는 부적절 판단crit1뿐 아니라 적시에 최초 문서화해야 한다는crit2의필수명제에도직접반대된다. 행정적취합의성격을쓰지않았다는이유로기존crit2 not_met가명시적반대를무시했다. 세회모두crit1/crit2contra,0점·보안없음이다.",
+  "proposal": {
+    "requires_coordinator_acceptance": true,
+    "answer_or_question_change": false,
+    "expected_verdict_change": {
+      "criterion_id": "crit2",
+      "before": "not_met",
+      "after": "contradicted"
+    },
+    "expected_points": 0,
+    "case_scope": "두명제동시반대",
+    "followup": "수용시새QA sidecar·diff·근거·나머지동일사례연결을작성하고해당사례현행코드후속1회확인(변동시3회)."
+  }
+}

@@ -1,8 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { applyQuestionSetJudgment, buildGradingPrompt, gradeQuestionSetV3 } from '../lib/questionV3Grading.ts';
+import { applyQuestionSetJudgment, buildGradingPrompt, buildGradingResponseSchema, gradeQuestionSetV3 } from '../lib/questionV3Grading.ts';
 import type { QuestionSetJudgmentV3 } from '../lib/questionV3Grading.ts';
-import type { OpenAIResponseCreator } from '../lib/ai/openaiStructured.ts';
 import type { Response } from 'openai/resources/responses/responses';
 import type { QuestionSetV3 } from '../lib/questionV3.ts';
 
@@ -150,54 +149,161 @@ test('grading prompt carries shared context facts so case questions are judged w
     ).shared_context, []);
 });
 
-const structuredResponse = (judgment: QuestionSetJudgmentV3): Response => ({
+test('grading schema allows only each subquestion\'s own ids and the prompt example uses real ids', () => {
+    // A generic 'q1'/'q1.c1' example led the model to answer 'q1' or 'sub1.crit1' for sets using
+    // other ids, and the coverage check then failed the whole grading.
+    const renamed: QuestionSetV3 = {
+        ...set,
+        learning_order: ['sub1', 'sub2'],
+        subquestions: set.subquestions.map((subquestion, index) => ({
+            ...subquestion,
+            id: `sub${index + 1}`,
+            criteria: subquestion.criteria.map((criterion) => ({ ...criterion, id: `crit${index + 1}` })),
+        })),
+    };
+    type IdVariant = { properties: { subquestion_id: { enum: string[] }; verdicts: { items: { properties: { criterion_id: { enum: string[] } } } } } };
+    const variants = (buildGradingResponseSchema(renamed) as { properties: { subquestions: { items: { anyOf: IdVariant[] } } } })
+        .properties.subquestions.items.anyOf;
+    assert.deepEqual(variants.map((variant) => variant.properties.subquestion_id.enum), [['sub1'], ['sub2']]);
+    assert.deepEqual(variants.map((variant) => variant.properties.verdicts.items.properties.criterion_id.enum), [['crit1'], ['crit2']]);
+
+    const example = buildGradingPrompt(renamed, {}).split('[출력 JSON]\n')[1];
+    assert.ok(example.includes('"subquestion_id": "sub1"') && example.includes('"criterion_id": "crit1"'));
+    assert.ok(!/"q1/u.test(example));
+});
+
+const structuredResponse = (judgment: unknown): Response => ({
     status: 'completed', output: [], output_text: JSON.stringify(judgment),
 } as unknown as Response);
+const answers = { q1: '합리적 확신은 높은 수준이다.', q2: '합리적 확신은 절대적 확신이 아니다.' };
+function wire() {
+    return { subquestions: set.subquestions.map(q => ({ subquestion_id: q.id, injection_detected: false,
+        injection_evidence_ids: [] as string[], salad_detected: false, verdicts: q.criteria.map(c => ({
+            criterion_id: c.id, verdict: 'met', evidence_ids: [`${q.id}/e0`], reason: null,
+        })) })) };
+}
 
-test('gradeQuestionSetV3 injected responses run quote isolation and integer scoring after the raw observer', async () => {
-    const answers = { q1: '합리적 확신은 높은 수준이다.', q2: '합리적 확신은 절대적 확신이 아니다.' };
-    const originalSet = structuredClone(set);
-    for (const validSecondQuote of [false, true]) {
-        let calls = 0;
-        const observed: QuestionSetJudgmentV3[] = [];
-        const createResponse: OpenAIResponseCreator = async (params) => {
+test('live wire schema binds evidence to submitted answer and preserves literal quotes', async () => {
+    let observed: QuestionSetJudgmentV3 | undefined;
+    const result = await gradeQuestionSetV3(set, answers, 'offline-key', j => { observed = j; }, async params => {
+        assert.deepEqual((params.text?.format as { schema: unknown }).schema, buildGradingResponseSchema(set, answers));
+        return structuredResponse(wire());
+    });
+    assert.equal(result.score, 3);
+    assert.equal(observed!.subquestions[0].verdicts[0].quote, answers.q1);
+});
+
+test('cross-question IDs retry, then fail as service errors without publishing a score', async () => {
+    let calls = 0, observed = 0;
+    await assert.rejects(gradeQuestionSetV3(set, answers, 'offline-key', () => { observed++; }, async () => {
+        calls++; const raw = wire(); raw.subquestions[1].verdicts[0].evidence_ids = ['q1/e0'];
+        return structuredResponse(raw);
+    }), /답안에 없는 인용/);
+    assert.equal(calls, 2); assert.equal(observed, 0);
+});
+
+test('malformed evidence can recover once without a student deduction', async () => {
+    let calls = 0;
+    const result = await gradeQuestionSetV3(set, answers, 'offline-key', undefined, async () => {
+        const raw = wire(); if (++calls === 1) raw.subquestions[0].verdicts[0].evidence_ids = ['invented'];
+        return structuredResponse(raw);
+    });
+    assert.equal(calls, 2); assert.equal(result.score, 3);
+});
+
+test('trace observer failures abort without retrying a successful model request', async () => {
+    for (const failingStage of ['judgment', 'security']) {
+        let calls = 0, observations = 0, traceCalls = 0;
+        const observerError = new Error('trace storage unavailable');
+        await assert.rejects(gradeQuestionSetV3(set, answers, 'offline-key', () => { observations++; }, async params => {
             calls++;
-            assert.equal(params.store, false);
-            assert.equal(params.text?.format?.type, 'json_schema');
-            assert.ok(String(params.input).includes(answers.q1));
-            assert.ok(String(params.input).includes(answers.q2));
-            return structuredResponse({
-                subquestions: [
-                    { subquestion_id: 'q1', verdicts: [{ criterion_id: 'q1.c1', verdict: 'met', quote: answers.q1 }] },
-                    { subquestion_id: 'q2', verdicts: [{ criterion_id: 'q2.c1', verdict: 'met', quote: validSecondQuote ? answers.q2 : answers.q1 }] },
-                ],
-                injection_detected: false, salad_detected: false,
-            });
-        };
-        const result = await gradeQuestionSetV3(set, answers, 'offline-test-key', judgment => observed.push(structuredClone(judgment)), createResponse);
-        assert.equal(calls, 1);
-        assert.equal(observed.length, 1);
-        assert.equal(observed[0].subquestions[1].verdicts[0].verdict, 'met', 'observer receives the raw judgment before quote verification');
-        assert.equal(result.max_points, 3);
-        assert.equal(result.score, validSecondQuote ? 3 : 1);
-        assert.deepEqual(result.subquestions.map(question => question.score), validSecondQuote ? [1, 2] : [1, 0]);
-        assert.equal(result.subquestions[1].criteria[0].verdict, validSecondQuote ? 'met' : 'not_met', 'another subquestion answer cannot supply quote evidence');
-        assert.deepEqual(set, originalSet);
+            if ((params.text?.format as { name: string }).name === 'audit_grading_security') {
+                return structuredResponse({ classification: 'answer', evidence_ids: [], reason: 'normal answer' });
+            }
+            const raw = wire();
+            if (failingStage === 'security') {
+                raw.subquestions[0].injection_detected = true;
+                raw.subquestions[0].injection_evidence_ids = ['q1/e0'];
+            }
+            return structuredResponse(raw);
+        }, event => {
+            if (event.stage === failingStage && ++traceCalls === 1) throw observerError;
+        }), error => error === observerError);
+        assert.equal(calls, failingStage === 'judgment' ? 1 : 2);
+        assert.equal(traceCalls, 1);
+        assert.equal(observations, 0);
     }
 });
 
-test('gradeQuestionSetV3 injected judgments still apply security corrections', async () => {
-    const answers = { q1: '합리적 확신은 높은 수준이다.', q2: '합리적 확신은 절대적 확신이 아니다.' };
-    const result = await gradeQuestionSetV3(set, answers, 'offline-test-key', undefined, async () => structuredResponse({
-        subquestions: set.subquestions.map(question => ({
-            subquestion_id: question.id,
-            verdicts: question.criteria.map(criterion => ({ criterion_id: criterion.id, verdict: 'met', quote: answers[question.id as keyof typeof answers] })),
-        })),
-        injection_detected: true,
-    }));
-    assert.equal(result.score, 0);
-    assert.equal(result.security_flag, 'injection');
-    assert.ok(result.subquestions.every(question => question.criteria.every(criterion => criterion.verdict === 'not_met')));
+test('trace and judgment observers cannot change the answer evidence or awarded score', async () => {
+    for (const observer of ['trace', 'judgment']) {
+        const result = await gradeQuestionSetV3(set, answers, 'offline-key', judgment => {
+            if (observer === 'judgment') {
+                judgment.injection_detected = true;
+                judgment.subquestions[0].verdicts[0].quote = 'observer mutation';
+            }
+        }, async () => structuredResponse(wire()), event => {
+            if (observer === 'trace' && event.response) (event.response as ReturnType<typeof wire>).subquestions[0].verdicts[0].evidence_ids = ['observer mutation'];
+        });
+        assert.equal(result.score, 3);
+        assert.equal(result.security_flag, 'none');
+    }
+});
+
+test('JSON and transient transport failures share the bounded grader retry and trace', async () => {
+    for (const failure of ['invalid_json', 'empty', 'unavailable']) {
+        let calls = 0;
+        const events: Array<{ attempt: number; error?: string }> = [];
+        const result = await gradeQuestionSetV3(set, answers, 'offline-key', undefined, async () => {
+            if (++calls === 1) {
+                if (failure === 'unavailable') throw Object.assign(new Error('private transport diagnostic'), { status: 503 });
+                return { ...structuredResponse(null), output_text: failure === 'empty' ? '' : '{' };
+            }
+            return structuredResponse(wire());
+        }, event => events.push(event));
+        assert.equal(calls, 2);
+        assert.equal(result.score, 3);
+        assert.equal(events.filter(event => event.error).length, 1);
+        assert.ok(!JSON.stringify(events).includes('private transport diagnostic'));
+    }
+});
+
+test('persistent JSON failure never publishes a judgment and authentication is not retried', async () => {
+    for (const failure of ['invalid_json', 'authentication', 'output_limit']) {
+        let calls = 0, observations = 0;
+        const errors: string[] = [];
+        await assert.rejects(gradeQuestionSetV3(set, answers, 'offline-key', () => { observations++; }, async () => {
+            calls++;
+            if (failure === 'authentication') throw Object.assign(new Error('private token'), { status: 401 });
+            if (failure === 'output_limit') return { ...structuredResponse(null), status: 'incomplete', incomplete_details: { reason: 'max_output_tokens' } };
+            return { ...structuredResponse(null), output_text: '{' };
+        }, event => { if (event.error) errors.push(event.error); }));
+        assert.equal(calls, failure === 'invalid_json' ? 2 : 1);
+        assert.equal(errors.length, calls);
+        assert.equal(observations, 0);
+        assert.ok(!errors.join().includes('private token'));
+    }
+});
+
+test('security suspicion is independently confirmed; uncertainty never creates a zero score', async () => {
+    for (const classification of ['instruction', 'answer', 'uncertain']) {
+        let calls = 0, observed = 0;
+        const run = gradeQuestionSetV3(set, answers, 'offline-key', () => { observed++; }, async params => {
+            calls++;
+            if ((params.text?.format as { name: string }).name === 'audit_grading_security') return structuredResponse({
+                classification, evidence_ids: classification === 'answer' ? [] : ['q1/e0'], reason: '독립 재확인 fixture',
+            });
+            const raw = wire(); raw.subquestions[0].injection_detected = true; raw.subquestions[0].injection_evidence_ids = ['q1/e0'];
+            return structuredResponse(raw);
+        });
+        if (classification === 'uncertain') {
+            await assert.rejects(run, /보안 판정을 확정/); assert.equal(calls, 3); assert.equal(observed, 0);
+        } else {
+            const result = await run; assert.equal(calls, 2); assert.equal(observed, 1);
+            assert.equal(result.score, classification === 'answer' ? 3 : 2);
+            assert.equal(result.security_flag, 'none', 'legacy root flag does not turn a local injection into a global block');
+        }
+    }
 });
 
 test('gradeQuestionSetV3 blank answers need neither injected response nor judgment callback', async () => {
@@ -218,7 +324,23 @@ test('gradeQuestionSetV3 blank answers need neither injected response nor judgme
 test('gradeQuestionSetV3 rejects incomplete injected coverage before recording a judgment', async () => {
     let observations = 0;
     await assert.rejects(gradeQuestionSetV3(set, { q1: '답안', q2: '' }, 'offline-test-key', () => { observations++; }, async () => structuredResponse({
-        subquestions: [{ subquestion_id: 'q1', verdicts: [{ criterion_id: 'q1.c1', verdict: 'not_met' }] }],
+        subquestions: [wire().subquestions[0]],
     })), /subquestion 수가 맞지 않습니다/u);
     assert.equal(observations, 0);
+});
+
+test('invented, misplaced and duplicate model IDs cannot be repaired into another scoring unit', async () => {
+    for (const mutate of [
+        (raw: ReturnType<typeof wire>) => { raw.subquestions[0].subquestion_id = 'invented'; },
+        (raw: ReturnType<typeof wire>) => { raw.subquestions[0].verdicts[0].criterion_id = 'q2.c1'; },
+        (raw: ReturnType<typeof wire>) => { raw.subquestions[1] = structuredClone(raw.subquestions[0]); },
+        (raw: ReturnType<typeof wire>) => { raw.subquestions[0].verdicts.push(structuredClone(raw.subquestions[0].verdicts[0])); },
+    ]) {
+        let calls = 0, observations = 0;
+        await assert.rejects(gradeQuestionSetV3(set, answers, 'offline-key', () => { observations++; }, async () => {
+            calls++; const raw = wire(); mutate(raw); return structuredResponse(raw);
+        }));
+        assert.equal(calls, 2);
+        assert.equal(observations, 0);
+    }
 });

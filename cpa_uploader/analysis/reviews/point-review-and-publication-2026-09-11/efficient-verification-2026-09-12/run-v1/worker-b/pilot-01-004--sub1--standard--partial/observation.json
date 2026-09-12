@@ -1,0 +1,222 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/grading-manifest.json",
+    "sha256": "5920ef24babb0fb11a83322f280da66282a33b11f02ad7f87a3d6ebce62fce99"
+  },
+  "entry_id": "pilot-01-004--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-01-004--sub1--standard",
+  "source_set_id": "pilot-01-004",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "db6e9a0f76b36dd84829398d582fb19d743cee76030fb5231a347f8903a4bc11",
+  "answers": {
+    "sub1": "해당 정보를 회계법인에 커뮤니케이션해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안 전체가 해당 독립 명제를 직접 또는 분명한 함축으로 충족함"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "요구된 독립 명제가 실제 답안에 없음"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "요구된 독립 명제가 실제 답안에 없음"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "7701c5f65bcfedede7605e9fa0939484778a8d78e0405ebb47955ab3e4cd38d0",
+  "schema_hash": "06d1dd668377c955ef20adca5f406d189ca7c87db79eb0c60afc682f95880513",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "해당 정보를 회계법인에 커뮤니케이션해야 한다.",
+            "reason": "회계법인에 해당 정보를 커뮤니케이션해야 한다고 명시하여 자체 판단만으로 처리할 수 없음을 함축한다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "정보 전달의 목적이 필요한 조치를 취하도록 하는 것이라는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "신속히 커뮤니케이션해야 한다는 시급성 요건이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "회계법인에 해당 정보를 커뮤니케이션해야 한다고 명시하여 자체 판단만으로 처리할 수 없음을 함축한다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "정보 전달의 목적이 필요한 조치를 취하도록 하는 것이라는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "신속히 커뮤니케이션해야 한다는 시급성 요건이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-01-004",
+    "score": 1,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "조기에 알았더라면 회계법인이 감사업무를 거절하였을 정보를 업무수행이사가 입수하였다. 그 정보를 보유한 채 자체 판단으로만 처리하는 것이 적절한지 판단하고, 기준서상 필요한 정보 전달의 목적과 시급성을 설명하시오.",
+        "user_answer": "해당 정보를 회계법인에 커뮤니케이션해야 한다.",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "해당 정보를 회계법인에 커뮤니케이션해야 한다.",
+            "reason": "회계법인에 해당 정보를 커뮤니케이션해야 한다고 명시하여 자체 판단만으로 처리할 수 없음을 함축한다.",
+            "claim": "해당 정보를 회계법인에 커뮤니케이션해야 하므로 업무수행이사 자체 판단으로만 처리하는 것은 적절하지 않다. 회계법인에 해당 정보를 커뮤니케이션해야 한다는 조치가 분명하면 독자 처리 불가 판단을 함축하므로 인정한다. 명시적으로 자체 판단만으로 처리해도 된다고 하면 이 판단은 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "정보 전달의 목적이 필요한 조치를 취하도록 하는 것이라는 내용이 없다.",
+            "claim": "정보 전달의 목적은 회계법인과 업무수행이사가 필요한 조치를 취할 수 있도록 하는 것이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "신속히 커뮤니케이션해야 한다는 시급성 요건이 없다.",
+            "claim": "해당 정보를 신속히 커뮤니케이션해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "적절하지 않다. 업무수행이사는 회계법인과 업무수행이사가 필요한 조치를 취할 수 있도록 해당 정보를 회계법인에 신속히 커뮤니케이션해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0fe46463ba0d8c36016aa4c2167e4487d0b355c294a8b23b08",
+        "request_id": "req_f029c372729a411184213a0f108d6bc3",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2561,
+          "input_tokens_details": {
+            "cache_write_tokens": 2558,
+            "cached_tokens": 0
+          },
+          "output_tokens": 241,
+          "output_tokens_details": {
+            "reasoning_tokens": 58
+          },
+          "total_tokens": 2802
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009293,
+        "min_usd": 0.0009293,
+        "max_usd": 0.0009293,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-b/pilot-01-004--sub1--standard--partial/input.json",
+      "sha256": "da6660fbaebf5bb6481ae47bb652a6b44ed970131ae3ab8f760e1d0d692aeae9"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-b/pilot-01-004--sub1--standard--partial/transport.jsonl",
+      "sha256": "4634dd8d279abd23de645979538e40293ba61c329bbac86a9a11efde43a27c9c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/run-v1/worker-b/pilot-01-004--sub1--standard--partial/traces.jsonl",
+      "sha256": "70421b1dac9eab01bc879aa413155abde0130a9393a575dbf28825d1e840134f"
+    }
+  }
+}

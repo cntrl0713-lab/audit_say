@@ -1,0 +1,427 @@
+diff --git a/cpa_uploader/promote_cpa_v3.ts b/cpa_uploader/promote_cpa_v3.ts
+index 8cb4008..78a236d 100644
+--- a/cpa_uploader/promote_cpa_v3.ts
++++ b/cpa_uploader/promote_cpa_v3.ts
+@@ -6,6 +6,7 @@ import {
+ } from './questionBankPublication.ts';
+ import type { QuestionSetV3 } from '../lib/questionV3.ts';
+ import { readSemanticReviewDocument, validateSemanticReviewReceipt } from './questionSemanticReview.ts';
++import { readGradingAcceptanceDocument, gradingAcceptanceFiles } from './questionGradingAcceptance.ts';
+ 
+ // New transitions are evidence-backed and tied to the reviewed content.
+ // Public/encrypted artifacts are produced only after publication; neither is a prerequisite.
+@@ -14,7 +15,7 @@ function parseArgs(argv: string[]): Record<string, string> {
+     for (let index = 0; index < argv.length; index += 1) {
+         const arg = argv[index];
+         if (arg === '--status' || arg === '--backfill-verified' || arg === '--reverify') args[arg] = '1';
+-        else if (arg === '--to' || arg === '--sets' || arg === '--evidence' || arg === '--review') {
++        else if (arg === '--to' || arg === '--sets' || arg === '--evidence' || arg === '--review' || arg === '--grading-acceptance') {
+             const value = argv[++index];
+             if (!value || value.startsWith('--')) throw new Error(`${arg} 값이 필요합니다.`);
+             args[arg] = value;
+@@ -25,6 +26,7 @@ function parseArgs(argv: string[]): Record<string, string> {
+ 
+ try {
+     const args = parseArgs(process.argv.slice(2));
++    if (args['--grading-acceptance'] && args['--to'] !== 'verified') throw new Error('--grading-acceptance는 --to verified에서만 선택합니다.');
+     if (args['--reverify'] && (args['--to'] !== 'verified' || args['--status'] || args['--backfill-verified'])) {
+         throw new Error('--reverify는 --to verified와 함께 사용하는 명시적 재검수입니다.');
+     }
+@@ -78,6 +80,13 @@ try {
+         const reviewPath = args['--review'] ? path.resolve(args['--review']) : null;
+         if (reviewPath) guards.push(snapshotFile(reviewPath));
+         const reviewDocument = reviewPath ? readSemanticReviewDocument(reviewPath) : null;
++        const acceptancePath = args['--grading-acceptance'] ? path.resolve(args['--grading-acceptance']) : null;
++        const acceptanceDocument = acceptancePath ? readGradingAcceptanceDocument(acceptancePath) : null;
++        if (acceptancePath) guards.push(snapshotFile(acceptancePath));
++        if (acceptanceDocument) for (const acceptance of acceptanceDocument.acceptances) {
++            if (!ids.includes(acceptance.set_id)) throw new Error('선택하지 않은 세트의 편차 수락 문서입니다.');
++            guards.push(...gradingAcceptanceFiles(acceptance).map(item => snapshotFile(path.resolve(item.file))));
++        }
+         let promoted = 0;
+         for (const id of ids) {
+             const set = byId.get(id)!;
+@@ -86,13 +95,17 @@ try {
+             if (!reverify && set.status !== expected) throw new Error(`[${id}] ${target} 승급에는 ${expected} 상태가 필요합니다.`);
+             if (target === 'published' && set.verification.review_status !== 'verified') throw new Error(`[${id}] published 승급에는 review_status=verified가 필요합니다.`);
+             const receipt = target === 'verified' ? reviewDocument?.reviews.find((review) => review.set_id === id) : undefined;
++            const gradingAcceptance = acceptanceDocument?.acceptances.find(a => a.set_id === id);
+             if (target === 'verified') {
+                 if (!receipt) throw new Error(`[${id}] 신규 검수·재검수에는 --review <review.json> 의미검수 receipt가 필요합니다.`);
+-                const errors = validateSemanticReviewReceipt(receipt, set, { bank: sets });
++                const errors = validateSemanticReviewReceipt(receipt, set, { bank: sets, gradingAcceptance });
+                 if (errors.length) throw new Error(`[${id}] 의미검수 receipt 검증 실패:\n${errors.join('\n')}`);
+             }
+             const previousReview = ledger.entries.filter((entry) => entry.set_id === id && entry.to_status === 'verified').at(-1)?.semantic_review;
++            const previousAcceptanceHash = ledger.entries.filter(entry => entry.set_id === id && entry.to_status === 'verified').at(-1)?.grading_acceptance_hash;
+             ledger.entries.push({ set_id: id, from_status: set.status, to_status: target, date: today, evidence, content_hash: reviewedContentHash(set),
++                ...(gradingAcceptance ? { grading_acceptance: gradingAcceptance, grading_acceptance_hash: gradingAcceptance.acceptance_hash }
++                    : target === 'published' && previousAcceptanceHash ? { grading_acceptance_hash: previousAcceptanceHash } : {}),
+                 ...(receipt ? { semantic_review: receipt, review_receipt_hash: receipt.receipt_hash,
+                     review_summary: { units: receipt.units.length, cases: receipt.cases.length, method: receipt.execution.method, verdict: 'pass' as const } }
+                     : previousReview ? { review_receipt_hash: previousReview.receipt_hash } : {}) });
+diff --git a/cpa_uploader/questionBankPublication.ts b/cpa_uploader/questionBankPublication.ts
+index a8edf00..574caa8 100644
+--- a/cpa_uploader/questionBankPublication.ts
++++ b/cpa_uploader/questionBankPublication.ts
+@@ -6,6 +6,8 @@ import type { QuestionSetV3 } from '../lib/questionV3.ts';
+ import { reviewedContentHash } from './questionReviewIdentity.ts';
+ import { semanticReceiptIntegrityErrors, validateRecordedSemanticReview } from './questionSemanticReview.ts';
+ import type { SemanticReviewReceipt } from './questionSemanticReview.ts';
++import { gradingAcceptanceHash } from './questionGradingAcceptance.ts';
++import type { GradingAcceptance } from './questionGradingAcceptance.ts';
+ export { reviewedContentHash } from './questionReviewIdentity.ts';
+ 
+ const allowedStandardsByTopic: Record<string, string[]> = {
+@@ -162,6 +164,8 @@ export function validateAuthoringBank(raw: unknown, root = process.cwd()) {
+ }
+ 
+ export interface PromotionEntry {
++    grading_acceptance?: GradingAcceptance;
++    grading_acceptance_hash?: string;
+     set_id: string;
+     from_status: string;
+     to_status: 'verified' | 'published';
+@@ -197,6 +201,12 @@ export function loadPromotionLedger(file: string): PromotionLedger {
+         || entry.review_receipt_hash !== undefined && !/^[a-f\d]{64}$/.test(entry.review_receipt_hash)
+     ))) throw new Error(`승급 장부 형식 또는 검수 근거가 올바르지 않습니다: ${file}`);
+     for (const entry of value.entries) {
++        if (entry.grading_acceptance) {
++            if (!entry.semantic_review || entry.grading_acceptance_hash !== gradingAcceptanceHash(entry.grading_acceptance)
++                || entry.grading_acceptance.acceptance_hash !== entry.grading_acceptance_hash
++                || entry.grading_acceptance.receipt_hash !== entry.semantic_review.receipt_hash
++                || entry.grading_acceptance.set_id !== entry.set_id) throw new Error(`${entry.set_id}: 편차 수락 장부 결속 오류`);
++        } else if (entry.to_status === 'verified' && entry.grading_acceptance_hash) throw new Error(`${entry.set_id}: 편차 수락 원문 누락`);
+         // Legacy receipts are absent, not partially populated. A new hash-bearing
+         // verified entry cannot impersonate the historical no-hash records.
+         if (entry.to_status === 'verified' && entry.content_hash && !entry.semantic_review) throw new Error(`${entry.set_id}: 의미검수 receipt가 없는 신규 검수 장부입니다.`);
+@@ -236,10 +246,13 @@ export function validatePromotionLedger(
+         if (!options.pendingReverificationIds?.has(set.id)) {
+             if (verified?.content_hash && verified.content_hash !== reviewedContentHash(set)) errors.push(`${set.id}: 검수 후 문항 내용이 변경되었습니다. 새 검수 근거가 필요합니다.`);
+             if (last?.content_hash && last.content_hash !== reviewedContentHash(set)) errors.push(`${set.id}: 최종 승급 장부의 내용 해시와 정본이 다릅니다.`);
+-            if (verified?.semantic_review) errors.push(...validateRecordedSemanticReview(verified.semantic_review, set));
++            if (verified?.semantic_review) errors.push(...validateRecordedSemanticReview(verified.semantic_review, set, process.cwd(), verified.grading_acceptance));
+         }
+         if (verified?.content_hash && !verified.semantic_review) errors.push(`${set.id}: 신규 검수 장부에 의미검수 receipt가 필요합니다.`);
+         if (verified?.semantic_review && last?.to_status === 'published' && last.review_receipt_hash !== verified.semantic_review.receipt_hash) errors.push(`${set.id}: 게시 장부의 의미검수 receipt 해시가 다릅니다.`);
++        if (verified?.grading_acceptance && (verified.grading_acceptance_hash !== gradingAcceptanceHash(verified.grading_acceptance)
++            || verified.grading_acceptance.acceptance_hash !== verified.grading_acceptance_hash)) errors.push(`${set.id}: 편차 수락 해시가 다릅니다.`);
++        if (last?.to_status === 'published' && last.grading_acceptance_hash !== verified?.grading_acceptance_hash) errors.push(`${set.id}: 게시 장부의 편차 수락 해시가 다릅니다.`);
+         if (set.status === 'published' && verified?.content_hash && last?.to_status !== 'published') errors.push(`${set.id}: published 승급 장부가 필요합니다.`);
+     }
+     return errors;
+diff --git a/cpa_uploader/questionGradingAcceptance.ts b/cpa_uploader/questionGradingAcceptance.ts
+new file mode 100644
+index 0000000..2665e23
+--- /dev/null
++++ b/cpa_uploader/questionGradingAcceptance.ts
+@@ -0,0 +1,225 @@
++import fs from 'node:fs';
++import path from 'node:path';
++import Ajv from 'ajv';
++import type { QuestionSetV3 } from '../lib/questionV3.ts';
++import { buildGradingPrompt, buildGradingResponseSchema } from '../lib/questionV3Grading.ts';
++import type { QuestionSetJudgmentV3 } from '../lib/questionV3Grading.ts';
++import { resolveAnswerEvidence } from '../lib/questionV3Evidence.ts';
++import { jsonHash, sha256, reviewedContentHash } from './questionReviewIdentity.ts';
++import { auditReviewGrading } from './questionReviewGrading.ts';
++import type { ReviewGradingEvent } from './questionReviewGrading.ts';
++import type { SemanticReviewReceipt } from './questionSemanticReview.ts';
++
++interface FileIdentity { file: string; sha256: string }
++interface Bound {
++    subquestion_id: string; criterion_id: string; criterion_claim: string;
++    min: number; max: number; reason: string; source_ref_ids: string[];
++}
++interface CaseAcceptance {
++    run_id: string; answers_hash: string; original_expected_hash: string;
++    method: 'complete_exact_expectation' | 'conservative_criterion_bounds';
++    expectation_basis: 'source_prompt_rubric_and_whole_answer';
++    source_review: FileIdentity; reviewer_kind: 'agent_source_review' | 'independent_source_review';
++    human_confirmation: false; bounds: Bound[];
++    request_hash: string; schema_hash: string;
++}
++export interface GradingAcceptance {
++    version: 1; artifact_type: 'grading_deviation_acceptance';
++    set_id: string; content_hash: string; receipt_hash: string;
++    acceptance_label: 'accepted_with_grading_deviation';
++    policy_file: FileIdentity; policy: {
++        version: string; grading_model: string; review_model: string;
++        max_absolute_score_delta_per_subquestion: 1;
++        preserve_expected_and_actual: true; not_a_strict_match: true;
++        global_default_policy: false; [key: string]: unknown;
++    };
++    origin: { manifest: FileIdentity; run: FileIdentity; summary: FileIdentity; request: FileIdentity; receipt: FileIdentity;
++        observations: FileIdentity; additional_observations: FileIdentity[] };
++    cases: CaseAcceptance[];
++    acceptance_hash: string;
++}
++interface Manifest {
++    bank_file: string; bank_sha256: string; model: string; review_model: string;
++    code_files: FileIdentity[];
++    jobs: Array<{ set_id: string; worker: string; file: string; sha256: string; plan_file?: string; plan_sha256?: string; source_files: FileIdentity[] }>;
++}
++type RecordedEvent = ReviewGradingEvent & { set_id: string; content_hash: string; bank_hash: string; source_files: FileIdentity[] };
++function requireValue(condition: unknown, message: string): asserts condition { if (!condition) throw Error(message); }
++function same(actual: unknown, expected: unknown, message: string) { requireValue(jsonHash(actual) === jsonHash(expected), message); }
++function ids(actual: string[], expected: string[], message: string) {
++    requireValue(new Set(actual).size === actual.length, `${message}: duplicate`);
++    same([...actual].sort(), [...expected].sort(), message);
++}
++export function gradingAcceptanceHash(value: GradingAcceptance): string {
++    const { acceptance_hash: _hash, ...body } = value; void _hash;
++    return jsonHash(body);
++}
++export function gradingAcceptanceFiles(value: GradingAcceptance): FileIdentity[] {
++    return [value.policy_file, value.origin.manifest, value.origin.run, value.origin.summary,
++        value.origin.request, value.origin.receipt, value.origin.observations,
++        ...value.origin.additional_observations, ...value.cases.map(c => c.source_review)];
++}
++function safeFile(identity: FileIdentity, root: string): string {
++    requireValue(identity && typeof identity.file === 'string' && /^[a-f\d]{64}$/.test(identity.sha256), 'artifact identity missing');
++    const base = path.resolve(root); const file = path.resolve(base, identity.file);
++    requireValue(file !== base && path.relative(base, file) !== '..' && !path.relative(base, file).startsWith(`..${path.sep}`) && !path.isAbsolute(path.relative(base, file)), 'artifact path outside repository');
++    let cursor = file;
++    while (cursor !== base) { requireValue(!fs.lstatSync(cursor).isSymbolicLink(), 'artifact symlink/junction rejected'); cursor = path.dirname(cursor); }
++    requireValue(fs.statSync(file).isFile() && sha256(fs.readFileSync(file)) === identity.sha256, `artifact bytes changed: ${identity.file}`);
++    return file;
++}
++function read<T>(identity: FileIdentity, root: string): T { return JSON.parse(fs.readFileSync(safeFile(identity, root), 'utf8')) as T; }
++function readEvents(identity: FileIdentity, root: string): RecordedEvent[] {
++    return fs.readFileSync(safeFile(identity, root), 'utf8').split(/\r?\n/).filter(line => line.trim()).map(line => JSON.parse(line) as RecordedEvent);
++}
++function validateTrace(event: RecordedEvent, set: QuestionSetV3): void {
++    requireValue(Array.isArray(event.trace), 'raw trace missing');
++    if (event.id === 'empty-answer') {
++        requireValue(event.trace.length === 0 && event.judgment === null && event.result?.score === 0, 'blank answer invariant');
++        return;
++    }
++    // Tolerance is deliberately not a recovery path for protocol/security errors.
++    requireValue(event.trace.length > 0 && event.trace.every(t => t.stage === 'judgment' && !t.error && t.response !== undefined), 'transport/schema/security trace failure');
++    const schema = buildGradingResponseSchema(set, event.answers);
++    const validate = new Ajv({ allErrors: true }).compile(schema);
++    for (const trace of event.trace) {
++        requireValue(validate(trace.response), 'raw response schema mismatch');
++        const raw = trace.response as { subquestions: Array<{ subquestion_id: string; injection_detected: boolean; salad_detected: boolean;
++            verdicts: Array<{ criterion_id: string; verdict: 'met' | 'partial' | 'not_met' | 'contradicted'; evidence_ids: string[]; reason?: string }> }> };
++        ids(raw.subquestions.map(s => s.subquestion_id), set.subquestions.map(s => s.id), 'raw subquestion coverage');
++        const grounded: QuestionSetJudgmentV3 = { subquestions: [], injection_detected: false, salad_detected: false };
++        for (const sub of raw.subquestions) {
++            const target = set.subquestions.find(s => s.id === sub.subquestion_id)!;
++            requireValue(sub.injection_detected === false && sub.salad_detected === false, 'raw security false positive cannot be waived');
++            ids(sub.verdicts.map(c => c.criterion_id), target.criteria.map(c => c.id), 'raw criterion coverage');
++            grounded.subquestions.push({ subquestion_id: sub.subquestion_id, injection_detected: false, salad_detected: false,
++                verdicts: sub.verdicts.map(c => ({ criterion_id: c.criterion_id, verdict: c.verdict,
++                    ...(c.verdict === 'not_met' ? {} : { quote: resolveAnswerEvidence(target.id, event.answers[target.id], c.evidence_ids) }),
++                    ...(typeof c.reason === 'string' ? { reason: c.reason } : {}) })) });
++        }
++        // Every stored valid response must agree with the grounded record; do not
++        // cherry-pick a last response while hiding a different earlier response.
++        same(grounded, event.judgment, 'raw trace and recorded judgment differ');
++    }
++}
++
++/** Optional acceptance for formal generated-case receipts only. Author-QA has
++ * different record contracts and must use a separate adapter; never coerce it. */
++export function validateGradingAcceptance(raw: unknown, receipt: SemanticReviewReceipt, set: QuestionSetV3,
++    options: { root?: string; requireCurrent?: boolean } = {}): string[] {
++    const root = options.root || process.cwd(); const requireCurrent = options.requireCurrent !== false;
++    try {
++        const a = raw as GradingAcceptance;
++        requireValue(a?.version === 1 && a.artifact_type === 'grading_deviation_acceptance'
++            && a.acceptance_label === 'accepted_with_grading_deviation', 'unsupported acceptance document');
++        requireValue(a.acceptance_hash === gradingAcceptanceHash(a), 'acceptance hash mismatch');
++        requireValue(a.set_id === set.id && a.content_hash === reviewedContentHash(set) && a.receipt_hash === receipt.receipt_hash, 'acceptance/receipt/content binding mismatch');
++        requireValue(receipt.verdict === 'pass' && receipt.execution.method === 'model_reasoned'
++            && receipt.execution.transport === 'model' && receipt.grading.transport === 'model', 'actual passing semantic and actual grading required');
++        const policy = read<GradingAcceptance['policy']>(a.policy_file, root); same(a.policy, policy, 'policy body differs');
++        requireValue(policy.max_absolute_score_delta_per_subquestion === 1 && policy.preserve_expected_and_actual === true
++            && policy.not_a_strict_match === true && policy.global_default_policy === false, 'not the explicit one-point policy');
++        requireValue(policy.grading_model === receipt.grading.model && policy.review_model === receipt.execution.model, 'policy/model differs');
++        const audit = auditReviewGrading(receipt.grading, set, receipt.cases, requireCurrent);
++        requireValue(!audit.integrity_errors.length, audit.integrity_errors.join('; '));
++        const origin = read<Manifest>(a.origin.manifest, root);
++        safeFile({ file: origin.bank_file, sha256: origin.bank_sha256 }, root);
++        const run = read<{ manifest_file: string; manifest_sha256: string; worker: string; phase: string; transport: string; mock: boolean; output: string; model: string; review_model: string }>(a.origin.run, root);
++        requireValue(run.phase === 'grading' && run.transport === 'production_cli_subprocess' && run.mock === false, 'origin is not a production grading run');
++        requireValue(path.resolve(root, run.manifest_file) === path.resolve(root, a.origin.manifest.file) && run.manifest_sha256 === a.origin.manifest.sha256, 'origin manifest binding');
++        requireValue(run.model === policy.grading_model && run.review_model === policy.review_model && origin.model === run.model && origin.review_model === run.review_model, 'origin model binding');
++        const job = origin.jobs.find(j => j.set_id === set.id && j.worker === run.worker); requireValue(job, 'origin job missing');
++        const sourceSet = read<QuestionSetV3 | QuestionSetV3[]>({ file: job.file, sha256: job.sha256 }, root);
++        const selectedSet = Array.isArray(sourceSet) ? sourceSet.find(s => s.id === set.id) : sourceSet;
++        requireValue(selectedSet && reviewedContentHash(selectedSet) === receipt.content_hash, 'origin question bytes/content differ');
++        if (job.plan_file) same(read({ file: job.plan_file, sha256: job.plan_sha256! }, root), receipt.context.authoring_plan, 'origin plan differs');
++        const stored = read<{ reviews: SemanticReviewReceipt[] }>(a.origin.receipt, root).reviews.find(r => r.set_id === set.id);
++        same(stored, receipt, 'original receipt changed');
++        const summary = read<{ set_id: string; phase: string; outcome: string; receipt_file: string; receipt_sha256: string; input_sha256: string; guard_or_observer_error: unknown; mismatched_run_ids: string[] }>(a.origin.summary, root);
++        requireValue(summary.set_id === set.id && summary.phase === 'grading' && ['pass', 'grading_mismatch'].includes(summary.outcome)
++            && !summary.guard_or_observer_error && summary.input_sha256 === job.sha256, 'origin summary incomplete/error');
++        requireValue(path.resolve(root, summary.receipt_file) === path.resolve(root, a.origin.receipt.file) && summary.receipt_sha256 === a.origin.receipt.sha256, 'summary receipt binding');
++        same([...summary.mismatched_run_ids].sort(), audit.strict_mismatches.map(c => c.run_id).sort(), 'summary mismatch inventory');
++        const originDirectory = path.resolve(root, run.output, set.id);
++        for (const item of [a.origin.summary, a.origin.request, a.origin.receipt, a.origin.observations])
++            requireValue(path.dirname(path.resolve(root, item.file)) === originDirectory, 'artifact unrelated to original run');
++        const request = read<{ set_id: string; manifest_sha256: string; frozen_files: FileIdentity[] }>(a.origin.request, root);
++        requireValue(request.set_id === set.id && request.manifest_sha256 === a.origin.manifest.sha256, 'request provenance differs');
++        for (const item of [...origin.code_files, ...job.source_files, { file: job.file, sha256: job.sha256 }, { file: origin.bank_file, sha256: origin.bank_sha256 }])
++            requireValue(request.frozen_files.some(f => path.resolve(root, f.file) === path.resolve(root, item.file) && f.sha256 === item.sha256), 'request frozen input inventory differs');
++        for (const item of receipt.source_files) {
++            safeFile(item, root);
++            requireValue(job.source_files.some(s => s.file === item.file && s.sha256 === item.sha256), 'source absent from original fixed job');
++        }
++        const primary = readEvents(a.origin.observations, root);
++        ids(primary.map(e => e.id), receipt.grading.runs.map(r => r.id), 'complete primary observation inventory');
++        // Fail closed until an adapter for the diagnostic/author-QA producer's
++        // separate origin manifest/summary/input contracts is implemented.
++        requireValue(a.origin.additional_observations.length === 0, 'additional producer observations need a separately validated adapter; do not omit them');
++        const extras = a.origin.additional_observations.flatMap(file => readEvents(file, root));
++        const events = [...primary, ...extras];
++        const mismatchIds = [...new Set([...audit.strict_mismatches.map(c => c.run_id), ...extras.filter(e => e.matched === false).map(e => e.id)])];
++        ids(a.cases.map(c => c.run_id), mismatchIds, 'all strict mismatches require exactly one proof');
++        for (const event of events) {
++            requireValue(event.status === 'completed' && event.transport === 'model' && event.model === receipt.grading.model
++                && event.grader_hash === receipt.grading.grader_hash && event.set_id === set.id
++                && event.content_hash === receipt.content_hash && event.bank_hash === receipt.bank_hash, 'observation identity/failure');
++            same(event.source_files, receipt.source_files, 'observation sources differ');
++            const original = receipt.grading.runs.find(r => r.id === event.id); requireValue(original, 'unregistered observation');
++            same(event.answers, original.answers, 'original answer changed'); same(event.expected, original.expected, 'original expected changed');
++            const oneExecution = { ...receipt.grading, runs: receipt.grading.runs.map(r => r.id === event.id
++                ? { id: event.id, answers: event.answers, expected: event.expected, judgment: event.judgment, result: event.result!, matched: event.matched! } : r) };
++            const observedAudit = auditReviewGrading(oneExecution, set, receipt.cases, requireCurrent);
++            requireValue(!observedAudit.integrity_errors.length, observedAudit.integrity_errors.join('; '));
++            validateTrace(event, set);
++            if (primary.includes(event)) same({ id: event.id, answers: event.answers, expected: event.expected, judgment: event.judgment, result: event.result, matched: event.matched }, original, 'primary raw/receipt mismatch');
++            requireValue(event.result?.security_flag === 'none', 'final security failure');
++            if (event.id === 'empty-answer') continue;
++            const proof = a.cases.find(c => c.run_id === event.id);
++            // Additional observations that create a new strict mismatch also need
++            // a source proof; absence cannot be hidden by the original pass.
++            if (!proof) { requireValue(event.matched === true, 'additional strict mismatch lacks proof'); continue; }
++            requireValue(proof.answers_hash === jsonHash(event.answers) && proof.original_expected_hash === jsonHash(event.expected), 'proof answer/expectation differs');
++            requireValue(proof.expectation_basis === 'source_prompt_rubric_and_whole_answer' && proof.human_confirmation === false
++                && ['agent_source_review', 'independent_source_review'].includes(proof.reviewer_kind), 'source review method missing');
++            const sourceReview = read<{ set_id: string; run_id: string; answers_hash: string; original_expected_hash: string;
++                method: CaseAcceptance['method']; expectation_basis: CaseAcceptance['expectation_basis']; bounds: Bound[];
++                reviewer_kind: CaseAcceptance['reviewer_kind']; human_confirmation: false }>(proof.source_review, root);
++            same(sourceReview, { set_id: set.id, run_id: proof.run_id, answers_hash: proof.answers_hash,
++                original_expected_hash: proof.original_expected_hash, method: proof.method, expectation_basis: proof.expectation_basis,
++                bounds: proof.bounds, reviewer_kind: proof.reviewer_kind, human_confirmation: false }, 'selected source review and bound differ');
++            requireValue(['complete_exact_expectation', 'conservative_criterion_bounds'].includes(proof.method), 'expectation method unsupported');
++            if (requireCurrent) {
++                requireValue(proof.request_hash === sha256(buildGradingPrompt(set, event.answers))
++                    && proof.schema_hash === sha256(JSON.stringify(buildGradingResponseSchema(set, event.answers))), 'current request/schema differs');
++            }
++            const expectedIds = set.subquestions.flatMap(s => s.criteria.map(c => `${s.id}/${c.id}`));
++            ids(proof.bounds.map(b => `${b.subquestion_id}/${b.criterion_id}`), expectedIds, 'whole-answer expectation coverage');
++            for (const sub of set.subquestions) {
++                const bounds = proof.bounds.filter(b => b.subquestion_id === sub.id);
++                for (const bound of bounds) {
++                    const criterion = sub.criteria.find(c => c.id === bound.criterion_id)!;
++                    const allowed = [0, criterion.scores.met, ...(criterion.scores.partial === undefined ? [] : [criterion.scores.partial])];
++                    requireValue(bound.criterion_claim === criterion.claim && bound.reason.trim() && Number.isInteger(bound.min) && Number.isInteger(bound.max)
++                        && bound.min <= bound.max && allowed.includes(bound.min) && allowed.includes(bound.max), 'criterion bound/claim/reason invalid');
++                    requireValue(proof.method !== 'complete_exact_expectation' || bound.min === bound.max, 'exact proof contains ambiguous range');
++                    requireValue(bound.source_ref_ids.length > 0 && bound.source_ref_ids.every(id => criterion.source_ref_ids.includes(id)), 'criterion source review missing');
++                    if (!event.answers[sub.id]?.trim()) requireValue(bound.min === 0 && bound.max === 0, 'blank subquestion expectation must be zero');
++                }
++                const lower = bounds.reduce((n, b) => n + b.min, 0), upper = bounds.reduce((n, b) => n + b.max, 0);
++                const actual = event.result.subquestions.find(s => s.subquestion_id === sub.id)!.score;
++                requireValue(Math.max(Math.abs(actual - lower), Math.abs(actual - upper)) <= 1, `${event.id}/${sub.id}: worst deviation exceeds one`);
++            }
++        }
++        // No question/prompt/scoring mutation and no semantic call occur here.
++        return [];
++    } catch (error) { return [`채점 편차 수락 검증 실패: ${error instanceof Error ? error.message : String(error)}`]; }
++}
++
++export function readGradingAcceptanceDocument(file: string): { version: 1; acceptances: GradingAcceptance[] } {
++    const value = JSON.parse(fs.readFileSync(file, 'utf8')) as { version: 1; acceptances: GradingAcceptance[] };
++    requireValue(value.version === 1 && Array.isArray(value.acceptances), 'acceptance document shape');
++    ids(value.acceptances.map(a => a.set_id), [...new Set(value.acceptances.map(a => a.set_id))], 'acceptance set IDs');
++    for (const a of value.acceptances) requireValue(a.acceptance_hash === gradingAcceptanceHash(a), 'acceptance self hash');
++    return value;
++}
+diff --git a/cpa_uploader/questionReviewGrading.ts b/cpa_uploader/questionReviewGrading.ts
+index 0e4886b..8d25bf1 100644
+--- a/cpa_uploader/questionReviewGrading.ts
++++ b/cpa_uploader/questionReviewGrading.ts
+@@ -143,9 +143,11 @@ function validateJudgment(set: QuestionSetV3, raw: QuestionSetJudgmentV3): boole
+ 
+ /** Receipt scores are never trusted: replay the recorded raw judgments through
+  * the production quote/security/scoring code, then compare every expected case. */
+-export function validateReviewGrading(raw: unknown, set: QuestionSetV3, cases: SemanticReviewCase[], requireCurrentModel = true): string[] {
++export interface ReviewGradingAudit { integrity_errors: string[]; strict_mismatches: Array<{ run_id: string; message: string }> }
++export function auditReviewGrading(raw: unknown, set: QuestionSetV3, cases: SemanticReviewCase[], requireCurrentModel = true): ReviewGradingAudit {
+     const errors = reviewGradingIntegrityErrors(raw);
+-    if (errors.length) return errors;
++    const strict_mismatches: ReviewGradingAudit['strict_mismatches'] = [];
++    if (errors.length) return { integrity_errors: errors, strict_mismatches };
+     const execution = raw as ReviewGradingExecution;
+     if (requireCurrentModel && execution.transport !== 'model') errors.push('신규 검수 수락에는 실제 모델 채점이 필요합니다. 주입 응답은 검증용 기록이며 승급 근거로 사용할 수 없습니다.');
+     if (requireCurrentModel && execution.model !== gradingModelName()) errors.push('현재 채점 모델 설정과 실제 채점 사례 실행 모델이 다릅니다. 현재 모델로 사례를 다시 실행하십시오.');
+@@ -162,8 +164,20 @@ export function validateReviewGrading(raw: unknown, set: QuestionSetV3, cases: S
+         const judgment = run.judgment || { subquestions: set.subquestions.map((sub) => ({ subquestion_id: sub.id, verdicts: sub.criteria.map((criterion) => ({ criterion_id: criterion.id, verdict: 'not_met' as const })) })) };
+         const replayed = applyQuestionSetJudgment(set, plan.answers, judgment);
+         if (jsonHash(run.result) !== jsonHash(replayed)) errors.push(`${run.id}: 기록한 점수·인용 결과가 실제 채점 코드 재현과 다릅니다.`);
+-        if (!matches(plan, replayed, run.judgment) || run.matched !== true) errors.push(`${run.id}: 실제 채점 결과가 검토 사례의 기대 판정과 다릅니다.`);
++        const computedMatched = matches(plan, replayed, run.judgment);
++        if (run.matched !== computedMatched) errors.push(`${run.id}: 기록된 matched 값이 실제 strict 판정과 다릅니다.`);
++        if (run.judgment?.injection_detected || run.judgment?.salad_detected
++            || run.judgment?.subquestions.some(sub => sub.injection_detected || sub.salad_detected)
++            || replayed.security_flag !== 'none') errors.push(`${run.id}: 원시 또는 최종 보안 판정 실패는 점수 편차로 수락할 수 없습니다.`);
++        if (run.id === 'empty-answer' && replayed.score !== 0) errors.push('빈 답안은 정확히 0점이어야 합니다.');
++        if (!computedMatched) strict_mismatches.push({ run_id: run.id, message: `${run.id}: 실제 채점 결과가 검토 사례의 기대 판정과 다릅니다.` });
+     }
+     if (seen.size !== plans.length) errors.push('실제 채점 사례 또는 빈답안 실행 기록이 누락되었습니다.');
+-    return errors;
++    return { integrity_errors: errors, strict_mismatches };
++}
++
++/** No optional acceptance changes this default strict API. */
++export function validateReviewGrading(raw: unknown, set: QuestionSetV3, cases: SemanticReviewCase[], requireCurrentModel = true): string[] {
++    const audit = auditReviewGrading(raw, set, cases, requireCurrentModel);
++    return [...audit.integrity_errors, ...audit.strict_mismatches.map(item => item.message)];
+ }
+diff --git a/cpa_uploader/questionSemanticReview.ts b/cpa_uploader/questionSemanticReview.ts
+index a46e236..bb5de63 100644
+--- a/cpa_uploader/questionSemanticReview.ts
++++ b/cpa_uploader/questionSemanticReview.ts
+@@ -12,6 +12,8 @@ import { authoringPlanHash, validateQuestionAuthoringPlan } from './questionAuth
+ import type { QuestionAuthoringPlan } from './questionAuthoringPlan.ts';
+ import { executeReviewGrading, notRunReviewGrading, reviewGradingIntegrityErrors, validateReviewGrading } from './questionReviewGrading.ts';
+ import type { ReviewGradingEvent, ReviewGradingExecution } from './questionReviewGrading.ts';
++import { validateGradingAcceptance } from './questionGradingAcceptance.ts';
++import type { GradingAcceptance } from './questionGradingAcceptance.ts';
+ 
+ export const REVIEW_CHECKS = ['alignment', 'source_support', 'conditions_exceptions', 'edition_scope', 'nonduplication'] as const;
+ export const REVIEW_CASES = ['model_answer', 'paraphrase', 'omission', 'opposite', 'condition_boundary'] as const;
+@@ -54,6 +56,7 @@ export interface SemanticReviewReceipt extends SemanticReviewResult {
+ }
+ export interface SemanticReviewDocument { schema_version: '1.0'; reviews: SemanticReviewReceipt[] }
+ export interface SemanticReviewOptions {
++    gradingAcceptance?: GradingAcceptance;
+     root?: string;
+     bank: QuestionSetV3[];
+     authoringPlan?: unknown;
+@@ -308,7 +311,9 @@ function validateReceipt(raw: unknown, set: QuestionSetV3, options: SemanticRevi
+     if (checkCurrentBank && receipt.bank_hash !== prepared.bankHash) errors.push(`${set.id}: 의미검수 이후 비교 은행이 변경되었습니다.`);
+     if (options.authoringPlan !== undefined && jsonHash(options.authoringPlan) !== jsonHash(receipt.context.authoring_plan)
+         || options.packet !== undefined && jsonHash(options.packet) !== jsonHash(receipt.context.source_packet)) errors.push(`${set.id}: 의미검수 계획/packet이 다릅니다.`);
+-    if (requireGrading) errors.push(...validateReviewGrading(receipt.grading, set, receipt.cases, checkCurrentBank));
++    if (requireGrading) errors.push(...(options.gradingAcceptance
++        ? validateGradingAcceptance(options.gradingAcceptance, receipt, set, { root: options.root, requireCurrent: checkCurrentBank })
++        : validateReviewGrading(receipt.grading, set, receipt.cases, checkCurrentBank)));
+     return errors;
+ }
+ 
+@@ -328,8 +333,8 @@ export async function gradeSemanticReviewReceipt(receipt: SemanticReviewReceipt,
+ 
+ /** Later additions are reviewed against the bank themselves; they do not invalidate
+  * every earlier approval. Approved content and its actual source files still bind. */
+-export function validateRecordedSemanticReview(raw: unknown, set: QuestionSetV3, root = process.cwd()): string[] {
+-    return validateReceipt(raw, set, { root, bank: [] }, false);
++export function validateRecordedSemanticReview(raw: unknown, set: QuestionSetV3, root = process.cwd(), gradingAcceptance?: GradingAcceptance): string[] {
++    return validateReceipt(raw, set, { root, bank: [], gradingAcceptance }, false);
+ }
+ 
+ export function readSemanticReviewDocument(file: string): SemanticReviewDocument {

@@ -68,7 +68,7 @@ export default function ResetPasswordPage() {
             <fieldset disabled={pending} className="space-y-5">
                 <label htmlFor="recovery-password" className="block space-y-2 text-sm"><span>새 비밀번호 (8자 이상)</span><input id="recovery-password" name="password" type="password" autoComplete="new-password" required minLength={8} maxLength={128} className={inputClass} /></label>
                 <label htmlFor="recovery-password-confirm" className="block space-y-2 text-sm"><span>새 비밀번호 확인</span><input id="recovery-password-confirm" name="passwordConfirm" type="password" autoComplete="new-password" required minLength={8} maxLength={128} className={inputClass} /></label>
-                <button type="submit" className="w-full rounded-md bg-primary px-4 py-2.5 text-sm text-white hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50">{pending ? '변경 중…' : '새 비밀번호 저장'}</button>
+                <button type="submit" className="w-full rounded-md bg-primary px-4 py-2.5 text-sm text-primary-foreground hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50">{pending ? '변경 중…' : '새 비밀번호 저장'}</button>
             </fieldset>
         </form> : <Link href="/account/recovery" className="mt-6 inline-block text-sm text-primary underline underline-offset-4">복구 이메일 다시 요청</Link>}
     </div>;
