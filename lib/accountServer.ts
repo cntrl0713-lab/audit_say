@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 import { getSupabaseAdmin } from './supabaseAdmin';
 import { getSupabaseServerClient } from './supabaseServer';
 import { AccountError, assertAccountOrigin, auditRole, type AccountSnapshot } from './accountPolicy';
-import { readAccountProfile, readAuditMembership } from './accountRepository';
+import { readAccountProfile, readAuditMembership, readAuditEntitlement } from './accountRepository';
 import { RECOVERY_COOKIE, verifyRecoveryGrant } from './accountRecovery';
 
 export function accountResponse(value: unknown, status = 200): Response {
@@ -68,10 +68,12 @@ export async function accountSnapshot(): Promise<AccountSnapshot> {
     const { user, profile, client } = await authenticatedAccount(true);
     const member = await readAuditMembership(user.id);
     const active = profile.account_status === 'active' && member?.membership_status === 'active';
+    const entitlement = active && member ? await readAuditEntitlement(member) : { kind: 'free' as const, expiresAt: null };
     return {
         user: { id: user.id, email: user.email ?? '', nickname: profile.nickname }, accountStatus: profile.account_status,
-        membership: member ? { status: member.membership_status, version: member.membership_version, isAdmin: member.is_service_admin, role: auditRole(member) } : null,
-        entitlement: { kind: active && member?.role === 'PRO' ? 'pro' : 'free', expiresAt: null },
+        membership: member ? { status: member.membership_status, version: member.membership_version, isAdmin: member.is_service_admin,
+            role: auditRole({ ...member, role: entitlement.kind === 'pro' ? 'PRO' : 'MEMBER' }) } : null,
+        entitlement,
         progress: active && member ? { level: member.level, exp: member.exp } : { level: 1, exp: 0 },
         recoveryAllowed: await hasRecoveryPermission(user.id, client),
     };

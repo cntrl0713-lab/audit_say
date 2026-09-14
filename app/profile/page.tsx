@@ -20,7 +20,10 @@ export default function ProfilePage() {
                 <div className="flex-1">
                     <h1 className="text-xl font-normal">{user.username}</h1>
                     <p className="mt-1 text-sm text-foreground/50">{ROLE_NAMES[user.role]} · Lv.{user.level}</p>
-                    {user.role !== 'GUEST' && <Link href="/account" className="mt-3 inline-block text-sm text-primary underline underline-offset-4">통합 계정 관리</Link>}
+                    {user.role !== 'GUEST' && <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm text-primary">
+                        <Link href="/account" className="underline underline-offset-4">통합 계정 관리</Link>
+                        <Link href="/mypage/subscription" className="underline underline-offset-4">구독 · 추천인</Link>
+                    </div>}
                     <div className="mt-4 h-2 overflow-hidden rounded-full bg-card-border/60">
                         <div className="h-full rounded-full bg-primary" style={{ width: `${user.exp % 100}%` }} />
                     </div>

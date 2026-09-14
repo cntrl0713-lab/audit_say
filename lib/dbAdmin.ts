@@ -48,7 +48,7 @@ export async function updateUserRole(userId: string, newRole: string): Promise<b
         const adminSupabase = getSupabaseAdmin();
         const { error } = await adminSupabase
             .from('cpa_users')
-            .update({ role: newRole })
+            .update({ manual_pro: newRole === 'PRO' })
             .eq('id', userId).eq('membership_status', 'active');
 
         if (error) {

@@ -27,6 +27,8 @@ export function Navbar() {
       className={`inline-flex min-h-11 items-center text-sm ${pathname.startsWith('/quiz') ? 'font-semibold text-primary' : 'text-muted hover:text-foreground'}`}>문제 풀이</Link>
     <Link href="/firms" aria-current={isFirm ? 'page' : undefined}
       className={`inline-flex min-h-11 items-center text-sm ${isFirm ? 'font-semibold text-primary' : 'text-muted hover:text-foreground'}`}>회계법인</Link>
+    <Link href="/pricing" aria-current={pathname === '/pricing' ? 'page' : undefined}
+      className={`inline-flex min-h-11 items-center text-sm ${pathname === '/pricing' ? 'font-semibold text-primary' : 'text-muted hover:text-foreground'}`}>요금제</Link>
     <details className="relative" key={`${pathname}-${mobile}`} onKeyDown={event => { if (event.key === 'Escape') { event.currentTarget.removeAttribute('open'); event.currentTarget.querySelector('summary')?.focus(); } }}>
       <summary className={`flex min-h-11 list-none items-center gap-1.5 text-sm [&::-webkit-details-marker]:hidden ${learningLinks.some(link => pathname.startsWith(link.href)) ? 'font-semibold text-primary' : 'text-muted'}`}>
         내 학습 <ChevronDown aria-hidden="true" className="size-3.5" />
@@ -55,6 +57,7 @@ export function Navbar() {
             <div onClick={closeDropdown} className="absolute right-0 z-50 mt-2 w-48 rounded-panel border border-card-border bg-card p-2 shadow-lg">
               <p className="truncate px-3 py-2 text-xs text-muted">{user.username} · Lv.{user.level}</p>
               <Link href="/profile" className="flex min-h-11 items-center rounded-control px-3 text-sm hover:bg-surface-soft">내 정보</Link>
+              <Link href="/mypage/subscription" className="flex min-h-11 items-center rounded-control px-3 text-sm hover:bg-surface-soft">구독 · 추천인</Link>
               <Link href="/settings" className="flex min-h-11 items-center rounded-control px-3 text-sm hover:bg-surface-soft">알림 설정</Link>
               <Link href="/account" className="flex min-h-11 items-center rounded-control px-3 text-sm hover:bg-surface-soft">계정 관리</Link>
               {user.role === 'ADMIN' && <Link href="/admin" className="flex min-h-11 items-center rounded-control px-3 text-sm hover:bg-surface-soft">관리자</Link>}

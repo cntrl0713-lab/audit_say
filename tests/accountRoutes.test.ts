@@ -6,6 +6,7 @@ import * as crypto from 'node:crypto';
 import ts from 'typescript';
 import * as policy from '../lib/accountPolicy.ts';
 import * as recovery from '../lib/accountRecovery.ts';
+import * as subscriptionEntitlement from '../lib/subscriptionEntitlement.ts';
 
 const ORIGIN = 'https://audit.example.test';
 const MEMBER = '11111111-1111-4111-8111-111111111111';
@@ -38,6 +39,8 @@ type Options = {
     recoveryGrant?: string;
     membershipStatus?: 'active' | 'suspended' | 'withdrawing' | 'withdrawn' | 'missing';
     membershipVersion?: number;
+    manualPro?: boolean;
+    subscription?: { status: string; current_period_end: string; membership_version: number };
 };
 
 const compiledModules = new Map<string, string>();
@@ -85,8 +88,9 @@ function harness(options: Options = {}) {
                         : options.missingProfile ? null : { id: selectedId, nickname: 'StudyUser', account_status: options.accountStatus ?? 'active' } };
                     if (table === 'cpa_users') return { error: null, data: options.membershipStatus === 'missing' ? null : {
                         id: selectedId, membership_status: options.membershipStatus ?? 'active', membership_version: options.membershipVersion ?? 7,
-                        is_service_admin: false, role: 'PRO', level: 4, exp: 300,
+                        is_service_admin: false, role: 'PRO', manual_pro: options.manualPro ?? true, level: 4, exp: 300,
                     } };
+                    if (table === 'cpa_subscription') return { error: null, data: options.subscription ?? null };
                     throw new Error(`Unexpected table: ${table}`);
                 },
             };
@@ -110,6 +114,7 @@ function harness(options: Options = {}) {
         'server-only': {}, 'node:crypto': crypto,
         './accountPolicy': policy, '@/lib/accountPolicy': policy,
         './accountRecovery': recovery, '@/lib/accountRecovery': recovery,
+        './subscriptionEntitlement': subscriptionEntitlement,
         './supabaseAdmin': { getSupabaseAdmin: () => admin }, '@/lib/supabaseAdmin': { getSupabaseAdmin: () => admin },
         './supabaseServer': { getSupabaseServerClient: async () => client }, '@/lib/supabaseServer': { getSupabaseServerClient: async () => client },
         'next/headers': { cookies: async () => ({
@@ -356,6 +361,7 @@ test('verified recovery can finish a deleting account but cannot unlock a locked
 test('database, credential provider, and deletion failures return fixed safe errors instead of private details', async () => {
     const responses = [await harness({ tableError: 'common_profiles' }).account.GET(),
         await harness({ tableError: 'cpa_users' }).account.GET(),
+        await harness({ tableError: 'cpa_subscription' }).account.GET(),
         await harness({ rpcError: 'common_update_nickname' }).account.PATCH(mutation('PATCH', { nickname: 'NewName' })),
         await harness({ rpcError: 'consume_rate_limit' }).post('password', { password: 'replacement-password', currentPassword: CURRENT_PASSWORD }),
         await harness({ updateError: true }).post('email', { email: 'new@example.test', currentPassword: CURRENT_PASSWORD }),
@@ -368,4 +374,25 @@ test('database, credential provider, and deletion failures return fixed safe err
         assert.ok(!body.includes('provider_failure'));
         assert.ok(!body.includes(AUTH_EMAIL));
     }
+});
+
+test('account snapshot uses the current subscription period instead of a stale PRO role', async () => {
+    const future = new Date(Date.now() + 86400000).toISOString();
+    for (const subscription of [
+        { status: 'expired', current_period_end: future, membership_version: 7 },
+        { status: 'active', current_period_end: '2000-01-01T00:00:00Z', membership_version: 7 },
+        { status: 'active', current_period_end: future, membership_version: 6 },
+    ]) {
+        const response = await harness({ manualPro: false, subscription }).account.GET();
+        assert.equal(response.status, 200);
+        const body = await response.json();
+        assert.equal(body.membership.role, 'MEMBER');
+        assert.equal(body.entitlement.kind, 'free');
+    }
+    const response = await harness({ manualPro: false, subscription: {
+        status: 'cancelled', current_period_end: future, membership_version: 7,
+    } }).account.GET();
+    const body = await response.json();
+    assert.equal(body.membership.role, 'PRO');
+    assert.equal(body.entitlement.expiresAt, future);
 });

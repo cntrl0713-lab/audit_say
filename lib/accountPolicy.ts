@@ -5,7 +5,7 @@ export type AccountRole = 'MEMBER' | 'PRO' | 'ADMIN';
 export interface CommonProfile { id: string; nickname: string; account_status: AccountStatus }
 export interface AuditMembership {
     id: string; membership_status: MembershipStatus; membership_version: number;
-    is_service_admin: boolean; role: string; level: number; exp: number;
+    is_service_admin: boolean; role: string; level: number; exp: number; manual_pro?: boolean;
 }
 export interface AccountSnapshot {
     user: { id: string; email: string; nickname: string };

@@ -8,4 +8,5 @@ export interface UserProfile {
     email?: string;
     created_at?: string;
     is_service_admin?: boolean;
+    manual_pro?: boolean;
 }

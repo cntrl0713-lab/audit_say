@@ -52,7 +52,7 @@ export default function AdminPage() {
     const selectUser = (userId: string) => {
         const candidate = users.find((entry) => entry.id === userId);
         setSelectedUser(userId);
-        setNewRole(candidate?.role === 'PRO' ? 'PRO' : 'MEMBER');
+        setNewRole(candidate?.manual_pro ? 'PRO' : 'MEMBER');
         setNewIsAdmin(candidate?.is_service_admin === true);
         setMessage(null);
     };
@@ -73,7 +73,7 @@ export default function AdminPage() {
             const currentUsers = await getAllUsersAction();
             setUsers(currentUsers);
             const updated = currentUsers.find((candidate) => candidate.id === selectedUser);
-            setNewRole(updated?.role === 'PRO' ? 'PRO' : 'MEMBER');
+            setNewRole(updated?.manual_pro ? 'PRO' : 'MEMBER');
             setNewIsAdmin(updated?.is_service_admin === true);
             if (!updated) setSelectedUser('');
             setMessage(kind === 'entitlement' ? '감사 이용권을 변경했습니다.' : '감사 관리자 권한을 변경했습니다.');
@@ -168,14 +168,14 @@ export default function AdminPage() {
                         </label>
                         <div className="grid gap-5 border-t border-card-border pt-5 md:grid-cols-2">
                             <fieldset disabled={!selectedUser || !!saving} className="space-y-3">
-                                <legend className="mb-3 text-sm">감사 이용권</legend>
-                                <label className="block text-xs text-foreground/50">이용 등급
+                                <legend className="mb-3 text-sm">수동 PRO 이용권</legend>
+                                <label className="block text-xs text-foreground/50">관리자 부여
                                     <select value={newRole} onChange={(event) => setNewRole(event.target.value as 'MEMBER' | 'PRO')} className="mt-1 block w-full rounded-md border border-card-border bg-card-border/20 px-3 py-2 text-sm text-foreground disabled:opacity-50">
-                                        <option value="MEMBER">기본</option>
-                                        <option value="PRO">PRO</option>
+                                        <option value="MEMBER">부여 안 함</option>
+                                        <option value="PRO">PRO 부여</option>
                                     </select>
                                 </label>
-                                <p className="text-xs leading-5 text-foreground/50">감사 서비스의 유료 기능 이용 여부에 적용됩니다.</p>
+                                <p className="text-xs leading-5 text-foreground/50">수동 이용권을 해제해도 이미 결제한 구독 기간은 유지됩니다. 자동결제 해지는 본인의 구독 관리에서 처리합니다.</p>
                                 <button type="button" onClick={() => void changeAccess('entitlement')} className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground disabled:cursor-not-allowed disabled:opacity-50">{saving === 'entitlement' ? '저장 중…' : '이용권 적용'}</button>
                             </fieldset>
                             <fieldset disabled={!selectedUser || !!saving || selectedUser === user.id} className="space-y-3">

@@ -317,6 +317,7 @@ export default function AccountHome() {
     { href: '/curriculum', title: '커리큘럼', desc: '단원별 문제 구성을 확인합니다.' },
     { href: '/ranking', title: '랭킹', desc: '경험치 기준 상위 학습자를 봅니다.' },
     { href: '/profile', title: '내 정보', desc: '학습 통계와 오답 노트를 봅니다.' },
+    { href: '/mypage/subscription', title: '구독 · 추천인', desc: '이용 기간, 자동 결제와 추천 보상을 확인합니다.' },
   ];
 
   return (
