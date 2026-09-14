@@ -1,7 +1,7 @@
 ---
 title: 연습·기출의 출제 요구사항과 빈도 활용
 created: 2026-09-10
-updated: 2026-09-11
+updated: 2026-09-14
 type: guide
 status: reviewed
 review_required: false
@@ -47,7 +47,7 @@ confidence: medium
 
 이미 정본에 편입된 초안의 재출제를 피하고 미편입 초안은 후속 검수 기록에 맞춰 이어가도록 구분했다. 이 계획은 신규 문항 생성·실제 채점·사람 승인·관계 검토 완료를 뜻하지 않으며, 작성 당시 입력과 확인 범위는 [입력 기록](../../../docs/plans/question-authoring-by-topic-2026-09-11/계획-수립의-입력-초안-상태와-확인-범위.md)에 보존한다.
 
-[서브에이전트용 14개 작업 배정서](../../../docs/plans/question-authoring-by-topic-2026-09-11/assignments/README.md)는 담당 세트·물음·전용 출력 경로·선행 관계·검증 조건을 명시한다. 공통 출처·ID·비교 은행은 총괄이 관리하고, 작업자는 최대 3개씩 병렬로 배정한다.
+2026-09-11 서브에이전트 분담에 쓴 14개 작업 배정서는 작업이 끝나 2026-09-14에 저장소에서 정리했다(커밋 `868e6471`까지의 git 기록에 남아 있다). 분담 결과와 산출물은 [delegated-authoring 기록](../../analysis/reviews/delegated-authoring-2026-09-11/README.md)에서 확인한다.
 
 ## Related
 
