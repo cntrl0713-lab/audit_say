@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "gap-g09-sub1-partial",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-gap-20260913-g09",
+  "learning_unit_id": "draft-standard-gap-20260913-g09--sub1--standard",
+  "kind": "partial",
+  "projected_body_hash": "cd81810bdb16560a189718d5cc37f9da3d1025c7a3667cef30754c5539dc90f0",
+  "answers": {
+    "sub1": "서면진술은 감사증거이다. 그러나 다루는 사항에 대해 서면진술 그 자체만으로는 충분하고 적합한 증거가 되지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안에서 직접 충족하는 요구: 서면진술은 감사증거이다. 발문은 감사증거 해당 여부를 묻는다. 필요적 정보라는 원문의 설명을 추가로 써야 한다는 숨은 요건을 두지 않는다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안에서 직접 충족하는 요구: 서면진술 자체만으로는 그것이 다루는 어떠한 사항에 대해서도 충분하고 적합한 감사증거가 되지 않는다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "이 답안에는 다음 독립 요구의 정답 의미가 없음: 경영진이 신뢰할 수 있는 서면진술을 제공했다는 사실은 경영진의 책임완수나 특정 경영진주장에 대해 입수하는 다른 감사증거의 성격이나 범위에 영향을 미치지 않는다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "6ceee522236179ba2b5e4711cc06d06f801f4d3073ed1e2a22d653ab4990b6a7",
+  "schema_hash": "172d5de6570c09a29f717bb90ebbf3ab6007312ced42f430d537597c8d473ae9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "서면진술은 감사증거이다. ",
+            "reason": "서면진술이 감사증거라고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그러나 다루는 사항에 대해 서면진술 그 자체만으로는 충분하고 적합한 증거가 되지 않는다.",
+            "reason": "서면진술 자체만으로 다루는 사항에 충분하고 적합한 증거가 되지 않는다고 설명했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "신뢰할 수 있는 서면진술이 다른 감사증거의 성격이나 범위에 미치는 영향을 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "서면진술이 감사증거라고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "서면진술 자체만으로 다루는 사항에 충분하고 적합한 증거가 되지 않는다고 설명했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "신뢰할 수 있는 서면진술이 다른 감사증거의 성격이나 범위에 미치는 영향을 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-gap-20260913-g09",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "서면진술이 감사증거인지, 그 자체만으로 다루는 사항에 관하여 충분하고 적합한 감사증거가 되는지 설명하시오. 또한 경영진이 신뢰할 수 있는 서면진술을 제공한 사실이 다른 감사증거의 성격이나 범위에 미치는 영향을 설명하시오.",
+        "user_answer": "서면진술은 감사증거이다. 그러나 다루는 사항에 대해 서면진술 그 자체만으로는 충분하고 적합한 증거가 되지 않는다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "서면진술은 감사증거이다.",
+            "reason": "서면진술이 감사증거라고 명시했다.",
+            "claim": "서면진술은 감사증거이다. 발문은 감사증거 해당 여부를 묻는다. 필요적 정보라는 원문의 설명을 추가로 써야 한다는 숨은 요건을 두지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그러나 다루는 사항에 대해 서면진술 그 자체만으로는 충분하고 적합한 증거가 되지 않는다.",
+            "reason": "서면진술 자체만으로 다루는 사항에 충분하고 적합한 증거가 되지 않는다고 설명했다.",
+            "claim": "서면진술 자체만으로는 그것이 다루는 어떠한 사항에 대해서도 충분하고 적합한 감사증거가 되지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "신뢰할 수 있는 서면진술이 다른 감사증거의 성격이나 범위에 미치는 영향을 설명하지 않았다.",
+            "claim": "경영진이 신뢰할 수 있는 서면진술을 제공했다는 사실은 경영진의 책임완수나 특정 경영진주장에 대해 입수하는 다른 감사증거의 성격이나 범위에 영향을 미치지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "서면진술은 감사증거이다.",
+          "서면진술 자체만으로는 그것이 다루는 어떠한 사항에 대해서도 충분하고 적합한 감사증거가 되지 않는다.",
+          "경영진이 신뢰할 수 있는 서면진술을 제공했다는 사실은 경영진의 책임완수나 특정 경영진주장에 대해 입수하는 다른 감사증거의 성격이나 범위에 영향을 미치지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/gap-g09-sub1-partial.input.json",
+      "sha256": "558220e7714bf8ef900b0941d6a3d5f2976120866c1bbfa4240ec2585dd34fc3"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/gap-g09-sub1-partial.transport.jsonl",
+      "sha256": "79db34fb98fa0397222bd0bbe43a5dea0600ad7217690b91a94053491d9a86e7"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/gap-g09-sub1-partial.traces.jsonl",
+      "sha256": "224fb792743c7607abd59044def2efe68848f945ce5a1c36df4c60cd61df8564"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0cd7b526e5ace695016aa5dc237e2487d0843e966625674971",
+        "request_id": "req_335046d32a494f61bde03f4b25acf487",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2772,
+          "input_tokens_details": {
+            "cache_write_tokens": 2769,
+            "cached_tokens": 0
+          },
+          "output_tokens": 247,
+          "output_tokens_details": {
+            "reasoning_tokens": 57
+          },
+          "total_tokens": 3019
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v2/g09-sub1-partial.input.json",
+        "sha256": "ae8ebe300e3d1672bde32f610196a5e19ea0a81faa4e41ac774dc825e0a423b9"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v2/g09-sub1-partial.request-1.json",
+        "sha256": "25fe390f0f24cfeb5a570e6b15622b231a6625d54c53bdc4dedf3d5d3d9567c2"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v2/g09-sub1-partial.response-1.json",
+        "sha256": "e3383dfde0df906b52b5d0bc3e821c98a2ba7d8ccc59afee719eabfbf41d81f1"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v2/g09-sub1-partial.trace.json",
+        "sha256": "f892d4fefbc832aa1e384fcf4b68d324ea16da9b147a0cb10795c9ed58bcd72e"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v2/g09-sub1-partial.usage.json",
+        "sha256": "aae58c74e35fe754e1657e002d3eff7956d5d7dbcf7527093d47ce24cfa5ab98"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v2/g09-sub1-partial.result.json",
+        "sha256": "ccda304430e27eb34a91b34ffd62c450e63961d612663186de92634b1ab87767"
+      }
+    ],
+    "original_case_id": "g09-sub1-partial",
+    "origin_batch": "cpa_uploader/drafts/standard-gap-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

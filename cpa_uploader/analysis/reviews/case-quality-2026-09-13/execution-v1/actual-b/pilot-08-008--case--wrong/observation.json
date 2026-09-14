@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-08-008--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-08-008--case",
+  "source_set_id": "pilot-08-008",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "16c71a7e2eac1a09d293c67d9a8d7cf6831f0e3045a0fcee7d80e4ebfc21d92d",
+  "answers": {
+    "sub1": "전문 자격증이 있으면 해당 산업 경험이나 업무를 수행할 능력은 평가할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "원답안이 이 독립 명제의 요구 또는 필수 범위를 명시적으로 부정한다. 대상: 해당 산업·평가업무에 필요한 전문성의 성격과 수준인 전문가의 적격성을 평가한다. 일반적인 자격증 확인만으로 충분하다고 보지 않는다."
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "contradicted",
+          "reason": "원답안이 이 독립 명제의 요구 또는 필수 범위를 명시적으로 부정한다. 대상: 시간·인력 등 상황에 맞게 전문성을 실제 발휘할 능력인 전문가의 역량을 평가한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 평가금액에 연동된 보수 등 이해관계가 편의·이해상충 또는 타인의 영향을 통해 전문가의 전문적 판단을 훼손할 수 있는지 객관성을 평가한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "36530cadad6857a586a456e4c8a493f2b168373f85a60ce4efa86dde2d90174d",
+  "schema_hash": "93c6b1bf6a0f9bfbfa2ae82367d55bcd7740de4be12923f3d7ba64cf10087ee2",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "전문 자격증이 있으면 해당 산업 경험이나 업무를 수행할 능력은 평가할 필요가 없다.",
+            "reason": "자격증이 있으면 해당 산업 경험을 평가할 필요가 없다고 명시하여 요구사항을 반대로 서술했다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "contradicted",
+            "quote": "전문 자격증이 있으면 해당 산업 경험이나 업무를 수행할 능력은 평가할 필요가 없다.",
+            "reason": "업무를 수행할 능력을 평가할 필요가 없다고 명시하여 역량 평가 요구를 반대로 서술했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "보수 약정과 객관성 평가에 관한 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "자격증이 있으면 해당 산업 경험을 평가할 필요가 없다고 명시하여 요구사항을 반대로 서술했다."
+              },
+              {
+                "criterion_id": "crit8",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "업무를 수행할 능력을 평가할 필요가 없다고 명시하여 역량 평가 요구를 반대로 서술했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "보수 약정과 객관성 평가에 관한 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-08-008",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "자격증만 확인한 상태에서 해당 전문가에 관하여 추가로 평가해야 할 사항을 적격성·역량·객관성으로 나누어 설명하시오. 각각 산업경험, 시간·인력, 보수 약정의 사실과 연결하시오.",
+        "user_answer": "전문 자격증이 있으면 해당 산업 경험이나 업무를 수행할 능력은 평가할 필요가 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "전문 자격증이 있으면 해당 산업 경험이나 업무를 수행할 능력은 평가할 필요가 없다.",
+            "reason": "자격증이 있으면 해당 산업 경험을 평가할 필요가 없다고 명시하여 요구사항을 반대로 서술했다.",
+            "claim": "해당 산업·평가업무에 필요한 전문성의 성격과 수준인 전문가의 적격성을 평가한다. 일반적인 자격증 확인만으로 충분하다고 보지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "contradicted",
+            "quote": "전문 자격증이 있으면 해당 산업 경험이나 업무를 수행할 능력은 평가할 필요가 없다.",
+            "reason": "업무를 수행할 능력을 평가할 필요가 없다고 명시하여 역량 평가 요구를 반대로 서술했다.",
+            "claim": "시간·인력 등 상황에 맞게 전문성을 실제 발휘할 능력인 전문가의 역량을 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "보수 약정과 객관성 평가에 관한 내용이 없다.",
+            "claim": "평가금액에 연동된 보수 등 이해관계가 편의·이해상충 또는 타인의 영향을 통해 전문가의 전문적 판단을 훼손할 수 있는지 객관성을 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "해당 산업·평가업무에 필요한 전문성의 성격과 수준인 전문가의 적격성을 평가한다. 일반적인 자격증 확인만으로 충분하다고 보지 않는다.",
+          "시간·인력 등 상황에 맞게 전문성을 실제 발휘할 능력인 전문가의 역량을 평가한다.",
+          "평가금액에 연동된 보수 등 이해관계가 편의·이해상충 또는 타인의 영향을 통해 전문가의 전문적 판단을 훼손할 수 있는지 객관성을 평가한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_03ea92ff2fb64a60016aa5dc24c53487d0ac4cfe16ac219d1a",
+        "request_id": "req_459b6ebcc52d40cabab5f5e6a2a753fa",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2858,
+          "input_tokens_details": {
+            "cache_write_tokens": 2855,
+            "cached_tokens": 0
+          },
+          "output_tokens": 284,
+          "output_tokens_details": {
+            "reasoning_tokens": 88
+          },
+          "total_tokens": 3142
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010551500000000001,
+        "min_usd": 0.0010551500000000001,
+        "max_usd": 0.0010551500000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-08-008--case--wrong/input.json",
+      "sha256": "81f1f5b0bdf14eff6054807729bac9fc57ff2cd18e0890ed10d5c9d9930f9280"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-08-008--case--wrong/transport.jsonl",
+      "sha256": "732f6b64de91af6cf023af8d3e2aad1a773d8303afd75d739678ca52c2e3b03c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-08-008--case--wrong/traces.jsonl",
+      "sha256": "56cd29775674eb283e479ae3e964058e4947a426b858b5f34d7774e9cdf1994c"
+    }
+  }
+}

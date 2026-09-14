@@ -1,0 +1,16 @@
+diff --git a/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/reuse-source/seal.mjs.txt b/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/seal.mjs
+index 02fac693..ab22620e 100644
+--- a/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/reuse-source/seal.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/seal.mjs
+@@ -2,9 +2,9 @@ import fs from 'node:fs';
+ import path from 'node:path';
+ import assert from 'node:assert/strict';
+ import {createHash} from 'node:crypto';
+-import {createEfficientReviewReceipt, createEfficientValidationContext, assertEfficientEvidenceUnchanged} from '../../../questionEfficientReview.ts';
++import {createEfficientReviewReceipt, createEfficientValidationContext, assertEfficientEvidenceUnchanged} from '../../../../questionEfficientReview.ts';
+ 
+-const R = 'cpa_uploader/analysis/reviews/case-followup-2026-09-14';
++const R = 'cpa_uploader/analysis/reviews/case-applied-2026-09-14';
+ const read = file => JSON.parse(fs.readFileSync(file));
+ const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+ const ref = file => ({file, sha256: hash(fs.readFileSync(file))});

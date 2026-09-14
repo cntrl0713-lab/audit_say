@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+const R='cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14',P=R+'/pgp-transport-probe-v2';
+const read=f=>JSON.parse(fs.readFileSync(f)),ref=file=>({file,sha256:createHash('sha256').update(fs.readFileSync(file)).digest('hex')});
+const completed=read(P+'/completion.json'),prepared=read(P+'/preparation.json');
+assert.equal(completed.status,'pass');assert.equal(completed.local_and_database_decryption_exact_sha_equal,true);assert.equal(completed.result.transaction_read_only,'on');assert.equal(completed.result.payload_sha256,completed.input.sha256);assert.equal(completed.result.sets_equal_source_document,true);
+assert.equal(ref(completed.input.file).sha256,completed.input.sha256);assert.equal(ref(completed.compressed_container.file).sha256,completed.compressed_container.sha256);
+const value={created_at:new Date().toISOString(),encoding:'full-payload',plaintext:completed.input,packet:completed.compressed_container,public_nonsecurity_passphrase:prepared.public_nonsecurity_passphrase,confidentiality_claim:false,sql_function:'extensions.pgp_sym_decrypt_bytea',evidence:[P+'/completion.json',P+'/preparation.json',prepared.helper.file,prepared.gpg.file,R+'/bind-db-import-pgp-transport.mjs'].map(ref),local_and_live_probe_passed:true};
+assert.equal(value.public_nonsecurity_passphrase,'audit-say-public-compressed-transport-v1');
+const target=R+'/db-import-pgp-transport.json';fs.writeFileSync(target,JSON.stringify(value,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(ref(target)));

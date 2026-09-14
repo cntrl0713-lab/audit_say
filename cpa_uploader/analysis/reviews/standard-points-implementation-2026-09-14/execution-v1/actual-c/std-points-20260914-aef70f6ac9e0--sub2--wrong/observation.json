@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-aef70f6ac9e0--sub2--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-aef70f6ac9e0--sub2--standard",
+  "source_set_id": "std-points-20260914-aef70f6ac9e0",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "84e3bda9e6c8fec8d17360b46b9e9cf4be6f003f44f2a13b25b823defc7d0c97",
+  "answers": {
+    "sub2": "어떤 미비점인지와 그 영향은 모두 생략하고 금액 합계만 보낸다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 미비점의 내역을 제시한다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 미비점의 잠재적 영향을 설명한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "b4a5f82bf3eb64947545f0fd32c4e4225581a6014db72fc77af2d679b9432001",
+  "schema_hash": "84d63657d91af1f29ec0a6dd3c718e0feef72c2a43e1937e26e83b8448a1e080",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "어떤 미비점인지와 그 영향은 모두 생략하고 금액 합계만 보낸다.",
+            "reason": "미비점의 내역을 생략한다고 명시하였다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "어떤 미비점인지와 그 영향은 모두 생략하고 금액 합계만 보낸다.",
+            "reason": "미비점의 영향을 생략한다고 명시하였다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "미비점의 내역을 생략한다고 명시하였다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "미비점의 영향을 생략한다고 명시하였다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-aef70f6ac9e0",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "유의적 내부통제 미비점에 관한 서면 커뮤니케이션에서 미비점 자체에 관하여 포함해야 할 두 내용을 제시하시오. 감사의 목적·내부통제 고려의 목적·보고범위에 관한 설명은 제외한다.",
+        "user_answer": "어떤 미비점인지와 그 영향은 모두 생략하고 금액 합계만 보낸다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "어떤 미비점인지와 그 영향은 모두 생략하고 금액 합계만 보낸다.",
+            "reason": "미비점의 내역을 생략한다고 명시하였다.",
+            "claim": "미비점의 내역을 제시한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "어떤 미비점인지와 그 영향은 모두 생략하고 금액 합계만 보낸다.",
+            "reason": "미비점의 영향을 생략한다고 명시하였다.",
+            "claim": "미비점의 잠재적 영향을 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "미비점의 내역을 제시한다.",
+          "미비점의 잠재적 영향을 설명한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_076a5754690d5932016aa78525b04487d08fbc32ed0756beab",
+        "request_id": "req_0562cd77bcf846078a199b620aa79e71",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2276,
+          "input_tokens_details": {
+            "cache_write_tokens": 2273,
+            "cached_tokens": 0
+          },
+          "output_tokens": 270,
+          "output_tokens_details": {
+            "reasoning_tokens": 138
+          },
+          "total_tokens": 2546
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00089285,
+        "min_usd": 0.00089285,
+        "max_usd": 0.00089285,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-aef70f6ac9e0--sub2--wrong/input.json",
+      "sha256": "5b991fb6fea5b1f16e6eb5f85851306593f0af4c89606060a734562233dca858"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-aef70f6ac9e0--sub2--wrong/transport.jsonl",
+      "sha256": "e32a8951442a3dc24c236be715ed9c6ba8d12662ca7e91cbcbb442cab63a4d13"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-aef70f6ac9e0--sub2--wrong/traces.jsonl",
+      "sha256": "e1252afc6e0966a45f826d784ea41334276bff686a9ca2c3ea2cb314738d178b"
+    }
+  }
+}

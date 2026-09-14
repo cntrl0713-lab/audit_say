@@ -1,0 +1,397 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "46bd89e7689cdcea72e421960ad22aaf164f6deaf9fec183a22345d175db2743"
+  },
+  "entry_id": "case-16-other-information-cause-20260914--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "case-16-other-information-cause-20260914--case",
+  "source_set_id": "case-16-other-information-cause-20260914",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "cd2c2c2aee934849f451ccfc699be5670c6c9f493e442b231464c36d2b37bb82",
+  "answers": {
+    "sub1": "재무제표는 이미 검토했으므로 사업보고서의 위탁상품 설명만 삭제하도록 요구하면 된다. 계약이나 판매상태를 추가로 확인할 필요는 없다.",
+    "sub2": "사업보고서에서 발견한 문제이므로 기타정보 단락에만 설명하고 재무제표에는 적정의견을 유지한다.",
+    "sub3": "사업보고서 설명이 사실로 확인되었으므로 재고의 정상판매를 전제로 한 위험평가와 기존 감사절차를 그대로 유지한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "not_met",
+          "reason": "불일치 원인 조사 없이 기타정보 오류를 단정한다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "불일치 원인 조사 없이 기타정보 오류를 단정한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "not_met",
+          "reason": "판단·보고조치를 반대로 제시하며 독립적인 올바른 근거도 제시하지 않은 0점 대표 오답이다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "not_met",
+          "reason": "판단·보고조치를 반대로 제시하며 독립적인 올바른 근거도 제시하지 않은 0점 대표 오답이다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.c1",
+          "verdict": "not_met",
+          "reason": "기타정보의 정확성확인을 기존 기업이해·위험평가의 적합성으로 잘못 전용한다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "verdict": "not_met",
+          "reason": "기타정보의 정확성확인을 기존 기업이해·위험평가의 적합성으로 잘못 전용한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "81450b1713d6b952f99690efead736e2ebcc253a0910f6f9fa2987159a8b4da5",
+  "schema_hash": "918a1220e0a71cad296a68e8ce26740b48b55099e9f4d8135f2f763d66f73ff0",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "not_met",
+            "reason": "경영진과 불일치 및 원인을 논의한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "contradicted",
+            "quote": "계약이나 판매상태를 추가로 확인할 필요는 없다.",
+            "reason": "계약조건과 판매상태를 추가 확인할 필요가 없다고 명시적으로 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "사업보고서에서 발견한 문제이므로 기타정보 단락에만 설명하고 재무제표에는 적정의견을 유지한다.",
+            "reason": "기타정보에만 설명하고 재무제표에 적정의견을 유지한다고 하여 요구 결론과 반대된다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "재무제표 오류의 충분한 증거, 미수정 및 영향범위에 따른 한정의견 근거를 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "contradicted",
+            "quote": "사업보고서 설명이 사실로 확인되었으므로 재고의 정상판매를 전제로 한 위험평가와 기존 감사절차를 그대로 유지한다.",
+            "reason": "기존 정상판매 전제의 위험평가를 그대로 유지한다고 하여 위험평가 수정 요구와 반대된다."
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "contradicted",
+            "quote": "사업보고서 설명이 사실로 확인되었으므로 재고의 정상판매를 전제로 한 위험평가와 기존 감사절차를 그대로 유지한다.",
+            "reason": "기존 감사절차를 그대로 유지한다고 하여 추가 절차의 재설계·수행 요구와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진과 불일치 및 원인을 논의한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "계약조건과 판매상태를 추가 확인할 필요가 없다고 명시적으로 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "기타정보에만 설명하고 재무제표에 적정의견을 유지한다고 하여 요구 결론과 반대된다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표 오류의 충분한 증거, 미수정 및 영향범위에 따른 한정의견 근거를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "기존 정상판매 전제의 위험평가를 그대로 유지한다고 하여 위험평가 수정 요구와 반대된다."
+              },
+              {
+                "criterion_id": "sub3.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "기존 감사절차를 그대로 유지한다고 하여 추가 절차의 재설계·수행 요구와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-16-other-information-cause-20260914",
+    "score": 0,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "초기 열람 단계에서 갑의 제안을 바로잡기 위해 수행할 절차를 설명하시오. 먼저 누구와 무엇을 논의하고, 제시된 자료의 불일치 원인을 확인하기 위해 어떤 자료를 어떻게 조사할지 구별하시오. 종결자료에 따른 최종 감사의견은 여기서는 요구하지 않는다.",
+        "user_answer": "재무제표는 이미 검토했으므로 사업보고서의 위탁상품 설명만 삭제하도록 요구하면 된다. 계약이나 판매상태를 추가로 확인할 필요는 없다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "not_met",
+            "reason": "경영진과 불일치 및 원인을 논의한다는 내용이 없다.",
+            "claim": "경영진과 사업보고서의 위탁상품 설명과 발송일 매출기록 사이의 불일치 및 그 이유를 논의한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "contradicted",
+            "quote": "계약이나 판매상태를 추가로 확인할 필요는 없다.",
+            "reason": "계약조건과 판매상태를 추가 확인할 필요가 없다고 명시적으로 부정했다.",
+            "claim": "관련 대리점 계약조건과 기말 판매·미판매 내역 등을 매출기록 및 사업보고서 설명과 대조하여, 재무제표와 기타정보 중 어디에 수정이 필요한지 판단할 근거를 확보한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진과 사업보고서의 위탁상품 설명과 발송일 매출기록 사이의 불일치 및 그 이유를 논의한다.",
+          "관련 대리점 계약조건과 기말 판매·미판매 내역 등을 매출기록 및 사업보고서 설명과 대조하여, 재무제표와 기타정보 중 어디에 수정이 필요한지 판단할 근거를 확보한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "매출항목의 종결자료에서 을의 제안이 적절한지 판단하고, 표명해야 할 재무제표 감사의견과 그 이유를 설명하시오. 증거의 상태, 오류가 있는 정보의 종류 및 영향의 범위를 연결하시오.",
+        "user_answer": "사업보고서에서 발견한 문제이므로 기타정보 단락에만 설명하고 재무제표에는 적정의견을 유지한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "사업보고서에서 발견한 문제이므로 기타정보 단락에만 설명하고 재무제표에는 적정의견을 유지한다.",
+            "reason": "기타정보에만 설명하고 재무제표에 적정의견을 유지한다고 하여 요구 결론과 반대된다.",
+            "claim": "기타정보 단락에만 설명하고 적정의견을 유지할 수 없으며, 재무제표에 대하여 한정의견을 표명해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "재무제표 오류의 충분한 증거, 미수정 및 영향범위에 따른 한정의견 근거를 제시하지 않았다.",
+            "claim": "사업보고서의 문구가 아니라 재무제표의 중요한 매출·매출채권 과대계상이 충분한 증거로 확인되었고 미수정이며, 그 영향이 특정 항목에 국한되어 전반적이지 않으므로 실제 왜곡표시에 따른 한정의견의 조건에 해당한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "기타정보 단락에만 설명하고 적정의견을 유지할 수 없으며, 재무제표에 대하여 한정의견을 표명해야 한다.",
+          "사업보고서의 문구가 아니라 재무제표의 중요한 매출·매출채권 과대계상이 충분한 증거로 확인되었고 미수정이며, 그 영향이 특정 항목에 국한되어 전반적이지 않으므로 실제 왜곡표시에 따른 한정의견의 조건에 해당한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "가동중단에 관한 병의 계획을 보완하시오. 새로 확인된 정보에 따른 위험평가의 처리와, 이에 대응하여 재고 감사절차의 계획을 어떻게 바꾸어야 하는지 설명하시오. 구체적인 재고평가금액은 산정하지 마시오.",
+        "user_answer": "사업보고서 설명이 사실로 확인되었으므로 재고의 정상판매를 전제로 한 위험평가와 기존 감사절차를 그대로 유지한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "contradicted",
+            "quote": "사업보고서 설명이 사실로 확인되었으므로 재고의 정상판매를 전제로 한 위험평가와 기존 감사절차를 그대로 유지한다.",
+            "reason": "기존 정상판매 전제의 위험평가를 그대로 유지한다고 하여 위험평가 수정 요구와 반대된다.",
+            "claim": "가동중단을 확인한 명령서·생산기록은 정상가동과 지속판매에 근거한 최초 평가와 일치하지 않으므로 기업에 대한 이해를 갱신하고 특수제품 재고의 평가 관련 중요왜곡표시위험을 수정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "contradicted",
+            "quote": "사업보고서 설명이 사실로 확인되었으므로 재고의 정상판매를 전제로 한 위험평가와 기존 감사절차를 그대로 유지한다.",
+            "reason": "기존 감사절차를 그대로 유지한다고 하여 추가 절차의 재설계·수행 요구와 반대된다.",
+            "claim": "수정한 재고 평가위험에 대응하도록 추가 감사절차의 성격·시기·범위를 다시 설계하고 수행한다. 예를 들어 가동중단 후 특수제품의 판매가능성 자료와 후속 판매가격·판매실적을 확인하도록 절차를 보완한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "가동중단을 확인한 명령서·생산기록은 정상가동과 지속판매에 근거한 최초 평가와 일치하지 않으므로 기업에 대한 이해를 갱신하고 특수제품 재고의 평가 관련 중요왜곡표시위험을 수정한다.",
+          "수정한 재고 평가위험에 대응하도록 추가 감사절차의 성격·시기·범위를 다시 설계하고 수행한다. 예를 들어 가동중단 후 특수제품의 판매가능성 자료와 후속 판매가격·판매실적을 확인하도록 절차를 보완한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_08b1b62a0eeea47c016aa781f8b8ac87d0aa60bdd45cc4864b",
+        "request_id": "req_ee060056451f4dba9a4eb4e1392c6aa7",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 5478,
+          "input_tokens_details": {
+            "cache_write_tokens": 5475,
+            "cached_tokens": 0
+          },
+          "output_tokens": 744,
+          "output_tokens_details": {
+            "reasoning_tokens": 312
+          },
+          "total_tokens": 6222
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0022621499999999997,
+        "min_usd": 0.0022621499999999997,
+        "max_usd": 0.0022621499999999997,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--wrong/input.json",
+      "sha256": "47dab580b752bdbc6aa78a280252f245682899a82a6c0d1ec66ad9c8e833e61d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--wrong/transport.jsonl",
+      "sha256": "65c7ebf1ffeb262210e316a8630f5931a32f84d142599e4605b52d323652a54f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--wrong/traces.jsonl",
+      "sha256": "ca70ab7a994efb771b00181d4f39d677d3b1ede82c1809559fb9f24c943dfe2a"
+    }
+  }
+}

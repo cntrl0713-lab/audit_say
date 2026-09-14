@@ -1,0 +1,350 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-12-001--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-001--case",
+  "source_set_id": "pilot-12-001",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "subq2",
+    "exp1"
+  ],
+  "projected_body_hash": "f45422e5988de5cdef9baa414c2c6d80b546c6f83faeca5cc628d1540deda9aa",
+  "answers": {
+    "subq2": "제시된 10개월은 재무제표일로부터 최소 12개월에 미달한다.",
+    "exp1": "예측에 사용한 기초 영업자료의 신뢰성을 평가하고, 신규 고객 매출과 회수·차입 연장 가정에 적절한 근거가 있는지 확인한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "subq2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "기간 비교는 했으나 경영진에 확장 요청하는 조치가 없다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "기간 비교는 했으나 경영진에 확장 요청하는 조치가 없다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "exp1.c1",
+          "verdict": "not_met",
+          "reason": "예측 입력의 두 평가를 충족하고 계획이 자금 부족을 개선하는지와 실행가능성 판단은 남아 있다."
+        },
+        {
+          "criterion_id": "exp1.c2",
+          "verdict": "not_met",
+          "reason": "예측 입력의 두 평가를 충족하고 계획이 자금 부족을 개선하는지와 실행가능성 판단은 남아 있다."
+        },
+        {
+          "criterion_id": "exp1.c3",
+          "verdict": "met",
+          "reason": "예측 입력의 두 평가를 충족하고 계획이 자금 부족을 개선하는지와 실행가능성 판단은 남아 있다."
+        },
+        {
+          "criterion_id": "exp1.c4",
+          "verdict": "met",
+          "reason": "예측 입력의 두 평가를 충족하고 계획이 자금 부족을 개선하는지와 실행가능성 판단은 남아 있다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ec48f1724eb55a50ad66716322381ec5356121d135f651551e26495a7dc3157e",
+  "schema_hash": "b9cd67db89d47d553952b436fd0ecfb6bf4b9060e4fcbb6a31aac6cffeb587ce",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "subq2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "제시된 10개월은 재무제표일로부터 최소 12개월에 미달한다.",
+            "reason": "10개월이 재무제표일로부터 최소 12개월에 미달한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "평가기간을 12개월로 확장하도록 요청하는 조치가 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp1",
+        "verdicts": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "not_met",
+            "reason": "계획의 결과가 8월 차입금 상환 등 현금 부족을 개선하는지 평가한다고 하지 않았다."
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "not_met",
+            "reason": "은행 승인과 신규 고객 계약의 미확정 상태를 고려한 실행가능성 평가가 없다."
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "met",
+            "quote": "예측에 사용한 기초 영업자료의 신뢰성을 평가하고, 신규 고객 매출과 회수·차입 연장 가정에 적절한 근거가 있는지 확인한다.",
+            "reason": "기초 영업자료의 신뢰성을 평가한다고 명시했다."
+          },
+          {
+            "criterion_id": "exp1.c4",
+            "verdict": "met",
+            "quote": "예측에 사용한 기초 영업자료의 신뢰성을 평가하고, 신규 고객 매출과 회수·차입 연장 가정에 적절한 근거가 있는지 확인한다.",
+            "reason": "신규 고객 매출, 회수, 차입 연장 가정에 적절한 근거가 있는지 확인한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "subq2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "subq2/e0"
+                ],
+                "reason": "10개월이 재무제표일로부터 최소 12개월에 미달한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "평가기간을 12개월로 확장하도록 요청하는 조치가 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp1",
+            "verdicts": [
+              {
+                "criterion_id": "exp1.c1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "계획의 결과가 8월 차입금 상환 등 현금 부족을 개선하는지 평가한다고 하지 않았다."
+              },
+              {
+                "criterion_id": "exp1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "은행 승인과 신규 고객 계약의 미확정 상태를 고려한 실행가능성 평가가 없다."
+              },
+              {
+                "criterion_id": "exp1.c3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "기초 영업자료의 신뢰성을 평가한다고 명시했다."
+              },
+              {
+                "criterion_id": "exp1.c4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "신규 고객 매출, 회수, 차입 연장 가정에 적절한 근거가 있는지 확인한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-001",
+    "score": 3,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "subq2",
+        "prompt": "제시된 경영진의 계속기업 평가기간에 대하여 감사인이 요청해야 할 조치를, 최소 평가기간에 관한 근거와 함께 설명하시오.",
+        "user_answer": "제시된 10개월은 재무제표일로부터 최소 12개월에 미달한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "제시된 10개월은 재무제표일로부터 최소 12개월에 미달한다.",
+            "reason": "10개월이 재무제표일로부터 최소 12개월에 미달한다고 명시했다.",
+            "claim": "10개월은 재무제표일로부터 최소 12개월에 미달한다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "평가기간을 12개월로 확장하도록 요청하는 조치가 없다.",
+            "claim": "경영진에게 평가기간을 적어도 12개월로 확장하도록 요청함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재무제표일로부터 10개월은 요구되는 최소 12개월에 미달한다.",
+          "감사인은 경영진에게 평가기간을 재무제표일로부터 적어도 12개월로 확장하도록 요청해야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "exp1",
+        "prompt": "예측표의 최종 현금잔액이 양수라는 사실만으로 검토를 마무리하려는 계획을 보완하시오. 차입 연장·신규 매출 계획의 효과와 실행가능성, 현금흐름예측의 기초자료와 가정에 관하여 수행해야 할 평가를 사례와 연결하여 설명하시오. 최종 감사의견은 요구하지 않는다.",
+        "user_answer": "예측에 사용한 기초 영업자료의 신뢰성을 평가하고, 신규 고객 매출과 회수·차입 연장 가정에 적절한 근거가 있는지 확인한다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "not_met",
+            "reason": "계획의 결과가 8월 차입금 상환 등 현금 부족을 개선하는지 평가한다고 하지 않았다.",
+            "claim": "차입 만기 연장과 신규 고객 매출 계획의 결과가 8월 차입금 상환 등 현금 부족 상황을 실제로 개선할 수 있는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "not_met",
+            "reason": "은행 승인과 신규 고객 계약의 미확정 상태를 고려한 실행가능성 평가가 없다.",
+            "claim": "차입 연장의 은행 승인과 신규 고객 계약이 아직 확정되지 않았으므로 경영진의 계획이 해당 상황에서 실행가능한지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "met",
+            "quote": "예측에 사용한 기초 영업자료의 신뢰성을 평가하고, 신규 고객 매출과 회수·차입 연장 가정에 적절한 근거가 있는지 확인한다.",
+            "reason": "기초 영업자료의 신뢰성을 평가한다고 명시했다.",
+            "claim": "현금흐름예측에 사용한 기초 영업자료의 신뢰성을 평가한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "exp1.c4",
+            "verdict": "met",
+            "quote": "예측에 사용한 기초 영업자료의 신뢰성을 평가하고, 신규 고객 매출과 회수·차입 연장 가정에 적절한 근거가 있는지 확인한다.",
+            "reason": "신규 고객 매출, 회수, 차입 연장 가정에 적절한 근거가 있는지 확인한다고 명시했다.",
+            "claim": "현금흐름예측에 적용한 매출 증가·회수 및 차입 연장 가정에 적절한 근거가 있는지 결정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "차입 만기 연장과 신규 고객 매출 계획의 결과가 8월 차입금 상환 등 현금 부족 상황을 실제로 개선할 수 있는지 평가한다.",
+          "차입 연장의 은행 승인과 신규 고객 계약이 아직 확정되지 않았으므로 경영진의 계획이 해당 상황에서 실행가능한지 평가한다.",
+          "현금흐름예측에 사용한 기초 영업자료의 신뢰성을 평가한다.",
+          "현금흐름예측에 적용한 매출 증가·회수 및 차입 연장 가정에 적절한 근거가 있는지 결정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "subq2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0b3ef74cf3469040016aa60319787487d09120861ae5d9fb30",
+        "request_id": "req_db079d36e71d4c90aa98260c62e5d122",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3874,
+          "input_tokens_details": {
+            "cache_write_tokens": 3871,
+            "cached_tokens": 0
+          },
+          "output_tokens": 417,
+          "output_tokens_details": {
+            "reasoning_tokens": 55
+          },
+          "total_tokens": 4291
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00146875,
+        "min_usd": 0.00146875,
+        "max_usd": 0.00146875,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-12-001--case--partial/input.json",
+      "sha256": "93720a1c60520d3386e7f8caf74d2171de7408910dc6fd203fa3a76e0ce9db2e"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-12-001--case--partial/transport.jsonl",
+      "sha256": "bc8800d8fd16f5638be08a34fb6636cd6c6bd2c32f78bc8e36d29222881fe2f7"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-12-001--case--partial/traces.jsonl",
+      "sha256": "d9a5104f1d8b0b93c613456170bf5061e46ef8da9701c78f4995fe131478a56f"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const project='xvifzicrjmbfqaepcfpp',R='cpa_uploader/analysis/reviews/case-trio-next-2026-09-14';
+assert.equal(new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).origin,'https://'+project+'.supabase.co');
+assert(process.env.SUPABASE_ACCESS_TOKEN);
+const response=await fetch('https://api.supabase.com/v1/projects/'+project+'/database/query',{method:'POST',headers:{Authorization:'Bearer '+process.env.SUPABASE_ACCESS_TOKEN,'Content-Type':'application/json'},body:JSON.stringify({read_only:true,query:"select id as release_id,source_file_hash,encode(sha256(convert_to(source_document,'UTF8')),'hex') as actual_source_hash,jsonb_array_length(source_document::jsonb) as sets from public.cpa_question_bank_releases where status='active'"}),signal:AbortSignal.timeout(30000)});
+assert(response.ok,'Read-only active release inspection failed');
+const data=await response.json();assert(Array.isArray(data)&&data.length===1);
+fs.writeFileSync(R+'/production-baseline-read-v2.json',JSON.stringify({read_at:new Date().toISOString(),project,read_only:true,active:data[0]},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify(data[0]));

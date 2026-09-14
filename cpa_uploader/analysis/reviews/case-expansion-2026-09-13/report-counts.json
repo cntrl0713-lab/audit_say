@@ -1,0 +1,1464 @@
+{
+  "schema_version": 1,
+  "reviewer": "agent /root/expand_c",
+  "created_at_utc": "2026-09-13T02:04:26.589Z",
+  "scope": "독립 전후 수치·형상·보존 대조. 실제 채점, 의미 승인, 사람 확인, 정본·공개본·운영 DB 반영의 증거가 아님.",
+  "inputs": [
+    {
+      "file": "cpa_uploader/drafts/case-expansion-2026-09-13/bank-before.json",
+      "sha256": "8c8b2e5ab1de4222a6be4be69958b3a52650ce90054dd2bdf78b1c69a36ea668"
+    },
+    {
+      "file": "cpa_uploader/drafts/case-expansion-2026-09-13/catalog-before.json",
+      "sha256": "14cedd646454e8f8e8a2f544f3e88f3c9b694e2784f8f6082bf3e039e1b31145"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/candidate-v1.json",
+      "sha256": "10fbbf890c1659609dda55e10d721df7b4f4badf7e2cffda71ecb23b2c8c13a9"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/catalog-v1.json",
+      "sha256": "2b0857a4719f560d6731d1f1635a71ae9bdd264eee54ee6cef219db0b3ddb723"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/shape-check.json",
+      "sha256": "3889b17d5582109e1fcc547676913657c1ed83243d054aef0d0b921e4177983f"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/target-ids.json",
+      "sha256": "e53b88575a27a25f742abb970b463be061a8172a3bcd162b7e4e41e427d43cbd"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/standard-lineage.json",
+      "sha256": "b5099b29b5f7ec10797ba5c711b03ce4cc0a318d3a7207a2ee1bd6c4f8615d09"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/authoring-check.json",
+      "sha256": "18902b3f74bee0766e5df0ee49eb9957c734dc18d9786e19a683d818fb234c1e"
+    }
+  ],
+  "methods": {
+    "classification": "각 시점 catalog.classifications의 source_set_id + subquestion_id 및 question_style로 분류. 물음 순번·번호·제목·저장세트 사실 유무로 추정하지 않음.",
+    "learning_units": "기준서형 독립 물음 수 + 사례형 물음이 하나 이상 연결된 source_set_id의 고유 개수.",
+    "facts_characters": "facts[].text를 원순서로 단일 LF(\\n)로 연결한 문자열의 Unicode 코드포인트 수. 공백·줄바꿈을 포함하고 trim/정규화하지 않음.",
+    "points": "lib/questionV3.ts computeSubquestionMaxPoints와 동일하게 모든 물음의 criterion.max_points를 합산.",
+    "unchanged_bytes": "각 입력 원본 JSON의 최상위 세트 객체 첫 {부터 대응하는 }까지 원문을 그대로 추출한 UTF-8 바이트 비교. 객체 내부 공백·줄바꿈·프로퍼티 순서를 포함하며 객체 사이 배열 구분 공백은 제외. 재직렬화 해시로 대체하지 않음.",
+    "separated_standards": "보강 전 23개 세트 내 catalog 기준 기준서형 35물음 전수와 standard-lineage의 목적 물음을 대조. model_answer 및 criterion 전체 객체, criterion ID·점수, 총배점, 기존 독립 발문을 확인."
+  },
+  "totals": {
+    "before": {
+      "stored_sets": 155,
+      "all_questions": 364,
+      "standard_questions": 288,
+      "case_questions": 76,
+      "case_parents": 41,
+      "learning_units": 329,
+      "total_points": 1298,
+      "standard_points": 1079,
+      "case_points": 219,
+      "case_shape": {
+        "minimum_facts_characters": 86,
+        "below_two_questions": [
+          "pilot-04-005",
+          "pilot-12-001",
+          "pilot-13-007",
+          "draft-04-320-freq01",
+          "draft-09-501-freq01",
+          "pilot-03-005",
+          "pilot-04-006",
+          "pilot-07-007",
+          "pilot-16-011",
+          "pilot-03-006",
+          "pilot-04-007",
+          "pilot-08-008",
+          "pilot-06-008",
+          "pilot-13-011",
+          "pilot-10-007",
+          "pilot-12-009",
+          "pilot-12-010",
+          "pilot-15-006",
+          "pilot-16-012"
+        ],
+        "below_400_characters": [
+          "pilot-04-005",
+          "pilot-12-001",
+          "pilot-13-007",
+          "draft-04-320-freq01",
+          "draft-09-501-freq01",
+          "pilot-03-005",
+          "pilot-04-006",
+          "pilot-07-007",
+          "pilot-14-007",
+          "pilot-16-011",
+          "pilot-02-007",
+          "pilot-03-006",
+          "pilot-04-007",
+          "pilot-13-011",
+          "pilot-10-006",
+          "pilot-10-007",
+          "pilot-12-009",
+          "pilot-16-012",
+          "pilot-14-008"
+        ]
+      }
+    },
+    "after": {
+      "stored_sets": 180,
+      "all_questions": 390,
+      "standard_questions": 288,
+      "case_questions": 102,
+      "case_parents": 43,
+      "learning_units": 331,
+      "total_points": 1367,
+      "standard_points": 1079,
+      "case_points": 288,
+      "case_shape": {
+        "minimum_facts_characters": 427,
+        "below_two_questions": [],
+        "below_400_characters": []
+      }
+    },
+    "delta": {
+      "stored_sets": 25,
+      "all_questions": 26,
+      "standard_questions": 0,
+      "case_questions": 26,
+      "case_parents": 2,
+      "learning_units": 2,
+      "total_points": 69,
+      "standard_points": 0,
+      "case_points": 69
+    }
+  },
+  "strengthened_existing_cases": {
+    "count": 23,
+    "all_meet_requested_shape": true,
+    "rows": [
+      {
+        "set_id": "pilot-04-005",
+        "title_before": "최종감사파일의 보존과 중요성의 문서화",
+        "title_after": "최종감사파일 보존과 취합 후 설명 보완",
+        "before": {
+          "facts_characters": 86,
+          "case_questions": 1,
+          "case_points": 2,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 595,
+          "case_questions": 2,
+          "case_points": 7,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 509,
+          "case_questions": 1,
+          "case_points": 5
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-12-001",
+        "title_before": "감사종결 단계에서의 서면진술 및 계속기업 평가",
+        "title_after": "계속기업 평가기간과 자금계획의 검증",
+        "before": {
+          "facts_characters": 140,
+          "case_questions": 1,
+          "case_points": 2,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 608,
+          "case_questions": 2,
+          "case_points": 6,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 468,
+          "case_questions": 1,
+          "case_points": 4
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-13-007",
+        "title_before": "유형 1 보고서와 서비스조직 통제의 운영효과성",
+        "title_after": "급여 서비스조직의 유형 1 보고서와 추가 통제증거",
+        "before": {
+          "facts_characters": 107,
+          "case_questions": 1,
+          "case_points": 2,
+          "standard_questions_in_original_storage_set": 2
+        },
+        "after": {
+          "facts_characters": 583,
+          "case_questions": 2,
+          "case_points": 4,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 476,
+          "case_questions": 1,
+          "case_points": 2
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "draft-04-320-freq01",
+        "title_before": "예외적인 이익 감소와 중요성 벤치마크·이용자 정보수요",
+        "title_after": "일회성 이익 감소와 기업 인수 공시의 중요성",
+        "before": {
+          "facts_characters": 230,
+          "case_questions": 1,
+          "case_points": 2,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 616,
+          "case_questions": 2,
+          "case_points": 4,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 386,
+          "case_questions": 1,
+          "case_points": 2
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "draft-09-501-freq01",
+        "title_before": "재무제표일과 다른 날짜의 재고실사 및 재고변동 통제",
+        "title_after": "기중 재고실사와 결산일까지의 재고변동 통제",
+        "before": {
+          "facts_characters": 119,
+          "case_questions": 1,
+          "case_points": 1,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 586,
+          "case_questions": 2,
+          "case_points": 5,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 467,
+          "case_questions": 1,
+          "case_points": 4
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-03-005",
+        "title_before": "감사 수임의 정보 접근권과 계약서 필수사항",
+        "title_after": "감사 수임의 정보 접근권과 보고서 관련 계약 조항",
+        "before": {
+          "facts_characters": 392,
+          "case_questions": 1,
+          "case_points": 2,
+          "standard_questions_in_original_storage_set": 2
+        },
+        "after": {
+          "facts_characters": 645,
+          "case_questions": 2,
+          "case_points": 4,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 253,
+          "case_questions": 1,
+          "case_points": 2
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-04-006",
+        "title_before": "감사문서의 작성·취합과 취합 후 변경",
+        "title_after": "감사문서의 적시 작성과 행정적 취합의 경계",
+        "before": {
+          "facts_characters": 173,
+          "case_questions": 1,
+          "case_points": 3,
+          "standard_questions_in_original_storage_set": 2
+        },
+        "after": {
+          "facts_characters": 626,
+          "case_questions": 2,
+          "case_points": 7,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 453,
+          "case_questions": 1,
+          "case_points": 4
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-07-007",
+        "title_before": "효과적인 통제와 별도로 수행하는 실증절차",
+        "title_after": "효과적인 통제와 유의적 위험에 대응하는 실증절차",
+        "before": {
+          "facts_characters": 356,
+          "case_questions": 1,
+          "case_points": 3,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 623,
+          "case_questions": 2,
+          "case_points": 5,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 267,
+          "case_questions": 1,
+          "case_points": 2
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-14-007",
+        "title_before": "부문의 유의성과 추가 업무유형의 결정",
+        "title_after": "부문의 유의성과 추가 업무유형의 결정",
+        "before": {
+          "facts_characters": 390,
+          "case_questions": 3,
+          "case_points": 9,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 627,
+          "case_questions": 3,
+          "case_points": 9,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 237,
+          "case_questions": 0,
+          "case_points": 0
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-16-011",
+        "title_before": "기타정보 수정거부에 대한 보고서일 전후 대응",
+        "title_after": "기타정보 수정거부에 대한 보고서일 전후 대응",
+        "before": {
+          "facts_characters": 290,
+          "case_questions": 1,
+          "case_points": 3,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 602,
+          "case_questions": 2,
+          "case_points": 5,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 312,
+          "case_questions": 1,
+          "case_points": 2
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-02-007",
+        "title_before": "감사의 고유한계와 사후 수행평가",
+        "title_after": "감사절차의 비용 제약과 사후 부정 발견의 평가",
+        "before": {
+          "facts_characters": 368,
+          "case_questions": 2,
+          "case_points": 7,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 616,
+          "case_questions": 2,
+          "case_points": 7,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 248,
+          "case_questions": 0,
+          "case_points": 0
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-03-006",
+        "title_before": "감사에서 낮은 확신 업무로의 변경과 후속 조치",
+        "title_after": "감사업무 변경 사유와 원래 감사가 차단된 경우의 대응",
+        "before": {
+          "facts_characters": 369,
+          "case_questions": 1,
+          "case_points": 4,
+          "standard_questions_in_original_storage_set": 2
+        },
+        "after": {
+          "facts_characters": 619,
+          "case_questions": 2,
+          "case_points": 6,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 250,
+          "case_questions": 1,
+          "case_points": 2
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-04-007",
+        "title_before": "수행중요성의 목적과 전문가적 판단",
+        "title_after": "수행중요성 결정과 기업 상황의 변화",
+        "before": {
+          "facts_characters": 150,
+          "case_questions": 1,
+          "case_points": 2,
+          "standard_questions_in_original_storage_set": 3
+        },
+        "after": {
+          "facts_characters": 597,
+          "case_questions": 2,
+          "case_points": 5,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 447,
+          "case_questions": 1,
+          "case_points": 3
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-08-008",
+        "title_before": "경영진측 전문가의 평가보고서와 상충하는 증거",
+        "title_after": "경영진측 전문가의 적합성과 상충하는 계약 증거",
+        "before": {
+          "facts_characters": 408,
+          "case_questions": 1,
+          "case_points": 3,
+          "standard_questions_in_original_storage_set": 3
+        },
+        "after": {
+          "facts_characters": 623,
+          "case_questions": 2,
+          "case_points": 5,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 215,
+          "case_questions": 1,
+          "case_points": 2
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-06-008",
+        "title_before": "기업이 놓친 위험과 새로운 정보에 따른 평가 갱신",
+        "title_after": "자산 평가의 고유위험과 기업 위험평가절차의 누락",
+        "before": {
+          "facts_characters": 462,
+          "case_questions": 1,
+          "case_points": 4,
+          "standard_questions_in_original_storage_set": 2
+        },
+        "after": {
+          "facts_characters": 646,
+          "case_questions": 2,
+          "case_points": 7,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 184,
+          "case_questions": 1,
+          "case_points": 3
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-13-011",
+        "title_before": "유형2 보고서의 기간·보충통제와 하위서비스조직",
+        "title_after": "급여 유형 2 보고서의 제외 범위와 이용자기업 통제",
+        "before": {
+          "facts_characters": 211,
+          "case_questions": 1,
+          "case_points": 2,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 637,
+          "case_questions": 2,
+          "case_points": 6,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 426,
+          "case_questions": 1,
+          "case_points": 4
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-10-006",
+        "title_before": "표본위험의 방향과 불충분한 표본결론의 후속 대응",
+        "title_after": "매출채권 표본위험의 방향과 감사에 미치는 영향",
+        "before": {
+          "facts_characters": 386,
+          "case_questions": 2,
+          "case_points": 6,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 607,
+          "case_questions": 2,
+          "case_points": 6,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 221,
+          "case_questions": 0,
+          "case_points": 0
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-10-007",
+        "title_before": "분석적절차의 수행단계와 이자비용 분석의 보완",
+        "title_after": "이자비용 분석의 기대치와 차이 조사",
+        "before": {
+          "facts_characters": 377,
+          "case_questions": 1,
+          "case_points": 3,
+          "standard_questions_in_original_storage_set": 3
+        },
+        "after": {
+          "facts_characters": 633,
+          "case_questions": 2,
+          "case_points": 5,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 256,
+          "case_questions": 1,
+          "case_points": 2
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-12-009",
+        "title_before": "수정 후 남은 왜곡표시와 미수정 항목의 종결 평가",
+        "title_after": "경영진 수정 후 추가절차와 미수정왜곡표시 평가",
+        "before": {
+          "facts_characters": 220,
+          "case_questions": 1,
+          "case_points": 2,
+          "standard_questions_in_original_storage_set": 2
+        },
+        "after": {
+          "facts_characters": 591,
+          "case_questions": 2,
+          "case_points": 5,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 371,
+          "case_questions": 1,
+          "case_points": 3
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-12-010",
+        "title_before": "서면진술 일부 미제공과 특정 의견거절 사유",
+        "title_after": "서면진술 미제공의 범위와 경영진 교체",
+        "before": {
+          "facts_characters": 411,
+          "case_questions": 1,
+          "case_points": 3,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 633,
+          "case_questions": 2,
+          "case_points": 7,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 222,
+          "case_questions": 1,
+          "case_points": 4
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-15-006",
+        "title_before": "의견거절 보고서 초안의 표현과 다른 보고단락",
+        "title_after": "의견거절 보고서의 의견·감사인책임 단락 수정",
+        "before": {
+          "facts_characters": 526,
+          "case_questions": 1,
+          "case_points": 4,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 669,
+          "case_questions": 2,
+          "case_points": 7,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 143,
+          "case_questions": 1,
+          "case_points": 3
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-16-012",
+        "title_before": "핵심감사사항 비공개 예외와 판단의 문서화",
+        "title_after": "계약 분쟁 핵심감사사항의 비공개 예외",
+        "before": {
+          "facts_characters": 316,
+          "case_questions": 1,
+          "case_points": 4,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 605,
+          "case_questions": 3,
+          "case_points": 4,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 289,
+          "case_questions": 2,
+          "case_points": 0
+        },
+        "meets_requested_shape": true
+      },
+      {
+        "set_id": "pilot-14-008",
+        "title_before": "그룹감사의 중요성 검증과 왜곡표시 보고한도",
+        "title_after": "그룹 보고한도의 결정과 부문중요성 합계",
+        "before": {
+          "facts_characters": 300,
+          "case_questions": 2,
+          "case_points": 5,
+          "standard_questions_in_original_storage_set": 1
+        },
+        "after": {
+          "facts_characters": 613,
+          "case_questions": 2,
+          "case_points": 5,
+          "standard_questions_in_case_storage_set": 0
+        },
+        "delta": {
+          "facts_characters": 313,
+          "case_questions": 0,
+          "case_points": 0
+        },
+        "meets_requested_shape": true
+      }
+    ]
+  },
+  "new_cases": {
+    "count": 2,
+    "case_questions": 6,
+    "total_points": 16,
+    "rows": [
+      {
+        "set_id": "case-05-management-override-20260913",
+        "title": "특별 권한 분개와 낙관적인 추정치에 대한 대응",
+        "facts_characters": 669,
+        "case_questions": 3,
+        "case_points": 8,
+        "standard_questions": 0
+      },
+      {
+        "set_id": "case-11-undisclosed-related-party-20260913",
+        "title": "누락된 특수관계자 보증과 정상거래조건 주장",
+        "facts_characters": 689,
+        "case_questions": 3,
+        "case_points": 8,
+        "standard_questions": 0
+      }
+    ]
+  },
+  "separated_standards": {
+    "count": 35,
+    "target_storage_sets": 23,
+    "total_points_before": 138,
+    "total_points_after": 138,
+    "all_model_answers_preserved": true,
+    "all_points_and_criteria_preserved": true,
+    "all_standalone_prompts_preserved": true,
+    "rows": [
+      {
+        "source_set_id": "pilot-04-005",
+        "source_subquestion_id": "sub2",
+        "target_set_id": "pilot-04-005-standards-20260913",
+        "target_subquestion_id": "sub2",
+        "model_answer_sha256_before": "3819e39fab4291048e0ab348f4b33e0149a1768c38a465eaf56181c425f10942",
+        "model_answer_sha256_after": "3819e39fab4291048e0ab348f4b33e0149a1768c38a465eaf56181c425f10942",
+        "model_answer_identical": true,
+        "points_before": 5,
+        "points_after": 5,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-12-001",
+        "source_subquestion_id": "subq1",
+        "target_set_id": "pilot-12-001-standards-20260913",
+        "target_subquestion_id": "subq1",
+        "model_answer_sha256_before": "3542537cef76defb0bc2b59cb9b1c2461774875ea4c23cf9fc1da7ae16171822",
+        "model_answer_sha256_after": "3542537cef76defb0bc2b59cb9b1c2461774875ea4c23cf9fc1da7ae16171822",
+        "model_answer_identical": true,
+        "points_before": 3,
+        "points_after": 3,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-13-007",
+        "source_subquestion_id": "sub2",
+        "target_set_id": "pilot-13-007-standards-20260913",
+        "target_subquestion_id": "sub2",
+        "model_answer_sha256_before": "708854dd5d335136e1f2f3eba45d9f3c6a04ebf4353912ec6239f202da26304b",
+        "model_answer_sha256_after": "708854dd5d335136e1f2f3eba45d9f3c6a04ebf4353912ec6239f202da26304b",
+        "model_answer_identical": true,
+        "points_before": 3,
+        "points_after": 3,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-13-007",
+        "source_subquestion_id": "sub3",
+        "target_set_id": "pilot-13-007-standards-20260913",
+        "target_subquestion_id": "sub3",
+        "model_answer_sha256_before": "d2dcdc880bb2a8417594818d5b1019056b88c9dcef9551840fe2c3fae80274da",
+        "model_answer_sha256_after": "d2dcdc880bb2a8417594818d5b1019056b88c9dcef9551840fe2c3fae80274da",
+        "model_answer_identical": true,
+        "points_before": 3,
+        "points_after": 3,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "draft-04-320-freq01",
+        "source_subquestion_id": "q2",
+        "target_set_id": "draft-04-320-freq01-standards-20260913",
+        "target_subquestion_id": "q2",
+        "model_answer_sha256_before": "94ee553db508afb54d8fba433e953871b9cc0df4ac4f4828c6808d775ad82f5d",
+        "model_answer_sha256_after": "94ee553db508afb54d8fba433e953871b9cc0df4ac4f4828c6808d775ad82f5d",
+        "model_answer_identical": true,
+        "points_before": 2,
+        "points_after": 2,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "draft-09-501-freq01",
+        "source_subquestion_id": "q2",
+        "target_set_id": "draft-09-501-freq01-standards-20260913",
+        "target_subquestion_id": "q2",
+        "model_answer_sha256_before": "428ff7ffc54b35fad52fecef633a582053390474929d6df119185545b47e83a1",
+        "model_answer_sha256_after": "428ff7ffc54b35fad52fecef633a582053390474929d6df119185545b47e83a1",
+        "model_answer_identical": true,
+        "points_before": 4,
+        "points_after": 4,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-03-005",
+        "source_subquestion_id": "sub1",
+        "target_set_id": "pilot-03-005-standards-20260913",
+        "target_subquestion_id": "sub1",
+        "model_answer_sha256_before": "d2d6570430eb3b03f0e5b37fc94a318f42904fb3f188459b0111d7fc9dff8ec8",
+        "model_answer_sha256_after": "d2d6570430eb3b03f0e5b37fc94a318f42904fb3f188459b0111d7fc9dff8ec8",
+        "model_answer_identical": true,
+        "points_before": 3,
+        "points_after": 3,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-03-005",
+        "source_subquestion_id": "sub2",
+        "target_set_id": "pilot-03-005-standards-20260913",
+        "target_subquestion_id": "sub2",
+        "model_answer_sha256_before": "3dd9dacd595b7f2cfd7536a882cbf38aa9000fc8bfd3520b913df53e1ad7dd64",
+        "model_answer_sha256_after": "3dd9dacd595b7f2cfd7536a882cbf38aa9000fc8bfd3520b913df53e1ad7dd64",
+        "model_answer_identical": true,
+        "points_before": 8,
+        "points_after": 8,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-04-006",
+        "source_subquestion_id": "sub2",
+        "target_set_id": "pilot-04-006-standards-20260913",
+        "target_subquestion_id": "sub2",
+        "model_answer_sha256_before": "078aa6e0f69254552a5b028e8c0e6c1540358c26ad36a0826a309bc35e82029a",
+        "model_answer_sha256_after": "078aa6e0f69254552a5b028e8c0e6c1540358c26ad36a0826a309bc35e82029a",
+        "model_answer_identical": true,
+        "points_before": 6,
+        "points_after": 6,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-04-006",
+        "source_subquestion_id": "sub3",
+        "target_set_id": "pilot-04-006-standards-20260913",
+        "target_subquestion_id": "sub3",
+        "model_answer_sha256_before": "b4709f1d4dc279711dc50517344caf533ae5b75d762ae1a1858114ca7ad82dac",
+        "model_answer_sha256_after": "b4709f1d4dc279711dc50517344caf533ae5b75d762ae1a1858114ca7ad82dac",
+        "model_answer_identical": true,
+        "points_before": 5,
+        "points_after": 5,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-07-007",
+        "source_subquestion_id": "sub2",
+        "target_set_id": "pilot-07-007-standards-20260913",
+        "target_subquestion_id": "sub2",
+        "model_answer_sha256_before": "43cf5c7b17908f6bb2323cdd6c615ad2d48eee4d0f3c129ff8167fc8f5f7b118",
+        "model_answer_sha256_after": "43cf5c7b17908f6bb2323cdd6c615ad2d48eee4d0f3c129ff8167fc8f5f7b118",
+        "model_answer_identical": true,
+        "points_before": 2,
+        "points_after": 2,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-14-007",
+        "source_subquestion_id": "sub4",
+        "target_set_id": "pilot-14-007-standards-20260913",
+        "target_subquestion_id": "sub4",
+        "model_answer_sha256_before": "43f713ce4ee59ebcac65748d4f8a3d4c033d0cc2f3f62fb9dc17c86845015e18",
+        "model_answer_sha256_after": "43f713ce4ee59ebcac65748d4f8a3d4c033d0cc2f3f62fb9dc17c86845015e18",
+        "model_answer_identical": true,
+        "points_before": 5,
+        "points_after": 5,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-16-011",
+        "source_subquestion_id": "sub2",
+        "target_set_id": "pilot-16-011-standards-20260913",
+        "target_subquestion_id": "sub2",
+        "model_answer_sha256_before": "133a1f6f01652d094abcc64378933fed5a00a49debe0df053c663934ef44e5b0",
+        "model_answer_sha256_after": "133a1f6f01652d094abcc64378933fed5a00a49debe0df053c663934ef44e5b0",
+        "model_answer_identical": true,
+        "points_before": 3,
+        "points_after": 3,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-02-007",
+        "source_subquestion_id": "sub1",
+        "target_set_id": "pilot-02-007-standards-20260913",
+        "target_subquestion_id": "sub1",
+        "model_answer_sha256_before": "b85786af7776161b054aa3f10507272922029fec394b2b1b22d7f80d89db83b0",
+        "model_answer_sha256_after": "b85786af7776161b054aa3f10507272922029fec394b2b1b22d7f80d89db83b0",
+        "model_answer_identical": true,
+        "points_before": 3,
+        "points_after": 3,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-03-006",
+        "source_subquestion_id": "sub2",
+        "target_set_id": "pilot-03-006-standards-20260913",
+        "target_subquestion_id": "sub2",
+        "model_answer_sha256_before": "0840787290037dbb05cfee6f10268783ed5c2b9c6de0d4ed5641519228d8b68b",
+        "model_answer_sha256_after": "0840787290037dbb05cfee6f10268783ed5c2b9c6de0d4ed5641519228d8b68b",
+        "model_answer_identical": true,
+        "points_before": 2,
+        "points_after": 2,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-03-006",
+        "source_subquestion_id": "sub3",
+        "target_set_id": "pilot-03-006-standards-20260913",
+        "target_subquestion_id": "sub3",
+        "model_answer_sha256_before": "eda69c5d9eeb1fb34ce882873c2d0942ee1fdeddb31d73db32b32cd7bac5f190",
+        "model_answer_sha256_after": "eda69c5d9eeb1fb34ce882873c2d0942ee1fdeddb31d73db32b32cd7bac5f190",
+        "model_answer_identical": true,
+        "points_before": 4,
+        "points_after": 4,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-04-007",
+        "source_subquestion_id": "sub1",
+        "target_set_id": "pilot-04-007-standards-20260913",
+        "target_subquestion_id": "sub1",
+        "model_answer_sha256_before": "4dea2938b3de1d7edbf0d4074de90956591c4adbca908d8f3176b6c4030dc443",
+        "model_answer_sha256_after": "4dea2938b3de1d7edbf0d4074de90956591c4adbca908d8f3176b6c4030dc443",
+        "model_answer_identical": true,
+        "points_before": 3,
+        "points_after": 3,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-04-007",
+        "source_subquestion_id": "sub4",
+        "target_set_id": "pilot-04-007-standards-20260913",
+        "target_subquestion_id": "sub4",
+        "model_answer_sha256_before": "7bd4fd9d86ffdbf384cbc91d4db9bf40b447e67d9674a66dfdc363386d77022e",
+        "model_answer_sha256_after": "7bd4fd9d86ffdbf384cbc91d4db9bf40b447e67d9674a66dfdc363386d77022e",
+        "model_answer_identical": true,
+        "points_before": 3,
+        "points_after": 3,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-04-007",
+        "source_subquestion_id": "sub3",
+        "target_set_id": "pilot-04-007-standards-20260913",
+        "target_subquestion_id": "sub3",
+        "model_answer_sha256_before": "17d9358b86c5517feefad2468aa4faeec52631ab0015543c04c29b4097ceffa7",
+        "model_answer_sha256_after": "17d9358b86c5517feefad2468aa4faeec52631ab0015543c04c29b4097ceffa7",
+        "model_answer_identical": true,
+        "points_before": 4,
+        "points_after": 4,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-08-008",
+        "source_subquestion_id": "sub2",
+        "target_set_id": "pilot-08-008-standards-20260913",
+        "target_subquestion_id": "sub2",
+        "model_answer_sha256_before": "6d00ff49fa2743ec52ade3d71e7dfc0ef8c041de04ed8570fd84c6fd573606d6",
+        "model_answer_sha256_after": "6d00ff49fa2743ec52ade3d71e7dfc0ef8c041de04ed8570fd84c6fd573606d6",
+        "model_answer_identical": true,
+        "points_before": 8,
+        "points_after": 8,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-08-008",
+        "source_subquestion_id": "sub4",
+        "target_set_id": "pilot-08-008-standards-20260913",
+        "target_subquestion_id": "sub4",
+        "model_answer_sha256_before": "fb591e51e2e637c5aac1a76caf9a36916b30d7ba6b2c808f372e1fbed3bd1407",
+        "model_answer_sha256_after": "fb591e51e2e637c5aac1a76caf9a36916b30d7ba6b2c808f372e1fbed3bd1407",
+        "model_answer_identical": true,
+        "points_before": 9,
+        "points_after": 9,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-08-008",
+        "source_subquestion_id": "sub3",
+        "target_set_id": "pilot-08-008-standards-20260913",
+        "target_subquestion_id": "sub3",
+        "model_answer_sha256_before": "fa78a6d01e2326e632ba365756fbe377a8a3b26442d80b55237cf1975c20fa13",
+        "model_answer_sha256_after": "fa78a6d01e2326e632ba365756fbe377a8a3b26442d80b55237cf1975c20fa13",
+        "model_answer_identical": true,
+        "points_before": 2,
+        "points_after": 2,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-06-008",
+        "source_subquestion_id": "sub1",
+        "target_set_id": "pilot-06-008-standards-20260913",
+        "target_subquestion_id": "sub1",
+        "model_answer_sha256_before": "b5e8ef869eb76a37b5afd3f125f0a01854c3a2833f6651a7e051104c89533695",
+        "model_answer_sha256_after": "b5e8ef869eb76a37b5afd3f125f0a01854c3a2833f6651a7e051104c89533695",
+        "model_answer_identical": true,
+        "points_before": 3,
+        "points_after": 3,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-06-008",
+        "source_subquestion_id": "sub3",
+        "target_set_id": "pilot-06-008-standards-20260913",
+        "target_subquestion_id": "sub3",
+        "model_answer_sha256_before": "f3b7dc12670d210900ee0ecf16d939963cc310bd1063ce4a282855939984a239",
+        "model_answer_sha256_after": "f3b7dc12670d210900ee0ecf16d939963cc310bd1063ce4a282855939984a239",
+        "model_answer_identical": true,
+        "points_before": 2,
+        "points_after": 2,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-13-011",
+        "source_subquestion_id": "sub1",
+        "target_set_id": "pilot-13-011-standards-20260913",
+        "target_subquestion_id": "sub1",
+        "model_answer_sha256_before": "b50cf77a7a3dbb1bffa37899470fcbc21ff54ab4c42b153f1cbc9d09b59fa0a8",
+        "model_answer_sha256_after": "b50cf77a7a3dbb1bffa37899470fcbc21ff54ab4c42b153f1cbc9d09b59fa0a8",
+        "model_answer_identical": true,
+        "points_before": 9,
+        "points_after": 9,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-10-006",
+        "source_subquestion_id": "sub3",
+        "target_set_id": "pilot-10-006-standards-20260913",
+        "target_subquestion_id": "sub3",
+        "model_answer_sha256_before": "4b148e90f460030f2d670b5f97f194f242bbb72487c1c39f1d0a49a3a4c752fe",
+        "model_answer_sha256_after": "4b148e90f460030f2d670b5f97f194f242bbb72487c1c39f1d0a49a3a4c752fe",
+        "model_answer_identical": true,
+        "points_before": 3,
+        "points_after": 3,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-10-007",
+        "source_subquestion_id": "sub1",
+        "target_set_id": "pilot-10-007-standards-20260913",
+        "target_subquestion_id": "sub1",
+        "model_answer_sha256_before": "8e6fd4cdbad51d59af7d28fc28f269c7793d6f7364e956e0a1ec31a037e0f199",
+        "model_answer_sha256_after": "8e6fd4cdbad51d59af7d28fc28f269c7793d6f7364e956e0a1ec31a037e0f199",
+        "model_answer_identical": true,
+        "points_before": 4,
+        "points_after": 4,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-10-007",
+        "source_subquestion_id": "sub4",
+        "target_set_id": "pilot-10-007-standards-20260913",
+        "target_subquestion_id": "sub4",
+        "model_answer_sha256_before": "3f80c7b31921af02c63c5cab00217ef06ae77c58783f6bac9a43d0a7cf778253",
+        "model_answer_sha256_after": "3f80c7b31921af02c63c5cab00217ef06ae77c58783f6bac9a43d0a7cf778253",
+        "model_answer_identical": true,
+        "points_before": 3,
+        "points_after": 3,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-10-007",
+        "source_subquestion_id": "sub3",
+        "target_set_id": "pilot-10-007-standards-20260913",
+        "target_subquestion_id": "sub3",
+        "model_answer_sha256_before": "debd1c03f2a079661c028ce000875148da374bd01e5874314a9adfa519f6468d",
+        "model_answer_sha256_after": "debd1c03f2a079661c028ce000875148da374bd01e5874314a9adfa519f6468d",
+        "model_answer_identical": true,
+        "points_before": 2,
+        "points_after": 2,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-12-009",
+        "source_subquestion_id": "sub2",
+        "target_set_id": "pilot-12-009-standards-20260913",
+        "target_subquestion_id": "sub2",
+        "model_answer_sha256_before": "88dd957d365f6d53f0dcdf47ceee5ddd95465232bd74277f406a6fe31dad2bfb",
+        "model_answer_sha256_after": "88dd957d365f6d53f0dcdf47ceee5ddd95465232bd74277f406a6fe31dad2bfb",
+        "model_answer_identical": true,
+        "points_before": 2,
+        "points_after": 2,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-12-009",
+        "source_subquestion_id": "sub3",
+        "target_set_id": "pilot-12-009-standards-20260913",
+        "target_subquestion_id": "sub3",
+        "model_answer_sha256_before": "18effb74a9dca736b08f0ca9e297cd78298c7da4815170ce8c3a5130bd51b0ca",
+        "model_answer_sha256_after": "18effb74a9dca736b08f0ca9e297cd78298c7da4815170ce8c3a5130bd51b0ca",
+        "model_answer_identical": true,
+        "points_before": 5,
+        "points_after": 5,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-12-010",
+        "source_subquestion_id": "sub2",
+        "target_set_id": "pilot-12-010-standards-20260913",
+        "target_subquestion_id": "sub2",
+        "model_answer_sha256_before": "4a7959f39c1586fe5eb523ca39dd57f850c374b1e3860ce2c9815decbd9ff684",
+        "model_answer_sha256_after": "4a7959f39c1586fe5eb523ca39dd57f850c374b1e3860ce2c9815decbd9ff684",
+        "model_answer_identical": true,
+        "points_before": 5,
+        "points_after": 5,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-15-006",
+        "source_subquestion_id": "sub2",
+        "target_set_id": "pilot-15-006-standards-20260913",
+        "target_subquestion_id": "sub2",
+        "model_answer_sha256_before": "03cd58d24292e267a643fca70f208beedeba9e243f9099a937206e5de33c4f0e",
+        "model_answer_sha256_after": "03cd58d24292e267a643fca70f208beedeba9e243f9099a937206e5de33c4f0e",
+        "model_answer_identical": true,
+        "points_before": 2,
+        "points_after": 2,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-16-012",
+        "source_subquestion_id": "sub2",
+        "target_set_id": "pilot-16-012-standards-20260913",
+        "target_subquestion_id": "sub2",
+        "model_answer_sha256_before": "a4632b9d04b30ba4c1d580ba0f16332965a4143c9721d68e22bfd75fb7c14af4",
+        "model_answer_sha256_after": "a4632b9d04b30ba4c1d580ba0f16332965a4143c9721d68e22bfd75fb7c14af4",
+        "model_answer_identical": true,
+        "points_before": 5,
+        "points_after": 5,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      },
+      {
+        "source_set_id": "pilot-14-008",
+        "source_subquestion_id": "sub1",
+        "target_set_id": "pilot-14-008-standards-20260913",
+        "target_subquestion_id": "sub1",
+        "model_answer_sha256_before": "90daf6cc6ad5bac21c48bc19ee1bb4ee30f2394c9d34bf7327be9d445de438ba",
+        "model_answer_sha256_after": "90daf6cc6ad5bac21c48bc19ee1bb4ee30f2394c9d34bf7327be9d445de438ba",
+        "model_answer_identical": true,
+        "points_before": 3,
+        "points_after": 3,
+        "points_identical": true,
+        "criterion_ids_and_scores_identical": true,
+        "criteria_full_object_identical": true,
+        "standalone_prompt_preserved": true,
+        "classification_preserved": true
+      }
+    ]
+  },
+  "unchanged_existing_cases": {
+    "count": 18,
+    "all_byte_identical": true,
+    "rows": [
+      {
+        "set_id": "pilot-16-008",
+        "title": "대응수치의 전기 변형 미해결과 전임감사인 보고서 언급",
+        "raw_object_utf8_bytes_before": 33883,
+        "raw_object_utf8_bytes_after": 33883,
+        "before_sha256": "71ecde5365c39e56dd84a3db07731fade6855f4a5d3703b8ec057ee3d6b45ad4",
+        "after_sha256": "71ecde5365c39e56dd84a3db07731fade6855f4a5d3703b8ec057ee3d6b45ad4",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-02-006",
+        "title": "전문가적 의구심의 의미와 증거평가",
+        "raw_object_utf8_bytes_before": 26990,
+        "raw_object_utf8_bytes_after": 26990,
+        "before_sha256": "22dfaa38a81a09cd15f8aff13f62913535e8b2d81ab3d17a6d7a51ad9058bd4d",
+        "after_sha256": "22dfaa38a81a09cd15f8aff13f62913535e8b2d81ab3d17a6d7a51ad9058bd4d",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-01-005",
+        "title": "주식보수·공동사업·낮은 보수의 윤리적 판단",
+        "raw_object_utf8_bytes_before": 33392,
+        "raw_object_utf8_bytes_after": 33392,
+        "before_sha256": "74abbbf88a3df8f86f24fc8abfc741e7ebeb24a85b36379db51e74b9fe6533d0",
+        "after_sha256": "74abbbf88a3df8f86f24fc8abfc741e7ebeb24a85b36379db51e74b9fe6533d0",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-08-006",
+        "title": "매출채권 연령분석표의 정확성·완전성과 목적 적합성",
+        "raw_object_utf8_bytes_before": 26960,
+        "raw_object_utf8_bytes_after": 26960,
+        "before_sha256": "57fe71252f8a9d0ca810034679f27d4b171b3969262eb9dc9265a15c4f4a750e",
+        "after_sha256": "57fe71252f8a9d0ca810034679f27d4b171b3969262eb9dc9265a15c4f4a750e",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-08-007",
+        "title": "매출 검증의 추출 방향과 수출거래의 기간귀속",
+        "raw_object_utf8_bytes_before": 39238,
+        "raw_object_utf8_bytes_after": 39238,
+        "before_sha256": "767840a8f6a07c657946f10dad2bf6ce1bc8c560ecfffb40d03d1050a1156762",
+        "after_sha256": "767840a8f6a07c657946f10dad2bf6ce1bc8c560ecfffb40d03d1050a1156762",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-06-006",
+        "title": "구매·지급 권한의 집중과 보완 통제",
+        "raw_object_utf8_bytes_before": 72779,
+        "raw_object_utf8_bytes_after": 72779,
+        "before_sha256": "5b7fc5abad51bbeeb5601e341deabac064b39861ed7865d996d1d45b154d8b2b",
+        "after_sha256": "5b7fc5abad51bbeeb5601e341deabac064b39861ed7865d996d1d45b154d8b2b",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-06-007",
+        "title": "ERP의 접근·변경 위험과 통제 이해",
+        "raw_object_utf8_bytes_before": 54840,
+        "raw_object_utf8_bytes_after": 54840,
+        "before_sha256": "888d56f88e114aae94fb5208c5a504e5e28cf477c0946b0d3736f29d625a9184",
+        "after_sha256": "888d56f88e114aae94fb5208c5a504e5e28cf477c0946b0d3736f29d625a9184",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-07-006",
+        "title": "전기 통제증거의 재사용과 당기 중간기간 증거",
+        "raw_object_utf8_bytes_before": 55592,
+        "raw_object_utf8_bytes_after": 55592,
+        "before_sha256": "3326dc0cd7c9cad89ee50ca08fdb14488a838aa3e72d181cd7353e13ab16d782",
+        "after_sha256": "3326dc0cd7c9cad89ee50ca08fdb14488a838aa3e72d181cd7353e13ab16d782",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-11-005",
+        "title": "회계추정치 도출방법과 추정불확실성에 대한 감사",
+        "raw_object_utf8_bytes_before": 58380,
+        "raw_object_utf8_bytes_after": 58380,
+        "before_sha256": "d885f3687d3b33e11344ad15742883829e4e028fc4a7eff6c1b846f2003a88d3",
+        "after_sha256": "d885f3687d3b33e11344ad15742883829e4e028fc4a7eff6c1b846f2003a88d3",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-14-006",
+        "title": "부문감사인의 독립성 결격과 적격성 우려에 대한 대응",
+        "raw_object_utf8_bytes_before": 27991,
+        "raw_object_utf8_bytes_after": 27991,
+        "before_sha256": "50f544ac8e7f6e447a022d94b3e3d7bc60d8d32c376267a144142bfc1a31848f",
+        "after_sha256": "50f544ac8e7f6e447a022d94b3e3d7bc60d8d32c376267a144142bfc1a31848f",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-16-010",
+        "title": "수정된 비교재무제표와 전임감사인 보고의 범위",
+        "raw_object_utf8_bytes_before": 28503,
+        "raw_object_utf8_bytes_after": 28503,
+        "before_sha256": "5a1be6cc29ce6cd7fadde71aca1428376ee483937c451eb78ee4adeeb8bb4387",
+        "after_sha256": "5a1be6cc29ce6cd7fadde71aca1428376ee483937c451eb78ee4adeeb8bb4387",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-17-005",
+        "title": "내부회계의 중요한 취약점과 서면진술 거부의 보고",
+        "raw_object_utf8_bytes_before": 46194,
+        "raw_object_utf8_bytes_after": 46194,
+        "before_sha256": "5420bacefbdd4d1387c3348f601b5378d6e188e2e4856928e6436b824e611ed9",
+        "after_sha256": "5420bacefbdd4d1387c3348f601b5378d6e188e2e4856928e6436b824e611ed9",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-07-008",
+        "title": "통제 의존 근거가 약해진 뒤의 매출·채권 감사계획",
+        "raw_object_utf8_bytes_before": 51172,
+        "raw_object_utf8_bytes_after": 51172,
+        "before_sha256": "6ecf50c7a4ce6344c1a4047d834c5d94b68271ee134463563de083fd64bd7659",
+        "after_sha256": "6ecf50c7a4ce6344c1a4047d834c5d94b68271ee134463563de083fd64bd7659",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-09-010",
+        "title": "전임감사 조서 접근 없이 기초잔액의 증거와 의견 판단",
+        "raw_object_utf8_bytes_before": 54027,
+        "raw_object_utf8_bytes_after": 54027,
+        "before_sha256": "ed4c4f6597c0a1aadec6a36b44434e8ac2e53cedf00f433bef76298ed2c4cd4e",
+        "after_sha256": "ed4c4f6597c0a1aadec6a36b44434e8ac2e53cedf00f433bef76298ed2c4cd4e",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-15-007",
+        "title": "최초 감사보고서일과 업무수행이사 이름의 공시",
+        "raw_object_utf8_bytes_before": 32134,
+        "raw_object_utf8_bytes_after": 32134,
+        "before_sha256": "202254b72d6c5d997e78f7fa6a53e4bbc473384e019ea7a6b37946eccf9c578b",
+        "after_sha256": "202254b72d6c5d997e78f7fa6a53e4bbc473384e019ea7a6b37946eccf9c578b",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-17-006",
+        "title": "운영효과성의 증거와 기말에 가까운 통제테스트",
+        "raw_object_utf8_bytes_before": 50735,
+        "raw_object_utf8_bytes_after": 50735,
+        "before_sha256": "fa891960c5c1a85a3743a29fcfc3ec1160ce2357e5cce622583bed66603bcc74",
+        "after_sha256": "fa891960c5c1a85a3743a29fcfc3ec1160ce2357e5cce622583bed66603bcc74",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-18-005",
+        "title": "소규모기업 감사기준의 적용대상과 경계값",
+        "raw_object_utf8_bytes_before": 35753,
+        "raw_object_utf8_bytes_after": 35753,
+        "before_sha256": "790fcf7ba09832d741737ba09133b7155ba7ce7d3d7a2bd1003857f1c12f1873",
+        "after_sha256": "790fcf7ba09832d741737ba09133b7155ba7ce7d3d7a2bd1003857f1c12f1873",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      },
+      {
+        "set_id": "pilot-19-005",
+        "title": "중간재무제표 검토의 결론 문구와 종결 판단",
+        "raw_object_utf8_bytes_before": 34423,
+        "raw_object_utf8_bytes_after": 34423,
+        "before_sha256": "5a227a43eae6b006c8beeb3c225ebd0ec3b25285e2cf5050536f5f71fdb00746",
+        "after_sha256": "5a227a43eae6b006c8beeb3c225ebd0ec3b25285e2cf5050536f5f71fdb00746",
+        "byte_identical": true,
+        "parsed_object_identical": true
+      }
+    ]
+  },
+  "shape_check_crosscheck": {
+    "rows_compared": 43,
+    "all_rows_match": true,
+    "totals_match": true,
+    "all_43_cases_meet_requested_shape": true
+  },
+  "checks": {
+    "catalog_coverage_and_uniqueness": "pass",
+    "changed_23_match_target_ids": "pass",
+    "new_2_cases": "pass",
+    "unchanged_18_raw_bytes": "pass",
+    "separated_35_standards": "pass",
+    "shape_check_43_cases": "pass",
+    "input_hashes_stable_during_computation": "pass"
+  },
+  "unresolved": []
+}

@@ -1,0 +1,35 @@
+diff --git a/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/reuse-source/complete-draft-evidence.mjs.txt b/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/complete-draft-evidence.mjs
+index 7055372a..80400fbe 100644
+--- a/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/reuse-source/complete-draft-evidence.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/complete-draft-evidence.mjs
+@@ -1,22 +1,16 @@
+ import fs from 'node:fs';
+ import assert from 'node:assert/strict';
+-import {createHash} from 'node:crypto';
+-const R='cpa_uploader/analysis/reviews/case-followup-2026-09-14',D='cpa_uploader/drafts/case-followup-2026-09-14';
+-const read=f=>JSON.parse(fs.readFileSync(f));
+-const ref=file=>({file,sha256:createHash('sha256').update(fs.readFileSync(file)).digest('hex')});
++import {R,D,read,ref,authorSources,sourceEvidencePlan} from './source-evidence.mjs';
+ const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(dir+'/'+e.name):[dir+'/'+e.name]);
+ const original=read(R+'/draft-evidence.json');for(const e of original)assert.equal(ref(e.file).sha256,e.sha256);
+ const extra=[...walk(D+'/a'),...walk(D+'/b')].filter(f=>/\.(json|md|txt)$/u.test(f));
+-const collection='cpa_uploader/raw/collections/2026-09-14-case-followup';
+-const pages='cpa_uploader/raw/collections/2026-09-14-case-followup-pages';
+-const files=[...new Set([...original.map(e=>e.file),...extra,
+- ...read(R+'/source-inventory.json').entries.map(e=>e.original_path),
+- ...['manifest.json','verification.json','index.md'].map(n=>collection+'/'+n),
+- ...['manifest.json','verification.json','index.md'].map(n=>pages+'/'+n),
+- D+'/source-peer-pages-inventory.json',...read(D+'/source-peer-pages-inventory.json').entries.map(e=>e.original_path),
+- R+'/source-fragments-check.json',D+'/source-peer-review.json',D+'/a-peer-review.json',D+'/b-peer-review.json',
+-])];
++const sources=['a','b'].flatMap(authorSources),sourcePlan=sourceEvidencePlan();
++const files=[...new Set([...original.map(e=>e.file),...extra,...sources.map(e=>e.file),...sourcePlan.files.map(e=>e.file),
++ D+'/source-catalog-final.json',D+'/a-peer-review.json',D+'/b-peer-review.json',
++ R+'/helpers/source-evidence.mjs',R+'/helpers/complete-draft-evidence.mjs',R+'/helpers/provenance.json'])];
++const completed=files.map(ref);
++for(const source of [...sources,...sourcePlan.files])assert.equal(ref(source.file).sha256,source.sha256,'Source changed while completing evidence');
+ assert(!fs.existsSync(R+'/draft-evidence-before-completion.json'));
+ fs.copyFileSync(R+'/draft-evidence.json',R+'/draft-evidence-before-completion.json',fs.constants.COPYFILE_EXCL);
+-fs.writeFileSync(R+'/draft-evidence.json',JSON.stringify(files.map(ref),null,2)+'\n');
++fs.writeFileSync(R+'/draft-evidence.json',JSON.stringify(completed,null,2)+'\n');
+ console.log({evidence_files:files.length});

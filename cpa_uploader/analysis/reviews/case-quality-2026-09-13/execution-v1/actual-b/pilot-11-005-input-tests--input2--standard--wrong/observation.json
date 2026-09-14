@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-11-005-input-tests--input2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-11-005-input-tests--input2--standard",
+  "source_set_id": "pilot-11-005-input-tests",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "input2"
+  ],
+  "projected_body_hash": "23c94498c125e619c28f6219d9920caef1c4caa3c2ad1d1a42ce5a005e64efea",
+  "answers": {
+    "input2": "유의적 가정의 선택과 적용에 관한 위험은 테스트할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "input2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.crit4",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        },
+        {
+          "criterion_id": "sub1.crit5",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "0eed68a2ab9d5216768042105b6a0eabda51f0d45ad4eecfc750af228e596198",
+  "schema_hash": "9ddeb4cc2ebe0dc5622990c5d7e328e37198a268e75da09236680c410c6bc3b2",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "input2",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.crit4",
+            "verdict": "contradicted",
+            "quote": "유의적 가정의 선택과 적용에 관한 위험은 테스트할 필요가 없다.",
+            "reason": "선택에 관한 위험을 테스트할 필요가 없다고 명시하여 요구 명제와 반대이다."
+          },
+          {
+            "criterion_id": "sub1.crit5",
+            "verdict": "contradicted",
+            "quote": "유의적 가정의 선택과 적용에 관한 위험은 테스트할 필요가 없다.",
+            "reason": "적용에 관한 위험을 테스트할 필요가 없다고 명시하여 요구 명제와 반대이다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "input2",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "input2/e0"
+                ],
+                "reason": "선택에 관한 위험을 테스트할 필요가 없다고 명시하여 요구 명제와 반대이다."
+              },
+              {
+                "criterion_id": "sub1.crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "input2/e0"
+                ],
+                "reason": "적용에 관한 위험을 테스트할 필요가 없다고 명시하여 요구 명제와 반대이다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-11-005-input-tests",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "input2",
+        "prompt": "경영진의 회계추정치 도출방법을 테스트하는 접근방법에서 유의적 가정에 관하여 다루어야 할 중요왜곡표시위험의 두 측면을, 선택과 적용으로 구별하여 설명하시오.",
+        "user_answer": "유의적 가정의 선택과 적용에 관한 위험은 테스트할 필요가 없다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub1.crit4",
+            "verdict": "contradicted",
+            "quote": "유의적 가정의 선택과 적용에 관한 위험은 테스트할 필요가 없다.",
+            "reason": "선택에 관한 위험을 테스트할 필요가 없다고 명시하여 요구 명제와 반대이다.",
+            "claim": "경영진이 유의적 가정을 선택한 것에 관련된 중요왜곡표시위험을 테스트한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.crit5",
+            "verdict": "contradicted",
+            "quote": "유의적 가정의 선택과 적용에 관한 위험은 테스트할 필요가 없다.",
+            "reason": "적용에 관한 위험을 테스트할 필요가 없다고 명시하여 요구 명제와 반대이다.",
+            "claim": "경영진이 선택한 유의적 가정을 적용한 것에 관련된 중요왜곡표시위험을 테스트한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진이 유의적 가정을 선택한 것에 관련된 중요왜곡표시위험을 테스트한다.",
+          "경영진이 선택한 유의적 가정을 적용한 것에 관련된 중요왜곡표시위험을 테스트한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "input2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a07d1392167c05c016aa5dcd0346887d08164bc8ef95d7c27",
+        "request_id": "req_6cdd3272e3fc44cc8b943957e4e3f7a0",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2381,
+          "input_tokens_details": {
+            "cache_write_tokens": 2378,
+            "cached_tokens": 0
+          },
+          "output_tokens": 208,
+          "output_tokens_details": {
+            "reasoning_tokens": 50
+          },
+          "total_tokens": 2589
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008447000000000001,
+        "min_usd": 0.0008447000000000001,
+        "max_usd": 0.0008447000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-11-005-input-tests--input2--standard--wrong/input.json",
+      "sha256": "c1030f241919438ccf2710e74279cea3e2dacefcfb2a481e62c5b8c13b05c5b6"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-11-005-input-tests--input2--standard--wrong/transport.jsonl",
+      "sha256": "ecb070196930ce7c7b29d413e3cd7707d408b318b9ae6655f520bcdc1ef4854c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-11-005-input-tests--input2--standard--wrong/traces.jsonl",
+      "sha256": "e3d2f28a479479c8f4ec754e41447bd3155df802d9f3c61c40f0898cf5c763e5"
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-0194805a515e--sub2--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-0194805a515e--sub2--standard",
+  "source_set_id": "std-points-20260914-0194805a515e",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "49b8e6a38f2d5f77eccd10308a7f8f2d801e5ee80b199daaedee0885dcb66dbd",
+  "answers": {
+    "sub2": "그 정보가 당기감사에도 계속 관련성이 있는지 평가한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 과거 감사 정보가 여전히 관련성이 있는지 평가함"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 과거 감사 정보가 여전히 신뢰할 수 있는지 평가함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "91b80fa8423261d555d682ff2f1fdfd07098618b55cd6cab2312ca1293f258d3",
+  "schema_hash": "84d63657d91af1f29ec0a6dd3c718e0feef72c2a43e1937e26e83b8448a1e080",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "그 정보가 당기감사에도 계속 관련성이 있는지 평가한다.",
+            "reason": "당기감사에도 계속 관련성이 있는지 평가한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "정보의 신뢰성 평가가 언급되지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "당기감사에도 계속 관련성이 있는지 평가한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "정보의 신뢰성 평가가 언급되지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-0194805a515e",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사인이 과거 감사에서 얻은 기업과 환경에 관한 정보를 당기 감사증거로 이용하려고 할 때, 감사기준서 315에 따라 그 정보를 검토할 두 측면을 제시하시오.",
+        "user_answer": "그 정보가 당기감사에도 계속 관련성이 있는지 평가한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "그 정보가 당기감사에도 계속 관련성이 있는지 평가한다.",
+            "reason": "당기감사에도 계속 관련성이 있는지 평가한다고 명시했다.",
+            "claim": "과거 감사 정보가 여전히 관련성이 있는지 평가함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "정보의 신뢰성 평가가 언급되지 않았다.",
+            "claim": "과거 감사 정보가 여전히 신뢰할 수 있는지 평가함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "당기감사의 감사증거로서 그 정보가 계속 관련성이 있는지, 신뢰성이 있는지를 평가한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_01d675e9745828b7016aa785e3bcbc87d0b0ecf20b0a883549",
+        "request_id": "req_5c8277e149534efba1302fc662192076",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2250,
+          "input_tokens_details": {
+            "cache_write_tokens": 2247,
+            "cached_tokens": 0
+          },
+          "output_tokens": 160,
+          "output_tokens_details": {
+            "reasoning_tokens": 34
+          },
+          "total_tokens": 2410
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00075435,
+        "min_usd": 0.00075435,
+        "max_usd": 0.00075435,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-0194805a515e--sub2--partial/input.json",
+      "sha256": "080cbccfaf1c0783141595500bea63a51ef7a44af60b710cb17464157766bbdd"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-0194805a515e--sub2--partial/transport.jsonl",
+      "sha256": "2ec3e27ee2a8667fb8ea979c14464739769599bf4610960987fee5e464452c98"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-0194805a515e--sub2--partial/traces.jsonl",
+      "sha256": "7653c985e2b28c6355f88cf38b58dad75dcd06db0c1cb53aeff4db52ea18f669"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+diff --git a/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/reuse-source/run-efficient-grading.ts.txt b/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/run-efficient-grading.ts
+index 519705a5..a1156caf 100644
+--- a/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/reuse-source/run-efficient-grading.ts.txt
++++ b/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/run-efficient-grading.ts
+@@ -4,20 +4,20 @@ import assert from 'node:assert/strict';
+ import { fileURLToPath } from 'node:url';
+ import { createHash } from 'node:crypto';
+ import OpenAI from 'openai';
+-import { OpenAIRequestError, withOpenAIUsageObserver } from '../../../../lib/ai/openaiStructured.ts';
+-import type { OpenAIResponseCreator } from '../../../../lib/ai/openaiStructured.ts';
+-import { gradeQuestionSetV3, applyQuestionSetJudgment, buildGradingPrompt, buildGradingResponseSchema, gradingModelName } from '../../../../lib/questionV3Grading.ts';
+-import type { GradingTraceV3, QuestionSetGradeResultV3, QuestionSetJudgmentV3 } from '../../../../lib/questionV3Grading.ts';
+-import { compilePublicQuestionSet, computeQuestionSetMaxPoints, computeSubquestionMaxPoints } from '../../../../lib/questionV3.ts';
+-import type { QuestionSetV3 } from '../../../../lib/questionV3.ts';
+-import { buildLearningUnits, selectLearningQuestionSet } from '../../../../lib/learningUnits.ts';
+-import type { LearningClassification, LearningTopic } from '../../../../lib/learningUnits.ts';
+-import { contentHash } from '../../../../lib/learningSubmission.ts';
+-import { assertEfficientEvidenceUnchanged, createEfficientValidationContext, validateReusableEfficientObservation } from '../../../../cpa_uploader/questionEfficientReview.ts';
++import { OpenAIRequestError, withOpenAIUsageObserver } from '../../../../../lib/ai/openaiStructured.ts';
++import type { OpenAIResponseCreator } from '../../../../../lib/ai/openaiStructured.ts';
++import { gradeQuestionSetV3, applyQuestionSetJudgment, buildGradingPrompt, buildGradingResponseSchema, gradingModelName } from '../../../../../lib/questionV3Grading.ts';
++import type { GradingTraceV3, QuestionSetGradeResultV3, QuestionSetJudgmentV3 } from '../../../../../lib/questionV3Grading.ts';
++import { compilePublicQuestionSet, computeQuestionSetMaxPoints, computeSubquestionMaxPoints } from '../../../../../lib/questionV3.ts';
++import type { QuestionSetV3 } from '../../../../../lib/questionV3.ts';
++import { buildLearningUnits, selectLearningQuestionSet } from '../../../../../lib/learningUnits.ts';
++import type { LearningClassification, LearningTopic } from '../../../../../lib/learningUnits.ts';
++import { contentHash } from '../../../../../lib/learningSubmission.ts';
++import { assertEfficientEvidenceUnchanged, createEfficientValidationContext, validateReusableEfficientObservation } from '../../../../../cpa_uploader/questionEfficientReview.ts';
+ import { assessUsageCost, isQuotaOrRateLimit, PRICING, safeError } from './accounting.ts';
+ import type { EfficientManifest, EfficientObservation, ExpectedSubquestion, FileIdentity, SubquestionComparison, UsageObservation } from './contract.ts';
+ 
+-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
++const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
+ const SELF = fileURLToPath(import.meta.url);
+ const sha = (value: string | Buffer) => createHash('sha256').update(value).digest('hex');
+ const relative = (file: string) => path.relative(ROOT, file).replaceAll('\\', '/');

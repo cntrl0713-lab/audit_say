@@ -1,0 +1,325 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-07-007--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-07-007--case",
+  "source_set_id": "pilot-07-007",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "exp1"
+  ],
+  "projected_body_hash": "6a1a40e212a44d50b8aa6201c7b6c3392d12dc9c34065453064c8c592cd9f501",
+  "answers": {
+    "sub1": "관련 통제가 효과적이므로 중요한 항목에도 실증절차는 전혀 필요 없다.",
+    "exp1": "유의적 위험에도 실증절차만으로 대응한다면 분석절차만 수행하면 충분하고 세부테스트는 넣을 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "사례의 결정적 조건에 반대되는 답안이며, 독립적으로 맞는 조치나 이유도 포함하지 않는다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "사례의 결정적 조건에 반대되는 답안이며, 독립적으로 맞는 조치나 이유도 포함하지 않는다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "사례의 결정적 조건에 반대되는 답안이며, 독립적으로 맞는 조치나 이유도 포함하지 않는다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "exp1.c1",
+          "verdict": "not_met",
+          "reason": "사례의 결정적 조건에 반대되는 답안이며, 독립적으로 맞는 조치나 이유도 포함하지 않는다."
+        },
+        {
+          "criterion_id": "exp1.c2",
+          "verdict": "not_met",
+          "reason": "사례의 결정적 조건에 반대되는 답안이며, 독립적으로 맞는 조치나 이유도 포함하지 않는다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "540f647fa6c41bd4cede586ba81e43e91e461556baf1fbaf0a900f3984d307f8",
+  "schema_hash": "743c8d5123b4b30ffa0f85c99dc80c6cf6bc77a7e4f6da085df37e1c19ebfcf7",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "관련 통제가 효과적이므로 중요한 항목에도 실증절차는 전혀 필요 없다.",
+            "reason": "중요한 항목에도 실증절차가 전혀 필요 없다고 명시하여 요구된 원칙과 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "위험평가의 판단 한계에 대한 설명이 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "내부통제의 고유한계에 대한 설명이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp1",
+        "verdicts": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "contradicted",
+            "quote": "유의적 위험에도 실증절차만으로 대응한다면 분석절차만 수행하면 충분하고 세부테스트는 넣을 필요가 없다.",
+            "reason": "분석절차만으로 충분하고 세부테스트가 불필요하다고 하여 계획의 부적절성과 추가 필요성을 반대로 판단했다."
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "contradicted",
+            "quote": "유의적 위험에도 실증절차만으로 대응한다면 분석절차만 수행하면 충분하고 세부테스트는 넣을 필요가 없다.",
+            "reason": "유의적 위험에 실증절차만으로 대응하는 경우에도 세부테스트가 필요 없다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "중요한 항목에도 실증절차가 전혀 필요 없다고 명시하여 요구된 원칙과 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "위험평가의 판단 한계에 대한 설명이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "내부통제의 고유한계에 대한 설명이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp1",
+            "verdicts": [
+              {
+                "criterion_id": "exp1.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "분석절차만으로 충분하고 세부테스트가 불필요하다고 하여 계획의 부적절성과 추가 필요성을 반대로 판단했다."
+              },
+              {
+                "criterion_id": "exp1.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "유의적 위험에 실증절차만으로 대응하는 경우에도 세부테스트가 필요 없다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-07-007",
+    "score": 0,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "팀장의 실증절차 생략 계획을 평가하고, 중요한 거래유형·계정잔액·공시에 관한 수행 원칙을 제시하시오. 이어 이 원칙이 필요한 이유를 감사인의 위험평가와 내부통제의 고유한계 측면으로 나누어 설명하시오.",
+        "user_answer": "관련 통제가 효과적이므로 중요한 항목에도 실증절차는 전혀 필요 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "관련 통제가 효과적이므로 중요한 항목에도 실증절차는 전혀 필요 없다.",
+            "reason": "중요한 항목에도 실증절차가 전혀 필요 없다고 명시하여 요구된 원칙과 반대된다.",
+            "claim": "평가된 중요왜곡표시위험과 관계없이 중요한 각 거래유형·계정잔액·공시에 실증절차를 설계하고 수행해야 하므로, 제시된 종결단계 총괄 검토만 남기고 실증절차를 전부 생략할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "위험평가의 판단 한계에 대한 설명이 없다.",
+            "claim": "감사인의 위험평가에는 판단이 수반되므로 모든 중요왜곡표시위험이 식별되지 않을 수 있기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "내부통제의 고유한계에 대한 설명이 없다.",
+            "claim": "경영진의 통제무력화 등 내부통제에 고유한계가 존재하기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "평가된 중요왜곡표시위험과 관계없이 중요한 각 거래유형·계정잔액·공시에 실증절차를 설계하고 수행해야 하므로, 제시된 종결단계 총괄 검토만 남기고 실증절차를 전부 생략할 수 없다.",
+          "감사인의 위험평가에는 판단이 수반되므로 모든 중요왜곡표시위험이 식별되지 않을 수 있기 때문이다.",
+          "경영진의 통제무력화 등 내부통제에 고유한계가 존재하기 때문이다."
+        ]
+      },
+      {
+        "subquestion_id": "exp1",
+        "prompt": "금융상품 담당자의 실증적 분석절차만으로 구성한 계획이 적절한지 판단하고, 제시된 감사접근법에서 반드시 포함해야 할 테스트 유형과 그 이유를 설명하시오. 개별 테스트의 상세 수행방법은 요구하지 않는다.",
+        "user_answer": "유의적 위험에도 실증절차만으로 대응한다면 분석절차만 수행하면 충분하고 세부테스트는 넣을 필요가 없다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "contradicted",
+            "quote": "유의적 위험에도 실증절차만으로 대응한다면 분석절차만 수행하면 충분하고 세부테스트는 넣을 필요가 없다.",
+            "reason": "분석절차만으로 충분하고 세부테스트가 불필요하다고 하여 계획의 부적절성과 추가 필요성을 반대로 판단했다.",
+            "claim": "금융상품 평가에 실증적 분석절차만 수행하려는 제시된 계획을 부적절하다고 판단한다. 세부테스트를 반드시 추가해야 한다는 이유와 조치에서 결론이 명확하면 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "contradicted",
+            "quote": "유의적 위험에도 실증절차만으로 대응한다면 분석절차만 수행하면 충분하고 세부테스트는 넣을 필요가 없다.",
+            "reason": "유의적 위험에 실증절차만으로 대응하는 경우에도 세부테스트가 필요 없다고 명시했다.",
+            "claim": "평가 위험이 유의적이고 이에 대한 접근이 실증절차만으로 구성된다는 두 조건 때문에 세부테스트를 반드시 포함해야 한다고 설명한다. 유의적 위험이라는 조건 없이 모든 실증절차에 세부테스트가 필수라고 일반화하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "제시된 금융상품 평가 계획은 부적절하다.",
+          "금융상품 평가가 유의적 위험이고 그 위험에 실증절차만으로 대응하기로 했으므로 세부테스트를 반드시 포함해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_09aee0ad868d7fd5016aa6034a701c87d0a962efa37ad1f7c9",
+        "request_id": "req_8baa21b6f0e0446f813bd6b6bc698f3f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3800,
+          "input_tokens_details": {
+            "cache_write_tokens": 3797,
+            "cached_tokens": 0
+          },
+          "output_tokens": 408,
+          "output_tokens_details": {
+            "reasoning_tokens": 80
+          },
+          "total_tokens": 4208
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00143945,
+        "min_usd": 0.00143945,
+        "max_usd": 0.00143945,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-07-007--case--wrong/input.json",
+      "sha256": "58f77151839a60f192e0b0c5131d71d13ad8a1563f253175f66e6e2428810f3d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-07-007--case--wrong/transport.jsonl",
+      "sha256": "12b77f5abe1ce997ccc1ef68bc22fa945392f910f8bbd4b8b9c0098fd3b90ac7"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-07-007--case--wrong/traces.jsonl",
+      "sha256": "d95f8562d389a3eb70884d6a33924aebd98af5a066d05309f85c29624c77eabe"
+    }
+  }
+}

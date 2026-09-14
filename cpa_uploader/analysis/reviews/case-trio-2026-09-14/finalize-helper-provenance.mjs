@@ -1,0 +1,26 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+const R='cpa_uploader/analysis/reviews/case-trio-2026-09-14',H=R+'/helpers',N=R+'/incremental-db-publication-v1';
+const read=file=>JSON.parse(fs.readFileSync(file));
+const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+const ref=file=>({file,sha256:hash(fs.readFileSync(file))});
+const write=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n',{flag:'wx'});
+const origins=read(H+'/reuse-origins.json');
+for(const row of origins.files){assert.equal(ref(row.source_file).sha256,row.sha256);assert.equal(ref(row.preserved_file).sha256,row.sha256);}
+assert.equal(read(H+'/static-checks.json').status,'passed');assert.equal(read(N+'/validation.json').status,'passed');
+assert(!fs.existsSync(H+'/provenance.json'));assert(!fs.existsSync(N+'/source-provenance.json'));
+fs.mkdirSync(H+'/reuse-diffs');
+const diffs=origins.files.filter(row=>row.target_file).map((row,index)=>{
+ const result=spawnSync('git',['diff','--no-index','--',row.preserved_file,row.target_file],{shell:false,windowsHide:true,encoding:'utf8'});
+ assert([0,1].includes(result.status));const file=H+'/reuse-diffs/'+String(index).padStart(2,'0')+'-'+row.target_file.split('/').at(-1)+'.diff';
+ fs.writeFileSync(file,result.stdout,{flag:'wx'});return {source_file:row.source_file,source_sha256:row.sha256,target:ref(row.target_file),changed:result.status===1,diff:ref(file)};
+});
+const dbFiles=origins.files.filter(row=>row.preserved_file.startsWith(N+'/')).map(row=>({file:row.source_file,sha256:row.sha256,preserved_file:row.preserved_file,status:'read_and_preserved_prior_code_or_evidence_not_current_execution'}));
+const runtime=['scripts/import-question-bank-v3.ts','supabase/migrations/20260911030000_cpa_question_learning_units.sql','supabase/migrations/20260912060000_cpa_private_source_metadata.sql','cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/c/verify-final-learning-rollout.ts'];
+for(const file of runtime){const bytes=fs.readFileSync(file),saved=N+'/sources/'+file.split('/').at(-1)+'.txt';fs.writeFileSync(saved,bytes,{flag:'wx'});dbFiles.push({file,sha256:hash(bytes),preserved_file:saved,status:'read_existing_importer_or_migration_or_verifier_contract'});}
+write(N+'/source-provenance.json',{version:1,collected_at:new Date().toISOString(),method:'Read final previous append code and successful roundtrip; preserve exact old bytes, adapt only this three-case batch and explicit positive-integer SQL input guard. This record establishes source lineage, not current DB application or independent approval.',files:dbFiles,derived_files:[ref(N+'/sources/installed-functions-after.json')],derivation:{file:N+'/sources/installed-functions-after.json',source:N+'/sources/prior-db-roundtrip.json',field:'after.functions',bytes_rewritten_for_shape:true},api_calls:0,canonical_writes:0,db_writes:0});
+const helperFiles=fs.readdirSync(H).filter(name=>/\.(mjs|ts|json|md)$/u.test(name)&&!['static-checks.json','reuse-origins.json'].includes(name)).map(name=>H+'/'+name);
+write(H+'/provenance.json',{version:1,created_at:new Date().toISOString(),method:'Source-preserving adaptations for exactly three cases and nine questions, with variable integer-score representative count, a/b/c input ownership, source-catalog-final, env-file precheck, pre-write coverage assembly and separately guarded incremental SQL deployment.',origins:ref(H+'/reuse-origins.json'),source_files:origins.files.filter(row=>row.target_file?.startsWith(H+'/')),files:helperFiles.map(ref),diffs,validation:ref(H+'/static-checks.json'),db_helpers:{source_provenance:ref(N+'/source-provenance.json'),validation:ref(N+'/validation.json'),independent_review:'required_before_prepare_not_yet_performed'},adaptation_script:ref(R+'/adapt-execution-helpers.mjs'),completion_script:ref(R+'/finalize-helper-provenance.mjs'),protected_root_inputs_edited:false,common_code_edited:false,api_calls:0,canonical_writes:0,db_writes:0});
+console.log(JSON.stringify({helper_provenance:ref(H+'/provenance.json'),db_source_provenance:ref(N+'/source-provenance.json'),db_code:['driver.mjs','append-contract.mjs'].map(name=>ref(N+'/'+name)),api_calls:0,canonical_writes:0,db_writes:0},null,2));

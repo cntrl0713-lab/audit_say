@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+const R='cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14';
+let text=fs.readFileSync(R+'/retry-db-publication-v3.mjs','utf8');
+const replace=(old,next)=>{assert.equal(text.split(old).length,2,'Unique replacement anchor required: '+old.slice(0,80));text=text.replace(old,next);};
+replace("O=R+'/db-publication-v3'","O=R+'/db-publication-v4'");
+replace("const helper=R+'/retry-db-publication-v3.mjs'","const helper=R+'/retry-db-publication-v4.mjs'");
+replace(" const body=JSON.stringify({base,source_document});assert(/^[a-f0-9]{64}$/.test(payloadHash));", " const dictionary=[],known=new Map(),line_ids=source_document.split('\\n').map(line=>{if(!known.has(line)){known.set(line,dictionary.length);dictionary.push(line);}return known.get(line);});\n assert.equal(line_ids.map(i=>dictionary[i]).join('\\n'),source_document);\n const body=JSON.stringify({base,dictionary,line_ids});assert(/^[a-f0-9]{64}$/.test(payloadHash));");
+replace(` const restore="with packed as materialized(select "+dollar(body,'reviewed_source_once')+"::jsonb as d),restored as materialized(select (d->'base')||jsonb_build_object('source_document',d->>'source_document','sets',(d->>'source_document')::jsonb) as p from packed) ";`, ` const restore="with packed as materialized(select "+dollar(body,'reviewed_line_dictionary')+"::jsonb as d),decoded as materialized(select d->'base' as base,(select string_agg(d->'dictionary'->>(x.v::int),E'\\\\n' order by x.ord) from jsonb_array_elements_text(d->'line_ids') with ordinality as x(v,ord)) as source_document from packed),restored as materialized(select base||jsonb_build_object('source_document',source_document,'sets',source_document::jsonb) as p from decoded) ";`);
+replace("R+'/build-db-retry-v3.mjs'].map(ref)","R+'/build-db-retry-v3.mjs',R+'/retry-db-publication-v3.mjs',R+'/source-once-probe-failure.json',R+'/build-db-retry-v4.mjs'].map(ref)");
+replace("source_transmissions:1,postgres_payload_hash:pgHash", "source_transmissions:1,encoding:'lossless-line-dictionary',postgres_payload_hash:pgHash");
+replace("source_transmissions:1,payload:","source_transmissions:1,encoding:'lossless-line-dictionary',payload:");
+const failedFile=R+'/source-once-probe-failure.json';assert(!fs.existsSync(failedFile));fs.writeFileSync(failedFile,JSON.stringify({recorded_at:new Date().toISOString(),status:'read_only_transport_probe_rejected',http_status:413,sqlstate:null,bank_write_calls:0,helper:{file:R+'/retry-db-publication-v3.mjs',sha256:createHash('sha256').update(fs.readFileSync(R+'/retry-db-publication-v3.mjs')).digest('hex')},source_sha256:createHash('sha256').update(fs.readFileSync('cpa_uploader/data/cpa_question_sets_v3.authoring.json')).digest('hex'),note:'Management request rejected the source-once SQL in BEGIN READ ONLY. Active release and all 12 history snapshots had passed before the probe. No DB import call was executed.'},null,2)+'\n',{flag:'wx'});
+const target=R+'/retry-db-publication-v4.mjs';assert(!fs.existsSync(target));fs.writeFileSync(target,text,{flag:'wx'});console.log(target);

@@ -1,0 +1,49 @@
+diff --git a/cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/sources/append-contract.mjs.txt b/cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/append-contract.mjs
+index a73b1b82..055f31d1 100644
+--- a/cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/sources/append-contract.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/append-contract.mjs
+@@ -6,8 +6,8 @@ import {learningCatalogForBank} from '../../../../../scripts/import-question-ban
+ import {compilePublicQuestionSet,computeQuestionSetMaxPoints} from '../../../../../lib/questionV3.ts';
+ import {canonicalJson,contentHash} from '../../../../../lib/learningSubmission.ts';
+ 
+-export const R='cpa_uploader/analysis/reviews/case-deepening-2026-09-14';
+-export const N=R+'/incremental-db-publication-v2',STAGE=R+'/publication-v2/stage';
++export const R='cpa_uploader/analysis/reviews/case-trio-2026-09-14';
++export const N=R+'/incremental-db-publication-v1',STAGE=R+'/publication-v1/stage';
+ export const PROJECT='xvifzicrjmbfqaepcfpp',RPC='cpa_import_learning_question_bank';
+ export const read=file=>JSON.parse(fs.readFileSync(file));
+ export const sha=value=>createHash('sha256').update(value).digest('hex');
+@@ -16,12 +16,12 @@ export const write=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null
+ export const guard=inputs=>{for(const row of inputs)assert.equal(ref(row.file).sha256,row.sha256,'Prepared input changed: '+row.file);};
+ 
+ export function buildLocal(){
+- const completion=read(R+'/publication-v2/stage-completion.json');assert.equal(completion.status,'validated_isolated_published_stage');guard(completion.files);
+- const baselineFile=R+'/integration-baseline-v2/bank.json',baselineDocument=fs.readFileSync(baselineFile,'utf8'),baseline=JSON.parse(baselineDocument);
++ const completion=read(R+'/publication-v1/stage-completion.json');assert.equal(completion.status,'validated_isolated_published_stage');guard(completion.files);
++ const baselineFile=R+'/integration-baseline/bank.json',baselineDocument=fs.readFileSync(baselineFile,'utf8'),baseline=JSON.parse(baselineDocument);
+  const document=fs.readFileSync(STAGE+'/authoring.json','utf8'),sets=JSON.parse(document),ids=read(R+'/changed-sets-v1.json');
+  const added=sets.slice(baseline.length),addedDocument=JSON.stringify(added,null,2)+'\n';
+- assert.equal(ids.length,6);assert.equal(new Set(ids).size,6);assert.equal(added.length,6);
+- assert.deepEqual(sets.slice(0,baseline.length),baseline,'Existing baseline objects or order changed');assert.deepEqual(added.map(s=>s.id),ids,'Only the six reviewed IDs may be appended');
++ assert.equal(ids.length,3);assert.equal(new Set(ids).size,3);assert.equal(added.length,3);
++ assert.deepEqual(sets.slice(0,baseline.length),baseline,'Existing baseline objects or order changed');assert.deepEqual(added.map(s=>s.id),ids,'Only the three reviewed IDs may be appended');
+  assert(added.every(set=>!baseline.some(old=>old.id===set.id)));
+  assert(sets.every(set=>set.status==='published'&&set.verification.review_status==='verified'));
+  assert(baselineDocument.endsWith('\n]\n'));assert(addedDocument.startsWith('[\n')&&addedDocument.endsWith('\n]\n'));
+@@ -33,7 +33,7 @@ export function buildLocal(){
+  assert.equal(canonicalJson(read(STAGE+'/public.json')),canonicalJson(compiled));
+  assert.equal(sets.length,readiness.set_count);assert.equal(sets.reduce((n,s)=>n+s.subquestions.length,0),readiness.subquestion_count);
+  assert.equal(sets.reduce((n,s)=>n+computeQuestionSetMaxPoints(s),0),readiness.max_points);assert.equal(sets.reduce((n,s)=>n+s.subquestions.reduce((m,q)=>m+q.criteria.length,0),0),readiness.criterion_count);
+- assert.equal(read(R+'/integration-baseline-v2.json').bank.sha256,sha(baselineDocument));assert.equal(read(R+'/sealed-v1/readiness.json').ready,true);
++ assert.equal(read(R+'/integration-baseline.json').bank.sha256,sha(baselineDocument));assert.equal(read(R+'/sealed-v1/readiness.json').ready,true);
+  const metadata={applicability:{},...catalog,source_file_hash:readiness.source_file_hash,bank_content_hash:readiness.bank_content_hash,public_content_hash:readiness.public_content_hash,evidence:R+'/sealed-v1/batch.json',source_validation:'external-importer',actor_user_id:null};
+  const payload={sets,...metadata,source_document:document};
+  return {baselineFile,baselineDocument,baseline,document,sets,ids,added,addedDocument,readiness,compiled,catalog,metadata,payload,completion};
+@@ -44,6 +44,7 @@ export function restoreCte(pack,baselineSql){
+  return `with packed as materialized(select ${dollar(JSON.stringify(pack))}::jsonb as d),baseline as materialized(${baselineSql}),restored as materialized(select d,(left(source_document,char_length(source_document)-3)||E',\\n'||substring(d->>'added_document' from 3)) as document,source_document as prior_document from packed cross join baseline),payload as materialized(select d,document,prior_document,(d->'metadata')||jsonb_build_object('source_document',document,'sets',document::jsonb) as p from restored) `;
+ }
+ export function buildSql(pack,expected,functions,payloadHash,probe=false){
++ assert(Number.isSafeInteger(expected.set_count)&&expected.set_count>0,'Positive integer baseline set count is required');
+  assert(/^[a-f0-9]{64}$/.test(payloadHash));assert(/^[a-f0-9]{64}$/.test(expected.source_file_hash));assert(/^[a-f0-9-]{36}$/.test(expected.release_id));
+  const functionGuards=functions.map(f=>{assert(/^[a-z_]+\((jsonb|uuid)\)$/.test(f.signature));assert(/^[a-f0-9]{64}$/.test(f.definition_sha256));return `if encode(sha256(convert_to(pg_get_functiondef('public.${f.signature}'::regprocedure),'UTF8')),'hex') is distinct from '${f.definition_sha256}' then raise exception 'Reviewed function changed'; end if;`;}).join('\n');
+  const cte=restoreCte(pack,"select source_document from public.cpa_question_bank_releases where status='active'");

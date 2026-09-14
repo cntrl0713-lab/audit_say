@@ -1,0 +1,333 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v2/grading-manifest.json",
+    "sha256": "c4c243a0c950c1aca1ce1cd75856185348414ce484a2764298162f25e92cc549"
+  },
+  "entry_id": "pilot-14-008--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-14-008--case",
+  "source_set_id": "pilot-14-008",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "326d5b39b8f2abfe488c1b58513a51d2392224ceb28d6c6fef4cc1be4226300e",
+  "answers": {
+    "sub2": "상황 가는 적절하다. 그룹 보고한도는 부문감사인이 그룹업무팀과 무관하게 최종 결정한다.",
+    "sub3": "모든 부문중요성의 합은 그룹재무제표 전체 중요성과 반드시 같아야 하므로 일률적으로 줄이는 제안은 적절하다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.crit1",
+          "verdict": "not_met",
+          "reason": "사례의 핵심 조건에 반대되는 명시적 결론 또는 조치이다. 맞는 독립 근거가 함께 포함되지 않아 0점으로 설정했다."
+        },
+        {
+          "criterion_id": "sub2.crit2",
+          "verdict": "not_met",
+          "reason": "사례의 핵심 조건에 반대되는 명시적 결론 또는 조치이다. 맞는 독립 근거가 함께 포함되지 않아 0점으로 설정했다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.crit1",
+          "verdict": "not_met",
+          "reason": "사례의 핵심 조건에 반대되는 명시적 결론 또는 조치이다. 맞는 독립 근거가 함께 포함되지 않아 0점으로 설정했다."
+        },
+        {
+          "criterion_id": "sub3.crit2",
+          "verdict": "not_met",
+          "reason": "사례의 핵심 조건에 반대되는 명시적 결론 또는 조치이다. 맞는 독립 근거가 함께 포함되지 않아 0점으로 설정했다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "사례의 핵심 조건에 반대되는 명시적 결론 또는 조치이다. 맞는 독립 근거가 함께 포함되지 않아 0점으로 설정했다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "6886a212cd37d94c0484cd29df4b5b8f1fb20cd1f1b5f2a2f489e98580b81b41",
+  "schema_hash": "9311c39321550a7049a35401f6af60b381d66c779a8f7d7023b5436c8aa2ffa8",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "contradicted",
+            "quote": "상황 가는 적절하다. 그룹 보고한도는 부문감사인이 그룹업무팀과 무관하게 최종 결정한다.",
+            "reason": "제안이 적절하다고 명시하여 부적절하다는 판단과 반대된다."
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "contradicted",
+            "quote": "그룹 보고한도는 부문감사인이 그룹업무팀과 무관하게 최종 결정한다.",
+            "reason": "부문감사인이 그룹업무팀과 무관하게 최종 결정한다고 하여 책임 주체를 반대로 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.crit1",
+            "verdict": "contradicted",
+            "quote": "모든 부문중요성의 합은 그룹재무제표 전체 중요성과 반드시 같아야 하므로 일률적으로 줄이는 제안은 적절하다.",
+            "reason": "일률적으로 줄이는 제안이 적절하다고 하여 제안이 부적절하다는 판단과 반대된다."
+          },
+          {
+            "criterion_id": "sub3.crit2",
+            "verdict": "contradicted",
+            "quote": "모든 부문중요성의 합은 그룹재무제표 전체 중요성과 반드시 같아야 하므로 일률적으로 줄이는 제안은 적절하다.",
+            "reason": "부문중요성의 합이 전체 중요성과 반드시 같아야 한다고 하여 일정 비율 배분이 불필요하다는 명제와 반대된다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "모든 부문중요성의 합은 그룹재무제표 전체 중요성과 반드시 같아야 하므로 일률적으로 줄이는 제안은 적절하다.",
+            "reason": "합계가 반드시 같아야 한다고 하여 전체 중요성을 초과할 수 있다는 명제와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "제안이 적절하다고 명시하여 부적절하다는 판단과 반대된다."
+              },
+              {
+                "criterion_id": "sub2.crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "부문감사인이 그룹업무팀과 무관하게 최종 결정한다고 하여 책임 주체를 반대로 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "일률적으로 줄이는 제안이 적절하다고 하여 제안이 부적절하다는 판단과 반대된다."
+              },
+              {
+                "criterion_id": "sub3.crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "부문중요성의 합이 전체 중요성과 반드시 같아야 한다고 하여 일정 비율 배분이 불필요하다는 명제와 반대된다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "합계가 반드시 같아야 한다고 하여 전체 중요성을 초과할 수 있다는 명제와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-14-008",
+    "score": 0,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "상황 가의 제안이 적절한지 판단하고, 그 판단의 근거로 보고한도를 최종 결정할 책임 주체를 제시하시오.",
+        "user_answer": "상황 가는 적절하다. 그룹 보고한도는 부문감사인이 그룹업무팀과 무관하게 최종 결정한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "contradicted",
+            "quote": "상황 가는 적절하다. 그룹 보고한도는 부문감사인이 그룹업무팀과 무관하게 최종 결정한다.",
+            "reason": "제안이 적절하다고 명시하여 부적절하다는 판단과 반대된다.",
+            "claim": "보고한도의 최종 결정을 부문감사인에게 넘기자는 제안은 부적절하다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "contradicted",
+            "quote": "그룹 보고한도는 부문감사인이 그룹업무팀과 무관하게 최종 결정한다.",
+            "reason": "부문감사인이 그룹업무팀과 무관하게 최종 결정한다고 하여 책임 주체를 반대로 제시했다.",
+            "claim": "해당 보고한도를 최종 결정할 책임 주체는 그룹업무팀이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "보고한도의 최종 결정을 부문감사인에게 넘기자는 제안은 부적절하다.",
+          "해당 보고한도를 최종 결정할 책임 주체는 그룹업무팀이다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "상황 나의 제안이 적절한지 판단하고, 부문중요성의 설정과 그 합계가 그룹재무제표 전체 중요성에 대해 가질 수 있는 관계를 이유로 설명하시오.",
+        "user_answer": "모든 부문중요성의 합은 그룹재무제표 전체 중요성과 반드시 같아야 하므로 일률적으로 줄이는 제안은 적절하다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub3.crit1",
+            "verdict": "contradicted",
+            "quote": "모든 부문중요성의 합은 그룹재무제표 전체 중요성과 반드시 같아야 하므로 일률적으로 줄이는 제안은 적절하다.",
+            "reason": "일률적으로 줄이는 제안이 적절하다고 하여 제안이 부적절하다는 판단과 반대된다.",
+            "claim": "모든 부문중요성의 합계를 그룹재무제표 전체 중요성과 반드시 일치시키려는 제안은 부적절하다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub3.crit2",
+            "verdict": "contradicted",
+            "quote": "모든 부문중요성의 합은 그룹재무제표 전체 중요성과 반드시 같아야 하므로 일률적으로 줄이는 제안은 적절하다.",
+            "reason": "부문중요성의 합이 전체 중요성과 반드시 같아야 한다고 하여 일정 비율 배분이 불필요하다는 명제와 반대된다.",
+            "claim": "부문중요성을 그룹재무제표 전체 중요성의 일정 비율로 배분할 필요는 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "모든 부문중요성의 합은 그룹재무제표 전체 중요성과 반드시 같아야 하므로 일률적으로 줄이는 제안은 적절하다.",
+            "reason": "합계가 반드시 같아야 한다고 하여 전체 중요성을 초과할 수 있다는 명제와 반대된다.",
+            "claim": "모든 부문중요성의 합계는 그룹재무제표 전체 중요성을 초과할 수 있다. 반드시 초과하거나 반드시 같아야 한다는 뜻이 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "모든 부문중요성의 합계를 그룹재무제표 전체 중요성과 반드시 일치시키려는 제안은 부적절하다.",
+          "부문중요성을 그룹재무제표 전체 중요성의 일정 비율로 배분할 필요는 없다.",
+          "모든 부문중요성의 합계는 그룹재무제표 전체 중요성을 초과할 수 있다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0018bb533296290f016aa604bb898c87d0b099532f61d86a30",
+        "request_id": "req_8b4903b6eb0343459d0906c872b3934c",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3691,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 3688
+          },
+          "output_tokens": 493,
+          "output_tokens_details": {
+            "reasoning_tokens": 122
+          },
+          "total_tokens": 4184
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0006659600000000001,
+        "min_usd": 0.0006659600000000001,
+        "max_usd": 0.0006659600000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v2/actual-c/pilot-14-008--case--wrong/input.json",
+      "sha256": "58fefc69a413d29800814b88e8ccbb508c66cc3ba4b5d6dfc9c949a98ae53286"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v2/actual-c/pilot-14-008--case--wrong/transport.jsonl",
+      "sha256": "e92ffdfe3a5fc9422cdf67e8c8b1c74403ffff96f163f278620a2649ce1a67dc"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v2/actual-c/pilot-14-008--case--wrong/traces.jsonl",
+      "sha256": "419de5721d5b3aac524ef25373426e9267acf6faddd16b996a6479f13fbf279a"
+    }
+  }
+}

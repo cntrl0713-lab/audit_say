@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/grading-manifest.json",
+    "sha256": "cdb499202fd2de0049d21221fa25db05190111cb75e7504f378f907f3871a98d"
+  },
+  "entry_id": "fix2-15c4192496ff-sub1-wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-15c4192496ff--sub1--standard",
+  "source_set_id": "std-points-20260914-15c4192496ff",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "b1b2e2b730facc7d63f3ec4d5ee9f6559ac312ee881368907fb7bee48a919d0f",
+  "answers": {
+    "sub1": "기존 업무는 모두 자동으로 충분하고 적합하므로 평가할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 기업과 기업환경의 이해를 포함한 이미 수행한 위험평가절차가 충분하고 적합한지 평가한다."
+        },
+        {
+          "criterion_id": "crit3.p2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 이미 설계하거나 수행한 추가감사절차가 충분하고 적합한지 평가한다."
+        },
+        {
+          "criterion_id": "crit3.p3",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 이미 수행한 문서화가 충분하고 적합한지 평가한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "f51e2fdee4cd4be1128ea1d97cbf2f6300b71df6cc1a1987e2eb89153d16c996",
+  "schema_hash": "ae6df27dceb2ac7035ce2ca24b2263e3f4225847efe84253273b9387978f08d4",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "기존 업무는 모두 자동으로 충분하고 적합하므로 평가할 필요가 없다.",
+            "reason": "위험평가절차의 충분성과 적합성을 평가할 필요가 없다고 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "contradicted",
+            "quote": "기존 업무는 모두 자동으로 충분하고 적합하므로 평가할 필요가 없다.",
+            "reason": "추가감사절차의 충분성과 적합성을 평가할 필요가 없다고 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit3.p3",
+            "verdict": "contradicted",
+            "quote": "기존 업무는 모두 자동으로 충분하고 적합하므로 평가할 필요가 없다.",
+            "reason": "문서화의 충분성과 적합성을 평가할 필요가 없다고 명시적으로 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "위험평가절차의 충분성과 적합성을 평가할 필요가 없다고 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit3.p2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "추가감사절차의 충분성과 적합성을 평가할 필요가 없다고 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit3.p3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "문서화의 충분성과 적합성을 평가할 필요가 없다고 명시적으로 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-15c4192496ff",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 1200(소규모기업 재무제표에 대한 감사) 적용 중 기업이 적용 조건을 충족하지 못하여 일반 감사기준서로 전환할 때, 이미 수행한 업무의 충분성과 적합성을 평가해야 한다. 그 평가에 포함할 세 범주를 설명하시오.",
+        "user_answer": "기존 업무는 모두 자동으로 충분하고 적합하므로 평가할 필요가 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "기존 업무는 모두 자동으로 충분하고 적합하므로 평가할 필요가 없다.",
+            "reason": "위험평가절차의 충분성과 적합성을 평가할 필요가 없다고 명시적으로 부정했다.",
+            "claim": "기업과 기업환경의 이해를 포함한 이미 수행한 위험평가절차가 충분하고 적합한지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "contradicted",
+            "quote": "기존 업무는 모두 자동으로 충분하고 적합하므로 평가할 필요가 없다.",
+            "reason": "추가감사절차의 충분성과 적합성을 평가할 필요가 없다고 명시적으로 부정했다.",
+            "claim": "이미 설계하거나 수행한 추가감사절차가 충분하고 적합한지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3.p3",
+            "verdict": "contradicted",
+            "quote": "기존 업무는 모두 자동으로 충분하고 적합하므로 평가할 필요가 없다.",
+            "reason": "문서화의 충분성과 적합성을 평가할 필요가 없다고 명시적으로 부정했다.",
+            "claim": "이미 수행한 문서화가 충분하고 적합한지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "기업과 기업환경의 이해를 포함한 이미 수행한 위험평가절차가 충분하고 적합한지 평가한다.",
+          "이미 설계하거나 수행한 추가감사절차와 이미 수행한 문서화가 충분하고 적합한지 각각 평가한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_04f759416ec64ebb016aa7b7faf8c487d083339f28cb03f478",
+        "request_id": "req_4c797e0838e04a84af0b9b7070a78f08",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2469,
+          "input_tokens_details": {
+            "cache_write_tokens": 2466,
+            "cached_tokens": 0
+          },
+          "output_tokens": 297,
+          "output_tokens_details": {
+            "reasoning_tokens": 89
+          },
+          "total_tokens": 2766
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009735,
+        "min_usd": 0.0009735,
+        "max_usd": 0.0009735,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/execution-v1/actual-b/fix2-15c4192496ff-sub1-wrong/input.json",
+      "sha256": "fd6d0f76ccf6c2eb56ea289caf49b8145209a1bd1258f09fc08a77e1c2580e80"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/execution-v1/actual-b/fix2-15c4192496ff-sub1-wrong/transport.jsonl",
+      "sha256": "cb28e6360f63c6d272ff9b33c6138a0e44f6d2bac67e6b364ebb832e02085ee7"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/execution-v1/actual-b/fix2-15c4192496ff-sub1-wrong/traces.jsonl",
+      "sha256": "aecc0dabd89f56b34e8b470bab04e6d6471f2544682016490b71371f9707a0d0"
+    }
+  }
+}

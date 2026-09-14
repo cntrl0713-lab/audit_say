@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/grading-manifest.json",
+    "sha256": "3d891b9811e47d4aae0e207e902eb831cc4a094841b24c96462e7d7c2d6be9a7"
+  },
+  "entry_id": "fix4-20260914-4906e3107ecd-sub1-wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-4906e3107ecd--sub1--standard",
+  "source_set_id": "std-points-20260914-4906e3107ecd",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "808c8bcf99d801aa4ef01bdda9d32dd7da5861a2cee5905cfaa962bd9915e9ed",
+  "answers": {
+    "sub1": "직원의 숙련도나 업무 책임은 내부통제와 무관하므로 이해 대상이 아니다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "직원 숙련도(적격성 있는 인력)를 이해 대상이 아니라고 명시해 인력관리 항목의 이해 요구를 반대로 썼다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "업무 책임을 이해 대상이 아니라고 명시해 개인 책임 이행 방법의 이해 요구를 반대로 썼다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "18d45683875076005b066c0d89d51190167c9c34cec456c15b0b34e60e074e4f",
+  "schema_hash": "dc0d665b24fa6323b49ed4f3490803060807756918f08ca399622792662290dc",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "직원의 숙련도나 업무 책임은 내부통제와 무관하므로 이해 대상이 아니다.",
+            "reason": "적격성 있는 인력의 숙련도와 관련 사항이 내부통제와 무관하다고 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "직원의 숙련도나 업무 책임은 내부통제와 무관하므로 이해 대상이 아니다.",
+            "reason": "업무 책임이 내부통제와 무관하다고 명시적으로 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "적격성 있는 인력의 숙련도와 관련 사항이 내부통제와 무관하다고 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "업무 책임이 내부통제와 무관하다고 명시적으로 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-4906e3107ecd",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 315 문단 21(a)에 따라 재무제표 작성과 관련된 통제환경을 이해할 때 파악할 통제·절차·구조 중 적격성 있는 인력 관리와 개인의 책임 이행에 관한 사항을 설명하시오.",
+        "user_answer": "직원의 숙련도나 업무 책임은 내부통제와 무관하므로 이해 대상이 아니다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "직원의 숙련도나 업무 책임은 내부통제와 무관하므로 이해 대상이 아니다.",
+            "reason": "적격성 있는 인력의 숙련도와 관련 사항이 내부통제와 무관하다고 명시적으로 부정했다.",
+            "claim": "기업이 적격성 있는 인력을 유치하고 육성하며 유지하는 방법을 이해한다. 감사기준서 315 문단 21(a)(iv)의 한 항목이므로 1점으로 평가한다. 유치·육성·유지 가운데 일부 행위만 쓰더라도 적격성 있는 인력을 관리하는 기업의 방법이라는 이 항목이 드러나면 인정하며, 세 행위를 나누어 따로 점수를 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "직원의 숙련도나 업무 책임은 내부통제와 무관하므로 이해 대상이 아니다.",
+            "reason": "업무 책임이 내부통제와 무관하다고 명시적으로 부정했다.",
+            "claim": "기업이 내부통제시스템의 목적을 추구하는 데 있어 개인에게 책임을 지게 하는 방법을 이해한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "기업이 적격성 있는 인력을 유치하고 육성하며 유지하는 방법을 각각 이해한다. 내부통제시스템의 목적을 추구하는 데 있어 개인에게 책임을 지게 하는 방법도 이해한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_078fecf21456fcc3016aa7cc48a3f487d086dfcbe95c57a1d1",
+        "request_id": "req_3a4474e7df904d37acf60eb38b53b677",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2440,
+          "input_tokens_details": {
+            "cache_write_tokens": 2437,
+            "cached_tokens": 0
+          },
+          "output_tokens": 257,
+          "output_tokens_details": {
+            "reasoning_tokens": 103
+          },
+          "total_tokens": 2697
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00091825,
+        "min_usd": 0.00091825,
+        "max_usd": 0.00091825,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/execution-v1/actual-c/fix4-20260914-4906e3107ecd-sub1-wrong/input.json",
+      "sha256": "67f4ba62413cd9dd8e277fd3a8ff1bfce599980a90b0a8e2aade6aebfa58fd41"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/execution-v1/actual-c/fix4-20260914-4906e3107ecd-sub1-wrong/transport.jsonl",
+      "sha256": "e3dd4991f818c8dba9b0b5846a3066024535d1e2158ebd9ebbb13c7c85beda67"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/execution-v1/actual-c/fix4-20260914-4906e3107ecd-sub1-wrong/traces.jsonl",
+      "sha256": "d968d7007c1b2d39fdd10fb744cb59e6f107ffbb7da477c1b6f86c2d178c465f"
+    }
+  }
+}

@@ -1,0 +1,905 @@
+{
+  "version": 1,
+  "artifact_type": "post_execution_deviation_review",
+  "reviewed_at": "2026-09-14T05:16:41.135Z",
+  "reviewer_id": "agent:/root/next_cases_late",
+  "human_review_performed": false,
+  "model_calls_performed_by_this_review": 0,
+  "scope": "B 담당의 유형2·기타정보·비교재무제표 3 wrong entry, 9물음·18 criterion의 원답안/원응답 내용 대조. 전체 54 관측은 점수·보안 집계만 별도로 재확인.",
+  "policy": "기대점수·원답안·criterion·모델 입력·원응답·실행 코드는 고정. 상태라벨 차이는 원 strict_matched=false를 유지하고 별도 판정서로 해석한다. 허용 ±1점에 맞추려고 기대값을 조정하지 않는다.",
+  "frozen_references": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/grading-manifest.json",
+      "sha256": "46bd89e7689cdcea72e421960ad22aaf164f6deaf9fec183a22345d175db2743"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/representatives.json",
+      "sha256": "3900be6b4f5e4b5043533b0f543f02bc4860f94fb11ec09320f389d4887b0344"
+    },
+    {
+      "file": "cpa_uploader/drafts/case-applied-2026-09-14/b/sets.json",
+      "sha256": "2f39dae1bd0bef5972c4afb4aa84fa72cb779f80c14e46b81421257c0ef42140"
+    },
+    {
+      "file": "cpa_uploader/drafts/case-applied-2026-09-14/b/qa.json",
+      "sha256": "1cdb6f122702ccc6736d3242b928b8775a0bd3134e3fb62445eaa38ac45a1c6d"
+    }
+  ],
+  "implementation_evidence": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/runtime/00-questionV3Grading.ts",
+      "sha256": "aae10461df894ccbad948f55e25787c15775be40c8337638f161ac2389394d2c",
+      "lines": [
+        225,
+        227
+      ],
+      "finding": "not_met는 누락·불명확·근거 부재, contradicted는 명시적 반대이다. 필수 조치를 부정한 답안을 단순 누락으로 판정하지 않도록 한다."
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/runtime/12-run-efficient-grading.ts",
+      "sha256": "e00080484ea0cec2d934d6b1a5f9ab6ae51b8fb1b7e6fa72b867f8e24367ef54",
+      "lines": [
+        72,
+        81
+      ],
+      "finding": "strict_matched는 점수 차이 0뿐 아니라 criterion별 상태 일치도 요구하므로 점수가 같아도 이 라벨 차이로 false가 된다."
+    }
+  ],
+  "rows": [
+    {
+      "entry_id": "case-13-type2-period-exceptions-20260914--case--wrong",
+      "source_set_id": "case-13-type2-period-exceptions-20260914",
+      "human_review_performed": false,
+      "method": "agent_read_original_answer_criterion_and_raw_response",
+      "evidence_refs": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-13-type2-period-exceptions-20260914--case--wrong/observation.json",
+          "sha256": "d191cfd598a179a93b113a6e2bf1288bcada221a4ab6de4292a023e94c6c4826"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-13-type2-period-exceptions-20260914--case--wrong/input.json",
+          "sha256": "adcd4958f276a5866ccbd3d3e32243ff1087f307ac6356e45d2515dff2f59ccd"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-13-type2-period-exceptions-20260914--case--wrong/transport.jsonl",
+          "sha256": "9bbd5f19f2412b596736efe2e27e3654043d80caa87265c272b3a2165ccc49f7"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-13-type2-period-exceptions-20260914--case--wrong/traces.jsonl",
+          "sha256": "a45bd6dcb4f1a958918d08ce55bea462f5fdb97e22a34c39149edbb600f4024a"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-13-type2-period-exceptions-20260914--case--wrong/usage.jsonl",
+          "sha256": "c5f64eb42909c40fb05c7c79a4c3094b0d7d90af5cc94f677230f99beee8bd5c"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/projections/case-13-type2-period-exceptions-20260914--case.json",
+          "sha256": "e7f5aa74300608ec1a94969fddf1836603f635b9a164445fc99a4b6f533d525a"
+        }
+      ],
+      "raw_response_locator": {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-13-type2-period-exceptions-20260914--case--wrong/transport.jsonl",
+        "line": 2,
+        "json_path": "response.output_text",
+        "response_id": "resp_03c33afb28ce3958016aa781f13aa487d0bee83d69f5a14788",
+        "request_id": "req_38a399f75c3a47ca91e517b38c202382",
+        "model": "gpt-5.6-luna"
+      },
+      "original_strict_matched": false,
+      "original_within_tolerance": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "score_delta": 0,
+      "label_difference_count": 6,
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "original_answer": "보고서가 유형 2이므로 12월까지 통제 운영이 입증된다. 대상기간은 증거의 충분성과 관계없다.",
+          "prompt": "갑의 연간 통제증거 처리 제안이 적절한지 판단하고, 보고서의 대상기간과 감사대상기간을 대조하여 이유를 설명하시오. 시스템 교체 후 추가절차와 테스트 예외의 평가는 여기서는 요구하지 않는다.",
+          "expected_points": 0,
+          "actual_points": 0,
+          "delta": 0,
+          "strict_matched": false,
+          "criteria": [
+            {
+              "criterion_id": "sub1.c1",
+              "claim": "현재의 유형 2 보고서만으로 12월 31일까지 급여 통제의 운영효과성을 입증한 것으로 처리할 수 없다.",
+              "source_ref_ids": [
+                "src-0f2c39b6322f710c8f",
+                "src-2685f4122ddcb2989d"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub1/e0"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub1/e0",
+                  "start": 0,
+                  "end": 52,
+                  "text": "보고서가 유형 2이므로 12월까지 통제 운영이 입증된다. 대상기간은 증거의 충분성과 관계없다."
+                }
+              ],
+              "model_reason": "유형 2 보고서만으로 12월까지 입증된다고 명시하여 요구 결론과 반대이다.",
+              "independent_finding": "유형 2라는 이유로 12월까지 운영효과가 입증된다고 명시하여 기간 공백의 결론을 반대로 썼다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            },
+            {
+              "criterion_id": "sub1.c2",
+              "claim": "보고서와 테스트가 1~9월에 한정되어 10~12월의 운영을 다루지 않으므로, 유형 2라는 명칭만으로 당기 전체에 필요한 시간적 범위의 증거가 충족되지 않는다.",
+              "source_ref_ids": [
+                "src-2685f4122ddcb2989d",
+                "src-0f2c39b6322f710c8f"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub1/e0",
+                "sub1/e2"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub1/e0",
+                  "start": 0,
+                  "end": 52,
+                  "text": "보고서가 유형 2이므로 12월까지 통제 운영이 입증된다. 대상기간은 증거의 충분성과 관계없다."
+                },
+                {
+                  "id": "sub1/e2",
+                  "start": 32,
+                  "end": 52,
+                  "text": "대상기간은 증거의 충분성과 관계없다."
+                }
+              ],
+              "model_reason": "유형 2라는 명칭으로 12월까지 입증된다고 하고 대상기간이 증거와 무관하다고 명시했다.",
+              "independent_finding": "대상기간은 충분성과 무관하다고 직접 부정했다. 기간이 짧다는 사실만 누락한 답안이 아니다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "original_answer": "10~12월 급여총액을 다시 계산하면 승인통제 테스트도 완료되므로 승인기록은 조사하지 않는다. 담당자가 같아 이전 통제증거도 그대로 유효하다.",
+          "prompt": "을의 계획을 보완하시오. 10월의 변화가 잔여기간의 증거입수 판단에 미치는 이유와, 현재 이용 가능한 접근방법을 통해 수행할 구체적인 추가 통제절차를 설명하시오.",
+          "expected_points": 0,
+          "actual_points": 0,
+          "delta": 0,
+          "strict_matched": false,
+          "criteria": [
+            {
+              "criterion_id": "sub2.c1",
+              "claim": "담당자가 같아도 10월의 시스템 교체·승인권한 이전·지급파일 승인절차 변경으로 테스트된 통제가 달라질 수 있으므로, 기존 증거를 그대로 적용하지 않고 변경 후 통제에 필요한 추가 증거를 판단해야 한다.",
+              "source_ref_ids": [
+                "src-2f38f9555094b041a6"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub2/e2"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub2/e2",
+                  "start": 53,
+                  "end": 79,
+                  "text": "담당자가 같아 이전 통제증거도 그대로 유효하다."
+                }
+              ],
+              "model_reason": "담당자가 같다는 이유로 이전 통제증거가 그대로 유효하다고 명시했다.",
+              "independent_finding": "담당자가 같다는 이유로 변경 후에도 이전 증거를 그대로 적용한다고 주장하여 통제변경의 영향을 부정했다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            },
+            {
+              "criterion_id": "sub2.c2",
+              "claim": "자료에 직접 접근할 수 있으므로 10~12월의 새 시스템 지급파일을 대상으로 승인기록과 권한 부여·승인 수행을 검사하는 등 변경 후 승인통제의 운영효과성 테스트를 수행한다.",
+              "source_ref_ids": [
+                "src-9e5692b1dc59bb7724",
+                "src-2685f4122ddcb2989d",
+                "src-2f38f9555094b041a6"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub2/e1"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub2/e1",
+                  "start": 0,
+                  "end": 53,
+                  "text": "10~12월 급여총액을 다시 계산하면 승인통제 테스트도 완료되므로 승인기록은 조사하지 않는다. "
+                }
+              ],
+              "model_reason": "급여총액 재계산만으로 승인통제 테스트가 완료된다고 하고 승인기록 조사를 명시적으로 배제했다.",
+              "independent_finding": "급여총액 재계산으로 승인통제 테스트를 대신하고 승인기록 조사를 명시적으로 배제했다. 재계산은 요구한 운영효과성 절차를 충족하지 않는다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub3",
+          "original_answer": "예외가 한 건이라도 있으면 보고서 전체를 반드시 배제하고, 다온의 승인통제나 급여 지급 위험과 연결해서 평가할 필요는 없다.",
+          "prompt": "병의 보고서 전체 배제 주장이 적절한지 판단하시오. 해당 예외를 평가할 때 지급파일 승인절차와 다온회사의 급여에 연결하여 무엇을 검토해야 하는지 설명하시오.",
+          "expected_points": 0,
+          "actual_points": 0,
+          "delta": 0,
+          "strict_matched": false,
+          "criteria": [
+            {
+              "criterion_id": "sub3.c1",
+              "claim": "승인 예외가 있다는 이유만으로 유형 2 보고서 전체가 위험평가에 도움이 되지 않는다고 자동 결론 내릴 수는 없다.",
+              "source_ref_ids": [
+                "src-0543b4c4dd51635414"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub3/e0"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub3/e0",
+                  "start": 0,
+                  "end": 69,
+                  "text": "예외가 한 건이라도 있으면 보고서 전체를 반드시 배제하고, 다온의 승인통제나 급여 지급 위험과 연결해서 평가할 필요는 없다."
+                }
+              ],
+              "model_reason": "예외가 한 건이라도 있으면 보고서 전체를 반드시 배제한다고 명시했다.",
+              "independent_finding": "예외 한 건이면 보고서 전체를 반드시 배제한다고 주장하여 자동 배제를 금지하는 판단을 정면으로 반대했다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            },
+            {
+              "criterion_id": "sub3.c2",
+              "claim": "같은 승인절차가 다온회사의 지급파일에도 적용되므로, 승인기록 없이 처리된 예외가 승인되지 않은 급여 지급을 예방하는 통제의 효과성과 그에 대한 위험평가를 뒷받침하는 증거에 어떤 영향을 미치는지 검토해야 한다.",
+              "source_ref_ids": [
+                "src-0f2c39b6322f710c8f",
+                "src-1c7338d63aa3d3b50b",
+                "src-0543b4c4dd51635414"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub3/e0"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub3/e0",
+                  "start": 0,
+                  "end": 69,
+                  "text": "예외가 한 건이라도 있으면 보고서 전체를 반드시 배제하고, 다온의 승인통제나 급여 지급 위험과 연결해서 평가할 필요는 없다."
+                }
+              ],
+              "model_reason": "다온의 승인통제 및 급여 지급 위험과 연결해 평가할 필요가 없다고 명시했다.",
+              "independent_finding": "다온의 승인통제·급여 지급 위험과 연결할 필요가 없다고 주장하여 독립적인 예외 영향 평가도 명시적으로 부정했다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            }
+          ]
+        }
+      ],
+      "finding": "기대 상태가 모든 오답 criterion을 not_met로 기록했지만, 원응답은 명시적 반대인 criterion을 contradicted로 세분했다. 누락과 반대의 구별은 입력 프롬프트의 정의에 맞고 모든 독립 criterion의 0점 기대값도 옳다. 발문·정답·배점·출처·인용 귀속·보안에 관한 신규 내용결함은 발견하지 않았다.",
+      "decision": "accept_zero_score_with_preserved_verdict_label_difference",
+      "change_or_rerun_required": false
+    },
+    {
+      "entry_id": "case-16-other-information-cause-20260914--case--wrong",
+      "source_set_id": "case-16-other-information-cause-20260914",
+      "human_review_performed": false,
+      "method": "agent_read_original_answer_criterion_and_raw_response",
+      "evidence_refs": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--wrong/observation.json",
+          "sha256": "802c9f3e33d45f2550efd663b44f30ca6a5c1ec93635e2a34bb6d2142f09823e"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--wrong/input.json",
+          "sha256": "47dab580b752bdbc6aa78a280252f245682899a82a6c0d1ec66ad9c8e833e61d"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--wrong/transport.jsonl",
+          "sha256": "65c7ebf1ffeb262210e316a8630f5931a32f84d142599e4605b52d323652a54f"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--wrong/traces.jsonl",
+          "sha256": "ca70ab7a994efb771b00181d4f39d677d3b1ede82c1809559fb9f24c943dfe2a"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--wrong/usage.jsonl",
+          "sha256": "d7f397e2d9a7772bfa5124f4f872ed020918ccc7fd2d038fcf14ef4b44772b8a"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/projections/case-16-other-information-cause-20260914--case.json",
+          "sha256": "6d88c7f07967ba53619b04ccf5568e6cd1d03bd1221132923cd062c030d76df9"
+        }
+      ],
+      "raw_response_locator": {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--wrong/transport.jsonl",
+        "line": 2,
+        "json_path": "response.output_text",
+        "response_id": "resp_08b1b62a0eeea47c016aa781f8b8ac87d0aa60bdd45cc4864b",
+        "request_id": "req_ee060056451f4dba9a4eb4e1392c6aa7",
+        "model": "gpt-5.6-luna"
+      },
+      "original_strict_matched": false,
+      "original_within_tolerance": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "score_delta": 0,
+      "label_difference_count": 4,
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "original_answer": "재무제표는 이미 검토했으므로 사업보고서의 위탁상품 설명만 삭제하도록 요구하면 된다. 계약이나 판매상태를 추가로 확인할 필요는 없다.",
+          "prompt": "초기 열람 단계에서 갑의 제안을 바로잡기 위해 수행할 절차를 설명하시오. 먼저 누구와 무엇을 논의하고, 제시된 자료의 불일치 원인을 확인하기 위해 어떤 자료를 어떻게 조사할지 구별하시오. 종결자료에 따른 최종 감사의견은 여기서는 요구하지 않는다.",
+          "expected_points": 0,
+          "actual_points": 0,
+          "delta": 0,
+          "strict_matched": false,
+          "criteria": [
+            {
+              "criterion_id": "sub1.c1",
+              "claim": "경영진과 사업보고서의 위탁상품 설명과 발송일 매출기록 사이의 불일치 및 그 이유를 논의한다.",
+              "source_ref_ids": [
+                "src-ec497f319eccccaa60"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "not_met",
+              "label_matches": true,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [],
+              "answer_evidence": [],
+              "model_reason": "경영진과 불일치 및 원인을 논의한다는 내용이 없다.",
+              "independent_finding": "기타정보 삭제만 요구하며 경영진과 불일치 원인을 논의하는 행위는 쓰지 않았다. 다른 오류가 있다는 이유만으로 이 누락까지 반대라고 확장하지 않은 not_met가 타당하다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            },
+            {
+              "criterion_id": "sub1.c2",
+              "claim": "관련 대리점 계약조건과 기말 판매·미판매 내역 등을 매출기록 및 사업보고서 설명과 대조하여, 재무제표와 기타정보 중 어디에 수정이 필요한지 판단할 근거를 확보한다.",
+              "source_ref_ids": [
+                "src-ec497f319eccccaa60"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub1/e2"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub1/e2",
+                  "start": 47,
+                  "end": 73,
+                  "text": "계약이나 판매상태를 추가로 확인할 필요는 없다."
+                }
+              ],
+              "model_reason": "계약조건과 판매상태를 추가 확인할 필요가 없다고 명시적으로 부정했다.",
+              "independent_finding": "계약이나 판매상태를 추가 확인할 필요가 없다고 적어 계약·자료 대조 절차를 직접 부정했다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "original_answer": "사업보고서에서 발견한 문제이므로 기타정보 단락에만 설명하고 재무제표에는 적정의견을 유지한다.",
+          "prompt": "매출항목의 종결자료에서 을의 제안이 적절한지 판단하고, 표명해야 할 재무제표 감사의견과 그 이유를 설명하시오. 증거의 상태, 오류가 있는 정보의 종류 및 영향의 범위를 연결하시오.",
+          "expected_points": 0,
+          "actual_points": 0,
+          "delta": 0,
+          "strict_matched": false,
+          "criteria": [
+            {
+              "criterion_id": "sub2.c1",
+              "claim": "기타정보 단락에만 설명하고 적정의견을 유지할 수 없으며, 재무제표에 대하여 한정의견을 표명해야 한다.",
+              "source_ref_ids": [
+                "src-28ff5f1beeda3219cf",
+                "src-61b7759438dd4828fe"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub2/e0"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub2/e0",
+                  "start": 0,
+                  "end": 51,
+                  "text": "사업보고서에서 발견한 문제이므로 기타정보 단락에만 설명하고 재무제표에는 적정의견을 유지한다."
+                }
+              ],
+              "model_reason": "기타정보에만 설명하고 재무제표에 적정의견을 유지한다고 하여 요구 결론과 반대된다.",
+              "independent_finding": "재무제표에 적정의견을 유지한다고 적어 확인된 중요·비전반적 미수정 왜곡의 한정의견과 반대된다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            },
+            {
+              "criterion_id": "sub2.c2",
+              "claim": "사업보고서의 문구가 아니라 재무제표의 중요한 매출·매출채권 과대계상이 충분한 증거로 확인되었고 미수정이며, 그 영향이 특정 항목에 국한되어 전반적이지 않으므로 실제 왜곡표시에 따른 한정의견의 조건에 해당한다.",
+              "source_ref_ids": [
+                "src-28ff5f1beeda3219cf",
+                "src-61b7759438dd4828fe"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "not_met",
+              "label_matches": true,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [],
+              "answer_evidence": [],
+              "model_reason": "재무제표 오류의 충분한 증거, 미수정 및 영향범위에 따른 한정의견 근거를 제시하지 않았다.",
+              "independent_finding": "충분한 증거로 확인된 FS 오류, 미수정 상태, 특정 계정에 한정된 영향이라는 독립 근거를 제시하지 않았다. 다른 결론의 오류만으로 맞는 근거를 지운 것이 아니라 근거 자체가 없는 not_met다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub3",
+          "original_answer": "사업보고서 설명이 사실로 확인되었으므로 재고의 정상판매를 전제로 한 위험평가와 기존 감사절차를 그대로 유지한다.",
+          "prompt": "가동중단에 관한 병의 계획을 보완하시오. 새로 확인된 정보에 따른 위험평가의 처리와, 이에 대응하여 재고 감사절차의 계획을 어떻게 바꾸어야 하는지 설명하시오. 구체적인 재고평가금액은 산정하지 마시오.",
+          "expected_points": 0,
+          "actual_points": 0,
+          "delta": 0,
+          "strict_matched": false,
+          "criteria": [
+            {
+              "criterion_id": "sub3.c1",
+              "claim": "가동중단을 확인한 명령서·생산기록은 정상가동과 지속판매에 근거한 최초 평가와 일치하지 않으므로 기업에 대한 이해를 갱신하고 특수제품 재고의 평가 관련 중요왜곡표시위험을 수정한다.",
+              "source_ref_ids": [
+                "src-9dc3ef023abb077fff",
+                "src-61b7759438dd4828fe"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub3/e0"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub3/e0",
+                  "start": 0,
+                  "end": 62,
+                  "text": "사업보고서 설명이 사실로 확인되었으므로 재고의 정상판매를 전제로 한 위험평가와 기존 감사절차를 그대로 유지한다."
+                }
+              ],
+              "model_reason": "기존 정상판매 전제의 위험평가를 그대로 유지한다고 하여 위험평가 수정 요구와 반대된다.",
+              "independent_finding": "정상판매를 전제로 한 기존 위험평가를 그대로 유지한다고 적어 새 공장 폐쇄정보에 따른 재고평가 위험 수정과 반대된다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            },
+            {
+              "criterion_id": "sub3.c2",
+              "claim": "수정한 재고 평가위험에 대응하도록 추가 감사절차의 성격·시기·범위를 다시 설계하고 수행한다. 예를 들어 가동중단 후 특수제품의 판매가능성 자료와 후속 판매가격·판매실적을 확인하도록 절차를 보완한다.",
+              "source_ref_ids": [
+                "src-b49e40067ef7ebb817",
+                "src-61b7759438dd4828fe"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub3/e0"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub3/e0",
+                  "start": 0,
+                  "end": 62,
+                  "text": "사업보고서 설명이 사실로 확인되었으므로 재고의 정상판매를 전제로 한 위험평가와 기존 감사절차를 그대로 유지한다."
+                }
+              ],
+              "model_reason": "기존 감사절차를 그대로 유지한다고 하여 추가 절차의 재설계·수행 요구와 반대된다.",
+              "independent_finding": "기존 감사절차를 그대로 유지한다고 명시하여 판매가능성·회수가능금액에 관한 절차 보완도 반대한다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            }
+          ]
+        }
+      ],
+      "finding": "기대 상태가 모든 오답 criterion을 not_met로 기록했지만, 원응답은 명시적 반대인 criterion을 contradicted로 세분했다. 누락과 반대의 구별은 입력 프롬프트의 정의에 맞고 모든 독립 criterion의 0점 기대값도 옳다. 발문·정답·배점·출처·인용 귀속·보안에 관한 신규 내용결함은 발견하지 않았다.",
+      "decision": "accept_zero_score_with_preserved_verdict_label_difference",
+      "change_or_rerun_required": false
+    },
+    {
+      "entry_id": "case-16-comparative-opinion-change-20260914--case--wrong",
+      "source_set_id": "case-16-comparative-opinion-change-20260914",
+      "human_review_performed": false,
+      "method": "agent_read_original_answer_criterion_and_raw_response",
+      "evidence_refs": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--wrong/observation.json",
+          "sha256": "62fc7eaa540e359a44081c6c09c040a17deb19f8af9aad31515ada1fb2c09568"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--wrong/input.json",
+          "sha256": "dd41bbdeaba9fdc37501eb4427ff818a9dca94b7c089c013cb46f7f2e762e49b"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--wrong/transport.jsonl",
+          "sha256": "448958c9c91fc43ae600262f027fba4d3bbfdd098c7d9badce41ecfdb61f243f"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--wrong/traces.jsonl",
+          "sha256": "a244dcbcc6cb702e2b58ac1b6e9c06ac7506950a0cc9545fc937b39994d00b64"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--wrong/usage.jsonl",
+          "sha256": "7a084a7c7220898750a2d08c4c292480eade869122f4342949868d1f69047a1a"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/projections/case-16-comparative-opinion-change-20260914--case.json",
+          "sha256": "f2ab93ec6a7239f1fdffbe29d896a5d1209916282c2cfd0dd47f93d00bdbdb1b"
+        }
+      ],
+      "raw_response_locator": {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--wrong/transport.jsonl",
+        "line": 2,
+        "json_path": "response.output_text",
+        "response_id": "resp_02d41dd3b074bfdb016aa7820886a087d08ae6a34877736dbd",
+        "request_id": "req_7ba89be12c3f4d44a606d24f3f38839e",
+        "model": "gpt-5.6-luna"
+      },
+      "original_strict_matched": false,
+      "original_within_tolerance": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "score_delta": 0,
+      "label_difference_count": 6,
+      "subquestions": [
+        {
+          "subquestion_id": "sub1",
+          "original_answer": "2025년은 이미 발행한 의견을 바꿀 수 없으므로 한정의견이고, 2026년은 다른 항목에 문제가 없으므로 적정의견이다.",
+          "prompt": "이번 비교재무제표 감사보고서에서 2025년과 2026년 재무제표에 각각 표명할 감사의견을 제시하시오. 각 의견의 이유나 보고서 문단의 작성은 여기서는 요구하지 않는다.",
+          "expected_points": 0,
+          "actual_points": 0,
+          "delta": 0,
+          "strict_matched": false,
+          "criteria": [
+            {
+              "criterion_id": "sub1.c1",
+              "claim": "이번에 제시된 2025년 재무제표에 대해서는 적정의견을 표명한다.",
+              "source_ref_ids": [
+                "src-8d7c15b42702dd4bb8",
+                "src-10156b7e46e3e23e5c",
+                "src-64c9d820cb3c328622"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub1/e0"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub1/e0",
+                  "start": 0,
+                  "end": 66,
+                  "text": "2025년은 이미 발행한 의견을 바꿀 수 없으므로 한정의견이고, 2026년은 다른 항목에 문제가 없으므로 적정의견이다."
+                }
+              ],
+              "model_reason": "2025년에 한정의견을 유지한다고 명시했다.",
+              "independent_finding": "이미 발행한 의견을 바꿀 수 없다는 이유로 이번 2025년에도 한정의견을 유지한다고 썼다. 현재 수정된 전기의 적정의견 판단을 명시적으로 반대한다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            },
+            {
+              "criterion_id": "sub1.c2",
+              "claim": "2026년 재무제표에 대해서는 한정의견을 표명한다.",
+              "source_ref_ids": [
+                "src-28ff5f1beeda3219cf",
+                "src-10156b7e46e3e23e5c"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub1/e0"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub1/e0",
+                  "start": 0,
+                  "end": 66,
+                  "text": "2025년은 이미 발행한 의견을 바꿀 수 없으므로 한정의견이고, 2026년은 다른 항목에 문제가 없으므로 적정의견이다."
+                }
+              ],
+              "model_reason": "2026년에 적정의견이라고 명시했다.",
+              "independent_finding": "2026년 적정의견을 명시하여 당기의 중요·비전반적인 미수정 충당부채 오류에 대한 한정의견을 반대로 썼다. 이 물음에는 이유의 별도 점수가 없다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub2",
+          "original_answer": "현재 보고서의 작성연도가 당기 이후이므로 의견은 2026년만 언급하고 2025년은 감사받지 않은 참고수치로 취급한다.",
+          "prompt": "을의 의견문단 작성 제안을 바로잡아, 이번 감사의견에서 언급할 기간을 제시하고 그 이유를 설명하시오. 각 기간의 구체적 의견 종류는 반복하지 않아도 된다.",
+          "expected_points": 0,
+          "actual_points": 0,
+          "delta": 0,
+          "strict_matched": false,
+          "criteria": [
+            {
+              "criterion_id": "sub2.c1",
+              "claim": "이번 감사의견에는 2026년 당기뿐 아니라 2025년 전기의 재무제표도 그 대상기간으로 언급해야 한다.",
+              "source_ref_ids": [
+                "src-72073ed37db7d4461e"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub2/e0"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub2/e0",
+                  "start": 0,
+                  "end": 65,
+                  "text": "현재 보고서의 작성연도가 당기 이후이므로 의견은 2026년만 언급하고 2025년은 감사받지 않은 참고수치로 취급한다."
+                }
+              ],
+              "model_reason": "2026년만 언급하고 2025년을 감사받지 않은 수치로 취급한다고 했다.",
+              "independent_finding": "이번 의견에서 2025년을 빼고 2026년만 언급하므로 두 기간을 대상으로 해야 하는 조치와 반대된다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            },
+            {
+              "criterion_id": "sub2.c2",
+              "claim": "이 업무는 두 기간이 표시되는 비교재무제표에 대해 두 기간 모두 보고하는 감사이므로, 보고서 작성연도만으로 의견의 언급 범위를 당기로 줄일 수 없다.",
+              "source_ref_ids": [
+                "src-10156b7e46e3e23e5c",
+                "src-72073ed37db7d4461e"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub2/e0"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub2/e0",
+                  "start": 0,
+                  "end": 65,
+                  "text": "현재 보고서의 작성연도가 당기 이후이므로 의견은 2026년만 언급하고 2025년은 감사받지 않은 참고수치로 취급한다."
+                }
+              ],
+              "model_reason": "작성연도를 이유로 의견 범위를 당기로 축소한다고 했다.",
+              "independent_finding": "전기를 감사받지 않은 참고수치로 취급하고 작성연도로 범위를 축소하여 비교재무제표 두 기간 모두를 보고하는 실제 업무범위를 부정했다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            }
+          ]
+        },
+        {
+          "subquestion_id": "sub3",
+          "original_answer": "주석에 오류수정이 공시되어 있으므로 감사보고서에서는 의견 차이를 설명하지 않는다. 그 차이가 생긴 이유는 다른 전임감사인이 전기를 감사했기 때문이다.",
+          "prompt": "병의 주장을 바로잡아, 과거에 표명한 전기 의견과 이번 전기 의견의 차이를 감사보고서에서 어떻게 다루어야 하는지 설명하시오. 포함할 문단과 이 사례에서 설명할 중요한 사유를 구별하시오.",
+          "expected_points": 0,
+          "actual_points": 0,
+          "delta": 0,
+          "strict_matched": false,
+          "criteria": [
+            {
+              "criterion_id": "sub3.c1",
+              "claim": "동일 감사인이 2025년 재무제표에 대해 과거와 다른 의견을 표명하므로 그 차이에 관한 중요한 사유를 기타사항문단에 설명해야 하며, 재무제표 주석의 공시만으로 이를 생략할 수 없다.",
+              "source_ref_ids": [
+                "src-64c9d820cb3c328622"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub3/e1"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub3/e1",
+                  "start": 0,
+                  "end": 46,
+                  "text": "주석에 오류수정이 공시되어 있으므로 감사보고서에서는 의견 차이를 설명하지 않는다. "
+                }
+              ],
+              "model_reason": "주석 공시를 이유로 기타사항문단에서 의견 차이를 설명하지 않는다고 했다.",
+              "independent_finding": "주석 공시 때문에 감사보고서 설명을 생략한다고 적어 기타사항문단 설명을 명시적으로 배제했다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            },
+            {
+              "criterion_id": "sub3.c2",
+              "claim": "종전 2025년 한정의견의 원인이던 재고평가 오류가 이번에 제시된 전기 비교재무제표에서 적절히 수정되어 그 변형사유가 해소되었다는 점을 의견 변경의 중요한 사유로 설명한다.",
+              "source_ref_ids": [
+                "src-64c9d820cb3c328622"
+              ],
+              "original_expected_verdict": "not_met",
+              "actual_raw_verdict": "contradicted",
+              "label_matches": false,
+              "expected_points": 0,
+              "actual_points": 0,
+              "point_delta": 0,
+              "raw_evidence_ids": [
+                "sub3/e2"
+              ],
+              "answer_evidence": [
+                {
+                  "id": "sub3/e2",
+                  "start": 46,
+                  "end": 83,
+                  "text": "그 차이가 생긴 이유는 다른 전임감사인이 전기를 감사했기 때문이다."
+                }
+              ],
+              "model_reason": "의견 차이의 원인을 다른 전임감사인 때문이라고 잘못 설명했다.",
+              "independent_finding": "의견 차이의 원인을 전임감사인으로 명시하였다. 앞 문장의 오류수정 공시 언급은 재고평가 오류의 수정·해소를 의견변경의 사유로 설명한 것이 아니며, 같은 사유에 관한 명시적 잘못된 설명을 무시하여 점수를 줄 수 없다.",
+              "decision": "모델의 실제 의미 판정과 0점은 타당하다. 원 기대라벨과 raw 응답을 수정하지 않고 라벨 일치 여부만 별도 보존한다."
+            }
+          ]
+        }
+      ],
+      "finding": "기대 상태가 모든 오답 criterion을 not_met로 기록했지만, 원응답은 명시적 반대인 criterion을 contradicted로 세분했다. 누락과 반대의 구별은 입력 프롬프트의 정의에 맞고 모든 독립 criterion의 0점 기대값도 옳다. 발문·정답·배점·출처·인용 귀속·보안에 관한 신규 내용결함은 발견하지 않았다.",
+      "decision": "accept_zero_score_with_preserved_verdict_label_difference",
+      "change_or_rerun_required": false
+    }
+  ],
+  "aggregate_score_confirmation": {
+    "entries": 18,
+    "subquestion_observations": 54,
+    "nonzero_score_deltas": 0,
+    "nonwrong_strict_mismatches": 0,
+    "security_findings": 0,
+    "evidence_refs": [
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-13-type2-period-exceptions-20260914--case--wrong/observation.json",
+        "sha256": "d191cfd598a179a93b113a6e2bf1288bcada221a4ab6de4292a023e94c6c4826"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--wrong/observation.json",
+        "sha256": "802c9f3e33d45f2550efd663b44f30ca6a5c1ec93635e2a34bb6d2142f09823e"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--wrong/observation.json",
+        "sha256": "62fc7eaa540e359a44081c6c09c040a17deb19f8af9aad31515ada1fb2c09568"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/summary.json",
+        "sha256": "6b92656f7b04a7aa117011ea3df7d3eda5d7ea336055859f12bf4eb6c02545c0"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-09-unrecorded-liabilities-20260914--case--model/observation.json",
+        "sha256": "5f1a4a3f3248632096b81af9432bf519530190c230e3769a5ca40a3fb43e9745"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-09-unrecorded-liabilities-20260914--case--partial/observation.json",
+        "sha256": "ad951ed8083997df43711ca245172e2e9056849d43e1ce7575daaf3df09472e2"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-09-unrecorded-liabilities-20260914--case--wrong/observation.json",
+        "sha256": "3dbf5c0f1b94a466d984c1713172e0d1d98cd89afaa46148e2785ad68c114c24"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-12-going-concern-evidence-20260914--case--model/observation.json",
+        "sha256": "1db4c33a7f61e381f7d84d9070b2dfb7ebe710cb53cc99c9eaf86f57e19b6a95"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-12-going-concern-evidence-20260914--case--partial/observation.json",
+        "sha256": "7c9ba5adec54507f95a0db03225fc591a6a5fe905942b36adea8e77bf01483f2"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-12-going-concern-evidence-20260914--case--wrong/observation.json",
+        "sha256": "d241b7bb4474273809b0b4547a4f51174012c1ecb1a83f698628cd708f107a7c"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--model/observation.json",
+        "sha256": "977cee034d9f18e150fefc2f0478db22442c93664f8baab92fd90739d819a030"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--partial/observation.json",
+        "sha256": "aa6c915e9c1ffb470cafef74ccbc7a776ef5b85cc63aec22319b4d36ec50bb75"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-a/case-16-other-information-cause-20260914--case--wrong/observation.json",
+        "sha256": "802c9f3e33d45f2550efd663b44f30ca6a5c1ec93635e2a34bb6d2142f09823e"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/summary.json",
+        "sha256": "d6e3db2e142a2f2c5905a64b06209fe9f4a3d073200f844279c8f1baa53d33f1"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-09-legal-inquiry-20260914--case--model/observation.json",
+        "sha256": "cc7710d228daf5126271814534f5ed2c176ca984fbd0e59612c3fbb986580466"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-09-legal-inquiry-20260914--case--partial/observation.json",
+        "sha256": "97ef0c84d97c8e66f76951883d59cf3b502b9fcad1bba9dc9a284683b8203bcc"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-09-legal-inquiry-20260914--case--wrong/observation.json",
+        "sha256": "f3a7f0b0d51f66fa225ab1b83ff06bfc9b43a3a8eb08f2922249af69035dff1a"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-13-type2-period-exceptions-20260914--case--model/observation.json",
+        "sha256": "6338f25b252d7591bd7e1fce9a03b106603781a7a110f33921306e0933863140"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-13-type2-period-exceptions-20260914--case--partial/observation.json",
+        "sha256": "9735b6f703c3faefd51c474025ca9ba35bf18e182bf0d45d3eff7088ee919d72"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-13-type2-period-exceptions-20260914--case--wrong/observation.json",
+        "sha256": "d191cfd598a179a93b113a6e2bf1288bcada221a4ab6de4292a023e94c6c4826"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--model/observation.json",
+        "sha256": "c1fbdedce89951bd1d5ed5a37d6e1c77069900ff1f4a241b132b1c6eec484a0e"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--partial/observation.json",
+        "sha256": "454d414215646e64da20e42a797a2a5856952d39bf44d8dce9254b9c315290c6"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--wrong/observation.json",
+        "sha256": "62fc7eaa540e359a44081c6c09c040a17deb19f8af9aad31515ada1fb2c09568"
+      }
+    ]
+  },
+  "summary": {
+    "reviewed_wrong_entries": 3,
+    "reviewed_subquestions": 9,
+    "reviewed_criteria": 18,
+    "expected_not_met": 18,
+    "actual_contradicted": 16,
+    "actual_not_met": 2,
+    "label_differences": 16,
+    "score_differences": 0,
+    "new_content_defects": 0,
+    "unresolved_findings": 0,
+    "decision": "기존 정확한 0점 결과와 전체 무편차 점수관측을 유지한다. 이 3건은 점수 편차가 아닌 기대라벨 세분성 차이이며 새 호출·내용 수정 없이 수락할 수 있다."
+  }
+}

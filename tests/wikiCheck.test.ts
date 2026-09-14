@@ -8,6 +8,7 @@ import crypto from 'node:crypto';
 import { buildWiki } from '../cpa_uploader/wiki/scripts/build-wiki.mjs';
 import { checkSourceNavigation, checkWiki, normalizeGeneratedPage } from '../cpa_uploader/wiki/scripts/check-wiki.mjs';
 import { buildSourceCatalog } from '../cpa_uploader/questionSourceCatalog.mjs';
+import { studyTopics } from '../cpa_uploader/wiki/scripts/ox-study-order.mjs';
 import type { QuestionSetV3 } from '../lib/questionV3.ts';
 
 function write(root: string, relative: string, content: string): void {
@@ -72,6 +73,24 @@ function alterBank(root: string, mutate: (bank: QuestionSetV3[]) => void): void 
     mutate(bank);
     write(root, relative, `${JSON.stringify(bank, null, 2)}\n`);
 }
+
+test('question directory keeps every active set and full title in study order below the page limit', () => {
+    const bank = JSON.parse(fs.readFileSync('cpa_uploader/data/cpa_question_sets_v3.authoring.json', 'utf8')) as QuestionSetV3[];
+    const topics = studyTopics.map(topic => { assert.ok(topic); return topic; });
+    const built = buildWiki({ repoDir: process.cwd(), date: '2026-09-14' });
+    const index = built.pages.get('index.md')!;
+    const section = index.split('## Questions\n\n')[1].split('\n\n## Meta')[0];
+    const ids = new Set(bank.map(set => set.id));
+    const linked = [...section.matchAll(/\[\[([^\]]+)\]\]/gu)].map(match => match[1]).filter(id => ids.has(id));
+    const expected = topics.flatMap(topic => bank.filter(set => set.classification.topic_id === topic.id).map(set => set.id));
+    assert.deepEqual(linked, expected, 'Do not drop, duplicate, or reorder sets when grouping the directory');
+    assert.equal(new Set(linked).size, bank.length);
+    for (const set of bank) assert.ok(section.includes(set.title.replace(/\s+/gu, ' ').trim().replaceAll('|', '&#124;')), set.id);
+    for (const topic of topics.filter(topic => bank.some(set => set.classification.topic_id === topic.id))) {
+        assert.ok(section.includes(`[[${topic.slug}]]`), 'Each topic group retains its concept navigation');
+    }
+    assert.ok(index.trimEnd().split('\n').length <= 400, 'The complete index must obey the existing hard limit');
+});
 
 test('wiki check compares the pure build without writing and ignores only build dates or line endings', (context) => {
     const root = fixture(context);

@@ -1,0 +1,347 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-16-012--case--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-012--case",
+  "source_set_id": "pilot-16-012",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "exp1",
+    "exp2"
+  ],
+  "projected_body_hash": "d6c2bedd3af365cd1626d2ae1e037b9c9a9a0544f32941b53af1c558c3ae15fa",
+  "answers": {
+    "sub1": "갑은 법규가 해당 사항의 공개적 공시를 배제하므로 핵심감사사항으로 기술하지 않는 예외에 해당한다.",
+    "exp1": "을에서 경영진의 비공개 요청만으로 해당 사항을 핵심감사사항 기술에서 생략할 수 없다.\n극히 드문 상황에서 공개의 부정적 결과가 공익적 효익을 훨씬 넘어설 것이라고 합리적으로 예상하여 감사인이 공개해서는 안 된다고 결정해야 701.14(b)의 생략 예외를 적용할 수 있다.",
+    "exp2": "병은 기업이 해당 정보를 이미 공시했으므로 701.14(b)의 부정적 결과와 공익적 효익 비교에 따른 생략 예외를 적용할 수 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.crit1",
+          "verdict": "met",
+          "reason": "원문·조건·독립 의미를 대조한 저장 모범답안."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.crit2",
+          "verdict": "met",
+          "reason": "원문·조건·독립 의미를 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "met",
+          "reason": "원문·조건·독립 의미를 대조한 저장 모범답안."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.crit3",
+          "verdict": "met",
+          "reason": "원문·조건·독립 의미를 대조한 저장 모범답안."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "9eb466401953ebed34ac6ac14aa3834b2183d395cc2d9d53f9d676c6a3c18901",
+  "schema_hash": "6fdac2c8b3b57d451106b9b27707ed80de83be56ee9ee4168853bdb03371012a",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "met",
+            "quote": "갑은 법규가 해당 사항의 공개적 공시를 배제하므로 핵심감사사항으로 기술하지 않는 예외에 해당한다.",
+            "reason": "법규상 공개 배제를 근거로 KAM 기술 생략 예외를 정확히 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "met",
+            "quote": "을에서 경영진의 비공개 요청만으로 해당 사항을 핵심감사사항 기술에서 생략할 수 없다.\n",
+            "reason": "경영진의 요청만으로는 생략할 수 없다고 명시했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "극히 드문 상황에서 공개의 부정적 결과가 공익적 효익을 훨씬 넘어설 것이라고 합리적으로 예상하여 감사인이 공개해서는 안 된다고 결정해야 701.14(b)의 생략 예외를 적용할 수 있다.",
+            "reason": "극히 드문 상황, 부정적 결과와 공익적 효익의 비교, 감사인의 공개 금지 결정 요건을 모두 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp2",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.crit3",
+            "verdict": "met",
+            "quote": "병은 기업이 해당 정보를 이미 공시했으므로 701.14(b)의 부정적 결과와 공익적 효익 비교에 따른 생략 예외를 적용할 수 없다.",
+            "reason": "이미 공시된 정보이므로 생략 예외를 적용할 수 없다고 정확히 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "법규상 공개 배제를 근거로 KAM 기술 생략 예외를 정확히 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "exp1/e1"
+                ],
+                "reason": "경영진의 요청만으로는 생략할 수 없다고 명시했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "met",
+                "evidence_ids": [
+                  "exp1/e2"
+                ],
+                "reason": "극히 드문 상황, 부정적 결과와 공익적 효익의 비교, 감사인의 공개 금지 결정 요건을 모두 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp2",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "exp2/e0"
+                ],
+                "reason": "이미 공시된 정보이므로 생략 예외를 적용할 수 없다고 정확히 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-012",
+    "score": 4,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "갑의 계약 분쟁을 감사보고서의 핵심감사사항으로 기술하지 않을 수 있는지, 해당 상황의 근거와 함께 설명하시오.",
+        "user_answer": "갑은 법규가 해당 사항의 공개적 공시를 배제하므로 핵심감사사항으로 기술하지 않는 예외에 해당한다.",
+        "score": 1,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "met",
+            "quote": "갑은 법규가 해당 사항의 공개적 공시를 배제하므로 핵심감사사항으로 기술하지 않는 예외에 해당한다.",
+            "reason": "법규상 공개 배제를 근거로 KAM 기술 생략 예외를 정확히 설명했다.",
+            "claim": "갑은 법규가 해당 사항의 공개적 공시를 배제하므로 핵심감사사항으로 기술하지 않는 예외에 해당한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "갑은 법규가 해당 사항의 공개적 공시를 배제하므로 핵심감사사항으로 기술하지 않는 예외에 해당한다."
+        ]
+      },
+      {
+        "subquestion_id": "exp1",
+        "prompt": "을에서 경영진의 요청만으로 계약 분쟁을 핵심감사사항 기술에서 생략할 수 있는지 판단하고, 그 사항을 공개하지 않는 예외를 적용하려면 감사인이 충족하여야 할 조건을 설명하시오.",
+        "user_answer": "을에서 경영진의 비공개 요청만으로 해당 사항을 핵심감사사항 기술에서 생략할 수 없다.\n극히 드문 상황에서 공개의 부정적 결과가 공익적 효익을 훨씬 넘어설 것이라고 합리적으로 예상하여 감사인이 공개해서는 안 된다고 결정해야 701.14(b)의 생략 예외를 적용할 수 있다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "met",
+            "quote": "을에서 경영진의 비공개 요청만으로 해당 사항을 핵심감사사항 기술에서 생략할 수 없다.",
+            "reason": "경영진의 요청만으로는 생략할 수 없다고 명시했다.",
+            "claim": "을에서 경영진의 비공개 요청만으로 해당 사항을 핵심감사사항 기술에서 생략할 수 없다. 독립적인 예외요건 판단 필요를 설명하여 결론이 함축되어도 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "극히 드문 상황에서 공개의 부정적 결과가 공익적 효익을 훨씬 넘어설 것이라고 합리적으로 예상하여 감사인이 공개해서는 안 된다고 결정해야 701.14(b)의 생략 예외를 적용할 수 있다.",
+            "reason": "극히 드문 상황, 부정적 결과와 공익적 효익의 비교, 감사인의 공개 금지 결정 요건을 모두 제시했다.",
+            "claim": "극히 드문 상황에서 공개의 부정적 결과가 공익적 효익을 훨씬 넘어설 것이라고 합리적으로 예상하여 감사인이 공개해서는 안 된다고 결정해야 701.14(b)의 생략 예외를 적용할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "을에서 경영진의 비공개 요청만으로 해당 사항을 핵심감사사항 기술에서 생략할 수 없다.",
+          "극히 드문 상황에서 공개의 부정적 결과가 공익적 효익을 훨씬 넘어설 것이라고 합리적으로 예상하여 감사인이 공개해서는 안 된다고 결정해야 701.14(b)의 생략 예외를 적용할 수 있다."
+        ]
+      },
+      {
+        "subquestion_id": "exp2",
+        "prompt": "병에서 경영진이 주장하는 부정적 결과와 공익적 효익의 비교를 이유로 계약 분쟁의 핵심감사사항 기술을 생략하는 예외를 적용할 수 있는지, 공시자료 확인 결과와 연결하여 설명하시오.",
+        "user_answer": "병은 기업이 해당 정보를 이미 공시했으므로 701.14(b)의 부정적 결과와 공익적 효익 비교에 따른 생략 예외를 적용할 수 없다.",
+        "score": 1,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "sub1.crit3",
+            "verdict": "met",
+            "quote": "병은 기업이 해당 정보를 이미 공시했으므로 701.14(b)의 부정적 결과와 공익적 효익 비교에 따른 생략 예외를 적용할 수 없다.",
+            "reason": "이미 공시된 정보이므로 생략 예외를 적용할 수 없다고 정확히 설명했다.",
+            "claim": "병은 기업이 해당 정보를 이미 공시했으므로 701.14(b)의 부정적 결과와 공익적 효익 비교에 따른 생략 예외를 적용할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "병은 기업이 해당 정보를 이미 공시했으므로 701.14(b)의 부정적 결과와 공익적 효익 비교에 따른 생략 예외를 적용할 수 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0fe4585f1525e572016aa60374af4087d0a86b6c21c3301090",
+        "request_id": "req_3f775b4ccdbf4943b8ec12d699539e4a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 4253,
+          "input_tokens_details": {
+            "cache_write_tokens": 4250,
+            "cached_tokens": 0
+          },
+          "output_tokens": 384,
+          "output_tokens_details": {
+            "reasoning_tokens": 62
+          },
+          "total_tokens": 4637
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0015239,
+        "min_usd": 0.0015239,
+        "max_usd": 0.0015239,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-a/pilot-16-012--case--model/input.json",
+      "sha256": "670e9db806ae96235a48821a8e5e54210adebe0f33ea2dc820b34f078f675cfd"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-a/pilot-16-012--case--model/transport.jsonl",
+      "sha256": "58d2dcdcc9f41f870cce208eeba0db3a37c8bd98bbaffaabc0003e32e19ce0a6"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-a/pilot-16-012--case--model/traces.jsonl",
+      "sha256": "cb2cc2688a6be9c4edc7d0471a3a5e10e59cd5e2e5e1540cb3079fe8bf473b6a"
+    }
+  }
+}

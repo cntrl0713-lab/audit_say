@@ -1,0 +1,47 @@
+diff --git a/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/reuse-source/update-coverage.mjs.txt b/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/update-coverage.mjs
+index e81430ad..23cf9f6c 100644
+--- a/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/reuse-source/update-coverage.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/update-coverage.mjs
+@@ -3,15 +3,16 @@ import assert from 'node:assert/strict';
+ import {createHash} from 'node:crypto';
+ import {questionHash,sourceUnitHash} from '../../../coverage/build-coverage.mjs';
+ import {buildSourceCatalog} from '../../../../questionSourceCatalog.mjs';
+-const R='cpa_uploader/analysis/reviews/case-deepening-2026-09-14',file='cpa_uploader/analysis/coverage/links.json';
++import {assertRelationship,checkCoverageBeforeWrite} from './coverage-contract.mjs';
++const R='cpa_uploader/analysis/reviews/case-trio-2026-09-14',file='cpa_uploader/analysis/coverage/links.json';
+ const read=f=>JSON.parse(fs.readFileSync(f));
+ const hash=x=>createHash('sha256').update(x).digest('hex');
+ const ref=f=>({file:f,sha256:hash(fs.readFileSync(f))});
+-assert.equal(read(R+'/db-publication-v2/completion.json').status,'production_published_and_independently_verified');
++assert.equal(read(R+'/db-publication-v1/completion.json').status,'production_published_and_independently_verified');
+ const proposals=read(R+'/coverage-proposals.json').links,review=read(R+'/coverage-root-review.json');
+ const targetIds=read(R+'/changed-sets-v1.json');
+ assert.equal(review.proposal_sha256,ref(R+'/coverage-proposals.json').sha256,'Root reviewed a different proposal');
+-assert.equal(proposals.length,6);assert.equal(new Set(proposals.map(l=>l.target.set_id)).size,6);
++assert.equal(proposals.length,3);assert.equal(new Set(proposals.map(l=>l.target.set_id)).size,3);
+ assert.deepEqual(proposals.map(link=>link.target.set_id).sort(),[...targetIds].sort(),'Coverage targets must be this batch\'s new cases');
+ assert.equal(review.method,'agent_relationship_review');assert.equal(review.human_review_performed,false);
+ assert.deepEqual(review.unresolved_findings,[]);
+@@ -20,6 +21,7 @@ assert(review.links.every(l=>l.decision==='accept'&&l.reason.trim()));
+ const bytes=fs.readFileSync(file),data=JSON.parse(bytes),bank=read('cpa_uploader/data/cpa_question_sets_v3.authoring.json');
+ const elements=read('cpa_uploader/analysis/question-elements/question-elements.json').elements,units=buildSourceCatalog().units;
+ const added=proposals.map(proposal=>{
++ assertRelationship(proposal);
+  const link=structuredClone(proposal),set=bank.find(s=>s.id===link.target.set_id),q=set?.subquestions.find(q=>q.id===link.target.subquestion_id);
+  assert(q&&set.status==='published',link.id);assert(!data.links.some(l=>l.id===link.id));
+  assert(link.target.criterion_ids.every(id=>q.criteria.some(c=>c.id===id)));
+@@ -34,7 +36,11 @@ const added=proposals.map(proposal=>{
+  return link;
+ });
+ assert.equal(hash(fs.readFileSync(file)),hash(bytes),'Concurrent coverage edit');
++const candidate=structuredClone(data);candidate.links.push(...added);
++assert.deepEqual(candidate.links.slice(0,data.links.length),data.links,'Existing relationships changed');
++const assembled=checkCoverageBeforeWrite({overlay:candidate,dataset:read('cpa_uploader/analysis/question-elements/question-elements.json'),bank,catalog:buildSourceCatalog(),addedIds:added.map(link=>link.id)});
++assert.equal(hash(fs.readFileSync(file)),hash(bytes),'Concurrent coverage edit after assemble validation');
+ fs.writeFileSync(R+'/coverage-links-before.json',bytes,{flag:'wx'});
+-data.links.push(...added);fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
+-fs.writeFileSync(R+'/coverage-update.json',JSON.stringify({created_at:new Date().toISOString(),before_sha256:hash(bytes),after:ref(file),added_link_ids:added.map(l=>l.id),existing_links_preserved:true,frequency_inputs_changed:false,human_review_performed:false},null,2)+'\n',{flag:'wx'});
+-console.log({added_reviewed_links:added.length,total_links:data.links.length});
++fs.writeFileSync(file,JSON.stringify(candidate,null,2)+'\n');
++fs.writeFileSync(R+'/coverage-update.json',JSON.stringify({created_at:new Date().toISOString(),before_sha256:hash(bytes),after:ref(file),added_link_ids:added.map(l=>l.id),assembled_before_write:assembled,existing_links_preserved:true,frequency_inputs_changed:false,human_review_performed:false},null,2)+'\n',{flag:'wx'});
++console.log({added_reviewed_links:added.length,total_links:candidate.links.length});

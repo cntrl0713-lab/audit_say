@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-443284e8f64b--sub1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-443284e8f64b--sub1--standard",
+  "source_set_id": "std-points-20260914-443284e8f64b",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "38a7692d9fc19efc9391ce46c869da7023832e8aeff326e933f54519f554c2a1",
+  "answers": {
+    "sub1": "계량화할 수 없으면 왜곡표시의 재무적 영향을 설명하지 않고 근거 단락에서 생략한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 재무제표의 특정 금액과 관련한 중요한 왜곡표시의 재무적 영향을 설명한다."
+        },
+        {
+          "criterion_id": "crit1.p2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 재무제표의 특정 금액과 관련한 중요한 왜곡표시의 재무적 영향을 실무적으로 가능하면 계량화한다."
+        },
+        {
+          "criterion_id": "crit1.p3",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 그 재무적 영향의 계량화가 실무적으로 불가능하면 그 사실을 기술한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "b939b5dc004d6e19843e232de24796ea9717d9fc72e79d3e81bd129d85dca7dd",
+  "schema_hash": "1383508c7b224107464a29a418bfc810db729ceb675ed67dc11f2afa0d7894db",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "계량화할 수 없으면 왜곡표시의 재무적 영향을 설명하지 않고 근거 단락에서 생략한다.",
+            "reason": "계량화할 수 없는 경우 재무적 영향을 설명하지 않고 생략한다고 명시하여 요구사항과 반대된다."
+          },
+          {
+            "criterion_id": "crit1.p2",
+            "verdict": "not_met",
+            "reason": "실무적으로 가능한 경우 계량화한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit1.p3",
+            "verdict": "contradicted",
+            "quote": "계량화할 수 없으면 왜곡표시의 재무적 영향을 설명하지 않고 근거 단락에서 생략한다.",
+            "reason": "계량화가 불가능한 사실을 기술하는 대신 근거 단락에서 생략한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "계량화할 수 없는 경우 재무적 영향을 설명하지 않고 생략한다고 명시하여 요구사항과 반대된다."
+              },
+              {
+                "criterion_id": "crit1.p2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "실무적으로 가능한 경우 계량화한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit1.p3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "계량화가 불가능한 사실을 기술하는 대신 근거 단락에서 생략한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-443284e8f64b",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "특정 금액이나 양적 공시의 중요한 왜곡표시로 감사의견을 변형하는 경우, 감사의견근거 단락에 재무적 영향을 어떻게 기술해야 하는지 설명하시오. 계량화가 실행불가능한 경우도 포함하시오.",
+        "user_answer": "계량화할 수 없으면 왜곡표시의 재무적 영향을 설명하지 않고 근거 단락에서 생략한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "계량화할 수 없으면 왜곡표시의 재무적 영향을 설명하지 않고 근거 단락에서 생략한다.",
+            "reason": "계량화할 수 없는 경우 재무적 영향을 설명하지 않고 생략한다고 명시하여 요구사항과 반대된다.",
+            "claim": "재무제표의 특정 금액과 관련한 중요한 왜곡표시의 재무적 영향을 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit1.p2",
+            "verdict": "not_met",
+            "reason": "실무적으로 가능한 경우 계량화한다는 내용이 없다.",
+            "claim": "재무제표의 특정 금액과 관련한 중요한 왜곡표시의 재무적 영향을 실무적으로 가능하면 계량화한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit1.p3",
+            "verdict": "contradicted",
+            "quote": "계량화할 수 없으면 왜곡표시의 재무적 영향을 설명하지 않고 근거 단락에서 생략한다.",
+            "reason": "계량화가 불가능한 사실을 기술하는 대신 근거 단락에서 생략한다고 명시했다.",
+            "claim": "그 재무적 영향의 계량화가 실무적으로 불가능하면 그 사실을 기술한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "중요한 왜곡표시의 재무적 영향을 설명하고 실무적으로 가능하면 계량화한다.",
+          "계량화가 실무적으로 불가능하면 그 사실을 기술한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a1b3bbec0c3f53e016aa78794763487d0ac933f022adcaf25",
+        "request_id": "req_af5c681f752147528d9c3e4e329a4fa5",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2486,
+          "input_tokens_details": {
+            "cache_write_tokens": 2483,
+            "cached_tokens": 0
+          },
+          "output_tokens": 523,
+          "output_tokens_details": {
+            "reasoning_tokens": 328
+          },
+          "total_tokens": 3009
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00124895,
+        "min_usd": 0.00124895,
+        "max_usd": 0.00124895,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-443284e8f64b--sub1--wrong/input.json",
+      "sha256": "475f4cd3c74e52c6cd2c671e164e862f52d907ca8372d8a7f4897b18fbc48cf6"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-443284e8f64b--sub1--wrong/transport.jsonl",
+      "sha256": "3b06e6f789c36b5da219cebc9af1e590b0c8debd300c5f6eb31d0315ed9475d8"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-443284e8f64b--sub1--wrong/traces.jsonl",
+      "sha256": "2c946b18e6ce9f54c5deda3d476129e4db27e71a68f567a8a47af662f8d1e07e"
+    }
+  }
+}

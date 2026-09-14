@@ -1,0 +1,33 @@
+diff --git a/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/sources/append-contract.mjs.v1.txt b/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/append-contract.mjs
+index a684fac6..df3778fa 100644
+--- a/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/sources/append-contract.mjs.v1.txt
++++ b/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/append-contract.mjs
+@@ -7,7 +7,7 @@ import {compilePublicQuestionSet,computeQuestionSetMaxPoints} from '../../../../
+ import {canonicalJson,contentHash} from '../../../../../lib/learningSubmission.ts';
+ 
+ export const R='cpa_uploader/analysis/reviews/case-trio-next-2026-09-14';
+-export const N=R+'/incremental-db-publication-v1',STAGE=R+'/publication-v1/stage';
++export const N=R+'/incremental-db-publication-v2',STAGE=R+'/publication-v2/stage';
+ export const PROJECT='xvifzicrjmbfqaepcfpp',RPC='cpa_import_learning_question_bank';
+ export const read=file=>JSON.parse(fs.readFileSync(file));
+ export const sha=value=>createHash('sha256').update(value).digest('hex');
+@@ -16,8 +16,8 @@ export const write=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null
+ export const guard=inputs=>{for(const row of inputs)assert.equal(ref(row.file).sha256,row.sha256,'Prepared input changed: '+row.file);};
+ 
+ export function buildLocal(){
+- const completion=read(R+'/publication-v1/stage-completion.json');assert.equal(completion.status,'validated_isolated_published_stage');guard(completion.files);
+- const baselineFile=R+'/integration-baseline/bank.json',baselineDocument=fs.readFileSync(baselineFile,'utf8'),baseline=JSON.parse(baselineDocument);
++ const completion=read(R+'/publication-v2/stage-completion.json');assert.equal(completion.status,'validated_isolated_published_stage');guard(completion.files);
++ const baselineFile=R+'/integration-baseline-v2/bank.json',baselineDocument=fs.readFileSync(baselineFile,'utf8'),baseline=JSON.parse(baselineDocument);
+  const document=fs.readFileSync(STAGE+'/authoring.json','utf8'),sets=JSON.parse(document),ids=read(R+'/changed-sets-v1.json');
+  const added=sets.slice(baseline.length),addedDocument=JSON.stringify(added,null,2)+'\n';
+  assert.equal(ids.length,3);assert.equal(new Set(ids).size,3);assert.equal(added.length,3);
+@@ -33,7 +33,7 @@ export function buildLocal(){
+  assert.equal(canonicalJson(read(STAGE+'/public.json')),canonicalJson(compiled));
+  assert.equal(sets.length,readiness.set_count);assert.equal(sets.reduce((n,s)=>n+s.subquestions.length,0),readiness.subquestion_count);
+  assert.equal(sets.reduce((n,s)=>n+computeQuestionSetMaxPoints(s),0),readiness.max_points);assert.equal(sets.reduce((n,s)=>n+s.subquestions.reduce((m,q)=>m+q.criteria.length,0),0),readiness.criterion_count);
+- assert.equal(read(R+'/integration-baseline.json').bank.sha256,sha(baselineDocument));assert.equal(read(R+'/sealed-v1/readiness.json').ready,true);
++ assert.equal(read(R+'/integration-baseline-v2.json').bank.sha256,sha(baselineDocument));assert.equal(read(R+'/sealed-v1/readiness.json').ready,true);
+  const metadata={applicability:{},...catalog,source_file_hash:readiness.source_file_hash,bank_content_hash:readiness.bank_content_hash,public_content_hash:readiness.public_content_hash,evidence:R+'/sealed-v1/batch.json',source_validation:'external-importer',actor_user_id:null};
+  const payload={sets,...metadata,source_document:document};
+  return {baselineFile,baselineDocument,baseline,document,sets,ids,added,addedDocument,readiness,compiled,catalog,metadata,payload,completion};

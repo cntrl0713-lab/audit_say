@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-09-14T06:29:03.977Z",
+  "sql_transaction_read_only": true,
+  "api_read_only": false,
+  "http_status": 201,
+  "query_sha256": "aea5f240da70a6200c4f469cdb49b038e4ac2081cf930b4c2d7edeb2b9c7c45c",
+  "query": "begin read only; set local role service_role; set local statement_timeout='120s'; select current_user as effective_role,current_setting('statement_timeout') as statement_timeout,current_setting('transaction_read_only') as transaction_read_only,(select id from public.cpa_question_bank_releases where status='active') as active_release_id; commit;",
+  "result": [
+    {
+      "effective_role": "service_role",
+      "statement_timeout": "2min",
+      "transaction_read_only": "on",
+      "active_release_id": "9fde77ff-c4ed-4b4c-b383-8f632d6caf93"
+    }
+  ]
+}

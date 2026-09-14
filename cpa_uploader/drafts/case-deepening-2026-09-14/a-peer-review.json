@@ -1,0 +1,2019 @@
+{
+  "version": 1,
+  "reviewer_id": "agent:/root/next_cases_late",
+  "reviewer_role": "independent_peer_not_author",
+  "method": "independent_agent_full_content_comparison",
+  "human_review_performed": false,
+  "paid_api_semantic_review_performed": false,
+  "actual_model_grading": "not_run",
+  "reviewed_at": "2026-09-14T06:09:21.223Z",
+  "status": "pass",
+  "file_bindings": {
+    "cpa_uploader/drafts/case-deepening-2026-09-14/a/sets.json": "147a61c1438610db478c83625f9af8373d7e7cfdbbbc379282a8ebdbfee4bbcd",
+    "cpa_uploader/drafts/case-deepening-2026-09-14/a/design.json": "92ac8a0caeace6c3cbb7ce56c6fc0bb72a0b807259a98aa50eaba5e9c0bab128",
+    "cpa_uploader/drafts/case-deepening-2026-09-14/a/review.json": "4983514df2055aae1fdf1c9c4a8ad967ed032e6a8be8bff46d3a69a4112dec55",
+    "cpa_uploader/drafts/case-deepening-2026-09-14/a/qa.json": "4b3742d19d38c39b4b1f867faa988716c1063fb08b68b1c0388c6325afcfdb69",
+    "cpa_uploader/drafts/case-deepening-2026-09-14/a/coverage-proposals.json": "751a2d8dc57470c260455a22f27f7a54d9dea574b1fc98985880b3b714b3df7f",
+    "cpa_uploader/drafts/case-deepening-2026-09-14/a/source-files.json": "c4ae24fc806affabc962fe86a566748a948a389e75a9c498170605e3bff4c1ee"
+  },
+  "scope": {
+    "sets": 3,
+    "questions": 9,
+    "content_checks": 72,
+    "criteria": 17,
+    "max_points": 17,
+    "representative_qa": 17
+  },
+  "bank_binding": {
+    "file": "cpa_uploader/drafts/case-deepening-2026-09-14/bank-before.json",
+    "sha256": "0626b0396ae96d1fd0d05cd95afe7335b6a0b7ba28007923504a6c796a206624"
+  },
+  "source_catalog_binding": {
+    "file": "cpa_uploader/drafts/case-deepening-2026-09-14/source-catalog-final.json",
+    "sha256": "44084694422267a29abcf897c59a05e534adfce4ca6c70df0ae9af5df8d50ae2"
+  },
+  "resolved_findings": [
+    {
+      "id": "A-coverage-adjacent-id",
+      "scope": "case-07-control-evidence-20260914/sub1 coverage",
+      "finding": "문서 없는 통제의 직접 출제인 mock2025GS1-3:2와 이중목적 세부테스트 인접 기출인 cpa2025:3:3을 같은 original_question_ids로 묶으면 관계가 과장된다.",
+      "resolution": "작성자가 최종 coverage에서 직접 ID를 mock2025GS1-3:2만 남기고 cpa2025:3:3을 adjacent_original_question_ids로 이동했다. 최종 파일을 재확인했다.",
+      "status": "resolved",
+      "question_content_changed": false
+    }
+  ],
+  "question_reviews": [
+    {
+      "set_id": "case-04-documentation-trace-20260914",
+      "subquestion_id": "sub1",
+      "reviewed_content_hash": "62b4b49d7cdbe88a107a593f5730a90c4b0dc2fed7af7ef8a5a145b05251618e",
+      "question_sha256": "e15d3a7254be41a3e921802f472b91887699e0340312beaa71abba4f07b72450",
+      "question_style": "case",
+      "topic_ids": [
+        "04"
+      ],
+      "fact_ids": [
+        "fact1",
+        "fact2"
+      ],
+      "criterion_ids": [
+        "sub1.c1",
+        "sub1.c2"
+      ],
+      "max_points": 2,
+      "source_ref_ids": [
+        "src-e9128a970ca5cfbc5d",
+        "src-2b3f76c5dfe4b14c9f"
+      ],
+      "checks": {
+        "source": "pass",
+        "answer": "pass",
+        "prompt": "pass",
+        "points": "pass",
+        "style": "pass",
+        "topics": "pass",
+        "edition": "pass",
+        "nonduplication": "pass"
+      },
+      "check_rationales": {
+        "source": "230.9(a)와 A12의 개별 문서 식별 및 특정 범위 전부검사 예시가 각각 송장 표본과 결산조정분개 전부검사에 직접 대응한다.",
+        "answer": "월·건수만으로 다시 찾을 수 없는 25건에는 실제 송장의 고유 식별 또는 연결이 필요하다. 전부검사에는 원천 모집단과 1억원 이상 매출 증감이라는 범위를 식별하는 별도 기록이 맞다.",
+        "prompt": "발문은 두 검사대상의 재식별 보완에 한정하고 이미 갖춘 작성·검토자 기록은 제외한다. 기준서의 다른 기록의무를 숨은 득점요건으로 추가하지 않는다.",
+        "points": "각 검사대상 식별1점으로 2점이다. 날짜·번호를 별도 점수로 자르거나 모집단·추출기준을 중복 가점하지 않는다. 두 짧은 적용문장으로 충분하다.",
+        "style": "일부 송장 추출과 특정 금액 이상 분개 전부검사라는 실제 방법·현재 조서 결함을 지우면 동일한 두 보완 답안이 성립하지 않는다.",
+        "nonduplication": "standard-additional-s03의 일반 기록6요소 및 pilot04-004~006의 조서 일반요건과 비교했다. 새 물음은 두 검사방법에 맞는 식별기록 선택에 한정한 적용 심화이다.",
+        "topics": "실제 득점요건의 주제 04와 일치한다. 답안 형식 descriptive와 사실 의존 학습유형 case를 혼동하지 않았다.",
+        "edition": "2026 전문의 관련 요구사항과 적용지침 전체 및 필요한 앞뒤 문단을 직접 대조했다. 2026년 재무제표 사례에 맞는 현행 본문이며 기존2025 등록은 표제만 믿지 않고 동일 내용을 확인했다. 정확한 PDF쪽·추출행은 source_ranges에 결속했다."
+      },
+      "source_checks": [
+        {
+          "source_ref_id": "src-e9128a970ca5cfbc5d",
+          "file": "cpa_uploader/data/official/delegated-n01-kga200-210-230-2025.txt",
+          "file_sha256": "d73a24553dc65f8ffc106d324ec77dd99dd578426318213bfb249d957d67bd6f",
+          "quote_sha256": "d79bb9e232ecc4f9f37e04039ab81b931d713306ffb7d369bd6789b146bccbec",
+          "locator": "2026 KGA 230.9; PDF 97; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L3996~4004; 등록 cpa_uploader/data/official/delegated-n01-kga200-210-230-2025.txt L627~635",
+          "title": "KGA 230.9; 2026 전문 대조 PDF 97쪽, 원 추출 L3996~4004; 등록 전사 L627~635",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "230.9",
+            "source_ref_id": "src-e9128a970ca5cfbc5d",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 97,
+            "start_line": 3996,
+            "end_line": 4004,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        },
+        {
+          "source_ref_id": "src-2b3f76c5dfe4b14c9f",
+          "file": "cpa_uploader/data/official/case-deepening-2026-09-14-kga230.md",
+          "file_sha256": "27420e7e99ff52251eda9cb5e75dcbba3058bc6fd45fd0bd2bf1facc2e881781",
+          "quote_sha256": "4dcda2de2f80804265925db9571ee87a1283f281c4d41f81b4467deb2dd5fdb9",
+          "locator": "2026 KGA 230.A12; PDF 101~102; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L4215~4244; 등록 cpa_uploader/data/official/case-deepening-2026-09-14-kga230.md L5~26",
+          "title": "KGA 230.A12; 2026 전문 대조 PDF 101~102쪽, 원 추출 L4215~4244; 등록 전사 L5~26",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "230.A12",
+            "source_ref_id": "src-2b3f76c5dfe4b14c9f",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": "101~102",
+            "start_line": 4215,
+            "end_line": 4244,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        }
+      ],
+      "criterion_checks": [
+        {
+          "criterion_id": "sub1.c1",
+          "claim": "첫 조서의 25건을 다시 찾을 수 있도록 실제 검사한 송장별 발행일·고유번호 또는 동등한 고유 식별 특성을 기록하거나 사본 목록과 연결한다. 월·건수만 반복한 답은 부족하며 날짜와 번호를 두 점으로 분할하지 않는다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-e9128a970ca5cfbc5d",
+            "src-2b3f76c5dfe4b14c9f"
+          ],
+          "verdict": "pass",
+          "rationale": "월·건수만으로 다시 찾을 수 없는 25건에는 실제 송장의 고유 식별 또는 연결이 필요하다. 전부검사에는 원천 모집단과 1억원 이상 매출 증감이라는 범위를 식별하는 별도 기록이 맞다. 각 검사대상 식별1점으로 2점이다. 날짜·번호를 별도 점수로 자르거나 모집단·추출기준을 중복 가점하지 않는다. 두 짧은 적용문장으로 충분하다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "claim": "둘째 조서에 2026년 결산조정분개장이라는 모집단 및 매출 증감 1억원 이상 전부검사라는 추출 범위를 식별하여 기록한다. 해당 원천·범위를 확인할 수 있는 추출파일 연결도 인정한다. 이 하나의 검사대상 식별목적에 각 언어조각을 별도 가점하지 않는다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-e9128a970ca5cfbc5d",
+            "src-2b3f76c5dfe4b14c9f"
+          ],
+          "verdict": "pass",
+          "rationale": "월·건수만으로 다시 찾을 수 없는 25건에는 실제 송장의 고유 식별 또는 연결이 필요하다. 전부검사에는 원천 모집단과 1억원 이상 매출 증감이라는 범위를 식별하는 별도 기록이 맞다. 각 검사대상 식별1점으로 2점이다. 날짜·번호를 별도 점수로 자르거나 모집단·추출기준을 중복 가점하지 않는다. 두 짧은 적용문장으로 충분하다."
+        }
+      ],
+      "qa_inputs": [
+        {
+          "set_id": "case-04-documentation-trace-20260914",
+          "subquestion_id": "sub1",
+          "kind": "partial",
+          "answer": "첫 조서는 검사한 25건의 송장별 발행일과 고유번호를 사본 목록에 기록하고 조서에 연결한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub1.c1"
+          ],
+          "reason": "내용 대조에 따라 sub1.c1만 충족한다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "83f8c229a6065c8a712dc9a164979a58ef54dfcf3ec78d29f9f9486b3253e449",
+          "review_verdict": "pass"
+        },
+        {
+          "set_id": "case-04-documentation-trace-20260914",
+          "subquestion_id": "sub1",
+          "kind": "wrong",
+          "answer": "월과 검사 건수만 적으면 개별 송장이 식별되고, 매출조정분개라고만 쓰면 분개 모집단과 검사 범위도 식별되므로 두 조서를 보완할 필요가 없다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "reason": "사례 적용 명제를 충족하지 않는다. 금액합산을 실행한 결과가 아니라 공식원문·답안·criterion에 따른 작성자 기대값이다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "77e0427b5f8f30dfdbf2e3bdd252244ae2cd453e9008cc0f7ebb1873daa4178a",
+          "review_verdict": "pass"
+        }
+      ],
+      "local_boundaries_reviewed": [
+        {
+          "kind": "model_answer",
+          "answer": "첫 조서는 실제 검사한 25건의 송장 발행일·고유번호 등 개별 송장을 식별할 특성을 기록하거나 해당 송장 사본 목록에 연결한다.\n둘째 조서는 2026년 결산조정분개장을 모집단으로 식별하고, 매출을 증감시키는 1억원 이상 분개 전부라는 검사 범위를 기록하거나 해당 추출내역에 연결한다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub1.c1",
+            "sub1.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "empty",
+          "answer": "",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "reverse_partial",
+          "answer": "둘째 조서에 2026년 결산조정분개장 중 매출 증감 1억원 이상 분개 전부를 검사했다고 적는다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub1.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        }
+      ],
+      "qa_rationale": "대표 부분정답은 명시한 독립 criterion만1점이고 대표 오답은0점이다. 모범·공백·함축 판단 및 반대 결론 경계 답안의 독립 정답 보존을 실제 답안과 대조했다. 이는 실측 전 기대값 의미검토이다.",
+      "human_review_performed": false,
+      "actual_model_grading": false,
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-04-documentation-trace-20260914",
+      "subquestion_id": "sub2",
+      "reviewed_content_hash": "62b4b49d7cdbe88a107a593f5730a90c4b0dc2fed7af7ef8a5a145b05251618e",
+      "question_sha256": "df07eee5c53cbdbf0c8f6944f1eb88b03524221fbf3313345e0da55ac363db3c",
+      "question_style": "case",
+      "topic_ids": [
+        "04"
+      ],
+      "fact_ids": [
+        "fact3"
+      ],
+      "criterion_ids": [
+        "sub2.c1",
+        "sub2.c2"
+      ],
+      "max_points": 2,
+      "source_ref_ids": [
+        "src-e124af7d2c28a0da7a",
+        "src-3a02c5c340fba28e3a"
+      ],
+      "checks": {
+        "source": "pass",
+        "answer": "pass",
+        "prompt": "pass",
+        "points": "pass",
+        "style": "pass",
+        "topics": "pass",
+        "edition": "pass",
+        "nonduplication": "pass"
+      },
+      "check_rationales": {
+        "source": "230.10의 유의적 토의 기록과 A14의 기업 작성 회의록을 감사문서에 포함할 수 있다는 예시를 본문과 함께 읽었다.",
+        "answer": "회사 작성 자체는 배제 사유가 아니다. 이 회의록이 유의적 사항·일시·참석자의 성명과 직위를 정확히 기록했고 감사인이 동의한다는 사실이 적절한 기록이라는 근거다.",
+        "prompt": "팀원의 사용 불가 주장에 대한 판단과 주어진 회의록 적절성의 근거만 요구한다. 새 회의록 형식이나 서명 등 추가 요건은 없다.",
+        "points": "사용할 수 있다는 판단1점, 적절한 기록이라는 사실 적용근거1점으로 분리한다. 적절한 기록이므로 포함한다는 조치는 판단을 함축하고 반대 결론만 쓴 경우 독립 근거를 일괄 감점하지 않는다.",
+        "style": "회사 작성 여부뿐 아니라 실제 회의록의 내용과 감사인 동의가 제공된다. 내용 부정확·동의 부재로 바뀌면 동일한 적절성 근거를 제시할 수 없다.",
+        "nonduplication": "일반적인 유의적 토의 문서화 의무를 그대로 재열거하지 않고 회사 작성 기록의 실제 적절성을 판단한다. 기존 보관·완결 절차 물음과 대상도 다르다.",
+        "topics": "실제 득점요건의 주제 04와 일치한다. 답안 형식 descriptive와 사실 의존 학습유형 case를 혼동하지 않았다.",
+        "edition": "2026 전문의 관련 요구사항과 적용지침 전체 및 필요한 앞뒤 문단을 직접 대조했다. 2026년 재무제표 사례에 맞는 현행 본문이며 기존2025 등록은 표제만 믿지 않고 동일 내용을 확인했다. 정확한 PDF쪽·추출행은 source_ranges에 결속했다."
+      },
+      "source_checks": [
+        {
+          "source_ref_id": "src-e124af7d2c28a0da7a",
+          "file": "cpa_uploader/data/official/case-deepening-2026-09-14-kga230.md",
+          "file_sha256": "27420e7e99ff52251eda9cb5e75dcbba3058bc6fd45fd0bd2bf1facc2e881781",
+          "quote_sha256": "5ed639762637af860cf57237069910b243ec7ff626ff47fcf12c173a2714a5fe",
+          "locator": "2026 KGA 230.A14; PDF 102; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L4251~4254; 등록 cpa_uploader/data/official/case-deepening-2026-09-14-kga230.md L30~33",
+          "title": "KGA 230.A14; 2026 전문 대조 PDF 102쪽, 원 추출 L4251~4254; 등록 전사 L30~33",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "230.A14",
+            "source_ref_id": "src-e124af7d2c28a0da7a",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 102,
+            "start_line": 4251,
+            "end_line": 4254,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        },
+        {
+          "source_ref_id": "src-3a02c5c340fba28e3a",
+          "file": "cpa_uploader/data/official/delegated-n01-kga200-210-230-2025.txt",
+          "file_sha256": "d73a24553dc65f8ffc106d324ec77dd99dd578426318213bfb249d957d67bd6f",
+          "quote_sha256": "f2c04310bf327e43b2411d53ad57e5d379d960efe9facc809f70665cf42fa0ca",
+          "locator": "2026 KGA 230.10; PDF 97; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L4005~4008; 등록 cpa_uploader/data/official/delegated-n01-kga200-210-230-2025.txt L636~639",
+          "title": "KGA 230.10; 2026 전문 대조 PDF 97쪽, 원 추출 L4005~4008; 등록 전사 L636~639",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "230.10",
+            "source_ref_id": "src-3a02c5c340fba28e3a",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 97,
+            "start_line": 4005,
+            "end_line": 4008,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        }
+      ],
+      "criterion_checks": [
+        {
+          "criterion_id": "sub2.c1",
+          "claim": "회사 작성이라는 이유로 이 회의록의 사용을 배제한 주장이 부적절하다고 판단하거나 이 회의록을 감사문서로 사용할 수 있다고 판단한다. 적합한 이유에서 사용 가능성이 명백히 함축되면 별도 결론 문구 없이 인정한다. 명시적 사용금지 결론은 이 판단점수를 인정하지 않는다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-e124af7d2c28a0da7a",
+            "src-3a02c5c340fba28e3a"
+          ],
+          "verdict": "pass",
+          "rationale": "회사 작성 자체는 배제 사유가 아니다. 이 회의록이 유의적 사항·일시·참석자의 성명과 직위를 정확히 기록했고 감사인이 동의한다는 사실이 적절한 기록이라는 근거다. 사용할 수 있다는 판단1점, 적절한 기록이라는 사실 적용근거1점으로 분리한다. 적절한 기록이므로 포함한다는 조치는 판단을 함축하고 반대 결론만 쓴 경우 독립 근거를 일괄 감점하지 않는다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "claim": "실제 회의록에 해당 유의적 쟁점·토의시기·상대자가 기록되어 있고 감사인이 동의한 적합한 기록이라는 이유를 연결한다. 회사 작성이라는 사실의 반복만으로 부족하며 필요한 내용과 감사인의 동의는 이 기록의 적합성 근거 한 단위로 평가한다. 판단을 반대로 썼더라도 이 독립 근거가 맞으면 인정한다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-e124af7d2c28a0da7a",
+            "src-3a02c5c340fba28e3a"
+          ],
+          "verdict": "pass",
+          "rationale": "회사 작성 자체는 배제 사유가 아니다. 이 회의록이 유의적 사항·일시·참석자의 성명과 직위를 정확히 기록했고 감사인이 동의한다는 사실이 적절한 기록이라는 근거다. 사용할 수 있다는 판단1점, 적절한 기록이라는 사실 적용근거1점으로 분리한다. 적절한 기록이므로 포함한다는 조치는 판단을 함축하고 반대 결론만 쓴 경우 독립 근거를 일괄 감점하지 않는다."
+        }
+      ],
+      "qa_inputs": [
+        {
+          "set_id": "case-04-documentation-trace-20260914",
+          "subquestion_id": "sub2",
+          "kind": "partial",
+          "answer": "이 회의록을 감사문서에 포함할 수 있다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub2.c1"
+          ],
+          "reason": "내용 대조에 따라 sub2.c1만 충족한다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "20d64fc205771e1aa3682f8afa4ddf028f0e402e71bd4125419f0f5ea1407d5b",
+          "review_verdict": "pass"
+        },
+        {
+          "set_id": "case-04-documentation-trace-20260914",
+          "subquestion_id": "sub2",
+          "kind": "wrong",
+          "answer": "회사가 작성한 기록은 내용이 정확하고 감사팀이 동의해도 감사문서가 될 수 없으므로 반드시 감사인이 같은 내용의 회의록을 새로 작성해야 한다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "reason": "사례 적용 명제를 충족하지 않는다. 금액합산을 실행한 결과가 아니라 공식원문·답안·criterion에 따른 작성자 기대값이다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "1826b95ff0e93b0a38d9bf443995547029b86065320e4002edd8d7e57dae19f2",
+          "review_verdict": "pass"
+        }
+      ],
+      "local_boundaries_reviewed": [
+        {
+          "kind": "model_answer",
+          "answer": "회사 작성 회의록이라는 이유만으로 감사문서에 포함할 수 없다는 주장은 부적절하다. 이 회의록을 감사문서에 포함하여 사용할 수 있다.\n회의록에 유의적인 검수조건·매출 인식 쟁점과 토의 일자·상대자가 정확히 기록되어 있고 감사팀이 그 내용에 동의하였으므로 적합한 토의 기록이 될 수 있다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub2.c1",
+            "sub2.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "empty",
+          "answer": "",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "reverse_partial",
+          "answer": "이 회의록은 감사문서로 사용할 수 없다. 다만 해당 검수조건과 매출 쟁점, 2월 16일 및 토의 상대자가 정확히 기록되고 감사팀이 동의하여 토의내용에 관한 적합한 기록이다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub2.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "implicit",
+          "answer": "검수조건·매출 쟁점과 일자·상대자가 정확히 담겨 있고 감사팀이 동의한 기록이므로, 회사가 작성한 그 회의록을 조서에 편입하면 된다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub2.c1",
+            "sub2.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        }
+      ],
+      "qa_rationale": "대표 오답은 적절한 회의기록이라는 근거 연결까지 부정하므로0점이다. 별도 경계답안에서 적절성 근거를 명확히 인정하면서 사용 불가 결론을 내린 답에는 독립 근거1점을 보존한다. 나머지 모범·공백·함축/반대 경계의 독립 의미도 직접 대조했다.",
+      "human_review_performed": false,
+      "actual_model_grading": false,
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-04-documentation-trace-20260914",
+      "subquestion_id": "sub3",
+      "reviewed_content_hash": "62b4b49d7cdbe88a107a593f5730a90c4b0dc2fed7af7ef8a5a145b05251618e",
+      "question_sha256": "e51d2c2f3b1fb487469ecdf7d36560321db0510e19e5b660cf43a4d775d1e8d9",
+      "question_style": "case",
+      "topic_ids": [
+        "04"
+      ],
+      "fact_ids": [
+        "fact4"
+      ],
+      "criterion_ids": [
+        "sub3.c1",
+        "sub3.c2"
+      ],
+      "max_points": 2,
+      "source_ref_ids": [
+        "src-21bdaeecb1163404d0",
+        "src-23a6c5a4e712f7dd49"
+      ],
+      "checks": {
+        "source": "pass",
+        "answer": "pass",
+        "prompt": "pass",
+        "points": "pass",
+        "style": "pass",
+        "topics": "pass",
+        "edition": "pass",
+        "nonduplication": "pass"
+      },
+      "check_rationales": {
+        "source": "230.11은 유의적 사항의 최종 결론과 일치하지 않는 정보를 어떻게 처리했는지 문서화하도록 요구한다. A15는 부정확·폐기한 모든 문서를 보유하라는 뜻으로 확대하지 않게 한다.",
+        "answer": "결론이 유지되었다는 사유로 처리 과정 기록을 생략할 수 없다. 초기 고객 이메일을 초안 조건으로 확인한 과정 및 최종 계약·고객 확인이 결론을 지지한 연결을 기록하는 답이 맞다.",
+        "prompt": "불일치 처리과정 생략 주장과 이 조서 보완만 묻는다. 모든 초안·오류문서 보존이나 매출 금액의 재계산을 요구하지 않는다.",
+        "points": "생략 부적절 판단1점과 사례의 해소 과정 기록1점이다. 초기 이메일과 추가 증거의 언어조각을 따로 배점하지 않고 하나의 불일치 처리 기록으로 평가한다.",
+        "style": "초기 이메일과 최종 계약·고객 확인 사이의 외관상 불일치 및 결론만 적힌 실제 조서가 정답의 구체 보완내용을 결정한다.",
+        "nonduplication": "일반 조서 내용·최종 파일 조립과 달리 동일 결론에 도달했어도 반대 정보 처리과정을 기록해야 하는 실제 거래를 적용한다.",
+        "topics": "실제 득점요건의 주제 04와 일치한다. 답안 형식 descriptive와 사실 의존 학습유형 case를 혼동하지 않았다.",
+        "edition": "2026 전문의 관련 요구사항과 적용지침 전체 및 필요한 앞뒤 문단을 직접 대조했다. 2026년 재무제표 사례에 맞는 현행 본문이며 기존2025 등록은 표제만 믿지 않고 동일 내용을 확인했다. 정확한 PDF쪽·추출행은 source_ranges에 결속했다."
+      },
+      "source_checks": [
+        {
+          "source_ref_id": "src-21bdaeecb1163404d0",
+          "file": "cpa_uploader/data/official/delegated-n01-kga200-210-230-2025.txt",
+          "file_sha256": "d73a24553dc65f8ffc106d324ec77dd99dd578426318213bfb249d957d67bd6f",
+          "quote_sha256": "d1a38d9a4928051f82eac6fb60ba3c0f96fe0a819554e6afc33728c002d814bf",
+          "locator": "2026 KGA 230.11; PDF 97; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L4009~4011; 등록 cpa_uploader/data/official/delegated-n01-kga200-210-230-2025.txt L640~643",
+          "title": "KGA 230.11; 2026 전문 대조 PDF 97쪽, 원 추출 L4009~4011; 등록 전사 L640~643",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "230.11",
+            "source_ref_id": "src-21bdaeecb1163404d0",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 97,
+            "start_line": 4009,
+            "end_line": 4011,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        },
+        {
+          "source_ref_id": "src-23a6c5a4e712f7dd49",
+          "file": "cpa_uploader/data/official/case-deepening-2026-09-14-kga230.md",
+          "file_sha256": "27420e7e99ff52251eda9cb5e75dcbba3058bc6fd45fd0bd2bf1facc2e881781",
+          "quote_sha256": "ea3f6807b7181b3ccef9a10b1e89eb79e34815675a8773ee01710284c2853b07",
+          "locator": "2026 KGA 230.A15; PDF 102; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L4256~4257; 등록 cpa_uploader/data/official/case-deepening-2026-09-14-kga230.md L37~38",
+          "title": "KGA 230.A15; 2026 전문 대조 PDF 102쪽, 원 추출 L4256~4257; 등록 전사 L37~38",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "230.A15",
+            "source_ref_id": "src-23a6c5a4e712f7dd49",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 102,
+            "start_line": 4256,
+            "end_line": 4257,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        }
+      ],
+      "criterion_checks": [
+        {
+          "criterion_id": "sub3.c1",
+          "claim": "해당 유의적 사항에서 결론 불변만을 이유로 불일치정보 처리기록을 생략하는 설명이 부적절하다고 판단한다. 구체 처리과정을 문서화해야 한다는 조치가 이를 함축해도 인정한다. 명시적으로 생략 가능하다고 결론내리면 이 판단은 인정하지 않는다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-21bdaeecb1163404d0",
+            "src-23a6c5a4e712f7dd49"
+          ],
+          "verdict": "pass",
+          "rationale": "결론이 유지되었다는 사유로 처리 과정 기록을 생략할 수 없다. 초기 고객 이메일을 초안 조건으로 확인한 과정 및 최종 계약·고객 확인이 결론을 지지한 연결을 기록하는 답이 맞다. 생략 부적절 판단1점과 사례의 해소 과정 기록1점이다. 초기 이메일과 추가 증거의 언어조각을 따로 배점하지 않고 하나의 불일치 처리 기록으로 평가한다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "claim": "12월 이메일의 추가 검수조건과 당기 매출 결론의 불일치를, 이메일이 초안 조건에 관한 것임을 확인한 경위 및 최종 계약·고객 확인에 근거하여 해소한 과정과 연결해 기록한다. 불일치 정보가 있었다는 사실이나 최종 결론만 반복한 답은 부족하다. 모든 부정확한 문서의 보존 자체를 필수요건으로 삼지 않는다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-21bdaeecb1163404d0",
+            "src-23a6c5a4e712f7dd49"
+          ],
+          "verdict": "pass",
+          "rationale": "결론이 유지되었다는 사유로 처리 과정 기록을 생략할 수 없다. 초기 고객 이메일을 초안 조건으로 확인한 과정 및 최종 계약·고객 확인이 결론을 지지한 연결을 기록하는 답이 맞다. 생략 부적절 판단1점과 사례의 해소 과정 기록1점이다. 초기 이메일과 추가 증거의 언어조각을 따로 배점하지 않고 하나의 불일치 처리 기록으로 평가한다."
+        }
+      ],
+      "qa_inputs": [
+        {
+          "set_id": "case-04-documentation-trace-20260914",
+          "subquestion_id": "sub3",
+          "kind": "partial",
+          "answer": "결론이 바뀌지 않았더라도 이 유의적 사항의 처리기록을 생략하면 안 된다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub3.c1"
+          ],
+          "reason": "내용 대조에 따라 sub3.c1만 충족한다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "246a1a9aebd4bfe93a1b09a5c08670b31d3962c3ae9fe4284e89002e0f76660e",
+          "review_verdict": "pass"
+        },
+        {
+          "set_id": "case-04-documentation-trace-20260914",
+          "subquestion_id": "sub3",
+          "kind": "wrong",
+          "answer": "결론이 당기 매출 적절로 유지되었으므로 앞선 이메일과 추가 확인은 중요하지 않다. 최종 결론만 기록하면 충분하다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "reason": "사례 적용 명제를 충족하지 않는다. 금액합산을 실행한 결과가 아니라 공식원문·답안·criterion에 따른 작성자 기대값이다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "3bfc6526dc19b2db531091270d3b4b0a5146b2f041e3f66a8554a35ba1afcdfb",
+          "review_verdict": "pass"
+        }
+      ],
+      "local_boundaries_reviewed": [
+        {
+          "kind": "model_answer",
+          "answer": "최종 결론이 바뀌지 않았다는 이유로 유의적인 상반정보의 처리 과정을 기록하지 않아도 된다는 설명은 부적절하다.\n추가 검수를 요구하는 것으로 읽힌 12월 이메일과 당기 매출 적절이라는 결론의 불일치를, 초안 조건임을 확인한 경위 및 최종 계약·고객 확인에 따라 해소하고 결론에 도달한 과정으로 문서화한다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub3.c1",
+            "sub3.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "empty",
+          "answer": "",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "reverse_partial",
+          "answer": "기록을 생략해도 된다. 보완한다면 이메일이 초안 조건이었음을 확인하고 최종 계약과 고객 확인에 따라 기존 결론과의 불일치를 해소한 과정을 기록한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub3.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "implicit",
+          "answer": "초안 이메일의 추가 검수조건이 왜 최종 계약과 달랐는지, 고객 확인과 최종 인수조건으로 그 차이를 어떻게 해소해 당기 매출로 결론내렸는지 조서에 추가해야 한다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub3.c1",
+            "sub3.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        }
+      ],
+      "qa_rationale": "대표 부분정답은 명시한 독립 criterion만1점이고 대표 오답은0점이다. 모범·공백·함축 판단 및 반대 결론 경계 답안의 독립 정답 보존을 실제 답안과 대조했다. 이는 실측 전 기대값 의미검토이다.",
+      "human_review_performed": false,
+      "actual_model_grading": false,
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-07-control-evidence-20260914",
+      "subquestion_id": "sub1",
+      "reviewed_content_hash": "29d49abe057f23ed8d13e80f5cddaf791e86f4bd72101cc98834b6eb1732373e",
+      "question_sha256": "9e94bbbf58d9c804fc264bf0fa66af6777eb81fce12449cff0bad17973a1aa26",
+      "question_style": "case",
+      "topic_ids": [
+        "07",
+        "08"
+      ],
+      "fact_ids": [
+        "fact1",
+        "fact2"
+      ],
+      "criterion_ids": [
+        "sub1.c1",
+        "sub1.c2"
+      ],
+      "max_points": 2,
+      "source_ref_ids": [
+        "src-16f1e240ed36a75a75",
+        "src-b8f91aa5296513b0ad",
+        "src-f5f0c173e31eb73c11"
+      ],
+      "checks": {
+        "source": "pass",
+        "answer": "pass",
+        "prompt": "pass",
+        "points": "pass",
+        "style": "pass",
+        "topics": "pass",
+        "edition": "pass",
+        "nonduplication": "pass"
+      },
+      "check_rationales": {
+        "source": "330.10(a), A26~A27의 질문과 다른 절차의 결합 및 문서화되지 않은 통제의 예시가 구두 출고승인에 직접 맞는다. 330.10(b)의 간접통제를 별도 요구로 늘리지 않는다.",
+        "answer": "출고승인의 적용·일관성·수행자 중 하나를 구체적으로 질문하고 승인 후 출고가 이루어지는 실제 수행을 관찰하는 결합이 맞다. 보관된 수량·시점 로그만으로 승인 수행을 대체하지 않는다.",
+        "prompt": "사용할 질문과 관찰을 한 가지씩 묻는 범위이며 연간 통제 신뢰의 최종 결론은 별도 물음에서 다룬다. 세 질문 항목을 모두 열거해야 1점이라는 숨은 요구가 없다.",
+        "points": "구체 질문1점과 구체 관찰1점, 합계2점이다. 질문은 적용·일관성·수행자 중 하나면 되고 관찰만 맞아도 독립1점이다.",
+        "style": "승인이 구두로 이루어지고 문서 기록이 없는 출고 과정이라는 사실이 적절한 증거 방법을 결정한다. 기록된 승인 테스트의 일반답으로 대체할 수 없다.",
+        "nonduplication": "mock2025GS1-3:2의 문서 없는 통제와 직접 연결된다. cpa2025-3:3은 이중목적 세부테스트 인접 출제이며 최종 coverage에서 인접 ID로 이동했음을 확인했다.",
+        "topics": "실제 득점요건의 주제 07, 08와 일치한다. 답안 형식 descriptive와 사실 의존 학습유형 case를 혼동하지 않았다.",
+        "edition": "2026 전문의 관련 요구사항과 적용지침 전체 및 필요한 앞뒤 문단을 직접 대조했다. 2026년 재무제표 사례에 맞는 현행 본문이며 기존2025 등록은 표제만 믿지 않고 동일 내용을 확인했다. 정확한 PDF쪽·추출행은 source_ranges에 결속했다."
+      },
+      "source_checks": [
+        {
+          "source_ref_id": "src-16f1e240ed36a75a75",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "file_sha256": "6505709543fe438d8c60e48f974c6e990f080b26ed29c4f14eec856887cb84e0",
+          "quote_sha256": "0e5124c168978519b9b7307585beb3d3abb4393e6f06254285924f44c21e09bc",
+          "locator": "2026 KGA 330.10; PDF 340; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L14609~14619; 등록 cpa_uploader/data/official/kga330-2025-review07.txt L58~70",
+          "title": "KGA 330.10; 2026 전문 대조 PDF 340쪽, 원 추출 L14609~14619; 등록 전사 L58~70",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "330.10",
+            "source_ref_id": "src-16f1e240ed36a75a75",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 340,
+            "start_line": 14609,
+            "end_line": 14619,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        },
+        {
+          "source_ref_id": "src-b8f91aa5296513b0ad",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "file_sha256": "6505709543fe438d8c60e48f974c6e990f080b26ed29c4f14eec856887cb84e0",
+          "quote_sha256": "a38beddb28bac66c176a1b3864e754cbc51289b331c827cbd1d6051a8ef73af7",
+          "locator": "2026 KGA 330.A26; PDF 350; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L15035~15038; 등록 cpa_uploader/data/official/kga330-2025-review07.txt L257~260",
+          "title": "KGA 330.A26; 2026 전문 대조 PDF 350쪽, 원 추출 L15035~15038; 등록 전사 L257~260",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "330.A26",
+            "source_ref_id": "src-b8f91aa5296513b0ad",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 350,
+            "start_line": 15035,
+            "end_line": 15038,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        },
+        {
+          "source_ref_id": "src-f5f0c173e31eb73c11",
+          "file": "cpa_uploader/data/official/case-deepening-2026-09-14-kga330.md",
+          "file_sha256": "f8f0407459445103b5ed113a7b5584fc781fef081c38efb02750c07c44d5c549",
+          "quote_sha256": "f252342ce7a523eca83c6459628bb77e4161bd3229a84cfab85f90d621a301cc",
+          "locator": "2026 KGA 330.A27; PDF 350~351; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L15039~15053; 등록 cpa_uploader/data/official/case-deepening-2026-09-14-kga330.md L5~12",
+          "title": "KGA 330.A27; 2026 전문 대조 PDF 350~351쪽, 원 추출 L15039~15053; 등록 전사 L5~12",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "330.A27",
+            "source_ref_id": "src-f5f0c173e31eb73c11",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": "350~351",
+            "start_line": 15039,
+            "end_line": 15053,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        }
+      ],
+      "criterion_checks": [
+        {
+          "criterion_id": "sub1.c1",
+          "claim": "출고책임자·출고담당자에게 해당 기간의 구두승인 운영을 확인하는 구체 질문을 한 가지 이상 제시한다. 적용방법·일관성·수행자 중 사례의 통제 운영을 검증하는 어느 한 구체 질문도 이 1점을 충족하며 세 관점을 모두 필수로 요구하지 않는다. 막연히 관계자에게 질문한다고만 쓰는 답은 부족하다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-16f1e240ed36a75a75",
+            "src-b8f91aa5296513b0ad",
+            "src-f5f0c173e31eb73c11"
+          ],
+          "verdict": "pass",
+          "rationale": "출고승인의 적용·일관성·수행자 중 하나를 구체적으로 질문하고 승인 후 출고가 이루어지는 실제 수행을 관찰하는 결합이 맞다. 보관된 수량·시점 로그만으로 승인 수행을 대체하지 않는다. 구체 질문1점과 구체 관찰1점, 합계2점이다. 질문은 적용·일관성·수행자 중 하나면 되고 관찰만 맞아도 독립1점이다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "claim": "질문과 결합하여 실제 주문 확인·구두승인 후 차량 출발 과정을 관찰하는 구체적 절차를 제시한다. 구두승인 운영을 보강할 다른 적합하고 실행가능한 절차도 인정하되 단순 출고대장 복사나 이 사례와 무관한 컴퓨터기법 명칭만은 인정하지 않는다. 질문점수를 받지 못한 답이라도 적합한 관찰의 구체 제안 자체에는 이 독립 점수를 인정한다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-f5f0c173e31eb73c11",
+            "src-16f1e240ed36a75a75",
+            "src-b8f91aa5296513b0ad"
+          ],
+          "verdict": "pass",
+          "rationale": "출고승인의 적용·일관성·수행자 중 하나를 구체적으로 질문하고 승인 후 출고가 이루어지는 실제 수행을 관찰하는 결합이 맞다. 보관된 수량·시점 로그만으로 승인 수행을 대체하지 않는다. 구체 질문1점과 구체 관찰1점, 합계2점이다. 질문은 적용·일관성·수행자 중 하나면 되고 관찰만 맞아도 독립1점이다."
+        }
+      ],
+      "qa_inputs": [
+        {
+          "set_id": "case-07-control-evidence-20260914",
+          "subquestion_id": "sub1",
+          "kind": "partial",
+          "answer": "주문 접수부터 출고책임자의 확인과 구두승인, 차량 출발까지 현장에서 관찰하여 승인 전 출발이 차단되는지 확인한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub1.c2"
+          ],
+          "reason": "내용 대조에 따라 sub1.c2만 충족한다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "bbd4cf6b8751c8e26bf0be9b41500fb6e1ad5f4bc7d6d9b1b63770d0cd6660fe",
+          "review_verdict": "pass"
+        },
+        {
+          "set_id": "case-07-control-evidence-20260914",
+          "subquestion_id": "sub1",
+          "kind": "wrong",
+          "answer": "승인 문서가 없으면 통제의 운영효과성에 관한 증거는 어떤 방법으로도 얻을 수 없다. 출고대장만 복사하면 구두승인이 연중 일관되게 이루어졌는지도 입증된다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "reason": "사례 적용 명제를 충족하지 않는다. 금액합산을 실행한 결과가 아니라 공식원문·답안·criterion에 따른 작성자 기대값이다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "af1fe65e99abce18b29cfefea38aecab87fe9b15199e5f3887fec0e45bbae18e",
+          "review_verdict": "pass"
+        }
+      ],
+      "local_boundaries_reviewed": [
+        {
+          "kind": "model_answer",
+          "answer": "예를 들어 출고담당자에게 감사대상 기간 중 출고책임자의 구두승인을 어떻게 확인한 뒤 차량을 출발시켰는지 질문한다.\n그 질문과 함께 실제 주문 접수부터 책임자의 확인·승인 및 차량 출발까지 관찰하여, 승인 없이 출발하지 못하도록 통제가 수행되는지 확인한다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub1.c1",
+            "sub1.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "empty",
+          "answer": "",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "reverse_partial",
+          "answer": "출고담당자에게 기중에 출고책임자의 구두승인을 어떤 방법으로 확인한 뒤 차량을 출발시켰는지 질문한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub1.c1"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        }
+      ],
+      "qa_rationale": "대표 부분정답은 명시한 독립 criterion만1점이고 대표 오답은0점이다. 모범·공백·함축 판단 및 반대 결론 경계 답안의 독립 정답 보존을 실제 답안과 대조했다. 이는 실측 전 기대값 의미검토이다.",
+      "human_review_performed": false,
+      "actual_model_grading": false,
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-07-control-evidence-20260914",
+      "subquestion_id": "sub2",
+      "reviewed_content_hash": "29d49abe057f23ed8d13e80f5cddaf791e86f4bd72101cc98834b6eb1732373e",
+      "question_sha256": "ad7c82eef146d9d02eed9160269a8421127232fad5e3bc1fa9b3056e2b82edcc",
+      "question_style": "case",
+      "topic_ids": [
+        "08",
+        "07"
+      ],
+      "fact_ids": [
+        "fact3"
+      ],
+      "criterion_ids": [
+        "sub2.c1",
+        "sub2.c2"
+      ],
+      "max_points": 2,
+      "source_ref_ids": [
+        "src-b9d9fd1536fedc490a",
+        "src-b8f91aa5296513b0ad"
+      ],
+      "checks": {
+        "source": "pass",
+        "answer": "pass",
+        "prompt": "pass",
+        "points": "pass",
+        "style": "pass",
+        "topics": "pass",
+        "edition": "pass",
+        "nonduplication": "pass"
+      },
+      "check_rationales": {
+        "source": "500.A21은 관찰이 수행되는 시점 및 관찰받는다는 사실의 영향이라는 두 한계를 명시한다. 원문 PDF402의 두 문장을 각각 확인했다.",
+        "answer": "12월3일 오전 관찰에 국한된다는 기간 한계와 사전 통지 후 숙련자 추가배치·이중확인으로 평소와 다른 행동이 나타날 가능성을 구분한 답이 맞다.",
+        "prompt": "실제 관찰 결과를 연간 결론으로 확대할 때의 한계 두 가지를 묻는다. 추가 통제테스트 설계나 최종 의견을 숨은 요구로 넣지 않는다.",
+        "points": "시점 한계1점과 관찰 인지에 따른 행동 변화1점으로 2점이다. 부적절 판단을 두 근거 위에 다시 가점하지 않는다.",
+        "style": "한정된 관찰 일시와 사전 통지 뒤 실제로 바뀐 배치·확인 방식이 각각 근거다. 이 사실을 없애면 일반 한계만 나열하는 기준서형으로 바뀐다.",
+        "nonduplication": "pilot08-003의 일반 관찰 한계를 특정 통제와 비정상 관찰 조건에 적용하는 의도된 심화이며, 다른 통제 물음의 연간 신뢰 일반조건과 범위를 구별한다.",
+        "topics": "실제 득점요건의 주제 08, 07와 일치한다. 답안 형식 descriptive와 사실 의존 학습유형 case를 혼동하지 않았다.",
+        "edition": "2026 전문의 관련 요구사항과 적용지침 전체 및 필요한 앞뒤 문단을 직접 대조했다. 2026년 재무제표 사례에 맞는 현행 본문이며 기존2025 등록은 표제만 믿지 않고 동일 내용을 확인했다. 정확한 PDF쪽·추출행은 source_ranges에 결속했다."
+      },
+      "source_checks": [
+        {
+          "source_ref_id": "src-b9d9fd1536fedc490a",
+          "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+          "file_sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+          "quote_sha256": "8b1aa9eec6039e76f5522bee241b921798687d7acecba39c006d61e4889af471",
+          "locator": "2026 KGA 500.A21; PDF 402; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L17174~17179; 등록 cpa_uploader/data/official/kga500-2025-review08.txt L254~260",
+          "title": "KGA 500.A21; 2026 전문 대조 PDF 402쪽, 원 추출 L17174~17179; 등록 전사 L254~260",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "500.A21",
+            "source_ref_id": "src-b9d9fd1536fedc490a",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 402,
+            "start_line": 17174,
+            "end_line": 17179,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        },
+        {
+          "source_ref_id": "src-b8f91aa5296513b0ad",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "file_sha256": "6505709543fe438d8c60e48f974c6e990f080b26ed29c4f14eec856887cb84e0",
+          "quote_sha256": "a38beddb28bac66c176a1b3864e754cbc51289b331c827cbd1d6051a8ef73af7",
+          "locator": "2026 KGA 330.A26; PDF 350; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L15035~15038; 등록 cpa_uploader/data/official/kga330-2025-review07.txt L257~260",
+          "title": "KGA 330.A26; 2026 전문 대조 PDF 350쪽, 원 추출 L15035~15038; 등록 전사 L257~260",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "330.A26",
+            "source_ref_id": "src-b8f91aa5296513b0ad",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 350,
+            "start_line": 15035,
+            "end_line": 15038,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        }
+      ],
+      "criterion_checks": [
+        {
+          "criterion_id": "sub2.c1",
+          "claim": "관찰한 12월 3일 오전의 시점 제한으로 그 밖의 연중 운영을 입증하지 못한다는 이유를 제시한다. 시점이나 기간 제한을 이 관찰 범위에 연결하면 인정하며 추가적인 부적절 판단 점수를 붙이지 않는다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-b9d9fd1536fedc490a",
+            "src-b8f91aa5296513b0ad"
+          ],
+          "verdict": "pass",
+          "rationale": "12월3일 오전 관찰에 국한된다는 기간 한계와 사전 통지 후 숙련자 추가배치·이중확인으로 평소와 다른 행동이 나타날 가능성을 구분한 답이 맞다. 시점 한계1점과 관찰 인지에 따른 행동 변화1점으로 2점이다. 부적절 판단을 두 근거 위에 다시 가점하지 않는다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "claim": "사전 통지 후 숙련 인원 추가·이중 확인이 이루어져 관찰받는다는 사실이 평소 통제 수행방식을 바꿀 수 있었다는 이유를 제시한다. 단순히 시간이 짧다는 이유는 첫 기준과 같으므로 이 점수를 중복 부여하지 않는다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-b9d9fd1536fedc490a"
+          ],
+          "verdict": "pass",
+          "rationale": "12월3일 오전 관찰에 국한된다는 기간 한계와 사전 통지 후 숙련자 추가배치·이중확인으로 평소와 다른 행동이 나타날 가능성을 구분한 답이 맞다. 시점 한계1점과 관찰 인지에 따른 행동 변화1점으로 2점이다. 부적절 판단을 두 근거 위에 다시 가점하지 않는다."
+        }
+      ],
+      "qa_inputs": [
+        {
+          "set_id": "case-07-control-evidence-20260914",
+          "subquestion_id": "sub2",
+          "kind": "partial",
+          "answer": "12월 3일 오전만 본 결과는 그 시점에 한정되므로 다른 기간까지 연중 통제 운영을 입증하지 못한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub2.c1"
+          ],
+          "reason": "내용 대조에 따라 sub2.c1만 충족한다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "fad61a08831be359b4d038727bbee8dccf9db4d447bfba88469b6dbc702d6b6e",
+          "review_verdict": "pass"
+        },
+        {
+          "set_id": "case-07-control-evidence-20260914",
+          "subquestion_id": "sub2",
+          "kind": "wrong",
+          "answer": "관찰 시점을 사전에 알렸으므로 평소와 같은 행동을 보였음이 보장된다. 그 오전에 이탈이 없으면 연중 통제도 효과적이라고 확정할 수 있다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "reason": "사례 적용 명제를 충족하지 않는다. 금액합산을 실행한 결과가 아니라 공식원문·답안·criterion에 따른 작성자 기대값이다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "0cb05ce9a0609377e7a2d9cdaae09d3284ba9cc30e51e3e7dd9f96000c0634c5",
+          "review_verdict": "pass"
+        }
+      ],
+      "local_boundaries_reviewed": [
+        {
+          "kind": "model_answer",
+          "answer": "직접 관찰한 증거는 12월 3일 오전에 한정되므로 그 관찰만으로 다른 날짜·시간을 포함한 연중 통제 운영을 입증할 수 없다.\n회사가 사전에 관찰 시간을 알고 숙련 인력과 추가 이중 확인을 배치하였으므로, 관찰받는다는 사실이 평소 수행방식을 바꾸어 그날의 결과가 일상적인 운영을 나타내지 않을 수 있다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub2.c1",
+            "sub2.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "empty",
+          "answer": "",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "reverse_partial",
+          "answer": "회사가 관찰 예정시간에 숙련 직원을 추가하고 평소와 다른 이중 확인을 했으므로 감사인이 지켜본다는 사실이 통제 수행방식을 바꾸었을 수 있다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub2.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        }
+      ],
+      "qa_rationale": "대표 부분정답은 명시한 독립 criterion만1점이고 대표 오답은0점이다. 모범·공백·함축 판단 및 반대 결론 경계 답안의 독립 정답 보존을 실제 답안과 대조했다. 이는 실측 전 기대값 의미검토이다.",
+      "human_review_performed": false,
+      "actual_model_grading": false,
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-07-control-evidence-20260914",
+      "subquestion_id": "sub3",
+      "reviewed_content_hash": "29d49abe057f23ed8d13e80f5cddaf791e86f4bd72101cc98834b6eb1732373e",
+      "question_sha256": "17c5535a70b11abcb22b351c451cfda3ffd3c5011ee53ecb64c7082864790347",
+      "question_style": "case",
+      "topic_ids": [
+        "07",
+        "08"
+      ],
+      "fact_ids": [
+        "fact4"
+      ],
+      "criterion_ids": [
+        "sub3.c1",
+        "sub3.c2"
+      ],
+      "max_points": 2,
+      "source_ref_ids": [
+        "src-ad011764f8da36fee4",
+        "src-2df915f1b289f77d67",
+        "src-c48b9c5ca0213d9d3d"
+      ],
+      "checks": {
+        "source": "pass",
+        "answer": "pass",
+        "prompt": "pass",
+        "points": "pass",
+        "style": "pass",
+        "topics": "pass",
+        "edition": "pass",
+        "nonduplication": "pass"
+      },
+      "check_rationales": {
+        "source": "330.A23은 이중목적테스트의 두 목적을 분리 평가한다. 330.16은 세부테스트에서 왜곡표시가 없다는 것이 관련 통제효과의 증거는 아니라고 한다. .17 완결문단은 이탈의 설명·추가 증거 검토를 보충 지지한다.",
+        "answer": "청구금액의 정확성은 세부테스트의 결과이며 누락된 승인 통제의 효과성 증거가 되지 않는다. 승인 누락을 이탈로 평가하고 설명·추가 증거를 얻어 운영효과 결론에 반영해야 한다.",
+        "prompt": "금액 오류가 없는데 승인 서명이 없는 검사 결과의 평가를 묻는다. 330.17의 모든 후속 조치를 나열하라는 발문으로 확대하지 않는다.",
+        "points": "실증 결과와 통제 증거의 독립 구별1점, 승인 누락 이탈의 평가·관련 추가 증거 연결1점이다. 전체 고려의무를 구체 대응에 추가 가점하지 않는다.",
+        "style": "같은 청구서에서 정확한 금액과 누락된 필수 승인이라는 서로 다른 검사 결과가 존재해야 이 구체적인 증거 분리와 이탈 평가가 성립한다.",
+        "nonduplication": "pilot07-003의 일반 무오류·통제효과성 설명과 cpa2025-3:3의 이중목적 관계를 실제 불일치 결과에 적용한다. 계산형 세부테스트를 되풀이하지 않는다.",
+        "topics": "실제 득점요건의 주제 07, 08와 일치한다. 답안 형식 descriptive와 사실 의존 학습유형 case를 혼동하지 않았다.",
+        "edition": "2026 전문의 관련 요구사항과 적용지침 전체 및 필요한 앞뒤 문단을 직접 대조했다. 2026년 재무제표 사례에 맞는 현행 본문이며 기존2025 등록은 표제만 믿지 않고 동일 내용을 확인했다. 정확한 PDF쪽·추출행은 source_ranges에 결속했다."
+      },
+      "source_checks": [
+        {
+          "source_ref_id": "src-ad011764f8da36fee4",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "file_sha256": "6505709543fe438d8c60e48f974c6e990f080b26ed29c4f14eec856887cb84e0",
+          "quote_sha256": "ad02544e5dde64f59abfa3fb90dbb4f0956c8ebc425d3ef267b1cbc04a1b04aa",
+          "locator": "2026 KGA 330.A23; PDF 350; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L15017~15022; 등록 cpa_uploader/data/official/kga330-2025-review07.txt L239~244",
+          "title": "KGA 330.A23; 2026 전문 대조 PDF 350쪽, 원 추출 L15017~15022; 등록 전사 L239~244",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "330.A23",
+            "source_ref_id": "src-ad011764f8da36fee4",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 350,
+            "start_line": 15017,
+            "end_line": 15022,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        },
+        {
+          "source_ref_id": "src-2df915f1b289f77d67",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "file_sha256": "6505709543fe438d8c60e48f974c6e990f080b26ed29c4f14eec856887cb84e0",
+          "quote_sha256": "eb1e0e32e1e9cde655af0712cf6fd1ff345410bc9dcb1f029058628c3d2ffe6e",
+          "locator": "2026 KGA 330.16; PDF 342; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L14691~14695; 등록 cpa_uploader/data/official/kga330-2025-review07.txt L115~118",
+          "title": "KGA 330.16; 2026 전문 대조 PDF 342쪽, 원 추출 L14691~14695; 등록 전사 L115~118",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "330.16",
+            "source_ref_id": "src-2df915f1b289f77d67",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 342,
+            "start_line": 14691,
+            "end_line": 14695,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        },
+        {
+          "source_ref_id": "src-c48b9c5ca0213d9d3d",
+          "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+          "file_sha256": "6505709543fe438d8c60e48f974c6e990f080b26ed29c4f14eec856887cb84e0",
+          "quote_sha256": "c2c3b526e9b9eb2b639be1b2f193163662e57dafd54b47fee4103da23d5e6413",
+          "locator": "2026 KGA 330.17; PDF 342; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L14696~14706; 등록 cpa_uploader/data/official/kga330-2025-review07.txt L119~126",
+          "title": "KGA 330.17; 2026 전문 대조 PDF 342쪽, 원 추출 L14696~14706; 등록 전사 L119~126",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "330.17",
+            "source_ref_id": "src-c48b9c5ca0213d9d3d",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 342,
+            "start_line": 14696,
+            "end_line": 14706,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        }
+      ],
+      "criterion_checks": [
+        {
+          "criterion_id": "sub3.c1",
+          "claim": "금액 일치·무왜곡 결과를 검사한 매입거래 금액에 관한 세부테스트 결과로 평가하고 그 결과가 승인통제의 효과성 증거를 대신하지 못함을 구별한다. 구체 거래금액 결과를 빠뜨린 일반론만은 부족하다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-ad011764f8da36fee4",
+            "src-2df915f1b289f77d67"
+          ],
+          "verdict": "pass",
+          "rationale": "청구금액의 정확성은 세부테스트의 결과이며 누락된 승인 통제의 효과성 증거가 되지 않는다. 승인 누락을 이탈로 평가하고 설명·추가 증거를 얻어 운영효과 결론에 반영해야 한다. 실증 결과와 통제 증거의 독립 구별1점, 승인 누락 이탈의 평가·관련 추가 증거 연결1점이다. 전체 고려의무를 구체 대응에 추가 가점하지 않는다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "claim": "두 승인서명 누락을 승인통제 운영효과성에 관한 별도 이탈로 평가하여 그에 대한 증거·설명을 고려한 통제 결론을 형성한다. 금액 무오류만으로 승인검사를 종결하지 않는다. 누락 두 건이라는 사실의 반복이나 모집단 전체 통제가 반드시 무효라는 단정만으로는 부족하다. 문단17의 세 가지 후속 결정 전부를 별도 필수 열거요건으로 요구하지 않는다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-ad011764f8da36fee4",
+            "src-2df915f1b289f77d67",
+            "src-c48b9c5ca0213d9d3d"
+          ],
+          "verdict": "pass",
+          "rationale": "청구금액의 정확성은 세부테스트의 결과이며 누락된 승인 통제의 효과성 증거가 되지 않는다. 승인 누락을 이탈로 평가하고 설명·추가 증거를 얻어 운영효과 결론에 반영해야 한다. 실증 결과와 통제 증거의 독립 구별1점, 승인 누락 이탈의 평가·관련 추가 증거 연결1점이다. 전체 고려의무를 구체 대응에 추가 가점하지 않는다."
+        }
+      ],
+      "qa_inputs": [
+        {
+          "set_id": "case-07-control-evidence-20260914",
+          "subquestion_id": "sub3",
+          "kind": "partial",
+          "answer": "계약·입고기록과 청구금액이 일치한 것은 매입거래 금액의 세부테스트 결과이며 그 무오류 결과가 승인통제의 효과성을 입증하지는 않는다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub3.c1"
+          ],
+          "reason": "내용 대조에 따라 sub3.c1만 충족한다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "9d95dd43cdeb1948a6cd66925e588217fe884a4f6576ea69f2cd96961e486674",
+          "review_verdict": "pass"
+        },
+        {
+          "set_id": "case-07-control-evidence-20260914",
+          "subquestion_id": "sub3",
+          "kind": "wrong",
+          "answer": "같은 청구서의 금액이 일치했으므로 두 승인서명이 없어도 승인통제는 효과적이다. 두 테스트의 목적과 결과를 따로 평가할 필요가 없다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "reason": "사례 적용 명제를 충족하지 않는다. 금액합산을 실행한 결과가 아니라 공식원문·답안·criterion에 따른 작성자 기대값이다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "e9506d3dc06ebb9da3ce27c063fa7709ec1ce1a13cda4b2455dc248c9bf50bb8",
+          "review_verdict": "pass"
+        }
+      ],
+      "local_boundaries_reviewed": [
+        {
+          "kind": "model_answer",
+          "answer": "계약·입고기록과 청구금액이 일치한 결과는 검사한 매입거래 금액의 세부테스트 목적에 따라 평가하며, 금액 왜곡표시가 없었다는 결과를 승인통제의 효과성 증거로 대신하지 않는다.\n두 청구서의 승인서명 누락은 승인통제의 운영효과성이라는 별도 테스트 목적에 따라 통제이탈로 평가한다. 금액 대조 결과와 별도로 누락의 설명·보강증거 등을 고려하여 통제에 관한 결론을 형성해야 한다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub3.c1",
+            "sub3.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "empty",
+          "answer": "",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "reverse_partial",
+          "answer": "두 승인서명 누락은 승인통제의 운영효과성과 관련된 이탈로 별도 평가하고 누락 경위와 보강증거를 검토하여 통제 결론을 형성해야 한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub3.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        }
+      ],
+      "qa_rationale": "대표 부분정답은 명시한 독립 criterion만1점이고 대표 오답은0점이다. 모범·공백·함축 판단 및 반대 결론 경계 답안의 독립 정답 보존을 실제 답안과 대조했다. 이는 실측 전 기대값 의미검토이다.",
+      "human_review_performed": false,
+      "actual_model_grading": false,
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-05-governance-dialogue-20260914",
+      "subquestion_id": "sub1",
+      "reviewed_content_hash": "3888ce5c81a653d54c4503af16d9ea5e5ca179a7de39d18f6cc3a3dafe839740",
+      "question_sha256": "fef1b6defec61b4eb76c13e74116e63a47371f7f00cb8f2125eca6f328441657",
+      "question_style": "case",
+      "topic_ids": [
+        "05"
+      ],
+      "fact_ids": [
+        "fact2"
+      ],
+      "criterion_ids": [
+        "sub1.c1",
+        "sub1.c2"
+      ],
+      "max_points": 2,
+      "source_ref_ids": [
+        "src-3442bdca167a00275c",
+        "src-87e0ffc2e0e0549a38"
+      ],
+      "checks": {
+        "source": "pass",
+        "answer": "pass",
+        "prompt": "pass",
+        "points": "pass",
+        "style": "pass",
+        "topics": "pass",
+        "edition": "pass",
+        "nonduplication": "pass"
+      },
+      "check_rationales": {
+        "source": "260.22와 A51의 커뮤니케이션 적절성 평가가 적용된다. A51의 적시 응답·회의 없이 만날 의사·문제 조사 등 요소를 실제 감사위원회 행동에 대응했다.",
+        "answer": "수신확인만으로 양방향 커뮤니케이션이 적절하다고 결론내릴 수 없다. 실질 응답·조치 부재 또는 경영진 없이 만나기를 거부한 구체 사실 하나를 적절히 연결한 근거가 맞다.",
+        "prompt": "단순 수신확인을 충분하다고 보는 판단을 평가하고 사실의 근거를 요구한다. A51의 모든 예시를 재열거하거나 각각 충족 여부를 쓰게 하지 않는다.",
+        "points": "수신확인만으로 충분하지 않다는 판단1점, 실제 실질 응답·관여 부족 근거1점이다. 여러 관련 징후를 모두 써야 근거1점을 주는 방식이 아니다.",
+        "style": "감사위원회의 실제 수신확인 외 무대응과 비공개 면담 회피를 지우면 커뮤니케이션 부적절성의 같은 근거가 사라진다.",
+        "nonduplication": "기존260.22 일반 물음 및 cpa2018-7:3의 상대방·시기·형식 오류와 비교했다. 새 물음은 형식상 수신 후 실질적인 대화의 적절성 판단이며 그 기출은 인접 관계다.",
+        "topics": "실제 득점요건의 주제 05와 일치한다. 답안 형식 descriptive와 사실 의존 학습유형 case를 혼동하지 않았다.",
+        "edition": "2026 전문의 관련 요구사항과 적용지침 전체 및 필요한 앞뒤 문단을 직접 대조했다. 2026년 재무제표 사례에 맞는 현행 본문이며 기존2025 등록은 표제만 믿지 않고 동일 내용을 확인했다. 정확한 PDF쪽·추출행은 source_ranges에 결속했다."
+      },
+      "source_checks": [
+        {
+          "source_ref_id": "src-3442bdca167a00275c",
+          "file": "cpa_uploader/data/official/case-deepening-2026-09-14-kga260.md",
+          "file_sha256": "a6acad0185883d2a3350065823beae3ada79ec3ba6c29cb872d91bd998c8371e",
+          "quote_sha256": "454f2837fc1ca08a47862fab6da479c50c261eab54e7a6e932bfd30719e42001",
+          "locator": "2026 KGA 260.22; PDF 172~173; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L7186~7195; 등록 cpa_uploader/data/official/case-deepening-2026-09-14-kga260.md L5~9",
+          "title": "KGA 260.22; 2026 전문 대조 PDF 172~173쪽, 원 추출 L7186~7195; 등록 전사 L5~9",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "260.22",
+            "source_ref_id": "src-3442bdca167a00275c",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": "172~173",
+            "start_line": 7186,
+            "end_line": 7195,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        },
+        {
+          "source_ref_id": "src-87e0ffc2e0e0549a38",
+          "file": "cpa_uploader/data/official/case-deepening-2026-09-14-kga260.md",
+          "file_sha256": "a6acad0185883d2a3350065823beae3ada79ec3ba6c29cb872d91bd998c8371e",
+          "quote_sha256": "6a3762a93dfe80f65bbd0654f7de5ab497b7b25f23aefe218d0c9c482ade9ab1",
+          "locator": "2026 KGA 260.A51; PDF 187; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L7787~7814; 등록 cpa_uploader/data/official/case-deepening-2026-09-14-kga260.md L13~40",
+          "title": "KGA 260.A51; 2026 전문 대조 PDF 187쪽, 원 추출 L7787~7814; 등록 전사 L13~40",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "260.A51",
+            "source_ref_id": "src-87e0ffc2e0e0549a38",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 187,
+            "start_line": 7787,
+            "end_line": 7814,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        }
+      ],
+      "criterion_checks": [
+        {
+          "criterion_id": "sub1.c1",
+          "claim": "수신확인만으로 이 사례의 양방향 소통이 충분했다고 본 평가가 부적절하다고 판단한다. 구체 이유가 그러한 부적절성을 분명히 함축하면 판단문구 없이 인정한다. 명시적으로 충분했다고 결론내리면 이 판단은 인정하지 않는다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-3442bdca167a00275c",
+            "src-87e0ffc2e0e0549a38"
+          ],
+          "verdict": "pass",
+          "rationale": "수신확인만으로 양방향 커뮤니케이션이 적절하다고 결론내릴 수 없다. 실질 응답·조치 부재 또는 경영진 없이 만나기를 거부한 구체 사실 하나를 적절히 연결한 근거가 맞다. 수신확인만으로 충분하지 않다는 판단1점, 실제 실질 응답·관여 부족 근거1점이다. 여러 관련 징후를 모두 써야 근거1점을 주는 방식이 아니다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "claim": "약정·매출 쟁점에 대한 답변·조치 부재 또는 경영진 없는 면담 회피 중 실제 정황을 소통의 적시성·개방성·실질 참여 부족에 연결한다. 둘 모두를 필수 열거하도록 요구하지 않으며 각 정황에 별도 점수를 더하지 않는다. 명시적 반대 결론이 있어도 독립 근거가 맞으면 인정한다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-87e0ffc2e0e0549a38",
+            "src-3442bdca167a00275c"
+          ],
+          "verdict": "pass",
+          "rationale": "수신확인만으로 양방향 커뮤니케이션이 적절하다고 결론내릴 수 없다. 실질 응답·조치 부재 또는 경영진 없이 만나기를 거부한 구체 사실 하나를 적절히 연결한 근거가 맞다. 수신확인만으로 충분하지 않다는 판단1점, 실제 실질 응답·관여 부족 근거1점이다. 여러 관련 징후를 모두 써야 근거1점을 주는 방식이 아니다."
+        }
+      ],
+      "qa_inputs": [
+        {
+          "set_id": "case-05-governance-dialogue-20260914",
+          "subquestion_id": "sub1",
+          "kind": "partial",
+          "answer": "수신확인만으로 충분한 양방향 커뮤니케이션이었다고 평가하는 것은 부적절하다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub1.c1"
+          ],
+          "reason": "내용 대조에 따라 sub1.c1만 충족한다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "5a43185d7d2112f9bc426cd342dfce73854563d169a566226631780fc1b43057",
+          "review_verdict": "pass"
+        },
+        {
+          "set_id": "case-05-governance-dialogue-20260914",
+          "subquestion_id": "sub1",
+          "kind": "wrong",
+          "answer": "서신을 받았다는 회신이 있으므로 쟁점에 답하거나 경영진 없는 면담을 할 필요가 없다. 이 회사의 양방향 커뮤니케이션은 감사목적에 충분하다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "reason": "사례 적용 명제를 충족하지 않는다. 금액합산을 실행한 결과가 아니라 공식원문·답안·criterion에 따른 작성자 기대값이다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "0b524586748461fea8b42d8c680c18f9088137b7196b155b8a99a333b3171293",
+          "review_verdict": "pass"
+        }
+      ],
+      "local_boundaries_reviewed": [
+        {
+          "kind": "model_answer",
+          "answer": "수신확인만으로 이 사례의 양방향 커뮤니케이션이 감사목적에 충분했다고 평가하는 것은 부적절하다.\n감사위원회가 제기된 약정·매출 쟁점에 관해 실질적인 답변이나 조치를 제공하지 않고 경영진 없는 면담도 피하였다는 정황을 보면, 감사인의 문제 제기에 개방적으로 참여하여 소통 목적을 달성하였다고 볼 수 없기 때문이다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub1.c1",
+            "sub1.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "empty",
+          "answer": "",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "reverse_partial",
+          "answer": "소통은 충분했다. 다만 감사위원회가 약정 쟁점에 실질적인 답변이나 조치를 주지 않고 경영진 없는 면담을 피하여 실질 참여와 개방성이 부족했다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub1.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "implicit",
+          "answer": "약정 쟁점에 응답하거나 조치하지 않고 경영진 없이 만나지도 않아 실질적인 참여와 개방성이 부족하므로, 수신확인만으로 소통 평가를 종결해서는 안 된다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub1.c1",
+            "sub1.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        }
+      ],
+      "qa_rationale": "대표 부분정답은 명시한 독립 criterion만1점이고 대표 오답은0점이다. 모범·공백·함축 판단 및 반대 결론 경계 답안의 독립 정답 보존을 실제 답안과 대조했다. 이는 실측 전 기대값 의미검토이다.",
+      "human_review_performed": false,
+      "actual_model_grading": false,
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-05-governance-dialogue-20260914",
+      "subquestion_id": "sub2",
+      "reviewed_content_hash": "3888ce5c81a653d54c4503af16d9ea5e5ca179a7de39d18f6cc3a3dafe839740",
+      "question_sha256": "70bcf236ef638f08033528ae8808479f8d0788aa2525246d5d72acaa0ee022b5",
+      "question_style": "case",
+      "topic_ids": [
+        "05",
+        "06",
+        "08"
+      ],
+      "fact_ids": [
+        "fact2",
+        "fact3"
+      ],
+      "criterion_ids": [
+        "sub2.c1",
+        "sub2.c2"
+      ],
+      "max_points": 2,
+      "source_ref_ids": [
+        "src-3442bdca167a00275c",
+        "src-85a7beba497efa1b31"
+      ],
+      "checks": {
+        "source": "pass",
+        "answer": "pass",
+        "prompt": "pass",
+        "points": "pass",
+        "style": "pass",
+        "topics": "pass",
+        "edition": "pass",
+        "nonduplication": "pass"
+      },
+      "check_rationales": {
+        "source": "260.22는 부적절한 커뮤니케이션의 중요왜곡표시위험평가 및 충분하고 적합한 증거 획득능력 영향을 각각 평가하도록 한다. A52의 통제환경 관련 설명을 함께 읽었다.",
+        "answer": "계획 당시의 원활한 감독 전제보다 통제환경의 취약 가능성이 커져 위험평가에 미치는 영향을 검토해야 한다. 중요한 계약 원본·개정자료 차단과 대체증거 부재는 증거 획득능력에 영향을 준다.",
+        "prompt": "이 사례에서 재검토할 두 영향을 요구하며 무조건 높은 위험 분류나 즉시 의견변형 결론은 요구하지 않는다.",
+        "points": "위험평가 영향1점과 감사증거 획득능력 영향1점으로 2점이다. 일반적으로 재검토한다는 총괄 문장을 각각의 구체 영향과 중복 가점하지 않는다.",
+        "style": "초기 감독 전제, 계약자료 접근 거절, 대체 증거 부재가 두 영향의 근거다. 위 사실을 제거하면 같은 구체적인 영향 분석이 성립하지 않는다.",
+        "nonduplication": "표준형260.22의 두 일반 영향을 그대로 열거하지 않고 실제 통제환경 전제 변경 및 중요한 증거 접근 제한을 구별한다.",
+        "topics": "실제 득점요건의 주제 05, 06, 08와 일치한다. 답안 형식 descriptive와 사실 의존 학습유형 case를 혼동하지 않았다.",
+        "edition": "2026 전문의 관련 요구사항과 적용지침 전체 및 필요한 앞뒤 문단을 직접 대조했다. 2026년 재무제표 사례에 맞는 현행 본문이며 기존2025 등록은 표제만 믿지 않고 동일 내용을 확인했다. 정확한 PDF쪽·추출행은 source_ranges에 결속했다."
+      },
+      "source_checks": [
+        {
+          "source_ref_id": "src-3442bdca167a00275c",
+          "file": "cpa_uploader/data/official/case-deepening-2026-09-14-kga260.md",
+          "file_sha256": "a6acad0185883d2a3350065823beae3ada79ec3ba6c29cb872d91bd998c8371e",
+          "quote_sha256": "454f2837fc1ca08a47862fab6da479c50c261eab54e7a6e932bfd30719e42001",
+          "locator": "2026 KGA 260.22; PDF 172~173; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L7186~7195; 등록 cpa_uploader/data/official/case-deepening-2026-09-14-kga260.md L5~9",
+          "title": "KGA 260.22; 2026 전문 대조 PDF 172~173쪽, 원 추출 L7186~7195; 등록 전사 L5~9",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "260.22",
+            "source_ref_id": "src-3442bdca167a00275c",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": "172~173",
+            "start_line": 7186,
+            "end_line": 7195,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        },
+        {
+          "source_ref_id": "src-85a7beba497efa1b31",
+          "file": "cpa_uploader/data/official/case-deepening-2026-09-14-kga260.md",
+          "file_sha256": "a6acad0185883d2a3350065823beae3ada79ec3ba6c29cb872d91bd998c8371e",
+          "quote_sha256": "291fb2774e7460a8513de2e561fffa76861da8ce7005b6ce29e1379db94ccb5e",
+          "locator": "2026 KGA 260.A52; PDF 187; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L7815~7820; 등록 cpa_uploader/data/official/case-deepening-2026-09-14-kga260.md L44~50",
+          "title": "KGA 260.A52; 2026 전문 대조 PDF 187쪽, 원 추출 L7815~7820; 등록 전사 L44~50",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "260.A52",
+            "source_ref_id": "src-85a7beba497efa1b31",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": 187,
+            "start_line": 7815,
+            "end_line": 7820,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        }
+      ],
+      "criterion_checks": [
+        {
+          "criterion_id": "sub2.c1",
+          "claim": "감사위원회가 약정자료 접근 문제를 해결하지 않는 정황을 재무보고 감시·통제환경의 취약성 가능성과 연결하여 당초 중요왜곡표시위험 평가에 미치는 영향을 평가한다. 위험을 재평가한다는 일반 표현만으로는 사례 연결을 대신하지 못한다. 위험이 무조건 특정 수준으로 상승한다고 확정할 필요는 없다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-3442bdca167a00275c",
+            "src-85a7beba497efa1b31"
+          ],
+          "verdict": "pass",
+          "rationale": "계획 당시의 원활한 감독 전제보다 통제환경의 취약 가능성이 커져 위험평가에 미치는 영향을 검토해야 한다. 중요한 계약 원본·개정자료 차단과 대체증거 부재는 증거 획득능력에 영향을 준다. 위험평가 영향1점과 감사증거 획득능력 영향1점으로 2점이다. 일반적으로 재검토한다는 총괄 문장을 각각의 구체 영향과 중복 가점하지 않는다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "claim": "중요한 판매장려 약정 원본·수정 내역의 열람 차단 및 다른 원천 확인 부재가 해당 매출·장려금에 대한 충분하고 적합한 감사증거 입수 능력에 미치는 영향을 평가한다. 구체 영향평가를 충족하면 일반적인 추가 고려를 별도 가점하지 않는다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-3442bdca167a00275c",
+            "src-85a7beba497efa1b31"
+          ],
+          "verdict": "pass",
+          "rationale": "계획 당시의 원활한 감독 전제보다 통제환경의 취약 가능성이 커져 위험평가에 미치는 영향을 검토해야 한다. 중요한 계약 원본·개정자료 차단과 대체증거 부재는 증거 획득능력에 영향을 준다. 위험평가 영향1점과 감사증거 획득능력 영향1점으로 2점이다. 일반적으로 재검토한다는 총괄 문장을 각각의 구체 영향과 중복 가점하지 않는다."
+        }
+      ],
+      "qa_inputs": [
+        {
+          "set_id": "case-05-governance-dialogue-20260914",
+          "subquestion_id": "sub2",
+          "kind": "partial",
+          "answer": "약정자료 차단을 해결하지 않는 감사위원회의 태도가 재무보고 감시와 통제환경의 취약성을 시사하는지 검토하여 원활한 감시를 전제로 한 중요왜곡표시위험 평가에 미치는 영향을 평가한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub2.c1"
+          ],
+          "reason": "내용 대조에 따라 sub2.c1만 충족한다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "75616c2a53ccdbe476ba4260e77c4877500c2e2cdad3dda70270a253db77074e",
+          "review_verdict": "pass"
+        },
+        {
+          "set_id": "case-05-governance-dialogue-20260914",
+          "subquestion_id": "sub2",
+          "kind": "wrong",
+          "answer": "자료 차단은 회사 내부 사정이므로 위험평가나 증거입수 능력에 영향을 줄 수 없다. 감사위원회가 수신확인했으므로 기존 계획을 그대로 유지하면 된다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "reason": "사례 적용 명제를 충족하지 않는다. 금액합산을 실행한 결과가 아니라 공식원문·답안·criterion에 따른 작성자 기대값이다.",
+          "single_point_no_partial": false,
+          "answer_sha256": "6175b7cc06fce31536351aaff36a04c8e9a1b72b49613c8c7d228d5763527cf5",
+          "review_verdict": "pass"
+        }
+      ],
+      "local_boundaries_reviewed": [
+        {
+          "kind": "model_answer",
+          "answer": "약정자료 접근 문제를 해결하지 않는 감사위원회의 태도가 재무보고 감시 등 통제환경의 취약함을 시사하는지 검토하여, 당초 원활한 감시를 전제로 한 중요왜곡표시위험 평가에 미치는 영향을 평가한다.\n중요한 판매장려 약정 원본·수정 내역에 접근할 수 없고 다른 원천의 확인도 없는 상황이 관련 매출·장려금에 관하여 충분하고 적합한 감사증거를 입수하는 능력에 미치는 영향을 평가한다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub2.c1",
+            "sub2.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "empty",
+          "answer": "",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "reverse_partial",
+          "answer": "중요한 판매장려 약정 원본과 수정내역을 보지 못하고 다른 원천의 확인도 없으므로 관련 매출·장려금에 충분하고 적합한 증거를 입수할 능력에 미치는 영향을 평가한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub2.c2"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        }
+      ],
+      "qa_rationale": "대표 부분정답은 명시한 독립 criterion만1점이고 대표 오답은0점이다. 모범·공백·함축 판단 및 반대 결론 경계 답안의 독립 정답 보존을 실제 답안과 대조했다. 이는 실측 전 기대값 의미검토이다.",
+      "human_review_performed": false,
+      "actual_model_grading": false,
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-05-governance-dialogue-20260914",
+      "subquestion_id": "sub3",
+      "reviewed_content_hash": "3888ce5c81a653d54c4503af16d9ea5e5ca179a7de39d18f6cc3a3dafe839740",
+      "question_sha256": "f9b3a54cb3b016a7eda104ced4ff73cb417bcaa55b104492bd1127d30b97035c",
+      "question_style": "case",
+      "topic_ids": [
+        "05"
+      ],
+      "fact_ids": [
+        "fact1",
+        "fact3",
+        "fact4"
+      ],
+      "criterion_ids": [
+        "sub3.c1"
+      ],
+      "max_points": 1,
+      "source_ref_ids": [
+        "src-33394d90ef79545afb",
+        "src-3442bdca167a00275c"
+      ],
+      "checks": {
+        "source": "pass",
+        "answer": "pass",
+        "prompt": "pass",
+        "points": "pass",
+        "style": "pass",
+        "topics": "pass",
+        "edition": "pass",
+        "nonduplication": "pass"
+      },
+      "check_rationales": {
+        "source": "260.22와 A53의 추가 조치 예시 중 지배구조 외부의 권한 있는 모기업 소유자와 소통하는 경로가 직접 지지한다. 가능한 조치를 언제나 의무적인 조치로 바꾸지 않는다.",
+        "answer": "반복 시도에도 해결되지 않았고 모기업이 선임·감독 권한을 가지며 문제를 모르고 있고 소통이 법적으로 허용된다는 사실에서 모기업 은솔 이사회에 미해결 문제를 알리는 조치를 고려할 수 있다.",
+        "prompt": "사례에서 가능한 추가 조치 한 가지를 제시하는 요구다. 법률자문·감사철회·의견변형 등 별개 절차 묶음을 답안에 강제하지 않는다.",
+        "points": "사례에 맞는 수신자와 문제를 담은 하나의 구체적인 소통 조치1점이다. 수신자 선정과 전달내용 또는 총괄 고려의무를 별도 점수로 쪼개지 않는다. 1점 물음에는 정수 부분정답 구간이 없어 QA17행 구성이 타당하다.",
+        "style": "상위 독립 모기업의 실질 권한·정보 부재·법적 소통 가능성 및 기존 시도 실패가 이 조치의 적용 전제다. 일반 추가조치 목록만으로 만점이 되는 물음이 아니다.",
+        "nonduplication": "기존 추가조치 열거와 미편입draft05-260-001의 유의적 발견·독립성 전달 목록과 다르다. 이 문제는 소유구조와 실패한 소통 경로를 해석해 가능한 조치를 고른다.",
+        "topics": "실제 득점요건의 주제 05와 일치한다. 답안 형식 descriptive와 사실 의존 학습유형 case를 혼동하지 않았다.",
+        "edition": "2026 전문의 관련 요구사항과 적용지침 전체 및 필요한 앞뒤 문단을 직접 대조했다. 2026년 재무제표 사례에 맞는 현행 본문이며 기존2025 등록은 표제만 믿지 않고 동일 내용을 확인했다. 정확한 PDF쪽·추출행은 source_ranges에 결속했다."
+      },
+      "source_checks": [
+        {
+          "source_ref_id": "src-33394d90ef79545afb",
+          "file": "cpa_uploader/data/official/case-deepening-2026-09-14-kga260.md",
+          "file_sha256": "a6acad0185883d2a3350065823beae3ada79ec3ba6c29cb872d91bd998c8371e",
+          "quote_sha256": "d4cfb4492b93b1a10767bcfdd4ab136cd56e94045137052bb2a49c5f6f60fdba",
+          "locator": "2026 KGA 260.A53; PDF 187~188; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L7821~7839; 등록 cpa_uploader/data/official/case-deepening-2026-09-14-kga260.md L54~65",
+          "title": "KGA 260.A53; 2026 전문 대조 PDF 187~188쪽, 원 추출 L7821~7839; 등록 전사 L54~65",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "260.A53",
+            "source_ref_id": "src-33394d90ef79545afb",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": "187~188",
+            "start_line": 7821,
+            "end_line": 7839,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        },
+        {
+          "source_ref_id": "src-3442bdca167a00275c",
+          "file": "cpa_uploader/data/official/case-deepening-2026-09-14-kga260.md",
+          "file_sha256": "a6acad0185883d2a3350065823beae3ada79ec3ba6c29cb872d91bd998c8371e",
+          "quote_sha256": "454f2837fc1ca08a47862fab6da479c50c261eab54e7a6e932bfd30719e42001",
+          "locator": "2026 KGA 260.22; PDF 172~173; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L7186~7195; 등록 cpa_uploader/data/official/case-deepening-2026-09-14-kga260.md L5~9",
+          "title": "KGA 260.22; 2026 전문 대조 PDF 172~173쪽, 원 추출 L7186~7195; 등록 전사 L5~9",
+          "verdict": "pass",
+          "official_edition_comparison": {
+            "key": "260.22",
+            "source_ref_id": "src-3442bdca167a00275c",
+            "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+            "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+            "pdf_pages": "172~173",
+            "start_line": 7186,
+            "end_line": 7195,
+            "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+            "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다."
+          }
+        }
+      ],
+      "criterion_checks": [
+        {
+          "criterion_id": "sub3.c1",
+          "claim": "제시된 기업 외부 상위 소유주인 은솔의 이사회에 판매장려 약정자료 접근 차단 및 한울 감사위원회와의 소통으로도 해결되지 않는 문제를 알리는 구체 조치를 제시한다. 상대방과 전달 사안은 하나의 사례 적용 조치를 특정하는 요소이며 별도2점으로 분할하지 않는다. 막연한 추가조치·외부기관 검토 또는 기존 한울 재무담당이사에게 다시 묻는 답은 이 기준을 충족하지 못한다. 가능한 조치로 표현하면 충분하며 모든 상황에서 반드시 은솔에 보고해야 한다는 보편 의무를 요구하지 않는다.",
+          "max_points": 1,
+          "source_ref_ids": [
+            "src-33394d90ef79545afb",
+            "src-3442bdca167a00275c"
+          ],
+          "verdict": "pass",
+          "rationale": "반복 시도에도 해결되지 않았고 모기업이 선임·감독 권한을 가지며 문제를 모르고 있고 소통이 법적으로 허용된다는 사실에서 모기업 은솔 이사회에 미해결 문제를 알리는 조치를 고려할 수 있다. 사례에 맞는 수신자와 문제를 담은 하나의 구체적인 소통 조치1점이다. 수신자 선정과 전달내용 또는 총괄 고려의무를 별도 점수로 쪼개지 않는다. 1점 물음에는 정수 부분정답 구간이 없어 QA17행 구성이 타당하다."
+        }
+      ],
+      "qa_inputs": [
+        {
+          "set_id": "case-05-governance-dialogue-20260914",
+          "subquestion_id": "sub3",
+          "kind": "wrong",
+          "answer": "한울 내부에서 답변을 받지 못했더라도 회사 밖의 소유주인 은솔 이사회에는 이 상황을 알릴 수 없다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "reason": "사례 적용 명제를 충족하지 않는다. 금액합산을 실행한 결과가 아니라 공식원문·답안·criterion에 따른 작성자 기대값이다.",
+          "single_point_no_partial": true,
+          "answer_sha256": "3670f2fee47e982d088957272e099a5d4ff1aa11ee8924abe6f85385dc8fecbb",
+          "review_verdict": "pass"
+        }
+      ],
+      "local_boundaries_reviewed": [
+        {
+          "kind": "model_answer",
+          "answer": "한울의 외부 상위 소유주인 은솔의 이사회에, 한울의 판매장려 약정 자료 접근 차단과 감사위원회와의 소통으로도 그 문제가 해결되지 않는 상황을 알리는 조치를 취할 수 있다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub3.c1"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "empty",
+          "answer": "",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "boundary_incomplete",
+          "answer": "한울의 재무담당이사에게 판매장려 약정자료를 다시 요청한다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        },
+        {
+          "kind": "boundary",
+          "answer": "은솔 이사회에 판매장려 약정자료 차단과 한울 감사위원회와의 소통으로도 해결되지 않은 상황을 알릴 수 있다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub3.c1"
+          ],
+          "method": "author_content_expectation",
+          "actual_model_grading": false
+        }
+      ],
+      "qa_rationale": "최대1점으로 양의 정수 부분점수가 없다. 대표 오답0점 및 모범·공백·조건 경계 기대값이 적절하다. 모형 실측 결과로 기록하지 않는다.",
+      "human_review_performed": false,
+      "actual_model_grading": false,
+      "unresolved_content_findings": []
+    }
+  ],
+  "source_ranges": [
+    {
+      "key": "230.9",
+      "source_ref_id": "src-e9128a970ca5cfbc5d",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 97,
+      "start_line": 3996,
+      "end_line": 4004,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-04-documentation-trace-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "230.A12",
+      "source_ref_id": "src-2b3f76c5dfe4b14c9f",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": "101~102",
+      "start_line": 4215,
+      "end_line": 4244,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-04-documentation-trace-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "230.10",
+      "source_ref_id": "src-3a02c5c340fba28e3a",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 97,
+      "start_line": 4005,
+      "end_line": 4008,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-04-documentation-trace-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "230.A14",
+      "source_ref_id": "src-e124af7d2c28a0da7a",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 102,
+      "start_line": 4251,
+      "end_line": 4254,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-04-documentation-trace-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "230.11",
+      "source_ref_id": "src-21bdaeecb1163404d0",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 97,
+      "start_line": 4009,
+      "end_line": 4011,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-04-documentation-trace-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "230.A15",
+      "source_ref_id": "src-23a6c5a4e712f7dd49",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 102,
+      "start_line": 4256,
+      "end_line": 4257,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-04-documentation-trace-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "330.10",
+      "source_ref_id": "src-16f1e240ed36a75a75",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 340,
+      "start_line": 14609,
+      "end_line": 14619,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-07-control-evidence-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "330.A26",
+      "source_ref_id": "src-b8f91aa5296513b0ad",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 350,
+      "start_line": 15035,
+      "end_line": 15038,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-07-control-evidence-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "330.A27",
+      "source_ref_id": "src-f5f0c173e31eb73c11",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": "350~351",
+      "start_line": 15039,
+      "end_line": 15053,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-07-control-evidence-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "500.A21",
+      "source_ref_id": "src-b9d9fd1536fedc490a",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 402,
+      "start_line": 17174,
+      "end_line": 17179,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-07-control-evidence-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "330.A23",
+      "source_ref_id": "src-ad011764f8da36fee4",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 350,
+      "start_line": 15017,
+      "end_line": 15022,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-07-control-evidence-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "330.16",
+      "source_ref_id": "src-2df915f1b289f77d67",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 342,
+      "start_line": 14691,
+      "end_line": 14695,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-07-control-evidence-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "330.17",
+      "source_ref_id": "src-c48b9c5ca0213d9d3d",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 342,
+      "start_line": 14696,
+      "end_line": 14706,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-07-control-evidence-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "260.22",
+      "source_ref_id": "src-3442bdca167a00275c",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": "172~173",
+      "start_line": 7186,
+      "end_line": 7195,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-05-governance-dialogue-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "260.A51",
+      "source_ref_id": "src-87e0ffc2e0e0549a38",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 187,
+      "start_line": 7787,
+      "end_line": 7814,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-05-governance-dialogue-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "260.A52",
+      "source_ref_id": "src-85a7beba497efa1b31",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": 187,
+      "start_line": 7815,
+      "end_line": 7820,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-05-governance-dialogue-20260914",
+      "read_directly": true
+    },
+    {
+      "key": "260.A53",
+      "source_ref_id": "src-33394d90ef79545afb",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_pages": "187~188",
+      "start_line": 7821,
+      "end_line": 7839,
+      "finding": "기존2025등록은2026본문과같은요구를직접확인; 신규2026등록은완결본문및관련자료와대조",
+      "footnote_dependency_scope": "사례에 필요하지 않은 다른 절차의 예시·각주는 새 요구로 확대하지 않는다.",
+      "set_id": "case-05-governance-dialogue-20260914",
+      "read_directly": true
+    }
+  ],
+  "learning_source_reading": [
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+      "start_line": 7146,
+      "end_line": 7160,
+      "page": 218,
+      "original": "mock:2023:GS2-4:4",
+      "role": "context",
+      "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+      "set_id": "case-04-documentation-trace-20260914",
+      "read_directly": true,
+      "read_excerpt_sha256": "5d3281d725e221fa45acdf938b946768a0d744dc4a2ad389d3015089cb22b6bf"
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+      "start_line": 7190,
+      "end_line": 7191,
+      "page": 219,
+      "original": "mock:2023:GS2-4:4",
+      "role": "prompt",
+      "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+      "set_id": "case-04-documentation-trace-20260914",
+      "read_directly": true,
+      "read_excerpt_sha256": "e98dfe56c5bc32d077d12155d5df5e817c0ae3401e13b56d7d8f4a846eca546a"
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+      "start_line": 7257,
+      "end_line": 7262,
+      "page": 221,
+      "original": "mock:2023:GS2-4:4",
+      "role": "answer",
+      "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+      "set_id": "case-04-documentation-trace-20260914",
+      "read_directly": true,
+      "read_excerpt_sha256": "92620d577bceb00b95cee049e7dc9fe56a74019608dcb7a80ec8f4288ff3a1e7"
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+      "start_line": 2677,
+      "end_line": 2718,
+      "page": "84~85",
+      "original": "mock:2025:GS1-3:2",
+      "role": "context_and_prompt",
+      "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+      "set_id": "case-07-control-evidence-20260914",
+      "read_directly": true,
+      "read_excerpt_sha256": "abd029b9a31d4af8bf8ec118010feb1e667f4583e0248ae04ee9e1af248eb1a9"
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+      "start_line": 2756,
+      "end_line": 2780,
+      "page": 86,
+      "original": "mock:2025:GS1-3:2",
+      "role": "answer",
+      "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+      "set_id": "case-07-control-evidence-20260914",
+      "read_directly": true,
+      "read_excerpt_sha256": "4b85fba0779eec6fb8591457e8145bbb0b42b46317f70dc9a05ab18b35f6a1a9"
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+      "start_line": 912,
+      "end_line": 931,
+      "page": 29,
+      "original": "cpa_exam:2025:3:3",
+      "role": "adjacent_prompt",
+      "file_sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+      "set_id": "case-07-control-evidence-20260914",
+      "read_directly": true,
+      "read_excerpt_sha256": "8863e9b23cb6e28a77a3c5ef8f59e8d2f8c0bf2be4c054f01a60977435fc2ec2"
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+      "start_line": 1006,
+      "end_line": 1028,
+      "page": 31,
+      "original": "cpa_exam:2025:3:3",
+      "role": "answer_and_alternative_comment",
+      "file_sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+      "set_id": "case-07-control-evidence-20260914",
+      "read_directly": true,
+      "read_excerpt_sha256": "186c621eee1c59597c3d02f8d0caa7e4dc26a6debe1c5d967eb47ad1578ae02f"
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+      "start_line": 16071,
+      "end_line": 16092,
+      "page": "405~406",
+      "original": "cpa_exam:2018:7:3",
+      "role": "context_and_prompt",
+      "file_sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+      "set_id": "case-05-governance-dialogue-20260914",
+      "read_directly": true,
+      "read_excerpt_sha256": "4312f5c9faafc5b6e2aac01c23139608f0e2ca9774c56d71db292cb31c6157a3"
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+      "start_line": 16167,
+      "end_line": 16194,
+      "page": 408,
+      "original": "cpa_exam:2018:7:3",
+      "role": "answer",
+      "file_sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+      "set_id": "case-05-governance-dialogue-20260914",
+      "read_directly": true,
+      "read_excerpt_sha256": "72d4535a43b85aeab866564f46953e49bfb8f5d21fff7fd808532f8c4c5bb703"
+    }
+  ],
+  "preserved_draft_reading": {
+    "file": "cpa_uploader/drafts/frequency-gap-2026-09-10/draft-05-260-001.json",
+    "sha256": "47240a378a26eca9b33a10f802a129a8de90ffb11224389ea39398677144375f",
+    "read_directly": true,
+    "finding": "옛 초안은260.16 유의적 발견사항과260.17 독립성 커뮤니케이션 목록을 요구한다. 신규260.22/A51~A53의 실질 대화 적절성·감사 영향·모기업 조치와 같은 물음으로 보지 않았다."
+  },
+  "source_boundary_notes": [
+    "230.A12의 페이지 사이에 놓인 각주7(KGA701)은 앞 문단 소유이므로 A12 인용으로 섞지 않은 최종 전사 범위를 확인했다.",
+    "330.A27 주변 각주4(KGA315.33)는 앞 A25에 속하며 새 A27의 통제 예시 의무로 확대하지 않았다.",
+    "260.A52에 귀속된 각주14의 원문 교차참조(KGA315.A78)는 보존한다. 그러나 현재2026 전문의315.A78(PDF249, 추출 L10392~10405)은 측정절차에 관한 내용이므로 이 교차참조를 통제환경 영향의 확정 근거로 사용하지 않는다. 이 사례의 통제환경 및 위험평가 영향은260.22와 A52 본문을 직접 근거로 삼는다. 각주를 A53의 추가 의무로 옮기지 않는다.",
+    "330.10(a)를 물음의 직접 범위로 삼고 .10(b)의 간접통제를 필수 요구로 늘리지 않았다. .17 완결 보충문단을 포함하되 모든 조치를 별도 배점하지 않았다."
+  ],
+  "static_checks": {
+    "source_quote_presence": "all applicable criterion source quotes present in their registered input files",
+    "question_check_count": 72,
+    "representative_partial_wrong_expectations": "17 inputs reviewed; 1-point governance sub3 has no positive integer partial",
+    "final_hash_recheck_performed": true
+  },
+  "limitations": [
+    "Agent의 독립 의미검토이며 사람 확인 또는 실제 Luna 채점 실행을 의미하지 않는다.",
+    "현재 정본·공개본·DB 수록 및 운영 반영은 본 검토 범위 밖이다."
+  ],
+  "unresolved_content_findings": [],
+  "cross_reference_note_correction": {
+    "corrected_at": "2026-09-14T06:11:17.459Z",
+    "prior_file": "cpa_uploader/drafts/case-deepening-2026-09-14/a-peer-review-before-cross-reference-note.json",
+    "prior_sha256": "3c666603ec726e14a4e698313daac2d4512b760cb39557ed24a4afed50409f6c",
+    "finding": "기존 peer 각주 설명이260.A52에 남아 있는315.A78 교차참조의 현행 내용 확인 범위를 넘어 통제환경 근거를 확정하는 것으로 읽힐 수 있었다.",
+    "resolution": "A52 본문과260.22만 직접 근거로 한정하고 각주 원문은 보존하되 현행315.A78의 측정절차 내용을 통제환경 근거로 원용하지 않음을 명시했다.",
+    "question_files_changed": false,
+    "human_review_performed": false
+  }
+}

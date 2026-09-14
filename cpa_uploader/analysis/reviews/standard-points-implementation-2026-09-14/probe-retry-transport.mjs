@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+const R='cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14';
+const project='xvifzicrjmbfqaepcfpp';
+const roleProbe=process.argv.includes('--role-probe');
+assert.equal(new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname,project+'.supabase.co');
+assert(process.env.SUPABASE_ACCESS_TOKEN);
+const query="begin read only; set local role service_role; set local statement_timeout='120s'; select current_user as effective_role,current_setting('statement_timeout') as statement_timeout,current_setting('transaction_read_only') as transaction_read_only,(select id from public.cpa_question_bank_releases where status='active') as active_release_id; commit;";
+const response=await fetch(`https://api.supabase.com/v1/projects/${project}/database/query`,{method:'POST',headers:{Authorization:`Bearer ${process.env.SUPABASE_ACCESS_TOKEN}`,'Content-Type':'application/json'},body:JSON.stringify({query,read_only:!roleProbe}),signal:AbortSignal.timeout(30000)});
+const result=await response.json();
+fs.writeFileSync(R+(roleProbe?'/retry-transport-role-probe.json':'/retry-transport-probe.json'),JSON.stringify({checked_at:new Date().toISOString(),sql_transaction_read_only:true,api_read_only:!roleProbe,http_status:response.status,query_sha256:createHash('sha256').update(query).digest('hex'),query,result},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify(result));
+assert(response.ok,`Read-only transport probe HTTP ${response.status}`);

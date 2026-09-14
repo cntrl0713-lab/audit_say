@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "fol-l01-sub3-wrong",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-followup-20260913-l01",
+  "learning_unit_id": "draft-standard-followup-20260913-l01--sub3--standard",
+  "kind": "wrong",
+  "projected_body_hash": "d7f61f478300ae0112edec5d72fcdaa71cf69485c5445d94acdaf37225f367de",
+  "answers": {
+    "sub3": "① 회사 대표자에게만 통보한다. ② 단순 정관 위반만으로도 언제나 제7항의 보고대상이고, 외부감사인이 직접 발견한 데다 감사위원회에서도 통보받은 경우에만 보고한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: ① 회사의 감사 또는 감사위원회는 감사인에게 통보한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: ② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: ② 감사인이 해당 사실을 스스로 발견하거나 회사의 감사 또는 감사위원회로부터 통보받은 경우 증권선물위원회에 보고한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "268a0e80bd1f14301682429015e2beb20545e4976a5797211e75e5cc34e929a1",
+  "schema_hash": "9d412f791cd872b3cda2dc75f06749df6d97574a87361eddcda73a3bde388eda",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "① 회사 대표자에게만 통보한다. ",
+            "reason": "통보 상대방을 감사인이 아닌 회사 대표자로 한정하여 명시적으로 잘못 기재했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "② 단순 정관 위반만으로도 언제나 제7항의 보고대상이고, 외부감사인이 직접 발견한 데다 감사위원회에서도 통보받은 경우에만 보고한다.",
+            "reason": "단순 정관 위반만으로도 언제나 보고대상이라고 하여 제7항의 대상 범위를 명시적으로 반대로 설명했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "② 단순 정관 위반만으로도 언제나 제7항의 보고대상이고, 외부감사인이 직접 발견한 데다 감사위원회에서도 통보받은 경우에만 보고한다.",
+            "reason": "두 인지경로 중 하나면 충분한데, 직접 발견과 감사위원회 통보를 모두 받아야 한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "통보 상대방을 감사인이 아닌 회사 대표자로 한정하여 명시적으로 잘못 기재했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "단순 정관 위반만으로도 언제나 보고대상이라고 하여 제7항의 대상 범위를 명시적으로 반대로 설명했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "두 인지경로 중 하나면 충분한데, 직접 발견과 감사위원회 통보를 모두 받아야 한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-followup-20260913-l01",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "외부감사법 제22조제6항과 제7항의 통보·보고의무를 설명하시오. ① 회사의 감사 또는 감사위원회가 이사의 직무수행에 관하여 부정행위 또는 법령이나 정관에 위반되는 중대한 사실을 발견했을 때의 통보 상대방, ② 외부감사인의 증권선물위원회 보고를 촉발하는 대상사실의 범위와 두 가지 인지경로를 제시하시오. 특히 제7항에 정관 위반만인 사실도 명시되어 있는지 구별하시오.",
+        "user_answer": "① 회사 대표자에게만 통보한다. ② 단순 정관 위반만으로도 언제나 제7항의 보고대상이고, 외부감사인이 직접 발견한 데다 감사위원회에서도 통보받은 경우에만 보고한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "① 회사 대표자에게만 통보한다.",
+            "reason": "통보 상대방을 감사인이 아닌 회사 대표자로 한정하여 명시적으로 잘못 기재했다.",
+            "claim": "① 회사의 감사 또는 감사위원회는 감사인에게 통보한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "② 단순 정관 위반만으로도 언제나 제7항의 보고대상이고, 외부감사인이 직접 발견한 데다 감사위원회에서도 통보받은 경우에만 보고한다.",
+            "reason": "단순 정관 위반만으로도 언제나 보고대상이라고 하여 제7항의 대상 범위를 명시적으로 반대로 설명했다.",
+            "claim": "② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다. 정관 위반인 사실이 동시에 부정행위나 중대한 법령 위반이면 그 해당 사유로 보고 대상이 될 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "② 단순 정관 위반만으로도 언제나 제7항의 보고대상이고, 외부감사인이 직접 발견한 데다 감사위원회에서도 통보받은 경우에만 보고한다.",
+            "reason": "두 인지경로 중 하나면 충분한데, 직접 발견과 감사위원회 통보를 모두 받아야 한다고 명시했다.",
+            "claim": "② 감사인이 해당 사실을 스스로 발견하거나 회사의 감사 또는 감사위원회로부터 통보받은 경우 증권선물위원회에 보고한다. 두 인지경로 중 하나이면 보고하므로 모두 동시에 충족할 필요는 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "① 회사의 감사 또는 감사위원회는 감사인에게 통보한다.",
+          "② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다.",
+          "② 감사인이 해당 사실을 스스로 발견하거나 회사의 감사 또는 감사위원회로부터 통보받은 경우 증권선물위원회에 보고한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-l01-sub3-wrong.input.json",
+      "sha256": "3a14a100e68c2fa07ac31dc32042ab0ad7e4c2a7904ef1abc5f46785ef0d3e8f"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-l01-sub3-wrong.transport.jsonl",
+      "sha256": "78f5f9814e62e268320ac526dc3fd099cabd39be421361a2eba44191977f70d0"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-l01-sub3-wrong.traces.jsonl",
+      "sha256": "31e9df381da68557940b3513ae463bdd5abc17685c47f11c6b4f69c3bc279a61"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub3"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_08dcee7fb2c64f8f016aa5fe417e4087d08c7662354a623502",
+        "request_id": "req_640d502f25a943c7a03470bedeb76089",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2949,
+          "input_tokens_details": {
+            "cache_write_tokens": 2946,
+            "cached_tokens": 0
+          },
+          "output_tokens": 294,
+          "output_tokens_details": {
+            "reasoning_tokens": 77
+          },
+          "total_tokens": 3243
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub3-wrong.input.json",
+        "sha256": "53fc4703bfa42f219f44e8422ee8f989ac010cd52e1fe8f56eea0105955ea53d"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub3-wrong.request-1.json",
+        "sha256": "c55ae1b7a37b3b0c421889f4973cf30c2bcd6d1973aa899e599ddf02794beca8"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub3-wrong.response-1.json",
+        "sha256": "83a45d6bcb23ca16c16030515b479c7659e4aaa9cae3c0a62a19d384bd13d986"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub3-wrong.trace.json",
+        "sha256": "63f38cf8c60076f17793e3641aa8bf91f8ea7507807868c3a51e3a5afcfa08b5"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub3-wrong.usage.json",
+        "sha256": "554f6ec389050311a5608e22305bddd031f7481c9dc9f4903a022961c286b8b8"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub3-wrong.result.json",
+        "sha256": "ef5adc5e7259ace677a9ca04b42ce63625e193753cedb911c85447cd3300bf60"
+      }
+    ],
+    "original_case_id": "l01-sub3-wrong",
+    "origin_batch": "cpa_uploader/drafts/standard-followup-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

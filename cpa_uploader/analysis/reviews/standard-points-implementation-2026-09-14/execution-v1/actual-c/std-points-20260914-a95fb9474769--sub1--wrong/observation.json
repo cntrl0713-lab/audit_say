@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-a95fb9474769--sub1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-a95fb9474769--sub1--standard",
+  "source_set_id": "std-points-20260914-a95fb9474769",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "0c9b4eaa581b8c26bbe11f133ab9b019870f9c7ecc85dbebb81985882dc22584",
+  "answers": {
+    "sub1": "감사반 참여회계사는 누구도 책임지지 않으며 회사 이사·감사는 책임이 있어도 항상 면제되고 고의가 없는 책임자는 언제나 전액 면제된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 감사인이 감사반인 경우에는 해당 회사에 대한 감사에 참여한 공인회계사가 연대하여 손해를 배상할 책임을 진다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 해당 회사의 이사 또는 감사도 그 책임이 있으면 감사인과 이사·감사가 연대하여 손해를 배상할 책임이 있다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 다만 손해를 배상할 책임이 있는 자가 고의가 없는 경우에는 법원이 귀책사유에 따라 정하는 책임비율에 따라 손해를 배상할 책임이 있다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "9dce3933a941044405b59b8e9abfbda501a205648fef311beab692b7ea187acd",
+  "schema_hash": "2a5d095a532b25bf5223f1636de5718fcb4cc1e5a2ee2ebb058ae9fbb9e3f52f",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "감사반 참여회계사는 누구도 책임지지 않으며 회사 이사·감사는 책임이 있어도 항상 면제되고 고의가 없는 책임자는 언제나 전액 면제된다.",
+            "reason": "감사반 참여회계사는 책임지지 않는다고 명시하여 연대책임을 반대로 작성했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "감사반 참여회계사는 누구도 책임지지 않으며 회사 이사·감사는 책임이 있어도 항상 면제되고 고의가 없는 책임자는 언제나 전액 면제된다.",
+            "reason": "회사 이사·감사는 책임이 있어도 면제된다고 명시하여 연대책임을 반대로 작성했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "감사반 참여회계사는 누구도 책임지지 않으며 회사 이사·감사는 책임이 있어도 항상 면제되고 고의가 없는 책임자는 언제나 전액 면제된다.",
+            "reason": "고의가 없는 책임자는 전액 면제된다고 명시하여 책임비율에 따른 배상책임을 반대로 작성했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "감사반 참여회계사는 책임지지 않는다고 명시하여 연대책임을 반대로 작성했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "회사 이사·감사는 책임이 있어도 면제된다고 명시하여 연대책임을 반대로 작성했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "고의가 없는 책임자는 전액 면제된다고 명시하여 책임비율에 따른 배상책임을 반대로 작성했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-a95fb9474769",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "외부감사법 제31조에 따라 감사인이 회사 또는 제3자에게 손해배상책임을 지는 경우, 감사반의 연대책임 주체와 회사의 이사·감사도 책임이 있는 경우의 연대책임을 설명하시오. 고의가 없는 책임자의 배상책임 범위도 제시하시오. 소득기준 청구자 예외와 배상불능자의 추가배상은 제외한다.",
+        "user_answer": "감사반 참여회계사는 누구도 책임지지 않으며 회사 이사·감사는 책임이 있어도 항상 면제되고 고의가 없는 책임자는 언제나 전액 면제된다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "감사반 참여회계사는 누구도 책임지지 않으며 회사 이사·감사는 책임이 있어도 항상 면제되고 고의가 없는 책임자는 언제나 전액 면제된다.",
+            "reason": "감사반 참여회계사는 책임지지 않는다고 명시하여 연대책임을 반대로 작성했다.",
+            "claim": "감사인이 감사반인 경우에는 해당 회사에 대한 감사에 참여한 공인회계사가 연대하여 손해를 배상할 책임을 진다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "감사반 참여회계사는 누구도 책임지지 않으며 회사 이사·감사는 책임이 있어도 항상 면제되고 고의가 없는 책임자는 언제나 전액 면제된다.",
+            "reason": "회사 이사·감사는 책임이 있어도 면제된다고 명시하여 연대책임을 반대로 작성했다.",
+            "claim": "해당 회사의 이사 또는 감사도 그 책임이 있으면 감사인과 이사·감사가 연대하여 손해를 배상할 책임이 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "감사반 참여회계사는 누구도 책임지지 않으며 회사 이사·감사는 책임이 있어도 항상 면제되고 고의가 없는 책임자는 언제나 전액 면제된다.",
+            "reason": "고의가 없는 책임자는 전액 면제된다고 명시하여 책임비율에 따른 배상책임을 반대로 작성했다.",
+            "claim": "다만 손해를 배상할 책임이 있는 자가 고의가 없는 경우에는 법원이 귀책사유에 따라 정하는 책임비율에 따라 손해를 배상할 책임이 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사인이 감사반이면 해당 회사 감사에 참여한 공인회계사가 연대하여 배상책임을 진다.",
+          "회사 이사 또는 감사도 책임이 있으면 감사인과 그 이사·감사가 연대책임을 진다.",
+          "고의가 없는 책임자는 법원이 귀책사유에 따라 정하는 책임비율로 배상한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f10889576af5e7b016aa785bc6ee087d0b3140b8c7a00eed7",
+        "request_id": "req_bbc142639f2447b6aecf2446e40a75ff",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2658,
+          "input_tokens_details": {
+            "cache_write_tokens": 2655,
+            "cached_tokens": 0
+          },
+          "output_tokens": 258,
+          "output_tokens_details": {
+            "reasoning_tokens": 44
+          },
+          "total_tokens": 2916
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00097395,
+        "min_usd": 0.00097395,
+        "max_usd": 0.00097395,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-a95fb9474769--sub1--wrong/input.json",
+      "sha256": "8ea0c4be873515f86a0c834d76711764d9e0daa50542c7693dfa942120879fa5"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-a95fb9474769--sub1--wrong/transport.jsonl",
+      "sha256": "c0d58f54a9d2138eff73739f2ea637853ea6860a65f5aeb8cdbeb8ff7d69287b"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-a95fb9474769--sub1--wrong/traces.jsonl",
+      "sha256": "0ae7ce83c29331854f7bd89de4e05ff8279b1c999b31d995dfe682c6b007175a"
+    }
+  }
+}

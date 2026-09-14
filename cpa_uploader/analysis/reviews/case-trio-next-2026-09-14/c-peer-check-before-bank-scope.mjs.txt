@@ -1,0 +1,51 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {validateAuthoringBank} from '../../../questionBankPublication.ts';
+import {resolveCoverageSourceUnits} from './helpers/coverage-source-map.mjs';
+
+const R='cpa_uploader/analysis/reviews/case-trio-next-2026-09-14',D='cpa_uploader/drafts/case-trio-next-2026-09-14';
+const read=file=>JSON.parse(fs.readFileSync(file));
+const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+const ref=file=>({file,sha256:hash(fs.readFileSync(file))});
+const norm=text=>text.replace(/\s/gu,'');
+const setFile=D+'/c/sets.json',sets=read(setFile),set=sets[0];
+assert.equal(ref(setFile).sha256,'e3ddb059ad275d60f1f666ce01950c5f2155c438cdf7e37718fea793da1d183b');
+assert.equal(sets.length,1);assert.equal(set.id,'case-13-internal-audit-boundaries-20260914');assert.equal(set.subquestions.length,3);
+assert.equal(set.verification.source_fidelity,'reconstructed');assert.equal(set.verification.review_status,'needs_human_review');
+assert.deepEqual(validateAuthoringBank(sets).errors,[]);
+const points=set.subquestions.map(question=>question.criteria.reduce((sum,criterion)=>sum+criterion.max_points,0));assert.deepEqual(points,[2,3,2]);
+const chars=[...set.shared_context.facts.map(fact=>fact.text).join('\n')].length;assert.equal(chars,1107);
+const pdfTextFile='cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt',pdfText=fs.readFileSync(pdfTextFile,'utf8');
+const pages=Object.fromEntries([...pdfText.matchAll(/## PDF page (\d+)\r?\n([\s\S]*?)(?=## PDF page \d+\r?\n|$)/gu)].map(match=>[Number(match[1]),match[2]]));
+const passage=[660,662,663,664,670,671,672,673,674].map(page=>{assert(pages[page]);return pages[page];}).join('\n');
+const quoted=set.source_refs.map(source=>{
+ assert.equal(hash(source.source_quote),source.content_hash);assert(fs.readFileSync(source.file,'utf8').includes(source.source_quote));assert(norm(passage).includes(norm(source.source_quote)),'2026 text differs from retained quote: '+source.id);
+ return {id:source.id,file:source.file,quote_sha256:source.content_hash,retained_exact_quote:true,current_2026_normalized_quote:true};
+});
+const sourceRows=read(D+'/c/source-files.json');for(const row of sourceRows)assert.equal(ref(row.file).sha256,row.sha256);
+const qa=read(D+'/c/qa.json'),boundaries=read(D+'/c/qa-boundaries.json');
+for(const row of [...qa,...boundaries]){
+ const question=set.subquestions.find(question=>question.id===row.subquestion_id);assert(question);assert.equal(row.set_id,set.id);
+ assert.equal(new Set(row.met_criterion_ids).size,row.met_criterion_ids.length);assert(row.met_criterion_ids.every(id=>question.criteria.some(criterion=>criterion.id===id)));
+ assert.equal(row.expected_points,question.criteria.filter(criterion=>row.met_criterion_ids.includes(criterion.id)).reduce((sum,criterion)=>sum+criterion.max_points,0));
+}
+assert.equal(qa.length,6);assert.equal(boundaries.length,7);
+const bankFile='cpa_uploader/data/cpa_question_sets_v3.authoring.json',catalogFile='cpa_uploader/data/learning-question-classifications.json',bank=read(bankFile),catalog=read(catalogFile);
+assert.equal(catalog.source_file_sha256,ref(bankFile).sha256);
+const existing=bank.flatMap(prior=>prior.subquestions.filter(question=>/내부감사|직접적 보조/u.test(question.prompt+' '+question.model_answer.join(' '))).map(question=>({set_id:prior.id,subquestion_id:question.id,style:catalog.classifications.find(row=>row.source_set_id===prior.id&&row.subquestion_id===question.id)?.question_style,prompt:question.prompt,points:question.criteria.reduce((sum,criterion)=>sum+criterion.max_points,0)})));
+assert(existing.every(question=>question.style==='standard'),'Existing internal-audit related question requires additional case comparison');
+const design=read(D+'/c/design.json')[0];
+const compared=design.compared_existing_sets.map(prior=>{const actual=bank.find(row=>row.id===prior.set_id);assert(actual);assert.equal(hash(JSON.stringify(actual)),prior.sha256,'Related baseline case changed after author comparison');return {set_id:prior.set_id,sha256:prior.sha256,unchanged_in_current_bank:true};});
+const draftFile=D+'/draft-inventory.json',inventory=read(draftFile);
+const matchingDrafts=inventory.rows.filter(row=>/내부감사|직접적 보조|610/u.test(row.title+' '+row.questions.map(question=>question.prompt).join(' ')));
+for(const row of matchingDrafts)assert.equal(ref(row.file).sha256,row.sha256);
+const finalCatalogue=read(D+'/source-catalog-final.json'),proposal=read(D+'/c/coverage-proposals.json')[0];
+assert.equal(proposal.relationship,'partial');assert.equal(proposal.subquestion_id,'sub2');assert.deepEqual(proposal.criterion_ids,['sub2.c1','sub2.c2','sub2.c3']);
+const mapped=resolveCoverageSourceUnits(set,set.subquestions[1],proposal,finalCatalogue.units);
+const elements=read('cpa_uploader/analysis/question-elements/question-elements.json').elements,element=elements.find(row=>row.id===proposal.element_id);assert(element);
+const artifacts=['sets.json','design.json','review.json','qa.json','qa-boundaries.json','source-files.json','source-comparison.json','coverage-proposals.json','local-checks-v2.json'].map(name=>ref(D+'/c/'+name));
+for(const row of sourceRows)assert.equal(ref(row.file).sha256,row.sha256);
+assert.equal(ref(setFile).sha256,artifacts[0].sha256);
+fs.writeFileSync(R+'/c-peer-checks.json',JSON.stringify({status:'passed_local_contract_checks',checked_at:new Date().toISOString(),method:'Independent local identity, shape, exact source quote/current-PDF normalization, integer expectation arithmetic, related bank/classification and explicit catalogue mapping checks. Semantic judgments and visual review are separately recorded in c-peer-review.json.',artifacts,source_files:sourceRows.map(row=>ref(row.file)),current_bank:ref(bankFile),current_catalog:ref(catalogFile),facts_characters:chars,question_points:points,qa_rows:qa.length,boundary_rows:boundaries.length,quotes:quoted,pdf_pages_read:[660,662,663,664,670,671,672,673,674],related_current_questions:existing,compared_author_bank_sets:compared,draft_inventory:ref(draftFile),matching_draft_rows:matchingDrafts,coverage_mapping:{source_unit_ids:mapped.sourceIds,element_id:element.id,relationship:proposal.relationship},actual_model_grading:'not_run',api_calls:0,canonical_writes:0,db_writes:0},null,2)+'\n',{flag:'wx'});
+console.log({status:'passed',facts_characters:chars,questions:set.subquestions.length,points:points.reduce((sum,value)=>sum+value,0),related_questions:existing.length,draft_matches:matchingDrafts.length,peer_checks:ref(R+'/c-peer-checks.json')});

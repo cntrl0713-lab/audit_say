@@ -1,0 +1,260 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "exp-s05-sub2-wrong",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-expansion-20260913-s05",
+  "learning_unit_id": "draft-standard-expansion-20260913-s05--sub2--standard",
+  "kind": "wrong",
+  "projected_body_hash": "b2c5cc972a535abcdad4e236fe6b0deeafdc2a82337e8a7d8c9fdbf3d24f4376",
+  "answers": {
+    "sub2": "왜곡표시가 발견되지 않았으면 유의적 미비점은 없다. 발생가능성과 잠재적 크기는 고려할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 그렇게 결론 내릴 수 없다. 감사 중 왜곡표시를 식별하지 못했더라도 유의적 미비점이 존재할 수 있다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 미비점의 유의성은 왜곡표시가 발생할 수 있는 가능성에 따라 달라진다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 미비점의 유의성은 왜곡표시의 잠재적 크기에 따라 달라진다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "8d2416f9330185f23792b6260b43b0dccb2b12c7bc6915cff6f2b6979912b77c",
+  "schema_hash": "a72193ed80e0bc00e1d1ea549c3418ed8e9d85163bd00145cda5007ab350134b",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "왜곡표시가 발견되지 않았으면 유의적 미비점은 없다. 발생가능성과 잠재적 크기는 고려할 필요가 없다.",
+            "reason": "왜곡표시가 없으면 유의적 미비점이 없다고 명시적으로 반대 결론을 제시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "왜곡표시가 발견되지 않았으면 유의적 미비점은 없다. 발생가능성과 잠재적 크기는 고려할 필요가 없다.",
+            "reason": "왜곡표시 발생가능성을 고려할 필요가 없다고 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "왜곡표시가 발견되지 않았으면 유의적 미비점은 없다. 발생가능성과 잠재적 크기는 고려할 필요가 없다.",
+            "reason": "왜곡표시의 잠재적 크기를 고려할 필요가 없다고 명시적으로 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e1"
+                ],
+                "reason": "왜곡표시가 없으면 유의적 미비점이 없다고 명시적으로 반대 결론을 제시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e2"
+                ],
+                "reason": "왜곡표시 발생가능성을 고려할 필요가 없다고 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e2"
+                ],
+                "reason": "왜곡표시의 잠재적 크기를 고려할 필요가 없다고 명시적으로 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-expansion-20260913-s05",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "재무제표감사에서 왜곡표시를 발견하지 못했다는 사실만으로 유의적 내부통제 미비점이 존재하지 않는다고 결론 내려도 되는지 판단하시오. 감사기준서 265 문단 A5에 따라 실제 왜곡표시의 발생 여부 외에 미비점의 유의성을 좌우하는 두 측면을 들어 이유를 설명하시오.",
+        "user_answer": "왜곡표시가 발견되지 않았으면 유의적 미비점은 없다. 발생가능성과 잠재적 크기는 고려할 필요가 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "왜곡표시가 발견되지 않았으면 유의적 미비점은 없다. 발생가능성과 잠재적 크기는 고려할 필요가 없다.",
+            "reason": "왜곡표시가 없으면 유의적 미비점이 없다고 명시적으로 반대 결론을 제시했다.",
+            "claim": "그렇게 결론 내릴 수 없다. 감사 중 왜곡표시를 식별하지 못했더라도 유의적 미비점이 존재할 수 있다. 나머지 이유·설명에서 이러한 결론이 명확하게 함축되면 판단 문구를 따로 쓰지 않아도 인정한다. 명시적으로 유의적 미비점이 없다고 결론 내리면 판단 점수는 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "왜곡표시가 발견되지 않았으면 유의적 미비점은 없다. 발생가능성과 잠재적 크기는 고려할 필요가 없다.",
+            "reason": "왜곡표시 발생가능성을 고려할 필요가 없다고 명시적으로 부정했다.",
+            "claim": "미비점의 유의성은 왜곡표시가 발생할 수 있는 가능성에 따라 달라진다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "왜곡표시가 발견되지 않았으면 유의적 미비점은 없다. 발생가능성과 잠재적 크기는 고려할 필요가 없다.",
+            "reason": "왜곡표시의 잠재적 크기를 고려할 필요가 없다고 명시적으로 부정했다.",
+            "claim": "미비점의 유의성은 왜곡표시의 잠재적 크기에 따라 달라진다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "그렇게 결론 내릴 수 없다. 감사 중 왜곡표시를 식별하지 못했더라도 유의적 미비점이 존재할 수 있다.",
+          "미비점의 유의성은 왜곡표시가 발생할 수 있는 가능성에 따라 달라진다.",
+          "미비점의 유의성은 왜곡표시의 잠재적 크기에 따라 달라진다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-s05-sub2-wrong.input.json",
+      "sha256": "3928a34e2bb8a13ad3a5647f6526d0d5f09bccb84e05a286e4707c243b95e84e"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-s05-sub2-wrong.transport.jsonl",
+      "sha256": "428edf7bffb05b3d356b4613b35bae4852a8fb4934cd9c97731a416fcd9baba2"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-s05-sub2-wrong.traces.jsonl",
+      "sha256": "9af62a175806e092e6e84f1185ae43c345a360370df95cd4994b670b410bcf33"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_062f01b27fbe58b7016aa5e1947a9487d0a64c73fbd93f396d",
+        "request_id": "req_266072f606bb49c2aa58c670a7ece0ba",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2750,
+          "input_tokens_details": {
+            "cache_write_tokens": 2747,
+            "cached_tokens": 0
+          },
+          "output_tokens": 271,
+          "output_tokens_details": {
+            "reasoning_tokens": 53
+          },
+          "total_tokens": 3021
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s05-sub2-wrong.input.json",
+        "sha256": "85cd23d53873d13282a08c885d7e55fa78f74432398ae56c11fffebbab1d53df"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s05-sub2-wrong.request-1.json",
+        "sha256": "7909072c9d0cbd62a393a032ec184e7e1cabdf32586798f13fba0bbc7247ec78"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s05-sub2-wrong.response-1.json",
+        "sha256": "a3bbbddbef60672e2f7108d52bc42f3b03813fc8c0c0360ee52d092baedb590e"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s05-sub2-wrong.trace.json",
+        "sha256": "0dfd54d2281dd77d3e0a22541de151840b4f32f342f12366014eba874f401b2c"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s05-sub2-wrong.usage.json",
+        "sha256": "b9429bef5a5c261b25e12812f5ccedf65f0c57a26e635de74b50fb921c4c0b13"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s05-sub2-wrong.result.json",
+        "sha256": "1d523f22817c4741873acbb758491f4ed12ecbe9ea1ba0c0138cf598666e93eb"
+      }
+    ],
+    "original_case_id": "s05-sub2-wrong",
+    "origin_batch": "cpa_uploader/drafts/standard-expansion-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-36761d91c393--sub1--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-36761d91c393--sub1--standard",
+  "source_set_id": "std-points-20260914-36761d91c393",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "565ef066a9711d238e9d7a8cb745c535b01de520f6166b1fec1150e9fe64d9b7",
+  "answers": {
+    "sub1": "공시 누락이 원인이면 누락된 정보의 성격을 설명한다.\n누락된 공시의 포함이 실행가능하고 그 정보에 관한 충분하고 적합한 감사증거를 입수한 경우, 법규상 금지되지 않는 한 그 공시를 포함한다.\n감사증거 미입수가 원인이면 그 이유를 설명한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 공시 누락이 원인이면 누락된 정보의 성격을 설명함"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 누락 공시의 포함이 실행가능하고 누락 정보의 충분하고 적합한 증거를 입수한 경우 법규상 금지되지 않는 한 공시를 포함함. 세 조건을 모두 보존함"
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 감사증거 미입수가 원인이면 그 이유를 설명함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "3ea270297b977de9da9fea86e3706c4d914ce252b9f9e6de981ca7139a9e5c44",
+  "schema_hash": "3899b2791a1a7ebab41c0d6c75eaf30b5e8fa6025f6349fd00bfe747b9e6fbf3",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "공시 누락이 원인이면 누락된 정보의 성격을 설명한다.\n",
+            "reason": "누락된 정보의 성격을 설명한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "누락된 공시의 포함이 실행가능하고 그 정보에 관한 충분하고 적합한 감사증거를 입수한 경우, 법규상 금지되지 않는 한 그 공시를 포함한다.\n",
+            "reason": "실행가능성, 충분하고 적합한 감사증거 입수, 법규상 금지 여부의 세 조건을 보존하여 공시 포함을 제시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "감사증거 미입수가 원인이면 그 이유를 설명한다.",
+            "reason": "감사증거 미입수의 이유를 설명한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "누락된 정보의 성격을 설명한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "실행가능성, 충분하고 적합한 감사증거 입수, 법규상 금지 여부의 세 조건을 보존하여 공시 포함을 제시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "감사증거 미입수의 이유를 설명한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-36761d91c393",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "요구되는 공시의 누락 또는 충분하고 적합한 감사증거의 미입수 때문에 감사의견을 변형하는 경우, 감사의견근거 단락에 포함할 내용을 원인별로 설명하시오. 누락된 공시를 포함하는 조건도 제시하시오.",
+        "user_answer": "공시 누락이 원인이면 누락된 정보의 성격을 설명한다.\n누락된 공시의 포함이 실행가능하고 그 정보에 관한 충분하고 적합한 감사증거를 입수한 경우, 법규상 금지되지 않는 한 그 공시를 포함한다.\n감사증거 미입수가 원인이면 그 이유를 설명한다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "공시 누락이 원인이면 누락된 정보의 성격을 설명한다.",
+            "reason": "누락된 정보의 성격을 설명한다고 명시했다.",
+            "claim": "공시 누락이 원인이면 누락된 정보의 성격을 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "누락된 공시의 포함이 실행가능하고 그 정보에 관한 충분하고 적합한 감사증거를 입수한 경우, 법규상 금지되지 않는 한 그 공시를 포함한다.",
+            "reason": "실행가능성, 충분하고 적합한 감사증거 입수, 법규상 금지 여부의 세 조건을 보존하여 공시 포함을 제시했다.",
+            "claim": "누락 공시의 포함이 실행가능하고 누락 정보의 충분하고 적합한 증거를 입수한 경우 법규상 금지되지 않는 한 공시를 포함함. 세 조건을 모두 보존함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "감사증거 미입수가 원인이면 그 이유를 설명한다.",
+            "reason": "감사증거 미입수의 이유를 설명한다고 명시했다.",
+            "claim": "감사증거 미입수가 원인이면 그 이유를 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "공시 누락이 원인이면 누락된 정보의 성격을 설명한다.",
+          "누락된 공시의 포함이 실행가능하고 그 정보에 관한 충분하고 적합한 감사증거를 입수한 경우, 법규상 금지되지 않는 한 그 공시를 포함한다.",
+          "감사증거 미입수가 원인이면 그 이유를 설명한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0de6c13ac25f2619016aa7878b22fc87d09b17c9ce7f3f8652",
+        "request_id": "req_c62d64eeae7447abb029c206d09e9ab2",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2834,
+          "input_tokens_details": {
+            "cache_write_tokens": 2831,
+            "cached_tokens": 0
+          },
+          "output_tokens": 231,
+          "output_tokens_details": {
+            "reasoning_tokens": 38
+          },
+          "total_tokens": 3065
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00098555,
+        "min_usd": 0.00098555,
+        "max_usd": 0.00098555,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-36761d91c393--sub1--model/input.json",
+      "sha256": "19771982314b6a9c4b4fe2f4f1c89ec62254c9a27e87b363b0cc3e590ec8a168"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-36761d91c393--sub1--model/transport.jsonl",
+      "sha256": "aff5a0fad23144dc2126fa925e2968c178b4aedb208c007d969c1934d5e7c4e9"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-36761d91c393--sub1--model/traces.jsonl",
+      "sha256": "6f9eb4e715ef3f5a24bf5662872c1e6b3810a5b64cabde6dfdb219bc2b74ea49"
+    }
+  }
+}

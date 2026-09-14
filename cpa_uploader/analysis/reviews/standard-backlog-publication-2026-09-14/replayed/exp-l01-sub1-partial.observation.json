@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "exp-l01-sub1-partial",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-expansion-20260913-l01",
+  "learning_unit_id": "draft-standard-expansion-20260913-l01--sub1--standard",
+  "kind": "partial",
+  "projected_body_hash": "b4e8d9054d3246797c6598449b8917f6d2e0be7ab9622f5e8c9ad84082b6d1ca",
+  "answers": {
+    "sub1": "주권상장법인·대형비상장주식회사·금융회사의 동일 이사는 최대 3개 사업연도를 연속 수행한다. 그 밖의 회사는 최대 5개 사업연도까지 연속 수행한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 주권상장법인·대형비상장주식회사·금융회사는 최대 연속 3개 사업연도이다. 연속 4개 사업연도 수행은 금지된다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 그 밖의 회사는 최대 연속 5개 사업연도이다. 연속 6개 사업연도 수행은 금지된다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 주권상장법인·대형비상장주식회사·금융회사에서 연속 3개 사업연도를 수행한 이사는 그 다음 연속 3개 사업연도의 모든 기간 동안 해당 회사의 감사업무를 수행할 수 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "b0def0884f62b9bc7f817edee8d95eecdf1396cefb247814a7949f4005f41fa7",
+  "schema_hash": "172d5de6570c09a29f717bb90ebbf3ab6007312ced42f430d537597c8d473ae9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "주권상장법인·대형비상장주식회사·금융회사의 동일 이사는 최대 3개 사업연도를 연속 수행한다. ",
+            "reason": "해당 회사 유형의 최대 연속 수행 기간을 3개 사업연도로 정확히 제시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그 밖의 회사는 최대 5개 사업연도까지 연속 수행한다.",
+            "reason": "그 밖의 회사의 최대 연속 수행 기간을 5개 사업연도로 정확히 제시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "최대 기간 수행 후 감사업무를 맡을 수 없는 이후 3개 사업연도 기간을 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "해당 회사 유형의 최대 연속 수행 기간을 3개 사업연도로 정확히 제시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "그 밖의 회사의 최대 연속 수행 기간을 5개 사업연도로 정확히 제시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "최대 기간 수행 후 감사업무를 맡을 수 없는 이후 3개 사업연도 기간을 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-expansion-20260913-l01",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "외부감사법 제9조제5항에 따라 회계법인이 동일한 이사(공인회계사법 제26조제1항의 이사)에게 동일 회사의 감사업무를 연속하여 맡길 수 있는 최대 사업연도 수를 설명하시오. 주권상장법인·대형비상장주식회사·금융회사와 그 밖의 회사를 구별하시오. 앞의 세 회사 유형에서는 그 최대 기간의 감사를 수행한 이사에게 이후 어느 기간 동안 해당 회사의 감사업무를 맡길 수 없는지도 제시하시오.",
+        "user_answer": "주권상장법인·대형비상장주식회사·금융회사의 동일 이사는 최대 3개 사업연도를 연속 수행한다. 그 밖의 회사는 최대 5개 사업연도까지 연속 수행한다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "주권상장법인·대형비상장주식회사·금융회사의 동일 이사는 최대 3개 사업연도를 연속 수행한다.",
+            "reason": "해당 회사 유형의 최대 연속 수행 기간을 3개 사업연도로 정확히 제시했다.",
+            "claim": "주권상장법인·대형비상장주식회사·금융회사는 최대 연속 3개 사업연도이다. 연속 4개 사업연도 수행은 금지된다. 최대 3년 또는 연속 4년 수행 금지 중 어느 표현이든 같은 한도를 정확히 나타내면 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그 밖의 회사는 최대 5개 사업연도까지 연속 수행한다.",
+            "reason": "그 밖의 회사의 최대 연속 수행 기간을 5개 사업연도로 정확히 제시했다.",
+            "claim": "그 밖의 회사는 최대 연속 5개 사업연도이다. 연속 6개 사업연도 수행은 금지된다. 허용기간 6년이라는 답은 반대 의미다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "최대 기간 수행 후 감사업무를 맡을 수 없는 이후 3개 사업연도 기간을 제시하지 않았다.",
+            "claim": "주권상장법인·대형비상장주식회사·금융회사에서 연속 3개 사업연도를 수행한 이사는 그 다음 연속 3개 사업연도의 모든 기간 동안 해당 회사의 감사업무를 수행할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "주권상장법인·대형비상장주식회사·금융회사는 최대 연속 3개 사업연도이다. 연속 4개 사업연도 수행은 금지된다.",
+          "그 밖의 회사는 최대 연속 5개 사업연도이다. 연속 6개 사업연도 수행은 금지된다.",
+          "주권상장법인·대형비상장주식회사·금융회사에서 연속 3개 사업연도를 수행한 이사는 그 다음 연속 3개 사업연도의 모든 기간 동안 해당 회사의 감사업무를 수행할 수 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-l01-sub1-partial.input.json",
+      "sha256": "fc51827e81a7842b437fb7a56ecbf08a30de9524b7876ca42ec1fd06099a34d1"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-l01-sub1-partial.transport.jsonl",
+      "sha256": "55e7bba1e24d24a32b7c06f02f0343fa273cc56135323ca85097ba86fa62f791"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-l01-sub1-partial.traces.jsonl",
+      "sha256": "c3eff56cd743b84e03951b0040d3b391d5e546bae11f1de57b3784ccdbb14641"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a5466a4a1d3961d016aa5e16f168887d0989d15a59960b0b8",
+        "request_id": "req_797b930c88064f5bbe37704aa40a65d4",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2982,
+          "input_tokens_details": {
+            "cache_write_tokens": 2979,
+            "cached_tokens": 0
+          },
+          "output_tokens": 236,
+          "output_tokens_details": {
+            "reasoning_tokens": 41
+          },
+          "total_tokens": 3218
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/l01-sub1-partial.input.json",
+        "sha256": "bb4d9289670aa32d6713358ad209e41b532c258a3620459cfd23801f3acaf6e4"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/l01-sub1-partial.request-1.json",
+        "sha256": "f91965bb79d15f422a208edf0baa5143b490f7e243c8076e363fcb5a320b06bd"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/l01-sub1-partial.response-1.json",
+        "sha256": "ce5f4e874390540bc744968fbf005be91fddb6987a667ff798d7248ca23b966a"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/l01-sub1-partial.trace.json",
+        "sha256": "94fb160b07f9f8808342c17ca83143acc9217c5616da94791044f97b006bd800"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/l01-sub1-partial.usage.json",
+        "sha256": "dfe13718fb92722aec459cf5e81b88491de9510804dc841f4301c26079586335"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/l01-sub1-partial.result.json",
+        "sha256": "37d37beee4c5aaacf41d24e049f675be13e20572caf5b6d91cc8cc15c587ee19"
+      }
+    ],
+    "original_case_id": "l01-sub1-partial",
+    "origin_batch": "cpa_uploader/drafts/standard-expansion-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

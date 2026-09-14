@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "fol-s03-sub4-wrong",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-followup-20260913-s03",
+  "learning_unit_id": "draft-standard-followup-20260913-s03--sub4--standard",
+  "kind": "wrong",
+  "projected_body_hash": "f07c6f94a36d6e45eb38c04bb7de233dd005b1af37f08778783052be1a81d63e",
+  "answers": {
+    "sub4": "모집단 전체에 걸쳐 항목을 무작위로 골라서 하나의 구획을 만든다. 모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub4",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 모집단 안에서 이웃하는 항목들로 구성된 하나 또는 복수의 구획을 선택하는 방법이다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 전체 모집단을 추론하는 표본감사에는 일반적으로 적합하지 않다. 특정 구획의 항목을 조사하는 절차 자체가 항상 금지되는 것은 아니다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 대부분의 모집단은 연속된 항목끼리는 서로 유사하지만 다른 부분의 항목들은 다른 특징을 가져 그 구획이 전체를 대표하기 어렵기 때문이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "31c80eac49cd9a638cbc03be65fd949eb8427c288e169f1899bc4b0c48d2fab4",
+  "schema_hash": "02a927cc680303cce38e914f548d777941de757012f887ce285133cfcd32d69d",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "모집단 전체에 걸쳐 항목을 무작위로 골라서 하나의 구획을 만든다. 모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+            "reason": "구획을 이웃하는 항목으로 선택하는 것이 아니라 모집단 전체에서 무작위로 고른다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "모집단 전체에 걸쳐 항목을 무작위로 골라서 하나의 구획을 만든다. 모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+            "reason": "전체 모집단 추론에 일반적으로 부적합하다는 결론과 반대로 항상 적합하다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+            "reason": "구획 간 특성이 다를 수 있어 대표성이 낮다는 이유와 반대로 모든 구획의 특성이 같다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub4",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0"
+                ],
+                "reason": "구획을 이웃하는 항목으로 선택하는 것이 아니라 모집단 전체에서 무작위로 고른다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0",
+                  "sub4/e2"
+                ],
+                "reason": "전체 모집단 추론에 일반적으로 부적합하다는 결론과 반대로 항상 적합하다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e2"
+                ],
+                "reason": "구획 간 특성이 다를 수 있어 대표성이 낮다는 이유와 반대로 모든 구획의 특성이 같다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-followup-20260913-s03",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "prompt": "감사기준서 530 보론 4의 구획추출을 정의하고, 표본에 근거하여 전체 모집단에 대한 유효한 추론을 하려는 목적에 일반적으로 적합한지와 그 이유를 설명하시오. 특정 구획을 검사하는 모든 감사절차가 절대 금지된다고 해석하지 않도록 답하시오.",
+        "user_answer": "모집단 전체에 걸쳐 항목을 무작위로 골라서 하나의 구획을 만든다. 모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "모집단 전체에 걸쳐 항목을 무작위로 골라서 하나의 구획을 만든다. 모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+            "reason": "구획을 이웃하는 항목으로 선택하는 것이 아니라 모집단 전체에서 무작위로 고른다고 명시했다.",
+            "claim": "모집단 안에서 이웃하는 항목들로 구성된 하나 또는 복수의 구획을 선택하는 방법이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "모집단 전체에 걸쳐 항목을 무작위로 골라서 하나의 구획을 만든다. 모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+            "reason": "전체 모집단 추론에 일반적으로 부적합하다는 결론과 반대로 항상 적합하다고 명시했다.",
+            "claim": "전체 모집단을 추론하는 표본감사에는 일반적으로 적합하지 않다. 특정 구획의 항목을 조사하는 절차 자체가 항상 금지되는 것은 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+            "reason": "구획 간 특성이 다를 수 있어 대표성이 낮다는 이유와 반대로 모든 구획의 특성이 같다고 명시했다.",
+            "claim": "대부분의 모집단은 연속된 항목끼리는 서로 유사하지만 다른 부분의 항목들은 다른 특징을 가져 그 구획이 전체를 대표하기 어렵기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "모집단 안에서 이웃하는 항목들로 구성된 하나 또는 복수의 구획을 선택하는 방법이다.",
+          "전체 모집단을 추론하는 표본감사에는 일반적으로 적합하지 않다. 특정 구획의 항목을 조사하는 절차 자체가 항상 금지되는 것은 아니다.",
+          "대부분의 모집단은 연속된 항목끼리는 서로 유사하지만 다른 부분의 항목들은 다른 특징을 가져 그 구획이 전체를 대표하기 어렵기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-s03-sub4-wrong.input.json",
+      "sha256": "4d75e1b481a181c3cecc9ac0c73d6e1d78820081ffeb870387ddc9c225522a95"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-s03-sub4-wrong.transport.jsonl",
+      "sha256": "c42f853defa759115193609d64b046564fe2ad14467f99859f193a7a113a1339"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-s03-sub4-wrong.traces.jsonl",
+      "sha256": "9dadd8dfbf07c6bb5ff9993986a3abc59a4b83c370c3ed81a5d66a35773cd37d"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub4"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub4",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_00ac739ff8f59638016aa5fe65954887d08fc418c1dc8f3509",
+        "request_id": "req_67df571d66a048148b8b4798d0a2802d",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2795,
+          "input_tokens_details": {
+            "cache_write_tokens": 2792,
+            "cached_tokens": 0
+          },
+          "output_tokens": 370,
+          "output_tokens_details": {
+            "reasoning_tokens": 149
+          },
+          "total_tokens": 3165
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub4-wrong.input.json",
+        "sha256": "ad1f62cfa64d882b395843e8ebf931da3f78c1a55467767a1d4324697e7fdad0"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub4-wrong.request-1.json",
+        "sha256": "10e0d40353706dc6433f6877c27254e31af6729f38eb155c090a41f036b352eb"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub4-wrong.response-1.json",
+        "sha256": "c27c17c208e137c3e4f46546da8124fce9526eb72e37f8da7db6f8c18264eae0"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub4-wrong.trace.json",
+        "sha256": "c1aae98ce4338d13e562e9051f63a76a5eb3f55c0a0db1f5fef0c7e23b459ff8"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub4-wrong.usage.json",
+        "sha256": "1cc964ebc323bc88f67453e48b98982b40eb2171d79c86fec879f0078ea4d05d"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub4-wrong.result.json",
+        "sha256": "aa957125569b7e3af3af75c1cf34ee0bddb2a6e9de0657e9d9515c7fcbf0a95a"
+      }
+    ],
+    "original_case_id": "s03-sub4-wrong",
+    "origin_batch": "cpa_uploader/drafts/standard-followup-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

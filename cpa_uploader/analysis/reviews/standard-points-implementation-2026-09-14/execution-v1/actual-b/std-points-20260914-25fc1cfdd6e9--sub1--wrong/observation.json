@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-25fc1cfdd6e9--sub1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-25fc1cfdd6e9--sub1--standard",
+  "source_set_id": "std-points-20260914-25fc1cfdd6e9",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "5c7e501ccc06dbe25f8f083b9678bd47a8940cf73534dc4da387e6e541ba5f26",
+  "answers": {
+    "sub1": "법규가 상세하면 어떠한 사실도 계약서에 기록할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 감사업무 조건을 정한 법규가 적용된다는 사실을 기록함"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 경영진이 문단 6(b)의 책임을 인정하고 이해한다는 사실을 기록한다. 실질적인 책임 수용·합의가 드러나는 동등한 표현을 인정한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "7722e630013a314b57689e7ec871273ac3673d43d017fabf3a0c389b8a43aa67",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "법규가 상세하면 어떠한 사실도 계약서에 기록할 필요가 없다.",
+            "reason": "법규가 상세하면 어떠한 사실도 기록할 필요가 없다고 명시하여 적용 사실 기록 의무를 부정했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "법규가 상세하면 어떠한 사실도 계약서에 기록할 필요가 없다.",
+            "reason": "법규가 상세하면 어떠한 사실도 기록할 필요가 없다고 명시하여 경영진의 책임 인정·이해 사실 기록 의무를 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "법규가 상세하면 어떠한 사실도 기록할 필요가 없다고 명시하여 적용 사실 기록 의무를 부정했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "법규가 상세하면 어떠한 사실도 기록할 필요가 없다고 명시하여 경영진의 책임 인정·이해 사실 기록 의무를 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-25fc1cfdd6e9",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사업무 조건이 법규에 충분히 세부적으로 명시된 경우에도 감사계약서에 기록해야 하는 두 가지 사실을 제시하시오.",
+        "user_answer": "법규가 상세하면 어떠한 사실도 계약서에 기록할 필요가 없다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "법규가 상세하면 어떠한 사실도 계약서에 기록할 필요가 없다.",
+            "reason": "법규가 상세하면 어떠한 사실도 기록할 필요가 없다고 명시하여 적용 사실 기록 의무를 부정했다.",
+            "claim": "감사업무 조건을 정한 법규가 적용된다는 사실을 기록함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "법규가 상세하면 어떠한 사실도 계약서에 기록할 필요가 없다.",
+            "reason": "법규가 상세하면 어떠한 사실도 기록할 필요가 없다고 명시하여 경영진의 책임 인정·이해 사실 기록 의무를 부정했다.",
+            "claim": "경영진이 문단 6(b)의 책임을 인정하고 이해한다는 사실을 기록한다. 실질적인 책임 수용·합의가 드러나는 동등한 표현을 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "해당 법규가 적용된다는 사실을 기록한다.",
+          "경영진이 자신의 책임을 인정하고 이해한다는 사실을 기록한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0dbc07a09bf65a09016aa78513489487d0a0edb5c565bfca42",
+        "request_id": "req_54163af677c64484a5e01e2ea5e7695a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2320,
+          "input_tokens_details": {
+            "cache_write_tokens": 2317,
+            "cached_tokens": 0
+          },
+          "output_tokens": 225,
+          "output_tokens_details": {
+            "reasoning_tokens": 53
+          },
+          "total_tokens": 2545
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00084985,
+        "min_usd": 0.00084985,
+        "max_usd": 0.00084985,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-25fc1cfdd6e9--sub1--wrong/input.json",
+      "sha256": "048cbb81e97b8ec007289d8f4e7ec2e774a643ada2cdcc38d39e7af3a9b769d2"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-25fc1cfdd6e9--sub1--wrong/transport.jsonl",
+      "sha256": "4c6874982ea771e00d185688f265c98a84d00631434654823acad314ca474597"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-25fc1cfdd6e9--sub1--wrong/traces.jsonl",
+      "sha256": "f222156f78751b744478a993cd74d8000adfdfc6e0fcf19b255148165b25fcb8"
+    }
+  }
+}

@@ -1,0 +1,480 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-14-007--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-14-007--case",
+  "source_set_id": "pilot-14-007",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "16b38bf5a1a39dcd0f8b0de372f5bb0a37da77cbcf50e845cf9d917394957565",
+  "answers": {
+    "sub1": "사용할 중요성은 부문중요성이다.",
+    "sub2": "그룹재무제표의 발생가능한 유의적인 중요왜곡표시위험과 관련된 하나 이상의 거래유형·계정잔액 또는 공시에 대하여 감사를 수행할 수 있다.\n그룹재무제표의 발생가능한 유의적인 중요왜곡표시위험과 관련된 특정 감사절차를 수행할 수 있다.\n재무정보 전체를 대상으로 하는 대안에서 사용할 중요성은 부문중요성이다.\n위 업무유형 중 하나 이상을 수행하여야 하며, 세 유형을 모두 동시에 수행할 의무는 없다.",
+    "sub3": "C군의 유의적이지 않은 부문 중 일부를 추가 업무 대상으로 선정하여야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.crit1",
+          "verdict": "not_met",
+          "reason": "다른 답안 부분을 함께 읽어도 해당 명제를 확인할 수 없다."
+        },
+        {
+          "criterion_id": "sub1.crit2",
+          "verdict": "met",
+          "reason": "답안 전체가 원문에 근거한 독립 명제를 충족한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 4,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.crit1",
+          "verdict": "not_met",
+          "reason": "다른 답안 부분을 함께 읽어도 해당 명제를 확인할 수 없다."
+        },
+        {
+          "criterion_id": "sub2.crit2",
+          "verdict": "met",
+          "reason": "답안 전체가 원문에 근거한 독립 명제를 충족한다."
+        },
+        {
+          "criterion_id": "sub2.crit3",
+          "verdict": "met",
+          "reason": "답안 전체가 원문에 근거한 독립 명제를 충족한다."
+        },
+        {
+          "criterion_id": "sub2.crit4",
+          "verdict": "met",
+          "reason": "답안 전체가 원문에 근거한 독립 명제를 충족한다."
+        },
+        {
+          "criterion_id": "sub2.crit5",
+          "verdict": "met",
+          "reason": "답안 전체가 원문에 근거한 독립 명제를 충족한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.crit1",
+          "verdict": "met",
+          "reason": "원문과 현행 채점기준을 대조하여 이 답안이 독립 의미를 충족함을 확인."
+        },
+        {
+          "criterion_id": "sub3.crit7",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "6d9a0e0cd18dfc77aa072833f42e172f9b6bb92daf652f861b3465b813517d0f",
+  "schema_hash": "c52440906d78c846ee4c3a1bc8ae3a34811933837f4063674a232a95622e8c47",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "not_met",
+            "reason": "A 부문 재무정보에 대한 감사 수행이 언급되지 않았다."
+          },
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "met",
+            "quote": "사용할 중요성은 부문중요성이다.",
+            "reason": "부문중요성 사용을 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "not_met",
+            "reason": "부문재무정보 전체에 대한 감사 수행이 제시되지 않았다."
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "met",
+            "quote": "그룹재무제표의 발생가능한 유의적인 중요왜곡표시위험과 관련된 하나 이상의 거래유형·계정잔액 또는 공시에 대하여 감사를 수행할 수 있다.\n",
+            "reason": "위험 관련 거래유형·계정잔액 또는 공시에 대한 감사를 제시했다."
+          },
+          {
+            "criterion_id": "sub2.crit3",
+            "verdict": "met",
+            "quote": "그룹재무제표의 발생가능한 유의적인 중요왜곡표시위험과 관련된 특정 감사절차를 수행할 수 있다.\n",
+            "reason": "위험 관련 특정 감사절차 수행을 제시했다."
+          },
+          {
+            "criterion_id": "sub2.crit4",
+            "verdict": "met",
+            "quote": "재무정보 전체를 대상으로 하는 대안에서 사용할 중요성은 부문중요성이다.\n",
+            "reason": "전체 재무정보 감사 대안에 부문중요성을 사용한다고 제시했다."
+          },
+          {
+            "criterion_id": "sub2.crit5",
+            "verdict": "met",
+            "quote": "위 업무유형 중 하나 이상을 수행하여야 하며, 세 유형을 모두 동시에 수행할 의무는 없다.",
+            "reason": "하나 이상의 업무를 수행하며 모두 수행할 의무는 없다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.crit1",
+            "verdict": "met",
+            "quote": "C군의 유의적이지 않은 부문 중 일부를 추가 업무 대상으로 선정하여야 한다.",
+            "reason": "유의적이지 않은 부문 중 일부를 추가 업무 대상으로 선정한다고 명시했다."
+          },
+          {
+            "criterion_id": "sub3.crit7",
+            "verdict": "not_met",
+            "reason": "기간 경과에 따른 대상 부문 선택 변경이 언급되지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "A 부문 재무정보에 대한 감사 수행이 언급되지 않았다."
+              },
+              {
+                "criterion_id": "sub1.crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "부문중요성 사용을 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "부문재무정보 전체에 대한 감사 수행이 제시되지 않았다."
+              },
+              {
+                "criterion_id": "sub2.crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "위험 관련 거래유형·계정잔액 또는 공시에 대한 감사를 제시했다."
+              },
+              {
+                "criterion_id": "sub2.crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "위험 관련 특정 감사절차 수행을 제시했다."
+              },
+              {
+                "criterion_id": "sub2.crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e3"
+                ],
+                "reason": "전체 재무정보 감사 대안에 부문중요성을 사용한다고 제시했다."
+              },
+              {
+                "criterion_id": "sub2.crit5",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e4"
+                ],
+                "reason": "하나 이상의 업무를 수행하며 모두 수행할 의무는 없다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "유의적이지 않은 부문 중 일부를 추가 업무 대상으로 선정한다고 명시했다."
+              },
+              {
+                "criterion_id": "sub3.crit7",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "기간 경과에 따른 대상 부문 선택 변경이 언급되지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-14-007",
+    "score": 6,
+    "max_points": 9,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "A 부문에 대하여 그룹업무팀 또는 그룹업무팀을 대신하는 부문감사인이 수행하여야 할 업무유형과 그 업무에 사용할 중요성을 각각 제시하시오.",
+        "user_answer": "사용할 중요성은 부문중요성이다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "not_met",
+            "reason": "A 부문 재무정보에 대한 감사 수행이 언급되지 않았다.",
+            "claim": "A 부문의 재무정보에 대한 감사를 수행하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "met",
+            "quote": "사용할 중요성은 부문중요성이다.",
+            "reason": "부문중요성 사용을 명시했다.",
+            "claim": "A 부문재무정보 감사에는 부문중요성을 사용한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "A 부문의 재무정보에 대한 감사를 수행하여야 한다.",
+          "A 부문재무정보 감사에는 부문중요성을 사용한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "B 부문에 대하여 수행할 수 있는 업무유형을 감사기준서 600 문단 27의 범위에서 모두 제시하시오. 부문재무정보 전체를 감사하는 대안에서 사용할 중요성도 제시하고, 열거한 업무유형을 실제로 모두 수행해야 하는지 또는 어떻게 선택하여 수행할 수 있는지 설명하시오.",
+        "user_answer": "그룹재무제표의 발생가능한 유의적인 중요왜곡표시위험과 관련된 하나 이상의 거래유형·계정잔액 또는 공시에 대하여 감사를 수행할 수 있다.\n그룹재무제표의 발생가능한 유의적인 중요왜곡표시위험과 관련된 특정 감사절차를 수행할 수 있다.\n재무정보 전체를 대상으로 하는 대안에서 사용할 중요성은 부문중요성이다.\n위 업무유형 중 하나 이상을 수행하여야 하며, 세 유형을 모두 동시에 수행할 의무는 없다.",
+        "score": 4,
+        "max_points": 5,
+        "criteria": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "not_met",
+            "reason": "부문재무정보 전체에 대한 감사 수행이 제시되지 않았다.",
+            "claim": "B 부문의 재무정보 전체에 대한 감사를 수행할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "met",
+            "quote": "그룹재무제표의 발생가능한 유의적인 중요왜곡표시위험과 관련된 하나 이상의 거래유형·계정잔액 또는 공시에 대하여 감사를 수행할 수 있다.",
+            "reason": "위험 관련 거래유형·계정잔액 또는 공시에 대한 감사를 제시했다.",
+            "claim": "그룹재무제표의 발생가능한 유의적인 중요왜곡표시위험과 관련된 하나 이상의 거래유형·계정잔액 또는 공시에 대하여 감사를 수행할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.crit3",
+            "verdict": "met",
+            "quote": "그룹재무제표의 발생가능한 유의적인 중요왜곡표시위험과 관련된 특정 감사절차를 수행할 수 있다.",
+            "reason": "위험 관련 특정 감사절차 수행을 제시했다.",
+            "claim": "그룹재무제표의 발생가능한 유의적인 중요왜곡표시위험과 관련된 특정 감사절차를 수행할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.crit4",
+            "verdict": "met",
+            "quote": "재무정보 전체를 대상으로 하는 대안에서 사용할 중요성은 부문중요성이다.",
+            "reason": "전체 재무정보 감사 대안에 부문중요성을 사용한다고 제시했다.",
+            "claim": "부문재무정보 전체를 감사하는 대안에는 부문중요성을 사용한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.crit5",
+            "verdict": "met",
+            "quote": "위 업무유형 중 하나 이상을 수행하여야 하며, 세 유형을 모두 동시에 수행할 의무는 없다.",
+            "reason": "하나 이상의 업무를 수행하며 모두 수행할 의무는 없다고 명시했다.",
+            "claim": "위 업무유형 중 하나 이상을 수행하여야 하며, 세 유형을 모두 동시에 수행할 의무는 없다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "B 부문의 재무정보 전체에 대한 감사를 수행할 수 있다.",
+          "그룹재무제표의 발생가능한 유의적인 중요왜곡표시위험과 관련된 하나 이상의 거래유형·계정잔액 또는 공시에 대하여 감사를 수행할 수 있다.",
+          "그룹재무제표의 발생가능한 유의적인 중요왜곡표시위험과 관련된 특정 감사절차를 수행할 수 있다.",
+          "부문재무정보 전체를 감사하는 대안에는 부문중요성을 사용한다.",
+          "위 업무유형 중 하나 이상을 수행하여야 하며, 세 유형을 모두 동시에 수행할 의무는 없다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "C군의 상황에서 그룹업무팀이 추가 업무를 위해 취할 부문 선정 조치를 설명하시오. 이후 기간이 경과할 때 그 부문 선택에 적용할 원칙도 제시하시오.",
+        "user_answer": "C군의 유의적이지 않은 부문 중 일부를 추가 업무 대상으로 선정하여야 한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub3.crit1",
+            "verdict": "met",
+            "quote": "C군의 유의적이지 않은 부문 중 일부를 추가 업무 대상으로 선정하여야 한다.",
+            "reason": "유의적이지 않은 부문 중 일부를 추가 업무 대상으로 선정한다고 명시했다.",
+            "claim": "그룹업무팀은 C군의 유의적이지 않은 부문 중 일부를 추가 업무 대상으로 선정하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub3.crit7",
+            "verdict": "not_met",
+            "reason": "기간 경과에 따른 대상 부문 선택 변경이 언급되지 않았다.",
+            "claim": "그룹업무팀은 기간의 경과에 따라 추가 업무 대상 부문의 선택을 변경하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "그룹업무팀은 C군의 유의적이지 않은 부문 중 일부를 추가 업무 대상으로 선정하여야 한다.",
+          "그룹업무팀은 기간의 경과에 따라 추가 업무 대상 부문의 선택을 변경하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 4,
+      "actual_points": 4,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_081fb6c5afd64fff016aa5dbe3094087d083142100ed7397fe",
+        "request_id": "req_a621e121018f48efb10241fcfd9eed5c",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 5420,
+          "input_tokens_details": {
+            "cache_write_tokens": 5417,
+            "cached_tokens": 0
+          },
+          "output_tokens": 648,
+          "output_tokens_details": {
+            "reasoning_tokens": 145
+          },
+          "total_tokens": 6068
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0021324499999999997,
+        "min_usd": 0.0021324499999999997,
+        "max_usd": 0.0021324499999999997,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-14-007--case--partial/input.json",
+      "sha256": "0308d474700896ac1db03999814c345c0dfdbc381e716c2b1955583ea227f636"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-14-007--case--partial/transport.jsonl",
+      "sha256": "112e632613dc21d07249502efdaadaec4f097a2f15389c75618a2c9f3d58b6c0"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-14-007--case--partial/traces.jsonl",
+      "sha256": "0106773497dffa42b9783fa6e275b979352c7818247a5455aed4f0195a7bbd17"
+    }
+  }
+}

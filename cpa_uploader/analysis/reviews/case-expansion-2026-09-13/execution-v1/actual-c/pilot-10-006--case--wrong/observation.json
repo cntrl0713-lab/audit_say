@@ -1,0 +1,350 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-10-006--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-10-006--case",
+  "source_set_id": "pilot-10-006",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2"
+  ],
+  "projected_body_hash": "e4a15e2e65a43c83652cad13bb2ca2ac80a84c729741966b2c40e6091ab7367f",
+  "answers": {
+    "sub1": "A는 부당기각위험이고 B는 부당수용위험이다.",
+    "sub2": "A는 불필요한 재검사만 늘려 효율성을 저해하지만 의견의 적정성과는 무관하다. B는 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "사례의 핵심 조건에 반대되는 명시적 결론 또는 조치이다. 맞는 독립 근거가 함께 포함되지 않아 0점으로 설정했다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "사례의 핵심 조건에 반대되는 명시적 결론 또는 조치이다. 맞는 독립 근거가 함께 포함되지 않아 0점으로 설정했다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "사례의 핵심 조건에 반대되는 명시적 결론 또는 조치이다. 맞는 독립 근거가 함께 포함되지 않아 0점으로 설정했다."
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "not_met",
+          "reason": "사례의 핵심 조건에 반대되는 명시적 결론 또는 조치이다. 맞는 독립 근거가 함께 포함되지 않아 0점으로 설정했다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "사례의 핵심 조건에 반대되는 명시적 결론 또는 조치이다. 맞는 독립 근거가 함께 포함되지 않아 0점으로 설정했다."
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "not_met",
+          "reason": "사례의 핵심 조건에 반대되는 명시적 결론 또는 조치이다. 맞는 독립 근거가 함께 포함되지 않아 0점으로 설정했다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "e45cdab386303715f1ac8d80b3fe7e5e5f8c279b937ee362df74d5210326b419",
+  "schema_hash": "d4b83c395383ace195a7d46beb0e772f21beefe8b5d606fb3a34edeb2fca54ad",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "A는 부당기각위험이고 B는 부당수용위험이다.",
+            "reason": "A를 부당기각위험으로 분류하여 요구된 부당수용위험과 반대이다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "A는 부당기각위험이고 B는 부당수용위험이다.",
+            "reason": "B를 부당수용위험으로 분류하여 요구된 부당기각위험과 반대이다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "A가 중요한 왜곡표시를 놓쳐 효과성을 저해한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "contradicted",
+            "quote": "A는 불필요한 재검사만 늘려 효율성을 저해하지만 의견의 적정성과는 무관하다. ",
+            "reason": "A가 의견의 적정성과 무관하다고 명시하여 부적합한 감사의견 가능성을 부정한다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "B가 감사의 효율성을 저해한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "not_met",
+            "reason": "B에 대한 불필요한 추가업무 경로가 설명되지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "A를 부당기각위험으로 분류하여 요구된 부당수용위험과 반대이다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "B를 부당수용위험으로 분류하여 요구된 부당기각위험과 반대이다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "A가 중요한 왜곡표시를 놓쳐 효과성을 저해한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit7",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "A가 의견의 적정성과 무관하다고 명시하여 부적합한 감사의견 가능성을 부정한다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "B가 감사의 효율성을 저해한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit8",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "B에 대한 불필요한 추가업무 경로가 설명되지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-10-006",
+    "score": 0,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "상황 A와 B의 잘못된 결론을 세부테스트의 표본위험 유형으로 각각 분류하시오. 부당하게 수용하는 위험인지 기각하는 위험인지가 드러나는 동등한 분류 표현을 허용한다. 지문에 제시된 모집단 상태와 표본결론만 그대로 반복하는 답은 분류를 제시한 것으로 보지 않는다. 감사의 효과성·효율성에 미치는 영향은 다음 물음에서 답하시오.",
+        "user_answer": "A는 부당기각위험이고 B는 부당수용위험이다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "A는 부당기각위험이고 B는 부당수용위험이다.",
+            "reason": "A를 부당기각위험으로 분류하여 요구된 부당수용위험과 반대이다.",
+            "claim": "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "A는 부당기각위험이고 B는 부당수용위험이다.",
+            "reason": "B를 부당수용위험으로 분류하여 요구된 부당기각위험과 반대이다.",
+            "claim": "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "A는 실제로 중요한 왜곡표시가 있는데 없다고 결론내리는 부당수용위험이다.",
+          "B는 실제로 중요한 왜곡표시가 없는데 있다고 결론내리는 부당기각위험이다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "A와 B의 잘못된 결론이 각각 감사의 효과성 또는 효율성에 어떠한 영향을 미치는지와 그 영향이 생기는 경로를 설명하시오. A의 방향을 감사인이 특히 유의해야 하는 이유도 그 영향과 연결하시오. 유형 명칭을 다시 쓰는 것만으로는 충분하지 않다.",
+        "user_answer": "A는 불필요한 재검사만 늘려 효율성을 저해하지만 의견의 적정성과는 무관하다. B는 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해한다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "A가 중요한 왜곡표시를 놓쳐 효과성을 저해한다는 내용이 없다.",
+            "claim": "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "contradicted",
+            "quote": "A는 불필요한 재검사만 늘려 효율성을 저해하지만 의견의 적정성과는 무관하다.",
+            "reason": "A가 의견의 적정성과 무관하다고 명시하여 부적합한 감사의견 가능성을 부정한다.",
+            "claim": "A의 방향은 부적합한 감사의견에 이를 수 있으므로 감사인이 특히 유의해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "B가 감사의 효율성을 저해한다는 내용이 없다.",
+            "claim": "B의 방향은 감사의 효율성을 저해한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "not_met",
+            "reason": "B에 대한 불필요한 추가업무 경로가 설명되지 않았다.",
+            "claim": "B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "A의 방향은 중요한 왜곡표시를 놓쳐 감사의 효과성을 저해한다.",
+          "A의 방향은 부적합한 감사의견에 이를 수 있으므로 감사인이 특히 유의해야 한다.",
+          "B의 방향은 감사의 효율성을 저해한다.",
+          "B의 방향은 최초 결론이 부정확한지 확인하기 위한 불필요한 추가업무로 이어지는 것이 일반적이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_057d6344a35a459f016aa6038b88e487d0a8c4ea4919fff243",
+        "request_id": "req_1d377f1cb9744ef59e7bf1023f9bcaca",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3813,
+          "input_tokens_details": {
+            "cache_write_tokens": 3810,
+            "cached_tokens": 0
+          },
+          "output_tokens": 701,
+          "output_tokens_details": {
+            "reasoning_tokens": 346
+          },
+          "total_tokens": 4514
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0017943,
+        "min_usd": 0.0017943,
+        "max_usd": 0.0017943,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-10-006--case--wrong/input.json",
+      "sha256": "86ca6d5b68a45fe1c4e4201369674452f3a40c74d57e10e7a53f8ea47f92bcf8"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-10-006--case--wrong/transport.jsonl",
+      "sha256": "ac80838bd3ba2c3568fb591c91821610f988a941aa0e7f84c8e89eeabc58a5e5"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-10-006--case--wrong/traces.jsonl",
+      "sha256": "221c0e575fc9ba15c3b4f26e8a8cb2677df1cfc3bba95409211b3e0acd23cd2a"
+    }
+  }
+}

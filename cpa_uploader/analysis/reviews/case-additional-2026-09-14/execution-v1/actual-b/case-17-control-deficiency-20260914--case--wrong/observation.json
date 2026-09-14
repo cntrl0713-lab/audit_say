@@ -1,0 +1,522 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "2e6971c78f0cc7fb9535b6f81ed84e45605ef130e49f73994e0884766d57b413"
+  },
+  "entry_id": "case-17-control-deficiency-20260914--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "case-17-control-deficiency-20260914--case",
+  "source_set_id": "case-17-control-deficiency-20260914",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "6ede2a7129c4204c4719a2961cba0693b965b3c7b571371941de9caec99b8869",
+  "answers": {
+    "sub1": "실제 발견한 오류액만 각각 작으면 통제가 실패할 가능성은 없다. 노출잔액이나 두 미비점의 결합은 더 평가하지 않고 종결한다.",
+    "sub2": "임원이 서명했으면 고객별 정보가 없어도 정밀성은 충분하다. 어떤 차이를 조사하거나 수정했는지는 확인하지 않고 보완통제가 효과적이라고 결론내린다.",
+    "sub3": "전기에 한 번 알렸으므로 올해 경영진이나 감사위원회에 다시 보고할 필요가 없다. 요구가 생길 때에만 감사보고서 발행 후 구두로 답하면 충분하다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "not_met",
+          "reason": "잠재적 규모·실패 가능성·결합효과를 모두 부정한다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "잠재적 규모·실패 가능성·결합효과를 모두 부정한다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "not_met",
+          "reason": "잠재적 규모·실패 가능성·결합효과를 모두 부정한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "not_met",
+          "reason": "서명만으로 충분하다고 판단하고 상계·정밀성 문제를 부정하며 운영효과성 테스트도 생략한다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "not_met",
+          "reason": "서명만으로 충분하다고 판단하고 상계·정밀성 문제를 부정하며 운영효과성 테스트도 생략한다."
+        },
+        {
+          "criterion_id": "sub2.c3",
+          "verdict": "not_met",
+          "reason": "서명만으로 충분하다고 판단하고 상계·정밀성 문제를 부정하며 운영효과성 테스트도 생략한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.c1",
+          "verdict": "not_met",
+          "reason": "반복 보고와 두 당기 수신인, 서면·발행 전 적시 보고를 모두 부정한다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "verdict": "not_met",
+          "reason": "반복 보고와 두 당기 수신인, 서면·발행 전 적시 보고를 모두 부정한다."
+        },
+        {
+          "criterion_id": "sub3.c3",
+          "verdict": "not_met",
+          "reason": "반복 보고와 두 당기 수신인, 서면·발행 전 적시 보고를 모두 부정한다."
+        },
+        {
+          "criterion_id": "sub3.c4",
+          "verdict": "not_met",
+          "reason": "반복 보고와 두 당기 수신인, 서면·발행 전 적시 보고를 모두 부정한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "372f842553dd2ae1a7d20d5226968919777781e0593b698e9bcc8fe6f65eab22",
+  "schema_hash": "91375b0a51d682dc29955ff411921538fcbf9e569c8175bfa5155e715761fb08",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "contradicted",
+            "quote": "실제 발견한 오류액만 각각 작으면 통제가 실패할 가능성은 없다. 노출잔액이나 두 미비점의 결합은 더 평가하지 않고 종결한다.",
+            "reason": "실제 오류액만 보고 노출잔액을 평가하지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "contradicted",
+            "quote": "실제 발견한 오류액만 각각 작으면 통제가 실패할 가능성은 없다. ",
+            "reason": "통제가 실패할 가능성이 없다고 명시하여 합리적 가능성 평가를 반대로 결론냈다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "contradicted",
+            "quote": "노출잔액이나 두 미비점의 결합은 더 평가하지 않고 종결한다.",
+            "reason": "두 미비점의 결합을 더 평가하지 않고 종결한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "임원이 서명했으면 고객별 정보가 없어도 정밀성은 충분하다. 어떤 차이를 조사하거나 수정했는지는 확인하지 않고 보완통제가 효과적이라고 결론내린다.",
+            "reason": "서명만으로 정밀성이 충분하고 보완통제가 효과적이라고 결론냈다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "contradicted",
+            "quote": "임원이 서명했으면 고객별 정보가 없어도 정밀성은 충분하다. ",
+            "reason": "고객별 정보가 없어도 정밀성이 충분하다고 하여 반대로 판단했다."
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "contradicted",
+            "quote": "어떤 차이를 조사하거나 수정했는지는 확인하지 않고 보완통제가 효과적이라고 결론내린다.",
+            "reason": "조사·수정 기록을 확인하지 않겠다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "contradicted",
+            "quote": "전기에 한 번 알렸으므로 올해 경영진이나 감사위원회에 다시 보고할 필요가 없다. ",
+            "reason": "당기 경영진에 다시 보고할 필요가 없다고 명시했다."
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "contradicted",
+            "quote": "전기에 한 번 알렸으므로 올해 경영진이나 감사위원회에 다시 보고할 필요가 없다. ",
+            "reason": "당기 감사위원회에 다시 보고할 필요가 없다고 명시했다."
+          },
+          {
+            "criterion_id": "sub3.c3",
+            "verdict": "contradicted",
+            "quote": "요구가 생길 때에만 감사보고서 발행 후 구두로 답하면 충분하다.",
+            "reason": "구두 답변만으로 충분하다고 하여 서면 커뮤니케이션을 부정했다."
+          },
+          {
+            "criterion_id": "sub3.c4",
+            "verdict": "contradicted",
+            "quote": "요구가 생길 때에만 감사보고서 발행 후 구두로 답하면 충분하다.",
+            "reason": "감사보고서 발행 후 답하면 된다고 하여 발행 전 적시 커뮤니케이션을 반대로 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0",
+                  "sub1/e2"
+                ],
+                "reason": "실제 오류액만 보고 노출잔액을 평가하지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "통제가 실패할 가능성이 없다고 명시하여 합리적 가능성 평가를 반대로 결론냈다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "두 미비점의 결합을 더 평가하지 않고 종결한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "서명만으로 정밀성이 충분하고 보완통제가 효과적이라고 결론냈다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "고객별 정보가 없어도 정밀성이 충분하다고 하여 반대로 판단했다."
+              },
+              {
+                "criterion_id": "sub2.c3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "조사·수정 기록을 확인하지 않겠다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "당기 경영진에 다시 보고할 필요가 없다고 명시했다."
+              },
+              {
+                "criterion_id": "sub3.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "당기 감사위원회에 다시 보고할 필요가 없다고 명시했다."
+              },
+              {
+                "criterion_id": "sub3.c3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "구두 답변만으로 충분하다고 하여 서면 커뮤니케이션을 부정했다."
+              },
+              {
+                "criterion_id": "sub3.c4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "감사보고서 발행 후 답하면 된다고 하여 발행 전 적시 커뮤니케이션을 반대로 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-17-control-deficiency-20260914",
+    "score": 0,
+    "max_points": 10,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "실제 오류액만 보고 두 미비점을 따로 평가하려는 계획을 보완하시오. 신용한도·연체검토 실패의 심각성을 평가할 두 요소와, 두 미비점 사이의 관계를 어떻게 평가해야 하는지 사례에 맞게 설명하시오. 최종 미비점 등급은 결정하지 않아도 된다.",
+        "user_answer": "실제 발견한 오류액만 각각 작으면 통제가 실패할 가능성은 없다. 노출잔액이나 두 미비점의 결합은 더 평가하지 않고 종결한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "contradicted",
+            "quote": "실제 발견한 오류액만 각각 작으면 통제가 실패할 가능성은 없다. 노출잔액이나 두 미비점의 결합은 더 평가하지 않고 종결한다.",
+            "reason": "실제 오류액만 보고 노출잔액을 평가하지 않는다고 명시했다.",
+            "claim": "이미 발견된 작은 오류액만 보지 말고, 미승인 한도와 검토 누락 연체채권에 노출된 잔액 등에서 초래될 수 있는 잠재적 왜곡표시의 크기를 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "contradicted",
+            "quote": "실제 발견한 오류액만 각각 작으면 통제가 실패할 가능성은 없다.",
+            "reason": "통제가 실패할 가능성이 없다고 명시하여 합리적 가능성 평가를 반대로 결론냈다.",
+            "claim": "신용한도 승인과 연체검토의 실패로 매출채권·대손충당금의 왜곡표시를 예방하거나 발견·수정하지 못할 합리적 가능성이 있는지 평가한다. 실제 오류 발견 여부만으로 그 가능성을 대신하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "contradicted",
+            "quote": "노출잔액이나 두 미비점의 결합은 더 평가하지 않고 종결한다.",
+            "reason": "두 미비점의 결합을 더 평가하지 않고 종결한다고 명시했다.",
+            "claim": "두 미비점이 동일 고객군의 매출채권·대손충당금 평가에 영향을 주므로 각 미비점의 개별 평가에 더하여, 결합하여 평가기준일 현재 중요한 취약점이 되는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "이미 발견된 작은 오류액만 보지 말고, 미승인 한도와 검토 누락 연체채권에 노출된 잔액 등에서 초래될 수 있는 잠재적 왜곡표시의 크기를 평가한다.",
+          "신용한도 승인과 연체검토의 실패로 매출채권·대손충당금의 왜곡표시를 예방하거나 발견·수정하지 못할 합리적 가능성이 있는지 평가한다. 실제 오류 발견 여부만으로 그 가능성을 대신하지 않는다.",
+          "두 미비점이 동일 고객군의 매출채권·대손충당금 평가에 영향을 주므로 각 미비점의 개별 평가에 더하여, 결합하여 평가기준일 현재 중요한 취약점이 되는지 평가한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "임원의 서명만으로 보완통제 검증을 마치려는 제안을 평가하시오. 전체 순증감표의 구조가 보완통제의 정밀성 판단에 미치는 이유와, 보완통제의 완화효과를 인정하기 위해 수행할 테스트를 설명하시오.",
+        "user_answer": "임원이 서명했으면 고객별 정보가 없어도 정밀성은 충분하다. 어떤 차이를 조사하거나 수정했는지는 확인하지 않고 보완통제가 효과적이라고 결론내린다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "임원이 서명했으면 고객별 정보가 없어도 정밀성은 충분하다. 어떤 차이를 조사하거나 수정했는지는 확인하지 않고 보완통제가 효과적이라고 결론내린다.",
+            "reason": "서명만으로 정밀성이 충분하고 보완통제가 효과적이라고 결론냈다.",
+            "claim": "전체 증감표에 있는 임원의 서명만으로 보완통제의 충분한 완화효과를 인정하고 검증을 끝내려는 제안은 부적절하다고 판단한다. 이유나 요구 테스트가 이 결론을 명확히 함축하면 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "contradicted",
+            "quote": "임원이 서명했으면 고객별 정보가 없어도 정밀성은 충분하다.",
+            "reason": "고객별 정보가 없어도 정밀성이 충분하다고 하여 반대로 판단했다.",
+            "claim": "고객별 연체·신용상태가 없는 전체 순증감표는 연체 증가가 정상 회수와 상계되어 중요한 평가왜곡을 놓칠 수 있으므로, 해당 미비점을 보완할 만큼 정밀한 수준인지에 의문이 있다는 이유를 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "contradicted",
+            "quote": "어떤 차이를 조사하거나 수정했는지는 확인하지 않고 보완통제가 효과적이라고 결론내린다.",
+            "reason": "조사·수정 기록을 확인하지 않겠다고 명시했다.",
+            "claim": "어떤 차이를 조사하고 수정으로 연결했는지에 대한 기록의 검사 등 보완통제의 운영효과성을 테스트하여, 중요한 왜곡표시를 예방하거나 발견·수정할 정밀한 수준으로 실제 운영되는지 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "전체 증감표에 있는 임원의 서명만으로 보완통제의 충분한 완화효과를 인정하고 검증을 끝내려는 제안은 부적절하다고 판단한다.",
+          "고객별 연체·신용상태가 없는 전체 순증감표는 연체 증가가 정상 회수와 상계되어 중요한 평가왜곡을 놓칠 수 있으므로, 해당 미비점을 보완할 만큼 정밀한 수준인지에 의문이 있다는 이유를 설명한다.",
+          "어떤 차이를 조사하고 수정으로 연결했는지에 대한 기록의 검사 등 보완통제의 운영효과성을 테스트하여, 중요한 왜곡표시를 예방하거나 발견·수정할 정밀한 수준으로 실제 운영되는지 결정한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "전기 구매 승인 미비점에 관하여 올해 커뮤니케이션 계획을 어떻게 고쳐야 하는지 설명하시오. 다시 보고할 필요성, 상대방, 형식 및 당기 감사보고서 발행과 관련된 시점을 구별하시오.",
+        "user_answer": "전기에 한 번 알렸으므로 올해 경영진이나 감사위원회에 다시 보고할 필요가 없다. 요구가 생길 때에만 감사보고서 발행 후 구두로 답하면 충분하다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "contradicted",
+            "quote": "전기에 한 번 알렸으므로 올해 경영진이나 감사위원회에 다시 보고할 필요가 없다.",
+            "reason": "당기 경영진에 다시 보고할 필요가 없다고 명시했다.",
+            "claim": "전기에 서면보고하였더라도 당기에 미시정된 유의적 미비점인 구매 승인 미비점은 올해에도 경영진에게 커뮤니케이션한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "contradicted",
+            "quote": "전기에 한 번 알렸으므로 올해 경영진이나 감사위원회에 다시 보고할 필요가 없다.",
+            "reason": "당기 감사위원회에 다시 보고할 필요가 없다고 명시했다.",
+            "claim": "전기에 서면보고하였더라도 당기에 미시정된 유의적 미비점인 구매 승인 미비점은 올해에도 감사위원회 등 지배기구에 커뮤니케이션한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub3.c3",
+            "verdict": "contradicted",
+            "quote": "요구가 생길 때에만 감사보고서 발행 후 구두로 답하면 충분하다.",
+            "reason": "구두 답변만으로 충분하다고 하여 서면 커뮤니케이션을 부정했다.",
+            "claim": "경영진과 지배기구에 대한 당기 커뮤니케이션은 서면으로 하며 요청 시 구두 설명만으로 대체하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub3.c4",
+            "verdict": "contradicted",
+            "quote": "요구가 생길 때에만 감사보고서 발행 후 구두로 답하면 충분하다.",
+            "reason": "감사보고서 발행 후 답하면 된다고 하여 발행 전 적시 커뮤니케이션을 반대로 제시했다.",
+            "claim": "미시정 유의적 미비점의 서면 커뮤니케이션은 적시에, 당기 내부회계관리제도 감사보고서가 발행되기 전에 수행한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "전기에 서면보고하였더라도 당기에 미시정된 유의적 미비점인 구매 승인 미비점은 올해에도 경영진에게 커뮤니케이션한다.",
+          "전기에 서면보고하였더라도 당기에 미시정된 유의적 미비점인 구매 승인 미비점은 올해에도 감사위원회 등 지배기구에 커뮤니케이션한다.",
+          "경영진과 지배기구에 대한 당기 커뮤니케이션은 서면으로 하며 요청 시 구두 설명만으로 대체하지 않는다.",
+          "미시정 유의적 미비점의 서면 커뮤니케이션은 적시에, 당기 내부회계관리제도 감사보고서가 발행되기 전에 수행한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f326bed6b8af577016aa759328d4487d099813f10c918405c",
+        "request_id": "req_15c704d11a164583a7e50583b9eeabb9",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 5973,
+          "input_tokens_details": {
+            "cache_write_tokens": 5970,
+            "cached_tokens": 0
+          },
+          "output_tokens": 813,
+          "output_tokens_details": {
+            "reasoning_tokens": 201
+          },
+          "total_tokens": 6786
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0024687,
+        "min_usd": 0.0024687,
+        "max_usd": 0.0024687,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/execution-v1/actual-b/case-17-control-deficiency-20260914--case--wrong/input.json",
+      "sha256": "94b034caeaf9a5d723a49b242230155dee3bf8bf53d98c95c34a859d93c0103c"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/execution-v1/actual-b/case-17-control-deficiency-20260914--case--wrong/transport.jsonl",
+      "sha256": "6a61320b0e8997af52df8b58dd4d98bac6605920dffa6bec3c0e6f79f887ff6a"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/execution-v1/actual-b/case-17-control-deficiency-20260914--case--wrong/traces.jsonl",
+      "sha256": "e5764ff2913d822057854cc7c096b0cdf753b5fa579241cf1c3b37086503490d"
+    }
+  }
+}

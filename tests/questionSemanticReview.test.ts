@@ -18,8 +18,10 @@ import type { SemanticReviewOptions } from '../cpa_uploader/questionSemanticRevi
 
 const root = process.cwd();
 // Receipt/transport contracts need explicit comparison peers, not the growing corpus.
+// pilot-01-001 was retired by the approved 2026-09-14 points restructure, so both peers come from the
+// preserved pre-retirement snapshot, byte-identical to the peers these contracts were written against.
 const fixturePeerIds = ['pilot-01-001', 'pilot-01-002'];
-const bank = (JSON.parse(fs.readFileSync(path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.authoring.json'), 'utf8')) as QuestionSetV3[])
+const bank = (JSON.parse(fs.readFileSync(path.join(root, 'cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/bank.snapshot.json'), 'utf8')) as QuestionSetV3[])
     .filter(set => fixturePeerIds.includes(set.id));
 assert.equal(bank.length, fixturePeerIds.length, 'semantic fixture peers must exist');
 function fixture() {

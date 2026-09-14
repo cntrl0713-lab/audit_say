@@ -1,0 +1,280 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "exp-e01-sub4-wrong",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-expansion-20260913-e01",
+  "learning_unit_id": "draft-standard-expansion-20260913-e01--sub4--standard",
+  "kind": "wrong",
+  "projected_body_hash": "c1bbfc8b101cab5dd6529271f54b58d870a76128092658c59f23cec27c1257d3",
+  "answers": {
+    "sub4": "기존공인회계사에게는 아무 자료도 주어서는 안 된다. 회사가 의견교환을 거절하면 다른 상황을 고려할 필요 없이 언제나 제2의견을 제공해도 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub4",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 해당 회사에 기존공인회계사와의 논의를 허용해 줄 것을 요청한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 제2의견 표명의 한계를 설명한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 기존공인회계사에게 해당 제2의견의 사본을 제공한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 의견교환이 허용되지 않으면 모든 상황을 감안하여 요청받은 의견을 제공하는 것이 적절한지 고려한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "63e2b853cefb3546331b163015c39e016b3d514f08de4b10282addeb3a87ea2d",
+  "schema_hash": "139844df365e5fab863f0271814e5f2f0c6028d8978998d0796bbf2825259c30",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "기존공인회계사와의 논의를 허용해 달라는 요청이 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "제2의견 표명의 한계에 대한 설명이 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "기존공인회계사에게는 아무 자료도 주어서는 안 된다. 회사가 의견교환을 거절하면 다른 상황을 고려할 필요 없이 언제나 제2의견을 제공해도 된다.",
+            "reason": "제2의견 사본 제공이 아니라 기존공인회계사에게 아무 자료도 주어서는 안 된다고 명시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "기존공인회계사에게는 아무 자료도 주어서는 안 된다. 회사가 의견교환을 거절하면 다른 상황을 고려할 필요 없이 언제나 제2의견을 제공해도 된다.",
+            "reason": "모든 상황을 고려해야 하는데도 다른 상황을 고려할 필요 없이 언제나 제공해도 된다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub4",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "기존공인회계사와의 논의를 허용해 달라는 요청이 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "제2의견 표명의 한계에 대한 설명이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0",
+                  "sub4/e1"
+                ],
+                "reason": "제2의견 사본 제공이 아니라 기존공인회계사에게 아무 자료도 주어서는 안 된다고 명시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0",
+                  "sub4/e2"
+                ],
+                "reason": "모든 상황을 고려해야 하는데도 다른 상황을 고려할 필요 없이 언제나 제공해도 된다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-expansion-20260913-e01",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "prompt": "공인회계사윤리기준에 따라 제2의견 제공과 관련된 위협이 명백하게 경미하지 않아 안전장치를 적용하려 한다. 문단 230.2에 예시된 안전장치 세 가지를 모두 제시하시오. 이어 제2의견을 요청한 회사가 기존공인회계사와의 의견교환을 허용하지 않는 경우, 문단 230.3에 따라 무엇을 고려해야 하는지 설명하시오.",
+        "user_answer": "기존공인회계사에게는 아무 자료도 주어서는 안 된다. 회사가 의견교환을 거절하면 다른 상황을 고려할 필요 없이 언제나 제2의견을 제공해도 된다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "기존공인회계사와의 논의를 허용해 달라는 요청이 없다.",
+            "claim": "해당 회사에 기존공인회계사와의 논의를 허용해 줄 것을 요청한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "제2의견 표명의 한계에 대한 설명이 없다.",
+            "claim": "제2의견 표명의 한계를 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "기존공인회계사에게는 아무 자료도 주어서는 안 된다. 회사가 의견교환을 거절하면 다른 상황을 고려할 필요 없이 언제나 제2의견을 제공해도 된다.",
+            "reason": "제2의견 사본 제공이 아니라 기존공인회계사에게 아무 자료도 주어서는 안 된다고 명시했다.",
+            "claim": "기존공인회계사에게 해당 제2의견의 사본을 제공한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "기존공인회계사에게는 아무 자료도 주어서는 안 된다. 회사가 의견교환을 거절하면 다른 상황을 고려할 필요 없이 언제나 제2의견을 제공해도 된다.",
+            "reason": "모든 상황을 고려해야 하는데도 다른 상황을 고려할 필요 없이 언제나 제공해도 된다고 명시했다.",
+            "claim": "의견교환이 허용되지 않으면 모든 상황을 감안하여 요청받은 의견을 제공하는 것이 적절한지 고려한다. 의견교환 거절만으로 언제나 제공 금지 또는 언제나 제공 가능으로 단정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "해당 회사에 기존공인회계사와의 논의를 허용해 줄 것을 요청한다.",
+          "제2의견 표명의 한계를 설명한다.",
+          "기존공인회계사에게 해당 제2의견의 사본을 제공한다.",
+          "의견교환이 허용되지 않으면 모든 상황을 감안하여 요청받은 의견을 제공하는 것이 적절한지 고려한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-e01-sub4-wrong.input.json",
+      "sha256": "6d86c44ae1b94b693154fbb5c18c6c4d00c56bd4accc6d6247ec044725dfec72"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-e01-sub4-wrong.transport.jsonl",
+      "sha256": "a795ba1f489026a842d3487d7d56ecc2ddd6be020c607be2c51be05dfbd902ba"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-e01-sub4-wrong.traces.jsonl",
+      "sha256": "014af48a43d440156342b2e2d9953c6e9a0b926be2d075c13792444c64c84782"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub4"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub4",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0b78969571246fca016aa5e16baea087d089d6afd35873e109",
+        "request_id": "req_070e0dcc01d549d1801b9203d90de33f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2833,
+          "input_tokens_details": {
+            "cache_write_tokens": 2830,
+            "cached_tokens": 0
+          },
+          "output_tokens": 327,
+          "output_tokens_details": {
+            "reasoning_tokens": 81
+          },
+          "total_tokens": 3160
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/e01-sub4-wrong.input.json",
+        "sha256": "e040a942190cd5ce7fff2542cf5095ac366bc54fc605cbb1f43bd54712b5c62f"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/e01-sub4-wrong.request-1.json",
+        "sha256": "2d230e1ab9f69d951021c262f9e61182620ae511f91401e591d9960ba494ebb1"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/e01-sub4-wrong.response-1.json",
+        "sha256": "c541e8a4d538c4949b8fe559e17a70428efb267b384d7ff2dcc04159c0ce3386"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/e01-sub4-wrong.trace.json",
+        "sha256": "9b8bd6cb00928623d614d0152875231dc1cee82a97b35a9cbfc664475c1d633a"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/e01-sub4-wrong.usage.json",
+        "sha256": "05e0b61b0a1bb61d6e2d5cf137693be65b8a7c905065b5cb5f40d817cf4e5046"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/e01-sub4-wrong.result.json",
+        "sha256": "954010406169d069a88c7eb1e6cf76444d03e52f536ba4cf27371772b310e081"
+      }
+    ],
+    "original_case_id": "e01-sub4-wrong",
+    "origin_batch": "cpa_uploader/drafts/standard-expansion-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/grading-manifest.json",
+    "sha256": "cdb499202fd2de0049d21221fa25db05190111cb75e7504f378f907f3871a98d"
+  },
+  "entry_id": "fix2-d1d89ea9818e-sub2-wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-d1d89ea9818e--sub2--standard",
+  "source_set_id": "std-points-20260914-d1d89ea9818e",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "77e20a489b01eebc18e64d7cb210b017da4c8bc8a1d9c6bd99c2cb95cdbfd200",
+  "answers": {
+    "sub2": "감사문서는 참여한 감사인의 기억을 돕기만 하면 되고 제삼자가 이해할 필요는 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성함"
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 이 감사기준서와 관련 법규에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성함"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 문서를 작성함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "83d9a57dc9a51575fe2a1b3d2a93b6c866115d0eef0a11c741776514914a4f7f",
+  "schema_hash": "fca86b4848616e2a2f2d4bc22740136636f27d9c001cf4d052cbe1b5a5a3e8a9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "감사보고서의 근거가 되는 충분하고 적합한 기록 제공을 언급하지 않았다."
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "not_met",
+            "reason": "감사기준서와 관련 법규에 따른 감사 계획·수행의 증거 제공을 언급하지 않았다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "감사문서는 참여한 감사인의 기억을 돕기만 하면 되고 제삼자가 이해할 필요는 없다.",
+            "reason": "관여하지 않은 제삼자가 이해할 필요가 없다고 하여 요구사항을 명시적으로 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사보고서의 근거가 되는 충분하고 적합한 기록 제공을 언급하지 않았다."
+              },
+              {
+                "criterion_id": "crit9",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사기준서와 관련 법규에 따른 감사 계획·수행의 증거 제공을 언급하지 않았다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "관여하지 않은 제삼자가 이해할 필요가 없다고 하여 요구사항을 명시적으로 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-d1d89ea9818e",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 1200(소규모기업 재무제표에 대한 감사) 문단 27~28에 따라 감사문서를 작성하는 두 목적과 감사문서를 이해할 수 있어야 하는 독자의 기준을 설명하시오.",
+        "user_answer": "감사문서는 참여한 감사인의 기억을 돕기만 하면 되고 제삼자가 이해할 필요는 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "감사보고서의 근거가 되는 충분하고 적합한 기록 제공을 언급하지 않았다.",
+            "claim": "감사보고서의 근거가 되는 충분하고 적합한 기록을 제공하는 문서를 작성함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "not_met",
+            "reason": "감사기준서와 관련 법규에 따른 감사 계획·수행의 증거 제공을 언급하지 않았다.",
+            "claim": "이 감사기준서와 관련 법규에 따라 감사를 계획하고 수행하였다는 증거를 제공하는 문서를 작성함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "감사문서는 참여한 감사인의 기억을 돕기만 하면 되고 제삼자가 이해할 필요는 없다.",
+            "reason": "관여하지 않은 제삼자가 이해할 필요가 없다고 하여 요구사항을 명시적으로 부정했다.",
+            "claim": "해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 문서를 작성함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사보고서의 근거가 되는 충분하고 적합한 기록과, 해당 감사기준서·관련 법규에 따라 감사를 계획하고 수행하였다는 증거를 제공한다.",
+          "해당 감사에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 작성한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0d2509a58ae35dcf016aa7b7fab32c87d095fe5eca7368f9db",
+        "request_id": "req_e808ed77b854437db631d67a4a580ae6",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2456,
+          "input_tokens_details": {
+            "cache_write_tokens": 2453,
+            "cached_tokens": 0
+          },
+          "output_tokens": 268,
+          "output_tokens_details": {
+            "reasoning_tokens": 75
+          },
+          "total_tokens": 2724
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00093545,
+        "min_usd": 0.00093545,
+        "max_usd": 0.00093545,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/execution-v1/actual-c/fix2-d1d89ea9818e-sub2-wrong/input.json",
+      "sha256": "73b44b42af94b32ede0a0ca523faff0b712877ddf2db84bf78645e4488895421"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/execution-v1/actual-c/fix2-d1d89ea9818e-sub2-wrong/transport.jsonl",
+      "sha256": "474641143da824896479beb24257b675df7bee97c5550463c83cf149b6fd6570"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/execution-v1/actual-c/fix2-d1d89ea9818e-sub2-wrong/traces.jsonl",
+      "sha256": "08bb5096e56e6948d4599ca1b1faea2927fd4f1d9ea825f7170e7519f8f75e73"
+    }
+  }
+}

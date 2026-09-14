@@ -1,0 +1,27 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+const R='cpa_uploader/analysis/reviews/case-trio-next-2026-09-14',D='cpa_uploader/drafts/case-trio-next-2026-09-14';
+const ref=file=>({file,sha256:createHash('sha256').update(fs.readFileSync(file)).digest('hex')});
+const write=(f,v)=>fs.writeFileSync(f,JSON.stringify(v,null,2)+'\n',{flag:'wx'});
+// Root's manual judgments after reading the final questions, sources and representative answers.
+const rationale={
+ a:[
+ '580.17의 최초 불일치 해결 요구를 은행 담보계약과 연말 전 해지 주장에 적용한다. 아직 확정되지 않은 부정이나 의견거절을 앞당기지 않는다. 서명만으로 종결 불가 1점과 계약 해지 여부·효력일을 실제 확인하는 구체 절차 1점이 독립적이다. 타당한 절차는 결론을 함축하며 복수 절차를 숨겨 요구하지 않는다. 기존 일반 불일치 절차 열거와 다르고 12·08 주제 및 사례 분류가 적절하다.',
+ '580.16~17을 실제 누락 지시에 적용하여 성실성 재고, 같은 재무이사의 보증 구두진술, 연령분석표의 신뢰성을 각각 평가한다. 독립된 평가대상 3개가 각 1점이며 속성 전부 열거나 감사의견까지 요구하지 않는다. 내부 채권표는 서면진술서 자체와 구별되는 감사증거이다. 기출2020의 미제공 절차와 인접 관계이고 새 문제는 제공된 진술의 미해결 충돌을 다룬다.',
+ '580.20(a)와 A26, 10·11 및705.9의 전체 조건을 대조했다. 단순 의문이 아니라 핵심 책임진술까지 신뢰 불가라는 후속 결론이 사실에 명시되어 의견거절이 성립한다. 서명과 일부 다른 증거로 대체 불가능한 전반적 이유를 1점, 의견거절을 1점으로 인정한다. 기존 미제공 및 경영진 교체 사례와 다르며 반대 결론에도 옳은 독립 근거점수는 유지한다.'
+ ],
+ b:[
+ '450.5 및 A2 마지막 문장의 불확실성 조건을 반복 단가 코드와 미확인 범위에 연결한다. 건별 200만원·참고500만원은 자동 제외 기준이 아니며 발견한 세 건을 집계한다는 판단 1점, 반복과 합계 영향 불확실성의 사례 이유 1점이다. 단순 중요성 미달과 명백하게 사소함을 혼동하는 오답은0점. A2의 인쇄 (*1) 설명 미발견은 기록되어 있으나 직접 적용 문장과 요구사항5는 완전하다.',
+ '450.A20의 분류오류 예외를 원문 전체와 비교했다. 1억2천만원이 전체 중요성1억원보다 크더라도 800억·600억의 관련 계정에 비해 작고 소계·손익·비율·약정 및 이용자에게 특별한 항목구분 영향이 없다는 조사 결과가 명시되어 중요하지 않다고 판단 가능하다. 판단1+그 이유1점은 적절하다. 고급2024 GS1 문제4 물음3의 요구를 직접 응용했고 기출2023과는 중요성 평가의 인접 관계이다.',
+ '450.A19 및 관련각주13를 확인했다. 서로 다른 매출·광고비의 각1억8천만원 중요 과대계상을 이익 순액0으로 소거할 수 없다. 같은 계정 안의 중요하지 않은 오류 상계와 조건이 다르다. 각각 평가해야 하고 중요한 왜곡표시가 남는다는 결론1점, 거래·계정이 다른 중요 오류가 남는 사례 이유1점이 타당하다. 모든 상계를 일반적으로 금지하는 발문이나 답안으로 확장하지 않았다.'
+ ],
+ c:[
+ '610.16의 각 활용금지 조건과 A7·A9를 공식2026 PDF663·670~671에서 대조했다. 자기 업무의 지적사항 삭제권과 직접 보고경로 부재가 객관성을 지원하지 않는다는 적용이며 전문성으로 보완되지 않는다. 활용금지1점과 일관된 객관성 이유1점으로 구성하였다. 고급 원문의 실물자산 무관 단서를 임의로 일반화하지 않고 구체 삭제권·보고결함 사실을 새로 설정했다.',
+ '610.18(b)와 A20~A21을 적용하여 유의적 위험 장기계약에서 낮은 위험 소액 경비보다 내부감사업무 활용을 줄이고 직접업무를 늘린다. 두 계획방향1점씩과 사례의 위험 비교 이유1점이 독립적이다. 최초 초안의 많은 판단까지 같은 이유에 묶는 표현을 보존 후 제거했고 위험 차이만으로 범위를 명확히 했다. CPA2025 문제3 물음3의 내부감사 활용 조건과 부분 관계이며 기존 일반 조건 열거와 다르다.',
+ '610.14(b)의 직접적 보조 정의와610.5 국내 추가문단·각주(*1)를 PDF660·663에서 읽었다. 새 절차를 외부감사인의 지시·감독·검토 아래 수행하는 방식의 식별1점, 국내에서는 직원 적격성이나 동의서로 허용되지 않는다는 판단1점이다. 이미 수행한 내부감사업무 활용과 구별되는 사실이 필요하므로 기준서형 단독 암기가 아니다. 해당2026 개시기간 적용판본을 확인했다.'
+ ]};
+for(const w of ['a','b','c']){const s=JSON.parse(fs.readFileSync(`${D}/${w}/sets.json`))[0];write(`${R}/root-review-notes-${w}.json`,s.subquestions.map((q,i)=>({set_id:s.id,subquestion_id:q.id,checks:Object.fromEntries(['source','answer','prompt','points','style','topics','edition','nonduplication'].map(k=>[k,'pass'])),rationale:rationale[w][i]})));}
+write(D+'/source-peer-review.json',{version:1,reviewed_at:new Date().toISOString(),reviewer:'Codex root',method:'agent_source_and_content_review',human_review_performed:false,status:'passed',source_basis:'기출 해설과 고급회계감사연습의 원발문·해설은 학습원자료로 읽고 2026 공식 전문 본문과 관련 국내조건·각주를 따로 대조하였다. 교재를 공식 시험 원PDF 검증으로 표시하지 않는다.',references:['a','b','c'].map(w=>ref(`${D}/${w}/design.json`)),decisions:rationale,edition_index:'동일 날짜의 공식 게시 목록 조회와2026 전문 수집 해시를 재사용하며 향후 시험 적용판본 승인을 주장하지 않는다.',resolved_discrepancies:['고급연습580-A10 표기는 해당 해설 내용이2026 580.A1임을 확인하고 원자료는 보존했다.','450.A2의 (*1) 표시에 대한 별도 해설은 원PDF에서 찾지 못했으나 신규판단의 직접근거인 A2 마지막 문장과450.5 전체 요구는 확인했다. 이 표식의 내용을 추정하지 않았다.','C sub2의 이중 근거를 위험 비교 한 요구로 줄였으며 API 실행 전 이전 바이트와 수정 이유를 보존했다.'],unresolved_content_findings:[],model_api_review_performed:false});
+const paths=['cpa_uploader/raw/originals/case-deepening-2026-09-14/kicpa-index.html','cpa_uploader/raw/originals/case-deepening-2026-09-14/index-fetch.json','cpa_uploader/raw/originals/case-deepening-2026-09-14/edition-index-check.md',R+'/c-scope-refinement.json',D+'/c/source-comparison.json'];
+write(R+'/source-inventory-extras.json',paths.map(ref));
+console.log({manual_question_decisions:9,source_review:'complete',extra_sources:paths.length});

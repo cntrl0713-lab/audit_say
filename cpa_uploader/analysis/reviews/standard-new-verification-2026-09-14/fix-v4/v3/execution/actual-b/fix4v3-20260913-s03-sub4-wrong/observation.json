@@ -1,0 +1,234 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v3/grading-manifest.json",
+    "sha256": "623007e25bd8f6b82dea447b996b4d0c59dd729ef464e127c66fb0bc51746972"
+  },
+  "entry_id": "fix4v3-20260913-s03-sub4-wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-standard-followup-20260913-s03--sub4--standard",
+  "source_set_id": "draft-standard-followup-20260913-s03",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub4"
+  ],
+  "projected_body_hash": "f8f6cc6848ba9973ff03c1620bcec81919e11ed145fc1972e1f969b82ebd2ea8",
+  "answers": {
+    "sub4": "모집단 전체에 걸쳐 항목을 무작위로 골라서 하나의 구획을 만든다. 모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub4",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 모집단 안에서 이웃하는 항목들로 구성된 하나 또는 복수의 구획을 선택하는 방법이다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 전체 모집단을 추론하는 표본감사에는 일반적으로 적합하지 않다. 특정 구획의 항목을 조사하는 절차 자체가 항상 금지되는 것은 아니다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 대부분의 모집단은 연속된 항목끼리는 서로 유사하지만 다른 부분의 항목들은 다른 특징을 가져 그 구획이 전체를 대표하기 어렵기 때문이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "5635c88ee8edfac13861d7d103261b7701431d919a1a1cc2c77088aa6d0eb5fc",
+  "schema_hash": "02a927cc680303cce38e914f548d777941de757012f887ce285133cfcd32d69d",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "모집단 전체에 걸쳐 항목을 무작위로 골라서 하나의 구획을 만든다. 모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+            "reason": "이웃하는 항목으로 구획을 선택하는 것이 아니라 모집단 전체에서 무작위로 항목을 골라 구획을 만든다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "모집단 전체에 걸쳐 항목을 무작위로 골라서 하나의 구획을 만든다. 모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+            "reason": "전체 모집단 추론에 항상 적합하다고 하여 일반적으로 적합하지 않다는 결론과 반대된다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+            "reason": "구획 간 특성이 모두 같다고 하여 연속 항목은 유사하고 다른 부분은 다른 특성을 가진다는 이유와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub4",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0",
+                  "sub4/e1"
+                ],
+                "reason": "이웃하는 항목으로 구획을 선택하는 것이 아니라 모집단 전체에서 무작위로 항목을 골라 구획을 만든다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0",
+                  "sub4/e2"
+                ],
+                "reason": "전체 모집단 추론에 항상 적합하다고 하여 일반적으로 적합하지 않다는 결론과 반대된다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e2"
+                ],
+                "reason": "구획 간 특성이 모두 같다고 하여 연속 항목은 유사하고 다른 부분은 다른 특성을 가진다는 이유와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-followup-20260913-s03",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "prompt": "감사기준서 530 보론 4의 구획추출을 정의하고, 표본에 근거하여 전체 모집단에 대한 유효한 추론을 하려는 목적에 일반적으로 적합한지와 그 이유를 설명하시오. 특정 구획을 검사하는 모든 감사절차가 절대 금지된다고 해석하지 않도록 답하시오.",
+        "user_answer": "모집단 전체에 걸쳐 항목을 무작위로 골라서 하나의 구획을 만든다. 모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "모집단 전체에 걸쳐 항목을 무작위로 골라서 하나의 구획을 만든다. 모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+            "reason": "이웃하는 항목으로 구획을 선택하는 것이 아니라 모집단 전체에서 무작위로 항목을 골라 구획을 만든다고 명시했다.",
+            "claim": "모집단 안에서 이웃하는 항목들로 구성된 하나 또는 복수의 구획을 선택하는 방법이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "모집단 전체에 걸쳐 항목을 무작위로 골라서 하나의 구획을 만든다. 모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+            "reason": "전체 모집단 추론에 항상 적합하다고 하여 일반적으로 적합하지 않다는 결론과 반대된다.",
+            "claim": "전체 모집단을 추론하는 표본감사에는 일반적으로 적합하지 않다. \"일반적으로\" 등으로 절대적 금지가 아님이 드러나면 특정 구획의 항목을 조사하는 절차가 항상 금지되는 것은 아니라는 부연을 따로 쓰지 않아도 인정한다. 구획추출이나 특정 구획의 조사가 언제나 금지된다고 단정하면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "모든 구획의 특성은 서로 같으므로 전체 모집단 추론에 항상 적합하다.",
+            "reason": "구획 간 특성이 모두 같다고 하여 연속 항목은 유사하고 다른 부분은 다른 특성을 가진다는 이유와 반대된다.",
+            "claim": "대부분의 모집단은 연속된 항목끼리는 서로 유사하지만 다른 부분의 항목들은 다른 특징을 가져 그 구획이 전체를 대표하기 어렵기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "모집단 안에서 이웃하는 항목들로 구성된 하나 또는 복수의 구획을 선택하는 방법이다.",
+          "전체 모집단을 추론하는 표본감사에는 일반적으로 적합하지 않다. 특정 구획의 항목을 조사하는 절차 자체가 항상 금지되는 것은 아니다.",
+          "대부분의 모집단은 연속된 항목끼리는 서로 유사하지만 다른 부분의 항목들은 다른 특징을 가져 그 구획이 전체를 대표하기 어렵기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub4",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_00e28b77fa31b183016aa7cea18c0c87d08e1819e5b8b73cf3",
+        "request_id": "req_84db7327ca0046739f630ecaaf0c9b3f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2829,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 2826
+          },
+          "output_tokens": 355,
+          "output_tokens_details": {
+            "reasoning_tokens": 119
+          },
+          "total_tokens": 3184
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00048312,
+        "min_usd": 0.00048312,
+        "max_usd": 0.00048312,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v3/execution/actual-b/fix4v3-20260913-s03-sub4-wrong/input.json",
+      "sha256": "a7de82cb823b64e7df02f11dccd3ea87b7ce1b3f5c57941443c014be922eb458"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v3/execution/actual-b/fix4v3-20260913-s03-sub4-wrong/transport.jsonl",
+      "sha256": "86b676d63c86cb2ddf518d598562de35f7d3c1376666f77235e54dd8ffce48ec"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v3/execution/actual-b/fix4v3-20260913-s03-sub4-wrong/traces.jsonl",
+      "sha256": "b9288c537817d1e952c0989c60626f8293dbb6fcfeec014801b58f33051fe688"
+    }
+  }
+}

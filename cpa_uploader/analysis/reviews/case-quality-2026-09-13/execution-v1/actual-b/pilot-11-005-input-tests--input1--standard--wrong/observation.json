@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-11-005-input-tests--input1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-11-005-input-tests--input1--standard",
+  "source_set_id": "pilot-11-005-input-tests",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "input1"
+  ],
+  "projected_body_hash": "941f7230d1d05106a15df218b66dc1c5e6e6007dadc60701b29ebdc6539b7503",
+  "answers": {
+    "input1": "방법의 선택과 적용에 관한 위험은 테스트할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "input1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.crit2",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        },
+        {
+          "criterion_id": "sub1.crit3",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "25e970c6c9fda9826453a7546e1ca670c1ea5487c0fd0a4c266a32863b483c88",
+  "schema_hash": "aacbf788a4e451903800229897c5003a2d8d364e8c29b3ef0c04ced20b25133a",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "input1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "contradicted",
+            "quote": "방법의 선택과 적용에 관한 위험은 테스트할 필요가 없다.",
+            "reason": "방법 선택 관련 중요왜곡표시위험을 테스트해야 한다는 명제와 반대로 테스트할 필요가 없다고 명시했다."
+          },
+          {
+            "criterion_id": "sub1.crit3",
+            "verdict": "contradicted",
+            "quote": "방법의 선택과 적용에 관한 위험은 테스트할 필요가 없다.",
+            "reason": "방법 적용 관련 중요왜곡표시위험을 테스트해야 한다는 명제와 반대로 테스트할 필요가 없다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "input1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "input1/e0"
+                ],
+                "reason": "방법 선택 관련 중요왜곡표시위험을 테스트해야 한다는 명제와 반대로 테스트할 필요가 없다고 명시했다."
+              },
+              {
+                "criterion_id": "sub1.crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "input1/e0"
+                ],
+                "reason": "방법 적용 관련 중요왜곡표시위험을 테스트해야 한다는 명제와 반대로 테스트할 필요가 없다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-11-005-input-tests",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "input1",
+        "prompt": "경영진의 회계추정치 도출방법을 테스트하는 접근방법에서 방법에 관하여 다루어야 할 중요왜곡표시위험의 두 측면을, 선택과 적용으로 구별하여 설명하시오.",
+        "user_answer": "방법의 선택과 적용에 관한 위험은 테스트할 필요가 없다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "contradicted",
+            "quote": "방법의 선택과 적용에 관한 위험은 테스트할 필요가 없다.",
+            "reason": "방법 선택 관련 중요왜곡표시위험을 테스트해야 한다는 명제와 반대로 테스트할 필요가 없다고 명시했다.",
+            "claim": "경영진이 회계추정치 도출에 사용할 방법을 선택한 것에 관련된 중요왜곡표시위험을 테스트한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.crit3",
+            "verdict": "contradicted",
+            "quote": "방법의 선택과 적용에 관한 위험은 테스트할 필요가 없다.",
+            "reason": "방법 적용 관련 중요왜곡표시위험을 테스트해야 한다는 명제와 반대로 테스트할 필요가 없다고 명시했다.",
+            "claim": "경영진이 선택한 방법을 적용한 것에 관련된 중요왜곡표시위험을 테스트한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진이 회계추정치 도출에 사용할 방법을 선택한 것에 관련된 중요왜곡표시위험을 테스트한다.",
+          "경영진이 선택한 방법을 적용한 것에 관련된 중요왜곡표시위험을 테스트한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "input1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_00e408b30c5a7bd2016aa5dccd385c87d08c58e6b6989f519d",
+        "request_id": "req_6b1af628f1e64466804ced0751a9f4e6",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2378,
+          "input_tokens_details": {
+            "cache_write_tokens": 2375,
+            "cached_tokens": 0
+          },
+          "output_tokens": 218,
+          "output_tokens_details": {
+            "reasoning_tokens": 46
+          },
+          "total_tokens": 2596
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008559500000000001,
+        "min_usd": 0.0008559500000000001,
+        "max_usd": 0.0008559500000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-11-005-input-tests--input1--standard--wrong/input.json",
+      "sha256": "f7e0bd0e451ce00d6cab7f831035712d6e1de7d0ea24c7e528b3a3e3e465a044"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-11-005-input-tests--input1--standard--wrong/transport.jsonl",
+      "sha256": "be6336bef64cc6ef14b86c41a233b874e6e7fdbc77a3c0b0e6e9c8f85f03fd37"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-11-005-input-tests--input1--standard--wrong/traces.jsonl",
+      "sha256": "94c618428b8b8a084b2af2d8548e8fae55bd222dd6e3f42c8f0d56240ea6a987"
+    }
+  }
+}

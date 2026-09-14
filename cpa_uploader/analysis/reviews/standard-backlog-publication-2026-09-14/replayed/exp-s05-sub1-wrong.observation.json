@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "exp-s05-sub1-wrong",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-expansion-20260913-s05",
+  "learning_unit_id": "draft-standard-expansion-20260913-s05--sub1--standard",
+  "kind": "wrong",
+  "projected_body_hash": "96c054595a89209032adfa54ce963ae87bc2eb5fa43eecb7afa57c66f8bc3e67",
+  "answers": {
+    "sub1": "내부통제 미비점은 통제 설계나 운영과는 관계가 없으며, 오직 당기 재무제표에 실제 중요한 왜곡표시가 발생한 경우에만 존재한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 통제가 재무제표의 왜곡표시를 적시에 예방하거나 발견·수정할 수 없도록 설계·실행 또는 운영되는 경우 내부통제 미비점이 존재한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 재무제표의 왜곡표시를 적시에 예방하거나 발견·수정하기 위해 필요한 통제가 누락된 경우 내부통제 미비점이 존재한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 유의적 내부통제 미비점은 감사인의 전문가적 판단에 따라 지배기구가 주의를 기울일 만큼 충분히 중요하다고 판단하는 내부통제 미비점 또는 미비점들의 결합이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "81b9bd4399b37fcb497455f57672fd796d906bad7ea352d4b169e5b5e5bc1071",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "내부통제 미비점은 통제 설계나 운영과는 관계가 없으며, 오직 당기 재무제표에 실제 중요한 왜곡표시가 발생한 경우에만 존재한다.",
+            "reason": "통제 설계·운영과 무관하다고 명시하여 요구 명제와 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "내부통제 미비점은 통제 설계나 운영과는 관계가 없으며, 오직 당기 재무제표에 실제 중요한 왜곡표시가 발생한 경우에만 존재한다.",
+            "reason": "실제 중요한 왜곡표시가 발생한 경우에만 미비점이 존재한다고 하여 필요한 통제의 누락만으로도 미비점이 된다는 명제와 반대된다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "유의적 내부통제 미비점의 정의와 미비점들의 결합에 관한 설명이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "통제 설계·운영과 무관하다고 명시하여 요구 명제와 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "실제 중요한 왜곡표시가 발생한 경우에만 미비점이 존재한다고 하여 필요한 통제의 누락만으로도 미비점이 된다는 명제와 반대된다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "유의적 내부통제 미비점의 정의와 미비점들의 결합에 관한 설명이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-expansion-20260913-s05",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 265 문단 6에 따라 내부통제의 미비점이 존재하는 두 경우를 설명하고, 유의적 내부통제 미비점의 정의를 제시하시오. 유의적 미비점은 개별 미비점과 미비점들의 결합을 포함하여 설명하시오.",
+        "user_answer": "내부통제 미비점은 통제 설계나 운영과는 관계가 없으며, 오직 당기 재무제표에 실제 중요한 왜곡표시가 발생한 경우에만 존재한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "내부통제 미비점은 통제 설계나 운영과는 관계가 없으며, 오직 당기 재무제표에 실제 중요한 왜곡표시가 발생한 경우에만 존재한다.",
+            "reason": "통제 설계·운영과 무관하다고 명시하여 요구 명제와 반대된다.",
+            "claim": "통제가 재무제표의 왜곡표시를 적시에 예방하거나 발견·수정할 수 없도록 설계·실행 또는 운영되는 경우 내부통제 미비점이 존재한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "내부통제 미비점은 통제 설계나 운영과는 관계가 없으며, 오직 당기 재무제표에 실제 중요한 왜곡표시가 발생한 경우에만 존재한다.",
+            "reason": "실제 중요한 왜곡표시가 발생한 경우에만 미비점이 존재한다고 하여 필요한 통제의 누락만으로도 미비점이 된다는 명제와 반대된다.",
+            "claim": "재무제표의 왜곡표시를 적시에 예방하거나 발견·수정하기 위해 필요한 통제가 누락된 경우 내부통제 미비점이 존재한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "유의적 내부통제 미비점의 정의와 미비점들의 결합에 관한 설명이 없다.",
+            "claim": "유의적 내부통제 미비점은 감사인의 전문가적 판단에 따라 지배기구가 주의를 기울일 만큼 충분히 중요하다고 판단하는 내부통제 미비점 또는 미비점들의 결합이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "통제가 재무제표의 왜곡표시를 적시에 예방하거나 발견·수정할 수 없도록 설계·실행 또는 운영되는 경우 내부통제 미비점이 존재한다.",
+          "재무제표의 왜곡표시를 적시에 예방하거나 발견·수정하기 위해 필요한 통제가 누락된 경우 내부통제 미비점이 존재한다.",
+          "유의적 내부통제 미비점은 감사인의 전문가적 판단에 따라 지배기구가 주의를 기울일 만큼 충분히 중요하다고 판단하는 내부통제 미비점 또는 미비점들의 결합이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-s05-sub1-wrong.input.json",
+      "sha256": "1554b7e952f7838cbf34a37abcbb17861a00fb50d955f18e1949370a1fcc858e"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-s05-sub1-wrong.transport.jsonl",
+      "sha256": "78fc3c10f8e68de493c86dcb25bae85dbb868002c4cf081e23643ccccb1b8ed1"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-s05-sub1-wrong.traces.jsonl",
+      "sha256": "1b15b49a54e144b8f9786c0420c30efa3211bfe30ab50ade0ac3965210c22e0d"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_045f4c46bccce0a2016aa5e18ee40887d09aa677c9731e72ca",
+        "request_id": "req_8c4d997ad59748199425306c8d1c4c0f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2718,
+          "input_tokens_details": {
+            "cache_write_tokens": 2715,
+            "cached_tokens": 0
+          },
+          "output_tokens": 325,
+          "output_tokens_details": {
+            "reasoning_tokens": 109
+          },
+          "total_tokens": 3043
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s05-sub1-wrong.input.json",
+        "sha256": "f06fa8b0066540e9f82537e8637ff3e6b8c4a0ea1187306e2576ad01b124343c"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s05-sub1-wrong.request-1.json",
+        "sha256": "e99cc01edc8183508a6c453c9414b1552a8de9d67f5ae6b8b18e28a8fdc9a308"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s05-sub1-wrong.response-1.json",
+        "sha256": "fb5922e6f4e62ea3a7de99cc742b03f6d8bd71be2bea7c9eb394e3f2b1d93064"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s05-sub1-wrong.trace.json",
+        "sha256": "95615eaafd0d3ad2e3646a4cc7bd684b960b842461a19c809f30eaa84754b421"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s05-sub1-wrong.usage.json",
+        "sha256": "0f8dc2e69e6f1bc7792c099c124a3b98ff63394f0025345ec72ec93c4c75372b"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s05-sub1-wrong.result.json",
+        "sha256": "841e7a32ff4039085dff11de317f4611f61c87be3254e8362bd6a8d52e844b56"
+      }
+    ],
+    "original_case_id": "s05-sub1-wrong",
+    "origin_batch": "cpa_uploader/drafts/standard-expansion-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

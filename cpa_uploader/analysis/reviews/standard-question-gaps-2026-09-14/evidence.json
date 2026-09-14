@@ -1,0 +1,2483 @@
+{
+  "version": 1,
+  "review_date": "2026-09-14",
+  "scope": "후보 탐색과 기존 요구 차이의 agent 대조. 신규 발문·모범답안·배점 확정, 모델 API 검수·실제 채점, 정본·DB 변경은 미수행.",
+  "inputs": [
+    {
+      "file": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+      "sha256": "c8741c1b6b7c739fe4266597411bef8ec3468b8a3e83f7e559f98ff04af86ddf"
+    },
+    {
+      "file": "cpa_uploader/data/learning-question-classifications.json",
+      "sha256": "1d0910a4276b21a0ae2761b24ebb207fdf12a8e58e9094b8624a0cb9b93b54bf"
+    },
+    {
+      "file": "cpa_uploader/analysis/question-elements/question-elements.json",
+      "sha256": "354eb6511d2aeed7000dff9c3210751b92d2e7aadeb033f74341e9f04f82421b"
+    },
+    {
+      "file": "cpa_uploader/analysis/coverage/registry.json",
+      "sha256": "8606a818c3849cbf5dc167bbff1c8a756293c6bead0a4d437b73d69d09bda3b8"
+    },
+    {
+      "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+      "sha256": "1303e54860a587709703bb7c1f95c32b811f0110b92467c609a63b3ddb870d65"
+    },
+    {
+      "file": "cpa_uploader/raw/materials/verification/a8808cfc8f2663a6/ethics-2026-ed-overview.txt",
+      "sha256": "a8808cfc8f2663a67cd7a4a2b5107b23f50227086f2e6560ffbe5344fd1e1f15"
+    },
+    {
+      "file": "cpa_uploader/raw/materials/verification/dd662b5464e1e9d5/external-audit-law-text.txt",
+      "sha256": "dd662b5464e1e9d5f0a088c8ff2c8bde9bb3fa60bb58fd16bc7907cc256e1e3a"
+    },
+    {
+      "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+      "sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568"
+    }
+  ],
+  "counts": {
+    "sets": 186,
+    "questions": 403,
+    "standard": 301,
+    "case": 102,
+    "unpublished_standard_draft_questions": 43,
+    "unpublished_standard_draft_points": 206,
+    "candidate_areas": 22,
+    "candidate_units": 37,
+    "p1_units": 20
+  },
+  "validation": {
+    "classification_complete": true,
+    "errors": []
+  },
+  "unpublished_drafts": {
+    "batches": [
+      "cpa_uploader/drafts/standard-gap-2026-09-13",
+      "cpa_uploader/drafts/standard-expansion-2026-09-13",
+      "cpa_uploader/drafts/standard-followup-2026-09-13"
+    ],
+    "against_bank_check": "npx tsx cpa_uploader/validate_draft_v3.ts --file <각 개별 초안> --against-bank — 2026-09-14 27개 파일 모두 통과(형상·인용 실존·ID/발문 충돌 없음). 의미 중복 검사는 아님."
+  },
+  "edition_notes": {
+    "ethics": "후보 근거는 2024-12-19 의결 윤리기준 전문. 2026-09-02 공개초안은 국제윤리기준 체계로 전면 개편하고 원칙적으로 2027-01-01 시행을 제안하며 공정→객관성, 알선수수료→소개수수료(감사·인증 외 업무는 안전장치 허용), 내부감시기구→지배기구 등으로 바꾼다. edition_gate=true 후보는 적용 판본 결정 후 제작한다.",
+    "law": "외부감사법 원문은 2026-09-11 수집본(2025-04-01 개정 반영). 제작 시 국가법령정보센터 현행 조문과 시행령을 다시 대조한다.",
+    "kga": "KICPA 2026년 7월 개정 감사기준서 전문 추출본. 시험 적용연도는 별도로 확정하지 않았다."
+  },
+  "candidates": [
+    {
+      "id": "E1",
+      "priority": "P1",
+      "edition_gate": true,
+      "area": "윤리강령 다섯 가지와 윤리 위협의 다섯 유형",
+      "topics": [
+        "01"
+      ],
+      "units": [
+        {
+          "id": "E1-1",
+          "requirement": "윤리강령 다섯 가지의 명칭과 의미",
+          "answer_type": "enumeration",
+          "paragraphs": "윤리기준 100.4"
+        },
+        {
+          "id": "E1-2",
+          "requirement": "위협의 다섯 유형과 발생 상황, 안전장치로도 수용가능한 수준이하로 줄일 수 없을 때의 조치",
+          "answer_type": "descriptive",
+          "paragraphs": "윤리기준 100.7, 100.10"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2019:1:3",
+        "cpa_exam:2021:1:1",
+        "cpa_exam:2024:3:1"
+      ],
+      "exam_years": [
+        "2019",
+        "2021",
+        "2024"
+      ],
+      "elements": [
+        {
+          "id": "element-0d8889d078f0eb9d",
+          "relation": "direct",
+          "label": "금전 제공 등 부당한 방법으로 업무를 강요·수임하거나 경쟁해서는 안 된다는 윤리강령 식별",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2021:1:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-370f4321222c10ac",
+          "relation": "direct",
+          "label": "직무상 기밀을 본인·제3자 이익에 이용하지 않아야 한다는 윤리강령 식별",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2021:1:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-3a427a724e81fe7c",
+          "relation": "direct",
+          "label": "직무수행에서 솔직·정직해야 한다는 설명에 해당하는 윤리강령 식별",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2021:1:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-cb5b59ee3283c9bb",
+          "relation": "partial",
+          "label": "회계법인의 합병·대형화와 신규고객 유치를 위한 지하철 광고에서 고려할 윤리강령 식별",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2024:3:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-ffcfbb078f45e2ad",
+          "relation": "partial",
+          "label": "회사가 수익인식에 대해 현 감사인에게 원하는 답을 얻지 못하고 다른 회계사에게 의견을 요청한 상황의 윤리강령 식별",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2024:3:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-717aa83d34c14f44",
+          "relation": "direct",
+          "label": "안전장치 적용 후에도 윤리 위협을 수용 가능한 수준으로 낮출 수 없는 경우 조치",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2019:1:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-4edcec94c4b33d77",
+          "relation": "adjacent",
+          "label": "업무수행이사가 주택담보대출을 받은 은행을 회계법인이 감사하는 경우 독립성 충족 여부와 위협 유형 판단",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2021:1:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-e194fd1c8239e7ec",
+          "relation": "adjacent",
+          "label": "감사대상 상장회사의 조세불복업무를 성공보수로 수행 중인 회계법인의 독립성 위협 발생 여부·종류와 안전장치 세 가지 제시",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2025:1:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-8cf757b8c2981532",
+          "relation": "adjacent",
+          "label": "전임감사인보다 낮은 감사보수로 수임할 때의 윤리 위협",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2019:1:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-01-005/sub3",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "draft-standard-additional-20260913-e01/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "draft-standard-followup-20260913-e01/sub1",
+          "scope": "unpublished_draft",
+          "file": "cpa_uploader\\drafts\\standard-followup-2026-09-13/e01.json"
+        }
+      ],
+      "gap": "은행·초안은 낮은 보수·선물·성공보수 등 특정 상황에서 발생하는 위협 하나를 묻는다. 윤리강령 전체와 위협 유형 체계를 독립적으로 묻는 물음은 없다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 215,
+          "matches": 1,
+          "text": "100.4 공인회계사는 다음과 같은 윤리강령을 준수하여야 한다."
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 258,
+          "matches": 1,
+          "text": "100.7 공인회계사는 위협의 심각성을 검토함에 있어서"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 279,
+          "matches": 1,
+          "text": "100.10 윤리강령의 준수에 지장을 초래할 수 있는 잠재적인 위협들은"
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "priority": "P1",
+      "edition_gate": true,
+      "area": "안전장치의 분류와 업무환경 안전장치의 세 수준",
+      "topics": [
+        "01"
+      ],
+      "units": [
+        {
+          "id": "E2-1",
+          "requirement": "안전장치의 두 분류와 한국공인회계사회·법규에 의한 안전장치",
+          "answer_type": "enumeration",
+          "paragraphs": "윤리기준 100.11–100.12"
+        },
+        {
+          "id": "E2-2",
+          "requirement": "제시한 품질관리 활동을 회계법인 전체·개별업무·의뢰인 조직 수준으로 분류(목록 전체 암기 대신 분류형 설계)",
+          "answer_type": "judgment",
+          "paragraphs": "윤리기준 200.12–200.15"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2017:1:1",
+        "cpa_exam:2024:3:3"
+      ],
+      "exam_years": [
+        "2017",
+        "2024"
+      ],
+      "elements": [
+        {
+          "id": "element-aa4a326b755ec710",
+          "relation": "direct",
+          "label": "개별 감사업무 수준의 업무환경 안전장치",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2017:1:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-0d46bdef08a62a69",
+          "relation": "direct",
+          "label": "의뢰인 조직 수준의 업무환경 안전장치",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2017:1:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-6287678bb860a856",
+          "relation": "direct",
+          "label": "회계법인 전체 수준의 업무환경 안전장치",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2017:1:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-e5de75a8196d1a62",
+          "relation": "direct",
+          "label": "제시된 감사품질관리 활동 중 개별업무 수준의 업무환경 안전장치 분류",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2024:3:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-6e14633e37e256b1",
+          "relation": "direct",
+          "label": "제시된 감사품질관리 활동 중 의뢰인 조직 수준의 업무환경 안전장치 분류",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2024:3:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-83b140b209437ca1",
+          "relation": "direct",
+          "label": "제시된 감사품질관리 활동 중 회계법인 전체 수준의 업무환경 안전장치 분류",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2024:3:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-ff61dac9f9e60958",
+          "relation": "direct",
+          "label": "제시된 감사품질관리 활동 중 회계사회·법규상 안전장치에 해당하는 활동 분류",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2024:3:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-01-005/sub3",
+          "scope": "bank",
+          "file": null
+        }
+      ],
+      "gap": "은행·초안에 안전장치의 분류 체계를 묻는 물음이 없다. 200.12의 예시가 15개이므로 모두 열거하게 하지 말고 제시 활동의 수준별 분류로 설계한다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 295,
+          "matches": 1,
+          "text": "100.11 이러한 위협을 제거하거나 수용가능한 수준이하로 감소시키기 위한 안전장치는"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 300,
+          "matches": 1,
+          "text": "100.12 한국공인회계사회의 회칙이나 내규 또는 법규에 의하여 마련된 안전장치는"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 599,
+          "matches": 1,
+          "text": "200.12 업무환경내의 안전장치 중 회계법인 전체에 대한 안전장치를"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 632,
+          "matches": 1,
+          "text": "200.13 업무환경내의 안전장치 중 개별업무에 대한 안전장치를"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 647,
+          "matches": 1,
+          "text": "200.15 의뢰인 조직 및 절차내에 마련된 안전장치를"
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "priority": "P1",
+      "edition_gate": true,
+      "area": "인증의뢰인 보수: 상대적 크기·연체보수·성공보수",
+      "topics": [
+        "01"
+      ],
+      "units": [
+        {
+          "id": "E3-1",
+          "requirement": "회계법인·파트너 보수에서 차지하는 비중과 연체보수의 위협, 심각성 요인, 안전장치",
+          "answer_type": "descriptive",
+          "paragraphs": "윤리기준 290.206–290.208"
+        },
+        {
+          "id": "E3-2",
+          "requirement": "인증업무 성공보수 금지와 이유, 인증의뢰인 비인증업무 성공보수의 금지 조건·심각성 요인·안전장치",
+          "answer_type": "descriptive",
+          "paragraphs": "윤리기준 290.210–290.212"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2015:1:4",
+        "cpa_exam:2017:1:2",
+        "cpa_exam:2019:1:4",
+        "cpa_exam:2021:1:3",
+        "cpa_exam:2023:1:4",
+        "cpa_exam:2024:3:2",
+        "cpa_exam:2025:1:2"
+      ],
+      "exam_years": [
+        "2015",
+        "2017",
+        "2019",
+        "2021",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "elements": [
+        {
+          "id": "element-4c08b5f9d2223c6d",
+          "relation": "direct",
+          "label": "특정 그룹의 감사보수 의존도가 높을 때 윤리적 위협과 품질관리 방안",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2017:1:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-5de55353c3df1fe4",
+          "relation": "partial",
+          "label": "한 기업집단의 감사보수가 회계법인 연간 매출의 30%인 경우 독립성 훼손 여부와 이유 판단",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2024:3:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-ba1282b522d516d6",
+          "relation": "partial",
+          "label": "감사보수 미수금 및 감사대상회사 대여금에 따른 독립성 위협",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2019:1:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-9808a14231e8c354",
+          "relation": "partial",
+          "label": "회계법인이 감사대상회사에 감사보수채권과 금전대차채권을 함께 보유한 경우 독립성 충족 여부와 위협 유형 판단",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2021:1:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-ab19b01c317db844",
+          "relation": "direct",
+          "label": "성공보수 조건 감사계약이 발생시키는 독립성 위험·이유",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2015:1:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-77f6bd1c21e50686",
+          "relation": "direct",
+          "label": "승소금액 비례 성공보수 세무소송 자문에서 객관적 제3자 업무검토 예시를 제외한 독립성 안전장치 두 가지 제시",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2023:1:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-e194fd1c8239e7ec",
+          "relation": "partial",
+          "label": "감사대상 상장회사의 조세불복업무를 성공보수로 수행 중인 회계법인의 독립성 위협 발생 여부·종류와 안전장치 세 가지 제시",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2025:1:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-8086c879c55ba142",
+          "relation": "adjacent",
+          "label": "묶음 수임으로 개별 감사보수가 지나치게 낮아질 때 위협과 안전장치",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2017:1:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-01-005/sub3",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "draft-standard-followup-20260913-e01/sub1",
+          "scope": "unpublished_draft",
+          "file": "cpa_uploader\\drafts\\standard-followup-2026-09-13/e01.json"
+        },
+        {
+          "key": "draft-standard-followup-20260913-e01/sub2",
+          "scope": "unpublished_draft",
+          "file": "cpa_uploader\\drafts\\standard-followup-2026-09-13/e01.json"
+        }
+      ],
+      "gap": "은행은 전임감사인보다 낮은 보수(290.209 계열), 미게시 초안은 일반 비인증업무 성공보수(240.3–240.4)를 다룬다. 인증의뢰인에 대한 보수 의존도·연체보수와 290.211–290.212의 금지·요인은 없다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 2793,
+          "matches": 1,
+          "text": "290.206 특정 인증의뢰인에 대한 보수총액이"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 2822,
+          "matches": 1,
+          "text": "290.208 전문서비스를 제공한 대가로 인증의뢰인에게 청구한 보수의 상당액이"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 2849,
+          "matches": 1,
+          "text": "290.211 회계법인이 인증업무와 관련하여 성공보수를 지급 받기로 하는 경우"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 2854,
+          "matches": 1,
+          "text": "290.212 회계법인이 인증의뢰인에게 제공하는 비인증업무와 관련하여 성공보수를 지급"
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "priority": "P1",
+      "edition_gate": true,
+      "area": "인증의뢰인과의 고용관계",
+      "topics": [
+        "01"
+      ],
+      "units": [
+        {
+          "id": "E4-1",
+          "requirement": "전·현 구성원이나 파트너가 인증의뢰인에 고용된 경우 위협, 심각성 요인, 필수 조건",
+          "answer_type": "descriptive",
+          "paragraphs": "윤리기준 290.143–290.144"
+        },
+        {
+          "id": "E4-2",
+          "requirement": "장래 고용될 구성원에 대한 필수 안전장치와 추가 고려, 의뢰인 임직원이었던 자가 팀원이 된 경우의 위협",
+          "answer_type": "descriptive",
+          "paragraphs": "윤리기준 290.145–290.146"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2019:1:4",
+        "cpa_exam:2021:1:4"
+      ],
+      "exam_years": [
+        "2019",
+        "2021"
+      ],
+      "elements": [
+        {
+          "id": "element-38c405d5f9e5c799",
+          "relation": "direct",
+          "label": "감사담당자가 감사시즌 후 의뢰인 재무담당자로 이직할 예정인 경우 중요한 판단의 독립검토 예시 외 회계법인 안전장치 두 가지 제시",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2021:1:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-02793e1d513e737e",
+          "relation": "partial",
+          "label": "감사에 관여하지 않았던 회계법인 퇴직자의 감사대상회사 임원 취임 시 독립성 위협",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2019:1:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-ccd865e492671521",
+          "relation": "partial",
+          "label": "감사팀 구성원의 감사대상회사 임원 합류 예정 시 독립성 위협",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2019:1:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-dc1c24547f232ba2",
+          "relation": "partial",
+          "label": "감사대상회사 회계담당자 출신 회계사의 회계법인 입사 시 독립성 위협",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2019:1:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-debd754917798cbb",
+          "relation": "adjacent",
+          "label": "전 감사담당자가 감사대상기간 개시 7개월 전 퇴사하여 의뢰인 CFO로 이직한 경우 회계법인의 재수임 가능 여부와 이유 판단",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2022:1:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [],
+      "gap": "고용관계에 관한 물음이 은행·초안에 없다. 2022년의 이직 후 재수임 판단은 법규상 결격 기간과 관련될 수 있어 인접 관계로만 둔다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 2005,
+          "matches": 1,
+          "text": "290.143 과거에 인증업무팀의 구성원 또는 회계법인의 파트너이었던 자가 현재에는"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 2042,
+          "matches": 1,
+          "text": "290.145 인증업무에 참여하고 있는 인증업무팀의 구성원이 장래의 특정 시점에"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 2056,
+          "matches": 1,
+          "text": "290.146 인증의뢰인의 임직원이었던 자가 인증업무팀의 구성원으로서 업무를 수행하게 된"
+        }
+      ]
+    },
+    {
+      "id": "E5",
+      "priority": "P1",
+      "edition_gate": true,
+      "area": "알선수수료와 광고",
+      "topics": [
+        "01"
+      ],
+      "units": [
+        {
+          "id": "E5-1",
+          "requirement": "알선수수료 수령·지급의 위협, 전면 금지와 이유, 회계법인 인수대가의 취급",
+          "answer_type": "descriptive",
+          "paragraphs": "윤리기준 240.5–240.8"
+        },
+        {
+          "id": "E5-2",
+          "requirement": "광고로 발생하는 위협과 금지되는 두 행위, 적절성 의문 시 조치",
+          "answer_type": "descriptive",
+          "paragraphs": "윤리기준 250.1–250.2"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2020:1:1",
+        "cpa_exam:2021:1:2",
+        "cpa_exam:2022:1:2",
+        "cpa_exam:2024:3:1"
+      ],
+      "exam_years": [
+        "2020",
+        "2021",
+        "2022",
+        "2024"
+      ],
+      "elements": [
+        {
+          "id": "element-9ca06407b08ff120",
+          "relation": "direct",
+          "label": "의뢰 업무를 다른 회계사에게 소개하고 알선수수료를 받은 경우 관련 윤리강령과 안전장치 제시",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2021:1:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-2f5b26833f075218",
+          "relation": "direct",
+          "label": "모든 알선수수료가 금지되지만 회계법인 업무 인수대가는 알선수수료가 아니라는 설명의 적절성 판단",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2022:1:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-e19289b1e4d3aca4",
+          "relation": "direct",
+          "label": "전문직 명예를 저해하지 않도록 공인회계사 광고에서 금지되는 행위 두 가지 서술",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2020:1:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-cb5b59ee3283c9bb",
+          "relation": "partial",
+          "label": "회계법인의 합병·대형화와 신규고객 유치를 위한 지하철 광고에서 고려할 윤리강령 식별",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2024:3:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [],
+      "gap": "은행·초안에 없다. 공개초안은 알선수수료를 소개수수료로 바꾸고 감사·인증 외 업무에는 안전장치를 허용하므로 판본 결정의 영향이 가장 크다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 899,
+          "matches": 1,
+          "text": "240.5 개업공인회계사는 의뢰인과의 업무와 관련하여 알선수수료를 수령할 수 있는 상황에"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 919,
+          "matches": 1,
+          "text": "240.8 개업공인회계사가 다른 회계법인 업무의 전부 또는 일부를 인수하는 경우"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 927,
+          "matches": 1,
+          "text": "250.1 개업공인회계사가 광고 또는 기타 마케팅방식을 이용하여"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 932,
+          "matches": 1,
+          "text": "250.2 개업공인회계사는 전문서비스를 광고하는 경우"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/a8808cfc8f2663a6/ethics-2026-ed-overview.txt",
+          "line": 377,
+          "matches": 1,
+          "text": "25. 알선수수료(Referral Fees or Commissions ) 관련 규정 개정"
+        }
+      ]
+    },
+    {
+      "id": "L1",
+      "priority": "P1",
+      "edition_gate": false,
+      "area": "외부감사법상 감사인 선임기한과 선정주체",
+      "topics": [
+        "03"
+      ],
+      "units": [
+        {
+          "id": "L1-1",
+          "requirement": "일반 회사·감사위원회 의무설치 회사·직전 연도 미감사 회사의 선임기한과 선임 특례 사유 발생 시 기한",
+          "answer_type": "enumeration",
+          "paragraphs": "외부감사법 제10조제1항·제2항·제7항·제8항"
+        },
+        {
+          "id": "L1-2",
+          "requirement": "주권상장법인·대형비상장주식회사·금융회사와 그 밖의 회사의 감사인 선정주체",
+          "answer_type": "enumeration",
+          "paragraphs": "외부감사법 제10조제4항"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2019:3:2",
+        "cpa_exam:2020:9:1",
+        "cpa_exam:2024:4:1"
+      ],
+      "exam_years": [
+        "2019",
+        "2020",
+        "2024"
+      ],
+      "elements": [
+        {
+          "id": "element-47de5773f6ac8e42",
+          "relation": "direct",
+          "label": "감사위원회 없는 비상장회사가 처음 외부감사 대상이 된 경우 감사인 선정주체와 선임기한 제시",
+          "topic_id": "03",
+          "exam_questions": [
+            "cpa_exam:2024:4:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-7622b7a72bd33bed",
+          "relation": "direct",
+          "label": "감사위원회 의무설치 상장법인의 감사인 변경 시 선정주체와 선임기한 제시",
+          "topic_id": "03",
+          "exam_questions": [
+            "cpa_exam:2024:4:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-9e7c67bc03519fc9",
+          "relation": "direct",
+          "label": "감사위원회가 없고 자산총액 7천억원인 비상장회사의 감사인 변경 시 선정주체와 선임기한 제시",
+          "topic_id": "03",
+          "exam_questions": [
+            "cpa_exam:2024:4:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-7821f1040a81e7d1",
+          "relation": "direct",
+          "label": "자본금 12억원이고 감사를 두지 않은 유한회사의 감사인 변경 시 선정주체와 선임기한 제시",
+          "topic_id": "03",
+          "exam_questions": [
+            "cpa_exam:2024:4:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-fd8194037807040a",
+          "relation": "direct",
+          "label": "감사위원회가 있는 자산 5조원 상장회사의 감사인 변경 시 2020사업연도 선임기한 제시",
+          "topic_id": "03",
+          "exam_questions": [
+            "cpa_exam:2020:9:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-05ed2f54bdab5186",
+          "relation": "direct",
+          "label": "기업 유형과 감사위원회 설치 여부에 따른 외부감사인 선정 주체",
+          "topic_id": "03",
+          "exam_questions": [
+            "cpa_exam:2019:3:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "draft-standard-expansion-20260913-l01/sub1",
+          "scope": "unpublished_draft",
+          "file": "cpa_uploader\\drafts\\standard-expansion-2026-09-13/l01.json"
+        },
+        {
+          "key": "draft-standard-expansion-20260913-l01/sub2",
+          "scope": "unpublished_draft",
+          "file": "cpa_uploader\\drafts\\standard-expansion-2026-09-13/l01.json"
+        }
+      ],
+      "gap": "미게시 초안은 제9조 교체의무만 다룬다. 선임기한·선정주체를 묻는 물음은 없다. 대형비상장주식회사·일정규모 유한회사의 금액 기준은 시행령 원문을 확보해야 한다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/dd662b5464e1e9d5/external-audit-law-text.txt",
+          "line": 80,
+          "matches": 1,
+          "text": "제10조(감사인의 선임)"
+        }
+      ]
+    },
+    {
+      "id": "L2",
+      "priority": "P1",
+      "edition_gate": false,
+      "area": "외부감사법상 감사인의 손해배상책임",
+      "topics": [
+        "01"
+      ],
+      "units": [
+        {
+          "id": "L2-1",
+          "requirement": "회사·제3자에 대한 책임 발생 요건, 감사반의 연대, 이사·감사와의 연대와 비례책임, 입증책임과 그 전환 대상",
+          "answer_type": "descriptive",
+          "paragraphs": "외부감사법 제31조제1항–제4항·제7항"
+        },
+        {
+          "id": "L2-2",
+          "requirement": "청구권 소멸기간과 계약상 연장, 손해배상공동기금의 적립",
+          "answer_type": "descriptive",
+          "paragraphs": "외부감사법 제31조제8항·제9항, 제32조제1항"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2014:3:4",
+        "cpa_exam:2022:1:5",
+        "cpa_exam:2022:1:6"
+      ],
+      "exam_years": [
+        "2014",
+        "2022"
+      ],
+      "elements": [
+        {
+          "id": "element-3b7b18a94d352fd9",
+          "relation": "direct",
+          "label": "외부감사법상 감사인의 제3자 손해배상 책임사유 서술",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2022:1:5"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-dcb28d05a0fb78e6",
+          "relation": "direct",
+          "label": "외부감사법상 감사인의 제3자 손해배상 면책사유 서술",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2022:1:5"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-794e1b674f05b63a",
+          "relation": "direct",
+          "label": "계약에 의한 기간 연장이 없을 때 제3자에 대한 감사인 손해배상책임의 소멸시효 서술",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2022:1:5"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-da6b55d682477a4e",
+          "relation": "partial",
+          "label": "감사인 손해배상공동기금과 손해배상준비금의 차이 두 가지 서술",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2022:1:6"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-db2ee56addd212eb",
+          "relation": "partial",
+          "label": "민법·자본시장법·외부감사법상 감사인 손해배상책임의 소멸시효 비교",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2014:3:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-05d21a6d8390b21d",
+          "relation": "partial",
+          "label": "민법·자본시장법·외부감사법상 감사인 손해배상책임의 원고 비교",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2014:3:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-ffa5ade74a6f2f36",
+          "relation": "partial",
+          "label": "민법·자본시장법·외부감사법상 감사인 손해배상책임의 입증책임 비교",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2014:3:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [],
+      "gap": "손해배상책임 물음이 은행·초안에 없다. 손해배상준비금 비교는 공인회계사법, 민법·자본시장법 비교는 이번 원문 밖이므로 제외하거나 원문을 추가 확보한다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/dd662b5464e1e9d5/external-audit-law-text.txt",
+          "line": 243,
+          "matches": 1,
+          "text": "제31조(손해배상책임)"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/dd662b5464e1e9d5/external-audit-law-text.txt",
+          "line": 260,
+          "matches": 1,
+          "text": "제32조(손해배상공동기금의 적립 등)"
+        }
+      ]
+    },
+    {
+      "id": "S1",
+      "priority": "P1",
+      "edition_gate": false,
+      "area": "수임 후 경영진의 감사범위 제한",
+      "topics": [
+        "15"
+      ],
+      "units": [
+        {
+          "id": "S1-1",
+          "requirement": "수임 후 경영진의 제한을 알게 된 경우의 제거 요청, 지배기구 커뮤니케이션·대체절차, 증거 미입수 시 한정·해지·의견거절",
+          "answer_type": "descriptive",
+          "paragraphs": "KGA 705.11–13"
+        },
+        {
+          "id": "S1-2",
+          "requirement": "충분하고 적합한 감사증거를 입수할 수 없는 상황의 세 원천과 경영진 제한의 추가 시사점",
+          "answer_type": "descriptive",
+          "paragraphs": "KGA 705.A8–A12"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2018:2:3",
+        "cpa_exam:2024:10:1",
+        "cpa_exam:2024:10:2"
+      ],
+      "exam_years": [
+        "2018",
+        "2024"
+      ],
+      "elements": [
+        {
+          "id": "element-48532e6be05c1b44",
+          "relation": "direct",
+          "label": "감사의견 형성 시 충분하고 적합한 감사증거를 입수하지 못한 경우 조치",
+          "topic_id": "15",
+          "exam_questions": [
+            "cpa_exam:2018:2:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-41aa232a99c00949",
+          "relation": "direct",
+          "label": "감사업무 성격·시기로 충분하고 적합한 증거를 입수하지 못하는 예 두 가지 제시",
+          "topic_id": "15",
+          "exam_questions": [
+            "cpa_exam:2024:10:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-1f5e9e81044d8f8e",
+          "relation": "direct",
+          "label": "경영진의 제한으로 충분하고 적합한 증거를 입수하지 못하는 예 두 가지 제시",
+          "topic_id": "15",
+          "exam_questions": [
+            "cpa_exam:2024:10:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-f7b9de0504a49bb1",
+          "relation": "direct",
+          "label": "기업 통제 밖의 상황으로 충분하고 적합한 증거를 입수하지 못하는 예 두 가지 제시",
+          "topic_id": "15",
+          "exam_questions": [
+            "cpa_exam:2024:10:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-5a13329569147315",
+          "relation": "direct",
+          "label": "경영진이 감사범위를 제한한다는 사실이 감사인에게 시사하는 점 서술",
+          "topic_id": "15",
+          "exam_questions": [
+            "cpa_exam:2024:10:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-15-003/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-03-002/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-14-004/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-13-008/sub1",
+          "scope": "bank",
+          "file": null
+        }
+      ],
+      "gap": "은행은 의견 조합(705.7–9), 수임 전 범위제한(210.7), 그룹 수임 단계를 다룬다. 수임 후 경영진 제한의 절차(705.11–13)와 원천별 예시는 없다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 32203,
+          "matches": 1,
+          "text": "당 제한을 제거하도록 요청하여야 한다."
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 32502,
+          "matches": 1,
+          "text": "기업의 통제를 벗어난 상황"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 32529,
+          "matches": 1,
+          "text": "A12. 경영진에 의한 감사범위의 제한으로 인하여"
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "priority": "P1",
+      "edition_gate": false,
+      "area": "지배기구 커뮤니케이션의 책임·계획 범위와 절차",
+      "topics": [
+        "05"
+      ],
+      "units": [
+        {
+          "id": "S2-1",
+          "requirement": "감사인의 책임 및 계획된 감사범위와 시기의 커뮤니케이션",
+          "answer_type": "enumeration",
+          "paragraphs": "KGA 260.14–15"
+        },
+        {
+          "id": "S2-2",
+          "requirement": "커뮤니케이션의 형태·시기·예상 내용의 사전 커뮤니케이션, 서면 요구, 적시성, 문서화",
+          "answer_type": "descriptive",
+          "paragraphs": "KGA 260.18–21, 23"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2018:7:3",
+        "cpa_exam:2019:6:1"
+      ],
+      "exam_years": [
+        "2018",
+        "2019"
+      ],
+      "elements": [
+        {
+          "id": "element-c5c0040a2c05d070",
+          "relation": "direct",
+          "label": "유의적 발견사항 외 지배기구 커뮤니케이션 사항",
+          "topic_id": "05",
+          "exam_questions": [
+            "cpa_exam:2019:6:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-f80f4843a8e4f38f",
+          "relation": "partial",
+          "label": "지배기구 커뮤니케이션 대상의 적절성",
+          "topic_id": "05",
+          "exam_questions": [
+            "cpa_exam:2018:7:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-46f765c4b70d766d",
+          "relation": "direct",
+          "label": "지배기구 커뮤니케이션 시기의 적절성",
+          "topic_id": "05",
+          "exam_questions": [
+            "cpa_exam:2018:7:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-b1e3165b217ad2dc",
+          "relation": "direct",
+          "label": "지배기구 커뮤니케이션의 구두·서면 방식의 적절성",
+          "topic_id": "05",
+          "exam_questions": [
+            "cpa_exam:2018:7:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-05-008/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-05-008/sub2",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-05-003/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "draft-standard-gap-20260913-g01/sub1",
+          "scope": "unpublished_draft",
+          "file": "cpa_uploader\\drafts\\standard-gap-2026-09-13/g01.json"
+        },
+        {
+          "key": "draft-standard-expansion-20260913-s04/sub1",
+          "scope": "unpublished_draft",
+          "file": "cpa_uploader\\drafts\\standard-expansion-2026-09-13/s04.json"
+        }
+      ],
+      "gap": "260.16·17(은행), 효익(초안 G01), 22(초안)는 있다. 14·15의 전달 사항과 18–21·23의 절차는 빠져 있다. 265의 미비점 서면 커뮤니케이션과 구별한다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 7108,
+          "matches": 1,
+          "text": "감사인은 다음과 같은 사항 등 재무제표감사와 관련된 감사인의 책임에 대하여 지배기구와"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 7118,
+          "matches": 1,
+          "text": "감사인은 계획된 감사범위와 시기의 개요에 대하여 지배기구와 커뮤니케이션하여야 하며,"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 7171,
+          "matches": 1,
+          "text": "감사인은 커뮤니케이션의 형태, 시기 및 예상되는 일반적 내용에 대하여 지배기구와 커뮤"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 7184,
+          "matches": 1,
+          "text": "감사인은 적시에 지배기구와 커뮤니케이션하여야 한다. (문단 A49-A50 참조)"
+        }
+      ]
+    },
+    {
+      "id": "S4",
+      "priority": "P1",
+      "edition_gate": false,
+      "area": "그룹업무팀과 부문감사인의 상호 커뮤니케이션",
+      "topics": [
+        "14"
+      ],
+      "units": [
+        {
+          "id": "S4-1",
+          "requirement": "그룹업무팀이 부문감사인에게 전달할 협조 확인 요청·윤리적 요구사항·특수관계자 목록",
+          "answer_type": "enumeration",
+          "paragraphs": "KGA 600.40(a)(b)(e)"
+        },
+        {
+          "id": "S4-2",
+          "requirement": "부문감사인에게 커뮤니케이션을 요청할 사항",
+          "answer_type": "enumeration",
+          "paragraphs": "KGA 600.41(a)–(j)"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2015:6:3",
+        "cpa_exam:2025:9:1",
+        "cpa_exam:2025:9:2"
+      ],
+      "exam_years": [
+        "2015",
+        "2025"
+      ],
+      "elements": [
+        {
+          "id": "element-721ef1cf0cbca346",
+          "relation": "direct",
+          "label": "감사계획단계에 부문감사인과 커뮤니케이션할 사항",
+          "topic_id": "14",
+          "exam_questions": [
+            "cpa_exam:2015:6:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-22a8c686ef7913d3",
+          "relation": "direct",
+          "label": "감사종결단계에 부문감사인과 커뮤니케이션할 사항",
+          "topic_id": "14",
+          "exam_questions": [
+            "cpa_exam:2015:6:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-2d1d3050048a120f",
+          "relation": "direct",
+          "label": "부문감사인의 협조·일정·방문·업무용도·특수관계자 목록이 제시된 그룹감사 지침서한에서 감사계획 관련 누락 커뮤니케이션 사항 세 가지 식별",
+          "topic_id": "14",
+          "exam_questions": [
+            "cpa_exam:2025:9:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-c17a7201d38ef9ab",
+          "relation": "direct",
+          "label": "요구사항 준수·보고대상·법규위반·유의사항·결론이 제시된 부문감사인 확인서에서 그룹업무팀에 전달할 누락 사항 세 가지 식별",
+          "topic_id": "14",
+          "exam_questions": [
+            "cpa_exam:2025:9:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-14-002/sub2",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-14-003/sub2",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-14-004/sub2",
+          "scope": "bank",
+          "file": null
+        }
+      ],
+      "gap": "은행은 600.40의 업무·중요성·유의적 위험·보고 형식과 부문감사인 커뮤니케이션의 평가(42)를 다룬다. 40(a)(b)(e)와 41의 보고 항목은 없다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 26211,
+          "matches": 1,
+          "text": "그룹업무팀은 부문감사인에게 요구사항을 적시에 커뮤니케이션하여야 한다."
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 26243,
+          "matches": 1,
+          "text": "그룹업무팀은 그룹감사에 대한 그룹업무팀의 결론과 관련성이 있는 사항을 커뮤니케이션하"
+        }
+      ]
+    },
+    {
+      "id": "S3",
+      "priority": "P2",
+      "edition_gate": false,
+      "area": "계속기업 관련 지배기구 커뮤니케이션",
+      "topics": [
+        "12",
+        "05"
+      ],
+      "units": [
+        {
+          "id": "S3-1",
+          "requirement": "존속능력에 유의적 의문을 초래하는 사건·상황에 관해 지배기구와 커뮤니케이션할 네 사항과 적용 조건",
+          "answer_type": "enumeration",
+          "paragraphs": "KGA 570.25"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2021:6:3"
+      ],
+      "exam_years": [
+        "2021"
+      ],
+      "elements": [
+        {
+          "id": "element-ad4bd0f986647a8c",
+          "relation": "direct",
+          "label": "계속기업 존속능력에 유의적 의문을 초래하는 사건·상황에 관해 지배기구와 커뮤니케이션할 사항 세 가지 서술",
+          "topic_id": "12",
+          "exam_questions": [
+            "cpa_exam:2021:6:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-12-003/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "draft-standard-gap-20260913-g03/sub1",
+          "scope": "unpublished_draft",
+          "file": "cpa_uploader\\drafts\\standard-gap-2026-09-13/g03.json"
+        },
+        {
+          "key": "draft-12-570-freq01/q1",
+          "scope": "bank",
+          "file": null
+        }
+      ],
+      "gap": "570의 추가절차·보고는 있으나 지배기구 커뮤니케이션 항목은 없다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 24444,
+          "matches": 1,
+          "text": "지배기구의 모든 구성원이 그 기업의 경영에 참여하고 있지 않는 한,6 감사인은 계속기업으"
+        }
+      ]
+    },
+    {
+      "id": "E6",
+      "priority": "P2",
+      "edition_gate": true,
+      "area": "업무수임기간과 수임 전 제공한 비인증업무",
+      "topics": [
+        "01"
+      ],
+      "units": [
+        {
+          "id": "E6-1",
+          "requirement": "독립성 유지기간의 시작·종료(반복 업무 포함)와 수임 전 비인증업무의 위협 판단·안전장치",
+          "answer_type": "descriptive",
+          "paragraphs": "윤리기준 290.31–290.33"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2020:1:4",
+        "cpa_exam:2020:1:5"
+      ],
+      "exam_years": [
+        "2020"
+      ],
+      "elements": [
+        {
+          "id": "element-512fe141196109fc",
+          "relation": "direct",
+          "label": "반복 인증업무에서 독립성 유지기간의 종료일 설명",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2020:1:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-207f5f835a8f877e",
+          "relation": "direct",
+          "label": "비반복 인증업무에서 독립성 유지기간의 종료일 설명",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2020:1:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-53bed12ca925f1a7",
+          "relation": "direct",
+          "label": "회계기간 개시 후 감사 수임 전 제공한 비감사업무의 독립성 위협을 줄일 수 있는 경우 적용할 안전장치 두 가지 서술",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2020:1:5"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [],
+      "gap": "은행·초안에 없다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 1290,
+          "matches": 1,
+          "text": "290.31 인증업무팀의 구성원과 회계법인은 인증업무수임기간동안 인증의뢰인에 대한"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/1303e54860a58770/ethics-2024-complete.txt",
+          "line": 1304,
+          "matches": 1,
+          "text": "290.33 감사대상 재무제표의 회계기간중 또는 그 이후에 재무제표감사업무를 착수한"
+        }
+      ]
+    },
+    {
+      "id": "L3",
+      "priority": "P2",
+      "edition_gate": false,
+      "area": "연속 3개 사업연도 동일 감사인, 감사인 해임, 감사인의 감사계약 해지",
+      "topics": [
+        "03"
+      ],
+      "units": [
+        {
+          "id": "L3-1",
+          "requirement": "동일 감사인 선임 의무와 해임·계약해지의 법정 절차(사유는 시행령 확보 후)",
+          "answer_type": "descriptive",
+          "paragraphs": "외부감사법 제10조제3항, 제13조, 제15조와 시행령"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2019:8:3",
+        "cpa_exam:2022:3:3"
+      ],
+      "exam_years": [
+        "2019",
+        "2022"
+      ],
+      "elements": [
+        {
+          "id": "element-acbc2253fbcd427e",
+          "relation": "partial",
+          "label": "감사인이 감사계약을 해지할 수 있는 사유",
+          "topic_id": "03",
+          "exam_questions": [
+            "cpa_exam:2019:8:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-f90d101509f7230e",
+          "relation": "direct",
+          "label": "감사인의 감사계약 해지 후 절차",
+          "topic_id": "03",
+          "exam_questions": [
+            "cpa_exam:2019:8:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-dc4ce4870332a4f3",
+          "relation": "partial",
+          "label": "상장법인이 3개 사업연도 중 감사인을 해임할 수 있는 사유를 외국투자 출자조건·지배종속 지정감사인 예시 외 세 가지 제시",
+          "topic_id": "03",
+          "exam_questions": [
+            "cpa_exam:2022:3:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-c94de307d230244c",
+          "relation": "adjacent",
+          "label": "3년 감사인 유지제도를 대형 비상장회사·금융회사로 확대한 취지를 윤리기준상 잠재 위협 유형과 연결하여 설명",
+          "topic_id": "03",
+          "exam_questions": [
+            "cpa_exam:2020:1:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [],
+      "gap": "없다. 해임·해지 사유가 시행령에 있어 원문 추가 확보가 필요하다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/dd662b5464e1e9d5/external-audit-law-text.txt",
+          "line": 131,
+          "matches": 1,
+          "text": "제13조(감사인의 해임)"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/dd662b5464e1e9d5/external-audit-law-text.txt",
+          "line": 139,
+          "matches": 1,
+          "text": "제15조(감사인의 감사계약 해지)"
+        }
+      ]
+    },
+    {
+      "id": "L4",
+      "priority": "P2",
+      "edition_gate": false,
+      "area": "재무제표 작성 책임과 감사인의 금지행위",
+      "topics": [
+        "01",
+        "03"
+      ],
+      "units": [
+        {
+          "id": "L4-1",
+          "requirement": "재무제표 작성 책임자와 감사인·소속 공인회계사의 대리작성·자문 금지(세부 행위는 시행령 확보 후)",
+          "answer_type": "descriptive",
+          "paragraphs": "외부감사법 제6조제1항·제6항과 시행령"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2019:8:1"
+      ],
+      "exam_years": [
+        "2019"
+      ],
+      "elements": [
+        {
+          "id": "element-af00a44993cf3cd8",
+          "relation": "direct",
+          "label": "재무제표 작성 책임과 관련한 회사·감사인의 금지행위",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2019:8:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-03-001/sub1",
+          "scope": "bank",
+          "file": null
+        }
+      ],
+      "gap": "감사 전제조건의 경영진 책임은 있으나 법상 작성 책임과 감사인 금지행위는 없다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/dd662b5464e1e9d5/external-audit-law-text.txt",
+          "line": 40,
+          "matches": 1,
+          "text": "제6조(재무제표의 작성 책임 및 제출)"
+        }
+      ]
+    },
+    {
+      "id": "L5",
+      "priority": "P2",
+      "edition_gate": false,
+      "area": "공인회계사법상 감사대상회사에 대한 금지 비감사업무",
+      "topics": [
+        "01"
+      ],
+      "units": [
+        {
+          "id": "L5-1",
+          "requirement": "감사기간 중 제공이 금지되는 비감사업무(시행령 포함)",
+          "answer_type": "enumeration",
+          "paragraphs": "공인회계사법 제21조와 시행령 — 원문 미확보"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2024:4:3"
+      ],
+      "exam_years": [
+        "2024"
+      ],
+      "elements": [
+        {
+          "id": "element-d8d8a8f1c3de0179",
+          "relation": "direct",
+          "label": "감사계약기간 중 공인회계사법상 금지 비감사업무를 회계기록·내부감사대행·재무정보체제·매매 관련 업무 예시를 제외하고 네 가지 제시",
+          "topic_id": "01",
+          "exam_questions": [
+            "cpa_exam:2024:4:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-19-004/sub1",
+          "scope": "bank",
+          "file": null
+        }
+      ],
+      "gap": "없다. 공인회계사법 제21조 원문을 raw에 먼저 수집해야 한다.",
+      "source_anchors": []
+    },
+    {
+      "id": "S5",
+      "priority": "P2",
+      "edition_gate": false,
+      "area": "부정 왜곡표시의 발견 곤란성, 업무팀 토의, 부정 관련 서면진술",
+      "topics": [
+        "05"
+      ],
+      "units": [
+        {
+          "id": "S5-1",
+          "requirement": "부정으로 인한 왜곡표시가 오류보다 발견하기 어려운 이유",
+          "answer_type": "descriptive",
+          "paragraphs": "KGA 240.6"
+        },
+        {
+          "id": "S5-2",
+          "requirement": "부정위험에 관한 업무팀 토의에서 강조할 사항과 토의의 효과",
+          "answer_type": "descriptive",
+          "paragraphs": "KGA 240.16, A11–A12"
+        },
+        {
+          "id": "S5-3",
+          "requirement": "부정과 관련하여 입수할 경영진 서면진술",
+          "answer_type": "enumeration",
+          "paragraphs": "KGA 240.40"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2014:2:3",
+        "cpa_exam:2017:3:1",
+        "cpa_exam:2019:2:4"
+      ],
+      "exam_years": [
+        "2014",
+        "2017",
+        "2019"
+      ],
+      "elements": [
+        {
+          "id": "element-e1bae424ee7d27e8",
+          "relation": "direct",
+          "label": "부정 왜곡표시가 오류 왜곡표시보다 발견되기 어려운 이유",
+          "topic_id": "05",
+          "exam_questions": [
+            "cpa_exam:2019:2:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-9eaab7eb1a9ad49e",
+          "relation": "direct",
+          "label": "부정 중요왜곡표시위험에 관한 업무팀 토의의 효과",
+          "topic_id": "05",
+          "exam_questions": [
+            "cpa_exam:2017:3:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-fdf644fdbd189379",
+          "relation": "direct",
+          "label": "부정과 관련하여 경영진 서면진술에 포함할 사항",
+          "topic_id": "05",
+          "exam_questions": [
+            "cpa_exam:2014:2:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-05-009/sub2",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-06-002/sub2",
+          "scope": "bank",
+          "file": null
+        }
+      ],
+      "gap": "경영진·종업원 부정 비교(240.7)와 315 토의 주제는 있으나 세 요구는 없다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 4513,
+          "matches": 1,
+          "text": "로 인한 경우보다 크다. 이는 부정의 경우 그 사실을 은폐하기 위해 위조, 거래의 기록에"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 5074,
+          "matches": 1,
+          "text": "A11. 기업의 재무제표가 부정으로 인하여 중요하게 왜곡표시 될 위험성에 대한 업무팀의 토의는"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 4838,
+          "matches": 1,
+          "text": "감사인은 다음 사항에 대하여 경영진(적절한 경우 지배기구를 포함)의 서면진술을 입수하여"
+        }
+      ]
+    },
+    {
+      "id": "S6",
+      "priority": "P2",
+      "edition_gate": false,
+      "area": "중요왜곡표시위험의 구성, 고유위험요소, 내부통제시스템의 구성요소",
+      "topics": [
+        "02",
+        "06"
+      ],
+      "units": [
+        {
+          "id": "S6-1",
+          "requirement": "경영진주장 수준 중요왜곡표시위험의 두 구성요소(고유위험·통제위험) 정의",
+          "answer_type": "descriptive",
+          "paragraphs": "KGA 200.A40–A43"
+        },
+        {
+          "id": "S6-2",
+          "requirement": "고유위험요소의 정의와 종류",
+          "answer_type": "enumeration",
+          "paragraphs": "KGA 315.12(f)"
+        },
+        {
+          "id": "S6-3",
+          "requirement": "내부통제시스템 다섯 구성요소의 명칭",
+          "answer_type": "enumeration",
+          "paragraphs": "KGA 315 정의·A90–A95"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2014:8:2",
+        "cpa_exam:2016:5:1",
+        "cpa_exam:2025:2:2"
+      ],
+      "exam_years": [
+        "2014",
+        "2016",
+        "2025"
+      ],
+      "elements": [
+        {
+          "id": "element-d519200462faf9e4",
+          "relation": "direct",
+          "label": "고유위험과 통제위험의 의미",
+          "topic_id": "06",
+          "exam_questions": [
+            "cpa_exam:2016:5:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-1943e90e48630440",
+          "relation": "partial",
+          "label": "기술경쟁 심화와 설비투자 후 공장가동 중단·제품 진부화 상황에서 유의적 위험 판단 시 고려할 고유위험요소 두 가지 서술",
+          "topic_id": "06",
+          "exam_questions": [
+            "cpa_exam:2025:2:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-3a861de829e0912f",
+          "relation": "partial",
+          "label": "거래의 개시·기록·보고와 재무보고절차에 대응하는 내부통제 요소",
+          "topic_id": "06",
+          "exam_questions": [
+            "cpa_exam:2014:8:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-ca19df21e6aa6e30",
+          "relation": "partial",
+          "label": "경영진 성실성·윤리적 가치·감독 책임에 대응하는 내부통제 요소",
+          "topic_id": "06",
+          "exam_questions": [
+            "cpa_exam:2014:8:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-d0271f7d125b393e",
+          "relation": "partial",
+          "label": "내부감사·통제평가·미비점 개선에 대응하는 내부통제 요소",
+          "topic_id": "06",
+          "exam_questions": [
+            "cpa_exam:2014:8:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-f42bee9a15067017",
+          "relation": "partial",
+          "label": "사업위험 식별·발생가능성 평가에 대응하는 내부통제 요소",
+          "topic_id": "06",
+          "exam_questions": [
+            "cpa_exam:2014:8:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-02-005/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-06-005/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-11-001/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-06-001/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "draft-standard-expansion-20260913-s06/sub1",
+          "scope": "unpublished_draft",
+          "file": "cpa_uploader\\drafts\\standard-expansion-2026-09-13/s06.json"
+        }
+      ],
+      "gap": "감사위험·적발위험 정의, 540 추정치의 고유위험요소, 통제환경은 있다. 고유·통제위험 정의, 315의 고유위험요소 전체, 다섯 구성요소는 없다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 819,
+          "matches": 1,
+          "text": "A41. 고유위험은 고유위험요소에 영향을 받는다."
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 832,
+          "matches": 1,
+          "text": "A43. 통제위험은 재무제표 작성과 관련된 기업의 목적달성에 위협이 되는 것으로"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 9131,
+          "matches": 1,
+          "text": "고유위험요소 – 통제를 고려하기 전에 부정 또는 오류로 인하여 거래유형, 계정잔액"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 9184,
+          "matches": 1,
+          "text": "내부통제시스템은 서로 연관된 다섯 가지 구성요소로 이루어진다."
+        }
+      ]
+    },
+    {
+      "id": "S7",
+      "priority": "P2",
+      "edition_gate": false,
+      "area": "비표본위험",
+      "topics": [
+        "10"
+      ],
+      "units": [
+        {
+          "id": "S7-1",
+          "requirement": "비표본위험의 정의와 원인(부적합한 절차, 증거의 오해석, 왜곡표시·이탈의 미인식)",
+          "answer_type": "descriptive",
+          "paragraphs": "KGA 530.5(d), A1"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2022:2:1"
+      ],
+      "exam_years": [
+        "2022"
+      ],
+      "elements": [
+        {
+          "id": "element-a5f8b47a4208d641",
+          "relation": "direct",
+          "label": "전수조사를 해도 적발위험이 남는 이유를 부주의·전문지식 부족 예시 외 비표본위험의 관점에서 두 가지 설명",
+          "topic_id": "10",
+          "exam_questions": [
+            "cpa_exam:2022:2:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-10-004/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-10-006/sub1",
+          "scope": "bank",
+          "file": null
+        }
+      ],
+      "gap": "표본위험만 있다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 19429,
+          "matches": 1,
+          "text": "비표본위험- 감사인이 표본위험과 관련이 없는 다른 이유에 의해 잘못된 결론에 도"
+        }
+      ]
+    },
+    {
+      "id": "S8",
+      "priority": "P2",
+      "edition_gate": false,
+      "area": "재무제표 승인일·감사보고서일·재무제표 발행일",
+      "topics": [
+        "12",
+        "15"
+      ],
+      "units": [
+        {
+          "id": "S8-1",
+          "requirement": "세 일자의 정의와 구별",
+          "answer_type": "descriptive",
+          "paragraphs": "KGA 560.5"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2020:3:5"
+      ],
+      "exam_years": [
+        "2020"
+      ],
+      "elements": [
+        {
+          "id": "element-b2f3c0a90ae3028a",
+          "relation": "direct",
+          "label": "감사보고서일의 개념 설명",
+          "topic_id": "15",
+          "exam_questions": [
+            "cpa_exam:2020:3:5"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-4c761478cdb68494",
+          "relation": "direct",
+          "label": "재무제표 발행일의 개념 설명",
+          "topic_id": "15",
+          "exam_questions": [
+            "cpa_exam:2020:3:5"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-b4d316c68fe41601",
+          "relation": "direct",
+          "label": "재무제표 승인일의 개념 설명",
+          "topic_id": "15",
+          "exam_questions": [
+            "cpa_exam:2020:3:5"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-02cd10a59201c490",
+          "relation": "adjacent",
+          "label": "감사보고서일을 특정 일자로 기재하는 이유와 효과",
+          "topic_id": "15",
+          "exam_questions": [
+            "cpa_exam:2014:1:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-12-007/sub2",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-15-007/sub1",
+          "scope": "bank",
+          "file": null
+        }
+      ],
+      "gap": "새 보고서일 제한과 사례형 날짜 판단은 있으나 정의 물음은 없다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 23763,
+          "matches": 1,
+          "text": "재무제표 승인일- 재무제표(관련 주석 포함)를 구성하는 모든 내용의 작성이 완료되"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 23770,
+          "matches": 1,
+          "text": "재무제표 발행일- 감사보고서와 감사받은 재무제표를 제3자들이 이용할 수 있게 된"
+        }
+      ]
+    },
+    {
+      "id": "S9",
+      "priority": "P2",
+      "edition_gate": false,
+      "area": "특수관계자 거래의 높은 위험과 발견의 어려움",
+      "topics": [
+        "11"
+      ],
+      "units": [
+        {
+          "id": "S9-1",
+          "requirement": "특수관계자 거래가 더 높은 중요왜곡표시위험을 초래할 수 있는 상황과 고유한계가 더 큰 이유",
+          "answer_type": "descriptive",
+          "paragraphs": "KGA 550.2, 550.6"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2018:6:2",
+        "cpa_exam:2024:5:2"
+      ],
+      "exam_years": [
+        "2018",
+        "2024"
+      ],
+      "elements": [
+        {
+          "id": "element-f005a3a355834626",
+          "relation": "direct",
+          "label": "특수관계·특수관계자 거래가 다른 거래보다 높은 중요왜곡표시위험을 초래하는 사례 하나 제시",
+          "topic_id": "11",
+          "exam_questions": [
+            "cpa_exam:2024:5:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-dc6773c176bb9517",
+          "relation": "direct",
+          "label": "특수관계자 거래의 중요한 왜곡표시를 발견하기 어려운 이유",
+          "topic_id": "11",
+          "exam_questions": [
+            "cpa_exam:2018:6:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-11-001/sub2",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-11-006/sub1",
+          "scope": "bank",
+          "file": null
+        }
+      ],
+      "gap": "절차 요구는 많으나 위험의 특성 자체를 묻는 물음은 없다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 22682,
+          "matches": 1,
+          "text": "특수관계자들은 그 성격상 광범위하고 복잡한 관계 및 구조를 통해 사업을 수행하고"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 22724,
+          "matches": 1,
+          "text": "같은 이유 때문에, 특수관계자의 경우에는 고유한계가 감사인의 중요한 왜곡표시를 발견하"
+        }
+      ]
+    },
+    {
+      "id": "S10",
+      "priority": "P2",
+      "edition_gate": false,
+      "area": "이전 회계추정치 결과의 검토",
+      "topics": [
+        "11"
+      ],
+      "units": [
+        {
+          "id": "S10-1",
+          "requirement": "위험 식별·평가를 위한 이전 회계추정치 결과·재추정 검토의 목적과 성격·범위 결정, 사후적 판단 목적이 아님",
+          "answer_type": "descriptive",
+          "paragraphs": "KGA 540.14, A55–A57"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2018:4:3",
+        "cpa_exam:2022:8:2"
+      ],
+      "exam_years": [
+        "2018",
+        "2022"
+      ],
+      "elements": [
+        {
+          "id": "element-b47e6e96e0f1b801",
+          "relation": "partial",
+          "label": "당기 위험평가를 위해 이전 소송충당부채 추정결과·후속 재추정을 검토하는 절차의 적절성 판단",
+          "topic_id": "11",
+          "exam_questions": [
+            "cpa_exam:2022:8:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-36d6a322ce97bbda",
+          "relation": "partial",
+          "label": "회계추정치 전기·당기 차이 이해를 위한 위험평가 증거",
+          "topic_id": "11",
+          "exam_questions": [
+            "cpa_exam:2018:4:3"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-05-006/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-05-002/sub2",
+          "scope": "bank",
+          "file": null
+        }
+      ],
+      "gap": "은행의 소급 재검토는 240의 경영진 편의 대응이다. 540.14의 위험평가 목적 검토와 구별해야 하며 중복 위험이 있다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 20182,
+          "matches": 1,
+          "text": "감사인은 당기의 중요왜곡표시위험을 식별하고 평가하는 데 도움을 주기 위하여 이전 회계"
+        }
+      ]
+    },
+    {
+      "id": "S11",
+      "priority": "P2",
+      "edition_gate": false,
+      "area": "감사증거로서 질문의 성격과 증거의 양",
+      "topics": [
+        "08"
+      ],
+      "units": [
+        {
+          "id": "S11-1",
+          "requirement": "질문의 의미·형태·답변 평가와 질문만으로는 충분하지 않은 이유",
+          "answer_type": "descriptive",
+          "paragraphs": "KGA 500.A2, A26–A29"
+        },
+        {
+          "id": "S11-2",
+          "requirement": "필요한 감사증거의 양에 영향을 미치는 요인",
+          "answer_type": "descriptive",
+          "paragraphs": "KGA 500.5(e), A4"
+        }
+      ],
+      "direct_or_partial_exam_questions": [
+        "cpa_exam:2018:2:2",
+        "cpa_exam:2018:2:4",
+        "cpa_exam:2022:2:6",
+        "cpa_exam:2023:2:1"
+      ],
+      "exam_years": [
+        "2018",
+        "2022",
+        "2023"
+      ],
+      "elements": [
+        {
+          "id": "element-4c6cce93d87d37cf",
+          "relation": "direct",
+          "label": "질문이 제공하는 감사증거와 한계",
+          "topic_id": "08",
+          "exam_questions": [
+            "cpa_exam:2018:2:4"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-32560bf4444e01a5",
+          "relation": "direct",
+          "label": "질문의 형태와 답변 평가의 필수성을 설명한 내용의 적절성 판단",
+          "topic_id": "08",
+          "exam_questions": [
+            "cpa_exam:2022:2:6"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-ef08577f06a108a5",
+          "relation": "direct",
+          "label": "감사증거의 충분성에 영향을 미치는 요소 두 가지 제시",
+          "topic_id": "08",
+          "exam_questions": [
+            "cpa_exam:2023:2:1"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-f2cb15aee3bebdcb",
+          "relation": "partial",
+          "label": "감사증거의 질이 감사증거의 양에 미치는 영향",
+          "topic_id": "08",
+          "exam_questions": [
+            "cpa_exam:2018:2:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-f6df522a6847e9e7",
+          "relation": "partial",
+          "label": "왜곡표시위험 평가수준이 감사증거의 양에 미치는 영향",
+          "topic_id": "08",
+          "exam_questions": [
+            "cpa_exam:2018:2:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        },
+        {
+          "id": "element-934f639345b4b41f",
+          "relation": "adjacent",
+          "label": "중요성 기준이 감사증거의 양에 미치는 영향",
+          "topic_id": "08",
+          "exam_questions": [
+            "cpa_exam:2018:2:2"
+          ],
+          "exam_frequency": 1,
+          "mock_frequency": 0
+        }
+      ],
+      "neighbors": [
+        {
+          "key": "pilot-02-004/sub1",
+          "scope": "bank",
+          "file": null
+        },
+        {
+          "key": "pilot-08-003/sub2",
+          "scope": "bank",
+          "file": null
+        }
+      ],
+      "gap": "충분성·적합성의 척도와 관찰의 한계는 있으나 질문과 증거량 요인은 없다.",
+      "source_anchors": [
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 17212,
+          "matches": 1,
+          "text": "A26. 질문은 기업의 내부 또는 외부의 재무나 비재무 분야의 관련 지식이 있는 자로부터 정보를"
+        },
+        {
+          "file": "cpa_uploader/raw/materials/verification/f0914795b909ea38/kga-2026-pymupdf-pages.txt",
+          "line": 16927,
+          "matches": 1,
+          "text": "(감사증거의) 충분성 – 감사증거의 양적 척도. 필요한 감사증거의 양은 감사인의 중"
+        }
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "area": "중요성 개념이 적용되는 감사 단계",
+      "elements": [
+        "element-ebb07c884de71529"
+      ],
+      "reason": "1회 출제이며 320의 기존 물음과 연결이 약함. 필요 시 P3."
+    },
+    {
+      "area": "감사문서 작성의 목적",
+      "elements": [
+        "documentation.main-purpose"
+      ],
+      "reason": "1회 출제. 230의 기존 5개 물음 뒤에 둘 보완 후보."
+    },
+    {
+      "area": "회계추정치 관련 위험평가 이해사항(540.13)",
+      "elements": [
+        "element-99b6ae7c05f19ffc"
+      ],
+      "reason": "목록이 매우 길어 분할 설계가 먼저 필요."
+    },
+    {
+      "area": "외부감사법상 감사인 지정 사유",
+      "elements": [
+        "element-fc252858ae816fd4"
+      ],
+      "reason": "대부분 시행령 위임이며 원문 미확보."
+    },
+    {
+      "area": "내부회계관리제도 운영·감사 대상",
+      "elements": [
+        "element-a27f0a7023c94f05",
+        "element-9d677c19cd2b9b55",
+        "element-cfb0aae2a1384353",
+        "element-c17e11e0280676f1",
+        "element-bcb0e88b90019d7e"
+      ],
+      "reason": "부칙의 연도별 적용례에 따라 답이 달라져 판단 시점 확정이 먼저 필요."
+    },
+    {
+      "area": "독립성 위반의 계약체결기한 전후 대응",
+      "elements": [
+        "element-45390e76bbcbcfb2",
+        "element-52101ee5aa8ad12e"
+      ],
+      "reason": "보관 윤리기준에서 대응 문단을 찾지 못함. 원출처 확인 전 제외."
+    }
+  ]
+}

@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "l01-sub1-wrong",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-priority-20260914-l01",
+  "learning_unit_id": "draft-standard-priority-20260914-l01--sub1--standard",
+  "kind": "wrong",
+  "projected_body_hash": "820de3f6f0a8cbe9a11c7ee5616e678a11cbe076babd5dcd6882734eb202b094",
+  "answers": {
+    "sub1": "모든 회사는 사업연도 종료일까지만 감사인을 선임하면 된다. 감사위원회를 설치하여야 하는 회사도 사업연도 개시 후 1년 이내에 선임하면 되고, 감사인 지정이나 계약 해지로 새로 선임할 때에는 기한이 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 회사는 원칙적으로 매 사업연도 개시일부터 45일 이내에 해당 사업연도의 감사인을 선임하여야 한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 감사위원회를 설치하여야 하는 회사는 매 사업연도 개시일 이전에 해당 사업연도의 감사인을 선임하여야 한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 직전 사업연도에 회계감사를 받지 아니한 회사는 해당 사업연도 개시일부터 4개월 이내에 감사인을 선임하여야 한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 감사인 지정·감사계약 해지·감사인의 해산 등 제7항의 사유로 감사인을 선임하는 경우에는 그 사유 발생일부터 2개월 이내에 선임하여야 한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "329d183045a93778cb1ac99b3a03fac345cbe87fbd3e37d6a08cf869d971b9ee",
+  "schema_hash": "e855bf5c3fc7c9fe3c07bbe53bd066a1730d4b0c5b32206a971b2ced5602e99c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "모든 회사는 사업연도 종료일까지만 감사인을 선임하면 된다. ",
+            "reason": "사업연도 종료일까지라고 하여 원칙적인 45일 이내 기한을 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "감사위원회를 설치하여야 하는 회사도 사업연도 개시 후 1년 이내에 선임하면 되고, 감사인 지정이나 계약 해지로 새로 선임할 때에는 기한이 없다.",
+            "reason": "사업연도 개시 후 1년 이내라고 하여 개시일 이전 선임 기한과 반대되는 내용을 제시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "모든 회사는 사업연도 종료일까지만 감사인을 선임하면 된다. ",
+            "reason": "모든 회사가 사업연도 종료일까지 선임하면 된다고 하여 직전 미감사 회사의 4개월 이내 기한과 반대되는 내용을 제시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "감사위원회를 설치하여야 하는 회사도 사업연도 개시 후 1년 이내에 선임하면 되고, 감사인 지정이나 계약 해지로 새로 선임할 때에는 기한이 없다.",
+            "reason": "감사인 지정이나 계약 해지로 새로 선임할 때 기한이 없다고 명시하여 2개월 이내 기한을 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "사업연도 종료일까지라고 하여 원칙적인 45일 이내 기한을 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "사업연도 개시 후 1년 이내라고 하여 개시일 이전 선임 기한과 반대되는 내용을 제시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "모든 회사가 사업연도 종료일까지 선임하면 된다고 하여 직전 미감사 회사의 4개월 이내 기한과 반대되는 내용을 제시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "감사인 지정이나 계약 해지로 새로 선임할 때 기한이 없다고 명시하여 2개월 이내 기한을 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-priority-20260914-l01",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "외부감사법 제10조에 따라 회사가 해당 사업연도의 감사인을 선임하여야 하는 기한을 설명하시오. ① 원칙적인 기한, ② 「상법」 제542조의11 또는 「금융회사의 지배구조에 관한 법률」 제16조에 따라 감사위원회를 설치하여야 하는 회사의 기한, ③ 직전 사업연도에 회계감사를 받지 아니한 회사의 기한, ④ 증권선물위원회의 감사인 지정, 감사계약의 해지, 선임된 감사인의 해산 등 제7항의 사유로 감사인을 선임하는 경우의 기한을 모두 제시하시오. 연속 3개 사업연도 동일 감사인 선임과 감사인선임위원회의 구성은 묻지 않는다.",
+        "user_answer": "모든 회사는 사업연도 종료일까지만 감사인을 선임하면 된다. 감사위원회를 설치하여야 하는 회사도 사업연도 개시 후 1년 이내에 선임하면 되고, 감사인 지정이나 계약 해지로 새로 선임할 때에는 기한이 없다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "모든 회사는 사업연도 종료일까지만 감사인을 선임하면 된다.",
+            "reason": "사업연도 종료일까지라고 하여 원칙적인 45일 이내 기한을 명시적으로 부정했다.",
+            "claim": "회사는 원칙적으로 매 사업연도 개시일부터 45일 이내에 해당 사업연도의 감사인을 선임하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "감사위원회를 설치하여야 하는 회사도 사업연도 개시 후 1년 이내에 선임하면 되고, 감사인 지정이나 계약 해지로 새로 선임할 때에는 기한이 없다.",
+            "reason": "사업연도 개시 후 1년 이내라고 하여 개시일 이전 선임 기한과 반대되는 내용을 제시했다.",
+            "claim": "감사위원회를 설치하여야 하는 회사는 매 사업연도 개시일 이전에 해당 사업연도의 감사인을 선임하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "모든 회사는 사업연도 종료일까지만 감사인을 선임하면 된다.",
+            "reason": "모든 회사가 사업연도 종료일까지 선임하면 된다고 하여 직전 미감사 회사의 4개월 이내 기한과 반대되는 내용을 제시했다.",
+            "claim": "직전 사업연도에 회계감사를 받지 아니한 회사는 해당 사업연도 개시일부터 4개월 이내에 감사인을 선임하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "감사위원회를 설치하여야 하는 회사도 사업연도 개시 후 1년 이내에 선임하면 되고, 감사인 지정이나 계약 해지로 새로 선임할 때에는 기한이 없다.",
+            "reason": "감사인 지정이나 계약 해지로 새로 선임할 때 기한이 없다고 명시하여 2개월 이내 기한을 부정했다.",
+            "claim": "감사인 지정·감사계약 해지·감사인의 해산 등 제7항의 사유로 감사인을 선임하는 경우에는 그 사유 발생일부터 2개월 이내에 선임하여야 한다. 제7항 각 호를 모두 나열하지 않아도 그 사유로 선임하는 경우의 기한과 기산점이 드러나면 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "회사는 원칙적으로 매 사업연도 개시일부터 45일 이내에 해당 사업연도의 감사인을 선임하여야 한다.",
+          "감사위원회를 설치하여야 하는 회사는 매 사업연도 개시일 이전에 해당 사업연도의 감사인을 선임하여야 한다.",
+          "직전 사업연도에 회계감사를 받지 아니한 회사는 해당 사업연도 개시일부터 4개월 이내에 감사인을 선임하여야 한다.",
+          "감사인 지정·감사계약 해지·감사인의 해산 등 제7항의 사유로 감사인을 선임하는 경우에는 그 사유 발생일부터 2개월 이내에 선임하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/replayed/l01-sub1-wrong.input.json",
+      "sha256": "489686eb0df26ddef0faad1fa1992ab325051a8069701bef61aca39a5b614d08"
+    },
+    "transport": {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/replayed/l01-sub1-wrong.transport.jsonl",
+      "sha256": "ced6d9b38b3810b58eda38e797e299b8c97f84def48a2898e9be4aedc0df9290"
+    },
+    "traces": {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/replayed/l01-sub1-wrong.traces.jsonl",
+      "sha256": "6836c4f18639f07e9ae087a3c73ca338856db5b8b7cdd07d5a14d946e4c8a9a3"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0417f406bbc7f28d016aa75b3fdb1c87d0852c027c0dee2a2a",
+        "request_id": "req_9de49f0d1bbf433ba4b5074f0fe5ca29",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3164,
+          "input_tokens_details": {
+            "cache_write_tokens": 3161,
+            "cached_tokens": 0
+          },
+          "output_tokens": 467,
+          "output_tokens_details": {
+            "reasoning_tokens": 178
+          },
+          "total_tokens": 3631
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_run": "run-v1",
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/l01-sub1-wrong.input.json",
+        "sha256": "7c6f02aa46baf0580a38d1f1be3642b765288355aa501275619269d1075ff0bf"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/l01-sub1-wrong.request-1.json",
+        "sha256": "65b09bd46744b0b9463842cb61b96db62d135121a95446b946aece69cd9add40"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/l01-sub1-wrong.response-1.json",
+        "sha256": "73a29739b8449aab56e86c176c7b02bd3ecfbf5d38f09e34ab3bcd452bd0a884"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/l01-sub1-wrong.trace.json",
+        "sha256": "80e8fe848c0564183c1c9aaa4fda5318df176903854e85bb64414ddaa0985902"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/l01-sub1-wrong.usage.json",
+        "sha256": "759291cc1dc523625b8bbba2f397620dc5b58f2e9b7b91b4d7742041515fbc2f"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/l01-sub1-wrong.result.json",
+        "sha256": "a2dc090677636341306ca195872bb9d9bda78095d0a01e475b5ba945e7ead0b9"
+      }
+    ],
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/grading-manifest.json",
+    "sha256": "91aedb70b424320ad48a426c78806a495dfdcb917c7176bb73e048c7048bfe52"
+  }
+}

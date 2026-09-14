@@ -1,0 +1,23 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {questionHash} from '../../coverage/build-coverage.mjs';
+const D='cpa_uploader/analysis/reviews/case-quality-2026-09-13',file='cpa_uploader/analysis/coverage/links.json';
+const read=f=>JSON.parse(fs.readFileSync(f)),sha=b=>createHash('sha256').update(b).digest('hex');
+const original=fs.readFileSync(file);assert(!fs.existsSync(D+'/coverage-links-before.json'));
+const data=JSON.parse(original),bank=read(D+'/candidate-v1.json');
+const link=data.links.find(l=>l.id==='frequency-gap-2026-09-10-E-1');assert(link);
+assert.deepEqual(link.target,{set_id:'pilot-16-008',subquestion_id:'sub1',criterion_ids:['crit1','crit2','crit3','crit4']});
+const split=structuredClone(link);split.id+='-case-quality-split';
+link.target.criterion_ids=['crit1','crit2'];
+link.reason+=' 2026-09-13 물음 분리로 상황 가의 기준만 남김. 기존 adjacent 및 관계 검토 대기 상태를 유지함.';
+split.target.subquestion_id='sub4';split.target.criterion_ids=['crit3','crit4'];
+split.reason+=' 2026-09-13 상황 나의 두 기준이 sub4로 이동하여 기존 후보 관계를 이어받음. 비교 방식이 다르다는 adjacent 관계와 미확인 상태를 유지하며 문항 내용검수를 관계 검수로 대신하지 않음.';
+split.review_status='needs_review';
+split.provenance.case_quality_split={file:D+'/lineage-v1.json',sha256:sha(fs.readFileSync(D+'/lineage-v1.json')),original_link_id:link.id,original_link_snapshot_file:D+'/coverage-links-before.json'};
+const set=bank.find(s=>s.id===split.target.set_id);split.snapshot.question_sha256=questionHash(set,set.subquestions.find(q=>q.id===split.target.subquestion_id));
+data.links.splice(data.links.indexOf(link)+1,0,split);
+for(const row of data.links){if(!row.target||row.target.scope==='draft')continue;const q=bank.find(s=>s.id===row.target.set_id)?.subquestions.find(q=>q.id===row.target.subquestion_id);assert(q);assert(row.target.criterion_ids.every(id=>q.criteria.some(c=>c.id===id)),row.id);}
+assert.equal(sha(fs.readFileSync(file)),sha(original));fs.writeFileSync(D+'/coverage-links-before.json',original,{flag:'wx'});
+fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
+fs.writeFileSync(D+'/coverage-update.json',JSON.stringify({updated_at:new Date().toISOString(),source_before_sha256:sha(original),source_after_sha256:sha(fs.readFileSync(file)),original_link:link.id,new_link:split.id,relationship_review_performed:false,invalid_target_criterion_ids:0},null,2)+'\n',{flag:'wx'});

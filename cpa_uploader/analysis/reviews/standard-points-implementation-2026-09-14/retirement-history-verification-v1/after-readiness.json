@@ -1,0 +1,77 @@
+{
+  "prepared_at": "2026-09-14T06:51:03.206Z",
+  "status": "prepared_local_only_waiting_for_other_database_reads",
+  "database_requests": 0,
+  "inputs": [
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/retirement-history-verification-v1/before.json",
+      "sha256": "5eafe6d974bf195e3288f8d3275474f688bae989fef78b113a1324d265a9bebe"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/retirement-plan.json",
+      "sha256": "e481bcc936b8035e861f5cd8b468d743707c0af84593887b1fc97522302b9101"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/bank.json",
+      "sha256": "8880a6b26fee65a4bf4eea7763a4c37e9d8639ab714666e7a9a21ce1c79c523e"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/verify-retirement-history.mjs",
+      "sha256": "a5b38db356c11d187930d9fcaa295d47d704abf25e7bab60a38df62047293f29"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/run-retirement-history-after.mjs",
+      "sha256": "3f4faed9e2245e377fb20fdd1c39a9c720ab3f2984d2dde38f563ba343b401e9"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v5/receipt.json",
+      "sha256": "659eec3679f006edc19ec903ef282c4b8a97f97edf368249c4757fec0909c36b"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/retirement-manifest.json",
+      "sha256": "06ebd5081a7ff614e97984415637299f7c81a443bae86820ea5d83fbc6239f99"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v5/roundtrip.json",
+      "sha256": "b8803aa685cf55d6bf7ed8640db4c5a629121cd3eb4066dfbe8a5880b534b877"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/baseline.json",
+      "sha256": "9e3edded1273d2030be3ab5af824cd4572637fb42261833da75f11e8a961d086"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/retirement-history-verification-v1/preparation.json",
+      "sha256": "5762c292691b4d4451fdf24918440e678a18c35f69aa44b12688afc78d26c0a7"
+    }
+  ],
+  "args": [
+    "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/verify-retirement-history.mjs",
+    "--after",
+    "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v5/receipt.json"
+  ],
+  "expected_release_id": "291abae8-15e8-4f88-aff0-e755cd7c1b1f",
+  "expected_retired_sets": 55,
+  "expected_active_sets": 363,
+  "expected_active_questions": 528,
+  "historical_tables": {
+    "cpa_question_set_versions": 393,
+    "cpa_subquestion_versions": 865,
+    "cpa_subquestion_answers": 865,
+    "cpa_question_sources": 2197,
+    "cpa_requirements": 1674,
+    "cpa_criteria": 2941,
+    "cpa_criterion_facts": 3161,
+    "cpa_criterion_sources": 3525,
+    "cpa_question_bank_release_items": 1978,
+    "cpa_attempts": 1,
+    "cpa_attempt_answers": 1,
+    "cpa_question_bank_releases": 11
+  },
+  "verification_scope": [
+    "Exact 55 retired IDs and ordered final active set IDs.",
+    "Every prior row key and content hash for 12 historical tables. Attempt lifecycle columns may advance; identity, answer hash, release/version and submission identity must be preserved.",
+    "Previous source snapshots and release-item links remain available.",
+    "All six concurrent case set version IDs remain unchanged.",
+    "Active release and source-document hash remain bound to the applied v5 receipt before and after sequential readback."
+  ]
+}

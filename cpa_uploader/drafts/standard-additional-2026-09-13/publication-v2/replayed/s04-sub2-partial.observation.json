@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "s04-sub2-partial",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-additional-20260913-s04",
+  "learning_unit_id": "draft-standard-additional-20260913-s04--sub2--standard",
+  "kind": "partial",
+  "projected_body_hash": "e2330810ec40476cf1f443ae132768427117d8a8667acf99192820db8f542fb0",
+  "answers": {
+    "sub2": "경영진에게 해당 거래의 성격을 질문한다. 입수한 특수관계자 관련 정보는 업무팀의 다른 구성원과 공유한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 해당 거래의 성격에 대하여 경영진에게 질문한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 특수관계자가 그 거래에 관여할 가능성에 대하여 경영진에게 질문한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 기업의 특수관계자에 관하여 입수한 관련 정보를 업무팀의 다른 구성원과 공유한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "8238abe03bf2db35dd89ae1929bf2f3d47e7a3e9c293e467c1e4be701d5b9742",
+  "schema_hash": "a72193ed80e0bc00e1d1ea549c3418ed8e9d85163bd00145cda5007ab350134b",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "경영진에게 해당 거래의 성격을 질문한다. ",
+            "reason": "거래의 성격을 경영진에게 질문한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "특수관계자의 거래 관여 가능성에 대한 질문이 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "입수한 특수관계자 관련 정보는 업무팀의 다른 구성원과 공유한다.",
+            "reason": "특수관계자 관련 정보를 업무팀의 다른 구성원과 공유한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "거래의 성격을 경영진에게 질문한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "특수관계자의 거래 관여 가능성에 대한 질문이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "특수관계자 관련 정보를 업무팀의 다른 구성원과 공유한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-additional-20260913-s04",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사인이 정상적인 사업과정을 벗어난 유의적 거래를 식별했지만 아직 특수관계자 거래인지는 확인되지 않았다. 감사기준서 550 문단 16에 따라 경영진에게 질문할 두 사항을 제시하시오. 이어 해당 기업의 특수관계자에 관하여 입수한 관련 정보는 문단 17에 따라 누구와 어떻게 다루어야 하는지 설명하시오.",
+        "user_answer": "경영진에게 해당 거래의 성격을 질문한다. 입수한 특수관계자 관련 정보는 업무팀의 다른 구성원과 공유한다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "경영진에게 해당 거래의 성격을 질문한다.",
+            "reason": "거래의 성격을 경영진에게 질문한다고 명시했다.",
+            "claim": "해당 거래의 성격에 대하여 경영진에게 질문한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "특수관계자의 거래 관여 가능성에 대한 질문이 없다.",
+            "claim": "특수관계자가 그 거래에 관여할 가능성에 대하여 경영진에게 질문한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "입수한 특수관계자 관련 정보는 업무팀의 다른 구성원과 공유한다.",
+            "reason": "특수관계자 관련 정보를 업무팀의 다른 구성원과 공유한다고 명시했다.",
+            "claim": "기업의 특수관계자에 관하여 입수한 관련 정보를 업무팀의 다른 구성원과 공유한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "해당 거래의 성격에 대하여 경영진에게 질문한다.",
+          "특수관계자가 그 거래에 관여할 가능성에 대하여 경영진에게 질문한다.",
+          "기업의 특수관계자에 관하여 입수한 관련 정보를 업무팀의 다른 구성원과 공유한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/s04-sub2-partial.input.json",
+      "sha256": "6ed2c42cc6a048f6ca1b60c5206aa14d7c657edc7ac1ebfca7a9ac7e7603054c"
+    },
+    "transport": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/s04-sub2-partial.transport.jsonl",
+      "sha256": "209e60aa13ad38aeb50411cf6d1d9f95c8781ea4b73742c779836ef413e4cda9"
+    },
+    "traces": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/s04-sub2-partial.traces.jsonl",
+      "sha256": "5a127aca0ad9bac3386f47f72a830f2b2a59fae4fc6262ff58474bdf696c0c1f"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0c721402819c3723016aa602c5df1087d08907009a124394f5",
+        "request_id": "req_81623e2685ee40e5aca0daeebc77ff46",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2643,
+          "input_tokens_details": {
+            "cache_write_tokens": 2640,
+            "cached_tokens": 0
+          },
+          "output_tokens": 213,
+          "output_tokens_details": {
+            "reasoning_tokens": 39
+          },
+          "total_tokens": 2856
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s04-sub2-partial.input.json",
+        "sha256": "c24e1f6203e54b978e6705152795d5c4ccd526d10ff5212de30c4e19456a4d60"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s04-sub2-partial.request-1.json",
+        "sha256": "827bdcf0a2dd08f769a49ff06cf0b698db74f67802a61fc3ff42e97b7a4d0571"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s04-sub2-partial.response-1.json",
+        "sha256": "f29d893c1af6736907383d823fbcec45e3bf5357a9fa6f1e718dd9d82ecc5021"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s04-sub2-partial.trace.json",
+        "sha256": "fb6732846ab8f74c440ae0f5dccbbc4c8518bb7fe3d32cb9de699b228df52607"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s04-sub2-partial.usage.json",
+        "sha256": "dcab5bccbb7453d023af3f2ecd79c06c64e4db5bbb7814d4eb1505b5cf2ab930"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s04-sub2-partial.result.json",
+        "sha256": "0947ae930ce54ff4950f2d16ac3b8458077ebe1eb9800edc783379d03fb81aad"
+      }
+    ],
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/grading-manifest.json",
+    "sha256": "cf8db16647798968c6c09a1b9055098afac98db30850d7e90825526af41579b4"
+  }
+}

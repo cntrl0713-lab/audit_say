@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-04-005--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-005--case",
+  "source_set_id": "pilot-04-005",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "a27bcfbe89a12ececdee2fd94f2d3ae021080b0ef9cf024965a13122908481c8",
+  "answers": {
+    "sub1": "충분성은 양이고 적합성은 질이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 요구나 이를 함축하는 설명을 제시하지 않음."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 요구나 이를 함축하는 설명을 제시하지 않음."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "5f13bafb610f3c59d84e54d007b791b377f302796c3278d9e29d772593d86f9d",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "보존기간 종료 전 삭제·폐기 금지 판단이 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "모든 성격의 감사문서가 금지 대상이라는 설명이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "보존기간 종료 전 삭제·폐기 금지 판단이 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "모든 성격의 감사문서가 금지 대상이라는 설명이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-005",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "회계법인의 감사문서 삭제 계획이 허용되는지 판단하고, 삭제·폐기 금지 대상 문서의 범위를 근거로 설명하시오.",
+        "user_answer": "충분성은 양이고 적합성은 질이다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "보존기간 종료 전 삭제·폐기 금지 판단이 없다.",
+            "claim": "보존기간 종료 전 삭제·폐기는 허용되지 않는다고 판단함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "모든 성격의 감사문서가 금지 대상이라는 설명이 없다.",
+            "claim": "판단 근거로 취합 완료 후 어떠한 성격의 감사문서도 대상이 됨을 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "허용되지 않는다. 최종감사파일 취합 완료 후에는 보존기간 종료 전까지 어떠한 성격의 감사문서도 삭제하거나 폐기해서는 안 된다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_00fdbfdaa6448877016aa5db6677f887d0baa01c52abe1ff11",
+        "request_id": "req_13ea83767ce8429d9d240e3d70efe257",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2388,
+          "input_tokens_details": {
+            "cache_write_tokens": 2385,
+            "cached_tokens": 0
+          },
+          "output_tokens": 162,
+          "output_tokens_details": {
+            "reasoning_tokens": 36
+          },
+          "total_tokens": 2550
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00079125,
+        "min_usd": 0.00079125,
+        "max_usd": 0.00079125,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-04-005--case--wrong/input.json",
+      "sha256": "9f59685759f2479721501fa40458d8d99cd29ede27d859e5ec71f327caf794d5"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-04-005--case--wrong/transport.jsonl",
+      "sha256": "316cd63c7b5c2d6ac7517c5a013a4a8c08ea330bea9552e6e461c5965aa4eb82"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-04-005--case--wrong/traces.jsonl",
+      "sha256": "e5bfc517dde8d6a2bd11f413ff4209b5f10035a63e337fe56537d622613bb915"
+    }
+  }
+}

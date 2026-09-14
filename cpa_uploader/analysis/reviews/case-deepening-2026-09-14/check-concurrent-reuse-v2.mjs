@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {createEfficientReviewReceipt,createEfficientValidationContext,assertEfficientEvidenceUnchanged} from '../../../questionEfficientReview.ts';
+const R='cpa_uploader/analysis/reviews/case-deepening-2026-09-14';
+const read=file=>JSON.parse(fs.readFileSync(file));
+const ref=file=>({file,sha256:createHash('sha256').update(fs.readFileSync(file)).digest('hex')});
+const context=createEfficientValidationContext();
+const candidate=read(R+'/candidate-v2.json'),ids=read(R+'/changed-sets-v1.json');
+const batch=ref(R+'/sealed-v1/batch.json');
+const receipts=ids.map(id=>createEfficientReviewReceipt(batch,candidate.find(s=>s.id===id),context));
+assert.deepEqual(receipts,read(R+'/sealed-v1/receipts.json'),'Original receipt identity must be preserved');
+assertEfficientEvidenceUnchanged(context);
+const result={checked_at:new Date().toISOString(),status:'passed',candidate:ref(R+'/candidate-v2.json'),batch,receipt_count:receipts.length,receipts_identical_to_original:true,actual_original_evaluated_answers:read(R+'/sealed-v1/summary.json').fixed_evaluated_answers,additional_model_calls:0,live_runtime_code_checked:true,preserved_auxiliary_inputs:[...(context.preservedAuxiliaryInputs??new Map()).values()],validated_files:[...context.files].map(([file,sha256])=>({file,sha256}))};
+fs.writeFileSync(R+'/concurrent-reuse-validation-v2.json',JSON.stringify(result,null,2)+'\n',{flag:'wx'});
+console.log({status:result.status,receipts:receipts.length,preserved_auxiliary_inputs:result.preserved_auxiliary_inputs.length,additional_model_calls:0});

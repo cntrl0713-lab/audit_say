@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-13-011--case--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-011--case",
+  "source_set_id": "pilot-13-011",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "710035842100c42a31cc4251b20e928184a59c86ebf598fa957210a0f43348f0",
+  "answers": {
+    "sub2": "재무제표감사와 관련된 하위서비스가 보고서 범위에서 제외되었다는 이유만으로 검토를 생략할 수 없다.\n보고서에서 제외된 하위서비스가 이용자기업 재무제표감사와 관련되므로 해당 하위서비스에 감사기준서402의 요구사항을 적용한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.crit1",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        },
+        {
+          "criterion_id": "sub2.crit2",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "53e378151e71471b313697172b1abc55b2b9ee8bf0824edb6e185e9c912c7956",
+  "schema_hash": "3603d091d8f89f3f21b92d148cb8d01907f7aba084c4ae414ef4a110e4aa60fd",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "met",
+            "quote": "재무제표감사와 관련된 하위서비스가 보고서 범위에서 제외되었다는 이유만으로 검토를 생략할 수 없다.\n",
+            "reason": "관련 하위서비스를 보고서 범위 제외만으로 검토 생략할 수 없다고 명시했다."
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "met",
+            "quote": "보고서에서 제외된 하위서비스가 이용자기업 재무제표감사와 관련되므로 해당 하위서비스에 감사기준서402의 요구사항을 적용한다.",
+            "reason": "관련 하위서비스에 감사기준서 402의 요구사항을 적용한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "관련 하위서비스를 보고서 범위 제외만으로 검토 생략할 수 없다고 명시했다."
+              },
+              {
+                "criterion_id": "sub2.crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "관련 하위서비스에 감사기준서 402의 요구사항을 적용한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-011",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "하위서비스조직의 통제가 보고서 범위에서 제외되었다는 이유로 해당 서비스에 관한 검토를 생략할 수 있는지 판단하고, 제시된 관련성 조건에서 적용해야 할 기준서 요구를 설명하시오.",
+        "user_answer": "재무제표감사와 관련된 하위서비스가 보고서 범위에서 제외되었다는 이유만으로 검토를 생략할 수 없다.\n보고서에서 제외된 하위서비스가 이용자기업 재무제표감사와 관련되므로 해당 하위서비스에 감사기준서402의 요구사항을 적용한다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "met",
+            "quote": "재무제표감사와 관련된 하위서비스가 보고서 범위에서 제외되었다는 이유만으로 검토를 생략할 수 없다.",
+            "reason": "관련 하위서비스를 보고서 범위 제외만으로 검토 생략할 수 없다고 명시했다.",
+            "claim": "재무제표감사와 관련된 하위서비스가 보고서 범위에서 제외되었다는 이유만으로 검토를 생략할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "met",
+            "quote": "보고서에서 제외된 하위서비스가 이용자기업 재무제표감사와 관련되므로 해당 하위서비스에 감사기준서402의 요구사항을 적용한다.",
+            "reason": "관련 하위서비스에 감사기준서 402의 요구사항을 적용한다고 명시했다.",
+            "claim": "보고서에서 제외된 하위서비스가 이용자기업 재무제표감사와 관련되므로 해당 하위서비스에 감사기준서402의 요구사항을 적용한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "재무제표감사와 관련된 하위서비스가 보고서 범위에서 제외되었다는 이유만으로 검토를 생략할 수 없다.",
+          "보고서에서 제외된 하위서비스가 이용자기업 재무제표감사와 관련되므로 해당 하위서비스에 감사기준서402의 요구사항을 적용한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0b271b4e7d89c2b3016aa5dc4575d487d0ab8e5b7d1e52656d",
+        "request_id": "req_f8f24ba985cb41a6a09e77e2ccb52976",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2983,
+          "input_tokens_details": {
+            "cache_write_tokens": 2980,
+            "cached_tokens": 0
+          },
+          "output_tokens": 181,
+          "output_tokens_details": {
+            "reasoning_tokens": 28
+          },
+          "total_tokens": 3164
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009628,
+        "min_usd": 0.0009628,
+        "max_usd": 0.0009628,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-13-011--case--model/input.json",
+      "sha256": "4f3dde7751bef1865203523203ab5892ee2c1be20e4f292d24b42a797cfa4486"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-13-011--case--model/transport.jsonl",
+      "sha256": "896914a0b19c4106fcf59a8cabc69a828a061a062b53178cf3da5207373c0cab"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-13-011--case--model/traces.jsonl",
+      "sha256": "0c9ba268a68e3edecae8c009e1aca6c6e4567aee81f1128ae590d6f0e20b2270"
+    }
+  }
+}

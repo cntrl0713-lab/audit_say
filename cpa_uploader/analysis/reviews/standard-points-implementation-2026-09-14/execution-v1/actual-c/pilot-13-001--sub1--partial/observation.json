@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "pilot-13-001--sub1--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-001--sub1--standard",
+  "source_set_id": "pilot-13-001",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "b2d73c06a74d049835d50f9384b62a349d1091df1161fc5e27ac54cbc293dcef",
+  "answers": {
+    "sub1": "내부감사기능의 업무를 활용해도 표명된 감사의견에 대한 외부감사인의 전적인 책임은 경감되지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 partial 답안. 대상 명제: 내부감사기능을 활용해도 표명된 감사의견에 대한 외부감사인의 전적인 책임은 경감되지 않는다고 설명함"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 partial 답안. 대상 명제: 감사인측 전문가를 활용해도 표명된 감사의견에 대한 외부감사인의 전적인 책임은 경감되지 않는다고 설명함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "48c660767d6de885cc62e6d47a824ecd9b1264de7580e59a971da171f3f8fc87",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "내부감사기능의 업무를 활용해도 표명된 감사의견에 대한 외부감사인의 전적인 책임은 경감되지 않는다.",
+            "reason": "내부감사기능 활용에도 외부감사인의 전적인 책임이 경감되지 않는다고 명시함."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "감사인측 전문가 활용에 관한 설명이 없음."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "내부감사기능 활용에도 외부감사인의 전적인 책임이 경감되지 않는다고 명시함."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사인측 전문가 활용에 관한 설명이 없음."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-001",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "외부감사인이 내부감사기능이나 감사인측 전문가의 업무를 활용하는 경우, 감사의견에 대한 외부감사인의 책임은 어떻게 변화하는지 설명하시오.",
+        "user_answer": "내부감사기능의 업무를 활용해도 표명된 감사의견에 대한 외부감사인의 전적인 책임은 경감되지 않는다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "내부감사기능의 업무를 활용해도 표명된 감사의견에 대한 외부감사인의 전적인 책임은 경감되지 않는다.",
+            "reason": "내부감사기능 활용에도 외부감사인의 전적인 책임이 경감되지 않는다고 명시함.",
+            "claim": "내부감사기능을 활용해도 표명된 감사의견에 대한 외부감사인의 전적인 책임은 경감되지 않는다고 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "감사인측 전문가 활용에 관한 설명이 없음.",
+            "claim": "감사인측 전문가를 활용해도 표명된 감사의견에 대한 외부감사인의 전적인 책임은 경감되지 않는다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "외부감사인은 표명된 감사의견에 대하여 전적인 책임을 지며, 내부감사기능의 업무를 활용하였다고 하더라도 해당 책임은 경감되지 아니한다.",
+          "외부감사인은 표명된 감사의견에 대하여 전적인 책임을 지며, 감사인측 전문가의 업무를 활용하였다고 하더라도 해당 책임은 경감되지 아니한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0db674a7695e3249016aa7880309ac87d0992da9573f552c87",
+        "request_id": "req_1759d6063c244861a9b770e496ca4918",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2436,
+          "input_tokens_details": {
+            "cache_write_tokens": 2433,
+            "cached_tokens": 0
+          },
+          "output_tokens": 166,
+          "output_tokens_details": {
+            "reasoning_tokens": 30
+          },
+          "total_tokens": 2602
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008080499999999999,
+        "min_usd": 0.0008080499999999999,
+        "max_usd": 0.0008080499999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/pilot-13-001--sub1--partial/input.json",
+      "sha256": "d7f46a5a930b61526aab9a67fe228599bdaff08eed295ff4b066683089582d97"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/pilot-13-001--sub1--partial/transport.jsonl",
+      "sha256": "113c0a2953ed0fb22d01010a329df458d8b778795d6e2afea68db82fe1d4c5bd"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/pilot-13-001--sub1--partial/traces.jsonl",
+      "sha256": "e4417fff2f7846e319cdd5252bf0b86a035bdb1c11a6f270e33eaa28fc3bb888"
+    }
+  }
+}

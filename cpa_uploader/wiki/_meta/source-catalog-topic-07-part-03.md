@@ -1,7 +1,7 @@
 ---
 title: "07. 평가위험 대응·통제테스트·실증절차 원자료 단위 3/12"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: source-map
 status: generated
 review_required: true
@@ -12,7 +12,7 @@ confidence: medium
 
 # 07. 평가위험 대응·통제테스트·실증절차 원자료 단위 3/12
 
-주제 전체 1763개: 기준서 376, 이론 448, 연습 440, 기출 499. 이 페이지는 150개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
+주제 전체 1764개: 기준서 377, 이론 448, 연습 440, 기출 499. 이 페이지는 150개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
 
 [[source-catalog-topic-07]] (1/12) · [[source-catalog-topic-07-part-02]] (2/12) · [[source-catalog-topic-07-part-03]] (3/12) · [[source-catalog-topic-07-part-04]] (4/12) · [[source-catalog-topic-07-part-05]] (5/12) · [[source-catalog-topic-07-part-06]] (6/12) · [[source-catalog-topic-07-part-07]] (7/12) · [[source-catalog-topic-07-part-08]] (8/12) · [[source-catalog-topic-07-part-09]] (9/12) · [[source-catalog-topic-07-part-10]] (10/12) · [[source-catalog-topic-07-part-11]] (11/12) · [[source-catalog-topic-07-part-12]] (12/12)
 
@@ -22,6 +22,7 @@ confidence: medium
 
 | 원자료 ID | 종류·근거 계층 | 실제 파일·위치 | 절·판본·원문 한계 | 참조 의존 | 은행 인용 연결 | 원문 인용 SHA-256 |
 |---|---|---|---|---|---|---|
+| <a id="src-f1803692e83805da6b"></a>`src-f1803692e83805da6b` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 500 문단 2; L22-L22](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 500: 감사증거 | KGA 500: 감사증거 / 서론 / 이 감사기준서의 범위; 학습자료/OCR 전사. 공식 판본 대조 필요.; | 5개 / 미확보 5개 | 직접 인용 연결 없음 · 목표 검토 후보 | 931fa315f901b382e8403819f2d881cce53681e9e50baa1b1caa892af02ae7b5 |
 | <a id="src-60a7d35e5bd3267c38"></a>`src-60a7d35e5bd3267c38` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 500 문단 3; L25-L25](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 500: 감사증거 | KGA 500: 감사증거 / 서론 / 시행일; 학습자료/OCR 전사. 공식 판본 대조 필요.; | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | b7670aa894f1f2fcae5709a74f6bc82e2da94fa2b8fddd12237c999ca5d323a7 |
 | <a id="src-1c8adbc395313dd9ef"></a>`src-1c8adbc395313dd9ef` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 500 문단 4; L30-L30](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 500: 감사증거 | KGA 500: 감사증거 / 목적; 학습자료/OCR 전사. 공식 판본 대조 필요.; | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 283fc9bc1f51e7ec5025c500ee4a8141e54e432b7b05b8840c5e8fcabeb9e544 |
 | <a id="src-dbc5c41db0a9a21e87"></a>`src-dbc5c41db0a9a21e87` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 500 문단 5; L35-L41](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 500: 감사증거 | KGA 500: 감사증거 / 용어의 정의; 학습자료/OCR 전사. 공식 판본 대조 필요.; | 4개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 4d2213c1c3387f9122bfd1a9642adb57dd8a00299d796fb130cbf5374198cf32 |
@@ -171,7 +172,6 @@ confidence: medium
 | <a id="src-e2364df16808823cf0"></a>`src-e2364df16808823cf0` | theory / learning_material | [핵심요약.md · 핵심요약 원문 페이지 168; L6531-L6562](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%95%B5%EC%8B%AC%EC%9A%94%EC%95%BD.md); 핵심요약 | 원문 페이지 168; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 9f7f0213595bc9d44d73b33765ef783c6f8e1612b1291df54f98ae99f2fea793 |
 | <a id="src-2aa42b942fb9e2a867"></a>`src-2aa42b942fb9e2a867` | theory / learning_material | [핵심요약.md · 핵심요약 원문 페이지 169; L6564-L6598](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%95%B5%EC%8B%AC%EC%9A%94%EC%95%BD.md); 핵심요약 | 원문 페이지 169; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | a265f407e952a343e33c24acfc776da2333665aafe8d951c4e89206d57b7cfaf |
 | <a id="src-5bff567cff2938ef77"></a>`src-5bff567cff2938ef77` | theory / learning_material | [핵심요약.md · 핵심요약 원문 페이지 170; L6600-L6629](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%95%B5%EC%8B%AC%EC%9A%94%EC%95%BD.md); 핵심요약 | 원문 페이지 170; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 930628e5386794d09c4b2e942e7095d8bc84a68ece8846752532f8bdc2352ffa |
-| <a id="src-82edc907999139da0f"></a>`src-82edc907999139da0f` | theory / learning_material | [핵심요약.md · 핵심요약 원문 페이지 171; L6631-L6661](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%95%B5%EC%8B%AC%EC%9A%94%EC%95%BD.md); 핵심요약 | 원문 페이지 171; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | ee15330e12a673e7708b8ac58e2887643a02789b93fc040a405538f4070ebf51 |
 
 ## Related
 

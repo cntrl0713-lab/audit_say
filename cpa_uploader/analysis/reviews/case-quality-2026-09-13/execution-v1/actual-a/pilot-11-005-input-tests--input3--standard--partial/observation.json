@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-11-005-input-tests--input3--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-11-005-input-tests--input3--standard",
+  "source_set_id": "pilot-11-005-input-tests",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "input3"
+  ],
+  "projected_body_hash": "a77aa81ab24170333d4ba7a47028858b6819e3492c49c36e8fd72f085586f87e",
+  "answers": {
+    "input3": "경영진의 데이터 선택에 관련된 중요왜곡표시위험을 테스트한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "input3",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.crit6",
+          "verdict": "met",
+          "reason": "원문과 현행 채점기준을 대조하여 이 답안이 독립 의미를 충족함을 확인."
+        },
+        {
+          "criterion_id": "sub1.crit7",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "23a1bb3081e3109f7e64314ea944405506e611d44e5ba2a1e961ab07da008975",
+  "schema_hash": "1767c281713b682262c7079c3457d0a9d9d71c7082443802dd7f16a0f9c188cb",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "input3",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.crit6",
+            "verdict": "met",
+            "quote": "경영진의 데이터 선택에 관련된 중요왜곡표시위험을 테스트한다.",
+            "reason": "경영진의 데이터 선택과 관련된 중요왜곡표시위험을 테스트한다고 명시했다."
+          },
+          {
+            "criterion_id": "sub1.crit7",
+            "verdict": "not_met",
+            "reason": "선택한 데이터를 적용하는 것과 관련된 위험을 언급하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "input3",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.crit6",
+                "verdict": "met",
+                "evidence_ids": [
+                  "input3/e0"
+                ],
+                "reason": "경영진의 데이터 선택과 관련된 중요왜곡표시위험을 테스트한다고 명시했다."
+              },
+              {
+                "criterion_id": "sub1.crit7",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "선택한 데이터를 적용하는 것과 관련된 위험을 언급하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-11-005-input-tests",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "input3",
+        "prompt": "경영진의 회계추정치 도출방법을 테스트하는 접근방법에서 데이터에 관하여 다루어야 할 중요왜곡표시위험의 두 측면을, 선택과 적용으로 구별하여 설명하시오.",
+        "user_answer": "경영진의 데이터 선택에 관련된 중요왜곡표시위험을 테스트한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub1.crit6",
+            "verdict": "met",
+            "quote": "경영진의 데이터 선택에 관련된 중요왜곡표시위험을 테스트한다.",
+            "reason": "경영진의 데이터 선택과 관련된 중요왜곡표시위험을 테스트한다고 명시했다.",
+            "claim": "경영진이 회계추정치에 사용할 데이터를 선택한 것에 관련된 중요왜곡표시위험을 테스트한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.crit7",
+            "verdict": "not_met",
+            "reason": "선택한 데이터를 적용하는 것과 관련된 위험을 언급하지 않았다.",
+            "claim": "경영진이 선택한 데이터를 적용한 것에 관련된 중요왜곡표시위험을 테스트한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진이 회계추정치에 사용할 데이터를 선택한 것에 관련된 중요왜곡표시위험을 테스트한다.",
+          "경영진이 선택한 데이터를 적용한 것에 관련된 중요왜곡표시위험을 테스트한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "input3",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0c5e3afc07297fd1016aa5dcc3c83887d0ac7779b987d2ac74",
+        "request_id": "req_f8c9ba431ed64ab2a67d3b877507b281",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2435,
+          "input_tokens_details": {
+            "cache_write_tokens": 2432,
+            "cached_tokens": 0
+          },
+          "output_tokens": 215,
+          "output_tokens_details": {
+            "reasoning_tokens": 71
+          },
+          "total_tokens": 2650
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008666,
+        "min_usd": 0.0008666,
+        "max_usd": 0.0008666,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-11-005-input-tests--input3--standard--partial/input.json",
+      "sha256": "c665245930df0ccaa6baef98bd33e3ba00e73b5f17ed5f1d6519b7f3db66f184"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-11-005-input-tests--input3--standard--partial/transport.jsonl",
+      "sha256": "95d91fbd15a8d5f85dab88fd5eae5319e2bffeb883103bf59e2e74bb27206b17"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-11-005-input-tests--input3--standard--partial/traces.jsonl",
+      "sha256": "6556360d8c7276dce6be68731a591728deac920d351efeeb6dc4aabcb56e9f5b"
+    }
+  }
+}

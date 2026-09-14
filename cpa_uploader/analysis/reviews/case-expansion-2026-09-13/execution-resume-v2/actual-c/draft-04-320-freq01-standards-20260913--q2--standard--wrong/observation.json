@@ -1,0 +1,208 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v2/grading-manifest.json",
+    "sha256": "c4c243a0c950c1aca1ce1cd75856185348414ce484a2764298162f25e92cc549"
+  },
+  "entry_id": "draft-04-320-freq01-standards-20260913--q2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-04-320-freq01-standards-20260913--q2--standard",
+  "source_set_id": "draft-04-320-freq01-standards-20260913",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "q2"
+  ],
+  "projected_body_hash": "f212a7e27d5b41d60156b539ce50ccbe2d2bbc178a2c21e06c71f3bb755ef0f4",
+  "answers": {
+    "q2": "재무제표 이용자들의 공통적인 재무정보 수요는 중요성 판단에 고려하지 않는다.\n특정 개인만의 특수한 요구에 미치는 영향으로 전체 중요성을 결정한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "q2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "q2.c1",
+          "verdict": "not_met",
+          "reason": "기존 독립 발문·기준의 의미와 정수 배점을 보존한 이동. 원 답안 및 기대값을 계보로 가져와 현행 발문·정답과 대조한다. 실제 모델 observation은 재사용하지 않고 새 projection에서 실측한다."
+        },
+        {
+          "criterion_id": "q2.c2",
+          "verdict": "not_met",
+          "reason": "기존 독립 발문·기준의 의미와 정수 배점을 보존한 이동. 원 답안 및 기대값을 계보로 가져와 현행 발문·정답과 대조한다. 실제 모델 observation은 재사용하지 않고 새 projection에서 실측한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "7eb450fa05b9923e0d1de007eff61426b2822e72599426fbbc0b0ac44cd5272f",
+  "schema_hash": "345c3316b0d39f633de5a12fea40191045016e844d6eb7acb57ed78a8fef52a5",
+  "actual_sdk_calls": 2,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "q2",
+        "verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "contradicted",
+            "quote": "재무제표 이용자들의 공통적인 재무정보 수요는 중요성 판단에 고려하지 않는다.\n",
+            "reason": "공통적인 재무정보 수요를 고려하지 않는다고 명시적으로 반대하였다."
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "contradicted",
+            "quote": "특정 개인만의 특수한 요구에 미치는 영향으로 전체 중요성을 결정한다.",
+            "reason": "특정 개인의 특수한 요구에 미치는 영향으로 전체 중요성을 결정한다고 하여, 개별 이용자 영향은 고려하지 않는다는 명제와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "error": "OpenAIRequestError: OpenAI API 요청에 실패했습니다."
+    },
+    {
+      "stage": "judgment",
+      "attempt": 2,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "q2",
+            "verdicts": [
+              {
+                "criterion_id": "q2.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q2/e1"
+                ],
+                "reason": "공통적인 재무정보 수요를 고려하지 않는다고 명시적으로 반대하였다."
+              },
+              {
+                "criterion_id": "q2.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q2/e2"
+                ],
+                "reason": "특정 개인의 특수한 요구에 미치는 영향으로 전체 중요성을 결정한다고 하여, 개별 이용자 영향은 고려하지 않는다는 명제와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-04-320-freq01-standards-20260913",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "q2",
+        "prompt": "중요성 판단에서는 어떤 범위의 재무제표 이용자와 어떤 정보수요를 고려해야 하는가? 특정 개인 이용자의 특수한 정보요구가 다른 이용자들과 다른 경우 그 개인에게 미치는 영향을 어떻게 취급하는지도 설명하시오.",
+        "user_answer": "재무제표 이용자들의 공통적인 재무정보 수요는 중요성 판단에 고려하지 않는다.\n특정 개인만의 특수한 요구에 미치는 영향으로 전체 중요성을 결정한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "contradicted",
+            "quote": "재무제표 이용자들의 공통적인 재무정보 수요는 중요성 판단에 고려하지 않는다.",
+            "reason": "공통적인 재무정보 수요를 고려하지 않는다고 명시적으로 반대하였다.",
+            "claim": "집단으로서 재무제표 이용자들의 공통적인 재무정보 수요를 고려한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "contradicted",
+            "quote": "특정 개인만의 특수한 요구에 미치는 영향으로 전체 중요성을 결정한다.",
+            "reason": "특정 개인의 특수한 요구에 미치는 영향으로 전체 중요성을 결정한다고 하여, 개별 이용자 영향은 고려하지 않는다는 명제와 반대된다.",
+            "claim": "개별 이용자의 정보요구는 다양할 수 있으므로 특정 개별 이용자에게 미치는 영향은 고려하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "집단으로서 재무제표 이용자들의 공통적인 재무정보 수요를 고려한다.",
+          "개별 이용자의 정보요구는 다양할 수 있으므로 특정 개별 이용자에게 미치는 영향은 고려하지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "q2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0e03220368a88187016aa604ea064487d0a3abbebf4f27b18a",
+        "request_id": "req_7661906191c1412eb75935005acfa01e",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2581,
+          "input_tokens_details": {
+            "cache_write_tokens": 2578,
+            "cached_tokens": 0
+          },
+          "output_tokens": 230,
+          "output_tokens_details": {
+            "reasoning_tokens": 62
+          },
+          "total_tokens": 2811
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009211,
+        "min_usd": 0.0009211,
+        "max_usd": 0.0009211,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v2/actual-c/draft-04-320-freq01-standards-20260913--q2--standard--wrong/input.json",
+      "sha256": "0e9a8961694bc688ea372809a649ab707657f1a4b89ae43d2924789b6481fe94"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v2/actual-c/draft-04-320-freq01-standards-20260913--q2--standard--wrong/transport.jsonl",
+      "sha256": "d7f46381c4dce324a109112ddd0a7c6ceacfc7f686a7184a8e14387475628887"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v2/actual-c/draft-04-320-freq01-standards-20260913--q2--standard--wrong/traces.jsonl",
+      "sha256": "0ed905b1f77bb41bfa3caee6927a868200bd52dbef0f708d588275d3fffdd936"
+    }
+  }
+}

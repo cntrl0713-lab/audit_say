@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-1308920f64f6--sub1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-1308920f64f6--sub1--standard",
+  "source_set_id": "std-points-20260914-1308920f64f6",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "ed38f3555b82b52740b82a855bb67deebf73076e0f6ed7fac2df33bba0e0ca2c",
+  "answers": {
+    "sub1": "그룹 내부거래와 미실현이익 및 내부거래 잔액은 연결재무제표에 원래 금액 그대로 남겨야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 그룹 내부거래가 적절히 조정·제거되었는지 점검한다."
+        },
+        {
+          "criterion_id": "crit1.p2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 그룹 내부거래의 미실현이익이 적절히 조정·제거되었는지 점검한다."
+        },
+        {
+          "criterion_id": "crit1.p3",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 그룹 내부거래 계정잔액이 적절히 조정·제거되었는지 점검한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "f83803de1ef20f4a75084f18e037e2544a4a7b2a5fab77c38e65bad906061fc1",
+  "schema_hash": "1383508c7b224107464a29a418bfc810db729ceb675ed67dc11f2afa0d7894db",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "그룹 내부거래와 미실현이익 및 내부거래 잔액은 연결재무제표에 원래 금액 그대로 남겨야 한다.",
+            "reason": "내부거래를 조정·제거하지 않고 원래 금액 그대로 남겨야 한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit1.p2",
+            "verdict": "contradicted",
+            "quote": "그룹 내부거래와 미실현이익 및 내부거래 잔액은 연결재무제표에 원래 금액 그대로 남겨야 한다.",
+            "reason": "미실현이익을 조정·제거하지 않고 원래 금액 그대로 남겨야 한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit1.p3",
+            "verdict": "contradicted",
+            "quote": "그룹 내부거래와 미실현이익 및 내부거래 잔액은 연결재무제표에 원래 금액 그대로 남겨야 한다.",
+            "reason": "내부거래 잔액을 조정·제거하지 않고 원래 금액 그대로 남겨야 한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "내부거래를 조정·제거하지 않고 원래 금액 그대로 남겨야 한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit1.p2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "미실현이익을 조정·제거하지 않고 원래 금액 그대로 남겨야 한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit1.p3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "내부거래 잔액을 조정·제거하지 않고 원래 금액 그대로 남겨야 한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-1308920f64f6",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "그룹재무제표의 연결절차에서 내부항목의 조정·제거 여부를 점검할 대상을 감사기준서 600 문단 A56의 마지막 항목에 따라 모두 제시하시오.",
+        "user_answer": "그룹 내부거래와 미실현이익 및 내부거래 잔액은 연결재무제표에 원래 금액 그대로 남겨야 한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "그룹 내부거래와 미실현이익 및 내부거래 잔액은 연결재무제표에 원래 금액 그대로 남겨야 한다.",
+            "reason": "내부거래를 조정·제거하지 않고 원래 금액 그대로 남겨야 한다고 명시했다.",
+            "claim": "그룹 내부거래가 적절히 조정·제거되었는지 점검한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit1.p2",
+            "verdict": "contradicted",
+            "quote": "그룹 내부거래와 미실현이익 및 내부거래 잔액은 연결재무제표에 원래 금액 그대로 남겨야 한다.",
+            "reason": "미실현이익을 조정·제거하지 않고 원래 금액 그대로 남겨야 한다고 명시했다.",
+            "claim": "그룹 내부거래의 미실현이익이 적절히 조정·제거되었는지 점검한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit1.p3",
+            "verdict": "contradicted",
+            "quote": "그룹 내부거래와 미실현이익 및 내부거래 잔액은 연결재무제표에 원래 금액 그대로 남겨야 한다.",
+            "reason": "내부거래 잔액을 조정·제거하지 않고 원래 금액 그대로 남겨야 한다고 명시했다.",
+            "claim": "그룹 내부거래 계정잔액이 적절히 조정·제거되었는지 점검한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "그룹 내부거래가 적절히 조정·제거되었는지 점검한다. 그룹 내부거래의 미실현이익과 그룹 내부거래 계정잔액도 각각 적절히 조정·제거되었는지 점검한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f25868436525941016aa7870101a887d0a87fa2fa79a226ec",
+        "request_id": "req_f2d7eb6d4b7b4277bc64897d1293182a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2504,
+          "input_tokens_details": {
+            "cache_write_tokens": 2501,
+            "cached_tokens": 0
+          },
+          "output_tokens": 272,
+          "output_tokens_details": {
+            "reasoning_tokens": 54
+          },
+          "total_tokens": 2776
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00095225,
+        "min_usd": 0.00095225,
+        "max_usd": 0.00095225,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-1308920f64f6--sub1--wrong/input.json",
+      "sha256": "ddebc922aab19f31b5da43f4307ccef0c3ebdeb2f383c3abd0146eb4890b2366"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-1308920f64f6--sub1--wrong/transport.jsonl",
+      "sha256": "501af2d0af47c88cce6d3f7e69d3f4c8ece50b324736d41afbe16461aa92c469"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-1308920f64f6--sub1--wrong/traces.jsonl",
+      "sha256": "6144391e03048d817eb2005dcf1afa9320ebcc262755c41144c9b3337d44c1f3"
+    }
+  }
+}

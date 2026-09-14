@@ -1,0 +1,350 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-03-006--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-03-006--case",
+  "source_set_id": "pilot-03-006",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "exp1"
+  ],
+  "projected_body_hash": "730450038204d9bd656aca1588f4a0c020b712b69ce51cd9a6dd4c5d5ebc69e3",
+  "answers": {
+    "sub1": "갑은 실제로 감사의 성격을 오해했고 필요한 정보가 검토에 해당하므로 변경에 합리적 정당성이 있다.",
+    "exp1": "법규도 해지를 허용하고 원래 감사도 더 수행할 수 없으므로 을 회사 감사업무를 해지한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "갑의 이유에서 정당성 판단도 함축된다. 을의 판단·이유는 없어 2/4점."
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "met",
+          "reason": "갑의 이유에서 정당성 판단도 함축된다. 을의 판단·이유는 없어 2/4점."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "갑의 이유에서 정당성 판단도 함축된다. 을의 판단·이유는 없어 2/4점."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "not_met",
+          "reason": "갑의 이유에서 정당성 판단도 함축된다. 을의 판단·이유는 없어 2/4점."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "exp1.c1",
+          "verdict": "met",
+          "reason": "업무 해지만 맞고 기타 보고의무 여부 결정은 없다."
+        },
+        {
+          "criterion_id": "exp1.c2",
+          "verdict": "not_met",
+          "reason": "업무 해지만 맞고 기타 보고의무 여부 결정은 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "74c59b637d47442d28716ef0bc1eda3a97ddefb91bac224cb17bfb56d0a194b3",
+  "schema_hash": "b696362ab09373d05727c041b3da9024c6478d2b83c2bd1a029dfd79ba787cee",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "갑은 실제로 감사의 성격을 오해했고 필요한 정보가 검토에 해당하므로 변경에 합리적 정당성이 있다.",
+            "reason": "갑의 오해와 검토에 해당하는 정보수요를 근거로 변경의 합리적 정당성을 명시했다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "met",
+            "quote": "갑은 실제로 감사의 성격을 오해했고 필요한 정보가 검토에 해당하므로 변경에 합리적 정당성이 있다.",
+            "reason": "감사 성격의 오해와 검토에 해당하는 정보수요가 변경의 합리적 근거임을 설명했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "을의 변경 요청에 대한 판단이 없다."
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "not_met",
+            "reason": "증거 부족 및 변형의견 회피 목적에 대한 판단이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp1",
+        "verdicts": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "met",
+            "quote": "법규도 해지를 허용하고 원래 감사도 더 수행할 수 없으므로 을 회사 감사업무를 해지한다.",
+            "reason": "원래 감사의 계속이 불가능하고 법규가 허용하는 상황에서 감사업무를 해지한다고 설명했다."
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "not_met",
+            "reason": "다른 이해관계자에 대한 보고의무 존재 여부를 결정하는 조치가 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "갑의 오해와 검토에 해당하는 정보수요를 근거로 변경의 합리적 정당성을 명시했다."
+              },
+              {
+                "criterion_id": "crit8",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "감사 성격의 오해와 검토에 해당하는 정보수요가 변경의 합리적 근거임을 설명했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "을의 변경 요청에 대한 판단이 없다."
+              },
+              {
+                "criterion_id": "crit9",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "증거 부족 및 변형의견 회피 목적에 대한 판단이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp1",
+            "verdicts": [
+              {
+                "criterion_id": "exp1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "원래 감사의 계속이 불가능하고 법규가 허용하는 상황에서 감사업무를 해지한다고 설명했다."
+              },
+              {
+                "criterion_id": "exp1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "다른 이해관계자에 대한 보고의무 존재 여부를 결정하는 조치가 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-03-006",
+    "score": 3,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "갑과 을의 변경 요청이 합리적 정당성을 갖는지 각각 판단하고, 각 사례의 사실에 연결하여 이유를 설명하시오.",
+        "user_answer": "갑은 실제로 감사의 성격을 오해했고 필요한 정보가 검토에 해당하므로 변경에 합리적 정당성이 있다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "갑은 실제로 감사의 성격을 오해했고 필요한 정보가 검토에 해당하므로 변경에 합리적 정당성이 있다.",
+            "reason": "갑의 오해와 검토에 해당하는 정보수요를 근거로 변경의 합리적 정당성을 명시했다.",
+            "claim": "갑의 변경 요청에는 합리적 정당성이 있다. 오해와 실제 정보수요 불일치를 합리적 근거로 설명하면 판단이 함축된다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "met",
+            "quote": "갑은 실제로 감사의 성격을 오해했고 필요한 정보가 검토에 해당하므로 변경에 합리적 정당성이 있다.",
+            "reason": "감사 성격의 오해와 검토에 해당하는 정보수요가 변경의 합리적 근거임을 설명했다.",
+            "claim": "실제 감사 성격의 오해와 검토에 해당하는 정보수요는 업무변경을 정당화할 수 있는 합리적인 근거이다. 법률·계약상 평가 완료는 이미 주어진 전제이며 반복하지 않아도 된다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "을의 변경 요청에 대한 판단이 없다.",
+            "claim": "을의 변경 요청에는 합리적 정당성이 없다. 증거 부족에 따른 변형의견 회피가 합리적 근거가 아님을 설명하면 판단이 함축된다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "not_met",
+            "reason": "증거 부족 및 변형의견 회피 목적에 대한 판단이 없다.",
+            "claim": "매출채권의 충분하고 적합한 증거를 입수할 수 없는 상황에서 한정의견·의견거절을 피하려는 목적은 합리적인 업무변경 근거가 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "갑의 변경 요청에는 합리적 정당성이 있다.",
+          "실제 감사 성격의 오해와 검토에 해당하는 정보수요는 업무변경을 정당화할 수 있는 합리적인 근거이다.",
+          "을의 변경 요청에는 합리적 정당성이 없다.",
+          "매출채권의 충분하고 적합한 증거를 입수할 수 없는 상황에서 한정의견·의견거절을 피하려는 목적은 합리적인 업무변경 근거가 아니다."
+        ]
+      },
+      {
+        "subquestion_id": "exp1",
+        "prompt": "을 회사의 후속 대응을 고려하여 감사인이 취해야 할 조치를 업무의 계속 여부와 다른 이해관계자에 대한 보고의무 측면에서 각각 설명하시오.",
+        "user_answer": "법규도 해지를 허용하고 원래 감사도 더 수행할 수 없으므로 을 회사 감사업무를 해지한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "met",
+            "quote": "법규도 해지를 허용하고 원래 감사도 더 수행할 수 없으므로 을 회사 감사업무를 해지한다.",
+            "reason": "원래 감사의 계속이 불가능하고 법규가 허용하는 상황에서 감사업무를 해지한다고 설명했다.",
+            "claim": "변경 거절 후 원래 감사의 계속도 차단되고 법규가 해지를 허용하는 을 회사의 감사업무를 해지한다. 변경 요청만 있으면 언제나 즉시 해지한다고 일반화하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "not_met",
+            "reason": "다른 이해관계자에 대한 보고의무 존재 여부를 결정하는 조치가 없다.",
+            "claim": "을 회사의 상황을 다른 이해관계자에게 보고할 계약상 또는 기타 의무의 존재 여부를 결정한다. 지배기구·소유주·규제기관 모두에게 자동 통보해야 한다는 의미로 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "변경에 동의할 수 없고 원래 감사도 허용되지 않으며 법규가 해지를 허용하므로 을 회사의 감사업무를 해지한다.",
+          "이 상황을 지배기구·소유주·규제기관 등 다른 이해관계자에게 보고해야 할 계약상 또는 기타 의무가 있는지 결정한다. 모든 상대방에게 무조건 통보하는 것은 아니다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_06141423baf0ea4f016aa6034c937887d085a8834a63412720",
+        "request_id": "req_5b1cfbaf259442f4a66e4f7ad35c8d72",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3940,
+          "input_tokens_details": {
+            "cache_write_tokens": 3937,
+            "cached_tokens": 0
+          },
+          "output_tokens": 429,
+          "output_tokens_details": {
+            "reasoning_tokens": 72
+          },
+          "total_tokens": 4369
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0014996500000000002,
+        "min_usd": 0.0014996500000000002,
+        "max_usd": 0.0014996500000000002,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-03-006--case--partial/input.json",
+      "sha256": "023d17b91238e6947063fae5444611d0b275e32f4be27fce4f8c7ce61b0a594f"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-03-006--case--partial/transport.jsonl",
+      "sha256": "0006bb4dc5b1197d28f15cae209623ac987caa70dd29ce61f8ed188b61f40b9a"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-03-006--case--partial/traces.jsonl",
+      "sha256": "696c685f8e0d6e489a0cb1cf7c1d9236d167bc3af8a053840847db7d1d7c8df6"
+    }
+  }
+}

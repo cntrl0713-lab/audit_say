@@ -1,0 +1,420 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-18-005--case--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-18-005--case",
+  "source_set_id": "pilot-18-005",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub3",
+    "sub4"
+  ],
+  "projected_body_hash": "d7e18090f7db6553dca7f53cd60bf728d45f9c845a5ea33928d36c1fd5ba5919",
+  "answers": {
+    "sub3": "A는 소규모기업 적용대상에 해당한다.\nA는 자산200억원과 무관하게 매출99억원이 100억원 미만 조건을 충족하므로 양적 조건을 충족한다.\nB는 소규모기업 적용대상에 해당한다.\nB는 매출100억원과 무관하게 자산199억원이 200억원 미만 조건을 충족하므로 양적 조건을 충족한다.",
+    "sub4": "C는 소규모기업 적용대상에 해당하지 않는다.\nC는 자산200억원과 매출100억원이 각각 경계값과 같아서 어느 미만 조건도 충족하지 못한다.\nD는 소규모기업 적용대상에 해당하지 않는다.\nD는 작은 규모와 무관하게 연결재무제표를 작성하는 지배회사라는 질적 제외범주에 해당한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 4,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit11",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        },
+        {
+          "criterion_id": "crit17",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        },
+        {
+          "criterion_id": "crit12",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        },
+        {
+          "criterion_id": "crit18",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub4",
+      "expected_points": 4,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit13",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        },
+        {
+          "criterion_id": "crit19",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        },
+        {
+          "criterion_id": "crit14",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        },
+        {
+          "criterion_id": "crit20",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "e483f6d56e278f89701db431e5a96ff9cadd5ec38d760b18a2e71de585fde38f",
+  "schema_hash": "36d50e5878ccfcc509ce25ca4bb4a3ad522d0779dad45ccb33de145c20821088",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit11",
+            "verdict": "met",
+            "quote": "A는 소규모기업 적용대상에 해당한다.\n",
+            "reason": "A가 소규모기업 적용대상이라고 명시했다."
+          },
+          {
+            "criterion_id": "crit17",
+            "verdict": "met",
+            "quote": "A는 자산200억원과 무관하게 매출99억원이 100억원 미만 조건을 충족하므로 양적 조건을 충족한다.\n",
+            "reason": "매출 99억원이 100억원 미만이고 자산과 무관하게 양적 조건을 충족한다고 설명했다."
+          },
+          {
+            "criterion_id": "crit12",
+            "verdict": "met",
+            "quote": "B는 소규모기업 적용대상에 해당한다.\n",
+            "reason": "B가 소규모기업 적용대상이라고 명시했다."
+          },
+          {
+            "criterion_id": "crit18",
+            "verdict": "met",
+            "quote": "B는 매출100억원과 무관하게 자산199억원이 200억원 미만 조건을 충족하므로 양적 조건을 충족한다.",
+            "reason": "자산 199억원이 200억원 미만이고 매출과 무관하게 양적 조건을 충족한다고 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub4",
+        "verdicts": [
+          {
+            "criterion_id": "crit13",
+            "verdict": "met",
+            "quote": "C는 소규모기업 적용대상에 해당하지 않는다.\n",
+            "reason": "C가 소규모기업 적용대상에 해당하지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "crit19",
+            "verdict": "met",
+            "quote": "C는 자산200억원과 매출100억원이 각각 경계값과 같아서 어느 미만 조건도 충족하지 못한다.\n",
+            "reason": "자산 200억원과 매출 100억원이 경계값과 같아 어느 미만 조건도 충족하지 못한다고 설명했다."
+          },
+          {
+            "criterion_id": "crit14",
+            "verdict": "met",
+            "quote": "D는 소규모기업 적용대상에 해당하지 않는다.\n",
+            "reason": "D가 소규모기업 적용대상에 해당하지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "crit20",
+            "verdict": "met",
+            "quote": "D는 작은 규모와 무관하게 연결재무제표를 작성하는 지배회사라는 질적 제외범주에 해당한다.",
+            "reason": "D가 연결재무제표를 작성하는 지배회사로서 질적 제외범주에 해당한다고 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit11",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "A가 소규모기업 적용대상이라고 명시했다."
+              },
+              {
+                "criterion_id": "crit17",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "매출 99억원이 100억원 미만이고 자산과 무관하게 양적 조건을 충족한다고 설명했다."
+              },
+              {
+                "criterion_id": "crit12",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e3"
+                ],
+                "reason": "B가 소규모기업 적용대상이라고 명시했다."
+              },
+              {
+                "criterion_id": "crit18",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e4"
+                ],
+                "reason": "자산 199억원이 200억원 미만이고 매출과 무관하게 양적 조건을 충족한다고 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub4",
+            "verdicts": [
+              {
+                "criterion_id": "crit13",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub4/e1"
+                ],
+                "reason": "C가 소규모기업 적용대상에 해당하지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "crit19",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub4/e2"
+                ],
+                "reason": "자산 200억원과 매출 100억원이 경계값과 같아 어느 미만 조건도 충족하지 못한다고 설명했다."
+              },
+              {
+                "criterion_id": "crit14",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub4/e3"
+                ],
+                "reason": "D가 소규모기업 적용대상에 해당하지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "crit20",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub4/e4"
+                ],
+                "reason": "D가 연결재무제표를 작성하는 지배회사로서 질적 제외범주에 해당한다고 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-18-005",
+    "score": 8,
+    "max_points": 8,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "A와 B가 각각 감사기준서 1200의 소규모기업 적용대상에 해당하는지 판단하고, 자산·매출의 양적 조건과 연결하여 결정적인 이유를 설명하시오.",
+        "user_answer": "A는 소규모기업 적용대상에 해당한다.\nA는 자산200억원과 무관하게 매출99억원이 100억원 미만 조건을 충족하므로 양적 조건을 충족한다.\nB는 소규모기업 적용대상에 해당한다.\nB는 매출100억원과 무관하게 자산199억원이 200억원 미만 조건을 충족하므로 양적 조건을 충족한다.",
+        "score": 4,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit11",
+            "verdict": "met",
+            "quote": "A는 소규모기업 적용대상에 해당한다.",
+            "reason": "A가 소규모기업 적용대상이라고 명시했다.",
+            "claim": "A는 소규모기업 적용대상에 해당한다. 아래 결정적 이유가 판단을 분명히 함축하면 판단 문구 반복을 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit17",
+            "verdict": "met",
+            "quote": "A는 자산200억원과 무관하게 매출99억원이 100억원 미만 조건을 충족하므로 양적 조건을 충족한다.",
+            "reason": "매출 99억원이 100억원 미만이고 자산과 무관하게 양적 조건을 충족한다고 설명했다.",
+            "claim": "A는 자산200억원과 무관하게 매출99억원이 100억원 미만 조건을 충족하므로 양적 조건을 충족한다. 수치만 반복하는 것으로는 이 이유를 대신하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit12",
+            "verdict": "met",
+            "quote": "B는 소규모기업 적용대상에 해당한다.",
+            "reason": "B가 소규모기업 적용대상이라고 명시했다.",
+            "claim": "B는 소규모기업 적용대상에 해당한다. 결정적 이유가 판단을 분명히 함축하면 판단 문구 반복을 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit18",
+            "verdict": "met",
+            "quote": "B는 매출100억원과 무관하게 자산199억원이 200억원 미만 조건을 충족하므로 양적 조건을 충족한다.",
+            "reason": "자산 199억원이 200억원 미만이고 매출과 무관하게 양적 조건을 충족한다고 설명했다.",
+            "claim": "B는 매출100억원과 무관하게 자산199억원이 200억원 미만 조건을 충족하므로 양적 조건을 충족한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "A는 소규모기업 적용대상에 해당한다.",
+          "A는 자산200억원과 무관하게 매출99억원이 100억원 미만 조건을 충족하므로 양적 조건을 충족한다.",
+          "B는 소규모기업 적용대상에 해당한다.",
+          "B는 매출100억원과 무관하게 자산199억원이 200억원 미만 조건을 충족하므로 양적 조건을 충족한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub4",
+        "prompt": "C와 D가 각각 감사기준서 1200의 소규모기업 적용대상에 해당하는지 판단하고, C는 양적 조건의 경계값에, D는 연결재무제표 작성 사실에 연결하여 이유를 설명하시오.",
+        "user_answer": "C는 소규모기업 적용대상에 해당하지 않는다.\nC는 자산200억원과 매출100억원이 각각 경계값과 같아서 어느 미만 조건도 충족하지 못한다.\nD는 소규모기업 적용대상에 해당하지 않는다.\nD는 작은 규모와 무관하게 연결재무제표를 작성하는 지배회사라는 질적 제외범주에 해당한다.",
+        "score": 4,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit13",
+            "verdict": "met",
+            "quote": "C는 소규모기업 적용대상에 해당하지 않는다.",
+            "reason": "C가 소규모기업 적용대상에 해당하지 않는다고 명시했다.",
+            "claim": "C는 소규모기업 적용대상에 해당하지 않는다. 결정적 이유가 판단을 분명히 함축하면 판단 문구 반복을 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit19",
+            "verdict": "met",
+            "quote": "C는 자산200억원과 매출100억원이 각각 경계값과 같아서 어느 미만 조건도 충족하지 못한다.",
+            "reason": "자산 200억원과 매출 100억원이 경계값과 같아 어느 미만 조건도 충족하지 못한다고 설명했다.",
+            "claim": "C는 자산200억원과 매출100억원이 각각 경계값과 같아서 어느 미만 조건도 충족하지 못한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit14",
+            "verdict": "met",
+            "quote": "D는 소규모기업 적용대상에 해당하지 않는다.",
+            "reason": "D가 소규모기업 적용대상에 해당하지 않는다고 명시했다.",
+            "claim": "D는 소규모기업 적용대상에 해당하지 않는다. 결정적 이유가 판단을 분명히 함축하면 판단 문구 반복을 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit20",
+            "verdict": "met",
+            "quote": "D는 작은 규모와 무관하게 연결재무제표를 작성하는 지배회사라는 질적 제외범주에 해당한다.",
+            "reason": "D가 연결재무제표를 작성하는 지배회사로서 질적 제외범주에 해당한다고 설명했다.",
+            "claim": "D는 작은 규모와 무관하게 연결재무제표를 작성하는 지배회사라는 질적 제외범주에 해당한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "C는 소규모기업 적용대상에 해당하지 않는다.",
+          "C는 자산200억원과 매출100억원이 각각 경계값과 같아서 어느 미만 조건도 충족하지 못한다.",
+          "D는 소규모기업 적용대상에 해당하지 않는다.",
+          "D는 작은 규모와 무관하게 연결재무제표를 작성하는 지배회사라는 질적 제외범주에 해당한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 4,
+      "actual_points": 4,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub4",
+      "evaluated": true,
+      "expected_points": 4,
+      "actual_points": 4,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02cbf360423b8d0c016aa5dc98b7fc87d08fb01b8845082e43",
+        "request_id": "req_97af603e76d9436984ccd9fa7fc5e986",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 4785,
+          "input_tokens_details": {
+            "cache_write_tokens": 4782,
+            "cached_tokens": 0
+          },
+          "output_tokens": 490,
+          "output_tokens_details": {
+            "reasoning_tokens": 33
+          },
+          "total_tokens": 5275
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0017840999999999998,
+        "min_usd": 0.0017840999999999998,
+        "max_usd": 0.0017840999999999998,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-18-005--case--model/input.json",
+      "sha256": "20c7cc95ab9cb985ec4aed102e8b9d6c21d5cb05ec4370461c27b6c75306aa93"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-18-005--case--model/transport.jsonl",
+      "sha256": "737e97959df9ab6ab0fd2d7294f980e8e21bd80f41fa9282d10daf997b60ba62"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-18-005--case--model/traces.jsonl",
+      "sha256": "3ca83f33b31f4b1984cb980e977748373b6631c433fa7e254379517b8653b5e1"
+    }
+  }
+}

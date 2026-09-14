@@ -1,7 +1,7 @@
 ---
 title: "draft-10-530-freq01. 통제테스트와 세부테스트 표본규모의 영향요소"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: question
 status: generated
 review_required: true
@@ -15,55 +15,17 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[analytics-audit-sampling]] · [[topic-10-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/107`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/80`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [10.json](../../analysis/reviews/question-review-2027/10.json)
-- 학습 순서: q1 → q2
+- 학습 순서: q2
 
 ## 공통 사실
 
-- f0 (scoreable=false): 이 사례는 2026년 1월 1일부터 12월 31일까지의 보고기간에 대한 재무제표감사이다. 감사보고서일 후의 후속 업무는 2027년에 수행한다.
-- f1 (scoreable=false): 다음 물음의 각 항목은 서로 독립적인 상황이다. 명시된 요소 외의 사항은 동일하며, 해당 감사절차의 목적·성격·시기를 바꾸지 않는다.
-- f2 (scoreable=false): 통제테스트의 표본규모와 세부테스트의 표본규모를 구별하여 답한다. 수치 계산은 요구하지 않는다.
-
-## q1
-
-유형: descriptive · JSON Pointer `/107/subquestions/0`
-
-### 발문
-
-다음 각 항목은 서로 독립적이며, 명시된 요소 외의 사항과 해당 감사절차의 목적·성격·시기는 동일하다. 각 변화가 통제테스트의 표본규모에 미치는 영향과 이유를 각각 설명하시오. ① 위험평가에서 통제의 운영효과성에 의존하는 정도가 증가한다. ② 모집단의 실제 이탈률이 허용이탈률을 초과하지 않는다는 확신에 대한 감사인의 요구수준이 높아진다. 수치 계산은 요구하지 않는다.
-
-### 모범답안
-
-- ① 통제테스트의 표본규모는 증가한다.
-- ① 통제에 더 의존하여 위험을 낮게 평가하려면 통제 운영효과성에 대해 더 많은 확신을 얻어야 하기 때문이다.
-- ② 통제테스트의 표본규모는 증가한다.
-- ② 표본결과가 모집단의 실제 이탈을 나타낸다는 점에 더 높은 수준의 확신을 요구하기 때문이다.
-
-### 답안 계약
-
-selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entries":null,"overflow_policy":"none"}`
-
-### 학습목표·채점명제와 핵심 조건
-
-| criterion | 정본 명제 | 핵심 사실·조건 | 배점·판정별 점수 | requirement | source |
-|---|---|---|---|---|---|
-| q1.c1 | ① 통제테스트의 표본규모는 증가한다. | q1.c1.fact (conclusion): ① 통제테스트의 표본규모는 증가한다. | 1; {"met":1,"not_met":0,"contradicted":0} | q1.r1 | src1 |
-| q1.c2 | ① 통제에 더 의존하여 위험을 낮게 평가하려면 통제 운영효과성에 대해 더 많은 확신을 얻어야 하기 때문이다. | q1.c2.fact (conclusion): ① 통제에 더 의존하여 위험을 낮게 평가하려면 통제 운영효과성에 대해 더 많은 확신을 얻어야 하기 때문이다. | 1; {"met":1,"not_met":0,"contradicted":0} | q1.r1 | src1 |
-| q1.c3 | ② 통제테스트의 표본규모는 증가한다. | q1.c3.fact (conclusion): ② 통제테스트의 표본규모는 증가한다. | 1; {"met":1,"not_met":0,"contradicted":0} | q1.r2 | src2 |
-| q1.c4 | ② 표본결과가 모집단의 실제 이탈을 나타낸다는 점에 더 높은 수준의 확신을 요구하기 때문이다. | q1.c4.fact (conclusion): ② 표본결과가 모집단의 실제 이탈을 나타낸다는 점에 더 높은 수준의 확신을 요구하기 때문이다. | 1; {"met":1,"not_met":0,"contradicted":0} | q1.r2 | src2 |
-
-### 요구사항과 직접 근거
-
-| requirement | 문단·페이지·판본 | source | 원문 인용 |
-|---|---|---|---|
-| q1.r1 | KGA 530 문단/보론 appendix2-1; 2025 개정 PDF 439쪽; KGA 530 KGA 530: 공식 문단 발췌 / 보론 2 (문단 A11 참조) 항목 1 원문 페이지 439; L95-L114 | [src1](../../data/official/delegated-r01-kga-2025.txt) | 1. 감사인이 위험을 평가할 때 통제의 운영효과성을 테 스트할 계획의 고 려 정도가 증가함 증가 감사인이 통제의 운영효과성에 대하여 보다 많은 확 신을 얻고자 할수록 중요한 왜곡표시 위험에 대한 감사인의 평가는 더 낮아지게 될 것이며, 필요한 표 본규모는 더 커지게 될 것이다. 감사인이 경영진주 장 수준의 중요왜곡표시위험을 평가할 때 통제의 운 영효과성에 대한 기대를 포함하고 있는 경우에는 통 제테스트를 수행하도록 요구된다. 다른 사항들이 동 일하다면, 위험평가에 있어서 통제의 운영효과성에 대한 감사인의 의존도가 클수록 감사인의 통제테스 트의 범위는 더 확대된다 (그러므로, 표본규모는 증 가한다). |
-| q1.r2 | KGA 530 문단/보론 appendix2-4; 2025 개정 PDF 439·440쪽; KGA 530 KGA 530: 공식 문단 발췌 / 보론 2 (문단 A11 참조) 항목 4 원문 페이지 439; L115-L128 | [src2](../../data/official/delegated-r01-kga-2025.txt) | 4. 모집단의 실제이 탈률이 허용이탈 률을 초과하지 않 증가 표본결과가 사실상 모집단의 실제 이탈을 나타내고 있다는 것에 대하여, 감사인이 더 높은 수준의 확신 요소 표본규모에 대한 영향 는다는 감사인의 요구수준이 증가 함 을 요구할수록 표본규모는 더 커져야 한다. |
 
 ## q2
 
-유형: descriptive · JSON Pointer `/107/subquestions/1`
+유형: descriptive · JSON Pointer `/80/subquestions/0`
 
 ### 발문
 

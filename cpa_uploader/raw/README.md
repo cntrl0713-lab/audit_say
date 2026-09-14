@@ -1,10 +1,34 @@
 # wiki·출제·검증 원자료
 
+[추가 사례3개의 출처 보존](collections/2026-09-14-case-trio-next/index.md)은 KGA450·580·610의2026 공식 전문, 기존 등록 인용, 실제 기출·고급회계감사연습 발문·해설과 페이지 대조 자료를 연결한다. [문항 제작·검증](../drafts/case-trio-next-2026-09-14/README.md)은 출처 보존과 별도 단계다.
+
+[사례형 3개 추가 제작 수집](collections/2026-09-14-case-trio/index.md)은 KGA 505·520·620 및315의 기존 전사와2026 전문, 실제 기출·고급연습 발문·해설 및 페이지 시각대조 근거를 보존한다. 새 등록단위는 없으며 이미 raw 안에 있는 시각대조 자료는 재수집하지 않고 원래 파생계보로 연결했다. [문항 제작·검증](../drafts/case-trio-2026-09-14/README.md)과 출처 보존의 완료 상태를 구별한다.
+
+[사례형 심화 6개 제작 수집](collections/2026-09-14-case-deepening/index.md)은 KGA 230·260·330·501의 새 발췌 10단위, 공식 PDF의 문단·각주·페이지 대조와 기존 기출·고급연습 자료를 보존한다. [독립 출처 검토](../drafts/case-deepening-2026-09-14/source-peer-review.json)는 260.A52의 오래된 교차참조를 원어대로 보존하면서 이번 정답의 직접 본문 근거와 구별한 기록을 포함한다. 문항 내용 검토·실제 채점·게시 상태는 [제작 배치](../drafts/case-deepening-2026-09-14/README.md)에서 따로 확인한다.
+
+[사례형 적용 확장 자료 수집](collections/2026-09-14-case-applied/index.md)은 계속기업 자금지원 증거의 KGA 570 A16·A19 발췌와 공식 PDF 대조, 2026년 8월 기타정보 FAQ 및 이번 6개 사례에 사용한 기출·고급연습·기준서 자료를 보존한다. FAQ는 기준서의 일부나 승인된 해석이 아닌 참고자료로 구별했다. [독립 출처 검토](../drafts/case-applied-2026-09-14/source-peer-review.json)는 출처의 완결성·권위 확인이며 문항 검토·실제 채점·게시 상태와 별개다.
+
+[사례형 후속 6개 제작 수집](collections/2026-09-14-case-followup/index.md)은 KGA 540의 전기추정 검토·경영진 편의 관련 새 발췌와 원문 행·쪽·각주 계보를 보존한다. 기존 2026 전문·공식 목록·기출·고급연습 자료는 바이트를 유지해 재사용하며, 최종 전사와 보완 전 사본은 [제작 배치](../drafts/case-followup-2026-09-14/README.md)에서 구별한다.
+
+[후속 제작의 공식 PDF 페이지 대조](collections/2026-09-14-case-followup-pages/index.md)는 KGA 540 시행일·문단·페이지를 가로지르는 각주 소유를 확인한 7개 이미지를 보존한다. [독립 출처 검토](../drafts/case-followup-2026-09-14/source-peer-review.json)는 문항 내용 검토 및 실제 채점과 구별된다.
+
+[사례형 추가 제작의 공식 판본 확인](collections/2026-09-14-case-additional/index.md)은 2026-09-14 확인한 한국공인회계사회 감사기준 목록 HTML을 보존한다. 목록의 2026년 개정 전문 게시물 식별과 개별 요구 문단의 내용 대조를 구별하며, 기존 전문·기출·고급연습의 직접 비교는 [제작 배치](../drafts/case-additional-2026-09-14/README.md)에 기록한다.
+
 wiki의 기반 자료와 실제 제작·검증에 사용한 출처를 모으는 로컬 보관소다. **[수집 색인](collections/2026-09-11-initial/index.md)**에서 원래 경로와 raw 보존본을 찾는다. [매니페스트](collections/2026-09-11-initial/manifest.json)는 파일별 SHA-256·크기·역할·중복 연결·미보관 자료를 기록한다.
 
 [KGA 250 판본 후속 수집](collections/2026-09-12-kga250-edition-followup/index.md)은 2022년 공식 개정 공고·공문·개요, 2023년 전문과 발췌·페이지·취득 계보를 보존한다. 본문의 `202X` 표기를 임의 보정하지 않고 별도 공식 시행 공고와 해당 문단을 대조한 자료다.
 
 [KGA 800 판본 후속 수집](collections/2026-09-12-kga800-edition-followup/index.md)은 2020년 국내 800·805·810 공식 개정 공고·Word 원문과 문단 추출·전사·취득 및 검토 계보를 보존한다. 최초 `.zip` 저장명과 읽기용 `.docx` 두 쌍은 동일 바이트이며 서로 다른 판본이 아니다.
+
+[기준서형 공백 보완 수집](collections/2026-09-13-standard-gap/index.md)은 기존 2026년 공식 전문 추출본에서 새 14물음의 직접 근거와 의존 문맥을 발췌한 자료를 보존한다. 원본 PDF·전문 추출본의 기존 보존 경로와 원행 범위는 [출처 계보](../drafts/standard-gap-2026-09-13/sources/provenance.json)에서 확인한다.
+
+[기준서·윤리·법규 추가 출제 수집](collections/2026-09-13-standard-expansion/index.md)은 후속 15물음의 감사기준서·윤리기준 발췌, 현행 외부감사법 제9조의 공식 HTML·추출본과 페이지 대조 자료를 보존한다. 판본·원출처·추출 계보는 [출처 기록](../drafts/standard-expansion-2026-09-13/sources/provenance.json)에서 확인한다.
+
+[기준서형 후속 14물음 수집](collections/2026-09-13-standard-followup/index.md)은 성공보수·기밀정보 공개, 외부감사법 제22조, 재고·기초잔액·표본추출·감사보고 관련 공식 발췌와 법령 HTML을 보존한다. 기존 공식 전문과 새 발췌의 관계는 [출처 계보](../drafts/standard-followup-2026-09-13/sources/provenance.json)에 기록했다.
+
+[기준서형 우선 추가 10물음 수집](collections/2026-09-14-standard-priority/index.md)은 외부감사법 제10·31조와 KGA 705·260·600의 직접 근거 발췌를 보존한다. 외부감사법은 2026-09-11 수집 전문(법률 제20896호, 2025-04-01 시행)에서 발췌했고 2026-09-14 현행 여부를 확인했다. 계보는 [출처 기록](../drafts/standard-priority-2026-09-14/sources/provenance.json)에 있다.
+
+[기준서형 신규 요구 13물음 수집](collections/2026-09-13-standard-additional/index.md)은 선물·접대, 의뢰인 자산 보관, 전문가적 판단, 재무보고체계·법정 보고서, 감사문서 및 특수관계자 관련 공식 발췌를 보존한다. 기존 전문·추출본과 이번 발췌의 관계는 [출처 계보](../drafts/standard-additional-2026-09-13/sources/provenance.json)에서 확인한다.
 
 | 위치 | 용도 |
 | --- | --- |

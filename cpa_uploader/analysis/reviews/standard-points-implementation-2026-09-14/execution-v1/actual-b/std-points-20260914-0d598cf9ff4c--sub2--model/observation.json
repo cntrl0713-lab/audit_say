@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-0d598cf9ff4c--sub2--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-0d598cf9ff4c--sub2--standard",
+  "source_set_id": "std-points-20260914-0d598cf9ff4c",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "9ac0fef9ca93a7b96b688177fdddf48a59616cdee69c5567cea54d109513c1b8",
+  "answers": {
+    "sub2": "해당 재무보고체계에 따라 중요성의 관점에서 작성되었다고 결론 내리면 적정의견을 표명한다.\n재무제표 전체에 중요한 왜곡표시가 있다고 결론 내리거나, 중요한 왜곡표시가 없다고 결론 내릴 충분하고 적합한 감사증거를 입수할 수 없으면 의견을 변형한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 주어진 결론에 대응하여 적정의견을 제시함. 의견 명칭만으로 인정하며 주어진 조건을 다시 쓰도록 요구하지 않음"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 증거에 근거하여 재무제표 전체의 중요한 왜곡표시를 결론 내린 경우를 제시함"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 재무제표 전체에 중요한 왜곡표시가 없다고 결론 내리기에 충분하고 적합한 증거를 입수할 수 없는 경우를 제시함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "49d8c253303fe3e629a0fa6b6421b3c3f8b28944c1c5a6c345ab090757268410",
+  "schema_hash": "a72193ed80e0bc00e1d1ea549c3418ed8e9d85163bd00145cda5007ab350134b",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "해당 재무보고체계에 따라 중요성의 관점에서 작성되었다고 결론 내리면 적정의견을 표명한다.\n",
+            "reason": "적정의견을 표명한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "중요한 왜곡표시 결론은 제시했지만 감사증거에 근거한다는 요건이 명확하지 않다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "재무제표 전체에 중요한 왜곡표시가 있다고 결론 내리거나, 중요한 왜곡표시가 없다고 결론 내릴 충분하고 적합한 감사증거를 입수할 수 없으면 의견을 변형한다.",
+            "reason": "충분하고 적합한 감사증거를 입수할 수 없는 경우를 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "적정의견을 표명한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "중요한 왜곡표시 결론은 제시했지만 감사증거에 근거한다는 요건이 명확하지 않다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "충분하고 적합한 감사증거를 입수할 수 없는 경우를 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-0d598cf9ff4c",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "재무제표가 중요성의 관점에서 해당 재무보고체계에 따라 작성되었다고 결론을 내린 경우 표명할 감사의견을 제시하시오. 이어 감사의견을 변형해야 하는 두 경우를 설명하시오.",
+        "user_answer": "해당 재무보고체계에 따라 중요성의 관점에서 작성되었다고 결론 내리면 적정의견을 표명한다.\n재무제표 전체에 중요한 왜곡표시가 있다고 결론 내리거나, 중요한 왜곡표시가 없다고 결론 내릴 충분하고 적합한 감사증거를 입수할 수 없으면 의견을 변형한다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "해당 재무보고체계에 따라 중요성의 관점에서 작성되었다고 결론 내리면 적정의견을 표명한다.",
+            "reason": "적정의견을 표명한다고 명시했다.",
+            "claim": "주어진 결론에 대응하여 적정의견을 제시함. 의견 명칭만으로 인정하며 주어진 조건을 다시 쓰도록 요구하지 않음",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "중요한 왜곡표시 결론은 제시했지만 감사증거에 근거한다는 요건이 명확하지 않다.",
+            "claim": "증거에 근거하여 재무제표 전체의 중요한 왜곡표시를 결론 내린 경우를 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "재무제표 전체에 중요한 왜곡표시가 있다고 결론 내리거나, 중요한 왜곡표시가 없다고 결론 내릴 충분하고 적합한 감사증거를 입수할 수 없으면 의견을 변형한다.",
+            "reason": "충분하고 적합한 감사증거를 입수할 수 없는 경우를 제시했다.",
+            "claim": "재무제표 전체에 중요한 왜곡표시가 없다고 결론 내리기에 충분하고 적합한 증거를 입수할 수 없는 경우를 제시함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "해당 재무보고체계에 따라 중요성의 관점에서 작성되었다고 결론 내리면 적정의견을 표명한다.",
+          "재무제표 전체에 중요한 왜곡표시가 있다고 결론 내리거나, 중요한 왜곡표시가 없다고 결론 내릴 충분하고 적합한 감사증거를 입수할 수 없으면 의견을 변형한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 2,
+      "delta": -1,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0c2012da6b4c0527016aa7879f20ac87d08ae11c0f11f543ab",
+        "request_id": "req_9322249a8dd549deb02d71974b9336d5",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2825,
+          "input_tokens_details": {
+            "cache_write_tokens": 2822,
+            "cached_tokens": 0
+          },
+          "output_tokens": 403,
+          "output_tokens_details": {
+            "reasoning_tokens": 217
+          },
+          "total_tokens": 3228
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0011897000000000001,
+        "min_usd": 0.0011897000000000001,
+        "max_usd": 0.0011897000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-0d598cf9ff4c--sub2--model/input.json",
+      "sha256": "0989bb5cc4b0b2325ad1f0528cb8d32d86ae469a715d3698587903deec189732"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-0d598cf9ff4c--sub2--model/transport.jsonl",
+      "sha256": "aab538dac566b3f79bfd234e91f5b9e8e47f4a53165e2e8dab91831e0818639e"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-0d598cf9ff4c--sub2--model/traces.jsonl",
+      "sha256": "a28f68deefc60adced123fcd70859b4250663b0f7ce62c5f46bf61fc36187665"
+    }
+  }
+}

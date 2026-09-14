@@ -1,0 +1,24 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+import {compileLearningCatalog} from '../../../../scripts/build-learning-unit-catalog.ts';
+import {compilePublicQuestionSet} from '../../../../lib/questionV3.ts';
+import {contentHash} from '../../../../lib/learningSubmission.ts';
+import {reviewedContentHash} from '../../../questionReviewIdentity.ts';
+const P='cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2',stage=P+'/stage';
+const read=f=>JSON.parse(fs.readFileSync(f,'utf8')),ref=file=>({file,sha256:createHash('sha256').update(fs.readFileSync(file)).digest('hex')}),write=(file,v)=>fs.writeFileSync(file,JSON.stringify(v,null,2)+'\n',{flag:'wx'});
+const guards=read(P+'/baseline.json');const guard=()=>{for(const r of guards)assert.equal(ref(r.file).sha256,r.sha256,'다른 정본 변경');};guard();
+for(const id of ['01-verify','02-publish','03-compile','04-validate'])assert.equal(read(P+'/'+id+'.result.json').exit_code,0);
+assert.equal(ref(stage+'/authoring.json').sha256,read(stage+'/db-readiness.json').source_file_hash);
+const env={...process.env,CPA_QUESTION_V3_AUTHORING_PATH:path.resolve(stage+'/authoring.json'),CPA_QUESTION_V3_PROMOTIONS_PATH:path.resolve(stage+'/promotions.json'),CPA_QUESTION_V3_PUBLIC_PATH:path.resolve(stage+'/public.json'),CPA_QUESTION_V3_ENCRYPTED_PATH:path.resolve(stage+'/encrypted.json')};for(const k of Object.keys(env))if(/OPENAI|ANTHROPIC|SUPABASE/i.test(k))delete env[k];
+const log=P+'/05b-db-readiness.log',fd=fs.openSync(log,'wx'),start=Date.now();let result;try{result=spawnSync(process.execPath,['--import','tsx','scripts/import-question-bank-v3.ts','--learning-catalog',stage+'/learning-catalog.json','--report',stage+'/db-readiness-v2.json'],{env,windowsHide:true,stdio:['ignore',fd,fd]});}finally{fs.closeSync(fd);}
+write(P+'/05b-db-readiness.result.json',{exit_code:result.status,elapsed_ms:Date.now()-start,log:ref(log)});assert.equal(result.status,0,'보완 후 DB 준비 검사 실패');guard();
+const final=read(stage+'/authoring.json'),original=read(P+'/baseline/authoring.json'),prior=read(P+'/baseline/ledger.json'),next=read(stage+'/promotions.json');
+assert.deepEqual(final.slice(0,original.length),original);assert.equal(final.length,161);assert.equal(final.flatMap(s=>s.subquestions).length,377);assert.deepEqual(final.map(reviewedContentHash),read(P+'/evidence-bank.json').map(reviewedContentHash));assert(final.every(s=>s.status==='published'));
+assert.deepEqual(next.entries.slice(0,prior.entries.length),prior.entries);assert.equal(next.entries.length-prior.entries.length,12);
+const review={source_file:'cpa_uploader/data/cpa_question_sets_v3.authoring.json',source_file_sha256:ref(stage+'/authoring.json').sha256,entries:read(P+'/classification-review.json').entries};const reviewFile=P+'/canonical-classification-review.json';write(reviewFile,review);
+const topics=read(P+'/evidence-catalog.json').topics,{classifications}=compileLearningCatalog(final,review.entries,topics),file=P+'/canonical-catalog.json';write(file,{schema_version:1,source_file:review.source_file,source_file_sha256:review.source_file_sha256,public_content_hash:contentHash(final.map(compilePublicQuestionSet)),review_file:reviewFile,review_file_sha256:ref(reviewFile).sha256,topics,classifications});
+write(P+'/stage-completion.json',{status:'staged_and_validated',files:['authoring.json','promotions.json','public.json','encrypted.json'].map(f=>ref(stage+'/'+f)),catalog:ref(file),db_ready:read(stage+'/db-readiness-v2.json').ready,old_sets_preserved:155,new_sets:6,new_questions:13,new_points:62,model_api_calls:0,resumption:'05 최초 실패·원 보고서를 보존하고 검증 실행 한도 보완 후 05b로 재개'});
+console.log(JSON.stringify({status:'staged_and_validated',db_validation:read(stage+'/db-readiness-v2.json').full_bank_validation}));

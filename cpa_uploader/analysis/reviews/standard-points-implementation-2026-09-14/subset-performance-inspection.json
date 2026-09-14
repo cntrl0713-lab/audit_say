@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "artifact_type": "subset_verification_performance_inspection",
+  "runtime_code_modified": false,
+  "source": "Static call path plus completed v2 evidence file inventory",
+  "v2_evidence_files": 9488,
+  "v2_evidence_total_bytes": 301507436,
+  "v2_evidence_total_mebibytes": 287.54,
+  "nested_guard_path": [
+    "createSubsetReviewReceipt",
+    "validatePromotionLedger([source], originalLedger, true, {efficientContext})",
+    "assertEfficientEvidenceUnchanged(context)",
+    "Read and SHA256 every tracked evidence file again"
+  ],
+  "subset_count": 50,
+  "full_context_50_scans_upper_estimate_gib": 14.04,
+  "repetition_estimate": "After evidence is populated, 50 subset origins can scan it 50 times per complete validation pass; earlier contexts are smaller. Stage creates receipts and performs two further whole-ledger validations.",
+  "candidate_improvement": "Potential follow-up outside frozen runtime: transaction-local validated-origin caching while regenerating exact subset contracts and retaining the final complete byte guard immediately before writes. Requires reviewed implementation and tests; no code change is made here.",
+  "stage_issue": "First full-ledger validation runs while changed sets are verified. requirePublished must be false there and true after published transitions. Root notified."
+}

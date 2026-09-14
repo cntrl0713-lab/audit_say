@@ -1,0 +1,278 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-4e39b686bc62--sub1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-4e39b686bc62--sub1--standard",
+  "source_set_id": "std-points-20260914-4e39b686bc62",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "62e910f2a2ff26e737855ad47d6b9190ead145531cbb78d2317fd82e205567b0",
+  "answers": {
+    "sub1": "감사보고서일 후에도 모든 거래를 상시 감사할 의무가 있으며, 보고서 수정 원인이 될 새 사실을 알아도 재무제표는 수정할 수 없고 새 보고서일은 원래 보고서일로 소급한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 감사보고서일 후에는 원칙적으로 재무제표에 대한 감사절차 수행 의무가 없다. 새 사실 인지 시의 예외 대응까지 부정하는 절대 무의무 주장은 인정하지 않는다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 제시된 사실을 알게 되면 경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 재무제표의 수정이 필요한지 결정한다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 수정이 필요하다고 결정하면 경영진이 재무제표에서 어떻게 다룰 계획인지 질문한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 새로운 감사보고서 일자는 수정된 재무제표 승인일보다 빠르지 않아야 한다고 설명함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "d775827429b6ac0c25dee75ff328233c630a213ce02018f8f66a401952105f5f",
+  "schema_hash": "1ffb0ec3d77033e9b4caab48d16b9db25eb1d4ead9386d107f272f25942d03b5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "감사보고서일 후에도 모든 거래를 상시 감사할 의무가 있으며, 보고서 수정 원인이 될 새 사실을 알아도 재무제표는 수정할 수 없고 새 보고서일은 원래 보고서일로 소급한다.",
+            "reason": "감사보고서일 후에도 모든 거래를 상시 감사할 의무가 있다고 명시하여 원칙적 무의무와 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "경영진 및 지배기구와의 토의가 언급되지 않았다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "감사보고서일 후에도 모든 거래를 상시 감사할 의무가 있으며, 보고서 수정 원인이 될 새 사실을 알아도 재무제표는 수정할 수 없고 새 보고서일은 원래 보고서일로 소급한다.",
+            "reason": "재무제표를 수정할 수 없다고 명시하여 수정 필요성 판단과 반대된다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "경영진의 재무제표 처리 계획을 질문하는 절차가 제시되지 않았다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "감사보고서일 후에도 모든 거래를 상시 감사할 의무가 있으며, 보고서 수정 원인이 될 새 사실을 알아도 재무제표는 수정할 수 없고 새 보고서일은 원래 보고서일로 소급한다.",
+            "reason": "새 보고서일을 원래 보고서일로 소급한다고 하여 승인일보다 빠를 수 없다는 제한과 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "감사보고서일 후에도 모든 거래를 상시 감사할 의무가 있다고 명시하여 원칙적 무의무와 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진 및 지배기구와의 토의가 언급되지 않았다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "재무제표를 수정할 수 없다고 명시하여 수정 필요성 판단과 반대된다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진의 재무제표 처리 계획을 질문하는 절차가 제시되지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "새 보고서일을 원래 보고서일로 소급한다고 하여 승인일보다 빠를 수 없다는 제한과 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-4e39b686bc62",
+    "score": 0,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사보고서일 후 재무제표에 대한 감사절차 수행 의무의 원칙을 설명하시오. 감사보고서일에 알았더라면 보고서를 수정할 원인이 될 수도 있었던 사실을 그 일자 후 재무제표 발행일 전에 알게 된 경우의 대응 절차를 조건과 함께 제시하시오. 경영진이 재무제표를 수정하여 새 감사보고서를 제출한다면 그 일자의 제한도 설명하시오. 감사기준서 560 문단 12의 수정사항 한정 상황은 적용되지 않는다.",
+        "user_answer": "감사보고서일 후에도 모든 거래를 상시 감사할 의무가 있으며, 보고서 수정 원인이 될 새 사실을 알아도 재무제표는 수정할 수 없고 새 보고서일은 원래 보고서일로 소급한다.",
+        "score": 0,
+        "max_points": 5,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "감사보고서일 후에도 모든 거래를 상시 감사할 의무가 있으며, 보고서 수정 원인이 될 새 사실을 알아도 재무제표는 수정할 수 없고 새 보고서일은 원래 보고서일로 소급한다.",
+            "reason": "감사보고서일 후에도 모든 거래를 상시 감사할 의무가 있다고 명시하여 원칙적 무의무와 반대된다.",
+            "claim": "감사보고서일 후에는 원칙적으로 재무제표에 대한 감사절차 수행 의무가 없다. 새 사실 인지 시의 예외 대응까지 부정하는 절대 무의무 주장은 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "경영진 및 지배기구와의 토의가 언급되지 않았다.",
+            "claim": "제시된 사실을 알게 되면 경영진 및 적절한 경우 지배기구와 해당 사항을 토의한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "감사보고서일 후에도 모든 거래를 상시 감사할 의무가 있으며, 보고서 수정 원인이 될 새 사실을 알아도 재무제표는 수정할 수 없고 새 보고서일은 원래 보고서일로 소급한다.",
+            "reason": "재무제표를 수정할 수 없다고 명시하여 수정 필요성 판단과 반대된다.",
+            "claim": "재무제표의 수정이 필요한지 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "경영진의 재무제표 처리 계획을 질문하는 절차가 제시되지 않았다.",
+            "claim": "수정이 필요하다고 결정하면 경영진이 재무제표에서 어떻게 다룰 계획인지 질문한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "감사보고서일 후에도 모든 거래를 상시 감사할 의무가 있으며, 보고서 수정 원인이 될 새 사실을 알아도 재무제표는 수정할 수 없고 새 보고서일은 원래 보고서일로 소급한다.",
+            "reason": "새 보고서일을 원래 보고서일로 소급한다고 하여 승인일보다 빠를 수 없다는 제한과 반대된다.",
+            "claim": "새로운 감사보고서 일자는 수정된 재무제표 승인일보다 빠르지 않아야 한다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사보고서일 후에는 원칙적으로 재무제표에 대한 감사절차를 수행할 의무가 없다. 다만 제시된 사실을 알게 되면 경영진과 적절한 경우 지배기구와 토의하고 재무제표 수정이 필요한지 결정한다. 수정이 필요하면 경영진이 재무제표에서 어떻게 처리할 계획인지 질문한다. 수정 재무제표에 새 감사보고서를 제출할 때 새 보고서일은 수정 재무제표 승인일보다 빠를 수 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_07e797ce0250575a016aa786ab8f0c87d08321d9f5f9b1bb28",
+        "request_id": "req_14c7ab9ec6844f96ab6e3144dfb72400",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2886,
+          "input_tokens_details": {
+            "cache_write_tokens": 2883,
+            "cached_tokens": 0
+          },
+          "output_tokens": 432,
+          "output_tokens_details": {
+            "reasoning_tokens": 137
+          },
+          "total_tokens": 3318
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00123975,
+        "min_usd": 0.00123975,
+        "max_usd": 0.00123975,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-4e39b686bc62--sub1--wrong/input.json",
+      "sha256": "d2b7ba360755ed01ded2c759760b84c02afeb1d259bb16a2272bf8d16960774d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-4e39b686bc62--sub1--wrong/transport.jsonl",
+      "sha256": "ab21ab829ef3992b4339fd858ba4a10c332c345db76b0ae50e5aeee2c322c006"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-4e39b686bc62--sub1--wrong/traces.jsonl",
+      "sha256": "bee424e3a8f93bfaccf548cfaeec0d53ecd83cde603fbe53d79aaa2746177d8f"
+    }
+  }
+}

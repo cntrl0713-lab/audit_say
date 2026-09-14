@@ -1,0 +1,37 @@
+diff --git a/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/reuse-source/write-report.mjs.txt b/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/write-report.mjs
+index ce0dc895..0d0829aa 100644
+--- a/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/reuse-source/write-report.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/write-report.mjs
+@@ -2,9 +2,9 @@ import fs from 'node:fs';
+ import assert from 'node:assert/strict';
+ import {createHash} from 'node:crypto';
+ 
+-const R='cpa_uploader/analysis/reviews/case-followup-2026-09-14';
+-const D='cpa_uploader/drafts/case-followup-2026-09-14';
+-const reportFile='docs/reports/case-followup-2026-09-14.md';
++const R='cpa_uploader/analysis/reviews/case-applied-2026-09-14';
++const D='cpa_uploader/drafts/case-applied-2026-09-14';
++const reportFile='docs/reports/case-applied-2026-09-14.md';
+ const answersFile=D+'/questions-and-answers.md';
+ const read=file=>JSON.parse(fs.readFileSync(file));
+ const hash=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+@@ -83,7 +83,7 @@ const cost=grade.known_cost
+   : `전체 비용은 미확인이다. 사용량 미반환 호출 ${grade.accounting.requests_without_returned_usage}개, 단가/사용량 미확인 응답 ${grade.accounting.unknown_cost_responses}개, 비용 범위만 계산 가능한 응답 ${grade.accounting.bounded_cost_responses}개를 0원으로 처리하지 않았다.`;
+ 
+ const lines=[
+-  '# 2026-09-14 후속 사례형 제작 결과','',
++  '# 2026-09-14 적용 확장 사례형 제작 결과','',
+   `사용자 확정 범위인 새 사례 ${shape.new_cases}개·${shape.new_questions}물음의 제작, agent 내용 검토, 실제 Luna 채점과 정본·공개본·운영 DB 반영을 완료했다. 기존 문항의 본문·정답·배점을 보존했다.`,'',
+   '| 추가 사례 | 사실관계 문자 수 | 물음 | 배점 |','|---|---:|---:|---:|',
+   ...measured.map(row=>`| ${tableText(row.title)} | ${row.facts_characters} | ${row.questions} | ${row.points} |`),'',
+@@ -134,8 +134,8 @@ if(fs.existsSync(finalChecksFile)){
+ }
+ lines.push(`[실행·게시 증거](../../${R}/README.md) · [출처·설계와 검토](../../${D}/README.md) · [공식 판본 확인 목록](https://www.kicpa.or.kr/board/list.brd?boardId=acc0102)`,'');
+ 
+-const questionLines=['# 후속 사례형 문제와 모범답안','',
+-  `2026-09-14 후속 제작한 사례 ${shape.new_cases}개·${shape.new_questions}물음이다. 지문과 모범답안을 함께 조회하는 내부 검토 자료이며, 기출·연습과 기준서의 요구를 참고해 별도로 구성한 연습 사례다.`];
++const questionLines=['# 적용 확장 사례형 문제와 모범답안','',
++  `2026-09-14 추가 제작한 사례 ${shape.new_cases}개·${shape.new_questions}물음이다. 지문과 모범답안을 함께 조회하는 내부 검토 자료이며, 기출·연습과 기준서의 요구를 참고해 별도로 구성한 연습 사례다.`];
+ for(const [index,set]of sets.entries()){
+   questionLines.push('',`## ${index+1}. ${set.title}`,'',...set.shared_context.facts.flatMap(fact=>[fact.text,'']));
+   for(const [questionIndex,question]of set.subquestions.entries()){

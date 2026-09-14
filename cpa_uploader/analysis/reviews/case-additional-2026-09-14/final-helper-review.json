@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-09-14T02:23:41.223Z",
+  "reviewer_id": "agent:/root/execution_setup",
+  "method": "read_only_helper_and_saved_artifact_review",
+  "status": "pass",
+  "reviewed_files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/capture-integration-baseline.mjs",
+      "sha256": "f3de3e6994c4765d5763a7be2bd1670993e48a7d02d813981cff7dc718989d92"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/integrate.mjs",
+      "sha256": "28af681e82b9a78891ece6df38eca0478de3bfea2e892f8520b80b092ca60409"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/build-execution.mjs",
+      "sha256": "659e268c5371eb4296baf82c5c58ef5ed64a5d369e52bce96b685976527b3480"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publish.mjs",
+      "sha256": "5f1afb063cb55fa206ec4e1c55d67d1f3abf8dbe043eced1c214743de3263a73"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/update-coverage.mjs",
+      "sha256": "178eefe7f3cbf7badc3ea7b02e8c0b285f1bd553e965be2de4a1741ac5aa51f3"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/write-report.mjs",
+      "sha256": "ea762771d6ed763e5df8f3a0396999fc99953d7506a6b4e92280ae5e92215667"
+    }
+  ],
+  "checks": {
+    "initial_snapshot_hash_matches": {
+      "bank": true,
+      "catalog": true,
+      "classification": true
+    },
+    "integration_snapshot_hash_matches": {
+      "bank": true,
+      "catalog": true,
+      "classification": true
+    },
+    "initial_set_count": 186,
+    "integration_set_count": 213,
+    "candidate_set_count": 219,
+    "initial186_preserved_in_integration": true,
+    "integration213_preserved_in_candidate": true,
+    "old_classification_entries_preserved": true,
+    "added27_are_fully_classified_standards": true,
+    "artifacts": {
+      "stage": false,
+      "install": false,
+      "db": false,
+      "final_report": false
+    },
+    "integration213_preserved_in_stage": true,
+    "backups_match_recorded_hash": true,
+    "baseline_capture": "기존 D 스냅샷을 다시 쓰지 않고 새 integration-baseline 폴더와 wx 기록을 만들며 복사 원본·사본 해시를 대조한다.",
+    "execution_inputs": "integrate와 build-execution이 최신 213세트 스냅샷을 사용한다. candidate의 기존 세트 내용과 분류 entry를 보존하며, 기존 D 증거와 새 통합 baseline을 모두 실행 근거에 포함한다.",
+    "publish_guards": "stage 전과 백업 직후 최신 bank/catalog 해시를 대조한다. install은 기존 원본·백업·격리 출력 해시를 검사하고 기존 승급 entries의 prefix를 보존한다. rollback은 허용된 이번 변경 상태와 정확한 백업이 있는 경우에 한한다.",
+    "coverage_guards": "운영 DB 독립검증 completion이 있어야 실행한다. 제안·root 검토·출처와 대상 snapshot을 대조하고 기존 links를 유지한 채 새 6개를 추가한다. 기존 입력의 바이트 백업을 남긴다.",
+    "report_guards": "새 6세트 published 상태, 운영 DB 독립검증 completion, 기존 213세트의 동일성 및 전체 사례 형상을 확인한 후 완료 보고서를 쓴다. deploy의 completion은 실제 적용 receipt와 독립 live verifier 통과 이후에만 생성한다.",
+    "grading_report": "저장된 summary의 54답안·53정확·54±1·18 SDK 호출과 $0.04287175 추정 비용을 사용한다. 1점 편차를 누락하지 않고 원 기대값과 추가 호출 없음으로 설명한다."
+  },
+  "unresolved_findings": [],
+  "limitations": "이 기록은 helper와 당시 저장된 파일의 독립 검토다. 확인 시 stage-completion/install-completion/DB completion/최종 보고서는 아직 없었으며 실제 배포 완료를 판정하지 않는다. 모델·API·DB 호출 및 검토 대상 파일 수정은 하지 않았다."
+}

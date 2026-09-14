@@ -1,0 +1,61 @@
+import fs from 'node:fs';
+const batch='cpa_uploader/drafts/standard-gap-2026-09-13';
+const read=f=>JSON.parse(fs.readFileSync(f,'utf8'));
+const receipt=read(`${batch}/verification-receipt.json`);
+const index=read(`${batch}/index.json`);
+const sources=['260.4','500.A64–A66','570.16(a)·(b)·(e)','560.15–17','315.A189–A191','330.13','330.22–23','320.A4','580.3–4·8–9','1100.23·A28–A29'];
+const rows=index.sets.map((item,i)=>{const set=read(item.file);return `| ${item.group} | [${set.title}](${item.group.toLowerCase()}.json) | ${set.subquestions.length} | ${item.points.join(' + ')} | KGA ${sources[i]} |`;});
+const text=`# 기준서형 공백 보완 물음 — 2026-09-13
+
+[추가 후보 검토](../../analysis/reviews/standard-question-gaps-2026-09-13/README.md)의 10개 영역을 바탕으로 **독립 물음 ${receipt.counts.questions}개·${receipt.counts.points}점**을 작성했다. 모든 물음에 모범답안, 정수 채점기준, 직접 원문 인용, 주제, 출제 계획과 agent 내용 검토를 붙였다.
+
+- [문제만 보기](문제.md)
+- [모범답안·배점 보기](모범답안-배점.md)
+- [최종 검증 기록](verification-receipt.json)
+
+## 구성
+
+| 묶음 | 내용·편집 결과 | 물음 수 | 물음별 배점 | 근거 |
+| --- | --- | --- | --- | --- |
+${rows.join('\n')}
+
+세트는 출처·제작 관리용 묶음이다. 학습 단위는 사례 부모 없이 한 물음씩 풀이하는 기준서형이며, 각 물음의 실제 요구에 따라 복수 주제를 연결했다. [현재 파일 색인](index.json)에 있는 g01.json–g10.json이 현행 초안이다. grading/*/frozen은 각 실행 당시 판본이며 새로운 물음이나 현행 편집본으로 세지 않는다.
+
+## 검토·실제 채점
+
+담당 제작 agent가 전체 ${receipt.counts.questions}물음·${receipt.counts.points}개 기준의 발문, 최소 충분 답안, 직접 근거, 독립성, 부분점수와 기존 은행 차이를 대조했다. [검토 장부](agent-review.json)의 source_review는 기준별 직접 지지 명제와 원행 범위를 담는다. 작성 agent의 내용 검토이며 별도 사람 내용 확인이나 유료 API 의미 재검수는 아니다.
+
+Luna의 운영 채점 함수와 독립 물음 투영을 사용했다. 물음마다 저장 모범답안, 대표 부분정답, 0점 오답을 선정하여 ${receipt.final.unique_cases}개의 고유 대표를 실측했다. 최종 **엄격 점수 일치 ${receipt.final.strict}/${receipt.final.unique_cases}, ±1점 허용 범위 ${receipt.final.within_tolerance}/${receipt.final.unique_cases}**이며 criterion별 득점 불일치도 0건이다. 실제 확인한 대표 집합의 결과이며 모든 가능한 답안의 정확도를 뜻하지 않는다.
+
+초회는 41/42 엄격 일치, 42/42 허용이었다. G09/sub1의 1점 차이를 조사하면서 발문이 요구하지 않은 ‘필요적 정보’ 설명을 채점기준이 요구하는 결함을 발견했다. 이를 발문에 맞춰 수정하고 원 부분답안·기대점수를 유지하여 3대표를 다시 확인했다. [수정 근거](grading/correction-v2.json)
+
+최종 내용 검토에서 G08의 묶인 고려요인을 독립 득점으로 분리하여 5점에서 8점으로 조정했고, G10의 발문에 들어 있던 출발점 정답 단서를 제거했다. 변경된 두 물음의 6대표를 다시 확인했다. [추가 수정 근거](grading/correction-v3.json)
+
+최종 집합은 초회에서 요청·모델·스키마·원답안·기대값·채점 코드를 대조하고 실제 응답을 로컬 재처리한 ${receipt.final.reused_v1_cases}대표와, 수정 후 실측한 9대표다. 수정 전의 관측과 코드·입력·원응답은 덮어쓰지 않았다. [run-v1](grading/run-v1/summary.json), [run-v2](grading/run-v2/summary.json), [run-v3](grading/run-v3/summary.json)
+
+실제 모델 응답은 총 ${receipt.api_usage.actual_responses}개다. 입력 ${receipt.api_usage.input_tokens.toLocaleString('en-US')}토큰, 출력 ${receipt.api_usage.output_tokens.toLocaleString('en-US')}토큰(추론 ${receipt.api_usage.reasoning_tokens_included_in_output.toLocaleString('en-US')}토큰 포함), 캐시 입력 ${receipt.api_usage.cached_input_tokens}토큰이다. 요청 ID·원응답·사용량을 모두 보존했다. 사용자 지정 금액 상한은 없었으며 비용 금액은 계산하지 않았다. 미확인 금액을 0달러로 표시하지 않는다.
+
+## 근거·연결·상태
+
+출제 근거는 보관된 2026년 7월 개정 공식 전문으로 고정했다. 시험 적용연도를 별도로 지정하거나 2027년 적용을 확정하지 않았다. [원본·추출·발췌 계보](sources/provenance.json)와 [raw 보존 검사](../../raw/collections/2026-09-13-standard-gap/verification.json)를 연결했다. PDF 277·565·909쪽은 렌더해 문단 구조를 직접 확인했다. 그 외 인용은 전문 추출본의 연속 문맥·예외까지 대조했다.
+
+재사용할 요소 관계 5건을 [coverage 입력](../../analysis/coverage/links.json)에 초안 대상으로 추가했다. G01·G02는 원출제의 일부 선택 요구보다 범위를 넓혔고, G03은 상위 추가절차의 일부에 대응한다. G04의 수정·의존방지는 발행 후 최초 대응 원출제와 인접하므로 직접 기출빈도를 주장하지 않았다. 관계의 reviewed는 사람 확인·정본 편입을 뜻하지 않는다.
+
+[사전검사](preflight.json)는 형상·인용 실존·배치/은행 발문 중복·계획·기존 은행과 합친 메모리 검증, 14개 빈 답안의 무호출 0점 처리, 독립 투영·최대점수·공개 투영의 비공개 필드 제외를 확인했다. 실제 채점과 예상 판정의 로컬 합산 검사는 구분했다.
+
+초안 상태는 needs_review / needs_human_review로 유지했다. 정본·공개본·학습 DB·운영 앱에는 반영하지 않았다. 기존 .vercelignore 및 별도 case-quality 작업은 보존했다.
+
+## 재현
+
+- content.mjs: 수동 편집 내용, 원문 행 범위, 부분답안, 배점 이유
+- build.mjs: 초안·계획·문제지·모범답안·agent 장부·대표 사례 생성. 실행 후 내용이 달라지면 해당 실측 증거의 동일성을 다시 확인한다.
+- verify-and-grade.ts: 무호출 사전검사. --run을 주면 실제 API를 사용하며 새 --run-id를 지정해야 한다. --only로 수정 대상 물음만 제한한다.
+- finalize.ts: 실제 원응답의 요청·스키마·코드·사용량과 현재 기준을 대조해 최종 증거를 결속한다. 새로운 판본에서는 재사용 대상 선정도 갱신해야 한다.
+- write-report.mjs: 현재 색인·receipt를 읽어 이 보고서를 생성한다.
+
+검사 명령과 실행 결과는 [완료 검사 장부](completion-checks.json)에 기록한다. analysis:build의 일시적 Windows 파일 열기 오류는 원자료 JSON이 정상임을 확인한 뒤 재실행하여 해결했다.
+
+**공유 위키의 잔여 제한:** 이번 관계 입력의 analysis:build/check가 통과한 뒤, 별도 case-quality 작업이 추가한 frequency-gap-2026-09-10-E-1-case-quality-split 관계가 아직 정본에 없는 pilot-16-008/sub4를 가리키는 상태가 되었다. 이후 wiki:build/check는 그 입력 불일치로 완료하지 못했다. 해당 작업의 관계나 정본을 임의 수정하지 않았다. 이번 초안 관계 5건은 [현재 입력의 범위별 검사](coverage-scope-check.json)에서 모두 current / reviewed이며 오류가 없다. 공유 입력이 일치한 뒤 analysis:build/check와 wiki:build/check를 이어서 수행하면 된다. 이 제한은 위 14물음의 제작·실제 채점 결과와 별개다.
+`;
+fs.writeFileSync(`${batch}/README.md`,text);
+console.log(`wrote ${batch}/README.md`);

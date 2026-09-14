@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "reviewer": "agent:/root/review_06_10",
+  "reviewed_at": "2026-09-14",
+  "status": "pass",
+  "question_key": "std-points-20260914-17c71aee6d2b/sub2",
+  "candidate": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v2/bank.json",
+    "sha256": "c636044c0bd5c10a42a69ffc7022cb35b39a96fe6cdfd306de7b695d7f10b87c"
+  },
+  "compared": [
+    "candidate-v1과 candidate-v2 전체 세트의 객체 비교: 변경 세트는 해당 1세트뿐",
+    "실제 candidate-v2의 발문·4개 claim·critical_facts.scope·모범답안",
+    "candidate-v2/qa-targeted-clarification.json의 원모범·원부분·원오답과 명시적 부정 경계",
+    "로컬 공식 전사 kga315-330-2025-review06.txt 286~295행의315.26(b)~(c)"
+  ],
+  "findings": [
+    {
+      "check": "given_premise",
+      "verdict": "pass",
+      "rationale": "발문에서 식별한 통제에 기초한다는 연결을 직접 주어 조건의 반복 없이 식별대상을 열거할 수 있다. crit7/12 scope는 그 주어진 조건을 재진술하지 않는 경우와 명시적으로 부정하는 경우를 구별한다. 식별대상 자체를 발문에 답으로 미리 주지는 않는다."
+    },
+    {
+      "check": "risk_modifier_boundary",
+      "verdict": "pass",
+      "rationale": "원 부분답의 'IT 사용 위험이 따르는'은 응용프로그램과 기타환경의 수식어이며, 26(c)의 관련 위험 자체를 식별하겠다는 조치가 아니다. 새 scope는 crit7/12에만 있고 crit8에는 추가되지 않았다. 따라서 원부분은2점이며3점으로 과잉 인정할 근거가 없다."
+    },
+    {
+      "check": "representative_expectations",
+      "verdict": "pass",
+      "rationale": "모범4점, 원부분2점, 원오답0점이 유지된다. 통제와 무관하게 두 대상을 식별한다는 새 경계는 26(b)의 연결을 명시적으로 부정하므로 crit7/12 모두 충족하지 않고, 위험·일반통제 식별도 없어0점이다. 한 criterion의 명시적 반대를 쓰지 않은 나머지 기준의 반대로 확장할 필요는 없다."
+    },
+    {
+      "check": "coverage_effect",
+      "verdict": "pass",
+      "rationale": "해당 새 세트 ID 및 원 pilot-06-003은 이번 원·최종제안 coverage target에 없다. 따라서 후속 발문과 scope가39개 재연결의 question hash를 바꾸지 않는다. 최종 통합 후보의 preview는 별도로 시행한다."
+    }
+  ],
+  "issues": [],
+  "actual_model_calls": 0,
+  "limitations": "이 교차검토에서는 로컬2025 공식 전사와 실제 최종 명세를 읽었다. 다른 담당자가 수행한2025·2026 PDF 전체 페이지 대조를 자신의 수행으로 기록하지 않는다. 후속 실제 Luna 채점 완료와 별개다."
+}

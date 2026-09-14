@@ -1,0 +1,13 @@
+diff --git a/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/one-point-v2-source/complete-draft-evidence.mjs.txt b/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/complete-draft-evidence.mjs
+index 80400fbe..6755ccd4 100644
+--- a/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/one-point-v2-source/complete-draft-evidence.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/complete-draft-evidence.mjs
+@@ -7,7 +7,7 @@ const extra=[...walk(D+'/a'),...walk(D+'/b')].filter(f=>/\.(json|md|txt)$/u.test
+ const sources=['a','b'].flatMap(authorSources),sourcePlan=sourceEvidencePlan();
+ const files=[...new Set([...original.map(e=>e.file),...extra,...sources.map(e=>e.file),...sourcePlan.files.map(e=>e.file),
+  D+'/source-catalog-final.json',D+'/a-peer-review.json',D+'/b-peer-review.json',
+- R+'/helpers/source-evidence.mjs',R+'/helpers/complete-draft-evidence.mjs',R+'/helpers/provenance.json'])];
++ R+'/helpers/source-evidence.mjs',R+'/helpers/complete-draft-evidence.mjs',R+'/helpers/provenance.json',R+'/helpers/provenance-v2.json'])];
+ const completed=files.map(ref);
+ for(const source of [...sources,...sourcePlan.files])assert.equal(ref(source.file).sha256,source.sha256,'Source changed while completing evidence');
+ assert(!fs.existsSync(R+'/draft-evidence-before-completion.json'));

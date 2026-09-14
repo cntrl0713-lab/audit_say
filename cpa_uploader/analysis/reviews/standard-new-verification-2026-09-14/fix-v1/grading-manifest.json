@@ -1,0 +1,1708 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_manifest",
+  "model": "gpt-5.6-luna",
+  "budget_usd": null,
+  "budget_enforcement": "not_specified",
+  "bank": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/evidence-bank.json",
+    "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f"
+  },
+  "classifications": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/evidence-catalog.json",
+    "sha256": "66bf708ababd63a4992b598680f5064cac0b47fae5ab7a0934cdc49420849066"
+  },
+  "policy": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/policy.json",
+    "sha256": "c29ac1d22e25d3c06b0923df0768fb3e1ea4ecbbad4ae6d771e7f883d78d2676"
+  },
+  "inputs": [
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/authorization.md",
+      "sha256": "f352b4bce346918a6cd93030399fcbb7eb2fedad46c2d8ff40959d5181ef7354"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/prepare.mjs",
+      "sha256": "06bdadbf1cf5a84c1fb509c315df7109e0d089a4d207c238daafd1d4b2558ebc"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/changes.json",
+      "sha256": "83a082d26a87b0dbe76f0df3bbc89dfe13f380eb1b7c168a93c6ff60e499f271"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/baseline.json",
+      "sha256": "f3b089453f6de4efa78a8f26f8d5ea65fee0214ee267e3558e68da3f20696a35"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/content-review.json",
+      "sha256": "95afdd59a6a3f22c7cff7084a666a8e8d95d1bdeb9e6f99b3af3832549cce4b8"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/mechanical-checks.json",
+      "sha256": "fe491af67e11812e9c97beb8ab9bef80c677ab88db4c89b6859b24be82163dac"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+      "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v4/grading-manifest.json",
+      "sha256": "1e332bd87753a5b4a01ee1055e38b19485bfad257b738e0791c76aa8d42d7bda"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/runtime-snapshots.json",
+      "sha256": "7bcb76a2acb63443f5a2048d1108416f81938c91839401c614dacf6b35ae3d02"
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-followup-2026-09-13/sources/official-excerpts.txt",
+      "sha256": "a1eb4b9af9f73a253ee90d73165c55785a43c21981e34cb1fa0136ae298b9bda"
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/sources/official-excerpts.txt",
+      "sha256": "66d2bb44dbd0b551b06e615b84183c3bc40b4a44ff416b14a34c3304416c42e1"
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/sources/official-excerpts.txt",
+      "sha256": "c8be1cc1c733e19ed6548c6142547fe1ad49edacd16ea1e58b09508eefce2d23"
+    }
+  ],
+  "code_files": [
+    {
+      "file": "lib/questionV3Grading.ts",
+      "sha256": "aae10461df894ccbad948f55e25787c15775be40c8337638f161ac2389394d2c"
+    },
+    {
+      "file": "lib/questionV3Evidence.ts",
+      "sha256": "9f7428a97fcd5f1f8e8e14627abbb8845fe5a1e7488631ccd7107b0d75cfef7b"
+    },
+    {
+      "file": "lib/questionV3.ts",
+      "sha256": "dec5e73a4ec5b3b07421069c0aa60a7e406108cb4e74b15a206bf06f9b843b6e"
+    },
+    {
+      "file": "lib/questionV3Answer.ts",
+      "sha256": "01dcada58a9c372dd7778056789e1a3327bb5fc6ce0521682a2f62bb6d830cbf"
+    },
+    {
+      "file": "lib/ai/openaiStructured.ts",
+      "sha256": "784065d188a038833d10e8ca9848fcea5fa67c4bd6b6d356e0aa0bb218e6b20f"
+    },
+    {
+      "file": "lib/learningUnits.ts",
+      "sha256": "c29d7660aa0b56a8fe21a10ad3adf8cfe5efe0cc57b1b119ecd2ad70fce957b8"
+    },
+    {
+      "file": "lib/learningSubmission.ts",
+      "sha256": "a444a49360343b65538a0a1097487fd775396a48438191bd701266a3833337ef"
+    },
+    {
+      "file": "cpa_uploader/questionEfficientReview.ts",
+      "sha256": "1f4893633012b5acb72235ece2dbceff9ada0b6410dc14eb8a31661c152cb770"
+    },
+    {
+      "file": "cpa_uploader/questionReviewIdentity.ts",
+      "sha256": "7d3cc754347ac15e6b07feef29c0b853856ab09f9d7512c2d18fe5753bb297ac"
+    },
+    {
+      "file": "cpa_uploader/questionSourceCatalog.mjs",
+      "sha256": "c3904491f1dff68c0e6fdb78aaa36e8116a53c768be2d626533fd8df5fcb6c39"
+    },
+    {
+      "file": "cpa_uploader/config/question-source-registry.json",
+      "sha256": "e264c04289b47670f6d9193e331e51c043673286f7d1b2dbed725110d0aabc34"
+    },
+    {
+      "file": "scripts/build-learning-unit-catalog.ts",
+      "sha256": "a7c5aaba3d609f39e7f567d9d9db819bfb5034fee08b1c24e047cb83e4695d8b"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/run-efficient-grading.ts",
+      "sha256": "f29ca11f1ce250ae52221ea7c90fb258df594eeaeb701ee0d545d05534d044c4"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/accounting.ts",
+      "sha256": "b41a348de1b9ed103a0cf35e1570e86afacab072f62e888de279e06053755e01"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/contract.ts",
+      "sha256": "c5d8bf1358e8078e44a84dbf87c81eb9d2bf071d7ebd32f1d04d40f54c1b64d8"
+    }
+  ],
+  "entries": [
+    {
+      "id": "fix1-2089042a4b32-sub3-model",
+      "worker": "a",
+      "source_set_id": "std-points-20260914-2089042a4b32",
+      "learning_unit_id": "std-points-20260914-2089042a4b32--sub3--standard",
+      "kind": "model",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-2089042a4b32--sub3--standard.json",
+      "projected_sha256": "29ed61e483cdbee648eb1ff36c0270c0506b24da20ab524aa9d330a42ded8020",
+      "evaluated_subquestion_ids": [
+        "sub3"
+      ],
+      "answers": {
+        "sub3": "회사의 감사 또는 감사위원회는 이사의 부정행위 또는 법령·정관에 위반되는 중대한 사실을 발견하면 외부감사인에게 통보한다.\n제7항의 외부보고 대상은 이사의 부정행위 또는 중대한 법령위반이다. 정관 위반만인 사실은 그 항에 명시되지 않는다.\n외부감사인이 그 대상사실을 스스로 발견하면 증권선물위원회에 보고한다.\n회사의 감사 또는 감사위원회로부터 그 대상사실을 통보받아도 증권선물위원회에 보고한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub3",
+          "expected_points": 4,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. ① 회사의 감사 또는 감사위원회는 감사인에게 통보한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. ② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다. 정관 위반인 사실이 동시에 부정행위나 중대한 법령 위반이면 그 해당 사유로 보고 대상이 될 수 있다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 외부감사인이 제7항의 대상사실을 스스로 발견한 경우 증권선물위원회에 보고한다. 다른 인지경로와 동시 충족할 필요는 없다."
+            },
+            {
+              "criterion_id": "crit3.sp2",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 외부감사인이 회사의 감사 또는 감사위원회로부터 제7항의 대상사실을 통보받은 경우 증권선물위원회에 보고한다. 직접발견과 동시 충족할 필요는 없다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/evidence-bank.json",
+          "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+          "subquestion_id": "sub3",
+          "case_id": null,
+          "kind": "model",
+          "reason": "저장 모범답안 전체를 수정본 앱 투영으로 채점한다(만점 기대)."
+        }
+      ]
+    },
+    {
+      "id": "fix1-2089042a4b32-sub3-partial",
+      "worker": "a",
+      "source_set_id": "std-points-20260914-2089042a4b32",
+      "learning_unit_id": "std-points-20260914-2089042a4b32--sub3--standard",
+      "kind": "partial",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-2089042a4b32--sub3--standard.json",
+      "projected_sha256": "29ed61e483cdbee648eb1ff36c0270c0506b24da20ab524aa9d330a42ded8020",
+      "evaluated_subquestion_ids": [
+        "sub3"
+      ],
+      "answers": {
+        "sub3": "외부감사인이 회사의 감사 또는 감사위원회로부터 제7항의 대상사실을 통보받은 경우 증권선물위원회에 보고한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub3",
+          "expected_points": 1,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: ① 회사의 감사 또는 감사위원회는 감사인에게 통보한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: ② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다. 정관 위반인 사실이 동시에 부정행위나 중대한 법령 위반이면 그 해당 사유로 보고 대상이 될 수 있다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 외부감사인이 제7항의 대상사실을 스스로 발견한 경우 증권선물위원회에 보고한다. 다른 인지경로와 동시 충족할 필요는 없다."
+            },
+            {
+              "criterion_id": "crit3.sp2",
+              "verdict": "met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 외부감사인이 회사의 감사 또는 감사위원회로부터 제7항의 대상사실을 통보받은 경우 증권선물위원회에 보고한다. 직접발견과 동시 충족할 필요는 없다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub3",
+          "case_id": "std-points-20260914-2089042a4b32--sub3--partial",
+          "kind": "partial",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-2089042a4b32-sub3-wrong",
+      "worker": "a",
+      "source_set_id": "std-points-20260914-2089042a4b32",
+      "learning_unit_id": "std-points-20260914-2089042a4b32--sub3--standard",
+      "kind": "wrong",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-2089042a4b32--sub3--standard.json",
+      "projected_sha256": "29ed61e483cdbee648eb1ff36c0270c0506b24da20ab524aa9d330a42ded8020",
+      "evaluated_subquestion_ids": [
+        "sub3"
+      ],
+      "answers": {
+        "sub3": "회사 감사기구는 외부감사인에게 알릴 필요가 없으며 외부감사인은 정관위반만 보고하고 부정행위나 법령위반은 어느 경로로 알아도 보고하지 않는다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub3",
+          "expected_points": 0,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: ① 회사의 감사 또는 감사위원회는 감사인에게 통보한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: ② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다. 정관 위반인 사실이 동시에 부정행위나 중대한 법령 위반이면 그 해당 사유로 보고 대상이 될 수 있다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 외부감사인이 제7항의 대상사실을 스스로 발견한 경우 증권선물위원회에 보고한다. 다른 인지경로와 동시 충족할 필요는 없다."
+            },
+            {
+              "criterion_id": "crit3.sp2",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 외부감사인이 회사의 감사 또는 감사위원회로부터 제7항의 대상사실을 통보받은 경우 증권선물위원회에 보고한다. 직접발견과 동시 충족할 필요는 없다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub3",
+          "case_id": "std-points-20260914-2089042a4b32--sub3--wrong",
+          "kind": "wrong",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-10e28726886d-sub2-model",
+      "worker": "b",
+      "source_set_id": "std-points-20260914-10e28726886d",
+      "learning_unit_id": "std-points-20260914-10e28726886d--sub2--standard",
+      "kind": "model",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-10e28726886d--sub2--standard.json",
+      "projected_sha256": "c52fb5141346946814f63f6c3f7ae55a7c6360fd6215491ca3e177f85b12b424",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "그룹감사와 관련된 윤리적 요구사항을 준수했는지 여부, 그룹업무팀의 요구사항을 준수했는지 여부, 보고대상인 부문재무정보의 식별, 전반적 발견사항·결론 또는 의견을 보고하도록 요청한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 4,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 부문감사인이 그룹감사와 관련된 윤리적 요구사항(독립성 및 전문가적 적격성 포함)을 준수했는지 여부 괄호는 윤리적 요구사항의 범위 설명이다. 윤리적 요구사항(예: 독립성) 준수 여부가 드러나면 독립성과 전문가적 적격성을 모두 나열하지 않아도 인정한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 부문감사인이 그룹업무팀의 요구사항을 준수했는지 여부"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 부문감사인의 보고대상인 부문재무정보의 식별"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 부문감사인의 전반적 발견사항, 결론 또는 의견"
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/evidence-bank.json",
+          "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+          "subquestion_id": "sub2",
+          "case_id": null,
+          "kind": "model",
+          "reason": "저장 모범답안 전체를 수정본 앱 투영으로 채점한다(만점 기대)."
+        }
+      ]
+    },
+    {
+      "id": "fix1-10e28726886d-sub2-partial",
+      "worker": "b",
+      "source_set_id": "std-points-20260914-10e28726886d",
+      "learning_unit_id": "std-points-20260914-10e28726886d--sub2--standard",
+      "kind": "partial",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-10e28726886d--sub2--standard.json",
+      "projected_sha256": "c52fb5141346946814f63f6c3f7ae55a7c6360fd6215491ca3e177f85b12b424",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "그룹감사 관련 윤리적 요구사항의 준수 여부와 그룹업무팀 요구사항의 준수 여부를 회신하도록 요청한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 2,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 부문감사인이 그룹감사와 관련된 윤리적 요구사항(독립성 및 전문가적 적격성 포함)을 준수했는지 여부 괄호는 윤리적 요구사항의 범위 설명이다. 윤리적 요구사항(예: 독립성) 준수 여부가 드러나면 독립성과 전문가적 적격성을 모두 나열하지 않아도 인정한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 부문감사인이 그룹업무팀의 요구사항을 준수했는지 여부"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 부문감사인의 보고대상인 부문재무정보의 식별"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 부문감사인의 전반적 발견사항, 결론 또는 의견"
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub2",
+          "case_id": "std-points-20260914-10e28726886d--sub2--partial",
+          "kind": "partial",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-10e28726886d-sub2-wrong",
+      "worker": "b",
+      "source_set_id": "std-points-20260914-10e28726886d",
+      "learning_unit_id": "std-points-20260914-10e28726886d--sub2--standard",
+      "kind": "wrong",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-10e28726886d--sub2--standard.json",
+      "projected_sha256": "c52fb5141346946814f63f6c3f7ae55a7c6360fd6215491ca3e177f85b12b424",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "부문감사인은 감사보수 영수증만 보내면 되고 준수 여부·보고대상·업무결과는 알릴 필요가 없다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 0,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 부문감사인이 그룹감사와 관련된 윤리적 요구사항(독립성 및 전문가적 적격성 포함)을 준수했는지 여부 괄호는 윤리적 요구사항의 범위 설명이다. 윤리적 요구사항(예: 독립성) 준수 여부가 드러나면 독립성과 전문가적 적격성을 모두 나열하지 않아도 인정한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 부문감사인이 그룹업무팀의 요구사항을 준수했는지 여부"
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 부문감사인의 보고대상인 부문재무정보의 식별"
+            },
+            {
+              "criterion_id": "crit10",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 부문감사인의 전반적 발견사항, 결론 또는 의견"
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub2",
+          "case_id": "std-points-20260914-10e28726886d--sub2--wrong",
+          "kind": "wrong",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-97a86c8d6e2f-sub2-model",
+      "worker": "c",
+      "source_set_id": "std-points-20260914-97a86c8d6e2f",
+      "learning_unit_id": "std-points-20260914-97a86c8d6e2f--sub2--standard",
+      "kind": "model",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-97a86c8d6e2f--sub2--standard.json",
+      "projected_sha256": "767afa801e3d415ba16c0949376ed2d776c967f351699fce9850671d9629a9ef",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "그룹재무제표에 중요한 왜곡표시를 초래할 수 있는 법규위반 사례, 부문재무정보의 미수정왜곡표시 목록, 경영진 편의가능성 징후, 부문수준의 유의적 내부통제미비점을 보고하도록 요청한다. 부문지배기구에 전달했거나 전달할 것으로 기대되는 부정·의심되는 부정 등 기타 유의적 사항과, 그룹감사와 관련되거나 그룹업무팀의 주의를 끌고 싶은 기타사항도 요청하며 여기에는 경영진에게 요청한 서면진술의 예외사항이 포함된다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 6,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 그룹재무제표에 중요한 왜곡표시를 초래할 수 있는 법규위반 사례에 대한 정보"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 부문재무정보에 대한 미수정왜곡표시의 목록 그룹업무팀이 전달한 명백하게 사소한 왜곡표시의 한도기준에 미달하는 왜곡표시는 포함할 필요가 없다는 설명은 요구하지 않는다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 경영진의 편의가능성을 나타내는 징후"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 부문수준에서 식별된 유의적인 내부통제 미비점에 대한 설명"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 부문감사인이 부문의 지배기구에 커뮤니케이션했거나 커뮤니케이션할 것으로 기대되는 기타의 유의적 사항(부정이나 의심되는 부정 포함) 부정 관련 괄호의 세부 연루자 나열은 요구하지 않는다."
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 그룹감사와 관련성이 있을 수 있거나 부문감사인이 그룹업무팀의 주의를 끌고 싶어하는 기타사항(부문경영진에게 요청한 서면진술의 예외사항 포함)"
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/evidence-bank.json",
+          "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+          "subquestion_id": "sub2",
+          "case_id": null,
+          "kind": "model",
+          "reason": "저장 모범답안 전체를 수정본 앱 투영으로 채점한다(만점 기대)."
+        }
+      ]
+    },
+    {
+      "id": "fix1-97a86c8d6e2f-sub2-partial",
+      "worker": "c",
+      "source_set_id": "std-points-20260914-97a86c8d6e2f",
+      "learning_unit_id": "std-points-20260914-97a86c8d6e2f--sub2--standard",
+      "kind": "partial",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-97a86c8d6e2f--sub2--standard.json",
+      "projected_sha256": "767afa801e3d415ba16c0949376ed2d776c967f351699fce9850671d9629a9ef",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "부문재무정보의 미수정왜곡표시 목록과 경영진의 편의가능성 징후를 보고하도록 요청한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 2,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 그룹재무제표에 중요한 왜곡표시를 초래할 수 있는 법규위반 사례에 대한 정보"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 부문재무정보에 대한 미수정왜곡표시의 목록 그룹업무팀이 전달한 명백하게 사소한 왜곡표시의 한도기준에 미달하는 왜곡표시는 포함할 필요가 없다는 설명은 요구하지 않는다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 경영진의 편의가능성을 나타내는 징후"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 부문수준에서 식별된 유의적인 내부통제 미비점에 대한 설명"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 부문감사인이 부문의 지배기구에 커뮤니케이션했거나 커뮤니케이션할 것으로 기대되는 기타의 유의적 사항(부정이나 의심되는 부정 포함) 부정 관련 괄호의 세부 연루자 나열은 요구하지 않는다."
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 그룹감사와 관련성이 있을 수 있거나 부문감사인이 그룹업무팀의 주의를 끌고 싶어하는 기타사항(부문경영진에게 요청한 서면진술의 예외사항 포함)"
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub2",
+          "case_id": "std-points-20260914-97a86c8d6e2f--sub2--partial",
+          "kind": "partial",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-97a86c8d6e2f-sub2-wrong",
+      "worker": "c",
+      "source_set_id": "std-points-20260914-97a86c8d6e2f",
+      "learning_unit_id": "std-points-20260914-97a86c8d6e2f--sub2--standard",
+      "kind": "wrong",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-97a86c8d6e2f--sub2--standard.json",
+      "projected_sha256": "767afa801e3d415ba16c0949376ed2d776c967f351699fce9850671d9629a9ef",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "부문감사인은 법규위반·미수정왜곡표시·편의·내부통제미비점이나 기타 유의사항은 그룹업무팀에 보고하지 않는다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 0,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 그룹재무제표에 중요한 왜곡표시를 초래할 수 있는 법규위반 사례에 대한 정보"
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 부문재무정보에 대한 미수정왜곡표시의 목록 그룹업무팀이 전달한 명백하게 사소한 왜곡표시의 한도기준에 미달하는 왜곡표시는 포함할 필요가 없다는 설명은 요구하지 않는다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 경영진의 편의가능성을 나타내는 징후"
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 부문수준에서 식별된 유의적인 내부통제 미비점에 대한 설명"
+            },
+            {
+              "criterion_id": "crit8",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 부문감사인이 부문의 지배기구에 커뮤니케이션했거나 커뮤니케이션할 것으로 기대되는 기타의 유의적 사항(부정이나 의심되는 부정 포함) 부정 관련 괄호의 세부 연루자 나열은 요구하지 않는다."
+            },
+            {
+              "criterion_id": "crit9",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 그룹감사와 관련성이 있을 수 있거나 부문감사인이 그룹업무팀의 주의를 끌고 싶어하는 기타사항(부문경영진에게 요청한 서면진술의 예외사항 포함)"
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub2",
+          "case_id": "std-points-20260914-97a86c8d6e2f--sub2--wrong",
+          "kind": "wrong",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-d22c23444c4b-sub1-model",
+      "worker": "a",
+      "source_set_id": "std-points-20260914-d22c23444c4b",
+      "learning_unit_id": "std-points-20260914-d22c23444c4b--sub1--standard",
+      "kind": "model",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-d22c23444c4b--sub1--standard.json",
+      "projected_sha256": "30ebf6e931d62673e3144ea500ac92ded36c8446308b1b8293f034fa2e50f1cf",
+      "evaluated_subquestion_ids": [
+        "sub1"
+      ],
+      "answers": {
+        "sub1": "당면한 상황을 문서화한다.\n수행한 새로운 또는 추가적인 감사절차를 문서화한다.\n입수한 감사증거를 문서화한다.\n도달한 결론을 문서화한다.\n감사보고서에 미친 영향을 문서화한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub1",
+          "expected_points": 5,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 당면한 상황을 문서화한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 수행한 새로운 또는 추가적인 감사절차를 문서화한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 입수한 감사증거를 문서화한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 도달한 결론을 문서화한다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 감사보고서에 미친 영향을 문서화한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/evidence-bank.json",
+          "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+          "subquestion_id": "sub1",
+          "case_id": null,
+          "kind": "model",
+          "reason": "저장 모범답안 전체를 수정본 앱 투영으로 채점한다(만점 기대)."
+        }
+      ]
+    },
+    {
+      "id": "fix1-d22c23444c4b-sub1-partial",
+      "worker": "a",
+      "source_set_id": "std-points-20260914-d22c23444c4b",
+      "learning_unit_id": "std-points-20260914-d22c23444c4b--sub1--standard",
+      "kind": "partial",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-d22c23444c4b--sub1--standard.json",
+      "projected_sha256": "30ebf6e931d62673e3144ea500ac92ded36c8446308b1b8293f034fa2e50f1cf",
+      "evaluated_subquestion_ids": [
+        "sub1"
+      ],
+      "answers": {
+        "sub1": "감사보고서일 후 수행한 새로운 또는 추가적인 감사절차를 문서화한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub1",
+          "expected_points": 1,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 당면한 상황을 문서화한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 수행한 새로운 또는 추가적인 감사절차를 문서화한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 입수한 감사증거를 문서화한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 도달한 결론을 문서화한다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 감사보고서에 미친 영향을 문서화한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub1",
+          "case_id": "std-points-20260914-d22c23444c4b--sub1--partial",
+          "kind": "partial",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-d22c23444c4b-sub1-wrong",
+      "worker": "a",
+      "source_set_id": "std-points-20260914-d22c23444c4b",
+      "learning_unit_id": "std-points-20260914-d22c23444c4b--sub1--standard",
+      "kind": "wrong",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-d22c23444c4b--sub1--standard.json",
+      "projected_sha256": "30ebf6e931d62673e3144ea500ac92ded36c8446308b1b8293f034fa2e50f1cf",
+      "evaluated_subquestion_ids": [
+        "sub1"
+      ],
+      "answers": {
+        "sub1": "보고서일 후의 새로운 절차·증거·결론과 상황·보고서 영향은 기록하지 않는다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub1",
+          "expected_points": 0,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 당면한 상황을 문서화한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 수행한 새로운 또는 추가적인 감사절차를 문서화한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 입수한 감사증거를 문서화한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 도달한 결론을 문서화한다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 감사보고서에 미친 영향을 문서화한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub1",
+          "case_id": "std-points-20260914-d22c23444c4b--sub1--wrong",
+          "kind": "wrong",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-6e9dfa933285-sub1-model",
+      "worker": "b",
+      "source_set_id": "std-points-20260914-6e9dfa933285",
+      "learning_unit_id": "std-points-20260914-6e9dfa933285--sub1--standard",
+      "kind": "model",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-6e9dfa933285--sub1--standard.json",
+      "projected_sha256": "b17affe5ef1e0bf56d83321a3a2ee48fd0c26de0230125ad8493749ca391b44c",
+      "evaluated_subquestion_ids": [
+        "sub1"
+      ],
+      "answers": {
+        "sub1": "감사문서의 변경자를 기록한다.\n감사문서를 변경한 시기를 기록한다.\n그 문서 변경의 검토자를 기록한다.\n그 문서 변경을 검토한 시기를 기록한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub1",
+          "expected_points": 4,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 감사문서의 변경자를 기록한다."
+            },
+            {
+              "criterion_id": "crit6.sp2",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 감사문서를 변경한 시기를 기록한다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 문서 변경의 검토자를 기록한다."
+            },
+            {
+              "criterion_id": "crit7.sp2",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 문서 변경을 검토한 시기를 기록한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/evidence-bank.json",
+          "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+          "subquestion_id": "sub1",
+          "case_id": null,
+          "kind": "model",
+          "reason": "저장 모범답안 전체를 수정본 앱 투영으로 채점한다(만점 기대)."
+        }
+      ]
+    },
+    {
+      "id": "fix1-6e9dfa933285-sub1-partial",
+      "worker": "b",
+      "source_set_id": "std-points-20260914-6e9dfa933285",
+      "learning_unit_id": "std-points-20260914-6e9dfa933285--sub1--standard",
+      "kind": "partial",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-6e9dfa933285--sub1--standard.json",
+      "projected_sha256": "b17affe5ef1e0bf56d83321a3a2ee48fd0c26de0230125ad8493749ca391b44c",
+      "evaluated_subquestion_ids": [
+        "sub1"
+      ],
+      "answers": {
+        "sub1": "감사문서를 변경한 사람을 기록한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub1",
+          "expected_points": 1,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 감사문서의 변경자를 기록한다."
+            },
+            {
+              "criterion_id": "crit6.sp2",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 감사문서를 변경한 시기를 기록한다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 문서 변경의 검토자를 기록한다."
+            },
+            {
+              "criterion_id": "crit7.sp2",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 문서 변경을 검토한 시기를 기록한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub1",
+          "case_id": "std-points-20260914-6e9dfa933285--sub1--partial",
+          "kind": "partial",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-6e9dfa933285-sub1-wrong",
+      "worker": "b",
+      "source_set_id": "std-points-20260914-6e9dfa933285",
+      "learning_unit_id": "std-points-20260914-6e9dfa933285--sub1--standard",
+      "kind": "wrong",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-6e9dfa933285--sub1--standard.json",
+      "projected_sha256": "b17affe5ef1e0bf56d83321a3a2ee48fd0c26de0230125ad8493749ca391b44c",
+      "evaluated_subquestion_ids": [
+        "sub1"
+      ],
+      "answers": {
+        "sub1": "문서를 누가 언제 변경하고 검토했는지는 남기지 않아도 된다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub1",
+          "expected_points": 0,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 감사문서의 변경자를 기록한다."
+            },
+            {
+              "criterion_id": "crit6.sp2",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 감사문서를 변경한 시기를 기록한다."
+            },
+            {
+              "criterion_id": "crit7",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 문서 변경의 검토자를 기록한다."
+            },
+            {
+              "criterion_id": "crit7.sp2",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 문서 변경을 검토한 시기를 기록한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub1",
+          "case_id": "std-points-20260914-6e9dfa933285--sub1--wrong",
+          "kind": "wrong",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-f47d4eaf7a09-sub1-model",
+      "worker": "c",
+      "source_set_id": "std-points-20260914-f47d4eaf7a09",
+      "learning_unit_id": "std-points-20260914-f47d4eaf7a09--sub1--standard",
+      "kind": "model",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-f47d4eaf7a09--sub1--standard.json",
+      "projected_sha256": "3406dc785a56831ac52c235b43607bac5db8556a58558407eb5eb74110a95e04",
+      "evaluated_subquestion_ids": [
+        "sub1"
+      ],
+      "answers": {
+        "sub1": "중요왜곡표시위험에 대한 감사인의 평가에 미치는 영향을 평가한다.\n충분하고 적합한 감사증거를 입수하는 감사인의 능력에 미치는 영향을 평가한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub1",
+          "expected_points": 2,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 중요왜곡표시위험에 대한 감사인의 평가에 미치는 영향을 평가한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 충분하고 적합한 감사증거를 입수하는 감사인의 능력에 미치는 영향을 평가한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/evidence-bank.json",
+          "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+          "subquestion_id": "sub1",
+          "case_id": null,
+          "kind": "model",
+          "reason": "저장 모범답안 전체를 수정본 앱 투영으로 채점한다(만점 기대)."
+        }
+      ]
+    },
+    {
+      "id": "fix1-f47d4eaf7a09-sub1-partial",
+      "worker": "c",
+      "source_set_id": "std-points-20260914-f47d4eaf7a09",
+      "learning_unit_id": "std-points-20260914-f47d4eaf7a09--sub1--standard",
+      "kind": "partial",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-f47d4eaf7a09--sub1--standard.json",
+      "projected_sha256": "3406dc785a56831ac52c235b43607bac5db8556a58558407eb5eb74110a95e04",
+      "evaluated_subquestion_ids": [
+        "sub1"
+      ],
+      "answers": {
+        "sub1": "중요왜곡표시위험에 대한 감사인의 평가에 미치는 영향을 평가한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub1",
+          "expected_points": 1,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 중요왜곡표시위험에 대한 감사인의 평가에 미치는 영향을 평가한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 충분하고 적합한 감사증거를 입수하는 감사인의 능력에 미치는 영향을 평가한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub1",
+          "case_id": "std-points-20260914-f47d4eaf7a09--sub1--partial",
+          "kind": "partial",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-f47d4eaf7a09-sub1-wrong",
+      "worker": "c",
+      "source_set_id": "std-points-20260914-f47d4eaf7a09",
+      "learning_unit_id": "std-points-20260914-f47d4eaf7a09--sub1--standard",
+      "kind": "wrong",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-f47d4eaf7a09--sub1--standard.json",
+      "projected_sha256": "3406dc785a56831ac52c235b43607bac5db8556a58558407eb5eb74110a95e04",
+      "evaluated_subquestion_ids": [
+        "sub1"
+      ],
+      "answers": {
+        "sub1": "양방향 커뮤니케이션이 불충분해도 위험평가나 증거입수능력에 미치는 영향은 검토하지 않는다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub1",
+          "expected_points": 0,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 중요왜곡표시위험에 대한 감사인의 평가에 미치는 영향을 평가한다."
+            },
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 충분하고 적합한 감사증거를 입수하는 감사인의 능력에 미치는 영향을 평가한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub1",
+          "case_id": "std-points-20260914-f47d4eaf7a09--sub1--wrong",
+          "kind": "wrong",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-7e1091f2c13f-sub1-model",
+      "worker": "a",
+      "source_set_id": "std-points-20260914-7e1091f2c13f",
+      "learning_unit_id": "std-points-20260914-7e1091f2c13f--sub1--standard",
+      "kind": "model",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-7e1091f2c13f--sub1--standard.json",
+      "projected_sha256": "a814afe56793ae184d43c88cf9c8b17147f40904e25caf7a7fd04c8d74ec75c6",
+      "evaluated_subquestion_ids": [
+        "sub1"
+      ],
+      "answers": {
+        "sub1": "감사범위 제한을 근거로 의견을 변형할 수 있다.\n다른 일련의 조치의 결과에 관한 법적 조언을 구할 수 있다.\n규제기관 등 제3자나 소유주 등 외부 상위기관 또는 해당 공공부문 주무부서·의회와 커뮤니케이션할 수 있다.\n관련 법규상 가능하면 감사업무를 해지할 수 있다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub1",
+          "expected_points": 4,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 감사범위의 제한을 근거로 감사의견을 변형하는 조치를 취할 수 있다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 다른 일련의 조치를 취할 경우 그 결과에 관한 법적 조언을 얻을 수 있다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 규제기관 등의 제3자, 소유주 등 지배구조상 기업 외부의 상위기관, 또는 공공부문의 책임 있는 정부 주무부서·의회와 커뮤니케이션할 수 있다. 이 범주를 보여 주는 적절한 외부 상대방을 제시하면 모든 예시의 명칭을 나열할 필요는 없다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 관련 법규상 가능하면 감사업무를 해지할 수 있다. 법규상 가능 조건을 보존한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/evidence-bank.json",
+          "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+          "subquestion_id": "sub1",
+          "case_id": null,
+          "kind": "model",
+          "reason": "저장 모범답안 전체를 수정본 앱 투영으로 채점한다(만점 기대)."
+        }
+      ]
+    },
+    {
+      "id": "fix1-7e1091f2c13f-sub1-partial",
+      "worker": "a",
+      "source_set_id": "std-points-20260914-7e1091f2c13f",
+      "learning_unit_id": "std-points-20260914-7e1091f2c13f--sub1--standard",
+      "kind": "partial",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-7e1091f2c13f--sub1--standard.json",
+      "projected_sha256": "a814afe56793ae184d43c88cf9c8b17147f40904e25caf7a7fd04c8d74ec75c6",
+      "evaluated_subquestion_ids": [
+        "sub1"
+      ],
+      "answers": {
+        "sub1": "다른 일련의 대응조치를 취할 때 그 결과에 관한 법적 조언을 얻을 수 있다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub1",
+          "expected_points": 1,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 감사범위의 제한을 근거로 감사의견을 변형하는 조치를 취할 수 있다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 다른 일련의 조치를 취할 경우 그 결과에 관한 법적 조언을 얻을 수 있다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 규제기관 등의 제3자, 소유주 등 지배구조상 기업 외부의 상위기관, 또는 공공부문의 책임 있는 정부 주무부서·의회와 커뮤니케이션할 수 있다. 이 범주를 보여 주는 적절한 외부 상대방을 제시하면 모든 예시의 명칭을 나열할 필요는 없다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 관련 법규상 가능하면 감사업무를 해지할 수 있다. 법규상 가능 조건을 보존한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub1",
+          "case_id": "std-points-20260914-7e1091f2c13f--sub1--partial",
+          "kind": "partial",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-7e1091f2c13f-sub1-wrong",
+      "worker": "a",
+      "source_set_id": "std-points-20260914-7e1091f2c13f",
+      "learning_unit_id": "std-points-20260914-7e1091f2c13f--sub1--standard",
+      "kind": "wrong",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-7e1091f2c13f--sub1--standard.json",
+      "projected_sha256": "a814afe56793ae184d43c88cf9c8b17147f40904e25caf7a7fd04c8d74ec75c6",
+      "evaluated_subquestion_ids": [
+        "sub1"
+      ],
+      "answers": {
+        "sub1": "소통이 해결되지 않아도 어떤 대응도 할 수 없고 반드시 아무 조치 없이 계속해야 한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub1",
+          "expected_points": 0,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 감사범위의 제한을 근거로 감사의견을 변형하는 조치를 취할 수 있다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 다른 일련의 조치를 취할 경우 그 결과에 관한 법적 조언을 얻을 수 있다."
+            },
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 규제기관 등의 제3자, 소유주 등 지배구조상 기업 외부의 상위기관, 또는 공공부문의 책임 있는 정부 주무부서·의회와 커뮤니케이션할 수 있다. 이 범주를 보여 주는 적절한 외부 상대방을 제시하면 모든 예시의 명칭을 나열할 필요는 없다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 관련 법규상 가능하면 감사업무를 해지할 수 있다. 법규상 가능 조건을 보존한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub1",
+          "case_id": "std-points-20260914-7e1091f2c13f--sub1--wrong",
+          "kind": "wrong",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-c9c523cdf8c0-sub2-model",
+      "worker": "b",
+      "source_set_id": "std-points-20260914-c9c523cdf8c0",
+      "learning_unit_id": "std-points-20260914-c9c523cdf8c0--sub2--standard",
+      "kind": "model",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-c9c523cdf8c0--sub2--standard.json",
+      "projected_sha256": "9710c9328bbef6ab4f7c520831dc619fda6418beb78e6e0dd1afdc585225a1a9",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "커뮤니케이션의 형태를 알린다.\n커뮤니케이션의 시기를 알린다.\n커뮤니케이션의 예상되는 일반적 내용을 알린다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 3,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 커뮤니케이션 절차 수립을 위해 소통의 형태를 지배기구와 커뮤니케이션한다."
+            },
+            {
+              "criterion_id": "crit1.sp2",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 커뮤니케이션 절차 수립을 위해 소통의 시기를 지배기구와 커뮤니케이션한다."
+            },
+            {
+              "criterion_id": "crit1.sp3",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 커뮤니케이션 절차 수립을 위해 예상되는 일반적 내용을 지배기구와 커뮤니케이션한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/evidence-bank.json",
+          "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+          "subquestion_id": "sub2",
+          "case_id": null,
+          "kind": "model",
+          "reason": "저장 모범답안 전체를 수정본 앱 투영으로 채점한다(만점 기대)."
+        }
+      ]
+    },
+    {
+      "id": "fix1-c9c523cdf8c0-sub2-partial",
+      "worker": "b",
+      "source_set_id": "std-points-20260914-c9c523cdf8c0",
+      "learning_unit_id": "std-points-20260914-c9c523cdf8c0--sub2--standard",
+      "kind": "partial",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-c9c523cdf8c0--sub2--standard.json",
+      "projected_sha256": "9710c9328bbef6ab4f7c520831dc619fda6418beb78e6e0dd1afdc585225a1a9",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "커뮤니케이션의 예상되는 일반적인 내용을 지배기구에 알린다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 1,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 커뮤니케이션 절차 수립을 위해 소통의 형태를 지배기구와 커뮤니케이션한다."
+            },
+            {
+              "criterion_id": "crit1.sp2",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 커뮤니케이션 절차 수립을 위해 소통의 시기를 지배기구와 커뮤니케이션한다."
+            },
+            {
+              "criterion_id": "crit1.sp3",
+              "verdict": "met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 커뮤니케이션 절차 수립을 위해 예상되는 일반적 내용을 지배기구와 커뮤니케이션한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub2",
+          "case_id": "std-points-20260914-c9c523cdf8c0--sub2--partial",
+          "kind": "partial",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-c9c523cdf8c0-sub2-wrong",
+      "worker": "b",
+      "source_set_id": "std-points-20260914-c9c523cdf8c0",
+      "learning_unit_id": "std-points-20260914-c9c523cdf8c0--sub2--standard",
+      "kind": "wrong",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-c9c523cdf8c0--sub2--standard.json",
+      "projected_sha256": "9710c9328bbef6ab4f7c520831dc619fda6418beb78e6e0dd1afdc585225a1a9",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "소통절차 수립에는 형식이나 시기 및 예상내용을 전혀 알릴 필요가 없다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 0,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit1",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 커뮤니케이션 절차 수립을 위해 소통의 형태를 지배기구와 커뮤니케이션한다."
+            },
+            {
+              "criterion_id": "crit1.sp2",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 커뮤니케이션 절차 수립을 위해 소통의 시기를 지배기구와 커뮤니케이션한다."
+            },
+            {
+              "criterion_id": "crit1.sp3",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 커뮤니케이션 절차 수립을 위해 예상되는 일반적 내용을 지배기구와 커뮤니케이션한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub2",
+          "case_id": "std-points-20260914-c9c523cdf8c0--sub2--wrong",
+          "kind": "wrong",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-e0f4e9e0403a-sub2-model",
+      "worker": "c",
+      "source_set_id": "std-points-20260914-e0f4e9e0403a",
+      "learning_unit_id": "std-points-20260914-e0f4e9e0403a--sub2--standard",
+      "kind": "model",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-e0f4e9e0403a--sub2--standard.json",
+      "projected_sha256": "bedd01b93d0e55c881871883eeda970cbbfb47dbd5278bbbe86fa0d361d9893c",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "유의적 발견사항은 전문가적 판단상 구두가 적절하지 않을 것으로 판단되면 서면으로 커뮤니케이션한다.\n문단17에서 요구하는 독립성 문제는 서면으로 커뮤니케이션한다.\n지배기구와 적시에 커뮤니케이션한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 3,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit2",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 감사에서 발견한 유의적 사항은 전문가적 판단에 따라 구두로 커뮤니케이션하는 것이 적절하지 않다고 판단되면 서면으로 커뮤니케이션한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 문단 17에서 요구한 감사인의 독립성 문제는 지배기구와 서면으로 커뮤니케이션한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 지배기구와 적시에 커뮤니케이션한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/evidence-bank.json",
+          "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+          "subquestion_id": "sub2",
+          "case_id": null,
+          "kind": "model",
+          "reason": "저장 모범답안 전체를 수정본 앱 투영으로 채점한다(만점 기대)."
+        }
+      ]
+    },
+    {
+      "id": "fix1-e0f4e9e0403a-sub2-partial",
+      "worker": "c",
+      "source_set_id": "std-points-20260914-e0f4e9e0403a",
+      "learning_unit_id": "std-points-20260914-e0f4e9e0403a--sub2--standard",
+      "kind": "partial",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-e0f4e9e0403a--sub2--standard.json",
+      "projected_sha256": "bedd01b93d0e55c881871883eeda970cbbfb47dbd5278bbbe86fa0d361d9893c",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "문단17에서 요구하는 감사인의 독립성 문제는 지배기구와 서면으로 커뮤니케이션한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 1,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 감사에서 발견한 유의적 사항은 전문가적 판단에 따라 구두로 커뮤니케이션하는 것이 적절하지 않다고 판단되면 서면으로 커뮤니케이션한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 문단 17에서 요구한 감사인의 독립성 문제는 지배기구와 서면으로 커뮤니케이션한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 지배기구와 적시에 커뮤니케이션한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub2",
+          "case_id": "std-points-20260914-e0f4e9e0403a--sub2--partial",
+          "kind": "partial",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-e0f4e9e0403a-sub2-wrong",
+      "worker": "c",
+      "source_set_id": "std-points-20260914-e0f4e9e0403a",
+      "learning_unit_id": "std-points-20260914-e0f4e9e0403a--sub2--standard",
+      "kind": "wrong",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-e0f4e9e0403a--sub2--standard.json",
+      "projected_sha256": "bedd01b93d0e55c881871883eeda970cbbfb47dbd5278bbbe86fa0d361d9893c",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "유의적 사항은 구두가 부적합해도 구두로만 전달하고 독립성도 언제나 구두로만 전달하며 시기를 늦춰도 된다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 0,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit2",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 감사에서 발견한 유의적 사항은 전문가적 판단에 따라 구두로 커뮤니케이션하는 것이 적절하지 않다고 판단되면 서면으로 커뮤니케이션한다."
+            },
+            {
+              "criterion_id": "crit3",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 문단 17에서 요구한 감사인의 독립성 문제는 지배기구와 서면으로 커뮤니케이션한다."
+            },
+            {
+              "criterion_id": "crit4",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 지배기구와 적시에 커뮤니케이션한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub2",
+          "case_id": "std-points-20260914-e0f4e9e0403a--sub2--wrong",
+          "kind": "wrong",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-3e3ab8d53e62-sub2-model",
+      "worker": "a",
+      "source_set_id": "std-points-20260914-3e3ab8d53e62",
+      "learning_unit_id": "std-points-20260914-3e3ab8d53e62--sub2--standard",
+      "kind": "model",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-3e3ab8d53e62--sub2--standard.json",
+      "projected_sha256": "068906c1742adb95e19ef335fed503540049a6f871548a2c1c857346fee6e872",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "구두로 커뮤니케이션한 내용을 감사문서에 포함한다.\n그 구두 커뮤니케이션을 언제 했는지 기록한다.\n누구와 구두로 커뮤니케이션했는지 기록한다.\n서면으로 커뮤니케이션했다면 그 사본을 감사문서의 일부로 보관한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 4,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 구두로 커뮤니케이션한 내용을 감사문서에 포함한다."
+            },
+            {
+              "criterion_id": "crit5.sp2",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 구두로 커뮤니케이션한 시기를 감사문서에 포함한다."
+            },
+            {
+              "criterion_id": "crit5.sp3",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 구두로 커뮤니케이션한 상대방을 감사문서에 포함한다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "met",
+              "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 서면으로 커뮤니케이션한 경우 그 사본을 감사문서의 일부로 보관한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/evidence-bank.json",
+          "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+          "subquestion_id": "sub2",
+          "case_id": null,
+          "kind": "model",
+          "reason": "저장 모범답안 전체를 수정본 앱 투영으로 채점한다(만점 기대)."
+        }
+      ]
+    },
+    {
+      "id": "fix1-3e3ab8d53e62-sub2-partial",
+      "worker": "a",
+      "source_set_id": "std-points-20260914-3e3ab8d53e62",
+      "learning_unit_id": "std-points-20260914-3e3ab8d53e62--sub2--standard",
+      "kind": "partial",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-3e3ab8d53e62--sub2--standard.json",
+      "projected_sha256": "068906c1742adb95e19ef335fed503540049a6f871548a2c1c857346fee6e872",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "구두로 커뮤니케이션한 상대방을 감사문서에 기록한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 1,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 구두로 커뮤니케이션한 내용을 감사문서에 포함한다."
+            },
+            {
+              "criterion_id": "crit5.sp2",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 구두로 커뮤니케이션한 시기를 감사문서에 포함한다."
+            },
+            {
+              "criterion_id": "crit5.sp3",
+              "verdict": "met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 구두로 커뮤니케이션한 상대방을 감사문서에 포함한다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met",
+              "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 서면으로 커뮤니케이션한 경우 그 사본을 감사문서의 일부로 보관한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub2",
+          "case_id": "std-points-20260914-3e3ab8d53e62--sub2--partial",
+          "kind": "partial",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    },
+    {
+      "id": "fix1-3e3ab8d53e62-sub2-wrong",
+      "worker": "a",
+      "source_set_id": "std-points-20260914-3e3ab8d53e62",
+      "learning_unit_id": "std-points-20260914-3e3ab8d53e62--sub2--standard",
+      "kind": "wrong",
+      "projected_file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/projections/std-points-20260914-3e3ab8d53e62--sub2--standard.json",
+      "projected_sha256": "068906c1742adb95e19ef335fed503540049a6f871548a2c1c857346fee6e872",
+      "evaluated_subquestion_ids": [
+        "sub2"
+      ],
+      "answers": {
+        "sub2": "구두로 소통한 경우는 아무 기록도 남기지 않고 서면 사본도 폐기한다."
+      },
+      "expected_by_subquestion": [
+        {
+          "subquestion_id": "sub2",
+          "expected_points": 0,
+          "expected_verdicts": [
+            {
+              "criterion_id": "crit5",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 구두로 커뮤니케이션한 내용을 감사문서에 포함한다."
+            },
+            {
+              "criterion_id": "crit5.sp2",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 구두로 커뮤니케이션한 시기를 감사문서에 포함한다."
+            },
+            {
+              "criterion_id": "crit5.sp3",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 구두로 커뮤니케이션한 상대방을 감사문서에 포함한다."
+            },
+            {
+              "criterion_id": "crit6",
+              "verdict": "not_met",
+              "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 서면으로 커뮤니케이션한 경우 그 사본을 감사문서의 일부로 보관한다."
+            }
+          ]
+        }
+      ],
+      "selection_evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/representatives.json",
+          "sha256": "43efd506ed3a46942a118e0dfcbe1993986981c8f6700f8e9f5103453588c3de",
+          "subquestion_id": "sub2",
+          "case_id": "std-points-20260914-3e3ab8d53e62--sub2--wrong",
+          "kind": "wrong",
+          "reason": "재편 실측에서 쓴 같은 원답안·기대값을 수정본으로 다시 채점한다: 최종 명제의 독립 득점과 조건을 확인하는 사전 선정 대표답안"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v3/grading-manifest.json",
+    "sha256": "623007e25bd8f6b82dea447b996b4d0c59dd729ef464e127c66fb0bc51746972"
+  },
+  "entry_id": "fix4v3-20260913-s03-sub4-partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-standard-followup-20260913-s03--sub4--standard",
+  "source_set_id": "draft-standard-followup-20260913-s03",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub4"
+  ],
+  "projected_body_hash": "f8f6cc6848ba9973ff03c1620bcec81919e11ed145fc1972e1f969b82ebd2ea8",
+  "answers": {
+    "sub4": "전체 모집단 추론에 일반적으로 적합하지 않다. 연속 항목들은 유사하고 다른 부분의 항목들은 특징이 달라 전체를 대표하기 어렵다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub4",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 모집단 안에서 이웃하는 항목들로 구성된 하나 또는 복수의 구획을 선택하는 방법이다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 전체 모집단을 추론하는 표본감사에는 일반적으로 적합하지 않다. 특정 구획의 항목을 조사하는 절차 자체가 항상 금지되는 것은 아니다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 대부분의 모집단은 연속된 항목끼리는 서로 유사하지만 다른 부분의 항목들은 다른 특징을 가져 그 구획이 전체를 대표하기 어렵기 때문이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "c2166c0315a7958012c97a687646c0a9f35a8e98f8793c644f158ff284854ca4",
+  "schema_hash": "02a927cc680303cce38e914f548d777941de757012f887ce285133cfcd32d69d",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "구획추출의 정의가 답안에 제시되지 않았다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "전체 모집단 추론에 일반적으로 적합하지 않다. 연속 항목들은 유사하고 다른 부분의 항목들은 특징이 달라 전체를 대표하기 어렵다.",
+            "reason": "전체 모집단 추론에 일반적으로 적합하지 않다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "연속 항목들은 유사하고 다른 부분의 항목들은 특징이 달라 전체를 대표하기 어렵다.",
+            "reason": "연속 항목의 유사성과 다른 부분의 상이한 특징으로 전체 대표성이 부족하다는 이유를 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub4",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "구획추출의 정의가 답안에 제시되지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub4/e0"
+                ],
+                "reason": "전체 모집단 추론에 일반적으로 적합하지 않다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub4/e2"
+                ],
+                "reason": "연속 항목의 유사성과 다른 부분의 상이한 특징으로 전체 대표성이 부족하다는 이유를 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-followup-20260913-s03",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "prompt": "감사기준서 530 보론 4의 구획추출을 정의하고, 표본에 근거하여 전체 모집단에 대한 유효한 추론을 하려는 목적에 일반적으로 적합한지와 그 이유를 설명하시오. 특정 구획을 검사하는 모든 감사절차가 절대 금지된다고 해석하지 않도록 답하시오.",
+        "user_answer": "전체 모집단 추론에 일반적으로 적합하지 않다. 연속 항목들은 유사하고 다른 부분의 항목들은 특징이 달라 전체를 대표하기 어렵다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "구획추출의 정의가 답안에 제시되지 않았다.",
+            "claim": "모집단 안에서 이웃하는 항목들로 구성된 하나 또는 복수의 구획을 선택하는 방법이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "전체 모집단 추론에 일반적으로 적합하지 않다. 연속 항목들은 유사하고 다른 부분의 항목들은 특징이 달라 전체를 대표하기 어렵다.",
+            "reason": "전체 모집단 추론에 일반적으로 적합하지 않다고 명시했다.",
+            "claim": "전체 모집단을 추론하는 표본감사에는 일반적으로 적합하지 않다. \"일반적으로\" 등으로 절대적 금지가 아님이 드러나면 특정 구획의 항목을 조사하는 절차가 항상 금지되는 것은 아니라는 부연을 따로 쓰지 않아도 인정한다. 구획추출이나 특정 구획의 조사가 언제나 금지된다고 단정하면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "연속 항목들은 유사하고 다른 부분의 항목들은 특징이 달라 전체를 대표하기 어렵다.",
+            "reason": "연속 항목의 유사성과 다른 부분의 상이한 특징으로 전체 대표성이 부족하다는 이유를 제시했다.",
+            "claim": "대부분의 모집단은 연속된 항목끼리는 서로 유사하지만 다른 부분의 항목들은 다른 특징을 가져 그 구획이 전체를 대표하기 어렵기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "모집단 안에서 이웃하는 항목들로 구성된 하나 또는 복수의 구획을 선택하는 방법이다.",
+          "전체 모집단을 추론하는 표본감사에는 일반적으로 적합하지 않다. 특정 구획의 항목을 조사하는 절차 자체가 항상 금지되는 것은 아니다.",
+          "대부분의 모집단은 연속된 항목끼리는 서로 유사하지만 다른 부분의 항목들은 다른 특징을 가져 그 구획이 전체를 대표하기 어렵기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub4",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_051d8d4ea4527b50016aa7ce9e724c87d0b478b94818dfedd9",
+        "request_id": "req_28ac6871d7314564bce079fb0bca719d",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2804,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 2801
+          },
+          "output_tokens": 231,
+          "output_tokens_details": {
+            "reasoning_tokens": 49
+          },
+          "total_tokens": 3035
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00033381999999999997,
+        "min_usd": 0.00033381999999999997,
+        "max_usd": 0.00033381999999999997,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v3/execution/actual-b/fix4v3-20260913-s03-sub4-partial/input.json",
+      "sha256": "ff7259908a2bcbcf5bf79960afe0fd5f07f09c31ee64ab7d8e388dbdfee827cb"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v3/execution/actual-b/fix4v3-20260913-s03-sub4-partial/transport.jsonl",
+      "sha256": "912d7ed356de051339d42cf3f7de82fc7f3081d51bb2cb0cef4c066eca9f0aeb"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v3/execution/actual-b/fix4v3-20260913-s03-sub4-partial/traces.jsonl",
+      "sha256": "7c2e2276c21e0dbbcba3fbdc350977ebe8c6969d9bd1ed0b379fa4dd10523b32"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 ---
 title: "06. 위험평가와 내부통제 이해 원자료 단위 9/12"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: source-map
 status: generated
 review_required: true
@@ -12,7 +12,7 @@ confidence: medium
 
 # 06. 위험평가와 내부통제 이해 원자료 단위 9/12
 
-주제 전체 1710개: 기준서 420, 이론 442, 연습 395, 기출 453. 이 페이지는 150개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
+주제 전체 1711개: 기준서 421, 이론 442, 연습 395, 기출 453. 이 페이지는 150개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
 
 [[source-catalog-topic-06]] (1/12) · [[source-catalog-topic-06-part-02]] (2/12) · [[source-catalog-topic-06-part-03]] (3/12) · [[source-catalog-topic-06-part-04]] (4/12) · [[source-catalog-topic-06-part-05]] (5/12) · [[source-catalog-topic-06-part-06]] (6/12) · [[source-catalog-topic-06-part-07]] (7/12) · [[source-catalog-topic-06-part-08]] (8/12) · [[source-catalog-topic-06-part-09]] (9/12) · [[source-catalog-topic-06-part-10]] (10/12) · [[source-catalog-topic-06-part-11]] (11/12) · [[source-catalog-topic-06-part-12]] (12/12)
 
@@ -22,6 +22,7 @@ confidence: medium
 
 | 원자료 ID | 종류·근거 계층 | 실제 파일·위치 | 절·판본·원문 한계 | 참조 의존 | 은행 인용 연결 | 원문 인용 SHA-256 |
 |---|---|---|---|---|---|---|
+| <a id="src-0e0e0f494831bb510f"></a>`src-0e0e0f494831bb510f` | practice / learning_material | [필수암기_OX_200제.md · 필수암기_OX_200제 원문 페이지 43; L1259-L1295](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%ED%95%84%EC%88%98%EC%95%94%EA%B8%B0_OX_200%EC%A0%9C.md); 필수암기_OX_200제 | 원문 페이지 43; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 3349ae870a9721a2d2a5a5f89c493d3bb3f0713f708059fd70a1a2d54244ce42 |
 | <a id="src-45de3d7f0acf57f5ae"></a>`src-45de3d7f0acf57f5ae` | practice / learning_material | [필수암기_OX_200제.md · 필수암기_OX_200제 원문 페이지 44; L1297-L1314](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%ED%95%84%EC%88%98%EC%95%94%EA%B8%B0_OX_200%EC%A0%9C.md); 필수암기_OX_200제 | 원문 페이지 44; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 9f161f481e63c99c530dd8fc16dd34a9a78f27bc3f368ac08d87fce5a284bbfb |
 | <a id="src-03104e4cfa5fd3cd6d"></a>`src-03104e4cfa5fd3cd6d` | practice / learning_material | [필수암기_OX_200제.md · 필수암기_OX_200제 원문 페이지 45; L1316-L1335](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%ED%95%84%EC%88%98%EC%95%94%EA%B8%B0_OX_200%EC%A0%9C.md); 필수암기_OX_200제 | 원문 페이지 45; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 2515c532a27744ba7e28ad05eebb9ee0fa4b0eb54d4893523b9b266eab4d1c87 |
 | <a id="src-05a58fa7374a877134"></a>`src-05a58fa7374a877134` | practice / learning_material | [필수암기_OX_200제.md · 필수암기_OX_200제 원문 페이지 46; L1337-L1362](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%ED%95%84%EC%88%98%EC%95%94%EA%B8%B0_OX_200%EC%A0%9C.md); 필수암기_OX_200제 | 원문 페이지 46; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 26b34fd0de5663b865b803578cb5b92628445b6479e89fcc851cb797dc64b6b1 |
@@ -171,7 +172,6 @@ confidence: medium
 | <a id="src-aedf50f2dc438d3dfc"></a>`src-aedf50f2dc438d3dfc` | past_exam / learning_material | [기출문제_연도별_해설_A.md · 기출문제_연도별_해설_A 원문 페이지 326; L12807-L12833](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%97%B0%EB%8F%84%EB%B3%84_%ED%95%B4%EC%84%A4_A.md); 기출문제_연도별_해설_A | 원문 페이지 326; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 96dd108b6abc86969c1af0361a1086ef999b0b0971814d50ba5bb9e72e54f90a |
 | <a id="src-533d163d6bf4af9c76"></a>`src-533d163d6bf4af9c76` | past_exam / learning_material | [기출문제_연도별_해설_A.md · 기출문제_연도별_해설_A 원문 페이지 328; L12862-L12910](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%97%B0%EB%8F%84%EB%B3%84_%ED%95%B4%EC%84%A4_A.md); 기출문제_연도별_해설_A | 원문 페이지 328; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 2c02546ca46f417cdcd3a570ccb29138129355f67017ace66395d79f4ea71ec7 |
 | <a id="src-2c6346943227ec10ca"></a>`src-2c6346943227ec10ca` | past_exam / learning_material | [기출문제_연도별_해설_A.md · 기출문제_연도별_해설_A 원문 페이지 329; L12912-L12970](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%97%B0%EB%8F%84%EB%B3%84_%ED%95%B4%EC%84%A4_A.md); 기출문제_연도별_해설_A | 원문 페이지 329; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 71971c789f4c4dbc63184e9468027982dee2536e19f8e2dfe52cd604cb27f539 |
-| <a id="src-5b247a91d87603041a"></a>`src-5b247a91d87603041a` | past_exam / learning_material | [기출문제_연도별_해설_A.md · 기출문제_연도별_해설_A 원문 페이지 330; L12972-L13016](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%97%B0%EB%8F%84%EB%B3%84_%ED%95%B4%EC%84%A4_A.md); 기출문제_연도별_해설_A | 원문 페이지 330; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 38a521d932f2d8b02dd4fcb4f870653021db73a592526659932d28c18d330fd0 |
 
 ## Related
 

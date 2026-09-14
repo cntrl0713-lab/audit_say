@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-aa672e0fc674--subq2--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-aa672e0fc674--subq2--standard",
+  "source_set_id": "std-points-20260914-aa672e0fc674",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "subq2"
+  ],
+  "projected_body_hash": "96557c8915f41372c1a4fe16d3335fc4e22d795745eba18ff1fd0a3455f9595a",
+  "answers": {
+    "subq2": "계층화는 감사 효율성을 높인다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "subq2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 계층화는 감사 효율성을 높인다. 표본위험을 증가시키지 않고 표본규모를 줄일 수 있다는 효과로 효율성 향상을 설명해도 인정한다. 동일 효과를 다시 별도 배점하지 않는다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 계층화가 각 계층 내 항목의 변동성을 감소시킨다고 설명함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "966dc168379bdbbda8fd4da88480b7cbfc1588e3c05a97950194b518b71e2378",
+  "schema_hash": "eb572ed586dbd6e23569a34464f95ee1095e6326aada88d91c32d20b6a26764c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "subq2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "계층화는 감사 효율성을 높인다.",
+            "reason": "계층화가 감사 효율성을 높인다고 명시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "계층 내 항목의 변동성 감소를 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "subq2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "subq2/e0"
+                ],
+                "reason": "계층화가 감사 효율성을 높인다고 명시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "계층 내 항목의 변동성 감소를 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-aa672e0fc674",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "subq2",
+        "prompt": "모집단의 계층화가 감사 효율성에 미치는 영향과 그 이유를 설명하시오.",
+        "user_answer": "계층화는 감사 효율성을 높인다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "계층화는 감사 효율성을 높인다.",
+            "reason": "계층화가 감사 효율성을 높인다고 명시했다.",
+            "claim": "계층화는 감사 효율성을 높인다. 표본위험을 증가시키지 않고 표본규모를 줄일 수 있다는 효과로 효율성 향상을 설명해도 인정한다. 동일 효과를 다시 별도 배점하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "계층 내 항목의 변동성 감소를 설명하지 않았다.",
+            "claim": "계층화가 각 계층 내 항목의 변동성을 감소시킨다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "계층화하면 각 계층 내 항목의 변동성이 감소한다. 이에 따라 표본위험을 증가시키지 않고 필요한 표본규모를 줄일 수 있어 감사 효율성이 높아진다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "subq2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0b8988a5114233d9016aa7861172ec87d0832a40f6136099c2",
+        "request_id": "req_c18906bb9c0a4821a1b48e129b556d8d",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2340,
+          "input_tokens_details": {
+            "cache_write_tokens": 2337,
+            "cached_tokens": 0
+          },
+          "output_tokens": 190,
+          "output_tokens_details": {
+            "reasoning_tokens": 60
+          },
+          "total_tokens": 2530
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00081285,
+        "min_usd": 0.00081285,
+        "max_usd": 0.00081285,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-aa672e0fc674--subq2--partial/input.json",
+      "sha256": "2af819f2912884c9ec6664ef97497d776773ef26e488ac619ed39abb88555ae8"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-aa672e0fc674--subq2--partial/transport.jsonl",
+      "sha256": "3ad6930253da082a0214425ad27f2025dc4987f619c6a2f1ed86e1df4a711268"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-aa672e0fc674--subq2--partial/traces.jsonl",
+      "sha256": "5d047884022ac9e45c7edb4af46fc88b5fb392b7ce5d0d7dd1edfb548a9170d3"
+    }
+  }
+}

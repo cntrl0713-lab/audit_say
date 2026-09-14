@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-09-14",
+  "reviewer": "Codex agent /root/review_11_14",
+  "verdict": "pass_after_fix",
+  "unresolved": [],
+  "scope": "삭제만 수행한 후보가 원 승인·분류·출처·채점 입력과 실제로 동일한 계약을 유지하는지에 대한 독립 코드리뷰. 실제 API 채점·사용자 사람검수와 별개이다.",
+  "reviewed_files": [
+    {
+      "file": "cpa_uploader/questionSubsetReview.ts",
+      "sha256": "d981d08156876317374f6ea36a7be5e878964f41f0a48a9b6328dcf36698e20a"
+    },
+    {
+      "file": "cpa_uploader/questionBankPublication.ts",
+      "sha256": "09500d10286d4d0098e2bfd22adb0158a226488199287c0e8bc8106b7dda3ded"
+    },
+    {
+      "file": "cpa_uploader/promote_cpa_v3.ts",
+      "sha256": "1149a10212e847493259d2de0a3b8135f0f5351e823253e730b1fa84a0facced"
+    },
+    {
+      "file": "tests/questionSubsetReview.test.ts",
+      "sha256": "0e19214017c14551ac9e86d622d333d8e651769646167a0b3166b2b0c0f15a8c"
+    }
+  ],
+  "additional_read_only_dependencies": [
+    "lib/learningUnits.ts",
+    "lib/learningSubmission.ts",
+    "cpa_uploader/questionReviewIdentity.ts",
+    "cpa_uploader/questionEfficientReview.ts",
+    "cpa_uploader/questionSemanticReview.ts"
+  ],
+  "findings": [
+    {
+      "id": "subset-history-001",
+      "priority": "P2",
+      "status": "resolved",
+      "file": "cpa_uploader/questionSubsetReview.ts",
+      "lines": [
+        239,
+        250
+      ],
+      "problem": "원 promotions 전체 prefix가 보존되는 것만 확인하면 그 snapshot 뒤에 같은 set의 새 승인·게시가 추가된 후에도 옛 검수에서 삭제를 파생할 수 있었다. 마지막 원published 항목을 다시 복사하여 predecessor를 되돌리는 우회도 막아야 했다.",
+      "impact": "새 승인 내용보다 오래된 물음을 다시 채점 없이 게시할 수 있으며, 삭제만 수행했다는 이력 계승의 전제가 깨진다.",
+      "resolution": "receipt가 연결된 유일한 파생 verified 이벤트를 찾고 published→verified를 요구한다. 원 snapshot 원장 길이부터 파생 이벤트 직전까지 같은 set 이벤트를 금지하며, 직전 이벤트와 원published 항목의 완전일치를 대조한다. 이후 동일 set의 이벤트는 동일 content/receipt를 가진 verified→published 한 건만 허용한다.",
+      "verification": "기존 원published를 재삽입하는 우회, 새 승인 삽입, 잘못된 from_status, 과거 history 수정, receipt 계약 변조 회귀를 실제 실행하여 모두 거절됨을 확인했다."
+    }
+  ],
+  "checks": [
+    {
+      "boundary": "bank/catalog/promotions 및 승인 근거 결속",
+      "result": "pass",
+      "evidence": "readEvidence가 각 원본 실제 바이트 SHA를 검사하고 catalog.source_file_sha256를 bank와 결속한다. origin receipt·원 approved content hash·승인 evidence JSON 문구가 recomputation에 포함된다. 효율검수는 원 batch/catalog/실제 transport 로그를 다시 검증한다. 분류 증거가 결속되지 않은 legacy semantic 입력은 계승하지 않고 새 검수를 요구한다."
+    },
+    {
+      "boundary": "물음 원문·답안·배점·조건·출처·분류 보존",
+      "result": "pass",
+      "evidence": "소모 ID·잔존 ID·순서와 full cloned candidate를 대조한다. 삭제와 learning_order 정리, 검증된 legacy singleton 독립 projection 외 변경은 허용하지 않는다. source_refs·requirements·critical_facts·max_points·answer slots·options·model_answer 등 전체 객체가 동일성 검사에 들어간다. metadata는 원 catalog의 style/topics/standalone prompt와 실제 원검수의 catalog를 대조한다."
+    },
+    {
+      "boundary": "사례형 공유 사실 및 동료 물음 입력 보존",
+      "result": "pass",
+      "evidence": "selectLearningQuestionSet의 파생 전후 계약과 동일 답안에 대한 실제 buildGradingPrompt/buildGradingResponseSchema 결과를 비교한다. 잔존 사례형의 case peer ID는 모두 남아야 한다. 단순 삭제 때문에 공유 사실이나 같은 사례의 다른 물음 채점 입력이 소실되는 경우 회귀가 거절한다."
+    },
+    {
+      "boundary": "상태 전환 및 과거 이력 보존",
+      "result": "pass",
+      "evidence": "수정된 activeLedger 검증이 immutable 원장 prefix, 원published 최신성, 유일한 published→verified 파생, 최대 한 번 verified→published 및 content/receipt 동일성을 확인한다. CLI는 --subset-review --reverify --to verified 명시 경로에서만 받고 단계별 새 이력을 append하며 기존 파일 스냅샷 guard와 atomic write를 사용한다."
+    },
+    {
+      "boundary": "근거 계승의 정직한 표시",
+      "result": "pass",
+      "evidence": "receipt.method는 question_deletion_contract_derivation이고 new_model_calls=0, new_human_review=false이며 review_summary.cases=0이다. 원 실제 검수가 없는 hash-bearing backfill 및 이전 subset 자체를 새 원검수처럼 쓰는 경로는 거절한다."
+    }
+  ],
+  "tests": [
+    {
+      "command": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/questionSubsetReview.test.ts",
+      "when": "상태이력 방어 보강 전 전체 스위트",
+      "passed": 8,
+      "failed": 0,
+      "duration_ms": 78938.655,
+      "network_model_calls": 0
+    },
+    {
+      "command": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test --test-name-pattern=\"a derivation receipt binds\" tests/questionSubsetReview.test.ts",
+      "when": "최종 상태이력·원published 재삽입 방어 반영 후 독립 회귀",
+      "passed": 1,
+      "failed": 0,
+      "duration_ms": 6362.0049,
+      "network_model_calls": 0
+    }
+  ],
+  "limits": [
+    "전체 최초 테스트는 최종 이력 보강 전 버전이므로 최종 수정에 대해서는 관련 회귀 한 건을 재실행하였다.",
+    "테스트에 기존 실제 API 로그의 읽기 재검증과 명시적 임시 경로의 CLI 실행이 포함되며 새 유료 모델 호출·정본 승급·운영 배포를 실행하지 않았다."
+  ],
+  "runtime_files_modified_by_reviewer": false
+}

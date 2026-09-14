@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "artifact_type": "subset_manifest_cache_final_validation",
+  "performed_at": "2026-09-14T06:01:20.953Z",
+  "implementation": {
+    "file": "cpa_uploader/questionSubsetReview.ts",
+    "sha256": "686e0c9159e812792fcfb5bdcb949e1dbb52941545abfd6ce31f8eda1552223d"
+  },
+  "tests": {
+    "file": "tests/questionSubsetReview.test.ts",
+    "sha256": "e6ea36eb78636ed04b1224da0c02b601e69763b70a6b32c0b630b87d549e25c4"
+  },
+  "checks": [
+    {
+      "command": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/questionSubsetReview.test.ts",
+      "exit_code": 0,
+      "passed": 9,
+      "failed": 0,
+      "duration_ms": 54826.9875
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "exit_code": 0
+    },
+    {
+      "command": "npx eslint cpa_uploader/questionSubsetReview.ts tests/questionSubsetReview.test.ts",
+      "exit_code": 0
+    }
+  ],
+  "receipt_equivalence": {
+    "evidence": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/subset-cache-validation.json",
+      "sha256": "fabfdd3b085976d7e9c69f2021a4bb6458e8cc862b03fda7ca838fcd2392b694"
+    },
+    "identical_receipts": 50,
+    "origin_approval_full_guards": 1,
+    "total_full_guards_including_final": 2,
+    "elapsed_ms": 41135
+  },
+  "frozen_runtime_files": 12,
+  "changed_runtime_files": [],
+  "new_model_calls": 0,
+  "old_preflight_modified": false,
+  "bank_or_ledger_writes": 0,
+  "cache_guards": [
+    "Context-specific WeakMap; root and manifest/bank/catalog/promotions file identities in key",
+    "Every manifest target original approval checked before cache acceptance; failures never cached",
+    "Each invoked target original hash, exact question contract, bound classification, origin prefix and stale-origin checks unchanged",
+    "Per-read source snapshot hashes unchanged; tracked evidence remains subject to explicit final byte guard",
+    "Mutated manifest, peer source hash, source-bank bytes, ledger bytes and tracked source bytes rejected by regression tests"
+  ]
+}

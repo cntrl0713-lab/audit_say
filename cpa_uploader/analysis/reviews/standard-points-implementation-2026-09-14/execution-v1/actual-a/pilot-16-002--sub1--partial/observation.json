@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "pilot-16-002--sub1--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-002--sub1--standard",
+  "source_set_id": "pilot-16-002",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "f77a46d4913ed4af63c0cd8310d71b0f63658010d8b92ec3d44cf5a7ceb09593",
+  "answers": {
+    "sub1": "높은 추정불확실성을 가진 회계추정치를 포함하여 유의적 경영진 판단이 수반된 재무제표 분야와 관련된 유의적 감사인 판단을 고려한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 partial 답안. 대상 명제: 중요왜곡표시위험이 더 높게 평가되거나 유의적 위험으로 식별된 분야를 고려함"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 partial 답안. 대상 명제: 높은 추정불확실성을 가진 회계추정치를 포함하여 유의적 경영진 판단이 수반된 재무제표 분야와 관련된 유의적 감사인 판단을 고려함. 경영진 판단이 수반된 분야만 제시하고 이와 관련된 유의적 감사인 판단을 누락하면 미충족"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 partial 답안. 대상 명제: 보고기간 중 발생한 유의적인 사건이나 거래가 감사에 미치는 영향을 고려함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "6f8645802d2445e6ba43c8b599d58f267c301eb43347ac6616cea571b48bb346",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "위험이 더 높게 평가되거나 유의적 위험으로 식별된 분야를 언급하지 않았다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "높은 추정불확실성을 가진 회계추정치를 포함하여 유의적 경영진 판단이 수반된 재무제표 분야와 관련된 유의적 감사인 판단을 고려한다.",
+            "reason": "높은 추정불확실성을 가진 회계추정치를 포함한 유의적 경영진 판단 분야 및 관련 유의적 감사인 판단을 제시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "보고기간 중 유의적인 사건이나 거래가 감사에 미치는 영향을 언급하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "위험이 더 높게 평가되거나 유의적 위험으로 식별된 분야를 언급하지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "높은 추정불확실성을 가진 회계추정치를 포함한 유의적 경영진 판단 분야 및 관련 유의적 감사인 판단을 제시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "보고기간 중 유의적인 사건이나 거래가 감사에 미치는 영향을 언급하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-002",
+    "score": 1,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "지배기구와 커뮤니케이션한 사항 중 유의적 감사인 주의를 요구한 사항을 결정할 때 감사인이 고려해야 할 세 가지 분야를 모두 제시하시오.",
+        "user_answer": "높은 추정불확실성을 가진 회계추정치를 포함하여 유의적 경영진 판단이 수반된 재무제표 분야와 관련된 유의적 감사인 판단을 고려한다.",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "위험이 더 높게 평가되거나 유의적 위험으로 식별된 분야를 언급하지 않았다.",
+            "claim": "중요왜곡표시위험이 더 높게 평가되거나 유의적 위험으로 식별된 분야를 고려함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "높은 추정불확실성을 가진 회계추정치를 포함하여 유의적 경영진 판단이 수반된 재무제표 분야와 관련된 유의적 감사인 판단을 고려한다.",
+            "reason": "높은 추정불확실성을 가진 회계추정치를 포함한 유의적 경영진 판단 분야 및 관련 유의적 감사인 판단을 제시했다.",
+            "claim": "높은 추정불확실성을 가진 회계추정치를 포함하여 유의적 경영진 판단이 수반된 재무제표 분야와 관련된 유의적 감사인 판단을 고려함. 경영진 판단이 수반된 분야만 제시하고 이와 관련된 유의적 감사인 판단을 누락하면 미충족",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "보고기간 중 유의적인 사건이나 거래가 감사에 미치는 영향을 언급하지 않았다.",
+            "claim": "보고기간 중 발생한 유의적인 사건이나 거래가 감사에 미치는 영향을 고려함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "중요왜곡표시위험이 더 높게 평가되거나 유의적 위험으로 식별된 분야",
+          "높은 추정불확실성을 가진 회계추정치를 포함하여 유의적 경영진 판단이 수반된 분야와 관련되는 유의적 감사인 판단",
+          "보고기간 중 발생한 유의적 사건이나 거래가 감사에 미치는 영향"
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_06ea2fffaae5b486016aa78803973487d0acb38dc653694916",
+        "request_id": "req_543b3f60a1804480b363df8f321fea5c",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2594,
+          "input_tokens_details": {
+            "cache_write_tokens": 2591,
+            "cached_tokens": 0
+          },
+          "output_tokens": 242,
+          "output_tokens_details": {
+            "reasoning_tokens": 43
+          },
+          "total_tokens": 2836
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00093875,
+        "min_usd": 0.00093875,
+        "max_usd": 0.00093875,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/pilot-16-002--sub1--partial/input.json",
+      "sha256": "20cb7145f460eba77cabf9ca5e2b173da8b786e3a226cc151f8c39ced1c51a27"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/pilot-16-002--sub1--partial/transport.jsonl",
+      "sha256": "11d994f919b7af020e086647559281acc42f2ecdb5c0a7c14b48ce521eaf845b"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/pilot-16-002--sub1--partial/traces.jsonl",
+      "sha256": "ac6be3d9a30c3a80d41a71b2f8550934ce2bd9b3c66bfbdad74870bbb3671eaa"
+    }
+  }
+}

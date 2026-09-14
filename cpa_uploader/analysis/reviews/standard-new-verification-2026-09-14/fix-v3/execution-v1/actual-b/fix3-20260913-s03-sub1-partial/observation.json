@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/grading-manifest.json",
+    "sha256": "fd4017cb13c67e796d2182c6f8c780f9563c6f1da5c8a1549d70beddd1234c27"
+  },
+  "entry_id": "fix3-20260913-s03-sub1-partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-standard-followup-20260913-s03--sub1--standard",
+  "source_set_id": "draft-standard-followup-20260913-s03",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "235dd1dee684e7fa6750b46514325ba3ba48fba492560e34b46e08795029eb62",
+  "answers": {
+    "sub1": "표본항목을 무작위로 추출하는 것이 한 가지 특성이다. 표본규모는 통계적·비통계적 접근법을 구별하는 타당한 기준이 아니다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 표본항목을 무작위로 추출한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 표본위험의 측정 등 표본결과의 평가에 확률이론을 적용한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 두 특성을 모두 갖추어야 통계적 표본감사이며 하나만 갖춘 접근법은 비통계적 표본감사이다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 표본규모는 통계적 접근법과 비통계적 접근법을 구별하는 타당한 기준이 아니다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "898a122ae969a62b74bc9ade3127bb7bdac5678ee2dbcd60e8b147167d5e5603",
+  "schema_hash": "e855bf5c3fc7c9fe3c07bbe53bd066a1730d4b0c5b32206a971b2ced5602e99c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "표본항목을 무작위로 추출하는 것이 한 가지 특성이다. ",
+            "reason": "표본항목을 무작위로 추출한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "확률이론을 적용한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "두 특성의 충족관계와 하나만 갖춘 접근법의 분류를 설명하지 않았다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "표본규모는 통계적·비통계적 접근법을 구별하는 타당한 기준이 아니다.",
+            "reason": "표본규모가 통계적·비통계적 접근법을 구별하는 타당한 기준이 아니라고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "표본항목을 무작위로 추출한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "확률이론을 적용한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "두 특성의 충족관계와 하나만 갖춘 접근법의 분류를 설명하지 않았다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "표본규모가 통계적·비통계적 접근법을 구별하는 타당한 기준이 아니라고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-followup-20260913-s03",
+    "score": 2,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 530에 따른 통계적 표본감사의 두 가지 특성과 그 충족관계를 설명하시오. 두 특성 중 하나만 갖춘 접근법의 분류와 표본규모가 통계적·비통계적 접근법을 구별하는 타당한 기준인지도 제시하시오.",
+        "user_answer": "표본항목을 무작위로 추출하는 것이 한 가지 특성이다. 표본규모는 통계적·비통계적 접근법을 구별하는 타당한 기준이 아니다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "표본항목을 무작위로 추출하는 것이 한 가지 특성이다.",
+            "reason": "표본항목을 무작위로 추출한다고 명시했다.",
+            "claim": "표본항목을 무작위로 추출한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "확률이론을 적용한다는 내용이 없다.",
+            "claim": "표본위험의 측정 등 표본결과의 평가에 확률이론을 적용한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "두 특성의 충족관계와 하나만 갖춘 접근법의 분류를 설명하지 않았다.",
+            "claim": "두 특성을 모두 갖추어야 통계적 표본감사이며 하나만 갖춘 접근법은 비통계적 표본감사이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "표본규모는 통계적·비통계적 접근법을 구별하는 타당한 기준이 아니다.",
+            "reason": "표본규모가 통계적·비통계적 접근법을 구별하는 타당한 기준이 아니라고 명시했다.",
+            "claim": "표본규모는 통계적 접근법과 비통계적 접근법을 구별하는 타당한 기준이 아니다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "표본항목을 무작위로 추출한다.",
+          "표본위험의 측정 등 표본결과의 평가에 확률이론을 적용한다.",
+          "두 특성을 모두 갖추어야 통계적 표본감사이며 하나만 갖춘 접근법은 비통계적 표본감사이다.",
+          "표본규모는 통계적 접근법과 비통계적 접근법을 구별하는 타당한 기준이 아니다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_03af33f45e39d3dc016aa7c03b3d1487d09caf334d1bcebe3e",
+        "request_id": "req_c867efbcfdfe429bbc663f66b08ec703",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2815,
+          "input_tokens_details": {
+            "cache_write_tokens": 2812,
+            "cached_tokens": 0
+          },
+          "output_tokens": 280,
+          "output_tokens_details": {
+            "reasoning_tokens": 57
+          },
+          "total_tokens": 3095
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010396,
+        "min_usd": 0.0010396,
+        "max_usd": 0.0010396,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/execution-v1/actual-b/fix3-20260913-s03-sub1-partial/input.json",
+      "sha256": "c5d0423ee92624fa1dab89bc61071b62fa8cea9de4530a2ad00ab8a321dbc2ac"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/execution-v1/actual-b/fix3-20260913-s03-sub1-partial/transport.jsonl",
+      "sha256": "0ef798d102be7779108dbc7befb9dd1f48e6fb3a244ad984ec76149fc1d3a5d6"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/execution-v1/actual-b/fix3-20260913-s03-sub1-partial/traces.jsonl",
+      "sha256": "6ee24a92499be35f6186a494493965f57a0c1b216a41ca1e415f5c5551963885"
+    }
+  }
+}

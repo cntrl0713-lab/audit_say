@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v4/grading-manifest.json",
+    "sha256": "aab06fca9e7995d7d6b56783c9ddd803b019aee69a6fbdc750f29bc1fdc1a8f2"
+  },
+  "entry_id": "pilot-10-007-standards-20260913--sub3--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-10-007-standards-20260913--sub3--standard",
+  "source_set_id": "pilot-10-007-standards-20260913",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub3"
+  ],
+  "projected_body_hash": "0fe084846fe7764ab551c25d117450c68582ee33fffa6b8872a93b19bba07065",
+  "answers": {
+    "sub3": "경영진이 설명했다면 그 설명과 관련한 감사증거는 더 입수할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit8",
+          "verdict": "not_met",
+          "reason": "기존 독립 발문·기준의 의미와 정수 배점을 보존한 이동. 원 답안 및 기대값을 계보로 가져와 현행 발문·정답과 대조한다. 실제 모델 observation은 재사용하지 않고 새 projection에서 실측한다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "not_met",
+          "reason": "기존 독립 발문·기준의 의미와 정수 배점을 보존한 이동. 원 답안 및 기대값을 계보로 가져와 현행 발문·정답과 대조한다. 실제 모델 observation은 재사용하지 않고 새 projection에서 실측한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "33c1a113e4855d2ec3cc98940055844f0a7a9647082b979f0c5a625b3fc4b1de",
+  "schema_hash": "b8154a7728cb94c63b77bf02d42412cfea7644300c6491b04fcbc4283b43ef86",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit8",
+            "verdict": "contradicted",
+            "quote": "경영진이 설명했다면 그 설명과 관련한 감사증거는 더 입수할 필요가 없다.",
+            "reason": "경영진의 설명과 관련된 감사증거를 추가로 입수할 필요가 없다고 명시하여 요구사항을 반대로 작성했다."
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "not_met",
+            "reason": "설명이 증거로 뒷받침되지 않는 경우 수행할 기타 감사절차를 언급하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit8",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "경영진의 설명과 관련된 감사증거를 추가로 입수할 필요가 없다고 명시하여 요구사항을 반대로 작성했다."
+              },
+              {
+                "criterion_id": "crit9",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "설명이 증거로 뒷받침되지 않는 경우 수행할 기타 감사절차를 언급하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-10-007-standards-20260913",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "분석적절차에서 다른 관련정보와 일관되지 않거나 기대치와 유의적인 금액만큼 다른 변동이나 관계를 식별하여 경영진에게 질문하고 설명을 받은 경우, 그 차이를 조사하기 위하여 수행할 사항을 모두 설명하시오. 설명과 관련한 감사증거와 상황에 필요한 기타절차를 구별하시오.",
+        "user_answer": "경영진이 설명했다면 그 설명과 관련한 감사증거는 더 입수할 필요가 없다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit8",
+            "verdict": "contradicted",
+            "quote": "경영진이 설명했다면 그 설명과 관련한 감사증거는 더 입수할 필요가 없다.",
+            "reason": "경영진의 설명과 관련된 감사증거를 추가로 입수할 필요가 없다고 명시하여 요구사항을 반대로 작성했다.",
+            "claim": "경영진의 설명과 관련성이 있는 적합한 감사증거를 입수하여 설명을 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "not_met",
+            "reason": "설명이 증거로 뒷받침되지 않는 경우 수행할 기타 감사절차를 언급하지 않았다.",
+            "claim": "경영진 설명을 증거가 뒷받침하지 못하는 경우 등 해당 상황에 필요한 기타 감사절차를 수행한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진의 설명과 관련성이 있는 적합한 감사증거를 입수하여 설명을 평가한다.",
+          "경영진 설명을 증거가 뒷받침하지 못하는 경우 등 해당 상황에 필요한 기타 감사절차를 수행한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_03749a1e57f86bea016aa60818a8fc87d0af4cbdf031a9ad98",
+        "request_id": "req_138bdb1152284fcba40fa9a00ee11645",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2394,
+          "input_tokens_details": {
+            "cache_write_tokens": 2391,
+            "cached_tokens": 0
+          },
+          "output_tokens": 273,
+          "output_tokens_details": {
+            "reasoning_tokens": 116
+          },
+          "total_tokens": 2667
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00092595,
+        "min_usd": 0.00092595,
+        "max_usd": 0.00092595,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v4/actual-c/pilot-10-007-standards-20260913--sub3--standard--wrong/input.json",
+      "sha256": "e30206d857a8232a93fa06ee21379e2241c6a1b672016da164739031e857b507"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v4/actual-c/pilot-10-007-standards-20260913--sub3--standard--wrong/transport.jsonl",
+      "sha256": "da580f551632439cac7e533fd39a74480cdb8f0121ffd89bdec1e4346b69e85f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v4/actual-c/pilot-10-007-standards-20260913--sub3--standard--wrong/traces.jsonl",
+      "sha256": "c8c0762b6c0697f53a837ed675f7b1bcf5736620cb2505667e162303f4b9d4c9"
+    }
+  }
+}

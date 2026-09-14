@@ -1,0 +1,405 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "46bd89e7689cdcea72e421960ad22aaf164f6deaf9fec183a22345d175db2743"
+  },
+  "entry_id": "case-16-comparative-opinion-change-20260914--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "case-16-comparative-opinion-change-20260914--case",
+  "source_set_id": "case-16-comparative-opinion-change-20260914",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "7bae2ab291818bd5386abde035fea9cd2d99f3362436949a786396e3bd352615",
+  "answers": {
+    "sub1": "2025년은 이미 발행한 의견을 바꿀 수 없으므로 한정의견이고, 2026년은 다른 항목에 문제가 없으므로 적정의견이다.",
+    "sub2": "현재 보고서의 작성연도가 당기 이후이므로 의견은 2026년만 언급하고 2025년은 감사받지 않은 참고수치로 취급한다.",
+    "sub3": "주석에 오류수정이 공시되어 있으므로 감사보고서에서는 의견 차이를 설명하지 않는다. 그 차이가 생긴 이유는 다른 전임감사인이 전기를 감사했기 때문이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "not_met",
+          "reason": "두기간의의견과적용근거를모두반대로판단한다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "두기간의의견과적용근거를모두반대로판단한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "not_met",
+          "reason": "비교재무제표와실제전기감사범위를부정하여두명제모두불충족이다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "not_met",
+          "reason": "비교재무제표와실제전기감사범위를부정하여두명제모두불충족이다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.c1",
+          "verdict": "not_met",
+          "reason": "판단·보고조치를 반대로 제시하며 독립적인 올바른 근거도 제시하지 않은 0점 대표 오답이다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "verdict": "not_met",
+          "reason": "판단·보고조치를 반대로 제시하며 독립적인 올바른 근거도 제시하지 않은 0점 대표 오답이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "47bcd729f5448684905f5146cf7b5815a95ff37058a9d58de572d45f3f98d9b7",
+  "schema_hash": "e5eda6fa771883cb54e452560f8ad146e18b0fe49c4b1f07231e5ce3e18b3d63",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "contradicted",
+            "quote": "2025년은 이미 발행한 의견을 바꿀 수 없으므로 한정의견이고, 2026년은 다른 항목에 문제가 없으므로 적정의견이다.",
+            "reason": "2025년에 한정의견을 유지한다고 명시했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "contradicted",
+            "quote": "2025년은 이미 발행한 의견을 바꿀 수 없으므로 한정의견이고, 2026년은 다른 항목에 문제가 없으므로 적정의견이다.",
+            "reason": "2026년에 적정의견이라고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "현재 보고서의 작성연도가 당기 이후이므로 의견은 2026년만 언급하고 2025년은 감사받지 않은 참고수치로 취급한다.",
+            "reason": "2026년만 언급하고 2025년을 감사받지 않은 수치로 취급한다고 했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "contradicted",
+            "quote": "현재 보고서의 작성연도가 당기 이후이므로 의견은 2026년만 언급하고 2025년은 감사받지 않은 참고수치로 취급한다.",
+            "reason": "작성연도를 이유로 의견 범위를 당기로 축소한다고 했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "contradicted",
+            "quote": "주석에 오류수정이 공시되어 있으므로 감사보고서에서는 의견 차이를 설명하지 않는다. ",
+            "reason": "주석 공시를 이유로 기타사항문단에서 의견 차이를 설명하지 않는다고 했다."
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "contradicted",
+            "quote": "그 차이가 생긴 이유는 다른 전임감사인이 전기를 감사했기 때문이다.",
+            "reason": "의견 차이의 원인을 다른 전임감사인 때문이라고 잘못 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "2025년에 한정의견을 유지한다고 명시했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "2026년에 적정의견이라고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "2026년만 언급하고 2025년을 감사받지 않은 수치로 취급한다고 했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "작성연도를 이유로 의견 범위를 당기로 축소한다고 했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "주석 공시를 이유로 기타사항문단에서 의견 차이를 설명하지 않는다고 했다."
+              },
+              {
+                "criterion_id": "sub3.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "의견 차이의 원인을 다른 전임감사인 때문이라고 잘못 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-16-comparative-opinion-change-20260914",
+    "score": 0,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "이번 비교재무제표 감사보고서에서 2025년과 2026년 재무제표에 각각 표명할 감사의견을 제시하시오. 각 의견의 이유나 보고서 문단의 작성은 여기서는 요구하지 않는다.",
+        "user_answer": "2025년은 이미 발행한 의견을 바꿀 수 없으므로 한정의견이고, 2026년은 다른 항목에 문제가 없으므로 적정의견이다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "contradicted",
+            "quote": "2025년은 이미 발행한 의견을 바꿀 수 없으므로 한정의견이고, 2026년은 다른 항목에 문제가 없으므로 적정의견이다.",
+            "reason": "2025년에 한정의견을 유지한다고 명시했다.",
+            "claim": "이번에 제시된 2025년 재무제표에 대해서는 적정의견을 표명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "contradicted",
+            "quote": "2025년은 이미 발행한 의견을 바꿀 수 없으므로 한정의견이고, 2026년은 다른 항목에 문제가 없으므로 적정의견이다.",
+            "reason": "2026년에 적정의견이라고 명시했다.",
+            "claim": "2026년 재무제표에 대해서는 한정의견을 표명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "이번에 제시된 2025년 재무제표에 대해서는 적정의견을 표명한다.",
+          "2026년 재무제표에 대해서는 한정의견을 표명한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "을의 의견문단 작성 제안을 바로잡아, 이번 감사의견에서 언급할 기간을 제시하고 그 이유를 설명하시오. 각 기간의 구체적 의견 종류는 반복하지 않아도 된다.",
+        "user_answer": "현재 보고서의 작성연도가 당기 이후이므로 의견은 2026년만 언급하고 2025년은 감사받지 않은 참고수치로 취급한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "현재 보고서의 작성연도가 당기 이후이므로 의견은 2026년만 언급하고 2025년은 감사받지 않은 참고수치로 취급한다.",
+            "reason": "2026년만 언급하고 2025년을 감사받지 않은 수치로 취급한다고 했다.",
+            "claim": "이번 감사의견에는 2026년 당기뿐 아니라 2025년 전기의 재무제표도 그 대상기간으로 언급해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "contradicted",
+            "quote": "현재 보고서의 작성연도가 당기 이후이므로 의견은 2026년만 언급하고 2025년은 감사받지 않은 참고수치로 취급한다.",
+            "reason": "작성연도를 이유로 의견 범위를 당기로 축소한다고 했다.",
+            "claim": "이 업무는 두 기간이 표시되는 비교재무제표에 대해 두 기간 모두 보고하는 감사이므로, 보고서 작성연도만으로 의견의 언급 범위를 당기로 줄일 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "이번 감사의견에는 2026년 당기뿐 아니라 2025년 전기의 재무제표도 그 대상기간으로 언급해야 한다.",
+          "이 업무는 두 기간이 표시되는 비교재무제표에 대해 두 기간 모두 보고하는 감사이므로, 보고서 작성연도만으로 의견의 언급 범위를 당기로 줄일 수 없다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "병의 주장을 바로잡아, 과거에 표명한 전기 의견과 이번 전기 의견의 차이를 감사보고서에서 어떻게 다루어야 하는지 설명하시오. 포함할 문단과 이 사례에서 설명할 중요한 사유를 구별하시오.",
+        "user_answer": "주석에 오류수정이 공시되어 있으므로 감사보고서에서는 의견 차이를 설명하지 않는다. 그 차이가 생긴 이유는 다른 전임감사인이 전기를 감사했기 때문이다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "contradicted",
+            "quote": "주석에 오류수정이 공시되어 있으므로 감사보고서에서는 의견 차이를 설명하지 않는다.",
+            "reason": "주석 공시를 이유로 기타사항문단에서 의견 차이를 설명하지 않는다고 했다.",
+            "claim": "동일 감사인이 2025년 재무제표에 대해 과거와 다른 의견을 표명하므로 그 차이에 관한 중요한 사유를 기타사항문단에 설명해야 하며, 재무제표 주석의 공시만으로 이를 생략할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "contradicted",
+            "quote": "그 차이가 생긴 이유는 다른 전임감사인이 전기를 감사했기 때문이다.",
+            "reason": "의견 차이의 원인을 다른 전임감사인 때문이라고 잘못 설명했다.",
+            "claim": "종전 2025년 한정의견의 원인이던 재고평가 오류가 이번에 제시된 전기 비교재무제표에서 적절히 수정되어 그 변형사유가 해소되었다는 점을 의견 변경의 중요한 사유로 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "동일 감사인이 2025년 재무제표에 대해 과거와 다른 의견을 표명하므로 그 차이에 관한 중요한 사유를 기타사항문단에 설명해야 하며, 재무제표 주석의 공시만으로 이를 생략할 수 없다.",
+          "종전 2025년 한정의견의 원인이던 재고평가 오류가 이번에 제시된 전기 비교재무제표에서 적절히 수정되어 그 변형사유가 해소되었다는 점을 의견 변경의 중요한 사유로 설명한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02d41dd3b074bfdb016aa7820886a087d08ae6a34877736dbd",
+        "request_id": "req_7ba89be12c3f4d44a606d24f3f38839e",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 5188,
+          "input_tokens_details": {
+            "cache_write_tokens": 5185,
+            "cached_tokens": 0
+          },
+          "output_tokens": 600,
+          "output_tokens_details": {
+            "reasoning_tokens": 204
+          },
+          "total_tokens": 5788
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0020168499999999997,
+        "min_usd": 0.0020168499999999997,
+        "max_usd": 0.0020168499999999997,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--wrong/input.json",
+      "sha256": "dd41bbdeaba9fdc37501eb4427ff818a9dca94b7c089c013cb46f7f2e762e49b"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--wrong/transport.jsonl",
+      "sha256": "448958c9c91fc43ae600262f027fba4d3bbfdd098c7d9badce41ecfdb61f243f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--wrong/traces.jsonl",
+      "sha256": "a244dcbcc6cb702e2b58ac1b6e9c06ac7506950a0cc9545fc937b39994d00b64"
+    }
+  }
+}

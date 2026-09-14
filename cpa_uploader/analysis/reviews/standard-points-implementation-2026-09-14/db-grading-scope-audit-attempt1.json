@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "artifact_type": "db_grading_scope_readonly_audit",
+  "performed_at": "2026-09-14T05:48:13.774Z",
+  "database_writes": 0,
+  "model_calls": 0,
+  "code_path": [
+    "app/actions.ts: gradeQuestionSetV3Action → gradeLearningSubmission(loadUnit=findDatabaseLearningUnit, grade=gradeQuestionSetV3)",
+    "lib/questionV3Repository.ts: findDatabaseLearningUnit → findDatabaseQuestionVersion → RPC cpa_get_question_version → validateQuestionSetV3(raw) → selectLearningQuestionSet",
+    "supabase/migrations/20260912060000_cpa_private_source_metadata.sql: cpa_get_question_version → metadata overlay → normalized document with scope restored from immutable source_document",
+    "lib/questionV3Grading.ts: buildGradingPrompt serializes criterion.critical_facts directly, including scope"
+  ],
+  "findings": [
+    "Normalized cpa_criterion_facts has no scope column and the normalized document builder omits scope. The deployed private getter restores scope through the existing 20260912060000 source metadata overlay.",
+    "The overlay validates archived document bytes, exact sealed release/version binding, content hash, unique IDs, ordinary fields, and agreement across every attached release before adding scope. A present invalid document raises an error; only truly document-less legacy versions retain normalized fallback.",
+    "TypeScript CriterionV3 critical_facts type omits scope, but runtime validation does not strip it and the actual private RPC → learning projection → grading payload retains the returned property. No runtime patch is required for scope transmission."
+  ],
+  "sets": [
+    {
+      "set_id": "pilot-10-007-standards-20260913",
+      "set_version_id": "1a91eba6-ae80-46e5-8a22-101e20566c31",
+      "expected_scope_fields": 3,
+      "private_rpc_scope_fields": 3,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "pilot-10-007-standards-20260913--sub1--standard",
+          "expected_scope_fields": 0,
+          "payload_scope_fields": 0,
+          "scope_values_equal": true,
+          "prompt_sha256": "75250a667804dd1206998d2766d8864f7060cc20821f986af2d4f7f47cf48e03",
+          "expected_scopes_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "payload_scopes_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "learning_unit_id": "pilot-10-007-standards-20260913--sub3--standard",
+          "expected_scope_fields": 0,
+          "payload_scope_fields": 0,
+          "scope_values_equal": true,
+          "prompt_sha256": "01ef8b04c037356aabaa74919fcc9c6223bf9c90842dd2e12b5800ffba8fd62d",
+          "expected_scopes_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "payload_scopes_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "learning_unit_id": "pilot-10-007-standards-20260913--sub4--standard",
+          "expected_scope_fields": 3,
+          "payload_scope_fields": 3,
+          "scope_values_equal": true,
+          "prompt_sha256": "b000a9ec720273c60c08cc712dd1b8913498b0bf6e36b7de726749c39b51f994",
+          "expected_scopes_sha256": "e1e5962aadd4c9680308c348d4290d4887f87994045459df4d75cd7aedfe5729",
+          "payload_scopes_sha256": "e1e5962aadd4c9680308c348d4290d4887f87994045459df4d75cd7aedfe5729"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "set_id": "pilot-17-005",
+      "stage": "private RPC",
+      "code": "57014"
+    },
+    {
+      "set_id": "pilot-10-007",
+      "stage": "private RPC",
+      "code": "57014"
+    },
+    {
+      "set_id": "pilot-16-011",
+      "stage": "private RPC",
+      "code": "57014"
+    },
+    {
+      "set_id": "pilot-10-007-standards",
+      "stage": "private RPC",
+      "code": "57014"
+    }
+  ],
+  "release": {
+    "id": "9fde77ff-c4ed-4b4c-b383-8f632d6caf93",
+    "status": "active",
+    "sets": 236,
+    "source_file_hash": "0626b0396ae96d1fd0d05cd95afe7335b6a0b7ba28007923504a6c796a206624",
+    "actual_document_sha256": "0626b0396ae96d1fd0d05cd95afe7335b6a0b7ba28007923504a6c796a206624"
+  },
+  "expected": {
+    "scope_bearing_sets": 5,
+    "scope_fields": 13,
+    "learning_units": 3,
+    "payload_scope_fields": 3
+  },
+  "normalized_document_probe": {
+    "set_id": "pilot-10-007-standards-20260913",
+    "rpc_error_code": null,
+    "scope_fields": 0,
+    "wrapper_scope_fields": 3
+  },
+  "limitations": [
+    "This read-only live check covers the active release scope fields; newly proposed questions are not yet deployed. Repeat private-RPC/payload equality against the final published release after import.",
+    "A document-less legacy version has no scope to restore. Future migrations must keep cpa_get_question_version bound to the metadata overlay."
+  ],
+  "verdict": "fail"
+}

@@ -1,0 +1,21 @@
+diff --git a/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/reuse-source/validate-static.mjs.txt b/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/validate-static.mjs
+index 4efed65c..6b71018a 100644
+--- a/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/reuse-source/validate-static.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/validate-static.mjs
+@@ -3,7 +3,7 @@ import path from 'node:path';
+ import assert from 'node:assert/strict';
+ import {spawnSync} from 'node:child_process';
+ import {createHash} from 'node:crypto';
+-const H='cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers';
++const H='cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers';
+ const args=process.argv.slice(2);
+ assert(args.length===0||(args.length===2&&args[0]==='--output'&&/^static-checks-v[2-9][0-9]*\.json$/u.test(args[1])),'Use --output static-checks-vN.json for a follow-up; never overwrite earlier validation');
+ const output=H+'/'+(args[1]??'static-checks.json');assert(!fs.existsSync(output),'Preserve prior static checks');
+@@ -29,6 +29,7 @@ for(const [check,args]of [
+   ['targeted_typecheck',['node_modules/typescript/bin/tsc','--project',H+'/tsconfig.helpers.json']],
+   ['final_check_fixture_tests',['--test',H+'/test-final-checks.mjs']],
+   ['representative_qa_fixture_tests',['--import','tsx','--test',H+'/test-representative-qa.mjs']],
++  ['coverage_contract_fixture_tests',['--import','tsx','--test',H+'/test-coverage-contract.mjs']],
+ ]){
+   const result=spawnSync(process.execPath,args,{shell:false,windowsHide:true,encoding:'utf8'});
+   rows.push({check,exit_code:result.status,output:result.stdout+result.stderr});

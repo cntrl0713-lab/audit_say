@@ -1,0 +1,13 @@
+diff --git a/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/post-concurrent-helpers/originals/update-coverage.mjs.txt b/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/post-concurrent-helpers/update-coverage.mjs
+index 9d12d67d..e81430ad 100644
+--- a/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/post-concurrent-helpers/originals/update-coverage.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/post-concurrent-helpers/update-coverage.mjs
+@@ -7,7 +7,7 @@ const R='cpa_uploader/analysis/reviews/case-deepening-2026-09-14',file='cpa_uplo
+ const read=f=>JSON.parse(fs.readFileSync(f));
+ const hash=x=>createHash('sha256').update(x).digest('hex');
+ const ref=f=>({file:f,sha256:hash(fs.readFileSync(f))});
+-assert.equal(read(R+'/db-publication-v1/completion.json').status,'production_published_and_independently_verified');
++assert.equal(read(R+'/db-publication-v2/completion.json').status,'production_published_and_independently_verified');
+ const proposals=read(R+'/coverage-proposals.json').links,review=read(R+'/coverage-root-review.json');
+ const targetIds=read(R+'/changed-sets-v1.json');
+ assert.equal(review.proposal_sha256,ref(R+'/coverage-proposals.json').sha256,'Root reviewed a different proposal');

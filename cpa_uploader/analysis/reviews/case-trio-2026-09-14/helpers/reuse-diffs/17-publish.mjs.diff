@@ -1,0 +1,68 @@
+diff --git a/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/reuse-source/publish.mjs.txt b/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/publish.mjs
+index 3cc993c2..64fc79e7 100644
+--- a/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/reuse-source/publish.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/publish.mjs
+@@ -4,18 +4,18 @@ import assert from 'node:assert/strict';
+ import {spawnSync} from 'node:child_process';
+ import {createHash} from 'node:crypto';
+ import {publicationPaths,reviewedContentHash,withPublicationLock,writePublicationFiles} from '../../../../questionBankPublication.ts';
+-const D='cpa_uploader/analysis/reviews/case-deepening-2026-09-14';
++const D='cpa_uploader/analysis/reviews/case-trio-2026-09-14';
+ const C='cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c';
+-const out=D+'/publication-v2',stage=out+'/stage',backup=out+'/backup';
++const out=D+'/publication-v1',stage=out+'/stage',backup=out+'/backup';
+ const canonical={...publicationPaths(),catalog:path.resolve('cpa_uploader/data/learning-question-classifications.json')};
+ const read=f=>JSON.parse(fs.readFileSync(f));
+ const hash=b=>createHash('sha256').update(b).digest('hex');
+ const ref=file=>({file,sha256:hash(fs.readFileSync(file))});
+ const write=(file,x)=>fs.writeFileSync(file,JSON.stringify(x,null,2)+'\n',{flag:'wx'});
+ const mode=process.argv[2];assert(['--stage','--install'].includes(mode));
+-const ids=read(D+'/changed-sets-v1.json'),candidate=read(D+'/candidate-v2.json');
+-const baseline=read(D+'/integration-baseline-v2/bank.json');
+-assert.equal(ids.length,6);assert.equal(new Set(ids).size,ids.length);
++const ids=read(D+'/changed-sets-v1.json'),candidate=read(D+'/candidate-v1.json');
++const baseline=read(D+'/integration-baseline/bank.json');
++assert.equal(ids.length,3);assert.equal(new Set(ids).size,ids.length);
+ assert(ids.every(id=>!baseline.some(set=>set.id===id)&&candidate.some(set=>set.id===id)),'Target must be a new ID in the reviewed candidate');
+ assert.equal(candidate.length,baseline.length+ids.length);
+ for(const old of baseline)assert.deepEqual(candidate.find(set=>set.id===old.id),old,'Unrelated baseline content changed');
+@@ -31,23 +31,23 @@ function run(id,args,environment,guard=()=>{}){
+ if(mode==='--stage'){
+  assert(process.execArgv.includes('--env-file=.env.local'),'Invoke stage with node --env-file=.env.local --import tsx');
+  assert(process.env.CPA_QUESTION_V3_ENCRYPTION_KEY,'Encryption key must be loaded before preparing publication; its value is never recorded');
+- assert(!fs.existsSync(out));assert.equal(ref(canonical.authoring).sha256,read(D+'/integration-baseline-v2.json').bank.sha256,'Canonical changed during review');
+- assert.equal(ref(canonical.catalog).sha256,read(D+'/integration-baseline-v2.json').catalog.sha256,'Canonical classifications changed during review');
++ assert(!fs.existsSync(out));assert.equal(ref(canonical.authoring).sha256,read(D+'/integration-baseline.json').bank.sha256,'Canonical changed during review');
++ assert.equal(ref(canonical.catalog).sha256,read(D+'/integration-baseline.json').catalog.sha256,'Canonical classifications changed during review');
+  fs.mkdirSync(out);fs.mkdirSync(stage);fs.mkdirSync(backup);
+  const originals=Object.entries(canonical).map(([name,file])=>{const copy=backup+'/'+name+'.json';fs.copyFileSync(file,copy,fs.constants.COPYFILE_EXCL);return{name,...ref(file),backup:copy};});
+- assert.equal(originals.find(r=>r.name==='authoring').sha256,read(D+'/integration-baseline-v2.json').bank.sha256,'Canonical changed while creating backups');
+- assert.equal(originals.find(r=>r.name==='catalog').sha256,read(D+'/integration-baseline-v2.json').catalog.sha256,'Catalog changed while creating backups');
++ assert.equal(originals.find(r=>r.name==='authoring').sha256,read(D+'/integration-baseline.json').bank.sha256,'Canonical changed while creating backups');
++ assert.equal(originals.find(r=>r.name==='catalog').sha256,read(D+'/integration-baseline.json').catalog.sha256,'Catalog changed while creating backups');
+  for(const r of originals)assert.equal(ref(r.backup).sha256,r.sha256,'Backup changed while copying: '+r.file);
+- const immutable=[D+'/candidate-v2.json',D+'/classification-v2.json',D+'/changed-sets-v1.json',D+'/integration-baseline-v2.json',D+'/integration-baseline-v2/bank.json',D+'/sealed-v1/batch.json',D+'/sealed-v1/readiness.json'].map(ref);
++ const immutable=[D+'/candidate-v1.json',D+'/classification-v1.json',D+'/changed-sets-v1.json',D+'/integration-baseline.json',D+'/integration-baseline/bank.json',D+'/sealed-v1/batch.json',D+'/sealed-v1/readiness.json'].map(ref);
+  const guard=()=>{for(const r of [...originals,...immutable])assert.equal(ref(r.file).sha256,r.sha256,'Concurrent change: '+r.file);};
+  write(out+'/preparation.json',{prepared_at:new Date().toISOString(),originals,immutable,ids});
+- fs.copyFileSync(D+'/candidate-v2.json',stage+'/authoring.json');fs.copyFileSync(canonical.ledger,stage+'/promotions.json');
++ fs.copyFileSync(D+'/candidate-v1.json',stage+'/authoring.json');fs.copyFileSync(canonical.ledger,stage+'/promotions.json');
+  const newIds=ids;
+  const evidence=D+'/sealed-v1/batch.json';
+  run('02-verify-new',['cpa_uploader/promote_cpa_v3.ts','--to','verified','--sets',newIds.join(','),'--efficient-review',evidence,'--evidence',evidence],stagedEnv,guard);
+  run('03-publish',['cpa_uploader/promote_cpa_v3.ts','--to','published','--sets',ids.join(','),'--evidence',evidence],stagedEnv,guard);
+  run('04-compile',['scripts/compile-question-bank-v3.ts'],stagedEnv,guard);
+- run('05-catalog',[C+'/rebind-final-catalog.ts','--bank',stage+'/authoring.json','--review',D+'/classification-v2.json','--output',stage+'/classification-review.json','--catalog-output',stage+'/catalog.json'],stagedEnv,guard);
++ run('05-catalog',[C+'/rebind-final-catalog.ts','--bank',stage+'/authoring.json','--review',D+'/classification-v1.json','--output',stage+'/classification-review.json','--catalog-output',stage+'/catalog.json'],stagedEnv,guard);
+  run('06-validate',['cpa_uploader/validate_cpa_v3.ts'],stagedEnv,guard);
+  run('07-db-readiness',['scripts/import-question-bank-v3.ts','--learning-catalog',stage+'/catalog.json','--report',stage+'/readiness.json'],stagedEnv,guard);
+  const final=read(stage+'/authoring.json');assert.deepEqual(final.map(reviewedContentHash),candidate.map(reviewedContentHash));
+@@ -67,7 +67,7 @@ if(mode==='--stage'){
+   guardOriginal();
+   try{
+    install(Object.entries({authoring:'authoring.json',ledger:'promotions.json',public:'public.json',encrypted:'encrypted.json'}).map(([name,file])=>({file:canonical[name],content:fs.readFileSync(stage+'/'+file,'utf8')})));
+-   run('08-canonical-catalog',[C+'/rebind-final-catalog.ts','--bank',canonical.authoring,'--review',D+'/classification-v2.json','--output',out+'/canonical-classification-review.json','--catalog-output',out+'/canonical-catalog.json'],env,guard);
++   run('08-canonical-catalog',[C+'/rebind-final-catalog.ts','--bank',canonical.authoring,'--review',D+'/classification-v1.json','--output',out+'/canonical-classification-review.json','--catalog-output',out+'/canonical-catalog.json'],env,guard);
+    install([{file:canonical.catalog,content:fs.readFileSync(out+'/canonical-catalog.json','utf8')}]);
+    run('09-catalog-check',['scripts/build-learning-unit-catalog.ts','--check'],env,guard);
+    run('10-canonical-validate',['cpa_uploader/validate_cpa_v3.ts'],env,guard);

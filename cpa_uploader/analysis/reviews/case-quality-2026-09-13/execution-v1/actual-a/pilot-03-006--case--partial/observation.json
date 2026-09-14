@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-03-006--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-03-006--case",
+  "source_set_id": "pilot-03-006",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "3abd4d650e9394a4b316ee33f5c03a18a9a2ce1e5b57ec8b703ffee029530030",
+  "answers": {
+    "sub1": "을은 합리적 정당성이 없다. 매출채권 감사증거의 부족에 따른 한정의견이나 의견거절을 피하려는 변경이기 때문이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 읽었으나 이 하위 요구의 행동·관계·판단이 없다. 다른 명제의 설명이나 주어진 사실만으로 보충하지 않는 명시적 누락 판단이다."
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 읽었으나 이 하위 요구의 행동·관계·판단이 없다. 다른 명제의 설명이나 주어진 사실만으로 보충하지 않는 명시적 누락 판단이다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "원래 완전한 복합 명제를 충족하던 원답안을 하위 명제별로 대조했다. 각 요구가 답안에 있으며 같은 문장을 여러 독립 명제의 근거로 사용할 수 있다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "met",
+          "reason": "원래 완전한 복합 명제를 충족하던 원답안을 하위 명제별로 대조했다. 각 요구가 답안에 있으며 같은 문장을 여러 독립 명제의 근거로 사용할 수 있다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "5fb83fca84c2756de6377826220bf82b09d80c2a116cd8f9879473e09a73680b",
+  "schema_hash": "adedb13101beb1dcb350150a8794a419a97d1166483b1c4500241fabbbc04345",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "갑의 변경 요청에 대한 판단과 이유가 없다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "not_met",
+            "reason": "갑의 오해와 검토 관련 정보수요가 정당한 근거라는 설명이 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "을은 합리적 정당성이 없다. 매출채권 감사증거의 부족에 따른 한정의견이나 의견거절을 피하려는 변경이기 때문이다.",
+            "reason": "을의 변경 요청에 합리적 정당성이 없다고 판단했다."
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "met",
+            "quote": "을은 합리적 정당성이 없다. 매출채권 감사증거의 부족에 따른 한정의견이나 의견거절을 피하려는 변경이기 때문이다.",
+            "reason": "증거 부족으로 인한 한정의견이나 의견거절 회피 목적은 합리적 변경 근거가 아님을 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "갑의 변경 요청에 대한 판단과 이유가 없다."
+              },
+              {
+                "criterion_id": "crit8",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "갑의 오해와 검토 관련 정보수요가 정당한 근거라는 설명이 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0",
+                  "sub1/e1"
+                ],
+                "reason": "을의 변경 요청에 합리적 정당성이 없다고 판단했다."
+              },
+              {
+                "criterion_id": "crit9",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0",
+                  "sub1/e2"
+                ],
+                "reason": "증거 부족으로 인한 한정의견이나 의견거절 회피 목적은 합리적 변경 근거가 아님을 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-03-006",
+    "score": 2,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "갑과 을의 변경 요청이 합리적 정당성을 갖는지 각각 판단하고, 각 사례의 사실에 연결하여 이유를 설명하시오.",
+        "user_answer": "을은 합리적 정당성이 없다. 매출채권 감사증거의 부족에 따른 한정의견이나 의견거절을 피하려는 변경이기 때문이다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "갑의 변경 요청에 대한 판단과 이유가 없다.",
+            "claim": "갑의 변경 요청에는 합리적 정당성이 있다. 오해와 실제 정보수요 불일치를 합리적 근거로 설명하면 판단이 함축된다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "not_met",
+            "reason": "갑의 오해와 검토 관련 정보수요가 정당한 근거라는 설명이 없다.",
+            "claim": "실제 감사 성격의 오해와 검토에 해당하는 정보수요는 업무변경을 정당화할 수 있는 합리적인 근거이다. 법률·계약상 평가 완료는 이미 주어진 전제이며 반복하지 않아도 된다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "을은 합리적 정당성이 없다. 매출채권 감사증거의 부족에 따른 한정의견이나 의견거절을 피하려는 변경이기 때문이다.",
+            "reason": "을의 변경 요청에 합리적 정당성이 없다고 판단했다.",
+            "claim": "을의 변경 요청에는 합리적 정당성이 없다. 증거 부족에 따른 변형의견 회피가 합리적 근거가 아님을 설명하면 판단이 함축된다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "met",
+            "quote": "을은 합리적 정당성이 없다. 매출채권 감사증거의 부족에 따른 한정의견이나 의견거절을 피하려는 변경이기 때문이다.",
+            "reason": "증거 부족으로 인한 한정의견이나 의견거절 회피 목적은 합리적 변경 근거가 아님을 설명했다.",
+            "claim": "매출채권의 충분하고 적합한 증거를 입수할 수 없는 상황에서 한정의견·의견거절을 피하려는 목적은 합리적인 업무변경 근거가 아니다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "갑의 변경 요청에는 합리적 정당성이 있다.",
+          "실제 감사 성격의 오해와 검토에 해당하는 정보수요는 업무변경을 정당화할 수 있는 합리적인 근거이다.",
+          "을의 변경 요청에는 합리적 정당성이 없다.",
+          "매출채권의 충분하고 적합한 증거를 입수할 수 없는 상황에서 한정의견·의견거절을 피하려는 목적은 합리적인 업무변경 근거가 아니다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02d41c43756fd373016aa5dc02da3087d0a8b43921dc9a8a7b",
+        "request_id": "req_0a50ef090ff64773974965c141b24d8b",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3168,
+          "input_tokens_details": {
+            "cache_write_tokens": 3165,
+            "cached_tokens": 0
+          },
+          "output_tokens": 292,
+          "output_tokens_details": {
+            "reasoning_tokens": 59
+          },
+          "total_tokens": 3460
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00114225,
+        "min_usd": 0.00114225,
+        "max_usd": 0.00114225,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-03-006--case--partial/input.json",
+      "sha256": "f78e2420ad69421d7c89830ecb1349d6844879441635936533bfc4c8cd2adc17"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-03-006--case--partial/transport.jsonl",
+      "sha256": "19199fb1c463b3a2a545465bbaf9df77a1cbb8ca1255f28bcafbd37131fe1ea2"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-03-006--case--partial/traces.jsonl",
+      "sha256": "e25aba3ba3eceb83152de51bf0842957a74ded92b47136a71103017cc3e3abf1"
+    }
+  }
+}

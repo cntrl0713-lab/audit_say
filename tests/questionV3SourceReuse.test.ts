@@ -13,9 +13,21 @@ test('bank validation permits cross-set source reuse but rejects redundant entri
     const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-source-reuse-'));
     try {
         const bank = JSON.parse(fs.readFileSync(path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.authoring.json'), 'utf8')) as QuestionSetV3[];
-        const first = bank.find(s => s.id === 'pilot-07-002')!;
-        const second = bank.find(s => s.id === 'pilot-07-004')!;
-        assert.equal(first.source_refs[0].source_quote, second.source_refs[0].source_quote);
+        // Retirement/splitting may replace set IDs without changing the cross-set source contract.
+        const sources = new Map<string, { set: QuestionSetV3; sourceIndex: number }>();
+        let pair: { first: QuestionSetV3; second: QuestionSetV3; firstIndex: number; secondIndex: number } | undefined;
+        for (const set of bank) {
+            for (const [sourceIndex, source] of set.source_refs.entries()) {
+                const prior = sources.get(source.source_quote);
+                if (prior && prior.set.id !== set.id) { pair = { first: prior.set, second: set, firstIndex: prior.sourceIndex, secondIndex: sourceIndex }; break; }
+                sources.set(source.source_quote, { set, sourceIndex });
+            }
+            if (pair) break;
+        }
+        assert.ok(pair, 'The bank must contain an actual source quote reused by different sets');
+        const { first, second, firstIndex, secondIndex } = pair;
+        const sharedSource = second.source_refs[secondIndex];
+        assert.equal(first.source_refs[firstIndex].source_quote, sharedSource.source_quote);
         const dataDir = path.join(temp, 'cpa_uploader/data');
         fs.mkdirSync(dataDir, { recursive: true });
         const authoringPath = path.join(dataDir, 'cpa_question_sets_v3.authoring.json');
@@ -35,12 +47,12 @@ test('bank validation permits cross-set source reuse but rejects redundant entri
         };
         const valid = run();
         assert.equal(valid.status, 0, valid.stderr);
-        second.source_refs.push({ ...second.source_refs[0], id: 'redundant-source' });
+        second.source_refs.push({ ...sharedSource, id: 'redundant-source' });
         const duplicate = run();
         assert.equal(duplicate.status, 1);
-        assert.match(duplicate.stderr, /pilot-07-004\/redundant-source: source_quote가 pilot-07-004\/src1와 중복됩니다/);
+        assert.ok(duplicate.stderr.includes(`${second.id}/redundant-source: source_quote가 ${second.id}/${sharedSource.id}와 중복됩니다`), duplicate.stderr);
         second.source_refs.pop();
-        second.source_refs[0].source_quote = '실제 출처에 없는 조작된 회계감사 기준 문장';
+        sharedSource.source_quote = '실제 출처에 없는 조작된 회계감사 기준 문장';
         const fabricated = run();
         assert.equal(fabricated.status, 1);
         assert.match(fabricated.stderr, /source_quote가 source file에 존재하지 않습니다/);

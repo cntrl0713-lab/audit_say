@@ -1,0 +1,309 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "s02-sub3-wrong",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-additional-20260913-s02",
+  "learning_unit_id": "draft-standard-additional-20260913-s02--sub3--standard",
+  "kind": "wrong",
+  "projected_body_hash": "12c759f745da47d4561317e39b26d10224d5154bca1671f688587c771997da48",
+  "answers": {
+    "sub3": "법규로 정해진 보고서는 이용자의 오해 가능성을 평가할 필요가 없다. 추가 설명으로 해결되지 않아도 자유롭게 수임하고 감사기준에 따른 감사라고 기재할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 이용자가 재무제표감사에서 얻은 확신을 오해할 가능성이 있는지 평가한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 그렇다면 감사보고서의 추가적인 설명으로 오해 가능성을 완화할 수 있는지 평가한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 추가 설명으로 오해 가능성을 완화할 수 없으면 법규에서 요구하는 경우를 제외하고 감사업무를 수임해서는 안 된다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 그와 같은 법규에 따라 수행되는 감사는 감사기준을 준수하는 감사가 아니다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 따라서 감사보고서에 감사가 감사기준에 따라 수행되었다는 어떠한 언급도 해서는 안 된다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "6a05f3acffa639d3cedba87c0a92cb9389e7f5e658de1275810b9a4d721fa9a6",
+  "schema_hash": "7ea30088223230978c952269312f60d5ccae721bc67c9699c8e1677e0863fd70",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "법규로 정해진 보고서는 이용자의 오해 가능성을 평가할 필요가 없다. ",
+            "reason": "오해 가능성을 평가할 필요가 없다고 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "추가 설명으로 완화 가능한지를 평가한다는 명제가 제시되지 않았다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "추가 설명으로 해결되지 않아도 자유롭게 수임하고 감사기준에 따른 감사라고 기재할 수 있다.",
+            "reason": "추가 설명으로 해결되지 않아도 자유롭게 수임할 수 있다고 명시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "추가 설명으로 해결되지 않아도 자유롭게 수임하고 감사기준에 따른 감사라고 기재할 수 있다.",
+            "reason": "감사기준에 따른 감사라고 기재할 수 있다고 하여 감사기준 준수가 아니라는 결론과 반대된다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "추가 설명으로 해결되지 않아도 자유롭게 수임하고 감사기준에 따른 감사라고 기재할 수 있다.",
+            "reason": "감사기준에 따른 감사라고 기재할 수 있다고 하여 언급해서는 안 된다는 결론과 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "오해 가능성을 평가할 필요가 없다고 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "추가 설명으로 완화 가능한지를 평가한다는 명제가 제시되지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "추가 설명으로 해결되지 않아도 자유롭게 수임할 수 있다고 명시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "감사기준에 따른 감사라고 기재할 수 있다고 하여 감사기준 준수가 아니라는 결론과 반대된다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "감사기준에 따른 감사라고 기재할 수 있다고 하여 언급해서는 안 된다는 결론과 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-additional-20260913-s02",
+    "score": 0,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "법규가 감사기준의 요구사항과 유의적으로 다른 형태·용어의 감사보고서를 규정할 때, 감사기준서 210 문단 21에 따라 감사인이 평가할 두 사항을 제시하시오. 추가 설명으로 오해 가능성을 완화할 수 없다고 결론 내린 경우의 수임 원칙과 법규상 예외, 그 예외로 수행한 감사의 감사기준 준수 여부 및 감사보고서의 준수 언급 가능 여부도 설명하시오.",
+        "user_answer": "법규로 정해진 보고서는 이용자의 오해 가능성을 평가할 필요가 없다. 추가 설명으로 해결되지 않아도 자유롭게 수임하고 감사기준에 따른 감사라고 기재할 수 있다.",
+        "score": 0,
+        "max_points": 5,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "법규로 정해진 보고서는 이용자의 오해 가능성을 평가할 필요가 없다.",
+            "reason": "오해 가능성을 평가할 필요가 없다고 명시적으로 부정했다.",
+            "claim": "이용자가 재무제표감사에서 얻은 확신을 오해할 가능성이 있는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "추가 설명으로 완화 가능한지를 평가한다는 명제가 제시되지 않았다.",
+            "claim": "그렇다면 감사보고서의 추가적인 설명으로 오해 가능성을 완화할 수 있는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "추가 설명으로 해결되지 않아도 자유롭게 수임하고 감사기준에 따른 감사라고 기재할 수 있다.",
+            "reason": "추가 설명으로 해결되지 않아도 자유롭게 수임할 수 있다고 명시했다.",
+            "claim": "추가 설명으로 오해 가능성을 완화할 수 없으면 법규에서 요구하는 경우를 제외하고 감사업무를 수임해서는 안 된다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "추가 설명으로 해결되지 않아도 자유롭게 수임하고 감사기준에 따른 감사라고 기재할 수 있다.",
+            "reason": "감사기준에 따른 감사라고 기재할 수 있다고 하여 감사기준 준수가 아니라는 결론과 반대된다.",
+            "claim": "그와 같은 법규에 따라 수행되는 감사는 감사기준을 준수하는 감사가 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "추가 설명으로 해결되지 않아도 자유롭게 수임하고 감사기준에 따른 감사라고 기재할 수 있다.",
+            "reason": "감사기준에 따른 감사라고 기재할 수 있다고 하여 언급해서는 안 된다는 결론과 반대된다.",
+            "claim": "따라서 감사보고서에 감사가 감사기준에 따라 수행되었다는 어떠한 언급도 해서는 안 된다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "이용자가 재무제표감사에서 얻은 확신을 오해할 가능성이 있는지 평가한다.",
+          "그렇다면 감사보고서의 추가적인 설명으로 오해 가능성을 완화할 수 있는지 평가한다.",
+          "추가 설명으로 오해 가능성을 완화할 수 없으면 법규에서 요구하는 경우를 제외하고 감사업무를 수임해서는 안 된다.",
+          "그와 같은 법규에 따라 수행되는 감사는 감사기준을 준수하는 감사가 아니다.",
+          "따라서 감사보고서에 감사가 감사기준에 따라 수행되었다는 어떠한 언급도 해서는 안 된다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/s02-sub3-wrong.input.json",
+      "sha256": "710e4a0d50c33437fa6faa4c7f3c441ecceb5871fccc2a8fdff818dab8443b66"
+    },
+    "transport": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/s02-sub3-wrong.transport.jsonl",
+      "sha256": "14491361a48ef677bb0cdc5db46aaa28f4c0a9f5134ac2e116c62537dba4d320"
+    },
+    "traces": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/s02-sub3-wrong.traces.jsonl",
+      "sha256": "32c86fbd6fa35d5267065b46458f138febe772f5e2a4034135f82c65af155af7"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub3"
+  ],
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0b22212f354a2626016aa602ac4b9887d083dbb2e4faa1752e",
+        "request_id": "req_31f50d3a940948dea9c733b618eedd91",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3028,
+          "input_tokens_details": {
+            "cache_write_tokens": 3025,
+            "cached_tokens": 0
+          },
+          "output_tokens": 480,
+          "output_tokens_details": {
+            "reasoning_tokens": 190
+          },
+          "total_tokens": 3508
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s02-sub3-wrong.input.json",
+        "sha256": "21cf0885f9263ff65e6aadd4f543a3f41785dddc95f901194fcdd69dc1ef101f"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s02-sub3-wrong.request-1.json",
+        "sha256": "cbca630aaea210fe3954cac066a080e393a930b59b1e46c5a5fe50f062552506"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s02-sub3-wrong.response-1.json",
+        "sha256": "492037b370de040b02993b6404086248a580a4fceeea845058a08439b94bb437"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s02-sub3-wrong.trace.json",
+        "sha256": "84bb398f6a2126e13d4197b425abd10c7093e3a575a124f3a9acfcb02fceb0ed"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s02-sub3-wrong.usage.json",
+        "sha256": "ef1d879b11a203b06f1506e0dd98ac10d0d167495fac6d52b4afeb34dcb171ed"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s02-sub3-wrong.result.json",
+        "sha256": "e7b77d544869ff09bb4cadce7a5bdef9da84042a91dac49c1beffb0b28b03f5c"
+      }
+    ],
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/grading-manifest.json",
+    "sha256": "cf8db16647798968c6c09a1b9055098afac98db30850d7e90825526af41579b4"
+  }
+}

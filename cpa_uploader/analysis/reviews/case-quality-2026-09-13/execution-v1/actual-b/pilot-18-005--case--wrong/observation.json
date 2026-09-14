@@ -1,0 +1,408 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-18-005--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-18-005--case",
+  "source_set_id": "pilot-18-005",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub3",
+    "sub4"
+  ],
+  "projected_body_hash": "d7e18090f7db6553dca7f53cd60bf728d45f9c845a5ea33928d36c1fd5ba5919",
+  "answers": {
+    "sub3": "A는 자산이200억원이므로 적용대상에 해당하지 않는다.",
+    "sub4": "C는 자산과 매출이 경계값 이하이므로 대상이고 D도 금액이 작으므로 대상이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit11",
+          "verdict": "contradicted",
+          "reason": "해당/비해당 결론이 반대이고 그 이유도 OR/미만/질적 제외 원칙을 반대로 적용했다."
+        },
+        {
+          "criterion_id": "crit17",
+          "verdict": "contradicted",
+          "reason": "해당/비해당 결론이 반대이고 그 이유도 OR/미만/질적 제외 원칙을 반대로 적용했다."
+        },
+        {
+          "criterion_id": "crit12",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 읽었으나 이 하위 요구의 행동·관계·판단이 없다. 다른 명제의 설명이나 주어진 사실만으로 보충하지 않는 명시적 누락 판단이다."
+        },
+        {
+          "criterion_id": "crit18",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 읽었으나 이 하위 요구의 행동·관계·판단이 없다. 다른 명제의 설명이나 주어진 사실만으로 보충하지 않는 명시적 누락 판단이다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub4",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit13",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        },
+        {
+          "criterion_id": "crit19",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        },
+        {
+          "criterion_id": "crit14",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        },
+        {
+          "criterion_id": "crit20",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "4a253211486e06d2cc80f4bfb2a4610afbc27b9b680dddf9b9a14eb67861ef2c",
+  "schema_hash": "d5c6e08c7240004935dfc0388c3ee3a77ee0968c72306dbfdf6fa1182d22ff54",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit11",
+            "verdict": "contradicted",
+            "quote": "A는 자산이200억원이므로 적용대상에 해당하지 않는다.",
+            "reason": "A를 적용대상에 해당하지 않는다고 명시하여 결론을 반대로 제시했다."
+          },
+          {
+            "criterion_id": "crit17",
+            "verdict": "not_met",
+            "reason": "매출 99억원이 100억원 미만이라는 결정적 이유가 없다."
+          },
+          {
+            "criterion_id": "crit12",
+            "verdict": "not_met",
+            "reason": "B에 대한 판단이 없다."
+          },
+          {
+            "criterion_id": "crit18",
+            "verdict": "not_met",
+            "reason": "B의 자산 199억원이 200억원 미만이라는 이유가 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub4",
+        "verdicts": [
+          {
+            "criterion_id": "crit13",
+            "verdict": "contradicted",
+            "quote": "C는 자산과 매출이 경계값 이하이므로 대상이고 D도 금액이 작으므로 대상이다.",
+            "reason": "C를 적용대상이라고 명시하여 결론을 반대로 제시했다."
+          },
+          {
+            "criterion_id": "crit19",
+            "verdict": "contradicted",
+            "quote": "C는 자산과 매출이 경계값 이하이므로 대상이고 D도 금액이 작으므로 대상이다.",
+            "reason": "C가 경계값과 같아 미만 조건을 충족하지 못한다는 내용과 반대로 대상이라고 했다."
+          },
+          {
+            "criterion_id": "crit14",
+            "verdict": "contradicted",
+            "quote": "C는 자산과 매출이 경계값 이하이므로 대상이고 D도 금액이 작으므로 대상이다.",
+            "reason": "D를 적용대상이라고 명시하여 결론을 반대로 제시했다."
+          },
+          {
+            "criterion_id": "crit20",
+            "verdict": "contradicted",
+            "quote": "C는 자산과 매출이 경계값 이하이므로 대상이고 D도 금액이 작으므로 대상이다.",
+            "reason": "연결재무제표 작성 지배회사의 질적 제외를 언급하지 않고 금액이 작다는 이유로 대상이라고 했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit11",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "A를 적용대상에 해당하지 않는다고 명시하여 결론을 반대로 제시했다."
+              },
+              {
+                "criterion_id": "crit17",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "매출 99억원이 100억원 미만이라는 결정적 이유가 없다."
+              },
+              {
+                "criterion_id": "crit12",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "B에 대한 판단이 없다."
+              },
+              {
+                "criterion_id": "crit18",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "B의 자산 199억원이 200억원 미만이라는 이유가 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub4",
+            "verdicts": [
+              {
+                "criterion_id": "crit13",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0"
+                ],
+                "reason": "C를 적용대상이라고 명시하여 결론을 반대로 제시했다."
+              },
+              {
+                "criterion_id": "crit19",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0"
+                ],
+                "reason": "C가 경계값과 같아 미만 조건을 충족하지 못한다는 내용과 반대로 대상이라고 했다."
+              },
+              {
+                "criterion_id": "crit14",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0"
+                ],
+                "reason": "D를 적용대상이라고 명시하여 결론을 반대로 제시했다."
+              },
+              {
+                "criterion_id": "crit20",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0"
+                ],
+                "reason": "연결재무제표 작성 지배회사의 질적 제외를 언급하지 않고 금액이 작다는 이유로 대상이라고 했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-18-005",
+    "score": 0,
+    "max_points": 8,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "A와 B가 각각 감사기준서 1200의 소규모기업 적용대상에 해당하는지 판단하고, 자산·매출의 양적 조건과 연결하여 결정적인 이유를 설명하시오.",
+        "user_answer": "A는 자산이200억원이므로 적용대상에 해당하지 않는다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit11",
+            "verdict": "contradicted",
+            "quote": "A는 자산이200억원이므로 적용대상에 해당하지 않는다.",
+            "reason": "A를 적용대상에 해당하지 않는다고 명시하여 결론을 반대로 제시했다.",
+            "claim": "A는 소규모기업 적용대상에 해당한다. 아래 결정적 이유가 판단을 분명히 함축하면 판단 문구 반복을 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit17",
+            "verdict": "not_met",
+            "reason": "매출 99억원이 100억원 미만이라는 결정적 이유가 없다.",
+            "claim": "A는 자산200억원과 무관하게 매출99억원이 100억원 미만 조건을 충족하므로 양적 조건을 충족한다. 수치만 반복하는 것으로는 이 이유를 대신하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit12",
+            "verdict": "not_met",
+            "reason": "B에 대한 판단이 없다.",
+            "claim": "B는 소규모기업 적용대상에 해당한다. 결정적 이유가 판단을 분명히 함축하면 판단 문구 반복을 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit18",
+            "verdict": "not_met",
+            "reason": "B의 자산 199억원이 200억원 미만이라는 이유가 없다.",
+            "claim": "B는 매출100억원과 무관하게 자산199억원이 200억원 미만 조건을 충족하므로 양적 조건을 충족한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "A는 소규모기업 적용대상에 해당한다.",
+          "A는 자산200억원과 무관하게 매출99억원이 100억원 미만 조건을 충족하므로 양적 조건을 충족한다.",
+          "B는 소규모기업 적용대상에 해당한다.",
+          "B는 매출100억원과 무관하게 자산199억원이 200억원 미만 조건을 충족하므로 양적 조건을 충족한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub4",
+        "prompt": "C와 D가 각각 감사기준서 1200의 소규모기업 적용대상에 해당하는지 판단하고, C는 양적 조건의 경계값에, D는 연결재무제표 작성 사실에 연결하여 이유를 설명하시오.",
+        "user_answer": "C는 자산과 매출이 경계값 이하이므로 대상이고 D도 금액이 작으므로 대상이다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit13",
+            "verdict": "contradicted",
+            "quote": "C는 자산과 매출이 경계값 이하이므로 대상이고 D도 금액이 작으므로 대상이다.",
+            "reason": "C를 적용대상이라고 명시하여 결론을 반대로 제시했다.",
+            "claim": "C는 소규모기업 적용대상에 해당하지 않는다. 결정적 이유가 판단을 분명히 함축하면 판단 문구 반복을 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit19",
+            "verdict": "contradicted",
+            "quote": "C는 자산과 매출이 경계값 이하이므로 대상이고 D도 금액이 작으므로 대상이다.",
+            "reason": "C가 경계값과 같아 미만 조건을 충족하지 못한다는 내용과 반대로 대상이라고 했다.",
+            "claim": "C는 자산200억원과 매출100억원이 각각 경계값과 같아서 어느 미만 조건도 충족하지 못한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit14",
+            "verdict": "contradicted",
+            "quote": "C는 자산과 매출이 경계값 이하이므로 대상이고 D도 금액이 작으므로 대상이다.",
+            "reason": "D를 적용대상이라고 명시하여 결론을 반대로 제시했다.",
+            "claim": "D는 소규모기업 적용대상에 해당하지 않는다. 결정적 이유가 판단을 분명히 함축하면 판단 문구 반복을 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit20",
+            "verdict": "contradicted",
+            "quote": "C는 자산과 매출이 경계값 이하이므로 대상이고 D도 금액이 작으므로 대상이다.",
+            "reason": "연결재무제표 작성 지배회사의 질적 제외를 언급하지 않고 금액이 작다는 이유로 대상이라고 했다.",
+            "claim": "D는 작은 규모와 무관하게 연결재무제표를 작성하는 지배회사라는 질적 제외범주에 해당한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "C는 소규모기업 적용대상에 해당하지 않는다.",
+          "C는 자산200억원과 매출100억원이 각각 경계값과 같아서 어느 미만 조건도 충족하지 못한다.",
+          "D는 소규모기업 적용대상에 해당하지 않는다.",
+          "D는 작은 규모와 무관하게 연결재무제표를 작성하는 지배회사라는 질적 제외범주에 해당한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub4",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02bd647ed8780145016aa5dcbc266087d0a000b86c9cdf3998",
+        "request_id": "req_fb0b5b2f797a46669395436341286cf5",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3962,
+          "input_tokens_details": {
+            "cache_write_tokens": 3959,
+            "cached_tokens": 0
+          },
+          "output_tokens": 883,
+          "output_tokens_details": {
+            "reasoning_tokens": 448
+          },
+          "total_tokens": 4845
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0020499499999999996,
+        "min_usd": 0.0020499499999999996,
+        "max_usd": 0.0020499499999999996,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-18-005--case--wrong/input.json",
+      "sha256": "b58d2470c53184e781c7843b579766c4c846d222cd18258c0e3942edcedb71a2"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-18-005--case--wrong/transport.jsonl",
+      "sha256": "ed75b85f8a5601b5296c75cf23639d3b3325e9b2672851dcf08162c25a53e7b4"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-18-005--case--wrong/traces.jsonl",
+      "sha256": "dcf13a799e795f2c8ebda1bac7e1e4c82393a66013f75018911c631a519d84cc"
+    }
+  }
+}

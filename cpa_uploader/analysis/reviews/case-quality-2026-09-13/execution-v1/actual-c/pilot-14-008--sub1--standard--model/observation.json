@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-14-008--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-14-008--sub1--standard",
+  "source_set_id": "pilot-14-008",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "d18b4c381c287d348cd9f00af41d718bdc53666a92dbc5eb90f3d0905edd8a02",
+  "answers": {
+    "sub1": "두 중요성을 검증할 책임 주체는 그룹업무팀이다.\n해당 부문재무제표 전체에 대하여 결정된 중요성이 그룹감사기준의 요구사항을 충족하는지 검증한다.\n부문 수준에서 결정된 수행중요성이 그룹감사기준의 요구사항을 충족하며 적합한지 검증한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.crit1",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        },
+        {
+          "criterion_id": "sub1.crit2",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        },
+        {
+          "criterion_id": "sub1.crit3",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "b6551ec1a28d96c9bf75fa92747a6c58d17e90edefc19e91472c98fd46f8df5c",
+  "schema_hash": "a9820460d12633710cb268a67415a6186b5ffc36847f4c54a338d372037ee55a",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "met",
+            "quote": "두 중요성을 검증할 책임 주체는 그룹업무팀이다.\n",
+            "reason": "검증 책임 주체를 그룹업무팀으로 명시했다."
+          },
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "met",
+            "quote": "해당 부문재무제표 전체에 대하여 결정된 중요성이 그룹감사기준의 요구사항을 충족하는지 검증한다.\n",
+            "reason": "부문재무제표 전체의 중요성이 그룹감사기준 요구사항을 충족하는지 검증한다고 명시했다."
+          },
+          {
+            "criterion_id": "sub1.crit3",
+            "verdict": "met",
+            "quote": "부문 수준에서 결정된 수행중요성이 그룹감사기준의 요구사항을 충족하며 적합한지 검증한다.",
+            "reason": "부문 수준 수행중요성이 그룹감사기준 요구사항을 충족하고 적합한지 검증한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "검증 책임 주체를 그룹업무팀으로 명시했다."
+              },
+              {
+                "criterion_id": "sub1.crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "부문재무제표 전체의 중요성이 그룹감사기준 요구사항을 충족하는지 검증한다고 명시했다."
+              },
+              {
+                "criterion_id": "sub1.crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "부문 수준 수행중요성이 그룹감사기준 요구사항을 충족하고 적합한지 검증한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-14-008",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "그룹감사인이 법규에 따라 별도로 수행된 부문재무제표감사의 결과를 그룹감사 목적에 이용하려는 경우, 부문재무제표 전체에 대하여 결정된 중요성과 부문 수준의 수행중요성을 검증할 책임 주체를 제시하고 각 중요성에 대하여 무엇을 검증해야 하는지 설명하시오. 중요성의 명칭만 나열하지 말고 검증 내용을 제시하시오.",
+        "user_answer": "두 중요성을 검증할 책임 주체는 그룹업무팀이다.\n해당 부문재무제표 전체에 대하여 결정된 중요성이 그룹감사기준의 요구사항을 충족하는지 검증한다.\n부문 수준에서 결정된 수행중요성이 그룹감사기준의 요구사항을 충족하며 적합한지 검증한다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub1.crit1",
+            "verdict": "met",
+            "quote": "두 중요성을 검증할 책임 주체는 그룹업무팀이다.",
+            "reason": "검증 책임 주체를 그룹업무팀으로 명시했다.",
+            "claim": "두 중요성을 검증할 책임 주체는 그룹업무팀이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.crit2",
+            "verdict": "met",
+            "quote": "해당 부문재무제표 전체에 대하여 결정된 중요성이 그룹감사기준의 요구사항을 충족하는지 검증한다.",
+            "reason": "부문재무제표 전체의 중요성이 그룹감사기준 요구사항을 충족하는지 검증한다고 명시했다.",
+            "claim": "해당 부문재무제표 전체에 대하여 결정된 중요성이 그룹감사기준의 요구사항을 충족하는지 검증한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.crit3",
+            "verdict": "met",
+            "quote": "부문 수준에서 결정된 수행중요성이 그룹감사기준의 요구사항을 충족하며 적합한지 검증한다.",
+            "reason": "부문 수준 수행중요성이 그룹감사기준 요구사항을 충족하고 적합한지 검증한다고 명시했다.",
+            "claim": "부문 수준에서 결정된 수행중요성이 그룹감사기준의 요구사항을 충족하며 적합한지 검증한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "두 중요성을 검증할 책임 주체는 그룹업무팀이다.",
+          "해당 부문재무제표 전체에 대하여 결정된 중요성이 그룹감사기준의 요구사항을 충족하는지 검증한다.",
+          "부문 수준에서 결정된 수행중요성이 그룹감사기준의 요구사항을 충족하며 적합한지 검증한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_09f987b2d637a32b016aa5dc82335c87d0b3dfefe9f5423231",
+        "request_id": "req_31b4d3fcb53448c7840924887e58dae5",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2911,
+          "input_tokens_details": {
+            "cache_write_tokens": 2908,
+            "cached_tokens": 0
+          },
+          "output_tokens": 245,
+          "output_tokens_details": {
+            "reasoning_tokens": 37
+          },
+          "total_tokens": 3156
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010216000000000001,
+        "min_usd": 0.0010216000000000001,
+        "max_usd": 0.0010216000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-14-008--sub1--standard--model/input.json",
+      "sha256": "308a6be726c28bd58cec872514cb2e70d587928346feb486e4afc6f4f75f6bd1"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-14-008--sub1--standard--model/transport.jsonl",
+      "sha256": "1b04c2349752c5e46203fbb9731dc615ecdffca8d032865f664c9d038590486c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-14-008--sub1--standard--model/traces.jsonl",
+      "sha256": "fa6e40eb8256913ed625b6f2502ad583e0743f56d43dae88861bf465d30c94e3"
+    }
+  }
+}

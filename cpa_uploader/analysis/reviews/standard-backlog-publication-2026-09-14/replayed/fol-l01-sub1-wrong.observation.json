@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "fol-l01-sub1-wrong",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-followup-20260913-l01",
+  "learning_unit_id": "draft-standard-followup-20260913-l01--sub1--standard",
+  "kind": "wrong",
+  "projected_body_hash": "be4dc2b6f8220bdb36eb77646caa1861e6b5d17991f5d81c2b16f6d86a8aa7b4",
+  "answers": {
+    "sub1": "① 이사회에만 알린다. ② 회사의 대표자에게만 알리면 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: ① 회사의 감사 또는 감사위원회에 통보한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: ① 주주총회 또는 사원총회에 보고한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: ② 회사의 감사 또는 감사위원회에 통보한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "0d37c46c556fcee2b55ec2886ee9404432cf150fefa2076a5f5e3a5587038bbd",
+  "schema_hash": "172d5de6570c09a29f717bb90ebbf3ab6007312ced42f430d537597c8d473ae9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "① 이사회에만 알린다. ",
+            "reason": "감사 또는 감사위원회가 아닌 이사회에만 알린다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "① 이사회에만 알린다. ",
+            "reason": "주주총회 또는 사원총회가 아닌 이사회에만 보고한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "② 회사의 대표자에게만 알리면 된다.",
+            "reason": "감사 또는 감사위원회가 아닌 회사의 대표자에게만 알린다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "감사 또는 감사위원회가 아닌 이사회에만 알린다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "주주총회 또는 사원총회가 아닌 이사회에만 보고한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "감사 또는 감사위원회가 아닌 회사의 대표자에게만 알린다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-followup-20260913-l01",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "외부감사법 제22조제1항과 제2항에 따른 감사인(외부감사인)의 통보·보고 상대방을 각각 제시하시오. ① 직무수행 중 이사의 직무수행에 관하여 부정행위 또는 법령이나 정관에 위반되는 중대한 사실을 발견한 경우, ② 회사가 회계처리 등에 관하여 회계처리기준을 위반한 사실을 발견한 경우이다. 제7항의 증권선물위원회 보고는 이 물음의 범위에서 제외한다.",
+        "user_answer": "① 이사회에만 알린다. ② 회사의 대표자에게만 알리면 된다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "① 이사회에만 알린다.",
+            "reason": "감사 또는 감사위원회가 아닌 이사회에만 알린다고 명시했다.",
+            "claim": "① 회사의 감사 또는 감사위원회에 통보한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "① 이사회에만 알린다.",
+            "reason": "주주총회 또는 사원총회가 아닌 이사회에만 보고한다고 명시했다.",
+            "claim": "① 주주총회 또는 사원총회에 보고한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "② 회사의 대표자에게만 알리면 된다.",
+            "reason": "감사 또는 감사위원회가 아닌 회사의 대표자에게만 알린다고 명시했다.",
+            "claim": "② 회사의 감사 또는 감사위원회에 통보한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "① 회사의 감사 또는 감사위원회에 통보한다.",
+          "① 주주총회 또는 사원총회에 보고한다.",
+          "② 회사의 감사 또는 감사위원회에 통보한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-l01-sub1-wrong.input.json",
+      "sha256": "0187fb6380bf70ca5366b55457c70d29fb64be8d69ee44aa44c3dbd3c9506522"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-l01-sub1-wrong.transport.jsonl",
+      "sha256": "e25454a2e8918250eed09c0cd05ba908ac4210dac16fa4f791268e87e36cc648"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-l01-sub1-wrong.traces.jsonl",
+      "sha256": "b810ff3a6bced7ab326534a1c1825c44dcdacb668adba94e71ea1664131b09ac"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02449c2863d36cbb016aa5fe36cf0087d0a9e0d82af7002b4d",
+        "request_id": "req_ab855c88b025489ab72aa758b14b6ed2",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2565,
+          "input_tokens_details": {
+            "cache_write_tokens": 2562,
+            "cached_tokens": 0
+          },
+          "output_tokens": 311,
+          "output_tokens_details": {
+            "reasoning_tokens": 118
+          },
+          "total_tokens": 2876
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub1-wrong.input.json",
+        "sha256": "73944f87b9848dbd82fed4d795e383b36af96ad61193b8be8981d35d156fff30"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub1-wrong.request-1.json",
+        "sha256": "960ec2fcf6de1cc7edeca99c2b85c71e3138540f9f1ccf85327ef799cdfe4348"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub1-wrong.response-1.json",
+        "sha256": "9d3b77bfa5e1be78bfda4c7b7ec1125a2e18b8622aaf75e9688d6ce34881864f"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub1-wrong.trace.json",
+        "sha256": "6c87f79215b392dcf1b723fa91f5b1c5c406ad7d0d8d6ab52c27bb3275d5c847"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub1-wrong.usage.json",
+        "sha256": "0f29b1c0b8eb6a2cc14cef4117aa48251aacf83ad13cb29018e29fc97c283b18"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub1-wrong.result.json",
+        "sha256": "3715538d802395e0df3224aa039d27ff227d40aa158b8fd5bbccdd59c30e2828"
+      }
+    ],
+    "original_case_id": "l01-sub1-wrong",
+    "origin_batch": "cpa_uploader/drafts/standard-followup-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

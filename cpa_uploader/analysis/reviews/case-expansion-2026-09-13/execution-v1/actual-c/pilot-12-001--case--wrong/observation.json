@@ -1,0 +1,354 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-12-001--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-001--case",
+  "source_set_id": "pilot-12-001",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "subq2",
+    "exp1"
+  ],
+  "projected_body_hash": "f45422e5988de5cdef9baa414c2c6d80b546c6f83faeca5cc628d1540deda9aa",
+  "answers": {
+    "subq2": "평가기간은 감사보고서일로부터 10개월이면 충분하므로 경영진에게 확장을 요구할 필요가 없다.",
+    "exp1": "최종 현금잔액이 양수이면 계획이 실현된 것으로 보므로 신청서나 미체결 계약의 근거를 더 확인할 필요는 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "subq2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "기산일·최소기간·조치를 모두 반대로 답했다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "기산일·최소기간·조치를 모두 반대로 답했다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "exp1.c1",
+          "verdict": "not_met",
+          "reason": "예측 결과를 사실상 실현된 사건으로 바꾸는 오류."
+        },
+        {
+          "criterion_id": "exp1.c2",
+          "verdict": "not_met",
+          "reason": "예측 결과를 사실상 실현된 사건으로 바꾸는 오류."
+        },
+        {
+          "criterion_id": "exp1.c3",
+          "verdict": "not_met",
+          "reason": "예측 결과를 사실상 실현된 사건으로 바꾸는 오류."
+        },
+        {
+          "criterion_id": "exp1.c4",
+          "verdict": "not_met",
+          "reason": "예측 결과를 사실상 실현된 사건으로 바꾸는 오류."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "f3297b39f68c4d5918aef7042bbf9a9260ef9ad25b46bba41fe060ef02ef2b15",
+  "schema_hash": "b9cd67db89d47d553952b436fd0ecfb6bf4b9060e4fcbb6a31aac6cffeb587ce",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "subq2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "평가기간은 감사보고서일로부터 10개월이면 충분하므로 경영진에게 확장을 요구할 필요가 없다.",
+            "reason": "10개월 평가기간이 충분하고 확장할 필요가 없다고 명시하여 최소 12개월 요건을 반대로 판단함."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "평가기간은 감사보고서일로부터 10개월이면 충분하므로 경영진에게 확장을 요구할 필요가 없다.",
+            "reason": "경영진에게 평가기간 확장을 요구할 필요가 없다고 명시함."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp1",
+        "verdicts": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "not_met",
+            "reason": "현금 부족 상황 개선 가능성에 대한 평가를 제시하지 않음."
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "contradicted",
+            "quote": "최종 현금잔액이 양수이면 계획이 실현된 것으로 보므로 신청서나 미체결 계약의 근거를 더 확인할 필요는 없다.",
+            "reason": "신청서와 미체결 계약의 근거를 추가 확인할 필요가 없다고 하여 실행가능성 평가 절차를 명시적으로 부정함."
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "not_met",
+            "reason": "예측표 기초 영업자료의 신뢰성 평가를 언급하지 않음."
+          },
+          {
+            "criterion_id": "exp1.c4",
+            "verdict": "contradicted",
+            "quote": "최종 현금잔액이 양수이면 계획이 실현된 것으로 보므로 신청서나 미체결 계약의 근거를 더 확인할 필요는 없다.",
+            "reason": "최종 현금잔액만으로 계획이 실현된 것으로 보아 추가 근거 확인이 불필요하다고 하여 가정의 근거 평가를 명시적으로 부정함."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "subq2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "subq2/e0"
+                ],
+                "reason": "10개월 평가기간이 충분하고 확장할 필요가 없다고 명시하여 최소 12개월 요건을 반대로 판단함."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "subq2/e0"
+                ],
+                "reason": "경영진에게 평가기간 확장을 요구할 필요가 없다고 명시함."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp1",
+            "verdicts": [
+              {
+                "criterion_id": "exp1.c1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "현금 부족 상황 개선 가능성에 대한 평가를 제시하지 않음."
+              },
+              {
+                "criterion_id": "exp1.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "신청서와 미체결 계약의 근거를 추가 확인할 필요가 없다고 하여 실행가능성 평가 절차를 명시적으로 부정함."
+              },
+              {
+                "criterion_id": "exp1.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "예측표 기초 영업자료의 신뢰성 평가를 언급하지 않음."
+              },
+              {
+                "criterion_id": "exp1.c4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "최종 현금잔액만으로 계획이 실현된 것으로 보아 추가 근거 확인이 불필요하다고 하여 가정의 근거 평가를 명시적으로 부정함."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-001",
+    "score": 0,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "subq2",
+        "prompt": "제시된 경영진의 계속기업 평가기간에 대하여 감사인이 요청해야 할 조치를, 최소 평가기간에 관한 근거와 함께 설명하시오.",
+        "user_answer": "평가기간은 감사보고서일로부터 10개월이면 충분하므로 경영진에게 확장을 요구할 필요가 없다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "평가기간은 감사보고서일로부터 10개월이면 충분하므로 경영진에게 확장을 요구할 필요가 없다.",
+            "reason": "10개월 평가기간이 충분하고 확장할 필요가 없다고 명시하여 최소 12개월 요건을 반대로 판단함.",
+            "claim": "10개월은 재무제표일로부터 최소 12개월에 미달한다고 판단함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "평가기간은 감사보고서일로부터 10개월이면 충분하므로 경영진에게 확장을 요구할 필요가 없다.",
+            "reason": "경영진에게 평가기간 확장을 요구할 필요가 없다고 명시함.",
+            "claim": "경영진에게 평가기간을 적어도 12개월로 확장하도록 요청함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재무제표일로부터 10개월은 요구되는 최소 12개월에 미달한다.",
+          "감사인은 경영진에게 평가기간을 재무제표일로부터 적어도 12개월로 확장하도록 요청해야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "exp1",
+        "prompt": "예측표의 최종 현금잔액이 양수라는 사실만으로 검토를 마무리하려는 계획을 보완하시오. 차입 연장·신규 매출 계획의 효과와 실행가능성, 현금흐름예측의 기초자료와 가정에 관하여 수행해야 할 평가를 사례와 연결하여 설명하시오. 최종 감사의견은 요구하지 않는다.",
+        "user_answer": "최종 현금잔액이 양수이면 계획이 실현된 것으로 보므로 신청서나 미체결 계약의 근거를 더 확인할 필요는 없다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "not_met",
+            "reason": "현금 부족 상황 개선 가능성에 대한 평가를 제시하지 않음.",
+            "claim": "차입 만기 연장과 신규 고객 매출 계획의 결과가 8월 차입금 상환 등 현금 부족 상황을 실제로 개선할 수 있는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "contradicted",
+            "quote": "최종 현금잔액이 양수이면 계획이 실현된 것으로 보므로 신청서나 미체결 계약의 근거를 더 확인할 필요는 없다.",
+            "reason": "신청서와 미체결 계약의 근거를 추가 확인할 필요가 없다고 하여 실행가능성 평가 절차를 명시적으로 부정함.",
+            "claim": "차입 연장의 은행 승인과 신규 고객 계약이 아직 확정되지 않았으므로 경영진의 계획이 해당 상황에서 실행가능한지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "not_met",
+            "reason": "예측표 기초 영업자료의 신뢰성 평가를 언급하지 않음.",
+            "claim": "현금흐름예측에 사용한 기초 영업자료의 신뢰성을 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c4",
+            "verdict": "contradicted",
+            "quote": "최종 현금잔액이 양수이면 계획이 실현된 것으로 보므로 신청서나 미체결 계약의 근거를 더 확인할 필요는 없다.",
+            "reason": "최종 현금잔액만으로 계획이 실현된 것으로 보아 추가 근거 확인이 불필요하다고 하여 가정의 근거 평가를 명시적으로 부정함.",
+            "claim": "현금흐름예측에 적용한 매출 증가·회수 및 차입 연장 가정에 적절한 근거가 있는지 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "차입 만기 연장과 신규 고객 매출 계획의 결과가 8월 차입금 상환 등 현금 부족 상황을 실제로 개선할 수 있는지 평가한다.",
+          "차입 연장의 은행 승인과 신규 고객 계약이 아직 확정되지 않았으므로 경영진의 계획이 해당 상황에서 실행가능한지 평가한다.",
+          "현금흐름예측에 사용한 기초 영업자료의 신뢰성을 평가한다.",
+          "현금흐름예측에 적용한 매출 증가·회수 및 차입 연장 가정에 적절한 근거가 있는지 결정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "subq2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0157cbb470c046aa016aa6031a4cd087d096fdf1149c51e615",
+        "request_id": "req_5766fb8a2cad45f1bd55e2f34c1f7342",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3872,
+          "input_tokens_details": {
+            "cache_write_tokens": 3869,
+            "cached_tokens": 0
+          },
+          "output_tokens": 667,
+          "output_tokens_details": {
+            "reasoning_tokens": 263
+          },
+          "total_tokens": 4539
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00176825,
+        "min_usd": 0.00176825,
+        "max_usd": 0.00176825,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-12-001--case--wrong/input.json",
+      "sha256": "855527eeb48c986b202d0d1edd34d81694af0be669207baa564cf07dd3ffd15d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-12-001--case--wrong/transport.jsonl",
+      "sha256": "44fc1139b8d2074f7aaa176a8e66374508d4f207fcd86dc1de8e24df6b0eb85d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-12-001--case--wrong/traces.jsonl",
+      "sha256": "f3a0de7c5c7488dfc706ab0cf8c704b1fa924d365bcfd18f0b4faab6874cb37e"
+    }
+  }
+}

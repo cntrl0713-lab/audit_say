@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "pilot-11-002--sub2--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-11-002--sub2--standard",
+  "source_set_id": "pilot-11-002",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "1d5a57840e14fc8a60a79022dfb062fba84112490edf8a7aa0a26ced5e864763",
+  "answers": {
+    "sub2": "각 추정치가 개별적으로 합리적이면 전체 추정치나 여러 회계기간에서도 편의가 존재할 수 없으므로 편의가능성 평가는 생략한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 wrong 답안. 대상 명제: 개별 판단이 합리적이어도 편의가능성 평가를 생략할 수 없다고 판단함"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 wrong 답안. 대상 명제: 개별적으로 합리적인 판단도 추정치의 집합·전체 또는 여러 기간에서 중립성이 결여된 방향으로 나타날 수 있다는 이유를 설명함. 평가 의무의 반복만으로는 불충족. 편의가능성 징후 자체가 확정된 왜곡표시라는 설명은 인정하지 않음"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "aae611105e5fec83d47237238c04ae6d626432827c48869e9cd6b3debfa098c2",
+  "schema_hash": "84d63657d91af1f29ec0a6dd3c718e0feef72c2a43e1937e26e83b8448a1e080",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "각 추정치가 개별적으로 합리적이면 전체 추정치나 여러 회계기간에서도 편의가 존재할 수 없으므로 편의가능성 평가는 생략한다.",
+            "reason": "개별 추정치가 합리적이면 편의가능성 평가를 생략한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "각 추정치가 개별적으로 합리적이면 전체 추정치나 여러 회계기간에서도 편의가 존재할 수 없으므로 편의가능성 평가는 생략한다.",
+            "reason": "전체 추정치나 여러 기간에서도 편의가 존재할 수 없다고 하여 요구된 설명과 반대로 작성했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "개별 추정치가 합리적이면 편의가능성 평가를 생략한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "전체 추정치나 여러 기간에서도 편의가 존재할 수 없다고 하여 요구된 설명과 반대로 작성했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-11-002",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "회계추정치를 도출할 때 내린 경영진의 판단과 결정이 개별적으로 합리적이라는 이유로 경영진 편의가능성의 징후에 대한 평가를 생략해도 되는지 판단하고, 개별 판단의 합리성만으로 평가를 생략할 수 있는지에 대한 근거를 설명하시오.",
+        "user_answer": "각 추정치가 개별적으로 합리적이면 전체 추정치나 여러 회계기간에서도 편의가 존재할 수 없으므로 편의가능성 평가는 생략한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "각 추정치가 개별적으로 합리적이면 전체 추정치나 여러 회계기간에서도 편의가 존재할 수 없으므로 편의가능성 평가는 생략한다.",
+            "reason": "개별 추정치가 합리적이면 편의가능성 평가를 생략한다고 명시했다.",
+            "claim": "개별 판단이 합리적이어도 편의가능성 평가를 생략할 수 없다고 판단함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "각 추정치가 개별적으로 합리적이면 전체 추정치나 여러 회계기간에서도 편의가 존재할 수 없으므로 편의가능성 평가는 생략한다.",
+            "reason": "전체 추정치나 여러 기간에서도 편의가 존재할 수 없다고 하여 요구된 설명과 반대로 작성했다.",
+            "claim": "개별적으로 합리적인 판단도 추정치의 집합·전체 또는 여러 기간에서 중립성이 결여된 방향으로 나타날 수 있다는 이유를 설명함. 평가 의무의 반복만으로는 불충족. 편의가능성 징후 자체가 확정된 왜곡표시라는 설명은 인정하지 않음",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "개별 판단과 결정이 합리적이더라도 경영진 편의가능성의 징후에 대한 평가를 생략할 수 없다.",
+          "편의는 개별 계정 수준에서 드러나지 않고 회계추정치의 집합이나 전체, 또는 여러 회계기간에 걸쳐 관찰할 때 드러날 수 있으므로 개별 판단의 합리성만으로 경영진의 중립성이 확보되었다고 볼 수 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0750ce35bf25372e016aa788053f4887d0884213838a730cea",
+        "request_id": "req_4cf7f4bd39fe48df8d6ba617e7ec1bd2",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2548,
+          "input_tokens_details": {
+            "cache_write_tokens": 2545,
+            "cached_tokens": 0
+          },
+          "output_tokens": 245,
+          "output_tokens_details": {
+            "reasoning_tokens": 89
+          },
+          "total_tokens": 2793
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00093085,
+        "min_usd": 0.00093085,
+        "max_usd": 0.00093085,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/pilot-11-002--sub2--wrong/input.json",
+      "sha256": "0608f173666fbc43e9e8d8b0f114f48a2df65b988fd8484023d13b3a9a6d9bfc"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/pilot-11-002--sub2--wrong/transport.jsonl",
+      "sha256": "9613a902021066f45046452ab6318538f3018a77b53ab286eff0aa136c3508fd"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/pilot-11-002--sub2--wrong/traces.jsonl",
+      "sha256": "8c47192cfc44c6668b5048c9fc8d357fc9f1430352c09dc809bafceffa345861"
+    }
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-733bd911cb7c--sub2--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-733bd911cb7c--sub2--standard",
+  "source_set_id": "std-points-20260914-733bd911cb7c",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "b05d3cd3241bf0475ba87f6848b2f1e35bb255120f4b83db065c41b60656f377",
+  "answers": {
+    "sub2": "감사기구는 자료·정보나 비용지원을 요청할 수 없고 대표자는 어떤 요청도 따를 의무가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 위 직무를 수행할 때 회사 대표자에게 필요한 자료나 정보의 제공을 요청할 수 있다."
+        },
+        {
+          "criterion_id": "crit5.sp2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 위 직무를 수행할 때 회사 대표자에게 필요한 비용의 제공을 요청할 수 있다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 회사의 대표자는 특별한 사유가 없으면 그 요청에 따라야 한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "135e7ac620bb143ca88989adb2673507112677d6f2fced22be857bd0bc5f3e54",
+  "schema_hash": "9dd0f4c2b7169bc980dc0e6fd811b6022360f9035b8582e59d017aef598e2ebc",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "감사기구는 자료·정보나 비용지원을 요청할 수 없고 대표자는 어떤 요청도 따를 의무가 없다.",
+            "reason": "자료·정보 제공 요청이 불가능하다고 명시적으로 반대함."
+          },
+          {
+            "criterion_id": "crit5.sp2",
+            "verdict": "contradicted",
+            "quote": "감사기구는 자료·정보나 비용지원을 요청할 수 없고 대표자는 어떤 요청도 따를 의무가 없다.",
+            "reason": "비용지원 요청이 불가능하다고 명시적으로 반대함."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "감사기구는 자료·정보나 비용지원을 요청할 수 없고 대표자는 어떤 요청도 따를 의무가 없다.",
+            "reason": "대표자에게 요청을 따를 의무가 없다고 명시적으로 반대함."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "자료·정보 제공 요청이 불가능하다고 명시적으로 반대함."
+              },
+              {
+                "criterion_id": "crit5.sp2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "비용지원 요청이 불가능하다고 명시적으로 반대함."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "대표자에게 요청을 따를 의무가 없다고 명시적으로 반대함."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-733bd911cb7c",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "외부감사법 제22조제3항과 제4항의 위반사실 조사·시정요구·결과제출 업무를 수행하는 회사의 감사 또는 감사위원회가 제5항에 따라 대표자에게 요청할 수 있는 지원을 설명하시오. 자료·정보 지원과 비용지원을 구별하고 대표자의 의무도 제시하시오.",
+        "user_answer": "감사기구는 자료·정보나 비용지원을 요청할 수 없고 대표자는 어떤 요청도 따를 의무가 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "감사기구는 자료·정보나 비용지원을 요청할 수 없고 대표자는 어떤 요청도 따를 의무가 없다.",
+            "reason": "자료·정보 제공 요청이 불가능하다고 명시적으로 반대함.",
+            "claim": "위 직무를 수행할 때 회사 대표자에게 필요한 자료나 정보의 제공을 요청할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5.sp2",
+            "verdict": "contradicted",
+            "quote": "감사기구는 자료·정보나 비용지원을 요청할 수 없고 대표자는 어떤 요청도 따를 의무가 없다.",
+            "reason": "비용지원 요청이 불가능하다고 명시적으로 반대함.",
+            "claim": "위 직무를 수행할 때 회사 대표자에게 필요한 비용의 제공을 요청할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "감사기구는 자료·정보나 비용지원을 요청할 수 없고 대표자는 어떤 요청도 따를 의무가 없다.",
+            "reason": "대표자에게 요청을 따를 의무가 없다고 명시적으로 반대함.",
+            "claim": "회사의 대표자는 특별한 사유가 없으면 그 요청에 따라야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "회사 대표자에게 필요한 자료나 정보의 제공을 요청할 수 있다.",
+          "필요한 비용의 제공을 요청할 수 있다.",
+          "대표자는 특별한 사유가 없으면 그 요청에 따라야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a204bfed5714906016aa7859e59dc87d08eaed73f8234dee1",
+        "request_id": "req_2404713fd3584c3b8d6b777277165861",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2482,
+          "input_tokens_details": {
+            "cache_write_tokens": 2479,
+            "cached_tokens": 0
+          },
+          "output_tokens": 247,
+          "output_tokens_details": {
+            "reasoning_tokens": 61
+          },
+          "total_tokens": 2729
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00091675,
+        "min_usd": 0.00091675,
+        "max_usd": 0.00091675,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-733bd911cb7c--sub2--wrong/input.json",
+      "sha256": "63ed8f6249f6da62b177712780e6692fa61e23c09db3a90198124b0f4d57110e"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-733bd911cb7c--sub2--wrong/transport.jsonl",
+      "sha256": "dd309c7e3bf467bcdb50a2354941a7b8f542dbf6d001c369ef5117ce0a9d5364"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-733bd911cb7c--sub2--wrong/traces.jsonl",
+      "sha256": "5cddfd680dac7e18684cd2cde2922c4610cbbb2384c355184e371eb52f65cb3c"
+    }
+  }
+}

@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-03-006--sub3--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-03-006--sub3--standard",
+  "source_set_id": "pilot-03-006",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub3"
+  ],
+  "projected_body_hash": "910882d71adc1c5977a00b665a127020c016fb4bde42b9ebf19d2bcfc8f8db6e",
+  "answers": {
+    "sub3": "관련 서비스 보고서에는 당초 감사업무를 언급하지 않는다. 수행한 절차도 원칙적으로 언급하지 않되 합의된 절차 업무로 변경되어 절차 언급이 통상적인 경우에는 허용된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "met",
+          "reason": "원문과 현행 채점기준을 대조하여 이 답안이 독립 의미를 충족함을 확인."
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "met",
+          "reason": "원문과 현행 채점기준을 대조하여 이 답안이 독립 의미를 충족함을 확인."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "4461ae9647d0aff00c1b95689c37c7960dc0e88bfa45a060f06ef356b40ba458",
+  "schema_hash": "bcb1be8e2e9368729ae7cf0b3fce2e70b10a9c3f006af34f4182562564f12916",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "변경 후 수행할 업무의 적합성에 관한 내용이 없다."
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "변경 후 보고서의 적합성에 관한 내용이 없다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "met",
+            "quote": "관련 서비스 보고서에는 당초 감사업무를 언급하지 않는다. ",
+            "reason": "관련 서비스 보고서에서 당초 감사업무를 언급하지 않는다고 설명했다."
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "met",
+            "quote": "수행한 절차도 원칙적으로 언급하지 않되 합의된 절차 업무로 변경되어 절차 언급이 통상적인 경우에는 허용된다.",
+            "reason": "당초 절차는 원칙적으로 언급하지 않되 합의된 절차 업무에서는 예외라고 구별했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "변경 후 수행할 업무의 적합성에 관한 내용이 없다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "변경 후 보고서의 적합성에 관한 내용이 없다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "관련 서비스 보고서에서 당초 감사업무를 언급하지 않는다고 설명했다."
+              },
+              {
+                "criterion_id": "crit7",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "당초 절차는 원칙적으로 언급하지 않되 합의된 절차 업무에서는 예외라고 구별했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-03-006",
+    "score": 2,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "감사업무가 합리적 정당성에 따라 관련 서비스로 변경되었고 법률·계약상 검토와 새 조건의 합의·기록을 마친 경우, 변경 후 업무와 보고서가 따라야 할 범위를 설명하시오. 관련 서비스 보고서에 당초 감사업무와 수행 절차를 언급하는 원칙을 설명하고, 합의된 절차 업무로 변경된 경우의 예외를 구별하시오.",
+        "user_answer": "관련 서비스 보고서에는 당초 감사업무를 언급하지 않는다. 수행한 절차도 원칙적으로 언급하지 않되 합의된 절차 업무로 변경되어 절차 언급이 통상적인 경우에는 허용된다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "변경 후 수행할 업무의 적합성에 관한 내용이 없다.",
+            "claim": "변경 후 수행할 업무가 변경된 업무에 적합해야 한다. 종전 절차의 전부 폐기나 전면 재수행이 자동 요구되는 것은 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "변경 후 보고서의 적합성에 관한 내용이 없다.",
+            "claim": "변경 후 발행할 보고서가 변경된 업무에 적합해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "met",
+            "quote": "관련 서비스 보고서에는 당초 감사업무를 언급하지 않는다.",
+            "reason": "관련 서비스 보고서에서 당초 감사업무를 언급하지 않는다고 설명했다.",
+            "claim": "관련 서비스 보고서에서 당초 감사업무 자체에 대한 언급을 배제함을 설명한다. 합의된 절차 예외를 당초 감사업무 자체의 언급까지 확대하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "met",
+            "quote": "수행한 절차도 원칙적으로 언급하지 않되 합의된 절차 업무로 변경되어 절차 언급이 통상적인 경우에는 허용된다.",
+            "reason": "당초 절차는 원칙적으로 언급하지 않되 합의된 절차 업무에서는 예외라고 구별했다.",
+            "claim": "당초 감사에서 수행한 절차는 원칙적으로 보고서에 언급하지 않되, 합의된 절차 업무로 변경되어 수행한 절차 언급이 통상적인 경우에서는 예외임을 함께 구별한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "변경 후 수행할 업무가 변경된 업무에 적합해야 한다.",
+          "변경 후 발행할 보고서가 변경된 업무에 적합해야 한다.",
+          "관련 서비스 보고서에서 당초 감사업무 자체에 대한 언급을 배제함을 설명한다.",
+          "당초 감사에서 수행한 절차는 원칙적으로 보고서에 언급하지 않되, 합의된 절차 업무로 변경되어 수행한 절차 언급이 통상적인 경우에서는 예외임을 함께 구별한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_00158d2cba52d8cb016aa5dc0baa7c87d0887b05ec34c11d15",
+        "request_id": "req_c929e34c3bee4638a48b4f0be9105e3a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2990,
+          "input_tokens_details": {
+            "cache_write_tokens": 2987,
+            "cached_tokens": 0
+          },
+          "output_tokens": 295,
+          "output_tokens_details": {
+            "reasoning_tokens": 76
+          },
+          "total_tokens": 3285
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0011013499999999999,
+        "min_usd": 0.0011013499999999999,
+        "max_usd": 0.0011013499999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-03-006--sub3--standard--partial/input.json",
+      "sha256": "0773ecbd4890c3f0684a8dbad068fef5ca3387a5799544d5742a28f56cd6532f"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-03-006--sub3--standard--partial/transport.jsonl",
+      "sha256": "ba0e4a56a858af11c551f92a8bf58d98997c9b7f3becdfca425f18dbd86be527"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-03-006--sub3--standard--partial/traces.jsonl",
+      "sha256": "24e672dca0c9dd727ce4074e528905b05538500020d2d7f029ac90685153cc18"
+    }
+  }
+}

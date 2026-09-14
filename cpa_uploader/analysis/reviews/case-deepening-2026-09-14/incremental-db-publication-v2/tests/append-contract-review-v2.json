@@ -1,0 +1,99 @@
+{
+  "version": 2,
+  "reviewed_at": "2026-09-14T06:55:02.297Z",
+  "status": "passed_local_transaction_review",
+  "reviewer": "independent_agent",
+  "inputs": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+      "sha256": "fcded3de3912f96228d6b24ee438f3a5e48336fa62038783bb7225b4ed17ed30"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/tests/append-transaction.test.mjs",
+      "sha256": "0ed9f46c601c8691e2bada013bf102a751d9d5bcdf40e559334aefbc4bba39c7"
+    }
+  ],
+  "prior_log_preserved": {
+    "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/tests/append-transaction-v1.log",
+    "sha256": "b5f01de278ed6665f8dc7104a6c4a5a3e6ea4611ea459b2715de7ca21b829145"
+  },
+  "log": {
+    "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/tests/append-transaction-v2.log",
+    "sha256": "7379a5468a797db51671887c81ccf2670152fa7bb53d07500e5f67cfe5f302bb"
+  },
+  "checks": [
+    {
+      "id": "syntax",
+      "args": [
+        "--check",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/tests/append-transaction.test.mjs"
+      ],
+      "exit_code": 0,
+      "signal": null,
+      "elapsed_ms": 82,
+      "error_code": null
+    },
+    {
+      "id": "lint",
+      "args": [
+        "node_modules/eslint/bin/eslint.js",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/tests/append-transaction.test.mjs"
+      ],
+      "exit_code": 0,
+      "signal": null,
+      "elapsed_ms": 3467,
+      "error_code": null
+    },
+    {
+      "id": "transaction-tests",
+      "args": [
+        "--import",
+        "tsx",
+        "--test",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/tests/append-transaction.test.mjs"
+      ],
+      "exit_code": 0,
+      "signal": null,
+      "elapsed_ms": 8298,
+      "error_code": null
+    }
+  ],
+  "scope": {
+    "top_level_test_groups": 3,
+    "leaf_scenarios": 7,
+    "node_reported_tests": 9,
+    "execution": "Local in-memory PGlite, synthetic schema, role and mock importer; complete generated SQL transaction",
+    "function_definition_guard": "Actual pg_get_functiondef SHA256 of the local mock importer is supplied to buildSql",
+    "normal_case": "Two existing sets followed by six synthetic added sets; source bytes, IDs, version IDs and classifications match",
+    "cas_failures": [
+      "expected active release ID mismatch",
+      "expected active source file SHA mismatch"
+    ],
+    "postcondition_failures": [
+      "existing set version changed",
+      "existing classification version changed",
+      "existing set position changed",
+      "new addition absent"
+    ],
+    "rollback_proof": "Nontransactional sequence proves importer executed once in postcondition cases; all release rows, item links, classification rows and topics match their pre-transaction snapshot after rollback",
+    "cas_prevention_proof": "The same sequence remains uncalled for both CAS failures"
+  },
+  "manual_review": {
+    "same_transaction_advisory_lock_before_baseline_cas": true,
+    "source_sha_checked_against_actual_document": true,
+    "existing_version_and_position_preservation": true,
+    "final_ids_order_and_count_match_source": true,
+    "prior_classification_and_topic_identity_checked_before_commit": true,
+    "source_and_learning_import_share_base_rpc": true
+  },
+  "limitations": [
+    "Mock importer exercises generated transaction guards; it does not certify the installed production functions or real importer internals.",
+    "No concurrent sessions or network/commit-ambiguity behavior were simulated.",
+    "Driver, production snapshot, migration deployment, public/private round-trip and independent live verification are outside this review."
+  ],
+  "inputs_unchanged_during_checks": true,
+  "production_db_reads": 0,
+  "production_db_writes": 0,
+  "network_api_calls": 0,
+  "model_api_calls": 0
+}

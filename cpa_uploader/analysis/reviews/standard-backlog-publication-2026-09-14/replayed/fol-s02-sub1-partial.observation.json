@@ -1,0 +1,278 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "fol-s02-sub1-partial",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-followup-20260913-s02",
+  "learning_unit_id": "draft-standard-followup-20260913-s02--sub1--standard",
+  "kind": "partial",
+  "projected_body_hash": "f7de48cefd407374c496892f4d0af3e8e7e3956067f9566e0c23747fd329243f",
+  "answers": {
+    "sub1": "최근 재무제표와 공시 등 기초잔액 정보를 열람하고, 존재하는 전임감사인의 감사보고서도 열람한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 최근의 재무제표와 공시 등 기초잔액에 관한 정보가 존재하면 이를 열람한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 이에 대한 전임감사인의 감사보고서가 존재하면 이를 열람한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 전기의 마감잔액이 정확하게 당기로 이월되었는지 또는 해당되는 경우 재작성되었는지 결정한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 기초잔액에 적합한 회계정책이 반영되어 있는지 결정한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "7bb6d63a77df030ea2b041abf6388c15562bbc04a187e4e3fbed46fed3f0e304",
+  "schema_hash": "95927f22b9183a4de751fba4a57ac9d0c2eeea99ce206606bc0d87e7b3c205cb",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "최근 재무제표와 공시 등 기초잔액 정보를 열람하고, 존재하는 전임감사인의 감사보고서도 열람한다.",
+            "reason": "최근 재무제표와 공시 등 기초잔액 관련 정보를 열람한다고 답했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "최근 재무제표와 공시 등 기초잔액 정보를 열람하고, 존재하는 전임감사인의 감사보고서도 열람한다.",
+            "reason": "존재하는 전임감사인의 감사보고서를 열람한다고 답했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "전기 마감잔액의 당기 이월 또는 재작성 여부를 결정한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "기초잔액에 적합한 회계정책의 반영 여부를 결정한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "최근 재무제표와 공시 등 기초잔액 관련 정보를 열람한다고 답했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "존재하는 전임감사인의 감사보고서를 열람한다고 답했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전기 마감잔액의 당기 이월 또는 재작성 여부를 결정한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "기초잔액에 적합한 회계정책의 반영 여부를 결정한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-followup-20260913-s02",
+    "score": 2,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "초도감사에서 기초잔액을 검토할 때, 감사기준서 510 문단 5에 따라 정보가 존재하면 열람할 자료와 문단 6(a)·(b)에 따라 결정할 두 사항을 설명하시오. 문단 6(c)의 증거 입수경로와 감사의견에 대한 영향은 묻지 않는다.",
+        "user_answer": "최근 재무제표와 공시 등 기초잔액 정보를 열람하고, 존재하는 전임감사인의 감사보고서도 열람한다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "최근 재무제표와 공시 등 기초잔액 정보를 열람하고, 존재하는 전임감사인의 감사보고서도 열람한다.",
+            "reason": "최근 재무제표와 공시 등 기초잔액 관련 정보를 열람한다고 답했다.",
+            "claim": "최근의 재무제표와 공시 등 기초잔액에 관한 정보가 존재하면 이를 열람한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "최근 재무제표와 공시 등 기초잔액 정보를 열람하고, 존재하는 전임감사인의 감사보고서도 열람한다.",
+            "reason": "존재하는 전임감사인의 감사보고서를 열람한다고 답했다.",
+            "claim": "이에 대한 전임감사인의 감사보고서가 존재하면 이를 열람한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "전기 마감잔액의 당기 이월 또는 재작성 여부를 결정한다는 내용이 없다.",
+            "claim": "전기의 마감잔액이 정확하게 당기로 이월되었는지 또는 해당되는 경우 재작성되었는지 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "기초잔액에 적합한 회계정책의 반영 여부를 결정한다는 내용이 없다.",
+            "claim": "기초잔액에 적합한 회계정책이 반영되어 있는지 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "최근의 재무제표와 공시 등 기초잔액에 관한 정보가 존재하면 이를 열람한다.",
+          "이에 대한 전임감사인의 감사보고서가 존재하면 이를 열람한다.",
+          "전기의 마감잔액이 정확하게 당기로 이월되었는지 또는 해당되는 경우 재작성되었는지 결정한다.",
+          "기초잔액에 적합한 회계정책이 반영되어 있는지 결정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-s02-sub1-partial.input.json",
+      "sha256": "43e3124c9733e4e893f861acf1f5bfebd94cf5ad9da1299694d8ea77eb36ec64"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-s02-sub1-partial.transport.jsonl",
+      "sha256": "db078f73835ac706e8ac2707fe7aec70f0b1976a339964f83f7254c73bce0f29"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-s02-sub1-partial.traces.jsonl",
+      "sha256": "d646d8783d5fa2b631ed41c1f1d0579ad5164aafaf924f380df67f64db3d6dde"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02bf4a7ab6886719016aa5fe4cbf9087d0b93a8e561385d182",
+        "request_id": "req_e118f44620bd477185913478987ab775",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2658,
+          "input_tokens_details": {
+            "cache_write_tokens": 2655,
+            "cached_tokens": 0
+          },
+          "output_tokens": 302,
+          "output_tokens_details": {
+            "reasoning_tokens": 75
+          },
+          "total_tokens": 2960
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s02-sub1-partial.input.json",
+        "sha256": "08c24a90f57c6dbcd5e83543c8f8db59684333b3a826c78dbad63498fcde3849"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s02-sub1-partial.request-1.json",
+        "sha256": "2db29f9da9a86033a7deef7c59d2f3b4b9073e258e410945e2c040a0182221f6"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s02-sub1-partial.response-1.json",
+        "sha256": "8d1d1b2478a1e3c6abe3f74677955c196dadcbb8faa3927797fec918a394b6ad"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s02-sub1-partial.trace.json",
+        "sha256": "c660889746168a773840bf09176906fc6828f1c6dc2dbbb217a2cbd17c11d925"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s02-sub1-partial.usage.json",
+        "sha256": "380e7bab8e9f3b6ad6598f3c69e50fc77c1967787742a48480193044b2fec9eb"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s02-sub1-partial.result.json",
+        "sha256": "2d3beb6bf74c2b162c173df102e2f6dbfe29119617f86e5d8ad1e3b7ba083681"
+      }
+    ],
+    "original_case_id": "s02-sub1-partial",
+    "origin_batch": "cpa_uploader/drafts/standard-followup-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

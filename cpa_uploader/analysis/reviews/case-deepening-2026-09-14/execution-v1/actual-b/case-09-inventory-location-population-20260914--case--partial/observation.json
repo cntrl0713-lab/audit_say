@@ -1,0 +1,418 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "2db4a8d6a4f1aaedd288e4993fef0ec54419806b93c99d4fbe3e21aeef3749b8"
+  },
+  "entry_id": "case-09-inventory-location-population-20260914--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "case-09-inventory-location-population-20260914--case",
+  "source_set_id": "case-09-inventory-location-population-20260914",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "dc2fbfd5311d8d01f5aecfe8ff94a6fc5f915e6c8ea93d5b3c9c39a1d416b201",
+  "answers": {
+    "sub1": "중앙물류창고만 입회하고 나머지 장소를 일괄 제외한 계획은 부적절하다.",
+    "sub2": "세 장소의 목록을 단순 합쳐 테스트 수량을 줄이는 것은 부적절하며 모집단을 구분해 계획해야 한다.",
+    "sub3": "현재 수행한 테스트만으로 별도 보관구역 상품의 실사기록 누락 여부 확인을 끝냈다고 볼 수 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "met",
+          "reason": "부적절 판단만 제시하고 장소별 위험·중요성의 적용은 설명하지 않았다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "부적절 판단만 제시하고 장소별 위험·중요성의 적용은 설명하지 않았다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "met",
+          "reason": "올바른 구분 판단만 있고 두 독립적인 차이의 이유는 없다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "not_met",
+          "reason": "올바른 구분 판단만 있고 두 독립적인 차이의 이유는 없다."
+        },
+        {
+          "criterion_id": "sub2.c3",
+          "verdict": "not_met",
+          "reason": "올바른 구분 판단만 있고 두 독립적인 차이의 이유는 없다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.c1",
+          "verdict": "met",
+          "reason": "현재 결론이 불충분하다는 판단만 있고 추가할 실물→기록 절차는 없다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "verdict": "not_met",
+          "reason": "현재 결론이 불충분하다는 판단만 있고 추가할 실물→기록 절차는 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "8a3a479ef36a8e1e97d66ed41bf40492649f09c3ae0b36cf5a02cb98138bd184",
+  "schema_hash": "71effa1099a1fbf602e85dc41c0c7f3790ec606e2b3499c7f9eb854bcecb078b",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "중앙물류창고만 입회하고 나머지 장소를 일괄 제외한 계획은 부적절하다.",
+            "reason": "금액비중만으로 나머지 장소를 일괄 제외한 계획이 부적절하다고 명시했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "반품창고의 수량차이·조사기록 부재 위험과 보관금액을 함께 고려하는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "세 장소의 목록을 단순 합쳐 테스트 수량을 줄이는 것은 부적절하며 모집단을 구분해 계획해야 한다.",
+            "reason": "목록 통합 및 테스트 수량 축소가 부적절하고 모집단을 구분해야 한다고 명시했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "상품 특성이나 관리 부서 차이가 모집단 동질성에 미치는 이유를 설명하지 않았다."
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "not_met",
+            "reason": "실사일·실사팀·기록 담당자 차이와 결과 적용범위의 관계를 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "met",
+            "quote": "현재 수행한 테스트만으로 별도 보관구역 상품의 실사기록 누락 여부 확인을 끝냈다고 볼 수 없다.",
+            "reason": "현재 테스트만으로 별도 보관구역의 기록 누락 확인을 끝낼 수 없다고 명시했다."
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "not_met",
+            "reason": "별도 보관구역의 실물에서 기록으로 추적하고 수량을 대조하는 추가 절차를 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "금액비중만으로 나머지 장소를 일괄 제외한 계획이 부적절하다고 명시했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "반품창고의 수량차이·조사기록 부재 위험과 보관금액을 함께 고려하는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "목록 통합 및 테스트 수량 축소가 부적절하고 모집단을 구분해야 한다고 명시했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "상품 특성이나 관리 부서 차이가 모집단 동질성에 미치는 이유를 설명하지 않았다."
+              },
+              {
+                "criterion_id": "sub2.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "실사일·실사팀·기록 담당자 차이와 결과 적용범위의 관계를 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "현재 테스트만으로 별도 보관구역의 기록 누락 확인을 끝낼 수 없다고 명시했다."
+              },
+              {
+                "criterion_id": "sub3.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "별도 보관구역의 실물에서 기록으로 추적하고 수량을 대조하는 추가 절차를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-09-inventory-location-population-20260914",
+    "score": 3,
+    "max_points": 7,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "중앙물류창고의 금액비중만으로 나머지 장소를 입회대상에서 제외한 계획의 적절성을 판단하고, 반품창고의 상황을 입회장소 결정에 어떻게 반영해야 하는지 설명하시오.",
+        "user_answer": "중앙물류창고만 입회하고 나머지 장소를 일괄 제외한 계획은 부적절하다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "중앙물류창고만 입회하고 나머지 장소를 일괄 제외한 계획은 부적절하다.",
+            "reason": "금액비중만으로 나머지 장소를 일괄 제외한 계획이 부적절하다고 명시했다.",
+            "claim": "중앙물류창고의 금액비중이 과반이라는 이유만으로 나머지 장소를 일괄 제외한 계획은 부적절하다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "반품창고의 수량차이·조사기록 부재 위험과 보관금액을 함께 고려하는 내용이 없다.",
+            "claim": "반품창고의 반복된 수량차이와 조사기록 부재를 그 장소의 중요왜곡표시위험에 반영하고, 보관금액의 중요성과 함께 입회 필요성을 판단한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "중앙물류창고의 금액비중이 과반이라는 이유만으로 나머지 장소를 일괄 제외한 계획은 부적절하다.",
+          "반품창고의 반복된 수량차이와 조사기록 부재를 그 장소의 중요왜곡표시위험에 반영하고, 보관금액의 중요성과 함께 입회 필요성을 판단한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "세 장소의 목록을 단순 합쳐 테스트 실사 수량을 줄이려는 제안을 평가하시오. 모집단을 구분하여 계획할 필요가 있는지 판단하고, 회사의 관리·상품 특성과 실사 수행조건에서 각각 그 이유를 설명하시오.",
+        "user_answer": "세 장소의 목록을 단순 합쳐 테스트 수량을 줄이는 것은 부적절하며 모집단을 구분해 계획해야 한다.",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "세 장소의 목록을 단순 합쳐 테스트 수량을 줄이는 것은 부적절하며 모집단을 구분해 계획해야 한다.",
+            "reason": "목록 통합 및 테스트 수량 축소가 부적절하고 모집단을 구분해야 한다고 명시했다.",
+            "claim": "세 장소의 목록을 단순 통합해 테스트 수량을 줄이는 제안은 부적절하며, 제시된 차이를 반영하여 모집단을 구분해 계획해야 한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "상품 특성이나 관리 부서 차이가 모집단 동질성에 미치는 이유를 설명하지 않았다.",
+            "claim": "정상판매 상품과 회수·반품 상품의 성격 및 이를 관리하는 부서가 달라 같은 특성을 가진 모집단으로 취급하기 어렵다는 점을 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "not_met",
+            "reason": "실사일·실사팀·기록 담당자 차이와 결과 적용범위의 관계를 설명하지 않았다.",
+            "claim": "장소별 실사일과 실사팀·기록 담당자가 달라 한 장소의 테스트 결과로 다른 장소의 실사 수행과 기록 신뢰성까지 동일하게 뒷받침하기 어렵다는 점을 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "세 장소의 목록을 단순 통합해 테스트 수량을 줄이는 제안은 부적절하며, 제시된 차이를 반영하여 모집단을 구분해 계획해야 한다.",
+          "정상판매 상품과 회수·반품 상품의 성격 및 이를 관리하는 부서가 달라 같은 특성을 가진 모집단으로 취급하기 어렵다는 점을 설명한다.",
+          "장소별 실사일과 실사팀·기록 담당자가 달라 한 장소의 테스트 결과로 다른 장소의 실사 수행과 기록 신뢰성까지 동일하게 뒷받침하기 어렵다는 점을 설명한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "현재 테스트만으로 실사기록의 누락 여부 확인을 끝냈다는 판단을 평가하고, 별도 보관구역에 대해 추가할 테스트 실사 방향을 구체적으로 제시하시오.",
+        "user_answer": "현재 수행한 테스트만으로 별도 보관구역 상품의 실사기록 누락 여부 확인을 끝냈다고 볼 수 없다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "met",
+            "quote": "현재 수행한 테스트만으로 별도 보관구역 상품의 실사기록 누락 여부 확인을 끝냈다고 볼 수 없다.",
+            "reason": "현재 테스트만으로 별도 보관구역의 기록 누락 확인을 끝낼 수 없다고 명시했다.",
+            "claim": "실사기록에서 선택한 상품만 확인한 결과로는 별도 보관구역 상품의 실사기록 누락 여부까지 확인했다고 결론내릴 수 없다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "not_met",
+            "reason": "별도 보관구역의 실물에서 기록으로 추적하고 수량을 대조하는 추가 절차를 제시하지 않았다.",
+            "claim": "별도 보관구역의 실제 상품에서 항목을 선정하여 회사의 실사기록에 기재되어 있는지 추적하고 수량을 대조한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "실사기록에서 선택한 상품만 확인한 결과로는 별도 보관구역 상품의 실사기록 누락 여부까지 확인했다고 결론내릴 수 없다.",
+          "별도 보관구역의 실제 상품에서 항목을 선정하여 회사의 실사기록에 기재되어 있는지 추적하고 수량을 대조한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0d01721acdeb0a38016aa790634e3887d08c91be0f00ac78ba",
+        "request_id": "req_dcfffcf9e95a4c14a36a296214a17453",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 5251,
+          "input_tokens_details": {
+            "cache_write_tokens": 5248,
+            "cached_tokens": 0
+          },
+          "output_tokens": 562,
+          "output_tokens_details": {
+            "reasoning_tokens": 86
+          },
+          "total_tokens": 5813
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.001987,
+        "min_usd": 0.001987,
+        "max_usd": 0.001987,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/execution-v1/actual-b/case-09-inventory-location-population-20260914--case--partial/input.json",
+      "sha256": "a61b708b78492749594d5609a3fc7a35522d31b1c9eb0e4ba904e4538bb5bb0e"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/execution-v1/actual-b/case-09-inventory-location-population-20260914--case--partial/transport.jsonl",
+      "sha256": "830e99a90b19611a97a46d19e4fdc8aefcfde6fa4c7811401d37e8624915ad0a"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/execution-v1/actual-b/case-09-inventory-location-population-20260914--case--partial/traces.jsonl",
+      "sha256": "6e8499de62d918ea3f262d5fcf5d71249deadaf08a7ff7023a185cc15d8d9318"
+    }
+  }
+}

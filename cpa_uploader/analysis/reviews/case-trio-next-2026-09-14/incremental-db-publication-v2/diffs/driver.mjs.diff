@@ -1,0 +1,25 @@
+diff --git a/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/sources/driver.mjs.v1.txt b/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/driver.mjs
+index c12eeec1..a880ae5f 100644
+--- a/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/sources/driver.mjs.v1.txt
++++ b/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/driver.mjs
+@@ -43,7 +43,7 @@ if(mode==='--prepare'){
+  const proof=await localProof(built),sql=buildSql(proof.pack,expected,functions,proof.payloadHash);
+  const code=['driver.mjs','append-contract.mjs'].map(name=>N+'/'+name);
+  const runtime=['scripts/import-question-bank-v3.ts','lib/questionV3.ts','lib/learningSubmission.ts','lib/learningPublic.ts','lib/learningUnits.ts',verifier,migration];
+- const inputs=[...built.completion.files,...[R+'/publication-v1/stage-completion.json',R+'/integration-baseline.json',built.baselineFile,R+'/integration-baseline/catalog.json',R+'/changed-sets-v1.json',R+'/sealed-v1/batch.json',R+'/sealed-v1/readiness.json',N+'/source-provenance.json',reviewFile,...code,...runtime].map(ref),...preserved,...review.files];guard(inputs);
++ const inputs=[...built.completion.files,...[R+'/publication-v2/stage-completion.json',R+'/candidate-publication-v2.json',R+'/integration-baseline-v2.json',built.baselineFile,R+'/integration-baseline-v2/catalog.json',R+'/changed-sets-v1.json',R+'/sealed-v1/batch.json',R+'/sealed-v1/readiness.json',N+'/source-provenance.json',reviewFile,...code,...runtime].map(ref),...preserved,...review.files];guard(inputs);
+  fs.mkdirSync(P);write(P+'/append-pack.json',proof.pack);fs.writeFileSync(P+'/guarded-import.sql',sql,{flag:'wx'});
+  write(P+'/local-proof.json',{...proof.proof,checked_at:new Date().toISOString(),sql_transport_bytes:Buffer.byteLength(JSON.stringify({query:sql,read_only:false})),expected_active_release_is_root_input_not_live_verified:true,api_calls:0,db_writes:0});
+  write(P+'/readiness.json',{...built.readiness,reused_without_new_validation:true,prior_readiness:ref(STAGE+'/readiness.json'),recheck:{local_source_public_catalog_hashes_and_counts:true,exact_baseline_plus_three:true,preserve_source_used:false}});
+@@ -55,9 +55,9 @@ if(mode==='--prepare'){
+  const configuredUrl=new URL(process.env.NEXT_PUBLIC_SUPABASE_URL);assert.equal(configuredUrl.protocol,'https:');assert.equal(configuredUrl.hostname,PROJECT+'.supabase.co');assert.equal(configuredUrl.port,'');assert.equal(configuredUrl.username,'');assert.equal(configuredUrl.password,'');assert.equal(configuredUrl.search,'');assert.equal(configuredUrl.hash,'');assert.equal(configuredUrl.pathname,'/');
+  assert(process.env.SUPABASE_ACCESS_TOKEN&&process.env.SUPABASE_SERVICE_ROLE_KEY,'Management and server credentials are required; values are never recorded');
+  const prep=read(P+'/preparation.json');assert.equal(prep.project,PROJECT);assert.equal(prep.rpc,RPC);
+- const installed=read(R+'/publication-v1/install-completion.json');assert.equal(installed.status,'canonical_installed_and_validated');guard(installed.files);
++ const installed=read(R+'/publication-v2/install-completion.json');assert.equal(installed.status,'canonical_installed_and_validated');guard(installed.files);
+  assert.equal(ref(bank).sha256,prep.source_file_hash);assert.equal(canonicalJson(read(publicFile)),canonicalJson(built.compiled));assert.deepEqual(learningCatalogForBank(read(bank),read(catalogFile)),built.catalog);
+- const inputs=[...prep.inputs,prep.pack,prep.sql,prep.proof,prep.readiness,ref(P+'/preparation.json'),ref(R+'/publication-v1/install-completion.json'),...installed.files];guard(inputs);
++ const inputs=[...prep.inputs,prep.pack,prep.sql,prep.proof,prep.readiness,ref(P+'/preparation.json'),ref(R+'/publication-v2/install-completion.json'),...installed.files];guard(inputs);
+  const pack=read(prep.pack.file);assert.deepEqual(pack,{metadata:built.metadata,added_document:built.addedDocument});
+  assert.equal(fs.readFileSync(prep.sql.file,'utf8'),buildSql(pack,prep.expected,functions,prep.payload_jsonb_sha256));
+  const expectedFunctions=functions.map(({name,signature,definition_sha256,acl,security_definer})=>({name,signature,definition_sha256,acl,security_definer}));

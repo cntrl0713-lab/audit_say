@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-c5489dbc1eec--sub2--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-c5489dbc1eec--sub2--standard",
+  "source_set_id": "std-points-20260914-c5489dbc1eec",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "ac18a179073c50e32c093207a01cdac14ce53cfcc83327f93a1d34e9bc714ce5",
+  "answers": {
+    "sub2": "감사위원회가 설치되면 감사위원회가 감사인으로 선임할 회계법인 또는 감사반을 선정한다.\n미설치시에는 감사가 선정한다.\n미설치시에는 감사인선임위원회의 승인을 받아야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 주권상장법인·대형비상장주식회사·금융회사에 감사위원회가 설치된 경우 감사위원회가 선정한 회계법인 또는 감사반을 감사인으로 선임한다. 선정 대상인 회계법인 또는 감사반은 발문이 제시했으므로 반복하지 않아도 이 경우의 선정주체가 맞으면 인정한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 주권상장법인·대형비상장주식회사·금융회사에 감사위원회가 설치되지 않은 경우 감사가 감사인 선임대상을 선정한다."
+        },
+        {
+          "criterion_id": "crit2.sp2",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 주권상장법인·대형비상장주식회사·금융회사에 감사위원회가 설치되지 않은 경우 감사인선임위원회의 승인을 받아야 한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "317f5a7ddcc997c7e905c46875c00ce32e82bd977854b0c5afdc10a5d11f54c8",
+  "schema_hash": "2bdb26d0468d1847d6fc2d6c595681f7e7d1d9bc270ae14a1d6e8a02e3ad3402",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사위원회가 설치되면 감사위원회가 감사인으로 선임할 회계법인 또는 감사반을 선정한다.\n",
+            "reason": "감사위원회가 감사인으로 선임할 회계법인 또는 감사반을 선정한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "미설치시에는 감사가 선정한다.\n",
+            "reason": "감사위원회 미설치 시 감사가 선정한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2.sp2",
+            "verdict": "met",
+            "quote": "미설치시에는 감사인선임위원회의 승인을 받아야 한다.",
+            "reason": "감사인선임위원회의 승인을 받아야 한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "감사위원회가 감사인으로 선임할 회계법인 또는 감사반을 선정한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "감사위원회 미설치 시 감사가 선정한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2.sp2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e3"
+                ],
+                "reason": "감사인선임위원회의 승인을 받아야 한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-c5489dbc1eec",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "외부감사법 제10조제4항에 따라 주권상장법인·대형비상장주식회사·금융회사의 감사인 선정 절차를 설명하시오. 감사위원회가 설치된 경우와 설치되지 않은 경우를 구별하고, 미설치시 선정주체와 승인주체를 각각 제시하시오. 금액기준과 감사인선임위원회 구성은 제외한다.",
+        "user_answer": "감사위원회가 설치되면 감사위원회가 감사인으로 선임할 회계법인 또는 감사반을 선정한다.\n미설치시에는 감사가 선정한다.\n미설치시에는 감사인선임위원회의 승인을 받아야 한다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사위원회가 설치되면 감사위원회가 감사인으로 선임할 회계법인 또는 감사반을 선정한다.",
+            "reason": "감사위원회가 감사인으로 선임할 회계법인 또는 감사반을 선정한다고 명시했다.",
+            "claim": "주권상장법인·대형비상장주식회사·금융회사에 감사위원회가 설치된 경우 감사위원회가 선정한 회계법인 또는 감사반을 감사인으로 선임한다. 선정 대상인 회계법인 또는 감사반은 발문이 제시했으므로 반복하지 않아도 이 경우의 선정주체가 맞으면 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "미설치시에는 감사가 선정한다.",
+            "reason": "감사위원회 미설치 시 감사가 선정한다고 명시했다.",
+            "claim": "주권상장법인·대형비상장주식회사·금융회사에 감사위원회가 설치되지 않은 경우 감사가 감사인 선임대상을 선정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2.sp2",
+            "verdict": "met",
+            "quote": "미설치시에는 감사인선임위원회의 승인을 받아야 한다.",
+            "reason": "감사인선임위원회의 승인을 받아야 한다고 명시했다.",
+            "claim": "주권상장법인·대형비상장주식회사·금융회사에 감사위원회가 설치되지 않은 경우 감사인선임위원회의 승인을 받아야 한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "감사위원회가 설치되면 감사위원회가 감사인으로 선임할 회계법인 또는 감사반을 선정한다.",
+          "미설치시에는 감사가 선정한다.",
+          "미설치시에는 감사인선임위원회의 승인을 받아야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_099c82966ecde1ce016aa785a96e3087d08ef08a36bf979b61",
+        "request_id": "req_fbfcccde85564140b5f26655a5ab3f00",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2918,
+          "input_tokens_details": {
+            "cache_write_tokens": 2915,
+            "cached_tokens": 0
+          },
+          "output_tokens": 220,
+          "output_tokens_details": {
+            "reasoning_tokens": 34
+          },
+          "total_tokens": 3138
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00099335,
+        "min_usd": 0.00099335,
+        "max_usd": 0.00099335,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-c5489dbc1eec--sub2--model/input.json",
+      "sha256": "2f56f8a3f392f37f5ed70619c089e4eaaf5e24391880cbd48472e9c3984b85bd"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-c5489dbc1eec--sub2--model/transport.jsonl",
+      "sha256": "f68c8586cc01e476cc648426e3111479adc854a9c04799227d1f47759cf28365"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-c5489dbc1eec--sub2--model/traces.jsonl",
+      "sha256": "102bd462ce276a966b4b0ff059b768cd8ceba5b27a649665cd3d5a4b1aeb3b1a"
+    }
+  }
+}

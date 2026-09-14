@@ -1,0 +1,15 @@
+diff --git a/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/one-point-v2-source/README.md.txt b/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/README.md
+index 9b2679cc..e241a409 100644
+--- a/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/one-point-v2-source/README.md.txt
++++ b/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/README.md
+@@ -2,7 +2,9 @@
+ 
+ 이 폴더의 코드는 직전 `case-applied-2026-09-14/helpers`의 실행 도구를 새 배치에 맞춘 것이다. 직전 소스의 바이트 사본은 `reuse-source/`, 원래 파일·해시는 `reuse-origins.json`, 최종 변경·해시 계보는 `provenance.json`에 보존한다. 검토 배치의 setup·authorization·baseline·policy 입력은 root가 소유하며 이 작업에서 수정하지 않는다.
+ 
+-입력은 새 사례 6개·사례당 물음 3개이며, 작성자 `a/b`가 각각 세트 3개·검토 9행·부분/오답 QA 18행을 제공한다. 최종 등록 출처 카탈로그는 제작 폴더의 `source-catalog-final.json`을 계약 경로로 사용한다. 준비 시점에는 최종 출처 단위와 source peer의 필요성이 미확정이므로 root가 이번 자료로 최종 카탈로그·출처 계획을 완성해야 한다. 실제 실행 출력은 검토 배치 바로 아래에 생기며 이 폴더의 `test-fixtures/`는 모형 runner의 파일 보존 시험이다.
++입력은 새 사례 6개·사례당 물음 3개이며, 작성자 `a/b`가 각각 세트 3개·검토 9행을 제공한다. QA는 2점 이상 물음마다 partial/wrong 각 1행, 1점 물음마다 wrong 1행이다. 1점 물음은 0점과 1점 사이 정수 부분점수가 없으므로 대표 부분정답을 만들지 않는다. 해당 물음은 저장 모범답안과 정오 경계의 대표 오답(기대 0점)으로 실측한다. 한 물음이 1점이면 QA는 총 35행이고 예정 실측은 모범 18·부분 17·오답 18의 53답안이다. 실제 수치는 `representative-scope-check.json`에서 계산한다. 최종 등록 출처 카탈로그는 제작 폴더의 `source-catalog-final.json`을 계약 경로로 사용한다. 실제 실행 출력은 검토 배치 바로 아래에 생기며 이 폴더의 `test-fixtures/`는 모형 runner의 파일 보존 시험이다.
++
++1점 예외를 반영하기 전 helper 바이트는 `one-point-v2-source/`, 원래 해시는 `one-point-v2-origins.json`에 보존한다. 최초 `provenance.json`과 `static-checks.json`은 그대로 유지하고, 후속 코드·검증은 `provenance-v2.json`과 `static-checks-v2.json`으로 분리한다. manifest는 두 provenance와 현재 대표 QA 계약을 함께 결속한다. 공통 채점·게시 코드의 기존 1점 model/wrong 계약은 변경하지 않는다.
+ 
+ ## 출처 완료 입력
+ 

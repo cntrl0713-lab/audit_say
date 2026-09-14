@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-13-007--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-007--case",
+  "source_set_id": "pilot-13-007",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "0ac0b516853c124cd81efd82d99931892b011b67389655c5e1821344ef5e5195",
+  "answers": {
+    "sub1": "제시된 계획은 적절하다. 유형 1 보고서는 운영효과성 증거를 제공한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "50d3f5043fbf1313acb79dd3c6d399ac5f24870e3c1628dc51888588048993a0",
+  "schema_hash": "450e5450f39cb179dc330749e1eda21d00cb61df1fdc3d16477169ae47fd8af5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "제시된 계획은 적절하다. 유형 1 보고서는 운영효과성 증거를 제공한다.",
+            "reason": "계획이 적절하다고 명시하여 요구 결론과 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "제시된 계획은 적절하다. 유형 1 보고서는 운영효과성 증거를 제공한다.",
+            "reason": "유형 1 보고서가 운영효과성 증거를 제공한다고 명시하여 요구 명제와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0",
+                  "sub1/e1"
+                ],
+                "reason": "계획이 적절하다고 명시하여 요구 결론과 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0",
+                  "sub1/e2"
+                ],
+                "reason": "유형 1 보고서가 운영효과성 증거를 제공한다고 명시하여 요구 명제와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-007",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "제시된 유형 1 보고서를 급여 관련 통제의 운영효과성에 관한 감사증거로 이용하려는 계획이 적절한지 판단하고, 보고서가 제공하는 증거의 한계에 근거하여 이유를 설명하시오.",
+        "user_answer": "제시된 계획은 적절하다. 유형 1 보고서는 운영효과성 증거를 제공한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "제시된 계획은 적절하다. 유형 1 보고서는 운영효과성 증거를 제공한다.",
+            "reason": "계획이 적절하다고 명시하여 요구 결론과 반대된다.",
+            "claim": "유형 1 보고서를 통제의 운영효과성에 관한 감사증거로 이용하려는 계획은 적절하지 않다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "제시된 계획은 적절하다. 유형 1 보고서는 운영효과성 증거를 제공한다.",
+            "reason": "유형 1 보고서가 운영효과성 증거를 제공한다고 명시하여 요구 명제와 반대된다.",
+            "claim": "유형 1 보고서는 관련 통제의 운영효과성에 대한 증거를 제공하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "유형 1 보고서를 통제의 운영효과성에 관한 감사증거로 이용하려는 계획은 적절하지 않다.",
+          "유형 1 보고서는 서비스조직 통제의 설계와 실행에 대한 이해에는 도움이 되지만, 관련 통제의 운영효과성에 대한 증거를 제공하지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02c9808dc99a185b016aa5db777a9c87d0970a07a1b8eaa1bf",
+        "request_id": "req_ed2528c919db4c31a36afaba8b3d0fce",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2572,
+          "input_tokens_details": {
+            "cache_write_tokens": 2569,
+            "cached_tokens": 0
+          },
+          "output_tokens": 190,
+          "output_tokens_details": {
+            "reasoning_tokens": 29
+          },
+          "total_tokens": 2762
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00087085,
+        "min_usd": 0.00087085,
+        "max_usd": 0.00087085,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-13-007--case--wrong/input.json",
+      "sha256": "d86fe7be80c9ce68b078fbb55f160adcf617c88aee8b4f74dca76028effb1afb"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-13-007--case--wrong/transport.jsonl",
+      "sha256": "49b0840b1129a413a7ffc3442a26e13b128e6490c07aa6cd45714b958b031803"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-13-007--case--wrong/traces.jsonl",
+      "sha256": "859a2ad2b578f6aec2a40b7a116c45118853d294ab0928a53ce87001862ea7a3"
+    }
+  }
+}

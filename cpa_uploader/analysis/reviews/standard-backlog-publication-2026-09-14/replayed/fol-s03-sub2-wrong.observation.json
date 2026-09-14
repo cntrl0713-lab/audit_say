@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "fol-s03-sub2-wrong",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-followup-20260913-s03",
+  "learning_unit_id": "draft-standard-followup-20260913-s03--sub2--standard",
+  "kind": "wrong",
+  "projected_body_hash": "87d8ccf3167d30f30724f48f2026782cc720e77ef1f222103973a74455024cb1",
+  "answers": {
+    "sub2": "표본규모를 모집단 수로 나누어 간격을 정한다. 모집단에서 이웃한 항목을 연속하여 고르며 출발점은 반드시 난수로만 정해야 하고 주기적 배열은 검토할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 모집단의 표본단위 수를 추출할 표본규모로 나누어 추출간격을 정한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 최초 추출간격 안에서 출발점을 정하고 이후 매 추출간격에 해당하는 표본단위를 선택한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 출발점은 임의로 정할 수도 있으나 난수발생 프로그램이나 난수표를 이용하면 무작위성을 더 높일 수 있다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 모집단 표본단위의 내재된 특정 유형이 추출간격과 상응하는 방식으로 구성되어 있지 않은지 확인한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "04ddadf114852a57b4b843201547fb73935877403fadeb84c4d2db3245fb893a",
+  "schema_hash": "7337b4420533bce90f31c125a1b093a5c08c040c259cc890a1818d5ae4785eff",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "표본규모를 모집단 수로 나누어 간격을 정한다. 모집단에서 이웃한 항목을 연속하여 고르며 출발점은 반드시 난수로만 정해야 하고 주기적 배열은 검토할 필요가 없다.",
+            "reason": "추출간격을 모집단 수를 표본규모로 나누는 것이 아니라 반대로 제시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "표본규모를 모집단 수로 나누어 간격을 정한다. 모집단에서 이웃한 항목을 연속하여 고르며 출발점은 반드시 난수로만 정해야 하고 주기적 배열은 검토할 필요가 없다.",
+            "reason": "매 추출간격마다 선택하는 대신 이웃한 항목을 연속하여 고른다고 했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "표본규모를 모집단 수로 나누어 간격을 정한다. 모집단에서 이웃한 항목을 연속하여 고르며 출발점은 반드시 난수로만 정해야 하고 주기적 배열은 검토할 필요가 없다.",
+            "reason": "출발점을 반드시 난수로만 정해야 한다고 하여 임의 선택도 가능하다는 요건을 명시적으로 배제했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "표본규모를 모집단 수로 나누어 간격을 정한다. 모집단에서 이웃한 항목을 연속하여 고르며 출발점은 반드시 난수로만 정해야 하고 주기적 배열은 검토할 필요가 없다.",
+            "reason": "주기적 배열을 검토할 필요가 없다고 하여 모집단 배열의 확인 요건을 명시적으로 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e1"
+                ],
+                "reason": "추출간격을 모집단 수를 표본규모로 나누는 것이 아니라 반대로 제시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e2"
+                ],
+                "reason": "매 추출간격마다 선택하는 대신 이웃한 항목을 연속하여 고른다고 했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e2"
+                ],
+                "reason": "출발점을 반드시 난수로만 정해야 한다고 하여 임의 선택도 가능하다는 요건을 명시적으로 배제했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e2"
+                ],
+                "reason": "주기적 배열을 검토할 필요가 없다고 하여 모집단 배열의 확인 요건을 명시적으로 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-followup-20260913-s03",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 530 보론 4의 체계적 추출을 설명하시오. 추출간격의 산정, 출발점과 이후 항목의 선택, 출발점을 정할 때 무작위성을 높이는 방법, 모집단의 배열에 관하여 확인할 사항을 포함하시오.",
+        "user_answer": "표본규모를 모집단 수로 나누어 간격을 정한다. 모집단에서 이웃한 항목을 연속하여 고르며 출발점은 반드시 난수로만 정해야 하고 주기적 배열은 검토할 필요가 없다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "표본규모를 모집단 수로 나누어 간격을 정한다. 모집단에서 이웃한 항목을 연속하여 고르며 출발점은 반드시 난수로만 정해야 하고 주기적 배열은 검토할 필요가 없다.",
+            "reason": "추출간격을 모집단 수를 표본규모로 나누는 것이 아니라 반대로 제시했다.",
+            "claim": "모집단의 표본단위 수를 추출할 표본규모로 나누어 추출간격을 정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "표본규모를 모집단 수로 나누어 간격을 정한다. 모집단에서 이웃한 항목을 연속하여 고르며 출발점은 반드시 난수로만 정해야 하고 주기적 배열은 검토할 필요가 없다.",
+            "reason": "매 추출간격마다 선택하는 대신 이웃한 항목을 연속하여 고른다고 했다.",
+            "claim": "최초 추출간격 안에서 출발점을 정하고 이후 매 추출간격에 해당하는 표본단위를 선택한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "표본규모를 모집단 수로 나누어 간격을 정한다. 모집단에서 이웃한 항목을 연속하여 고르며 출발점은 반드시 난수로만 정해야 하고 주기적 배열은 검토할 필요가 없다.",
+            "reason": "출발점을 반드시 난수로만 정해야 한다고 하여 임의 선택도 가능하다는 요건을 명시적으로 배제했다.",
+            "claim": "출발점은 임의로 정할 수도 있으나 난수발생 프로그램이나 난수표를 이용하면 무작위성을 더 높일 수 있다. 출발점에 난수를 활용한다는 설명도 인정하되 난수만이 유일하게 허용되는 방법이라고 단정하면 충족하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "표본규모를 모집단 수로 나누어 간격을 정한다. 모집단에서 이웃한 항목을 연속하여 고르며 출발점은 반드시 난수로만 정해야 하고 주기적 배열은 검토할 필요가 없다.",
+            "reason": "주기적 배열을 검토할 필요가 없다고 하여 모집단 배열의 확인 요건을 명시적으로 부정했다.",
+            "claim": "모집단 표본단위의 내재된 특정 유형이 추출간격과 상응하는 방식으로 구성되어 있지 않은지 확인한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "모집단의 표본단위 수를 추출할 표본규모로 나누어 추출간격을 정한다.",
+          "최초 추출간격 안에서 출발점을 정하고 이후 매 추출간격에 해당하는 표본단위를 선택한다.",
+          "출발점은 임의로 정할 수도 있으나 난수발생 프로그램이나 난수표를 이용하면 무작위성을 더 높일 수 있다.",
+          "모집단 표본단위의 내재된 특정 유형이 추출간격과 상응하는 방식으로 구성되어 있지 않은지 확인한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-s03-sub2-wrong.input.json",
+      "sha256": "340d5a2a1894a4debc033da06c9bc7d4a7358bd0c2ae2565656bfe764fa4a0c7"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-s03-sub2-wrong.transport.jsonl",
+      "sha256": "e36f210ba027fb6c2ee201ec02597edce7d41dac3f01b383aabb46151d168662"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-s03-sub2-wrong.traces.jsonl",
+      "sha256": "935b6b649f8aa6c7e176cccb9f21ab5103f9b8fde111bc3878b152955b9a986d"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_055e73128c5b285a016aa5fe59861887d0ae93f4b9892ba3c5",
+        "request_id": "req_88aa2a5b05024e2bb4841f2f45015534",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2966,
+          "input_tokens_details": {
+            "cache_write_tokens": 2963,
+            "cached_tokens": 0
+          },
+          "output_tokens": 475,
+          "output_tokens_details": {
+            "reasoning_tokens": 189
+          },
+          "total_tokens": 3441
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub2-wrong.input.json",
+        "sha256": "16259c036ebe31eb9c809c55b60738534265eaee098a5067c8614d3ab01838ea"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub2-wrong.request-1.json",
+        "sha256": "0752684c8fb77c0d4af6b887e2a77178264a7dfa8bcfaaeec26aca93801f4d88"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub2-wrong.response-1.json",
+        "sha256": "6c8c80d56ede43693c574bc6d946043dc4741abc143a7ffdfb466ba117c6862c"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub2-wrong.trace.json",
+        "sha256": "508c581da47ff33cd9b649ec40e589972c3e1cb911ea9a0b5a7e81b70bddce55"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub2-wrong.usage.json",
+        "sha256": "ebdae6b9ea60ded20205ad3a6ebc68e82485733a6d082b8534de5e7d693976c2"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub2-wrong.result.json",
+        "sha256": "2a6cf53f8ab4fd21d9ad8949fdeacc6353026afa4f31fa70b1d0fb5096e3d2ba"
+      }
+    ],
+    "original_case_id": "s03-sub2-wrong",
+    "origin_batch": "cpa_uploader/drafts/standard-followup-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

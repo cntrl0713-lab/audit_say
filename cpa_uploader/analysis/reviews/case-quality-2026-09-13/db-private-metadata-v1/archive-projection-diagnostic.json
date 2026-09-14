@@ -1,0 +1,12 @@
+{
+  "status": "comparison_helper_corrected_before_final_verification",
+  "failing_version": "13864b1a-e31c-4693-8983-4174f349296b",
+  "failing_set": "pilot-03-004",
+  "field": "subquestions[0].constraints.max_entries",
+  "database_value": 2,
+  "original_archived_value": 2,
+  "incorrect_test_expected_value": null,
+  "reason": "The current-bank verifier deliberately normalizes current all-answer policy to null; that helper is not appropriate for historical non-null policies.",
+  "resolution": "The archive verifier now preserves historical non-null max_entries and selection.n and applies null defaults only to absent fields, matching the private DTO contract.",
+  "database_content_changes": 0
+}

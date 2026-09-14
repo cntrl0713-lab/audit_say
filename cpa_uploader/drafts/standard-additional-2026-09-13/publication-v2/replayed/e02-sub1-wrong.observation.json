@@ -1,0 +1,284 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "e02-sub1-wrong",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-additional-20260913-e02",
+  "learning_unit_id": "draft-standard-additional-20260913-e02--sub1--standard",
+  "kind": "wrong",
+  "projected_body_hash": "5a30acf51b77ae88a1561a8d071cbd52e521a28312f588e264929751ed422acc",
+  "answers": {
+    "sub1": "회계법인 자산과 합쳐서 보관하고 회계법인 운영비로 자유롭게 사용한다. 수지보고서는 작성하지 않아도 되며 보관 관련 법규도 적용되지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 담당공인회계사 자신 또는 해당 회계법인의 자산과 의뢰인 자산을 분리하여 보관한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 의뢰인 자산을 오로지 의도된 목적에만 사용하도록 한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 의뢰인 자산과 그 자산에서 발생하는 이익·배당수입 등에 관한 수지보고서를 정기적으로 작성하여 비치한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 의뢰인 자산의 보관 및 회계와 관련된 모든 법규를 준수한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "5bc5cd046ac0b0ba87f1f4a2608e10067224d3e9d370809f8089de59fad346be",
+  "schema_hash": "e855bf5c3fc7c9fe3c07bbe53bd066a1730d4b0c5b32206a971b2ced5602e99c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "회계법인 자산과 합쳐서 보관하고 회계법인 운영비로 자유롭게 사용한다. ",
+            "reason": "의뢰인 자산을 회계법인 자산과 합쳐 보관한다고 하여 분리 보관에 명시적으로 반대한다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "회계법인 자산과 합쳐서 보관하고 회계법인 운영비로 자유롭게 사용한다. ",
+            "reason": "의뢰인 자산을 회계법인 운영비로 자유롭게 사용한다고 하여 의도된 목적에만 사용한다는 명제에 반대한다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "수지보고서는 작성하지 않아도 되며 보관 관련 법규도 적용되지 않는다.",
+            "reason": "수지보고서를 작성하지 않아도 된다고 하여 작성·비치 의무를 명시적으로 부정한다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "수지보고서는 작성하지 않아도 되며 보관 관련 법규도 적용되지 않는다.",
+            "reason": "보관 관련 법규가 적용되지 않는다고 하여 관련 법규 준수 의무에 명시적으로 반대한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "의뢰인 자산을 회계법인 자산과 합쳐 보관한다고 하여 분리 보관에 명시적으로 반대한다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "의뢰인 자산을 회계법인 운영비로 자유롭게 사용한다고 하여 의도된 목적에만 사용한다는 명제에 반대한다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "수지보고서를 작성하지 않아도 된다고 하여 작성·비치 의무를 명시적으로 부정한다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "보관 관련 법규가 적용되지 않는다고 하여 관련 법규 준수 의무에 명시적으로 반대한다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-additional-20260913-e02",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "법률이 허용하는 의뢰인 자금 또는 기타자산의 보관업무를 수행하는 개업공인회계사가 공인회계사윤리기준 문단 270.2에 따라 적용해야 하는 네 가지 안전장치를 모두 설명하시오. 수지보고서는 대상과 작성·비치 주기를 포함하시오.",
+        "user_answer": "회계법인 자산과 합쳐서 보관하고 회계법인 운영비로 자유롭게 사용한다. 수지보고서는 작성하지 않아도 되며 보관 관련 법규도 적용되지 않는다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "회계법인 자산과 합쳐서 보관하고 회계법인 운영비로 자유롭게 사용한다.",
+            "reason": "의뢰인 자산을 회계법인 자산과 합쳐 보관한다고 하여 분리 보관에 명시적으로 반대한다.",
+            "claim": "담당공인회계사 자신 또는 해당 회계법인의 자산과 의뢰인 자산을 분리하여 보관한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "회계법인 자산과 합쳐서 보관하고 회계법인 운영비로 자유롭게 사용한다.",
+            "reason": "의뢰인 자산을 회계법인 운영비로 자유롭게 사용한다고 하여 의도된 목적에만 사용한다는 명제에 반대한다.",
+            "claim": "의뢰인 자산을 오로지 의도된 목적에만 사용하도록 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "수지보고서는 작성하지 않아도 되며 보관 관련 법규도 적용되지 않는다.",
+            "reason": "수지보고서를 작성하지 않아도 된다고 하여 작성·비치 의무를 명시적으로 부정한다.",
+            "claim": "의뢰인 자산과 그 자산에서 발생하는 이익·배당수입 등에 관한 수지보고서를 정기적으로 작성하여 비치한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "수지보고서는 작성하지 않아도 되며 보관 관련 법규도 적용되지 않는다.",
+            "reason": "보관 관련 법규가 적용되지 않는다고 하여 관련 법규 준수 의무에 명시적으로 반대한다.",
+            "claim": "의뢰인 자산의 보관 및 회계와 관련된 모든 법규를 준수한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "담당공인회계사 자신 또는 해당 회계법인의 자산과 의뢰인 자산을 분리하여 보관한다.",
+          "의뢰인 자산을 오로지 의도된 목적에만 사용하도록 한다.",
+          "의뢰인 자산과 그 자산에서 발생하는 이익·배당수입 등에 관한 수지보고서를 정기적으로 작성하여 비치한다.",
+          "의뢰인 자산의 보관 및 회계와 관련된 모든 법규를 준수한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/e02-sub1-wrong.input.json",
+      "sha256": "7b19e8e5bac7ea4a3fc6ffa7d74f889c8e71c46669afb86ed4f9f8bd61eec5dd"
+    },
+    "transport": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/e02-sub1-wrong.transport.jsonl",
+      "sha256": "f868ea5c2bd9d3857ae1a72781d295d483169fefe7269a3189ba43ad3a3e1f35"
+    },
+    "traces": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/e02-sub1-wrong.traces.jsonl",
+      "sha256": "89197f6de5dbe0c0ee539a5d827043ee4b50d4ea68ed09a8c85ebdc8cb380d99"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a5475ccea797cbd016aa6028c3d3087d0b8ccdfe2b83541ac",
+        "request_id": "req_1082d75de6264fda848d79c0c25f329a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2842,
+          "input_tokens_details": {
+            "cache_write_tokens": 2839,
+            "cached_tokens": 0
+          },
+          "output_tokens": 381,
+          "output_tokens_details": {
+            "reasoning_tokens": 103
+          },
+          "total_tokens": 3223
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/e02-sub1-wrong.input.json",
+        "sha256": "a525c6c5c15bbfc877339fe2e13ed88a49b9a17e183a3c095dcebc18c41ce21c"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/e02-sub1-wrong.request-1.json",
+        "sha256": "330a6499da0d1c84131b7acc532cae016c5c5140c4911089bcba5ba480122611"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/e02-sub1-wrong.response-1.json",
+        "sha256": "b38d88ccc20a4650d5de22febd570228600ac8347784c93394f9ea8fb2319de3"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/e02-sub1-wrong.trace.json",
+        "sha256": "9453dfa049f093015138b0e9e35afaabc031f5cc9cea34ba6825999e738891c2"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/e02-sub1-wrong.usage.json",
+        "sha256": "3ddcae609aed163925aace00c37a3d04881fbe55b991e16354e0f1af0ed28766"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/e02-sub1-wrong.result.json",
+        "sha256": "230de0f55067c2ce07c4ea80bbba9b0b0d13780b60e28927668aaa8ef7ac707f"
+      }
+    ],
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/grading-manifest.json",
+    "sha256": "cf8db16647798968c6c09a1b9055098afac98db30850d7e90825526af41579b4"
+  }
+}

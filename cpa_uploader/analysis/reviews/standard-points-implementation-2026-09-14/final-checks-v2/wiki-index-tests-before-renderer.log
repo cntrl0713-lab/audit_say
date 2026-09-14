@@ -1,0 +1,55 @@
+✖ question directory keeps every active set and full title in study order below the page limit (6718.2879ms)
+✖ wiki check compares the pure build without writing and ignores only build dates or line endings (11309.1847ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18286.1286
+
+✖ failing tests:
+
+test at tests\wikiCheck.test.ts:77:1
+✖ question directory keeps every active set and full title in study order below the page limit (6718.2879ms)
+  AssertionError [ERR_ASSERTION]: Each topic group retains its concept navigation
+      at TestContext.<anonymous> (file:///C:/Users/cntrl/Workspace/study/audit_say/tests/wikiCheck.test.ts:89:16)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\wikiCheck.test.ts:94:1
+✖ wiki check compares the pure build without writing and ignores only build dates or line endings (11309.1847ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'index.md: 466줄로 hard limit 400 초과'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///C:/Users/cntrl/Workspace/study/audit_say/tests/wikiCheck.test.ts:106:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'index.md: 466줄로 hard limit 400 초과' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

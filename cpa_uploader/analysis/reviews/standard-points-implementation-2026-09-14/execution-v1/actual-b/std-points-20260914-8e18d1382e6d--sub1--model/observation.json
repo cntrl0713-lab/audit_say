@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-8e18d1382e6d--sub1--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-8e18d1382e6d--sub1--standard",
+  "source_set_id": "std-points-20260914-8e18d1382e6d",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "b913f219804cf4d4e8ea57c3b8d775bde256ec77113bb3bcc5e4295605b15e23",
+  "answers": {
+    "sub1": "감사인이 임무를 게을리하여 회사에 손해를 발생시키면 회사에 배상할 책임이 있다.\n제3자 책임에는 중요한 사항에 관한 감사보고서의 기재 누락 또는 허위기재가 있어야 한다.\n그 보고서를 믿고 이용한 제3자에게 그로 인한 손해가 발생한 경우 그 제3자에게 배상할 책임이 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 감사인이 그 임무를 게을리하여 회사에 손해를 발생하게 한 경우 회사에 손해를 배상할 책임이 있다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 제3자에 대한 책임 발생요건으로 중요한 사항에 관한 감사보고서의 기재 누락 또는 허위기재를 제시한다."
+        },
+        {
+          "criterion_id": "crit2.sp2",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 제3자에 대한 책임 발생요건으로 그 감사보고서를 믿고 이용한 제3자에게 그로 인한 손해가 발생하였음을 제시한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "3956325ce2dba6782e9109131da9a21eff5c4e4e1523501790cff6b874145185",
+  "schema_hash": "bbf10f11c46b9601a68c89980d26f96d717807411894023304f6cf2d83cce333",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사인이 임무를 게을리하여 회사에 손해를 발생시키면 회사에 배상할 책임이 있다.\n",
+            "reason": "임무를 게을리하여 회사에 손해를 발생시킨 경우 회사에 배상할 책임을 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "제3자 책임에는 중요한 사항에 관한 감사보고서의 기재 누락 또는 허위기재가 있어야 한다.\n",
+            "reason": "중요한 사항에 관한 감사보고서의 기재 누락 또는 허위기재를 제시했다."
+          },
+          {
+            "criterion_id": "crit2.sp2",
+            "verdict": "met",
+            "quote": "그 보고서를 믿고 이용한 제3자에게 그로 인한 손해가 발생한 경우 그 제3자에게 배상할 책임이 있다.",
+            "reason": "감사보고서를 믿고 이용한 제3자에게 그로 인한 손해가 발생한 경우의 책임을 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "임무를 게을리하여 회사에 손해를 발생시킨 경우 회사에 배상할 책임을 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "중요한 사항에 관한 감사보고서의 기재 누락 또는 허위기재를 제시했다."
+              },
+              {
+                "criterion_id": "crit2.sp2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "감사보고서를 믿고 이용한 제3자에게 그로 인한 손해가 발생한 경우의 책임을 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-8e18d1382e6d",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "외부감사법 제31조제1항과 제2항의 감사인 손해배상책임 발생요건을 회사에 대한 책임과 제3자에 대한 책임으로 구별하여 설명하시오. 제3자 책임의 복수 발생요건은 빠짐없이 구별하여 쓰시오. 연결재무제표의 다른 감사인 책임과 연대·비례책임은 제외한다.",
+        "user_answer": "감사인이 임무를 게을리하여 회사에 손해를 발생시키면 회사에 배상할 책임이 있다.\n제3자 책임에는 중요한 사항에 관한 감사보고서의 기재 누락 또는 허위기재가 있어야 한다.\n그 보고서를 믿고 이용한 제3자에게 그로 인한 손해가 발생한 경우 그 제3자에게 배상할 책임이 있다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사인이 임무를 게을리하여 회사에 손해를 발생시키면 회사에 배상할 책임이 있다.",
+            "reason": "임무를 게을리하여 회사에 손해를 발생시킨 경우 회사에 배상할 책임을 명시했다.",
+            "claim": "감사인이 그 임무를 게을리하여 회사에 손해를 발생하게 한 경우 회사에 손해를 배상할 책임이 있다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "제3자 책임에는 중요한 사항에 관한 감사보고서의 기재 누락 또는 허위기재가 있어야 한다.",
+            "reason": "중요한 사항에 관한 감사보고서의 기재 누락 또는 허위기재를 제시했다.",
+            "claim": "제3자에 대한 책임 발생요건으로 중요한 사항에 관한 감사보고서의 기재 누락 또는 허위기재를 제시한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2.sp2",
+            "verdict": "met",
+            "quote": "그 보고서를 믿고 이용한 제3자에게 그로 인한 손해가 발생한 경우 그 제3자에게 배상할 책임이 있다.",
+            "reason": "감사보고서를 믿고 이용한 제3자에게 그로 인한 손해가 발생한 경우의 책임을 제시했다.",
+            "claim": "제3자에 대한 책임 발생요건으로 그 감사보고서를 믿고 이용한 제3자에게 그로 인한 손해가 발생하였음을 제시한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "감사인이 임무를 게을리하여 회사에 손해를 발생시키면 회사에 배상할 책임이 있다.",
+          "제3자 책임에는 중요한 사항에 관한 감사보고서의 기재 누락 또는 허위기재가 있어야 한다.",
+          "그 보고서를 믿고 이용한 제3자에게 그로 인한 손해가 발생한 경우 그 제3자에게 배상할 책임이 있다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0e35cb432361d48f016aa785c7b35487d0a6cf4d68d92957dd",
+        "request_id": "req_896f33e3bf0c4c6993422411c56f4d27",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2950,
+          "input_tokens_details": {
+            "cache_write_tokens": 2947,
+            "cached_tokens": 0
+          },
+          "output_tokens": 235,
+          "output_tokens_details": {
+            "reasoning_tokens": 27
+          },
+          "total_tokens": 3185
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00101935,
+        "min_usd": 0.00101935,
+        "max_usd": 0.00101935,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-8e18d1382e6d--sub1--model/input.json",
+      "sha256": "87fad7ee58fcd752c515400def25c0a4ce09ab0608a89615334113e0ce4552bf"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-8e18d1382e6d--sub1--model/transport.jsonl",
+      "sha256": "ab8f6274ba6b4e7d6aa22533e8b58fd7793317a9469ae9c9abe8984018377784"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-8e18d1382e6d--sub1--model/traces.jsonl",
+      "sha256": "b2c1a2aaa450bd2c3b063b2370bfbf3a191addfb18ddbb4f45fa911dac0f7d14"
+    }
+  }
+}

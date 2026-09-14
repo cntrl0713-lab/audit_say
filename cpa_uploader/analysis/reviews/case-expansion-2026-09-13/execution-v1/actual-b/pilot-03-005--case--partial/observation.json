@@ -1,0 +1,296 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-03-005--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-03-005--case",
+  "source_set_id": "pilot-03-005",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub3",
+    "exp1"
+  ],
+  "projected_body_hash": "909818c965866afa84552d1f3940e0a59f64c60888920c91ad30076040455be8",
+  "answers": {
+    "sub3": "경영진의 동의가 충분하다는 주장은 부적절하다.",
+    "exp1": "마지막 조항은 부적절하다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit10",
+          "verdict": "met",
+          "reason": "결론만 맞고 CFO 제한이 감사인의 필요한 권한을 대체한다는 이유가 없다."
+        },
+        {
+          "criterion_id": "crit11",
+          "verdict": "not_met",
+          "reason": "결론만 맞고 CFO 제한이 감사인의 필요한 권한을 대체한다는 이유가 없다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "exp1.c1",
+          "verdict": "met",
+          "reason": "부적절 판단만 있고 필요한 조항 수정이 없다."
+        },
+        {
+          "criterion_id": "exp1.c2",
+          "verdict": "not_met",
+          "reason": "부적절 판단만 있고 필요한 조항 수정이 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "8b2c73fe99e521d1c125cfaa28c7e76015814f7e30bd89875a32fffaac1f99b1",
+  "schema_hash": "1e736fe72a30dcf8041654b94f076e92ac10389dee1dd76f5c36ddeef0383d2f",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit10",
+            "verdict": "met",
+            "quote": "경영진의 동의가 충분하다는 주장은 부적절하다.",
+            "reason": "동의가 충분하다는 주장이 부적절하다고 명시했다."
+          },
+          {
+            "criterion_id": "crit11",
+            "verdict": "not_met",
+            "reason": "CFO의 추가정보·접근 제한이나 감사인의 권한 미보장을 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp1",
+        "verdicts": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "met",
+            "quote": "마지막 조항은 부적절하다.",
+            "reason": "마지막 조항이 부적절하다고 판단했다."
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "not_met",
+            "reason": "실제 보고서가 예상 형태·내용과 다를 수 있음을 포함하도록 수정하라는 설명이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit10",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "동의가 충분하다는 주장이 부적절하다고 명시했다."
+              },
+              {
+                "criterion_id": "crit11",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "CFO의 추가정보·접근 제한이나 감사인의 권한 미보장을 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp1",
+            "verdicts": [
+              {
+                "criterion_id": "exp1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "마지막 조항이 부적절하다고 판단했다."
+              },
+              {
+                "criterion_id": "exp1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "실제 보고서가 예상 형태·내용과 다를 수 있음을 포함하도록 수정하라는 설명이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-03-005",
+    "score": 2,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "정보·접근권에 관한 동의가 충분하다는 경영진의 주장이 적절한지 판단하고, 계약 초안에 남아 있는 제한을 근거로 설명하시오.",
+        "user_answer": "경영진의 동의가 충분하다는 주장은 부적절하다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit10",
+            "verdict": "met",
+            "quote": "경영진의 동의가 충분하다는 주장은 부적절하다.",
+            "reason": "동의가 충분하다는 주장이 부적절하다고 명시했다.",
+            "claim": "정보·접근권에 관한 동의가 충분하다는 주장을 부적절하다고 판단한다. 동의를 받지 못했다고 분명히 설명하면 별도 결론 문구는 불필요하나 명시적인 적절 결론은 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit11",
+            "verdict": "not_met",
+            "reason": "CFO의 추가정보·접근 제한이나 감사인의 권한 미보장을 설명하지 않았다.",
+            "claim": "감사목적의 추가정보 또는 필요한 기업 내부 관계자 접근을 CFO 재량으로 제한하여 감사인에게 필요한 권한을 보장하지 못함을 사례의 이유로 설명한다. 두 제한 중 어느 하나를 구체적으로 지적해도 충분하며 주어진 제한을 그대로 반복만 하면 부족하다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "그 주장은 부적절하며, 정보·접근권에 관한 책임을 충분히 인정·이해한다는 동의를 받았다고 볼 수 없다.",
+          "감사목적으로 요청한 추가정보와 감사증거 입수에 필요하다고 판단한 기업 내부 관계자에 대한 접근을 CFO가 제한할 수 있도록 해 두었기 때문이다. 감사인의 필요성 판단을 CFO의 재량으로 대체할 수 없다."
+        ]
+      },
+      {
+        "subquestion_id": "exp1",
+        "prompt": "접근 제한이 철회된 수정안에서 마지막 보고서 관련 조항이 적절한지 판단하고, 그 조항을 어떻게 고쳐야 하는지 설명하시오. 이미 적절히 기록된 다른 계약 필수사항을 다시 열거하지 마시오.",
+        "user_answer": "마지막 조항은 부적절하다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "met",
+            "quote": "마지막 조항은 부적절하다.",
+            "reason": "마지막 조항이 부적절하다고 판단했다.",
+            "claim": "감사결과와 관계없이 예상된 보고서와 동일한 형태·내용을 보장하는 조항을 부적절하다고 판단한다. 올바른 조항 수정에서 그 결론이 명확하면 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "not_met",
+            "reason": "실제 보고서가 예상 형태·내용과 다를 수 있음을 포함하도록 수정하라는 설명이 없다.",
+            "claim": "실제 보고서가 예상되는 형태와 내용과 다를 수 있는 상황이 존재할 수 있다는 기술을 계약서에 포함하도록 수정한다. 실제로 반드시 달라진다고 단정하는 조항으로 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사결과와 관계없이 예상 보고서와 똑같은 보고서를 발행하겠다는 조항은 부적절하다.",
+          "실제 보고서가 예상된 형태와 내용과 다를 수 있는 상황이 존재할 수 있다는 기술로 고쳐야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0bd89267affd2ec5016aa6032cd2cc87d084f9f2f2b2da9024",
+        "request_id": "req_4d30bf1c3dc2483e8fa5ee0c5bd9819d",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3608,
+          "input_tokens_details": {
+            "cache_write_tokens": 3605,
+            "cached_tokens": 0
+          },
+          "output_tokens": 303,
+          "output_tokens_details": {
+            "reasoning_tokens": 48
+          },
+          "total_tokens": 3911
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00126545,
+        "min_usd": 0.00126545,
+        "max_usd": 0.00126545,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-03-005--case--partial/input.json",
+      "sha256": "316bd3f4d00af5310dd2a7cfb2c6ff68b7c1105effff16530f3f9e6b43037d62"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-03-005--case--partial/transport.jsonl",
+      "sha256": "566e2744494d95501c685b3d974b6b0050cd2a4891a3bddb84f661505c9f737d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-03-005--case--partial/traces.jsonl",
+      "sha256": "587d701817862083430fac08d15852da268550d4032f036f07ee36e8c1580fd8"
+    }
+  }
+}

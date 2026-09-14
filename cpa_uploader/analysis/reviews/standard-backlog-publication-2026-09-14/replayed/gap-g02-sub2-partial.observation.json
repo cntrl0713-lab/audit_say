@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "gap-g02-sub2-partial",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-gap-20260913-g02",
+  "learning_unit_id": "draft-standard-gap-20260913-g02--sub2--standard",
+  "kind": "partial",
+  "projected_body_hash": "7d1f066bdb03316cf50e28980068202ebef428f042fd13df0ebcdbf422af6988",
+  "answers": {
+    "sub2": "일정 금액을 초과하는 모든 항목, 기업 또는 거래의 성격에 관한 정보를 얻기 위한 항목을 추출할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "이 답안에는 다음 독립 요구의 정답 의미가 없음: 금액이 크거나 주요한 항목이다. 주요한 항목에는 의심스럽거나 비경상적이거나 특별히 위험하거나 과거에 오류가 발생한 항목 등이 포함된다. 예시 모두를 외울 필요 없이 주요 항목의 성격을 드러내는 예시를 하나 이상 인정한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안에서 직접 충족하는 요구: 일정 금액을 초과하는 모든 항목이다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "답안에서 직접 충족하는 요구: 기업이나 거래의 성격 등 어떤 사항에 대한 정보를 입수하기 위한 항목이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ccdc783b696c7c95a2552cb9c35900fefb3f4c25828ac3ce8a296faf352b27f8",
+  "schema_hash": "0f3b9c985dc388670cfbfe91893e647e09ccda1c71068603bcf9d994e5be37a4",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "금액이 크거나 주요한 항목 및 주요 항목의 성격에 관한 내용이 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "일정 금액을 초과하는 모든 항목, 기업 또는 거래의 성격에 관한 정보를 얻기 위한 항목을 추출할 수 있다.",
+            "reason": "일정 금액을 초과하는 모든 항목이라고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "일정 금액을 초과하는 모든 항목, 기업 또는 거래의 성격에 관한 정보를 얻기 위한 항목을 추출할 수 있다.",
+            "reason": "기업 또는 거래의 성격에 관한 정보를 얻기 위한 항목이라고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "금액이 크거나 주요한 항목 및 주요 항목의 성격에 관한 내용이 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "일정 금액을 초과하는 모든 항목이라고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "기업 또는 거래의 성격에 관한 정보를 얻기 위한 항목이라고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-gap-20260913-g02",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사인이 모집단에서 특정 항목을 판단적으로 추출할 때, 감사기준서 500이 예시하는 세 가지 항목 범주를 제시하시오. 금액이 큰 항목 외의 주요한 항목이 무엇인지도 간단히 설명하시오.",
+        "user_answer": "일정 금액을 초과하는 모든 항목, 기업 또는 거래의 성격에 관한 정보를 얻기 위한 항목을 추출할 수 있다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "금액이 크거나 주요한 항목 및 주요 항목의 성격에 관한 내용이 없다.",
+            "claim": "금액이 크거나 주요한 항목이다. 주요한 항목에는 의심스럽거나 비경상적이거나 특별히 위험하거나 과거에 오류가 발생한 항목 등이 포함된다. 예시 모두를 외울 필요 없이 주요 항목의 성격을 드러내는 예시를 하나 이상 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "일정 금액을 초과하는 모든 항목, 기업 또는 거래의 성격에 관한 정보를 얻기 위한 항목을 추출할 수 있다.",
+            "reason": "일정 금액을 초과하는 모든 항목이라고 명시했다.",
+            "claim": "일정 금액을 초과하는 모든 항목이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "일정 금액을 초과하는 모든 항목, 기업 또는 거래의 성격에 관한 정보를 얻기 위한 항목을 추출할 수 있다.",
+            "reason": "기업 또는 거래의 성격에 관한 정보를 얻기 위한 항목이라고 명시했다.",
+            "claim": "기업이나 거래의 성격 등 어떤 사항에 대한 정보를 입수하기 위한 항목이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "금액이 크거나 주요한 항목이다. 주요한 항목에는 의심스럽거나 비경상적이거나 특별히 위험하거나 과거에 오류가 발생한 항목 등이 포함된다.",
+          "일정 금액을 초과하는 모든 항목이다.",
+          "기업이나 거래의 성격 등 어떤 사항에 대한 정보를 입수하기 위한 항목이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/gap-g02-sub2-partial.input.json",
+      "sha256": "60762c34c26009cbb803e409d600eeee2e050b29cacde9e3853cbba3e1c3485b"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/gap-g02-sub2-partial.transport.jsonl",
+      "sha256": "0be16861ff99dcd248aab10b3dbb62054ca224ef8e30d766a15400100ac4ad56"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/gap-g02-sub2-partial.traces.jsonl",
+      "sha256": "bc899bee3b3280c971ff650dfff735b6d47e9e82b872f0d7667e81a697daeb6d"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0fe89f1de17e1b2b016aa5db895e5487d0b9c435661854335c",
+        "request_id": "req_fdcd4167b94c4dc5953a28bc6d1e4edf",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2552,
+          "input_tokens_details": {
+            "cache_write_tokens": 2549,
+            "cached_tokens": 0
+          },
+          "output_tokens": 222,
+          "output_tokens_details": {
+            "reasoning_tokens": 43
+          },
+          "total_tokens": 2774
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g02-sub2-partial.input.json",
+        "sha256": "ada54e32af3e0958bb22ee0416d55743131a3d3dd7c7f895c86c0e37e090118e"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g02-sub2-partial.request-1.json",
+        "sha256": "7ce5ec92e52279617b9b847e19485a3af44f050dd0a0057b4e03f4603677ba34"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g02-sub2-partial.response-1.json",
+        "sha256": "d0e61d6405f0ada5ee06b48d9ad916a3bf730153cc99e897a4b5031784108b4a"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g02-sub2-partial.trace.json",
+        "sha256": "4dfac122d1e3eebb8a5f3897128f73d3d20974fa06994e5bc3fc9349ec3eb7ea"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g02-sub2-partial.usage.json",
+        "sha256": "86a1e3a4c60551ec3ebba01aa5eba783bd1b10e61ea971492b06e2f9ffda1e94"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g02-sub2-partial.result.json",
+        "sha256": "ae07907e6f7aa17f8b411980fe3bf17825cd125f7824b18de891bf3180efb51a"
+      }
+    ],
+    "original_case_id": "g02-sub2-partial",
+    "origin_batch": "cpa_uploader/drafts/standard-gap-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

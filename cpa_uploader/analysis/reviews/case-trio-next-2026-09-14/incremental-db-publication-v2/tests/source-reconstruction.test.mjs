@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {localProof,buildSql,sha} from '../append-contract.mjs';
+
+test('372 plus three synthetic Unicode cases roundtrip to exact source bytes and full payload',async()=>{
+ const baseline=Array.from({length:372},(_,index)=>({id:'prior-'+index,text:'보존할 원문\n공백·따옴표 "확인" 🧮'}));
+ const added=Array.from({length:3},(_,index)=>({id:'new-'+index,text:'추가 원문\n400자 검사와 별개의 전송 fixture'}));
+ const doc=value=>JSON.stringify(value,null,2)+'\n';
+ const sets=[...baseline,...added],document=doc(sets),metadata={source_file_hash:sha(document),bank_content_hash:'a'.repeat(64),public_content_hash:'b'.repeat(64)};
+ const built={baselineDocument:doc(baseline),addedDocument:doc(added),document,ids:added.map(row=>row.id),metadata,payload:{sets,...metadata,source_document:document}};
+ const proof=await localProof(built);assert.equal(proof.proof.source_bytes_identical,true);assert.equal(proof.proof.complete_payload_equal,true);assert.deepEqual(proof.proof.only_added_ids,added.map(row=>row.id));
+ assert.equal(proof.proof.final_document_bytes,Buffer.byteLength(document));
+ for(const set_count of ['372',0,-1,1.5,'1; commit;'])assert.throws(()=>buildSql(proof.pack,{release_id:'1'.repeat(36),source_file_hash:sha(built.baselineDocument),set_count},[],proof.payloadHash),/Positive integer/);
+});

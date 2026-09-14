@@ -1,0 +1,278 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "fol-s03-sub2-partial",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-followup-20260913-s03",
+  "learning_unit_id": "draft-standard-followup-20260913-s03--sub2--standard",
+  "kind": "partial",
+  "projected_body_hash": "87d8ccf3167d30f30724f48f2026782cc720e77ef1f222103973a74455024cb1",
+  "answers": {
+    "sub2": "모집단의 표본단위 수를 표본규모로 나누어 간격을 정한다. 그 최초 간격 안에서 출발하여 일정 간격마다 항목을 뽑는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 모집단의 표본단위 수를 추출할 표본규모로 나누어 추출간격을 정한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 최초 추출간격 안에서 출발점을 정하고 이후 매 추출간격에 해당하는 표본단위를 선택한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 출발점은 임의로 정할 수도 있으나 난수발생 프로그램이나 난수표를 이용하면 무작위성을 더 높일 수 있다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 모집단 표본단위의 내재된 특정 유형이 추출간격과 상응하는 방식으로 구성되어 있지 않은지 확인한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "d877285c98ade52b152fddd5e29de493bf5072d9c70c1f1b5901394891851df9",
+  "schema_hash": "7337b4420533bce90f31c125a1b093a5c08c040c259cc890a1818d5ae4785eff",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "모집단의 표본단위 수를 표본규모로 나누어 간격을 정한다. ",
+            "reason": "모집단의 표본단위 수를 표본규모로 나누어 간격을 정한다고 설명했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그 최초 간격 안에서 출발하여 일정 간격마다 항목을 뽑는다.",
+            "reason": "최초 간격 안에서 출발하고 일정 간격마다 항목을 뽑는다고 설명했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "출발점의 무작위성을 높이는 방법을 설명하지 않았다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "모집단 배열의 특정 유형과 추출간격의 상응 여부를 확인한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "모집단의 표본단위 수를 표본규모로 나누어 간격을 정한다고 설명했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "최초 간격 안에서 출발하고 일정 간격마다 항목을 뽑는다고 설명했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "출발점의 무작위성을 높이는 방법을 설명하지 않았다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "모집단 배열의 특정 유형과 추출간격의 상응 여부를 확인한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-followup-20260913-s03",
+    "score": 2,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 530 보론 4의 체계적 추출을 설명하시오. 추출간격의 산정, 출발점과 이후 항목의 선택, 출발점을 정할 때 무작위성을 높이는 방법, 모집단의 배열에 관하여 확인할 사항을 포함하시오.",
+        "user_answer": "모집단의 표본단위 수를 표본규모로 나누어 간격을 정한다. 그 최초 간격 안에서 출발하여 일정 간격마다 항목을 뽑는다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "모집단의 표본단위 수를 표본규모로 나누어 간격을 정한다.",
+            "reason": "모집단의 표본단위 수를 표본규모로 나누어 간격을 정한다고 설명했다.",
+            "claim": "모집단의 표본단위 수를 추출할 표본규모로 나누어 추출간격을 정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그 최초 간격 안에서 출발하여 일정 간격마다 항목을 뽑는다.",
+            "reason": "최초 간격 안에서 출발하고 일정 간격마다 항목을 뽑는다고 설명했다.",
+            "claim": "최초 추출간격 안에서 출발점을 정하고 이후 매 추출간격에 해당하는 표본단위를 선택한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "출발점의 무작위성을 높이는 방법을 설명하지 않았다.",
+            "claim": "출발점은 임의로 정할 수도 있으나 난수발생 프로그램이나 난수표를 이용하면 무작위성을 더 높일 수 있다. 출발점에 난수를 활용한다는 설명도 인정하되 난수만이 유일하게 허용되는 방법이라고 단정하면 충족하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "모집단 배열의 특정 유형과 추출간격의 상응 여부를 확인한다는 내용이 없다.",
+            "claim": "모집단 표본단위의 내재된 특정 유형이 추출간격과 상응하는 방식으로 구성되어 있지 않은지 확인한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "모집단의 표본단위 수를 추출할 표본규모로 나누어 추출간격을 정한다.",
+          "최초 추출간격 안에서 출발점을 정하고 이후 매 추출간격에 해당하는 표본단위를 선택한다.",
+          "출발점은 임의로 정할 수도 있으나 난수발생 프로그램이나 난수표를 이용하면 무작위성을 더 높일 수 있다.",
+          "모집단 표본단위의 내재된 특정 유형이 추출간격과 상응하는 방식으로 구성되어 있지 않은지 확인한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-s03-sub2-partial.input.json",
+      "sha256": "e24272523dc9ee6ddeb22db99f0c0b598480c50e7b16cccae5e219962901eab9"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-s03-sub2-partial.transport.jsonl",
+      "sha256": "a74b45beb8676a350600982cf59016135b589e46c124aad8e40b31cf44e4641f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-s03-sub2-partial.traces.jsonl",
+      "sha256": "66253eef912c29bb4f0f03eb5f7b6e3f22cef32492bde4f4df94ec5c109ba8d5"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a3153eea73aeecb016aa5fe56cc8887d0bba21926d4a66104",
+        "request_id": "req_54e27bd5c450417abab23b0d6d4045a9",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2929,
+          "input_tokens_details": {
+            "cache_write_tokens": 2926,
+            "cached_tokens": 0
+          },
+          "output_tokens": 317,
+          "output_tokens_details": {
+            "reasoning_tokens": 85
+          },
+          "total_tokens": 3246
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub2-partial.input.json",
+        "sha256": "797f4d357fecacaaedb710bf83af552d5028d2b8ae60e02c891c1ad09d4260d0"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub2-partial.request-1.json",
+        "sha256": "289486ec325328067777d8cea02677efb06c8721d7a11140fcf08b4d903d33f7"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub2-partial.response-1.json",
+        "sha256": "76b40977493b51d3567ba1e5695ebaba471f6dc86e52995a3802e162f276f106"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub2-partial.trace.json",
+        "sha256": "5b795df2edb12b96cbf7c492be9b5b431be61552bbcf58895fa09213f0ef440e"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub2-partial.usage.json",
+        "sha256": "a39393dcdc740632938aec3e0c1d93add8b4a3f5ecaedfe8b2b34bcec8059347"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/s03-sub2-partial.result.json",
+        "sha256": "081309f7413e2d23086802f997302ad419d846dff39a67446dcadf047546535a"
+      }
+    ],
+    "original_case_id": "s03-sub2-partial",
+    "origin_batch": "cpa_uploader/drafts/standard-followup-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

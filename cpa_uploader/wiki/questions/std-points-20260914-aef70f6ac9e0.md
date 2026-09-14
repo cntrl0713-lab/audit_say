@@ -1,0 +1,75 @@
+---
+title: "std-points-20260914-aef70f6ac9e0. 유의적 내부통제 미비점에 관한 서면 커뮤니케이션에서 미비점 자체에 관하여 포함해야 할 두 내용을 제시하시오. 감사의 목적·내부통제 고려의 목적·보고범위에 관한 설명은 제외한다."
+created: 2026-08-08
+updated: 2026-09-14
+type: question
+status: generated
+review_required: true
+tags: [audit, question-generation, quality]
+sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/data/official/point-review-c-source-followup-2026-09-11.txt","cpa_uploader/analysis/reviews/question-review-2027/05.json"]
+confidence: high
+---
+
+# std-points-20260914-aef70f6ac9e0. 유의적 내부통제 미비점에 관한 서면 커뮤니케이션에서 미비점 자체에 관하여 포함해야 할 두 내용을 제시하시오. 감사의 목적·내부통제 고려의 목적·보고범위에 관한 설명은 제외한다.
+
+
+이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
+- 주제: [[fraud-laws-governance-communication]] · [[topic-05-design]]
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/192`
+- 상태: published / verified · source_fidelity: reconstructed
+- 검토·근거 장부: [05.json](../../analysis/reviews/question-review-2027/05.json)
+- 학습 순서: sub2
+
+## 공통 사실
+
+
+## sub2
+
+유형: enumeration · JSON Pointer `/192/subquestions/0`
+
+### 발문
+
+유의적 내부통제 미비점에 관한 서면 커뮤니케이션에서 미비점 자체에 관하여 포함해야 할 두 내용을 제시하시오. 감사의 목적·내부통제 고려의 목적·보고범위에 관한 설명은 제외한다.
+
+### 모범답안
+
+- 미비점의 내역을 제시한다.
+- 미비점의 잠재적 영향을 설명한다.
+
+### 답안 계약
+
+selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entries":null,"overflow_policy":"none"}`
+
+### 학습목표·채점명제와 핵심 조건
+
+| criterion | 정본 명제 | 핵심 사실·조건 | 배점·판정별 점수 | requirement | source |
+|---|---|---|---|---|---|
+| crit4 | 미비점의 내역을 제시한다. | cf-crit4 (action): 미비점의 내역을 제시한다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-1 | src-88ae4892e1f8c0a3 |
+| crit5 | 미비점의 잠재적 영향을 설명한다. | cf-crit5 (action): 미비점의 잠재적 영향을 설명한다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-2 | src-88ae4892e1f8c0a3 |
+
+### 요구사항과 직접 근거
+
+| requirement | 문단·페이지·판본 | source | 원문 인용 |
+|---|---|---|---|
+| req-1 | KGA 265 문단 11; 공식 2025 전문 PDF 170–171쪽; cpa_uploader/data/official/point-review-c-source-followup-2026-09-11.txt L166–L188; 기존 요구 범위의 공식 원문 직접 인용 | [src-88ae4892e1f8c0a3](../../data/official/point-review-c-source-followup-2026-09-11.txt) | 11. 감사인은 유의적 내부통제 미비점에 대한 서면 커뮤니케이션에 다음 사항을 포함하여야 한 다. (a) 미비점들에 대한 내역과 그러한 미비점들의 잠재적인 영향에 대한 설명(문단 A28 참 조) ## PDF page 171 감사기준서 265 ‘내부통제 미비점에 대한 지배기구와 경영진과의 커뮤니케이션’ 171 / 974 (b) 지배기구와 경영진이 커뮤니케이션의 관점을 이해할 수 있도록 하는 충분한 정보. 특히, 감사인은 다음을 설명하여야 한다. (문단 A29-A30 참조) (i) 감사의 목적은 감사인이 재무제표에 대한 의견을 표명하는 것임 (ii) 감사는 내부통제의 효과성에 대한 의견표명이 목적이 아닌, 해당 상황에 적합 한 감사절차를 설계하기 위하여 재무제표 작성과 관련된 내부통제에 대한 고 려를 포함하고 있음 (iii) 보고할 사항은 감사인이 감사 중에 식별한 미비점들로서 감사인이 지배기구 에 보고할 만큼 충분히 중요하다고 결정한 미비점들로 제한됨 |
+| req-2 | KGA 265 문단 11; 공식 2025 전문 PDF 170–171쪽; cpa_uploader/data/official/point-review-c-source-followup-2026-09-11.txt L166–L188; 기존 요구 범위의 공식 원문 직접 인용 | [src-88ae4892e1f8c0a3](../../data/official/point-review-c-source-followup-2026-09-11.txt) | 11. 감사인은 유의적 내부통제 미비점에 대한 서면 커뮤니케이션에 다음 사항을 포함하여야 한 다. (a) 미비점들에 대한 내역과 그러한 미비점들의 잠재적인 영향에 대한 설명(문단 A28 참 조) ## PDF page 171 감사기준서 265 ‘내부통제 미비점에 대한 지배기구와 경영진과의 커뮤니케이션’ 171 / 974 (b) 지배기구와 경영진이 커뮤니케이션의 관점을 이해할 수 있도록 하는 충분한 정보. 특히, 감사인은 다음을 설명하여야 한다. (문단 A29-A30 참조) (i) 감사의 목적은 감사인이 재무제표에 대한 의견을 표명하는 것임 (ii) 감사는 내부통제의 효과성에 대한 의견표명이 목적이 아닌, 해당 상황에 적합 한 감사절차를 설계하기 위하여 재무제표 작성과 관련된 내부통제에 대한 고 려를 포함하고 있음 (iii) 보고할 사항은 감사인이 감사 중에 식별한 미비점들로서 감사인이 지배기구 에 보고할 만큼 충분히 중요하다고 결정한 미비점들로 제한됨 |
+
+## 출처 파일·위치
+
+| source | 직접 출처 | page | 인용 SHA-256 |
+|---|---|---|---|
+| src-88ae4892e1f8c0a3 | [공식 2025 전문 KGA 265 문단 11 (PDF 170–171쪽)](../../data/official/point-review-c-source-followup-2026-09-11.txt) | KGA 265 | 6f04f502621d0ce6158370c1b48df8f77c39ed9fa9cf8237404aca4b5232f113 |
+
+## 판본·검수 메모
+
+- 2026-09-14 기준서형 배점 검토의 승인된 분리·통합·조정 후속본. 원문 계보: pilot-05-003/sub2
+- 미비점 자체 보고내용2점과 커뮤니케이션의 목적·범위 설명4점으로 분리한다.
+- KGA 265.11(a)의 미비점 내역과 잠재영향이라는 서로 다른 보고내용이다. 실제 연결 파일의 해당 요구 인용·앞선 검토에 기록한 문맥과 최종 발문/정답/기준을 대조했다. cpa_uploader/data/official/point-review-c-source-followup-2026-09-11.txt (공식 2025 전문 KGA 265 문단 11 (PDF 170–171쪽); KGA 265). 기존 등록 학습자료·공식 추출본의 해당 판본을 사용하며 이번 작업에서 최신 공식 PDF 원면 전체를 재검증한 것으로 표시하지 않는다.
+- 검토·실측·게시 단계의 상태는 이번 실행 장부에서 확인한다.
+
+2027 시험 적용 여부는 아래 판본 기록과 공식 시험 공고 확인 상태를 따른다. 게시 상태 또는 이 색인의 생성 상태로 대신 확정하지 않는다.
+
+## Related
+
+- [[source-review-map]]
+- [[requirement-coverage]]

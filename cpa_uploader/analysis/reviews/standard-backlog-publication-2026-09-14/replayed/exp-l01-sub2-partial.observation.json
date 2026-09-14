@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "exp-l01-sub2-partial",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-expansion-20260913-l01",
+  "learning_unit_id": "draft-standard-expansion-20260913-l01--sub2--standard",
+  "kind": "partial",
+  "projected_body_hash": "fa4d22e6cad4cf2c2c63518e11a34be7f6b14644effd473cf1b11a72512cff2b",
+  "answers": {
+    "sub2": "동일한 소속공인회계사가 주권상장법인을 연속 3개 사업연도 감사한 경우 그 다음 사업연도에 교체한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 동일한 소속공인회계사가 해당 주권상장법인의 연속하는 3개 사업연도에 대한 감사업무를 수행한 경우 교체의무가 발생한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 그 다음 사업연도에 교체하여야 한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 그 소속공인회계사의 3분의 2 이상을 교체하여야 한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "23ff5244929615c303df36323ccb7e33655c63037c0e173964ef617deab055b1",
+  "schema_hash": "0f3b9c985dc388670cfbfe91893e647e09ccda1c71068603bcf9d994e5be37a4",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "동일한 소속공인회계사가 주권상장법인을 연속 3개 사업연도 감사한 경우 그 다음 사업연도에 교체한다.",
+            "reason": "연속 3개 사업연도 감사 수행 시 교체한다는 내용이 포함되어 교체의무 발생을 나타낸다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "동일한 소속공인회계사가 주권상장법인을 연속 3개 사업연도 감사한 경우 그 다음 사업연도에 교체한다.",
+            "reason": "3개 사업연도 후 그 다음 사업연도에 교체한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "교체 대상 소속공인회계사의 최소 3분의 2 비율을 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "연속 3개 사업연도 감사 수행 시 교체한다는 내용이 포함되어 교체의무 발생을 나타낸다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "3개 사업연도 후 그 다음 사업연도에 교체한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "교체 대상 소속공인회계사의 최소 3분의 2 비율을 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-expansion-20260913-l01",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "회계법인인 감사인이 주권상장법인을 감사할 때, 외부감사법 제9조제6항의 소속공인회계사(공인회계사법 제26조제3항)의 교체의무를 설명하시오. 동일한 소속공인회계사의 계속 수행기간, 교체해야 할 시기, 최소 교체비율을 모두 제시하시오. 회계법인 이사와 감사반에 관한 규정은 제외한다.",
+        "user_answer": "동일한 소속공인회계사가 주권상장법인을 연속 3개 사업연도 감사한 경우 그 다음 사업연도에 교체한다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "동일한 소속공인회계사가 주권상장법인을 연속 3개 사업연도 감사한 경우 그 다음 사업연도에 교체한다.",
+            "reason": "연속 3개 사업연도 감사 수행 시 교체한다는 내용이 포함되어 교체의무 발생을 나타낸다.",
+            "claim": "동일한 소속공인회계사가 해당 주권상장법인의 연속하는 3개 사업연도에 대한 감사업무를 수행한 경우 교체의무가 발생한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "동일한 소속공인회계사가 주권상장법인을 연속 3개 사업연도 감사한 경우 그 다음 사업연도에 교체한다.",
+            "reason": "3개 사업연도 후 그 다음 사업연도에 교체한다고 명시했다.",
+            "claim": "그 다음 사업연도에 교체하여야 한다. 3년 수행 후 다음 연도라는 의미가 있어야 한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "교체 대상 소속공인회계사의 최소 3분의 2 비율을 제시하지 않았다.",
+            "claim": "그 소속공인회계사의 3분의 2 이상을 교체하여야 한다. 전체 법인 인력의 비율이 아니라 해당 계속감사 소속공인회계사에 관한 비율이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "동일한 소속공인회계사가 해당 주권상장법인의 연속하는 3개 사업연도에 대한 감사업무를 수행한 경우 교체의무가 발생한다.",
+          "그 다음 사업연도에 교체하여야 한다.",
+          "그 소속공인회계사의 3분의 2 이상을 교체하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-l01-sub2-partial.input.json",
+      "sha256": "afbcc26f7d4d8f915d2f2652a90101a88efe29ee52568d900c8bf7d0ce118ef2"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-l01-sub2-partial.transport.jsonl",
+      "sha256": "ea582d27c657399ed9cdb11a67d78d25942c2bd8425050f343a8b7dc4ae7ef21"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-l01-sub2-partial.traces.jsonl",
+      "sha256": "f9932db880a39db71f504853635188fa0744e608c59ed5f0f5381cc2b565128f"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_08581cca9ea1d8c3016aa5e172d36087d0b9fab0aeab7b9213",
+        "request_id": "req_4d877031910f43b6a1d9df2c0cbc024d",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2621,
+          "input_tokens_details": {
+            "cache_write_tokens": 2618,
+            "cached_tokens": 0
+          },
+          "output_tokens": 255,
+          "output_tokens_details": {
+            "reasoning_tokens": 60
+          },
+          "total_tokens": 2876
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/l01-sub2-partial.input.json",
+        "sha256": "1f2e473e8b361620208e6741c21c20ec0e25fa5e28aa0a8fca42bfff5c747d1f"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/l01-sub2-partial.request-1.json",
+        "sha256": "5258b360e6f202b97cead0fd20e41ffed9d9850d76ff642e25f679578c60068b"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/l01-sub2-partial.response-1.json",
+        "sha256": "482d912e888a1e0d79283fea40061ff7df2c72cc209f5611264acbf5e1717764"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/l01-sub2-partial.trace.json",
+        "sha256": "b080830a3c39ee849e7799f6ac5ff15792c247d7f29a4de3baa5e12b91745a7e"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/l01-sub2-partial.usage.json",
+        "sha256": "1b28e289ba9195347d71472b865f2c49e50a4f170d72b986bd41ddc230ee0f01"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/l01-sub2-partial.result.json",
+        "sha256": "594b2f403829bb794abc02e29d9dac1d129a76c34599858095015a018e6fad57"
+      }
+    ],
+    "original_case_id": "l01-sub2-partial",
+    "origin_batch": "cpa_uploader/drafts/standard-expansion-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

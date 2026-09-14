@@ -1,0 +1,378 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-12-010--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-010--case",
+  "source_set_id": "pilot-12-010",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "exp1"
+  ],
+  "projected_body_hash": "be913e9c7868e46f0a4f8dde8f4f5ca317a3b79180be821ebcc20a3d76e5afa1",
+  "answers": {
+    "sub1": "모든 서면진술 하나의 미제공이 자동으로 의견거절은 아니다. 빠진 진술이 재무제표 작성책임이나 제공정보·거래 완전성에 관한 필수 책임진술인지 먼저 확인해야 한다.",
+    "exp1": "신임 대표이사에게도 1월부터 12월까지 전체기간의 거래 완전성 진술을 요청한다. 취임 전 재직하지 않았다는 사정은 현재 경영진의 재무제표 전체 책임을 줄이지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "범위조건을 확인하므로 자동거절 반박도 함축하며 성실성 우려의 정도는 빠졌다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "범위조건을 확인하므로 자동거절 반박도 함축하며 성실성 우려의 정도는 빠졌다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "범위조건을 확인하므로 자동거절 반박도 함축하며 성실성 우려의 정도는 빠졌다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "exp1.c1",
+          "verdict": "met",
+          "reason": "기간과 책임근거의 독립 두 명제는 옳으나 미제공 후 의견과 그 근거는 판단하지 않았다."
+        },
+        {
+          "criterion_id": "exp1.c2",
+          "verdict": "met",
+          "reason": "기간과 책임근거의 독립 두 명제는 옳으나 미제공 후 의견과 그 근거는 판단하지 않았다."
+        },
+        {
+          "criterion_id": "exp1.c3",
+          "verdict": "not_met",
+          "reason": "기간과 책임근거의 독립 두 명제는 옳으나 미제공 후 의견과 그 근거는 판단하지 않았다."
+        },
+        {
+          "criterion_id": "exp1.c4",
+          "verdict": "not_met",
+          "reason": "기간과 책임근거의 독립 두 명제는 옳으나 미제공 후 의견과 그 근거는 판단하지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "dc8e4d7fb3b5872f98b4f67f0712f9ec0c0c1e4c6a6e9ebcc78b1cad59f7dc33",
+  "schema_hash": "11d8c834c868bc5fdc45e1457146fb817c4f72722954bb9faa116415e455808c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "자동 의견거절이 아니라는 결론과 미제공 진술 확인은 제시했지만, 경영진 성실성에 관한 조건 확인이 누락되었다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "모든 서면진술 하나의 미제공이 자동으로 의견거절은 아니다. 빠진 진술이 재무제표 작성책임이나 제공정보·거래 완전성에 관한 필수 책임진술인지 먼저 확인해야 한다.",
+            "reason": "미제공 진술이 재무제표 작성책임 및 제공정보·거래완전성에 관한 필수 책임진술인지 확인한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "경영진 성실성 의문이 책임진술의 신뢰성을 훼손할 정도인지에 관한 판단이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp1",
+        "verdicts": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "met",
+            "quote": "신임 대표이사에게도 1월부터 12월까지 전체기간의 거래 완전성 진술을 요청한다. 취임 전 재직하지 않았다는 사정은 현재 경영진의 재무제표 전체 책임을 줄이지 않는다.",
+            "reason": "1월부터 12월까지 전체기간의 거래 완전성 진술을 요청한다고 명시했다."
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "met",
+            "quote": "신임 대표이사에게도 1월부터 12월까지 전체기간의 거래 완전성 진술을 요청한다. 취임 전 재직하지 않았다는 사정은 현재 경영진의 재무제표 전체 책임을 줄이지 않는다.",
+            "reason": "취임 전 재직하지 않았다는 사정이 현재 경영진의 재무제표 전체 책임을 줄이지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "not_met",
+            "reason": "적정의견을 표명할 수 없고 의견을 거절해야 한다는 결론이 없다."
+          },
+          {
+            "criterion_id": "exp1.c4",
+            "verdict": "not_met",
+            "reason": "필수 책임진술의 미제공 및 다른 감사절차로 대체할 수 없다는 이유가 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "자동 의견거절이 아니라는 결론과 미제공 진술 확인은 제시했지만, 경영진 성실성에 관한 조건 확인이 누락되었다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0",
+                  "sub1/e2"
+                ],
+                "reason": "미제공 진술이 재무제표 작성책임 및 제공정보·거래완전성에 관한 필수 책임진술인지 확인한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진 성실성 의문이 책임진술의 신뢰성을 훼손할 정도인지에 관한 판단이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp1",
+            "verdicts": [
+              {
+                "criterion_id": "exp1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "exp1/e0",
+                  "exp1/e1"
+                ],
+                "reason": "1월부터 12월까지 전체기간의 거래 완전성 진술을 요청한다고 명시했다."
+              },
+              {
+                "criterion_id": "exp1.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "exp1/e0",
+                  "exp1/e2"
+                ],
+                "reason": "취임 전 재직하지 않았다는 사정이 현재 경영진의 재무제표 전체 책임을 줄이지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "exp1.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "적정의견을 표명할 수 없고 의견을 거절해야 한다는 결론이 없다."
+              },
+              {
+                "criterion_id": "exp1.c4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "필수 책임진술의 미제공 및 다른 감사절차로 대체할 수 없다는 이유가 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-010",
+    "score": 3,
+    "max_points": 7,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "상황 A에서 어느 서면진술이든 하나라도 없으면 항상 의견거절이라는 주장이 적절한지 판단하시오. 이어 특정 의견거절 조건의 해당 여부를 판단하려면 미제공 진술의 범위와 경영진 성실성에 관하여 무엇을 확인해야 하는지 각각 설명하시오. 일반 미제공 대응 목록은 요구하지 않는다.",
+        "user_answer": "모든 서면진술 하나의 미제공이 자동으로 의견거절은 아니다. 빠진 진술이 재무제표 작성책임이나 제공정보·거래 완전성에 관한 필수 책임진술인지 먼저 확인해야 한다.",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "자동 의견거절이 아니라는 결론과 미제공 진술 확인은 제시했지만, 경영진 성실성에 관한 조건 확인이 누락되었다.",
+            "claim": "어느 서면진술이든 하나라도 제공되지 않으면 항상 의견을 거절해야 한다는 주장은 부적절하며, 미제공 범위와 해당 조건을 확인해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "모든 서면진술 하나의 미제공이 자동으로 의견거절은 아니다. 빠진 진술이 재무제표 작성책임이나 제공정보·거래 완전성에 관한 필수 책임진술인지 먼저 확인해야 한다.",
+            "reason": "미제공 진술이 재무제표 작성책임 및 제공정보·거래완전성에 관한 필수 책임진술인지 확인한다고 명시했다.",
+            "claim": "미제공 진술이 재무제표 작성책임 및 제공정보·거래완전성에 관한 필수 책임진술, 즉580.10·11에서 요구하는 진술에 해당하는지 확인한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "경영진 성실성 의문이 책임진술의 신뢰성을 훼손할 정도인지에 관한 판단이 없다.",
+            "claim": "성실성에 대한 의문이580.10·11의 책임진술을 신뢰할 수 없을 정도라고 감사인이 결론내렸는지 확인한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "어느 서면진술이든 하나라도 제공되지 않으면 항상 의견을 거절해야 한다는 주장은 부적절하며, 미제공 범위와 해당 조건을 확인해야 한다.",
+          "미제공 진술이 재무제표 작성책임 및 제공정보·거래완전성에 관한 필수 책임진술, 즉580.10·11에서 요구하는 진술에 해당하는지 확인한다.",
+          "성실성에 대한 의문이580.10·11의 책임진술을 신뢰할 수 없을 정도라고 감사인이 결론내렸는지 확인한다."
+        ]
+      },
+      {
+        "subquestion_id": "exp1",
+        "prompt": "상황 B에서 요청해야 할 거래 완전성 진술의 대상기간과 신임 대표이사의 취임 사유가 그 범위를 줄일 수 있는지 설명하시오. 이어 거절이 해소되지 않은 상태에서 다른 감사절차만을 근거로 적정의견을 표명할 수 있는지 판단하고 필요한 감사의견을 제시하시오.",
+        "user_answer": "신임 대표이사에게도 1월부터 12월까지 전체기간의 거래 완전성 진술을 요청한다. 취임 전 재직하지 않았다는 사정은 현재 경영진의 재무제표 전체 책임을 줄이지 않는다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "met",
+            "quote": "신임 대표이사에게도 1월부터 12월까지 전체기간의 거래 완전성 진술을 요청한다. 취임 전 재직하지 않았다는 사정은 현재 경영진의 재무제표 전체 책임을 줄이지 않는다.",
+            "reason": "1월부터 12월까지 전체기간의 거래 완전성 진술을 요청한다고 명시했다.",
+            "claim": "거래 완전성에 관한 서면진술은 취임 후 기간만이 아니라 감사대상인 1월 1일부터 12월 31일까지 전체 기간을 포함하도록 요청해야 한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "met",
+            "quote": "신임 대표이사에게도 1월부터 12월까지 전체기간의 거래 완전성 진술을 요청한다. 취임 전 재직하지 않았다는 사정은 현재 경영진의 재무제표 전체 책임을 줄이지 않는다.",
+            "reason": "취임 전 재직하지 않았다는 사정이 현재 경영진의 재무제표 전체 책임을 줄이지 않는다고 명시했다.",
+            "claim": "취임 전 재직하지 않았다는 사실은 현재 경영진의 재무제표 전체에 대한 책임을 경감하지 않으므로 취임일을 이유로 진술의 범위를 줄일 수 없다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "not_met",
+            "reason": "적정의견을 표명할 수 없고 의견을 거절해야 한다는 결론이 없다.",
+            "claim": "상황 B에서는 적정의견을 표명할 수 없으며 의견을 거절해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c4",
+            "verdict": "not_met",
+            "reason": "필수 책임진술의 미제공 및 다른 감사절차로 대체할 수 없다는 이유가 없다.",
+            "claim": "거래 완전성에 관한 필수 책임진술이 감사대상 전체 기간에 제공되지 않았고, 이는 다른 감사절차로 얻은 증거만으로 대체할 수 없기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "거래 완전성에 관한 서면진술은 취임 후 기간만이 아니라 감사대상인 1월 1일부터 12월 31일까지 전체 기간을 포함하도록 요청해야 한다.",
+          "취임 전 재직하지 않았다는 사실은 현재 경영진의 재무제표 전체에 대한 책임을 경감하지 않으므로 취임일을 이유로 진술의 범위를 줄일 수 없다.",
+          "상황 B에서는 적정의견을 표명할 수 없으며 의견을 거절해야 한다.",
+          "거래 완전성에 관한 필수 책임진술이 감사대상 전체 기간에 제공되지 않았고, 이는 다른 감사절차로 얻은 증거만으로 대체할 수 없기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 1,
+      "delta": -1,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_002d594fe0346cf0016aa6038a416087d0a84ed03c41cb246b",
+        "request_id": "req_6837b10d90424a2badb1ea79cda1f03d",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 4640,
+          "input_tokens_details": {
+            "cache_write_tokens": 4637,
+            "cached_tokens": 0
+          },
+          "output_tokens": 800,
+          "output_tokens_details": {
+            "reasoning_tokens": 333
+          },
+          "total_tokens": 5440
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00211985,
+        "min_usd": 0.00211985,
+        "max_usd": 0.00211985,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-12-010--case--partial/input.json",
+      "sha256": "bf8d899f913d841a850eb7ec026ba0bc8c2b92781b3b94b3587cb36cf3fde617"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-12-010--case--partial/transport.jsonl",
+      "sha256": "5bfade6d84a60e2d4ea91310d5a8ba62e31bc814ae76757a4bed4ae0fdcd97ae"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-12-010--case--partial/traces.jsonl",
+      "sha256": "cad1b634a01e1d4205d38646e124722483a8d917801d3b691129b9beeb6af0ce"
+    }
+  }
+}

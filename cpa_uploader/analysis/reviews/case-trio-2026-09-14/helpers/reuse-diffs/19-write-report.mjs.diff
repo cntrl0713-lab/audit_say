@@ -1,0 +1,74 @@
+diff --git a/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/reuse-source/write-report.mjs.txt b/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/write-report.mjs
+index 937bcfb7..9af15b28 100644
+--- a/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/reuse-source/write-report.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/write-report.mjs
+@@ -4,9 +4,9 @@ import {createHash} from 'node:crypto';
+ import {parseReportArgs,assertFinalChecksPassed} from './final-check-paths.mjs';
+ import {validateQaBank} from './representative-qa.mjs';
+ 
+-const R='cpa_uploader/analysis/reviews/case-deepening-2026-09-14';
+-const D='cpa_uploader/drafts/case-deepening-2026-09-14';
+-const reportFile='docs/reports/case-deepening-2026-09-14.md';
++const R='cpa_uploader/analysis/reviews/case-trio-2026-09-14';
++const D='cpa_uploader/drafts/case-trio-2026-09-14';
++const reportFile='docs/reports/case-trio-2026-09-14.md';
+ const answersFile=D+'/questions-and-answers.md';
+ const read=file=>JSON.parse(fs.readFileSync(file));
+ const hash=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+@@ -27,7 +27,7 @@ const bankFile='cpa_uploader/data/cpa_question_sets_v3.authoring.json';
+ const catalogFile='cpa_uploader/data/learning-question-classifications.json';
+ const bank=read(bankFile),catalog=read(catalogFile),shape=read(R+'/shape-check.json');
+ const sets=ids.map(id=>bank.find(set=>set.id===id));
+-assert.equal(ids.length,6);assert.equal(new Set(ids).size,ids.length);
++assert.equal(ids.length,3);assert.equal(new Set(ids).size,ids.length);
+ assert(sets.every(set=>set?.status==='published'&&set.verification.review_status==='verified'));
+ assert(sets.every(set=>set.subquestions.length===3&&set.subquestions.every(question=>question.question_style==='case')));
+ assert.equal(catalog.source_file_sha256,hash(bankFile));
+@@ -39,8 +39,8 @@ assert.equal(shape.minimum_facts_characters,Math.min(...measured.map(row=>row.fa
+ assert(shape.minimum_facts_characters>=400);
+ 
+ const grade=read(R+'/sealed-v1/summary.json'),readiness=read(R+'/sealed-v1/readiness.json');
+-const db=read(R+'/db-publication-v2/completion.json');
+-const installed=read(R+'/publication-v2/install-completion.json');
++const db=read(R+'/db-publication-v1/completion.json');
++const installed=read(R+'/publication-v1/install-completion.json');
+ const root=read(R+'/root-content-review.json');
+ assert.equal(grade.status,'passed');assert.equal(readiness.ready,true);
+ assert.equal(grade.target_sets,shape.new_cases);assert.equal(grade.target_questions,shape.new_questions);
+@@ -71,8 +71,8 @@ const representativeScope=validateQaBank(sets,read(R+'/case-qa.json'));
+ assert.deepEqual(read(R+'/representative-scope-check.json'),representativeScope);
+ assert.equal(grade.fixed_evaluated_answers,representativeScope.planned_evaluated_answers);
+ 
+-const old=read(R+'/integration-baseline-v2/bank.json');
+-const oldCatalog=read(R+'/integration-baseline-v2/catalog.json').classifications;
++const old=read(R+'/integration-baseline/bank.json');
++const oldCatalog=read(R+'/integration-baseline/catalog.json').classifications;
+ for(const set of old)assert.deepEqual(bank.find(current=>current.id===set.id),set,'Existing question changed');
+ assert.equal(bank.length,old.length+sets.length);
+ const classifications=catalog.classifications;
+@@ -90,7 +90,7 @@ const cost=grade.known_cost
+   : `전체 비용은 미확인이다. 사용량 미반환 호출 ${grade.accounting.requests_without_returned_usage}개, 단가/사용량 미확인 응답 ${grade.accounting.unknown_cost_responses}개, 비용 범위만 계산 가능한 응답 ${grade.accounting.bounded_cost_responses}개를 0원으로 처리하지 않았다.`;
+ 
+ const lines=[
+-  '# 2026-09-14 심화 사례형 제작 결과','',
++  '# 2026-09-14 추가 사례형 제작 결과','',
+   `사용자 확정 범위인 새 사례 ${shape.new_cases}개·${shape.new_questions}물음의 제작, agent 내용 검토, 실제 Luna 채점과 정본·공개본·운영 DB 반영을 완료했다. 기존 문항의 본문·정답·배점을 보존했다.`,'',
+   '| 추가 사례 | 사실관계 문자 수 | 물음 | 배점 |','|---|---:|---:|---:|',
+   ...measured.map(row=>`| ${tableText(row.title)} | ${row.facts_characters} | ${row.questions} | ${row.points} |`),'',
+@@ -140,13 +140,14 @@ lines.push('## 반영·검사','',
+ }
+ lines.push(`[실행·게시 증거](../../${R}/README.md) · [출처·설계와 검토](../../${D}/README.md) · [공식 판본 확인 목록](https://www.kicpa.or.kr/board/list.brd?boardId=acc0102)`,'');
+ 
+-const questionLines=['# 심화 사례형 문제와 모범답안','',
++const questionLines=['# 추가 사례형 문제와 모범답안','',
+   `2026-09-14 추가 제작한 사례 ${shape.new_cases}개·${shape.new_questions}물음이다. 지문과 모범답안을 함께 조회하는 내부 검토 자료이며, 기출·연습과 기준서의 요구를 참고해 별도로 구성한 연습 사례다.`];
+ for(const [index,set]of sets.entries()){
+   questionLines.push('',`## ${index+1}. ${set.title}`,'',...set.shared_context.facts.flatMap(fact=>[fact.text,'']));
+   for(const [questionIndex,question]of set.subquestions.entries()){
+     questionLines.push(`### 물음 ${questionIndex+1} (${questionPoints(question)}점)`,'',question.prompt,'','**모범답안**','',
+-      ...question.model_answer.map(answer=>'- '+answer),'');
++      ...question.model_answer.map(answer=>'- '+answer),'','**부분점수 기준**','',
++      ...question.criteria.map(criterion=>`- ${criterion.max_points}점: ${criterion.claim}`),'');
+   }
+ }
+ write(reportFile,lines.join('\n'));

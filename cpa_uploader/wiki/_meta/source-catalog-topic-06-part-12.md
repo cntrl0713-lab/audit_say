@@ -1,7 +1,7 @@
 ---
 title: "06. 위험평가와 내부통제 이해 원자료 단위 12/12"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: source-map
 status: generated
 review_required: true
@@ -12,7 +12,7 @@ confidence: medium
 
 # 06. 위험평가와 내부통제 이해 원자료 단위 12/12
 
-주제 전체 1710개: 기준서 420, 이론 442, 연습 395, 기출 453. 이 페이지는 60개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
+주제 전체 1711개: 기준서 421, 이론 442, 연습 395, 기출 453. 이 페이지는 61개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
 
 [[source-catalog-topic-06]] (1/12) · [[source-catalog-topic-06-part-02]] (2/12) · [[source-catalog-topic-06-part-03]] (3/12) · [[source-catalog-topic-06-part-04]] (4/12) · [[source-catalog-topic-06-part-05]] (5/12) · [[source-catalog-topic-06-part-06]] (6/12) · [[source-catalog-topic-06-part-07]] (7/12) · [[source-catalog-topic-06-part-08]] (8/12) · [[source-catalog-topic-06-part-09]] (9/12) · [[source-catalog-topic-06-part-10]] (10/12) · [[source-catalog-topic-06-part-11]] (11/12) · [[source-catalog-topic-06-part-12]] (12/12)
 
@@ -22,6 +22,7 @@ confidence: medium
 
 | 원자료 ID | 종류·근거 계층 | 실제 파일·위치 | 절·판본·원문 한계 | 참조 의존 | 은행 인용 연결 | 원문 인용 SHA-256 |
 |---|---|---|---|---|---|---|
+| <a id="src-025db4573c22bb7e88"></a>`src-025db4573c22bb7e88` | past_exam / learning_material | [기출문제_주제별_해설.md · 기출문제_주제별_해설 원문 페이지 231; L8991-L9013](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md); 기출문제_주제별_해설 | 원문 페이지 231; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 641e9625f6f09905d4b390f9198ead94192792080da3b3d74384cfb546a41e0f |
 | <a id="src-31ea6148bf84ccf3cf"></a>`src-31ea6148bf84ccf3cf` | past_exam / learning_material | [기출문제_주제별_해설.md · 기출문제_주제별_해설 원문 페이지 232; L9015-L9044](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md); 기출문제_주제별_해설 | 원문 페이지 232; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 7ae584acbb7341dac6f5a064da3c8e800176989f8613651eb84f6ec76d80078d |
 | <a id="src-022900478dca5d7f09"></a>`src-022900478dca5d7f09` | past_exam / learning_material | [기출문제_주제별_해설.md · 기출문제_주제별_해설 원문 페이지 234; L9074-L9097](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md); 기출문제_주제별_해설 | 원문 페이지 234; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | ecfd99dd9199cae1bdae2f7ecc6b2abc9ad6db060d9d9b5e94d155ea55c1102a |
 | <a id="src-de89ac386c590c51e3"></a>`src-de89ac386c590c51e3` | past_exam / learning_material | [기출문제_주제별_해설.md · 기출문제_주제별_해설 원문 페이지 236; L9130-L9156](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md); 기출문제_주제별_해설 | 원문 페이지 236; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 4033b4083a9a76b29c053b764154c324e5aa2a867a821c9f99524fdb211a469f |

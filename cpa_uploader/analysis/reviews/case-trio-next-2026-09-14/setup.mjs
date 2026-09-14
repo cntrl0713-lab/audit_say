@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {buildSourceCatalog} from '../../../questionSourceCatalog.mjs';
+const R='cpa_uploader/analysis/reviews/case-trio-next-2026-09-14',D='cpa_uploader/drafts/case-trio-next-2026-09-14';
+const read=f=>JSON.parse(fs.readFileSync(f));
+const ref=f=>({file:f,sha256:createHash('sha256').update(fs.readFileSync(f)).digest('hex')});
+const write=(f,v)=>fs.writeFileSync(f,JSON.stringify(v,null,2)+'\n',{flag:'wx'});
+fs.mkdirSync(D,{recursive:true});for(const a of ['a','b','c'])fs.mkdirSync(D+'/'+a,{recursive:true});
+const bank='cpa_uploader/data/cpa_question_sets_v3.authoring.json',cat='cpa_uploader/data/learning-question-classifications.json',catalog=read(cat),classification=catalog.review_file;
+for(const [from,to] of [[bank,'bank-before.json'],[cat,'catalog-before.json'],[classification,'classification-before.json']])fs.copyFileSync(from,D+'/'+to,fs.constants.COPYFILE_EXCL);
+const sets=read(bank),cases=catalog.classifications.filter(c=>c.question_style==='case');
+write(R+'/baseline.json',{created_at:new Date().toISOString(),bank:ref(bank),catalog:ref(cat),classification:ref(classification),sets:sets.length,questions:sets.reduce((n,s)=>n+s.subquestions.length,0),case_sets:new Set(cases.map(c=>c.source_set_id)).size,case_questions:cases.length,case_ids:[...new Set(cases.map(c=>c.source_set_id))]});
+write(R+'/policy-input.json',{budget_usd:null,budget_enforcement:'not_specified'});
+write(D+'/source-catalog.json',buildSourceCatalog());
+fs.writeFileSync(R+'/authorization.md','# 제작·검증·반영 범위\n\n2026-09-14 사용자는 “사례형 문제 추가로 3문제 더 만들만한 소재 있으면 만들어줘(기출문제와 고급회계감사연습참고해서”라고 요청했다. 사례당 3물음·사실관계 400자 이상, 기출·고급회계감사연습 및 공식 기준서 대조, 독립 명제별 정수 부분점수 정책을 이어받는다. 과거 대화에서 검증 후 정본·공개본·운영 DB 반영을 명시 승인했으며 이 추가 제작에도 같은 범위를 적용한다.\n\nagent 내용 검토와 실제 Luna 대표 채점을 구별한다. 모델 상향과 별도 유료 API 의미검수는 하지 않는다. 기대점수 ±1점·대표 답안의 95% 이상이라는 실측 목표는 내용 오류 면제가 아니다. 예산 상한은 미지정이며 제공자 한도 오류에서 중단한다. 사람의 직접 내용 확인을 수행한 것으로 기록하지 않는다. 기존 문항·과거 실측·작업 중 다른 변경을 보존한다.\n',{flag:'wx'});
+console.log({sets:sets.length,questions:catalog.classifications.length,case_sets:new Set(cases.map(c=>c.source_set_id)).size,source_units:read(D+'/source-catalog.json').units.length});

@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const old='cpa_uploader/analysis/reviews/case-expansion-2026-09-13';
+const current='cpa_uploader/analysis/reviews/case-additional-2026-09-14';
+let publish=fs.readFileSync(old+'/publish.mjs','utf8');
+publish=publish.replaceAll('case-expansion-2026-09-13','case-additional-2026-09-14');
+const oldSelection=" const oldIds=ids.filter(id=>read('cpa_uploader/drafts/case-additional-2026-09-14/bank-before.json').some(s=>s.id===id)),newIds=ids.filter(id=>!oldIds.includes(id));";
+assert(publish.includes(oldSelection));publish=publish.replace(oldSelection," const newIds=ids;assert(newIds.every(id=>!read('cpa_uploader/drafts/case-additional-2026-09-14/bank-before.json').some(s=>s.id===id)));");
+const reverify=" run('01-reverify',['cpa_uploader/promote_cpa_v3.ts','--to','verified','--sets',oldIds.join(','),'--efficient-review',evidence,'--evidence',evidence,'--reverify'],stagedEnv,guard);\n";
+assert(publish.includes(reverify));publish=publish.replace(reverify,'');
+const rollback="if(prep.originals.every(r=>allowed.get(r.file).has(ref(r.file).sha256)))";
+assert(publish.includes(rollback));publish=publish.replace(rollback,"if(prep.originals.every(r=>allowed.get(r.file).has(ref(r.file).sha256)&&ref(r.backup).sha256===r.sha256))");
+fs.writeFileSync(current+'/publish.mjs',publish,{flag:'wx'});
+const deploy=fs.readFileSync(old+'/deploy.mjs','utf8').replaceAll('case-expansion-2026-09-13','case-additional-2026-09-14').replace("base+'/publication-v2/install-completion.json'","base+'/publication-v1/install-completion.json'");
+assert(deploy.includes("base+'/publication-v1/install-completion.json'"));fs.writeFileSync(current+'/deploy.mjs',deploy,{flag:'wx'});
+console.log('Prepared isolated staging/install and production verifier helpers; no publication performed.');

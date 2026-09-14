@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "status": "passed_static_review",
+  "reviewer_id": "agent:/root/trio_execution",
+  "human_review_performed": false,
+  "reviewed_at": "2026-09-14T07:57:04.886Z",
+  "files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/prepare-coverage-v2.mjs",
+      "sha256": "9b8eae3547de98fba2a97a75b7ca6afd9c78259ae17e7f97a132a1db28f81ca1"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/coverage-successor-provenance.json",
+      "sha256": "e928b6acc381585bd75f05180f0cd1e569800215a90be7699215d0bd5683e19d"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers/prepare-coverage.mjs",
+      "sha256": "ff23c6d804038dd1f187b763f6282ceab4d335b16e84f44d966d2962ff3c18d3"
+    },
+    {
+      "file": "cpa_uploader/drafts/case-trio-2026-09-14/source-catalog-final.json",
+      "sha256": "44084694422267a29abcf897c59a05e534adfce4ca6c70df0ae9af5df8d50ae2"
+    }
+  ],
+  "checks": [
+    {
+      "name": "node_syntax",
+      "args": [
+        "--check",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/prepare-coverage-v2.mjs"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "name": "targeted_lint",
+      "args": [
+        "node_modules/eslint/bin/eslint.js",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/prepare-coverage-v2.mjs",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/record-c-peer-review.mjs"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "mappings": [
+    {
+      "worker": "a",
+      "reference_id": "src-e67ae1831db41aa655",
+      "matching_catalogue_ids": [
+        "src-e67ae1831db41aa655"
+      ],
+      "same_original_file": true,
+      "full_normalized_quote_contained": true
+    },
+    {
+      "worker": "a",
+      "reference_id": "src-5c224e2b3d26cb7abb",
+      "matching_catalogue_ids": [
+        "src-5c224e2b3d26cb7abb"
+      ],
+      "same_original_file": true,
+      "full_normalized_quote_contained": true
+    },
+    {
+      "worker": "a",
+      "reference_id": "src-93c9a60b32ac6a97bd",
+      "matching_catalogue_ids": [
+        "src-93c9a60b32ac6a97bd"
+      ],
+      "same_original_file": true,
+      "full_normalized_quote_contained": true
+    },
+    {
+      "worker": "b",
+      "reference_id": "src-be9a2d37235fc0068f",
+      "matching_catalogue_ids": [
+        "src-be9a2d37235fc0068f"
+      ],
+      "same_original_file": true,
+      "full_normalized_quote_contained": true
+    },
+    {
+      "worker": "c",
+      "reference_id": "src50515a",
+      "matching_catalogue_ids": [
+        "src-a4266fcb0677807733"
+      ],
+      "same_original_file": true,
+      "full_normalized_quote_contained": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "alias-mapping",
+      "rationale": "선택 criterion의 SourceRef ID와 catalogue ID를 구별하고, 명시 unit마다 존재 확인 후 동일 원파일 및 전체 인용문 공백정규화 포함을 검증한다. c의 별칭을 잘못된 미등록ID로 처리하는 종전 경계를 해결한다."
+    },
+    {
+      "id": "ownership",
+      "rationale": "고정 H 준비기를 수정하지 않고 새 R 출력 생성기로 분리했다. 관계 의미의 accept/needs_review는 자동 승급하지 않으며 root 수동 관계검토 및 H update의 전체 assembleCoverage 검증은 유지한다."
+    },
+    {
+      "id": "write-boundary",
+      "rationale": "3개 작성자 입력과 모든 선택criterion 참조의 근거 단위 검증이 끝난 뒤 R/coverage-proposals.json 하나를 wx로 쓴다. 이 검토는 준비기를 실제 실행하거나 정본/coverage links를 수정하지 않았다."
+    }
+  ],
+  "unresolved_findings": [],
+  "source_mapping_check_catalogue": "cpa_uploader/drafts/case-trio-2026-09-14/source-catalog-final.json",
+  "actual_api_calls": 0,
+  "canonical_writes": 0,
+  "coverage_link_writes": 0,
+  "source_files_edited": 0
+}

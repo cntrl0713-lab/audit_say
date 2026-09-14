@@ -1,7 +1,7 @@
 ---
 title: "17. 내부회계관리제도 감사 원자료 단위 2/4"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: source-map
 status: generated
 review_required: true

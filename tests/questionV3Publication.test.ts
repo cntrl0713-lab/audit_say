@@ -17,10 +17,16 @@ import { jsonHash } from '../cpa_uploader/questionReviewIdentity.ts';
 const root = process.cwd();
 const authoringFile = path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.authoring.json');
 const ledgerFile = path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.promotions.json');
+// These immutable pre-reorganization fixtures retain the pilot contracts even
+// after production retires or splits their original IDs. Production paths above
+// are still guarded against accidental writes in CLI tests.
+const fixtureDirectory = path.join(root, 'cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14');
+const fixtureAuthoringFile = path.join(fixtureDirectory, 'bank.snapshot.json');
+const fixtureLedgerFile = path.join(fixtureDirectory, 'promotions.snapshot.json');
 const secret = 'isolated-publication-regression-test-secret';
 
 test('a split fourth subquestion is accepted while five subquestions exceed the linked-set limit', () => {
-    const bank = JSON.parse(fs.readFileSync(authoringFile, 'utf8')) as QuestionSetV3[];
+    const bank = JSON.parse(fs.readFileSync(fixtureAuthoringFile, 'utf8')) as QuestionSetV3[];
     const set = bank[0];
     const template = structuredClone(set.subquestions[0]);
     while (set.subquestions.length < 4) {
@@ -48,12 +54,12 @@ function fixture() {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'audit-publication-'));
     const files = { authoring: path.join(directory, 'authoring.json'), ledger: path.join(directory, 'ledger.json'),
         public: path.join(directory, 'public.json'), encrypted: path.join(directory, 'authoring.enc.json') };
-    // Real CLIs enforce the original 65-set topic minima. Pin those pilot IDs so
-    // every supplied peer is reviewed without inheriting later corpus growth.
+    // Real CLIs enforce the 65-set topic minima. Pin reviewed peers from the
+    // historical snapshot, independently of the live bank's later retirements.
     const fixtureTopicCounts = [3, 4, 3, 3, 4, 4, 3, 4, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3, 4];
     const fixturePeerIds = fixtureTopicCounts.flatMap((count, topic) => Array.from({ length: count }, (_, index) =>
         `pilot-${String(topic + 1).padStart(2, '0')}-${String(index + 1).padStart(3, '0')}`));
-    const sets = (JSON.parse(fs.readFileSync(authoringFile, 'utf8')) as QuestionSetV3[])
+    const sets = (JSON.parse(fs.readFileSync(fixtureAuthoringFile, 'utf8')) as QuestionSetV3[])
         .filter(set => fixturePeerIds.includes(set.id));
     assert.equal(sets.length, fixturePeerIds.length, 'publication fixture peers must exist');
     assert.ok(sets.every(set => set.status === 'published'), 'publication fixture peers must be published');
@@ -65,7 +71,7 @@ function fixture() {
     for (const sub of draft.subquestions) sub.prompt = `격리 신규 문항: ${sub.prompt}`;
     sets.push(draft);
     fs.writeFileSync(files.authoring, `${JSON.stringify(sets, null, 2)}\n`);
-    const ledger = JSON.parse(fs.readFileSync(ledgerFile, 'utf8')) as PromotionLedger;
+    const ledger = JSON.parse(fs.readFileSync(fixtureLedgerFile, 'utf8')) as PromotionLedger;
     ledger.entries = ledger.entries.filter(entry => fixturePeerIds.includes(entry.set_id));
     fs.writeFileSync(files.ledger, `${JSON.stringify(ledger, null, 2)}\n`);
     const env = { ...process.env, CPA_QUESTION_V3_AUTHORING_PATH: files.authoring,

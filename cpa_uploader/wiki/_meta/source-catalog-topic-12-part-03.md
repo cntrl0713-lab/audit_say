@@ -1,7 +1,7 @@
 ---
 title: "12. 감사 완료: 왜곡표시·후속사건·계속기업·서면진술 원자료 단위 3/7"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: source-map
 status: generated
 review_required: true
@@ -12,7 +12,7 @@ confidence: medium
 
 # 12. 감사 완료: 왜곡표시·후속사건·계속기업·서면진술 원자료 단위 3/7
 
-주제 전체 939개: 기준서 332, 이론 174, 연습 197, 기출 236. 이 페이지는 150개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
+주제 전체 941개: 기준서 334, 이론 174, 연습 197, 기출 236. 이 페이지는 150개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
 
 [[source-catalog-topic-12]] (1/7) · [[source-catalog-topic-12-part-02]] (2/7) · [[source-catalog-topic-12-part-03]] (3/7) · [[source-catalog-topic-12-part-04]] (4/7) · [[source-catalog-topic-12-part-05]] (5/7) · [[source-catalog-topic-12-part-06]] (6/7) · [[source-catalog-topic-12-part-07]] (7/7)
 
@@ -22,6 +22,8 @@ confidence: medium
 
 | 원자료 ID | 종류·근거 계층 | 실제 파일·위치 | 절·판본·원문 한계 | 참조 의존 | 은행 인용 연결 | 원문 인용 SHA-256 |
 |---|---|---|---|---|---|---|
+| <a id="src-fef74e47c44587b594"></a>`src-fef74e47c44587b594` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 580 문단 12; L1867-L1867](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 580: 서면진술 | KGA 580: 서면진술 / 요구사항 / 경영진책임에 관한 서면진술 / 서면진술에서 경영진책임의 기술; 학습자료/OCR 전사. 공식 판본 대조 필요.; | 2개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | a298436749ad39ba816ba7668f3d08d72f478c213794d07bb1ddf365647f9f70 |
+| <a id="src-7ecb5f8150a76d8b3f"></a>`src-7ecb5f8150a76d8b3f` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 580 문단 13; L1870-L1870](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 580: 서면진술 | KGA 580: 서면진술 / 요구사항 / 기타 서면진술; 학습자료/OCR 전사. 공식 판본 대조 필요.; | 6개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 9dc7fd62506962cf441825167b4c56a8b10f4f71c9f53de8f571a83a8fa04166 |
 | <a id="src-ee9c9339d7c268a085"></a>`src-ee9c9339d7c268a085` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 580 문단 14; L1873-L1873](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 580: 서면진술 | KGA 580: 서면진술 / 요구사항 / 서면진술일과 대상기간; 학습자료/OCR 전사. 공식 판본 대조 필요.; | 4개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 4a256876fa636b170e3c5c4ca2598d9c56732560c9bafb53a47e6d9619a0e4b6 |
 | <a id="src-7c34075efa4551fd2a"></a>`src-7c34075efa4551fd2a` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 580 문단 15; L1876-L1876](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 580: 서면진술 | KGA 580: 서면진술 / 요구사항 / 서면진술의 형태; 학습자료/OCR 전사. 공식 판본 대조 필요.; | 5개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 31d38ab2d2910b68090e3019dc3afba33e416f1e7cab001898838b4ffc1862a5 |
 | <a id="src-85e116da7d41860d95"></a>`src-85e116da7d41860d95` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 580 문단 16; L1881-L1881](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 580: 서면진술 | KGA 580: 서면진술 / 요구사항 / 서면진술의 신뢰성에 대한 의문 및 요청된 서면진술의 미제공 / 서면진술의 신뢰성에 대한 의문; 학습자료/OCR 전사. 공식 판본 대조 필요.; | 2개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | b8f59676456b842fdd62f108c8ce23adce98879e8b296f4fd9ed80bc449e564c |
@@ -170,8 +172,6 @@ confidence: medium
 | <a id="src-ed26cb4aaa1115e75f"></a>`src-ed26cb4aaa1115e75f` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 549; L17292-L17318](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 549; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 2cfaa7b2f711eb1e8a566eecb02dcabdad108eb0ed94dea9a5e9545cd3d99a93 |
 | <a id="src-45a5de0c8df6ef9cf6"></a>`src-45a5de0c8df6ef9cf6` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 550; L17320-L17336](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 550; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 7e267ccff438f736bacb656a3ed237372866c6b4a78e93716e3e7190d9de2bed |
 | <a id="src-8ac71bc9991ab30e23"></a>`src-8ac71bc9991ab30e23` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 551; L17338-L17370](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 551; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 4290c35b061c59b526dca465c6efc58c5a041236adcf334a0e10dd0a09f4a1a2 |
-| <a id="src-49ddf5987b4e40b9ba"></a>`src-49ddf5987b4e40b9ba` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 552; L17372-L17400](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 552; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | c86890acd898900acdcc925d3a088cfe2dfa59aa614b238f8fadf31b278fd4b6 |
-| <a id="src-937404758898aaf7bf"></a>`src-937404758898aaf7bf` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 553; L17402-L17428](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 553; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | b7ce6686d5969784b4fc1538e2516836e19ab4a4216bf691ccb543e0cabfc1ec |
 
 ## Related
 

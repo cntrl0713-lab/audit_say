@@ -1,0 +1,451 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "ac40fc52c359ef8885acd3e3c56d9864b2f73e5013889ed1b9253377167327e1"
+  },
+  "entry_id": "case-11-estimate-lookback-20260914--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "case-11-estimate-lookback-20260914--case",
+  "source_set_id": "case-11-estimate-lookback-20260914",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "428d11540fed2287c446908bb95e8afdcfa1498a1bbb652d7432cd1f826acadc",
+  "answers": {
+    "sub1": "최종 수리비용이 확정되기 전의 재추정 자료는 아무 의미가 없으므로 A형 장비의 보증이 끝날 때까지 전기 추정치에 대한 검토를 미룬다.",
+    "sub2": "추정금액은 반드시 실제 금액과 같아야 하므로 공급 중단이 언제 발생했든 전기 추정치가 잘못된 것으로 확정한다.",
+    "sub3": "각 판단이 합리적인 범위라면 회사의 반복된 선택을 편의 관점에서 검토할 필요가 없다. 징후라는 말만 붙이면 증거 없이 모든 개별 추정치를 즉시 왜곡표시로 확정할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "not_met",
+          "reason": "후속 재추정 검토의 가능성과 당기 목적을 모두 부정한다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "후속 재추정 검토의 가능성과 당기 목적을 모두 부정한다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "not_met",
+          "reason": "후속 재추정 검토의 가능성과 당기 목적을 모두 부정한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "not_met",
+          "reason": "사후 결과를 당시 추정판단에 기계적으로 소급하고 기준서의 예외 구별을 부정한다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "not_met",
+          "reason": "사후 결과를 당시 추정판단에 기계적으로 소급하고 기준서의 예외 구별을 부정한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.c1",
+          "verdict": "not_met",
+          "reason": "편의평가 필요성과 징후의 증거 한계를 모두 거꾸로 서술했고 구체 방향성 근거도 없다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "verdict": "not_met",
+          "reason": "편의평가 필요성과 징후의 증거 한계를 모두 거꾸로 서술했고 구체 방향성 근거도 없다."
+        },
+        {
+          "criterion_id": "sub3.c3",
+          "verdict": "not_met",
+          "reason": "편의평가 필요성과 징후의 증거 한계를 모두 거꾸로 서술했고 구체 방향성 근거도 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "14bd3ff401048491d1a43287dd26743caed2213276f5ecdd854220b1dc9e0431",
+  "schema_hash": "d6a1c72cc4d11d513f76577ee73f6de0091cce4981f2495759516babf03856fa",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "contradicted",
+            "quote": "최종 수리비용이 확정되기 전의 재추정 자료는 아무 의미가 없으므로 A형 장비의 보증이 끝날 때까지 전기 추정치에 대한 검토를 미룬다.",
+            "reason": "검토를 보증기간 종료까지 미루겠다고 명시했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "전기 산정표와 후속 재추정 자료를 검토한다는 조치가 없다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "not_met",
+            "reason": "검토 목적과 당기 위험평가 활용을 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "추정금액은 반드시 실제 금액과 같아야 하므로 공급 중단이 언제 발생했든 전기 추정치가 잘못된 것으로 확정한다.",
+            "reason": "실제 금액과 반드시 같아야 하므로 추정치가 잘못되었다고 명시했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "contradicted",
+            "quote": "추정금액은 반드시 실제 금액과 같아야 하므로 공급 중단이 언제 발생했든 전기 추정치가 잘못된 것으로 확정한다.",
+            "reason": "공급 중단 시점과 무관하게 전기 추정치가 잘못되었다고 했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "contradicted",
+            "quote": "각 판단이 합리적인 범위라면 회사의 반복된 선택을 편의 관점에서 검토할 필요가 없다. ",
+            "reason": "반복된 선택을 편의 관점에서 검토할 필요가 없다고 명시했다."
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "not_met",
+            "reason": "낮은 충당부채와 높은 투자주식 평가가 이익을 높이는 방향이라는 설명이 없다."
+          },
+          {
+            "criterion_id": "sub3.c3",
+            "verdict": "contradicted",
+            "quote": "징후라는 말만 붙이면 증거 없이 모든 개별 추정치를 즉시 왜곡표시로 확정할 수 있다.",
+            "reason": "증거 없이 모든 개별 추정치를 즉시 왜곡표시로 확정할 수 있다고 했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "검토를 보증기간 종료까지 미루겠다고 명시했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전기 산정표와 후속 재추정 자료를 검토한다는 조치가 없다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "검토 목적과 당기 위험평가 활용을 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "실제 금액과 반드시 같아야 하므로 추정치가 잘못되었다고 명시했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "공급 중단 시점과 무관하게 전기 추정치가 잘못되었다고 했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "반복된 선택을 편의 관점에서 검토할 필요가 없다고 명시했다."
+              },
+              {
+                "criterion_id": "sub3.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "낮은 충당부채와 높은 투자주식 평가가 이익을 높이는 방향이라는 설명이 없다."
+              },
+              {
+                "criterion_id": "sub3.c3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "증거 없이 모든 개별 추정치를 즉시 왜곡표시로 확정할 수 있다고 했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-11-estimate-lookback-20260914",
+    "score": 0,
+    "max_points": 8,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "A형 장비의 전기 추정치 검토를 최종 수리비용 확정까지 미루자는 제안이 적절한지 판단하시오. 현재 검토할 수 있는 자료와 그 검토를 당기 감사에서 수행하는 목적을 사례에 맞게 설명하시오.",
+        "user_answer": "최종 수리비용이 확정되기 전의 재추정 자료는 아무 의미가 없으므로 A형 장비의 보증이 끝날 때까지 전기 추정치에 대한 검토를 미룬다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "contradicted",
+            "quote": "최종 수리비용이 확정되기 전의 재추정 자료는 아무 의미가 없으므로 A형 장비의 보증이 끝날 때까지 전기 추정치에 대한 검토를 미룬다.",
+            "reason": "검토를 보증기간 종료까지 미루겠다고 명시했다.",
+            "claim": "A형 장비의 최종 수리비용이 확정되지 않았다는 이유로 전기 추정치 검토를 미루는 것은 적절하지 않다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "전기 산정표와 후속 재추정 자료를 검토한다는 조치가 없다.",
+            "claim": "전기 산정표와 당기의 수리비용 지급 및 잔여 보증의무를 반영한 후속 재추정 자료를 함께 검토한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "not_met",
+            "reason": "검토 목적과 당기 위험평가 활용을 설명하지 않았다.",
+            "claim": "그 검토에서 과거 보증추정 절차의 효과성 등에 관한 정보를 얻어 당기 보증충당부채의 중요왜곡표시위험을 식별하고 평가하는 데 활용한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "A형 장비의 최종 수리비용이 확정되지 않았다는 이유로 전기 추정치 검토를 미루는 것은 적절하지 않다.",
+          "전기 산정표와 당기의 수리비용 지급 및 잔여 보증의무를 반영한 후속 재추정 자료를 함께 검토한다.",
+          "그 검토에서 과거 보증추정 절차의 효과성 등에 관한 정보를 얻어 당기 보증충당부채의 중요왜곡표시위험을 식별하고 평가하는 데 활용한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "B형 장비의 실제 비용이 전기 추정액보다 크다는 이유만으로 전기 추정치를 잘못되었다고 단정할 수 있는지 판단하고, 원인 발생시점과 전기에 이용가능했던 정보에 근거하여 설명하시오.",
+        "user_answer": "추정금액은 반드시 실제 금액과 같아야 하므로 공급 중단이 언제 발생했든 전기 추정치가 잘못된 것으로 확정한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "추정금액은 반드시 실제 금액과 같아야 하므로 공급 중단이 언제 발생했든 전기 추정치가 잘못된 것으로 확정한다.",
+            "reason": "실제 금액과 반드시 같아야 하므로 추정치가 잘못되었다고 명시했다.",
+            "claim": "B형 장비의 실제 비용과 전기 추정액의 차이만으로 전기 추정치가 잘못되었다고 단정할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "contradicted",
+            "quote": "추정금액은 반드시 실제 금액과 같아야 하므로 공급 중단이 언제 발생했든 전기 추정치가 잘못된 것으로 확정한다.",
+            "reason": "공급 중단 시점과 무관하게 전기 추정치가 잘못되었다고 했다.",
+            "claim": "차이는 전기 재무제표 확정 후의 예측하지 못한 공급 중단과 단가 상승에서 생겼고, 전기 추정은 당시 이용가능하거나 합리적으로 입수·반영했어야 할 정보를 적절히 고려했으므로 사후 결과로 그 판단을 뒤집을 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "B형 장비의 실제 비용과 전기 추정액의 차이만으로 전기 추정치가 잘못되었다고 단정할 수 없다.",
+          "차이는 전기 재무제표 확정 후의 예측하지 못한 공급 중단과 단가 상승에서 생겼고, 전기 추정은 당시 이용가능하거나 합리적으로 입수·반영했어야 할 정보를 적절히 고려했으므로 사후 결과로 그 판단을 뒤집을 수 없다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "회사의 여러 추정치에서 반복된 금액 선택을 경영진 편의가능성의 관점에서 어떻게 평가해야 하는지 이유와 함께 설명하시오. 이 선택 양상만으로 개별 추정치 전부를 왜곡표시로 확정할 수 있는지도 제시하시오.",
+        "user_answer": "각 판단이 합리적인 범위라면 회사의 반복된 선택을 편의 관점에서 검토할 필요가 없다. 징후라는 말만 붙이면 증거 없이 모든 개별 추정치를 즉시 왜곡표시로 확정할 수 있다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "contradicted",
+            "quote": "각 판단이 합리적인 범위라면 회사의 반복된 선택을 편의 관점에서 검토할 필요가 없다.",
+            "reason": "반복된 선택을 편의 관점에서 검토할 필요가 없다고 명시했다.",
+            "claim": "개별 판단이 합리적인 범위라는 이유로 평가를 생략하지 말고, 회사의 반복된 선택이 경영진 편의가능성의 징후인지를 평가하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "not_met",
+            "reason": "낮은 충당부채와 높은 투자주식 평가가 이익을 높이는 방향이라는 설명이 없다.",
+            "claim": "여러 기간에 걸쳐 충당부채·대손충당금은 낮게, 투자주식은 높게 선택하여 모두 이익을 높이는 방향을 보이므로, 추정치의 집합과 여러 기간에서 편의징후가 드러날 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub3.c3",
+            "verdict": "contradicted",
+            "quote": "징후라는 말만 붙이면 증거 없이 모든 개별 추정치를 즉시 왜곡표시로 확정할 수 있다.",
+            "reason": "증거 없이 모든 개별 추정치를 즉시 왜곡표시로 확정할 수 있다고 했다.",
+            "claim": "그 편의가능성 징후 자체만으로 개별 추정치 전부를 왜곡표시로 확정할 수는 없으며, 개별 금액이 왜곡되었다는 추가 근거 없이 자동 확정해서는 안 된다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "개별 판단이 합리적인 범위라는 이유로 평가를 생략하지 말고, 회사의 반복된 선택이 경영진 편의가능성의 징후인지를 평가하여야 한다.",
+          "여러 기간에 걸쳐 충당부채·대손충당금은 낮게, 투자주식은 높게 선택하여 모두 이익을 높이는 방향을 보이므로, 추정치의 집합과 여러 기간에서 편의징후가 드러날 수 있다.",
+          "그 편의가능성 징후 자체만으로 개별 추정치 전부를 왜곡표시로 확정할 수는 없으며, 개별 금액이 왜곡되었다는 추가 근거 없이 자동 확정해서는 안 된다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0ea7f82846376566016aa7740ab12c87d0894c5a3d7b3dbe09",
+        "request_id": "req_9faf393cf9a64d40a8fb6b6359eb1d1f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 5989,
+          "input_tokens_details": {
+            "cache_write_tokens": 5986,
+            "cached_tokens": 0
+          },
+          "output_tokens": 656,
+          "output_tokens_details": {
+            "reasoning_tokens": 159
+          },
+          "total_tokens": 6645
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0022842999999999995,
+        "min_usd": 0.0022842999999999995,
+        "max_usd": 0.0022842999999999995,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-11-estimate-lookback-20260914--case--wrong/input.json",
+      "sha256": "4e8b473971e1d3e03f9452e5072b929fbebcc3631aa3d3d1d3e9e38281a0c16c"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-11-estimate-lookback-20260914--case--wrong/transport.jsonl",
+      "sha256": "70abba059bcda1b2b7bf6592ab67c260c51caae7c5d92b2488cf9463476645e6"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-11-estimate-lookback-20260914--case--wrong/traces.jsonl",
+      "sha256": "4edf5539d86d486f90268e1e361d67fe7ee689a6838284c493d47ebdeb943f5e"
+    }
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "exp-s07-sub1-wrong",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-expansion-20260913-s07",
+  "learning_unit_id": "draft-standard-expansion-20260913-s07--sub1--standard",
+  "kind": "wrong",
+  "projected_body_hash": "022ed042d2fa9d90a3f3d6af8d304882f32b37c02fa77ff711fd1578184a01ee",
+  "answers": {
+    "sub1": "서명이 있는 서면진술은 언제나 우선하므로 불일치를 해결할 절차는 필요 없다. 경영진 평가와 다른 감사증거의 신뢰성도 재고할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 불일치 사항의 해결을 시도하는 감사절차를 수행한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 해결되지 않으면 경영진의 적격성·성실성·윤리적 가치·근면성 또는 이에 대한 약속·이행의 평가를 재고한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 해결되지 않은 사항이 구두 또는 서면 경영진 진술의 신뢰성에 미칠 수 있는 영향을 결정한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 해결되지 않은 사항이 감사증거 일반의 신뢰성에 미칠 수 있는 영향을 결정한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "57575baa7b15ef8a23af8ca1f63148ada79377cebc8ad7dd03ce303964f6d76f",
+  "schema_hash": "e855bf5c3fc7c9fe3c07bbe53bd066a1730d4b0c5b32206a971b2ced5602e99c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "서명이 있는 서면진술은 언제나 우선하므로 불일치를 해결할 절차는 필요 없다. ",
+            "reason": "불일치 해결 절차가 필요 없다고 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "경영진 평가와 다른 감사증거의 신뢰성도 재고할 필요가 없다.",
+            "reason": "경영진 평가를 재고할 필요가 없다고 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "경영진 진술의 신뢰성 영향에 대한 판단이 없다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "경영진 평가와 다른 감사증거의 신뢰성도 재고할 필요가 없다.",
+            "reason": "다른 감사증거의 신뢰성을 재고할 필요가 없다고 명시적으로 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "불일치 해결 절차가 필요 없다고 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "경영진 평가를 재고할 필요가 없다고 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진 진술의 신뢰성 영향에 대한 판단이 없다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "다른 감사증거의 신뢰성을 재고할 필요가 없다고 명시적으로 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-expansion-20260913-s07",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "서면진술이 다른 감사증거와 일관되지 않는 경우, 감사기준서 580 문단 17에 따라 먼저 수행할 절차와 불일치가 해결되지 않을 때의 후속 조치를 모두 설명하시오. 재고해야 할 경영진에 대한 평가와, 신뢰성 영향을 결정할 두 대상을 구별하시오.",
+        "user_answer": "서명이 있는 서면진술은 언제나 우선하므로 불일치를 해결할 절차는 필요 없다. 경영진 평가와 다른 감사증거의 신뢰성도 재고할 필요가 없다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "서명이 있는 서면진술은 언제나 우선하므로 불일치를 해결할 절차는 필요 없다.",
+            "reason": "불일치 해결 절차가 필요 없다고 명시적으로 부정했다.",
+            "claim": "불일치 사항의 해결을 시도하는 감사절차를 수행한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "경영진 평가와 다른 감사증거의 신뢰성도 재고할 필요가 없다.",
+            "reason": "경영진 평가를 재고할 필요가 없다고 명시적으로 부정했다.",
+            "claim": "해결되지 않으면 경영진의 적격성·성실성·윤리적 가치·근면성 또는 이에 대한 약속·이행의 평가를 재고한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "경영진 진술의 신뢰성 영향에 대한 판단이 없다.",
+            "claim": "해결되지 않은 사항이 구두 또는 서면 경영진 진술의 신뢰성에 미칠 수 있는 영향을 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "경영진 평가와 다른 감사증거의 신뢰성도 재고할 필요가 없다.",
+            "reason": "다른 감사증거의 신뢰성을 재고할 필요가 없다고 명시적으로 부정했다.",
+            "claim": "해결되지 않은 사항이 감사증거 일반의 신뢰성에 미칠 수 있는 영향을 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "불일치 사항의 해결을 시도하는 감사절차를 수행한다.",
+          "해결되지 않으면 경영진의 적격성·성실성·윤리적 가치·근면성 또는 이에 대한 약속·이행의 평가를 재고한다.",
+          "해결되지 않은 사항이 구두 또는 서면 경영진 진술의 신뢰성에 미칠 수 있는 영향을 결정한다.",
+          "해결되지 않은 사항이 감사증거 일반의 신뢰성에 미칠 수 있는 영향을 결정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-s07-sub1-wrong.input.json",
+      "sha256": "df6b2c02ed26c8373cc753bcbeb6af1c1ade7aaa8fa505e22a06b78c05dad9fc"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-s07-sub1-wrong.transport.jsonl",
+      "sha256": "9b4400f642f0d4d99d25aefca1266e3b8c5f3aceac8bf0b16cceb69470f66f10"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-s07-sub1-wrong.traces.jsonl",
+      "sha256": "b12e6fa41849641037fe80dbd41835d329a140c82c4e6d55ce202a8d54ad2e5a"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_06a0ccfd9263bfdb016aa5e1a16ac087d0ae3331d7cea7a62c",
+        "request_id": "req_52d36c26029b4468be21df392c41c123",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2859,
+          "input_tokens_details": {
+            "cache_write_tokens": 2856,
+            "cached_tokens": 0
+          },
+          "output_tokens": 395,
+          "output_tokens_details": {
+            "reasoning_tokens": 168
+          },
+          "total_tokens": 3254
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s07-sub1-wrong.input.json",
+        "sha256": "1a4f841f5b3dc63079afb751428c4a82236b8f641d8c13cf79a46effaa360018"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s07-sub1-wrong.request-1.json",
+        "sha256": "bc979692ae36f6a59698bc4a923297e14d4bec397fa400476117813bce91c9c4"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s07-sub1-wrong.response-1.json",
+        "sha256": "7ca6a0104c17bc419f5e66f4adc23eecdcff36793cd0b405ee997306fc182d4f"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s07-sub1-wrong.trace.json",
+        "sha256": "f24d48a920894d49e83f3969a70c490bdaad8df6150a951e02d79394a2bb7450"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s07-sub1-wrong.usage.json",
+        "sha256": "f1e89c4f648e2741a80b86d42dc47062cb99ac3a2dd51c864ae443859dd3f5f5"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s07-sub1-wrong.result.json",
+        "sha256": "b68cfa671d0b783fe2e476d441e0edf80c378732d5b1aee955946eb1635bba2a"
+      }
+    ],
+    "original_case_id": "s07-sub1-wrong",
+    "origin_batch": "cpa_uploader/drafts/standard-expansion-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

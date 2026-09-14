@@ -1,0 +1,161 @@
+{
+  "status": "passed_static_review",
+  "reviewed_at": "2026-09-14T09:24:21.967Z",
+  "reviewer": "independent_agent:/root/trio_execution",
+  "method": "direct_code_and_local_evidence_review_with_independent_exact_field_reconstruction",
+  "human_review_performed": false,
+  "script": {
+    "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/reconcile-publication-v2.mjs",
+    "sha256": "5740ed191e2f6e5ef9446b7365acc79f7226d02215d7ea367282c57197ffac3c"
+  },
+  "scope": "Read-only independent review. Reconciliation was not imported or executed; publisher and DB preparation/apply are separate.",
+  "checks": [
+    {
+      "id": "exact_concurrent_changes",
+      "passed": true,
+      "evidence": "Independent in-memory reconstruction reproduced all 52 documented field replacements in 21 standard sets plus their single appended fix-v2 verification notes; the entire result equals S/evidence-bank.json. Code requires exact 372 IDs/order, 372/555/1889 totals, unchanged topics and all 70 existing case objects."
+    },
+    {
+      "id": "initial_identity_and_cas",
+      "passed": true,
+      "evidence": "Final code captures canonical and original-stage identities before reading data, binds current catalog review-file SHA, validates original preparation immutable refs and sealed readiness validated_files, and repeats guardInitial before snapshot staging, before flush and after flush. These actual input paths do not overlap pending output keys."
+    },
+    {
+      "id": "source_and_db_evidence",
+      "passed": true,
+      "evidence": "Actual local S applied receipt, passed roundtrip and root read-only snapshot bind release 80d36a36-cccd-41f4-9cf5-ec5baa73123f and source 67a8738f4f9dc959ca52a213c7e07b224836fc3a94effe1f20b56090d01f9da7. No network call was made."
+    },
+    {
+      "id": "original_three_and_six_transitions",
+      "passed": true,
+      "evidence": "Read original stage bank, ledger, backup ledger and sealed receipts. Prior ledger prefix is preserved; six added entries contain exactly verified then published transitions for each of three IDs. Actual efficient_review equals the sealed receipt, batch equals readiness.batch, and both entries carry matching content/receipt hashes. Code additionally uses reviewedContentHash to compare published cases to the protected graded candidate."
+    },
+    {
+      "id": "latest_baseline_and_classification",
+      "passed": true,
+      "evidence": "Candidate appends original published objects to the latest full bank; ledger appends only six original entries to a clone of current ledger. Classification appends exactly nine new entries to current review entries and binds the pending candidate hash."
+    },
+    {
+      "id": "pending_preflight",
+      "passed": true,
+      "evidence": "All outputs and snapshots enter a pending Map. All field, receipt and schema assertions occur before mkdir/wx flush. Pending output hashes never mask actual original-input guards. Flush checks saved byte hashes and rechecks inputs. I/O failure or a post-flush race can leave local diagnostic artifacts; downstream publication CAS and full validation remain required."
+    },
+    {
+      "id": "original_interruption_preserved",
+      "passed": true,
+      "evidence": "Original stage-interruption.json records process exit 1 on concurrent canonical change and completed_stage=false. Only successful original 02/03 results are reused; interrupted overall stage is not reclassified as completed."
+    },
+    {
+      "id": "syntax",
+      "passed": true,
+      "evidence": "node --check exited 0 for the exact reviewed hash."
+    }
+  ],
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "prior_issue": "Late refs could bless concurrent input changes after data parsing.",
+      "resolution": "Initial identity/protected evidence lists and repeated guards bind actual reads."
+    },
+    {
+      "id": "R2",
+      "prior_issue": "Truthy efficient_review did not bind transitions to the sealed receipt.",
+      "resolution": "Deep equality, exact batch and both transition content/receipt hashes are required."
+    },
+    {
+      "id": "preflight_advisory",
+      "prior_issue": "Baseline files could be written before transition validation.",
+      "resolution": "All outputs are buffered until every preflight assertion completes."
+    }
+  ],
+  "unresolved_findings": [],
+  "execution": {
+    "reconciliation_script_executed": false,
+    "model_api_calls": 0,
+    "network_calls": 0,
+    "db_writes": 0,
+    "canonical_writes": 0,
+    "review_artifact_only": true
+  },
+  "review_record_attempts": [
+    {
+      "result": "stale_hash_guard_aborted_before_write",
+      "note": "An earlier draft targeted a superseded script and was not saved."
+    },
+    {
+      "result": "review_evidence_field_assertion_aborted_before_write",
+      "note": "A review harness first used exit_code instead of process_exit_code for interruption evidence; actual schema was reread and corrected without changing the evidence or reconciliation script."
+    }
+  ],
+  "runtime_gates": "Root may execute this reviewed reconciliation with its guarded prerequisites. Static acceptance does not establish publication-v2 full validation, installation or DB application.",
+  "evidence": [
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/changes.json",
+      "sha256": "5d5f1cd158e36f62c6da3f9999aa63f3bdaa437d825ac0fbdfd9e70c1cbe8c04"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/evidence-bank.json",
+      "sha256": "67a8738f4f9dc959ca52a213c7e07b224836fc3a94effe1f20b56090d01f9da7"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/install-completion.json",
+      "sha256": "02ba1fd385d5ff22a759cd65e05003a4c3f7e05fac9f2b26e2be1017e20b6e6d"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/receipt.json",
+      "sha256": "64c912244933d8b8bbb40aee2c9f6f478f5424e56a3f0a5270ea94105202cdfe"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/roundtrip.json",
+      "sha256": "0da93f576de2037d8331d5ad0357abeb8d7b55ab1a0826b62b6e30d766ad9e92"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/production-baseline-read-v2.json",
+      "sha256": "4d8faf3bdc3ad73d1e717fbcef881813396290c740b39e1b6a0e86c2146da87e"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/integration-baseline/bank.json",
+      "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/preparation.json",
+      "sha256": "730b652f1a357db45276c9dcdd3c9f46d71334024c2a987a27c7347a018bea9f"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/02-verify-new.result.json",
+      "sha256": "0b45eabb6c9a4ceca0ccb43c0f31bb95a077973374eb6f9b5bee02c027b3880a"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/03-publish.result.json",
+      "sha256": "d2e920bd76314aa87ee1e4e1e4ca1c17ff03118ce52ade0d1fc6f9c98b99dabf"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/stage/authoring.json",
+      "sha256": "c020eeb719729ea1f712296a0f09d1df9e685f8b2fdb918a2317e405621e9088"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/stage/promotions.json",
+      "sha256": "ebfc3ac35bc65c2ffc050dbf6b95719e262357565b7b3b4278718005930122f2"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/backup/ledger.json",
+      "sha256": "5f61538f37b3ed69beb79b66a024e1cad844d0b0fbb938d9d8704151c432cf77"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/stage-interruption.json",
+      "sha256": "59036d439203fdc80faaf393b35f788a6351a0636d623293eeb18857a11de27d"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/sealed-v1/batch.json",
+      "sha256": "93da67b2cf1fe99a1798834cd115ba880ae24a055c43c97dfbf1747f34225188"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/sealed-v1/readiness.json",
+      "sha256": "99b56ad5441d67cb313869eed44f0145682a540e3cd3239142d7ca5a57f465e0"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/sealed-v1/receipts.json",
+      "sha256": "4fc09ae3f9d7803b121fb2c56e42703f36e2ad5907ffebb352b8c55cbe9b9b3c"
+    }
+  ]
+}

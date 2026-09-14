@@ -1,0 +1,350 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-13-011--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-011--case",
+  "source_set_id": "pilot-13-011",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2",
+    "exp1"
+  ],
+  "projected_body_hash": "6f50e9910154c64f14fcb2c94dc31b10e2f28b77ee43745455a132623c3967ae",
+  "answers": {
+    "sub2": "다온이 보고서에서 제외되어 있다는 이유만으로 검토를 생략할 수 없다.",
+    "exp1": "직원 명부와 퇴직자 지급액 검토는 온유회사 급여의 오류를 막는 관련 보충통제이다. 검토규정이 실제 급여 지급 전에 오류를 찾아내도록 설계되어 있는지 이해한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.crit1",
+          "verdict": "met",
+          "reason": "판단만 인정하고 관련 하위서비스에 402를 적용하는 근거는 미제시."
+        },
+        {
+          "criterion_id": "sub2.crit2",
+          "verdict": "not_met",
+          "reason": "판단만 인정하고 관련 하위서비스에 402를 적용하는 근거는 미제시."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "exp1.c1",
+          "verdict": "met",
+          "reason": "관련성과 설계만 옳고 담당자 퇴사 후 실행 및 운영테스트가 빠졌다."
+        },
+        {
+          "criterion_id": "exp1.c2",
+          "verdict": "met",
+          "reason": "관련성과 설계만 옳고 담당자 퇴사 후 실행 및 운영테스트가 빠졌다."
+        },
+        {
+          "criterion_id": "exp1.c3",
+          "verdict": "not_met",
+          "reason": "관련성과 설계만 옳고 담당자 퇴사 후 실행 및 운영테스트가 빠졌다."
+        },
+        {
+          "criterion_id": "exp1.c4",
+          "verdict": "not_met",
+          "reason": "관련성과 설계만 옳고 담당자 퇴사 후 실행 및 운영테스트가 빠졌다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "45df5d891770e7ced528433e60ec11ac90540130537d303fb92c6db80ed48bf4",
+  "schema_hash": "bd05a7b6f001c5a0eea7cc815ede0e1efedbcc73de914549ff215736b5115ce8",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "met",
+            "quote": "다온이 보고서에서 제외되어 있다는 이유만으로 검토를 생략할 수 없다.",
+            "reason": "보고서 범위 제외만을 이유로 관련 하위서비스 검토를 생략할 수 없다고 명시했다."
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "not_met",
+            "reason": "감사기준서 402의 요구사항을 적용한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp1",
+        "verdicts": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "met",
+            "quote": "직원 명부와 퇴직자 지급액 검토는 온유회사 급여의 오류를 막는 관련 보충통제이다. 검토규정이 실제 급여 지급 전에 오류를 찾아내도록 설계되어 있는지 이해한다.",
+            "reason": "두 검토를 급여 오류를 막는 관련 보충통제로 판단했다."
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "met",
+            "quote": "검토규정이 실제 급여 지급 전에 오류를 찾아내도록 설계되어 있는지 이해한다.",
+            "reason": "검토규정이 오류를 찾아내도록 적절히 설계되었는지 이해한다고 했다."
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "not_met",
+            "reason": "실제 수행자와 담당자 변경 후 실행 여부를 확인한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "exp1.c4",
+            "verdict": "not_met",
+            "reason": "운영효과성 테스트, 실제 수행 증거 확인 및 새롬 보고서의 한계에 대한 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "보고서 범위 제외만을 이유로 관련 하위서비스 검토를 생략할 수 없다고 명시했다."
+              },
+              {
+                "criterion_id": "sub2.crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사기준서 402의 요구사항을 적용한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp1",
+            "verdicts": [
+              {
+                "criterion_id": "exp1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "두 검토를 급여 오류를 막는 관련 보충통제로 판단했다."
+              },
+              {
+                "criterion_id": "exp1.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "exp1/e2"
+                ],
+                "reason": "검토규정이 오류를 찾아내도록 적절히 설계되었는지 이해한다고 했다."
+              },
+              {
+                "criterion_id": "exp1.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "실제 수행자와 담당자 변경 후 실행 여부를 확인한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "exp1.c4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "운영효과성 테스트, 실제 수행 증거 확인 및 새롬 보고서의 한계에 대한 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-011",
+    "score": 3,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "하위서비스조직의 통제가 보고서 범위에서 제외되었다는 이유로 해당 서비스에 관한 검토를 생략할 수 있는지 판단하고, 제시된 관련성 조건에서 적용해야 할 기준서 요구를 설명하시오.",
+        "user_answer": "다온이 보고서에서 제외되어 있다는 이유만으로 검토를 생략할 수 없다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "met",
+            "quote": "다온이 보고서에서 제외되어 있다는 이유만으로 검토를 생략할 수 없다.",
+            "reason": "보고서 범위 제외만을 이유로 관련 하위서비스 검토를 생략할 수 없다고 명시했다.",
+            "claim": "재무제표감사와 관련된 하위서비스가 보고서 범위에서 제외되었다는 이유만으로 검토를 생략할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "not_met",
+            "reason": "감사기준서 402의 요구사항을 적용한다는 내용이 없다.",
+            "claim": "보고서에서 제외된 하위서비스가 이용자기업 재무제표감사와 관련되므로 해당 하위서비스에 감사기준서402의 요구사항을 적용한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재무제표감사와 관련된 하위서비스가 보고서 범위에서 제외되었다는 이유만으로 검토를 생략할 수 없다.",
+          "보고서에서 제외된 하위서비스가 이용자기업 재무제표감사와 관련되므로 해당 하위서비스에 감사기준서402의 요구사항을 적용한다."
+        ]
+      },
+      {
+        "subquestion_id": "exp1",
+        "prompt": "유형 2 보고서에 제시된 직원 명부 대조·퇴직자 지급액 검토에 관하여, 온유회사에서 수행할 절차를 설명하시오. 해당 통제의 관련성, 설계, 실제 실행 및 운영효과성을 구별하고 검토 담당자 변경과 미입수 기록을 고려하시오.",
+        "user_answer": "직원 명부와 퇴직자 지급액 검토는 온유회사 급여의 오류를 막는 관련 보충통제이다. 검토규정이 실제 급여 지급 전에 오류를 찾아내도록 설계되어 있는지 이해한다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "met",
+            "quote": "직원 명부와 퇴직자 지급액 검토는 온유회사 급여의 오류를 막는 관련 보충통제이다. 검토규정이 실제 급여 지급 전에 오류를 찾아내도록 설계되어 있는지 이해한다.",
+            "reason": "두 검토를 급여 오류를 막는 관련 보충통제로 판단했다.",
+            "claim": "직원 명부 대조와 퇴직자 지급액 검토는 온유회사의 급여 지급 오류를 예방·발견하는 보충적인 이용자기업 통제로서 당기 급여 감사와 관련된다고 결정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "met",
+            "quote": "검토규정이 실제 급여 지급 전에 오류를 찾아내도록 설계되어 있는지 이해한다.",
+            "reason": "검토규정이 오류를 찾아내도록 적절히 설계되었는지 이해한다고 했다.",
+            "claim": "온유회사의 검토규정이 직원 명부 대조와 퇴직자 지급액 검토를 하도록 적절하게 설계되었는지 이해한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "not_met",
+            "reason": "실제 수행자와 담당자 변경 후 실행 여부를 확인한다는 내용이 없다.",
+            "claim": "규정의 존재만으로 실행을 인정하지 않고 실제로 누가 검토를 수행했는지 확인한다. 특히 담당자 퇴사 후 10~12월에도 해당 통제가 실제 실행되었는지 이해한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c4",
+            "verdict": "not_met",
+            "reason": "운영효과성 테스트, 실제 수행 증거 확인 및 새롬 보고서의 한계에 대한 내용이 없다.",
+            "claim": "관련 보충통제의 운영효과성을 테스트한다. 10~12월의 미입수 검토기록 등 당기 실제 수행 증거를 확인하며 새롬의 유형 2 보고서만으로 온유회사 통제의 효과성을 대신하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "직원 명부 대조와 퇴직자 지급액 검토는 온유회사의 급여 지급 오류를 예방·발견하는 보충적인 이용자기업 통제로서 당기 급여 감사와 관련된다고 결정한다.",
+          "온유회사의 검토규정이 직원 명부 대조와 퇴직자 지급액 검토를 하도록 적절하게 설계되었는지 이해한다.",
+          "규정의 존재만으로 실행을 인정하지 않고 실제로 누가 검토를 수행했는지 확인한다. 특히 담당자 퇴사 후 10~12월에도 해당 통제가 실제 실행되었는지 이해한다.",
+          "관련 보충통제의 운영효과성을 테스트한다. 10~12월의 미입수 검토기록 등 당기 실제 수행 증거를 확인하며 새롬의 유형 2 보고서만으로 온유회사 통제의 효과성을 대신하지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0996345f5fd7a041016aa60362ee4c87d0917d2e40c6de299a",
+        "request_id": "req_60cf053189a047f19a823a55fceee496",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 4394,
+          "input_tokens_details": {
+            "cache_write_tokens": 4391,
+            "cached_tokens": 0
+          },
+          "output_tokens": 1399,
+          "output_tokens_details": {
+            "reasoning_tokens": 1034
+          },
+          "total_tokens": 5793
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0027771499999999995,
+        "min_usd": 0.0027771499999999995,
+        "max_usd": 0.0027771499999999995,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-13-011--case--partial/input.json",
+      "sha256": "088267dc4d7b6c13a129933862fe4786e4946f5151a6b0bbc5021245a37b28e2"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-13-011--case--partial/transport.jsonl",
+      "sha256": "84145d859a75401861c911050e81e4ff2286ebea42b0cb6fa9be3cd312e413a3"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-13-011--case--partial/traces.jsonl",
+      "sha256": "7a1f9ef8b6e45b36b5aad802dd1779f8eee280d45c7a37578d33bc5db7be8a66"
+    }
+  }
+}

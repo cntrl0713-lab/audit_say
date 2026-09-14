@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-04-005--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-005--case",
+  "source_set_id": "pilot-04-005",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "a27bcfbe89a12ececdee2fd94f2d3ae021080b0ef9cf024965a13122908481c8",
+  "answers": {
+    "sub1": "보존기간이 끝나기 전에 감사문서를 삭제하거나 폐기하는 것은 허용되지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 독립 요구를 직접 제시함."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "원문 및 해당 물음의 전체 명제와 대조: 이 요구나 이를 함축하는 설명을 제시하지 않음."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ec9ead9b3751a1cd8dbda1d8d58200d02c36705c5c4deef6ad95d2c7fe2ab589",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "보존기간이 끝나기 전에 감사문서를 삭제하거나 폐기하는 것은 허용되지 않는다.",
+            "reason": "보존기간 종료 전 감사문서의 삭제·폐기가 허용되지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "모든 성격의 감사문서가 금지 대상이라는 범위를 구체적으로 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "보존기간 종료 전 감사문서의 삭제·폐기가 허용되지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "모든 성격의 감사문서가 금지 대상이라는 범위를 구체적으로 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-005",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "회계법인의 감사문서 삭제 계획이 허용되는지 판단하고, 삭제·폐기 금지 대상 문서의 범위를 근거로 설명하시오.",
+        "user_answer": "보존기간이 끝나기 전에 감사문서를 삭제하거나 폐기하는 것은 허용되지 않는다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "보존기간이 끝나기 전에 감사문서를 삭제하거나 폐기하는 것은 허용되지 않는다.",
+            "reason": "보존기간 종료 전 감사문서의 삭제·폐기가 허용되지 않는다고 명시했다.",
+            "claim": "보존기간 종료 전 삭제·폐기는 허용되지 않는다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "모든 성격의 감사문서가 금지 대상이라는 범위를 구체적으로 설명하지 않았다.",
+            "claim": "판단 근거로 취합 완료 후 어떠한 성격의 감사문서도 대상이 됨을 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "허용되지 않는다. 최종감사파일 취합 완료 후에는 보존기간 종료 전까지 어떠한 성격의 감사문서도 삭제하거나 폐기해서는 안 된다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0454be2d8b17b7f2016aa5db664cf887d081356c419b2518ea",
+        "request_id": "req_ab26a6d3da5643b381a35d054d2e1919",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2406,
+          "input_tokens_details": {
+            "cache_write_tokens": 2403,
+            "cached_tokens": 0
+          },
+          "output_tokens": 235,
+          "output_tokens_details": {
+            "reasoning_tokens": 93
+          },
+          "total_tokens": 2641
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00088335,
+        "min_usd": 0.00088335,
+        "max_usd": 0.00088335,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-04-005--case--partial/input.json",
+      "sha256": "a253efd792a5ecb78bbc2c5be2f7183eabe6911ccacd2099a0566c7c2711200c"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-04-005--case--partial/transport.jsonl",
+      "sha256": "37f9e65c9c58fbd84c5c79334a927426cd79f8a3f1c7b93cd226b17bb45e402b"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-04-005--case--partial/traces.jsonl",
+      "sha256": "c314ea20d0d0f9683b4640d4e16cf780bba6331ef25f00237fd51bccc7aca3d2"
+    }
+  }
+}

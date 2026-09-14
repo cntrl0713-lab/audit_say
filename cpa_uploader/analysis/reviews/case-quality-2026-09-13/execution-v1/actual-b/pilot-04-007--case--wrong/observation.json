@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-04-007--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-007--case",
+  "source_set_id": "pilot-04-007",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "b19577bda30c9597379429ab65f3b84ba0a347d286ed1c8121c3f690988240e6",
+  "answers": {
+    "sub2": "현재 제안을 들었다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 읽었으나 이 하위 요구의 행동·관계·판단이 없다. 다른 명제의 설명이나 주어진 사실만으로 보충하지 않는 명시적 누락 판단이다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "not_met",
+          "reason": "원답안 전체를 읽었으나 이 하위 요구의 행동·관계·판단이 없다. 다른 명제의 설명이나 주어진 사실만으로 보충하지 않는 명시적 누락 판단이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "63e3fc23712ec7c11c01176885b69e61cbcc8575c5fc1af271b243eb418ce343",
+  "schema_hash": "751e326729aa6dd13b3fe55842ea9d17d6509ce4c999dcce1578e0e558bda330",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "제안의 부적절성을 판단하거나 설명하지 않았다."
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "전문가적 판단의 필요성과 비율 참고 가능성에 대한 설명이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "제안의 부적절성을 판단하거나 설명하지 않았다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전문가적 판단의 필요성과 비율 참고 가능성에 대한 설명이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-007",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "을의 수행중요성 결정방식이 적절한지 판단하고, 기계적인 계산 외에 필요한 판단의 성격을 설명하시오.",
+        "user_answer": "현재 제안을 들었다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "제안의 부적절성을 판단하거나 설명하지 않았다.",
+            "claim": "기업 상황과 무관한 고정 비율의 기계적 계산만으로 수행중요성을 정하자는 제안은 부적절하다. 전문가적 판단 필요를 명확히 설명해 그 판단이 함축되어도 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "전문가적 판단의 필요성과 비율 참고 가능성에 대한 설명이 없다.",
+            "claim": "수행중요성의 결정에는 전문가적 판단이 필요하다. 비율을 참고하는 것 자체가 언제나 금지되는 것은 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "기업 상황과 무관한 고정 비율의 기계적 계산만으로 수행중요성을 정하자는 제안은 부적절하다.",
+          "수행중요성의 결정에는 전문가적 판단이 필요하다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_03bb708f4618f71c016aa5dc1a6d3c87d09e003dedc764f216",
+        "request_id": "req_f85a4ba2186e449d8cdffa5c3e30067a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2463,
+          "input_tokens_details": {
+            "cache_write_tokens": 2460,
+            "cached_tokens": 0
+          },
+          "output_tokens": 172,
+          "output_tokens_details": {
+            "reasoning_tokens": 46
+          },
+          "total_tokens": 2635
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.000822,
+        "min_usd": 0.000822,
+        "max_usd": 0.000822,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-04-007--case--wrong/input.json",
+      "sha256": "0efa2bc1300ecb87740fa66a7c94ebcc662a1e0d869c7656a533c06e0403e975"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-04-007--case--wrong/transport.jsonl",
+      "sha256": "3db8d5bbd6d4a57e6217bc309bce12a3ffea61ee7e3a8ffd54db89a54026dced"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-04-007--case--wrong/traces.jsonl",
+      "sha256": "2ad27f490667ed0e7963826c8822317ec0e5b151378cac20385832fbe492426a"
+    }
+  }
+}

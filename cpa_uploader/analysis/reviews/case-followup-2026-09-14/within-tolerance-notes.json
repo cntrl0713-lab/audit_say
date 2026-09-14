@@ -1,0 +1,601 @@
+{
+  "version": "within-tolerance-deviation-review-v1",
+  "status": "complete",
+  "reviewer_id": "agent:/root/followup_sources_a",
+  "human_review_performed": false,
+  "review_date": "2026-09-14",
+  "review_method": "완료된 실제 원관측의 원답안·기대판정·실제 criterion 판정·채점 이유를 동결된 발문·정답·배점 기준과 직접 대조",
+  "sealed_summary": {
+    "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/sealed-v1/summary.json",
+    "sha256": "7286dc63d875cfd728ff93f8c803f70bac6caf6eb63cbe6aa29eb530437845b4",
+    "status": "passed",
+    "fixed_evaluated_answers": 54,
+    "exact_score_matches": 53,
+    "within_tolerance": 54,
+    "actual_sdk_calls": 18
+  },
+  "scope": {
+    "completed_observations": 18,
+    "evaluated_answers": 54,
+    "nonzero_score_deviations": 1,
+    "within_tolerance_nonzero_deviations": 1,
+    "outside_tolerance_deviations": 0,
+    "zero_score_verdict_mismatch_answers": 18,
+    "additional_api_calls": 0,
+    "frozen_files_modified": false
+  },
+  "findings": [
+    {
+      "entry_id": "case-08-selection-coverage-20260914--case--partial",
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "actual_points": 1,
+      "delta": -1,
+      "human_review_performed": false,
+      "finding": "원답안은 “특정 항목의 추출”로 방법을 정확히 식별하고 전체 매출채권에 투영할 수 없다고 판단했다. 모델은 sub1.c1에서 표본감사와의 구별을 별도 문구로 명시하지 않았다는 이유로 1점을 주지 않았다. 발문은 추출방법 식별을 요구하고, 동결된 critical_facts는 특정항목선택 및 동등한 의미를 인정한다. 특정항목추출이라는 정확한 분류와 투영 불가를 제시한 답안에 부정문 재서술을 추가로 요구한 모델의 과소인정이다. 잔여 모집단에 증거가 없다는 이유를 생략한 sub1.c3의 0점은 적절하다.",
+      "decision": "정답·원답안·기대 2점은 유지한다. 미충족 근거 1점을 정확히 제외한 부분답안이므로 기반 내용이나 기대값의 결함은 없다. 전체 54개 대표 답안 중 이 물음에 한정된 -1점이며 허용범위 안이므로 원관측을 보존하고 동결 파일 수정이나 편차 제거를 위한 추가 호출을 하지 않는다.",
+      "classification": "model_undercredit_semantically_sufficient_classification",
+      "answer": "이 검사는 특정 항목의 추출이다. 전체 매출채권에 결과를 그대로 투영할 수 없다.",
+      "criterion_id": "sub1.c1",
+      "expected_verdict": "met",
+      "actual_verdict": "not_met",
+      "model_reason": "특정 항목의 추출이라고만 했고 표본감사와의 구별을 명시하지 않았다.",
+      "criterion_application": "특정항목선택/판단적으로 주요항목조사 등 의미가 같으면 인정하며 모든 비통계적 추출을 표본감사가 아니라고 일반화하지 않는다.",
+      "observation": {
+        "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-08-selection-coverage-20260914--case--partial/observation.json",
+        "sha256": "d9edb9f88001319a5e6a4bea917c2c63ffc44615a5d55c40a9048c08fb1592d7"
+      }
+    }
+  ],
+  "zero_score_verdict_mismatches": [
+    {
+      "entry_id": "case-07-interim-misstatement-20260914--case--wrong",
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "9월 말 잔액에 오류가 없으면 12월 말에도 같은 결론이 유지되므로 잔여기간은 검사하지 않아도 된다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub1.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "잔여기간 검사가 필요 없고 9월 말 결론을 연말에 그대로 적용할 수 있다고 명시했다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "잔여기간을 검사하지 않아도 된다고 명시하여 후속 실증절차의 필요성을 부정했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-07-interim-misstatement-20260914--case--wrong",
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "발견한 반품 오류를 수정하면 예상하지 못한 오류의 영향은 끝난다. 위험평가와 잔여기간 실증절차 계획은 더 검토하지 않는다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub2.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "발견된 오류의 영향이 끝났다고 하며 위험평가를 더 검토하지 않는다고 명시했다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "잔여기간 실증절차 계획을 더 검토하지 않는다고 명시했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-07-interim-misstatement-20260914--case--wrong",
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "11월 15일까지 검사한 표본 수만 늘리면 충분하므로 그 이후의 검사 시기는 추가하지 않는다. 연말 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub3.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "11월 15일 이후 검사 시기를 추가하지 않아도 충분하다고 명시했다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "11월 중순까지의 검사와 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다고 명시했다."
+        },
+        {
+          "criterion_id": "sub3.c3",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "그 이후의 검사 시기를 추가하지 않는다고 명시하여 연말 또는 근접 시기 절차를 부정했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-11-estimate-lookback-20260914--case--wrong",
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "최종 수리비용이 확정되기 전의 재추정 자료는 아무 의미가 없으므로 A형 장비의 보증이 끝날 때까지 전기 추정치에 대한 검토를 미룬다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub1.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "검토를 보증기간 종료까지 미루겠다고 명시했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-11-estimate-lookback-20260914--case--wrong",
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "추정금액은 반드시 실제 금액과 같아야 하므로 공급 중단이 언제 발생했든 전기 추정치가 잘못된 것으로 확정한다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub2.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "실제 금액과 반드시 같아야 하므로 추정치가 잘못되었다고 명시했다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "공급 중단 시점과 무관하게 전기 추정치가 잘못되었다고 했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-11-estimate-lookback-20260914--case--wrong",
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "각 판단이 합리적인 범위라면 회사의 반복된 선택을 편의 관점에서 검토할 필요가 없다. 징후라는 말만 붙이면 증거 없이 모든 개별 추정치를 즉시 왜곡표시로 확정할 수 있다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub3.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "반복된 선택을 편의 관점에서 검토할 필요가 없다고 명시했다."
+        },
+        {
+          "criterion_id": "sub3.c3",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "증거 없이 모든 개별 추정치를 즉시 왜곡표시로 확정할 수 있다고 했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-16-report-paragraphs-20260914--case--wrong",
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "주석12가 상세하므로 영업권을 핵심감사사항으로 결정했어도 강조사항문단으로 대체할 수 있다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub1.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "핵심감사사항 기술을 강조사항문단으로 대체할 수 있다고 명시했다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "주석12의 상세한 공시를 이유로 이미 결정된 핵심감사사항의 개별 기술을 대체할 수 있다고 했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-16-report-paragraphs-20260914--case--wrong",
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "제목은“추가 설명”으로만 두고 독자에게 유용한 미공시 건설계획도 계속 넣는다. 홍수 강조사항이 있으므로 전체 감사의견을 적정의견으로 바꾼다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub2.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "제목을 ‘추가 설명’으로만 유지한다고 했다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "미공시 건설계획을 계속 포함한다고 했다."
+        },
+        {
+          "criterion_id": "sub2.c3",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "전체 감사의견을 적정의견으로 바꾼다고 하여 한정의견과 양립하지 않는다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-16-report-paragraphs-20260914--case--wrong",
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "투자주식 사유는 핵심감사사항의 개별 항목으로만 기술하고 한정의견근거 단락과 그 참조는 생략한다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub3.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "한정의견근거 단락에 보고하지 않고 핵심감사사항으로만 기술한다고 했다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "한정의견근거 단락과 그 참조를 생략한다고 명시했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-08-selection-coverage-20260914--case--wrong",
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "금액의70%를 확인했으므로 통계적 표본감사에 해당한다. 오류가 없었으므로 남은30%에도 같은 결론을 적용한다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub1.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "판단적 특정항목선택이 아니라 통계적 표본감사라고 명시했다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "오류가 없다는 이유로 남은 모집단에도 같은 결론을 적용한다고 명시했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-08-selection-coverage-20260914--case--wrong",
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "기존에 검사한 고액거래처 중에서 몇 개를 다시 뽑아 조사하면 미검사 소액채권의 증거도 자동으로 보충된다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub2.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "기존 고액거래처 중 일부를 다시 조사하는 방식을 제시하여 잔여 모집단을 별도 대상으로 테스트하지 않았다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "기존 고액거래처의 재검사가 미검사 소액채권의 증거를 자동 보충한다고 명시했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-08-selection-coverage-20260914--case--wrong",
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "거래유형과 무관하게 표본감사를 반드시 사용해야 하므로4개 대출계약도1건만 고르고 전체 결론을 내린다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub3.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "표본감사를 반드시 사용하고 1건만 조사한다고 하여 전수조사와 반대되는 결론을 제시했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-10-control-sample-frame-20260914--case--wrong",
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "승인완료된 거래가 통제를 따른 대표 거래이므로 그 항목만 모집단으로 사용한다. 발행번호 대장이나 창고기록과 대조할 필요는 없다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub1.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "승인완료 거래만 모집단으로 사용하자는 결론은 미승인 이탈 거래가 제외되어 부적절하다는 명제와 반대이다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "발행번호 대장이나 창고기록과 대조할 필요가 없다고 명시하여 완전성 확인 절차를 부정했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-10-control-sample-frame-20260914--case--wrong",
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "가와 나 모두 승인기록을 바로 확인할 수 없으므로 정상 승인된 다른 항목으로 교체한다. 취소 여부나 대체적 절차 가능성은 구별하지 않는다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub2.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "가 항목을 적법한 취소·무출고 항목으로 처리하지 않고 다른 항목으로 교체한다고 했다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "나 항목을 이탈로 취급하지 않고 교체하며, 대체적 절차 가능성도 구별하지 않는다고 했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-10-control-sample-frame-20260914--case--wrong",
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "표본에서 발견한 출고금액이 작으므로 이탈률이나 추가 증거의 유무와 무관하게 최초의 낮은 위험평가를 그대로 유지한다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub3.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "최초의 낮은 위험평가를 그대로 유지한다고 명시했다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "이탈률과 추가 증거 유무와 무관하게 금액이 작다는 이유로 결과를 무시한다고 했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-14-component-evidence-gap-20260914--case--wrong",
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "부문감사인이 충분하다고 적었으므로 요약표와의 차이는 무시한다. 부문감사인과 토의하거나 관련 문서를 더 확인할 필요는 없다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub1.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "차이를 무시하고 부문감사인과 토의할 필요가 없다고 명시했다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "관련 문서를 더 확인할 필요가 없다고 명시했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-14-component-evidence-gap-20260914--case--wrong",
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "부문감사인이 책임진다는 확인 문장만 추가하면 되므로 창고에 관한 추가절차나 그 수행자를 정할 필요는 없다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub2.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "창고에 관한 추가절차를 정할 필요가 없다고 명시했다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "추가절차의 수행자를 정할 필요가 없다고 명시했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    },
+    {
+      "entry_id": "case-14-component-evidence-gap-20260914--case--wrong",
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "human_review_performed": false,
+      "answer": "각 부문이 적정의견을 받았으므로 미수정 매출왜곡표시를 그룹 수준에서 합산하거나 소송충당부채 증거 부족을 별도로 평가할 필요가 없다.",
+      "criterion_differences": [
+        {
+          "criterion_id": "sub3.c1",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "부문 적정의견을 이유로 그룹 수준 평가가 불필요하다고 명시했다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "미수정 매출왜곡표시를 그룹 수준에서 합산할 필요가 없다고 명시했다."
+        },
+        {
+          "criterion_id": "sub3.c3",
+          "expected_verdict": "not_met",
+          "actual_verdict": "contradicted",
+          "actual_reason": "소송충당부채 증거 부족을 별도로 평가할 필요가 없다고 명시했다."
+        }
+      ],
+      "finding": "대표 오답 기대판정은 충족 여부에 따라 not_met로 구성되었고, 실제 모델은 명시적 반대 결론을 contradicted로 구분했다. 원답안과 실제 판정 이유를 대조했으며 두 판정의 배점은 모두 0점이다.",
+      "decision": "점수 및 정답 경계에 영향이 없는 레이블 차이로 분리한다. 기대값·원답안·원관측을 보존하고 점수 편차 또는 기대점수 내용 결함으로 집계하지 않는다."
+    }
+  ],
+  "observation_bindings": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-07-interim-misstatement-20260914--case--model/observation.json",
+      "sha256": "d445fb9537a2c73419008ed9dc7b77c0e74400e19ecca7b69aa40bef9c7c694d",
+      "entry_id": "case-07-interim-misstatement-20260914--case--model"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-07-interim-misstatement-20260914--case--partial/observation.json",
+      "sha256": "8a6311e668d0fe8deac851d3e4c0f992cb27410e52b4db50fea7c9b9e589cd6c",
+      "entry_id": "case-07-interim-misstatement-20260914--case--partial"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-07-interim-misstatement-20260914--case--wrong/observation.json",
+      "sha256": "12d2c249422b970afdc49432db0ebe11c183467175b52b347da3074f42acb39e",
+      "entry_id": "case-07-interim-misstatement-20260914--case--wrong"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-11-estimate-lookback-20260914--case--model/observation.json",
+      "sha256": "0695fe1066ef68816bec8992e7dc91c1effea975641703248ded01bb795b3e4d",
+      "entry_id": "case-11-estimate-lookback-20260914--case--model"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-11-estimate-lookback-20260914--case--partial/observation.json",
+      "sha256": "ee564935aa30bfb0b52a03c1b3522a53b2af7fbd635ed27890899d1b371c20f6",
+      "entry_id": "case-11-estimate-lookback-20260914--case--partial"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-11-estimate-lookback-20260914--case--wrong/observation.json",
+      "sha256": "5586fe011d3fc009086d8abd5734333328be537c4392da37a5562b749f487ab1",
+      "entry_id": "case-11-estimate-lookback-20260914--case--wrong"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-16-report-paragraphs-20260914--case--model/observation.json",
+      "sha256": "db1ab8e31afa5f4fe073d5dd74b808bde874fc931de313a6fdd63337d0e62546",
+      "entry_id": "case-16-report-paragraphs-20260914--case--model"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-16-report-paragraphs-20260914--case--partial/observation.json",
+      "sha256": "62968797f7ba14a8acd7e78b4522d51deeced8a0f10b6b31a0ebd98864227054",
+      "entry_id": "case-16-report-paragraphs-20260914--case--partial"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-16-report-paragraphs-20260914--case--wrong/observation.json",
+      "sha256": "b47b046b2ca4292741eff796557f2d1109f052a8263f668219ab05ea23aeb098",
+      "entry_id": "case-16-report-paragraphs-20260914--case--wrong"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-08-selection-coverage-20260914--case--model/observation.json",
+      "sha256": "d22948d64ac349c8d0dbd2f7fb248f48f4e25c9c42b22e5abfcc81f7c4df9c22",
+      "entry_id": "case-08-selection-coverage-20260914--case--model"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-08-selection-coverage-20260914--case--partial/observation.json",
+      "sha256": "d9edb9f88001319a5e6a4bea917c2c63ffc44615a5d55c40a9048c08fb1592d7",
+      "entry_id": "case-08-selection-coverage-20260914--case--partial"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-08-selection-coverage-20260914--case--wrong/observation.json",
+      "sha256": "f440731f6da1bf7b539dca6caef27d73b64120bef6ebed3c79dcef1e28379315",
+      "entry_id": "case-08-selection-coverage-20260914--case--wrong"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-10-control-sample-frame-20260914--case--model/observation.json",
+      "sha256": "bed0824a998188f7683851d9c3c5b383cfbdf4fb650ee913c9912151807975b1",
+      "entry_id": "case-10-control-sample-frame-20260914--case--model"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-10-control-sample-frame-20260914--case--partial/observation.json",
+      "sha256": "00e7b7825d009db822289b655aeb692f62d6f2cfeb1e20573fdf1c6042f90fc3",
+      "entry_id": "case-10-control-sample-frame-20260914--case--partial"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-10-control-sample-frame-20260914--case--wrong/observation.json",
+      "sha256": "37b156056df8c6e877a0664ad067ee446baf6e2915484d6c09e79b311f3f0d66",
+      "entry_id": "case-10-control-sample-frame-20260914--case--wrong"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-14-component-evidence-gap-20260914--case--model/observation.json",
+      "sha256": "3057a5377bbcbe38d2e5f14ff9846393eb6396bfceaf6c5d38fb459942029888",
+      "entry_id": "case-14-component-evidence-gap-20260914--case--model"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-14-component-evidence-gap-20260914--case--partial/observation.json",
+      "sha256": "7bd1c28dba76fbbce033a5c8d73b1723dfe0d40fdf834eece661c158bdad28b3",
+      "entry_id": "case-14-component-evidence-gap-20260914--case--partial"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-14-component-evidence-gap-20260914--case--wrong/observation.json",
+      "sha256": "11f325932efc498c49fb91317f32003f401dc379220874df4bcd61a940aa282d",
+      "entry_id": "case-14-component-evidence-gap-20260914--case--wrong"
+    }
+  ],
+  "unresolved_content_findings": []
+}

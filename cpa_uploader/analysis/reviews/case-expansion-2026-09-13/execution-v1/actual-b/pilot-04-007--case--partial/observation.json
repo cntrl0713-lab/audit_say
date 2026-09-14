@@ -1,0 +1,321 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-04-007--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-007--case",
+  "source_set_id": "pilot-04-007",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2",
+    "exp1"
+  ],
+  "projected_body_hash": "d71ca3f2c4f65c8fa844aec5adfcbc8c69825d48d54c302fd726d812e9c12cf3",
+  "answers": {
+    "sub2": "을의 결정방식은 부적절하다.",
+    "exp1": "당기에 시스템을 바꿨지만 두 지점의 수작업 연결이 남아 있다는 새로운 기업 이해를 수행중요성 결정에 반영해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "부적절 판단만 맞고 필요한 판단의 성격을 제시하지 않은 1/2점."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "not_met",
+          "reason": "부적절 판단만 맞고 필요한 판단의 성격을 제시하지 않은 1/2점."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "exp1.c1",
+          "verdict": "met",
+          "reason": "갱신된 기업 이해만 사실에 연결했고 과거 오류 성격·범위와 당기 예상은 없다."
+        },
+        {
+          "criterion_id": "exp1.c2",
+          "verdict": "not_met",
+          "reason": "갱신된 기업 이해만 사실에 연결했고 과거 오류 성격·범위와 당기 예상은 없다."
+        },
+        {
+          "criterion_id": "exp1.c3",
+          "verdict": "not_met",
+          "reason": "갱신된 기업 이해만 사실에 연결했고 과거 오류 성격·범위와 당기 예상은 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "1c572a8dadad46dd8cf5048d29d50537159e17363a836c5dd0a29a19096893a8",
+  "schema_hash": "83868de1aa1ca295b92d822b05ea910f5b2e2ad66f01906cf6be7e1f5056359d",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "을의 결정방식은 부적절하다.",
+            "reason": "을의 결정방식이 부적절하다고 명시하여 해당 제안을 부정적으로 판단했다."
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "전문가적 판단의 필요성과 비율 참고가 항상 금지되는 것은 아니라는 점을 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp1",
+        "verdicts": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "met",
+            "quote": "당기에 시스템을 바꿨지만 두 지점의 수작업 연결이 남아 있다는 새로운 기업 이해를 수행중요성 결정에 반영해야 한다.",
+            "reason": "시스템 변경 후 두 지점에 남은 수작업 연결을 새로운 기업 이해로서 수행중요성 결정에 반영한다고 설명했다."
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "not_met",
+            "reason": "전기 반품 지연 오류의 성격과 발생 범위를 언급하지 않았다."
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "not_met",
+            "reason": "전기 오류와 당기 지연을 연결한 당기 다수 오류 예상이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "을의 결정방식이 부적절하다고 명시하여 해당 제안을 부정적으로 판단했다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전문가적 판단의 필요성과 비율 참고가 항상 금지되는 것은 아니라는 점을 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp1",
+            "verdicts": [
+              {
+                "criterion_id": "exp1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "시스템 변경 후 두 지점에 남은 수작업 연결을 새로운 기업 이해로서 수행중요성 결정에 반영한다고 설명했다."
+              },
+              {
+                "criterion_id": "exp1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전기 반품 지연 오류의 성격과 발생 범위를 언급하지 않았다."
+              },
+              {
+                "criterion_id": "exp1.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전기 오류와 당기 지연을 연결한 당기 다수 오류 예상이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-007",
+    "score": 2,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "을의 수행중요성 결정방식이 적절한지 판단하고, 기계적인 계산 외에 필요한 판단의 성격을 설명하시오.",
+        "user_answer": "을의 결정방식은 부적절하다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "을의 결정방식은 부적절하다.",
+            "reason": "을의 결정방식이 부적절하다고 명시하여 해당 제안을 부정적으로 판단했다.",
+            "claim": "기업 상황과 무관한 고정 비율의 기계적 계산만으로 수행중요성을 정하자는 제안은 부적절하다. 전문가적 판단 필요를 명확히 설명해 그 판단이 함축되어도 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "전문가적 판단의 필요성과 비율 참고가 항상 금지되는 것은 아니라는 점을 설명하지 않았다.",
+            "claim": "수행중요성의 결정에는 전문가적 판단이 필요하다. 비율을 참고하는 것 자체가 언제나 금지되는 것은 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "기업 상황과 무관한 고정 비율의 기계적 계산만으로 수행중요성을 정하자는 제안은 부적절하다.",
+          "수행중요성의 결정에는 전문가적 판단이 필요하다."
+        ]
+      },
+      {
+        "subquestion_id": "exp1",
+        "prompt": "새봄회사의 자료를 이용하여 수행중요성 결정에 반영할 내용을 ① 위험평가 중 갱신된 기업 이해, ② 전기 왜곡표시의 성격과 범위, ③ 당기 왜곡표시에 관한 예상으로 구별하여 설명하시오. 적정 비율이나 금액의 계산은 요구하지 않는다.",
+        "user_answer": "당기에 시스템을 바꿨지만 두 지점의 수작업 연결이 남아 있다는 새로운 기업 이해를 수행중요성 결정에 반영해야 한다.",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "met",
+            "quote": "당기에 시스템을 바꿨지만 두 지점의 수작업 연결이 남아 있다는 새로운 기업 이해를 수행중요성 결정에 반영해야 한다.",
+            "reason": "시스템 변경 후 두 지점에 남은 수작업 연결을 새로운 기업 이해로서 수행중요성 결정에 반영한다고 설명했다.",
+            "claim": "시스템 전환 후 남은 수작업 연결, 담당자 교체 또는 반품자료 지연 중 구체적 사실을 갱신된 기업 이해로서 수행중요성 결정에 반영한다. 기업 이해라는 일반론만으로는 부족하다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "not_met",
+            "reason": "전기 반품 지연 오류의 성격과 발생 범위를 언급하지 않았다.",
+            "claim": "전기의 반품 지연 오류라는 성격과 여러 지점·다수 건이라는 범위를 수행중요성 결정에 고려한다. 전기 금액이 작았다는 한 가지 사실만으로 자동 비율을 정하면 반대이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "not_met",
+            "reason": "전기 오류와 당기 지연을 연결한 당기 다수 오류 예상이 없다.",
+            "claim": "전기 오류와 당기의 자료 연결·결산 지연을 연결하여 당기에도 여러 오류가 발생할 수 있다는 예상을 수행중요성 결정에 반영한다. 이미 발견된 당기 오류만 고려한다고 범위를 축소하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "시스템 전환 뒤에도 두 지점에 수작업 연결이 남고 담당자 교체·자료 지연이 있다는 갱신된 기업 이해를 반영한다.",
+          "전기의 반품 반영 지연이라는 오류 성격과 여러 지점·다수 건에 걸친 발생 범위, 미수정 오류를 고려한다.",
+          "이러한 전기 오류와 당기의 미완료된 자료 연결·결산 지연에 비추어 당기에도 여러 오류가 발생할 수 있다는 예상을 반영한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_06e827261d894e8f016aa603530e8087d0aae23c7400a7f3af",
+        "request_id": "req_2bc66aa6df2b44928a34d48a8228c2c9",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3762,
+          "input_tokens_details": {
+            "cache_write_tokens": 3759,
+            "cached_tokens": 0
+          },
+          "output_tokens": 473,
+          "output_tokens_details": {
+            "reasoning_tokens": 152
+          },
+          "total_tokens": 4235
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00150795,
+        "min_usd": 0.00150795,
+        "max_usd": 0.00150795,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-04-007--case--partial/input.json",
+      "sha256": "df86e4f860161774608507974129791b296bbdd6079c5c4d212d7299f643c9aa"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-04-007--case--partial/transport.jsonl",
+      "sha256": "015e6b7a361c69959d347914daf56e11c11f1516bb890a4d6ab493298076a7f1"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-04-007--case--partial/traces.jsonl",
+      "sha256": "6231ee0905accdbf15bbd256acbb9aa3d5a3ceecc08d124bfce0178bc4242b32"
+    }
+  }
+}

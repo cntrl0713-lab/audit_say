@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "gap-g02-sub1-model",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-gap-20260913-g02",
+  "learning_unit_id": "draft-standard-gap-20260913-g02--sub1--standard",
+  "kind": "model",
+  "projected_body_hash": "943c6a4f395b02a2ddf5e19f76d65aa79bd6e2d48ca25e5bef8b3d69e2e02ebe",
+  "answers": {
+    "sub1": "모집단이 금액이 큰 소수의 항목으로 구성된 경우이다.\n유의적 위험이 존재하고 다른 방법으로 충분하고 적합한 감사증거를 얻을 수 없는 경우이다.\n정보시스템이 자동으로 수행하는 계산이나 기타 처리의 반복적 특성 때문에 전수조사가 비용 측면에서 효과적인 경우이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안에서 직접 충족하는 요구: 모집단이 금액이 큰 소수의 항목으로 구성된 경우이다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안에서 직접 충족하는 요구: 유의적 위험이 존재하고 다른 방법으로 충분하고 적합한 감사증거를 얻을 수 없는 경우이다. 유의적 위험만으로 전수조사가 의무라는 답은 인정하지 않는다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "답안에서 직접 충족하는 요구: 정보시스템이 자동으로 수행하는 계산이나 기타 처리의 반복적 특성 때문에 전수조사가 비용 측면에서 효과적인 경우이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "03aca6fe04c329cdfc898894a71f81b4bdc9e7d9e12380f8b4fe8de379a5fdd8",
+  "schema_hash": "70352bfbe1be1719e5db73c06f51d936a518ded990f1fd8452e13d4fe049d4a1",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "모집단이 금액이 큰 소수의 항목으로 구성된 경우이다.\n",
+            "reason": "금액이 큰 소수의 항목으로 구성된 모집단을 제시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "유의적 위험이 존재하고 다른 방법으로 충분하고 적합한 감사증거를 얻을 수 없는 경우이다.\n",
+            "reason": "유의적 위험과 다른 방법으로 충분하고 적합한 증거를 얻을 수 없는 조건을 모두 제시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "정보시스템이 자동으로 수행하는 계산이나 기타 처리의 반복적 특성 때문에 전수조사가 비용 측면에서 효과적인 경우이다.",
+            "reason": "정보시스템의 자동 계산·처리의 반복성으로 전수조사가 비용 측면에서 효과적인 경우를 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "금액이 큰 소수의 항목으로 구성된 모집단을 제시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "유의적 위험과 다른 방법으로 충분하고 적합한 증거를 얻을 수 없는 조건을 모두 제시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "정보시스템의 자동 계산·처리의 반복성으로 전수조사가 비용 측면에서 효과적인 경우를 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-gap-20260913-g02",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사증거를 입수하기 위해 거래유형이나 계정잔액의 전체 모집단 또는 그 안의 계층화된 집단을 전수조사하는 것이 적합할 수 있는 상황을 감사기준서 500의 예시에 따라 모두 설명하시오.",
+        "user_answer": "모집단이 금액이 큰 소수의 항목으로 구성된 경우이다.\n유의적 위험이 존재하고 다른 방법으로 충분하고 적합한 감사증거를 얻을 수 없는 경우이다.\n정보시스템이 자동으로 수행하는 계산이나 기타 처리의 반복적 특성 때문에 전수조사가 비용 측면에서 효과적인 경우이다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "모집단이 금액이 큰 소수의 항목으로 구성된 경우이다.",
+            "reason": "금액이 큰 소수의 항목으로 구성된 모집단을 제시했다.",
+            "claim": "모집단이 금액이 큰 소수의 항목으로 구성된 경우이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "유의적 위험이 존재하고 다른 방법으로 충분하고 적합한 감사증거를 얻을 수 없는 경우이다.",
+            "reason": "유의적 위험과 다른 방법으로 충분하고 적합한 증거를 얻을 수 없는 조건을 모두 제시했다.",
+            "claim": "유의적 위험이 존재하고 다른 방법으로 충분하고 적합한 감사증거를 얻을 수 없는 경우이다. 유의적 위험만으로 전수조사가 의무라는 답은 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "정보시스템이 자동으로 수행하는 계산이나 기타 처리의 반복적 특성 때문에 전수조사가 비용 측면에서 효과적인 경우이다.",
+            "reason": "정보시스템의 자동 계산·처리의 반복성으로 전수조사가 비용 측면에서 효과적인 경우를 제시했다.",
+            "claim": "정보시스템이 자동으로 수행하는 계산이나 기타 처리의 반복적 특성 때문에 전수조사가 비용 측면에서 효과적인 경우이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "모집단이 금액이 큰 소수의 항목으로 구성된 경우이다.",
+          "유의적 위험이 존재하고 다른 방법으로 충분하고 적합한 감사증거를 얻을 수 없는 경우이다.",
+          "정보시스템이 자동으로 수행하는 계산이나 기타 처리의 반복적 특성 때문에 전수조사가 비용 측면에서 효과적인 경우이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/gap-g02-sub1-model.input.json",
+      "sha256": "3f1c879e3a10a478ec08464a1ea8256ed97b009bbe5ed35c6203ef98f183b005"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/gap-g02-sub1-model.transport.jsonl",
+      "sha256": "81310fd90f09365886609e6e6944f23526457a989619253def49c0f7f18888ac"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/gap-g02-sub1-model.traces.jsonl",
+      "sha256": "405283a7deef2de4457b1d228662e8ade283a772dabc682c33bc7943f9868a97"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_00c6d82551c0fae5016aa5db7dcf2c87d085be483d42137010",
+        "request_id": "req_0224ca7cb77247698264ceb67be90f97",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2841,
+          "input_tokens_details": {
+            "cache_write_tokens": 2838,
+            "cached_tokens": 0
+          },
+          "output_tokens": 226,
+          "output_tokens_details": {
+            "reasoning_tokens": 25
+          },
+          "total_tokens": 3067
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g02-sub1-model.input.json",
+        "sha256": "40d9e6834961b646202f25c11efbbac3f47dcce9cfac39995c9089e1f3fa5b63"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g02-sub1-model.request-1.json",
+        "sha256": "f3edfcc65cd29023f4643c13d09a4e297062dfbb060d9e4b9906f52d29647d93"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g02-sub1-model.response-1.json",
+        "sha256": "51778223e963db8589bf90c6900ac49a86b40fc55456a11309b7194be67412aa"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g02-sub1-model.trace.json",
+        "sha256": "eb08c5947f1f0b82a0d0136c35c4dc53f09a5beef77c951bc045080e6eeb00ee"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g02-sub1-model.usage.json",
+        "sha256": "6a62fce6e50721e23a30125618e60503ca5f938159511d26944a89aa17aeb58b"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g02-sub1-model.result.json",
+        "sha256": "a8f69c4e1fcda9468692e90864ef6ff626e9827d93041b2283067f89a575ddd2"
+      }
+    ],
+    "original_case_id": "g02-sub1-model",
+    "origin_batch": "cpa_uploader/drafts/standard-gap-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

@@ -1,0 +1,431 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "ac40fc52c359ef8885acd3e3c56d9864b2f73e5013889ed1b9253377167327e1"
+  },
+  "entry_id": "case-10-control-sample-frame-20260914--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "case-10-control-sample-frame-20260914--case",
+  "source_set_id": "case-10-control-sample-frame-20260914",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "2696d799438671d5dfde6fbe45145b5f2ee4bfd9719e040209bbd4fb7d67d945",
+  "answers": {
+    "sub1": "승인완료된 거래가 통제를 따른 대표 거래이므로 그 항목만 모집단으로 사용한다. 발행번호 대장이나 창고기록과 대조할 필요는 없다.",
+    "sub2": "가와 나 모두 승인기록을 바로 확인할 수 없으므로 정상 승인된 다른 항목으로 교체한다. 취소 여부나 대체적 절차 가능성은 구별하지 않는다.",
+    "sub3": "표본에서 발견한 출고금액이 작으므로 이탈률이나 추가 증거의 유무와 무관하게 최초의 낮은 위험평가를 그대로 유지한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "not_met",
+          "reason": "표본이 발견해야 할 미승인 출고를 구조적으로 제외하며 완전성 확인도 거부한다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "표본이 발견해야 할 미승인 출고를 구조적으로 제외하며 완전성 확인도 거부한다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "not_met",
+          "reason": "표본이 발견해야 할 미승인 출고를 구조적으로 제외하며 완전성 확인도 거부한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "not_met",
+          "reason": "가에 관한 적법 취소·이탈 아님이라는 적용근거가 없고, 정상승인된 항목만 의도적으로 골라 대체하는 방식은 적절한 표본선정도 아니다. 나의 증거 불능을 임의 교체로 치환한다. 가에 대해서만 적법 취소를 이유로 적절히 선정한 대체항목을 검사한다면 정답이다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "not_met",
+          "reason": "가에 관한 적법 취소·이탈 아님이라는 적용근거가 없고, 정상승인된 항목만 의도적으로 골라 대체하는 방식은 적절한 표본선정도 아니다. 나의 증거 불능을 임의 교체로 치환한다. 가에 대해서만 적법 취소를 이유로 적절히 선정한 대체항목을 검사한다면 정답이다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.c1",
+          "verdict": "not_met",
+          "reason": "높은 표본이탈률의 시사점과 추가 증거 요건을 모두 부정한다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "verdict": "not_met",
+          "reason": "높은 표본이탈률의 시사점과 추가 증거 요건을 모두 부정한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "f25c8a86d936311a3cbca799e19f89653a5fef5f7baf15c78628f39dcaa8e78f",
+  "schema_hash": "6f52f35645e64c275fc8753710d1470aad424223332f7ccb64c84c56deb7b8b0",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "contradicted",
+            "quote": "승인완료된 거래가 통제를 따른 대표 거래이므로 그 항목만 모집단으로 사용한다. ",
+            "reason": "승인완료 거래만 모집단으로 사용하자는 결론은 미승인 이탈 거래가 제외되어 부적절하다는 명제와 반대이다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "승인 여부와 관계없이 당기 발행 지시서를 포함하는 모집단 구성이 제시되지 않았다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "contradicted",
+            "quote": "발행번호 대장이나 창고기록과 대조할 필요는 없다.",
+            "reason": "발행번호 대장이나 창고기록과 대조할 필요가 없다고 명시하여 완전성 확인 절차를 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "가와 나 모두 승인기록을 바로 확인할 수 없으므로 정상 승인된 다른 항목으로 교체한다. ",
+            "reason": "가 항목을 적법한 취소·무출고 항목으로 처리하지 않고 다른 항목으로 교체한다고 했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "contradicted",
+            "quote": "가와 나 모두 승인기록을 바로 확인할 수 없으므로 정상 승인된 다른 항목으로 교체한다. 취소 여부나 대체적 절차 가능성은 구별하지 않는다.",
+            "reason": "나 항목을 이탈로 취급하지 않고 교체하며, 대체적 절차 가능성도 구별하지 않는다고 했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "contradicted",
+            "quote": "표본에서 발견한 출고금액이 작으므로 이탈률이나 추가 증거의 유무와 무관하게 최초의 낮은 위험평가를 그대로 유지한다.",
+            "reason": "최초의 낮은 위험평가를 그대로 유지한다고 명시했다."
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "contradicted",
+            "quote": "표본에서 발견한 출고금액이 작으므로 이탈률이나 추가 증거의 유무와 무관하게 최초의 낮은 위험평가를 그대로 유지한다.",
+            "reason": "이탈률과 추가 증거 유무와 무관하게 금액이 작다는 이유로 결과를 무시한다고 했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "승인완료 거래만 모집단으로 사용하자는 결론은 미승인 이탈 거래가 제외되어 부적절하다는 명제와 반대이다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "승인 여부와 관계없이 당기 발행 지시서를 포함하는 모집단 구성이 제시되지 않았다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "발행번호 대장이나 창고기록과 대조할 필요가 없다고 명시하여 완전성 확인 절차를 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "가 항목을 적법한 취소·무출고 항목으로 처리하지 않고 다른 항목으로 교체한다고 했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e1",
+                  "sub2/e2"
+                ],
+                "reason": "나 항목을 이탈로 취급하지 않고 교체하며, 대체적 절차 가능성도 구별하지 않는다고 했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "최초의 낮은 위험평가를 그대로 유지한다고 명시했다."
+              },
+              {
+                "criterion_id": "sub3.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "이탈률과 추가 증거 유무와 무관하게 금액이 작다는 이유로 결과를 무시한다고 했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-10-control-sample-frame-20260914",
+    "score": 0,
+    "max_points": 7,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "승인완료 표시가 있는 출고지시서만 사용한 모집단의 문제점을 설명하고, 이번 통제테스트에 맞게 모집단과 그 완전성 확인 절차를 보완하시오.",
+        "user_answer": "승인완료된 거래가 통제를 따른 대표 거래이므로 그 항목만 모집단으로 사용한다. 발행번호 대장이나 창고기록과 대조할 필요는 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "contradicted",
+            "quote": "승인완료된 거래가 통제를 따른 대표 거래이므로 그 항목만 모집단으로 사용한다.",
+            "reason": "승인완료 거래만 모집단으로 사용하자는 결론은 미승인 이탈 거래가 제외되어 부적절하다는 명제와 반대이다.",
+            "claim": "승인완료 항목만 고르면 사전 승인을 받지 않고 출고한 이탈 거래가 모집단에서 제외되어 승인 통제의 운영효과성을 검증하기에 적절하지 않다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "승인 여부와 관계없이 당기 발행 지시서를 포함하는 모집단 구성이 제시되지 않았다.",
+            "claim": "승인 여부와 관계없이 당기에 발행된 출고지시서를 포함하도록 모집단을 구성한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "contradicted",
+            "quote": "발행번호 대장이나 창고기록과 대조할 필요는 없다.",
+            "reason": "발행번호 대장이나 창고기록과 대조할 필요가 없다고 명시하여 완전성 확인 절차를 부정했다.",
+            "claim": "전 발행번호 대장과 창고 출고기록 등을 추출목록과 대조하여 출고지시서 모집단의 누락 여부와 완전성을 확인한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "승인완료 항목만 고르면 사전 승인을 받지 않고 출고한 이탈 거래가 모집단에서 제외되어 승인 통제의 운영효과성을 검증하기에 적절하지 않다.",
+          "승인 여부와 관계없이 당기에 발행된 출고지시서를 포함하도록 모집단을 구성한다.",
+          "전 발행번호 대장과 창고 출고기록 등을 추출목록과 대조하여 출고지시서 모집단의 누락 여부와 완전성을 확인한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "가 항목과 나 항목을 각각 다른 표본항목으로 교체하려는 처리가 적절한지 판단하고, 취소·출고 사실과 증거 입수 가능성을 근거로 각 항목의 올바른 처리방법을 설명하시오.",
+        "user_answer": "가와 나 모두 승인기록을 바로 확인할 수 없으므로 정상 승인된 다른 항목으로 교체한다. 취소 여부나 대체적 절차 가능성은 구별하지 않는다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "가와 나 모두 승인기록을 바로 확인할 수 없으므로 정상 승인된 다른 항목으로 교체한다.",
+            "reason": "가 항목을 적법한 취소·무출고 항목으로 처리하지 않고 다른 항목으로 교체한다고 했다.",
+            "claim": "가 항목은 적법하게 무효화되었고 실제 출고가 없어 이탈도 아니므로, 적절하게 선택한 대체항목에 감사절차를 수행한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "contradicted",
+            "quote": "가와 나 모두 승인기록을 바로 확인할 수 없으므로 정상 승인된 다른 항목으로 교체한다. 취소 여부나 대체적 절차 가능성은 구별하지 않는다.",
+            "reason": "나 항목을 이탈로 취급하지 않고 교체하며, 대체적 절차 가능성도 구별하지 않는다고 했다.",
+            "claim": "나 항목은 실제 출고에 관한 설계된 절차와 적절한 대체적 절차를 모두 수행할 수 없으므로 다른 항목으로 바꾸지 않고 승인 통제로부터의 이탈로 취급한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "가 항목은 적법하게 무효화되었고 실제 출고가 없어 이탈도 아니므로, 적절하게 선택한 대체항목에 감사절차를 수행한다.",
+          "나 항목은 실제 출고에 관한 설계된 절차와 적절한 대체적 절차를 모두 수행할 수 없으므로 다른 항목으로 바꾸지 않고 승인 통제로부터의 이탈로 취급한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "표본 결과를 얻은 뒤에도 최초의 낮은 중요왜곡표시위험 평가를 유지하자는 제안을 평가하시오. 이탈 결과와 추가 증거의 상태를 근거로 위험평가에 미치는 영향을 설명하시오.",
+        "user_answer": "표본에서 발견한 출고금액이 작으므로 이탈률이나 추가 증거의 유무와 무관하게 최초의 낮은 위험평가를 그대로 유지한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "contradicted",
+            "quote": "표본에서 발견한 출고금액이 작으므로 이탈률이나 추가 증거의 유무와 무관하게 최초의 낮은 위험평가를 그대로 유지한다.",
+            "reason": "최초의 낮은 위험평가를 그대로 유지한다고 명시했다.",
+            "claim": "현재 증거만으로 최초의 낮은 위험평가를 유지할 수 없으며 관련 중요왜곡표시위험을 높여 평가하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "contradicted",
+            "quote": "표본에서 발견한 출고금액이 작으므로 이탈률이나 추가 증거의 유무와 무관하게 최초의 낮은 위험평가를 그대로 유지한다.",
+            "reason": "이탈률과 추가 증거 유무와 무관하게 금액이 작다는 이유로 결과를 무시한다고 했다.",
+            "claim": "표본이탈률 8%는 예상 1%보다 높고 허용 5%도 초과하며, 최초 평가를 뒷받침할 추가 증거가 없어 발견건수나 거래금액이 작다는 이유로 그 결과를 무시할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "현재 증거만으로 최초의 낮은 위험평가를 유지할 수 없으며 관련 중요왜곡표시위험을 높여 평가하여야 한다.",
+          "표본이탈률 8%는 예상 1%보다 높고 허용 5%도 초과하며, 최초 평가를 뒷받침할 추가 증거가 없어 발견건수나 거래금액이 작다는 이유로 그 결과를 무시할 수 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0d2ba0bbc7dfcbcf016aa773f08cf887d081c06fdd1d0bcf53",
+        "request_id": "req_ced4910d661c4060a556e20ec8129c13",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 5569,
+          "input_tokens_details": {
+            "cache_write_tokens": 5566,
+            "cached_tokens": 0
+          },
+          "output_tokens": 650,
+          "output_tokens_details": {
+            "reasoning_tokens": 140
+          },
+          "total_tokens": 6219
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0021720999999999997,
+        "min_usd": 0.0021720999999999997,
+        "max_usd": 0.0021720999999999997,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-10-control-sample-frame-20260914--case--wrong/input.json",
+      "sha256": "ccc4ade42830a8baf09532c2ddc317d85b723ae03415fde92687cde6105c2f45"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-10-control-sample-frame-20260914--case--wrong/transport.jsonl",
+      "sha256": "bb9cfdaeaef5a37d45bdc240d700ac2635a93c450d90acb0ddc6a705630f774c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-10-control-sample-frame-20260914--case--wrong/traces.jsonl",
+      "sha256": "831601f401b3064bfcecfa4e247c5d6d4582c7bdbb756a4cbac7329bd2a1c008"
+    }
+  }
+}

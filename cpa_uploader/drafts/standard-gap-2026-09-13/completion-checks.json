@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "checked_at": "2026-09-12T23:17:26.116Z",
+  "artifact_type": "draft_completion_checks",
+  "draft_final_hash_errors": [],
+  "checks": [
+    {
+      "command": "verify-and-grade.ts (전수 사전검사)",
+      "status": "passed",
+      "sets": 10,
+      "questions": 14,
+      "criteria": 79,
+      "representatives": 42
+    },
+    {
+      "command": "실제 Luna 채점 및 finalize.ts",
+      "status": "passed",
+      "selected_unique_final_cases": 42,
+      "exact": 42,
+      "actual_responses_all_versions": 51
+    },
+    {
+      "command": "raw/collect.mjs --check --against-originals",
+      "status": "passed",
+      "paths": 2,
+      "unique_files": 1
+    },
+    {
+      "command": "npm run analysis:build",
+      "status": "passed_before_concurrent_input_change",
+      "transient_error": "첫 재생성 시 Windows UNKNOWN 파일 열기 오류; JSON 정상 확인 후 재실행 통과"
+    },
+    {
+      "command": "npm run analysis:check",
+      "status": "passed_before_concurrent_input_change",
+      "analysis_errors": 0,
+      "historical_files_verified": 371
+    },
+    {
+      "command": "현재 입력의 신규 관계 5건 범위별 검사",
+      "status": "passed",
+      "evidence": "coverage-scope-check.json"
+    },
+    {
+      "command": "npm run wiki:build",
+      "status": "blocked_by_other_work_in_progress",
+      "error": "frequency-gap-2026-09-10-E-1-case-quality-split: 없는 물음 pilot-16-008/sub4"
+    },
+    {
+      "command": "npm run wiki:check",
+      "status": "blocked_by_other_work_in_progress",
+      "error": "같은 미존재 물음 관계; generatedPages=0"
+    }
+  ],
+  "not_performed": [
+    "정본 승급",
+    "학습 DB 반영",
+    "운영 배포",
+    "사람의 전체 내용 확인",
+    "별도 유료 API 의미 재검수",
+    "문항과 무관한 앱 전체 테스트"
+  ],
+  "resume_shared_generation": "다른 작업의 정본과 관계 입력이 일치한 뒤 analysis:build/check, wiki:build/check 재실행",
+  "canonical_sha256_at_check": "4891f97bcfc98cdeda77567b59657577da184317df199fd53c859004728acd80"
+}

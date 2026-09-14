@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "artifact_type": "db_grading_scope_readonly_audit",
+  "performed_at": "2026-09-14T05:50:10.651Z",
+  "database_writes": 0,
+  "model_calls": 0,
+  "concurrency": 1,
+  "prior_attempt": "db-grading-scope-audit-attempt1.json",
+  "code_path": [
+    "app/actions.ts: gradeQuestionSetV3Action → gradeLearningSubmission(loadUnit=findDatabaseLearningUnit, grade=gradeQuestionSetV3)",
+    "lib/questionV3Repository.ts: findDatabaseLearningUnit → findDatabaseQuestionVersion → RPC cpa_get_question_version → validateQuestionSetV3(raw) → selectLearningQuestionSet",
+    "supabase/migrations/20260912060000_cpa_private_source_metadata.sql: cpa_get_question_version → metadata overlay → normalized document with scope restored from immutable source_document",
+    "lib/questionV3Grading.ts: buildGradingPrompt serializes criterion.critical_facts directly, including scope"
+  ],
+  "findings": [
+    "Normalized cpa_criterion_facts has no scope column and the normalized document builder omits scope. The deployed private getter restores scope through the existing 20260912060000 source metadata overlay.",
+    "The overlay validates archived document bytes, exact sealed release/version binding, content hash, unique IDs, ordinary fields, and agreement across every attached release before adding scope. A present invalid document raises an error; only truly document-less legacy versions retain normalized fallback.",
+    "TypeScript CriterionV3 critical_facts type omits scope, but runtime validation does not strip it and the actual private RPC → learning projection → grading payload retains the returned property. No runtime patch is required for scope transmission."
+  ],
+  "sets": [
+    {
+      "set_id": "pilot-10-007",
+      "set_version_id": "e36e9987-5f73-4192-9001-c3d44b402fb6",
+      "expected_scope_fields": 1,
+      "private_rpc_scope_fields": 1,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "pilot-10-007--case",
+          "expected_scope_fields": 1,
+          "payload_scope_fields": 1,
+          "scope_values_equal": true,
+          "prompt_sha256": "2a18399d07ff9fb80436d5f60f07e860dcdb6a3d71e3538dbe9b92956a1b84be",
+          "expected_scopes_sha256": "9f28870e8811879bb287efa17e2891a4d1b60e802c373d6ad459de2a448abd69",
+          "payload_scopes_sha256": "9f28870e8811879bb287efa17e2891a4d1b60e802c373d6ad459de2a448abd69"
+        }
+      ]
+    },
+    {
+      "set_id": "pilot-10-007-standards",
+      "set_version_id": "ebc28757-a977-4428-88e8-dd0d67cd49fd",
+      "expected_scope_fields": 5,
+      "private_rpc_scope_fields": 5,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "pilot-10-007-standards--sub4--standard",
+          "expected_scope_fields": 5,
+          "payload_scope_fields": 5,
+          "scope_values_equal": true,
+          "prompt_sha256": "e474be99c55bc127b60032ba00b71d98e153c7f9bafa9c845d5744a9dca67c2c",
+          "expected_scopes_sha256": "2d4d8ca8de2900fdefd0168ccbc9e6d25e4a62b6436b0a1e3c01280e146ba100",
+          "payload_scopes_sha256": "2d4d8ca8de2900fdefd0168ccbc9e6d25e4a62b6436b0a1e3c01280e146ba100"
+        }
+      ]
+    },
+    {
+      "set_id": "pilot-10-007-standards-20260913",
+      "set_version_id": "1a91eba6-ae80-46e5-8a22-101e20566c31",
+      "expected_scope_fields": 3,
+      "private_rpc_scope_fields": 3,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "pilot-10-007-standards-20260913--sub1--standard",
+          "expected_scope_fields": 0,
+          "payload_scope_fields": 0,
+          "scope_values_equal": true,
+          "prompt_sha256": "75250a667804dd1206998d2766d8864f7060cc20821f986af2d4f7f47cf48e03",
+          "expected_scopes_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "payload_scopes_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "learning_unit_id": "pilot-10-007-standards-20260913--sub3--standard",
+          "expected_scope_fields": 0,
+          "payload_scope_fields": 0,
+          "scope_values_equal": true,
+          "prompt_sha256": "01ef8b04c037356aabaa74919fcc9c6223bf9c90842dd2e12b5800ffba8fd62d",
+          "expected_scopes_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "payload_scopes_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "learning_unit_id": "pilot-10-007-standards-20260913--sub4--standard",
+          "expected_scope_fields": 3,
+          "payload_scope_fields": 3,
+          "scope_values_equal": true,
+          "prompt_sha256": "b000a9ec720273c60c08cc712dd1b8913498b0bf6e36b7de726749c39b51f994",
+          "expected_scopes_sha256": "e1e5962aadd4c9680308c348d4290d4887f87994045459df4d75cd7aedfe5729",
+          "payload_scopes_sha256": "e1e5962aadd4c9680308c348d4290d4887f87994045459df4d75cd7aedfe5729"
+        }
+      ]
+    },
+    {
+      "set_id": "pilot-16-011",
+      "set_version_id": "774ee7dd-6ddc-4037-81e0-a267eb0658ad",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "pilot-16-011--case",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "3e26fb103cf3d1e6e3ad5cfc170238eaeca9a72e4f5ab1f3aafe79e0e377f8c1",
+          "expected_scopes_sha256": "cc7d6ff52eaf5bdfb1474a06d30cbe93b8053a932614f23ec7e355899225281a",
+          "payload_scopes_sha256": "cc7d6ff52eaf5bdfb1474a06d30cbe93b8053a932614f23ec7e355899225281a"
+        }
+      ]
+    },
+    {
+      "set_id": "pilot-17-005",
+      "set_version_id": "943cf424-31d8-408e-8409-69bc2ae266d5",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "pilot-17-005--case",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "8ec1c92a46484bf1569eb3a9b69627c36214071e7fd2d15d326a33be2f625f1c",
+          "expected_scopes_sha256": "5faa79574b53c3602a7641d54333394208d34fd2918320813930366a4083ceaf",
+          "payload_scopes_sha256": "5faa79574b53c3602a7641d54333394208d34fd2918320813930366a4083ceaf"
+        },
+        {
+          "learning_unit_id": "pilot-17-005--sub4--standard",
+          "expected_scope_fields": 0,
+          "payload_scope_fields": 0,
+          "scope_values_equal": true,
+          "prompt_sha256": "448c0952b1c595857406225b8bccda0df9f3220968730696d813f7912e6ff037",
+          "expected_scopes_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "payload_scopes_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "release": {
+    "id": "9fde77ff-c4ed-4b4c-b383-8f632d6caf93",
+    "status": "active",
+    "sets": 236,
+    "source_file_hash": "0626b0396ae96d1fd0d05cd95afe7335b6a0b7ba28007923504a6c796a206624",
+    "actual_document_sha256": "0626b0396ae96d1fd0d05cd95afe7335b6a0b7ba28007923504a6c796a206624"
+  },
+  "expected": {
+    "scope_bearing_sets": 5,
+    "scope_fields": 13,
+    "learning_units": 8,
+    "payload_scope_fields": 13
+  },
+  "normalized_document_probe": {
+    "set_id": "pilot-10-007",
+    "rpc_error_code": null,
+    "scope_fields": 0,
+    "wrapper_scope_fields": 1
+  },
+  "limitations": [
+    "This read-only live check covers the active release scope fields; newly proposed questions are not yet deployed. Repeat private-RPC/payload equality against the final published release after import.",
+    "A document-less legacy version has no scope to restore. Future migrations must keep cpa_get_question_version bound to the metadata overlay."
+  ],
+  "verdict": "pass",
+  "inspected_files": [
+    {
+      "file": "app/actions.ts",
+      "sha256": "6ef275b83fa42d5dc6f4df1f7ff0d3642c16e4ddcf1d7492e78b0002d5f24b55"
+    },
+    {
+      "file": "lib/questionV3Repository.ts",
+      "sha256": "eaceb96404095c6e71c1e492d662da0c909e04cdf24d0f656215d233731ce893"
+    },
+    {
+      "file": "lib/learningService.ts",
+      "sha256": "da6a4f7107b8f55c704ee53426b1f9d5802d48b3442f2ad374ede42b99f7f5da"
+    },
+    {
+      "file": "lib/learningUnits.ts",
+      "sha256": "c29d7660aa0b56a8fe21a10ad3adf8cfe5efe0cc57b1b119ecd2ad70fce957b8"
+    },
+    {
+      "file": "lib/questionV3Grading.ts",
+      "sha256": "aae10461df894ccbad948f55e25787c15775be40c8337638f161ac2389394d2c"
+    },
+    {
+      "file": "lib/questionV3.ts",
+      "sha256": "dec5e73a4ec5b3b07421069c0aa60a7e406108cb4e74b15a206bf06f9b843b6e"
+    },
+    {
+      "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+      "sha256": "6e45c144bf661fa10afd0d001cd0879d3d09c0b2d67d91ef45c70801e96f837b"
+    },
+    {
+      "file": "supabase/migrations/20260912060000_cpa_private_source_metadata.sql",
+      "sha256": "a6a6300fd1f1df32fe822f137f832f07f306ed1ada5ecb9c98c301882c35a789"
+    }
+  ],
+  "candidate_not_yet_deployed": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/bank.json",
+    "sets": 363,
+    "scope_bearing_sets": 19,
+    "scope_fields": 44,
+    "live_verification_required_after_import": true
+  },
+  "required_code_change": "No scope transmission fix is required. Existing normalized-table omission is repaired by the deployed private getter overlay. Keep that wrapper in all new DB migrations and repeat this sequential read audit after final import.",
+  "prior_timeout_resolution": {
+    "first_attempt_concurrency": 4,
+    "first_attempt_private_rpc_timeouts": 4,
+    "sequential_retry_concurrency": 1,
+    "final_errors": 0,
+    "classification": "statement timeout during parallel reads; no observed scope loss",
+    "first_attempt_evidence": "db-grading-scope-audit-attempt1.json"
+  }
+}

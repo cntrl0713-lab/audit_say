@@ -1,0 +1,279 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "exp-s03-sub1-wrong",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-expansion-20260913-s03",
+  "learning_unit_id": "draft-standard-expansion-20260913-s03--sub1--standard",
+  "kind": "wrong",
+  "projected_body_hash": "e1be82e5f643b6e1a74444cfdae85ce840ffe43f96cfe874947897667f940b73",
+  "answers": {
+    "sub1": "경영진이 감사절차를 완전히 예상할 수 있도록 성격·시기·범위를 매년 같게 고정한다. 회계정책의 선택과 적용은 부정한 재무보고의 징후 평가와 무관하다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 업무를 배정하고 감독할 때 유의적 업무수행 책임을 맡길 구성원의 지식·기술·능력을 고려한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 업무를 배정하고 감독할 때 해당 감사업무의 부정으로 인한 중요왜곡표시위험 평가결과를 고려한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 특히 주관적 측정과 복잡한 거래에서 회계정책의 선택·적용이 경영진의 이익조정 노력에 따른 부정한 재무보고의 징후인지 평가한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 감사절차의 성격·시기·범위를 선택할 때 예측불가능성 요소를 포함한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "1c2f5af56863a268c144ddd4585b828099bb2034b3f7fcd339e6e66258b361ae",
+  "schema_hash": "e855bf5c3fc7c9fe3c07bbe53bd066a1730d4b0c5b32206a971b2ced5602e99c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "구성원의 지식·기술·능력 고려가 언급되지 않았다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "부정으로 인한 중요왜곡표시위험 평가결과의 고려가 언급되지 않았다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "회계정책의 선택과 적용은 부정한 재무보고의 징후 평가와 무관하다.",
+            "reason": "회계정책의 선택·적용이 부정한 재무보고 징후 평가와 무관하다고 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "경영진이 감사절차를 완전히 예상할 수 있도록 성격·시기·범위를 매년 같게 고정한다. 회계정책의 선택과 적용은 부정한 재무보고의 징후 평가와 무관하다.",
+            "reason": "예측불가능성을 포함하는 대신 경영진이 예상할 수 있도록 감사절차를 매년 같게 고정한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "구성원의 지식·기술·능력 고려가 언급되지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "부정으로 인한 중요왜곡표시위험 평가결과의 고려가 언급되지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "회계정책의 선택·적용이 부정한 재무보고 징후 평가와 무관하다고 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0",
+                  "sub1/e1"
+                ],
+                "reason": "예측불가능성을 포함하는 대신 경영진이 예상할 수 있도록 감사절차를 매년 같게 고정한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-expansion-20260913-s03",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사인이 재무제표 수준의 부정으로 인한 중요왜곡표시위험에 대한 전반적인 대응을 결정할 때, 감사기준서 240 문단 30에 따라 수행해야 할 절차를 모두 설명하시오. 업무의 배정·감독 시 고려할 사항을 포함하고, 회계정책 및 감사절차 선택에 관한 요구도 제시하시오.",
+        "user_answer": "경영진이 감사절차를 완전히 예상할 수 있도록 성격·시기·범위를 매년 같게 고정한다. 회계정책의 선택과 적용은 부정한 재무보고의 징후 평가와 무관하다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "구성원의 지식·기술·능력 고려가 언급되지 않았다.",
+            "claim": "업무를 배정하고 감독할 때 유의적 업무수행 책임을 맡길 구성원의 지식·기술·능력을 고려한다. 인력의 적격성이라는 고려축의 점수다. 부정위험 평가결과의 고려와 별도로 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "부정으로 인한 중요왜곡표시위험 평가결과의 고려가 언급되지 않았다.",
+            "claim": "업무를 배정하고 감독할 때 해당 감사업무의 부정으로 인한 중요왜곡표시위험 평가결과를 고려한다. 위험 평가결과라는 고려축의 점수다. 구성원의 능력 고려와 별도로 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "회계정책의 선택과 적용은 부정한 재무보고의 징후 평가와 무관하다.",
+            "reason": "회계정책의 선택·적용이 부정한 재무보고 징후 평가와 무관하다고 명시적으로 부정했다.",
+            "claim": "특히 주관적 측정과 복잡한 거래에서 회계정책의 선택·적용이 경영진의 이익조정 노력에 따른 부정한 재무보고의 징후인지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "경영진이 감사절차를 완전히 예상할 수 있도록 성격·시기·범위를 매년 같게 고정한다. 회계정책의 선택과 적용은 부정한 재무보고의 징후 평가와 무관하다.",
+            "reason": "예측불가능성을 포함하는 대신 경영진이 예상할 수 있도록 감사절차를 매년 같게 고정한다고 명시했다.",
+            "claim": "감사절차의 성격·시기·범위를 선택할 때 예측불가능성 요소를 포함한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "업무를 배정하고 감독할 때 유의적 업무수행 책임을 맡길 구성원의 지식·기술·능력을 고려한다.",
+          "업무를 배정하고 감독할 때 해당 감사업무의 부정으로 인한 중요왜곡표시위험 평가결과를 고려한다.",
+          "특히 주관적 측정과 복잡한 거래에서 회계정책의 선택·적용이 경영진의 이익조정 노력에 따른 부정한 재무보고의 징후인지 평가한다.",
+          "감사절차의 성격·시기·범위를 선택할 때 예측불가능성 요소를 포함한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-s03-sub1-wrong.input.json",
+      "sha256": "57971e1b211886c566422acd15411522f6d85a6af41a7649fba0bf67a871353f"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-s03-sub1-wrong.transport.jsonl",
+      "sha256": "df271d93051d191a3978949c6cdf581d5ce00f90da805b008c6ba2f9fea0765c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/exp-s03-sub1-wrong.traces.jsonl",
+      "sha256": "db35000183ef6249e65fba913c812a3096c37e11a830190ed4bdaec2afb1180a"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_000410e98b1343ba016aa5e184270487d08395528273975b44",
+        "request_id": "req_ca24ce019e5d4c02af0904b1f66a1eea",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3038,
+          "input_tokens_details": {
+            "cache_write_tokens": 3035,
+            "cached_tokens": 0
+          },
+          "output_tokens": 309,
+          "output_tokens_details": {
+            "reasoning_tokens": 54
+          },
+          "total_tokens": 3347
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s03-sub1-wrong.input.json",
+        "sha256": "746595910d9fd8062c19cc25ed0b990e6f22a16276e0ef298cefb357b3a9aeba"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s03-sub1-wrong.request-1.json",
+        "sha256": "0ea3516641f6b541497f6dd3c5f592f3acd2681fe3c0d05f37734e8262451945"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s03-sub1-wrong.response-1.json",
+        "sha256": "39f63548d05602872585929507f3f7fbd0bfe0d3a35ea504d0cd8685eba17928"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s03-sub1-wrong.trace.json",
+        "sha256": "8ebfebe577e819bbe65e77f7c8a4a939a25fb6c59ac88544468f95dbb95e8e9c"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s03-sub1-wrong.usage.json",
+        "sha256": "e1f02971499563a32cca37fdecebde1ec225ac320be76ab5b0ad0c439d0de81c"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-expansion-2026-09-13/grading/run-v1/s03-sub1-wrong.result.json",
+        "sha256": "a15ed41c4ee68a83ae73f7a7712bf6f4f2ffcc2fb2748d87766c928d28bcaa07"
+      }
+    ],
+    "original_case_id": "s03-sub1-wrong",
+    "origin_batch": "cpa_uploader/drafts/standard-expansion-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

@@ -1,0 +1,25 @@
+diff --git a/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/reuse-source/integrate.mjs.txt b/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/integrate.mjs
+index 80d91b39..ae147262 100644
+--- a/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/reuse-source/integrate.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/integrate.mjs
+@@ -1,15 +1,15 @@
+ import fs from 'node:fs';
+ import assert from 'node:assert/strict';
+ import {createHash} from 'node:crypto';
+-import {validateAuthoringBank} from '../../../questionBankPublication.ts';
+-import {validateQuestionAuthoringPlan} from '../../../questionAuthoringPlan.ts';
+-const R='cpa_uploader/analysis/reviews/case-followup-2026-09-14';
+-const D='cpa_uploader/drafts/case-followup-2026-09-14';
++import {validateAuthoringBank} from '../../../../questionBankPublication.ts';
++import {validateQuestionAuthoringPlan} from '../../../../questionAuthoringPlan.ts';
++const R='cpa_uploader/analysis/reviews/case-applied-2026-09-14';
++const D='cpa_uploader/drafts/case-applied-2026-09-14';
+ const read=f=>JSON.parse(fs.readFileSync(f));
+ const hash=b=>createHash('sha256').update(b).digest('hex');
+ const write=(f,x)=>fs.writeFileSync(R+'/'+f,JSON.stringify(x,null,2)+'\n',{flag:'wx'});
+ const before=read(R+'/integration-baseline/bank.json'),oldClasses=read(R+'/integration-baseline/classification.json').entries;
+-const sourceCatalog=read(D+'/source-catalog-v3.json');
++const sourceCatalog=read(D+'/source-catalog-final.json');
+ const changes=[],qa=[],design=[],reviews=[],evidence=[];
+ for(const agent of ['a','b']){
+  const dir=D+'/'+agent,sets=read(dir+'/sets.json'),plans=read(dir+'/design.json'),rs=read(dir+'/review.json'),cases=read(dir+'/qa.json');

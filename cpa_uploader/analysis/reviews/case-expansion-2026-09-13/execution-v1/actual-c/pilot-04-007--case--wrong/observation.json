@@ -1,0 +1,325 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-04-007--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-007--case",
+  "source_set_id": "pilot-04-007",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2",
+    "exp1"
+  ],
+  "projected_body_hash": "d71ca3f2c4f65c8fa844aec5adfcbc8c69825d48d54c302fd726d812e9c12cf3",
+  "answers": {
+    "sub2": "모든 기업에 동일한 비율을 기계적으로 적용하면 전문가적 판단은 필요 없다.",
+    "exp1": "전기의 오류가 각각 작으므로 여러 지점에서 반복되어도 무시하고 동일한 비율을 자동 적용한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "사례의 결정적 조건에 반대되는 답안이며, 독립적으로 맞는 조치나 이유도 포함하지 않는다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "not_met",
+          "reason": "사례의 결정적 조건에 반대되는 답안이며, 독립적으로 맞는 조치나 이유도 포함하지 않는다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "exp1.c1",
+          "verdict": "not_met",
+          "reason": "사례의 결정적 조건에 반대되는 답안이며, 독립적으로 맞는 조치나 이유도 포함하지 않는다."
+        },
+        {
+          "criterion_id": "exp1.c2",
+          "verdict": "not_met",
+          "reason": "사례의 결정적 조건에 반대되는 답안이며, 독립적으로 맞는 조치나 이유도 포함하지 않는다."
+        },
+        {
+          "criterion_id": "exp1.c3",
+          "verdict": "not_met",
+          "reason": "사례의 결정적 조건에 반대되는 답안이며, 독립적으로 맞는 조치나 이유도 포함하지 않는다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "5a02807edeaa787f866595bbfbd11faa846c8cbe82d21b9425837d2ad3c8fd3c",
+  "schema_hash": "83868de1aa1ca295b92d822b05ea910f5b2e2ad66f01906cf6be7e1f5056359d",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "모든 기업에 동일한 비율을 기계적으로 적용하면 전문가적 판단은 필요 없다.",
+            "reason": "전문가적 판단이 필요 없다고 명시하여 요구 명제와 반대된다."
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "contradicted",
+            "quote": "모든 기업에 동일한 비율을 기계적으로 적용하면 전문가적 판단은 필요 없다.",
+            "reason": "수행중요성 결정에 전문가적 판단이 필요하다는 명제를 명시적으로 부정한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp1",
+        "verdicts": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "not_met",
+            "reason": "갱신된 기업 이해에 관한 구체적 사실과 반영 내용이 없다."
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "contradicted",
+            "quote": "전기의 오류가 각각 작으므로 여러 지점에서 반복되어도 무시하고 동일한 비율을 자동 적용한다.",
+            "reason": "전기 오류가 여러 지점에서 반복되어도 무시한다고 명시한다."
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "not_met",
+            "reason": "당기 자료 연결·결산 지연과 당기에도 여러 오류가 발생할 수 있다는 예상을 연결하여 반영하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "전문가적 판단이 필요 없다고 명시하여 요구 명제와 반대된다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "수행중요성 결정에 전문가적 판단이 필요하다는 명제를 명시적으로 부정한다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp1",
+            "verdicts": [
+              {
+                "criterion_id": "exp1.c1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "갱신된 기업 이해에 관한 구체적 사실과 반영 내용이 없다."
+              },
+              {
+                "criterion_id": "exp1.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "전기 오류가 여러 지점에서 반복되어도 무시한다고 명시한다."
+              },
+              {
+                "criterion_id": "exp1.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "당기 자료 연결·결산 지연과 당기에도 여러 오류가 발생할 수 있다는 예상을 연결하여 반영하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-007",
+    "score": 0,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "을의 수행중요성 결정방식이 적절한지 판단하고, 기계적인 계산 외에 필요한 판단의 성격을 설명하시오.",
+        "user_answer": "모든 기업에 동일한 비율을 기계적으로 적용하면 전문가적 판단은 필요 없다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "모든 기업에 동일한 비율을 기계적으로 적용하면 전문가적 판단은 필요 없다.",
+            "reason": "전문가적 판단이 필요 없다고 명시하여 요구 명제와 반대된다.",
+            "claim": "기업 상황과 무관한 고정 비율의 기계적 계산만으로 수행중요성을 정하자는 제안은 부적절하다. 전문가적 판단 필요를 명확히 설명해 그 판단이 함축되어도 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "contradicted",
+            "quote": "모든 기업에 동일한 비율을 기계적으로 적용하면 전문가적 판단은 필요 없다.",
+            "reason": "수행중요성 결정에 전문가적 판단이 필요하다는 명제를 명시적으로 부정한다.",
+            "claim": "수행중요성의 결정에는 전문가적 판단이 필요하다. 비율을 참고하는 것 자체가 언제나 금지되는 것은 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "기업 상황과 무관한 고정 비율의 기계적 계산만으로 수행중요성을 정하자는 제안은 부적절하다.",
+          "수행중요성의 결정에는 전문가적 판단이 필요하다."
+        ]
+      },
+      {
+        "subquestion_id": "exp1",
+        "prompt": "새봄회사의 자료를 이용하여 수행중요성 결정에 반영할 내용을 ① 위험평가 중 갱신된 기업 이해, ② 전기 왜곡표시의 성격과 범위, ③ 당기 왜곡표시에 관한 예상으로 구별하여 설명하시오. 적정 비율이나 금액의 계산은 요구하지 않는다.",
+        "user_answer": "전기의 오류가 각각 작으므로 여러 지점에서 반복되어도 무시하고 동일한 비율을 자동 적용한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "not_met",
+            "reason": "갱신된 기업 이해에 관한 구체적 사실과 반영 내용이 없다.",
+            "claim": "시스템 전환 후 남은 수작업 연결, 담당자 교체 또는 반품자료 지연 중 구체적 사실을 갱신된 기업 이해로서 수행중요성 결정에 반영한다. 기업 이해라는 일반론만으로는 부족하다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "contradicted",
+            "quote": "전기의 오류가 각각 작으므로 여러 지점에서 반복되어도 무시하고 동일한 비율을 자동 적용한다.",
+            "reason": "전기 오류가 여러 지점에서 반복되어도 무시한다고 명시한다.",
+            "claim": "전기의 반품 지연 오류라는 성격과 여러 지점·다수 건이라는 범위를 수행중요성 결정에 고려한다. 전기 금액이 작았다는 한 가지 사실만으로 자동 비율을 정하면 반대이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "not_met",
+            "reason": "당기 자료 연결·결산 지연과 당기에도 여러 오류가 발생할 수 있다는 예상을 연결하여 반영하지 않았다.",
+            "claim": "전기 오류와 당기의 자료 연결·결산 지연을 연결하여 당기에도 여러 오류가 발생할 수 있다는 예상을 수행중요성 결정에 반영한다. 이미 발견된 당기 오류만 고려한다고 범위를 축소하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "시스템 전환 뒤에도 두 지점에 수작업 연결이 남고 담당자 교체·자료 지연이 있다는 갱신된 기업 이해를 반영한다.",
+          "전기의 반품 반영 지연이라는 오류 성격과 여러 지점·다수 건에 걸친 발생 범위, 미수정 오류를 고려한다.",
+          "이러한 전기 오류와 당기의 미완료된 자료 연결·결산 지연에 비추어 당기에도 여러 오류가 발생할 수 있다는 예상을 반영한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_03b3cef4854e115f016aa6036e2ef887d08d9d8acbab3c6b7e",
+        "request_id": "req_8b0745ea3c3c404fa299f4fdbe068ebf",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3764,
+          "input_tokens_details": {
+            "cache_write_tokens": 3761,
+            "cached_tokens": 0
+          },
+          "output_tokens": 657,
+          "output_tokens_details": {
+            "reasoning_tokens": 336
+          },
+          "total_tokens": 4421
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00172925,
+        "min_usd": 0.00172925,
+        "max_usd": 0.00172925,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-04-007--case--wrong/input.json",
+      "sha256": "874964027c2ac7154239be39b6e9490b0d84a0b353002d26a595ca641a767ede"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-04-007--case--wrong/transport.jsonl",
+      "sha256": "f277c9dc70baa2e859e84d00b1d7f4e45667350396c426f43e242d1ba76bfced"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-04-007--case--wrong/traces.jsonl",
+      "sha256": "e2b30eacf30f78c92ce719885394a6e9aab29615c2426f924324e73591366163"
+    }
+  }
+}

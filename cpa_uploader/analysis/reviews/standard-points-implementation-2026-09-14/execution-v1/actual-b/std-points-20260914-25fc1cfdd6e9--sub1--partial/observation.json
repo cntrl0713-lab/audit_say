@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-25fc1cfdd6e9--sub1--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-25fc1cfdd6e9--sub1--standard",
+  "source_set_id": "std-points-20260914-25fc1cfdd6e9",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "5c7e501ccc06dbe25f8f083b9678bd47a8940cf73534dc4da387e6e541ba5f26",
+  "answers": {
+    "sub1": "감사업무 조건을 정한 해당 법규가 적용된다는 사실을 계약서에 기록한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 감사업무 조건을 정한 법규가 적용된다는 사실을 기록함"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 경영진이 문단 6(b)의 책임을 인정하고 이해한다는 사실을 기록한다. 실질적인 책임 수용·합의가 드러나는 동등한 표현을 인정한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "6a461cc1c5a4952008e9afb3589fecdbb6d1e8d356247285715e709334e50527",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사업무 조건을 정한 해당 법규가 적용된다는 사실을 계약서에 기록한다.",
+            "reason": "해당 법규가 적용된다는 사실의 기록을 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "경영진의 책임 인정 및 이해에 관한 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "해당 법규가 적용된다는 사실의 기록을 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진의 책임 인정 및 이해에 관한 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-25fc1cfdd6e9",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사업무 조건이 법규에 충분히 세부적으로 명시된 경우에도 감사계약서에 기록해야 하는 두 가지 사실을 제시하시오.",
+        "user_answer": "감사업무 조건을 정한 해당 법규가 적용된다는 사실을 계약서에 기록한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사업무 조건을 정한 해당 법규가 적용된다는 사실을 계약서에 기록한다.",
+            "reason": "해당 법규가 적용된다는 사실의 기록을 명시했다.",
+            "claim": "감사업무 조건을 정한 법규가 적용된다는 사실을 기록함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "경영진의 책임 인정 및 이해에 관한 내용이 없다.",
+            "claim": "경영진이 문단 6(b)의 책임을 인정하고 이해한다는 사실을 기록한다. 실질적인 책임 수용·합의가 드러나는 동등한 표현을 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "해당 법규가 적용된다는 사실을 기록한다.",
+          "경영진이 자신의 책임을 인정하고 이해한다는 사실을 기록한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_05152a6d490b2c90016aa7850d4fac87d0b00b8480695c6df4",
+        "request_id": "req_e099b6efcf0346308a9652526160e09c",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2326,
+          "input_tokens_details": {
+            "cache_write_tokens": 2323,
+            "cached_tokens": 0
+          },
+          "output_tokens": 165,
+          "output_tokens_details": {
+            "reasoning_tokens": 37
+          },
+          "total_tokens": 2491
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00077935,
+        "min_usd": 0.00077935,
+        "max_usd": 0.00077935,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-25fc1cfdd6e9--sub1--partial/input.json",
+      "sha256": "7f808dbc82a85db983458e5630c0ca7606b5dd4800fed3d088066248f3824667"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-25fc1cfdd6e9--sub1--partial/transport.jsonl",
+      "sha256": "9047d76a5bf6b04aa3f013b9fe0102b6574acd7a1cd3cf2ccdf96e0ac7660aca"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-25fc1cfdd6e9--sub1--partial/traces.jsonl",
+      "sha256": "52640caac239e0411b4371394f103168a2c7396fece445a32dc1d5f5cf68639d"
+    }
+  }
+}

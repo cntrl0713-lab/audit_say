@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "fol-l01-sub3-model",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-followup-20260913-l01",
+  "learning_unit_id": "draft-standard-followup-20260913-l01--sub3--standard",
+  "kind": "model",
+  "projected_body_hash": "d7f61f478300ae0112edec5d72fcdaa71cf69485c5445d94acdaf37225f367de",
+  "answers": {
+    "sub3": "① 회사의 감사 또는 감사위원회는 감사인에게 통보한다.\n② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다.\n② 감사인이 해당 사실을 스스로 발견하거나 회사의 감사 또는 감사위원회로부터 통보받은 경우 증권선물위원회에 보고한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: ① 회사의 감사 또는 감사위원회는 감사인에게 통보한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: ② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: ② 감사인이 해당 사실을 스스로 발견하거나 회사의 감사 또는 감사위원회로부터 통보받은 경우 증권선물위원회에 보고한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "18edfd2fa82ada4a66825becd05c6db40552a101330fa82f03a8c316831f2432",
+  "schema_hash": "0f33a01c8e52628bf608affd77fa9b408baa953897bdc5cffd3ab69c06306ff3",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "① 회사의 감사 또는 감사위원회는 감사인에게 통보한다.\n",
+            "reason": "감사 또는 감사위원회가 감사인에게 통보한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다.\n",
+            "reason": "대상사실을 부정행위 또는 법령 위반 중대 사실로 제시하고, 정관 위반만인 사실은 대상이 아니라고 구별했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "② 감사인이 해당 사실을 스스로 발견하거나 회사의 감사 또는 감사위원회로부터 통보받은 경우 증권선물위원회에 보고한다.",
+            "reason": "감사인의 자체 발견과 감사 또는 감사위원회의 통보라는 두 인지경로 및 증권선물위원회 보고를 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "감사 또는 감사위원회가 감사인에게 통보한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e2",
+                  "sub3/e3"
+                ],
+                "reason": "대상사실을 부정행위 또는 법령 위반 중대 사실로 제시하고, 정관 위반만인 사실은 대상이 아니라고 구별했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e4"
+                ],
+                "reason": "감사인의 자체 발견과 감사 또는 감사위원회의 통보라는 두 인지경로 및 증권선물위원회 보고를 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-followup-20260913-l01",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "외부감사법 제22조제6항과 제7항의 통보·보고의무를 설명하시오. ① 회사의 감사 또는 감사위원회가 이사의 직무수행에 관하여 부정행위 또는 법령이나 정관에 위반되는 중대한 사실을 발견했을 때의 통보 상대방, ② 외부감사인의 증권선물위원회 보고를 촉발하는 대상사실의 범위와 두 가지 인지경로를 제시하시오. 특히 제7항에 정관 위반만인 사실도 명시되어 있는지 구별하시오.",
+        "user_answer": "① 회사의 감사 또는 감사위원회는 감사인에게 통보한다.\n② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다.\n② 감사인이 해당 사실을 스스로 발견하거나 회사의 감사 또는 감사위원회로부터 통보받은 경우 증권선물위원회에 보고한다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "① 회사의 감사 또는 감사위원회는 감사인에게 통보한다.",
+            "reason": "감사 또는 감사위원회가 감사인에게 통보한다고 명시했다.",
+            "claim": "① 회사의 감사 또는 감사위원회는 감사인에게 통보한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다.",
+            "reason": "대상사실을 부정행위 또는 법령 위반 중대 사실로 제시하고, 정관 위반만인 사실은 대상이 아니라고 구별했다.",
+            "claim": "② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다. 정관 위반인 사실이 동시에 부정행위나 중대한 법령 위반이면 그 해당 사유로 보고 대상이 될 수 있다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "② 감사인이 해당 사실을 스스로 발견하거나 회사의 감사 또는 감사위원회로부터 통보받은 경우 증권선물위원회에 보고한다.",
+            "reason": "감사인의 자체 발견과 감사 또는 감사위원회의 통보라는 두 인지경로 및 증권선물위원회 보고를 명시했다.",
+            "claim": "② 감사인이 해당 사실을 스스로 발견하거나 회사의 감사 또는 감사위원회로부터 통보받은 경우 증권선물위원회에 보고한다. 두 인지경로 중 하나이면 보고하므로 모두 동시에 충족할 필요는 없다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "① 회사의 감사 또는 감사위원회는 감사인에게 통보한다.",
+          "② 제7항의 대상은 제1항 또는 제6항에 따른 이사의 직무수행에 관한 부정행위 또는 법령에 위반되는 중대한 사실이다. 정관 위반만인 사실은 제7항의 대상사실로 명시되어 있지 않다.",
+          "② 감사인이 해당 사실을 스스로 발견하거나 회사의 감사 또는 감사위원회로부터 통보받은 경우 증권선물위원회에 보고한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-l01-sub3-model.input.json",
+      "sha256": "fc26b4655c82ac42f5191eb08158f6158d76d01abba005c91b95166d17933470"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-l01-sub3-model.transport.jsonl",
+      "sha256": "b2793b8421a2b746fc736363b2bad2fa9a440eece7c7dfdee24c9952fdcac66d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/fol-l01-sub3-model.traces.jsonl",
+      "sha256": "811415842d885f701a58e333b8fe8ed1788562b6eb846fd10c1d93a731e793b2"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub3"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0be14e8cab10b3a8016aa5fe3e60d887d0bccd5676d39d8ead",
+        "request_id": "req_86a11c43d0c14e64a3fe845eed3685b4",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3218,
+          "input_tokens_details": {
+            "cache_write_tokens": 3215,
+            "cached_tokens": 0
+          },
+          "output_tokens": 259,
+          "output_tokens_details": {
+            "reasoning_tokens": 41
+          },
+          "total_tokens": 3477
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub3-model.input.json",
+        "sha256": "2b8ff2e70aba85a6144bb4331b373404798ec0eb6c6871bcb7d86c4fef8b699f"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub3-model.request-1.json",
+        "sha256": "a1ed9f9c0ba759f8d9c23eb3cd5c09c0f700df1a0c60828fd34f291e007edb79"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub3-model.response-1.json",
+        "sha256": "d1e5517fca78a4f9853aca357d21756210f9b9a8dba816c490ea67a809de9b72"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub3-model.trace.json",
+        "sha256": "8bbdc585f6dcf4f379f084049e1240d60147ad3fbe36cbef7cee9862d35cec33"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub3-model.usage.json",
+        "sha256": "b7ec1fdd4f0a52a0f8978a510c0e36629ebb18586cff17f5aeb3ebc940fd01c2"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-followup-2026-09-13/grading/run-v1/l01-sub3-model.result.json",
+        "sha256": "b09b8dd7e6046cd66fbf77bec462e9e4e00aa37115fcab95b4d84d940f6c1396"
+      }
+    ],
+    "original_case_id": "l01-sub3-model",
+    "origin_batch": "cpa_uploader/drafts/standard-followup-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

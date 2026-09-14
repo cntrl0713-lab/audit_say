@@ -1,0 +1,38 @@
+diff --git a/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/reuse-source/prepare-coverage.mjs.txt b/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/prepare-coverage.mjs
+index f28129cd..444eb1a1 100644
+--- a/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/reuse-source/prepare-coverage.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/prepare-coverage.mjs
+@@ -1,9 +1,10 @@
+ import fs from 'node:fs';
+ import assert from 'node:assert/strict';
+ import {createHash} from 'node:crypto';
+-import {questionHash,sourceUnitHash} from '../../coverage/build-coverage.mjs';
+-import {assertRelationship} from './helpers/coverage-contract.mjs';
+-const R='cpa_uploader/analysis/reviews/case-trio-2026-09-14',D='cpa_uploader/drafts/case-trio-2026-09-14';
++import {questionHash,sourceUnitHash} from '../../../coverage/build-coverage.mjs';
++import {assertRelationship} from './coverage-contract.mjs';
++import {resolveCoverageSourceUnits} from './coverage-source-map.mjs';
++const R='cpa_uploader/analysis/reviews/case-trio-next-2026-09-14',D='cpa_uploader/drafts/case-trio-next-2026-09-14';
+ const read=file=>JSON.parse(fs.readFileSync(file));
+ const hash=value=>createHash('sha256').update(value).digest('hex');
+ const ref=file=>({file,sha256:hash(fs.readFileSync(file))});
+@@ -17,17 +18,8 @@ for(const worker of ['a','b','c']){
+   const element=elements.find(element=>element.id===proposal.element_id);assert(element&&question);
+   assert(Array.isArray(proposal.criterion_ids)&&proposal.criterion_ids.length>0&&new Set(proposal.criterion_ids).size===proposal.criterion_ids.length);
+   assert(proposal.criterion_ids.every(id=>question.criteria.some(criterion=>criterion.id===id)));
+-  const referenceIds=[...new Set(question.criteria.filter(criterion=>proposal.criterion_ids.includes(criterion.id)).flatMap(criterion=>criterion.source_ref_ids))];
+-  const sourceIds=proposal.source_unit_ids??referenceIds;
+-  assert(new Set(sourceIds).size===sourceIds.length);
+-  // A local SourceRef ID is not necessarily a catalogue unit ID. Explicit mapping must retain actual quoted text and file identity.
+-  const norm=text=>text.replace(/\s/gu,'');
+-  for(const referenceId of referenceIds){
+-   const reference=set.source_refs.find(row=>row.id===referenceId);assert(reference);
+-   assert(sourceIds.some(id=>{const unit=units.find(row=>row.id===id);return unit&&unit.file===reference.file&&norm(unit.quote).includes(norm(reference.source_quote));}),'Explicit source unit must contain every selected criterion quote: '+referenceId);
+-  }
+-  assert(sourceIds.length);const sources=sourceIds.map(id=>{const unit=units.find(unit=>unit.id===id);assert(unit,id);return unit;});
+-  links.push({id:'coverage-trio-20260914-'+worker,element_id:proposal.element_id,source_unit_ids:sourceIds,
++  const {sourceIds,sources}=resolveCoverageSourceUnits(set,question,proposal,units);
++  links.push({id:'coverage-trio-next-20260914-'+worker,element_id:proposal.element_id,source_unit_ids:sourceIds,
+    target:{scope:'draft',file:D+'/'+worker+'/sets.json',set_id:set.id,subquestion_id:question.id,criterion_ids:proposal.criterion_ids},
+    relationship:proposal.relationship,reason:proposal.reason,review_status:'needs_review',
+    snapshot:{element_sha256:hash(JSON.stringify(element)),question_sha256:questionHash(set,question),source_hashes:Object.fromEntries(sources.map(unit=>[unit.id,unit.contentHash])),source_metadata_hashes:Object.fromEntries(sources.map(unit=>[unit.id,sourceUnitHash(unit)]))},

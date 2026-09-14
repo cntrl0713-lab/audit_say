@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v2/grading-manifest.json",
+    "sha256": "25470303648527eae9d6f2b513a41e3c8dc26cc56f93edebacb9e85b2c82daf4"
+  },
+  "entry_id": "fix4v2-20260914-l01-sub1-wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-standard-priority-20260914-l01--sub1--standard",
+  "source_set_id": "draft-standard-priority-20260914-l01",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "59a313c94b53abb88d281cb5cd5a6392e520540590bd6945ba3e766b2fe8ba9e",
+  "answers": {
+    "sub1": "모든 회사는 사업연도 종료일까지만 감사인을 선임하면 된다. 감사위원회를 설치하여야 하는 회사도 사업연도 개시 후 1년 이내에 선임하면 되고, 감사인 지정이나 계약 해지로 새로 선임할 때에는 기한이 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 회사는 원칙적으로 매 사업연도 개시일부터 45일 이내에 해당 사업연도의 감사인을 선임하여야 한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 감사위원회를 설치하여야 하는 회사는 매 사업연도 개시일 이전에 해당 사업연도의 감사인을 선임하여야 한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 직전 사업연도에 회계감사를 받지 아니한 회사는 해당 사업연도 개시일부터 4개월 이내에 감사인을 선임하여야 한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 감사인 지정·감사계약 해지·감사인의 해산 등 제7항의 사유로 감사인을 선임하는 경우에는 그 사유 발생일부터 2개월 이내에 선임하여야 한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "329d183045a93778cb1ac99b3a03fac345cbe87fbd3e37d6a08cf869d971b9ee",
+  "schema_hash": "e855bf5c3fc7c9fe3c07bbe53bd066a1730d4b0c5b32206a971b2ced5602e99c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "모든 회사는 사업연도 종료일까지만 감사인을 선임하면 된다. ",
+            "reason": "원칙적 기한을 사업연도 종료일까지라고 명시하여 45일 이내라는 요건과 반대이다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "감사위원회를 설치하여야 하는 회사도 사업연도 개시 후 1년 이내에 선임하면 되고, 감사인 지정이나 계약 해지로 새로 선임할 때에는 기한이 없다.",
+            "reason": "감사위원회 설치 회사의 기한을 사업연도 개시 후 1년 이내라고 하여 개시일 이전이라는 요건과 반대이다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "직전 사업연도에 회계감사를 받지 않은 회사의 4개월 이내 선임 기한을 언급하지 않았다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "감사위원회를 설치하여야 하는 회사도 사업연도 개시 후 1년 이내에 선임하면 되고, 감사인 지정이나 계약 해지로 새로 선임할 때에는 기한이 없다.",
+            "reason": "감사인 지정이나 계약 해지로 새로 선임할 때 기한이 없다고 명시하여 2개월 이내라는 요건과 반대이다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "원칙적 기한을 사업연도 종료일까지라고 명시하여 45일 이내라는 요건과 반대이다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "감사위원회 설치 회사의 기한을 사업연도 개시 후 1년 이내라고 하여 개시일 이전이라는 요건과 반대이다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "직전 사업연도에 회계감사를 받지 않은 회사의 4개월 이내 선임 기한을 언급하지 않았다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "감사인 지정이나 계약 해지로 새로 선임할 때 기한이 없다고 명시하여 2개월 이내라는 요건과 반대이다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-priority-20260914-l01",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "외부감사법 제10조에 따라 회사가 해당 사업연도의 감사인을 선임하여야 하는 기한을 설명하시오. ① 원칙적인 기한, ② 「상법」 제542조의11 또는 「금융회사의 지배구조에 관한 법률」 제16조에 따라 감사위원회를 설치하여야 하는 회사의 기한, ③ 직전 사업연도에 회계감사를 받지 아니한 회사의 기한, ④ 증권선물위원회의 감사인 지정, 감사계약의 해지, 선임된 감사인의 해산 등 제7항의 사유로 감사인을 선임하는 경우의 기한을 모두 제시하시오. 연속 3개 사업연도 동일 감사인 선임과 감사인선임위원회의 구성은 묻지 않는다.",
+        "user_answer": "모든 회사는 사업연도 종료일까지만 감사인을 선임하면 된다. 감사위원회를 설치하여야 하는 회사도 사업연도 개시 후 1년 이내에 선임하면 되고, 감사인 지정이나 계약 해지로 새로 선임할 때에는 기한이 없다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "모든 회사는 사업연도 종료일까지만 감사인을 선임하면 된다.",
+            "reason": "원칙적 기한을 사업연도 종료일까지라고 명시하여 45일 이내라는 요건과 반대이다.",
+            "claim": "회사는 원칙적으로 매 사업연도 개시일부터 45일 이내에 해당 사업연도의 감사인을 선임하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "감사위원회를 설치하여야 하는 회사도 사업연도 개시 후 1년 이내에 선임하면 되고, 감사인 지정이나 계약 해지로 새로 선임할 때에는 기한이 없다.",
+            "reason": "감사위원회 설치 회사의 기한을 사업연도 개시 후 1년 이내라고 하여 개시일 이전이라는 요건과 반대이다.",
+            "claim": "감사위원회를 설치하여야 하는 회사는 매 사업연도 개시일 이전에 해당 사업연도의 감사인을 선임하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "직전 사업연도에 회계감사를 받지 않은 회사의 4개월 이내 선임 기한을 언급하지 않았다.",
+            "claim": "직전 사업연도에 회계감사를 받지 아니한 회사는 해당 사업연도 개시일부터 4개월 이내에 감사인을 선임하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "감사위원회를 설치하여야 하는 회사도 사업연도 개시 후 1년 이내에 선임하면 되고, 감사인 지정이나 계약 해지로 새로 선임할 때에는 기한이 없다.",
+            "reason": "감사인 지정이나 계약 해지로 새로 선임할 때 기한이 없다고 명시하여 2개월 이내라는 요건과 반대이다.",
+            "claim": "감사인 지정·감사계약 해지·감사인의 해산 등 제7항의 사유로 감사인을 선임하는 경우에는 그 사유 발생일부터 2개월 이내에 선임하여야 한다. 제7항 각 호를 모두 나열하지 않아도 그 사유로 선임하는 경우의 기한과 기산점이 드러나면 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "회사는 원칙적으로 매 사업연도 개시일부터 45일 이내에 해당 사업연도의 감사인을 선임하여야 한다.",
+          "감사위원회를 설치하여야 하는 회사는 매 사업연도 개시일 이전에 해당 사업연도의 감사인을 선임하여야 한다.",
+          "직전 사업연도에 회계감사를 받지 아니한 회사는 해당 사업연도 개시일부터 4개월 이내에 감사인을 선임하여야 한다.",
+          "감사인 지정·감사계약 해지·감사인의 해산 등 제7항의 사유로 감사인을 선임하는 경우에는 그 사유 발생일부터 2개월 이내에 선임하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_073d40d0b88116c0016aa7cd43488887d0bc7712e3dc761c2b",
+        "request_id": "req_35586ef8b1ff4405ae41cda5e7b534ca",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3164,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 3161
+          },
+          "output_tokens": 374,
+          "output_tokens_details": {
+            "reasoning_tokens": 92
+          },
+          "total_tokens": 3538
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00051262,
+        "min_usd": 0.00051262,
+        "max_usd": 0.00051262,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v2/execution/actual-c/fix4v2-20260914-l01-sub1-wrong/input.json",
+      "sha256": "98a5486ee1bfc54ec147d938eca632246dc05d966416deb73b8f5a32f3e7a56e"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v2/execution/actual-c/fix4v2-20260914-l01-sub1-wrong/transport.jsonl",
+      "sha256": "1aec2b24317a3a422bec6ab53ceecb918aa688cb7ad78e530fa79c1dbf1c1021"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v2/execution/actual-c/fix4v2-20260914-l01-sub1-wrong/traces.jsonl",
+      "sha256": "db26d7555ccd192c068692516a630131e0af6067fca03a286713fd129ed2a6c1"
+    }
+  }
+}

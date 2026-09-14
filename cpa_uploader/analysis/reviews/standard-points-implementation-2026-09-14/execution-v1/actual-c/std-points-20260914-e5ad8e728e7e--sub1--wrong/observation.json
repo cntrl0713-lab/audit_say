@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-e5ad8e728e7e--sub1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-e5ad8e728e7e--sub1--standard",
+  "source_set_id": "std-points-20260914-e5ad8e728e7e",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "be1fa5e8b5807b192c7c382ff43bd32fe05861c8cef526f8a866e5aee1af53b2",
+  "answers": {
+    "sub1": "재무제표 작성과 내부통제 및 감사정보 제공의 책임은 모두 외부감사인에게만 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 경영진의 재무제표 작성 책임을 확인함"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 경영진의 관련 내부통제 책임을 확인함"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 경영진이 감사에 필요한 정보를 제공하거나 확보할 책임을 확인함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "4a8b62b4517c868d188009d57bb3f2dd07f29768b91d6519dda1732e72b97c07",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "재무제표 작성과 내부통제 및 감사정보 제공의 책임은 모두 외부감사인에게만 있다.",
+            "reason": "재무제표 작성 책임이 외부감사인에게만 있다고 명시하여 경영진의 책임과 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "재무제표 작성과 내부통제 및 감사정보 제공의 책임은 모두 외부감사인에게만 있다.",
+            "reason": "내부통제 책임이 외부감사인에게만 있다고 명시하여 경영진의 책임과 반대된다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "재무제표 작성과 내부통제 및 감사정보 제공의 책임은 모두 외부감사인에게만 있다.",
+            "reason": "감사정보 제공 책임이 외부감사인에게만 있다고 명시하여 경영진의 책임과 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "재무제표 작성 책임이 외부감사인에게만 있다고 명시하여 경영진의 책임과 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "내부통제 책임이 외부감사인에게만 있다고 명시하여 경영진의 책임과 반대된다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "감사정보 제공 책임이 외부감사인에게만 있다고 명시하여 경영진의 책임과 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-e5ad8e728e7e",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "경영진이 감사에 필요한 정보를 제공하거나 확보할 능력이 있다는 일반적 전제 아래, 감사인이 감사업무를 수임하기 위해 경영진으로부터 인정하고 이해함을 확인받아야 하는 책임의 핵심 세 범주를 기술하시오. 정보·접근권의 세부 목록과 책임 불인정 시의 수임 판단은 제외한다.",
+        "user_answer": "재무제표 작성과 내부통제 및 감사정보 제공의 책임은 모두 외부감사인에게만 있다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "재무제표 작성과 내부통제 및 감사정보 제공의 책임은 모두 외부감사인에게만 있다.",
+            "reason": "재무제표 작성 책임이 외부감사인에게만 있다고 명시하여 경영진의 책임과 반대된다.",
+            "claim": "경영진의 재무제표 작성 책임을 확인함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "재무제표 작성과 내부통제 및 감사정보 제공의 책임은 모두 외부감사인에게만 있다.",
+            "reason": "내부통제 책임이 외부감사인에게만 있다고 명시하여 경영진의 책임과 반대된다.",
+            "claim": "경영진의 관련 내부통제 책임을 확인함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "재무제표 작성과 내부통제 및 감사정보 제공의 책임은 모두 외부감사인에게만 있다.",
+            "reason": "감사정보 제공 책임이 외부감사인에게만 있다고 명시하여 경영진의 책임과 반대된다.",
+            "claim": "경영진이 감사에 필요한 정보를 제공하거나 확보할 책임을 확인함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "해당 재무보고체계에 따른 재무제표 작성 책임이다.",
+          "관련 내부통제에 대한 책임이다.",
+          "감사에 필요한 정보를 제공하거나 확보할 책임이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02e8997782aa980a016aa7850d440487d0b673fed129b65fc0",
+        "request_id": "req_5fd31c3db5d140508eb47cb0673ff3be",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2416,
+          "input_tokens_details": {
+            "cache_write_tokens": 2413,
+            "cached_tokens": 0
+          },
+          "output_tokens": 251,
+          "output_tokens_details": {
+            "reasoning_tokens": 37
+          },
+          "total_tokens": 2667
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009050499999999999,
+        "min_usd": 0.0009050499999999999,
+        "max_usd": 0.0009050499999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-e5ad8e728e7e--sub1--wrong/input.json",
+      "sha256": "560f3d49990dd0c85ef357e315dc32f63ddc2cb9fe6034766399b0f86e7475c5"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-e5ad8e728e7e--sub1--wrong/transport.jsonl",
+      "sha256": "75bff0b411d69218732ddbf0d977f1b29cf524d665de6b6060f69824c281e34a"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-e5ad8e728e7e--sub1--wrong/traces.jsonl",
+      "sha256": "c2ecbf42b0c60303138ee9ec553b4065acb3e21f4321e39e46ee4c9a56cb83eb"
+    }
+  }
+}

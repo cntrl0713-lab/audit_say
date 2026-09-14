@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "completed_at": "2026-09-14T06:33:36.087Z",
+  "status": "pass",
+  "change": "퇴역55세트의생성페이지를원바이트보존후제거하고,주제별2열문제세트표를index생성기에적용했다.",
+  "retired_generated_pages": {
+    "count": 55,
+    "archive_manifest": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/wiki-retirement-v1/manifest.json",
+      "sha256": "72ffe41ec42b3ba85227f69bf260485079fadbac0caab7a17ed54342785413ad"
+    },
+    "archive_completion": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/wiki-retirement-v1/completion.json",
+      "sha256": "3226dd213ce3977f167c6adef02ccf7de6e2fbdbd587c17719cb2722b49f8ffb"
+    },
+    "hashes_verified_after_removal": true
+  },
+  "index": {
+    "before_lines": 466,
+    "after_lines": 294,
+    "hard_limit_unchanged": 400,
+    "all_active_set_links": 363,
+    "full_titles_preserved": true,
+    "topic_order": "OX학습순서",
+    "within_topic_order": "정본배열순서/행왼쪽→오른쪽",
+    "generated": {
+      "file": "cpa_uploader/wiki/index.md",
+      "sha256": "4a417c2693056fa5f71522b6a93c6d3e5571301d2289f8c45c85720541daa276"
+    }
+  },
+  "implementation": [
+    {
+      "file": "cpa_uploader/wiki/scripts/build-wiki.mjs",
+      "sha256": "d057e28ced843e7573b52fa15f81d0adf08cc9a2478ba7de2a26e3b2b940431c"
+    },
+    {
+      "file": "cpa_uploader/wiki/SCHEMA.md",
+      "sha256": "23bd6931c3663e8b090eac3b67f71e9cb636cc81692768d8663b937fd32c3791"
+    },
+    {
+      "file": "tests/wikiCheck.test.ts",
+      "sha256": "c5453a6587711d3e57581606c4505c3f7d11b21c22984471defaca88da0bd6d8"
+    }
+  ],
+  "checks": [
+    {
+      "command": "wiki index and pure-build regression",
+      "exit_code": 0,
+      "tests": 2,
+      "pass": 2,
+      "log": {
+        "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/wiki-index-tests.log",
+        "sha256": "23a9dc3cae51924613bb731a40ef7bfe184bb57220184513482138be247a5ef3"
+      }
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "exit_code": 0,
+      "log": {
+        "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/typecheck.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": "npm run wiki:build",
+      "exit_code": 0,
+      "log": {
+        "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/wiki-build.log",
+        "sha256": "9a5e07eb8a97d4420f967da85014ce9577187b75206b7c255a273f1d56bf66bc"
+      }
+    },
+    {
+      "command": "npm run wiki:check",
+      "exit_code": 0,
+      "log": {
+        "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/wiki-check.log",
+        "sha256": "0449f2f8a38353274bc314751631b8a5020b966cd76fea8d6fb3f2d8ea974e32"
+      },
+      "errors": 0,
+      "drift": 0,
+      "warnings": 10
+    }
+  ],
+  "preserved_prior_failures": [
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v1/wiki-check.log",
+      "sha256": "778a51cde474265d4cca551dfd40b76fef6d90bd71a05b778390d5f95c3b8f7f"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/wiki-check-before-index.log",
+      "sha256": "63daa6b6da04890e206b3b59cab16045d5954352fd772be9dad1d0df06cf294e"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/wiki-index-tests-before-renderer.log",
+      "sha256": "17cdb1347fab6719c9289e04bc7c948de5fd23b2462b17df872baf8c15645176"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/typecheck-before-topic-narrowing.log",
+      "sha256": "1991957ff0ce3d2f70337676c2fa23e8e9ac66dbc2b5ae110b3e7a315d0fb2bc"
+    }
+  ],
+  "verification_scope": {
+    "canonical_bank_unchanged": true,
+    "grading_runtime_unchanged": {
+      "file": "cpa_uploader/questionEfficientReview.ts",
+      "sha256": "1f4893633012b5acb72235ece2dbceff9ada0b6410dc14eb8a31661c152cb770"
+    },
+    "database_calls": 0,
+    "manual_generated_content_edits": 0,
+    "recursive_delete": false
+  },
+  "summary": {
+    "wikiDir": "C:\\Users\\cntrl\\Workspace\\study\\audit_say\\cpa_uploader\\wiki",
+    "topics": 19,
+    "questionSets": 363,
+    "subquestions": 528,
+    "criteria": 1831,
+    "requirements": 1385,
+    "sourceFiles": 63,
+    "sourceUnits": 7849,
+    "sourceCatalogPages": 145,
+    "sourceNavigationLinks": 151,
+    "contentPages": 559
+  },
+  "source_navigation": {
+    "expectedLinks": 151,
+    "actualLinks": 151,
+    "topics": 19,
+    "errors": []
+  },
+  "limitations": "이장부는wiki후속검사다. analysis/build/check·보존검사·DB배포는root의별도실행근거를참조한다. 앞선wiki실패와과거페이지를보존하고새최종pass를분리했다."
+}

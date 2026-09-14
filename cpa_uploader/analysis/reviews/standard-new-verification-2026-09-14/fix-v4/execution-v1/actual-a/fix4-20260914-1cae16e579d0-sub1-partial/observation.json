@@ -1,0 +1,222 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/grading-manifest.json",
+    "sha256": "3d891b9811e47d4aae0e207e902eb831cc4a094841b24c96462e7d7c2d6be9a7"
+  },
+  "entry_id": "fix4-20260914-1cae16e579d0-sub1-partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-1cae16e579d0--sub1--standard",
+  "source_set_id": "std-points-20260914-1cae16e579d0",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "1a9f88ca7556d4e0253972018bc71b7cb9dec8dc4cb482545e57cb678e05f570",
+  "answers": {
+    "sub1": "서면진술도 질문에 대한 답변처럼 감사증거에 해당한다. 신뢰할 수 있는 서면진술을 받았다는 사실 때문에 다른 감사증거의 입수 범위를 줄일 수는 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "서면진술이 감사증거에 해당한다고 썼다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "서면진술 자체만으로는 다루는 사항에 대해 충분하고 적합한 감사증거가 되지 않는다는 명제를 쓰지 않았다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "신뢰할 수 있는 서면진술 때문에 다른 감사증거의 입수 범위를 줄일 수 없다고 써 580.4의 \"성격이나 범위에 영향 없음\" 명제가 드러난다. 합친 기준은 성격과 범위를 나누어 요구하지 않는다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "6a47b70a6b161967a91c628b05a9245cd807634a6c905cb4229c3cd4f08971fa",
+  "schema_hash": "172d5de6570c09a29f717bb90ebbf3ab6007312ced42f430d537597c8d473ae9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "서면진술도 질문에 대한 답변처럼 감사증거에 해당한다. ",
+            "reason": "서면진술이 감사증거에 해당한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "서면진술 자체만으로 충분하고 적합한 감사증거가 될 수 없는다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "다른 감사증거의 입수 범위를 줄일 수 없다고만 했고, 성격에도 영향을 미치지 않는다는 내용은 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "서면진술이 감사증거에 해당한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "서면진술 자체만으로 충분하고 적합한 감사증거가 될 수 없는다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "다른 감사증거의 입수 범위를 줄일 수 없다고만 했고, 성격에도 영향을 미치지 않는다는 내용은 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-1cae16e579d0",
+    "score": 1,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "서면진술이 감사증거인지, 그 자체만으로 다루는 사항에 관하여 충분하고 적합한 감사증거가 되는지 설명하시오. 또한 경영진이 신뢰할 수 있는 서면진술을 제공한 사실이 다른 감사증거의 성격이나 범위에 미치는 영향을 설명하시오.",
+        "user_answer": "서면진술도 질문에 대한 답변처럼 감사증거에 해당한다. 신뢰할 수 있는 서면진술을 받았다는 사실 때문에 다른 감사증거의 입수 범위를 줄일 수는 없다.",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "서면진술도 질문에 대한 답변처럼 감사증거에 해당한다.",
+            "reason": "서면진술이 감사증거에 해당한다고 명시했다.",
+            "claim": "서면진술은 감사증거이다. 발문은 감사증거 해당 여부를 묻는다. 필요적 정보라는 원문의 설명을 추가로 써야 한다는 숨은 요건을 두지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "서면진술 자체만으로 충분하고 적합한 감사증거가 될 수 없는다는 내용이 없다.",
+            "claim": "서면진술 자체만으로는 그것이 다루는 어떠한 사항에 대해서도 충분하고 적합한 감사증거가 되지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "다른 감사증거의 입수 범위를 줄일 수 없다고만 했고, 성격에도 영향을 미치지 않는다는 내용은 없다.",
+            "claim": "신뢰할 수 있는 서면진술을 제공받았다는 사실은 경영진 책임완수나 특정 경영진주장에 대해 입수할 다른 감사증거의 성격이나 범위에 영향을 미치지 않는다. 감사기준서 580 문단 4의 한 명제이므로 1점으로 평가한다. 성격과 범위를 나누어 따로 점수를 주지 않으며, 신뢰할 수 있는 서면진술 때문에 다른 감사증거의 입수를 줄이거나 바꿀 수 없다는 취지가 드러나면 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "서면진술은 감사증거이지만 그 자체만으로는 다루는 어떤 사항에 대해서도 충분하고 적합한 감사증거가 되지 않는다. 신뢰할 수 있는 서면진술을 제공받았다는 사실은 경영진 책임완수나 특정 경영진주장에 대해 입수할 다른 감사증거의 성격에도, 범위에도 영향을 미치지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 1,
+      "delta": -1,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_013e54cda1bd96a0016aa7cc4f138887d0b15357827b622521",
+        "request_id": "req_1d38662c653a4f368f05ce07dad6d5b8",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2840,
+          "input_tokens_details": {
+            "cache_write_tokens": 2837,
+            "cached_tokens": 0
+          },
+          "output_tokens": 290,
+          "output_tokens_details": {
+            "reasoning_tokens": 101
+          },
+          "total_tokens": 3130
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00105785,
+        "min_usd": 0.00105785,
+        "max_usd": 0.00105785,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/execution-v1/actual-a/fix4-20260914-1cae16e579d0-sub1-partial/input.json",
+      "sha256": "13ce514fb0ed14026600bbf7d5904301e13d6447311dc04e32eaeea186ce2eea"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/execution-v1/actual-a/fix4-20260914-1cae16e579d0-sub1-partial/transport.jsonl",
+      "sha256": "baeb9f188dc0884bbbcc49a7df75eba65bcabe06b41bec8123048d20331c5460"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/execution-v1/actual-a/fix4-20260914-1cae16e579d0-sub1-partial/traces.jsonl",
+      "sha256": "9572d6512c29fa0d6ded4db8a21dc5bf2fe2ef8ddd6fd65fc680118ce9f9b343"
+    }
+  }
+}

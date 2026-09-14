@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-c5489dbc1eec--sub2--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-c5489dbc1eec--sub2--standard",
+  "source_set_id": "std-points-20260914-c5489dbc1eec",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "ac18a179073c50e32c093207a01cdac14ce53cfcc83327f93a1d34e9bc714ce5",
+  "answers": {
+    "sub2": "감사위원회가 설치되지 않은 경우 감사가 선임할 감사인을 선정한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 주권상장법인·대형비상장주식회사·금융회사에 감사위원회가 설치된 경우 감사위원회가 선정한 회계법인 또는 감사반을 감사인으로 선임한다. 선정 대상인 회계법인 또는 감사반은 발문이 제시했으므로 반복하지 않아도 이 경우의 선정주체가 맞으면 인정한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 주권상장법인·대형비상장주식회사·금융회사에 감사위원회가 설치되지 않은 경우 감사가 감사인 선임대상을 선정한다."
+        },
+        {
+          "criterion_id": "crit2.sp2",
+          "verdict": "not_met",
+          "reason": "최종 발문과 독립 명제에 맞춰 작성자가 답안 전체를 대조한 부분정답. 적힌 의미만 인정하고 생략한 나머지 명제는 인정하지 않는다. 대상 명제: 주권상장법인·대형비상장주식회사·금융회사에 감사위원회가 설치되지 않은 경우 감사인선임위원회의 승인을 받아야 한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "402fae6d9c8ef2f1b46d8005fdac48756515ac1e379f5c62a1b2f82cfa2aa255",
+  "schema_hash": "9e2f48fe9d7ea982850445cd683ca4aa659fabe285e35447c05d1febdfc0ba92",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "감사위원회가 설치된 경우의 절차를 설명하지 않았다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "감사위원회가 설치되지 않은 경우 감사가 선임할 감사인을 선정한다.",
+            "reason": "감사위원회 미설치 시 감사가 감사인을 선정한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2.sp2",
+            "verdict": "not_met",
+            "reason": "감사인선임위원회의 승인 요건을 언급하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사위원회가 설치된 경우의 절차를 설명하지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "감사위원회 미설치 시 감사가 감사인을 선정한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2.sp2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사인선임위원회의 승인 요건을 언급하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-c5489dbc1eec",
+    "score": 1,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "외부감사법 제10조제4항에 따라 주권상장법인·대형비상장주식회사·금융회사의 감사인 선정 절차를 설명하시오. 감사위원회가 설치된 경우와 설치되지 않은 경우를 구별하고, 미설치시 선정주체와 승인주체를 각각 제시하시오. 금액기준과 감사인선임위원회 구성은 제외한다.",
+        "user_answer": "감사위원회가 설치되지 않은 경우 감사가 선임할 감사인을 선정한다.",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "감사위원회가 설치된 경우의 절차를 설명하지 않았다.",
+            "claim": "주권상장법인·대형비상장주식회사·금융회사에 감사위원회가 설치된 경우 감사위원회가 선정한 회계법인 또는 감사반을 감사인으로 선임한다. 선정 대상인 회계법인 또는 감사반은 발문이 제시했으므로 반복하지 않아도 이 경우의 선정주체가 맞으면 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "감사위원회가 설치되지 않은 경우 감사가 선임할 감사인을 선정한다.",
+            "reason": "감사위원회 미설치 시 감사가 감사인을 선정한다고 명시했다.",
+            "claim": "주권상장법인·대형비상장주식회사·금융회사에 감사위원회가 설치되지 않은 경우 감사가 감사인 선임대상을 선정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2.sp2",
+            "verdict": "not_met",
+            "reason": "감사인선임위원회의 승인 요건을 언급하지 않았다.",
+            "claim": "주권상장법인·대형비상장주식회사·금융회사에 감사위원회가 설치되지 않은 경우 감사인선임위원회의 승인을 받아야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사위원회가 설치되면 감사위원회가 감사인으로 선임할 회계법인 또는 감사반을 선정한다.",
+          "미설치시에는 감사가 선정한다.",
+          "미설치시에는 감사인선임위원회의 승인을 받아야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0ef9a8af9b22de67016aa785aec48087d09dbcd49b051f1129",
+        "request_id": "req_cad589b6ca61466d8f31406bc7fff006",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2651,
+          "input_tokens_details": {
+            "cache_write_tokens": 2648,
+            "cached_tokens": 0
+          },
+          "output_tokens": 226,
+          "output_tokens_details": {
+            "reasoning_tokens": 56
+          },
+          "total_tokens": 2877
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009337999999999999,
+        "min_usd": 0.0009337999999999999,
+        "max_usd": 0.0009337999999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-c5489dbc1eec--sub2--partial/input.json",
+      "sha256": "63a454ed4d1ccba806d0404f51e59914338edfe1dd01126aab71c3e2faf07676"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-c5489dbc1eec--sub2--partial/transport.jsonl",
+      "sha256": "185dd4b81ebd8cd663472aa4d6ed1345b322e70de28d99c541a22dd93f63c16e"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-c5489dbc1eec--sub2--partial/traces.jsonl",
+      "sha256": "524972a784f5e1490aec6e3e64f75959638214334e782b5bf2a6b865254b8883"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 ---
 title: "19. 기타 인증·검토 및 관련 업무 원자료 단위 1/3"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: source-map
 status: generated
 review_required: true
@@ -24,7 +24,7 @@ confidence: medium
 |---|---|---|---|---|---|---|
 | <a id="src-71b61b04cadc835bad"></a>`src-71b61b04cadc835bad` | standard / official_transcription | [assurance-review-2027-topic19.txt · 인증업무개념체계 문단 10; L6-L8](../../data/official/assurance-review-2027-topic19.txt); framework10 | framework10; 2022-02-23 개정; 2023-01-01 이후 인증보고서; 인증업무기준9 연결; | 0개 / 미확보 0개 | [[pilot-19-002]] | adcd5bc0cd068670e387aa93229e859985d13ee95af79e16b32c9418ffef1ccc |
 | <a id="src-386ad8f1b82c47c77c"></a>`src-386ad8f1b82c47c77c` | standard / official_transcription | [assurance-review-2027-topic19.txt · 인증업무개념체계 문단 17; L11-L16](../../data/official/assurance-review-2027-topic19.txt); framework17 | framework17; 2022-02-23 개정; 2023-01-01 이후 인증보고서; 인증업무기준9 연결; | 1개 / 미확보 0개 | [[pilot-19-001]] | 16f796b37306f1dfa15f3baf7a2912e6f951470ae608d81da036b32ce8691917 |
-| <a id="src-a261f5af56f3d327af"></a>`src-a261f5af56f3d327af` | standard / official_transcription | [assurance-review-2027-topic19.txt · 인증업무개념체계 문단 26; L19-L24](../../data/official/assurance-review-2027-topic19.txt); framework26 | framework26; 2022-02-23 개정; 2023-01-01 이후 인증보고서; 인증업무기준9 연결; | 0개 / 미확보 0개 | [[pilot-19-002]] | 9b69d6a343247fd488b4cffe2aad3aec216514d1e9703e02a659221b63cca2cc |
+| <a id="src-a261f5af56f3d327af"></a>`src-a261f5af56f3d327af` | standard / official_transcription | [assurance-review-2027-topic19.txt · 인증업무개념체계 문단 26; L19-L24](../../data/official/assurance-review-2027-topic19.txt); framework26 | framework26; 2022-02-23 개정; 2023-01-01 이후 인증보고서; 인증업무기준9 연결; | 0개 / 미확보 0개 | [[pilot-19-002]] · [[std-points-20260914-b4e5429af4e3]] · [[std-points-20260914-dbdae4853860]] | 9b69d6a343247fd488b4cffe2aad3aec216514d1e9703e02a659221b63cca2cc |
 | <a id="src-11cdbadb3b5c90e4ed"></a>`src-11cdbadb3b5c90e4ed` | standard / official_transcription | [assurance-review-2027-topic19.txt · 인증업무개념체계 문단 6; L27-L33](../../data/official/assurance-review-2027-topic19.txt); framework6 | framework6; 2022-02-23 개정; 2023-01-01 이후 인증보고서; 인증업무기준9 연결; | 0개 / 미확보 0개 | [[pilot-19-004]] | 86c3c36e31d8fe3dcb669ea49dce7c51076a521d477b0587a16b84bc0865e517 |
 | <a id="src-6e83538cf335283d01"></a>`src-6e83538cf335283d01` | standard / official_transcription | [assurance-review-2027-topic19.txt · 인증업무개념체계 문단 8; L36-L40](../../data/official/assurance-review-2027-topic19.txt); framework8 | framework8; 2022-02-23 개정; 2023-01-01 이후 인증보고서; 인증업무기준9 연결; | 0개 / 미확보 0개 | [[pilot-19-002]] | dcc24edcd61bd42cefaaa30dfb2cfbbd2c47867f457ef3a0275ec78b17a29aad |
 | <a id="src-56ffd4e84b8173bde2"></a>`src-56ffd4e84b8173bde2` | standard / official_transcription | [assurance-review-2027-topic19.txt · 검토업무기준 문단 1; L43-L46](../../data/official/assurance-review-2027-topic19.txt); review1-2 | review1-2; 2021-02-08 개정; 2020-12-31 이후 개시 보고기간;13; | 1개 / 미확보 1개 | [[pilot-19-004]] | d0c137af8b697b90a40dd4b74abf0aea0f92cd2197af18b610dead5d009143cf |

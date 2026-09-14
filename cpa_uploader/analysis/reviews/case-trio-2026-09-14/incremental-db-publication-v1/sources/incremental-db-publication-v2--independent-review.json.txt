@@ -1,0 +1,405 @@
+{
+  "version": 1,
+  "artifact_type": "independent_incremental_publication_review",
+  "reviewed_at": "2026-09-14T06:58:56.429157+00:00",
+  "reviewer_agent": "/root/next_cases_early",
+  "human_review_performed": false,
+  "status": "passed_static_review",
+  "review_scope": "Frozen append-contract.mjs and driver.mjs; existing migrations/importer; independent filesystem byte comparison. No production execution.",
+  "files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+      "sha256": "fcded3de3912f96228d6b24ee438f3a5e48336fa62038783bb7225b4ed17ed30",
+      "role": "frozen_review_target"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+      "sha256": "b6b472b1cb9d4f542e31e8830948890e05be1439f85b7a267872d1c72b3efa2a",
+      "role": "frozen_review_target"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/source-provenance.json",
+      "sha256": "eef42f334d7d79243975c44a799808b5b1e6c258f76f60a633a25aeb791b43cd",
+      "role": "frozen_review_target"
+    },
+    {
+      "file": "scripts/import-question-bank-v3.ts",
+      "sha256": "ff78922969a649abe65ed1b293b5b0e150ee2da50b1441b12563d0ce01bbd2db",
+      "role": "existing_importer_contract"
+    },
+    {
+      "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+      "sha256": "6e45c144bf661fa10afd0d001cd0879d3d09c0b2d67d91ef45c70801e96f837b",
+      "role": "base_RPC_and_classification_contract"
+    },
+    {
+      "file": "supabase/migrations/20260914080000_cpa_reviewed_question_retirements.sql",
+      "sha256": "c5e1e1d421397b9eee3ac0ab4f5055eccf21bb8fb89010f6598c5a3b665963ce",
+      "role": "same_advisory_lock_and_CAS_comparison"
+    },
+    {
+      "file": "supabase/migrations/20260912060000_cpa_private_source_metadata.sql",
+      "sha256": "a6a6300fd1f1df32fe822f137f832f07f306ed1ada5ecb9c98c301882c35a789",
+      "role": "preserved_source_metadata_contract"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/c/verify-final-learning-rollout.ts",
+      "sha256": "f45280a30bde211ee0bdf09bcedf2e0356fe2fb3c30824bea7309278254e0140",
+      "role": "read_only_full_private_verifier"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/integration-baseline-v2/bank.json",
+      "sha256": "895d44668c6bd86f89793c3355545bd7745398489845e8e26fe71609ad972104",
+      "role": "frozen_363_source"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/stage/authoring.json",
+      "sha256": "2c1ddef36cbcb0b7bfdf6ac9811f0e12927b470bf97be2bcff2ad667d7017d70",
+      "role": "reviewed_369_source"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/stage-completion.json",
+      "sha256": "2ddc6e1640fb06ba97d9724e056c455110012b7120c83c785917350586de6ac7",
+      "role": "validated_stage_input_hashes"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/stage/readiness.json",
+      "sha256": "c94e2d4da8545ddaa4c4c03b06cb4056e1b4ae953ad6ff3a2cc4c1d9d1dd9fe1",
+      "role": "full_validation_receipt_reused_by_driver"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/sources/installed-functions-after.json",
+      "sha256": "bc40c07fe23a52a654dcb75600f1e5fdb6aff5ca8530d7f9262bcc7b56fb3d72",
+      "role": "saved_function_definitions_not_live_read"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/local-reconstruction-validation.json",
+      "sha256": "6cfc34983464d423c1b0cf5b5d987f1305f5a79aef575c55114771fa6007034e",
+      "role": "author_PGlite_reconstruction_evidence_read_not_reexecuted"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/tests/append-contract-review-v2.json",
+      "sha256": "91481c49f4fb8bea995ee129c631f4e088758834c59bc0089448adc70ade7a4d",
+      "role": "other_agent_synthetic_SQL_test_report_read"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/tests/append-transaction-v2.log",
+      "sha256": "7379a5468a797db51671887c81ccf2670152fa7bb53d07500e5f67cfe5f302bb",
+      "role": "other_agent_test_output_read"
+    }
+  ],
+  "independent_local_byte_comparison": {
+    "method": "Read-only Python JSON/object and UTF-8 byte comparison; no imported author runtime, PGlite, API, or production DB execution",
+    "baseline_sets": 363,
+    "baseline_bytes": 5863528,
+    "final_sets": 369,
+    "final_bytes": 6045855,
+    "added_document_bytes": 182330,
+    "added_sets": 6,
+    "added_questions": 18,
+    "added_set_ids": [
+      "case-04-documentation-trace-20260914",
+      "case-07-control-evidence-20260914",
+      "case-05-governance-dialogue-20260914",
+      "case-09-inventory-location-population-20260914",
+      "case-10-anomaly-projection-conclusion-20260914",
+      "case-12-restricted-revision-dual-date-20260914"
+    ],
+    "prior_objects_and_order_equal": true,
+    "reconstructed_bytes_equal": true,
+    "baseline_source_sha256": "895d44668c6bd86f89793c3355545bd7745398489845e8e26fe71609ad972104",
+    "final_source_sha256": "2c1ddef36cbcb0b7bfdf6ac9811f0e12927b470bf97be2bcff2ad667d7017d70"
+  },
+  "checks": [
+    {
+      "id": "source_append_identity",
+      "status": "pass",
+      "scope": "363 원문 바이트 + 6 사례",
+      "rationale": "기존 배열의 닫는 LF/bracket/LF 세 문자만 제거하고 comma/LF와 추가 배열 본문을 연결한다. 독립 Python 바이트 비교로 기존 객체·순서 및 369세트 최종 파일과 완전 일치를 확인했다. Unicode 본문의 내용은 재직렬화하지 않는다.",
+      "evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+          "lines": "18-39"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+          "lines": "42-44"
+        }
+      ]
+    },
+    {
+      "id": "full_payload_equivalence",
+      "status": "pass",
+      "scope": "source_document·sets·전체 학습 metadata",
+      "rationale": "buildLocal은 기존 importer의 learningCatalogForBank·public compile·content hash를 사용한다. SQL은 복원 document를 sets로 파싱하고 전체 payload PostgreSQL jsonb SHA·source SHA·old||added 동등성 확인 뒤 같은 learning RPC에 전달한다. author PGlite proof도 동일 append 해시에 결속되어 있다.",
+      "evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+          "lines": "29-38"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+          "lines": "43-53"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+          "lines": "68-77"
+        },
+        {
+          "file": "scripts/import-question-bank-v3.ts",
+          "lines": "14-28"
+        },
+        {
+          "file": "scripts/import-question-bank-v3.ts",
+          "lines": "224-234"
+        }
+      ]
+    },
+    {
+      "id": "prepare_no_network",
+      "status": "pass",
+      "scope": "--prepare 분기",
+      "rationale": "모든 원격 query/client 호출은 else 분기 안에 있다. prepare는 로컬 buildLocal/PGlite proof 및 새 파일 생성만 한다. imported importer는 직접 실행 guard가 있어 import 시 main을 호출하지 않는다.",
+      "evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+          "lines": "18-47"
+        },
+        {
+          "file": "scripts/import-question-bank-v3.ts",
+          "lines": "268-270"
+        }
+      ]
+    },
+    {
+      "id": "same_lock_and_active_CAS",
+      "status": "pass",
+      "scope": "경쟁 게시 보호",
+      "rationale": "generated SQL은 BEGIN, transaction advisory lock 7261202609080502, active ID 및 저장 해시와 실제 원문 SHA 일치를 검사한 뒤 RPC에 들어간다. base importer의 같은 잠금에 대해 reentrant 획득이며 CAS와 import 사이에 잠금을 풀지 않는다.",
+      "evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+          "lines": "65"
+        },
+        {
+          "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+          "lines": "794-829"
+        },
+        {
+          "file": "supabase/migrations/20260914080000_cpa_reviewed_question_retirements.sql",
+          "lines": "10-41"
+        }
+      ]
+    },
+    {
+      "id": "prior_versions_order_and_final_IDs",
+      "status": "pass",
+      "scope": "기존 363 판본 및 369 위치",
+      "rationale": "RPC 뒤 COMMIT 전에 모든 기존 set_version_id와 position을 확인하고 final release 수·모든 source ID·ordinality를 확인한다. full source hash도 다시 검사한다. 누락/재정렬/기존판본 변경이면 예외로 같은 transaction을 취소한다.",
+      "evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+          "lines": "54-58"
+        },
+        {
+          "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+          "lines": "857-877"
+        },
+        {
+          "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+          "lines": "948-957"
+        }
+      ]
+    },
+    {
+      "id": "all_old_classifications_and_topics",
+      "status": "pass",
+      "scope": "전체 기존 물음 분류·주제 보존",
+      "rationale": "pre/post cpa_get_learning_classifications의 기존 세트 부분 전체 객체 비교가 classification version ID·내용·주제·독립발문·fact ID를 보존한다. 함수의 원 정렬(source_set_id, subquestion_id)과 후조건 정렬이 일치한다. 주제 전체 id/title/part/position을 전후 비교한다.",
+      "evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+          "lines": "59-65"
+        },
+        {
+          "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+          "lines": "112-139"
+        },
+        {
+          "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+          "lines": "143-218"
+        },
+        {
+          "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+          "lines": "962-994"
+        }
+      ]
+    },
+    {
+      "id": "SQL_literals_and_failure_atomicity",
+      "status": "pass",
+      "scope": "SQL 리터럴과 원자성",
+      "rationale": "본문/metadata는 해시 유래 dollar delimiter와 충돌 검사를 사용한다. 해시와 함수 signature는 제한된 문자만 허용하며 expected set_count는 로컬 배열 length에서 만든다. payload guard 실패는 NULL을 RPC에 전달하여 필수 catalog 검사에서 예외가 나고, 후조건 실패도 COMMIT 전 예외다.",
+      "evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+          "lines": "42-65"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+          "lines": "36-39"
+        },
+        {
+          "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+          "lines": "962-969"
+        }
+      ]
+    },
+    {
+      "id": "target_project_and_privileges",
+      "status": "pass",
+      "scope": "대상 프로젝트 및 실행 권한",
+      "rationale": "Management endpoint는 고정 project이며 apply/verify 전 configured URL이 https, 정확한 host, 빈 port/userinfo/query/hash, root path인지 검사한다. service_role을 SET LOCAL로 사용하고 timeout도 transaction-local이다. 함수 정의 해시와 ACL·security_definer는 apply 전 읽기검사 및 후 읽기검사에 결속한다.",
+      "evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+          "lines": "25-33"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+          "lines": "49-62"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+          "lines": "81-83"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+          "lines": "48"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+          "lines": "65"
+        }
+      ]
+    },
+    {
+      "id": "input_freeze_and_readiness_reuse",
+      "status": "pass",
+      "scope": "확정 입력·실행 코드 해시",
+      "rationale": "stage 완료 파일 해시·full validation 성공·readiness source/public/bank hash와 counts를 재확인한다. prepare는 code/runtime/원자료/기존 53실측 sealed 근거/통합 stage 입력들을 manifest로 묶고 apply는 explicit preparation SHA·SQL 재생성 동등성·설치 정본/공개/분류 일치를 확인한다.",
+      "evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+          "lines": "18-38"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+          "lines": "40-46"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+          "lines": "49-58"
+        }
+      ]
+    },
+    {
+      "id": "attempt_record_and_retry_guard",
+      "status": "pass",
+      "scope": "실행 선기록과 불확실 응답",
+      "rationale": "O 폴더를 독점 생성하고 apply-started를 원격 쓰기보다 먼저 기록한다. 모든 응답을 먼저 저장하며 요청/저장 실패는 uncertain_until_readback으로 기록한다. O 존재 시 --apply 재실행을 거절하고 --verify는 쓰기를 재발행하지 않는다.",
+      "evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+          "lines": "60-71"
+        }
+      ]
+    },
+    {
+      "id": "receipt_and_completion_boundaries",
+      "status": "pass",
+      "scope": "receipt와 완료 판정",
+      "rationale": "원응답 role/timeout/receipt를 확인한 뒤 공개본, 모든 분류, 실제 저장 source 문자열과 hash, topics, 함수/ACL/설정의 읽기 복원을 모두 통과해야 receipt를 만든다. 완료는 별도 verifier의 모든 private version 읽기 검증 passed 뒤에만 생성한다.",
+      "evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+          "lines": "71-96"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/c/verify-final-learning-rollout.ts",
+          "lines": "153-196"
+        }
+      ]
+    },
+    {
+      "id": "historical_and_grading_artifact_scope",
+      "status": "pass",
+      "scope": "기존 이력과 원 53 채점 증거",
+      "rationale": "도구는 기존 atomic question/learning import를 사용하고 사용자 제출·답안·XP를 쓰는 함수나 모델 API 호출을 포함하지 않는다. 원 실측은 sealed/readiness 해시 입력으로만 읽는다. reviewed code는 append 실행·검증의 새 폴더만 기록한다.",
+      "evidence": [
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+          "lines": "42-46"
+        },
+        {
+          "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+          "lines": "62-96"
+        },
+        {
+          "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+          "lines": "794-994"
+        }
+      ]
+    }
+  ],
+  "resolved_findings": [
+    {
+      "id": "URL_TRANSPORT_GUARD",
+      "finding": "Initial driver checked hostname alone before creating the service-role client.",
+      "resolution": "Author added exact HTTPS URL constraints before any apply/verify network call; directly verified final driver line 51.",
+      "status": "resolved",
+      "evidence": {
+        "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+        "lines": "51"
+      }
+    }
+  ],
+  "unresolved": [],
+  "supplemental_evidence_read": {
+    "synthetic_SQL_tests": {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/tests/append-contract-review-v2.json",
+      "status": "passed_local_transaction_review",
+      "node_reported_tests": 9,
+      "leaf_scenarios": 7,
+      "executed_by_this_reviewer": false,
+      "scope": "Mock importer, CAS refusal and transactional rollback; no live provider or installed importer certification"
+    },
+    "local_reconstruction_proof": {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/local-reconstruction-validation.json",
+      "append_hash_matches_final": true,
+      "driver_hash_is_pre_URL_guard": true,
+      "interpretation": "Only its unchanged append/localProof result is reused; final driver was independently re-read after URL fix."
+    },
+    "peer_363_release_provenance": {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/source-provenance.json",
+      "release_id": "291abae8-15e8-4f88-aff0-e755cd7c1b1f",
+      "source_sha256": "895d44668c6bd86f89793c3355545bd7745398489845e8e26fe71609ad972104",
+      "scope": "Preserved completion/receipt/verification records and copy hashes read; live DB not queried by this reviewer."
+    }
+  },
+  "limitations": [
+    "This static review does not establish that the new 369 release was imported or that current production state still equals the recorded 363 baseline; root must run the explicit prepare/apply/verification flow.",
+    "--verify requires a saved successful import-response. A timeout or response-save failure requires separate read-only outcome investigation before any new execution; the existing attempt guard intentionally prevents automatic retry.",
+    "SQL transaction tests were executed by the other reviewer with a synthetic importer and did not simulate concurrent production sessions or network commit ambiguity.",
+    "No original 53 grading receipts or frozen content/coverage artifacts were changed."
+  ],
+  "reviewer_actions": {
+    "code_changes": 0,
+    "model_api_calls": 0,
+    "network_api_calls": 0,
+    "production_db_reads": 0,
+    "production_db_writes": 0,
+    "local_database_execution": 0,
+    "report_files_written": 1
+  }
+}

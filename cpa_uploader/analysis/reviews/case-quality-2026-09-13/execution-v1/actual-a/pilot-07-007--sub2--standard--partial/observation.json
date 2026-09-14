@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-07-007--sub2--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-07-007--sub2--standard",
+  "source_set_id": "pilot-07-007",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "f6972edbf12ae8e3683ba90fcdc44b9a16dfb2789724bf8813915c7cacdc5b45",
+  "answers": {
+    "sub2": "재무제표와 주석을 기초기록에 대사해 차이를 조정한다. 공시자료는 총계정원장·보조원장 유래뿐 아니라 그 밖에서 얻은 것도 포함한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 재무제표 정보가 기초 회계기록과 일치하는지 확인하거나 차이를 조정하며, 총계정원장·보조원장 안에서 얻었든 그 밖에서 얻었든 공시에 포함된 정보도 일치 여부 확인이나 차이 조정에 포함한다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 재무제표를 작성하는 과정에서 행한 중요한 분개 및 기타 수정사항을 조사한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "22568d382a3b08d39742fba503b498b2f29764f039a172a80c2741c71cb131b6",
+  "schema_hash": "b720174458312f2baf3a2610104504f5ab8a093f30bd800095c1c9f165f99fd7",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "재무제표와 주석을 기초기록에 대사해 차이를 조정한다. 공시자료는 총계정원장·보조원장 유래뿐 아니라 그 밖에서 얻은 것도 포함한다.",
+            "reason": "재무제표와 주석을 기초기록에 대사하고 차이를 조정하며, 원장 안팎의 공시자료를 포함한다고 설명했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "중요한 분개 및 기타 수정사항의 조사 절차가 제시되지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e2"
+                ],
+                "reason": "재무제표와 주석을 기초기록에 대사하고 차이를 조정하며, 원장 안팎의 공시자료를 포함한다고 설명했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "중요한 분개 및 기타 수정사항의 조사 절차가 제시되지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-07-007",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "기업의 재무제표 결산절차와 관련된 실증절차에 포함해야 하는 두 절차를 모두 설명하시오. 재무제표와 기초 회계기록의 관계를 확인하는 절차에는 원장 안팎에서 얻은 공시정보의 범위도 포함하시오.",
+        "user_answer": "재무제표와 주석을 기초기록에 대사해 차이를 조정한다. 공시자료는 총계정원장·보조원장 유래뿐 아니라 그 밖에서 얻은 것도 포함한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "재무제표와 주석을 기초기록에 대사해 차이를 조정한다. 공시자료는 총계정원장·보조원장 유래뿐 아니라 그 밖에서 얻은 것도 포함한다.",
+            "reason": "재무제표와 주석을 기초기록에 대사하고 차이를 조정하며, 원장 안팎의 공시자료를 포함한다고 설명했다.",
+            "claim": "재무제표 정보가 기초 회계기록과 일치하는지 확인하거나 차이를 조정하며, 총계정원장·보조원장 안에서 얻었든 그 밖에서 얻었든 공시에 포함된 정보도 일치 여부 확인이나 차이 조정에 포함한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "중요한 분개 및 기타 수정사항의 조사 절차가 제시되지 않았다.",
+            "claim": "재무제표를 작성하는 과정에서 행한 중요한 분개 및 기타 수정사항을 조사한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재무제표 정보가 기초 회계기록과 일치하는지 확인하거나 차이를 조정하며, 총계정원장·보조원장 안에서 얻었든 그 밖에서 얻었든 공시에 포함된 정보도 일치 여부 확인이나 차이 조정에 포함한다.",
+          "재무제표를 작성하는 과정에서 행한 중요한 분개 및 기타 수정사항을 조사한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_097c895fe7941c85016aa5dbcd2dc087d0946a5dd62ce53f8c",
+        "request_id": "req_a30c326b1f294407bf28504a98db3297",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2666,
+          "input_tokens_details": {
+            "cache_write_tokens": 2663,
+            "cached_tokens": 0
+          },
+          "output_tokens": 228,
+          "output_tokens_details": {
+            "reasoning_tokens": 69
+          },
+          "total_tokens": 2894
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00093995,
+        "min_usd": 0.00093995,
+        "max_usd": 0.00093995,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-07-007--sub2--standard--partial/input.json",
+      "sha256": "1028c2c1225551c3cd0e6195d546047343357fd8512cc171cda665c0445c499a"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-07-007--sub2--standard--partial/transport.jsonl",
+      "sha256": "deb875db1ef1eadb5aef66b7ee45c7c584704737d64429bca06f44f51fcb3a3c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-07-007--sub2--standard--partial/traces.jsonl",
+      "sha256": "aea1fc8ce69ee3c65e654fb9033cf033a6fae92fdf479fc0361b75a73760672d"
+    }
+  }
+}

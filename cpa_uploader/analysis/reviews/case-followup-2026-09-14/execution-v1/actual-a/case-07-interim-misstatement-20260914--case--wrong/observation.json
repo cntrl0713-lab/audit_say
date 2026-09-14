@@ -1,0 +1,464 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "ac40fc52c359ef8885acd3e3c56d9864b2f73e5013889ed1b9253377167327e1"
+  },
+  "entry_id": "case-07-interim-misstatement-20260914--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "case-07-interim-misstatement-20260914--case",
+  "source_set_id": "case-07-interim-misstatement-20260914",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "e72a7af283c6335d142d662ca21fb7c6ebc4747ff0e6201c88f09a236d7be116",
+  "answers": {
+    "sub1": "9월 말 잔액에 오류가 없으면 12월 말에도 같은 결론이 유지되므로 잔여기간은 검사하지 않아도 된다.",
+    "sub2": "발견한 반품 오류를 수정하면 예상하지 못한 오류의 영향은 끝난다. 위험평가와 잔여기간 실증절차 계획은 더 검토하지 않는다.",
+    "sub3": "11월 15일까지 검사한 표본 수만 늘리면 충분하므로 그 이후의 검사 시기는 추가하지 않는다. 연말 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "not_met",
+          "reason": "잔여기간 변동과 추가 증거 요구에 반대한다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "잔여기간 변동과 추가 증거 요구에 반대한다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "not_met",
+          "reason": "잔여기간 변동과 추가 증거 요구에 반대한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "not_met",
+          "reason": "두 재검토 의무를 모두 부정한다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "not_met",
+          "reason": "두 재검토 의무를 모두 부정한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.c1",
+          "verdict": "not_met",
+          "reason": "기존 종료시점 유지와 총액 종결을 지지하여 판단·이유·시기 모두 반대한다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "verdict": "not_met",
+          "reason": "기존 종료시점 유지와 총액 종결을 지지하여 판단·이유·시기 모두 반대한다."
+        },
+        {
+          "criterion_id": "sub3.c3",
+          "verdict": "not_met",
+          "reason": "기존 종료시점 유지와 총액 종결을 지지하여 판단·이유·시기 모두 반대한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "403b79ffafd88a74f674772d5650316bc15699e8cf19b0173de5cff43a23f1bb",
+  "schema_hash": "48321150e5d3b92014a29b16d586e8e97211357f2162cfc63750d6be61960d2e",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "contradicted",
+            "quote": "9월 말 잔액에 오류가 없으면 12월 말에도 같은 결론이 유지되므로 잔여기간은 검사하지 않아도 된다.",
+            "reason": "잔여기간 검사가 필요 없고 9월 말 결론을 연말에 그대로 적용할 수 있다고 명시했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "잔여기간 거래와 기말잔액 변동으로 인한 위험을 설명하지 않았다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "contradicted",
+            "quote": "9월 말 잔액에 오류가 없으면 12월 말에도 같은 결론이 유지되므로 잔여기간은 검사하지 않아도 된다.",
+            "reason": "잔여기간을 검사하지 않아도 된다고 명시하여 후속 실증절차의 필요성을 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "발견한 반품 오류를 수정하면 예상하지 못한 오류의 영향은 끝난다. 위험평가와 잔여기간 실증절차 계획은 더 검토하지 않는다.",
+            "reason": "발견된 오류의 영향이 끝났다고 하며 위험평가를 더 검토하지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "contradicted",
+            "quote": "발견한 반품 오류를 수정하면 예상하지 못한 오류의 영향은 끝난다. 위험평가와 잔여기간 실증절차 계획은 더 검토하지 않는다.",
+            "reason": "잔여기간 실증절차 계획을 더 검토하지 않는다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "contradicted",
+            "quote": "11월 15일까지 검사한 표본 수만 늘리면 충분하므로 그 이후의 검사 시기는 추가하지 않는다. 연말 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다.",
+            "reason": "11월 15일 이후 검사 시기를 추가하지 않아도 충분하다고 명시했다."
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "contradicted",
+            "quote": "11월 15일까지 검사한 표본 수만 늘리면 충분하므로 그 이후의 검사 시기는 추가하지 않는다. 연말 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다.",
+            "reason": "11월 중순까지의 검사와 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다고 명시했다."
+          },
+          {
+            "criterion_id": "sub3.c3",
+            "verdict": "contradicted",
+            "quote": "11월 15일까지 검사한 표본 수만 늘리면 충분하므로 그 이후의 검사 시기는 추가하지 않는다. 연말 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다.",
+            "reason": "그 이후의 검사 시기를 추가하지 않는다고 명시하여 연말 또는 근접 시기 절차를 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "잔여기간 검사가 필요 없고 9월 말 결론을 연말에 그대로 적용할 수 있다고 명시했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "잔여기간 거래와 기말잔액 변동으로 인한 위험을 설명하지 않았다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "잔여기간을 검사하지 않아도 된다고 명시하여 후속 실증절차의 필요성을 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e1"
+                ],
+                "reason": "발견된 오류의 영향이 끝났다고 하며 위험평가를 더 검토하지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e2"
+                ],
+                "reason": "잔여기간 실증절차 계획을 더 검토하지 않는다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0",
+                  "sub3/e1"
+                ],
+                "reason": "11월 15일 이후 검사 시기를 추가하지 않아도 충분하다고 명시했다."
+              },
+              {
+                "criterion_id": "sub3.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0",
+                  "sub3/e2"
+                ],
+                "reason": "11월 중순까지의 검사와 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다고 명시했다."
+              },
+              {
+                "criterion_id": "sub3.c3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0",
+                  "sub3/e1"
+                ],
+                "reason": "그 이후의 검사 시기를 추가하지 않는다고 명시하여 연말 또는 근접 시기 절차를 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-07-interim-misstatement-20260914",
+    "score": 0,
+    "max_points": 8,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "오류 발견 전 단계에서 9월 말 잔액 검사만으로 12월 말 결론을 확정하자는 제안을 평가하시오. 그 이유와 이 사례에서 필요한 잔여기간 감사방법을 설명하시오.",
+        "user_answer": "9월 말 잔액에 오류가 없으면 12월 말에도 같은 결론이 유지되므로 잔여기간은 검사하지 않아도 된다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "contradicted",
+            "quote": "9월 말 잔액에 오류가 없으면 12월 말에도 같은 결론이 유지되므로 잔여기간은 검사하지 않아도 된다.",
+            "reason": "잔여기간 검사가 필요 없고 9월 말 결론을 연말에 그대로 적용할 수 있다고 명시했다.",
+            "claim": "9월 말 잔액의 확인만으로 연말 결론을 확정하고 잔여기간 절차를 생략하는 제안을 부적절하다고 판단한다. 잔여기간을 감사해야 한다는 명확한 조치가 결론을 함축해도 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "잔여기간 거래와 기말잔액 변동으로 인한 위험을 설명하지 않았다.",
+            "claim": "10~12월에도 매출·회수·반품이 발생하여 9월 말 이후 기말잔액의 왜곡표시를 발견하지 못할 위험이 남는다는 이유를 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "contradicted",
+            "quote": "9월 말 잔액에 오류가 없으면 12월 말에도 같은 결론이 유지되므로 잔여기간은 검사하지 않아도 된다.",
+            "reason": "잔여기간을 검사하지 않아도 된다고 명시하여 후속 실증절차의 필요성을 부정했다.",
+            "claim": "후속 실증절차만으로 충분하다고 판단한 사례의 조건에 따라 10~12월 거래·채권 변동에 후속 실증절차를 수행하여 기중 결론을 연말까지 확대할 근거를 얻는 방법을 제시한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "9월 말 잔액 검사만으로 12월 말 결론을 확정하고 잔여기간 절차를 생략하는 제안은 부적절하다.",
+          "10월부터 12월까지 매출·회수·반품이 계속되어 기말잔액과 왜곡표시가 달라질 수 있으므로, 9월 말 증거만으로는 그 사이의 변동을 다루지 못한다.",
+          "후속 실증절차만으로 충분하다고 판단했으므로 10~12월 거래와 채권 변동에 대한 후속 실증절차를 수행하여 기중 결론을 보고기간말로 확대할 합리적 근거를 확보한다. 이 판단하에서 통제테스트가 반드시 필요한 것은 아니다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "10월 기중 검사에서 발견한 반품 오류를 수정한 뒤 관련 위험평가와 잔여기간 실증절차 계획을 그대로 확정하려는 처리에 필요한 재검토를 설명하시오. 최초 예상과의 차이 및 같은 처리방식의 확산 가능성을 연결하시오.",
+        "user_answer": "발견한 반품 오류를 수정하면 예상하지 못한 오류의 영향은 끝난다. 위험평가와 잔여기간 실증절차 계획은 더 검토하지 않는다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "발견한 반품 오류를 수정하면 예상하지 못한 오류의 영향은 끝난다. 위험평가와 잔여기간 실증절차 계획은 더 검토하지 않는다.",
+            "reason": "발견된 오류의 영향이 끝났다고 하며 위험평가를 더 검토하지 않는다고 명시했다.",
+            "claim": "기중에 발견한 예상 밖 반품 누락과 다른 거래로의 확산 가능성에 비추어 관련 중요왜곡표시위험 평가를 변경할 필요가 있는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "contradicted",
+            "quote": "발견한 반품 오류를 수정하면 예상하지 못한 오류의 영향은 끝난다. 위험평가와 잔여기간 실증절차 계획은 더 검토하지 않는다.",
+            "reason": "잔여기간 실증절차 계획을 더 검토하지 않는다고 명시했다.",
+            "claim": "동일 처리방식이 잔여기간에도 이어질 수 있다는 사실에 비추어 잔여기간 실증절차의 계획된 성격·시기·범위를 변경할 필요가 있는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "최초에 예상하지 못한 반품 누락이 발견되었고 같은 방식이 다른 거래에도 적용되었을 수 있으므로, 관련 중요왜곡표시위험의 평가를 변경할 필요가 있는지 재평가한다. 발견된 거래의 수정만으로 이를 종결하지 않는다.",
+          "같은 반품처리 방식이 잔여기간에도 이어질 수 있으므로, 잔여기간을 포괄하는 실증절차의 계획된 성격·시기·범위를 변경할 필요가 있는지 평가한다. 발견 즉시 모든 절차를 일률적으로 확대해야 한다는 뜻은 아니다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "연말 반품의 고의적 조작위험을 식별한 후에도 11월 15일까지의 검사와 연말 총액 증감표만으로 종결하자는 제안을 평가하시오. 해당 위험에 대응하도록 실증절차의 시기를 어떻게 보완할지 그 이유와 함께 설명하시오.",
+        "user_answer": "11월 15일까지 검사한 표본 수만 늘리면 충분하므로 그 이후의 검사 시기는 추가하지 않는다. 연말 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "contradicted",
+            "quote": "11월 15일까지 검사한 표본 수만 늘리면 충분하므로 그 이후의 검사 시기는 추가하지 않는다. 연말 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다.",
+            "reason": "11월 15일 이후 검사 시기를 추가하지 않아도 충분하다고 명시했다.",
+            "claim": "11월 15일까지의 검사와 연말 총액 증감표만으로 종결하는 제안을 부적절하다고 판단한다. 연말 거래의 조작위험에 대응할 추가 시기의 절차가 필요하다는 명확한 답으로 판단을 함축해도 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "contradicted",
+            "quote": "11월 15일까지 검사한 표본 수만 늘리면 충분하므로 그 이후의 검사 시기는 추가하지 않는다. 연말 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다.",
+            "reason": "11월 중순까지의 검사와 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다고 명시했다.",
+            "claim": "12월 반품의 고의적 이월 지시 때문에 11월중순까지의 검사와 총액 변동만으로는 연말 조작위험에 효과적으로 대응하기 어렵다는 이유를 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub3.c3",
+            "verdict": "contradicted",
+            "quote": "11월 15일까지 검사한 표본 수만 늘리면 충분하므로 그 이후의 검사 시기는 추가하지 않는다. 연말 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다.",
+            "reason": "그 이후의 검사 시기를 추가하지 않는다고 명시하여 연말 또는 근접 시기 절차를 부정했다.",
+            "claim": "연말 반품·채권 거래의 실증절차를 보고기간말이나 그에 근접한 시기에 수행하도록 보완하거나, 해당 위험을 다룰 불시·예측불가능한 시기의 절차를 추가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "11월 15일까지의 검사와 연말 총액 증감표만으로 종결하는 제안은 부적절하다.",
+          "12월 반품을 이월시키려는 지시가 확인되어 연말 거래의 고의적 조작위험을 식별했으므로, 11월 중순까지 얻은 결론을 총액 변동만으로 연말까지 확대하는 방법으로는 해당 위험에 효과적으로 대응하기 어렵다.",
+          "연말 반품과 채권 처리에 대한 실증절차를 보고기간말 또는 이에 근접한 시기에 수행하도록 보완한다. 해당 위험에 대응하도록 불시 또는 예측불가능한 시기를 포함하는 보완도 가능하다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_083632e784a7bca3016aa773d1334887d0bce02f16eca62ef5",
+        "request_id": "req_bfe740e66ce84e3fadbdc0a9957fef05",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 5355,
+          "input_tokens_details": {
+            "cache_write_tokens": 5352,
+            "cached_tokens": 0
+          },
+          "output_tokens": 909,
+          "output_tokens_details": {
+            "reasoning_tokens": 348
+          },
+          "total_tokens": 6264
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0024293999999999995,
+        "min_usd": 0.0024293999999999995,
+        "max_usd": 0.0024293999999999995,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-07-interim-misstatement-20260914--case--wrong/input.json",
+      "sha256": "cea4010ead204bec3c6106a4b44ff07c5483fca10eaf323f742a23e2c664fd77"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-07-interim-misstatement-20260914--case--wrong/transport.jsonl",
+      "sha256": "99d42dde5786f4ba8a62353ce11c6ea4e9cec04ac8904f485efb2115e8cd9838"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-a/case-07-interim-misstatement-20260914--case--wrong/traces.jsonl",
+      "sha256": "0a10630ee65c01567921c55d7ddd2fb12d11829e306ff9306978c15da54678a1"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+diff --git a/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/reuse-source/publish.mjs.txt b/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/publish.mjs
+index 64fc79e7..644c2b2b 100644
+--- a/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/reuse-source/publish.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/publish.mjs
+@@ -4,7 +4,8 @@ import assert from 'node:assert/strict';
+ import {spawnSync} from 'node:child_process';
+ import {createHash} from 'node:crypto';
+ import {publicationPaths,reviewedContentHash,withPublicationLock,writePublicationFiles} from '../../../../questionBankPublication.ts';
+-const D='cpa_uploader/analysis/reviews/case-trio-2026-09-14';
++import {assertPublicationEnvironment} from './publication-environment.mjs';
++const D='cpa_uploader/analysis/reviews/case-trio-next-2026-09-14';
+ const C='cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c';
+ const out=D+'/publication-v1',stage=out+'/stage',backup=out+'/backup';
+ const canonical={...publicationPaths(),catalog:path.resolve('cpa_uploader/data/learning-question-classifications.json')};
+@@ -13,6 +14,7 @@ const hash=b=>createHash('sha256').update(b).digest('hex');
+ const ref=file=>({file,sha256:hash(fs.readFileSync(file))});
+ const write=(file,x)=>fs.writeFileSync(file,JSON.stringify(x,null,2)+'\n',{flag:'wx'});
+ const mode=process.argv[2];assert(['--stage','--install'].includes(mode));
++assertPublicationEnvironment(process.execArgv,process.env);
+ const ids=read(D+'/changed-sets-v1.json'),candidate=read(D+'/candidate-v1.json');
+ const baseline=read(D+'/integration-baseline/bank.json');
+ assert.equal(ids.length,3);assert.equal(new Set(ids).size,ids.length);
+@@ -29,8 +31,6 @@ function run(id,args,environment,guard=()=>{}){
+  assert.equal(result.status,0,`${id} failed; inspect ${log}`);guard();console.log(id+' passed');
+ }
+ if(mode==='--stage'){
+- assert(process.execArgv.includes('--env-file=.env.local'),'Invoke stage with node --env-file=.env.local --import tsx');
+- assert(process.env.CPA_QUESTION_V3_ENCRYPTION_KEY,'Encryption key must be loaded before preparing publication; its value is never recorded');
+  assert(!fs.existsSync(out));assert.equal(ref(canonical.authoring).sha256,read(D+'/integration-baseline.json').bank.sha256,'Canonical changed during review');
+  assert.equal(ref(canonical.catalog).sha256,read(D+'/integration-baseline.json').catalog.sha256,'Canonical classifications changed during review');
+  fs.mkdirSync(out);fs.mkdirSync(stage);fs.mkdirSync(backup);

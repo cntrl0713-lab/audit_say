@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/grading-manifest.json",
+    "sha256": "cdb499202fd2de0049d21221fa25db05190111cb75e7504f378f907f3871a98d"
+  },
+  "entry_id": "fix2-pilot-18-001-subq1-partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-18-001--subq1--standard",
+  "source_set_id": "pilot-18-001",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "subq1"
+  ],
+  "projected_body_hash": "3a54a02612af44defc87a9f49f3f2fbd4bfdb8a958a33aa5b6c82a4671d59441",
+  "answers": {
+    "subq1": "KGA 1200을 적용할 수 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "subq1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 partial 답안. 대상 명제: 소규모기업이 아닌 기업에는 KGA 1200을 적용할 수 없다고 판단함"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 partial 답안. 대상 명제: 그 경우 KGA 200부터 KGA 720까지의 일반 감사기준서를 적용한다고 설명함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "026a5b800c7326b1c044574eff3a3ded5bc90649159c612f488e65f42ccff81f",
+  "schema_hash": "e3c6a2231582538ad6173414963f83ee796c9d9fbe0c5ae56696abba2b7faf7c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "subq1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "KGA 1200을 적용할 수 없다.",
+            "reason": "감사기준서 1200을 적용할 수 없다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "일반 감사기준서를 적용해야 한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "subq1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "subq1/e0"
+                ],
+                "reason": "감사기준서 1200을 적용할 수 없다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "일반 감사기준서를 적용해야 한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-18-001",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "subq1",
+        "prompt": "감사기준서 1200(소규모기업 재무제표에 대한 감사)에서 정한 소규모기업에 해당하지 않는 기업의 일반목적 재무제표 감사에 감사기준서 1200을 적용할 수 있는지 판단하고, 이 경우 적용해야 하는 감사기준서를 제시하시오.",
+        "user_answer": "KGA 1200을 적용할 수 없다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "KGA 1200을 적용할 수 없다.",
+            "reason": "감사기준서 1200을 적용할 수 없다고 명시했다.",
+            "claim": "소규모기업이 아닌 기업에는 감사기준서 1200을 적용할 수 없다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "일반 감사기준서를 적용해야 한다는 내용이 없다.",
+            "claim": "그 경우 감사기준서 200부터 720까지의 일반 감사기준서를 적용한다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사기준서 1200을 적용할 수 없다.",
+          "일반 감사기준서(감사기준서 200부터 720까지)를 적용해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "subq1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0c1320c68b6e0579016aa7b7c59fdc87d097047cb833cb1b09",
+        "request_id": "req_4b22a534918c4aab9b6241fdf63bef7b",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2329,
+          "input_tokens_details": {
+            "cache_write_tokens": 2326,
+            "cached_tokens": 0
+          },
+          "output_tokens": 350,
+          "output_tokens_details": {
+            "reasoning_tokens": 218
+          },
+          "total_tokens": 2679
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010021000000000001,
+        "min_usd": 0.0010021000000000001,
+        "max_usd": 0.0010021000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/execution-v1/actual-a/fix2-pilot-18-001-subq1-partial/input.json",
+      "sha256": "bd0ef7b4e6d82f3ba4c6fd02481c86f1b874041b3027ccdd8071fb7057666e42"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/execution-v1/actual-a/fix2-pilot-18-001-subq1-partial/transport.jsonl",
+      "sha256": "510ffa30476d22b85dd89e961fd94ffeafe5384e70603224ce7084f8af672753"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/execution-v1/actual-a/fix2-pilot-18-001-subq1-partial/traces.jsonl",
+      "sha256": "45190df051481fe62540f002e28973352695fe4d17ad109c58375566c46a64c6"
+    }
+  }
+}

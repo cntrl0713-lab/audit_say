@@ -1,0 +1,59 @@
+diff --git a/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/one-point-v2-source/build-execution.mjs.txt b/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/build-execution.mjs
+index d01dd347..d8e5db98 100644
+--- a/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/one-point-v2-source/build-execution.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/build-execution.mjs
+@@ -7,6 +7,7 @@ import {computeSubquestionMaxPoints} from '../../../../../lib/questionV3.ts';
+ import {CONTENT_CHECKS, EFFICIENT_RUNTIME_FILES} from '../../../../questionEfficientReview.ts';
+ import {reviewedContentHash} from '../../../../questionReviewIdentity.ts';
+ import {validateAuthoringBank} from '../../../../questionBankPublication.ts';
++import {validateQaBank} from './representative-qa.mjs';
+ 
+ const R = 'cpa_uploader/analysis/reviews/case-deepening-2026-09-14';
+ const D = 'cpa_uploader/drafts/case-deepening-2026-09-14';
+@@ -43,6 +44,8 @@ else {
+   assert(typeof policyInput.budget_usd === 'number' && Number.isFinite(policyInput.budget_usd) && policyInput.budget_usd > 0);
+ }
+ const qaFile = R + '/case-qa.json', qa = read(qaFile), authorReviews = read(R + '/case-reviews.json');
++const representativeScope = validateQaBank(target, qa);
++assert.deepEqual(read(R + '/representative-scope-check.json'), representativeScope, 'Integrated representative scope changed');
+ const rootFile = R + '/root-content-review.json', rootReview = read(rootFile);
+ assert.equal(rootReview.method, 'agent_content_review');
+ assert.equal(rootReview.human_review_performed, false);
+@@ -85,7 +88,7 @@ for (const evidence of draftEvidence) {
+   if (evidence.sha256 !== undefined) assert.equal(ref(evidence.file).sha256, evidence.sha256, 'Draft evidence changed');
+ }
+ const evidenceFiles = [...new Set([R + '/designs.json', R + '/draft-evidence.json', R + '/case-reviews.json', rootFile,
+-  qaFile, R + '/authorization.md', R + '/policy-input.json', D + '/bank-before.json', D + '/catalog-before.json',
++  qaFile, R + '/representative-scope-check.json', R + '/authorization.md', R + '/policy-input.json', D + '/bank-before.json', D + '/catalog-before.json',
+   D + '/classification-before.json', D + '/source-catalog.json', D + '/source-catalog-final.json', R + '/integration-baseline.json',
+   R + '/integration-baseline/bank.json', R + '/integration-baseline/catalog.json', R + '/integration-baseline/classification.json', ...draftEvidence.map(evidence => evidence.file)])];
+ const evidenceReferences = evidenceFiles.map(ref);
+@@ -105,13 +108,15 @@ const reviews = target.map(set => ({set_id: set.id, content_hash: reviewedConten
+ 
+ const out = R + '/execution-v1'; assert(!fs.existsSync(out), 'Use a new version for a retry; preserve previous evidence');
+ fs.mkdirSync(out); fs.mkdirSync(out + '/projections'); fs.mkdirSync(out + '/runtime');
+-write(out + '/representatives.json', {cases});
++write(out + '/representatives.json', {cases, representative_scope: representativeScope});
+ write(out + '/scope.json', {targets: target.map(set => ({set_id: set.id, subquestion_ids: set.subquestions.map(question => question.id)}))});
+ write(out + '/policy.json', {scope: ref(out + '/scope.json'), model: 'gpt-5.6-luna', grading_point_tolerance: 1,
+   minimum_within_tolerance_ratio: 0.95, content_error_tolerance: 0, statistical_confidence_claim: false,
+   budget_usd: policyInput.budget_usd, budget_enforcement: policyInput.budget_enforcement,
+   provider_limit_errors_stop_all_workers: true, monetary_limit_not_inferred_from_prior_batches: true,
+-  reuse_decision: '신규 6사례·18물음만 검토하고 각 사례의 모범·대표 부분·오답을 전체 사례 단위로 통합하여 실측한다. 기존 은행 문항·과거 실측을 새 검증 분모에 넣지 않는다.'});
++  representative_scope: ref(R + '/representative-scope-check.json'),
++  one_point_partial_representative_policy: '1점 물음에는 0점과 1점 사이 정수 부분점수가 없으므로 모범답안과 대표 정오 경계 오답만 실측한다. 부분답안 요청에서 해당 물음은 미제출 문맥으로 남기며 분모에 넣지 않는다.',
++  reuse_decision: '신규 6사례·18물음만 검토하고 각 사례의 모범·적용 가능한 대표 부분·오답을 전체 사례 단위로 통합하여 실측한다. 기존 은행 문항·과거 실측을 새 검증 분모에 넣지 않는다.'});
+ write(out + '/agent-reviews.json', reviews);
+ const codeFiles = [...new Set([...EFFICIENT_RUNTIME_FILES, ...['run-efficient-grading.ts', 'contract.ts', 'accounting.ts'].map(file => R + '/helpers/' + file)])];
+ const snapshots = codeFiles.map((file, index) => {
+@@ -148,8 +153,9 @@ for (const [index, set] of target.entries()) {
+   }
+ }
+ const inputFiles = [...new Set([...target.flatMap(set => set.source_refs.map(source => source.file)), ...evidenceFiles,
+-  R + '/helpers/build-execution.mjs', R + '/helpers/provenance.json', bankFile, catalogFile, R + '/changed-sets-v1.json',
++  R + '/helpers/build-execution.mjs', R + '/helpers/representative-qa.mjs', R + '/helpers/provenance.json', R + '/helpers/provenance-v2.json', bankFile, catalogFile, R + '/changed-sets-v1.json',
+   out + '/scope.json', out + '/representatives.json', out + '/agent-reviews.json', out + '/runtime-snapshots.json', ...snapshots.map(snapshot => snapshot.file)])];
++assert.equal(entries.reduce((sum, entry) => sum + entry.evaluated_subquestion_ids.length, 0), representativeScope.planned_evaluated_answers, 'Manifest coverage must equal the applicable representative roles');
+ write(out + '/grading-manifest.json', {version: 1, artifact_type: 'efficient_grading_manifest', model: 'gpt-5.6-luna',
+   budget_usd: policyInput.budget_usd, budget_enforcement: policyInput.budget_enforcement,
+   bank: ref(bankFile), classifications: ref(catalogFile), policy: ref(out + '/policy.json'), inputs: inputFiles.map(ref), code_files: codeFiles.map(ref), entries});

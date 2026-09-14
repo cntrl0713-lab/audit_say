@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+const R='cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14';
+const read=f=>JSON.parse(fs.readFileSync(f));
+const ref=file=>({file,sha256:createHash('sha256').update(fs.readFileSync(file)).digest('hex')});
+const prior=read(R+'/publication-review-routing.json');
+const entries=prior.entries.map(row=>{
+ if(row.method==='subset')return row;
+ const match=row.evidence.file.match(/\/sealed-v([123])\/batch\.json$/);assert(match);
+ const next=R+'/sealed-v'+(Number(match[1])+3)+'/batch.json';
+ assert.equal(read(next.replace('/batch.json','/readiness.json')).ready,true);
+ const oldReview=read(row.evidence.file).agent_reviews.find(r=>r.set_id===row.set_id);
+ const newReview=read(next).agent_reviews.find(r=>r.set_id===row.set_id);
+ assert.deepEqual(newReview,oldReview,'Content review must be unchanged in acceptance-code-only reuse');
+ return {...row,original_evidence:row.evidence,evidence:ref(next)};
+});
+assert.equal(entries.length,243);assert.equal(entries.filter(r=>r.method==='efficient').length,193);
+fs.writeFileSync(R+'/publication-review-routing-v2.json',JSON.stringify({created_at:new Date().toISOString(),prior:ref(R+'/publication-review-routing.json'),reason:'Recorded provider observations reprocessed under the auxiliary evidence acceptance fix; all original grading inputs and observations preserved, zero new API calls.',entries,superseded:prior.superseded},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({sets:entries.length,efficient:193,subset:50,additional_model_calls:0}));

@@ -1,0 +1,37 @@
+diff --git a/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/post-concurrent-helpers/originals/write-report.mjs.txt b/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/post-concurrent-helpers/write-report.mjs
+index dad2cc58..c0a0d1e0 100644
+--- a/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/post-concurrent-helpers/originals/write-report.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/post-concurrent-helpers/write-report.mjs
+@@ -1,8 +1,8 @@
+ import fs from 'node:fs';
+ import assert from 'node:assert/strict';
+ import {createHash} from 'node:crypto';
+-import {parseReportArgs,assertFinalChecksPassed} from './final-check-paths.mjs';
+-import {validateQaBank} from './representative-qa.mjs';
++import {parseReportArgs,assertFinalChecksPassed} from '../helpers/final-check-paths.mjs';
++import {validateQaBank} from '../helpers/representative-qa.mjs';
+ 
+ const R='cpa_uploader/analysis/reviews/case-deepening-2026-09-14';
+ const D='cpa_uploader/drafts/case-deepening-2026-09-14';
+@@ -39,8 +39,8 @@ assert.equal(shape.minimum_facts_characters,Math.min(...measured.map(row=>row.fa
+ assert(shape.minimum_facts_characters>=400);
+ 
+ const grade=read(R+'/sealed-v1/summary.json'),readiness=read(R+'/sealed-v1/readiness.json');
+-const db=read(R+'/db-publication-v1/completion.json');
+-const installed=read(R+'/publication-v1/install-completion.json');
++const db=read(R+'/db-publication-v2/completion.json');
++const installed=read(R+'/publication-v2/install-completion.json');
+ const root=read(R+'/root-content-review.json');
+ assert.equal(grade.status,'passed');assert.equal(readiness.ready,true);
+ assert.equal(grade.target_sets,shape.new_cases);assert.equal(grade.target_questions,shape.new_questions);
+@@ -71,8 +71,8 @@ const representativeScope=validateQaBank(sets,read(R+'/case-qa.json'));
+ assert.deepEqual(read(R+'/representative-scope-check.json'),representativeScope);
+ assert.equal(grade.fixed_evaluated_answers,representativeScope.planned_evaluated_answers);
+ 
+-const old=read(R+'/integration-baseline/bank.json');
+-const oldCatalog=read(R+'/integration-baseline/catalog.json').classifications;
++const old=read(R+'/integration-baseline-v2/bank.json');
++const oldCatalog=read(R+'/integration-baseline-v2/catalog.json').classifications;
+ for(const set of old)assert.deepEqual(bank.find(current=>current.id===set.id),set,'Existing question changed');
+ assert.equal(bank.length,old.length+sets.length);
+ const classifications=catalog.classifications;

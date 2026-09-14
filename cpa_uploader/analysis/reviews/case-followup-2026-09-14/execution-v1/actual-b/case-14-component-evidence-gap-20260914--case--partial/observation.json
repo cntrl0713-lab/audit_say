@@ -1,0 +1,422 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "ac40fc52c359ef8885acd3e3c56d9864b2f73e5013889ed1b9253377167327e1"
+  },
+  "entry_id": "case-14-component-evidence-gap-20260914--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "case-14-component-evidence-gap-20260914--case",
+  "source_set_id": "case-14-component-evidence-gap-20260914",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "8f5968ef232ca0aa1891c7cb8fac9b60f33f4a18d5623f9b0fdf3b7816804fcb",
+  "answers": {
+    "sub1": "충분한 증거를 얻었다는 결론과 내부 재고명세서만 보았다는 기록이 왜 다른지 부문감사인과 토의한다.",
+    "sub2": "추가 감사절차의 구체적인 종류는 아직 정하지 않았지만, 그 수행자는 부문감사인으로 정한다.",
+    "sub3": "부문 적정의견과 별개로, 제조부문과 해외부문의 같은 방향 미수정 매출 과대계상을 합쳐 그룹재무제표 및 그룹감사의견에 미치는 영향을 평가한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "met",
+          "reason": "토의 대상과 쟁점은 있지만 기타 관련 감사문서 검토 필요성 결정은 없다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "토의 대상과 쟁점은 있지만 기타 관련 감사문서 검토 필요성 결정은 없다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "not_met",
+          "reason": "추가절차의 수행자만 정했으며 창고 재고 실재성을 확인할 구체적인 감사절차는 제시하지 않았다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "met",
+          "reason": "추가절차의 수행자만 정했으며 창고 재고 실재성을 확인할 구체적인 감사절차는 제시하지 않았다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.c1",
+          "verdict": "met",
+          "reason": "그룹의 독립 평가와 미수정왜곡표시 집계는 충족하지만 소송충당부채의 증거 부족 상황 평가는 누락하였다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "verdict": "met",
+          "reason": "그룹의 독립 평가와 미수정왜곡표시 집계는 충족하지만 소송충당부채의 증거 부족 상황 평가는 누락하였다."
+        },
+        {
+          "criterion_id": "sub3.c3",
+          "verdict": "not_met",
+          "reason": "그룹의 독립 평가와 미수정왜곡표시 집계는 충족하지만 소송충당부채의 증거 부족 상황 평가는 누락하였다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "321540fd0241ba980b7a3efbc0be02ba7feeeac110782f91069c1c1a51d46245",
+  "schema_hash": "59e6dfc15aa7367bbd36e4c1b5f6ff5572c3c53cabacd81fc91a68c1cce2ca66",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "충분한 증거를 얻었다는 결론과 내부 재고명세서만 보았다는 기록이 왜 다른지 부문감사인과 토의한다.",
+            "reason": "증거 충분성 결론과 내부 명세서만 검토했다는 기록의 차이를 부문감사인과 토의한다고 명시했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "관련 감사문서의 추가 검토 필요성을 결정한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "not_met",
+            "reason": "추가 감사절차의 구체적 종류를 아직 정하지 않았다고 하여 요구된 절차 결정이 없다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "met",
+            "quote": "추가 감사절차의 구체적인 종류는 아직 정하지 않았지만, 그 수행자는 부문감사인으로 정한다.",
+            "reason": "추가 절차의 수행자를 부문감사인으로 정한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "met",
+            "quote": "부문 적정의견과 별개로, 제조부문과 해외부문의 같은 방향 미수정 매출 과대계상을 합쳐 그룹재무제표 및 그룹감사의견에 미치는 영향을 평가한다.",
+            "reason": "부문 적정의견과 별개로 그룹재무제표 및 그룹감사의견에 미치는 영향을 평가한다고 명시했다."
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "met",
+            "quote": "부문 적정의견과 별개로, 제조부문과 해외부문의 같은 방향 미수정 매출 과대계상을 합쳐 그룹재무제표 및 그룹감사의견에 미치는 영향을 평가한다.",
+            "reason": "두 부문의 같은 방향 미수정 매출 과대계상을 합쳐 그룹 수준 영향을 평가한다고 명시했다."
+          },
+          {
+            "criterion_id": "sub3.c3",
+            "verdict": "not_met",
+            "reason": "소송충당부채의 증거 미입수 상황과 그 영향을 별도로 평가한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "증거 충분성 결론과 내부 명세서만 검토했다는 기록의 차이를 부문감사인과 토의한다고 명시했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "관련 감사문서의 추가 검토 필요성을 결정한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "추가 감사절차의 구체적 종류를 아직 정하지 않았다고 하여 요구된 절차 결정이 없다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "추가 절차의 수행자를 부문감사인으로 정한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "부문 적정의견과 별개로 그룹재무제표 및 그룹감사의견에 미치는 영향을 평가한다고 명시했다."
+              },
+              {
+                "criterion_id": "sub3.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "두 부문의 같은 방향 미수정 매출 과대계상을 합쳐 그룹 수준 영향을 평가한다고 명시했다."
+              },
+              {
+                "criterion_id": "sub3.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "소송충당부채의 증거 미입수 상황과 그 영향을 별도로 평가한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-14-component-evidence-gap-20260914",
+    "score": 4,
+    "max_points": 7,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "해외부문 종결보고서와 첨부 요약표의 차이를 평가하기 위하여, 그룹업무팀이 할 토의와 추가 감사문서 검토에 관한 결정을 각각 사례와 연결하여 설명하시오.",
+        "user_answer": "충분한 증거를 얻었다는 결론과 내부 재고명세서만 보았다는 기록이 왜 다른지 부문감사인과 토의한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "충분한 증거를 얻었다는 결론과 내부 재고명세서만 보았다는 기록이 왜 다른지 부문감사인과 토의한다.",
+            "reason": "증거 충분성 결론과 내부 명세서만 검토했다는 기록의 차이를 부문감사인과 토의한다고 명시했다.",
+            "claim": "재고의 실재성 증거를 충분히 얻었다는 결론과 내부 명세서만 검토했다는 기록의 차이를 부문감사인 등 적합한 대상과 토의한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "관련 감사문서의 추가 검토 필요성을 결정한다는 내용이 없다.",
+            "claim": "제3자 창고 재고의 실재성에 관한 증거가 실제로 입수되었는지 확인하기 위해 부문감사인의 기타 관련 감사문서를 검토할 필요가 있는지 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재고의 실재성 증거를 충분히 얻었다는 결론과 내부 명세서만 검토했다는 기록의 차이를 부문감사인 등 적합한 대상과 토의한다.",
+          "제3자 창고 재고의 실재성에 관한 증거가 실제로 입수되었는지 확인하기 위해 부문감사인의 기타 관련 감사문서를 검토할 필요가 있는지 결정한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "창고 재고에 관한 업무가 불충분하다고 결론 내린 후, 책임 문구만 추가하고 종결하려는 계획을 보완하시오. 추가로 수행할 감사절차의 구체적 내용과 그 수행자에 관하여 그룹업무팀이 내릴 결정을 각각 제시하시오.",
+        "user_answer": "추가 감사절차의 구체적인 종류는 아직 정하지 않았지만, 그 수행자는 부문감사인으로 정한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "not_met",
+            "reason": "추가 감사절차의 구체적 종류를 아직 정하지 않았다고 하여 요구된 절차 결정이 없다.",
+            "claim": "제3자 창고에 보관수량을 직접 조회하거나 현장을 방문하여 실재성을 확인하는 등 부족한 재고 실재성 증거를 확보할 추가 감사절차를 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "met",
+            "quote": "추가 감사절차의 구체적인 종류는 아직 정하지 않았지만, 그 수행자는 부문감사인으로 정한다.",
+            "reason": "추가 절차의 수행자를 부문감사인으로 정한다고 명시했다.",
+            "claim": "그 추가절차를 부문감사인이 수행할지 그룹업무팀이 수행할지 결정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "제3자 창고에 보관수량을 직접 조회하거나 현장을 방문하여 실재성을 확인하는 등 부족한 재고 실재성 증거를 확보할 추가 감사절차를 결정한다.",
+          "그 추가절차를 부문감사인이 수행할지 그룹업무팀이 수행할지 결정한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "별도로 제시된 종결자료에 관하여, 그룹업무수행이사가 미수정 매출왜곡표시와 소송충당부채의 증거 미입수 상황을 어떻게 구별하여 평가해야 하는지 설명하시오. 부문별 적정의견이 그 평가를 대신할 수 있는지도 제시하시오.",
+        "user_answer": "부문 적정의견과 별개로, 제조부문과 해외부문의 같은 방향 미수정 매출 과대계상을 합쳐 그룹재무제표 및 그룹감사의견에 미치는 영향을 평가한다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "met",
+            "quote": "부문 적정의견과 별개로, 제조부문과 해외부문의 같은 방향 미수정 매출 과대계상을 합쳐 그룹재무제표 및 그룹감사의견에 미치는 영향을 평가한다.",
+            "reason": "부문 적정의견과 별개로 그룹재무제표 및 그룹감사의견에 미치는 영향을 평가한다고 명시했다.",
+            "claim": "각 부문의 적정의견만으로 그룹 수준 평가를 생략할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "met",
+            "quote": "부문 적정의견과 별개로, 제조부문과 해외부문의 같은 방향 미수정 매출 과대계상을 합쳐 그룹재무제표 및 그룹감사의견에 미치는 영향을 평가한다.",
+            "reason": "두 부문의 같은 방향 미수정 매출 과대계상을 합쳐 그룹 수준 영향을 평가한다고 명시했다.",
+            "claim": "두 부문에서 같은 방향으로 발생한 미수정 매출 과대계상을 합하여 그룹재무제표와 그룹감사의견에 미치는 영향을 평가한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub3.c3",
+            "verdict": "not_met",
+            "reason": "소송충당부채의 증거 미입수 상황과 그 영향을 별도로 평가한다는 내용이 없다.",
+            "claim": "소송충당부채에 관한 증거 미입수는 확정된 매출왜곡표시와 구별하여, 충분하고 적합한 증거를 얻지 못한 상황이 그룹감사의견에 미치는 영향을 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "각 부문의 적정의견만으로 그룹 수준 평가를 생략할 수 없다.",
+          "두 부문에서 같은 방향으로 발생한 미수정 매출 과대계상을 합하여 그룹재무제표와 그룹감사의견에 미치는 영향을 평가한다.",
+          "소송충당부채에 관한 증거 미입수는 확정된 매출왜곡표시와 구별하여, 충분하고 적합한 증거를 얻지 못한 상황이 그룹감사의견에 미치는 영향을 평가한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_06fa04cdffcb396c016aa773ff017887d0987bb83e4418a742",
+        "request_id": "req_3e2c5afb66c64da9aca2dccb8f81e152",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 5303,
+          "input_tokens_details": {
+            "cache_write_tokens": 5300,
+            "cached_tokens": 0
+          },
+          "output_tokens": 567,
+          "output_tokens_details": {
+            "reasoning_tokens": 100
+          },
+          "total_tokens": 5870
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.002006,
+        "min_usd": 0.002006,
+        "max_usd": 0.002006,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-14-component-evidence-gap-20260914--case--partial/input.json",
+      "sha256": "22753295564e4f283c61f76a2155aabb8c91870bc0bf647b09da5062cc7fbcb5"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-14-component-evidence-gap-20260914--case--partial/transport.jsonl",
+      "sha256": "d7cdb2a2ecd53f93cd713d2f85e23e189dd6de82b70b7fe6c638cb59e5ccd0a3"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/actual-b/case-14-component-evidence-gap-20260914--case--partial/traces.jsonl",
+      "sha256": "252e1027cad8fe7d4e1ea1ce31c4b6d478c55452a03e0b22a16a4894c3de3339"
+    }
+  }
+}

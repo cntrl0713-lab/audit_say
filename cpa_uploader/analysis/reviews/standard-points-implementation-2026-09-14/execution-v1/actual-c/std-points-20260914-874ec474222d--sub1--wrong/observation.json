@@ -1,0 +1,223 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-874ec474222d--sub1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-874ec474222d--sub1--standard",
+  "source_set_id": "std-points-20260914-874ec474222d",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "d3f5835c478c6402f2a32cdd0f34f6e5e5ed8d9128102e6597f96838bebdd797",
+  "answers": {
+    "sub1": "경영진이 감사범위를 제한하면 대체절차 가능성을 검토할 필요 없이 무조건 적정의견을 표명한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 경영진에게 해당 제한을 제거하도록 요청한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 경영진이 제한의 제거를 거절하면 해당 사항을 지배기구에 커뮤니케이션한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 충분하고 적합한 감사증거를 입수할 수 있는 대체적 절차의 수행이 가능한지 여부를 결정한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "e0b32cb218f0e3f6e3e561f7cece9330610e53de0deeecc9acb3e1b9b137649a",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "경영진에게 제한 제거를 요청한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "제한 제거 거절 시 지배기구에 커뮤니케이션한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "경영진이 감사범위를 제한하면 대체절차 가능성을 검토할 필요 없이 무조건 적정의견을 표명한다.",
+            "reason": "대체절차 가능성을 검토할 필요가 없다고 명시하여, 가능 여부를 결정해야 한다는 명제를 부정한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진에게 제한 제거를 요청한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "제한 제거 거절 시 지배기구에 커뮤니케이션한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "대체절차 가능성을 검토할 필요가 없다고 명시하여, 가능 여부를 결정해야 한다는 명제를 부정한다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-874ec474222d",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "업무 수임 후 한정의견이나 의견거절이 필요할 수 있는 경영진의 감사범위 제한을 알게 되었다. 제한을 제거하고 충분하고 적합한 감사증거를 확보하기 위해 감사기준서 705 문단 11~12에 따라 취할 조치를 설명하시오. 경영진이 제한 제거를 거절한 경우도 포함하며 지배기구의 모든 구성원이 경영에 참여하는 경우는 아니라고 가정한다.",
+        "user_answer": "경영진이 감사범위를 제한하면 대체절차 가능성을 검토할 필요 없이 무조건 적정의견을 표명한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "경영진에게 제한 제거를 요청한다는 내용이 없다.",
+            "claim": "경영진에게 해당 제한을 제거하도록 요청한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "제한 제거 거절 시 지배기구에 커뮤니케이션한다는 내용이 없다.",
+            "claim": "경영진이 제한의 제거를 거절하면 해당 사항을 지배기구에 커뮤니케이션한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "경영진이 감사범위를 제한하면 대체절차 가능성을 검토할 필요 없이 무조건 적정의견을 표명한다.",
+            "reason": "대체절차 가능성을 검토할 필요가 없다고 명시하여, 가능 여부를 결정해야 한다는 명제를 부정한다.",
+            "claim": "충분하고 적합한 감사증거를 입수할 수 있는 대체적 절차의 수행이 가능한지 여부를 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진에게 해당 제한을 제거하도록 요청한다.",
+          "경영진이 제한 제거를 거절하면 지배기구에 커뮤니케이션하고 대체적 절차를 통해 충분하고 적합한 감사증거를 입수할 수 있는지 결정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a5d8064ea98c340016aa787a7625c87d086d9412e8a624957",
+        "request_id": "req_869557852ad94d6f97cccb950535163c",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2522,
+          "input_tokens_details": {
+            "cache_write_tokens": 2519,
+            "cached_tokens": 0
+          },
+          "output_tokens": 285,
+          "output_tokens_details": {
+            "reasoning_tokens": 100
+          },
+          "total_tokens": 2807
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00097235,
+        "min_usd": 0.00097235,
+        "max_usd": 0.00097235,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-874ec474222d--sub1--wrong/input.json",
+      "sha256": "5100791caacb0e7f64064025f2bce679d03a36804beb4378788309ddcd728b38"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-874ec474222d--sub1--wrong/transport.jsonl",
+      "sha256": "9ba3235bea15cb6223de82a578da04e319488f8387cba3af69ec98834c28f293"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-874ec474222d--sub1--wrong/traces.jsonl",
+      "sha256": "c9ddd58b6acd700d5ab77c6a2d9f4fa241e80f713a41862f2cc816bda3b9b327"
+    }
+  }
+}

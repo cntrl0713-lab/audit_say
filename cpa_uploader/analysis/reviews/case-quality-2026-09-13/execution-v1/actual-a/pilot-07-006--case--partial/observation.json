@@ -1,0 +1,327 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-07-006--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-07-006--case",
+  "source_set_id": "pilot-07-006",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2"
+  ],
+  "projected_body_hash": "49884068d86aff02cc5736c48188d8f04e42e684e75e4bbdf18bd241741e4f87",
+  "answers": {
+    "sub1": "전기 이후 유의적인 변화가 있었는지를 고려하여 전기 증거가 지금도 해당 통제에 관련성이 있는지 확인한다.",
+    "sub2": "전기 결과만으로 충분하다는 계획은 타당하다. 그러나 유의적 위험에 의존하려는 해당 통제는 반드시 당기에 테스트해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "원문과 현행 채점기준을 대조하여 이 답안이 독립 의미를 충족함을 확인."
+        },
+        {
+          "criterion_id": "crit13",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        },
+        {
+          "criterion_id": "crit14",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "met",
+          "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "59b507f6b7d34c1292330a2744df1078d26121971e44ce1e03c6d542e27d7a5d",
+  "schema_hash": "bc1df6ee5b059e29af5b4987ba6b808a703ecdfaded4a771cffd344df248f941",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "전기 이후 유의적인 변화가 있었는지를 고려하여 전기 증거가 지금도 해당 통제에 관련성이 있는지 확인한다.",
+            "reason": "전기 이후 유의적 변화를 고려하여 당기 통제에 대한 전기 증거의 계속 관련성을 확인한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit13",
+            "verdict": "not_met",
+            "reason": "전기 통제증거의 계속적인 신뢰성 확인이 언급되지 않았다."
+          },
+          {
+            "criterion_id": "crit14",
+            "verdict": "not_met",
+            "reason": "관찰 또는 검사와 결합된 질문 및 변경 없음이라는 설명만으로 불충분하다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "전기 결과만으로 충분하다는 계획은 타당하다. 그러나 유의적 위험에 의존하려는 해당 통제는 반드시 당기에 테스트해야 한다.",
+            "reason": "전기 결과만으로 충분하다는 계획이 타당하다고 명시하여 요구 결론과 반대된다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "met",
+            "quote": "전기 결과만으로 충분하다는 계획은 타당하다. 그러나 유의적 위험에 의존하려는 해당 통제는 반드시 당기에 테스트해야 한다.",
+            "reason": "해당 통제를 반드시 당기에 테스트해야 한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "전기 이후 유의적 변화를 고려하여 당기 통제에 대한 전기 증거의 계속 관련성을 확인한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit13",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전기 통제증거의 계속적인 신뢰성 확인이 언급되지 않았다."
+              },
+              {
+                "criterion_id": "crit14",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "관찰 또는 검사와 결합된 질문 및 변경 없음이라는 설명만으로 불충분하다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e1"
+                ],
+                "reason": "전기 결과만으로 충분하다는 계획이 타당하다고 명시하여 요구 결론과 반대된다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e2"
+                ],
+                "reason": "해당 통제를 반드시 당기에 테스트해야 한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-07-006",
+    "score": 2,
+    "max_points": 5,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "상황 A의 증거 이용 계획을 검토하시오. 계속적 관련성과 신뢰성에 관하여 추가로 확인할 사항, 그 확인에 사용할 증거입수 방법을 설명하시오.",
+        "user_answer": "전기 이후 유의적인 변화가 있었는지를 고려하여 전기 증거가 지금도 해당 통제에 관련성이 있는지 확인한다.",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "전기 이후 유의적인 변화가 있었는지를 고려하여 전기 증거가 지금도 해당 통제에 관련성이 있는지 확인한다.",
+            "reason": "전기 이후 유의적 변화를 고려하여 당기 통제에 대한 전기 증거의 계속 관련성을 확인한다고 명시했다.",
+            "claim": "전기 이후의 유의적 변화를 고려하여 전기 통제증거가 당기의 관련 통제에 계속 관련성이 있는지 확인한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit13",
+            "verdict": "not_met",
+            "reason": "전기 통제증거의 계속적인 신뢰성 확인이 언급되지 않았다.",
+            "claim": "전기 이후의 유의적 변화를 고려하여 전기 통제증거의 계속적인 신뢰성을 확인한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit14",
+            "verdict": "not_met",
+            "reason": "관찰 또는 검사와 결합된 질문 및 변경 없음이라는 설명만으로 불충분하다는 내용이 없다.",
+            "claim": "통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "전기 이후의 유의적 변화를 고려하여 전기 통제증거가 당기의 관련 통제에 계속 관련성이 있는지 확인한다.",
+          "전기 이후의 유의적 변화를 고려하여 전기 통제증거의 계속적인 신뢰성을 확인한다.",
+          "통제 이해를 재확인하기 위해 관찰 또는 검사와 결합된 질문을 수행한다. 변경이 없다는 설명만으로 충분하지 않다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "상황 B에서 직전 감사의 통제테스트 결과만 이용하는 계획이 타당한지 판단하고, 그 통제에 대해 요구되는 테스트 시점을 제시하시오.",
+        "user_answer": "전기 결과만으로 충분하다는 계획은 타당하다. 그러나 유의적 위험에 의존하려는 해당 통제는 반드시 당기에 테스트해야 한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "전기 결과만으로 충분하다는 계획은 타당하다. 그러나 유의적 위험에 의존하려는 해당 통제는 반드시 당기에 테스트해야 한다.",
+            "reason": "전기 결과만으로 충분하다는 계획이 타당하다고 명시하여 요구 결론과 반대된다.",
+            "claim": "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "met",
+            "quote": "전기 결과만으로 충분하다는 계획은 타당하다. 그러나 유의적 위험에 의존하려는 해당 통제는 반드시 당기에 테스트해야 한다.",
+            "reason": "해당 통제를 반드시 당기에 테스트해야 한다고 명시했다.",
+            "claim": "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "유의적 위험에 대응하는 통제에 의존하려는 상황 B에서는 전기 통제테스트 결과만 이용하는 것으로 충분하지 않다.",
+          "유의적이라고 결정한 위험에 대응하여 의존하려는 통제는 당기에 테스트해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02c24d9fc2bac40c016aa5dbbb7aa487d0b90b833a61d2bf48",
+        "request_id": "req_93defff1f2804140b2ce7148e69c6631",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3576,
+          "input_tokens_details": {
+            "cache_write_tokens": 3573,
+            "cached_tokens": 0
+          },
+          "output_tokens": 398,
+          "output_tokens_details": {
+            "reasoning_tokens": 72
+          },
+          "total_tokens": 3974
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00137145,
+        "min_usd": 0.00137145,
+        "max_usd": 0.00137145,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-07-006--case--partial/input.json",
+      "sha256": "3e5cc55055716d1b8db45412c3e78803a8a4f66517fa035947467ee444e094e1"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-07-006--case--partial/transport.jsonl",
+      "sha256": "05f0a6d38a6e0004d7ef279667bb62f3c00cc184680490d973e3c1473baf5dab"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-07-006--case--partial/traces.jsonl",
+      "sha256": "4801ead7cc31cf0d324748eef0e01ef2615c729acb80b0202c1b3fdbfa849ad8"
+    }
+  }
+}

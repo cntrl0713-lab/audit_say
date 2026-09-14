@@ -1,0 +1,42 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {buildGradingPrompt} from '../../../../lib/questionV3Grading.ts';
+import {contentHash} from '../../../../lib/learningSubmission.ts';
+const D='cpa_uploader/analysis/reviews/case-quality-2026-09-13';
+const output=D+'/db-private-metadata-v1/archive-verification.json';
+assert(!fs.existsSync(output));process.loadEnvFile('.env.local');
+const host='xvifzicrjmbfqaepcfpp';assert.equal(new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname,host+'.supabase.co');
+const hash=b=>createHash('sha256').update(b).digest('hex');
+async function query(sql){const r=await fetch(`https://api.supabase.com/v1/projects/${host}/database/query`,{method:'POST',headers:{Authorization:`Bearer ${process.env.SUPABASE_ACCESS_TOKEN}`,'Content-Type':'application/json'},body:JSON.stringify({query:sql,read_only:true}),signal:AbortSignal.timeout(60000)});if(!r.ok){const detail=await r.json();console.log(JSON.stringify({status:r.status,detail}));throw Error(`Archive read failed HTTP ${r.status}`);}return r.json();}
+const releases=await query('select id,source_document,source_file_hash from public.cpa_question_bank_releases where source_document is not null order by id');
+const bankByRelease=new Map(releases.map(r=>{assert.equal(hash(r.source_document),r.source_file_hash);return[r.id,JSON.parse(r.source_document)];}));
+const versions=await query('select v.id,v.set_id,jsonb_agg(jsonb_build_object(\'release_id\',i.release_id,\'position\',i.position) order by i.release_id) filter(where i.release_id is not null) as items from public.cpa_question_set_versions v left join public.cpa_question_bank_release_items i on i.set_version_id=v.id where v.sealed_at is not null group by v.id,v.set_id order by v.id');
+const withoutLifecycle=s=>{const x=structuredClone(s);delete x.status;delete x.verification.review_status;return x;};
+// Historical non-null limits stay intact. Only absent/null optional fields take DTO defaults.
+function storageProjection(s){
+ const strip=x=>Array.isArray(x)?x.map(strip):x&&typeof x==='object'?Object.fromEntries(Object.entries(x).filter(([,v])=>v!==null).map(([k,v])=>[k,strip(v)])):x;
+ const result=strip(s);for(const q of result.subquestions){q.answer_slots??=[];q.constraints.max_entries??=null;q.selection.n??=null;}return result;
+}
+// PostgreSQL JSONB changes object key order. Compare parsed payload and exact surrounding instructions.
+function promptParts(s){const answer=Object.fromEntries(s.subquestions.map(q=>[q.id,q.model_answer.join('\n')]));const prompt=buildGradingPrompt(s,answer);const start=prompt.indexOf('<<<GRADING_PAYLOAD_START>>>')+'<<<GRADING_PAYLOAD_START>>>'.length,end=prompt.indexOf('<<<GRADING_PAYLOAD_END>>>');return{before:prompt.slice(0,start),payload:JSON.parse(prompt.slice(start,end)),after:prompt.slice(end)};}
+const rows=[];
+for(let start=0;start<versions.length;start+=8){
+ const group=versions.slice(start,start+8);for(const v of group)assert(/^[a-f0-9-]{36}$/i.test(v.id));
+ const actual=await Promise.all(group.map(async v=>{
+  const r=await fetch(`https://${host}.supabase.co/rest/v1/rpc/cpa_get_question_version`,{method:'POST',headers:{apikey:process.env.SUPABASE_SERVICE_ROLE_KEY,Authorization:`Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({p_version_id:v.id}),signal:AbortSignal.timeout(30000)});
+  if(!r.ok)throw Error(`Private archive RPC ${v.id} HTTP ${r.status}`);return{id:v.id,question_set:await r.json()};
+ }));
+ for(const v of group){
+  const sources=(v.items??[]).filter(i=>bankByRelease.has(i.release_id)).map(i=>{const s=bankByRelease.get(i.release_id)[i.position-1];assert.equal(s.id,v.set_id);return s;});
+  const got=actual.find(r=>r.id===v.id)?.question_set;assert(got);
+  if(!sources.length){rows.push({version_id:v.id,set_id:v.set_id,status:'documentless_legacy_readable'});continue;}
+  for(const s of sources)assert.deepEqual(withoutLifecycle(got),withoutLifecycle(storageProjection(s)),v.id+' private DTO mismatch');
+  const parts=promptParts(got),expected=promptParts(storageProjection(sources[0]));
+  assert.deepEqual(parts,expected,v.id+' grading payload mismatch');
+  rows.push({version_id:v.id,set_id:v.set_id,status:'passed',linked_documents:sources.length,private_storage_hash:contentHash(withoutLifecycle(got)),grading_payload_hash:contentHash(parts.payload),outer_instructions_equal:true});
+ }
+ console.log(JSON.stringify({checked:rows.length,total:versions.length}));
+}
+const result={checked_at:new Date().toISOString(),status:'passed',sealed_versions:versions.length,archive_releases:releases.length,source_bound_versions:rows.filter(r=>r.status==='passed').length,documentless_legacy_versions:rows.filter(r=>r.status!=='passed').length,rows,db_writes:0,model_api_calls:0};
+fs.writeFileSync(output,JSON.stringify(result,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify({...result,rows:undefined}));

@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-12-009--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-009--sub2--standard",
+  "source_set_id": "pilot-12-009",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "3c8643b9b183aaadb1b184bb3e8b315e325494546176437279e05b87bc4783a4",
+  "answers": {
+    "sub2": "감사인은 경영진이 수정하지 않는 이유를 이해할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 경영진이 왜곡표시를 수정하지 않는 사유를 이해한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "답안에 이 요구를 뒷받침하는 의미가 없다: 재무제표 전체에 중요한 왜곡표시가 없는지 평가할 때 경영진의 수정거절 사유를 고려한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "065411435989140d4431b5013858ffd91b10d1276a5667258fb1a426260917b2",
+  "schema_hash": "d11fa709d4bb59744462d5bf3dbad02c3329bc615bbd47c30ca7e01097bc56b5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "감사인은 경영진이 수정하지 않는 이유를 이해할 필요가 없다.",
+            "reason": "수정 거절 사유를 이해할 필요가 없다고 명시하여 요구 조치를 반대로 서술했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "수정 거절 사유를 고려하여 재무제표 전체의 중요왜곡표시 여부를 평가한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "수정 거절 사유를 이해할 필요가 없다고 명시하여 요구 조치를 반대로 서술했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "수정 거절 사유를 고려하여 재무제표 전체의 중요왜곡표시 여부를 평가한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-009",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "경영진이 감사인이 커뮤니케이션한 왜곡표시의 수정을 거절한 경우, 그 사유와 관련하여 감사인이 수행하여야 하는 두 조치를 설명하시오.",
+        "user_answer": "감사인은 경영진이 수정하지 않는 이유를 이해할 필요가 없다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "감사인은 경영진이 수정하지 않는 이유를 이해할 필요가 없다.",
+            "reason": "수정 거절 사유를 이해할 필요가 없다고 명시하여 요구 조치를 반대로 서술했다.",
+            "claim": "경영진이 왜곡표시를 수정하지 않는 사유를 이해한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "수정 거절 사유를 고려하여 재무제표 전체의 중요왜곡표시 여부를 평가한다는 내용이 없다.",
+            "claim": "재무제표 전체에 중요한 왜곡표시가 없는지 평가할 때 경영진의 수정거절 사유를 고려한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진이 왜곡표시를 수정하지 않는 사유를 이해한다.",
+          "재무제표 전체에 중요한 왜곡표시가 없는지 평가할 때 경영진의 수정거절 사유를 고려한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_06ab550546c9498b016aa5dc839a1c87d0b1d1bb1db1be36df",
+        "request_id": "req_dd48fbb5c04e4e4c928f1c62029259bd",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2325,
+          "input_tokens_details": {
+            "cache_write_tokens": 2322,
+            "cached_tokens": 0
+          },
+          "output_tokens": 206,
+          "output_tokens_details": {
+            "reasoning_tokens": 52
+          },
+          "total_tokens": 2531
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008282999999999999,
+        "min_usd": 0.0008282999999999999,
+        "max_usd": 0.0008282999999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-12-009--sub2--standard--wrong/input.json",
+      "sha256": "18f8c67027e747f893c551082a6fd834092c4224659eea10765d7df6ed306de5"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-12-009--sub2--standard--wrong/transport.jsonl",
+      "sha256": "f058c2509259904df0a22cb9b97ef960e603f2180932fbdb56554f4db88f818d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-12-009--sub2--standard--wrong/traces.jsonl",
+      "sha256": "3e774efd8f429af8528f8881bc8e86c04a92746c8c27922ea379630d57358728"
+    }
+  }
+}

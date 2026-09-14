@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-a2dcdc9faa17--sub1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-a2dcdc9faa17--sub1--standard",
+  "source_set_id": "std-points-20260914-a2dcdc9faa17",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "23738f84794aca43cfd9a57cf7fcaf14147d6097e0aaa31a44522b7aaea6dd1c",
+  "answers": {
+    "sub1": "조회가 거부되면 증거를 더 구할 필요가 없으며 주주총회에만 보고한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 관련성이 있고 신뢰할 수 있는 감사증거를 얻도록 설계된 대체적 감사절차를 수행한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 커뮤니케이션 대상인 지배기구를 제시함. 대상 명칭만으로 충족하며 기준서 번호는 별도 득점 요건이 아님"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "eb7839b3073daee3883b9bdc5c84936b3aec9065e4912b4afeeb413cef83dba6",
+  "schema_hash": "6be0dc39871444a270abc04ae5c91d1519053dd91ff408ebe189447475efb2d9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "조회가 거부되면 증거를 더 구할 필요가 없으며 주주총회에만 보고한다.",
+            "reason": "추가 증거를 구할 필요가 없다고 하여 대체적 감사절차 수행을 명시적으로 부정함"
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "조회가 거부되면 증거를 더 구할 필요가 없으며 주주총회에만 보고한다.",
+            "reason": "커뮤니케이션 대상을 지배기구가 아닌 주주총회로 한정함"
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "추가 증거를 구할 필요가 없다고 하여 대체적 감사절차 수행을 명시적으로 부정함"
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "커뮤니케이션 대상을 지배기구가 아닌 주주총회로 한정함"
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-a2dcdc9faa17",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "경영진이 조회서 발송을 거부할 때 관련성이 있고 신뢰할 수 있는 증거를 확보하기 위하여 수행할 절차를 제시하시오. 거부가 비합리적이라고 결론 내리거나 그 절차로 관련성이 있고 신뢰할 수 있는 증거를 얻지 못하는 경우에는 누구와 커뮤니케이션해야 하는지도 제시하시오.",
+        "user_answer": "조회가 거부되면 증거를 더 구할 필요가 없으며 주주총회에만 보고한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "조회가 거부되면 증거를 더 구할 필요가 없으며 주주총회에만 보고한다.",
+            "reason": "추가 증거를 구할 필요가 없다고 하여 대체적 감사절차 수행을 명시적으로 부정함",
+            "claim": "관련성이 있고 신뢰할 수 있는 감사증거를 얻도록 설계된 대체적 감사절차를 수행한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "조회가 거부되면 증거를 더 구할 필요가 없으며 주주총회에만 보고한다.",
+            "reason": "커뮤니케이션 대상을 지배기구가 아닌 주주총회로 한정함",
+            "claim": "커뮤니케이션 대상인 지배기구를 제시함. 대상 명칭만으로 충족하며 기준서 번호는 별도 득점 요건이 아님",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "관련성이 있고 신뢰할 수 있는 감사증거를 얻도록 설계한 대체적 감사절차를 수행한다. 거부가 비합리적이거나 그 절차로 해당 증거를 얻지 못하면 지배기구와 커뮤니케이션한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f2ec0ac31f017d2016aa7861f2f5c87d0a4b56c50d8a266b6",
+        "request_id": "req_d76f6cfd12904107886f1d852f877791",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2427,
+          "input_tokens_details": {
+            "cache_write_tokens": 2424,
+            "cached_tokens": 0
+          },
+          "output_tokens": 267,
+          "output_tokens_details": {
+            "reasoning_tokens": 114
+          },
+          "total_tokens": 2694
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.000927,
+        "min_usd": 0.000927,
+        "max_usd": 0.000927,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-a2dcdc9faa17--sub1--wrong/input.json",
+      "sha256": "46bf83d8e2d91946923c528136c347d390bc990670886f6eba0ee3e3449fc379"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-a2dcdc9faa17--sub1--wrong/transport.jsonl",
+      "sha256": "ed0eda867702350cb7a204434523d37bc969582b7a65c4c705237f072d10971d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-a2dcdc9faa17--sub1--wrong/traces.jsonl",
+      "sha256": "c97c77e77962e523b4c1ed6ab01f75ee4edc935da5da406f1bbcc06f40c6c79d"
+    }
+  }
+}

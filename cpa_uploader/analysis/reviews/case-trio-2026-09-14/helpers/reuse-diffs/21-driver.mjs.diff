@@ -1,0 +1,56 @@
+diff --git a/cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/sources/driver.mjs.txt b/cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/driver.mjs
+index 56f82b17..c12eeec1 100644
+--- a/cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/sources/driver.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/driver.mjs
+@@ -10,14 +10,14 @@ import {buildLearningUnits,validateLearningClassification} from '../../../../../
+ import {learningCatalogForBank} from '../../../../../scripts/import-question-bank-v3.ts';
+ import {R,N,STAGE,PROJECT,RPC,read,sha,ref,write,guard,buildLocal,buildSql,localProof} from './append-contract.mjs';
+ 
+-const P=N+'/preparation-v1',O=R+'/db-publication-v2';
++const P=N+'/preparation-v1',O=R+'/db-publication-v1';
+ const bank='cpa_uploader/data/cpa_question_sets_v3.authoring.json',publicFile='cpa_uploader/data/cpa_question_sets_v3.public.json',catalogFile='cpa_uploader/data/learning-question-classifications.json';
+ const verifier='cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/c/verify-final-learning-rollout.ts';
+ const migration='supabase/migrations/20260911030000_cpa_question_learning_units.sql';
+ const mode=process.argv[2],option=process.argv[3],value=process.argv[4];
+ assert.equal(process.argv.length,5);assert(['--prepare','--apply','--verify'].includes(mode));
+ const sourceProvenance=read(N+'/source-provenance.json');
+-const preserved=sourceProvenance.files.map(row=>({file:row.preserved_file,sha256:row.sha256}));guard(preserved);
++const preserved=[...sourceProvenance.files.map(row=>({file:row.preserved_file,sha256:row.sha256})),...sourceProvenance.derived_files];guard(preserved);
+ const functions=read(N+'/sources/installed-functions-after.json').functions;
+ assert(functions.some(f=>f.name===RPC)&&functions.some(f=>f.name==='cpa_import_question_bank'));
+ const built=buildLocal();
+@@ -35,15 +35,19 @@ const state=async()=>(await query(inspectSql))[0].inspection;
+ if(mode==='--prepare'){
+  assert.equal(option,'--expected-active-release-id');assert(/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(value));
+  assert(!fs.existsSync(P),'Preserve the existing preparation');assert(!fs.existsSync(O),'A DB attempt already exists; inspect it before preparing another');
++ const reviewFile=N+'/independent-review.json',review=read(reviewFile);
++ assert.equal(review.status,'passed_static_review');assert.equal(review.human_review_performed,false);assert.deepEqual(review.unresolved_findings,[]);
++ for(const name of ['driver.mjs','append-contract.mjs','source-provenance.json'])assert(review.files.some(row=>row.file===N+'/'+name&&row.sha256===ref(N+'/'+name).sha256),'Independent reviewer must bind the exact current DB code and source provenance');
++ guard(review.files);
+  const expected={release_id:value,source_file_hash:sha(built.baselineDocument),set_count:built.baseline.length};
+  const proof=await localProof(built),sql=buildSql(proof.pack,expected,functions,proof.payloadHash);
+  const code=['driver.mjs','append-contract.mjs'].map(name=>N+'/'+name);
+  const runtime=['scripts/import-question-bank-v3.ts','lib/questionV3.ts','lib/learningSubmission.ts','lib/learningPublic.ts','lib/learningUnits.ts',verifier,migration];
+- const inputs=[...built.completion.files,...[R+'/publication-v2/stage-completion.json',R+'/integration-baseline-v2.json',built.baselineFile,R+'/integration-baseline-v2/catalog.json',R+'/changed-sets-v1.json',R+'/sealed-v1/batch.json',R+'/sealed-v1/readiness.json',R+'/concurrent-reuse-validation-v2.json',N+'/source-provenance.json',...code,...runtime].map(ref),...preserved];guard(inputs);
++ const inputs=[...built.completion.files,...[R+'/publication-v1/stage-completion.json',R+'/integration-baseline.json',built.baselineFile,R+'/integration-baseline/catalog.json',R+'/changed-sets-v1.json',R+'/sealed-v1/batch.json',R+'/sealed-v1/readiness.json',N+'/source-provenance.json',reviewFile,...code,...runtime].map(ref),...preserved,...review.files];guard(inputs);
+  fs.mkdirSync(P);write(P+'/append-pack.json',proof.pack);fs.writeFileSync(P+'/guarded-import.sql',sql,{flag:'wx'});
+  write(P+'/local-proof.json',{...proof.proof,checked_at:new Date().toISOString(),sql_transport_bytes:Buffer.byteLength(JSON.stringify({query:sql,read_only:false})),expected_active_release_is_root_input_not_live_verified:true,api_calls:0,db_writes:0});
+- write(P+'/readiness.json',{...built.readiness,reused_without_new_validation:true,prior_readiness:ref(STAGE+'/readiness.json'),recheck:{local_source_public_catalog_hashes_and_counts:true,exact_baseline_plus_six:true,preserve_source_used:false}});
+- write(P+'/preparation.json',{version:1,status:'locally_prepared_not_applied',prepared_at:new Date().toISOString(),project:PROJECT,rpc:RPC,expected,inputs,pack:ref(P+'/append-pack.json'),sql:ref(P+'/guarded-import.sql'),proof:ref(P+'/local-proof.json'),readiness:ref(P+'/readiness.json'),payload_jsonb_sha256:proof.payloadHash,source_file_hash:sha(built.document),bank_content_hash:built.metadata.bank_content_hash,public_content_hash:built.metadata.public_content_hash,added_set_ids:built.ids,statement_timeout_ms:120000,transport:'management-sql-with-stored-baseline-and-exact-six-case-append',changes_to_default_role_or_database_policy:0,source_runtime_snapshots_not_other_task_success:true,api_calls:0,db_writes:0,model_api_calls:0});
++ write(P+'/readiness.json',{...built.readiness,reused_without_new_validation:true,prior_readiness:ref(STAGE+'/readiness.json'),recheck:{local_source_public_catalog_hashes_and_counts:true,exact_baseline_plus_three:true,preserve_source_used:false}});
++ write(P+'/preparation.json',{version:1,status:'locally_prepared_not_applied',prepared_at:new Date().toISOString(),project:PROJECT,rpc:RPC,expected,inputs,pack:ref(P+'/append-pack.json'),sql:ref(P+'/guarded-import.sql'),proof:ref(P+'/local-proof.json'),readiness:ref(P+'/readiness.json'),payload_jsonb_sha256:proof.payloadHash,source_file_hash:sha(built.document),bank_content_hash:built.metadata.bank_content_hash,public_content_hash:built.metadata.public_content_hash,added_set_ids:built.ids,statement_timeout_ms:120000,transport:'management-sql-with-stored-baseline-and-exact-three-case-append',changes_to_default_role_or_database_policy:0,source_runtime_snapshots_not_other_task_success:true,api_calls:0,db_writes:0,model_api_calls:0});
+  console.log(JSON.stringify({status:'locally_prepared_not_applied',preparation:ref(P+'/preparation.json'),local_proof:proof.proof,sql_transport_bytes:Buffer.byteLength(JSON.stringify({query:sql,read_only:false})),api_calls:0,db_writes:0},null,2));
+ }else{
+  assert.equal(option,'--expected-preparation-sha256');assert.equal(value,ref(P+'/preparation.json').sha256,'Only the reviewed preparation may run');
+@@ -51,9 +55,9 @@ if(mode==='--prepare'){
+  const configuredUrl=new URL(process.env.NEXT_PUBLIC_SUPABASE_URL);assert.equal(configuredUrl.protocol,'https:');assert.equal(configuredUrl.hostname,PROJECT+'.supabase.co');assert.equal(configuredUrl.port,'');assert.equal(configuredUrl.username,'');assert.equal(configuredUrl.password,'');assert.equal(configuredUrl.search,'');assert.equal(configuredUrl.hash,'');assert.equal(configuredUrl.pathname,'/');
+  assert(process.env.SUPABASE_ACCESS_TOKEN&&process.env.SUPABASE_SERVICE_ROLE_KEY,'Management and server credentials are required; values are never recorded');
+  const prep=read(P+'/preparation.json');assert.equal(prep.project,PROJECT);assert.equal(prep.rpc,RPC);
+- const installed=read(R+'/publication-v2/install-completion.json');assert.equal(installed.status,'canonical_installed_and_validated');guard(installed.files);
++ const installed=read(R+'/publication-v1/install-completion.json');assert.equal(installed.status,'canonical_installed_and_validated');guard(installed.files);
+  assert.equal(ref(bank).sha256,prep.source_file_hash);assert.equal(canonicalJson(read(publicFile)),canonicalJson(built.compiled));assert.deepEqual(learningCatalogForBank(read(bank),read(catalogFile)),built.catalog);
+- const inputs=[...prep.inputs,prep.pack,prep.sql,prep.proof,prep.readiness,ref(P+'/preparation.json'),ref(R+'/publication-v2/install-completion.json'),...installed.files];guard(inputs);
++ const inputs=[...prep.inputs,prep.pack,prep.sql,prep.proof,prep.readiness,ref(P+'/preparation.json'),ref(R+'/publication-v1/install-completion.json'),...installed.files];guard(inputs);
+  const pack=read(prep.pack.file);assert.deepEqual(pack,{metadata:built.metadata,added_document:built.addedDocument});
+  assert.equal(fs.readFileSync(prep.sql.file,'utf8'),buildSql(pack,prep.expected,functions,prep.payload_jsonb_sha256));
+  const expectedFunctions=functions.map(({name,signature,definition_sha256,acl,security_definer})=>({name,signature,definition_sha256,acl,security_definer}));

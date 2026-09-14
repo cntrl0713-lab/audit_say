@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "artifact_type": "grading_discrepancy_content_investigation",
+  "review_date": "2026-09-13",
+  "reviewer": "agent:/root/expand_b",
+  "review_method": "동결된 실제 채점 입력·발문·사실·모범답안·criterion·학생 답안·모델 판정과 공식 등록 원문을 직접 대조한 agent 검토",
+  "human_review_performed": false,
+  "new_model_calls": 0,
+  "source_set_id": "pilot-12-009",
+  "subquestion_id": "exp1",
+  "entry_id": "pilot-12-009--case--partial",
+  "evidence": {
+    "observation": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-12-009--case--partial/observation.json",
+      "sha256": "e5d9e275a3d02ddfda3b83e15944d9e76c52f280faffe45acf7912c3fa8cc59a"
+    },
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-b/pilot-12-009--case--partial/input.json",
+      "sha256": "e0fe2a2e51390f96759a7d24c2edd40f3e760a1ddc2afc0ba27ed73f59fb8160"
+    },
+    "projection": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/projections/pilot-12-009--case.json",
+      "sha256": "1cae2f996a38c4aba9f0e76642322f5c04bfa199ac733c10efa8171a6f23b09c",
+      "projected_body_hash": "f06ff97758db8899e30b4177bb9b685925c6eb5cfd263a2f7fc29c470bc27f30"
+    },
+    "official_source": {
+      "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "directly_read_spans": [
+        "L76-L93: KGA 450.10·11 및 전후 문맥",
+        "L140-L153: KGA 450.A14·A15",
+        "L264-L267: KGA 450.A23"
+      ],
+      "source_unit_ids": [
+        "src-9395cc89abcfc1bc22",
+        "src-a78fbf4737bd35a73d"
+      ]
+    },
+    "model": "gpt-5.6-luna",
+    "request_id": "req_837136263f5e4b79ae426792c62612ad",
+    "response_id": "resp_0c75d7aeacededee016aa60384f2c487d0806a3fa14b5b5e66",
+    "prompt_sha256": "ec03cac2a6e7430bed7eec266e3e3adac56eeeac69679c0e4a1db2594c74f3ad"
+  },
+  "prompt": "당기 발견 금액을 계획 당시 중요성과 비교하는 것만으로 평가를 마치려는 담당자의 계획을 보완하시오. 실제 이익 감소, 차입약정 비율에 대한 영향, 전기 미수정 오류의 당기 영향을 각각 어떻게 고려해야 하는지 설명하시오.",
+  "answer": "실제 이익이 감소했으므로 기존 중요성을 다시 평가해야 한다. 전기에 수정하지 않은 오류가 당기말 잔액과 재무제표 전체에 미치는 영향도 함께 고려한다.",
+  "observed": {
+    "expected_points": 2,
+    "actual_points": 0,
+    "max_points": 3,
+    "delta": -2,
+    "within_tolerance": false,
+    "security_findings": [],
+    "execution_or_response_shape_error_found": false,
+    "note": "원시 모델 verdict와 최종 점수의 0점이 일치한다. 응답 전송·파싱·점수 합산 오류로 바뀐 결과가 아니다."
+  },
+  "criterion_review": [
+    {
+      "criterion_id": "exp1.c1",
+      "max_points": 1,
+      "observed_verdict": "not_met",
+      "observed_reason": "중요성 재평가는 언급했지만 미수정왜곡표시 평가 전에 수행한다는 시점이 없다.",
+      "reviewed_verdict": "met",
+      "reviewed_points": 1,
+      "answer_evidence_ids": ["exp1/e1"],
+      "answer_quote": "실제 이익이 감소했으므로 기존 중요성을 다시 평가해야 한다.",
+      "source_support": "KGA 450.10(L76-L78)은 미수정왜곡표시의 영향을 평가하기 전에 실제 재무결과에 비추어 기존 중요성을 재평가하도록 한다. A14(L140-L143)와 A15(L147-L153)는 추정치에 기초했던 중요성의 재검토와 평가 전 수정이라는 순서를 확인한다.",
+      "contextual_reason": "사실관계는 실제 이익 감소에도 중요성을 아직 재검토하지 않았고 담당자가 종결 평가를 마치려는 상황이다. 발문은 이 계획의 보완을 요구한다. 이에 대한 답안의 '기존 중요성을 다시 평가해야 한다'는 현재의 평가 계획에 필요한 선행 보완조치를 제시한다. '평가 후 재검토'와 같이 반대 순서를 제시하지 않았고 다른 감사 단계의 일반적인 재검토만을 말하지도 않았다. 실제 이익 감소를 이유로 현재 중요성을 다시 평가하도록 한 조치의 의미를 인정하는 것이며, 누락된 별도의 행위나 새로운 조건을 채워 넣는 판정이 아니다.",
+      "scoring_boundary": "미수정왜곡표시 평가는 종전 중요성으로 끝낸 뒤 재평가한다는 명시적 반대 순서라면 인정하지 않는다. 중요성의 일반적 정의만 적거나 실제 결과에 따른 재평가 조치가 없는 경우도 인정하지 않는다. 이번 답안에는 재평가 조치와 그 사례상 이유가 모두 있다.",
+      "finding": "문맥에 의해 특정된 현재 평가의 보완 시점을 별도 정형 문구로 반복하도록 요구한 과도한 명시 요구"
+    },
+    {
+      "criterion_id": "exp1.c2",
+      "max_points": 1,
+      "observed_verdict": "not_met",
+      "observed_reason": "차입약정상 재무비율 영향과 해당 성격·발생상황을 고려한다는 내용이 없다.",
+      "reviewed_verdict": "not_met",
+      "reviewed_points": 0,
+      "answer_evidence_ids": [],
+      "source_support": "KGA 450.11(a)(L86-L88)는 규모뿐 아니라 성격과 발생 상황을 함께 고려하도록 한다. 본 사례에서는 차입약정상 재무비율 충족 여부가 달라질 수 있다는 사실을 적용해야 한다.",
+      "contextual_reason": "답안은 중요성 재평가와 전기 오류의 당기 영향만 설명하였다. 차입약정상 재무비율 또는 그와 동등한 질적 영향의 평가를 제시하지 않았으므로 이 1점은 실제로 누락되었다. 사실관계에 차입약정 영향이 있다는 이유만으로 답안에도 고려 조치가 있다고 채워 넣지 않는다.",
+      "finding": "모델의 미충족 판정이 타당함"
+    },
+    {
+      "criterion_id": "exp1.c3",
+      "max_points": 1,
+      "observed_verdict": "not_met",
+      "observed_reason": "전기 오류의 당기말 잔액과 재무제표 전체 영향은 언급했지만 당기 왜곡표시와 함께 고려한다는 내용이 없다.",
+      "reviewed_verdict": "met",
+      "reviewed_points": 1,
+      "answer_evidence_ids": ["exp1/e2"],
+      "answer_quote": "전기에 수정하지 않은 오류가 당기말 잔액과 재무제표 전체에 미치는 영향도 함께 고려한다.",
+      "source_support": "KGA 450.11(b)(L89-L90)는 과거 보고기간의 미수정왜곡표시가 관련 거래유형·계정잔액·공시와 재무제표 전체에 미치는 영향을 고려하도록 한다. A23(L264-L267)은 과거의 중요하지 않은 미수정왜곡표시도 누적효과가 당기재무제표에 중요할 수 있다고 설명한다.",
+      "contextual_reason": "발문은 당기 발견 금액만 비교해 평가를 끝내려는 계획을 보완하도록 한다. 답안은 전기 미수정 오류의 당기말 잔액과 재무제표 전체에 대한 영향까지 '도 함께 고려한다'고 추가한다. 따라서 당기만의 평가에 전기 오류의 당기 영향을 포함하라는 의미가 명확하다. 전기 오류의 존재만 옮긴 것이 아니라 당기말 잔액 및 재무제표 전체에 대한 영향을 평가 대상으로 제시하였고, 당기 오류를 제외하라는 배타적 설명도 없다. 공식 11(b)의 독립적 요구도 직접 충족한다.",
+      "scoring_boundary": "'전기 오류가 있다'는 사실의 반복이나 전기 재무제표 자체만 수정한다는 답안은 이 기준을 충족하지 않는다. 전기 영향만 보고 당기 왜곡표시를 제외한다는 답안도 인정하지 않는다. 이번 답안의 '영향도 함께'를 배타적 평가로 읽을 근거는 없다.",
+      "finding": "답안의 명시적 추가 포함 표현과 발문의 평가 대상을 함께 읽지 않고 '당기 왜곡표시와'라는 정형 문구의 반복을 요구한 과도한 명시 요구"
+    }
+  ],
+  "existing_grading_instruction_check": {
+    "directly_read": true,
+    "relevant_instructions": [
+      "발문과 shared_context에 이미 주어진 전제는 답안에서 반복하지 않아도 적용한다. 답안에 없는 새로운 요건을 추정해 채우지는 않는다.",
+      "허용된 함축 표현을 특정 단어가 없다는 이유로 배제하지 않는다.",
+      "포함과 배타를 구별한다. X도 포함한다는 말은 X만 포함한다는 말이 아니며, X만을 뜻하지 않는다는 말은 X를 제외한다는 말이 아니다."
+    ],
+    "conclusion": "동결 프롬프트에 이미 문맥 적용과 함축 표현 인정 규칙이 있다. 이번 두 감점은 해당 규칙을 좁게 적용한 모델의 의미 판정 오류이며, 규칙 부재를 이유로 현 실행 도중 공통 프롬프트를 수정할 사유로 확정하지 않는다."
+  },
+  "conclusion": {
+    "classification": "grading_consistency_error_overstrict_explicit_wording",
+    "content_review_status": "resolved_no_content_defect_found",
+    "expected_points_decision": "retain_original",
+    "reviewed_expected_points": 2,
+    "met_criterion_ids": ["exp1.c1", "exp1.c3"],
+    "not_met_criterion_ids": ["exp1.c2"],
+    "question_or_source_error_found": false,
+    "answer_or_rubric_error_found": false,
+    "qa_expectation_error_found": false,
+    "frozen_input_change_required": false,
+    "retained_observation_status": "outside_tolerance",
+    "unresolved_content_issues": [],
+    "remaining_grading_limitation": "실제 Luna가 이 유효 부분정답을 2점 낮게 채점한 관측은 그대로 남아 있다. 본 agent의 내용 판정은 실제 모델의 0점을 2점 관측으로 덮어쓰거나 이후 채점이 수정되었다고 주장하지 않는다.",
+    "batch_acceptance": "not_determined_by_this_investigation"
+  },
+  "disposition": [
+    "원답안·기대 2점·실제 0점·-2점 편차와 원시 응답을 보존한다.",
+    "이 실패를 원 실행의 분모에서 제외하거나 within_tolerance로 바꾸지 않는다.",
+    "내용 결함을 5% 안에 포함해 면제한 판정이 아니다. 모든 내용 요소를 직접 재대조하여 내용 결함이 없고 모델의 문맥 해석에서 발생한 채점 오류임을 구분하였다.",
+    "총괄은 전체 실제 채점 관측과 미해결 항목을 집계한 뒤 95%·±1점 정책에 따른 배치 수락을 별도로 판정한다.",
+    "이 조사에서는 공통 런타임·동결 입력·기대값·실측 파일을 수정하지 않았고 추가 모델 API를 호출하지 않았다."
+  ]
+}

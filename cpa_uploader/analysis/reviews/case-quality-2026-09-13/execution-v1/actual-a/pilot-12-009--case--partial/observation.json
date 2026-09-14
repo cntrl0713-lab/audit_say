@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-12-009--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-009--case",
+  "source_set_id": "pilot-12-009",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "e2d6efc73d8d8d77d59da044413dacc8b2fb60388621509e9468dba7259d3935",
+  "answers": {
+    "sub1": "추가절차가 필요 없다는 주장은 적절하다.\n조사·수정한 관련 거래유형에 왜곡표시가 남아 있는지 결정하기 위해 추가적인 감사절차를 수행한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "해당 요구와 양립하지 않는 답을 명시하였다: 경영진의 조사·수정만으로 감사인의 추가절차가 필요 없다는 주장은 부적절하다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안 전체의 직접 표현 또는 조치·이유에 이 요구가 포함된다: 조사·수정한 관련 거래유형에 왜곡표시가 남아 있는지 결정하기 위해 추가적인 감사절차를 수행한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "0aca8fb531907d71855981e7ad0faa4a29efe80a3048ec0f79334d744dcfdd1f",
+  "schema_hash": "450e5450f39cb179dc330749e1eda21d00cb61df1fdc3d16477169ae47fd8af5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "추가절차가 필요 없다는 주장은 적절하다.\n",
+            "reason": "추가절차가 필요 없다는 주장을 적절하다고 명시하여 요구 결론과 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "조사·수정한 관련 거래유형에 왜곡표시가 남아 있는지 결정하기 위해 추가적인 감사절차를 수행한다.",
+            "reason": "관련 거래유형에 왜곡표시가 남아 있는지 결정하기 위한 추가 감사절차를 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "추가절차가 필요 없다는 주장을 적절하다고 명시하여 요구 결론과 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "관련 거래유형에 왜곡표시가 남아 있는지 결정하기 위한 추가 감사절차를 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-009",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "경영진이 조사·수정했으므로 감사인의 추가절차가 필요 없다는 주장이 적절한지 판단하고, 감사인이 수행할 후속절차의 목적을 설명하시오.",
+        "user_answer": "추가절차가 필요 없다는 주장은 적절하다.\n조사·수정한 관련 거래유형에 왜곡표시가 남아 있는지 결정하기 위해 추가적인 감사절차를 수행한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "추가절차가 필요 없다는 주장은 적절하다.",
+            "reason": "추가절차가 필요 없다는 주장을 적절하다고 명시하여 요구 결론과 반대된다.",
+            "claim": "경영진의 조사·수정만으로 감사인의 추가절차가 필요 없다는 주장은 부적절하다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "조사·수정한 관련 거래유형에 왜곡표시가 남아 있는지 결정하기 위해 추가적인 감사절차를 수행한다.",
+            "reason": "관련 거래유형에 왜곡표시가 남아 있는지 결정하기 위한 추가 감사절차를 명시했다.",
+            "claim": "조사·수정한 관련 거래유형에 왜곡표시가 남아 있는지 결정하기 위해 추가적인 감사절차를 수행한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "경영진의 조사·수정만으로 감사인의 추가절차가 필요 없다는 주장은 부적절하다.",
+          "조사·수정한 관련 거래유형에 왜곡표시가 남아 있는지 결정하기 위해 추가적인 감사절차를 수행한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0fe0cc548b3e23c9016aa5dc77d5a487d0baed52fb0d5220d1",
+        "request_id": "req_9642e4dd22f64984b478ec83f3d578b3",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2684,
+          "input_tokens_details": {
+            "cache_write_tokens": 2681,
+            "cached_tokens": 0
+          },
+          "output_tokens": 193,
+          "output_tokens_details": {
+            "reasoning_tokens": 38
+          },
+          "total_tokens": 2877
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009024500000000001,
+        "min_usd": 0.0009024500000000001,
+        "max_usd": 0.0009024500000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-12-009--case--partial/input.json",
+      "sha256": "473025f32fa592b5297ad4179def3b226c64d45052060c7c7e84ce379a4ab5cb"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-12-009--case--partial/transport.jsonl",
+      "sha256": "e619b7b8870cb2d69b0e36aebb2fd51a25f2296d298ebbe32257fca3b616254a"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-12-009--case--partial/traces.jsonl",
+      "sha256": "e88115f82f2fc91fbc4f7b93f3b1c788452a2b473a335c9a643be4e418baf893"
+    }
+  }
+}

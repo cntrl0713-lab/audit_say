@@ -1,7 +1,7 @@
 ---
 title: "09. 재고·소송·부문정보·외부조회·기초잔액 원자료 단위 2/8"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: source-map
 status: generated
 review_required: true
@@ -12,7 +12,7 @@ confidence: medium
 
 # 09. 재고·소송·부문정보·외부조회·기초잔액 원자료 단위 2/8
 
-주제 전체 1058개: 기준서 229, 이론 197, 연습 293, 기출 339. 이 페이지는 150개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
+주제 전체 1060개: 기준서 231, 이론 197, 연습 293, 기출 339. 이 페이지는 150개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
 
 [[source-catalog-topic-09]] (1/8) · [[source-catalog-topic-09-part-02]] (2/8) · [[source-catalog-topic-09-part-03]] (3/8) · [[source-catalog-topic-09-part-04]] (4/8) · [[source-catalog-topic-09-part-05]] (5/8) · [[source-catalog-topic-09-part-06]] (6/8) · [[source-catalog-topic-09-part-07]] (7/8) · [[source-catalog-topic-09-part-08]] (8/8)
 
@@ -22,6 +22,8 @@ confidence: medium
 
 | 원자료 ID | 종류·근거 계층 | 실제 파일·위치 | 절·판본·원문 한계 | 참조 의존 | 은행 인용 연결 | 원문 인용 SHA-256 |
 |---|---|---|---|---|---|---|
+| <a id="src-72820a1857e71b0b9d"></a>`src-72820a1857e71b0b9d` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 501 문단 A12; L337-L337](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 501: 감사증거-특정 항목에 대한 구체적인 고려사항 | KGA 501: 감사증거-특정 항목에 대한 구체적인 고려사항 / 적용 및 기타 설명자료 / 재고자산 / 재고자산 실사의 입회가 실행가능하지 않는 경우 (문단 7 참조); 학습자료/OCR 전사. 공식 판본 대조 필요.; | 1개 / 미확보 1개 | 직접 인용 연결 없음 · 목표 검토 후보 | 77cca5401ff40b61666e04ccea2341f24380c37988e4f7e7480f3e3ebabab7d8 |
+| <a id="src-5efc2ceb704a8c33c4"></a>`src-5efc2ceb704a8c33c4` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 501 문단 A13; L338-L338](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 501: 감사증거-특정 항목에 대한 구체적인 고려사항 | KGA 501: 감사증거-특정 항목에 대한 구체적인 고려사항 / 적용 및 기타 설명자료 / 재고자산 / 재고자산 실사의 입회가 실행가능하지 않는 경우 (문단 7 참조); 학습자료/OCR 전사. 공식 판본 대조 필요.; | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | e25ed0e2b68d009521fc70443aaedc76d6e1079c24dee2a78c7d8913a4871104 |
 | <a id="src-e59d759b8accdf1cf7"></a>`src-e59d759b8accdf1cf7` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 501 문단 A14; L339-L339](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 501: 감사증거-특정 항목에 대한 구체적인 고려사항 | KGA 501: 감사증거-특정 항목에 대한 구체적인 고려사항 / 적용 및 기타 설명자료 / 재고자산 / 재고자산 실사의 입회가 실행가능하지 않는 경우 (문단 7 참조); 학습자료/OCR 전사. 공식 판본 대조 필요.; | 1개 / 미확보 1개 | 직접 인용 연결 없음 · 목표 검토 후보 | ac01e8c123297ed170533f1c112f1ef72b8e7b02e0ddb8ba1f4161f9b817a7a0 |
 | <a id="src-4a76f221491145447b"></a>`src-4a76f221491145447b` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 501 문단 A15; L342-L342](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 501: 감사증거-특정 항목에 대한 구체적인 고려사항 | KGA 501: 감사증거-특정 항목에 대한 구체적인 고려사항 / 적용 및 기타 설명자료 / 재고자산 / 제3자가 보관, 통제하고 있는 재고자산; 학습자료/OCR 전사. 공식 판본 대조 필요.; | 2개 / 미확보 1개 | 직접 인용 연결 없음 · 목표 검토 후보 | 27f228bda82854d4729c6fea9e81b46b049d1e0ffc9541ef9ad71c65ed770359 |
 | <a id="src-84d4b54f04933d19b3"></a>`src-84d4b54f04933d19b3` | standard / learning_material | [05_감사증거와_세부감사절차.md · KGA 501 문단 A16; L343-L347](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/01_%EA%B0%90%EC%82%AC%EA%B8%B0%EC%A4%80/05_%EA%B0%90%EC%82%AC%EC%A6%9D%EA%B1%B0%EC%99%80_%EC%84%B8%EB%B6%80%EA%B0%90%EC%82%AC%EC%A0%88%EC%B0%A8.md); KGA 501: 감사증거-특정 항목에 대한 구체적인 고려사항 | KGA 501: 감사증거-특정 항목에 대한 구체적인 고려사항 / 적용 및 기타 설명자료 / 재고자산 / 제3자가 보관, 통제하고 있는 재고자산; 학습자료/OCR 전사. 공식 판본 대조 필요.; | 1개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 9180550bd44e85699d8c949abb982164f858d265dd0c7daa3ba3031769ba682a |
@@ -170,8 +172,6 @@ confidence: medium
 | <a id="src-fb7577d46f067e7cd2"></a>`src-fb7577d46f067e7cd2` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 170; L5185-L5216](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 170; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 12657e82a4841bbbaf3be25e10f63509ec91eff4f3a7c9a105ff9e9613a0b182 |
 | <a id="src-087682456974871def"></a>`src-087682456974871def` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 178; L5416-L5441](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 178; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | fcea48ba9f1c95fad7e45ef7b9843ac0d6731fd1794a67fa3c69bf2a333702c0 |
 | <a id="src-4142de193ec182096a"></a>`src-4142de193ec182096a` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 180; L5508-L5525](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 180; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 3ec0800fe3343d9df87f53343af83abf0cc8180fe0ea047ef483b1239a417f9b |
-| <a id="src-0af960e350d1a00036"></a>`src-0af960e350d1a00036` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 185; L5670-L5707](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 185; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | ae5ccb7edc7b03ae5241ab8177ff679f5be8e226343cb30f0071082102dbb5cb |
-| <a id="src-f01f6b3470d0a83a68"></a>`src-f01f6b3470d0a83a68` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 186; L5709-L5735](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 186; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 0b06bb44e1309a872a1a7ffaf6137ae64c2d1c38c724337ed00e00257253f74d |
 
 ## Related
 

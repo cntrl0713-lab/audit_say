@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-13-007--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-007--case",
+  "source_set_id": "pilot-13-007",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "0ac0b516853c124cd81efd82d99931892b011b67389655c5e1821344ef5e5195",
+  "answers": {
+    "sub1": "제시된 보고서 이용 계획은 부적절하다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "원문과 현행 채점기준을 대조하여 이 답안이 독립 의미를 충족함을 확인."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "3627d3545c74ee49192b7a07a346cf81fc3b5a7904d851c61d0bce851b1c29ff",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "제시된 보고서 이용 계획은 부적절하다.",
+            "reason": "보고서 이용 계획이 부적절하다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "운영효과성에 대한 증거를 제공하지 않는다는 한계 설명이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "보고서 이용 계획이 부적절하다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "운영효과성에 대한 증거를 제공하지 않는다는 한계 설명이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-007",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "제시된 유형 1 보고서를 급여 관련 통제의 운영효과성에 관한 감사증거로 이용하려는 계획이 적절한지 판단하고, 보고서가 제공하는 증거의 한계에 근거하여 이유를 설명하시오.",
+        "user_answer": "제시된 보고서 이용 계획은 부적절하다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "제시된 보고서 이용 계획은 부적절하다.",
+            "reason": "보고서 이용 계획이 부적절하다고 명시했다.",
+            "claim": "유형 1 보고서를 통제의 운영효과성에 관한 감사증거로 이용하려는 계획은 적절하지 않다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "운영효과성에 대한 증거를 제공하지 않는다는 한계 설명이 없다.",
+            "claim": "유형 1 보고서는 관련 통제의 운영효과성에 대한 증거를 제공하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "유형 1 보고서를 통제의 운영효과성에 관한 감사증거로 이용하려는 계획은 적절하지 않다.",
+          "유형 1 보고서는 서비스조직 통제의 설계와 실행에 대한 이해에는 도움이 되지만, 관련 통제의 운영효과성에 대한 증거를 제공하지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0bfaa1ceaecb1101016aa5db767a7087d0958d84e5cdfc7416",
+        "request_id": "req_d31e93b7dc6448fbb91c9d6841ea3547",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2438,
+          "input_tokens_details": {
+            "cache_write_tokens": 2435,
+            "cached_tokens": 0
+          },
+          "output_tokens": 185,
+          "output_tokens_details": {
+            "reasoning_tokens": 53
+          },
+          "total_tokens": 2623
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00083135,
+        "min_usd": 0.00083135,
+        "max_usd": 0.00083135,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-13-007--case--partial/input.json",
+      "sha256": "eacf87e6e6b95e4532a84aae7bb15bfe8dd5b73504672a27adcd328573e4d819"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-13-007--case--partial/transport.jsonl",
+      "sha256": "2ba46bd4d2e6fc662cae9c3c06835cd8183634d737b391dcd7731dfe90695486"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-13-007--case--partial/traces.jsonl",
+      "sha256": "adec897454df158cea4ae8f91e6177f6e320cfdd9f4c10245c3a1819a7c4dde9"
+    }
+  }
+}

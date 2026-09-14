@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-04-007--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-007--sub1--standard",
+  "source_set_id": "pilot-04-007",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "5db374b777b43b8a31f8f0f3585d03cbf0431f56f4d5ad1db4fd7cc063bebe7f",
+  "answers": {
+    "sub1": "미수정왜곡표시와 미발견왜곡표시의 합계가 재무제표 전체 중요성을 초과할 가능성을 대상으로 한다.\n그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "대상 명제의 진짜 누락 여부를 남은 답안 전체로 확인한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "대상 명제의 진짜 누락 여부를 남은 답안 전체로 확인한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "대상 명제의 진짜 누락 여부를 남은 답안 전체로 확인한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ea2b462a5e28dd060b69725e71aa219adee8f508b777ead654e6791774a7134e",
+  "schema_hash": "172d5de6570c09a29f717bb90ebbf3ab6007312ced42f430d537597c8d473ae9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "전체 중요성보다 낮게 설정하는 금액 또는 금액이라는 정의가 답안에 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "미수정왜곡표시와 미발견왜곡표시의 합계가 재무제표 전체 중요성을 초과할 가능성을 대상으로 한다.\n그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이다.",
+            "reason": "미수정왜곡표시와 미발견왜곡표시의 합계가 전체 중요성을 초과할 가능성을 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이다.",
+            "reason": "초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이라고 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전체 중요성보다 낮게 설정하는 금액 또는 금액이라는 정의가 답안에 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "미수정왜곡표시와 미발견왜곡표시의 합계가 전체 중요성을 초과할 가능성을 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이라고 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-007",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "재무제표 전체 중요성을 기준으로 설정하는 수행중요성이 어떤 금액인지와 그 설정 목적을 정의하시오. 전체 중요성과의 크기 관계, 합산하여 고려하는 왜곡표시의 범위 및 통제하려는 가능성의 수준을 모두 설명하시오. 특정 거래유형·계정잔액·공시의 별도 중요성에 적용하는 경우는 제외한다.",
+        "user_answer": "미수정왜곡표시와 미발견왜곡표시의 합계가 재무제표 전체 중요성을 초과할 가능성을 대상으로 한다.\n그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "전체 중요성보다 낮게 설정하는 금액 또는 금액이라는 정의가 답안에 없다.",
+            "claim": "수행중요성을 재무제표 전체 중요성보다 낮게 설정한 금액 또는 금액들로 설명한다. 전체 중요성과 동일하거나 높은 금액으로 정의하면 반대이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "미수정왜곡표시와 미발견왜곡표시의 합계가 재무제표 전체 중요성을 초과할 가능성을 대상으로 한다.\n그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이다.",
+            "reason": "미수정왜곡표시와 미발견왜곡표시의 합계가 전체 중요성을 초과할 가능성을 명시했다.",
+            "claim": "미수정왜곡표시와 미발견왜곡표시의 합계가 전체 중요성을 초과할 가능성을 고려한다는 범위를 설명한다. 미수정 또는 미발견 중 하나만으로 범위를 축소하면 부족하다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이다.",
+            "reason": "초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이라고 설명했다.",
+            "claim": "그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적임을 설명한다. 가능성을 영으로 제거해야 한다거나 높이는 것이 목적이라고 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "수행중요성은 감사인이 재무제표 전체 중요성보다 낮게 설정하는 금액 또는 금액들이다.",
+          "미수정왜곡표시와 미발견왜곡표시의 합계가 재무제표 전체 중요성을 초과할 가능성을 대상으로 한다.",
+          "그 초과 가능성을 적절하게 낮은 수준으로 감소시키는 것이 목적이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f187be11882330b016aa5dc10290887d0be611e76058afd65",
+        "request_id": "req_2b2ffee7c09b480da070b0d80a475a46",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2859,
+          "input_tokens_details": {
+            "cache_write_tokens": 2856,
+            "cached_tokens": 0
+          },
+          "output_tokens": 235,
+          "output_tokens_details": {
+            "reasoning_tokens": 41
+          },
+          "total_tokens": 3094
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009966,
+        "min_usd": 0.0009966,
+        "max_usd": 0.0009966,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-04-007--sub1--standard--partial/input.json",
+      "sha256": "1e9dc5bc1e6e7d5749fe066a7204243554792730be52cbc5f843897da80cd266"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-04-007--sub1--standard--partial/transport.jsonl",
+      "sha256": "0294da0c36b387e08b9f82a9d71d40a8525b7946363ac5d7b326860d1ee2c75f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-04-007--sub1--standard--partial/traces.jsonl",
+      "sha256": "a0c571dfa0faef158020975e6fcfb43d1dd611814002f57306fafa847358f08b"
+    }
+  }
+}

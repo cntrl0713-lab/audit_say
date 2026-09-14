@@ -1,0 +1,37 @@
+diff --git a/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/reuse-source/validate-static.mjs.txt b/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/validate-static.mjs
+index 6b71018a..c34d1376 100644
+--- a/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/reuse-source/validate-static.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/validate-static.mjs
+@@ -3,7 +3,8 @@ import path from 'node:path';
+ import assert from 'node:assert/strict';
+ import {spawnSync} from 'node:child_process';
+ import {createHash} from 'node:crypto';
+-const H='cpa_uploader/analysis/reviews/case-trio-2026-09-14/helpers';
++import ts from 'typescript';
++const H='cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers';
+ const args=process.argv.slice(2);
+ assert(args.length===0||(args.length===2&&args[0]==='--output'&&/^static-checks-v[2-9][0-9]*\.json$/u.test(args[1])),'Use --output static-checks-vN.json for a follow-up; never overwrite earlier validation');
+ const output=H+'/'+(args[1]??'static-checks.json');assert(!fs.existsSync(output),'Preserve prior static checks');
+@@ -18,10 +19,10 @@ for(const file of files){
+   rows.push({check:'node_syntax',file,exit_code:result.status,output:result.stdout+result.stderr});
+ }
+ for(const file of files){
+-  const content=fs.readFileSync(file,'utf8');
+-  for(const match of content.matchAll(/from\s+['"]([^'"]+)['"]/gu))if(match[1].startsWith('.')){
+-    const target=path.resolve(path.dirname(file),match[1]);
+-    assert(fs.existsSync(target),'Unresolved relative import: '+file+' -> '+match[1]);
++  const source=ts.createSourceFile(file,fs.readFileSync(file,'utf8'),ts.ScriptTarget.Latest,true);
++  for(const statement of source.statements)if((ts.isImportDeclaration(statement)||ts.isExportDeclaration(statement))&&statement.moduleSpecifier&&ts.isStringLiteral(statement.moduleSpecifier)&&statement.moduleSpecifier.text.startsWith('.')){
++    const specifier=statement.moduleSpecifier.text,target=path.resolve(path.dirname(file),specifier);
++    assert(fs.existsSync(target),'Unresolved relative import: '+file+' -> '+specifier);
+   }
+ }
+ for(const [check,args]of [
+@@ -30,6 +31,7 @@ for(const [check,args]of [
+   ['final_check_fixture_tests',['--test',H+'/test-final-checks.mjs']],
+   ['representative_qa_fixture_tests',['--import','tsx','--test',H+'/test-representative-qa.mjs']],
+   ['coverage_contract_fixture_tests',['--import','tsx','--test',H+'/test-coverage-contract.mjs']],
++  ['followup_contract_fixture_tests',['--test',H+'/test-followup-contracts.mjs']],
+ ]){
+   const result=spawnSync(process.execPath,args,{shell:false,windowsHide:true,encoding:'utf8'});
+   rows.push({check,exit_code:result.status,output:result.stdout+result.stderr});

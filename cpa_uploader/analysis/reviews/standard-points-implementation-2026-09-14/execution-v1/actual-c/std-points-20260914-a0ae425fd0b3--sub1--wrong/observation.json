@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-a0ae425fd0b3--sub1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-a0ae425fd0b3--sub1--standard",
+  "source_set_id": "std-points-20260914-a0ae425fd0b3",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "4cad9c0f63cc3797bd58005fc56fdab0523c7399b0448b7406126a9a1afa63ab",
+  "answers": {
+    "sub1": "경영진이 거부하면 그 이유는 언제나 정당하므로 아무 확인도 하지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 경영진에게 조회서 발송 거부사유를 질문한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 거부사유의 타당성과 합리성에 관한 감사증거를 구한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "a42cebf221fef6159c4b1ca93357528a937810f34c213da38f76e3828ada2a33",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "경영진이 거부하면 그 이유는 언제나 정당하므로 아무 확인도 하지 않는다.",
+            "reason": "거부사유를 확인하지 않는다고 명시하여 질문 의무를 부정했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "경영진이 거부하면 그 이유는 언제나 정당하므로 아무 확인도 하지 않는다.",
+            "reason": "아무 확인도 하지 않는다고 명시하여 거부사유 관련 감사증거 수집을 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "거부사유를 확인하지 않는다고 명시하여 질문 의무를 부정했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "아무 확인도 하지 않는다고 명시하여 거부사유 관련 감사증거 수집을 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-a0ae425fd0b3",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "경영진이 감사인의 조회서 발송을 거부할 때, 감사기준서 505에 따라 거부사유 자체와 그 근거에 관하여 수행할 두 사항을 제시하시오.",
+        "user_answer": "경영진이 거부하면 그 이유는 언제나 정당하므로 아무 확인도 하지 않는다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "경영진이 거부하면 그 이유는 언제나 정당하므로 아무 확인도 하지 않는다.",
+            "reason": "거부사유를 확인하지 않는다고 명시하여 질문 의무를 부정했다.",
+            "claim": "경영진에게 조회서 발송 거부사유를 질문한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "경영진이 거부하면 그 이유는 언제나 정당하므로 아무 확인도 하지 않는다.",
+            "reason": "아무 확인도 하지 않는다고 명시하여 거부사유 관련 감사증거 수집을 부정했다.",
+            "claim": "거부사유의 타당성과 합리성에 관한 감사증거를 구한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진에게 조회서 발송 거부사유를 질문하고, 그 이유의 타당성과 합리성에 관한 감사증거를 구한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_01af94f30cfc037b016aa786082a3c87d086473c74284148bf",
+        "request_id": "req_f72cccaa2f4a4bae841194dc181d0565",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2299,
+          "input_tokens_details": {
+            "cache_write_tokens": 2296,
+            "cached_tokens": 0
+          },
+          "output_tokens": 203,
+          "output_tokens_details": {
+            "reasoning_tokens": 52
+          },
+          "total_tokens": 2502
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008182,
+        "min_usd": 0.0008182,
+        "max_usd": 0.0008182,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-a0ae425fd0b3--sub1--wrong/input.json",
+      "sha256": "3018c5896da3f8e65dd4e63046e04d426bb5bd086d32383ff0f520c285e59262"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-a0ae425fd0b3--sub1--wrong/transport.jsonl",
+      "sha256": "6cd063c42ed3d0a99a6431ed10ca9b7e92c1cceacfb228e10d38cf57143e91eb"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-a0ae425fd0b3--sub1--wrong/traces.jsonl",
+      "sha256": "ddd0c91a5dbdbda50226d238efd41d7609827c781945ff0cf922c50e8f64b0e1"
+    }
+  }
+}

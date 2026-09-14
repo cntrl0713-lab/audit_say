@@ -1,0 +1,76 @@
+---
+title: "std-points-20260914-35a9eed180bf. 감사인측 전문가의 업무가 감사목적상 적합한지 평가할 때, 감사기준서 620 문단 12(a)에 따라 전문가의 발견사항이나 결론에 대하여 평가할 특성을 모두 제시하시오."
+created: 2026-08-08
+updated: 2026-09-14
+type: question
+status: generated
+review_required: true
+tags: [audit, question-generation, quality]
+sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/data/official/delegated-n04-kga-2025.txt","cpa_uploader/analysis/reviews/question-review-2027/08.json"]
+confidence: high
+---
+
+# std-points-20260914-35a9eed180bf. 감사인측 전문가의 업무가 감사목적상 적합한지 평가할 때, 감사기준서 620 문단 12(a)에 따라 전문가의 발견사항이나 결론에 대하여 평가할 특성을 모두 제시하시오.
+
+
+이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
+- 주제: [[audit-evidence-assertions]] · [[topic-08-design]]
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/305`
+- 상태: published / verified · source_fidelity: reconstructed
+- 검토·근거 장부: [08.json](../../analysis/reviews/question-review-2027/08.json)
+- 학습 순서: sub3
+
+## 공통 사실
+
+
+## sub3
+
+유형: enumeration · JSON Pointer `/305/subquestions/0`
+
+### 발문
+
+감사인측 전문가의 업무가 감사목적상 적합한지 평가할 때, 감사기준서 620 문단 12(a)에 따라 전문가의 발견사항이나 결론에 대하여 평가할 특성을 모두 제시하시오.
+
+### 모범답안
+
+- 전문가가 발견한 사항이나 결론의 관련성과 합리성을 평가하고, 다른 감사증거와의 일관성을 평가한다.
+
+### 답안 계약
+
+selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entries":null,"overflow_policy":"none"}`
+
+### 학습목표·채점명제와 핵심 조건
+
+| criterion | 정본 명제 | 핵심 사실·조건 | 배점·판정별 점수 | requirement | source |
+|---|---|---|---|---|---|
+| sub3.crit1 | 전문가가 발견한 사항이나 결론의 관련성을 평가한다. | sub3.crit1.fact (action): 전문가가 발견한 사항이나 결론의 관련성을 평가한다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-1 | src-b4109c9e1e9bbc53 |
+| sub3.crit2 | 전문가가 발견한 사항이나 결론의 합리성을 평가한다. | sub3.crit2.fact (action): 전문가가 발견한 사항이나 결론의 합리성을 평가한다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-2 | src-b4109c9e1e9bbc53 |
+| sub3.crit3 | 전문가의 발견사항이나 결론이 다른 감사증거와 일관되는지 평가한다. | sub3.crit3.fact (action): 전문가의 발견사항이나 결론이 다른 감사증거와 일관되는지 평가한다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-3 | src-b4109c9e1e9bbc53 |
+
+### 요구사항과 직접 근거
+
+| requirement | 문단·페이지·판본 | source | 원문 인용 |
+|---|---|---|---|
+| req-1 | KGA 620 문단 12 원문 페이지 657; L1001-L1014 | [src-b4109c9e1e9bbc53](../../data/official/delegated-n04-kga-2025.txt) | (a) 감사인측 전문가가 발견한 사항이나 결론의 관련성과 합리성 및 다른 감사증거와의 일관성 (문단 A33-A34 참조) |
+| req-2 | KGA 620 문단 12 원문 페이지 657; L1001-L1014 | [src-b4109c9e1e9bbc53](../../data/official/delegated-n04-kga-2025.txt) | (a) 감사인측 전문가가 발견한 사항이나 결론의 관련성과 합리성 및 다른 감사증거와의 일관성 (문단 A33-A34 참조) |
+| req-3 | KGA 620 문단 12 원문 페이지 657; L1001-L1014 | [src-b4109c9e1e9bbc53](../../data/official/delegated-n04-kga-2025.txt) | (a) 감사인측 전문가가 발견한 사항이나 결론의 관련성과 합리성 및 다른 감사증거와의 일관성 (문단 A33-A34 참조) |
+
+## 출처 파일·위치
+
+| source | 직접 출처 | page | 인용 SHA-256 |
+|---|---|---|---|
+| src-b4109c9e1e9bbc53 | [KGA 620.12, 2025 개정 전문, PDF 657쪽부터; KGA 620 문단 12 원문 페이지 657; L1001-L1014](../../data/official/delegated-n04-kga-2025.txt) | KGA 620 | 0886102091760e71b0d029f181525eea3d165e73884ba2bd8e9c74598429b0bd |
+
+## 판본·검수 메모
+
+- 2026-09-14 기준서형 배점 검토의 승인된 분리·통합·조정 후속본. 원문 계보: pilot-13-009/sub3
+- 전문가 업무 평가를 결론 3점, 유의적 가정·방법 4점, 유의적 원천데이터 3점으로 나눈다.
+- 한국공인회계사회 2026 회계감사기준 전문 원본 PDF 683쪽, KGA 620 문단 12(a)의 본문·하위항목과 조건을 직접 대조하였다. 원본 cpa_uploader/raw/materials/verification/59020bf1eba001c1/kga-2026-full.pdf; SHA-256 59020bf1eba001c1fd0612f3af1098dbef4ca11dc22777b7266c80d39a615f84를 재확인하였다. raw/collections/2026-09-11-initial/manifest.json의 원래 경로·공식 다운로드 계보 및 2026-09-14 보존 공식 목록(kicpa-audit-standards-index.html)의 2026 전문 게시번호 11786004332051을 대조하였다. 기존 등록 발췌의 해당 명제와 원문이 일치한다. 이번 대조는 보존 공식판본의 원문 확인이며 미래 시험의 적용판본을 임의 확정하지 않는다.
+- 검토·실측·게시 단계의 상태는 이번 실행 장부에서 확인한다.
+
+2027 시험 적용 여부는 아래 판본 기록과 공식 시험 공고 확인 상태를 따른다. 게시 상태 또는 이 색인의 생성 상태로 대신 확정하지 않는다.
+
+## Related
+
+- [[source-review-map]]
+- [[requirement-coverage]]

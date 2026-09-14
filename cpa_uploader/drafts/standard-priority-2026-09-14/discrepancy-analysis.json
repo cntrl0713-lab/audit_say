@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "artifact_type": "draft_grading_discrepancy_analysis",
+  "recorded_at": "2026-09-14",
+  "run": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/summary.json",
+  "initial_result": {
+    "selected": 30,
+    "exact": 27,
+    "within_tolerance": 29,
+    "outside_tolerance": ["l01-sub2-partial"],
+    "deviations_within_tolerance": ["s01-sub1-partial", "s03-sub2-partial"]
+  },
+  "cases": [
+    {
+      "case_id": "l01-sub2-partial",
+      "expected_score": 3,
+      "actual_score": 1,
+      "delta": -2,
+      "observation": "crit3·crit6에서 '선정 주체만 있고 회계법인 또는 감사반의 선임 내용이 없다'며 not_met 판정.",
+      "root_cause": "rubric_defect",
+      "analysis": "발문은 '감사인으로 선임할 회계법인 또는 감사반을 선정하는 주체'를 묻는다. 선정 대상은 발문이 이미 주었으므로 답안은 경우별 선정주체만 맞게 쓰면 충분하다. 그런데 기준 문장이 '…가 선정한 회계법인 또는 감사반을 선임한다'는 형태여서 발문의 대상 반복을 숨은 요건처럼 읽게 했다. 원 기대값 3점은 발문 요구와 공식 원문(외부감사법 제10조제4항)에 따른 값이며 바꾸지 않는다.",
+      "decision": "L01/sub2의 여섯 기준 문장을 경우별 선정주체 중심으로 고치고, 선정 대상의 반복을 요구하지 않는다는 설명을 붙인다. 발문·모범답안·배점·원답안·기대값은 유지하고 l01-sub2 대표 3건을 새 실행에서 다시 채점한다."
+    },
+    {
+      "case_id": "s03-sub2-partial",
+      "expected_score": 4,
+      "actual_score": 3,
+      "delta": -1,
+      "observation": "crit1에서 '독립성 등 윤리적 요구사항은 언급했지만 전문가적 적격성 준수 여부가 구체적으로 제시되지 않았다'며 not_met 판정.",
+      "root_cause": "rubric_defect",
+      "analysis": "600.41(a)의 괄호는 윤리적 요구사항의 범위를 설명한다. 배점 이유는 괄호의 포함 범위를 별도 점수로 쪼개지 않는다고 정했는데, crit1 문장에만 그 설명이 빠져 괄호 내용이 필수 요건처럼 읽혔다. crit5·crit8에는 같은 취지의 설명이 이미 있다. 원 기대값 4점을 유지한다.",
+      "decision": "S03/sub2 crit1에 '괄호는 범위 설명이며 윤리적 요구사항 준수 여부가 드러나면 인정한다'는 설명을 추가한다. 편차는 ±1 이내였지만 기준 문구와 배점 이유가 어긋나는 내용 결함이므로 고치고 s03-sub2 대표 3건을 다시 채점한다."
+    },
+    {
+      "case_id": "s01-sub1-partial",
+      "expected_score": 2,
+      "actual_score": 1,
+      "delta": -1,
+      "observation": "crit4에서 '한정의견 결론은 있으나 충분하고 적합한 감사증거를 입수할 수 없는 경우라는 요건이 구체적으로 제시되지 않았다'며 not_met 판정.",
+      "root_cause": "grading_consistency",
+      "analysis": "답안은 '증거를 입수할 수 없고 발견되지 않은 왜곡표시의 가능한 영향이 중요하지만 전반적이지 않으면 한정의견'이라고 썼다. 발문이 이미 '충분하고 적합한 감사증거를 입수할 수 없을 때'라고 조건을 주었으므로 같은 의미다. 기준 문장은 705.13(a)와 일치하며 결함이 없다. 모델이 조건 수식어를 엄격하게 요구한 판정 편차다.",
+      "decision": "±1점 허용 편차로 수락한다. 기준·원답안·기대값을 바꾸지 않으며 편차를 없애기 위한 반복 호출을 하지 않는다."
+    }
+  ],
+  "policy_note": "모델 결과에 맞춰 기대값을 바꾸지 않았다. 기준 문구 수정은 발문 요구와 배점 이유에 맞춘 내용 정정이며 과거 실행의 요청·응답·결과는 run-v1에 그대로 보존한다."
+}

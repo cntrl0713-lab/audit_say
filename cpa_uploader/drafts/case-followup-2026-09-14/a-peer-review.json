@@ -1,0 +1,1080 @@
+{
+  "schema_version": 1,
+  "batch_id": "case-followup-2026-09-14",
+  "reviewed_at": "2026-09-14T04:03:07.362Z",
+  "reviewer_id": "agent:/root/followup_execution",
+  "method": "independent_agent_content_peer_review",
+  "status": "passed_for_A_draft_content_scope",
+  "human_review_performed": false,
+  "actual_model_grading": "not_run",
+  "production_publication": "not_performed",
+  "scope": {
+    "case_count": 3,
+    "question_count": 9,
+    "model_answer_count": 9,
+    "representative_answer_count": 18,
+    "total_expected_answer_observations": 27,
+    "actual_observations": 0,
+    "all_prompts_models_criteria_qa_read": true,
+    "exclusions": [
+      "B 문항 9개",
+      "실제 Luna 채점",
+      "사람 검토",
+      "정본·공개본·운영 DB 게시"
+    ]
+  },
+  "input_binding": {
+    "sets": {
+      "file": "cpa_uploader/drafts/case-followup-2026-09-14/a/sets.json",
+      "sha256": "91929931f5fa7822ff1f3bd5128dd7889ee0771f992c14ca894ff8dd6418eb2e"
+    },
+    "design": {
+      "file": "cpa_uploader/drafts/case-followup-2026-09-14/a/design.json",
+      "sha256": "5dd8556f4f028ab02da808fea1b823c8d1fd731565bcf9fda56f8544695ec5bf"
+    },
+    "review": {
+      "file": "cpa_uploader/drafts/case-followup-2026-09-14/a/review.json",
+      "sha256": "38a797e27d5afaaccc5aae29750cea802d9462535154a652ec3b04dd1e8c9d55"
+    },
+    "qa": {
+      "file": "cpa_uploader/drafts/case-followup-2026-09-14/a/qa.json",
+      "sha256": "46ee9e5f5fd0a831673e9653cb5caf164f345068572a9b5337b6a53982f7d957"
+    }
+  },
+  "final_source_catalog": {
+    "file": "cpa_uploader/drafts/case-followup-2026-09-14/source-catalog-v3.json",
+    "sha256": "c1cbcaaa863a4235636cafdc3f2ee2a14036dd8ef4f375420eb7e999e4337e05",
+    "unit_count": 7837,
+    "note": "A가 사용한 기존 등록 출처는 초기 source-catalog에도 존재한다. 제작 배치의 최종 source-catalog-v3와 대조함."
+  },
+  "bank_baseline": {
+    "file": "cpa_uploader/drafts/case-followup-2026-09-14/bank-before.json",
+    "sha256": "c2767649d51a95b6016710a33f9796bbfdf34f1394a73589dd9a65d2c286602e"
+  },
+  "shape": [
+    {
+      "set_id": "case-07-interim-misstatement-20260914",
+      "facts_char_count": 857,
+      "question_count": 3,
+      "total_points": 8
+    },
+    {
+      "set_id": "case-08-selection-coverage-20260914",
+      "facts_char_count": 847,
+      "question_count": 3,
+      "total_points": 7
+    },
+    {
+      "set_id": "case-16-report-paragraphs-20260914",
+      "facts_char_count": 921,
+      "question_count": 3,
+      "total_points": 7
+    }
+  ],
+  "manual_reviews": [
+    {
+      "set_id": "case-07-interim-misstatement-20260914",
+      "subquestion_id": "sub1",
+      "checks": {
+        "source": true,
+        "answer": true,
+        "prompt": true,
+        "points": true,
+        "style": true,
+        "topics": true,
+        "edition": true,
+        "nonduplication": true,
+        "qa": true
+      },
+      "source_and_answer_rationale": "오류 발견 전이라는 시간적 조건, 9월 이후에도 계속되는 거래 및 후속 실증절차만으로 충분하다는 판단을 각각 원문 330.22(b)와 A58에 적용한다. 통제테스트를 반드시 추가하도록 하지 않는다.",
+      "prompt_and_point_decision": {
+        "decision": "retain",
+        "max_points": 3,
+        "rationale": "제안 평가·시간적 증거 한계·조건에 맞는 후속 방법의 세 의미 단위를 각 1점으로 인정한다. 판단은 적합한 조치로 함축 가능하며 매출·회수·반품 세 단어를 따로 배점하지 않는다."
+      },
+      "fact_dependency_rationale": "사실을 삭제하면 잔여기간 거래의 증거 공백과 실증절차만 허용되는 사례 조건을 답할 수 없어 만점 답안이 성립하지 않는다.",
+      "topic_rationale": "실제 요구는 평가위험에 대한 실증절차와 시기·계획 대응으로 주제07이다. 통제운영평가·회계처리·최종의견은 요구하지 않는다.",
+      "topic_ids": [
+        "07"
+      ],
+      "nonduplication_rationale": "g07은 330.22~23 일반론이고 pilot-07-006은 전기·당기 통제증거와 잔여기간 통제테스트이다. 새 문항은 기중 실증증거의 시간적 한계를 적용한다.",
+      "expected_answers": {
+        "model": {
+          "expected_points": 3,
+          "all_criterion_ids": [
+            "sub1.c1",
+            "sub1.c2",
+            "sub1.c3"
+          ],
+          "basis": "모범답안의 각 문장과 독립 배점 기준을 직접 대조함"
+        },
+        "representatives": [
+          {
+            "kind": "partial",
+            "answer": "잔여기간 절차를 생략하고 9월 말 검사로 연말 결론을 확정하는 제안은 부적절하다.",
+            "expected_points": 1,
+            "met_criterion_ids": [
+              "sub1.c1"
+            ]
+          },
+          {
+            "kind": "wrong",
+            "answer": "9월 말 잔액에 오류가 없으면 12월 말에도 같은 결론이 유지되므로 잔여기간은 검사하지 않아도 된다.",
+            "expected_points": 0,
+            "met_criterion_ids": []
+          }
+        ],
+        "manual_rationale": "부분답안은 제안의 부적절 판단만 있어 1점. 오답은 잔여기간 검사를 명시적으로 생략하여 0점."
+      },
+      "human_review_performed": false,
+      "actual_model_grading": "not_run",
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-07-interim-misstatement-20260914",
+      "subquestion_id": "sub2",
+      "checks": {
+        "source": true,
+        "answer": true,
+        "prompt": true,
+        "points": true,
+        "style": true,
+        "topics": true,
+        "edition": true,
+        "nonduplication": true,
+        "qa": true
+      },
+      "source_and_answer_rationale": "기중에 최초 예상과 다른 왜곡표시가 발견되었다는 330.23 조건을 확인하였다. 발견 거래를 수정한 사실이 위험과 절차계획의 재평가를 면제하지 않는다. 변경 필요성의 평가이며 무조건 위험을 높이거나 모든 절차를 확대한다는 정답이 아니다.",
+      "prompt_and_point_decision": {
+        "decision": "retain",
+        "max_points": 2,
+        "rationale": "위험평가와 잔여기간 실증절차 계획이라는 독립 대상에 각 1점이다. 성격·시기·범위는 하나의 계획 재검토 기준이며 각 단어를 기계적으로 분할 배점하지 않는다."
+      },
+      "fact_dependency_rationale": "동일한 반품처리 방식의 다른 거래 및 잔여기간 확산 가능성을 해석해야 한다. 발견거래 수정이라는 방해 사실을 판단에 사용한다.",
+      "topic_rationale": "실제 요구는 평가위험에 대한 실증절차와 시기·계획 대응으로 주제07이다. 통제운영평가·회계처리·최종의견은 요구하지 않는다.",
+      "topic_ids": [
+        "07"
+      ],
+      "nonduplication_rationale": "pilot-06-008은 고유위험요소와 회사 위험평가절차의 누락 평가이다. 새 문항은 감사인 자신의 기중 실증결과에 따른 계획 재검토이며 g07의 일반 요구를 사례화한다.",
+      "expected_answers": {
+        "model": {
+          "expected_points": 2,
+          "all_criterion_ids": [
+            "sub2.c1",
+            "sub2.c2"
+          ],
+          "basis": "모범답안의 각 문장과 독립 배점 기준을 직접 대조함"
+        },
+        "representatives": [
+          {
+            "kind": "partial",
+            "answer": "같은 방식으로 다른 반품도 누락되었을 수 있으므로, 최초 중요왜곡표시위험의 평가를 변경할 필요가 있는지 재평가한다.",
+            "expected_points": 1,
+            "met_criterion_ids": [
+              "sub2.c1"
+            ]
+          },
+          {
+            "kind": "wrong",
+            "answer": "발견한 반품 오류를 수정하면 예상하지 못한 오류의 영향은 끝난다. 위험평가와 잔여기간 실증절차 계획은 더 검토하지 않는다.",
+            "expected_points": 0,
+            "met_criterion_ids": []
+          }
+        ],
+        "manual_rationale": "대표 부분답안은 위험평가 재검토만 하여 1점. 수정 후 양쪽 재검토를 거부하는 답안은 0점."
+      },
+      "human_review_performed": false,
+      "actual_model_grading": "not_run",
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-07-interim-misstatement-20260914",
+      "subquestion_id": "sub3",
+      "checks": {
+        "source": true,
+        "answer": true,
+        "prompt": true,
+        "points": true,
+        "style": true,
+        "topics": true,
+        "edition": true,
+        "nonduplication": true,
+        "qa": true
+      },
+      "source_and_answer_rationale": "330.A11의 고의적 조작위험과 기중 결론 확대의 한계를 12월 반품 이월 지시와 11월 15일 검사 종료의 간극에 연결한다. 보고기간말·근접시기 또는 해당 위험에 대응하는 불시·예측불가능 시기의 대안을 허용한다.",
+      "prompt_and_point_decision": {
+        "decision": "retain",
+        "max_points": 3,
+        "rationale": "부적절 판단·사례에 연결한 이유·시기 보완에 각 1점이다. 단순 표본 수 확대는 시기 보완 점수를 받지 않는다. 명시적 반대 결론이 독립적인 정당한 근거 점수까지 없애지 않는다."
+      },
+      "fact_dependency_rationale": "이미 확인한 12월 이월 지시와 검사 종료시점을 이용해야 하므로 일반적인 위험 높음 또는 표본 확대만으로 만점이 되지 않는다.",
+      "topic_rationale": "실제 요구는 평가위험에 대한 실증절차와 시기·계획 대응으로 주제07이다. 통제운영평가·회계처리·최종의견은 요구하지 않는다.",
+      "topic_ids": [
+        "07"
+      ],
+      "nonduplication_rationale": "pilot-07-007의 유의적 위험에서 세부테스트 요구 및 중요한 항목 실증절차 생략과 달리 시기 대응만 요구한다. 2019 통합감사 미비점 기출은 인접 학습 자료로만 연결한다.",
+      "expected_answers": {
+        "model": {
+          "expected_points": 3,
+          "all_criterion_ids": [
+            "sub3.c1",
+            "sub3.c2",
+            "sub3.c3"
+          ],
+          "basis": "모범답안의 각 문장과 독립 배점 기준을 직접 대조함"
+        },
+        "representatives": [
+          {
+            "kind": "partial",
+            "answer": "제안은 부적절하다. 실증절차를 보고기간말에 수행하도록 보완한다.",
+            "expected_points": 2,
+            "met_criterion_ids": [
+              "sub3.c1",
+              "sub3.c3"
+            ]
+          },
+          {
+            "kind": "wrong",
+            "answer": "11월 15일까지 검사한 표본 수만 늘리면 충분하므로 그 이후의 검사 시기는 추가하지 않는다. 연말 총액 증감표만으로 고의적 반품 이월에 대응할 수 있다.",
+            "expected_points": 0,
+            "met_criterion_ids": []
+          }
+        ],
+        "manual_rationale": "부분답안은 판단과 보고기간말 시기 보완으로 2점이나 12월 지시와 시기 간극의 이유가 없다. 명시적으로 기존 종료시점을 유지하는 오답은 0점."
+      },
+      "human_review_performed": false,
+      "actual_model_grading": "not_run",
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-08-selection-coverage-20260914",
+      "subquestion_id": "sub1",
+      "checks": {
+        "source": true,
+        "answer": true,
+        "prompt": true,
+        "points": true,
+        "style": true,
+        "topics": true,
+        "edition": true,
+        "nonduplication": true,
+        "qa": true
+      },
+      "source_and_answer_rationale": "500.A65의 고액·의심 항목 선택과 A66의 비표본성·투영 불가·잔여부분 증거 부재를 전수 대조하였다. 70% 금액 비중은 대표 표본 선정의 근거가 아니며 모든 비통계적 표본추출을 부정하지 않는다.",
+      "prompt_and_point_decision": {
+        "decision": "retain",
+        "max_points": 3,
+        "rationale": "선정 방법·전체 확대 판단·잔여부분 증거 부재의 세 의미 단위에 각 1점이다. 방법을 명확히 설명하면 정확한 명칭만을 강요하지 않고, 이유가 결론을 함축하면 판단을 인정한다."
+      },
+      "fact_dependency_rationale": "분쟁·금액 기준의 판단적 선정과 나머지 항목의 제외라는 사실이 정답의 핵심이다. 같은 70% 검사라도 선정 구조를 바꾸면 답이 달라진다.",
+      "topic_rationale": "실제 요구는 테스트 항목 추출과 감사증거의 적용 범위로 주제08이다. 표본규모·투영금액 계산은 요구하지 않는다.",
+      "topic_ids": [
+        "08"
+      ],
+      "nonduplication_rationale": "pilot-08-004 및 g02의 세 방법·일반 적용 예시보다 구체적인 선정 구조와 증거 범위의 오류를 적용한다. 고급연습 25GS2 문제4 물음3④와 직접 연결하되 새 출제로 중복 집계하지 않는다.",
+      "expected_answers": {
+        "model": {
+          "expected_points": 3,
+          "all_criterion_ids": [
+            "sub1.c1",
+            "sub1.c2",
+            "sub1.c3"
+          ],
+          "basis": "모범답안의 각 문장과 독립 배점 기준을 직접 대조함"
+        },
+        "representatives": [
+          {
+            "kind": "partial",
+            "answer": "이 검사는 특정 항목의 추출이다. 전체 매출채권에 결과를 그대로 투영할 수 없다.",
+            "expected_points": 2,
+            "met_criterion_ids": [
+              "sub1.c1",
+              "sub1.c2"
+            ]
+          },
+          {
+            "kind": "wrong",
+            "answer": "금액의70%를 확인했으므로 통계적 표본감사에 해당한다. 오류가 없었으므로 남은30%에도 같은 결론을 적용한다.",
+            "expected_points": 0,
+            "met_criterion_ids": []
+          }
+        ],
+        "manual_rationale": "부분답안은 특정 항목의 추출과 투영 불가만 있어 2점. 70%를 통계적 표본감사로 부르고 잔여분에 무오류를 적용하는 오답은 0점."
+      },
+      "human_review_performed": false,
+      "actual_model_grading": "not_run",
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-08-selection-coverage-20260914",
+      "subquestion_id": "sub2",
+      "checks": {
+        "source": true,
+        "answer": true,
+        "prompt": true,
+        "points": true,
+        "style": true,
+        "topics": true,
+        "edition": true,
+        "nonduplication": true,
+        "qa": true
+      },
+      "source_and_answer_rationale": "500.A67의 모집단 결론 목적, A63의 방법 결합 및 A64의 전수조사 대안을 대조하였다. 최종 criterion sub2.c1에는 A64가 추가되어 모범답안의 적절한 경우 잔여분 전수조사도 직접 지지한다.",
+      "prompt_and_point_decision": {
+        "decision": "retain",
+        "max_points": 2,
+        "rationale": "미검사 모집단 자체를 다루는 방법과 두 부분의 증거를 결합한 충분성 결론에 각 1점이다. 이미 사실에 주어진 추가 증거 필요성에는 별도 판단 점수를 붙이지 않는다."
+      },
+      "fact_dependency_rationale": "기존 고액·분쟁 항목의 재검사는 미검사 집단을 대신하지 못한다. 이미 검사한 부분과 새로 검사할 부분을 구별하여 답해야 한다.",
+      "topic_rationale": "실제 요구는 테스트 항목 추출과 감사증거의 적용 범위로 주제08이다. 표본규모·투영금액 계산은 요구하지 않는다.",
+      "topic_ids": [
+        "08"
+      ],
+      "nonduplication_rationale": "pilot-08-006은 기업생성정보의 정확성·완전성·정밀도·상세도이다. pilot-08-007은 주장의 추적 방향과 기간귀속이다. draft-10-530-freq01은 표본규모 영향요소이며 새 문항의 잔여 모집단 증거 확보와 구별된다.",
+      "expected_answers": {
+        "model": {
+          "expected_points": 2,
+          "all_criterion_ids": [
+            "sub2.c1",
+            "sub2.c2"
+          ],
+          "basis": "모범답안의 각 문장과 독립 배점 기준을 직접 대조함"
+        },
+        "representatives": [
+          {
+            "kind": "partial",
+            "answer": "미검사된 나머지 매출채권을 모집단으로 하여 그 전체에 관한 결론을 도출하도록 표본을 설계하고 테스트한다.",
+            "expected_points": 1,
+            "met_criterion_ids": [
+              "sub2.c1"
+            ]
+          },
+          {
+            "kind": "wrong",
+            "answer": "기존에 검사한 고액거래처 중에서 몇 개를 다시 뽑아 조사하면 미검사 소액채권의 증거도 자동으로 보충된다.",
+            "expected_points": 0,
+            "met_criterion_ids": []
+          }
+        ],
+        "manual_rationale": "미검사 모집단의 표본을 설계·테스트한다는 부분답안은 방법 1점이며 전체 증거 결합은 없다. 기존 고액항목 재검사로 잔여분 증거가 자동 확보된다는 오답은 0점."
+      },
+      "human_review_performed": false,
+      "actual_model_grading": "not_run",
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-08-selection-coverage-20260914",
+      "subquestion_id": "sub3",
+      "checks": {
+        "source": true,
+        "answer": true,
+        "prompt": true,
+        "points": true,
+        "style": true,
+        "topics": true,
+        "edition": true,
+        "nonduplication": true,
+        "qa": true
+      },
+      "source_and_answer_rationale": "500.A64의 금액이 큰 소수 항목과 세부테스트에서 전수조사가 적합할 수 있다는 조건을 대출계약 4건 및 전체 자료 이용 가능 사실에 적용한다. 모든 감사의 전수조사 의무로 일반화하지 않는다.",
+      "prompt_and_point_decision": {
+        "decision": "retain",
+        "max_points": 2,
+        "rationale": "더 적합할 수 있는 전수조사와 모집단 특성에 연결한 이유에 각 1점이다. 제안이 부적절하다는 추가 판단 점수를 중복 부여하지 않는다."
+      },
+      "fact_dependency_rationale": "매출채권과 독립된 차입금의 소수·고액 구성을 이용해야 한다. 모집단 밖 미기록 부채 또는 완전성 절차는 사전에 범위를 정한 별도 사항이다.",
+      "topic_rationale": "실제 요구는 테스트 항목 추출과 감사증거의 적용 범위로 주제08이다. 표본규모·투영금액 계산은 요구하지 않는다.",
+      "topic_ids": [
+        "08"
+      ],
+      "nonduplication_rationale": "2020 문제8 물음3 전수조사 일반 적합 상황과 고급연습 25GS1 문제4 물음2의 차입금 적용을 새 모집단에 적용한다. A 304·307쪽으로 원출제 번호를 독립 확인하였다.",
+      "expected_answers": {
+        "model": {
+          "expected_points": 2,
+          "all_criterion_ids": [
+            "sub3.c1",
+            "sub3.c2"
+          ],
+          "basis": "모범답안의 각 문장과 독립 배점 기준을 직접 대조함"
+        },
+        "representatives": [
+          {
+            "kind": "partial",
+            "answer": "대출계약 4건 모두를 전수조사하는 방법이 더 적합할 수 있다.",
+            "expected_points": 1,
+            "met_criterion_ids": [
+              "sub3.c1"
+            ]
+          },
+          {
+            "kind": "wrong",
+            "answer": "거래유형과 무관하게 표본감사를 반드시 사용해야 하므로4개 대출계약도1건만 고르고 전체 결론을 내린다.",
+            "expected_points": 0,
+            "met_criterion_ids": []
+          }
+        ],
+        "manual_rationale": "4건 전수조사 방법만 제시한 부분답안은 1점. 모든 모집단에 표본감사가 필수라고 하는 오답은 0점."
+      },
+      "human_review_performed": false,
+      "actual_model_grading": "not_run",
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-16-report-paragraphs-20260914",
+      "subquestion_id": "sub1",
+      "checks": {
+        "source": true,
+        "answer": true,
+        "prompt": true,
+        "points": true,
+        "style": true,
+        "topics": true,
+        "edition": true,
+        "nonduplication": true,
+        "qa": true
+      },
+      "source_and_answer_rationale": "706.8(b)와 A1의 핵심감사사항 대체 불가를 이미 결정된 영업권 사항에 적용한다. 701 적용과 비공개 예외 부재가 명시되어 있고 적절한 주석 공시는 핵심감사사항 기술을 대신하지 않는다.",
+      "prompt_and_point_decision": {
+        "decision": "retain",
+        "max_points": 2,
+        "rationale": "대체 제안의 부적절 판단과 적절한 공시·이미 결정된 핵심감사사항의 구별에 각 1점이다. 701.13의 전체 작성사항을 숨은 득점 요건으로 추가하지 않는다."
+      },
+      "fact_dependency_rationale": "주석12 공시가 충분하다는 사실과 이미 핵심감사사항으로 결정한 사실의 관계를 풀어야 한다. 회사 이름만 바꾼 일반론 문제가 아니다.",
+      "topic_rationale": "실제 요구는 감사보고서의 핵심감사사항·강조사항·참조 처리로 주제16에 해당한다. 추정치 또는 의견유형은 주어진 조건이다.",
+      "topic_ids": [
+        "16"
+      ],
+      "nonduplication_rationale": "pilot-16-012의 비공개 예외, s05의 대체 불가 목록 열거와 구별된다. 고급연습 25GS2 문제8 물음2④만 참조하며 같은 페이지 ③의 다른 주장은 정답에 도입하지 않는다.",
+      "expected_answers": {
+        "model": {
+          "expected_points": 2,
+          "all_criterion_ids": [
+            "sub1.c1",
+            "sub1.c2"
+          ],
+          "basis": "모범답안의 각 문장과 독립 배점 기준을 직접 대조함"
+        },
+        "representatives": [
+          {
+            "kind": "partial",
+            "answer": "영업권 사항은 핵심감사사항으로 기술해야 하므로 강조사항으로만 대체하자는 제안은 부적절하다.",
+            "expected_points": 1,
+            "met_criterion_ids": [
+              "sub1.c1"
+            ]
+          },
+          {
+            "kind": "wrong",
+            "answer": "주석12가 상세하므로 영업권을 핵심감사사항으로 결정했어도 강조사항문단으로 대체할 수 있다.",
+            "expected_points": 0,
+            "met_criterion_ids": []
+          }
+        ],
+        "manual_rationale": "부분답안의 핵심감사사항으로 기술해야 한다는 표현은 결론·조치를 반복하며 공시와 결정의 별도 관계를 설명하지 않아 1점이다. 주석이 상세하므로 대체 가능하다는 오답은 0점."
+      },
+      "human_review_performed": false,
+      "actual_model_grading": "not_run",
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-16-report-paragraphs-20260914",
+      "subquestion_id": "sub2",
+      "checks": {
+        "source": true,
+        "answer": true,
+        "prompt": true,
+        "points": true,
+        "style": true,
+        "topics": true,
+        "edition": true,
+        "nonduplication": true,
+        "qa": true
+      },
+      "source_and_answer_rationale": "706.9(a)~(c)와 2026 공식 전체 문단을 대조하였다. 적절한 강조사항 제목, 재무제표에 공시된 정보만 언급, 강조된 홍수와 관련한 의견 비변형이라는 요건이 별개 투자주식의 한정의견과 공존한다.",
+      "prompt_and_point_decision": {
+        "decision": "retain",
+        "max_points": 3,
+        "rationale": "실제 초안의 세 결함에 각 1점으로 3점이다. 이미 포함된 주석20 참조·별도 단락은 재배점하지 않는다. 같은 초안의 제한된 수정 세 가지로 발문의 요구량이 명확하다."
+      },
+      "fact_dependency_rationale": "제목·미공시 공장계획·전체 의견 표현이라는 초안을 직접 고치고 다른 사유의 한정의견을 보존해야 하므로 사실 제거 시 같은 답안이 성립하지 않는다.",
+      "topic_rationale": "실제 요구는 감사보고서의 핵심감사사항·강조사항·참조 처리로 주제16에 해당한다. 추정치 또는 의견유형은 주어진 조건이다.",
+      "topic_ids": [
+        "16"
+      ],
+      "nonduplication_rationale": "pilot-16-004의 일반 정의·작성 요건보다 실제 문안의 세 결함을 식별한다. 2023 문제10 물음4의 일반 판단을 참조하되 상대적 단락 순서 등 별도 요구를 이식하지 않는다.",
+      "expected_answers": {
+        "model": {
+          "expected_points": 3,
+          "all_criterion_ids": [
+            "sub2.c1",
+            "sub2.c2",
+            "sub2.c3"
+          ],
+          "basis": "모범답안의 각 문장과 독립 배점 기준을 직접 대조함"
+        },
+        "representatives": [
+          {
+            "kind": "partial",
+            "answer": "제목을“강조사항-홍수 피해”로 바꾸고 공시되지 않은 신공장 건설계획을 삭제한다.",
+            "expected_points": 2,
+            "met_criterion_ids": [
+              "sub2.c1",
+              "sub2.c2"
+            ]
+          },
+          {
+            "kind": "wrong",
+            "answer": "제목은“추가 설명”으로만 두고 독자에게 유용한 미공시 건설계획도 계속 넣는다. 홍수 강조사항이 있으므로 전체 감사의견을 적정의견으로 바꾼다.",
+            "expected_points": 0,
+            "met_criterion_ids": []
+          }
+        ],
+        "manual_rationale": "부분답안은 제목과 미공시 정보 삭제의 2점이며 의견문장 수정은 없다. 세 결함을 유지하거나 홍수 때문에 전체 적정의견으로 바꾸는 오답은 0점."
+      },
+      "human_review_performed": false,
+      "actual_model_grading": "not_run",
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-16-report-paragraphs-20260914",
+      "subquestion_id": "sub3",
+      "checks": {
+        "source": true,
+        "answer": true,
+        "prompt": true,
+        "points": true,
+        "style": true,
+        "topics": true,
+        "edition": true,
+        "nonduplication": true,
+        "qa": true
+      },
+      "source_and_answer_rationale": "701.15(a)와 (b)의 변형의견 사유에 대한 해당 근거 단락 보고 및 핵심감사사항 단락의 참조 요구를 확인하였다. 한정의견은 이미 결정된 조건이며 중요왜곡표시 정도를 재판단시키지 않는다.",
+      "prompt_and_point_decision": {
+        "decision": "retain",
+        "max_points": 2,
+        "rationale": "실제 보고 위치와 핵심감사사항 단락의 참조 두 행위에 각 1점이다. 본질상 핵심감사사항이라는 분류나 의견유형 선택을 추가 중복 배점하지 않는다."
+      },
+      "fact_dependency_rationale": "투자주식의 한정의견 사유와 영업권의 일반 핵심감사사항이 다르다는 사실을 이용하여 각각의 보고 방식을 구별해야 한다.",
+      "topic_rationale": "실제 요구는 감사보고서의 핵심감사사항·강조사항·참조 처리로 주제16에 해당한다. 추정치 또는 의견유형은 주어진 조건이다.",
+      "topic_ids": [
+        "16"
+      ],
+      "nonduplication_rationale": "pilot-16-006의 의견변형 사유를 일반 KAM처럼 기술하지 않는 요구를 실제 한정의견 상황의 보고 위치와 참조 조치로 적용·확장한다. 새 보고서의 다른 두 사항과 혼동하지 않게 구성되었다.",
+      "expected_answers": {
+        "model": {
+          "expected_points": 2,
+          "all_criterion_ids": [
+            "sub3.c1",
+            "sub3.c2"
+          ],
+          "basis": "모범답안의 각 문장과 독립 배점 기준을 직접 대조함"
+        },
+        "representatives": [
+          {
+            "kind": "partial",
+            "answer": "투자주식의 왜곡표시는 한정의견근거 단락에 기술하고 개별 핵심감사사항으로 대신 기술하지 않는다.",
+            "expected_points": 1,
+            "met_criterion_ids": [
+              "sub3.c1"
+            ]
+          },
+          {
+            "kind": "wrong",
+            "answer": "투자주식 사유는 핵심감사사항의 개별 항목으로만 기술하고 한정의견근거 단락과 그 참조는 생략한다.",
+            "expected_points": 0,
+            "met_criterion_ids": []
+          }
+        ],
+        "manual_rationale": "한정의견근거 단락에 기술한다는 부분답안은 1점이며 KAM 단락의 참조를 누락한다. 개별 KAM만 기술하고 근거 단락·참조를 모두 생략하는 오답은 0점."
+      },
+      "human_review_performed": false,
+      "actual_model_grading": "not_run",
+      "unresolved_content_findings": []
+    }
+  ],
+  "official_edition_comparison": {
+    "file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+    "sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+    "pdf": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-full.pdf",
+    "pdf_sha256": "59020bf1eba001c1fd0612f3af1098dbef4ca11dc22777b7266c80d39a615f84",
+    "ranges": [
+      {
+        "standard": "330",
+        "paragraphs": "22~23",
+        "lines": [
+          14737,
+          14748
+        ],
+        "pdf_pages": [
+          343
+        ]
+      },
+      {
+        "standard": "330",
+        "paragraphs": "A11",
+        "lines": [
+          14914,
+          14920
+        ],
+        "pdf_pages": [
+          347
+        ]
+      },
+      {
+        "standard": "330",
+        "paragraphs": "A57~A60 including complete A58",
+        "lines": [
+          15349,
+          15402
+        ],
+        "pdf_pages": [
+          358,
+          359
+        ]
+      },
+      {
+        "standard": "500",
+        "paragraphs": "A63~A67",
+        "lines": [
+          17594,
+          17650
+        ],
+        "pdf_pages": [
+          412,
+          413
+        ]
+      },
+      {
+        "standard": "701",
+        "paragraphs": "15(a)~(b)",
+        "lines": [
+          31366,
+          31376
+        ],
+        "pdf_pages": [
+          751
+        ]
+      },
+      {
+        "standard": "706",
+        "paragraphs": "8~9",
+        "lines": [
+          33259,
+          33289
+        ],
+        "pdf_pages": [
+          799,
+          800
+        ]
+      },
+      {
+        "standard": "706",
+        "paragraphs": "A1 including continuation after page break and footnote5",
+        "lines": [
+          33311,
+          33330
+        ],
+        "pdf_pages": [
+          800,
+          801
+        ]
+      }
+    ],
+    "special_330_A58_check": {
+      "learning_source_unit_id": "src-40f8136698832dfadd",
+      "registered_quote_is_first_sentence_only": true,
+      "full_official_paragraph_read_lines": [
+        15358,
+        15375
+      ],
+      "result": "일치 및 내용 지지. 첫 문장은 기중 후 무추가절차의 위험 증가이고 후속 문장은 잔여기간 길이와 절차계획 고려요소이다. 새 sub1의 시간적 증거 한계와 사례의 충분성 가정에 빠진 예외가 없다.",
+      "authority_note": "학습 전재를 공식 원본으로 표시하지 않으며 최종 공식 PDF의 전체 문단 대조를 별도로 남김."
+    },
+    "footnote_and_heading_note": "인용에 보존된 PDF PAGE·쪽 머리말·다음 절 제목은 기준서의 추가 규범으로 해석하지 않는다. 706.9 인용 중 각주4는 8(a)의 705 참조이며 A1 각주5 및 이어지는 대체 금지 문장을 구별해 읽었다."
+  },
+  "source_evidence": [
+    {
+      "set_id": "case-07-interim-misstatement-20260914",
+      "source_unit_id": "src-2baf3ec238b61cb2b9",
+      "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+      "file_sha256": "6505709543fe438d8c60e48f974c6e990f080b26ed29c4f14eec856887cb84e0",
+      "quote_sha256": "0481e0eef6f84344631cbd10eeab054e2cc6b25b0ec82ec2c4b4bedae577b567",
+      "quote_exact_in_file": true,
+      "authority": "official_transcription",
+      "paragraph": "22",
+      "standard": "KGA 330"
+    },
+    {
+      "set_id": "case-07-interim-misstatement-20260914",
+      "source_unit_id": "src-40f8136698832dfadd",
+      "file": "cpa_uploader/data/회계감사_통합학습자료/01_감사기준/03_계획_위험평가_중요성과_대응.md",
+      "file_sha256": "03d386a87a3ce5771caa28b3c2c51a058d5c6c5b4781d2f10a91ba7f11188303",
+      "quote_sha256": "828cc459a4f09ed5fc28a4404e15348ba91fcfc0aabfba7e8e81b782061d0652",
+      "quote_exact_in_file": true,
+      "authority": "learning_material",
+      "paragraph": "A58",
+      "standard": "KGA 330"
+    },
+    {
+      "set_id": "case-07-interim-misstatement-20260914",
+      "source_unit_id": "src-999926d9fcadbd4726",
+      "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+      "file_sha256": "6505709543fe438d8c60e48f974c6e990f080b26ed29c4f14eec856887cb84e0",
+      "quote_sha256": "0e0fd7de01bdbbca7fcb1b0e64254afbffdc99495e840a45a4badfad2d7a39ce",
+      "quote_exact_in_file": true,
+      "authority": "official_transcription",
+      "paragraph": "23",
+      "standard": "KGA 330"
+    },
+    {
+      "set_id": "case-07-interim-misstatement-20260914",
+      "source_unit_id": "src-08edce34488d5464f7",
+      "file": "cpa_uploader/data/official/kga330-2025-review07.txt",
+      "file_sha256": "6505709543fe438d8c60e48f974c6e990f080b26ed29c4f14eec856887cb84e0",
+      "quote_sha256": "7d4ba8d7f358376aebeec8806ecc664dd7ce35f94780056a31903a445563ff81",
+      "quote_exact_in_file": true,
+      "authority": "official_transcription",
+      "paragraph": "A11",
+      "standard": "KGA 330"
+    },
+    {
+      "set_id": "case-08-selection-coverage-20260914",
+      "source_unit_id": "src-0b806009fd31a1c97e",
+      "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+      "file_sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+      "quote_sha256": "37cd8e2a5ac5076743f6a3901bb53d2a6e38c0db922eba04c881a10f96f586b5",
+      "quote_exact_in_file": true,
+      "authority": "official_transcription",
+      "paragraph": "A65",
+      "standard": "KGA 500"
+    },
+    {
+      "set_id": "case-08-selection-coverage-20260914",
+      "source_unit_id": "src-e26ff62463d52265e7",
+      "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+      "file_sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+      "quote_sha256": "8f0a62730672da15fd6159618db0dae8d017f4d06d539ebdf85a35ee5aeb6e09",
+      "quote_exact_in_file": true,
+      "authority": "official_transcription",
+      "paragraph": "A66",
+      "standard": "KGA 500"
+    },
+    {
+      "set_id": "case-08-selection-coverage-20260914",
+      "source_unit_id": "src-bccee2eb983cd33626",
+      "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+      "file_sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+      "quote_sha256": "b6d90e7b6cbc3904be3e55fc9e3ebe78632d5440bcfc08d74865e49cb23477b6",
+      "quote_exact_in_file": true,
+      "authority": "official_transcription",
+      "paragraph": "A67",
+      "standard": "KGA 500"
+    },
+    {
+      "set_id": "case-08-selection-coverage-20260914",
+      "source_unit_id": "src-2763e71ba91db8b885",
+      "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+      "file_sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+      "quote_sha256": "ce303d2976ce42b5fa238947f8c16e87b75c3a3214fdc6deb144267001e393dd",
+      "quote_exact_in_file": true,
+      "authority": "official_transcription",
+      "paragraph": "A63",
+      "standard": "KGA 500"
+    },
+    {
+      "set_id": "case-08-selection-coverage-20260914",
+      "source_unit_id": "src-c4160d92ea3e2c4702",
+      "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+      "file_sha256": "dfb6038ddf136dc0df52f69bcf0e7046eb3fdd2d2e14ab0b4b5b4b627ba3d00b",
+      "quote_sha256": "52eb1d149ae054d8baf0dd9ed445fcb55f331e28e995d0bdb77fad6e7776ccde",
+      "quote_exact_in_file": true,
+      "authority": "official_transcription",
+      "paragraph": "A64",
+      "standard": "KGA 500"
+    },
+    {
+      "set_id": "case-16-report-paragraphs-20260914",
+      "source_unit_id": "src-7e5339d3a959361a31",
+      "file": "cpa_uploader/data/official/kga701-706-710-720-2025-review16.txt",
+      "file_sha256": "9e7889d4b5fe783967691105828379c034cbee5c9c45c917ef5526a6d118efc0",
+      "quote_sha256": "33d83f81de1261a0e3110b9647ded784b4fb36bf73664997965632b8d0c16725",
+      "quote_exact_in_file": true,
+      "authority": "official_transcription",
+      "paragraph": "8",
+      "standard": "KGA 706"
+    },
+    {
+      "set_id": "case-16-report-paragraphs-20260914",
+      "source_unit_id": "src-a68af7147e810c06be",
+      "file": "cpa_uploader/data/official/kga701-706-710-720-2025-review16.txt",
+      "file_sha256": "9e7889d4b5fe783967691105828379c034cbee5c9c45c917ef5526a6d118efc0",
+      "quote_sha256": "a2f2737dbe404228bf9d9e5f4607e5b2e25a1f0181517b0d102fb820c273bb8a",
+      "quote_exact_in_file": true,
+      "authority": "official_transcription",
+      "paragraph": "A1",
+      "standard": "KGA 706"
+    },
+    {
+      "set_id": "case-16-report-paragraphs-20260914",
+      "source_unit_id": "src-6fad7514eec0f79066",
+      "file": "cpa_uploader/data/official/kga701-706-710-720-2025-review16.txt",
+      "file_sha256": "9e7889d4b5fe783967691105828379c034cbee5c9c45c917ef5526a6d118efc0",
+      "quote_sha256": "675b2d256870bcec7b375d352a58733ce847a25d133c9459911ad02438fb0b6a",
+      "quote_exact_in_file": true,
+      "authority": "official_transcription",
+      "paragraph": "9",
+      "standard": "KGA 706"
+    },
+    {
+      "set_id": "case-16-report-paragraphs-20260914",
+      "source_unit_id": "src-2bdddba1f0414b94e1",
+      "file": "cpa_uploader/data/official/kga701-706-710-720-2025-review16.txt",
+      "file_sha256": "9e7889d4b5fe783967691105828379c034cbee5c9c45c917ef5526a6d118efc0",
+      "quote_sha256": "c316c161e3929e5f429b75869e9c2798c72b3d6ab754c6704eb6d8ff542f6ccd",
+      "quote_exact_in_file": true,
+      "authority": "official_transcription",
+      "paragraph": "15",
+      "standard": "KGA 701"
+    }
+  ],
+  "learning_material_comparison": [
+    {
+      "set_id": "case-07-interim-misstatement-20260914",
+      "sources": [
+        {
+          "source_unit_id": "src-0e9f97d540b6cdeca5",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+          "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+          "quote_sha256": "dc30144538fc91b9439c6ea0a1496e40c400f79c350713fcf6bf8ba584d7e915",
+          "locator": "고급회계감사연습2026,2025년제1회GS문제4 물음1,원문134쪽 L4394~4428",
+          "comparison": "새로운 거래·정책 사실 때문에 종전 실증절차 계획을 보완하는 요구를 참고했다. 해당 원물음은330.22~23의 기중 실증절차 연결 자체를 직접 묻지는 않으므로 인접관계다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        },
+        {
+          "source_unit_id": "src-af597ac56e7381165b",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+          "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+          "quote_sha256": "5b15085405879e9f007823aa69273fa43908d7bf6ba9dc170808eccb609c9f10",
+          "locator": "같은 문제 해설136쪽 L4470~4499",
+          "comparison": "계정별 새 사실에 따른 계획변경의 답안 구조만 참고하고 인도조건·현재가치 등 회계처리 정답은 새 사례에 이식하지 않았다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        },
+        {
+          "source_unit_id": "src-50d198a30dcd4de151",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+          "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+          "quote_sha256": "ad757559e8a82831cf793db8a19e6e628ecf071ce803849fdc87dea3c23e162c",
+          "locator": "2019년 기출문제5 물음2,연도별B 원문116쪽 L6140~6144",
+          "comparison": "통합감사 미비점 발견 후 재무제표감사 위험대응이라는 인접 출제를 참고했다. 신규는통합감사 미비점이 아닌 기중 실증에서의 예상 밖 오류다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        },
+        {
+          "source_unit_id": "src-057c2a4d85db2f9f8d",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+          "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+          "quote_sha256": "831a70aacced5975aed0ca7a13b13e60b3da44df90c5dabf7416c7ab27d2787a",
+          "locator": "같은 기출 해설B360쪽 L15581~15612",
+          "comparison": "330.A11 시기대응 인용과 이유를 확인했다. 통합감사1100.14는 신규 정답 근거로 쓰지 않는다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        }
+      ],
+      "note": "전수 본문·해설 대조를 수행하고 직접 요구와 인접 학습관계를 구별하였다. 기존 기출의 재수록은 새로운 출제빈도로 더하지 않는다."
+    },
+    {
+      "set_id": "case-08-selection-coverage-20260914",
+      "sources": [
+        {
+          "source_unit_id": "src-c7c64445c4194db494",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+          "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+          "quote_sha256": "e91f9fade4a9ee22151b551377fcac1822fc67b8ecf691e8ee99bd731cab6cb1",
+          "locator": "고급회계감사연습2026,2025년제2회GS문제4 물음3④,원문72쪽 L2306~2316",
+          "comparison": "특정 항목의 선택적 조사를 표본감사로 부르는 오류를 직접 참고했다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        },
+        {
+          "source_unit_id": "src-d53790f540b681d9b0",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+          "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+          "quote_sha256": "2b9c99269608c8a6e3215f88eca3697e76ed63756ad3c819a0517fc91cc048ba",
+          "locator": "같은 문제 해설75쪽 L2393~2396",
+          "comparison": "500.A66의 방법 구별을 확인하고 특정항목 비중과 잔여모집단 상황을 추가했다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        },
+        {
+          "source_unit_id": "src-487b0ef4d892871e95",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+          "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+          "quote_sha256": "56c21f8d870c6a1583b2882b405f5587ec5dd8bfb0c571e07f458e40914b6d80",
+          "locator": "고급연습2025년제1회GS문제4 물음2,원문135쪽 L4442~4452",
+          "comparison": "매입채무와 차입금의 다른 모집단 성격에 따른 추출방법 선택을 참고했다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        },
+        {
+          "source_unit_id": "src-af597ac56e7381165b",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+          "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+          "quote_sha256": "5b15085405879e9f007823aa69273fa43908d7bf6ba9dc170808eccb609c9f10",
+          "locator": "같은 문제 해설136쪽 L4500~4505",
+          "comparison": "큰금액 소수항목의 차입금 전수조사 이유를 확인했다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        },
+        {
+          "source_unit_id": "src-57fc150a02d9f0ed58",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+          "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+          "quote_sha256": "29fef3ba4e4b4e32d4622f006ebafe20830993645f993362f2f1aba9ba9a8217",
+          "locator": "2020년 기출문제8 물음3,연도별B 원문104쪽 L5481~5486",
+          "comparison": "전수조사의 일반적인 적합 상황을 물은 기출을 구체 대출계약 4건에 적용하는 심화로 연결한다. 특정항목 투영오류의 직접기출로 세지 않는다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        },
+        {
+          "source_unit_id": "src-60c8ed3aff211b9e59",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+          "file_sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+          "quote_sha256": "456ad34be7c780caeadb133c2f21a2a5fefaabb826a356c35e0b03e42a68a46b",
+          "locator": "2020년 기출문제8 물음3, 연도별A 원문304쪽 L11912~11939",
+          "comparison": "연도별B의2단편집추출에서문제9와섞여보이는번호를A의단일문제배치및요소원출제ID로재대조하였다.실제전수조사요구는문제8물음3이다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        },
+        {
+          "source_unit_id": "src-0083deb25d74c35ccd",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+          "file_sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+          "quote_sha256": "dac9320d7242ddbb15fead8caa52ec8538ae38d9c954d5fd89c8fe8dd139822e",
+          "locator": "같은 기출 해설, 연도별A 원문307쪽 L12020~12034",
+          "comparison": "금액이큰소수항목이라는직접답안·해설을확인하였다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        }
+      ],
+      "note": "전수 본문·해설 대조를 수행하고 직접 요구와 인접 학습관계를 구별하였다. 기존 기출의 재수록은 새로운 출제빈도로 더하지 않는다."
+    },
+    {
+      "set_id": "case-16-report-paragraphs-20260914",
+      "sources": [
+        {
+          "source_unit_id": "src-da48d16e1dc46eac24",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+          "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+          "quote_sha256": "99407a0973ae8beaefa3e1d6755836afa94e245006efa6c7f49572895257321d",
+          "locator": "2023년기출문제10 물음4,연도별B 원문57쪽(인쇄49쪽)L2942~2983",
+          "comparison": "강조사항의포함조건과의견과의관계를검토하는요구를구체초안에적용한다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        },
+        {
+          "source_unit_id": "src-c5e72a2b5f8a7498ed",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+          "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+          "quote_sha256": "ec21da1ee13df8c9a3bf22eb2d422cb6cd7969ca498d76f7228c0ffd8524bee3",
+          "locator": "고급회계감사연습2026,2025년제2회GS문제8 물음2④,원문230쪽 L7575~7585",
+          "comparison": "핵심감사사항을강조사항으로대체할수없는직접요구를참고했다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        },
+        {
+          "source_unit_id": "src-bcfc3a4ca851cdd26e",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+          "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+          "quote_sha256": "55f5a7600d12cc55711919cdcb4056d6b335a2b982e51610ac651c3f2022d175",
+          "locator": "같은문제해설231쪽 L7609~7622",
+          "comparison": "④의판단만사용한다.③의관련공시가없어도KAM인지에관한교재서술은새범위에포함하지않으며전용하지않는다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        },
+        {
+          "source_unit_id": "src-cfc0670ad12adcbe0a",
+          "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+          "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+          "quote_sha256": "60668e7e946f6afd87e9047ca201f0ee46a69737ff654ac7b313646bb132e26d",
+          "locator": "2023년 기출문제10 물음4 해설, 연도별B 원문258쪽 L12136~12161",
+          "comparison": "강조사항의중요성문턱·감사의견과의관계·상대적배치를확인하였다.원문56쪽의문제10OCR표기오류는요소원출제cpa_exam:2023:10:4와연결해읽으며원문을수정하지않는다.",
+          "frequency_treatment": "원출제를중복집계하지않으며교재재수록은별도출제수로합산하지않는다."
+        }
+      ],
+      "note": "전수 본문·해설 대조를 수행하고 직접 요구와 인접 학습관계를 구별하였다. 기존 기출의 재수록은 새로운 출제빈도로 더하지 않는다."
+    }
+  ],
+  "independent_original_identity_checks": [
+    {
+      "original_question": "cpa_exam:2020:8:3",
+      "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+      "sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+      "pages": [
+        304,
+        307
+      ],
+      "lines": [
+        [
+          11910,
+          11940
+        ],
+        [
+          12018,
+          12035
+        ]
+      ],
+      "finding": "B 2단 추출에 섞인 문제9 머리말을 원출제 번호로 사용하지 않고 A의 문제8 물음3 및 정답을 대조하였다."
+    },
+    {
+      "original_question": "cpa_exam:2023:10:4",
+      "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+      "sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+      "pages": [
+        167,
+        168
+      ],
+      "lines": [
+        [
+          6351,
+          6391
+        ],
+        [
+          6393,
+          6428
+        ]
+      ],
+      "finding": "독립적으로 A 167쪽 문제10 머리말과 168쪽 물음4를 읽었고 B 258쪽 해설의 동일 문장·답안 및 요소 원출제 ID와 일치한다."
+    }
+  ],
+  "resolved_findings": [
+    {
+      "id": "A-peer-01",
+      "issue": "07 비교설계에서 pilot-06-008 요구를 일반 위험재평가로 요약함",
+      "resolution": "최종 design은 고유위험요소와 회사 위험평가절차 누락으로 교정하여 감사인 자신의 실증절차 계획과 구별함",
+      "status": "resolved"
+    },
+    {
+      "id": "A-peer-02",
+      "issue": "08 비교설계에서 draft-10-530-freq01을 투영금액·표본위험 판정으로 기술함",
+      "resolution": "최종 design은 통제테스트·세부테스트의 표본규모 영향요소로 교정함",
+      "status": "resolved"
+    },
+    {
+      "id": "A-peer-03",
+      "issue": "08 sub2.c1의 허용 전수조사 대안에 A67만 연결",
+      "resolution": "최종 sets에 A64를 추가 연결하여 대안의 직접 근거를 보완함. sub1.c1에는 A66도 추가됨",
+      "status": "resolved"
+    },
+    {
+      "id": "A-author-identity",
+      "issue": "기출 B의 다단 편집·OCR로 원출제 번호를 오인할 위험",
+      "resolution": "최종 design의 2020 문제8 물음3 및 2023 문제10 물음4를 A 재수록 본문과 직접 대조함",
+      "status": "resolved"
+    }
+  ],
+  "static_rechecks": {
+    "source_quote_exact_in_registered_file": true,
+    "source_ids_exist_in_final_catalog": true,
+    "criterion_source_ids_resolve": true,
+    "all_criteria_independent_integer_one_point": true,
+    "representative_expected_points_equal_named_criterion_sum": true,
+    "case_shape_pass": true,
+    "final_author_hashes_match": true,
+    "errors": []
+  },
+  "remaining_steps": [
+    "root의 18물음 전수 의미검수 통합",
+    "새 배치 기준 실제 Luna 채점과 허용범위 판정",
+    "사용자 승인 범위에 따른 정본·공개본·운영 DB 반영"
+  ],
+  "unresolved_content_findings": []
+}

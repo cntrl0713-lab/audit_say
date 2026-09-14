@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-09-14",
+  "reviewer": "Codex agent /root/review_11_14",
+  "status": "code_review_pass_required_rollout_pending",
+  "unresolved_content_findings": [],
+  "reviewed_files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publish.mjs",
+      "sha256": "119202ab4c9470d51975d47a50f8582c713f4ff140a80c910c1628abb8809abf"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/prepare-published-stage.mjs",
+      "sha256": "87ef2c463bdaae5cea0b13d324539330bee15e04f0af0467026feb34810453cc"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/deploy.mjs",
+      "sha256": "80294b38907381088018a2e87eeb6af02af0ac09ba0323767cd4b60daa2c4bee"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-review-routing.json",
+      "sha256": "f2574485e3989581edabddd4bc3ac0bfafd9d60d58b6dd32d91dcbbc13c6bdd7"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/integration.json",
+      "sha256": "ac0eaf8d7d56539eef969c531e876fbf4d40b29fc42ed8df94f52a76e9a0b6ab"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/integrate-concurrent-additions.mjs",
+      "sha256": "98f550f917a21ed29c74e601256ac99d9d20894b53603dd00571b70cf00b162f"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/build-publication-routing.mjs",
+      "sha256": "78134201e12ccc387561c69eefbd1acd5f6bd292dacfd437cc034fa8a9de9459"
+    },
+    {
+      "file": "scripts/import-question-bank-v3.ts",
+      "sha256": "ff78922969a649abe65ed1b293b5b0e150ee2da50b1441b12563d0ce01bbd2db"
+    },
+    {
+      "file": "supabase/migrations/20260914080000_cpa_reviewed_question_retirements.sql",
+      "sha256": "c5e1e1d421397b9eee3ac0ab4f5055eccf21bb8fb89010f6598c5a3b665963ce"
+    },
+    {
+      "file": "tests/cpaQuestionRetirementsDatabase.test.ts",
+      "sha256": "387c4fb75da21240e7c768aad6029aa02f7a734815292387d5d2380ef44e3fab"
+    }
+  ],
+  "counts": {
+    "final_sets": 363,
+    "final_questions": 528,
+    "publication_targets": 243,
+    "efficient_routes": 193,
+    "subset_routes": 50,
+    "retired_original_sets": 55,
+    "concurrent_case_sets_preserved": 6,
+    "concurrent_case_questions_preserved": 18,
+    "original_promotion_entries": 661,
+    "latest_baseline_promotion_entries": 673,
+    "required_new_promotion_entries": 486
+  },
+  "checks": [
+    {
+      "boundary": "최종 receipt route",
+      "result": "pass",
+      "evidence": "243개 route ID 집합이 C3 new-sets182 및 retained-subsets61 집합과 정확히 일치하고 중복이 없다. 각 evidence 바이트 SHA와 sealed1/2/3 readiness batch SHA를 독립 확인했다. 표적 IT 물음은 sealed-v3로 연결되고 sealed-v1 원검수는 superseded에만 남는다. subset50과 efficient193은 서로 겹치지 않는다.",
+      "target_route": {
+        "set_id": "std-points-20260914-17c71aee6d2b",
+        "method": "efficient",
+        "evidence": {
+          "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/sealed-v3/batch.json",
+          "sha256": "d0773df534d2a6ca9c07823438ed175b1df8b2f754f5684ce05749def9f2e1d9"
+        }
+      }
+    },
+    {
+      "boundary": "외부 동시 추가 사례와 원자료 보존",
+      "result": "pass",
+      "evidence": "C2의 모든357세트 객체가 C3에서 완전히 동일하며 latest snapshot의 새 사례6세트18물음 객체도 완전히 동일함을 독립 assert했다. 이전 장부661항목은 최신673항목의 정확한 prefix이다. 최종363세트528물음 및 candidate integration.source_file_sha256를 실제 읽기 확인했다."
+    },
+    {
+      "boundary": "정본 설치 전 가드 및 실패 복원",
+      "result": "pass",
+      "evidence": "최신 concurrent baseline 원본·catalog·ledger·public SHA를 검사하고 원파일의 정확한 backup 바이트를 보존한다. isolated stage에서 receipt를 전부 구성하고 최종 content identity·게시 상태·장부prefix·243×2 append를 확인한 뒤 설치한다. install은 authoring lock과 파일 SHA guards 아래 진행하고, 실패 복원은 승인된 원본/자신이 쓴 바이트인 경우에만 수행하여 외부 수정 덮어쓰기를 거절한다."
+    },
+    {
+      "boundary": "실제 DB 원문 및 scope 경로",
+      "result": "pass",
+      "evidence": "기존 source_document/hash와 atomic learning-bank RPC가 원본·분류를 저장한다. 20260912060000 getter는 source_document에 결속된 scope를 복원하며 새퇴역migration은 이정의를 변경하지 않는다. PGlite에서 퇴역전후 원version getter와 새version getter의 scope 보존, 보존사례version ID 동일, 과거학습attempt·releaseitems 전체객체 동일을 확인했다. 별도 agent01은 운영5세트13scope의 실제 private RPC→학습payload 전달을 확인했다고 보고했다."
+    }
+  ],
+  "findings": [
+    {
+      "id": "publication-lifecycle-001",
+      "priority": "P1",
+      "status": "resolved_by_parent_in_followup_stage",
+      "problem": "verified 중간단계에서 requirePublished=true를 요구하면 새243세트가 모두 published 검사를 실패한다.",
+      "evidence": {
+        "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/failure-analysis.json",
+        "sha256": "d6857d4c835535d90466b766ea170012e135c2ae7264e98186293cd23f38c371"
+      },
+      "resolution": "중간 verified 검증은 false, 최종 published 검증은 true로 구분하는 후속 stage를 사용하고 실패한 v1 로그·runtime을 보존한다."
+    },
+    {
+      "id": "publication-retirement-001",
+      "priority": "P1",
+      "status": "implemented_tested_ddl_and_deploy_wiring_pending",
+      "problem": "실제 운영 기존 RPC는 active세트 누락을 금지하므로 승인된55원세트를 제외하는 후보를 직접 import할 수 없었다.",
+      "evidence": {
+        "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/live-import-definitions-before.json",
+        "sha256": "a739bd1608562f6f582e87f293ede18981b8d989ef33f521a0d43b3d7c2609af"
+      },
+      "resolution": "기존 일반RPC를 완전히 보존하고 새 *_with_retirements 경로만 추가한다. exact manifest document SHA,후보sourcehash,activeUUID/sourcehash,실제누락ID=승인ID,기준서형분류완전성을 검사한다. 역사행을 삭제하지 않고 새릴리스의 validation_report와 반환receipt에 승인문서/SHA를 기록한다."
+    },
+    {
+      "id": "publication-cas-001",
+      "priority": "P2",
+      "status": "implemented_tested_ddl_and_deploy_wiring_pending",
+      "problem": "deploy의 원release 사전조회와 실제 import 사이 전체검증 시간 동안 다른 게시가 발생하면 이전 후보가 새수정을 되돌릴 수 있었다.",
+      "resolution": "새퇴역RPC가 기존 import와 같은 advisory transaction lock 안에서 원activeUUID/sourcehash를 재검사하여 CAS를 보장한다. 전제변경·이미실행된 승인 재사용을 거절한다."
+    }
+  ],
+  "new_retirement_validation": {
+    "tests": [
+      {
+        "command": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/cpaQuestionRetirementsDatabase.test.ts",
+        "passed": 2,
+        "failed": 0,
+        "duration_ms": 2558.1782
+      },
+      {
+        "command": "npm run typecheck",
+        "exit_code": 0
+      },
+      {
+        "command": "npx eslint scripts/import-question-bank-v3.ts tests/cpaQuestionRetirementsDatabase.test.ts",
+        "exit_code": 0
+      }
+    ],
+    "independent_review": "agent01이SQL의NULL/타입검사,동일잠금CAS,원source문서hash,기존RPC/ACL/getter보존을독립대조하여actionable결함없음을보고했다. 추가별도PGlite실행은하지않았다고구분했다.",
+    "read_only_live_preparation": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-retirement-migration-v1/preparation.json",
+      "sha256": "030d56b0577b13536855adae9fe82487d91ab5540b09f22175839581907d06d0"
+    }
+  },
+  "required_before_production_apply": [
+    "검증된 guarded retirement migration을 root와 조율하여 적용하고 기존함수/권한·active불변 및 신규service_role전용검사를 확인한다.",
+    "최종stage sourcehash를 포함한 retirement-manifest를 별도로 만들고 deploy에 --retirement-manifest/--retirement-manifest-sha256를 전달한다.",
+    "DBrelease evidence에는 전체 publication-review-routing 근거를 연결하고 실제import후 private scope 복원·공개본/분류/원문 roundtrip을 확인한다."
+  ],
+  "limits": [
+    "이 보고서는 코드와 로컬 데이터 및 읽기 전용 live 정의 검토이다. reviewer가 실제정본·운영DB콘텐츠·DDL을 변경하지 않았다.",
+    "PGlite는격리로실행했으며실제유료모델호출은없다. 최초stage실패는보존되어있고후속stage/정본설치/운영배포완료를이보고서로대신하지않는다."
+  ]
+}

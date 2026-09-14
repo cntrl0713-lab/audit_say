@@ -1,0 +1,58 @@
+{
+  "artifact_type": "publication_helper_peer_review",
+  "reviewer_id": "Codex execution_setup agent",
+  "reviewed_at": "2026-09-14T01:51:38.1479319Z",
+  "method": "read_only_code_contract_comparison",
+  "status": "no_unresolved_findings",
+  "reviewed_files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/integrate.mjs",
+      "sha256": "904d7540e296b33238f465f90ec4fb4b4c84bc04f48c2165e4896752258219cc"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publish.mjs",
+      "sha256": "c1f157f069cb09a70dab7654497c637c33d7a4d1f624ba48e3795835ff379533"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/deploy.mjs",
+      "sha256": "c5dce710e61208eec31e1fbe3800a48d0fd35cc9857c6b3ba737aab4e586c044"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/rebind-final-catalog.ts",
+      "sha256": "e2ad3cb730929abbdd6f47303c2fcbc653bccbdce58788070a87abdba84ed889"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/c/verify-final-learning-rollout.ts",
+      "sha256": "f45280a30bde211ee0bdf09bcedf2e0356fe2fb3c30824bea7309278254e0140"
+    }
+  ],
+  "checks": [
+    "Integration appends six unique new case IDs and preserves all original bank objects and old classification entries; validates 3 questions, minimum 400 facts characters, plans, representative score arithmetic and whole candidate authoring.",
+    "Staging requires original canonical bank/catalog SHA identities, rechecks captured snapshots against baseline, verifies each backup SHA, copies the existing ledger, appends only new verified/published transitions and checks the full existing entry prefix plus exactly 12 new transitions.",
+    "Final catalog helper independently checks same ordered set IDs and exact content except lifecycle fields, preserves all classification entries, rebinds only bank identity and compiles the official catalog.",
+    "Installation runs under publication lock with expected-current-byte guards. All backups must exist and hash-match before any write. Failure rollback only accepts current original/own-written identities and hash-verified existing backups.",
+    "Deployment checks the installed files before and after apply, pins the known project host and source SHA, passes all learning classifications and uses new output paths.",
+    "Independent verifier reads the active release before and after, exact source/public/private projections, classification lineage/topics and complete learning units, and rejects mismatches before completion is reported."
+  ],
+  "findings": [
+    {
+      "id": "backup-guard-before-install",
+      "initial_observation": "Initial install guard checked canonical and stage files but omitted backup existence/SHA; missing backup in catch could mask the original failure.",
+      "status": "resolved",
+      "resolution": "Root added pre-install backup existence/SHA validation and existence checks in rollback predicate. Revised lines read directly."
+    },
+    {
+      "id": "baseline-capture-race",
+      "initial_observation": "Initial baseline check preceded snapshot capture; a concurrent change inside that interval needed a second identity check.",
+      "status": "resolved",
+      "resolution": "Root added captured authoring/catalog SHA comparisons to baseline and all backup SHA comparisons immediately after snapshot capture. Revised lines read directly."
+    }
+  ],
+  "limits": [
+    "No integration, publication, rollback fault injection, model API or live DB execution was performed by this reviewer.",
+    "Concurrent canonical additions cause the current helper to stop; a separately validated merged stage is needed rather than overwriting the changed canonical bank."
+  ],
+  "actual_model_calls": 0,
+  "canonical_writes": 0,
+  "db_writes": 0
+}

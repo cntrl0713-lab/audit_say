@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "artifact_type": "subset_review_implementation_validation",
+  "recorded_at": "2026-09-14T05:40:03.858614+00:00",
+  "owner": "/root/review_01_05",
+  "implementation_files": [
+    {
+      "file": "cpa_uploader/questionSubsetReview.ts",
+      "sha256": "d981d08156876317374f6ea36a7be5e878964f41f0a48a9b6328dcf36698e20a"
+    },
+    {
+      "file": "cpa_uploader/questionBankPublication.ts",
+      "sha256": "09500d10286d4d0098e2bfd22adb0158a226488199287c0e8bc8106b7dda3ded"
+    },
+    {
+      "file": "cpa_uploader/promote_cpa_v3.ts",
+      "sha256": "1149a10212e847493259d2de0a3b8135f0f5351e823253e730b1fa84a0facced"
+    },
+    {
+      "file": "tests/questionSubsetReview.test.ts",
+      "sha256": "0e19214017c14551ac9e86d622d333d8e651769646167a0b3166b2b0c0f15a8c"
+    },
+    {
+      "file": "tests/questionV3Publication.test.ts",
+      "sha256": "b0fad554f7db67ac5006425ae94c1bacf437d114dff1aaf9db4466bdd37100ad"
+    },
+    {
+      "file": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+      "sha256": "97b2efe41696652f188f16fb90b5089674c0cd7b63abdb17890af6e78bdd810e"
+    }
+  ],
+  "checks": [
+    {
+      "name": "new subset suite",
+      "command": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/questionSubsetReview.test.ts",
+      "result": "pass",
+      "passed": 8,
+      "failed": 0,
+      "external_model_calls": 0,
+      "scope_note": "8 tests passed before the final stale-origin hardening; the directly affected derivation test was rerun after each final guard below. Tests use isolated synthetic records except the read-only original efficient-receipt check."
+    },
+    {
+      "name": "final stale-origin, copied origin event, lifecycle and original-prefix regression",
+      "command": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test --test-name-pattern=\"derivation receipt\" tests/questionSubsetReview.test.ts",
+      "result": "pass",
+      "passed": 1,
+      "failed": 0,
+      "independent_agent_confirmation": "/root/review_11_14 independently reran the same final derivation test and reported 1/1 pass."
+    },
+    {
+      "name": "typecheck",
+      "command": "npx tsc --noEmit",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "name": "target lint",
+      "command": "npx eslint cpa_uploader/questionSubsetReview.ts cpa_uploader/questionBankPublication.ts cpa_uploader/promote_cpa_v3.ts tests/questionSubsetReview.test.ts tests/questionV3Publication.test.ts",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "name": "changed tracked file whitespace check and new policy link existence",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "name": "original published evidence and whole grading contract preflight",
+      "result": "pass",
+      "sets": 50,
+      "failed": 0,
+      "new_model_calls": 0,
+      "new_human_review": false,
+      "evidence": {
+        "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/subset-batch-v2/checks.json",
+        "sha256": "8300687f75de774cbe72e919973fc5117dc2d6085d221f069e674d8665eab434"
+      }
+    }
+  ],
+  "incomplete_checks": [
+    {
+      "command": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/questionV3Publication.test.ts",
+      "result": "terminated_incomplete",
+      "exit_code": 1
+    },
+    {
+      "command": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test --test-name-pattern=\"a split fourth|actual CLI publishes an added draft\" tests/questionV3Publication.test.ts",
+      "result": "terminated_incomplete",
+      "exit_code": 1
+    }
+  ],
+  "interruption_reason": "Parent explicitly requested stopping these two duplicate runs only. Root full suite covers the same publication tests. Concurrent external publication changed the live bank and ledger after the test byte guards were captured; no assertion result was emitted before deliberate termination. These incomplete executions are not counted as passes or test failures.",
+  "interruption_evidence": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/subset-publication-tests-interrupted.json",
+    "sha256": "0fd08b69d88f04f4a279e24988e6b4805537d9c1a0a1afc058f091829c058acc"
+  },
+  "publication_performed_by_this_agent": false,
+  "production_bank_modified_by_this_agent": false,
+  "grading_runtime_files_modified_by_this_agent": false,
+  "remaining_owner": "Root completes whole-suite publication validation, any stable retry of the externally invalidated live-file byte guard, staged ledger transaction, canonical/public compilation and production DB reflection."
+}

@@ -1,0 +1,393 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "46bd89e7689cdcea72e421960ad22aaf164f6deaf9fec183a22345d175db2743"
+  },
+  "entry_id": "case-16-comparative-opinion-change-20260914--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "case-16-comparative-opinion-change-20260914--case",
+  "source_set_id": "case-16-comparative-opinion-change-20260914",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "7bae2ab291818bd5386abde035fea9cd2d99f3362436949a786396e3bd352615",
+  "answers": {
+    "sub1": "2025년 재무제표에 대해서는 적정의견을 표명한다.",
+    "sub2": "의견문단에서 2025년과 2026년 재무제표를 모두 언급한다.",
+    "sub3": "병의 주장과 달리 과거 전기 의견과 이번 전기 의견이 다르면 그 중요한 사유를 기타사항문단에 설명해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "met",
+          "reason": "전기에 대한 올바른 의견만 제시했으므로 1점. 당기의 한정의견은 제시하지 않았다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "전기에 대한 올바른 의견만 제시했으므로 1점. 당기의 한정의견은 제시하지 않았다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "met",
+          "reason": "대상기간만제시하고비교재무제표·두기간보고범위의이유는없다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "not_met",
+          "reason": "대상기간만제시하고비교재무제표·두기간보고범위의이유는없다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.c1",
+          "verdict": "met",
+          "reason": "보고위치·보고의무는맞지만이사례의재고평가오류수정이라는변경사유는제시하지않았다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "verdict": "not_met",
+          "reason": "보고위치·보고의무는맞지만이사례의재고평가오류수정이라는변경사유는제시하지않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "cf8cd80bead73a8e00133c4b8e25f08bce1eba0242326a2ada0ab02fcbfadfba",
+  "schema_hash": "c2521e14287604268ab4941aa17c59b045eeddd191969579d8992af38380dbd2",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "2025년 재무제표에 대해서는 적정의견을 표명한다.",
+            "reason": "2025년 재무제표에 적정의견을 표명한다고 명시했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "2026년 재무제표의 의견을 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "의견문단에서 2025년과 2026년 재무제표를 모두 언급한다.",
+            "reason": "2025년과 2026년 재무제표를 모두 의견문단에서 언급한다고 제시했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "두 기간을 언급할 이유로 비교재무제표 방식과 전체 보고 업무를 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "met",
+            "quote": "병의 주장과 달리 과거 전기 의견과 이번 전기 의견이 다르면 그 중요한 사유를 기타사항문단에 설명해야 한다.",
+            "reason": "의견 차이의 중요한 사유를 기타사항문단에 설명해야 한다고 제시했다."
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "not_met",
+            "reason": "재고평가 오류의 수정 및 변형사유 해소를 중요한 사유로 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "2025년 재무제표에 적정의견을 표명한다고 명시했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "2026년 재무제표의 의견을 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "2025년과 2026년 재무제표를 모두 의견문단에서 언급한다고 제시했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "두 기간을 언급할 이유로 비교재무제표 방식과 전체 보고 업무를 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "의견 차이의 중요한 사유를 기타사항문단에 설명해야 한다고 제시했다."
+              },
+              {
+                "criterion_id": "sub3.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재고평가 오류의 수정 및 변형사유 해소를 중요한 사유로 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-16-comparative-opinion-change-20260914",
+    "score": 3,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "이번 비교재무제표 감사보고서에서 2025년과 2026년 재무제표에 각각 표명할 감사의견을 제시하시오. 각 의견의 이유나 보고서 문단의 작성은 여기서는 요구하지 않는다.",
+        "user_answer": "2025년 재무제표에 대해서는 적정의견을 표명한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "2025년 재무제표에 대해서는 적정의견을 표명한다.",
+            "reason": "2025년 재무제표에 적정의견을 표명한다고 명시했다.",
+            "claim": "이번에 제시된 2025년 재무제표에 대해서는 적정의견을 표명한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "2026년 재무제표의 의견을 제시하지 않았다.",
+            "claim": "2026년 재무제표에 대해서는 한정의견을 표명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "이번에 제시된 2025년 재무제표에 대해서는 적정의견을 표명한다.",
+          "2026년 재무제표에 대해서는 한정의견을 표명한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "을의 의견문단 작성 제안을 바로잡아, 이번 감사의견에서 언급할 기간을 제시하고 그 이유를 설명하시오. 각 기간의 구체적 의견 종류는 반복하지 않아도 된다.",
+        "user_answer": "의견문단에서 2025년과 2026년 재무제표를 모두 언급한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "의견문단에서 2025년과 2026년 재무제표를 모두 언급한다.",
+            "reason": "2025년과 2026년 재무제표를 모두 의견문단에서 언급한다고 제시했다.",
+            "claim": "이번 감사의견에는 2026년 당기뿐 아니라 2025년 전기의 재무제표도 그 대상기간으로 언급해야 한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "두 기간을 언급할 이유로 비교재무제표 방식과 전체 보고 업무를 설명하지 않았다.",
+            "claim": "이 업무는 두 기간이 표시되는 비교재무제표에 대해 두 기간 모두 보고하는 감사이므로, 보고서 작성연도만으로 의견의 언급 범위를 당기로 줄일 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "이번 감사의견에는 2026년 당기뿐 아니라 2025년 전기의 재무제표도 그 대상기간으로 언급해야 한다.",
+          "이 업무는 두 기간이 표시되는 비교재무제표에 대해 두 기간 모두 보고하는 감사이므로, 보고서 작성연도만으로 의견의 언급 범위를 당기로 줄일 수 없다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "병의 주장을 바로잡아, 과거에 표명한 전기 의견과 이번 전기 의견의 차이를 감사보고서에서 어떻게 다루어야 하는지 설명하시오. 포함할 문단과 이 사례에서 설명할 중요한 사유를 구별하시오.",
+        "user_answer": "병의 주장과 달리 과거 전기 의견과 이번 전기 의견이 다르면 그 중요한 사유를 기타사항문단에 설명해야 한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "met",
+            "quote": "병의 주장과 달리 과거 전기 의견과 이번 전기 의견이 다르면 그 중요한 사유를 기타사항문단에 설명해야 한다.",
+            "reason": "의견 차이의 중요한 사유를 기타사항문단에 설명해야 한다고 제시했다.",
+            "claim": "동일 감사인이 2025년 재무제표에 대해 과거와 다른 의견을 표명하므로 그 차이에 관한 중요한 사유를 기타사항문단에 설명해야 하며, 재무제표 주석의 공시만으로 이를 생략할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "not_met",
+            "reason": "재고평가 오류의 수정 및 변형사유 해소를 중요한 사유로 설명하지 않았다.",
+            "claim": "종전 2025년 한정의견의 원인이던 재고평가 오류가 이번에 제시된 전기 비교재무제표에서 적절히 수정되어 그 변형사유가 해소되었다는 점을 의견 변경의 중요한 사유로 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "동일 감사인이 2025년 재무제표에 대해 과거와 다른 의견을 표명하므로 그 차이에 관한 중요한 사유를 기타사항문단에 설명해야 하며, 재무제표 주석의 공시만으로 이를 생략할 수 없다.",
+          "종전 2025년 한정의견의 원인이던 재고평가 오류가 이번에 제시된 전기 비교재무제표에서 적절히 수정되어 그 변형사유가 해소되었다는 점을 의견 변경의 중요한 사유로 설명한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_00e554beacbf2ee6016aa78202aef087d0a0281287139ae6b1",
+        "request_id": "req_8d783234d7654e8daf924b7f9b7692df",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 4962,
+          "input_tokens_details": {
+            "cache_write_tokens": 4959,
+            "cached_tokens": 0
+          },
+          "output_tokens": 467,
+          "output_tokens_details": {
+            "reasoning_tokens": 73
+          },
+          "total_tokens": 5429
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00180075,
+        "min_usd": 0.00180075,
+        "max_usd": 0.00180075,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--partial/input.json",
+      "sha256": "c3d99cbd59c7ad6dc5bd811265c37e3dd4151c8d97f219453dbc54e7cb7cb6db"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--partial/transport.jsonl",
+      "sha256": "856d87cb05309ed9536397b3872325020774925622502f4663ae286f880ecb81"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/actual-b/case-16-comparative-opinion-change-20260914--case--partial/traces.jsonl",
+      "sha256": "2289ec930b064f784d1ab9e21e29c4a69f5c3f2ff4860b4bfe22e1faa68740dc"
+    }
+  }
+}

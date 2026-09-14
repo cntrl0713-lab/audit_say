@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "pilot-02-002--sub2--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-02-002--sub2--standard",
+  "source_set_id": "pilot-02-002",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "00222deb9cd7f0863da6e2eb854c1ff10044286b5fbd1e22d80fdac5cb841684",
+  "answers": {
+    "sub2": "개별 기준서의 목적 미달성은 사소한 사항이므로 감사의견이나 업무 유지에 미칠 영향을 평가하지 않고 문서화도 하지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 wrong 답안. 대상 명제: 감사의견을 변형해야 하는지 평가한다고 설명함"
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 wrong 답안. 대상 명제: 관련 법규상 가능한 경우 감사업무를 해지해야 하는지 평가한다고 설명함"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 wrong 답안. 대상 명제: 목적 미달성은 문서화가 요구되는 유의적 사항이라고 설명함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "23fdeb47f7d5abf850200e523cda94e47a2e1a8c12e138b1b40522919d2e0d21",
+  "schema_hash": "b92359dd9a45624151cb6cf5f3282328c3ed4884608c688f5d7e18ef73f63b1d",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "개별 기준서의 목적 미달성은 사소한 사항이므로 감사의견이나 업무 유지에 미칠 영향을 평가하지 않고 문서화도 하지 않는다.",
+            "reason": "감사의견에 미칠 영향을 평가하지 않는다고 명시하여 요구사항을 반대함."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "개별 기준서의 목적 미달성은 사소한 사항이므로 감사의견이나 업무 유지에 미칠 영향을 평가하지 않고 문서화도 하지 않는다.",
+            "reason": "업무 유지에 미칠 영향을 평가하지 않는다고 명시하여 감사업무 해지 여부 평가를 반대함."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "개별 기준서의 목적 미달성은 사소한 사항이므로 감사의견이나 업무 유지에 미칠 영향을 평가하지 않고 문서화도 하지 않는다.",
+            "reason": "문서화하지 않는다고 명시하여 문서화가 요구되는 유의적 사항이라는 결론을 반대함."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "감사의견에 미칠 영향을 평가하지 않는다고 명시하여 요구사항을 반대함."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "업무 유지에 미칠 영향을 평가하지 않는다고 명시하여 감사업무 해지 여부 평가를 반대함."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "문서화하지 않는다고 명시하여 문서화가 요구되는 유의적 사항이라는 결론을 반대함."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-02-002",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "개별 감사기준서의 어떤 목적을 달성할 수 없는 경우 감사인이 평가할 사항과 문서화 측면의 의미를 기술하시오.",
+        "user_answer": "개별 기준서의 목적 미달성은 사소한 사항이므로 감사의견이나 업무 유지에 미칠 영향을 평가하지 않고 문서화도 하지 않는다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "개별 기준서의 목적 미달성은 사소한 사항이므로 감사의견이나 업무 유지에 미칠 영향을 평가하지 않고 문서화도 하지 않는다.",
+            "reason": "감사의견에 미칠 영향을 평가하지 않는다고 명시하여 요구사항을 반대함.",
+            "claim": "감사의견을 변형해야 하는지 평가한다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "개별 기준서의 목적 미달성은 사소한 사항이므로 감사의견이나 업무 유지에 미칠 영향을 평가하지 않고 문서화도 하지 않는다.",
+            "reason": "업무 유지에 미칠 영향을 평가하지 않는다고 명시하여 감사업무 해지 여부 평가를 반대함.",
+            "claim": "관련 법규상 가능한 경우 감사업무를 해지해야 하는지 평가한다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "개별 기준서의 목적 미달성은 사소한 사항이므로 감사의견이나 업무 유지에 미칠 영향을 평가하지 않고 문서화도 하지 않는다.",
+            "reason": "문서화하지 않는다고 명시하여 문서화가 요구되는 유의적 사항이라는 결론을 반대함.",
+            "claim": "목적 미달성은 문서화가 요구되는 유의적 사항이라고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "전반적인 목적을 달성하지 못함에 따라 감사의견을 변형하거나, 관련 법규상 가능한 경우 감사업무를 해지해야 하는지 평가한다. 목적 미달성은 감사기준서 230에 따라 문서화해야 하는 유의적 사항이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_052959b24d43f738016aa787f58a2087d09ba959e45963e9ad",
+        "request_id": "req_dfb75690590e4138981287b5436d49bf",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2421,
+          "input_tokens_details": {
+            "cache_write_tokens": 2418,
+            "cached_tokens": 0
+          },
+          "output_tokens": 258,
+          "output_tokens_details": {
+            "reasoning_tokens": 52
+          },
+          "total_tokens": 2679
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009147000000000001,
+        "min_usd": 0.0009147000000000001,
+        "max_usd": 0.0009147000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/pilot-02-002--sub2--wrong/input.json",
+      "sha256": "4a1e1ed0b2218726472dfd816a6cecb29b00a691d15326eaa088734f19393566"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/pilot-02-002--sub2--wrong/transport.jsonl",
+      "sha256": "2a2e19f66138a6b26ce038fd45ce8b29c05ced07813e9dee40378d01da30ebd9"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/pilot-02-002--sub2--wrong/traces.jsonl",
+      "sha256": "801da4e7605eb9b12a23ab119ac460ef52921563ba31116999692c08ca35e367"
+    }
+  }
+}

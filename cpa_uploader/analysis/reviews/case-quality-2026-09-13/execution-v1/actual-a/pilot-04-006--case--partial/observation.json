@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-04-006--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-006--case",
+  "source_set_id": "pilot-04-006",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "886feba70e2c3ba4a57d95677de2eed7e67085e208be9c8c389b9f4ba20c6002",
+  "answers": {
+    "sub1": "취합 완료일까지 최초 작성을 미뤄서는 안 되고 적시에 기록해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "공식 근거와 해당 criterion의 발문 범위·조건에 따른 작성자 기대값. 조치가 제안의 부적절성을 분명히 함축한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "최초 기록의 적시 의무를 명시했고 최종 취합의 행정적 성격은 누락했다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "not_met",
+          "reason": "최초 기록의 적시 의무를 명시했고 최종 취합의 행정적 성격은 누락했다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "e3ea78431ab45f664e88a1c3899019cbfd93f79c79fd69729b3325f8e549bf7c",
+  "schema_hash": "1c7eb45db55d35d19413249cf65c0d5e375afb9867bf5b6a7ba9998b2d3d9518",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "취합 완료일까지 최초 작성을 미뤄서는 안 되고 적시에 기록해야 한다.",
+            "reason": "최초 작성을 미뤄서는 안 된다고 하여 제안이 부적절함을 명확히 함축한다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "취합 완료일까지 최초 작성을 미뤄서는 안 되고 적시에 기록해야 한다.",
+            "reason": "최초 문서화를 적시에 기록해야 한다고 설명한다."
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "보고서일 후 최종감사파일 취합의 행정적 성격과 새로운 절차·결론과의 무관성을 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "최초 작성을 미뤄서는 안 된다고 하여 제안이 부적절함을 명확히 함축한다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "최초 문서화를 적시에 기록해야 한다고 설명한다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "보고서일 후 최종감사파일 취합의 행정적 성격과 새로운 절차·결론과의 무관성을 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-006",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "갑의 제안이 적절한지 판단하고, 감사문서의 최초 작성과 최종감사파일 취합의 성격을 구별하여 이유를 설명하시오.",
+        "user_answer": "취합 완료일까지 최초 작성을 미뤄서는 안 되고 적시에 기록해야 한다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "취합 완료일까지 최초 작성을 미뤄서는 안 되고 적시에 기록해야 한다.",
+            "reason": "최초 작성을 미뤄서는 안 된다고 하여 제안이 부적절함을 명확히 함축한다.",
+            "claim": "갑과 같이 최초 문서화를 최종 취합 때까지 일괄 미루는 처리는 부적절하다고 판단한다. 지금 적시에 문서화해야 한다는 명확한 조치로 판단을 함축할 수 있으나 명시적인 적절 결론은 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "취합 완료일까지 최초 작성을 미뤄서는 안 되고 적시에 기록해야 한다.",
+            "reason": "최초 문서화를 적시에 기록해야 한다고 설명한다.",
+            "claim": "감사문서의 최초 작성은 적시에 이루어져야 함을 설명한다. 최종 취합기한까지 최초 작성을 일괄 미뤄도 된다는 주장은 반대이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "보고서일 후 최종감사파일 취합의 행정적 성격과 새로운 절차·결론과의 무관성을 설명하지 않았다.",
+            "claim": "보고서일 후의 최종감사파일 취합은 새로운 감사절차나 결론 도출과 관계없는 행정적 정리라는 성격을 설명한다. 최초 문서화의 대체가 아니며 보고서일 후 행정 취합조차 불가능하다는 주장은 반대이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "갑과 같이 최초 문서화를 최종 취합 때까지 일괄 미루는 처리는 부적절하다고 판단한다.",
+          "감사문서의 최초 작성은 적시에 이루어져야 함을 설명한다.",
+          "보고서일 후의 최종감사파일 취합은 새로운 감사절차나 결론 도출과 관계없는 행정적 정리라는 성격을 설명한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_01f0939532afb75c016aa5dba7f11487d08591d53c410ab849",
+        "request_id": "req_14765ab82d5840a99e95910415b29562",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2798,
+          "input_tokens_details": {
+            "cache_write_tokens": 2795,
+            "cached_tokens": 0
+          },
+          "output_tokens": 334,
+          "output_tokens_details": {
+            "reasoning_tokens": 137
+          },
+          "total_tokens": 3132
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00110015,
+        "min_usd": 0.00110015,
+        "max_usd": 0.00110015,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-04-006--case--partial/input.json",
+      "sha256": "0bd683e2e6b57baa8098465f8ba05f044bfec8b10b295a7df4129cb43bd14a71"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-04-006--case--partial/transport.jsonl",
+      "sha256": "039ee95dacb6493a3577f1a76741dab6c5e542e7d2163eac80e5730b1a6f581b"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-a/pilot-04-006--case--partial/traces.jsonl",
+      "sha256": "4eface5161a4bd6779331b2c5ca93d4b36d420ce540be7425dc8fa2395a41a4d"
+    }
+  }
+}

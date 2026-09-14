@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+const R='cpa_uploader/analysis/reviews/case-followup-2026-09-14';
+const D='cpa_uploader/drafts/case-followup-2026-09-14';
+const read=f=>JSON.parse(fs.readFileSync(f));
+const hash=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const out=R+'/integration-baseline';assert(!fs.existsSync(out));
+const bank='cpa_uploader/data/cpa_question_sets_v3.authoring.json',catalog='cpa_uploader/data/learning-question-classifications.json';
+const current=read(bank),old=read(D+'/bank-before.json'),classes=read(catalog),review=classes.review_file;
+assert(old.every(s=>JSON.stringify(current.find(x=>x.id===s.id))===JSON.stringify(s)),'Original bank content changed');
+assert.equal(classes.source_file_sha256,hash(bank));
+const added=current.filter(s=>!old.some(x=>x.id===s.id));
+assert(added.every(s=>classes.classifications.filter(c=>c.source_set_id===s.id).every(c=>c.question_style==='standard')),'New concurrent case needs duplication review');
+const refs=[['bank',bank],['catalog',catalog],['classification',review]].map(([name,file])=>({name,file,sha256:hash(file)}));
+fs.mkdirSync(out);
+for(const r of refs){r.snapshot=out+'/'+r.name+'.json';fs.copyFileSync(r.file,r.snapshot,fs.constants.COPYFILE_EXCL);assert.equal(hash(r.file),r.sha256);assert.equal(hash(r.snapshot),r.sha256);}
+const record={created_at:new Date().toISOString(),reason:'실제 채점 전 최신 정본·분류를 별도 통합 입력으로 동결하며 제작 시작 시점의 기존 세트를 보존한다. 제작 중 추가된 기준서형이 있으면 아래 ID 목록에 기록한다. 시작 원본과 기존 실행 증거는 수정하지 않는다.',prior_snapshot:D+'/bank-before.json',original_sets_preserved:old.length,concurrent_added_set_ids:added.map(s=>s.id),...Object.fromEntries(refs.map(r=>[r.name,r]))};
+fs.writeFileSync(R+'/integration-baseline.json',JSON.stringify(record,null,2)+'\n',{flag:'wx'});
+console.log({sets:current.length,prior_sets_preserved:old.length,concurrent_added_sets:added.length});

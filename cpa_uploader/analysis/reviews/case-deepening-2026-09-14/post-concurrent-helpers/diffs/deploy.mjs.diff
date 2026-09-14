@@ -1,0 +1,22 @@
+diff --git a/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/post-concurrent-helpers/originals/deploy.mjs.txt b/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/post-concurrent-helpers/deploy.mjs
+index 74448dc8..4453fb3a 100644
+--- a/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/post-concurrent-helpers/originals/deploy.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/post-concurrent-helpers/deploy.mjs
+@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
+ import {spawnSync} from 'node:child_process';
+ 
+ const base='cpa_uploader/analysis/reviews/case-deepening-2026-09-14';
+-const out=base+'/db-publication-v1';
++const out=base+'/db-publication-v2';
+ const bank='cpa_uploader/data/cpa_question_sets_v3.authoring.json';
+ const catalog='cpa_uploader/data/learning-question-classifications.json';
+ const migration='supabase/migrations/20260911030000_cpa_question_learning_units.sql';
+@@ -13,7 +13,7 @@ const read=file=>JSON.parse(fs.readFileSync(file));
+ const sha=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+ const ref=file=>({file,sha256:sha(file)});
+ const write=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n',{flag:'wx'});
+-const installed=read(base+'/publication-v1/install-completion.json');
++const installed=read(base+'/publication-v2/install-completion.json');
+ assert.equal(installed.status,'canonical_installed_and_validated');
+ assert(!fs.existsSync(out),'Publication attempt already exists; inspect its receipt before any retry');
+ const inputs=[...installed.files,ref(base+'/sealed-v1/batch.json')];

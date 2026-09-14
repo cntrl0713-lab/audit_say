@@ -1,7 +1,7 @@
 ---
 title: "19. 기타 인증·검토 및 관련 업무 원자료 단위 2/3"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: source-map
 status: generated
 review_required: true

@@ -1,0 +1,300 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-13-007--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-007--case",
+  "source_set_id": "pilot-13-007",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "exp1"
+  ],
+  "projected_body_hash": "5cfc03fb995e3856fc92c3842ae0649de3b04f5fe35e4f1910a40afbd93875b5",
+  "answers": {
+    "sub1": "유형 1 보고서에 적정의견이 붙어 있으므로 연중 운영효과성 증거로 충분하다.",
+    "exp1": "유형 2 보고서가 없으므로 운영효과성 증거는 생략하고 유형 1 보고서의 적정의견만 사용한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "유형 1과 유형 2의 증거범위를 혼동한 반대 결론이다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "유형 1과 유형 2의 증거범위를 혼동한 반대 결론이다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "exp1.c1",
+          "verdict": "not_met",
+          "reason": "직접 접근 가능성을 사용하지 않고 증거 생략을 주장한다."
+        },
+        {
+          "criterion_id": "exp1.c2",
+          "verdict": "not_met",
+          "reason": "직접 접근 가능성을 사용하지 않고 증거 생략을 주장한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "81fd0e6abcc31f589f1964c2ac2dfef3766185647682eb22e095a3a3acf8e040",
+  "schema_hash": "5d66560a9624338068116458a2ec3432e123200e3edf6b816c9924c9344fbf49",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "유형 1 보고서에 적정의견이 붙어 있으므로 연중 운영효과성 증거로 충분하다.",
+            "reason": "유형 1 보고서만으로 연중 운영효과성 증거가 충분하다고 명시하여 부적절하다는 판단과 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "유형 1 보고서에 적정의견이 붙어 있으므로 연중 운영효과성 증거로 충분하다.",
+            "reason": "유형 1 보고서가 연중 운영효과성 증거로 충분하다고 명시하여 운영효과성 증거를 제공하지 않는다는 명제와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp1",
+        "verdicts": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "contradicted",
+            "quote": "유형 2 보고서가 없으므로 운영효과성 증거는 생략하고 유형 1 보고서의 적정의견만 사용한다.",
+            "reason": "운영효과성 증거를 생략할 수 있다고 명시하여 생략이 부적절하다는 명제와 반대된다."
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "not_met",
+            "reason": "C사 통제에 대한 감사인의 직접 통제테스트 수행 절차를 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "유형 1 보고서만으로 연중 운영효과성 증거가 충분하다고 명시하여 부적절하다는 판단과 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "유형 1 보고서가 연중 운영효과성 증거로 충분하다고 명시하여 운영효과성 증거를 제공하지 않는다는 명제와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp1",
+            "verdicts": [
+              {
+                "criterion_id": "exp1.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "운영효과성 증거를 생략할 수 있다고 명시하여 생략이 부적절하다는 명제와 반대된다."
+              },
+              {
+                "criterion_id": "exp1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "C사 통제에 대한 감사인의 직접 통제테스트 수행 절차를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-007",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "제시된 유형 1 보고서를 급여 관련 통제의 운영효과성에 관한 감사증거로 이용하려는 계획이 적절한지 판단하고, 보고서가 제공하는 증거의 한계에 근거하여 이유를 설명하시오.",
+        "user_answer": "유형 1 보고서에 적정의견이 붙어 있으므로 연중 운영효과성 증거로 충분하다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "유형 1 보고서에 적정의견이 붙어 있으므로 연중 운영효과성 증거로 충분하다.",
+            "reason": "유형 1 보고서만으로 연중 운영효과성 증거가 충분하다고 명시하여 부적절하다는 판단과 반대된다.",
+            "claim": "유형 1 보고서를 통제의 운영효과성에 관한 감사증거로 이용하려는 계획은 적절하지 않다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "유형 1 보고서에 적정의견이 붙어 있으므로 연중 운영효과성 증거로 충분하다.",
+            "reason": "유형 1 보고서가 연중 운영효과성 증거로 충분하다고 명시하여 운영효과성 증거를 제공하지 않는다는 명제와 반대된다.",
+            "claim": "유형 1 보고서는 관련 통제의 운영효과성에 대한 증거를 제공하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "유형 1 보고서를 통제의 운영효과성에 관한 감사증거로 이용하려는 계획은 적절하지 않다.",
+          "유형 1 보고서는 서비스조직 통제의 설계와 실행에 대한 이해에는 도움이 되지만, 관련 통제의 운영효과성에 대한 증거를 제공하지 않는다."
+        ]
+      },
+      {
+        "subquestion_id": "exp1",
+        "prompt": "감사인이 현재의 통제 의존 계획을 유지한다면, 운영효과성 증거의 확보를 생략해도 된다는 주장이 적절한지 판단하고 현재 이용 가능한 수단에 따라 수행해야 할 절차를 제시하시오.",
+        "user_answer": "유형 2 보고서가 없으므로 운영효과성 증거는 생략하고 유형 1 보고서의 적정의견만 사용한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "contradicted",
+            "quote": "유형 2 보고서가 없으므로 운영효과성 증거는 생략하고 유형 1 보고서의 적정의견만 사용한다.",
+            "reason": "운영효과성 증거를 생략할 수 있다고 명시하여 생략이 부적절하다는 명제와 반대된다.",
+            "claim": "운영효과성 증거의 확보를 생략해도 된다는 주장은 부적절하다. 급여 통제가 효과적으로 운영된다는 기대를 유지하려면 그 운영효과성에 관한 감사증거가 필요하다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "not_met",
+            "reason": "C사 통제에 대한 감사인의 직접 통제테스트 수행 절차를 제시하지 않았다.",
+            "claim": "기한 내 유형 2 보고서와 타감사인의 테스트 업무를 이용할 수 없고 C사 접근이 허용되므로, 감사인은 C사의 급여 계산 및 이체파일 승인 통제에 대하여 적합한 통제테스트를 직접 수행한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "운영효과성 증거의 확보를 생략해도 된다는 주장은 부적절하다. 급여 통제가 효과적으로 운영된다는 기대를 유지하려면 그 운영효과성에 관한 감사증거가 필요하다.",
+          "기한 내 유형 2 보고서와 타감사인의 테스트 업무를 이용할 수 없고 C사 접근이 허용되므로, 감사인은 C사의 급여 계산 및 이체파일 승인 통제에 대하여 적합한 통제테스트를 직접 수행한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0291494362d2242a016aa603242cd087d09f08a2852679ebf3",
+        "request_id": "req_f54b105af1384a25bcd6a82c751aed13",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3586,
+          "input_tokens_details": {
+            "cache_write_tokens": 3583,
+            "cached_tokens": 0
+          },
+          "output_tokens": 404,
+          "output_tokens_details": {
+            "reasoning_tokens": 87
+          },
+          "total_tokens": 3990
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00138115,
+        "min_usd": 0.00138115,
+        "max_usd": 0.00138115,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-13-007--case--wrong/input.json",
+      "sha256": "5edbf8618273836b0e81e26253855eb474274ee8c19745cc065627d903ddc0d8"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-13-007--case--wrong/transport.jsonl",
+      "sha256": "eb676fbaebbf7debdab2567126a5dc576cf006707159acd5d63c9561bbefa346"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-13-007--case--wrong/traces.jsonl",
+      "sha256": "fd46f33300de4f2673c4d6d727578427e8370075a23b9c962af0e949ccba33de"
+    }
+  }
+}

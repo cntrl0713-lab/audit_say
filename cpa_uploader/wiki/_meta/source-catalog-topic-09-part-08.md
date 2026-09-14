@@ -1,7 +1,7 @@
 ---
 title: "09. 재고·소송·부문정보·외부조회·기초잔액 원자료 단위 8/8"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: source-map
 status: generated
 review_required: true
@@ -12,7 +12,7 @@ confidence: medium
 
 # 09. 재고·소송·부문정보·외부조회·기초잔액 원자료 단위 8/8
 
-주제 전체 1058개: 기준서 229, 이론 197, 연습 293, 기출 339. 이 페이지는 8개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
+주제 전체 1060개: 기준서 231, 이론 197, 연습 293, 기출 339. 이 페이지는 10개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
 
 [[source-catalog-topic-09]] (1/8) · [[source-catalog-topic-09-part-02]] (2/8) · [[source-catalog-topic-09-part-03]] (3/8) · [[source-catalog-topic-09-part-04]] (4/8) · [[source-catalog-topic-09-part-05]] (5/8) · [[source-catalog-topic-09-part-06]] (6/8) · [[source-catalog-topic-09-part-07]] (7/8) · [[source-catalog-topic-09-part-08]] (8/8)
 
@@ -22,6 +22,8 @@ confidence: medium
 
 | 원자료 ID | 종류·근거 계층 | 실제 파일·위치 | 절·판본·원문 한계 | 참조 의존 | 은행 인용 연결 | 원문 인용 SHA-256 |
 |---|---|---|---|---|---|---|
+| <a id="src-e66b95b41dd13b5cb7"></a>`src-e66b95b41dd13b5cb7` | past_exam / learning_material | [기출문제_주제별_해설.md · 기출문제_주제별_해설 원문 페이지 404; L16163-L16214](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md); 기출문제_주제별_해설 | 원문 페이지 404; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | cc300999a75a8dc0c37de0885e0e5df5d5eb697b71317379f81d43866f001a97 |
+| <a id="src-cc99b78befce5b2989"></a>`src-cc99b78befce5b2989` | past_exam / learning_material | [기출문제_주제별_해설.md · 기출문제_주제별_해설 원문 페이지 405; L16216-L16254](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md); 기출문제_주제별_해설 | 원문 페이지 405; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | fa969d6cac0ced88d03c971243836a5df8b50c3f857224d7236be892bca22bed |
 | <a id="src-b39b656e14778f9258"></a>`src-b39b656e14778f9258` | past_exam / learning_material | [기출문제_주제별_해설.md · 기출문제_주제별_해설 원문 페이지 406; L16256-L16292](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md); 기출문제_주제별_해설 | 원문 페이지 406; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 9c64f87ec5161c34802353b8d807f870828f4903a42f8c3685757f378c170ff8 |
 | <a id="src-cf709b19563c7e26ff"></a>`src-cf709b19563c7e26ff` | past_exam / learning_material | [기출문제_주제별_해설.md · 기출문제_주제별_해설 원문 페이지 407; L16294-L16331](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md); 기출문제_주제별_해설 | 원문 페이지 407; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 41a2c0ede0a0869741c672912eae55914df48b8f3778ba5ceff000919583c2c7 |
 | <a id="src-bfc97e384468acffb4"></a>`src-bfc97e384468acffb4` | past_exam / learning_material | [기출문제_주제별_해설.md · 기출문제_주제별_해설 원문 페이지 413; L16546-L16590](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md); 기출문제_주제별_해설 | 원문 페이지 413; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 94f7edd267c9340d7af6c9c4eaf509b96b67fb3acfe94dc54393ad1717949c4a |

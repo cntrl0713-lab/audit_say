@@ -1,0 +1,276 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "s02-sub1-partial",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-additional-20260913-s02",
+  "learning_unit_id": "draft-standard-additional-20260913-s02--sub1--standard",
+  "kind": "partial",
+  "projected_body_hash": "7327e6ae0d97d5d832246ef2fc23a6918603dcad68b2d9e32970017d7e5fc7bc",
+  "answers": {
+    "sub1": "영리기업인지 공공부문 또는 비영리조직인지 등 기업의 성격을 고려한다. 해당 재무보고체계가 법규에 규정되어 있는지도 고려한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 기업의 성격을 고려한다. 예를 들어 영리기업·공공부문·비영리조직인지 구별한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 재무제표의 목적을 고려한다. 광범위한 이용자의 공통 정보수요를 충족하는지 또는 특정 이용자의 정보수요를 위한 것인지 구별한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 재무제표의 성격을 고려한다. 예를 들어 전체재무제표인지 단위재무제표인지 구별한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 해당 재무보고체계가 법규에 규정되어 있는지 고려한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "c670c5de0a492143db830621c4b00db008a5766d6bf6655a74c692a4e7bcc62e",
+  "schema_hash": "e855bf5c3fc7c9fe3c07bbe53bd066a1730d4b0c5b32206a971b2ced5602e99c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "영리기업인지 공공부문 또는 비영리조직인지 등 기업의 성격을 고려한다. 해당 재무보고체계가 법규에 규정되어 있는지도 고려한다.",
+            "reason": "기업의 성격과 영리기업·공공부문·비영리조직의 구별을 설명했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "재무제표의 목적에 대한 설명이 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "재무제표의 성격에 대한 설명이 없다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "해당 재무보고체계가 법규에 규정되어 있는지도 고려한다.",
+            "reason": "재무보고체계가 법규에 규정되어 있는지를 고려한다고 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "기업의 성격과 영리기업·공공부문·비영리조직의 구별을 설명했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표의 목적에 대한 설명이 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표의 성격에 대한 설명이 없다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "재무보고체계가 법규에 규정되어 있는지를 고려한다고 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-additional-20260913-s02",
+    "score": 2,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 210 문단 A4에서 재무제표 작성에 적용되는 재무보고체계의 수용가능성을 결정할 때 고려하도록 제시한 네 가지 요인을 모두 설명하시오. 기업의 성격, 재무제표의 목적과 성격은 각기 무엇을 구별하는지 예시 또는 동등한 설명을 포함하시오.",
+        "user_answer": "영리기업인지 공공부문 또는 비영리조직인지 등 기업의 성격을 고려한다. 해당 재무보고체계가 법규에 규정되어 있는지도 고려한다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "영리기업인지 공공부문 또는 비영리조직인지 등 기업의 성격을 고려한다. 해당 재무보고체계가 법규에 규정되어 있는지도 고려한다.",
+            "reason": "기업의 성격과 영리기업·공공부문·비영리조직의 구별을 설명했다.",
+            "claim": "기업의 성격을 고려한다. 예를 들어 영리기업·공공부문·비영리조직인지 구별한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "재무제표의 목적에 대한 설명이 없다.",
+            "claim": "재무제표의 목적을 고려한다. 광범위한 이용자의 공통 정보수요를 충족하는지 또는 특정 이용자의 정보수요를 위한 것인지 구별한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "재무제표의 성격에 대한 설명이 없다.",
+            "claim": "재무제표의 성격을 고려한다. 예를 들어 전체재무제표인지 단위재무제표인지 구별한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "해당 재무보고체계가 법규에 규정되어 있는지도 고려한다.",
+            "reason": "재무보고체계가 법규에 규정되어 있는지를 고려한다고 설명했다.",
+            "claim": "해당 재무보고체계가 법규에 규정되어 있는지 고려한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "기업의 성격을 고려한다. 예를 들어 영리기업·공공부문·비영리조직인지 구별한다.",
+          "재무제표의 목적을 고려한다. 광범위한 이용자의 공통 정보수요를 충족하는지 또는 특정 이용자의 정보수요를 위한 것인지 구별한다.",
+          "재무제표의 성격을 고려한다. 예를 들어 전체재무제표인지 단위재무제표인지 구별한다.",
+          "해당 재무보고체계가 법규에 규정되어 있는지 고려한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/s02-sub1-partial.input.json",
+      "sha256": "e54e92d1bac8650c2d69941caf5468b2d54165169ec5e5779399ceaeb7a18740"
+    },
+    "transport": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/s02-sub1-partial.transport.jsonl",
+      "sha256": "edf35b9911ff83ebe408ec467e2b8f3bd819679a841baa140457798fc97f20dd"
+    },
+    "traces": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/s02-sub1-partial.traces.jsonl",
+      "sha256": "979a0760c8864a4fa92250f7c25e527ab57b2eb3548637ac903d9c23efe2c851"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_018955d94366cebc016aa6029d2d8c87d0848239bd8dd96e3c",
+        "request_id": "req_4d1d6a56ef4545d3b87d6db4e814e590",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2888,
+          "input_tokens_details": {
+            "cache_write_tokens": 2885,
+            "cached_tokens": 0
+          },
+          "output_tokens": 261,
+          "output_tokens_details": {
+            "reasoning_tokens": 49
+          },
+          "total_tokens": 3149
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s02-sub1-partial.input.json",
+        "sha256": "91e11d10f6970ce8b7341351bf711c1ca9c1528b7447d26b9ac426a92c043aed"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s02-sub1-partial.request-1.json",
+        "sha256": "8df89754259b2097b4fcc3fdda1feef5a38df1b111852f73ed483b06d2a14cf8"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s02-sub1-partial.response-1.json",
+        "sha256": "1e6275c1ed92adb7bf56440f6c03842381c91a884856a5682d6898ecd1748fa6"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s02-sub1-partial.trace.json",
+        "sha256": "bb8ae5d1369c8d128dcd6c01ffcf1e38e7c430f10213b3e5dc5684cb356f9e89"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s02-sub1-partial.usage.json",
+        "sha256": "cf7ef1ab3f123154ee6b3740cd30ccc10af502ccec877e6df71e7330b1209114"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s02-sub1-partial.result.json",
+        "sha256": "2f2b3a949c95d19c5e6eebb4e44510552fcbfe1203c29c73f4a56dcff4b8112d"
+      }
+    ],
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/grading-manifest.json",
+    "sha256": "cf8db16647798968c6c09a1b9055098afac98db30850d7e90825526af41579b4"
+  }
+}

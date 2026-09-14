@@ -1,0 +1,354 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "65722f5f499e90faa8a804aa699f158c572ac5d23bbe8e8cc071e297874cb6fa"
+  },
+  "entry_id": "pilot-13-011--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-011--case",
+  "source_set_id": "pilot-13-011",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2",
+    "exp1"
+  ],
+  "projected_body_hash": "6f50e9910154c64f14fcb2c94dc31b10e2f28b77ee43745455a132623c3967ae",
+  "answers": {
+    "sub2": "서비스감사인이 다온을 제외하였으므로 온유회사 감사에서도 해당 서비스에 관한 검토를 생략할 수 있다.",
+    "exp1": "새롬 보고서가 연중을 다루므로 온유회사에서 직원 명부 대조나 퇴직자 검토의 실행과 효과성을 추가로 확인할 필요가 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.crit1",
+          "verdict": "not_met",
+          "reason": "감사 관련성이 명시되어 있어 제외 범위를 그대로 따를 수 없다."
+        },
+        {
+          "criterion_id": "sub2.crit2",
+          "verdict": "not_met",
+          "reason": "감사 관련성이 명시되어 있어 제외 범위를 그대로 따를 수 없다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "exp1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "exp1.c1",
+          "verdict": "not_met",
+          "reason": "서비스조직 보고서가 이용자기업의 보충통제를 대신한다고 오해했다."
+        },
+        {
+          "criterion_id": "exp1.c2",
+          "verdict": "not_met",
+          "reason": "서비스조직 보고서가 이용자기업의 보충통제를 대신한다고 오해했다."
+        },
+        {
+          "criterion_id": "exp1.c3",
+          "verdict": "not_met",
+          "reason": "서비스조직 보고서가 이용자기업의 보충통제를 대신한다고 오해했다."
+        },
+        {
+          "criterion_id": "exp1.c4",
+          "verdict": "not_met",
+          "reason": "서비스조직 보고서가 이용자기업의 보충통제를 대신한다고 오해했다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "fcbe686d9fdf66605349e47cb7c3b663b4083d56fd323f86a2b63d9a265ea978",
+  "schema_hash": "5d7c3a5684cdfdb0fd9810eb7a89c8a8623c2208055bdd0ff6c8d3dfc4d00570",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "contradicted",
+            "quote": "서비스감사인이 다온을 제외하였으므로 온유회사 감사에서도 해당 서비스에 관한 검토를 생략할 수 있다.",
+            "reason": "보고서에서 제외되었다는 이유로 검토를 생략할 수 있다고 명시하여 생략 불가 명제와 반대된다."
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "contradicted",
+            "quote": "서비스감사인이 다온을 제외하였으므로 온유회사 감사에서도 해당 서비스에 관한 검토를 생략할 수 있다.",
+            "reason": "해당 하위서비스에 관한 검토를 생략할 수 있다고 하여 감사기준서 402 요구사항 적용을 부정한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "exp1",
+        "verdicts": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "not_met",
+            "reason": "통제의 관련성이나 보충적 이용자기업 통제라는 판단을 제시하지 않았다."
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "not_met",
+            "reason": "검토규정의 적절한 설계 여부를 이해하는 절차를 제시하지 않았다."
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "contradicted",
+            "quote": "새롬 보고서가 연중을 다루므로 온유회사에서 직원 명부 대조나 퇴직자 검토의 실행과 효과성을 추가로 확인할 필요가 없다.",
+            "reason": "실제 실행 여부를 추가로 확인할 필요가 없다고 명시하여 실제 수행자와 10~12월 실행 확인을 부정한다."
+          },
+          {
+            "criterion_id": "exp1.c4",
+            "verdict": "contradicted",
+            "quote": "새롬 보고서가 연중을 다루므로 온유회사에서 직원 명부 대조나 퇴직자 검토의 실행과 효과성을 추가로 확인할 필요가 없다.",
+            "reason": "실행과 효과성을 추가로 확인할 필요가 없다고 하여 운영효과성 테스트와 수행 증거 확인을 부정한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "보고서에서 제외되었다는 이유로 검토를 생략할 수 있다고 명시하여 생략 불가 명제와 반대된다."
+              },
+              {
+                "criterion_id": "sub2.crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "해당 하위서비스에 관한 검토를 생략할 수 있다고 하여 감사기준서 402 요구사항 적용을 부정한다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "exp1",
+            "verdicts": [
+              {
+                "criterion_id": "exp1.c1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "통제의 관련성이나 보충적 이용자기업 통제라는 판단을 제시하지 않았다."
+              },
+              {
+                "criterion_id": "exp1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "검토규정의 적절한 설계 여부를 이해하는 절차를 제시하지 않았다."
+              },
+              {
+                "criterion_id": "exp1.c3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "실제 실행 여부를 추가로 확인할 필요가 없다고 명시하여 실제 수행자와 10~12월 실행 확인을 부정한다."
+              },
+              {
+                "criterion_id": "exp1.c4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "exp1/e0"
+                ],
+                "reason": "실행과 효과성을 추가로 확인할 필요가 없다고 하여 운영효과성 테스트와 수행 증거 확인을 부정한다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-011",
+    "score": 0,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "하위서비스조직의 통제가 보고서 범위에서 제외되었다는 이유로 해당 서비스에 관한 검토를 생략할 수 있는지 판단하고, 제시된 관련성 조건에서 적용해야 할 기준서 요구를 설명하시오.",
+        "user_answer": "서비스감사인이 다온을 제외하였으므로 온유회사 감사에서도 해당 서비스에 관한 검토를 생략할 수 있다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub2.crit1",
+            "verdict": "contradicted",
+            "quote": "서비스감사인이 다온을 제외하였으므로 온유회사 감사에서도 해당 서비스에 관한 검토를 생략할 수 있다.",
+            "reason": "보고서에서 제외되었다는 이유로 검토를 생략할 수 있다고 명시하여 생략 불가 명제와 반대된다.",
+            "claim": "재무제표감사와 관련된 하위서비스가 보고서 범위에서 제외되었다는 이유만으로 검토를 생략할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.crit2",
+            "verdict": "contradicted",
+            "quote": "서비스감사인이 다온을 제외하였으므로 온유회사 감사에서도 해당 서비스에 관한 검토를 생략할 수 있다.",
+            "reason": "해당 하위서비스에 관한 검토를 생략할 수 있다고 하여 감사기준서 402 요구사항 적용을 부정한다.",
+            "claim": "보고서에서 제외된 하위서비스가 이용자기업 재무제표감사와 관련되므로 해당 하위서비스에 감사기준서402의 요구사항을 적용한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재무제표감사와 관련된 하위서비스가 보고서 범위에서 제외되었다는 이유만으로 검토를 생략할 수 없다.",
+          "보고서에서 제외된 하위서비스가 이용자기업 재무제표감사와 관련되므로 해당 하위서비스에 감사기준서402의 요구사항을 적용한다."
+        ]
+      },
+      {
+        "subquestion_id": "exp1",
+        "prompt": "유형 2 보고서에 제시된 직원 명부 대조·퇴직자 지급액 검토에 관하여, 온유회사에서 수행할 절차를 설명하시오. 해당 통제의 관련성, 설계, 실제 실행 및 운영효과성을 구별하고 검토 담당자 변경과 미입수 기록을 고려하시오.",
+        "user_answer": "새롬 보고서가 연중을 다루므로 온유회사에서 직원 명부 대조나 퇴직자 검토의 실행과 효과성을 추가로 확인할 필요가 없다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "exp1.c1",
+            "verdict": "not_met",
+            "reason": "통제의 관련성이나 보충적 이용자기업 통제라는 판단을 제시하지 않았다.",
+            "claim": "직원 명부 대조와 퇴직자 지급액 검토는 온유회사의 급여 지급 오류를 예방·발견하는 보충적인 이용자기업 통제로서 당기 급여 감사와 관련된다고 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c2",
+            "verdict": "not_met",
+            "reason": "검토규정의 적절한 설계 여부를 이해하는 절차를 제시하지 않았다.",
+            "claim": "온유회사의 검토규정이 직원 명부 대조와 퇴직자 지급액 검토를 하도록 적절하게 설계되었는지 이해한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c3",
+            "verdict": "contradicted",
+            "quote": "새롬 보고서가 연중을 다루므로 온유회사에서 직원 명부 대조나 퇴직자 검토의 실행과 효과성을 추가로 확인할 필요가 없다.",
+            "reason": "실제 실행 여부를 추가로 확인할 필요가 없다고 명시하여 실제 수행자와 10~12월 실행 확인을 부정한다.",
+            "claim": "규정의 존재만으로 실행을 인정하지 않고 실제로 누가 검토를 수행했는지 확인한다. 특히 담당자 퇴사 후 10~12월에도 해당 통제가 실제 실행되었는지 이해한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "exp1.c4",
+            "verdict": "contradicted",
+            "quote": "새롬 보고서가 연중을 다루므로 온유회사에서 직원 명부 대조나 퇴직자 검토의 실행과 효과성을 추가로 확인할 필요가 없다.",
+            "reason": "실행과 효과성을 추가로 확인할 필요가 없다고 하여 운영효과성 테스트와 수행 증거 확인을 부정한다.",
+            "claim": "관련 보충통제의 운영효과성을 테스트한다. 10~12월의 미입수 검토기록 등 당기 실제 수행 증거를 확인하며 새롬의 유형 2 보고서만으로 온유회사 통제의 효과성을 대신하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "직원 명부 대조와 퇴직자 지급액 검토는 온유회사의 급여 지급 오류를 예방·발견하는 보충적인 이용자기업 통제로서 당기 급여 감사와 관련된다고 결정한다.",
+          "온유회사의 검토규정이 직원 명부 대조와 퇴직자 지급액 검토를 하도록 적절하게 설계되었는지 이해한다.",
+          "규정의 존재만으로 실행을 인정하지 않고 실제로 누가 검토를 수행했는지 확인한다. 특히 담당자 퇴사 후 10~12월에도 해당 통제가 실제 실행되었는지 이해한다.",
+          "관련 보충통제의 운영효과성을 테스트한다. 10~12월의 미입수 검토기록 등 당기 실제 수행 증거를 확인하며 새롬의 유형 2 보고서만으로 온유회사 통제의 효과성을 대신하지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "exp1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_062d6549dccd270d016aa6038212e087d08dfdce5d8b319c86",
+        "request_id": "req_5588939366264db587c41d229ebb9066",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 4245,
+          "input_tokens_details": {
+            "cache_write_tokens": 4242,
+            "cached_tokens": 0
+          },
+          "output_tokens": 848,
+          "output_tokens_details": {
+            "reasoning_tokens": 434
+          },
+          "total_tokens": 5093
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0020786999999999997,
+        "min_usd": 0.0020786999999999997,
+        "max_usd": 0.0020786999999999997,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-13-011--case--wrong/input.json",
+      "sha256": "287a968a8f91366ac12089394e011c9f09fb6d3d9c733c3674a61abeaa9aee1e"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-13-011--case--wrong/transport.jsonl",
+      "sha256": "c1a05b726a716d122c51b7e561d6c3b0885b0634868c807d4306ee0d3e2d6548"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/actual-c/pilot-13-011--case--wrong/traces.jsonl",
+      "sha256": "ea6ee4bcd74b627ed5aee6012ba16c413864a88db57db00740ed468c2b999a5c"
+    }
+  }
+}

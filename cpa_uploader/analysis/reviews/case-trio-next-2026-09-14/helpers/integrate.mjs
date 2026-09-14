@@ -1,0 +1,42 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {validateAuthoringBank} from '../../../../questionBankPublication.ts';
+import {validateQuestionAuthoringPlan} from '../../../../questionAuthoringPlan.ts';
+import {validateQaBank} from './representative-qa.mjs';
+const R='cpa_uploader/analysis/reviews/case-trio-next-2026-09-14';
+const D='cpa_uploader/drafts/case-trio-next-2026-09-14';
+const read=f=>JSON.parse(fs.readFileSync(f));
+const hash=b=>createHash('sha256').update(b).digest('hex');
+const write=(f,x)=>fs.writeFileSync(R+'/'+f,JSON.stringify(x,null,2)+'\n',{flag:'wx'});
+const before=read(R+'/integration-baseline/bank.json'),oldClasses=read(R+'/integration-baseline/classification.json').entries;
+const sourceCatalog=read(D+'/source-catalog-final.json');
+const changes=[],qa=[],design=[],reviews=[],evidence=[];
+for(const agent of ['a','b','c']){
+ const dir=D+'/'+agent,sets=read(dir+'/sets.json'),plans=read(dir+'/design.json'),rs=read(dir+'/review.json'),cases=read(dir+'/qa.json');
+ assert.equal(sets.length,1);assert.equal(rs.length,3);validateQaBank(sets,cases);
+ changes.push(...sets);qa.push(...cases);design.push(...plans);reviews.push(...rs);
+ for(const name of ['sets.json','design.json','review.json','qa.json'])evidence.push({file:dir+'/'+name,sha256:hash(fs.readFileSync(dir+'/'+name))});
+ for(const row of plans){assert.deepEqual(validateQuestionAuthoringPlan(row.plan),[],row.set_id);for(const id of row.plan.source_unit_ids)assert(sourceCatalog.units.some(u=>u.id===id),'Unregistered source unit '+id);}
+}
+assert.equal(changes.length,3);assert.equal(new Set(changes.map(s=>s.id)).size,3);
+const qaScope=validateQaBank(changes,qa);assert.equal(qaScope.question_count,9);
+const bank=[...before,...changes],entries=[...oldClasses],shapes=[];
+for(const s of changes){
+ assert(!before.some(old=>old.id===s.id),s.id+' already exists');
+ assert.equal(s.status,'needs_review');assert.equal(s.verification.review_status,'needs_human_review');
+ assert.equal(s.subquestions.length,3);const chars=[...s.shared_context.facts.map(f=>f.text).join('\n')].length;assert(chars>=400,s.id);
+ shapes.push({set_id:s.id,title:s.title,questions:3,facts_characters:chars,points:s.subquestions.reduce((sum,q)=>sum+q.criteria.reduce((n,c)=>n+c.max_points,0),0)});
+ for(const q of s.subquestions){
+  assert.equal(q.question_style,'case');assert(q.topic_ids.length);
+  const rev=reviews.find(r=>r.set_id===s.id&&r.subquestion_id===q.id);assert(rev?.rationale?.trim());assert.deepEqual(rev.unresolved_content_findings,[]);
+  entries.push({set_id:s.id,subquestion_id:q.id,question_style:'case',topic_ids:q.topic_ids,standalone_prompt:null,case_fact_ids:rev.case_fact_ids??s.shared_context.facts.map(f=>f.id),reason:rev.rationale,review_evidence:evidence.filter(e=>e.file.endsWith('/review.json'))});
+ }
+}
+const checked=validateAuthoringBank(bank);assert.deepEqual(checked.errors,[]);
+write('new-sets-v1.json',changes);write('candidate-v1.json',bank);write('classification-v1.json',{source_file:R+'/candidate-v1.json',source_file_sha256:hash(fs.readFileSync(R+'/candidate-v1.json')),entries});
+write('changed-sets-v1.json',changes.map(s=>s.id));write('case-reviews.json',reviews);write('case-qa.json',qa);write('designs.json',design);write('draft-evidence.json',evidence);
+write('representative-scope-check.json',qaScope);
+write('shape-check.json',{new_cases:3,new_questions:9,minimum_facts_characters:Math.min(...shapes.map(s=>s.facts_characters)),rows:shapes});
+write('authoring-check.json',{errors:checked.errors,sets:bank.length,questions:checked.subquestionCount,criteria:checked.criterionCount,total_points:checked.totalPoints,prior_sets_preserved:before.every((s,i)=>JSON.stringify(s)===JSON.stringify(bank[i]))});
+console.log({sets:bank.length,questions:checked.subquestionCount,new_cases:3,new_questions:9});

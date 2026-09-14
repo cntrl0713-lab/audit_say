@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-07-006--sub4--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-07-006--sub4--standard",
+  "source_set_id": "pilot-07-006",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub4"
+  ],
+  "projected_body_hash": "8d59f792b9353dbcaf934aad8868d27dd1123f5b5ae582d63884b24a182b01d6",
+  "answers": {
+    "sub4": "변경이 있든 없든 전기 결과를 무기한 재사용하고 매 감사에 통제테스트를 하지 않아도 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub4",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "fe6d57f361730b71e29273f3c611b20b749a3449c2dbdbc54b2f99205ac6c08a",
+  "schema_hash": "0d43ebd0d6fdecebfaf8c0828a1a2398ee7294c5ff2d27c9ec4f39d169adab1c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "verdicts": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "변경이 있든 없든 전기 결과를 무기한 재사용하고 매 감사에 통제테스트를 하지 않아도 된다.",
+            "reason": "변경이 있어도 전기 결과를 재사용한다고 명시하여 당기 테스트 요구를 반대한다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "변경이 있든 없든 전기 결과를 무기한 재사용하고 매 감사에 통제테스트를 하지 않아도 된다.",
+            "reason": "전기 결과의 무기한 재사용을 명시하여 3회마다 최소 1회 테스트 원칙을 반대한다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "변경이 있든 없든 전기 결과를 무기한 재사용하고 매 감사에 통제테스트를 하지 않아도 된다.",
+            "reason": "매 감사에 통제테스트를 하지 않아도 된다고 명시하여 매 감사 일부 통제 테스트 원칙을 반대한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub4",
+            "verdicts": [
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0"
+                ],
+                "reason": "변경이 있어도 전기 결과를 재사용한다고 명시하여 당기 테스트 요구를 반대한다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0"
+                ],
+                "reason": "전기 결과의 무기한 재사용을 명시하여 3회마다 최소 1회 테스트 원칙을 반대한다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0"
+                ],
+                "reason": "매 감사에 통제테스트를 하지 않아도 된다고 명시하여 매 감사 일부 통제 테스트 원칙을 반대한다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-07-006",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "prompt": "유의적 위험에 대응하는 통제가 아닌 통제의 전기 운영효과성 증거를 재사용하려 한다. 증거의 계속적 관련성에 영향을 주는 변화가 있을 때와 없을 때의 재테스트 요구를 구별하고, 매 감사에 통제테스트를 배분하는 원칙을 설명하시오. 주기는 감사 횟수로 제시하시오.",
+        "user_answer": "변경이 있든 없든 전기 결과를 무기한 재사용하고 매 감사에 통제테스트를 하지 않아도 된다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "변경이 있든 없든 전기 결과를 무기한 재사용하고 매 감사에 통제테스트를 하지 않아도 된다.",
+            "reason": "변경이 있어도 전기 결과를 재사용한다고 명시하여 당기 테스트 요구를 반대한다.",
+            "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "변경이 있든 없든 전기 결과를 무기한 재사용하고 매 감사에 통제테스트를 하지 않아도 된다.",
+            "reason": "전기 결과의 무기한 재사용을 명시하여 3회마다 최소 1회 테스트 원칙을 반대한다.",
+            "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "변경이 있든 없든 전기 결과를 무기한 재사용하고 매 감사에 통제테스트를 하지 않아도 된다.",
+            "reason": "매 감사에 통제테스트를 하지 않아도 된다고 명시하여 매 감사 일부 통제 테스트 원칙을 반대한다.",
+            "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+          "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+          "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub4",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0530d8631b8f2dd5016aa5dbc6ccd487d0b16ab17c4e66a5bd",
+        "request_id": "req_cd1a9522b73e475baf558b7d2c2b489c",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2675,
+          "input_tokens_details": {
+            "cache_write_tokens": 2672,
+            "cached_tokens": 0
+          },
+          "output_tokens": 305,
+          "output_tokens_details": {
+            "reasoning_tokens": 91
+          },
+          "total_tokens": 2980
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010345999999999999,
+        "min_usd": 0.0010345999999999999,
+        "max_usd": 0.0010345999999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-07-006--sub4--standard--wrong/input.json",
+      "sha256": "578bb4112dbfa5017bc766ea90030ce2333714e9377377ea3948ccf3f0854dd9"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-07-006--sub4--standard--wrong/transport.jsonl",
+      "sha256": "282b59a88aea29a2955cf6c915188b486e8d31a58820cb95c4389903b09daf25"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-b/pilot-07-006--sub4--standard--wrong/traces.jsonl",
+      "sha256": "d3dc66971d96737d8b0edb15ccb0afa7408c7e8b6870a7326f8ef9082e6664f9"
+    }
+  }
+}

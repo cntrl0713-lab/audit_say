@@ -1,0 +1,856 @@
+{
+  "version": "independent-agent-content-review-v1",
+  "reviewer_id": "agent:/root/followup_sources_b",
+  "method": "independent_agent_manual_content_review",
+  "human_review_performed": false,
+  "paid_api_semantic_review_performed": false,
+  "actual_model_grading": "not_performed_by_this_reviewer; parent retains separate Luna evidence",
+  "reviewed_at": "2026-09-14T07:55:54.516Z",
+  "status": "pass",
+  "file_bindings": {
+    "sets": {
+      "file": "cpa_uploader/drafts/case-trio-2026-09-14/a/sets.json",
+      "sha256": "b3c4d736b38e56f4c60e6690f02bcab580deeed0c6455a344a1dd51ad26272c6"
+    },
+    "design": {
+      "file": "cpa_uploader/drafts/case-trio-2026-09-14/a/design.json",
+      "sha256": "575bc12b4b1b9528769ff91b6945a54bfcd720f38fdc24b1700d749bd1d63ca8"
+    },
+    "review": {
+      "file": "cpa_uploader/drafts/case-trio-2026-09-14/a/review.json",
+      "sha256": "d12e61479135cf1b3cf83d9e6b218b803593342caac56b5694fe1844c38ab852"
+    },
+    "qa": {
+      "file": "cpa_uploader/drafts/case-trio-2026-09-14/a/qa.json",
+      "sha256": "f65701e324fb01e6b99f9bb07ce014e17b51b9c3d4856409cf3c095113c3542e"
+    }
+  },
+  "scope": {
+    "case_count": 1,
+    "subquestion_count": 3,
+    "criterion_count": 6,
+    "representative_qa_count": 6,
+    "manual_expectation_count": 24,
+    "fact_characters": 810,
+    "facts_measure": "LF join, Unicode codepoints, spaces included",
+    "all_questions_fact_dependent": true
+  },
+  "question_reviews": [
+    {
+      "set_id": "case-10-completion-analytics-20260914",
+      "subquestion_id": "sub1",
+      "verdict": "pass",
+      "fact_dependency": {
+        "facts": [
+          "fact1"
+        ],
+        "verdict": "case",
+        "rationale": "최종 정보와 하반기 판매구조 변화를 연결해야 두 번째 점수를 얻는다. 일반 종결 의무만 쓰면 1점이므로 일반론으로 같은 만점은 성립하지 않는다."
+      },
+      "criterion_reviews": [
+        {
+          "criterion_id": "sub1.c1",
+          "max_points": 1,
+          "verdict": "pass",
+          "source_ref_ids": [
+            "src-e67ae1831db41aa655",
+            "src-5c224e2b3d26cb7abb"
+          ],
+          "rationale": "520.6의 종결 분석 의무는 상반기 위험평가 분석·세부테스트로 대체되지 않는다. A19는 유사할 수 있다는 설명이지 생략 허용이 아니다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "max_points": 1,
+          "verdict": "pass",
+          "source_ref_ids": [
+            "src-e67ae1831db41aa655",
+            "src-93c9a60b32ac6a97bd"
+          ],
+          "rationale": "하반기 판매구조가 바뀌었다는 기업 이해와 최종 매출 구성·이익률을 대조하는 전반적 결론 목적은 520.6/A17에 부합한다. 개별 결론 확인과 전반적 일관성에 중복 점수를 붙이지 않는다."
+        }
+      ],
+      "point_appropriateness": "2개의 독립 의미 단위에 각 1점. 판단 또는 위험 추론과 구체적 적용의 의미를 구별하며 같은 내용을 반복하여 점수를 더하지 않는다.",
+      "overload": "동일 목표의 판단·근거 또는 위험·직접 절차로 한정하여 3개 물음을 별도로 구성했다.",
+      "representative_qa": [
+        {
+          "kind": "partial",
+          "answer": "갑의 제안은 부적절하며, 상반기 분석과 세부테스트를 마쳤어도 종결 분석을 수행해야 한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub1.c1"
+          ],
+          "verdict": "pass",
+          "review_reason": "첫 독립 명제만 맞고 두 번째 사례 적용/추가절차가 없어 정확히 1점이다."
+        },
+        {
+          "kind": "wrong",
+          "answer": "상반기에 분석했고 세부테스트도 끝났으므로 최종 재무제표 분석을 생략하여도 된다. 판매구조 변화는 종결 분석과 관계없다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "verdict": "pass",
+          "review_reason": "부모에 주어진 관계·증거를 근거 없이 배척하거나 반대 처리를 명시하여 어느 독립 기준도 충족하지 않는다."
+        }
+      ],
+      "manual_boundaries": [
+        {
+          "kind": "model_answer",
+          "answer": "상반기 위험평가 분석과 계정별 세부테스트를 마쳤다는 이유로 감사종료에 근접한 분석적절차를 생략할 수 없다.\n하반기에 낮은 이익률의 도매판매에서 높은 이익률의 직영판매로 비중이 바뀌었다는 이해와 최종 재무제표의 매출 구성·이익률 등 관계가 일관되는지 분석하여 전반적인 결론을 내리고, 개별 부문에 관해 감사 중 형성한 결론을 확인한다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub1.c1",
+            "sub1.c2"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "empty",
+          "answer": "",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "verdict": "pass"
+        },
+        {
+          "kind": "partial",
+          "answer": "갑의 제안은 부적절하며, 상반기 분석과 세부테스트를 마쳤어도 종결 분석을 수행해야 한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub1.c1"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "wrong",
+          "answer": "상반기에 분석했고 세부테스트도 끝났으므로 최종 재무제표 분석을 생략하여도 된다. 판매구조 변화는 종결 분석과 관계없다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "verdict": "pass"
+        },
+        {
+          "kind": "reverse_partial",
+          "answer": "종결 분석을 생략해도 된다. 수행한다면 도매에서 직영으로 비중이 바뀐 사실과 최종 매출 구성·이익률을 대조하여 재무제표와 기업 이해가 일관되는지 전반적으로 확인하는 목적이다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub1.c2"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "implicit",
+          "answer": "상반기 분석으로 끝낼 수 없으므로, 하반기의 도매 축소·직영 확대라는 이해에 비추어 최종 매출 구성과 이익률을 분석하고 일관성에 대한 전반적 결론을 내려야 한다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub1.c1",
+            "sub1.c2"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "same_meaning_repetition",
+          "answer": "갑의 제안은 부적절하며, 상반기 분석과 세부테스트를 마쳤어도 종결 분석을 수행해야 한다. 갑의 제안은 부적절하며, 상반기 분석과 세부테스트를 마쳤어도 종결 분석을 수행해야 한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub1.c1"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "general_only",
+          "answer": "종결 분석은 수행해야 하며 재무제표와 기업 이해의 일관성을 확인한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub1.c1"
+          ],
+          "verdict": "pass"
+        }
+      ],
+      "boundary_reasoning": "별도 부적절 문구가 없어도 해당 조치가 생략 불가/기존 증거 활용을 함축하면 판단을 인정한다. 명시적 반대 결론을 쓰더라도 독립적으로 맞는 자료 연결 설명의 1점은 유지한다."
+    },
+    {
+      "set_id": "case-10-completion-analytics-20260914",
+      "subquestion_id": "sub2",
+      "verdict": "pass",
+      "fact_dependency": {
+        "facts": [
+          "fact2"
+        ],
+        "verdict": "case",
+        "rationale": "자료 관계의 비정상성을 해석해 주장 위험과 기말 검사대상·자료를 특정해야 한다. 다른 종류의 변화는 다른 위험·대응으로 이어진다."
+      },
+      "criterion_reviews": [
+        {
+          "criterion_id": "sub2.c1",
+          "max_points": 1,
+          "verdict": "pass",
+          "source_ref_ids": [
+            "src-805f45ff18dbcd0b6f",
+            "src-e7d17e54be2d240805"
+          ],
+          "rationale": "출하 감소·단가 불변과 기말 매출 급증의 관계는 발생 또는 기간귀속 위험을 추론할 근거이며 확정 오류 증거는 아니다. 두 대안 중 하나와 관계의 의미만 요구한다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "max_points": 1,
+          "verdict": "pass",
+          "source_ref_ids": [
+            "src-805f45ff18dbcd0b6f",
+            "src-9dc3ef023abb077fff",
+            "src-e7d17e54be2d240805"
+          ],
+          "rationale": "기말 집중 매출의 인수일·실제 출하와 기록일 대조는 발생·기간귀속 위험에 직접 대응하는 절차이다. 520.A18/7 및315.37에 따른 추가 조사와 계획 보완으로 하나의 실질 조치를 평가한다."
+        }
+      ],
+      "point_appropriateness": "2개의 독립 의미 단위에 각 1점. 판단 또는 위험 추론과 구체적 적용의 의미를 구별하며 같은 내용을 반복하여 점수를 더하지 않는다.",
+      "overload": "동일 목표의 판단·근거 또는 위험·직접 절차로 한정하여 3개 물음을 별도로 구성했다.",
+      "representative_qa": [
+        {
+          "kind": "partial",
+          "answer": "단가가 변하지 않았는데 출하는 줄고 기말 매출만 급증하였으므로, 실제 판매 없이 매출을 기록했을 발생사실 위험을 새로 검토한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub2.c1"
+          ],
+          "verdict": "pass",
+          "review_reason": "첫 독립 명제만 맞고 두 번째 사례 적용/추가절차가 없어 정확히 1점이다."
+        },
+        {
+          "kind": "wrong",
+          "answer": "매출 증가 자체가 거래가 실제로 발생했다는 증거이므로 위험은 낮아졌다. 이미 마친 연중 표본검사만으로 충분하여 기말 거래는 더 검사하지 않는다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "verdict": "pass",
+          "review_reason": "부모에 주어진 관계·증거를 근거 없이 배척하거나 반대 처리를 명시하여 어느 독립 기준도 충족하지 않는다."
+        }
+      ],
+      "manual_boundaries": [
+        {
+          "kind": "model_answer",
+          "answer": "단가가 같은데 출하수량은 감소하고 기말 매출만 급증한 관계는 실제 거래 없이 매출을 기록했거나 이듬해 매출을 앞당겨 기록했을 위험을 시사한다. 그중 발생사실 또는 기간귀속 위험 하나를 자료 관계에 연결하여 새로 검토한다.\n이 위험을 반영하여 기존 위험평가와 계획된 추가감사절차를 수정한다. 예를 들어 12월 마지막 사흘에 집중된 매출을 대상으로 고객 인수자료와 실제 출하일을 장부 기록일에 대조하는 절차를 보완하여 매출의 발생 또는 기간귀속을 확인한다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub2.c1",
+            "sub2.c2"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "empty",
+          "answer": "",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "verdict": "pass"
+        },
+        {
+          "kind": "partial",
+          "answer": "단가가 변하지 않았는데 출하는 줄고 기말 매출만 급증하였으므로, 실제 판매 없이 매출을 기록했을 발생사실 위험을 새로 검토한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub2.c1"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "wrong",
+          "answer": "매출 증가 자체가 거래가 실제로 발생했다는 증거이므로 위험은 낮아졌다. 이미 마친 연중 표본검사만으로 충분하여 기말 거래는 더 검사하지 않는다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "verdict": "pass"
+        },
+        {
+          "kind": "reverse_partial",
+          "answer": "어떤 주장 위험인지는 모르겠다. 12월 마지막 사흘의 매출을 고객 인수자료의 인수일과 장부 기록일에 대조하는 절차를 기존 계획에 추가한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub2.c2"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "implicit",
+          "answer": "단가가 같은데 출하가 줄고 기말 매출이 급증해 다음 해 거래의 조기 계상이 의심되므로, 기말 집중 매출의 고객 인수일과 기록일을 대조하도록 기존 계획을 보완한다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub2.c1",
+            "sub2.c2"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "same_meaning_repetition",
+          "answer": "단가가 변하지 않았는데 출하는 줄고 기말 매출만 급증하였으므로, 실제 판매 없이 매출을 기록했을 발생사실 위험을 새로 검토한다. 단가가 변하지 않았는데 출하는 줄고 기말 매출만 급증하였으므로, 실제 판매 없이 매출을 기록했을 발생사실 위험을 새로 검토한다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub2.c1"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "general_only",
+          "answer": "위험평가를 수정하고 감사절차를 추가한다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "verdict": "pass"
+        }
+      ],
+      "boundary_reasoning": "구체적 기간귀속 검사만 쓰는 reverse_partial은 자료관계에서 위험을 추론한 설명까지 자동 함축하지 않아 c2만 1점이다. 다른 위험명칭을 모르겠다는 표현 자체를 명시적 반대 위험판단으로 간주하지 않았다."
+    },
+    {
+      "set_id": "case-10-completion-analytics-20260914",
+      "subquestion_id": "sub3",
+      "verdict": "pass",
+      "fact_dependency": {
+        "facts": [
+          "fact3"
+        ],
+        "verdict": "case",
+        "rationale": "이미 검사한 외부 계약자료와 내부 실제 이행자료가 무엇인지, 전환 시점과 비용 감소를 어떻게 연결하는지 적용해야 만점이다."
+      },
+      "criterion_reviews": [
+        {
+          "criterion_id": "sub3.c1",
+          "max_points": 1,
+          "verdict": "pass",
+          "source_ref_ids": [
+            "src-e7d17e54be2d240805",
+            "src-610dfeb49d38af086d"
+          ],
+          "rationale": "520.A20은 감사 중 입수한 다른 증거를 고려하여 경영진 답변을 평가할 수 있다고 명시한다. 반드시 새 외부증거를 요구하는 을의 일반화는 배척된다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "max_points": 1,
+          "verdict": "pass",
+          "source_ref_ids": [
+            "src-610dfeb49d38af086d",
+            "src-e7d17e54be2d240805"
+          ],
+          "rationale": "계약종료 및 자체 운송의 실제 이행 자료를 비용 감소·전환 시점과 연결하는 증거 평가는 520.7/A20에 부합한다. 사실관계는 이미 다른 감사 중 검증된 자료임을 제공하되 설명이 확실히 맞다는 결론을 주지 않는다."
+        }
+      ],
+      "point_appropriateness": "2개의 독립 의미 단위에 각 1점. 판단 또는 위험 추론과 구체적 적용의 의미를 구별하며 같은 내용을 반복하여 점수를 더하지 않는다.",
+      "overload": "동일 목표의 판단·근거 또는 위험·직접 절차로 한정하여 3개 물음을 별도로 구성했다.",
+      "representative_qa": [
+        {
+          "kind": "partial",
+          "answer": "을의 주장은 부적절하다. 설명과 관련 있는 기존 감사증거를 이용할 수 있고 새 외부증거가 항상 필요한 것은 아니다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub3.c1"
+          ],
+          "verdict": "pass",
+          "review_reason": "첫 독립 명제만 맞고 두 번째 사례 적용/추가절차가 없어 정확히 1점이다."
+        },
+        {
+          "kind": "wrong",
+          "answer": "을의 말이 옳다. 경영진의 설명을 듣기 전에 받은 자료는 모두 사용할 수 없으므로 반드시 운송업체에서 새 외부 확인서를 받아야 한다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "verdict": "pass",
+          "review_reason": "부모에 주어진 관계·증거를 근거 없이 배척하거나 반대 처리를 명시하여 어느 독립 기준도 충족하지 않는다."
+        }
+      ],
+      "manual_boundaries": [
+        {
+          "kind": "model_answer",
+          "answer": "경영진 설명을 들은 뒤 반드시 새 외부증거를 다시 받아야만 한다는 주장은 부적절하다. 이미 감사 중 입수한 관련 증거를 고려하여 설명을 평가할 수 있다.\n6월 말 외주운송 계약종료·정산자료와 7월 이후 회사 차량의 실제 배송 운행·기사 급여자료를 연결하여, 비용 감소 시점이 외주운송에서 자체 운송으로 바뀐 시점과 부합하는지 평가한다. 이 자료가 설명을 적합하게 뒷받침하는지를 판단하는 것이며, 단지 자료가 있다는 이유로 설명을 무조건 수용하는 것은 아니다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub3.c1",
+            "sub3.c2"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "empty",
+          "answer": "",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "verdict": "pass"
+        },
+        {
+          "kind": "partial",
+          "answer": "을의 주장은 부적절하다. 설명과 관련 있는 기존 감사증거를 이용할 수 있고 새 외부증거가 항상 필요한 것은 아니다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub3.c1"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "wrong",
+          "answer": "을의 말이 옳다. 경영진의 설명을 듣기 전에 받은 자료는 모두 사용할 수 없으므로 반드시 운송업체에서 새 외부 확인서를 받아야 한다.",
+          "expected_points": 0,
+          "met_criterion_ids": [],
+          "verdict": "pass"
+        },
+        {
+          "kind": "reverse_partial",
+          "answer": "을의 말처럼 새 외부증거는 항상 필요하다. 다만 6월 말 계약종료 자료와 7월 이후 실제 회사 차량 배송자료를 연결하면 외주운송 감소 시점과 자체 운송 전환 시점이 맞는지 평가할 수 있다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub3.c2"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "implicit",
+          "answer": "이미 검사한 6월 말 계약종료와 7월 이후 회사 차량의 배송자료를 연결하여 운송비 감소가 자체 운송 전환과 맞는지를 평가하는 데 사용할 수 있다.",
+          "expected_points": 2,
+          "met_criterion_ids": [
+            "sub3.c1",
+            "sub3.c2"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "same_meaning_repetition",
+          "answer": "을의 주장은 부적절하다. 설명과 관련 있는 기존 감사증거를 이용할 수 있고 새 외부증거가 항상 필요한 것은 아니다. 을의 주장은 부적절하다. 설명과 관련 있는 기존 감사증거를 이용할 수 있고 새 외부증거가 항상 필요한 것은 아니다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub3.c1"
+          ],
+          "verdict": "pass"
+        },
+        {
+          "kind": "general_only",
+          "answer": "관련성이 있는 기존 감사증거를 활용할 수 있고 반드시 새 외부증거를 받을 필요는 없다.",
+          "expected_points": 1,
+          "met_criterion_ids": [
+            "sub3.c1"
+          ],
+          "verdict": "pass"
+        }
+      ],
+      "boundary_reasoning": "별도 부적절 문구가 없어도 해당 조치가 생략 불가/기존 증거 활용을 함축하면 판단을 인정한다. 명시적 반대 결론을 쓰더라도 독립적으로 맞는 자료 연결 설명의 1점은 유지한다."
+    }
+  ],
+  "source_checks": [
+    {
+      "source_ref_id": "src-e67ae1831db41aa655",
+      "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "source_quote_sha256": "b3e52d0aef6e501f113895d505147085ece2570353c1763049978a626ac6432e",
+      "exact_file_substring": true,
+      "hash_matches": true,
+      "registered_unit_exists": true,
+      "current_pdf_text_and_visual_comparison": "pass",
+      "locator": "2026 KGA 520.6; PDF 450; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L19126~19129; 등록 cpa_uploader/data/official/delegated-s04-kga-2025.txt L331~333"
+    },
+    {
+      "source_ref_id": "src-5c224e2b3d26cb7abb",
+      "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "source_quote_sha256": "947b4fcf5ce5409a49e0ece380674f1252eb8eda853d849d98e8ca4030ea739b",
+      "exact_file_substring": true,
+      "hash_matches": true,
+      "registered_unit_exists": true,
+      "current_pdf_text_and_visual_comparison": "pass",
+      "locator": "2026 KGA 520.A19; PDF 455; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L19317~19318; 등록 cpa_uploader/data/official/delegated-s04-kga-2025.txt L532~533"
+    },
+    {
+      "source_ref_id": "src-93c9a60b32ac6a97bd",
+      "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "source_quote_sha256": "4b7cacdc337b540529e1c38e701aee24f1f841e3e173952f32296286b0f08284",
+      "exact_file_substring": true,
+      "hash_matches": true,
+      "registered_unit_exists": true,
+      "current_pdf_text_and_visual_comparison": "pass",
+      "locator": "2026 KGA 520.A17; PDF 454; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L19301~19303; 등록 cpa_uploader/data/official/delegated-s04-kga-2025.txt L515~517"
+    },
+    {
+      "source_ref_id": "src-805f45ff18dbcd0b6f",
+      "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "source_quote_sha256": "c0fca8982f44e7ab77b633f7dc9c35c9c681f6fc104b88dd127de9a05a6981f3",
+      "exact_file_substring": true,
+      "hash_matches": true,
+      "registered_unit_exists": true,
+      "current_pdf_text_and_visual_comparison": "pass",
+      "locator": "2026 KGA 520.A18; PDF 454; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L19304~19306; 등록 cpa_uploader/data/official/delegated-s04-kga-2025.txt L521~523"
+    },
+    {
+      "source_ref_id": "src-e7d17e54be2d240805",
+      "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "source_quote_sha256": "60989dfbd41f0fd8310767f5da44595288dbad220fb2099ea0009bef5b607419",
+      "exact_file_substring": true,
+      "hash_matches": true,
+      "registered_unit_exists": true,
+      "current_pdf_text_and_visual_comparison": "pass",
+      "locator": "2026 KGA 520.7; PDF 450; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L19131~19138; 등록 cpa_uploader/data/official/delegated-s04-kga-2025.txt L338~342"
+    },
+    {
+      "source_ref_id": "src-9dc3ef023abb077fff",
+      "file": "cpa_uploader/data/official/kga315-330-2025-review06.txt",
+      "file_sha256": "486c1df843af6d74e0acdaec995501e6f40f24ae9dd8dc23415007d90d5affe1",
+      "source_quote_sha256": "df858e93a22f667500786d782227a9f3b09d1b30ff43112cbbb73953364d5489",
+      "exact_file_substring": true,
+      "hash_matches": true,
+      "registered_unit_exists": true,
+      "current_pdf_text_and_visual_comparison": "pass",
+      "locator": "2026 KGA 315.37; PDF 229; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L9598~9601; 등록 cpa_uploader/data/official/kga315-330-2025-review06.txt L344~346"
+    },
+    {
+      "source_ref_id": "src-610dfeb49d38af086d",
+      "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "source_quote_sha256": "32cb1b1f0753104a83ec3cf86e7c0aa4772b6aa72cf03c451687a4e87721e954",
+      "exact_file_substring": true,
+      "hash_matches": true,
+      "registered_unit_exists": true,
+      "current_pdf_text_and_visual_comparison": "pass",
+      "locator": "2026 KGA 520.A20; PDF 455; cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt L19320~19322; 등록 cpa_uploader/data/official/delegated-s04-kga-2025.txt L538~540"
+    }
+  ],
+  "official_comparisons": [
+    {
+      "key": "520.6",
+      "source_ref_id": "src-e67ae1831db41aa655",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-full.pdf",
+      "pdf_sha256": "59020bf1eba001c1fd0612f3af1098dbef4ca11dc22777b7266c80d39a615f84",
+      "pdf_page": 450,
+      "start_line": 19126,
+      "end_line": 19129,
+      "registered_file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "registered_file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "registered_start_line": 331,
+      "registered_end_line": 333,
+      "registered_quote_sha256": "b3e52d0aef6e501f113895d505147085ece2570353c1763049978a626ac6432e",
+      "render_file": "cpa_uploader/raw/materials/verification/case-trio-2026-09-14-a/kga2026-page-450.png",
+      "render_sha256": "5e6d1ad781689dbfea5727e7bcbdf8c4301afcd1462abfb0c5f674bef227dad6",
+      "visual_review_performed": true,
+      "review_method": "agent read of original rendered PDF body and footnotes, compared with registered exact quote and 2026 extracted lines",
+      "finding": "2025 기존 등록의 해당 완결 본문이 2026 공식 전문의 같은 요구·적용자료와 의미상 동일함을 직접 대조하였다. 원 등록 바이트와 판본 표시는 변경하지 않는다.",
+      "footnote_scope": "A18의 각주10은 315.37이며 PDF454 하단·추출19311을 확인하고 PDF229의 315.37 본문도 읽었다. 같은 페이지의 각주7~9는 A16, PDF450의 각주3은 520.5에 속하므로 새 요구로 편입하지 않는다. A19~A21에는 각주가 없다.",
+      "visual_independently_read": true,
+      "independent_review_result": "본 reviewer가 PDF450/454/455/229의 렌더를 실제 열어 본문·각주 위치를 확인했고, 기록된 2026 텍스트 범위를 다시 읽었다."
+    },
+    {
+      "key": "520.7",
+      "source_ref_id": "src-e7d17e54be2d240805",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-full.pdf",
+      "pdf_sha256": "59020bf1eba001c1fd0612f3af1098dbef4ca11dc22777b7266c80d39a615f84",
+      "pdf_page": 450,
+      "start_line": 19131,
+      "end_line": 19138,
+      "registered_file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "registered_file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "registered_start_line": 338,
+      "registered_end_line": 342,
+      "registered_quote_sha256": "60989dfbd41f0fd8310767f5da44595288dbad220fb2099ea0009bef5b607419",
+      "render_file": "cpa_uploader/raw/materials/verification/case-trio-2026-09-14-a/kga2026-page-450.png",
+      "render_sha256": "5e6d1ad781689dbfea5727e7bcbdf8c4301afcd1462abfb0c5f674bef227dad6",
+      "visual_review_performed": true,
+      "review_method": "agent read of original rendered PDF body and footnotes, compared with registered exact quote and 2026 extracted lines",
+      "finding": "2025 기존 등록의 해당 완결 본문이 2026 공식 전문의 같은 요구·적용자료와 의미상 동일함을 직접 대조하였다. 원 등록 바이트와 판본 표시는 변경하지 않는다.",
+      "footnote_scope": "A18의 각주10은 315.37이며 PDF454 하단·추출19311을 확인하고 PDF229의 315.37 본문도 읽었다. 같은 페이지의 각주7~9는 A16, PDF450의 각주3은 520.5에 속하므로 새 요구로 편입하지 않는다. A19~A21에는 각주가 없다.",
+      "visual_independently_read": true,
+      "independent_review_result": "본 reviewer가 PDF450/454/455/229의 렌더를 실제 열어 본문·각주 위치를 확인했고, 기록된 2026 텍스트 범위를 다시 읽었다."
+    },
+    {
+      "key": "520.A17",
+      "source_ref_id": "src-93c9a60b32ac6a97bd",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-full.pdf",
+      "pdf_sha256": "59020bf1eba001c1fd0612f3af1098dbef4ca11dc22777b7266c80d39a615f84",
+      "pdf_page": 454,
+      "start_line": 19301,
+      "end_line": 19303,
+      "registered_file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "registered_file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "registered_start_line": 515,
+      "registered_end_line": 517,
+      "registered_quote_sha256": "4b7cacdc337b540529e1c38e701aee24f1f841e3e173952f32296286b0f08284",
+      "render_file": "cpa_uploader/raw/materials/verification/case-trio-2026-09-14-a/kga2026-page-454.png",
+      "render_sha256": "fd22930b049c5a297fb3d61722bca771d38b17ea60b269d607b7a32c4f1d7b89",
+      "visual_review_performed": true,
+      "review_method": "agent read of original rendered PDF body and footnotes, compared with registered exact quote and 2026 extracted lines",
+      "finding": "2025 기존 등록의 해당 완결 본문이 2026 공식 전문의 같은 요구·적용자료와 의미상 동일함을 직접 대조하였다. 원 등록 바이트와 판본 표시는 변경하지 않는다.",
+      "footnote_scope": "A18의 각주10은 315.37이며 PDF454 하단·추출19311을 확인하고 PDF229의 315.37 본문도 읽었다. 같은 페이지의 각주7~9는 A16, PDF450의 각주3은 520.5에 속하므로 새 요구로 편입하지 않는다. A19~A21에는 각주가 없다.",
+      "visual_independently_read": true,
+      "independent_review_result": "본 reviewer가 PDF450/454/455/229의 렌더를 실제 열어 본문·각주 위치를 확인했고, 기록된 2026 텍스트 범위를 다시 읽었다."
+    },
+    {
+      "key": "520.A18",
+      "source_ref_id": "src-805f45ff18dbcd0b6f",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-full.pdf",
+      "pdf_sha256": "59020bf1eba001c1fd0612f3af1098dbef4ca11dc22777b7266c80d39a615f84",
+      "pdf_page": 454,
+      "start_line": 19304,
+      "end_line": 19306,
+      "registered_file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "registered_file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "registered_start_line": 521,
+      "registered_end_line": 523,
+      "registered_quote_sha256": "c0fca8982f44e7ab77b633f7dc9c35c9c681f6fc104b88dd127de9a05a6981f3",
+      "render_file": "cpa_uploader/raw/materials/verification/case-trio-2026-09-14-a/kga2026-page-454.png",
+      "render_sha256": "fd22930b049c5a297fb3d61722bca771d38b17ea60b269d607b7a32c4f1d7b89",
+      "visual_review_performed": true,
+      "review_method": "agent read of original rendered PDF body and footnotes, compared with registered exact quote and 2026 extracted lines",
+      "finding": "2025 기존 등록의 해당 완결 본문이 2026 공식 전문의 같은 요구·적용자료와 의미상 동일함을 직접 대조하였다. 원 등록 바이트와 판본 표시는 변경하지 않는다.",
+      "footnote_scope": "A18의 각주10은 315.37이며 PDF454 하단·추출19311을 확인하고 PDF229의 315.37 본문도 읽었다. 같은 페이지의 각주7~9는 A16, PDF450의 각주3은 520.5에 속하므로 새 요구로 편입하지 않는다. A19~A21에는 각주가 없다.",
+      "visual_independently_read": true,
+      "independent_review_result": "본 reviewer가 PDF450/454/455/229의 렌더를 실제 열어 본문·각주 위치를 확인했고, 기록된 2026 텍스트 범위를 다시 읽었다."
+    },
+    {
+      "key": "520.A19",
+      "source_ref_id": "src-5c224e2b3d26cb7abb",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-full.pdf",
+      "pdf_sha256": "59020bf1eba001c1fd0612f3af1098dbef4ca11dc22777b7266c80d39a615f84",
+      "pdf_page": 455,
+      "start_line": 19317,
+      "end_line": 19318,
+      "registered_file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "registered_file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "registered_start_line": 532,
+      "registered_end_line": 533,
+      "registered_quote_sha256": "947b4fcf5ce5409a49e0ece380674f1252eb8eda853d849d98e8ca4030ea739b",
+      "render_file": "cpa_uploader/raw/materials/verification/case-trio-2026-09-14-a/kga2026-page-455.png",
+      "render_sha256": "500d5899a9c54a3d44b6bbc2637efbe35b35ace3ff8c210c18493387cbd4849d",
+      "visual_review_performed": true,
+      "review_method": "agent read of original rendered PDF body and footnotes, compared with registered exact quote and 2026 extracted lines",
+      "finding": "2025 기존 등록의 해당 완결 본문이 2026 공식 전문의 같은 요구·적용자료와 의미상 동일함을 직접 대조하였다. 원 등록 바이트와 판본 표시는 변경하지 않는다.",
+      "footnote_scope": "A18의 각주10은 315.37이며 PDF454 하단·추출19311을 확인하고 PDF229의 315.37 본문도 읽었다. 같은 페이지의 각주7~9는 A16, PDF450의 각주3은 520.5에 속하므로 새 요구로 편입하지 않는다. A19~A21에는 각주가 없다.",
+      "visual_independently_read": true,
+      "independent_review_result": "본 reviewer가 PDF450/454/455/229의 렌더를 실제 열어 본문·각주 위치를 확인했고, 기록된 2026 텍스트 범위를 다시 읽었다."
+    },
+    {
+      "key": "520.A20",
+      "source_ref_id": "src-610dfeb49d38af086d",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-full.pdf",
+      "pdf_sha256": "59020bf1eba001c1fd0612f3af1098dbef4ca11dc22777b7266c80d39a615f84",
+      "pdf_page": 455,
+      "start_line": 19320,
+      "end_line": 19322,
+      "registered_file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "registered_file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "registered_start_line": 538,
+      "registered_end_line": 540,
+      "registered_quote_sha256": "32cb1b1f0753104a83ec3cf86e7c0aa4772b6aa72cf03c451687a4e87721e954",
+      "render_file": "cpa_uploader/raw/materials/verification/case-trio-2026-09-14-a/kga2026-page-455.png",
+      "render_sha256": "500d5899a9c54a3d44b6bbc2637efbe35b35ace3ff8c210c18493387cbd4849d",
+      "visual_review_performed": true,
+      "review_method": "agent read of original rendered PDF body and footnotes, compared with registered exact quote and 2026 extracted lines",
+      "finding": "2025 기존 등록의 해당 완결 본문이 2026 공식 전문의 같은 요구·적용자료와 의미상 동일함을 직접 대조하였다. 원 등록 바이트와 판본 표시는 변경하지 않는다.",
+      "footnote_scope": "A18의 각주10은 315.37이며 PDF454 하단·추출19311을 확인하고 PDF229의 315.37 본문도 읽었다. 같은 페이지의 각주7~9는 A16, PDF450의 각주3은 520.5에 속하므로 새 요구로 편입하지 않는다. A19~A21에는 각주가 없다.",
+      "visual_independently_read": true,
+      "independent_review_result": "본 reviewer가 PDF450/454/455/229의 렌더를 실제 열어 본문·각주 위치를 확인했고, 기록된 2026 텍스트 범위를 다시 읽었다."
+    },
+    {
+      "key": "520.A21",
+      "source_ref_id": "src-6c6cc0b55e6b722cad",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-full.pdf",
+      "pdf_sha256": "59020bf1eba001c1fd0612f3af1098dbef4ca11dc22777b7266c80d39a615f84",
+      "pdf_page": 455,
+      "start_line": 19323,
+      "end_line": 19325,
+      "registered_file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+      "registered_file_sha256": "821229b8de355f9a4a5cc288fe2b26d8e4c47e3f6e25960e608bceaf97ceabcb",
+      "registered_start_line": 544,
+      "registered_end_line": 546,
+      "registered_quote_sha256": "1b575d92616b5ddb718d3027597faddea2f01e38b8994cf04e85d0f0ba05b62c",
+      "render_file": "cpa_uploader/raw/materials/verification/case-trio-2026-09-14-a/kga2026-page-455.png",
+      "render_sha256": "500d5899a9c54a3d44b6bbc2637efbe35b35ace3ff8c210c18493387cbd4849d",
+      "visual_review_performed": true,
+      "review_method": "agent read of original rendered PDF body and footnotes, compared with registered exact quote and 2026 extracted lines",
+      "finding": "2025 기존 등록의 해당 완결 본문이 2026 공식 전문의 같은 요구·적용자료와 의미상 동일함을 직접 대조하였다. 원 등록 바이트와 판본 표시는 변경하지 않는다.",
+      "footnote_scope": "A18의 각주10은 315.37이며 PDF454 하단·추출19311을 확인하고 PDF229의 315.37 본문도 읽었다. 같은 페이지의 각주7~9는 A16, PDF450의 각주3은 520.5에 속하므로 새 요구로 편입하지 않는다. A19~A21에는 각주가 없다.",
+      "visual_independently_read": true,
+      "independent_review_result": "본 reviewer가 PDF450/454/455/229의 렌더를 실제 열어 본문·각주 위치를 확인했고, 기록된 2026 텍스트 범위를 다시 읽었다."
+    },
+    {
+      "key": "315.37",
+      "source_ref_id": "src-9dc3ef023abb077fff",
+      "official_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt",
+      "official_file_sha256": "f0914795b909ea38e6ab2d4db83a7cc0e3519730ae30c7925fca034bf5975568",
+      "pdf_file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-full.pdf",
+      "pdf_sha256": "59020bf1eba001c1fd0612f3af1098dbef4ca11dc22777b7266c80d39a615f84",
+      "pdf_page": 229,
+      "start_line": 9598,
+      "end_line": 9601,
+      "registered_file": "cpa_uploader/data/official/kga315-330-2025-review06.txt",
+      "registered_file_sha256": "486c1df843af6d74e0acdaec995501e6f40f24ae9dd8dc23415007d90d5affe1",
+      "registered_start_line": 344,
+      "registered_end_line": 346,
+      "registered_quote_sha256": "df858e93a22f667500786d782227a9f3b09d1b30ff43112cbbb73953364d5489",
+      "render_file": "cpa_uploader/raw/materials/verification/case-trio-2026-09-14-a/kga2026-page-229.png",
+      "render_sha256": "658f7686c17e75377c6c575ed6e34297561b644b7b3fc63dbfdd324db9f6c8fa",
+      "visual_review_performed": true,
+      "review_method": "agent read of original rendered PDF body and footnotes, compared with registered exact quote and 2026 extracted lines",
+      "finding": "2025 기존 등록의 해당 완결 본문이 2026 공식 전문의 같은 요구·적용자료와 의미상 동일함을 직접 대조하였다. 원 등록 바이트와 판본 표시는 변경하지 않는다.",
+      "footnote_scope": "A18의 각주10은 315.37이며 PDF454 하단·추출19311을 확인하고 PDF229의 315.37 본문도 읽었다. 같은 페이지의 각주7~9는 A16, PDF450의 각주3은 520.5에 속하므로 새 요구로 편입하지 않는다. A19~A21에는 각주가 없다.",
+      "visual_independently_read": true,
+      "independent_review_result": "본 reviewer가 PDF450/454/455/229의 렌더를 실제 열어 본문·각주 위치를 확인했고, 기록된 2026 텍스트 범위를 다시 읽었다."
+    }
+  ],
+  "learning_source_checks": [
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+      "start_line": 14751,
+      "end_line": 14754,
+      "page": 374,
+      "original": "cpa_exam:2018:2:5",
+      "role": "context",
+      "file_sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+      "quote": "문제 2 18점-------------------------------------------------------•\n회계감사의 모든 과정은 증거입수와 입수한 증거의 평가절차로 이루어진다. 따라서 감사인은 감사의견의\n근거가 되는 합리적인 결론을 도출할 수 있도록 충분하고 적합한 감사증거를 입수하여야 한다. 다음의 감사\n증거 및 감사문서(감사조서)에 대한 물음에 답하시오.",
+      "quote_sha256": "692d28dd1361a6e63dce90b96ac1b76eee13e0fd2a136362a5e66d1e2abe79a1",
+      "review_result": "발문·공통지문·해설의 실제 요구를 직접 읽고 사례와 비교했다."
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+      "start_line": 14798,
+      "end_line": 14800,
+      "page": 375,
+      "original": "cpa_exam:2018:2:5",
+      "role": "prompt",
+      "file_sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+      "quote": "물음 5 분석적절차는 재무자료 및 비재무자료 간의 개연적인 관계를 분석하여 재무정보를 평가하는 절차\n이다. 회계감사기준상 분석적절차를 반드시 수행해야 하는 감사단계(두 가지>를 제시하고. 각 단\n계에서 분석적절차를 수행하는 이유(목적)를 서술하시오.",
+      "quote_sha256": "9f3eb0fd6c1203bdbe4dde78c47860eb1c93aececf884857eb9e78a2a8cbd79b",
+      "review_result": "발문·공통지문·해설의 실제 요구를 직접 읽고 사례와 비교했다."
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+      "start_line": 14981,
+      "end_line": 14991,
+      "page": 380,
+      "original": "cpa_exam:2018:2:5",
+      "role": "answer",
+      "file_sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+      "quote": "물음 5\n©답안\n감사단계 이유(목적)\n위험평가절차\n감사인이 알지 못한 기업의 측면들을 식별하게 할 수 있고, 위험평가에 대한 대응을 설계\n하고 실행하는 근거를 제공하기 위해 중요왜곡표시위험을 평가하는 데 도움을 주기 위하\n여 위험평가절차로서 분석적절차를 수행하여야 한다.\n전반적인\n결론형성단계\n감사의 종료시점에 근접하여 기업에 대하여 이해한 바와 재무제표가 일치하는지에 대해\n전반적인 결론을 내리기 위하여 분석적절차를 설계하고 수행하여야 한다.",
+      "quote_sha256": "af9f2c3ba75539f776ca51ef55d8967805285348a8a6356f34319b71765275eb",
+      "review_result": "발문·공통지문·해설의 실제 요구를 직접 읽고 사례와 비교했다."
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+      "start_line": 14995,
+      "end_line": 15036,
+      "page": 380,
+      "original": "cpa_exam:2018:2:5",
+      "role": "adjacent_explanation_not_direct_question",
+      "file_sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+      "quote": "<분석적절차의 사용단계>\n구분 위험평가절차시점\n(감사계획)\n실증절차시점\n(실증적 절차로서)\n감사종료시점\n(전반적 결론형성)\n필수여부 필수 선택(세부테스트만 가능) 필수\n분석수준 상위수준(재무제표 수준) 하위수준(각 계정과목) 상위수준(재무제표 수준)\n수행인원\n주요업무팀원\n(책임회계사, ICA)\n각 계정과목 담당자\n업무수행이사 (Partner)\n또는 책임회계사(ICA)\n목적\n① 감사인이 알지 못한 기업의\n측면들을 식별하게 할수 있\n고,\n② 위험평가에 대한 대응을 설\n계하고 실행하는 근거를 제\n공하기 위해 중요왜곡표시\n위험을 평가하는 데 도움을\n줄 수 있음\n관련성이 있고 신뢰할 수 있는\n감사증거를 입수함\n- 감사목적 달성\n감사의 종료시점에 근접하여\n기업에 대하여 이해한 바와 재\n무제표가 일관성이 있는지에\n대하여 전반적인 결론을 내리\n기위해\n- 감사의견의 근거가 되는 합\n리적인 결론을 도출\n후속조치\n(유의적\n차이 발생)\n감사인이 다른 관련정보와 일관성이 없거나 기대치와 유의적인 금액만큼 차이가 있는 변동이나 관\n계를 식별한 경우\n1) 경영진에게 질문하고 경영진의 답변과 관련성이 있는 적합한 감사증거를 입수함\n2) 필요한 기타의 감사절차를 수행함(분석적절차는 정황적 증거이므로, 문서 등 확인적 감사증거\n가 필요함)",
+      "quote_sha256": "f87180cf16f59e76708fe90ba178e3727e35a47c92dd9874090820413e8099c1",
+      "review_result": "발문·공통지문·해설의 실제 요구를 직접 읽고 사례와 비교했다."
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+      "start_line": 2039,
+      "end_line": 2042,
+      "page": 64,
+      "original": "mock:2024:GS2-2:2",
+      "role": "context",
+      "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+      "quote": "문제 6 위험평가절차, 감사증거 등 감사전반 - 24년 제2회 GS 모의고사 문제 2\n난이도 : 다유\n다음은 재무제표에 대한 감사 전반에 사용되는 감사증거, 위험평가절차, 감사업무의 수용과 유지 등에 관\n한물음이다.",
+      "quote_sha256": "34fded73d032c6527ccf13736edc9eeeb4e564f24ce3777fc1b668bcd2531994",
+      "review_result": "발문·공통지문·해설의 실제 요구를 직접 읽고 사례와 비교했다."
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+      "start_line": 2063,
+      "end_line": 2066,
+      "page": 64,
+      "original": "mock:2024:GS2-2:2",
+      "role": "prompt",
+      "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+      "quote": "물음 2 회계감사기준에서 사용하는 분석적 절차란 재무데이터와 비재무데이터간의 개연적인 관계를 분석\n하여 재무정보를 평가하는 것을 의미한다. 수행된 분석적절차의 결과, 감사인이 다른 관련정보와\n일관성이 없거나 기대치와유의적인 금액만큼 차이가 있는 변동이나 관계를 식별한 경우, 그 차이\n에 대해 수행해야 할 절차를 서술하시오.",
+      "quote_sha256": "cf7c74e4d7757001808b68742d4fae917aa3969f0050b93e4629296e4eee5327",
+      "review_result": "발문·공통지문·해설의 실제 요구를 직접 읽고 사례와 비교했다."
+    },
+    {
+      "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+      "start_line": 2106,
+      "end_line": 2114,
+      "page": 66,
+      "original": "mock:2024:GS2-2:2",
+      "role": "answer_and_explanation",
+      "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+      "quote": "( 물음 2)\n(기준서 520 - 7)\n1) 경영진에게 잘문하고 경영진의 답변과 과련성이 잇는 적합한 감사증거름 입수함\n2) 그러한 상화에 핔요하 기타의 감사절차름 수행함 (상황에 적합한 감사절차를 수행 - 정답 인정)\n(배점 1점, 각 0.5점)\nEa 보추설명\nI 감사기준에서 사용하는 “분석적절차”란 재무데이터와 비재무데이터간의 개연적인 관계를 분석하여 재무정보\n를 평가하는 것을 의미한다. 또한 분석적절차에는 다른 관련정보와 일관성이 없거나 기대치와 유의적인 금액\n만큼 차이가 있는 변동이나 관계를 조사하는 것도 포함된다.",
+      "quote_sha256": "61b900baba75176c2d8140adeb226d7e6f31c4b07b0c02f3d29c2829a67c1700",
+      "review_result": "발문·공통지문·해설의 실제 요구를 직접 읽고 사례와 비교했다."
+    }
+  ],
+  "source_interpretation": {
+    "exam": "교재 수록 2018 문제2 물음5는 위험평가·종결 두 단계와 목적을 모두 요구한다. 신규 sub1은 종결 범위만 적용하므로 partial 관계가 적절하다.",
+    "advanced": "고급연습 문제6은 2024 제2회 GS 모의고사 문제2이며 물음2는 520.7의 조사절차 일반 목록이다. 기존 증거의 활용이라는 A20 경계는 직접 원발문의 동일 요구로 세지 않고 adjacent로 구별한다.",
+    "footnotes": "520.A18의 각주10은 315.37이다. PDF454 하단에서 직접 확인했다. 각주7~9는 A16, PDF450 각주3은 520.5에 속하며 새로운 요구로 편입하지 않는다.",
+    "limit": "별도 원 시험 PDF를 새로 확인한 것이 아니다. 교재 수록 실제 지문·발문·해설을 대조하고 공식2026 PDF로 채점 명제를 검증했다."
+  },
+  "comparison_checks": {
+    "bank_file": "cpa_uploader/drafts/case-trio-2026-09-14/bank-before.json",
+    "bank_sha256": "2c1ddef36cbcb0b7bfdf6ac9811f0e12927b470bf97be2bcff2ad667d7017d70",
+    "current_sets": [
+      {
+        "set_id": "std-points-20260914-82e96243c6aa",
+        "content_sha256": "5b93ba3a81746f685cadeb8596fadbd50658500acdaf7f9f7759a8bdecc8dc1f",
+        "reviewed": "부모 사실·발문·모범답안·criteria를 직접 읽음",
+        "verdict": "신규의 종결 적용·원인 위험 추론·이미 입수한 증거 활용과 구별"
+      },
+      {
+        "set_id": "pilot-10-007",
+        "content_sha256": "755fe1438ee9ca751a95ddab1b1515902c97852fdc6ebf55435c738b78bd54eb",
+        "reviewed": "부모 사실·발문·모범답안·criteria를 직접 읽음",
+        "verdict": "신규의 종결 적용·원인 위험 추론·이미 입수한 증거 활용과 구별"
+      },
+      {
+        "set_id": "case-16-other-information-cause-20260914",
+        "content_sha256": "6767b49ea2de296eabc33a7f61d2ede03157ea1adc522d60cdfcd181544006cc",
+        "reviewed": "부모 사실·발문·모범답안·criteria를 직접 읽음",
+        "verdict": "신규의 종결 적용·원인 위험 추론·이미 입수한 증거 활용과 구별"
+      }
+    ],
+    "near_drafts": [
+      {
+        "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/learning-style-v2/t10-c/question.json",
+        "sha256": "f7ac120e1a1a442be00efa7a14684edd3867385a4a12cec3d5dac5e90165419e",
+        "set_id": "pilot-10-007",
+        "finding": "옛10-007의 단계목록 및 실증분석 설계·일반적 차이 조사이다. 새 사례의 판매구조 변화에 연결한 종결목적·자료관계에서 매출위험 추론·기존증거 활용의 반대경계는 직접 요구하지 않는다.",
+        "independently_read": true,
+        "verdict": "옛 발문·답안의 일반 단계·실증설계·추가 조사와 신규의 구체 조건을 직접 비교하여 차이 확인"
+      },
+      {
+        "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/point-policy-v1/t10-c/pilot-10-007.json",
+        "sha256": "4ca60eb83c1bdf370459207174b6010a0dccabc4ecb6142b705c747e43ea873c",
+        "set_id": "pilot-10-007",
+        "finding": "옛10-007의 단계목록 및 실증분석 설계·일반적 차이 조사이다. 새 사례의 판매구조 변화에 연결한 종결목적·자료관계에서 매출위험 추론·기존증거 활용의 반대경계는 직접 요구하지 않는다.",
+        "independently_read": true,
+        "verdict": "옛 발문·답안의 일반 단계·실증설계·추가 조사와 신규의 구체 조건을 직접 비교하여 차이 확인"
+      },
+      {
+        "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/pilot-10-007.json",
+        "sha256": "cc0133b173d322f4f949de9cd82fa63f7aa3c09a22a58365c10efdf907843e32",
+        "set_id": "pilot-10-007",
+        "finding": "옛10-007의 단계목록 및 실증분석 설계·일반적 차이 조사이다. 새 사례의 판매구조 변화에 연결한 종결목적·자료관계에서 매출위험 추론·기존증거 활용의 반대경계는 직접 요구하지 않는다.",
+        "independently_read": true,
+        "verdict": "옛 발문·답안의 일반 단계·실증설계·추가 조사와 신규의 구체 조건을 직접 비교하여 차이 확인"
+      },
+      {
+        "file": "cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase1/input-before-final-cross-review-1789089885146/pilot-10-007.json",
+        "sha256": "cb1a82ec3eb8bb65df320a84de6cd498f82085ee872b3decca6e0ab7bed3bb57",
+        "set_id": "pilot-10-007",
+        "finding": "옛10-007의 단계목록 및 실증분석 설계·일반적 차이 조사이다. 새 사례의 판매구조 변화에 연결한 종결목적·자료관계에서 매출위험 추론·기존증거 활용의 반대경계는 직접 요구하지 않는다.",
+        "independently_read": true,
+        "verdict": "옛 발문·답안의 일반 단계·실증설계·추가 조사와 신규의 구체 조건을 직접 비교하여 차이 확인"
+      }
+    ],
+    "scope_limit": "모든 과거 초안의 전체 의미 재검수를 주장하지 않는다. 전체 목록에서 근접 요구를 골라 원문을 직접 비교했다."
+  },
+  "resolved_findings": [],
+  "unresolved_findings": [],
+  "limitations": [
+    "API 실측, DB 또는 정본·공개본 승급 검증은 이 독립 내용 검토 범위 밖이다.",
+    "실제 모델의 criterion 판정·허용 편차는 별도 root 실행 결과로 확인한다."
+  ]
+}

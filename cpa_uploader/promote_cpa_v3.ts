@@ -7,6 +7,7 @@ import {
 import type { QuestionSetV3 } from '../lib/questionV3.ts';
 import { readSemanticReviewDocument, validateSemanticReviewReceipt } from './questionSemanticReview.ts';
 import { assertEfficientEvidenceUnchanged, createEfficientReviewReceipt, createEfficientValidationContext } from './questionEfficientReview.ts';
+import { createSubsetReviewReceipt } from './questionSubsetReview.ts';
 
 // New transitions are evidence-backed and tied to the reviewed content.
 // Public/encrypted artifacts are produced only after publication; neither is a prerequisite.
@@ -15,7 +16,7 @@ function parseArgs(argv: string[]): Record<string, string> {
     for (let index = 0; index < argv.length; index += 1) {
         const arg = argv[index];
         if (arg === '--status' || arg === '--backfill-verified' || arg === '--reverify') args[arg] = '1';
-        else if (arg === '--to' || arg === '--sets' || arg === '--evidence' || arg === '--review' || arg === '--efficient-review') {
+        else if (arg === '--to' || arg === '--sets' || arg === '--evidence' || arg === '--review' || arg === '--efficient-review' || arg === '--subset-review') {
             const value = argv[++index];
             if (!value || value.startsWith('--')) throw new Error(`${arg} 값이 필요합니다.`);
             args[arg] = value;
@@ -26,7 +27,8 @@ function parseArgs(argv: string[]): Record<string, string> {
 
 try {
     const args = parseArgs(process.argv.slice(2));
-    if (args['--review'] && args['--efficient-review']) throw new Error('검수 경로는 --review 또는 --efficient-review 중 하나만 선택하십시오.');
+    if (['--review', '--efficient-review', '--subset-review'].filter(option => args[option]).length > 1) throw new Error('검수 경로는 --review, --efficient-review, --subset-review 중 하나만 선택하십시오.');
+    if (args['--subset-review'] && (args['--to'] !== 'verified' || !args['--reverify'])) throw new Error('--subset-review는 --reverify --to verified에서만 사용하는 명시적 삭제 파생 경로입니다.');
     if (args['--efficient-review'] && args['--to'] !== 'verified') throw new Error('--efficient-review는 --to verified에서만 사용합니다.');
     if (args['--reverify'] && (args['--to'] !== 'verified' || args['--status'] || args['--backfill-verified'])) {
         throw new Error('--reverify는 --to verified와 함께 사용하는 명시적 재검수입니다.');
@@ -85,6 +87,9 @@ try {
         const efficientSnapshot = efficientPath ? snapshotFile(efficientPath) : null;
         if (efficientSnapshot) guards.push(efficientSnapshot);
         const efficientContext = createEfficientValidationContext();
+        const subsetPath = args['--subset-review'] ? path.resolve(args['--subset-review']) : null;
+        const subsetSnapshot = subsetPath ? snapshotFile(subsetPath) : null;
+        if (subsetSnapshot) guards.push(subsetSnapshot);
         let promoted = 0;
         for (const id of ids) {
             const set = byId.get(id)!;
@@ -96,18 +101,23 @@ try {
             const efficientReceipt = target === 'verified' && efficientPath && efficientSnapshot?.hash
                 ? createEfficientReviewReceipt({ file: path.relative(process.cwd(), efficientPath).replace(/\\/g, '/'), sha256: efficientSnapshot.hash }, set, efficientContext)
                 : undefined;
+            const subsetReceipt = target === 'verified' && subsetPath && subsetSnapshot?.hash
+                ? createSubsetReviewReceipt({ file: path.relative(process.cwd(), subsetPath).replace(/\\/g, '/'), sha256: subsetSnapshot.hash }, set, efficientContext)
+                : undefined;
             if (target === 'verified') {
-                if (!receipt && !efficientReceipt) throw new Error(`[${id}] 신규 검수·재검수에는 --review <review.json> 의미검수 receipt 또는 --efficient-review <batch.json> 에이전트 검토·실제 대표 채점 증거가 필요합니다.`);
+                if (!receipt && !efficientReceipt && !subsetReceipt) throw new Error(`[${id}] 신규 검수·재검수에는 --review <review.json>, --efficient-review <batch.json> 또는 명시적 --subset-review <manifest.json> 근거가 필요합니다.`);
                 const errors = receipt ? validateSemanticReviewReceipt(receipt, set, { bank: sets }) : [];
                 if (errors.length) throw new Error(`[${id}] 의미검수 receipt 검증 실패:\n${errors.join('\n')}`);
             }
             const previousEntry = ledger.entries.filter((entry) => entry.set_id === id && entry.to_status === 'verified').at(-1);
-            const previousReview = previousEntry?.semantic_review ?? previousEntry?.efficient_review;
+            const previousReview = previousEntry?.semantic_review ?? previousEntry?.efficient_review ?? previousEntry?.subset_review;
             ledger.entries.push({ set_id: id, from_status: set.status, to_status: target, date: today, evidence, content_hash: reviewedContentHash(set),
                 ...(receipt ? { semantic_review: receipt, review_receipt_hash: receipt.receipt_hash,
                     review_summary: { units: receipt.units.length, cases: receipt.cases.length, method: receipt.execution.method, verdict: 'pass' as const } }
                     : efficientReceipt ? { efficient_review: efficientReceipt, review_receipt_hash: efficientReceipt.receipt_hash,
                         review_summary: { units: efficientReceipt.reviewed_units, cases: efficientReceipt.observed_answers, method: efficientReceipt.method, verdict: 'pass' as const } }
+                        : subsetReceipt ? { subset_review: subsetReceipt, review_receipt_hash: subsetReceipt.receipt_hash,
+                            review_summary: { units: subsetReceipt.contracts.length, cases: 0, method: subsetReceipt.method, verdict: 'pass' as const } }
                         : previousReview ? { review_receipt_hash: previousReview.receipt_hash } : {}) });
             set.status = target;
             if (target === 'verified') set.verification.review_status = 'verified';

@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-ac4f0f2444b0--sub2--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-ac4f0f2444b0--sub2--standard",
+  "source_set_id": "std-points-20260914-ac4f0f2444b0",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "3e7dd5d0c1ee9715db862e945dfe793b3686fee3a31f41f21f27800f415b7383",
+  "answers": {
+    "sub2": "통제의 문서가 있으면 설계와 실행은 자동으로 입증되므로 어떤 검토도 하지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit10",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 식별한 통제와 IT 일반통제가 중요왜곡표시위험에 대처하거나 다른 통제의 운영을 지원하기에 효과적으로 설계되었는지 평가한다."
+        },
+        {
+          "criterion_id": "crit11",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 기업 인원에 대한 질문에 추가된 절차로 식별한 통제의 실행 여부를 결정한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "d58ebb15779f60878932e9aa19b478169f3d21f606cb9ddd9e64ff00cd063c17",
+  "schema_hash": "12e42cae8b74ae67f2e6d1c63f024ef61361ead51d4a14d6c7ba66be093c02c9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit10",
+            "verdict": "contradicted",
+            "quote": "통제의 문서가 있으면 설계와 실행은 자동으로 입증되므로 어떤 검토도 하지 않는다.",
+            "reason": "문서만으로 설계가 자동 입증되므로 어떤 검토도 하지 않는다고 명시하여 설계 평가를 부정함."
+          },
+          {
+            "criterion_id": "crit11",
+            "verdict": "contradicted",
+            "quote": "통제의 문서가 있으면 설계와 실행은 자동으로 입증되므로 어떤 검토도 하지 않는다.",
+            "reason": "실행 여부 검토를 하지 않는다고 명시하여 질문 및 추가 절차에 의한 실행 여부 확인을 부정함."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit10",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "문서만으로 설계가 자동 입증되므로 어떤 검토도 하지 않는다고 명시하여 설계 평가를 부정함."
+              },
+              {
+                "criterion_id": "crit11",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "실행 여부 검토를 하지 않는다고 명시하여 질문 및 추가 절차에 의한 실행 여부 확인을 부정함."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-ac4f0f2444b0",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 315 문단 26(a)에서 식별한 통제와 26(c)(ii)에서 식별한 IT 일반통제에 대하여, 문단 26(d)에 따른 설계 및 실행 여부 검토를 설명하시오. 실행 여부를 확인하는 방법도 포함하시오.",
+        "user_answer": "통제의 문서가 있으면 설계와 실행은 자동으로 입증되므로 어떤 검토도 하지 않는다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit10",
+            "verdict": "contradicted",
+            "quote": "통제의 문서가 있으면 설계와 실행은 자동으로 입증되므로 어떤 검토도 하지 않는다.",
+            "reason": "문서만으로 설계가 자동 입증되므로 어떤 검토도 하지 않는다고 명시하여 설계 평가를 부정함.",
+            "claim": "식별한 통제와 IT 일반통제가 중요왜곡표시위험에 대처하거나 다른 통제의 운영을 지원하기에 효과적으로 설계되었는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit11",
+            "verdict": "contradicted",
+            "quote": "통제의 문서가 있으면 설계와 실행은 자동으로 입증되므로 어떤 검토도 하지 않는다.",
+            "reason": "실행 여부 검토를 하지 않는다고 명시하여 질문 및 추가 절차에 의한 실행 여부 확인을 부정함.",
+            "claim": "기업 인원에 대한 질문에 추가된 절차로 식별한 통제의 실행 여부를 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "통제가 중요왜곡표시위험에 효과적으로 대처하거나 다른 통제의 운영을 지원하도록 설계되었는지 평가한다. 기업 인원에 대한 질문에 추가된 절차를 수행하여 통제가 실행되었는지 결정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_04265f16f995ef77016aa785f2410487d090ccd40e1dee2692",
+        "request_id": "req_1cf6a301f1cd4e8fb14a1e55e82d0d0e",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2411,
+          "input_tokens_details": {
+            "cache_write_tokens": 2408,
+            "cached_tokens": 0
+          },
+          "output_tokens": 278,
+          "output_tokens_details": {
+            "reasoning_tokens": 114
+          },
+          "total_tokens": 2689
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009362000000000001,
+        "min_usd": 0.0009362000000000001,
+        "max_usd": 0.0009362000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-ac4f0f2444b0--sub2--wrong/input.json",
+      "sha256": "93f9ffaab04f12d0d05e0ff7da15eba48b466adce055f751b663547df3af53e3"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-ac4f0f2444b0--sub2--wrong/transport.jsonl",
+      "sha256": "e3572cb8ad3721248cfefb13383c5a7ebd211d3e102d6426b00dc59f57c45c78"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-ac4f0f2444b0--sub2--wrong/traces.jsonl",
+      "sha256": "488a5afd190ace5a8cce16f836531560530ba5fddf58d46bc1bfaadd30730012"
+    }
+  }
+}

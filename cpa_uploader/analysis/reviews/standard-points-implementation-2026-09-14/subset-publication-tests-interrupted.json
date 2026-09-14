@@ -1,0 +1,48 @@
+{
+  "recorded_at": "2026-09-14T05:39:12.2392363Z",
+  "reason": "Parent explicitly authorized stopping only these duplicate publication tests; the root full suite covers this file. External concurrent bank publication also invalidated the live-bank byte guard. No test failure was hidden as a pass.",
+  "execution_status": "terminated_incomplete",
+  "owner": "/root/review_01_05",
+  "requested_root_process_ids": [
+    15860,
+    43388
+  ],
+  "processes": [
+    {
+      "ProcessId": 15860,
+      "ParentProcessId": 6992,
+      "CreationDate": "2026-09-14T14:27:45.581548+09:00",
+      "CommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/questionV3Publication.test.ts"
+    },
+    {
+      "ProcessId": 6672,
+      "ParentProcessId": 15860,
+      "CreationDate": "2026-09-14T14:27:45.668537+09:00",
+      "CommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" --use-largepages=off --trace-event-file-pattern=node_trace.${rotation}.log --v8-pool-size=4 --node-snapshot --cpu-prof-interval=1000 --report-signal=SIGUSR2 --tls-cipher-list=TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!SRP:!CAMELLIA --secure-heap=0 --secure-heap-min=2 --stack-trace-limit=10 --test-isolation=process --network-family-autoselection-attempt-timeout=250 --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --heapsnapshot-near-heap-limit=0 --heap-prof-interval=524288 --max-http-header-size=16384 --test-concurrency=0 --test-timeout=0 --test-coverage-branches=0 --test-coverage-functions=0 --test-coverage-lines=0 --watch-kill-signal=SIGTERM --inspect-port=127.0.0.1:9229 --inspect-publish-uid=stderr,http tests\\questionV3Publication.test.ts"
+    },
+    {
+      "ProcessId": 28888,
+      "ParentProcessId": 6672,
+      "CreationDate": "2026-09-14T14:38:08.293399+09:00",
+      "CommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" --disable-warning=MODULE_TYPELESS_PACKAGE_JSON cpa_uploader/promote_cpa_v3.ts --to published --sets draft-publication-regression --evidence \"격리 최초 게시\""
+    },
+    {
+      "ProcessId": 43388,
+      "ParentProcessId": 42452,
+      "CreationDate": "2026-09-14T14:30:34.86645+09:00",
+      "CommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test \"--test-name-pattern=a split fourth|actual CLI publishes an added draft\" tests/questionV3Publication.test.ts"
+    },
+    {
+      "ProcessId": 18880,
+      "ParentProcessId": 43388,
+      "CreationDate": "2026-09-14T14:30:34.98682+09:00",
+      "CommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" --use-largepages=off --trace-event-file-pattern=node_trace.${rotation}.log --v8-pool-size=4 --node-snapshot --cpu-prof-interval=1000 --report-signal=SIGUSR2 --tls-cipher-list=TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!SRP:!CAMELLIA --secure-heap=0 --secure-heap-min=2 --stack-trace-limit=10 --test-isolation=process --network-family-autoselection-attempt-timeout=250 --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --heapsnapshot-near-heap-limit=0 --heap-prof-interval=524288 --max-http-header-size=16384 --test-concurrency=0 --test-timeout=0 --test-coverage-branches=0 --test-coverage-functions=0 --test-coverage-lines=0 \"--test-name-pattern=a split fourth|actual CLI publishes an added draft\" --watch-kill-signal=SIGTERM --inspect-port=127.0.0.1:9229 --inspect-publish-uid=stderr,http tests\\questionV3Publication.test.ts"
+    },
+    {
+      "ProcessId": 18448,
+      "ParentProcessId": 18880,
+      "CreationDate": "2026-09-14T14:38:49.357265+09:00",
+      "CommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" --disable-warning=MODULE_TYPELESS_PACKAGE_JSON cpa_uploader/validate_cpa_v3.ts"
+    }
+  ]
+}

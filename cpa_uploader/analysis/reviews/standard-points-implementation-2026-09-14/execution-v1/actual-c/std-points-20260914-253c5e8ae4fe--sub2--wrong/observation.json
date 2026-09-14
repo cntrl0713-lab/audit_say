@@ -1,0 +1,226 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-253c5e8ae4fe--sub2--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-253c5e8ae4fe--sub2--standard",
+  "source_set_id": "std-points-20260914-253c5e8ae4fe",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "9e95ceaf14e4922c9686c83b11b4202534557dc5f0ca5795277e8fc2f1bb7151",
+  "answers": {
+    "sub2": "경영진이 수정이나 통보를 거부하면 감사인은 침묵하고 기존 보고서에 계속 의존하게 둔다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 경영진에게 감사보고서에 대한 차후 의존을 방지할 조치를 취할 것이라고 통보한다."
+        },
+        {
+          "criterion_id": "crit1.sp2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 지배기구 구성원 전원이 기업 경영에 참여하는 경우가 아니라면 지배기구에도 감사보고서에 대한 차후 의존을 방지할 조치를 취할 것이라고 통보한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 그 통보에도 불구하고 경영진 또는 지배기구가 필요한 조치를 취하지 않으면 감사보고서에 대한 의존을 방지하기 위한 적합한 조치를 취한다. 공개 공고·고발 등 특정 법적 수단을 일률적인 필수조치로 강제하지 않는다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ce69cdceb25896e39f3d7fecf0ac898e8f329591f3b442fc49243f24788fbda4",
+  "schema_hash": "b5d27d3e15da213ff6e99f9c86a29c541119ab6ddaf3ed5eaaeae075f7470f90",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "경영진이 수정이나 통보를 거부하면 감사인은 침묵하고 기존 보고서에 계속 의존하게 둔다.",
+            "reason": "감사인이 침묵한다고 하여 경영진에 필요한 조치를 통보한다는 명제와 반대된다."
+          },
+          {
+            "criterion_id": "crit1.sp2",
+            "verdict": "not_met",
+            "reason": "지배기구에 통보한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "경영진이 수정이나 통보를 거부하면 감사인은 침묵하고 기존 보고서에 계속 의존하게 둔다.",
+            "reason": "기존 보고서에 계속 의존하게 둔다고 하여 의존을 방지하기 위한 적합한 조치를 취한다는 명제와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "감사인이 침묵한다고 하여 경영진에 필요한 조치를 통보한다는 명제와 반대된다."
+              },
+              {
+                "criterion_id": "crit1.sp2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "지배기구에 통보한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "기존 보고서에 계속 의존하게 둔다고 하여 의존을 방지하기 위한 적합한 조치를 취한다는 명제와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-253c5e8ae4fe",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "재무제표 발행 후 알게 된 사실 때문에 감사인은 재무제표의 수정이 필요하다고 판단하였다. 그런데 경영진이 재무제표를 수정하지 않고, 종전 재무제표 수령자에게 상황을 확실히 알리기 위한 필요한 조치도 취하지 않는 경우, 감사보고서에 대한 차후 의존을 방지하기 위해 감사인이 취할 조치를 순서에 따라 설명하시오. 최초 통보의 상대방과 그 통보 후에도 필요한 조치가 없는 경우를 포함하시오.",
+        "user_answer": "경영진이 수정이나 통보를 거부하면 감사인은 침묵하고 기존 보고서에 계속 의존하게 둔다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "경영진이 수정이나 통보를 거부하면 감사인은 침묵하고 기존 보고서에 계속 의존하게 둔다.",
+            "reason": "감사인이 침묵한다고 하여 경영진에 필요한 조치를 통보한다는 명제와 반대된다.",
+            "claim": "경영진에게 감사보고서에 대한 차후 의존을 방지할 조치를 취할 것이라고 통보한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit1.sp2",
+            "verdict": "not_met",
+            "reason": "지배기구에 통보한다는 내용이 없다.",
+            "claim": "지배기구 구성원 전원이 기업 경영에 참여하는 경우가 아니라면 지배기구에도 감사보고서에 대한 차후 의존을 방지할 조치를 취할 것이라고 통보한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "경영진이 수정이나 통보를 거부하면 감사인은 침묵하고 기존 보고서에 계속 의존하게 둔다.",
+            "reason": "기존 보고서에 계속 의존하게 둔다고 하여 의존을 방지하기 위한 적합한 조치를 취한다는 명제와 반대된다.",
+            "claim": "그 통보에도 불구하고 경영진 또는 지배기구가 필요한 조치를 취하지 않으면 감사보고서에 대한 의존을 방지하기 위한 적합한 조치를 취한다. 공개 공고·고발 등 특정 법적 수단을 일률적인 필수조치로 강제하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진에게 감사보고서에 대한 차후 의존을 방지할 조치를 취하겠다고 통보한다. 지배기구 구성원 전원이 기업 경영에 참여하는 경우가 아니라면 지배기구에도 같은 내용을 통보한다. 그 통보에도 불구하고 경영진 또는 지배기구가 필요한 조치를 취하지 않으면 감사보고서에 대한 의존을 방지하기 위한 적합한 조치를 취한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a1c37cb9be1044d016aa7876b0be087d081acd2d240454008",
+        "request_id": "req_068e307619ce495c849ec4090553e325",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2775,
+          "input_tokens_details": {
+            "cache_write_tokens": 2772,
+            "cached_tokens": 0
+          },
+          "output_tokens": 351,
+          "output_tokens_details": {
+            "reasoning_tokens": 147
+          },
+          "total_tokens": 3126
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0011148,
+        "min_usd": 0.0011148,
+        "max_usd": 0.0011148,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-253c5e8ae4fe--sub2--wrong/input.json",
+      "sha256": "c74731a0f35cd240e498c3299c8cb0c66637e6e720944951b20f04bdc7f7e1f7"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-253c5e8ae4fe--sub2--wrong/transport.jsonl",
+      "sha256": "eaf3d1be4cc783f58b3e8e166ea8d7705c7d76d2ecb600ba2795a9bb14d73caf"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-253c5e8ae4fe--sub2--wrong/traces.jsonl",
+      "sha256": "0d0bcfd7d7790259e85446c523869c035c0bd5d1d2a0073877d98e02fc2d96be"
+    }
+  }
+}

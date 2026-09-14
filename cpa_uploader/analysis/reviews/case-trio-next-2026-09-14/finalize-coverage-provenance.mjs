@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+const R='cpa_uploader/analysis/reviews/case-trio-next-2026-09-14';
+const ref=file=>({file,sha256:createHash('sha256').update(fs.readFileSync(file)).digest('hex')});
+const file=R+'/coverage-proposals.json',before=R+'/coverage-proposals-before-provenance.json';
+const p=JSON.parse(fs.readFileSync(file)),a=p.links.find(l=>l.id.endsWith('-a')),b=p.links.find(l=>l.id.endsWith('-b'));
+assert.deepEqual(a.provenance.original_question_ids,[]);
+assert.deepEqual([...new Set(a.provenance.source_locations.map(l=>l.original))],['cpa_exam:2020:3:3']);
+assert.deepEqual(b.provenance.original_question_ids,['mock:2024:GS1-4:3','mock:2024:GS1-4:3']);
+fs.copyFileSync(file,before,fs.constants.COPYFILE_EXCL);
+a.provenance.original_question_ids=['cpa_exam:2020:3:3'];
+b.provenance.original_question_ids=[...new Set(b.provenance.original_question_ids)];
+fs.writeFileSync(file,JSON.stringify(p,null,2)+'\n');
+fs.writeFileSync(R+'/coverage-provenance-completion.json',JSON.stringify({before:ref(before),after:ref(file),generator:ref(import.meta.filename),changes:['A의 실제 대조 원발문2020문제3물음3 식별자를 이미 기록된source_locations에서 명시했다.','B의 동일2024GS1모의 원물음 재수록ID 중복을 한 번으로 정리했다.'],relationships_or_frequency_counts_changed:false,author_inputs_unchanged:true},null,2)+'\n',{flag:'wx'});
+const reasons=['2020 CPA문제3물음3(2)는 미제공에 따른 성실성·진술/증거 평가이고 새sub2는 제공된 진술의 충돌을 적용하므로 adjacent이다. 출제 직접 커버를 주장하지 않는다.','고급2024 GS1문제4물음3의 분류오류 질적 중요성 요구를450.A20으로 새 계정에 적용한 sub2의 판단·근거2기준은 direct이다. 원모의1회이며 다른sub1·sub3은 연결하지 않는다.','기출2025문제3물음3②와610.18의 위험에 따른 업무활용 조정을sub2의3기준에 부분 적용한다. 원래 공정가치·외주 조건을 재현하지 않아 partial이고 나머지물음까지 확장하지 않는다.'];
+fs.writeFileSync(R+'/coverage-root-review.json',JSON.stringify({method:'agent_relationship_review',human_review_performed:false,proposal_sha256:ref(file).sha256,links:p.links.map((l,i)=>({id:l.id,decision:'accept',reason:reasons[i]})),unresolved_findings:[],provenance_completion:ref(R+'/coverage-provenance-completion.json')},null,2)+'\n',{flag:'wx'});
+console.log({reviewed_relationships:3,source_id_corrections:2});

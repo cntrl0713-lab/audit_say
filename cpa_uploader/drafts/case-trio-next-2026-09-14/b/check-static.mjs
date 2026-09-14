@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+const dir='cpa_uploader/drafts/case-trio-next-2026-09-14/b';
+const hash=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const code=['spec.mjs','build.mjs','validate-local.mjs','check-static.mjs'];
+const checks=code.map(file=>({name:`syntax-${file}`,args:['--check',`${dir}/${file}`]}));
+checks.push({name:'target-eslint',args:['node_modules/eslint/bin/eslint.js',...code.map(file=>`${dir}/${file}`)]});
+checks.push({name:'draft-validation',args:['--import','tsx','cpa_uploader/validate_draft_v3.ts','--file',`${dir}/sets.json`,'--against-bank']});
+const results=checks.map(c=>{const r=spawnSync(process.execPath,c.args,{encoding:'utf8'});return{name:c.name,command:[process.execPath,...c.args],exit_code:r.status,stdout:r.stdout,stderr:r.stderr};});
+const files=['sets.json','design.json','review.json','qa.json','qa-boundaries.json','source-files.json','coverage-proposals.json',...code];
+const sourceFiles=JSON.parse(fs.readFileSync(`${dir}/source-files.json`,'utf8'));
+const source_checks=sourceFiles.map(s=>({file:s.file,expected_sha256:s.sha256,actual_sha256:hash(s.file),pass:hash(s.file)===s.sha256}));
+const output={created_at:new Date().toISOString(),method:'local_syntax_lint_draft_and_source_hash_checks',human_review_performed:false,actual_api_calls:0,results,source_checks,files:Object.fromEntries(files.map(file=>[`${dir}/${file}`,hash(`${dir}/${file}`)])),validation_helper_origin:{file:'cpa_uploader/drafts/case-trio-2026-09-14/b/validate-local.mjs',sha256:hash('cpa_uploader/drafts/case-trio-2026-09-14/b/validate-local.mjs'),adaptation:'배치명만 case-trio-next-2026-09-14로 변경. 기존 원파일은 보존.'},pass:results.every(r=>r.exit_code===0)&&source_checks.every(r=>r.pass)};
+fs.writeFileSync(`${dir}/static-validation.json`,JSON.stringify(output,null,2)+'\n');
+console.log(JSON.stringify({pass:output.pass,checks:results.length,source_files:source_checks.length,failures:results.filter(r=>r.exit_code!==0)},null,2));
+if(!output.pass)process.exitCode=1;

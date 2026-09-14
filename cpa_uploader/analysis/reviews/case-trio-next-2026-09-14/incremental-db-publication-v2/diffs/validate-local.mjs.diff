@@ -1,0 +1,20 @@
+diff --git a/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/sources/validate-local.mjs.v1.txt b/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/validate-local.mjs
+index 14423e8c..c8f86881 100644
+--- a/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/sources/validate-local.mjs.v1.txt
++++ b/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/validate-local.mjs
+@@ -3,12 +3,12 @@ import path from 'node:path';
+ import assert from 'node:assert/strict';
+ import {spawnSync} from 'node:child_process';
+ import {createHash} from 'node:crypto';
+-const N='cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1';
++const N='cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2';
+ const hash=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+ const ref=file=>({file,sha256:hash(file)});
+ assert.equal(process.argv.length,2);assert(!fs.existsSync(N+'/validation.json'));assert(!fs.existsSync(N+'/local-checks'));
+-const code=['append-contract.mjs','driver.mjs','validate-local.mjs','tests/append-transaction.test.mjs','tests/source-reconstruction.test.mjs'].map(name=>N+'/'+name);
+-const protectedFiles=['cpa_uploader/data/cpa_question_sets_v3.authoring.json','cpa_uploader/data/learning-question-classifications.json','cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/authorization.md','cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/policy-input.json'].filter(file=>fs.existsSync(file)).map(ref);
++const code=['append-contract.mjs','driver.mjs','validate-local.mjs','tests/append-transaction.test.mjs','tests/source-reconstruction.test.mjs','adapt-from-v1.mjs'].map(name=>N+'/'+name);
++const protectedFiles=["cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1/driver.mjs","cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1/append-contract.mjs","cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1/source-provenance.json","cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/provenance.json","cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/execution-v1/grading-manifest.json","cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/sealed-v1/batch.json","cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/authorization.md","cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/policy-input.json"].filter(file=>fs.existsSync(file)).concat(code).map(ref);
+ const guard=()=>{for(const row of protectedFiles)assert.equal(hash(row.file),row.sha256,'Protected current input changed during local tests');};
+ fs.mkdirSync(N+'/local-checks');const rows=[],imports=[];
+ for(const file of code){

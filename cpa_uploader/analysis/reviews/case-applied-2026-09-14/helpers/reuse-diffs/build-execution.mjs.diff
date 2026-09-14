@@ -1,0 +1,53 @@
+diff --git a/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/reuse-source/build-execution.mjs.txt b/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/build-execution.mjs
+index b40608db..68514225 100644
+--- a/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/reuse-source/build-execution.mjs.txt
++++ b/cpa_uploader/analysis/reviews/case-applied-2026-09-14/helpers/build-execution.mjs
+@@ -2,14 +2,14 @@ import fs from 'node:fs';
+ import path from 'node:path';
+ import assert from 'node:assert/strict';
+ import {createHash} from 'node:crypto';
+-import {selectLearningQuestionSet, learningUnitId} from '../../../../lib/learningUnits.ts';
+-import {computeSubquestionMaxPoints} from '../../../../lib/questionV3.ts';
+-import {CONTENT_CHECKS, EFFICIENT_RUNTIME_FILES} from '../../../questionEfficientReview.ts';
+-import {reviewedContentHash} from '../../../questionReviewIdentity.ts';
+-import {validateAuthoringBank} from '../../../questionBankPublication.ts';
++import {selectLearningQuestionSet, learningUnitId} from '../../../../../lib/learningUnits.ts';
++import {computeSubquestionMaxPoints} from '../../../../../lib/questionV3.ts';
++import {CONTENT_CHECKS, EFFICIENT_RUNTIME_FILES} from '../../../../questionEfficientReview.ts';
++import {reviewedContentHash} from '../../../../questionReviewIdentity.ts';
++import {validateAuthoringBank} from '../../../../questionBankPublication.ts';
+ 
+-const R = 'cpa_uploader/analysis/reviews/case-followup-2026-09-14';
+-const D = 'cpa_uploader/drafts/case-followup-2026-09-14';
++const R = 'cpa_uploader/analysis/reviews/case-applied-2026-09-14';
++const D = 'cpa_uploader/drafts/case-applied-2026-09-14';
+ const read = file => JSON.parse(fs.readFileSync(file));
+ const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+ const ref = file => ({file, sha256: hash(fs.readFileSync(file))});
+@@ -86,7 +86,7 @@ for (const evidence of draftEvidence) {
+ }
+ const evidenceFiles = [...new Set([R + '/designs.json', R + '/draft-evidence.json', R + '/case-reviews.json', rootFile,
+   qaFile, R + '/authorization.md', R + '/policy-input.json', D + '/bank-before.json', D + '/catalog-before.json',
+-  D + '/classification-before.json', D + '/source-catalog.json', D + '/source-catalog-v2.json', D + '/source-catalog-v3.json', R + '/integration-baseline.json',
++  D + '/classification-before.json', D + '/source-catalog.json', D + '/source-catalog-final.json', R + '/integration-baseline.json',
+   R + '/integration-baseline/bank.json', R + '/integration-baseline/catalog.json', R + '/integration-baseline/classification.json', ...draftEvidence.map(evidence => evidence.file)])];
+ const evidenceReferences = evidenceFiles.map(ref);
+ const reviews = target.map(set => ({set_id: set.id, content_hash: reviewedContentHash(set),
+@@ -113,7 +113,7 @@ write(out + '/policy.json', {scope: ref(out + '/scope.json'), model: 'gpt-5.6-lu
+   provider_limit_errors_stop_all_workers: true, monetary_limit_not_inferred_from_prior_batches: true,
+   reuse_decision: '신규 6사례·18물음만 검토하고 각 사례의 모범·대표 부분·오답을 전체 사례 단위로 통합하여 실측한다. 기존 은행 문항·과거 실측을 새 검증 분모에 넣지 않는다.'});
+ write(out + '/agent-reviews.json', reviews);
+-const codeFiles = [...new Set([...EFFICIENT_RUNTIME_FILES, ...['run-efficient-grading.ts', 'contract.ts', 'accounting.ts'].map(file => R + '/' + file)])];
++const codeFiles = [...new Set([...EFFICIENT_RUNTIME_FILES, ...['run-efficient-grading.ts', 'contract.ts', 'accounting.ts'].map(file => R + '/helpers/' + file)])];
+ const snapshots = codeFiles.map((file, index) => {
+   const copied = `${out}/runtime/${String(index).padStart(2, '0')}-${path.basename(file)}`;
+   fs.copyFileSync(file, copied, fs.constants.COPYFILE_EXCL); return {...ref(copied), runtime_file: file};
+@@ -148,7 +148,7 @@ for (const [index, set] of target.entries()) {
+   }
+ }
+ const inputFiles = [...new Set([...target.flatMap(set => set.source_refs.map(source => source.file)), ...evidenceFiles,
+-  R + '/build-execution.mjs', R + '/recorder-provenance.json', bankFile, catalogFile, R + '/changed-sets-v1.json',
++  R + '/helpers/build-execution.mjs', R + '/helpers/provenance.json', bankFile, catalogFile, R + '/changed-sets-v1.json',
+   out + '/scope.json', out + '/representatives.json', out + '/agent-reviews.json', out + '/runtime-snapshots.json', ...snapshots.map(snapshot => snapshot.file)])];
+ write(out + '/grading-manifest.json', {version: 1, artifact_type: 'efficient_grading_manifest', model: 'gpt-5.6-luna',
+   budget_usd: policyInput.budget_usd, budget_enforcement: policyInput.budget_enforcement,

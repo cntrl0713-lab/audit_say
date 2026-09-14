@@ -1,0 +1,226 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-c2034c10008a--sub2--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-c2034c10008a--sub2--standard",
+  "source_set_id": "std-points-20260914-c2034c10008a",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "e67043d4d34d3aa02d3905a68bda9c1652bbcca36ee93a80e17ea43a61d385f8",
+  "answers": {
+    "sub2": "팀원 간 토의는 금지되며 외부 법률고문이 모든 팀원에게 회계정책을 지시한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 업무수행이사와 다른 주요 업무팀원이 해당 재무보고체계의 적용을 토의함"
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 업무수행이사와 다른 주요 업무팀원이 기업 재무제표의 중요왜곡표시 가능성을 토의함"
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 토의 불참 업무팀원에게 커뮤니케이션할 사항을 결정하는 책임자가 업무수행이사임을 제시함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "33b187a300f64758e4f9d6625152ce9a6086b3f2f139d119629f15c3067bb78a",
+  "schema_hash": "8feb2060a4cb8b0a6fba298c8f98efad6f8c4df9934645267338cd465d16e762",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "팀원 간 토의는 금지되며 외부 법률고문이 모든 팀원에게 회계정책을 지시한다.",
+            "reason": "팀원 간 토의를 금지한다고 명시하여 재무보고체계 적용에 대한 토의와 반대된다."
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "contradicted",
+            "quote": "팀원 간 토의는 금지되며 외부 법률고문이 모든 팀원에게 회계정책을 지시한다.",
+            "reason": "팀원 간 토의를 금지한다고 명시하여 중요왜곡표시 가능성에 대한 토의와 반대된다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "not_met",
+            "reason": "업무수행이사가 불참 팀원에게 전달할 사항을 결정한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit6",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "팀원 간 토의를 금지한다고 명시하여 재무보고체계 적용에 대한 토의와 반대된다."
+              },
+              {
+                "criterion_id": "crit7",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "팀원 간 토의를 금지한다고 명시하여 중요왜곡표시 가능성에 대한 토의와 반대된다."
+              },
+              {
+                "criterion_id": "crit8",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "업무수행이사가 불참 팀원에게 전달할 사항을 결정한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-c2034c10008a",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 315에 따라 업무수행팀이 토의할 두 사항과 토의에 참여하지 않은 팀원에게 알릴 사항을 정하는 업무수행이사의 책임을 제시하시오.",
+        "user_answer": "팀원 간 토의는 금지되며 외부 법률고문이 모든 팀원에게 회계정책을 지시한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "팀원 간 토의는 금지되며 외부 법률고문이 모든 팀원에게 회계정책을 지시한다.",
+            "reason": "팀원 간 토의를 금지한다고 명시하여 재무보고체계 적용에 대한 토의와 반대된다.",
+            "claim": "업무수행이사와 다른 주요 업무팀원이 해당 재무보고체계의 적용을 토의함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "contradicted",
+            "quote": "팀원 간 토의는 금지되며 외부 법률고문이 모든 팀원에게 회계정책을 지시한다.",
+            "reason": "팀원 간 토의를 금지한다고 명시하여 중요왜곡표시 가능성에 대한 토의와 반대된다.",
+            "claim": "업무수행이사와 다른 주요 업무팀원이 기업 재무제표의 중요왜곡표시 가능성을 토의함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "not_met",
+            "reason": "업무수행이사가 불참 팀원에게 전달할 사항을 결정한다는 내용이 없다.",
+            "claim": "토의 불참 업무팀원에게 커뮤니케이션할 사항을 결정하는 책임자가 업무수행이사임을 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "팀은 해당 재무보고체계의 적용과 재무제표의 중요왜곡표시가능성을 토의한다. 업무수행이사는 토의에 참여하지 않은 팀원에게 전달할 사항을 결정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_03d44bb6b4fa40dd016aa785dcfe4887d0ac42649ea1e0f7bb",
+        "request_id": "req_8c4ebc186d754dac880e128660a3e9da",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2466,
+          "input_tokens_details": {
+            "cache_write_tokens": 2463,
+            "cached_tokens": 0
+          },
+          "output_tokens": 269,
+          "output_tokens_details": {
+            "reasoning_tokens": 68
+          },
+          "total_tokens": 2735
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009391500000000001,
+        "min_usd": 0.0009391500000000001,
+        "max_usd": 0.0009391500000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-c2034c10008a--sub2--wrong/input.json",
+      "sha256": "2d8b414a348006539b36b4f87f5ca4276f03af81edbc021ac2b93c43bb2c8569"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-c2034c10008a--sub2--wrong/transport.jsonl",
+      "sha256": "74b80d48138b47a2c4cdc25d8488f9a3b4b9902ab70b00d795c97e3b5c1eddea"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-c2034c10008a--sub2--wrong/traces.jsonl",
+      "sha256": "379a9dc429ef9a2cf6a704b521afdf22ca0c4c1a17eb9fd4502bb49c72b75f4c"
+    }
+  }
+}

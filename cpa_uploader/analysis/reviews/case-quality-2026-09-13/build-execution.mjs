@@ -1,0 +1,81 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {partial,wrong} from './qa-overrides.mjs';
+import {review} from './decisions.mjs';
+import {selectLearningQuestionSet,learningUnitId} from '../../../../lib/learningUnits.ts';
+import {CONTENT_CHECKS,EFFICIENT_RUNTIME_FILES} from '../../../questionEfficientReview.ts';
+import {reviewedContentHash} from '../../../questionReviewIdentity.ts';
+import {validateAuthoringBank} from '../../../questionBankPublication.ts';
+const D='cpa_uploader/analysis/reviews/case-quality-2026-09-13';
+const E='cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12';
+const read=f=>JSON.parse(fs.readFileSync(f,'utf8'));
+const hash=b=>createHash('sha256').update(b).digest('hex');
+const ref=file=>({file,sha256:hash(fs.readFileSync(file))});
+const write=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n',{flag:'wx'});
+const bank=read(D+'/candidate-v1.json'),before=read(D+'/bank-before.json'),catalog=read(D+'/catalog-v1.json');
+const changed=read(D+'/changed-sets-v1.json'),rows=read(D+'/qa-candidates-v1.json');
+const checked=validateAuthoringBank(bank);assert.deepEqual(checked.errors,[]);
+const target=bank.filter(s=>changed.includes(s.id));
+const out=D+'/execution-v1';assert(!fs.existsSync(out));fs.mkdirSync(out);fs.mkdirSync(out+'/projections');fs.mkdirSync(out+'/runtime');
+write(out+'/authoring-check.json',checked);
+const cases=[];
+for(const row of rows){
+ const q=bank.find(s=>s.id===row.set_id).subquestions.find(q=>q.id===row.subquestion_id),key=`${row.set_id}/${q.id}`;
+ for(const kind of q.criteria.length>1?['partial','wrong']:['wrong']){
+  const override=(kind==='partial'?partial:wrong)[key];const old=row.candidates.find(c=>c.kind===kind);
+  assert(override||old,'Representative missing '+key+'/'+kind);
+  const verdicts=override?q.criteria.map(c=>({criterion_id:c.id,verdict:override[1].includes(c.id)?'met':'not_met',reason:override[1].includes(c.id)?'원문과 현행 채점기준을 대조하여 이 답안이 독립 의미를 충족함을 확인.':'이 답안은 해당 독립 의미를 제시하지 않거나 반대로 서술함.'})):old.expected_verdicts;
+  const points=q.criteria.reduce((n,c)=>n+c.scores[verdicts.find(v=>v.criterion_id===c.id).verdict],0);
+  assert(kind==='partial'?points>0&&points<q.criteria.length:points===0,'Invalid expectation '+key+'/'+kind);
+  cases.push({id:`${row.set_id}--${q.id}--${kind}`,set_id:row.set_id,subquestion_id:q.id,kind,answer:override?override[0]:old.answer,expected_points:points,expected_verdicts:verdicts,
+   expectation_review:'agent_content_review_before_execution',human_review_performed:false,origin:override?{file:D+'/qa-overrides.mjs',reason:'분리 후 독립 요구·판단 함축·반대 결론을 직접 대조하여 새 대표답안과 기대값을 확정함.'}:old.origin});
+ }
+}
+write(out+'/representatives.json',{cases});
+write(out+'/scope.json',{targets:target.map(s=>({set_id:s.id,subquestion_ids:s.subquestions.map(q=>q.id)}))});
+write(out+'/policy.json',{scope:ref(out+'/scope.json'),model:'gpt-5.6-luna',grading_point_tolerance:1,minimum_within_tolerance_ratio:0.95,content_error_tolerance:0,statistical_confidence_claim:false,budget_usd:20,budget_enforcement:'provider_limit',reuse_decision:'변경 없는 사례 9묶음은 기존 검수·실측 증거 유지. 수정 32묶음과 분리 1묶음은 새 문항/부모/분류 정체성이다. 기존 실행기 재사용 계약은 은행·분류·범위와 projection의 완전 동일성을 요구하므로 이번 새 은행의 observation으로 옛 실측을 위장하지 않는다. 적합한 기존 대표 답안·기대값은 출처를 남겨 재사용한다.'});
+const codeFiles=[...EFFICIENT_RUNTIME_FILES,...['run-efficient-grading.ts','contract.ts','accounting.ts'].map(f=>E+'/b/'+f)];
+const snapshots=codeFiles.map((file,i)=>{const copied=`${out}/runtime/${String(i).padStart(2,'0')}-${path.basename(file)}`;fs.copyFileSync(file,copied,fs.constants.COPYFILE_EXCL);return{...ref(copied),runtime_file:file};});
+write(out+'/runtime-snapshots.json',snapshots);
+const reuseReviewFile=E+'/candidate-v5/agent-reviews.json',priorReviews=read(reuseReviewFile);
+const audit=read(D+'/audit-v1.json'),lineage=read(D+'/lineage-v1.json');
+const reviews=target.map(s=>({set_id:s.id,content_hash:reviewedContentHash(s),reviewer_id:'Codex root agent',reviewed_at:new Date().toISOString(),method:'agent_content_review',human_review_performed:false,
+ evidence:[D+'/audit-v1.json',D+'/lineage-v1.json',D+'/source-evidence-v1.json',D+'/decisions.mjs',D+'/qa-overrides.mjs',D+'/bank-before.json',reuseReviewFile].map(ref),
+ questions:s.subquestions.map(q=>{
+  const original=before.find(s0=>s0.id===s.id)?.subquestions.find(q0=>q0.id===q.id);
+  const unchanged=original&&JSON.stringify(original)===JSON.stringify(q);
+  const own=audit.find(r=>r.set_id===s.id&&r.subquestion_id===q.id);
+  const split=lineage.find(l=>l.targets.some(t=>t.set_id===s.id&&t.subquestion_id===q.id));
+  const rationale=own?.rationale??(split?review[split.source_set_id][1][split.source_subquestion_id]:null);
+  const prior=priorReviews.find?.(r=>r.set_id===s.id)?.questions.find(r=>r.subquestion_id===q.id);
+  assert(rationale||unchanged||s.id==='pilot-16-011'&&q.id==='sub2','Review rationale missing '+s.id+'/'+q.id);
+  const style=catalog.classifications.find(c=>c.source_set_id===s.id&&c.subquestion_id===q.id).question_style;
+  return{subquestion_id:q.id,criterion_ids:q.criteria.map(c=>c.id),source_ref_ids:[...new Set([...q.requirements.map(r=>r.source_ref_id),...q.criteria.flatMap(c=>c.source_ref_ids)])],checks:Object.fromEntries(CONTENT_CHECKS.map(c=>[c,'pass'])),rationale:[rationale??'기존 기준서형 요구를 대조함.',unchanged?'원 물음 전체와 동일함을 대조하였고, 현재 발문·정답·기준·대표답안의 의미를 다시 읽어 판단함. 기존 출처 및 판본 검증을 유지.':s.id==='pilot-16-011'&&q.id==='sub2'?'독립 발문의 ①/②와 모범답안의 옛 을-1/을-2 표기를 일치시킴. 법적 권리·의무 및 이용자 보호라는 의미와 3점을 보존.':'분리·지문 수정 후 각 독립 기준의 귀속, 출처 원문, 만점 최소답안과 부분답안을 대조함.',prior?.rationale??'',`학습 유형 ${style}; 물음별 주제는 기존 실제 요구내용에 해당하며, 이동한 기준은 한 번씩만 배점. source_refs 및 시행 판본은 기존 검증된 원문을 유지. 사례 145개 고유 원문 발췌를 실제 열람하였으며 일반론 분리는 그 요구를 변경하지 않음.`].filter(Boolean).join(' ')};
+ }),unresolved_content_findings:[]}));
+write(out+'/agent-reviews.json',reviews);
+const entries=[];
+for(const s of target){
+ const metadata=catalog.classifications.filter(c=>c.source_set_id===s.id);
+ const unitIds=[...new Set(metadata.map(c=>learningUnitId(s.id,c.question_style,c.subquestion_id)))];
+ for(const unit of unitIds){
+  const selected=metadata.filter(c=>learningUnitId(s.id,c.question_style,c.subquestion_id)===unit);
+  const projection=selectLearningQuestionSet(s,selected,unit),projected=`${out}/projections/${unit}.json`;write(projected,projection);
+  for(const kind of ['model','partial','wrong']){
+   const evaluated=projection.subquestions.filter(q=>kind!=='partial'||q.criteria.length>1);if(!evaluated.length)continue;
+   const answers={},expected=[],selection=[];
+   for(const q of projection.subquestions){
+    const qa=cases.find(c=>c.set_id===s.id&&c.subquestion_id===q.id&&c.kind===kind),isEvaluated=evaluated.some(x=>x.id===q.id);
+    const verdicts=kind==='model'?q.criteria.map(c=>({criterion_id:c.id,verdict:'met',reason:'저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다.'})):isEvaluated?qa.expected_verdicts:q.criteria.map(c=>({criterion_id:c.id,verdict:'not_met',reason:'학습 단위의 문맥으로만 남긴 미제출 물음.'}));
+    answers[q.id]=kind==='model'?q.model_answer.join('\n'):isEvaluated?qa.answer:'';
+    expected.push({subquestion_id:q.id,expected_points:q.criteria.reduce((n,c)=>n+c.scores[verdicts.find(v=>v.criterion_id===c.id).verdict],0),expected_verdicts:verdicts});
+    if(isEvaluated)selection.push({...ref(kind==='model'?D+'/candidate-v1.json':out+'/representatives.json'),subquestion_id:q.id,case_id:kind==='model'?null:qa.id,kind,reason:'전수 의미검토 후 확정한 모범·대표 부분정답·대표 오답. 같은 종류의 사례 답안은 하나의 학습단위 요청으로 통합.'});
+   }
+   entries.push({id:`${unit}--${kind}`,worker:['a','b','c'][entries.length%3],learning_unit_id:unit,source_set_id:s.id,projected_file:projected,projected_sha256:ref(projected).sha256,kind,evaluated_subquestion_ids:evaluated.map(q=>q.id),answers,expected_by_subquestion:expected,selection_evidence:selection});
+  }
+ }
+}
+const inputFiles=[...new Set([...target.flatMap(s=>s.source_refs.map(r=>r.file)),D+'/candidate-v1.json',D+'/catalog-v1.json',D+'/audit-v1.json',D+'/lineage-v1.json',D+'/source-evidence-v1.json',D+'/decisions.mjs',D+'/qa-overrides.mjs',D+'/authorization.md',out+'/scope.json',out+'/representatives.json',out+'/agent-reviews.json',out+'/runtime-snapshots.json',...snapshots.map(s=>s.file)])];
+write(out+'/grading-manifest.json',{version:1,artifact_type:'efficient_grading_manifest',model:'gpt-5.6-luna',budget_usd:20,budget_enforcement:'provider_limit',bank:ref(D+'/candidate-v1.json'),classifications:ref(D+'/catalog-v1.json'),policy:ref(out+'/policy.json'),inputs:inputFiles.map(ref),code_files:codeFiles.map(ref),entries});
+console.log(JSON.stringify({target_sets:target.length,target_questions:rows.length,requests:entries.length,evaluated_answers:entries.reduce((n,e)=>n+e.evaluated_subquestion_ids.length,0),manifest:ref(out+'/grading-manifest.json')}));

@@ -1,0 +1,116 @@
+{
+  "status": "passed_static_review",
+  "created_at": "2026-09-14T09:22:26.965751+00:00",
+  "reviewer": "next_cases_early (author static comparison; independent peer reported separately)",
+  "human_review_performed": false,
+  "files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publish-reconciled-v2.mjs",
+      "sha256": "0cbf5e3a79cf908ed3ad4836d944f15bffd16691ba2214f3548c3a893469c395"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/publish.mjs",
+      "sha256": "95a00c7699d870a513c37e21453b0b9c4b1e85e223d9d966afaa46ab67f18674"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/publication-environment.mjs",
+      "sha256": "015c2dfaba91639cb36bc46698a5d6d81004ec5f1a96e78e210a2c8a36eeecbb"
+    },
+    {
+      "file": "cpa_uploader/questionBankPublication.ts",
+      "sha256": "09500d10286d4d0098e2bfd22adb0158a226488199287c0e8bc8106b7dda3ded"
+    },
+    {
+      "file": "cpa_uploader/validate_cpa_v3.ts",
+      "sha256": "a3b5c17a26af1fc316720da0aef1d48db66950b71459a3859eceb7a5b38d0b4c"
+    },
+    {
+      "file": "scripts/compile-question-bank-v3.ts",
+      "sha256": "5ea8a54b7c50c9e1a7dabb97df02806160ba4eef7cbbc4a8d42a3d40324b9de7"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/rebind-final-catalog.ts",
+      "sha256": "e2ad3cb730929abbdd6f47303c2fcbc653bccbdce58788070a87abdba84ed889"
+    }
+  ],
+  "checks": [
+    {
+      "id": "reuse_only",
+      "status": "passed",
+      "finding": "No promote_cpa_v3 command is invoked. The original 02/03 results must each be successful, their log hashes verified, and original published objects must equal the three candidate objects."
+    },
+    {
+      "id": "review_identity",
+      "status": "passed",
+      "finding": "Each original needs_review case differs from its original published case only in status and verification.review_status; reviewedContentHash agrees. Original efficient receipt, content and published receipt hashes are checked."
+    },
+    {
+      "id": "latest_baseline",
+      "status": "passed",
+      "finding": "All six baseline snapshots are hash bound. Latest 372 objects and ordering must be the exact candidate prefix, with only the original three IDs appended."
+    },
+    {
+      "id": "ledger_reuse",
+      "status": "passed",
+      "finding": "Original ledger prefix equals its preserved backup. Exactly six tail rows form needs_review to verified to published transitions for the target IDs. Merged ledger must exactly equal the entire latest ledger plus these same six rows."
+    },
+    {
+      "id": "classification_preservation",
+      "status": "passed",
+      "finding": "Merged classification entries must equal latest entries followed by original nine target entries. Source bank SHA, unique complete question keys, generated latest topic definitions, and every existing compiled classification are checked."
+    },
+    {
+      "id": "sealed_evidence",
+      "status": "passed",
+      "finding": "Original preparation immutable refs, backup hashes, and all 248 sealed readiness validated refs are checked and frozen. A direct read-only hash scan found zero mismatches before delivery."
+    },
+    {
+      "id": "full_local_validation",
+      "status": "passed",
+      "finding": "Stage runs compile, local catalog rebind, full validate, and importer readiness without --apply. Existing compile/validate call validatePromotionLedger without pendingReverificationIds."
+    },
+    {
+      "id": "stage_isolation",
+      "status": "passed",
+      "finding": "Stage outputs and backups use new publication-v2 paths and exclusive writes; old publication-v1, H, sealed inputs and history are read only. Old stage-completion is not required."
+    },
+    {
+      "id": "install_cas_rollback",
+      "status": "passed",
+      "finding": "Original H publication lock, guarded writePublicationFiles, baseline backups, foreign-change-aware rollback, canonical catalog generation, check, and validate remain. New guards cover all five canonical hashes and reject changed snapshots/inputs/stage outputs."
+    },
+    {
+      "id": "restart_and_environment",
+      "status": "passed",
+      "finding": "Existing stage, completed install, or recorded install failure cannot be reused. Canonical path overrides are rejected. Child environments omit provider/database credentials and NODE_OPTIONS; no network/apply command is generated."
+    },
+    {
+      "id": "already_published_candidate",
+      "status": "passed",
+      "finding": "The input is required to be published/verified. The existing rebind helper permits identical published lifecycle inputs, and compares full objects excluding only the two lifecycle labels."
+    },
+    {
+      "id": "root_contract_compatibility",
+      "status": "passed",
+      "finding": "Actually generated reconciliation JSON, baseline metadata, root proof and classification shapes were read. Four original_stage_files rows are allowed, with required original authoring/promotions and all row hashes checked."
+    }
+  ],
+  "commands": [
+    {
+      "command": "node --check cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publish-reconciled-v2.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "npx eslint cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publish-reconciled-v2.mjs",
+      "exit_code": 0
+    }
+  ],
+  "unresolved_findings": [],
+  "limits": [
+    "This agent did not execute --stage or --install and did not make any model, operational API, or DB call. Root execution is a separate record.",
+    "The existing writePublicationFiles implementation provides synchronous rollback and guarded per-file replacement; it is not a cross-file transaction resilient to process/OS crashes."
+  ],
+  "model_api_calls": 0,
+  "db_calls": 0,
+  "canonical_writes": 0
+}

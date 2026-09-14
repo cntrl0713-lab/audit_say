@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/grading-manifest.json",
+    "sha256": "78921f763a00acdb3ff3162397cb8b9ab7593ea400ddd239219941486bce7a5e"
+  },
+  "entry_id": "pilot-04-007--case--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-007--case",
+  "source_set_id": "pilot-04-007",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "b19577bda30c9597379429ab65f3b84ba0a347d286ed1c8121c3f690988240e6",
+  "answers": {
+    "sub2": "기업 상황과 무관한 고정 비율의 기계적 계산만으로 수행중요성을 정하자는 제안은 부적절하다.\n수행중요성의 결정에는 전문가적 판단이 필요하다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "met",
+          "reason": "저장된 모범답안은 원문과 대조한 모든 독립 의미를 충족한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "0285ef151afaa4aaf29bb21ba038c597d1a99ef7ddfbc9afbac76ec3f7a26e1a",
+  "schema_hash": "6fe5cf5ea6945fa16c95dbe7e4d5755775384dabd889c38ec24b754985ff8111",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "기업 상황과 무관한 고정 비율의 기계적 계산만으로 수행중요성을 정하자는 제안은 부적절하다.\n수행중요성의 결정에는 전문가적 판단이 필요하다.",
+            "reason": "기업 상황과 무관한 고정 비율만으로 결정하는 제안이 부적절하다고 명시했다."
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "전문가적 판단의 필요성은 설명했지만, 비율 참고 자체가 언제나 금지되는 것은 아니라는 점은 명시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "기업 상황과 무관한 고정 비율만으로 결정하는 제안이 부적절하다고 명시했다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전문가적 판단의 필요성은 설명했지만, 비율 참고 자체가 언제나 금지되는 것은 아니라는 점은 명시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-007",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "을의 수행중요성 결정방식이 적절한지 판단하고, 기계적인 계산 외에 필요한 판단의 성격을 설명하시오.",
+        "user_answer": "기업 상황과 무관한 고정 비율의 기계적 계산만으로 수행중요성을 정하자는 제안은 부적절하다.\n수행중요성의 결정에는 전문가적 판단이 필요하다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "기업 상황과 무관한 고정 비율의 기계적 계산만으로 수행중요성을 정하자는 제안은 부적절하다.\n수행중요성의 결정에는 전문가적 판단이 필요하다.",
+            "reason": "기업 상황과 무관한 고정 비율만으로 결정하는 제안이 부적절하다고 명시했다.",
+            "claim": "기업 상황과 무관한 고정 비율의 기계적 계산만으로 수행중요성을 정하자는 제안은 부적절하다. 전문가적 판단 필요를 명확히 설명해 그 판단이 함축되어도 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "not_met",
+            "reason": "전문가적 판단의 필요성은 설명했지만, 비율 참고 자체가 언제나 금지되는 것은 아니라는 점은 명시하지 않았다.",
+            "claim": "수행중요성의 결정에는 전문가적 판단이 필요하다. 비율을 참고하는 것 자체가 언제나 금지되는 것은 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "기업 상황과 무관한 고정 비율의 기계적 계산만으로 수행중요성을 정하자는 제안은 부적절하다.",
+          "수행중요성의 결정에는 전문가적 판단이 필요하다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 1,
+      "delta": -1,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0695662c11f13a07016aa5dc0f2f6c87d09a1c7937a094a673",
+        "request_id": "req_2ef4e8ca6f1c4a21b789e9df4b3643ba",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2682,
+          "input_tokens_details": {
+            "cache_write_tokens": 2679,
+            "cached_tokens": 0
+          },
+          "output_tokens": 351,
+          "output_tokens_details": {
+            "reasoning_tokens": 194
+          },
+          "total_tokens": 3033
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00109155,
+        "min_usd": 0.00109155,
+        "max_usd": 0.00109155,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-04-007--case--model/input.json",
+      "sha256": "7ea4db49e720d81fd855b8bd64ea25ac52ce9dfd41001c4170eefc57066f602c"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-04-007--case--model/transport.jsonl",
+      "sha256": "e9d2038e2b9a48f48e23ff4e96480e21c04a431d4d1f6043e6905077c359d52b"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/actual-c/pilot-04-007--case--model/traces.jsonl",
+      "sha256": "11f5b33fec9968bd3c7df940c59f264f5e283e01a1c51e56446cff298d774bb4"
+    }
+  }
+}

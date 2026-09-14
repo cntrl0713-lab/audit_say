@@ -1,0 +1,411 @@
+{
+  "version": 1,
+  "artifact_type": "db_grading_scope_readonly_audit",
+  "performed_at": "2026-09-14T06:49:01.323Z",
+  "database_writes": 0,
+  "model_calls": 0,
+  "concurrency": 1,
+  "expected_bank": {
+    "file": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+    "sha256": "895d44668c6bd86f89793c3355545bd7745398489845e8e26fe71609ad972104"
+  },
+  "code_path": [
+    "app/actions.ts: gradeQuestionSetV3Action → gradeLearningSubmission(loadUnit=findDatabaseLearningUnit, grade=gradeQuestionSetV3)",
+    "lib/questionV3Repository.ts: findDatabaseLearningUnit → findDatabaseQuestionVersion → RPC cpa_get_question_version → validateQuestionSetV3(raw) → selectLearningQuestionSet",
+    "supabase/migrations/20260912060000_cpa_private_source_metadata.sql: cpa_get_question_version → metadata overlay → normalized document with scope restored from immutable source_document",
+    "lib/questionV3Grading.ts: buildGradingPrompt serializes criterion.critical_facts directly, including scope"
+  ],
+  "findings": [
+    "Normalized cpa_criterion_facts has no scope column and the normalized document builder omits scope. The deployed private getter restores scope through the existing 20260912060000 source metadata overlay.",
+    "The overlay validates archived document bytes, exact sealed release/version binding, content hash, unique IDs, ordinary fields, and agreement across every attached release before adding scope. A present invalid document raises an error; only truly document-less legacy versions retain normalized fallback.",
+    "TypeScript CriterionV3 critical_facts type omits scope, but runtime validation does not strip it and the actual private RPC → learning projection → grading payload retains the returned property. No runtime patch is required for scope transmission."
+  ],
+  "sets": [
+    {
+      "set_id": "pilot-10-007",
+      "set_version_id": "e36e9987-5f73-4192-9001-c3d44b402fb6",
+      "expected_scope_fields": 1,
+      "private_rpc_scope_fields": 1,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "pilot-10-007--case",
+          "expected_scope_fields": 1,
+          "payload_scope_fields": 1,
+          "scope_values_equal": true,
+          "prompt_sha256": "2a18399d07ff9fb80436d5f60f07e860dcdb6a3d71e3538dbe9b92956a1b84be",
+          "expected_scopes_sha256": "9f28870e8811879bb287efa17e2891a4d1b60e802c373d6ad459de2a448abd69",
+          "payload_scopes_sha256": "9f28870e8811879bb287efa17e2891a4d1b60e802c373d6ad459de2a448abd69"
+        }
+      ]
+    },
+    {
+      "set_id": "pilot-10-007-standards-20260913",
+      "set_version_id": "89b476aa-e4d3-46ad-8630-2975a05ee5cd",
+      "expected_scope_fields": 3,
+      "private_rpc_scope_fields": 3,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "pilot-10-007-standards-20260913--sub4--standard",
+          "expected_scope_fields": 3,
+          "payload_scope_fields": 3,
+          "scope_values_equal": true,
+          "prompt_sha256": "b000a9ec720273c60c08cc712dd1b8913498b0bf6e36b7de726749c39b51f994",
+          "expected_scopes_sha256": "e1e5962aadd4c9680308c348d4290d4887f87994045459df4d75cd7aedfe5729",
+          "payload_scopes_sha256": "e1e5962aadd4c9680308c348d4290d4887f87994045459df4d75cd7aedfe5729"
+        }
+      ]
+    },
+    {
+      "set_id": "pilot-16-011",
+      "set_version_id": "774ee7dd-6ddc-4037-81e0-a267eb0658ad",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "pilot-16-011--case",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "3e26fb103cf3d1e6e3ad5cfc170238eaeca9a72e4f5ab1f3aafe79e0e377f8c1",
+          "expected_scopes_sha256": "cc7d6ff52eaf5bdfb1474a06d30cbe93b8053a932614f23ec7e355899225281a",
+          "payload_scopes_sha256": "cc7d6ff52eaf5bdfb1474a06d30cbe93b8053a932614f23ec7e355899225281a"
+        }
+      ]
+    },
+    {
+      "set_id": "pilot-17-005",
+      "set_version_id": "0077ed27-3bc3-471f-b3b9-313423b30807",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "pilot-17-005--case",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "8ec1c92a46484bf1569eb3a9b69627c36214071e7fd2d15d326a33be2f625f1c",
+          "expected_scopes_sha256": "5faa79574b53c3602a7641d54333394208d34fd2918320813930366a4083ceaf",
+          "payload_scopes_sha256": "5faa79574b53c3602a7641d54333394208d34fd2918320813930366a4083ceaf"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-17c71aee6d2b",
+      "set_version_id": "46a212c1-58ea-4f7c-a6c9-4c32f077eead",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-17c71aee6d2b--sub2--standard",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "2c52d23ec3d99a8d89e89f13eb2ae3f991b318b9d2a8f93a7f74551b6f408a87",
+          "expected_scopes_sha256": "3245aeff4695fffb96c5220468579325e2c2fa380bbd161b6cf4f3f8c259327a",
+          "payload_scopes_sha256": "3245aeff4695fffb96c5220468579325e2c2fa380bbd161b6cf4f3f8c259327a"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-1cae16e579d0",
+      "set_version_id": "2b52cf6c-1cc9-4083-a102-6d6bac5ccc5e",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-1cae16e579d0--sub1--standard",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "e24690c53006e07d4fa39cb957161cc9a063563d41ef0f4e12c1dc9d12f40b96",
+          "expected_scopes_sha256": "c7a68dc9bb0d8843691ed796504b774ad8ec2d12675680fd8869b8b5a209b57c",
+          "payload_scopes_sha256": "c7a68dc9bb0d8843691ed796504b774ad8ec2d12675680fd8869b8b5a209b57c"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-253c5e8ae4fe",
+      "set_version_id": "cb37eba4-82f3-4634-9084-fae2e7f1b865",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-253c5e8ae4fe--sub2--standard",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "b26956ca0d35576ccb3d89c62b0d5f4382446c2e66fd6740e5f65503e69e1d5b",
+          "expected_scopes_sha256": "bff9b2a1c1586e3a88ca1ad7a6950195108c07d0c9e04409b639b19336eeb1bb",
+          "payload_scopes_sha256": "bff9b2a1c1586e3a88ca1ad7a6950195108c07d0c9e04409b639b19336eeb1bb"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-320b18021b39",
+      "set_version_id": "55457aaa-8666-48b2-8c59-3b3622f2e625",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-320b18021b39--sub1--standard",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "4a934f2a341840dcc440437eeca9a170e25214fa669590803d8851ab9058f2fb",
+          "expected_scopes_sha256": "e0e1ea1346ace432389680183cf0da660d2a6aa334ce2e48d9b372ad29ab183f",
+          "payload_scopes_sha256": "e0e1ea1346ace432389680183cf0da660d2a6aa334ce2e48d9b372ad29ab183f"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-42f9d95192db",
+      "set_version_id": "3ef4127d-ce11-4245-8968-8017b1386b61",
+      "expected_scope_fields": 3,
+      "private_rpc_scope_fields": 3,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-42f9d95192db--sub4--standard",
+          "expected_scope_fields": 3,
+          "payload_scope_fields": 3,
+          "scope_values_equal": true,
+          "prompt_sha256": "8667302a3c19a8344a63e75f5fca2585396d8a535f1b277d70cd3b5d617a1597",
+          "expected_scopes_sha256": "c9df0552d0af0db0388a7ea3d1dcac080ba4eb0db177edcd712c85e418cf9eb1",
+          "payload_scopes_sha256": "c9df0552d0af0db0388a7ea3d1dcac080ba4eb0db177edcd712c85e418cf9eb1"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-4e5f0be86e91",
+      "set_version_id": "597c37ab-50ad-4b0f-ba04-3b9a720e86b9",
+      "expected_scope_fields": 3,
+      "private_rpc_scope_fields": 3,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-4e5f0be86e91--sub1--standard",
+          "expected_scope_fields": 3,
+          "payload_scope_fields": 3,
+          "scope_values_equal": true,
+          "prompt_sha256": "65fa2626cdd54b5801887bf89ce151445b2c89631e0eb9e5f044ae36659a30de",
+          "expected_scopes_sha256": "3b982641d547bcbf43b1f9dda42ef187d23a97794158714734ce932944be046a",
+          "payload_scopes_sha256": "3b982641d547bcbf43b1f9dda42ef187d23a97794158714734ce932944be046a"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-69b535e26ab0",
+      "set_version_id": "9d56dcf3-1d7a-4b6f-a575-f2f87701b2a1",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-69b535e26ab0--sub1--standard",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "7d279ca856b5597a561ce02a78c784fe9e7dad4cef09d8f67650a10cf9fb5946",
+          "expected_scopes_sha256": "e0e1ea1346ace432389680183cf0da660d2a6aa334ce2e48d9b372ad29ab183f",
+          "payload_scopes_sha256": "e0e1ea1346ace432389680183cf0da660d2a6aa334ce2e48d9b372ad29ab183f"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-a5aa3fa526c2",
+      "set_version_id": "761bf6e5-0785-4234-aff5-14dafc922aba",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-a5aa3fa526c2--sub1--standard",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "912c4405abd4cc21e169be8f26ecb26aad4d3c1758bb3b8b9813f94573afb130",
+          "expected_scopes_sha256": "f243bb3506ba9a072388ac32134eb7ccc421e06355e651efb1adfa03a782b190",
+          "payload_scopes_sha256": "f243bb3506ba9a072388ac32134eb7ccc421e06355e651efb1adfa03a782b190"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-a76ead6fb70b",
+      "set_version_id": "8c6ea5b1-1824-4e1e-965c-658422d3d3a2",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-a76ead6fb70b--sub2--standard",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "433385e623d405d969ddba70b1afec084bd57f6b77f923d89801d1f075dcabbc",
+          "expected_scopes_sha256": "96e13b20d4361d92cf342fa7c7b4a03b1f8b5f7a0dc089525501ec6d1c235ab5",
+          "payload_scopes_sha256": "96e13b20d4361d92cf342fa7c7b4a03b1f8b5f7a0dc089525501ec6d1c235ab5"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-aca6e1dc8f26",
+      "set_version_id": "c86613fc-08a0-4252-b1de-dd67409d8706",
+      "expected_scope_fields": 4,
+      "private_rpc_scope_fields": 4,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-aca6e1dc8f26--sub2--standard",
+          "expected_scope_fields": 4,
+          "payload_scope_fields": 4,
+          "scope_values_equal": true,
+          "prompt_sha256": "ceada7496d82e235efc968decb1ae9049d276707fc823fc89d730e81db9e1485",
+          "expected_scopes_sha256": "4152ab3b6714e2eaf6c63ebf4d023f5e620746171380dbdd9c2922d5bad2858a",
+          "payload_scopes_sha256": "4152ab3b6714e2eaf6c63ebf4d023f5e620746171380dbdd9c2922d5bad2858a"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-ae160de36d94",
+      "set_version_id": "e899c17d-7ee7-4ddf-8e74-3d8effb99a60",
+      "expected_scope_fields": 4,
+      "private_rpc_scope_fields": 4,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-ae160de36d94--sub1--standard",
+          "expected_scope_fields": 4,
+          "payload_scope_fields": 4,
+          "scope_values_equal": true,
+          "prompt_sha256": "ed32f642d57a649888861f543dad73239e878aaab6f6cbfc7af975c9ba7057d2",
+          "expected_scopes_sha256": "31ae7379a3554123551ee6710dc57229cbc355a28e0ca19820491ebfec3026d3",
+          "payload_scopes_sha256": "31ae7379a3554123551ee6710dc57229cbc355a28e0ca19820491ebfec3026d3"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-b1ca4afb323f",
+      "set_version_id": "d07cf1ac-f778-4e53-84a5-a3ab6eca3f97",
+      "expected_scope_fields": 3,
+      "private_rpc_scope_fields": 3,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-b1ca4afb323f--sub2--standard",
+          "expected_scope_fields": 3,
+          "payload_scope_fields": 3,
+          "scope_values_equal": true,
+          "prompt_sha256": "bbcf8f6a5d3b213b239c1162ba1e5c93ba453d4270ffc0c4b136b7e9d002894a",
+          "expected_scopes_sha256": "967eada225b582614bd0acc3469523e50dbdcef82010b0be548e69c9ca731cf8",
+          "payload_scopes_sha256": "967eada225b582614bd0acc3469523e50dbdcef82010b0be548e69c9ca731cf8"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-d76958b07148",
+      "set_version_id": "96d79781-bb88-4029-b675-e1a23d00ce2c",
+      "expected_scope_fields": 1,
+      "private_rpc_scope_fields": 1,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-d76958b07148--sub2--standard",
+          "expected_scope_fields": 1,
+          "payload_scope_fields": 1,
+          "scope_values_equal": true,
+          "prompt_sha256": "5797e9fb6f89828feff940d2278456e0b976ea29d78c076c37f84786007886fd",
+          "expected_scopes_sha256": "04fddbee6a4317da0475f09b93e923e30752a78758c72ddab5873571633fb9be",
+          "payload_scopes_sha256": "04fddbee6a4317da0475f09b93e923e30752a78758c72ddab5873571633fb9be"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-d8f85aa968c1",
+      "set_version_id": "6db6034f-4da7-4444-831d-56fa9c5207d8",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-d8f85aa968c1--sub1--standard",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "4efe3268e01faa408001576b22e61615eba94cd662e03d02aeebfe4e6d1ac074",
+          "expected_scopes_sha256": "6f5e514d7abdaceec01c9cabf1c4e9335680c82811fb8e95f257e3c9c66298b0",
+          "payload_scopes_sha256": "6f5e514d7abdaceec01c9cabf1c4e9335680c82811fb8e95f257e3c9c66298b0"
+        }
+      ]
+    },
+    {
+      "set_id": "std-points-20260914-f6e04eee9f12",
+      "set_version_id": "8c4af971-dde8-4c6a-ac3d-dffe02185409",
+      "expected_scope_fields": 2,
+      "private_rpc_scope_fields": 2,
+      "scope_values_equal": true,
+      "validation_errors": [],
+      "units": [
+        {
+          "learning_unit_id": "std-points-20260914-f6e04eee9f12--sub3--standard",
+          "expected_scope_fields": 2,
+          "payload_scope_fields": 2,
+          "scope_values_equal": true,
+          "prompt_sha256": "c88300d8ad8a10a5c209c6374c4520d9b195d3ff5fb11ab83b2ecfbe27a783a0",
+          "expected_scopes_sha256": "feede41660fe534f6507c161521b7c88e0a31bec69d050a220fde9d9bc223313",
+          "payload_scopes_sha256": "feede41660fe534f6507c161521b7c88e0a31bec69d050a220fde9d9bc223313"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "release": {
+    "id": "291abae8-15e8-4f88-aff0-e755cd7c1b1f",
+    "status": "active",
+    "sets": 363,
+    "source_file_hash": "895d44668c6bd86f89793c3355545bd7745398489845e8e26fe71609ad972104",
+    "actual_document_sha256": "895d44668c6bd86f89793c3355545bd7745398489845e8e26fe71609ad972104"
+  },
+  "expected": {
+    "scope_bearing_sets": 19,
+    "scope_fields": 44,
+    "learning_units": 19,
+    "payload_scope_fields": 44
+  },
+  "normalized_document_probe": {
+    "set_id": "pilot-10-007",
+    "rpc_error_code": null,
+    "scope_fields": 0,
+    "wrapper_scope_fields": 1
+  },
+  "limitations": [
+    "This is a read-only private-RPC and grading-payload audit, not an additional model grading run.",
+    "A document-less legacy version has no scope to restore. Future migrations must keep cpa_get_question_version bound to the metadata overlay."
+  ],
+  "verdict": "pass"
+}

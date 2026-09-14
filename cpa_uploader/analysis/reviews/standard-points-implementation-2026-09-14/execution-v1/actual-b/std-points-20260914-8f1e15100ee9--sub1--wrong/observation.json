@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-8f1e15100ee9--sub1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-8f1e15100ee9--sub1--standard",
+  "source_set_id": "std-points-20260914-8f1e15100ee9",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "24ee58fc0312fbc77ab86b798cc0d22a953bc3642713c9beefb59bd8a1891d82",
+  "answers": {
+    "sub1": "기중에 실증절차를 수행했으면 잔여기간에는 어떤 감사절차도 필요 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 잔여기간에 대해 통제테스트를 수반한 실증절차를 수행할 수 있다. 다른 경로와 함께 반드시 수행하는 누적 의무가 아니다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 감사인이 충분하다고 결정한 경우에는 잔여기간을 포괄하는 후속적인 실증절차만 수행할 수 있다. 충분하다는 판단 없이 항상 통제테스트를 생략해도 된다고 하면 불충족이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "93fc70de2dfbf491bd97fed665a5311dd347dcb0405f1964005bde3577555d2e",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "기중에 실증절차를 수행했으면 잔여기간에는 어떤 감사절차도 필요 없다.",
+            "reason": "잔여기간에 어떤 감사절차도 필요 없다고 하여 잔여기간 실증절차 수행을 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "기중에 실증절차를 수행했으면 잔여기간에는 어떤 감사절차도 필요 없다.",
+            "reason": "충분성 판단에 따른 후속 실증절차를 요구하지 않고 잔여기간 절차가 전혀 필요 없다고 했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "잔여기간에 어떤 감사절차도 필요 없다고 하여 잔여기간 실증절차 수행을 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "충분성 판단에 따른 후속 실증절차를 요구하지 않고 잔여기간 절차가 전혀 필요 없다고 했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-8f1e15100ee9",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "실증절차를 기중 일자를 기준으로 수행한 경우 그 결론을 보고기간말까지 확대하기 위한 합리적인 근거를 얻는 두 가지 잔여기간 감사방법을 설명하시오. 각 방법의 적용 조건을 구별하시오.",
+        "user_answer": "기중에 실증절차를 수행했으면 잔여기간에는 어떤 감사절차도 필요 없다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "기중에 실증절차를 수행했으면 잔여기간에는 어떤 감사절차도 필요 없다.",
+            "reason": "잔여기간에 어떤 감사절차도 필요 없다고 하여 잔여기간 실증절차 수행을 명시적으로 부정했다.",
+            "claim": "잔여기간에 대해 통제테스트를 수반한 실증절차를 수행할 수 있다. 다른 경로와 함께 반드시 수행하는 누적 의무가 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "기중에 실증절차를 수행했으면 잔여기간에는 어떤 감사절차도 필요 없다.",
+            "reason": "충분성 판단에 따른 후속 실증절차를 요구하지 않고 잔여기간 절차가 전혀 필요 없다고 했다.",
+            "claim": "감사인이 충분하다고 결정한 경우에는 잔여기간을 포괄하는 후속적인 실증절차만 수행할 수 있다. 충분하다는 판단 없이 항상 통제테스트를 생략해도 된다고 하면 불충족이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "잔여기간에 대하여 통제테스트를 수반한 실증절차를 수행할 수 있다. 감사인이 충분하다고 결정한 경우에는 잔여기간을 포괄하는 후속적인 실증절차만 수행할 수 있다. 두 방법을 항상 함께 수행해야 하는 것은 아니다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a3d9c2196b3a3b8016aa7868aebf487d0a4d0da1df5ffd17e",
+        "request_id": "req_65ba92a6429f4d96a039cf442bc60f3a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2420,
+          "input_tokens_details": {
+            "cache_write_tokens": 2417,
+            "cached_tokens": 0
+          },
+          "output_tokens": 359,
+          "output_tokens_details": {
+            "reasoning_tokens": 192
+          },
+          "total_tokens": 2779
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010356500000000002,
+        "min_usd": 0.0010356500000000002,
+        "max_usd": 0.0010356500000000002,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-8f1e15100ee9--sub1--wrong/input.json",
+      "sha256": "2bc48f8a8e6a7ac563535156481554a52ecbe364a2361bcbc20e75db7d9015e4"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-8f1e15100ee9--sub1--wrong/transport.jsonl",
+      "sha256": "663502204447161702b3314cf58afee701f64f660ad3be3b0e74f8cc950556f1"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-8f1e15100ee9--sub1--wrong/traces.jsonl",
+      "sha256": "dc42e8eddec64a178cfaa0624f1bf7460d1c380eab53720963eb50bcd4c513bc"
+    }
+  }
+}

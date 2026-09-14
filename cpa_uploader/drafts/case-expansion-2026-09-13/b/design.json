@@ -1,0 +1,1563 @@
+[
+  {
+    "set_id": "pilot-13-007",
+    "version": 1,
+    "topic_id": "13",
+    "mode": "adapt_existing_question",
+    "objective": "서비스조직 보고서의 유형과 실제 접근 가능한 증거수단을 연결하여 통제 의존 계획의 후속절차를 결정한다.",
+    "scope": {
+      "actors": [
+        "재무제표감사인",
+        "피감사기업의 경영진"
+      ],
+      "timing": [
+        "2026년 1월 1일 개시 보고기간의 감사; 개별 지문에 명시된 기중·기말 및 감사종결 시점"
+      ],
+      "conditions": [
+        "C사 급여 통제 운영효과성 기대를 유지한다.",
+        "유형 2 보고서·타감사인의 테스트 업무는 기한 내 이용 불가, 직접 접근 가능"
+      ],
+      "exceptions": [
+        "해당 없음: 발문 범위 밖의 감사의견 결정이나 법규상 별도 예외를 추론하도록 요구하지 않는다."
+      ],
+      "required_answers": [
+        "sub1: 제시된 유형 1 보고서를 급여 관련 통제의 운영효과성에 관한 감사증거로 이용하려는 계획이 적절한지 판단하고, 보고서가 제공하는 증거의 한계에 근거하여 이유를 설명하시오.",
+        "exp1: 감사인이 현재의 통제 의존 계획을 유지한다면, 운영효과성 증거의 확보를 생략해도 된다는 주장이 적절한지 판단하고 현재 이용 가능한 수단에 따라 수행해야 할 절차를 제시하시오."
+      ],
+      "exclusions": [
+        "보고서의 세 가지 적격성 조건 재열거",
+        "통제 의존 전략을 포기한 경우의 실증절차 설계",
+        "유형 2 보고서 상세 검토 목록"
+      ]
+    },
+    "question_types": [
+      "judgment"
+    ],
+    "source_unit_ids": [
+      "src-2e3463fea2ede2582c",
+      "src-0cd712b8db350ceb20",
+      "src-8a76097f53f298953d",
+      "src-49490a8131b8e6c29a",
+      "src-672dcaabbcbd84ec46",
+      "src-c8854cd0c099986349",
+      "src-cad12050d3d887157f"
+    ],
+    "existing_question_difference": "기존 sub1 2점은 보존한다. 일반론 sub2·sub3을 제외하고, 보고서·타감사인 업무 이용불가와 직접 접근 허용을 해석해야 하는 exp1 2점을 신설한다.",
+    "edition_assumption": "bank-before.json의 2026년 1월 1일 개시 보고기간 및 기존 2025년 전문/2026년 대조 기록 범위를 유지한다. 아래 공식 전사와 의존 문단을 읽어 명제를 검토했으며 학습교재의 옛 문단번호·정수 미만 배점·선택 개수는 그대로 승계하지 않는다.",
+    "unresolved_items": [],
+    "status": "ready",
+    "lineage": {
+      "previous_set_id": "pilot-13-007",
+      "previous_set_sha256": "065a32c0a88d6e8287fa5f329059eb99b7597f8916d0deaa222760b2eedff1aa",
+      "retained_case_subquestion_ids": [
+        "sub1"
+      ],
+      "added_case_subquestion_ids": [
+        "exp1"
+      ],
+      "standard_subquestions_for_separate_preservation": [
+        "sub2",
+        "sub3"
+      ]
+    },
+    "fact_question_mapping": [
+      {
+        "fact_id": "fact1",
+        "subquestion_ids": [
+          "sub1",
+          "exp1"
+        ],
+        "use": "급여 위탁의 거래흐름과 통제 의존 전제"
+      },
+      {
+        "fact_id": "fact2",
+        "subquestion_ids": [
+          "sub1"
+        ],
+        "use": "유형 1 보고서의 증거 한계와 다른 검토범위의 분리"
+      },
+      {
+        "fact_id": "fact3",
+        "subquestion_ids": [
+          "exp1"
+        ],
+        "use": "선택 가능한 증거수단을 직접 통제테스트로 한정"
+      }
+    ],
+    "facts_unicode_characters": 583,
+    "source_reading": [
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+        "start_line": 914,
+        "end_line": 940,
+        "quote": "물음 3 다음을 읽고 물음에 답하시오.\n가나회계법인은 상장기 업인 A사와 비상장기 업 B사에 대한 감사인이며 20)5년 감사계획을 수립 중이다.\n• A사는 연결내부회계관리제도 감사대상(자산규모 2조원 이상)이며, B사는 A사의 종속기 업으로서 유\n의적 부문에 해당하지 아니하나, 감사인은 매출 및 매출채권에 대해서만 그룹감사 목적의 감사업무(\n내부회계관리제도 감사 포함)를 수행하기로 하였다.\n• 감사인은 A사의 유의적 위험이 있는 계정으로 매출 및 매출채권과 공정가치측정금융자산을 식별하\n였다.\n• 감사인은 B사와 관련하여 그룹감사 목적의 매출 및 매출채권 뿐만 아니라, 매입 및 매입채무, 재고자\n산 및 유형자산에 대한 통제테스트를 매년 수행하고 있으며 통제의존전략을 채택하고 있다.\n• 한편, A사와 B사는 급여 계산 및 지급과 관련하여 A사의 또 다른 종속기 업인 C사를 서비스조직으로\n활용하고 있다.\n아래 각 항목별로 내부통제와 관련하여 계획한 감사절차가 적절한지 여부를 기재하고, 적절하지 않은 경우\n그 이유를 2주이내로 서술하시오.\n하모\n㉨\n감사절차\n감사인은 B사의 매출채권에 대한 대손충당금 통제테스트 수행시, 통제에 사용된 매출채권연령분석표\n에 대해 실증절차(직접테스트, direct test)를 수행할 계획이다.\n감사인은 A사 통제테스트와 관련하여 회사의 내부감사기능을 활용할 계획이다. A사의 내부회계\n관리제도 운영평가업무는 외주용역업체인 다라회계법인에서 수행하고 있다. 다라회계법인의 손\n우수 회계사는 과거 재무자문본부에서 공정가치평가업무를 다년간 수행한 것으로 확인되었다. 이\n에 감사인은 공정가치측정금융자산과 관련한 통제테스트를 포함하여 다라회계법인이 수행한 업\n무를 활용할 예정이다.\n감사인은 B사의 매입 및 매입채무와 관련하여 통제테스트 수행시, 전년도에 수행했던 통제테스트\n에 대한 감사증거를 사용할 계획이다.\n감사인은 A사의 급여 관련 통제테스트 수행시, 서비스조직인 C사의 유형 1 보고서를 입수하여 이를 감\n사증거로 사용할 계획이다.",
+        "file_sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+        "source_unit_ids": [
+          "src-8a76097f53f298953d"
+        ],
+        "relation": "direct",
+        "reason": "2025년 문제3 물음3의 급여 위탁·유형1 보고서 이용 계획을 재구성",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+        "start_line": 9342,
+        "end_line": 9352,
+        "quote": "(물음 3) 내부통제 감사절차\n항목 적절한가? 적절하지 않은 경우, 그 이유\n① 예\n② 아니오\n공정가치 측정 금융자산은 유의적 위험이 있는 계정이 므로, 내부감사기능이 수\n행한 업무의 활용을 줄이고 직접 수행업무를 늘리도록 계획을 세워야 한다.\n③ 예\n④ 아니오\n감사인이 통제의존전략을 채택하고 있다. 유형1 보고서는 서비스조직 통제의\n운영효과성에 대한 의견이 포함되어 있지 않으므로, 통제의 운영효과성에 대\n한 증거를 제공하지 않는다.",
+        "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+        "source_unit_ids": [
+          "src-49490a8131b8e6c29a"
+        ],
+        "relation": "direct",
+        "reason": "동일 기출 해설의 운영효과성 증거 부재 확인",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 3050,
+        "end_line": 3054,
+        "quote": "• 업무팀원인 나영만 회계사는 매출 및 매출채권 관련 계정과목을 담당하였고, 최인사 회계사는 급여\n등 인건비 관련 계정과목을 담당하였다.\n• 회사의 통제환경이 효과적인 것으로 확인되었고, 경영진주장 수준의 중요왜곡표시위험을 평가할 때\n통제가 효과적으로 운영되고 있다는 기대가 있어, 통제의 운영효과성에 대한 충분하고 적합한 감사\n증거를 입수할 수 있도록 통제테스트를 설계하고 수행하고자 한다.",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-672dcaabbcbd84ec46"
+        ],
+        "relation": "partial",
+        "reason": "통제 운영효과성 기대와 실증절차 연결",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 3075,
+        "end_line": 3079,
+        "quote": "물음 3 최인사 회계사는 회사의 내부통제 이해 결과 급여 관련 업무 중 일부(급여대장 작성, 4대보험 신\n고 및 기타인사업무 관리)를 외부 서비스조직인 (좌굳피플에 위탁하고 있다. 이와 관련하여 통제테\n스트를 수행하고자 할 때 수행해야 할 절차 두 가지를 서술하시오(단, 아래<예시>는 제외할 것).\n<예시>\n가능한 경우, 유형2 보고서를 입수함",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-c8854cd0c099986349"
+        ],
+        "relation": "partial",
+        "reason": "급여 위탁의 유형2 외 대체 테스트를 구체 조건으로 바꿈",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 3112,
+        "end_line": 3117,
+        "quote": "물음 3\n(기준서 402-16)\n1) 가능한 경우, 유형2 보고서를 입수함 - 예시\n2) 서비스조직의 통제에 대하여 적합한 통제테스트를 수행함\n3) 서비스조직의 통제에 대하여 통제테스트를 수행한 타감사인의 업무를 활용함\n(배점 2점, 각 1점)",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-cad12050d3d887157f"
+        ],
+        "relation": "direct",
+        "reason": "자체 테스트·타감사인 업무 대안 확인",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      }
+    ],
+    "official_source_mapping": [
+      {
+        "source_ref_id": "std-402-A22",
+        "file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/abc-official.txt",
+        "source_span": "한국공인회계사회 회계감사기준 402 문단 A22 (2025 개정 전문 PDF 347–348쪽)",
+        "source_quote_sha256": "9ffe641cb00376a52ee4c90587a58d9876cddf70d82b425351df057bc1553140",
+        "source_unit_ids": []
+      },
+      {
+        "source_ref_id": "std-402-16",
+        "file": "cpa_uploader/drafts/frequency-gap-2026-09-10/sources/abc-official.txt",
+        "source_span": "한국공인회계사회 회계감사기준 402 문단 16 (2025 개정 전문 PDF 340–341쪽)",
+        "source_quote_sha256": "9202ce59d33c350098c74b517451b2411cab07043f8a3d42f63dffb164e1c00f",
+        "source_unit_ids": []
+      },
+      {
+        "source_ref_id": "exp-402-16",
+        "file": "cpa_uploader/data/official/delegated-s03-kga-2025.txt",
+        "source_span": "KGA 402 문단 16 원문 페이지 340; L747-L755",
+        "source_quote_sha256": "a207bdf93021067c220e7268cdd9654e73b7052eb2bbdb50c30c88e8b1b87222",
+        "source_unit_ids": [
+          "src-2e3463fea2ede2582c"
+        ]
+      }
+    ],
+    "source_limitations": [
+      "기출·연습의 해당 요구와 인접 요구를 설계 근거로만 사용한다. 새 사실과 추가 물음을 기존 실제 출제로 집계하지 않는다."
+    ],
+    "agent_review_status": "content_reviewed",
+    "actual_model_grading_status": "not_run_by_subagent"
+  },
+  {
+    "set_id": "pilot-13-011",
+    "version": 1,
+    "topic_id": "13",
+    "mode": "adapt_existing_question",
+    "objective": "유형2 보고서 범위 제외와 보충적인 이용자기업 통제를 구별하여 서비스조직 보고서가 대신하지 못하는 검증을 설계한다.",
+    "scope": {
+      "actors": [
+        "이용자기업 감사인",
+        "온유회사",
+        "서비스조직 새롬",
+        "하위서비스조직 다온"
+      ],
+      "timing": [
+        "2026년 1월 1일 개시 보고기간의 감사; 개별 지문에 명시된 기중·기말 및 감사종결 시점"
+      ],
+      "conditions": [
+        "보고서는 당기 전체 기간을 대상으로 하지만 관련 하위서비스를 제외한다.",
+        "퇴직자 지급액 검토는 보고서상 전제이고 실제 실행·운영 증거 미확보"
+      ],
+      "exceptions": [
+        "해당 없음: 발문 범위 밖의 감사의견 결정이나 법규상 별도 예외를 추론하도록 요구하지 않는다."
+      ],
+      "required_answers": [
+        "sub2: 하위서비스조직의 통제가 보고서 범위에서 제외되었다는 이유로 해당 서비스에 관한 검토를 생략할 수 있는지 판단하고, 제시된 관련성 조건에서 적용해야 할 기준서 요구를 설명하시오.",
+        "exp1: 유형 2 보고서에 제시된 직원 명부 대조·퇴직자 지급액 검토에 관하여, 온유회사에서 수행할 절차를 설명하시오. 해당 통제의 관련성, 설계, 실제 실행 및 운영효과성을 구별하고 검토 담당자 변경과 미입수 기록을 고려하시오."
+      ],
+      "exclusions": [
+        "보고서 대상기간 차이 계산",
+        "402.17 전체 일반 목록 재열거",
+        "인사규정이나 노동법 판단"
+      ]
+    },
+    "question_types": [
+      "judgment",
+      "descriptive"
+    ],
+    "source_unit_ids": [
+      "src-0f2c39b6322f710c8f",
+      "src-031012e2b576b90330",
+      "src-8a76097f53f298953d",
+      "src-49490a8131b8e6c29a",
+      "src-c8854cd0c099986349",
+      "src-cad12050d3d887157f"
+    ],
+    "existing_question_difference": "기존 sub2의 하위서비스 적용 2점을 보존하고 sub1 일반론은 별도 보존한다. exp1에서 명시된 퇴직자 검토에 대한 관련성·설계·실행·운영테스트 4점을 새로 적용한다.",
+    "edition_assumption": "bank-before.json의 2026년 1월 1일 개시 보고기간 및 기존 2025년 전문/2026년 대조 기록 범위를 유지한다. 아래 공식 전사와 의존 문단을 읽어 명제를 검토했으며 학습교재의 옛 문단번호·정수 미만 배점·선택 개수는 그대로 승계하지 않는다.",
+    "unresolved_items": [],
+    "status": "ready",
+    "lineage": {
+      "previous_set_id": "pilot-13-011",
+      "previous_set_sha256": "bcdd1523809c3628c739e3eac067925d1af8435042860c1cac9147e79c14e4c0",
+      "retained_case_subquestion_ids": [
+        "sub2"
+      ],
+      "added_case_subquestion_ids": [
+        "exp1"
+      ],
+      "standard_subquestions_for_separate_preservation": [
+        "sub1"
+      ]
+    },
+    "fact_question_mapping": [
+      {
+        "fact_id": "fact1",
+        "subquestion_ids": [
+          "sub2",
+          "exp1"
+        ],
+        "use": "보고서 이용목적과 기간·적격성 관련 불필요한 쟁점 제외"
+      },
+      {
+        "fact_id": "fact2",
+        "subquestion_ids": [
+          "sub2"
+        ],
+        "use": "하위서비스의 거래흐름과 실제 감사 관련성"
+      },
+      {
+        "fact_id": "fact3",
+        "subquestion_ids": [
+          "exp1"
+        ],
+        "use": "보충통제의 명시, 검토자 퇴사 및 실행 증거 부재"
+      }
+    ],
+    "facts_unicode_characters": 637,
+    "source_reading": [
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md",
+        "start_line": 914,
+        "end_line": 940,
+        "quote": "물음 3 다음을 읽고 물음에 답하시오.\n가나회계법인은 상장기 업인 A사와 비상장기 업 B사에 대한 감사인이며 20)5년 감사계획을 수립 중이다.\n• A사는 연결내부회계관리제도 감사대상(자산규모 2조원 이상)이며, B사는 A사의 종속기 업으로서 유\n의적 부문에 해당하지 아니하나, 감사인은 매출 및 매출채권에 대해서만 그룹감사 목적의 감사업무(\n내부회계관리제도 감사 포함)를 수행하기로 하였다.\n• 감사인은 A사의 유의적 위험이 있는 계정으로 매출 및 매출채권과 공정가치측정금융자산을 식별하\n였다.\n• 감사인은 B사와 관련하여 그룹감사 목적의 매출 및 매출채권 뿐만 아니라, 매입 및 매입채무, 재고자\n산 및 유형자산에 대한 통제테스트를 매년 수행하고 있으며 통제의존전략을 채택하고 있다.\n• 한편, A사와 B사는 급여 계산 및 지급과 관련하여 A사의 또 다른 종속기 업인 C사를 서비스조직으로\n활용하고 있다.\n아래 각 항목별로 내부통제와 관련하여 계획한 감사절차가 적절한지 여부를 기재하고, 적절하지 않은 경우\n그 이유를 2주이내로 서술하시오.\n하모\n㉨\n감사절차\n감사인은 B사의 매출채권에 대한 대손충당금 통제테스트 수행시, 통제에 사용된 매출채권연령분석표\n에 대해 실증절차(직접테스트, direct test)를 수행할 계획이다.\n감사인은 A사 통제테스트와 관련하여 회사의 내부감사기능을 활용할 계획이다. A사의 내부회계\n관리제도 운영평가업무는 외주용역업체인 다라회계법인에서 수행하고 있다. 다라회계법인의 손\n우수 회계사는 과거 재무자문본부에서 공정가치평가업무를 다년간 수행한 것으로 확인되었다. 이\n에 감사인은 공정가치측정금융자산과 관련한 통제테스트를 포함하여 다라회계법인이 수행한 업\n무를 활용할 예정이다.\n감사인은 B사의 매입 및 매입채무와 관련하여 통제테스트 수행시, 전년도에 수행했던 통제테스트\n에 대한 감사증거를 사용할 계획이다.\n감사인은 A사의 급여 관련 통제테스트 수행시, 서비스조직인 C사의 유형 1 보고서를 입수하여 이를 감\n사증거로 사용할 계획이다.",
+        "file_sha256": "f41650f55dd145a5f591232de0eb6ce9a70bd4f0a87e70daf30b00ed07e61384",
+        "source_unit_ids": [
+          "src-8a76097f53f298953d"
+        ],
+        "relation": "adjacent",
+        "reason": "급여서비스조직 보고서의 의존 한계를 유형2 제외범위로 심화; 해당 기출이 하위조직/보충통제를 직접 출제한 것은 아니다.",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+        "start_line": 9342,
+        "end_line": 9352,
+        "quote": "(물음 3) 내부통제 감사절차\n항목 적절한가? 적절하지 않은 경우, 그 이유\n① 예\n② 아니오\n공정가치 측정 금융자산은 유의적 위험이 있는 계정이 므로, 내부감사기능이 수\n행한 업무의 활용을 줄이고 직접 수행업무를 늘리도록 계획을 세워야 한다.\n③ 예\n④ 아니오\n감사인이 통제의존전략을 채택하고 있다. 유형1 보고서는 서비스조직 통제의\n운영효과성에 대한 의견이 포함되어 있지 않으므로, 통제의 운영효과성에 대\n한 증거를 제공하지 않는다.",
+        "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+        "source_unit_ids": [
+          "src-49490a8131b8e6c29a"
+        ],
+        "relation": "adjacent",
+        "reason": "서비스 보고서의 증거 범위 구분",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 3075,
+        "end_line": 3079,
+        "quote": "물음 3 최인사 회계사는 회사의 내부통제 이해 결과 급여 관련 업무 중 일부(급여대장 작성, 4대보험 신\n고 및 기타인사업무 관리)를 외부 서비스조직인 (좌굳피플에 위탁하고 있다. 이와 관련하여 통제테\n스트를 수행하고자 할 때 수행해야 할 절차 두 가지를 서술하시오(단, 아래<예시>는 제외할 것).\n<예시>\n가능한 경우, 유형2 보고서를 입수함",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-c8854cd0c099986349"
+        ],
+        "relation": "adjacent",
+        "reason": "급여 업무 위탁 상황과 통제증거 취득 문제를 응용",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 3112,
+        "end_line": 3117,
+        "quote": "물음 3\n(기준서 402-16)\n1) 가능한 경우, 유형2 보고서를 입수함 - 예시\n2) 서비스조직의 통제에 대하여 적합한 통제테스트를 수행함\n3) 서비스조직의 통제에 대하여 통제테스트를 수행한 타감사인의 업무를 활용함\n(배점 2점, 각 1점)",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-cad12050d3d887157f"
+        ],
+        "relation": "adjacent",
+        "reason": "통제증거 취득 대안 해설 확인",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      }
+    ],
+    "official_source_mapping": [
+      {
+        "source_ref_id": "std-402-17",
+        "file": "cpa_uploader/data/official/delegated-s03-kga-2025.txt",
+        "source_span": "KGA 402.17; 공식2025 전문 PDF 341쪽부터; KGA 402 문단 17 원문 페이지 341; L756-L771",
+        "source_quote_sha256": "2f7a5c60d987c03c474bf9c390087ac94a272798eee4fda5ea8209b4b54ce7fa",
+        "source_unit_ids": [
+          "src-0f2c39b6322f710c8f"
+        ]
+      },
+      {
+        "source_ref_id": "std-402-18",
+        "file": "cpa_uploader/data/official/delegated-s03-kga-2025.txt",
+        "source_span": "KGA 402.18; 공식2025 전문 PDF 341쪽부터; KGA 402 문단 18 원문 페이지 341; L773-L779",
+        "source_quote_sha256": "56184b3dc1037d1ad7d25fcc7fb8dd284953daddeadb45fbf8559353834437b8",
+        "source_unit_ids": [
+          "src-031012e2b576b90330"
+        ]
+      }
+    ],
+    "source_limitations": [
+      "기출·연습의 해당 요구와 인접 요구를 설계 근거로만 사용한다. 새 사실과 추가 물음을 기존 실제 출제로 집계하지 않는다."
+    ],
+    "agent_review_status": "content_reviewed",
+    "actual_model_grading_status": "not_run_by_subagent"
+  },
+  {
+    "set_id": "pilot-12-001",
+    "version": 1,
+    "topic_id": "12",
+    "mode": "adapt_existing_question",
+    "objective": "계속기업 평가기간의 부족과 경영진의 낙관적 자금계획에 대한 감사절차를 구별하여 적용한다.",
+    "scope": {
+      "actors": [
+        "재무제표감사인",
+        "피감사기업의 경영진"
+      ],
+      "timing": [
+        "2026년 1월 1일 개시 보고기간의 감사; 개별 지문에 명시된 기중·기말 및 감사종결 시점"
+      ],
+      "conditions": [
+        "재무제표일 12월31일, 평가10개월, 더 긴 별도 요구 없음",
+        "유의적 의문을 초래할 상황 식별, 현금흐름예측이 유의적 평가자료",
+        "차입 연장 미승인·신규고객 계약 협의 중"
+      ],
+      "exceptions": [
+        "해당 없음: 발문 범위 밖의 감사의견 결정이나 법규상 별도 예외를 추론하도록 요구하지 않는다."
+      ],
+      "required_answers": [
+        "subq2: 제시된 경영진의 계속기업 평가기간에 대하여 감사인이 요청해야 할 조치를, 최소 평가기간에 관한 근거와 함께 설명하시오.",
+        "exp1: 예측표의 최종 현금잔액이 양수라는 사실만으로 검토를 마무리하려는 계획을 보완하시오. 차입 연장·신규 매출 계획의 효과와 실행가능성, 현금흐름예측의 기초자료와 가정에 관하여 수행해야 할 평가를 사례와 연결하여 설명하시오. 최종 감사의견은 요구하지 않는다."
+      ],
+      "exclusions": [
+        "중요한 불확실성 존재 및 최종 감사의견의 확정",
+        "계속기업 추가절차 전체 목록",
+        "현금흐름 금액 계산",
+        "서면진술 요구 목록"
+      ]
+    },
+    "question_types": [
+      "judgment",
+      "descriptive"
+    ],
+    "source_unit_ids": [
+      "src-8add86ce5bb2046cb5",
+      "src-53140ed862dddf7d9b",
+      "src-fcbf8d735ccdb50297",
+      "src-9336dc394d1ce5aef0",
+      "src-ecad0eb272e32ed9fc",
+      "src-cceaf3e5d2dd7baacd"
+    ],
+    "existing_question_difference": "기존 subq2 2점을 유지하고 기존 subq1 기준서형은 별도 보존한다. 현금흐름예측·자금계획의 실제 증거를 추가해 570.16(b)(c)의 적용4점을 신설한다.",
+    "edition_assumption": "bank-before.json의 2026년 1월 1일 개시 보고기간 및 기존 2025년 전문/2026년 대조 기록 범위를 유지한다. 아래 공식 전사와 의존 문단을 읽어 명제를 검토했으며 학습교재의 옛 문단번호·정수 미만 배점·선택 개수는 그대로 승계하지 않는다.",
+    "unresolved_items": [],
+    "status": "ready",
+    "lineage": {
+      "previous_set_id": "pilot-12-001",
+      "previous_set_sha256": "87c5ea39922a4e534ef48a9ef69a052d464644750dac8f9482a3fd639ce2ddd5",
+      "retained_case_subquestion_ids": [
+        "subq2"
+      ],
+      "added_case_subquestion_ids": [
+        "exp1"
+      ],
+      "standard_subquestions_for_separate_preservation": [
+        "subq1"
+      ]
+    },
+    "fact_question_mapping": [
+      {
+        "fact_id": "fact1",
+        "subquestion_ids": [
+          "subq2"
+        ],
+        "use": "10개월 평가 범위와 기산일 및 예산범위 항변"
+      },
+      {
+        "fact_id": "fact2",
+        "subquestion_ids": [
+          "exp1"
+        ],
+        "use": "계획 효과 평가에 필요한 현금부족·상환시점, 미확정 계획의 실행가능성"
+      },
+      {
+        "fact_id": "fact3",
+        "subquestion_ids": [
+          "exp1"
+        ],
+        "use": "현금흐름예측의 유의성 조건과 데이터·가정 검토 미완료"
+      }
+    ],
+    "facts_unicode_characters": 608,
+    "source_reading": [
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+        "start_line": 4930,
+        "end_line": 4942,
+        "quote": "'회계의 계속기업전제'에 대해 감사인은 감사의 전 과정에\n서 주의를 기울여야 한다. 계속기업으로서의 존속능력에\n대하여 유의적 의문을 초래할 만한 사건이나 상황이 식별\n된 경우, 감사인이 수행하여야 할 감사절차 세 가지를 각\n각 1줄 이내로 서술하시오(단, 아래 <예시>는 제외할 것).\n기업이 현금흐름을 여/측하였고 이 예측이/ 대한 분석\n0/ 경영진의 미래 질항계흐/을 평가할 때/ 사건이나 상\n황의 g/리/결고/를 고려하는 다/ 유의적인 요소인 경우,\n다음의 절지를 주행함\ni ) 예측을 위해/ 생성된 기초 데이터의 전로/상을 평\n가함\n(ii) 예측의 기초가 되는 가정들에/ 대한 적절한 근거\n가 있는지 여부를 결정함",
+        "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+        "source_unit_ids": [
+          "src-fcbf8d735ccdb50297"
+        ],
+        "relation": "partial",
+        "reason": "2020 기출 계속기업 추가절차와 현금예측의 조건부 데이터·가정 평가",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+        "start_line": 8885,
+        "end_line": 8886,
+        "quote": "(물음 3) 밑줄 친 (2)와 같이 경영진이 자구계획을 제시\n한 경우, 감사인이 수행해야 할 절차를 서술하시오.",
+        "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+        "source_unit_ids": [
+          "src-9336dc394d1ce5aef0"
+        ],
+        "relation": "partial",
+        "reason": "기출 자구계획에 대한 절차 요구",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 7699,
+        "end_line": 7716,
+        "quote": "물음 3 감사인은 재무제표의 작성에 있어 경영진의 회계의 계속기업전제 사용의 적합성에 대하여 충분\n하고 적합한 감사증거를 입수하고 결론을 내리며, 입수된 감사증거에 기초하여 계속기 업으로서의\n존속능력에 대한 중요한 불확실성이 존재하는지 여부에 대하여 결론을 내려야 한다. 다음은 계속\n기업 관련 감사절차에 대한설명이다. 각항목별로 설명이 적절한지 여부를 기재하고, 적절하지 않\n은 경우 그 이유를 서술하시오.\n항목 설명\n감사인이 경영진이 적용한 회계의 계속기업전제를 고려할 때의 주요 부분은 계속기업으로서\n① 의 존속능력에 대한 경영진의 평가이며, 경영진이 수행한 분석 부족을 바로잡는 것은 감사인\n의 책임이 아니다.\n스 감사인은 경영진이 평가한 기간(최소 재무제표일로부터 12개월) 후의 기간에 대해서는 계속기\n업으로서의존속능력에 대해어떠한감사절차도수행할의무가없다. _ _\n재무보고체계에서’중요한 불확실성을 정의하지 않더라도, 감사인은 중요한 불확실성이 존재\n(3)\n_하는지 결정하여야 한다.\n다수의 불확실성을 수반하는 상황에서도 감사인이 각각의 불확실성에 대하여 충분하고 적합\n한 감사증거를 입수하였다면 적정의견을 표명하여야 한다.\n[답안양식]\n항목 적절한가? (예, 아니오) 적절하지 않은 경우, 그 이유",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-ecad0eb272e32ed9fc"
+        ],
+        "relation": "adjacent",
+        "reason": "평가기간·감사인 책임·결론을 구별하는 판단형 요구",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 7767,
+        "end_line": 7784,
+        "quote": "## 원문 페이지 236\n\n2026 고급 회계감사연습\n(배점 4점 - 적절성 판단 각 0.5점, 이유 각 1 점)\n항목\n적절한가?\n(예, 아니오)\n적절하지 않은 경우,\n그이유\n① 예\n기준서 570 - A8, 9\n경영진이 수행한 분석 부족을 바로잡는 것은 감사인의 책임이 아니다. 그러나 어떤 상\n황에서는, 경영진의 평가를 뒷받침하기 위한 경영진의 세부분석이 부족하다고 해서, 해\n당 상황에 경영진의 회계의 계속기업전제 사용이 적합한지 여부에 대하여 감사인이 결\n론을 내릴 수 없는 것은 아니다.\n② 아니오\n평가한 기간 후의 기간의 경우 최소한 질문의 절차는 수행하여야 한다.\n기준서 570-15",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-cceaf3e5d2dd7baacd"
+        ],
+        "relation": "adjacent",
+        "reason": "위 계속기업 절차 판단 해설 대조",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      }
+    ],
+    "official_source_mapping": [
+      {
+        "source_ref_id": "src11",
+        "file": "cpa_uploader/data/official/kga450-560-570-580-2025-review12.txt",
+        "source_span": "한국공인회계사회 회계감사기준 전문(2025 개정), 주제12 직접 발췌",
+        "source_quote_sha256": "04226c0a3ea1f87534da83a9f2dd4161bfdfbf8f1ec67e261ebc13f56453cbcb",
+        "source_unit_ids": [
+          "src-8add86ce5bb2046cb5"
+        ]
+      },
+      {
+        "source_ref_id": "exp-570-16",
+        "file": "cpa_uploader/data/official/kga450-560-570-580-2025-review12.txt",
+        "source_span": "KGA 570 문단 16 원문 페이지 550; L395-L420",
+        "source_quote_sha256": "74d2a9424cc71840de9e5f7b1c0e7c689e198f25d4934c1b6a18b272f9aad1c3",
+        "source_unit_ids": [
+          "src-53140ed862dddf7d9b"
+        ]
+      }
+    ],
+    "source_limitations": [
+      "기출·연습의 해당 요구와 인접 요구를 설계 근거로만 사용한다. 새 사실과 추가 물음을 기존 실제 출제로 집계하지 않는다."
+    ],
+    "agent_review_status": "content_reviewed",
+    "actual_model_grading_status": "not_run_by_subagent"
+  },
+  {
+    "set_id": "pilot-12-009",
+    "version": 1,
+    "topic_id": "12",
+    "mode": "adapt_existing_question",
+    "objective": "경영진 수정의 검증과 미수정왜곡표시의 종결 평가를 실제 이익·질적 상황·이월오류에 적용한다.",
+    "scope": {
+      "actors": [
+        "재무제표감사인",
+        "피감사기업의 경영진"
+      ],
+      "timing": [
+        "2026년 1월 1일 개시 보고기간의 감사; 개별 지문에 명시된 기중·기말 및 감사종결 시점"
+      ],
+      "conditions": [
+        "경영진이 감사인 요청으로 같은 거래유형 조사·수정",
+        "중요성의 기준인 이익이 예상보다 크게 감소",
+        "약정비율 영향과 전기 오류의 당기 영향 존재"
+      ],
+      "exceptions": [
+        "해당 없음: 발문 범위 밖의 감사의견 결정이나 법규상 별도 예외를 추론하도록 요구하지 않는다."
+      ],
+      "required_answers": [
+        "sub1: 경영진이 조사·수정했으므로 감사인의 추가절차가 필요 없다는 주장이 적절한지 판단하고, 감사인이 수행할 후속절차의 목적을 설명하시오.",
+        "exp1: 당기 발견 금액을 계획 당시 중요성과 비교하는 것만으로 평가를 마치려는 담당자의 계획을 보완하시오. 실제 이익 감소, 차입약정 비율에 대한 영향, 전기 미수정 오류의 당기 영향을 각각 어떻게 고려해야 하는지 설명하시오."
+      ],
+      "exclusions": [
+        "부정 발생의 확정",
+        "왜곡표시 및 중요성 수치 계산",
+        "감사의견 확정",
+        "경영진 수정 거절 일반 대응 목록"
+      ]
+    },
+    "question_types": [
+      "judgment",
+      "descriptive"
+    ],
+    "source_unit_ids": [
+      "src-b9d66102ae17b5dacc",
+      "src-13dafcfeaa896a9f84",
+      "src-9395cc89abcfc1bc22",
+      "src-a78fbf4737bd35a73d",
+      "src-da48d16e1dc46eac24",
+      "src-21a7a391248a951df5",
+      "src-0a6cd440707b07d0b0"
+    ],
+    "existing_question_difference": "기존 sub1의 수정후 추가절차2점 유지, 일반 sub2·sub3은 별도보존. 신규 exp1은 실제 지문3요소를 해석해야 하는 평가3점으로 범위를 한정한다.",
+    "edition_assumption": "bank-before.json의 2026년 1월 1일 개시 보고기간 및 기존 2025년 전문/2026년 대조 기록 범위를 유지한다. 아래 공식 전사와 의존 문단을 읽어 명제를 검토했으며 학습교재의 옛 문단번호·정수 미만 배점·선택 개수는 그대로 승계하지 않는다.",
+    "unresolved_items": [],
+    "status": "ready",
+    "lineage": {
+      "previous_set_id": "pilot-12-009",
+      "previous_set_sha256": "ff605619df1ffc6287becbdad715900bc1609cd8edf7df0d9caede5249ef67fc",
+      "retained_case_subquestion_ids": [
+        "sub1"
+      ],
+      "added_case_subquestion_ids": [
+        "exp1"
+      ],
+      "standard_subquestions_for_separate_preservation": [
+        "sub2",
+        "sub3"
+      ]
+    },
+    "fact_question_mapping": [
+      {
+        "fact_id": "fact1",
+        "subquestion_ids": [
+          "sub1"
+        ],
+        "use": "수정후 후속절차 필요와 확인 목적"
+      },
+      {
+        "fact_id": "fact2",
+        "subquestion_ids": [
+          "exp1"
+        ],
+        "use": "중요성 산정기준의 실제 결과 변화·단순금액 주장"
+      },
+      {
+        "fact_id": "fact3",
+        "subquestion_ids": [
+          "exp1"
+        ],
+        "use": "질적 중요성과 전기오류의 당기 영향"
+      }
+    ],
+    "facts_unicode_characters": 591,
+    "source_reading": [
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+        "start_line": 2935,
+        "end_line": 2965,
+        "quote": "2023년 회계감사I 3  교시\n(물음 3) 감사인은 식별된 왜곡표시가 감사에 미 치는\n영향과 미수정왜곡표시가 재무제표에 미치는 영향을\n평가한다. 각 항목별 설명이 적절한지 여부를 기재하\n고, 적절하지 않은 경우 그 이유를 2줄 이내로 서술하\n시오:\n15/16 ।\n(물음4) 감사인은 필요하다고 판단한 경우, 강조사항\n문단과 기타사항문단을 통해 감사보고서 이용자의 주\n의를 환기할 수 있다. 강조사항문단과 기타사항문단에\n대한 각 항목별 설명이 적절한지 여부를 기재하고, 적\n절하지 않은 경우 그 이유를 3줄 이내로 서술하시오.\n항목 설명\n①\n감사인은 식별한 왜곡표시를 모두 집계하고,\n경영진에게 이러한 왜곡표시의 수정을 요청하\n여야 한다.\n②\n감사인은 미수정왜곡표시가 재무제표에 미치\n는 영향을 평가하기 전에, 전반감사전략 수립\n시 결정한 중요성이 적합한지를 재평가하여야\n한다.\n감사인의 요청으로 경영진이 거래유형, 계정\n잔액 혹은 공시를 조사하여 발견된 왜곡표시\n들을 모두 수정한 경우에, 감사인이 수행할\n추가적인 감사절차는 없다.\n④\n감사인은 미수정왜곡표시가 개별적으로 또는\n집합적으로 중요한지 여부를 결정할 때, 과거\n보고기간의 미수정왜곡표시가 재무제표에 미\n치는 영향을 고려할 필요가 없다.",
+        "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+        "source_unit_ids": [
+          "src-da48d16e1dc46eac24"
+        ],
+        "relation": "direct",
+        "reason": "2023 기출 경영진 조사수정 후 절차·중요성 재평가·과거기간 영향의 판단을 구체 상황으로 바꿈",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 3970,
+        "end_line": 3987,
+        "quote": "현무회계법 인은 (좌유월의 20 x 1년 12월 31 일로 종료되는 보고기 간의 재무제표 감사를 수행 증이다.\n다음은 실증절차 수행 후 업무수행이사와 업무팀원간의 대화이며 (물음 1) ~ (물음 3)과 관련된다.\n(업무팀원) 최종 실증절차 결과 집계된 왜곡표시는 이메일로 송부 드렸습니다.\n(업무수행이사) 확인했습니다. 경영진에게 왜곡표시를 반영한 수정 후 재무제표를 보내달라고 요청해주\n세요. Q단, 절대로 수정분개를 제시하여서는 안 됩니다.\n(업무팀원) 알겠습니다. 다른 부분은 사실적 왜곡표시라 경영진도 수정할 것 같은데, ©매출채권의 평가\n관련해서는 경 영진이 차기에 높은 확률로 회수될 수 있다고 주장하고 있어 수정을 거절할 것으로 예상\n됩니다.\n물음 1 위 대화에서의 ⑪과 같이 감사인이 왜곡표시를 수정분개 형식으로 제시하여서 안 되는 이유를 1\n줄 이내로 서술하시오.\n물음 2 위 대화에서와 같이 경영진이 감사인과 커뮤니케이션한 왜곡표시 등 모든 왜곡표시를 수정함으로\n써 얻을 수 있는 효익을 두 가지 서술하시오.\n물음 3 위 대화에서의 0과 같은 왜곡표시는 왜곡표시의 분류(구분) 관점에서 어떠한 종류의 왜곡표시인\n지 설명하고, 회사가 감사인이 커뮤니케이션한 왜곡표시의 일부 또는 전부에 대하여 수정을 거절\n하는 경우 수행해야 할 절차를 서술하시오.\n다음은 실증절차 수행 후 업무수행이사와 업무팀원간의 대화이며 (물음 4) 〜 (물음 5)와 관련된다.\n(업무팀원) 왜곡표시에 대해 회사와 커뮤니케이션 완료하였고, 일부 미수정 왜곡표시를 제외하고는 왜\n곡표시가 모두 수정되었습니다. 미수정왜곡표시는 수행중요성에 크게 미달합니다. 그러나 (주)유월은 당",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-21a7a391248a951df5"
+        ],
+        "relation": "partial",
+        "reason": "경영진 수정과 미수정사항을 감사종결 대화로 구분",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 4018,
+        "end_line": 4030,
+        "quote": "물음 2\n(기준서 450-A12)\n경영진이 감사인과 커뮤니케이션한 왜곡표시 등 모든 왜곡표시를 수정하는 것은,\n1) 경영진이 정확한 회계장부와 회계기록을 유지할 수 있게 하고,\n2) 과거 보고기간과 연관된 중요하지 않은 미수정왜곡표시가 누적되어 향후 재무제표가 중요하게 왜곡표시 될 위\n험을 감소시킨다.\n(배점 2점, 각 1점)\n물음 3\n(기준서 450-9)\n1) 판단적 왜곡표시\n2) 만약 경영진이 감사인이 커뮤니케이션한 왜곡표시의 일부 또는 전부에 대하여 수정을 거절하는 경우, 감사인은\n①경영진이 수정하지 않는 사유를 이해하여야 하며 ②재무제표 전체에 중요한 왜곡표시가 없는지 여부를 평가\n할 때 그사유를고려하여야 한다.",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-0a6cd440707b07d0b0"
+        ],
+        "relation": "partial",
+        "reason": "과거 미수정왜곡표시 누적과 경영진 판단 검토의 해설",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      }
+    ],
+    "official_source_mapping": [
+      {
+        "source_ref_id": "src-b9d66102ae17b5dacc",
+        "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+        "source_span": "L56-L61; KGA 450 문단 7 원문 페이지 358; L56-L61",
+        "source_quote_sha256": "f36a185a46fffe46fafc0d3342967ced7a77276bafedb8b13daac7448b20dfeb",
+        "source_unit_ids": [
+          "src-b9d66102ae17b5dacc"
+        ]
+      },
+      {
+        "source_ref_id": "src-13dafcfeaa896a9f84",
+        "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+        "source_span": "L95-L102; KGA 450 문단 A9 원문 페이지 362; L95-L102",
+        "source_quote_sha256": "d9184b2203bb793767bdb6b1c9aa7c6d81c38027489d7265ddc0205e153e7037",
+        "source_unit_ids": [
+          "src-13dafcfeaa896a9f84"
+        ]
+      },
+      {
+        "source_ref_id": "src-9395cc89abcfc1bc22",
+        "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+        "source_span": "L76-L80; KGA 450 문단 10 원문 페이지 358; L76-L80",
+        "source_quote_sha256": "fb01c12af047e5dbedadeadf0d7687153caa3871bfa13b414fe714daef1873f0",
+        "source_unit_ids": [
+          "src-9395cc89abcfc1bc22"
+        ]
+      },
+      {
+        "source_ref_id": "src-a78fbf4737bd35a73d",
+        "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+        "source_span": "L82-L93; KGA 450 문단 11 원문 페이지 358; L82-L93",
+        "source_quote_sha256": "f9db7fbcc46e5f9e6249ebb4c49183d5c52a5d4622ebe180c4c97746148cc43a",
+        "source_unit_ids": [
+          "src-a78fbf4737bd35a73d"
+        ]
+      }
+    ],
+    "source_limitations": [
+      "기출·연습의 해당 요구와 인접 요구를 설계 근거로만 사용한다. 새 사실과 추가 물음을 기존 실제 출제로 집계하지 않는다."
+    ],
+    "agent_review_status": "content_reviewed",
+    "actual_model_grading_status": "not_run_by_subagent"
+  },
+  {
+    "set_id": "pilot-12-010",
+    "version": 1,
+    "topic_id": "12",
+    "mode": "adapt_existing_question",
+    "objective": "불특정 진술의 미제공과 필수 책임진술의 실제 거절을 구별하고 경영진 교체에도 유지되는 전체기간 책임을 적용한다.",
+    "scope": {
+      "actors": [
+        "재무제표감사인",
+        "피감사기업의 경영진"
+      ],
+      "timing": [
+        "2026년 1월 1일 개시 보고기간의 감사; 개별 지문에 명시된 기중·기말 및 감사종결 시점"
+      ],
+      "conditions": [
+        "상황A: 미제공 진술의 종류·성실성 영향 미확인",
+        "상황B: 7월취임, 거래완전성 필수진술의1~6월 거절이 미해소"
+      ],
+      "exceptions": [
+        "580.A27의 단순 문구변형은 미제공으로 단정하지 않는다. 본B는 분명한 제공거절이어서 그 예외에 해당하지 않는다."
+      ],
+      "required_answers": [
+        "sub1: 상황 A에서 어느 서면진술이든 하나라도 없으면 항상 의견거절이라는 주장이 적절한지 판단하시오. 이어 특정 의견거절 조건의 해당 여부를 판단하려면 미제공 진술의 범위와 경영진 성실성에 관하여 무엇을 확인해야 하는지 각각 설명하시오. 일반 미제공 대응 목록은 요구하지 않는다.",
+        "exp1: 상황 B에서 요청해야 할 거래 완전성 진술의 대상기간과 신임 대표이사의 취임 사유가 그 범위를 줄일 수 있는지 설명하시오. 이어 거절이 해소되지 않은 상태에서 다른 감사절차만을 근거로 적정의견을 표명할 수 있는지 판단하고 필요한 감사의견을 제시하시오."
+      ],
+      "exclusions": [
+        "580.19 일반 대응 목록",
+        "경영진의 불성실 확정",
+        "서면진술일·수신인",
+        "중간취임자의 회사법상 책임 일반론"
+      ]
+    },
+    "question_types": [
+      "judgment"
+    ],
+    "source_unit_ids": [
+      "src-52b0ea317d89703ff5",
+      "src-e23aa9f4e31b30cf97",
+      "src-3c07d4c1cf9cc6ca35",
+      "src-e720e7bded286b27d5",
+      "src-a88769f5ef6ef03ccf",
+      "src-2f57a155a542f2fa3d",
+      "src-6c82931285349fa6e4",
+      "src-108153a7a4b5704cf3",
+      "src-a6341c848b12161617",
+      "src-9336dc394d1ce5aef0",
+      "src-0d5a8e178e4a2146f1",
+      "src-fa9346494a9d0404e5"
+    ],
+    "existing_question_difference": "기존 sub1 조건확인3점 보존, 표준sub2별도보존. 신규exp1은 실제 중도취임자의 대상기간·책임 근거·의견거절 판단·필수진술 미제공 근거를 각각1점으로 구별한4점이다.",
+    "edition_assumption": "bank-before.json의 2026년 1월 1일 개시 보고기간 및 기존 2025년 전문/2026년 대조 기록 범위를 유지한다. 아래 공식 전사와 의존 문단을 읽어 명제를 검토했으며 학습교재의 옛 문단번호·정수 미만 배점·선택 개수는 그대로 승계하지 않는다.",
+    "unresolved_items": [],
+    "status": "ready",
+    "lineage": {
+      "previous_set_id": "pilot-12-010",
+      "previous_set_sha256": "026ef5e2c65eb9193e1d6b7a4fbcaebb7f3bc876eba41f20fa787284fd5b2982",
+      "retained_case_subquestion_ids": [
+        "sub1"
+      ],
+      "added_case_subquestion_ids": [
+        "exp1"
+      ],
+      "standard_subquestions_for_separate_preservation": [
+        "sub2"
+      ]
+    },
+    "fact_question_mapping": [
+      {
+        "fact_id": "fact1",
+        "subquestion_ids": [
+          "sub1",
+          "exp1"
+        ],
+        "use": "독립상황·감사대상기간 명시"
+      },
+      {
+        "fact_id": "fact2",
+        "subquestion_ids": [
+          "sub1"
+        ],
+        "use": "확인되지 않은 진술범위와 성실성 영향으로 자동결론 금지"
+      },
+      {
+        "fact_id": "fact3",
+        "subquestion_ids": [
+          "exp1"
+        ],
+        "use": "취임전 기간 제외의 항변 및 필수 책임진술 명시적 거절"
+      }
+    ],
+    "facts_unicode_characters": 633,
+    "source_reading": [
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+        "start_line": 4947,
+        "end_line": 4970,
+        "quote": "6/16 2020 년 회계감사 3 교시\n(물음 2) 감사계약서의 ‘경 영진의 책임과 해당 재무보고\n체계의 식별’ 문단 중 ‘(c)’와 관련하여 경영진이 감사인에\n게 제공하여야 할 사항 세 가지를 서술하시오.\n(물음 3) 감사계약서의 ‘경영진의 책임과 해당 재무보고\n체계의 식별’ 문단에서 언급된 ‘서면확인’은 재무제표감\n사와 관련하여 감사인이 요구하는 필요적 정보이다.\n(1) 서면진술의 대상기간을 1줄 이내로 서술하시오.\n(물음 4) 업무품질관리검토자는 업무팀이 내린 유의적\n판단사항과 감사보고서의 작성과정에서 도달된 결론들\n에 대하여 객관적인 평가를 수행하여야 한다. 이러한 평\n가를 위해 업무품질관리검토자가 수행해야 할 절차 둔\n가지를 각각 1줄 이내로 서술하시오(단, 아래 <예시 >는)\n제외할 것).\n< 예시>\n업무팀이 내린 유의적 판단 및 도달된 결론과 관련된\n감사문서를 선정하여 검토\n(2) 감사인이 요청한 서면진술 중 하나 이상을 경영진\n이 제공하지 않는 경우 감사인이 취해야 할 절차 두 7?\n지를 각각 1줄 이내로 서술하시오(단, 아래 <예시>는)\n제외할 것).\n< 예시>\n감사의견에 미칠 가능성이 있는 영향의 결정을 포함\n한 적절한 조치를 취함",
+        "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+        "source_unit_ids": [
+          "src-a6341c848b12161617"
+        ],
+        "relation": "partial",
+        "reason": "2020 기출 진술 대상기간·미제공 대응을 조건별 적용으로 확장",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+        "start_line": 8870,
+        "end_line": 8889,
+        "quote": "다음은 A 해운(주)의 감사절차를 종료하는 시점에서 X\n회계법인의 업무수행이사와 현장책임회계사가 나눈\n대화이다.\n업무수행이사:A 해운(주)로부터 서면진술은 입수했나\n요? 감사조서를 보니 감사대상기간(20x1.1.1 .〜20 x\n1.12.31.) 중인 20 xl년 5월 1일에 최고경영자가 차O\nO  사장에서 변 OO 사장으로 변경되었군요.\n현장책임회계사 : 변OO 사장은 회계기간 중에 취임\n했기 때문에 취임 전 기간에 대한 서면진술을 제공할\n수 없다고 하네요. 또 감사계약서에도 차00사장이\n서명하지 않았냐며 항변했습니다.\n업무수행이사 : 그래서 서면진술은 누구에게, 어떻게\n받았습니까?\n현장책임회 계사 :⑴로부터 서 면진술을 받았습니 다.\n서면진술일은 ⑵의 일자로 확인받았습니다.\n(물음 3) 밑줄 친 (2)와 같이 경영진이 자구계획을 제시\n한 경우, 감사인이 수행해야 할 절차를 서술하시오.\n(물음 5) 밑줄 친 ⑴과 관련하여 회계감사기준에서 규\n정하고 있는 서면진술의 요청이 되는 대상자, 대상기간\n및 이유를 아래의 [답안양식]에 따라 서술하시오.",
+        "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+        "source_unit_ids": [
+          "src-9336dc394d1ce5aef0"
+        ],
+        "relation": "direct",
+        "reason": "중도취임 대표이사의 취임전 진술거절 사례를 거래완전성에 한정",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 6895,
+        "end_line": 6924,
+        "quote": "2026 고급 회계감사연습\n문제 3 서면진술 - 23년 제2회 GS 모의고사 문제 8\n난이도 : 동차\n현무회계법인은 주권상장법인인 (주)한국의 20x 1년 12월 31 일로 종료되는 보고기간의 재무제표 감사업무\n를 수행하였다. 감사종료 시점에 경영진의 서면진술서를 입수하였고, 다음은 그 일부이다.\n서면진술서\n20x2년 3월 16일\n주주 및 이사회 귀중\n(...)\n우리는 다음 사항을 확인합니 다.\n• 우리는 20x 1년 2월 10일자 감사업무의 조건에서 정해진 바와 같이 한국채택국제회계기준에 따라\n재무제표를 작성할 우리의 책임을 완수하였습니다. 특히 재무제표는 이에 따라 공정하게 표시되고\n있습니다.\n• 공정가치 측정을 포함한 회계추정치 도출 시 우리가 사용한 유의적 가정은 합리적 입니다.\n• 우리는 부정으로 인하여 재무제표가 중요하게 왜곡표시될 위험에 대하여 우리의 평가결과를 공개\n하였습니다.\n• 특수관계 및 특수관계자 거래는 재무보고체계의 요구사항에 따라 적합하게 회계처리 되고 공시되\n었습니다.\n• 수정이나 공시가 요구되는 재무제표일 후의 모든 후속사건은, 재무보고체계의 요구에 따라 수정되\n고 공시 되 었습니 다.\n• 미수정왜곡표시와 왜곡표시 중 명백하게 사소한 금액은 재무제표 전체에 대한 영향이 중요하지 않\n습니다. 이에 대한 목록은 별도로 첨부하였습니다.\n(이하 생략)\n물음 1 주한국의 재무제표 감사에 대한감사보고서일은 20X2년 3월 20일이다. 위 서면진술서에서 적절\n하지 않은 부분을 모두 찾고 그 이유를 서술하시오.\n꺼답안양식\n적절하지 않은 부분 적절하지 않은 이유\n물음 2 서면진술이 비록 필요 감사증거를 제공하지만, 서면진술이 다루는 그 어떠한 사항에 대해서도 서\n면진술 그 자체는 충분하고 적합한 감사증거를 제공하지 않는다. 그럼에도 불구하고 서 면진술을\n입수해야 하는 이유를 3줄 이내로 서술하시오.",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-0d5a8e178e4a2146f1"
+        ],
+        "relation": "adjacent",
+        "reason": "서면진술의 형식·대상·증거 한계를 나누는 문제 구성",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 6942,
+        "end_line": 6948,
+        "quote": "물음 2\n(기준서 580-A10)\n서면진술은 감사증거의 중요한 원천이다. 경영진이 요청된 서면진술을 변형하거나 제공하지 않는다면, 이것은 하\n나 이상의 유의적 이슈가 존재할 가능성에 대하여 감사인에게 주는 경보(alert)일 수 있다. 또한, 많은 경우, 구두\n진술보다 서면진술에 대한 요청은, 경영진이 해당 사항들을 더 철저하게 고려하도록 촉진할 수 있으며, 이에 따라\n진술의 질을 향상시킬 수 있다.\n- 키워드 : 감사증거의 중요한 원천, 서면으로 인한 진술의 질",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-fa9346494a9d0404e5"
+        ],
+        "relation": "adjacent",
+        "reason": "미제공이 유의적 이슈의 경보라는 해설; 자동 의견거절 근거로 사용하지 않음",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      }
+    ],
+    "official_source_mapping": [
+      {
+        "source_ref_id": "src-52b0ea317d89703ff5",
+        "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+        "source_span": "L758-L767; KGA 580 문단 19 원문 페이지 578; L758-L767",
+        "source_quote_sha256": "c00c09427bd7201606b93d94e7e0a770b68592b3a180c54013b97a2f0b7cb481",
+        "source_unit_ids": [
+          "src-52b0ea317d89703ff5"
+        ]
+      },
+      {
+        "source_ref_id": "src-e23aa9f4e31b30cf97",
+        "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+        "source_span": "L769-L777; KGA 580 문단 20 원문 페이지 578; L769-L777",
+        "source_quote_sha256": "c7f10ea02ce30fe120fa2f42dfed34df30b26c1dc2ecb249c21952b31601ecab",
+        "source_unit_ids": [
+          "src-e23aa9f4e31b30cf97"
+        ]
+      },
+      {
+        "source_ref_id": "src-3c07d4c1cf9cc6ca35",
+        "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+        "source_span": "L1027-L1044; KGA 580 문단 A27 원문 페이지 584; L1027-L1044",
+        "source_quote_sha256": "a1c69ced971d7087fce5b7f986e37952afd129bb9b8a135b50f5aad185ec1b47",
+        "source_unit_ids": [
+          "src-3c07d4c1cf9cc6ca35"
+        ]
+      },
+      {
+        "source_ref_id": "src-e720e7bded286b27d5",
+        "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+        "source_span": "L687-L692; KGA 580 문단 10 원문 페이지 576; L687-L692",
+        "source_quote_sha256": "7852919d9c9b8faaeb229dea60670efadb166b9950cd9f07e87a2263cd5690e9",
+        "source_unit_ids": [
+          "src-e720e7bded286b27d5"
+        ]
+      },
+      {
+        "source_ref_id": "src-a88769f5ef6ef03ccf",
+        "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+        "source_span": "L694-L703; KGA 580 문단 11 원문 페이지 576; L694-L703",
+        "source_quote_sha256": "be8cbd4ea84a21a80e8a0fdcc41c8f37c74db4eb5a3da18f038655bf90e776e2",
+        "source_unit_ids": [
+          "src-a88769f5ef6ef03ccf"
+        ]
+      },
+      {
+        "source_ref_id": "src-2f57a155a542f2fa3d",
+        "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+        "source_span": "L1004-L1015; KGA 580 문단 A25 원문 페이지 583; L1004-L1015",
+        "source_quote_sha256": "955141ea2fb9695a9c3cb06b25813eb45a43e03d03655a97c7385803e0df1270",
+        "source_unit_ids": [
+          "src-2f57a155a542f2fa3d"
+        ]
+      },
+      {
+        "source_ref_id": "src-6c82931285349fa6e4",
+        "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+        "source_span": "L1017-L1025; KGA 580 문단 A26 원문 페이지 584; L1017-L1025",
+        "source_quote_sha256": "2bcf01a1372eb37cd18c8011c1a3e6fcaf578798c512055d2522ab21843fdb12",
+        "source_unit_ids": [
+          "src-6c82931285349fa6e4"
+        ]
+      },
+      {
+        "source_ref_id": "src-108153a7a4b5704cf3",
+        "file": "cpa_uploader/data/official/delegated-s04-kga-2025.txt",
+        "source_span": "L945-L952; KGA 580 문단 A18 원문 페이지 582; L945-L952",
+        "source_quote_sha256": "f93539dcde2ee23765e101f7f028beeb9d1bf7d508010b9e43fde887f6cbfccf",
+        "source_unit_ids": [
+          "src-108153a7a4b5704cf3"
+        ]
+      }
+    ],
+    "source_limitations": [
+      "기출·연습의 해당 요구와 인접 요구를 설계 근거로만 사용한다. 새 사실과 추가 물음을 기존 실제 출제로 집계하지 않는다."
+    ],
+    "agent_review_status": "content_reviewed",
+    "actual_model_grading_status": "not_run_by_subagent"
+  },
+  {
+    "set_id": "pilot-08-008",
+    "version": 1,
+    "topic_id": "08",
+    "mode": "adapt_existing_question",
+    "objective": "경영진측 전문가의 적격성·역량·객관성을 평가하고 외부서명만으로 해소되지 않는 상충증거에 대응한다.",
+    "scope": {
+      "actors": [
+        "재무제표감사인",
+        "피감사기업의 경영진"
+      ],
+      "timing": [
+        "2026년 1월 1일 개시 보고기간의 감사; 개별 지문에 명시된 기중·기말 및 감사종결 시점"
+      ],
+      "conditions": [
+        "경영진측 전문가이며 감사인측 전문가가 아님",
+        "산업경험·시간인력 미확인, 성과보수",
+        "동일계약·동일기준일의 상충증거 및 다른자산에 재사용"
+      ],
+      "exceptions": [
+        "해당 없음: 발문 범위 밖의 감사의견 결정이나 법규상 별도 예외를 추론하도록 요구하지 않는다."
+      ],
+      "required_answers": [
+        "sub1: 자격증만 확인한 상태에서 해당 전문가에 관하여 추가로 평가해야 할 사항을 적격성·역량·객관성으로 나누어 설명하시오. 각각 산업경험, 시간·인력, 보수 약정의 사실과 연결하시오.",
+        "exp1: 평가보고서와 거래처 서신의 불일치에 대하여 감사인이 취해야 할 대응을 설명하시오. 불일치를 해결할 절차와 감사의 다른 측면에 미칠 영향으로 나누어 사례와 연결하시오."
+      ],
+      "exclusions": [
+        "가치평가 금액 계산",
+        "계약의 법률적 효력 확정",
+        "전문가의 고의나 부정 확정",
+        "전문가 업무 적합성 전체 체크리스트"
+      ]
+    },
+    "question_types": [
+      "descriptive"
+    ],
+    "source_unit_ids": [
+      "src-2e8004cc75d626f9db",
+      "src-c846a1c459c6c5586a",
+      "src-bab6aa013fc916a81e",
+      "src-a97bacdec12c0c7d52",
+      "src-39e0f966c758bbd43f",
+      "src-5a85c57f8fb117827f",
+      "src-32b10fe0b738050943",
+      "src-c83d162e657de28e9e",
+      "src-24f228e4a597e89e6c"
+    ],
+    "existing_question_difference": "기존sub1의3점과 자격요소별계보 유지. 기존sub2·sub4·sub3 표준은 별도보존. 보고서와 종료서신의 실제 충돌을 추가해 exp1의2개 대응을 사례적용으로 신설.",
+    "edition_assumption": "bank-before.json의 2026년 1월 1일 개시 보고기간 및 기존 2025년 전문/2026년 대조 기록 범위를 유지한다. 아래 공식 전사와 의존 문단을 읽어 명제를 검토했으며 학습교재의 옛 문단번호·정수 미만 배점·선택 개수는 그대로 승계하지 않는다.",
+    "unresolved_items": [],
+    "status": "ready",
+    "lineage": {
+      "previous_set_id": "pilot-08-008",
+      "previous_set_sha256": "a4ac3dcdc527214958af2802e8fe2b0e0047cffa5f099708b93ca025a8311a77",
+      "retained_case_subquestion_ids": [
+        "sub1"
+      ],
+      "added_case_subquestion_ids": [
+        "exp1"
+      ],
+      "standard_subquestions_for_separate_preservation": [
+        "sub2",
+        "sub4",
+        "sub3"
+      ]
+    },
+    "fact_question_mapping": [
+      {
+        "fact_id": "fact1",
+        "subquestion_ids": [
+          "sub1",
+          "exp1"
+        ],
+        "use": "500의경영진전문가·중요투자평가·시점"
+      },
+      {
+        "fact_id": "fact2",
+        "subquestion_ids": [
+          "sub1"
+        ],
+        "use": "산업경험·시간인력·성과보수의세평가"
+      },
+      {
+        "fact_id": "fact3",
+        "subquestion_ids": [
+          "exp1"
+        ],
+        "use": "상충정보의구체내용·다른자산으로전파되는영향"
+      }
+    ],
+    "facts_unicode_characters": 623,
+    "source_reading": [
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+        "start_line": 4430,
+        "end_line": 4439,
+        "quote": "— 경영진에게 질문 및 관찰을 통하여 현금창출단위\n구분 및 영업권 등 배분 절차에 대한 이해 및 적\n절성 검토\n— 경영진이 손상 평가에 사용한 외부전문가의 적격\n성, 역량 및 객관성 평가\n— 사업계획의 적정성 평가를 위하여 전년도 사업계\n획과 실제 결과의 비교\n— 내부 가치평가전문가를 활용하여 시장 및 회사 고\n유의 정보를 기초로 재계산된 할인율과 경영진이\n적용한 할인율의 비교",
+        "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+        "source_unit_ids": [
+          "src-5a85c57f8fb117827f"
+        ],
+        "relation": "partial",
+        "reason": "기출 영업권 평가에서 외부전문가 평가 및 별도증거 활용",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+        "start_line": 4454,
+        "end_line": 4462,
+        "quote": "(물음 4)(주)나그네는 영업권의 손상평가를 위하여 외부\n전문가를 활용하였다. 감사인이 핵심감사사항인 영업권\n손상평가에 대한 감사와 관련하여 감사증거로 사용할\n정보가 동 외부전문가의 수행 업무를 이용하여 작성되\n었다면, 감사인은 경영진측 전문가가 수행한 업무의 유\n의성을 고려하여 어떤 절차를 수행하여야 하는지 두\n가지를 서술하시오(단, 위 감사보고서의 핵심감사사항)\n단락에 기재된 ‘외부전문가의 적격성, 역량 및 객관성 평\n가’를 제외할 것).",
+        "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+        "source_unit_ids": [
+          "src-32b10fe0b738050943"
+        ],
+        "relation": "partial",
+        "reason": "2021기출 전문가업무 이해·적합성을 묻는범위 확인",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 6130,
+        "end_line": 6152,
+        "quote": "• (■주대한인베스트먼트의 자산총액은 약 1,300억원이며, 이중 당기손익-공정가치측정금융자산이 차지\n하는 비중은 약 70%이다.\n• 당기손익-공정가치측정금융자산은 전액 비상장회사에 대한 투자주식에 해당되며, 총 58개 회사의\n보통주 취득분에 해당된다.\n• 주대한인베스트먼트는 비상장투자주식 에 대해 외부전문가를 활용하여 공정가치 로 평가하였다.\n물음 1 위 사례에서 감사현장책임자 정병준 회계사는 투자주식 평가를 위해 다음과 같은 감사절차를 수\n행하였다.\n항목 _____ ___________________________ 감사절차 ___________\n감사인은 경영진의 회계추정치 도출방법에 대한 통제의 운영효과성을 테스트하고자 하였으나,\n경영진에게 질문 결과 통제테스트를 수행하는 것이 비효율적이라고 판단하여 이를 생략하였다.\n① 경영진의 회계추정치 도출방법에 대한 테스트를 수행하였고, 회계추정치를 도출하는 데 경영\n② 진이 사용한방법, 유의적 가정 및 데이터의 선택과 적용과관련된 중요왜곡표시위험과 관련하\n_ 여 충분하고 적합한 감사증거를 입수하였다.______________________________________________\n—감사인은 투자주식a에 대해 범위추정치를 이용하는 것이 적합하다고 결론을 내려, 입수한 감\n스 사증거를 근거로 하여 범위추정치 내의 모든 결과들이 합리적이라고 여겨질 때까지 해당 범\n위추정치를 좁혀 경영진의 추정치와 그 범위추정치 중 최인근값을 비교하여 왜곡표시를 도출\n하였다.\n위의 각 항목별로 현무회계법인이 수행한 절차가 적절한지 여부를 기재하고, 적절하지 않은 경우 그 이유\n를 서술하시오.\n[답안양식]\n항목 적절한가? (예, 아니오) 적절하지 않은 경우, 그 이유\n물음 2 위 사례에서 현무회계법인은 경영진측 전문가가 제시한 가치평가보고서를 검토하였다. 경영진측 전\n문가의 업무가 감사목적에 적합한지를 평가할 때 감사인이 고려해야 할 사항 세 가지를 서술하시오.",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-c83d162e657de28e9e"
+        ],
+        "relation": "partial",
+        "reason": "비상장투자자산·외부전문가보고서 사례를재구성",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 6337,
+        "end_line": 6342,
+        "quote": "물음 5\n(기준서 500 - 8)\n1) 경영진측 전문가가 수행한 업무를 이해함 - 업무에 대한 이해(무엇을?)\n2) 경영진측 전문가의 평가(적격성, 역량, 객관성(독립성)) - 사람에 대한 평가(누가?)\n3) 경영진측 전문가가 수행한 업무의 적합성을 평가함 - 업무에 대한 평가(어떻게?)\n(배점 1.5점, 각 0.5점)",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-24f228e4a597e89e6c"
+        ],
+        "relation": "direct",
+        "reason": "경영진측전문가500.8 사람·업무구별해설",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      }
+    ],
+    "official_source_mapping": [
+      {
+        "source_ref_id": "src-2e8004cc75d626f9db",
+        "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+        "source_span": "L63-L75; KGA 500 문단 8 원문 페이지 370; L63-L75",
+        "source_quote_sha256": "c7d74dda042636669aceb404825c1cc481f2ff3501f09db835228b9b1882bc53",
+        "source_unit_ids": [
+          "src-2e8004cc75d626f9db"
+        ]
+      },
+      {
+        "source_ref_id": "src-c846a1c459c6c5586a",
+        "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+        "source_span": "L486-L495; KGA 500 문단 A48 원문 페이지 382; L486-L495",
+        "source_quote_sha256": "c07b2eb54fc3ed798a2311ad091d32d2f527eec540f30420d41d5ab7b40962a0",
+        "source_unit_ids": [
+          "src-c846a1c459c6c5586a"
+        ]
+      },
+      {
+        "source_ref_id": "src-bab6aa013fc916a81e",
+        "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+        "source_span": "L510-L519; KGA 500 문단 A51 원문 페이지 383; L510-L519",
+        "source_quote_sha256": "36f1653a7acbe9f3b3d03f53089c93425a3d9324b6e26df494e3fe0e8690d541",
+        "source_unit_ids": [
+          "src-bab6aa013fc916a81e"
+        ]
+      },
+      {
+        "source_ref_id": "src-a97bacdec12c0c7d52",
+        "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+        "source_span": "L533-L541; KGA 500 문단 A54 원문 페이지 384; L533-L541",
+        "source_quote_sha256": "ef15e5eb2319525c99550250d13be7930c0d15f80d21da3f0f546d0ad5323c41",
+        "source_unit_ids": [
+          "src-a97bacdec12c0c7d52"
+        ]
+      },
+      {
+        "source_ref_id": "src-39e0f966c758bbd43f",
+        "file": "cpa_uploader/data/official/kga500-2025-review08.txt",
+        "source_span": "L86-L91; KGA 500 문단 11 원문 페이지 371; L86-L91",
+        "source_quote_sha256": "19183cff0e2382a31a076626dda9902d6ce882a0590e23f210f12d2bba444c1c",
+        "source_unit_ids": [
+          "src-39e0f966c758bbd43f"
+        ]
+      }
+    ],
+    "source_limitations": [
+      "기출·연습의 해당 요구와 인접 요구를 설계 근거로만 사용한다. 새 사실과 추가 물음을 기존 실제 출제로 집계하지 않는다."
+    ],
+    "agent_review_status": "content_reviewed",
+    "actual_model_grading_status": "not_run_by_subagent"
+  },
+  {
+    "set_id": "pilot-06-008",
+    "version": 1,
+    "topic_id": "06",
+    "mode": "adapt_existing_question",
+    "objective": "자산평가 고유위험요소의 실제 적용과 기업 위험평가절차가 놓친 위험에 대한 후속평가를 구별한다.",
+    "scope": {
+      "actors": [
+        "재무제표감사인",
+        "피감사기업의 경영진"
+      ],
+      "timing": [
+        "2026년 1월 1일 개시 보고기간의 감사; 개별 지문에 명시된 기중·기말 및 감사종결 시점"
+      ],
+      "conditions": [
+        "통제효과 고려전의고유위험평가",
+        "거액설비·기술변화·관측불가능한미래수요",
+        "기업이위험을미식별했으며내부위험평가절차·자료는존재"
+      ],
+      "exceptions": [
+        "해당 없음: 발문 범위 밖의 감사의견 결정이나 법규상 별도 예외를 추론하도록 요구하지 않는다."
+      ],
+      "required_answers": [
+        "sub2: 제시된 기술환경 발전과 관측 가능한 데이터만으로 작성할 수 없는 가치정보에 각각 대응하는 고유위험요소를 하나씩 식별하고 사례와 연결하시오. 이어 그 상황이 자산 평가 주장에 관한 왜곡표시의 발생가능성과 규모를 평가할 때 미치는 영향을 설명하시오. 고유위험요소 전체나 유의적 위험 판단의 결론을 열거할 필요는 없다.",
+        "exp1: 감사인이 발견한 설비 손상·재고 진부화 위험이 회사의 위험평가 자료에는 없었다. 제시된 내부 절차와 자료 작성 사실에 비추어, 감사인이 회사의 위험평가절차에 관하여 추가로 수행해야 할 판단·확인·평가를 설명하시오."
+      ],
+      "exclusions": [
+        "유의적위험이라는최종결론",
+        "고유위험요소전체목록",
+        "부정이나경영진고의의확정",
+        "감사계획수정일반론"
+      ]
+    },
+    "question_types": [
+      "descriptive"
+    ],
+    "source_unit_ids": [
+      "src-54643d5411960543b2",
+      "src-42cc286a4e00bcf10b",
+      "src-a8616f74fa78e9517e",
+      "src-7864babc1b018fa777",
+      "src-6f0b70b3b89f32bb95",
+      "src-d9f0fee2206d51b7eb",
+      "src-994ba8127833033c3f",
+      "src-efead9d6efe776a858",
+      "src-5f45f1ce36b1c6c015",
+      "src-e8b852008872203481",
+      "src-c7588fa4877df701be",
+      "src-3f0b74ed98ce71efee",
+      "src-d86e2825710dc2384e",
+      "src-4d225fdaa6b4b7a3af",
+      "src-0090f165995f784eb1"
+    ],
+    "existing_question_difference": "기존sub2의변화·불확실성·가능성·규모4점보존. 기존sub1·sub3표준은별도보존. 새exp1은실제기업절차와자료전달상황에비추어315.23의3단계를적용한다.",
+    "edition_assumption": "bank-before.json의 2026년 1월 1일 개시 보고기간 및 기존 2025년 전문/2026년 대조 기록 범위를 유지한다. 아래 공식 전사와 의존 문단을 읽어 명제를 검토했으며 학습교재의 옛 문단번호·정수 미만 배점·선택 개수는 그대로 승계하지 않는다.",
+    "unresolved_items": [],
+    "status": "ready",
+    "lineage": {
+      "previous_set_id": "pilot-06-008",
+      "previous_set_sha256": "9ad8e9f0144985eb44d59b237fd0128d1d7b4834fe9e420c19a6800567c1dd15",
+      "retained_case_subquestion_ids": [
+        "sub2"
+      ],
+      "added_case_subquestion_ids": [
+        "exp1"
+      ],
+      "standard_subquestions_for_separate_preservation": [
+        "sub1",
+        "sub3"
+      ]
+    },
+    "fact_question_mapping": [
+      {
+        "fact_id": "fact1",
+        "subquestion_ids": [
+          "sub2",
+          "exp1"
+        ],
+        "use": "관련자산·위험내용·거액규모"
+      },
+      {
+        "fact_id": "fact2",
+        "subquestion_ids": [
+          "sub2"
+        ],
+        "use": "변화와불확실성의구별·가능성평가"
+      },
+      {
+        "fact_id": "fact3",
+        "subquestion_ids": [
+          "exp1"
+        ],
+        "use": "기업위험평가절차에서기대할위험인지·누락경로·적합성평가"
+      }
+    ],
+    "facts_unicode_characters": 646,
+    "source_reading": [
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+        "start_line": 324,
+        "end_line": 366,
+        "quote": "(물음2) 중요왜곡표시위험을 식별하고 평가하기 위해\n감사인은 식별된 위험 중에 유의적이라고 판단되는 것\n이 있는지를 결정하여야 한다. 반도체제품을 생산하는\n(주)새별전자의 현장책임회계사인 이두상 회계사는 감사\n계획시 다음과 같은 상황을 확인하였다.\n[상황]\n항목 내용\n①\n공인회계사인 전개미는 (주)릴리펏의 사장이며\n회사 보통주 지분 99%를 보유한 소유경영자\n이다. 전개미 사장은 자금의 입출금을 통제하\n고 300만원 이상의 모든 거래는 반드시 자신\n의 승인을 거치도록 하고 있기 때문에 직원들\n이 매우 힘들어하고 있다.\n②\n(주)릴리펏의 전개미 사장은 경영활동에 밀접하\n게 참여하여 당월 매출기대치와의 유의적 편\n차를 확인하거나 재무데이터의 부정확성을 종\n종 밝혀내어 직원들은 늘 긴장한다.\n③\n(주)릴리펏의 회계부장은 표준화된 범용회계 소\n프트웨어인 ‘주판9.0’을 사용한다. 이 소프트웨\n어를 사용하는 이유는 기업실무에 맞게 소스\n코드에 대한 접근이나 변형이 가능하기 때문\n이다.\n소인국 회계사는 주어진 수준의 감사위험에서 감사인\n이 수용가능한 적발위험의 수준을 결정하고자 한다. 위\n의 각 항목이 수용가능한 적발위험의 수준에 미치는\n영향을 기재하시오.\n[답안양식]\n항목 수용가능한 적발위험의 수준\n(커진다, 작아진다, 알 수 없다)\n①\n②\n③\n반도체 시장의 급격한 기술발전으로 인하여 시장의\n기술경쟁이 심화되고 있다. (주)새별전자는 최근 제조\n시설에 거액을 투자하였다. 그러나 제품의 불량률 증\n가로 인해 공장가동을 중단하였고 유형자산의 손상과\n반도체제품의 진부화가 우려되는 상황이다.\n이두상 회계사가 식별된 위험이 유의적인지 판단할 때,\n위의 상황과 관련하여 최소한으로 고려할 사항 두 가\n지를 각각 2줄 이내로 서술하시오.",
+        "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+        "source_unit_ids": [
+          "src-c7588fa4877df701be"
+        ],
+        "relation": "direct",
+        "reason": "2025기출반도체설비·기술변화·가동중단사례;현재315의고유위험요소로재구성",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+        "start_line": 9192,
+        "end_line": 9208,
+        "quote": "(물음 2) 유의적 위험 판단시 고려할 사항\n① 반도체 시장의 급격한 기술발전으로 인하여 시장의 기술경쟁이 심화됨 ― 해당 위험이 최근의 유의적인\n경제 • 회계 또는 기타의 변화와 관련되어 특별한 주의를 요하는지 여부\n② 유형자산의 손상과 반도체제품의 진부화가 우려됨 - 해당 위험과 관련된 재무정보의 측정에 있어 주관성\n의 정도. 특히, 그러한 측정에 광범위한 불확실성이 내포되어 있는 경우\nI 근거 I___________________________________________________________________________________________________________________\n구“회계감사기준”315-28\n감사인은 어떤 위험이 유의적 위험에 해당되는지 판단할 때 최소한 다음 사항을 고려하여야 한다.\n(a) 해당 위험이 부정위험인지 여부\n(b) 해당 위험이 최근의 유의적인 경제 • 회계 또는 기타의 변화와 관련되어 특별한 주의를 요하는지 여부\n(c) 거래의 복잡성\n(d) 해당 위험이 특수관계자들과의 유의적 거래와 관련된 것인지 여부\n(e) 해당 위험과 관련된 재무정보의 측정에 있어 주관성의 정도. 특히, 그러한 측정에 광범위한 불확실성이 내포되어 있\n는 경우\n(f) 해당 위험이 그 기업의 정상적 사업과정을 벗어나거나, 비경상적으로 보이는 유의적 거래와 관련되어 있는지 여부\n“회계감사기준”315-A221\n감사인은 또한 고유위험을 평가할 때 고유위험요소의 상대적인 영향을 고려한다. 고유위험요소의 영향이 낮을수록 평가",
+        "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+        "source_unit_ids": [
+          "src-3f0b74ed98ce71efee"
+        ],
+        "relation": "partial",
+        "reason": "기출해설의옛315.28과현행고유위험요소의차이를확인",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 1736,
+        "end_line": 1749,
+        "quote": "다음은 주대한의 감사인인 현무회계법인의 업무수행 이사와 주요 업무팀원간의 감사계획수립 단계에서\n의 토의 내용 중 일부이다.\n(업무수행이사) 2023년 3월 17일자로“한국채택국제회계기준 제 1001호 재무제표 표시”가 개정되었\n습니다. 이와 관련하여 전기 대비 어떠한 차이가 있는지 파악해 주시기 바랍니다. 주요 개정사항 중 하\n나가 부채의 유동•비유동 분류에 대해 일부 공시사항이 추가되었다는 것인데 (주)대한도 이러한 공시사\n항을 추가해야할지 알아봐주세요.\n(주)요업무팀원) 네, 알겠습니다. 그리고 전기에 매출채권에 대해 조회서를 발송하였는데 대부분 소액\n다수의 거래처여서 너무나 많은 시간과 비용이 발생하였습니다. 당기에도 조회서를 발송해야 할까요?\n(업무수행이사) 저도 그 부분에 있어 개선이 필요하다고 생각합니다. ⑪다른 상황들을 고려해 보았을\n때 적극적 조회 대신 소극적 조회를 실시해도 큰 문제가 없을 듯합니다. 당기에도 조회서를 발송하되\n소극적 조회의 방법으로 발송하도록 합시다. 그 외 당기 감사업무에 있어 발생할만한 이슈사항에 대해\n논의합시다.\n물음 1 위 [상황 1]과 같이 팀 토의는주로 기업의 중요왜곡표시위험을 식별하기 위하여 수행한다. 이를 위\n해 팀 토의 시 업무수행이사와 주요업무팀원이 토의해야 할 사항 두가지를 서술하시오.",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-d86e2825710dc2384e"
+        ],
+        "relation": "adjacent",
+        "reason": "환경변화와추가공시를위험평가과정에연결하는팀토의구성",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 1796,
+        "end_line": 1809,
+        "quote": "물음 6 다음은 감사증거와 감사증거입수방법 및 위험평가절차에 대한 설명이다. 각 항목별로 설명이 적\n절한지 여부를 기재하고, 적절하지 않은 경우 그 이유를 서술하시오.\n항목 _ _ _ _ 설명 _ _\nI 기업과 독립된 원천에서 입수한 정보는 감사증거로 사용할 수 있지만, 증권분석가의 보고서\n① 나 경쟁기업과의 비교데이터는 감사증거는 아니지만 감사증거를 위한 보조적 수단으로 사용\n_ 될수있다.\n감사인은 위험평가절차 및 관련 활동을 수행하여 입수한 정보를 중요왜곡표시위험에 대한\n평가를 뒷받침하는 감사증거로 사용할 수 있다. __ _ _ _\n스” 중요왜곡표시위험을 초래하는 항목의 파악을 위해, 감사인은 가능한 모든 사업위험을 식별\n③ 하고평가해야한다.\n일반적으로 질문은 질문에 대한 답변을 평가하는 것을 포함하므로 경영진주장 수준의 중요한\n왜곡표시가 없다는 것 또는 통제의 운영효과성에 대한 충분한 감사증거를 제공할 수 있다.\n위험 평가절차로 수행되는 분석적 절차는 상위수준으로 요약된 데이터를 이용한다. 따라서\n⑤ 이러한 분석적절차의 결과는 중요왜곡표시위험의 존재 여부에 대하여 광범위한 초기적 징",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-4d225fdaa6b4b7a3af"
+        ],
+        "relation": "adjacent",
+        "reason": "사업위험전체와중요왜곡표시위험의범위를구별하는발문",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 1889,
+        "end_line": 1900,
+        "quote": "② 예 (기준서 315-A185)\n③ 아니오\n모든 사업위험이 중요왜곡표시위험을 초래하는 것은 아니기 때문에 감사인이 모든 사\n업위험을 식별하고 평가할 책임은 없다. (기준서 315-A62)\n④ 아니오\n일반적으로 질문만으로는 경영진주장 수준의 중요한 왜곡표시가 없다는 것 또는 통제\n의 운영효과성에 대한 충분한 감사증거를 제공하지 못한다.\n(참고 : 기준서 500-A6)\n질문은 중요한 감사증거를 제공하고 왜곡표시의 증거까지도 생성할 수도 있지만, 일반\n적으로 질문만으로는 경영진주장 수준의 중요한 왜곡표시가 없다는 것 또는 통제의 운\n영효과성에 대한 충분한 감사증거를 제공하지 못한다\n⑤ 예 (참고 : 기준서 315-A29)",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-0090f165995f784eb1"
+        ],
+        "relation": "adjacent",
+        "reason": "모든사업위험식별의무로확대하지않는해설",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      }
+    ],
+    "official_source_mapping": [
+      {
+        "source_ref_id": "src-54643d5411960543b2",
+        "file": "cpa_uploader/data/official/kga315-330-2025-review06.txt",
+        "source_span": "L199-L204; KGA 315 문단 23; L199-L204",
+        "source_quote_sha256": "72d0ee7b0ea2ca3ce3facc1410d67bfcbb65b52f06d22b58396f660aab810b2c",
+        "source_unit_ids": [
+          "src-54643d5411960543b2"
+        ]
+      },
+      {
+        "source_ref_id": "src-42cc286a4e00bcf10b",
+        "file": "cpa_uploader/data/official/kga315-330-2025-review06.txt",
+        "source_span": "L16-L90; KGA 315 문단 12; L16-L90",
+        "source_quote_sha256": "53d80cf97eee27b4b158d77325a6b09cc63e4a570e45badfd6c4db733de9f208",
+        "source_unit_ids": [
+          "src-42cc286a4e00bcf10b"
+        ]
+      },
+      {
+        "source_ref_id": "src-a8616f74fa78e9517e",
+        "file": "cpa_uploader/data/official/delegated-s02-kga315-2025.txt",
+        "source_span": "L21-L35; KGA 315 문단 A7 원문 페이지 206; L21-L35",
+        "source_quote_sha256": "36547aad720b714c443247142655e18013286f748fa9a5b09b355368a94d5a08",
+        "source_unit_ids": [
+          "src-a8616f74fa78e9517e"
+        ]
+      },
+      {
+        "source_ref_id": "src-7864babc1b018fa777",
+        "file": "cpa_uploader/data/official/delegated-s02-kga315-appendix2-2025.txt",
+        "source_span": "L25-L86; KGA 315 KGA 315 보론2 고유위험요소 정의 / 보론 2 (문단 12(f), 19(e), A7-A8, A85-89 참조) 항목 2 원문 페이지 269; L25-L86",
+        "source_quote_sha256": "068485ade692fbdd5beb2f2dad0a63edebf3b97ab172606b48878336d99503b3",
+        "source_unit_ids": [
+          "src-7864babc1b018fa777"
+        ]
+      },
+      {
+        "source_ref_id": "src-6f0b70b3b89f32bb95",
+        "file": "cpa_uploader/data/official/kga315-330-2025-review06.txt",
+        "source_span": "L318-L323; KGA 315 문단 31; L318-L323",
+        "source_quote_sha256": "cb9ebde6f11d5d216903116230c24d9f30bcd90044f7b07550e07dd1f0fbd9de",
+        "source_unit_ids": [
+          "src-6f0b70b3b89f32bb95"
+        ]
+      },
+      {
+        "source_ref_id": "src-d9f0fee2206d51b7eb",
+        "file": "cpa_uploader/data/official/delegated-s02-kga315-2025.txt",
+        "source_span": "L251-L263; KGA 315 문단 A207 원문 페이지 256; L251-L263",
+        "source_quote_sha256": "9443dbd82bd99baa807c7b166a8f4b5c72008dd928027a17494a31220cc562cc",
+        "source_unit_ids": [
+          "src-d9f0fee2206d51b7eb"
+        ]
+      },
+      {
+        "source_ref_id": "src-994ba8127833033c3f",
+        "file": "cpa_uploader/data/official/delegated-s02-kga315-2025.txt",
+        "source_span": "L264-L265; KGA 315 문단 A208 원문 페이지 257; L264-L265",
+        "source_quote_sha256": "2b0202ca1bbada78b6c7ca35c9cd79ee6187629a0aba4973dd641f08aa015d81",
+        "source_unit_ids": [
+          "src-994ba8127833033c3f"
+        ]
+      },
+      {
+        "source_ref_id": "src-efead9d6efe776a858",
+        "file": "cpa_uploader/data/official/delegated-s02-kga315-2025.txt",
+        "source_span": "L270-L271; KGA 315 문단 A210 원문 페이지 257; L270-L271",
+        "source_quote_sha256": "521d7f39347cf7678443b93f70fae5ad24a742820c5a5260c861296c237f9b4b",
+        "source_unit_ids": [
+          "src-efead9d6efe776a858"
+        ]
+      },
+      {
+        "source_ref_id": "src-5f45f1ce36b1c6c015",
+        "file": "cpa_uploader/data/official/delegated-s02-kga315-2025.txt",
+        "source_span": "L272-L274; KGA 315 문단 A211 원문 페이지 257; L272-L274",
+        "source_quote_sha256": "3a39cbae922b016edd6fc628c1f5fa4f0c484b9edbcfa1f6c2758dbc13c2d041",
+        "source_unit_ids": [
+          "src-5f45f1ce36b1c6c015"
+        ]
+      },
+      {
+        "source_ref_id": "src-e8b852008872203481",
+        "file": "cpa_uploader/data/official/delegated-s02-kga315-2025.txt",
+        "source_span": "L279-L284; KGA 315 문단 A213 원문 페이지 257; L279-L284",
+        "source_quote_sha256": "72ac8d9043be09d61ef8981f6d878fb9be08b5fa9f71707cdbf862343a1cfb38",
+        "source_unit_ids": [
+          "src-e8b852008872203481"
+        ]
+      }
+    ],
+    "source_limitations": [
+      "기출·연습의 해당 요구와 인접 요구를 설계 근거로만 사용한다. 새 사실과 추가 물음을 기존 실제 출제로 집계하지 않는다."
+    ],
+    "agent_review_status": "content_reviewed",
+    "actual_model_grading_status": "not_run_by_subagent"
+  },
+  {
+    "set_id": "draft-09-501-freq01",
+    "version": 1,
+    "topic_id": "09",
+    "mode": "adapt_existing_question",
+    "objective": "기중 실사 후 재고변동 기록의 검증과 통제 상태에 따른 기중 실사의 적합성 판단을 구별한다.",
+    "scope": {
+      "actors": [
+        "재무제표감사인",
+        "피감사기업의 경영진"
+      ],
+      "timing": [
+        "2026년 1월 1일 개시 보고기간의 감사; 개별 지문에 명시된 기중·기말 및 감사종결 시점"
+      ],
+      "conditions": [
+        "11월30일실사·12월31일재무제표일",
+        "계속기록법사용·12월대규모입출고",
+        "대조담당자퇴사후실행·유지미확인"
+      ],
+      "exceptions": [
+        "해당 없음: 발문 범위 밖의 감사의견 결정이나 법규상 별도 예외를 추론하도록 요구하지 않는다."
+      ],
+      "required_answers": [
+        "q1: 실사일과 재무제표일이 다르므로 감사인이 추가로 수행해야 하는 감사절차를 설명하시오. 추가 절차의 대상 기간과 확인해야 할 사항을 함께 제시하시오.",
+        "exp1: 계속기록법을 사용한다는 이유만으로 11월 30일 실사 결과가 결산일 감사목적에 충분하다는 주장이 적절한지 판단하시오. 제시된 입출고 대조·검토 통제에 관하여 추가로 고려해야 할 사항을 담당자 퇴사와 미입수 기록에 연결하여 설명하시오."
+      ],
+      "exclusions": [
+        "재고금액계산",
+        "감사의견확정",
+        "실사입회절차전체재열거",
+        "계속기록법자체의회계처리적법성"
+      ]
+    },
+    "question_types": [
+      "descriptive",
+      "judgment"
+    ],
+    "source_unit_ids": [
+      "src-682f476ad2906139c4",
+      "src-810ae371f0022b64c7",
+      "src-cbb91a53177950b420",
+      "src-fd413a333d092c8c5f",
+      "src-b419f41eab6d729b93"
+    ],
+    "existing_question_difference": "기존q1의기간차이절차1점유지하고q2표준은별도보존한다. exp1은 계속기록법이면 충분하다는 주장 판단1점과 퇴사후 대조업무의 설계·실행·유지 효과성 각1점을 적용하는4점으로 추가한다.",
+    "edition_assumption": "bank-before.json의 2026년 1월 1일 개시 보고기간 및 기존 2025년 전문/2026년 대조 기록 범위를 유지한다. 아래 공식 전사와 의존 문단을 읽어 명제를 검토했으며 학습교재의 옛 문단번호·정수 미만 배점·선택 개수는 그대로 승계하지 않는다.",
+    "unresolved_items": [],
+    "status": "ready",
+    "lineage": {
+      "previous_set_id": "draft-09-501-freq01",
+      "previous_set_sha256": "b2d355c9a06857d74aee53d31177a745cf9d7ebd5bcb36c2cfdac6f266ed035c",
+      "retained_case_subquestion_ids": [
+        "q1"
+      ],
+      "added_case_subquestion_ids": [
+        "exp1"
+      ],
+      "standard_subquestions_for_separate_preservation": [
+        "q2"
+      ]
+    },
+    "fact_question_mapping": [
+      {
+        "fact_id": "fact1",
+        "subquestion_ids": [
+          "q1",
+          "exp1"
+        ],
+        "use": "실사·기말기간차이와계속기록법의범위"
+      },
+      {
+        "fact_id": "fact2",
+        "subquestion_ids": [
+          "exp1",
+          "q1"
+        ],
+        "use": "대규모변동기록위험·대조통제실행유지의미확인"
+      },
+      {
+        "fact_id": "fact3",
+        "subquestion_ids": [
+          "exp1",
+          "q1"
+        ],
+        "use": "계속기록법이면충분하다는판단오류·변동자료입수가가능한후속검증"
+      }
+    ],
+    "facts_unicode_characters": 586,
+    "source_reading": [
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md",
+        "start_line": 4642,
+        "end_line": 4668,
+        "quote": "(물음 4) (주)대한의 재고자산은 총자산에서 중요한 비중\n을 차지하고 있다. (주)대한은 방역 조치에 따른 공장출\n입 제한으로 재무제표일(20x1년 12월 31일)에 예정된\n재고자산 실사를 실시하지 못했으며, 한국회계법인도\n재고자산 실사 입회를 수행할 수 없었다. 회사는 20x2\n년 1월 15일에 재고자산을 실사하였고, 한국회계법인도\n동 일자에 재고자산 실사 입회를 수행하였다. 각 문항\n은 서로 독립적이다.\n(1) 재고자산 실사 입회가 재무제표일이 아닌 일자에\n수행될 경우 재고자산의 실사일과 최종 재고자산 기록\n일 사이의 금액변동이 적절히 기록되어 있는지 여부에\n대한 감사증거를 얻기 위해 감사절차를 설계해야 한다.\n이러한 감사절차 설계 시 고려사항 중 가장 관련없는\n것을 하나 선택하고 그 이유를 서술하시오.\n번호 감사절차 설계 시 고려사항\n①\n재고자산의 실사를 기록하고 통제하기 위한\n경영진의 지시와 절차의 평가\n②\n계속기록법에 의한 재고기록이 바르게 조정되\n는지 여부\n기업의 계속기록법에 의한 재고기록의 신뢰성\n④\n실사 중 입수된 정보와 계속기록법에 의한 재\n고기록간의 유의적 차이에 대한 내용\n[답안양식]\n번호 선택 이유",
+        "file_sha256": "ffef6165ccbb7d633942c594504135afe96eafea133ee2730d567a6874b305cc",
+        "source_unit_ids": [
+          "src-cbb91a53177950b420"
+        ],
+        "relation": "direct",
+        "reason": "2021기출재무제표일외실사와계속기록법기록검토를기중실사로변형",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 3848,
+        "end_line": 3874,
+        "quote": "Section 4 계정과목별 실증절차\n업무팀원 유동차 회계사는 재고자산의 실재성에 대한 감사절차를 수행하고 있다. 다음의 [상황 3]은\n(물음 5) ~ (물음 6)와 관련된다.\n[상황 3]\n① 유동차 회계사는 재고자산의 실재성 관련 감사증거를 입수하기 위해 재고자산 실사입회를 계획하\n였다. 실사입회 계획 시 실사입회의 시기, 장소 및 관련 내부통제의 성격 등 전반적인 항목들을 계\n획하였다.\n② 재고자산이 여러 장소에 산재되어 있어 다른 업무팀원의 도움을 받아 동시에 실사 입회하기로 하\n였고, 실사 입회 장소는 미 리 통보하지 않고 실사 입 회 전날 통보하였다.\n③ 실사 입회 당일 담당자 입회 하에 수행하였고, 실사 후 관련 자산반납 확인을 문서화하였다.\n④ 재고자산 실사 입회 때 재고자산을 조사하여 재고자산의 실재성과 권리를 확인하고 진부화되었거\n나 손상된, 또는 장기 보유 중인 재고자산을 식 별하였다.\n⑤ 일부 실사 입회가 불가능한 항목이 발견되어, 다른 일자에 실사 입회를 수행하려 하였으나 회사의\n귀책으로 입회절차를 수행하지 못하였다. 이에 대체적 감사절차인 문서검사를 통해 실재성을 확\n인하였다.\n물음 5 위 [상황 3]에서 수행한 재고자산 실사입회 감사절차 중 개선이 필요한 항목을 모두 지적하고, 그\n이유를 서술하시오.\nsection\n 4\n[답안양식]\n이유 항목\n물음 6 회계감사기준에서는 재고자산의 실사(실물검사)보다는 실사 입회에 대한 내용을 강조하고 있\n다. 재고자산 실사 입회의 특징을 재고자산 실사와의 차이점 위주로 설명하고, 실사 입회의\n장단점 그리고 단점을 보완하기 위한 감사절차를 각각 2줄 이내로 서술하시오.\n⑴ 실사 입회의 특징\n(2) 실사 입회의 장단점\n(3) 실사 입회의 단점을 보완하기 위한 절차",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-fd413a333d092c8c5f"
+        ],
+        "relation": "adjacent",
+        "reason": "입회와후속검증의설계,시기·통제고려를연결하는연습",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      },
+      {
+        "file": "cpa_uploader/data/회계감사_통합학습자료/03_문제연습/고급_회계감사_연습.md",
+        "start_line": 3932,
+        "end_line": 3949,
+        "quote": "[를HD\n(배점 3점, 각 1.5점)\n항목 이유\n② 실사입회 장소는 전날이 아닌 실사입회 당일에 통보하는 것이 좋다.\n④\n감사인이 재고자산 실사의 입회 때 재고자산을 조사하는 것은 재고자산의 실재성(실재성이 반드시\n소유권을 의미하는 것은 아님)을 확인하고 진보화되었거나 손상된, 또는 장기 보유 중인 재고자산\n을 식별하는 데 도움이 된다. (501-A6)\n- 재고자산의 권리는 실사 또는 실사 입회의 절차로 확인이 어렵다.\nSect\n5n 4\n(물음 6)\n(1) 실사(실물검사)의 경우 검사의 방법이고, 실사 입회는 관찰의 방법이다. 그래서 재고자산 실사는 감사인이 직\n접 수량을 확인하지만, 재고자산 실사 입회는 회사가 직접 수량 확인 후 감사인은 회사의 실사절차를 관찰하\n는 절차를 취한다.\n(2) 실사 입회의 장점으로는 시간과 비용이 절감되어 감사의 효율성 향상에 기여할 수 있다는 점이지만, 단점으로\n는 실사에 비해 상대적으로 낮은 감사증거력을 갖는다.\n(3) 실사 입회의 단점을 보완하기 위해 테스트 실사를 수행한다.",
+        "file_sha256": "968832aacfe2c3b1ef27e6b573551ada3b06beca6db384ee23db666fa5549336",
+        "source_unit_ids": [
+          "src-b419f41eab6d729b93"
+        ],
+        "relation": "adjacent",
+        "reason": "실사입회의범위와단점을구별하는해설.교재단순관찰정의를501전체요구로대체하지않음",
+        "authority": "learning_material",
+        "counted_as_new_occurrence": false
+      }
+    ],
+    "official_source_mapping": [
+      {
+        "source_ref_id": "src1",
+        "file": "cpa_uploader/data/official/delegated-r01-kga-2025.txt",
+        "source_span": "KGA 501 문단/보론 5; 2025 개정 PDF 391쪽",
+        "source_quote_sha256": "642ba0cac5c1f2abab48433408a9ea91b2ae15d0066ccc27171ba9212fd9df93",
+        "source_unit_ids": [
+          "src-682f476ad2906139c4"
+        ]
+      },
+      {
+        "source_ref_id": "src2",
+        "file": "cpa_uploader/data/official/delegated-r01-kga-2025.txt",
+        "source_span": "KGA 501 문단/보론 A9; 2025 개정 PDF 394쪽",
+        "source_quote_sha256": "09520b733a3a6210868e76c6bb42d9099c2fdd7d8bca36b4f15210e8461f9ca7",
+        "source_unit_ids": [
+          "src-810ae371f0022b64c7"
+        ]
+      }
+    ],
+    "source_limitations": [
+      "기출·연습의 해당 요구와 인접 요구를 설계 근거로만 사용한다. 새 사실과 추가 물음을 기존 실제 출제로 집계하지 않는다."
+    ],
+    "agent_review_status": "content_reviewed",
+    "actual_model_grading_status": "not_run_by_subagent"
+  }
+]

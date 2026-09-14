@@ -1,0 +1,30 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const R='cpa_uploader/analysis/reviews/case-additional-2026-09-14';
+const D='cpa_uploader/drafts/case-additional-2026-09-14';
+const read=f=>JSON.parse(fs.readFileSync(f));
+const write=(f,t)=>fs.writeFileSync(f,t,{flag:'wx'});
+const ids=read(R+'/changed-sets-v1.json'),baseline=read(R+'/baseline.json');
+const bank=read('cpa_uploader/data/cpa_question_sets_v3.authoring.json');
+const catalog=read('cpa_uploader/data/learning-question-classifications.json').classifications;
+const sets=ids.map(id=>bank.find(s=>s.id===id));assert(sets.every(s=>s?.status==='published'));
+const grade=read(R+'/sealed-v1/summary.json'),db=read(R+'/db-publication-v1/completion.json');
+assert.equal(db.status,'production_published_and_independently_verified');
+const old=read(R+'/integration-baseline/bank.json');assert(old.every(s=>JSON.stringify(s)===JSON.stringify(bank.find(x=>x.id===s.id))),'Existing question changed');
+const chars=s=>[...s.shared_context.facts.map(f=>f.text).join('\n')].length;
+const points=s=>s.subquestions.reduce((n,q)=>n+q.criteria.reduce((m,c)=>m+c.max_points,0),0);
+const caseIds=[...new Set(catalog.filter(c=>c.question_style==='case').map(c=>c.source_set_id))];
+const allCases=caseIds.map(id=>bank.find(s=>s.id===id));
+assert(allCases.every(s=>chars(s)>=400&&catalog.filter(c=>c.source_set_id===s.id&&c.question_style==='case').length>=2));
+const cost=grade.known_cost?`반환된 실제 사용량에 고정 단가를 적용한 추정액은 $${grade.estimated_cost_usd.toFixed(6)}다.`:`전체 비용은 미확인이다. 사용량이 반환되지 않은 호출은 ${grade.accounting.requests_without_returned_usage}개이며 0원으로 처리하지 않았다.`;
+const lines=['# 2026-09-14 사례형 추가 제작 결과','','사용자 확정 범위인 새 사례 6개·사례당 3개 물음의 제작, 내용 검토, 실제 Luna 채점과 정본·공개본·운영 DB 반영을 완료했다. 기존 사례와 기준서형 문항의 본문·정답·배점을 그대로 보존했다.','','| 추가 사례 | 사실관계 문자 수 | 물음 | 배점 |','|---|---:|---:|---:|',...sets.map(s=>`| ${s.title} | ${chars(s)} | ${s.subquestions.length} | ${points(s)} |`),'',`사례는 ${baseline.case_sets}개에서 ${caseIds.length}개, 사례형 물음은 ${baseline.case_questions}개에서 ${catalog.filter(c=>c.question_style==='case').length}개로 늘었다. 전체 ${caseIds.length}개 사례가 400자 이상·사례형 물음 2개 이상이며, 이번 6개는 각각 정확히 3개 물음을 가진다. 글자 수는 제목·물음을 제외한 facts 본문을 LF 하나로 연결한 Unicode 문자 수이며 공백을 포함한다.`,'','[전체 문제와 모범답안](../../'+D+'/questions-and-answers.md)에서 지문과 발문을 확인할 수 있다.','','## 선정과 내용 검토','','기출문제와 고급회계감사연습의 실제 지문·물음·해설을 읽고, 해당 요구를 현재 은행 및 진행 중 초안과 비교했다. 기존 표현만 바꾼 중복 요구는 제외하거나 실제 판단 조건이 다른 심화 사례로 설계했다. 인접 요구나 교재 재수록을 새 기출 횟수로 집계하지 않았다. KICPA 공식 목록의 2026년 개정 전문 게시물과 기존 보존 전문의 직접 문단을 대조했으며, 특정 시험 연도 적용을 확정한 것은 아니다.','','각 물음의 사실 의존성, 요구·모범답안·모든 채점 기준과 직접 원문, 독립 의미 단위의 정수 부분점수, 최소 충분 답안, 대표 부분·오답의 기대값을 실제 agent가 대조했다. 판단을 요구하는 대목의 결론을 제목으로 미리 제공하지 않고, 일반론만으로 사례 적용 점수를 얻지 못하도록 확인했다. agent 검토는 사람의 직접 내용 확인 또는 별도 API 의미검수로 기록하지 않았다.','','## 실제 채점', '',`고정된 ${grade.fixed_evaluated_answers}개 대표 답안(저장 모범·대표 부분·대표 오답)을 ${grade.requests}개 사례 단위 요청으로 통합했다. 기대점수와 정확히 일치한 답안은 ${grade.exact_score_matches}개, ±1점 이내는 ${grade.within_tolerance}개(${(grade.within_tolerance_ratio*100).toFixed(2)}%)다. 허용 범위 밖은 ${grade.outside_tolerance.length}개이며, 원 기대값과 실제 결과를 보존했다.`, '',`실제 SDK 호출 ${grade.actual_sdk_calls}개. ${cost} 단가는 2026-09-12에 확인된 기록을 고정한 추정용 값이며 세금·청구서와 다르다. 입력·캐시·출력 토큰과 요청·응답 식별자는 원 실행에 보존했다. 새 금액 상한을 추정하지 않았고 Luna를 유지했다.`,'','## 반영·검사','','- 기존 문제와 승급 장부를 보존한 격리 게시본을 검증한 뒤 정본·공개본·암호화본·학습 분류에 반영했다.',`- 운영 DB 릴리스: \`${db.release_id}\`. 공개·비공개 내용, 분류와 실제 집계를 독립 조회로 검증했다.`,'- 문항 형상·정본 통합·대표 기대값·학습 단위 검사를 통과했다. 추가 검사 결과는 검토 배치의 실행 로그에 기록한다.','','[실행·게시 증거](../../'+R+'/README.md) · [출처·설계와 검토](../../'+D+'/README.md) · [공식 판본 확인 목록](https://www.kicpa.or.kr/board/list.brd?boardId=acc0102)',''];
+const deviation=read(R+'/within-tolerance-notes.json');
+lines.splice(lines.indexOf('## 반영·검사'),0,`1점 편차는 내부통제 미비점 사례의 물음1 부분답안에서 발생했다(기대 ${deviation.expected_points}점, 실측 ${deviation.actual_points}점). 결합평가의 의미를 충족하는 답안에 대해 모델이 표현을 좁게 해석한 결과로 검토했다. 원 기대값과 내용을 유지하고 추가 호출 없이 [편차 조사 기록](../../${R}/within-tolerance-notes.json)에 보존했다.`,'');
+write('docs/reports/case-additional-2026-09-14.md',lines.join('\n'));
+const qLines=['# 새 사례형 문제와 모범답안','','2026-09-14 추가한 사례 6개·18물음. 공개 앱 지문과 정답을 함께 조회하는 내부 검토 자료다. 원자료의 기출 원문을 복제한 문제가 아니라 별도로 구성한 연습 사례다.'];
+for(const [i,s]of sets.entries()){
+ qLines.push('',`## ${i+1}. ${s.title}`,'',...s.shared_context.facts.flatMap(f=>[f.text,'']));
+ for(const [j,q]of s.subquestions.entries())qLines.push(`### 물음 ${j+1} (${q.criteria.reduce((n,c)=>n+c.max_points,0)}점)`,'',q.prompt,'','**모범답안**','',...q.model_answer.map(a=>'- '+a),'');
+}
+write(D+'/questions-and-answers.md',qLines.join('\n')+'\n');
+console.log({report:'docs/reports/case-additional-2026-09-14.md',case_sets:caseIds.length,added_questions:18,added_points:sets.reduce((n,s)=>n+points(s),0)});

@@ -1,7 +1,7 @@
 ---
 title: "12. 감사 완료: 왜곡표시·후속사건·계속기업·서면진술 원자료 단위 4/7"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: source-map
 status: generated
 review_required: true
@@ -12,7 +12,7 @@ confidence: medium
 
 # 12. 감사 완료: 왜곡표시·후속사건·계속기업·서면진술 원자료 단위 4/7
 
-주제 전체 939개: 기준서 332, 이론 174, 연습 197, 기출 236. 이 페이지는 150개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
+주제 전체 941개: 기준서 334, 이론 174, 연습 197, 기출 236. 이 페이지는 150개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
 
 [[source-catalog-topic-12]] (1/7) · [[source-catalog-topic-12-part-02]] (2/7) · [[source-catalog-topic-12-part-03]] (3/7) · [[source-catalog-topic-12-part-04]] (4/7) · [[source-catalog-topic-12-part-05]] (5/7) · [[source-catalog-topic-12-part-06]] (6/7) · [[source-catalog-topic-12-part-07]] (7/7)
 
@@ -22,6 +22,8 @@ confidence: medium
 
 | 원자료 ID | 종류·근거 계층 | 실제 파일·위치 | 절·판본·원문 한계 | 참조 의존 | 은행 인용 연결 | 원문 인용 SHA-256 |
 |---|---|---|---|---|---|---|
+| <a id="src-49ddf5987b4e40b9ba"></a>`src-49ddf5987b4e40b9ba` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 552; L17372-L17400](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 552; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | c86890acd898900acdcc925d3a088cfe2dfa59aa614b238f8fadf31b278fd4b6 |
+| <a id="src-937404758898aaf7bf"></a>`src-937404758898aaf7bf` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 553; L17402-L17428](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 553; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | b7ce6686d5969784b4fc1538e2516836e19ab4a4216bf691ccb543e0cabfc1ec |
 | <a id="src-a3ca9dfd39f48b563d"></a>`src-a3ca9dfd39f48b563d` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 554; L17430-L17454](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 554; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 38c60afe196550e5f105b60884fc9a589ee215f9dc80f3ed74b784cf4437f51e |
 | <a id="src-69910221a986078bf0"></a>`src-69910221a986078bf0` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 555; L17456-L17477](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 555; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | e48bbcf10c1f28e390e536b7fc04f71d0f838baa76c388a19531a8e2594d00be |
 | <a id="src-7c6be4fa9eb7553500"></a>`src-7c6be4fa9eb7553500` | theory / learning_material | [회계감사_기본이론.md · 회계감사_기본이론 원문 페이지 556; L17479-L17506](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/02_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EA%B8%B0%EB%B3%B8%EC%9D%B4%EB%A1%A0.md); 회계감사_기본이론 | 원문 페이지 556; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 2054f8c0e4e4780a342d2589817bf359be459daa3fc6522090e2ce791ed4a0ef |
@@ -170,8 +172,6 @@ confidence: medium
 | <a id="src-6e51fee7676fea7514"></a>`src-6e51fee7676fea7514` | practice / learning_material | [주제별_회계감사_연습.md · 주제별_회계감사_연습 원문 페이지 421; L12475-L12498](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 주제별_회계감사_연습 | 원문 페이지 421; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 6d5ff678fdc355adcb018e3cff5d010761e2a6da7b4b062e6f11ce9be1615041 |
 | <a id="src-c533b515e26a263409"></a>`src-c533b515e26a263409` | practice / learning_material | [주제별_회계감사_연습.md · 주제별_회계감사_연습 원문 페이지 422; L12500-L12528](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 주제별_회계감사_연습 | 원문 페이지 422; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 86a06ae293f74b03526d9e921b9f226edc51385dc8f914f71ce594b4e6ddb952 |
 | <a id="src-14ef6f1efc3264875b"></a>`src-14ef6f1efc3264875b` | practice / learning_material | [주제별_회계감사_연습.md · 주제별_회계감사_연습 원문 페이지 423; L12530-L12568](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 주제별_회계감사_연습 | 원문 페이지 423; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | b1fd416469935be5c10b0f8ed534ce655f8d9eebf8957d4b35daf80b30ca090f |
-| <a id="src-632725809d9768cc0a"></a>`src-632725809d9768cc0a` | practice / learning_material | [주제별_회계감사_연습.md · 주제별_회계감사_연습 원문 페이지 424; L12570-L12596](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 주제별_회계감사_연습 | 원문 페이지 424; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | f77a515e54aacacac61eaa7142f042e8172e34042df576c13be13bacd3397fb7 |
-| <a id="src-dba30c59e6970136b2"></a>`src-dba30c59e6970136b2` | practice / learning_material | [주제별_회계감사_연습.md · 주제별_회계감사_연습 원문 페이지 425; L12598-L12632](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 주제별_회계감사_연습 | 원문 페이지 425; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 36766cffbedf087fb78326e9701ab204bed32ec9e40131a6f6dd86ed5b312384 |
 
 ## Related
 

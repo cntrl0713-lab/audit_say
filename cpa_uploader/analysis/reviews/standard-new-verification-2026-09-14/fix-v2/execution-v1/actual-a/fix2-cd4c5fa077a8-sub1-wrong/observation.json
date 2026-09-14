@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/grading-manifest.json",
+    "sha256": "cdb499202fd2de0049d21221fa25db05190111cb75e7504f378f907f3871a98d"
+  },
+  "entry_id": "fix2-cd4c5fa077a8-sub1-wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-cd4c5fa077a8--sub1--standard",
+  "source_set_id": "std-points-20260914-cd4c5fa077a8",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "d31dd5b9b50a60007fdaaf30570dba78772c3e1bb9c6fda80f64f7f6a7c2bb22",
+  "answers": {
+    "sub1": "해지 가능 여부나 법적 책임을 확인하지 않고 무조건 감사를 계속한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 감사인을 선임한 당사자 또는 경우에 따라 규제기관에 보고할 요구사항이 있는지 등을 포함하여 해당 상황에 맞는 전문가로서의 책임과 법률적 책임을 결정한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 관련 법규상 감사업무의 해지가 가능하면 해당 업무를 해지하는 것이 적절한지 고려한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "f8926eebdc3e787b67520e42efc4c6ce3826e3c4e14881aa227115a2e350ed3b",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "해지 가능 여부나 법적 책임을 확인하지 않고 무조건 감사를 계속한다.",
+            "reason": "법적 책임을 확인하지 않고 감사를 계속한다고 명시하여 책임 결정 요구를 부정한다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "해지 가능 여부나 법적 책임을 확인하지 않고 무조건 감사를 계속한다.",
+            "reason": "해지 가능 여부를 확인하지 않고 무조건 계속한다고 명시하여 해지 고려 요구와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "법적 책임을 확인하지 않고 감사를 계속한다고 명시하여 책임 결정 요구를 부정한다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "해지 가능 여부를 확인하지 않고 무조건 계속한다고 명시하여 해지 고려 요구와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-cd4c5fa077a8",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "부정 또는 부정으로 의심되는 사건의 왜곡표시 때문에 감사를 계속 수행할 능력에 의문이 생기는 예외적인 환경에 직면하였다. 아직 해지를 결정하지 않은 단계에서 감사기준서 240 문단 39(a)~(b)에 따라 수행해야 할 사항을 설명하시오. 책임 결정에 포함할 보고 요구사항과 법규상 해지 가능조건을 포함하시오.",
+        "user_answer": "해지 가능 여부나 법적 책임을 확인하지 않고 무조건 감사를 계속한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "해지 가능 여부나 법적 책임을 확인하지 않고 무조건 감사를 계속한다.",
+            "reason": "법적 책임을 확인하지 않고 감사를 계속한다고 명시하여 책임 결정 요구를 부정한다.",
+            "claim": "감사인을 선임한 당사자 또는 경우에 따라 규제기관에 보고할 요구사항이 있는지 등을 포함하여 해당 상황에 맞는 전문가로서의 책임과 법률적 책임을 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "해지 가능 여부나 법적 책임을 확인하지 않고 무조건 감사를 계속한다.",
+            "reason": "해지 가능 여부를 확인하지 않고 무조건 계속한다고 명시하여 해지 고려 요구와 반대된다.",
+            "claim": "관련 법규상 감사업무의 해지가 가능하면 해당 업무를 해지하는 것이 적절한지 고려한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사인을 선임한 당사자 또는 경우에 따라 규제기관에 보고할 요구사항이 있는지 등을 포함하여 해당 상황에 맞는 전문가·법률 책임을 결정한다.",
+          "관련 법규상 해지가 가능하면 해당 감사업무를 해지하는 것이 적합한지 고려한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0d981b91234765a7016aa7b7d42ce087d0b338cab1699456fd",
+        "request_id": "req_bc606475a7444f9aa006b2553cd705cf",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2446,
+          "input_tokens_details": {
+            "cache_write_tokens": 2443,
+            "cached_tokens": 0
+          },
+          "output_tokens": 237,
+          "output_tokens_details": {
+            "reasoning_tokens": 85
+          },
+          "total_tokens": 2683
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00089575,
+        "min_usd": 0.00089575,
+        "max_usd": 0.00089575,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/execution-v1/actual-a/fix2-cd4c5fa077a8-sub1-wrong/input.json",
+      "sha256": "f1ee357daf907a9a126f02beee876469632e9d11c1ff78c564c2f738d04f9fcc"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/execution-v1/actual-a/fix2-cd4c5fa077a8-sub1-wrong/transport.jsonl",
+      "sha256": "6cd7136f177398b8ee3ca63f2bba5ee7941aba8d8c8e1eba75827c2fecdb44ea"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/execution-v1/actual-a/fix2-cd4c5fa077a8-sub1-wrong/traces.jsonl",
+      "sha256": "f9206e4fda5a26ac951252e5a140b1234bb250920a2474650b9a09c163df3181"
+    }
+  }
+}

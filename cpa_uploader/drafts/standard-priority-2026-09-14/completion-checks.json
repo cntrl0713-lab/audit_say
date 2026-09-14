@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "artifact_type": "draft_completion_checks",
+  "checked_at": "2026-09-14T02:35:04.381Z",
+  "bank": {
+    "file": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+    "sha256": "7dbf962d6a86c8659d120c643e70b407ce4da7e95bcffe366f18e6b8d4d5ca7e",
+    "note": "병행 case-additional 게시 후 219세트 정본 기준으로 재검사"
+  },
+  "checks": [
+    {
+      "command": "npx tsx cpa_uploader/validate_draft_v3.ts --file <l01|l02|s01|s02|s03>.json --against-bank",
+      "result": "5개 파일 통과(형상·인용 실존·ID/발문 충돌 없음)"
+    },
+    {
+      "command": "npx tsx --env-file=.env.local cpa_uploader/drafts/standard-priority-2026-09-14/verify-and-grade.ts",
+      "result": "사전검사 통과: 5세트·10물음·대표 30건, 빈 답안 무호출 0점, 공개 투영 비공개 필드 제외, 정본+초안 메모리 검증 오류 0",
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/preflight.json",
+      "sha256": "42c933c881cb188836c7f0f66e1f81bda5c75bc2302b7594fdbb790f87c0e80a"
+    },
+    {
+      "command": "verify-and-grade.ts --run --run-id=run-v1",
+      "result": "실제 Luna 30건: 점수 일치 27, ±1 이내 29, 범위 밖 1(l01-sub2-partial)",
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/summary.json",
+      "sha256": "e95b7790efd2014c347de78fea8054ea9472bb41ed546b10860a37d27085d8cb"
+    },
+    {
+      "command": "verify-and-grade.ts --run --run-id=run-v2 --only=l01-sub2,s03-sub2",
+      "result": "기준 설명 보완 후 영향 6건 모두 일치",
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v2/summary.json",
+      "sha256": "f4441b83cea4eb3d02c7e633e93f2ef5379bd9140ca438c809334f9ab72574f6"
+    },
+    {
+      "command": "npx tsx cpa_uploader/drafts/standard-priority-2026-09-14/finalize.ts",
+      "result": "최종 30건: 점수 일치 29, ±1 이내 30; status=reviewed_draft",
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/verification-receipt.json",
+      "sha256": "73ef39a381f65614d33457ce4e3de9253f560fa43b729e07ba6e4045f93c249e"
+    },
+    {
+      "command": "node cpa_uploader/drafts/standard-priority-2026-09-14/update-coverage.mjs",
+      "result": "초안 대상 관계 29건 추가",
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/coverage-review.json",
+      "sha256": "de860f05aa1a9c643fc63569a50bdff9b901c2411ec3b1a9fe57bbc551369d42"
+    },
+    {
+      "command": "npm run analysis:build && npm run analysis:check",
+      "result": "통과(errors 0)"
+    },
+    {
+      "command": "node cpa_uploader/raw/collect.mjs --input sources/raw-inventory.json --output cpa_uploader/raw/collections/2026-09-14-standard-priority; --check --against-originals",
+      "result": "수집·원본 대조 통과(errors 0)"
+    },
+    {
+      "command": "npm run wiki:build && npm run wiki:check",
+      "result": "통과. 기존 긴 페이지 경고만 있음"
+    }
+  ],
+  "not_performed": [
+    "사람의 직접 내용 검수",
+    "별도 유료 API 의미검수",
+    "정본 편입·공개본 생성·운영 DB 반영(이번 요청 범위 밖)"
+  ]
+}

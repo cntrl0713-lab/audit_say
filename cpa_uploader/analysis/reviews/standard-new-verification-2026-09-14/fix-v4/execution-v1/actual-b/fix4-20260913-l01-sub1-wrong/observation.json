@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/grading-manifest.json",
+    "sha256": "3d891b9811e47d4aae0e207e902eb831cc4a094841b24c96462e7d7c2d6be9a7"
+  },
+  "entry_id": "fix4-20260913-l01-sub1-wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-standard-followup-20260913-l01--sub1--standard",
+  "source_set_id": "draft-standard-followup-20260913-l01",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "3a5e96b40694356187337de65aec34d404c62ee58d2884d121c9ce0434caf157",
+  "answers": {
+    "sub1": "① 이사회에만 알린다. ② 회사의 대표자에게만 알리면 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: ① 회사의 감사 또는 감사위원회에 통보한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: ① 주주총회 또는 사원총회에 보고한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "정답 의미의 누락 또는 명시적 부정: ② 회사의 감사 또는 감사위원회에 통보한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "0d37c46c556fcee2b55ec2886ee9404432cf150fefa2076a5f5e3a5587038bbd",
+  "schema_hash": "172d5de6570c09a29f717bb90ebbf3ab6007312ced42f430d537597c8d473ae9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "① 이사회에만 알린다. ",
+            "reason": "감사 또는 감사위원회가 아니라 이사회에만 알린다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "주주총회 또는 사원총회 보고가 없다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "② 회사의 대표자에게만 알리면 된다.",
+            "reason": "감사 또는 감사위원회가 아니라 회사의 대표자에게만 알리면 된다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "감사 또는 감사위원회가 아니라 이사회에만 알린다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "주주총회 또는 사원총회 보고가 없다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "감사 또는 감사위원회가 아니라 회사의 대표자에게만 알리면 된다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-followup-20260913-l01",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "외부감사법 제22조제1항과 제2항에 따른 감사인(외부감사인)의 통보·보고 상대방을 각각 제시하시오. ① 직무수행 중 이사의 직무수행에 관하여 부정행위 또는 법령이나 정관에 위반되는 중대한 사실을 발견한 경우, ② 회사가 회계처리 등에 관하여 회계처리기준을 위반한 사실을 발견한 경우이다. 제7항의 증권선물위원회 보고는 이 물음의 범위에서 제외한다.",
+        "user_answer": "① 이사회에만 알린다. ② 회사의 대표자에게만 알리면 된다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "① 이사회에만 알린다.",
+            "reason": "감사 또는 감사위원회가 아니라 이사회에만 알린다고 명시했다.",
+            "claim": "① 회사의 감사 또는 감사위원회에 통보한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "주주총회 또는 사원총회 보고가 없다.",
+            "claim": "① 주주총회 또는 사원총회에 보고한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "② 회사의 대표자에게만 알리면 된다.",
+            "reason": "감사 또는 감사위원회가 아니라 회사의 대표자에게만 알리면 된다고 명시했다.",
+            "claim": "② 회사의 감사 또는 감사위원회에 통보한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "① 회사의 감사 또는 감사위원회에 통보한다.",
+          "① 주주총회 또는 사원총회에 보고한다.",
+          "② 회사의 감사 또는 감사위원회에 통보한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_03104f2825671b95016aa7cc2e0cb887d0957b55357d5f315e",
+        "request_id": "req_0378319750f940998fec8d148cb9ee44",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2565,
+          "input_tokens_details": {
+            "cache_write_tokens": 2562,
+            "cached_tokens": 0
+          },
+          "output_tokens": 270,
+          "output_tokens_details": {
+            "reasoning_tokens": 89
+          },
+          "total_tokens": 2835
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009651,
+        "min_usd": 0.0009651,
+        "max_usd": 0.0009651,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/execution-v1/actual-b/fix4-20260913-l01-sub1-wrong/input.json",
+      "sha256": "6c25e449a21154e0c8b18960c3f22399b03cc51fe4e595e48d1e4ca0a4776ea3"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/execution-v1/actual-b/fix4-20260913-l01-sub1-wrong/transport.jsonl",
+      "sha256": "8cb709c5d1d82238c5adea8d87ff75fe4d5d33688510ee584c18cd0e88f453be"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/execution-v1/actual-b/fix4-20260913-l01-sub1-wrong/traces.jsonl",
+      "sha256": "e1d396c57bd14e1aabe2c30cd8cbdd0849e98fc52c2fd05057763524fe25e4b1"
+    }
+  }
+}

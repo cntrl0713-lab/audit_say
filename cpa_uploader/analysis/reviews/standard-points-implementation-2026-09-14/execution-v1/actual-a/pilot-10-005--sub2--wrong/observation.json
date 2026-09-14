@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "pilot-10-005--sub2--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-10-005--sub2--standard",
+  "source_set_id": "pilot-10-005",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "d430e1591f2c472fc645adb8bac97e8cc37898ef4a952eccf6b701fffe879eab",
+  "answers": {
+    "sub2": "변이로 밝혀진 왜곡표시도 다른 왜곡표시와 똑같이 모집단으로 확대 투영하고, 수정되지 않은 변이의 실제 금액은 효과 평가에서 무시한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 wrong 답안. 대상 명제: 변이로 밝혀진 왜곡표시는 모집단으로 투영할 때 제외한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 wrong 답안. 대상 명제: 해당 변이왜곡표시가 수정되지 않았다면 변이가 아닌 왜곡표시의 투영값에 가산하여 그 효과를 고려한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "fca93fe72890f78adc1343b33cb6f172448bf72f775b530e858c4e52d4031987",
+  "schema_hash": "02f2ae67aec11ef468f0b0dff383bce8b6cab4c84baec75792140419d493f672",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "변이로 밝혀진 왜곡표시도 다른 왜곡표시와 똑같이 모집단으로 확대 투영하고, 수정되지 않은 변이의 실제 금액은 효과 평가에서 무시한다.",
+            "reason": "변이 왜곡표시를 모집단에 확대 투영한다고 명시하여 제외한다는 명제와 반대된다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "변이로 밝혀진 왜곡표시도 다른 왜곡표시와 똑같이 모집단으로 확대 투영하고, 수정되지 않은 변이의 실제 금액은 효과 평가에서 무시한다.",
+            "reason": "수정되지 않은 변이의 실제 금액을 효과 평가에서 무시한다고 명시하여 가산하여 고려한다는 명제와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "변이 왜곡표시를 모집단에 확대 투영한다고 명시하여 제외한다는 명제와 반대된다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "수정되지 않은 변이의 실제 금액을 효과 평가에서 무시한다고 명시하여 가산하여 고려한다는 명제와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-10-005",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "세부테스트의 표본에서 발견된 특정 왜곡표시가 추가 감사절차를 통해 변이로 밝혀졌다. 이 왜곡표시를 모집단에 투영할 때의 처리와, 해당 왜곡표시가 수정되지 않은 경우 그 효과를 고려하는 방법을 각각 설명하시오.",
+        "user_answer": "변이로 밝혀진 왜곡표시도 다른 왜곡표시와 똑같이 모집단으로 확대 투영하고, 수정되지 않은 변이의 실제 금액은 효과 평가에서 무시한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "변이로 밝혀진 왜곡표시도 다른 왜곡표시와 똑같이 모집단으로 확대 투영하고, 수정되지 않은 변이의 실제 금액은 효과 평가에서 무시한다.",
+            "reason": "변이 왜곡표시를 모집단에 확대 투영한다고 명시하여 제외한다는 명제와 반대된다.",
+            "claim": "변이로 밝혀진 왜곡표시는 모집단으로 투영할 때 제외한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "변이로 밝혀진 왜곡표시도 다른 왜곡표시와 똑같이 모집단으로 확대 투영하고, 수정되지 않은 변이의 실제 금액은 효과 평가에서 무시한다.",
+            "reason": "수정되지 않은 변이의 실제 금액을 효과 평가에서 무시한다고 명시하여 가산하여 고려한다는 명제와 반대된다.",
+            "claim": "해당 변이왜곡표시가 수정되지 않았다면 변이가 아닌 왜곡표시의 투영값에 가산하여 그 효과를 고려한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "변이로 밝혀진 왜곡표시는 모집단으로 투영할 때 제외한다.",
+          "해당 변이왜곡표시가 수정되지 않았다면 변이가 아닌 왜곡표시의 투영값에 가산하여 그 효과를 고려한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a76420c53f63af9016aa787fd95dc87d0924890291c799fe0",
+        "request_id": "req_c80d661bc1524ea2bff290c2aa970140",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2426,
+          "input_tokens_details": {
+            "cache_write_tokens": 2423,
+            "cached_tokens": 0
+          },
+          "output_tokens": 202,
+          "output_tokens_details": {
+            "reasoning_tokens": 36
+          },
+          "total_tokens": 2628
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00084875,
+        "min_usd": 0.00084875,
+        "max_usd": 0.00084875,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/pilot-10-005--sub2--wrong/input.json",
+      "sha256": "8a296502a99fac529cf8614d72c4dc6492c5a1e97c38b8ab0a3edb9673eff932"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/pilot-10-005--sub2--wrong/transport.jsonl",
+      "sha256": "bbfcee6dfa21bca637224fdd8c6bdcfe2d09dbf1964c34ee745d813088ffcd3f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/pilot-10-005--sub2--wrong/traces.jsonl",
+      "sha256": "cbf5bcaf44542566ff166899197b0ff80cd3349ddd8f709cb1108ea60586ecaf"
+    }
+  }
+}

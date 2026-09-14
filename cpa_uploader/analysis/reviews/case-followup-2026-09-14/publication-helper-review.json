@@ -1,0 +1,154 @@
+{
+  "artifact_type": "publication_helper_agent_review",
+  "reviewed_at": "2026-09-14T03:48:34.861Z",
+  "reviewer_id": "Codex followup_execution",
+  "method": "agent_code_review",
+  "human_review_performed": false,
+  "status": "passed_static_review",
+  "files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publish.mjs",
+      "sha256": "889f89301787cbe53b0a117653c74b9eb96cb38a58a54398de98dae04624c5ac"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/deploy.mjs",
+      "sha256": "9c71a82bae071ad63f70798c44784be254fa2e2c75e4fdeeb0a7546601737010"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/update-coverage.mjs",
+      "sha256": "13b4ec7e34c1e39e94473a4164edaf7e410f796fae45a3cc8f659e91e7105fd5"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/final-checks.mjs",
+      "sha256": "cf3db0537be41842531bffacf6fce8e88e7ec1c4e8ea9db535ed3127fa132233"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/write-report.mjs",
+      "sha256": "d7c015a85193d941d1e94ef9cb89b3503d187d7b7bdbad2f6eaa2c9c4b58c727"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/build-execution.mjs",
+      "sha256": "c0db625f4a1f4af4ff9542bff2b8fd9501a12c75586f3a65ba994ef62d74620a"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/runner-design.md",
+      "sha256": "26ef86c8659b09e8016b0c18af69bbb10bd22b7490364d32716d80cb7d666b09"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/recorder-provenance.json",
+      "sha256": "8f526febc828cf4759bd8da3cee2c8c0a57531263388576bdc26c60491b8121c"
+    }
+  ],
+  "reviewed_dependencies": [
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/rebind-final-catalog.ts",
+      "sha256": "e2ad3cb730929abbdd6f47303c2fcbc653bccbdce58788070a87abdba84ed889"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/c/verify-final-learning-rollout.ts",
+      "sha256": "f45280a30bde211ee0bdf09bcedf2e0356fe2fb3c30824bea7309278254e0140"
+    },
+    {
+      "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+      "sha256": "6e45c144bf661fa10afd0d001cd0879d3d09c0b2d67d91ef45c70801e96f837b"
+    }
+  ],
+  "report_source_inspected": {
+    "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/write-report.mjs",
+    "sha256": "ea762771d6ed763e5df8f3a0396999fc99953d7506a6b4e92280ae5e92215667"
+  },
+  "findings": [
+    {
+      "file": "publish.mjs",
+      "status": "resolved",
+      "finding": "The new-ID guard used the earlier draft baseline rather than the final integration baseline; there was no explicit candidate preservation assertion within this publisher.",
+      "fix": "Read integration-baseline/bank.json, require six unique new IDs present in the reviewed candidate, compare every baseline object, and freeze changed-sets plus integration identities alongside stage inputs."
+    },
+    {
+      "file": "update-coverage.mjs",
+      "status": "resolved",
+      "finding": "Six distinct proposal target sets could satisfy the count guard without matching this batch target IDs.",
+      "fix": "Require the exact target set multiset to equal changed-sets-v1.json before any coverage mutation."
+    },
+    {
+      "file": "write-report.mjs",
+      "status": "resolved_in_new_generator",
+      "finding": "The previous report generator hardcoded a case-17 deviation and unconditionally read its notes file.",
+      "fix": "Create a new generator using this batch shape, final bank/catalog, sealed actual scores and verified DB completion. Read notes only if present and require every note to match a current entry/subquestion/expected/actual/delta. Titles, points and counts are derived from final input."
+    },
+    {
+      "file": "build-execution.mjs",
+      "status": "resolved",
+      "finding": "The new KGA 540 source catalog snapshots must be frozen before grading.",
+      "fix": "Preserve and freeze the initial source-catalog.json, intermediate source-catalog-v2.json and final source-catalog-v3.json. Updated derivation retains recorder-provenance-initial.json."
+    }
+  ],
+  "unchanged_reviews": [
+    {
+      "file": "deploy.mjs",
+      "result": "No old case IDs/counts/deviation remain. Stage install and receipt inputs are guarded; project host is explicit; live verification requires final bank/catalog/evidence hashes. The pinned migration hash exactly matches the current local file."
+    },
+    {
+      "file": "final-checks.mjs",
+      "result": "Only generic analysis build/check/preservation and wiki build/check commands remain, in dependency order. No previous case totals or outcome claims are copied."
+    },
+    {
+      "files": [
+        "publish.mjs",
+        "deploy.mjs"
+      ],
+      "result": "Legacy directory paths are intentional read-only reusable CLI dependencies accepting explicit new batch inputs/outputs. Prior evidence and helper bytes are not rewritten."
+    }
+  ],
+  "checks": [
+    {
+      "command": "node --check cpa_uploader/analysis/reviews/case-followup-2026-09-14/publish.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check cpa_uploader/analysis/reviews/case-followup-2026-09-14/deploy.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check cpa_uploader/analysis/reviews/case-followup-2026-09-14/update-coverage.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check cpa_uploader/analysis/reviews/case-followup-2026-09-14/final-checks.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check cpa_uploader/analysis/reviews/case-followup-2026-09-14/write-report.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check cpa_uploader/analysis/reviews/case-followup-2026-09-14/build-execution.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "npx eslint cpa_uploader/analysis/reviews/case-followup-2026-09-14/publish.mjs cpa_uploader/analysis/reviews/case-followup-2026-09-14/deploy.mjs cpa_uploader/analysis/reviews/case-followup-2026-09-14/update-coverage.mjs cpa_uploader/analysis/reviews/case-followup-2026-09-14/final-checks.mjs cpa_uploader/analysis/reviews/case-followup-2026-09-14/write-report.mjs cpa_uploader/analysis/reviews/case-followup-2026-09-14/build-execution.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "Read actual migration SHA-256 and inspect generic helper argument contracts",
+      "exit_code": 0
+    }
+  ],
+  "initial_helper_static_evidence": {
+    "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/helper-static-checks.json",
+    "sha256": "ab144c2bbddee2dbb463c28b1ae754823dd548cc530871d84b0016db2dc6e775"
+  },
+  "unresolved_findings": [],
+  "canonical_writes": 0,
+  "db_writes": 0,
+  "actual_model_calls": 0,
+  "not_executed": [
+    "Publisher stage/install",
+    "DB import/live verifier",
+    "Coverage update",
+    "Final analysis/wiki commands",
+    "Final report generation",
+    "Candidate-dependent grading builder/dry-run/actual execution"
+  ],
+  "note": "The original helper-static-checks.json records the initial builder version and is preserved. This review records fresh syntax/ESLint success for the final builder after adding both catalog snapshots. No completion report or publication result was fabricated."
+}

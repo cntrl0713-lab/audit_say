@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-d1bdf656a521--q1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-d1bdf656a521--q1--standard",
+  "source_set_id": "std-points-20260914-d1bdf656a521",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "q1"
+  ],
+  "projected_body_hash": "0ac5fb8cb88f5f784748b3be55e6b9c5051c7c8fe765f88f62243ba702da50c1",
+  "answers": {
+    "q1": "①과 ② 모두 표본규모가 감소한다. 통제 의존도가 높으면 통제의 효과성에 대한 확신도 덜 필요하기 때문이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "q1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "q1.c1",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: ① 통제테스트의 표본규모는 증가한다."
+        },
+        {
+          "criterion_id": "q1.c2",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: ① 통제에 더 의존하여 위험을 낮게 평가하려면 통제 운영효과성에 대해 더 많은 확신을 얻어야 하기 때문이다."
+        },
+        {
+          "criterion_id": "q1.c3",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: ② 통제테스트의 표본규모는 증가한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "0bcd419f68dfe3689be1751a987a9a7664b0eb7286dfcfe094b22edb760e8662",
+  "schema_hash": "1cff5a8fb0a597a94ff39191db9d406c8940e376f61f038bdc874c32ae78362d",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "q1",
+        "verdicts": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "contradicted",
+            "quote": "①과 ② 모두 표본규모가 감소한다. ",
+            "reason": "①의 표본규모가 감소한다고 명시하여 증가라는 결론과 반대된다."
+          },
+          {
+            "criterion_id": "q1.c2",
+            "verdict": "contradicted",
+            "quote": "통제 의존도가 높으면 통제의 효과성에 대한 확신도 덜 필요하기 때문이다.",
+            "reason": "통제 의존도가 높을수록 확신이 덜 필요하다고 하여 더 많은 확신이 필요하다는 이유와 반대된다."
+          },
+          {
+            "criterion_id": "q1.c3",
+            "verdict": "contradicted",
+            "quote": "①과 ② 모두 표본규모가 감소한다. ",
+            "reason": "②의 표본규모가 감소한다고 명시하여 증가라는 결론과 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "q1",
+            "verdicts": [
+              {
+                "criterion_id": "q1.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q1/e1"
+                ],
+                "reason": "①의 표본규모가 감소한다고 명시하여 증가라는 결론과 반대된다."
+              },
+              {
+                "criterion_id": "q1.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q1/e2"
+                ],
+                "reason": "통제 의존도가 높을수록 확신이 덜 필요하다고 하여 더 많은 확신이 필요하다는 이유와 반대된다."
+              },
+              {
+                "criterion_id": "q1.c3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q1/e1"
+                ],
+                "reason": "②의 표본규모가 감소한다고 명시하여 증가라는 결론과 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-d1bdf656a521",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "q1",
+        "prompt": "다음 각 항목은 서로 독립적이며, 명시된 요소 외의 사항과 해당 감사절차의 목적·성격·시기는 동일하다. ① 위험평가에서 통제의 운영효과성에 의존하는 정도가 증가할 때 통제테스트 표본규모의 변화와 이유를 설명하시오. ② 모집단의 실제 이탈률이 허용이탈률을 초과하지 않는다는 확신에 대한 감사인의 요구수준이 높아질 때 표본규모의 변화 방향을 제시하시오. 수치 계산은 요구하지 않는다.",
+        "user_answer": "①과 ② 모두 표본규모가 감소한다. 통제 의존도가 높으면 통제의 효과성에 대한 확신도 덜 필요하기 때문이다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "q1.c1",
+            "verdict": "contradicted",
+            "quote": "①과 ② 모두 표본규모가 감소한다.",
+            "reason": "①의 표본규모가 감소한다고 명시하여 증가라는 결론과 반대된다.",
+            "claim": "① 통제테스트의 표본규모는 증가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "q1.c2",
+            "verdict": "contradicted",
+            "quote": "통제 의존도가 높으면 통제의 효과성에 대한 확신도 덜 필요하기 때문이다.",
+            "reason": "통제 의존도가 높을수록 확신이 덜 필요하다고 하여 더 많은 확신이 필요하다는 이유와 반대된다.",
+            "claim": "① 통제에 더 의존하여 위험을 낮게 평가하려면 통제 운영효과성에 대해 더 많은 확신을 얻어야 하기 때문이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "q1.c3",
+            "verdict": "contradicted",
+            "quote": "①과 ② 모두 표본규모가 감소한다.",
+            "reason": "②의 표본규모가 감소한다고 명시하여 증가라는 결론과 반대된다.",
+            "claim": "② 통제테스트의 표본규모는 증가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "① 표본규모가 증가한다. 통제에 더 의존하여 위험을 낮게 평가하려면 통제 운영효과성에 대하여 더 많은 확신을 얻어야 하기 때문이다. ② 표본규모가 증가한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "q1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_055f35118f2c193d016aa786206c7087d09200766a08f9da5f",
+        "request_id": "req_b41fb2e9ede34362b3e2ddbb5a5cd9a6",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2690,
+          "input_tokens_details": {
+            "cache_write_tokens": 2687,
+            "cached_tokens": 0
+          },
+          "output_tokens": 257,
+          "output_tokens_details": {
+            "reasoning_tokens": 44
+          },
+          "total_tokens": 2947
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00098075,
+        "min_usd": 0.00098075,
+        "max_usd": 0.00098075,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-d1bdf656a521--q1--wrong/input.json",
+      "sha256": "1f1931470b3b22bb93a6cec381cabff88a40d7fd90be864cb07d6db436ba2b7e"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-d1bdf656a521--q1--wrong/transport.jsonl",
+      "sha256": "8911431cc42fcb9b01ac1bb03b6f795ac3c9a61499200165fea2250d81dd9339"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-d1bdf656a521--q1--wrong/traces.jsonl",
+      "sha256": "101459f5dc2b499937e57cd9c2ce191b29edaf07b35b18c1918215dac5b22f1f"
+    }
+  }
+}

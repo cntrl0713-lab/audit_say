@@ -91,6 +91,7 @@ function createValidSet(sourceFile: string): QuestionSetV3 {
 }
 
 const authoringBankPath = path.resolve('cpa_uploader/data/cpa_question_sets_v3.authoring.json');
+const retirementManifestPath = path.resolve('cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/retirement-manifest.json');
 
 test('validateQuestionSetV3 validates source-bound linked question sets', () => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'question-v3-'));
@@ -254,14 +255,17 @@ test('v3 authoring bank keeps the pilot floor distribution and stays internally 
             `${set.id} must have a positive integer total derived from its criteria`,
         );
     }
+    // 파일럿 세트는 사용자가 승인한 퇴역 manifest(2026-09-14 기준서형 배점 재편)에 있을 때만 은행에서 빠질 수 있다.
+    const retiredSetIds = new Set((JSON.parse(fs.readFileSync(retirementManifestPath, 'utf8')) as { retired_set_ids: string[] }).retired_set_ids);
+    for (const id of retiredSetIds) assert.ok(!sets.some((set) => set.id === id), `${id} is retired but still in the bank`);
     for (const [topicId, expectedCount] of expectedCounts) {
         assert.ok(
             (countsByTopic.get(topicId) ?? 0) >= expectedCount,
             `topic ${topicId} should contain at least ${expectedCount} sets`,
         );
         for (let index = 1; index <= expectedCount; index += 1) {
-            const suffix = String(index).padStart(3, '0');
-            assert.ok(sets.some((set) => set.id === `pilot-${topicId}-${suffix}`));
+            const id = `pilot-${topicId}-${String(index).padStart(3, '0')}`;
+            assert.ok(sets.some((set) => set.id === id) || retiredSetIds.has(id), `${id} is missing without an approved retirement`);
         }
     }
 });

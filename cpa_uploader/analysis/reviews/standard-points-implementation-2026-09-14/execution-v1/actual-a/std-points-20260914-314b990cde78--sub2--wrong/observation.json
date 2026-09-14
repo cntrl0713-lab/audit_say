@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-314b990cde78--sub2--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-314b990cde78--sub2--standard",
+  "source_set_id": "std-points-20260914-314b990cde78",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "7bf00198fb86fc956469acf6132c87a040cbbb109a8cc59bda755480a2aa9b37",
+  "answers": {
+    "sub2": "법규가 강제하면 오도하는 성격이 보고서에 미칠 영향도 무시하고 업무조건에도 언급하지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 수임조건이 없으나 법규가 감사수행을 강제하면 재무제표의 오도하는 성격이 감사보고서에 미치는 영향을 평가한다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 그 강제수행 상황의 사항을 감사업무 조건에 적합하게 언급한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "df790588ca47fd1833223cdc16686a65533bcd481f47f3a25c242f2beba7671c",
+  "schema_hash": "84d63657d91af1f29ec0a6dd3c718e0feef72c2a43e1937e26e83b8448a1e080",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "법규가 강제하면 오도하는 성격이 보고서에 미칠 영향도 무시하고 업무조건에도 언급하지 않는다.",
+            "reason": "오도하는 성격이 감사보고서에 미치는 영향을 무시한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "법규가 강제하면 오도하는 성격이 보고서에 미칠 영향도 무시하고 업무조건에도 언급하지 않는다.",
+            "reason": "업무조건에 언급하지 않는다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "오도하는 성격이 감사보고서에 미치는 영향을 무시한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "업무조건에 언급하지 않는다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-314b990cde78",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "법규에 규정되었다는 사실을 제외하면 수용가능하지 않은 재무보고체계에 관하여 KGA 210 문단19의 수임조건이 없지만 법규가 감사수행을 강제한다. 문단20에 따라 수행할 두 조치를 제시하시오.",
+        "user_answer": "법규가 강제하면 오도하는 성격이 보고서에 미칠 영향도 무시하고 업무조건에도 언급하지 않는다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "법규가 강제하면 오도하는 성격이 보고서에 미칠 영향도 무시하고 업무조건에도 언급하지 않는다.",
+            "reason": "오도하는 성격이 감사보고서에 미치는 영향을 무시한다고 명시했다.",
+            "claim": "수임조건이 없으나 법규가 감사수행을 강제하면 재무제표의 오도하는 성격이 감사보고서에 미치는 영향을 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "법규가 강제하면 오도하는 성격이 보고서에 미칠 영향도 무시하고 업무조건에도 언급하지 않는다.",
+            "reason": "업무조건에 언급하지 않는다고 명시했다.",
+            "claim": "그 강제수행 상황의 사항을 감사업무 조건에 적합하게 언급한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재무제표의 오도하는 성격이 감사보고서에 미치는 영향을 평가한다.",
+          "그 사항을 감사업무 조건에 적합하게 언급한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_020356b4771780ac016aa785654c0887d0b04e11f2441d67c0",
+        "request_id": "req_3aebdb8a7fe349bca4693befd00ff73a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2382,
+          "input_tokens_details": {
+            "cache_write_tokens": 2379,
+            "cached_tokens": 0
+          },
+          "output_tokens": 182,
+          "output_tokens_details": {
+            "reasoning_tokens": 43
+          },
+          "total_tokens": 2564
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00081375,
+        "min_usd": 0.00081375,
+        "max_usd": 0.00081375,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-314b990cde78--sub2--wrong/input.json",
+      "sha256": "732a5e031e49593ed1877d22d4abe9b28d6f30bb15065f2c786cd5111c715c91"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-314b990cde78--sub2--wrong/transport.jsonl",
+      "sha256": "cc7ff61c2e3729b505b2e9e55c67f9a236fcc3d9bad532b6674747f71e4a8250"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/std-points-20260914-314b990cde78--sub2--wrong/traces.jsonl",
+      "sha256": "24173eb3b1dafacbfdc3db62f1bb829fdbca7df5d75fc864fb046c8891c1b7eb"
+    }
+  }
+}

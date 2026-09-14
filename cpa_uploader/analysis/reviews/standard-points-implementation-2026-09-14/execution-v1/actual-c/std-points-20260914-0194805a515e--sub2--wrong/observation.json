@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-0194805a515e--sub2--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-0194805a515e--sub2--standard",
+  "source_set_id": "std-points-20260914-0194805a515e",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "49b8e6a38f2d5f77eccd10308a7f8f2d801e5ee80b199daaedee0885dcb66dbd",
+  "answers": {
+    "sub2": "과거 정보는 당기에 언제나 그대로 유효하므로 별도 검토가 필요 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 과거 감사 정보가 여전히 관련성이 있는지 평가함"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "최종 요구를 충족하지 않는 대표 오답으로 작성자가 모든 기준을 대조했다. 대상 명제: 과거 감사 정보가 여전히 신뢰할 수 있는지 평가함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "9fbf273683d83406436dd0aa8934db6eb8d026f94daa092431943b7a535c73a6",
+  "schema_hash": "84d63657d91af1f29ec0a6dd3c718e0feef72c2a43e1937e26e83b8448a1e080",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "과거 정보는 당기에 언제나 그대로 유효하므로 별도 검토가 필요 없다.",
+            "reason": "과거 정보가 당기에 언제나 유효하며 별도 검토가 필요 없다고 하여 계속적인 관련성 평가를 명시적으로 부정함."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "과거 정보는 당기에 언제나 그대로 유효하므로 별도 검토가 필요 없다.",
+            "reason": "과거 정보가 그대로 유효하며 별도 검토가 필요 없다고 하여 신뢰성 평가를 명시적으로 부정함."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "과거 정보가 당기에 언제나 유효하며 별도 검토가 필요 없다고 하여 계속적인 관련성 평가를 명시적으로 부정함."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "과거 정보가 그대로 유효하며 별도 검토가 필요 없다고 하여 신뢰성 평가를 명시적으로 부정함."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-0194805a515e",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사인이 과거 감사에서 얻은 기업과 환경에 관한 정보를 당기 감사증거로 이용하려고 할 때, 감사기준서 315에 따라 그 정보를 검토할 두 측면을 제시하시오.",
+        "user_answer": "과거 정보는 당기에 언제나 그대로 유효하므로 별도 검토가 필요 없다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "과거 정보는 당기에 언제나 그대로 유효하므로 별도 검토가 필요 없다.",
+            "reason": "과거 정보가 당기에 언제나 유효하며 별도 검토가 필요 없다고 하여 계속적인 관련성 평가를 명시적으로 부정함.",
+            "claim": "과거 감사 정보가 여전히 관련성이 있는지 평가함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "과거 정보는 당기에 언제나 그대로 유효하므로 별도 검토가 필요 없다.",
+            "reason": "과거 정보가 그대로 유효하며 별도 검토가 필요 없다고 하여 신뢰성 평가를 명시적으로 부정함.",
+            "claim": "과거 감사 정보가 여전히 신뢰할 수 있는지 평가함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "당기감사의 감사증거로서 그 정보가 계속 관련성이 있는지, 신뢰성이 있는지를 평가한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_03bebe0673498477016aa785e6c24887d0835cdad8b0b3a3ea",
+        "request_id": "req_9c0aab382e1443029b70c92bececae43",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2260,
+          "input_tokens_details": {
+            "cache_write_tokens": 2257,
+            "cached_tokens": 0
+          },
+          "output_tokens": 258,
+          "output_tokens_details": {
+            "reasoning_tokens": 88
+          },
+          "total_tokens": 2518
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00087445,
+        "min_usd": 0.00087445,
+        "max_usd": 0.00087445,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-0194805a515e--sub2--wrong/input.json",
+      "sha256": "9111976248aa94079fbd28672bf52c71ab7d95e85aa7bc7f0c04d0f53cd3d28a"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-0194805a515e--sub2--wrong/transport.jsonl",
+      "sha256": "ea9f2974203f3150ce84baf0ac9d1e98ce45f28fc479e793a99a48ea989f9c68"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-c/std-points-20260914-0194805a515e--sub2--wrong/traces.jsonl",
+      "sha256": "338188fee9edc689a0545bbac4a26ad4de7156fb00d9aa04adab942f13ce73da"
+    }
+  }
+}

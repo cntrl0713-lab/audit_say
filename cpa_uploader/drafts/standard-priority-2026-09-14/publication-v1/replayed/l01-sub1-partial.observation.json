@@ -1,0 +1,277 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "l01-sub1-partial",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-priority-20260914-l01",
+  "learning_unit_id": "draft-standard-priority-20260914-l01--sub1--standard",
+  "kind": "partial",
+  "projected_body_hash": "820de3f6f0a8cbe9a11c7ee5616e678a11cbe076babd5dcd6882734eb202b094",
+  "answers": {
+    "sub1": "원칙적으로 매 사업연도 개시일부터 45일 이내에 감사인을 선임한다. 직전 사업연도에 회계감사를 받지 않은 회사는 해당 사업연도 개시일부터 4개월 이내에 선임한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 회사는 원칙적으로 매 사업연도 개시일부터 45일 이내에 해당 사업연도의 감사인을 선임하여야 한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 감사위원회를 설치하여야 하는 회사는 매 사업연도 개시일 이전에 해당 사업연도의 감사인을 선임하여야 한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 직전 사업연도에 회계감사를 받지 아니한 회사는 해당 사업연도 개시일부터 4개월 이내에 감사인을 선임하여야 한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 감사인 지정·감사계약 해지·감사인의 해산 등 제7항의 사유로 감사인을 선임하는 경우에는 그 사유 발생일부터 2개월 이내에 선임하여야 한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "aac78f16b5d1421caba08fda57ad18b327a524d1517cd4e83021c123e6de672e",
+  "schema_hash": "e855bf5c3fc7c9fe3c07bbe53bd066a1730d4b0c5b32206a971b2ced5602e99c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "원칙적으로 매 사업연도 개시일부터 45일 이내에 감사인을 선임한다. ",
+            "reason": "원칙적 선임기한인 사업연도 개시일부터 45일 이내가 제시되었다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "감사위원회 설치 의무 회사의 사업연도 개시일 이전 선임기한이 누락되었다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "직전 사업연도에 회계감사를 받지 않은 회사는 해당 사업연도 개시일부터 4개월 이내에 선임한다.",
+            "reason": "직전 사업연도에 회계감사를 받지 않은 회사의 선임기한인 사업연도 개시일부터 4개월 이내가 제시되었다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "제7항 사유 발생일부터 2개월 이내의 선임기한이 누락되었다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "원칙적 선임기한인 사업연도 개시일부터 45일 이내가 제시되었다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사위원회 설치 의무 회사의 사업연도 개시일 이전 선임기한이 누락되었다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "직전 사업연도에 회계감사를 받지 않은 회사의 선임기한인 사업연도 개시일부터 4개월 이내가 제시되었다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "제7항 사유 발생일부터 2개월 이내의 선임기한이 누락되었다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-priority-20260914-l01",
+    "score": 2,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "외부감사법 제10조에 따라 회사가 해당 사업연도의 감사인을 선임하여야 하는 기한을 설명하시오. ① 원칙적인 기한, ② 「상법」 제542조의11 또는 「금융회사의 지배구조에 관한 법률」 제16조에 따라 감사위원회를 설치하여야 하는 회사의 기한, ③ 직전 사업연도에 회계감사를 받지 아니한 회사의 기한, ④ 증권선물위원회의 감사인 지정, 감사계약의 해지, 선임된 감사인의 해산 등 제7항의 사유로 감사인을 선임하는 경우의 기한을 모두 제시하시오. 연속 3개 사업연도 동일 감사인 선임과 감사인선임위원회의 구성은 묻지 않는다.",
+        "user_answer": "원칙적으로 매 사업연도 개시일부터 45일 이내에 감사인을 선임한다. 직전 사업연도에 회계감사를 받지 않은 회사는 해당 사업연도 개시일부터 4개월 이내에 선임한다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "원칙적으로 매 사업연도 개시일부터 45일 이내에 감사인을 선임한다.",
+            "reason": "원칙적 선임기한인 사업연도 개시일부터 45일 이내가 제시되었다.",
+            "claim": "회사는 원칙적으로 매 사업연도 개시일부터 45일 이내에 해당 사업연도의 감사인을 선임하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "감사위원회 설치 의무 회사의 사업연도 개시일 이전 선임기한이 누락되었다.",
+            "claim": "감사위원회를 설치하여야 하는 회사는 매 사업연도 개시일 이전에 해당 사업연도의 감사인을 선임하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "직전 사업연도에 회계감사를 받지 않은 회사는 해당 사업연도 개시일부터 4개월 이내에 선임한다.",
+            "reason": "직전 사업연도에 회계감사를 받지 않은 회사의 선임기한인 사업연도 개시일부터 4개월 이내가 제시되었다.",
+            "claim": "직전 사업연도에 회계감사를 받지 아니한 회사는 해당 사업연도 개시일부터 4개월 이내에 감사인을 선임하여야 한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "제7항 사유 발생일부터 2개월 이내의 선임기한이 누락되었다.",
+            "claim": "감사인 지정·감사계약 해지·감사인의 해산 등 제7항의 사유로 감사인을 선임하는 경우에는 그 사유 발생일부터 2개월 이내에 선임하여야 한다. 제7항 각 호를 모두 나열하지 않아도 그 사유로 선임하는 경우의 기한과 기산점이 드러나면 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "회사는 원칙적으로 매 사업연도 개시일부터 45일 이내에 해당 사업연도의 감사인을 선임하여야 한다.",
+          "감사위원회를 설치하여야 하는 회사는 매 사업연도 개시일 이전에 해당 사업연도의 감사인을 선임하여야 한다.",
+          "직전 사업연도에 회계감사를 받지 아니한 회사는 해당 사업연도 개시일부터 4개월 이내에 감사인을 선임하여야 한다.",
+          "감사인 지정·감사계약 해지·감사인의 해산 등 제7항의 사유로 감사인을 선임하는 경우에는 그 사유 발생일부터 2개월 이내에 선임하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/replayed/l01-sub1-partial.input.json",
+      "sha256": "177667f224d8acd0c0bd7d03c4aee816c65fd0d6ddecec265c8790bb66ff74de"
+    },
+    "transport": {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/replayed/l01-sub1-partial.transport.jsonl",
+      "sha256": "48e73eadbe190ff64c99db2e9cc2c939cbf29c9556f765ceb963bb51c8b95545"
+    },
+    "traces": {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/replayed/l01-sub1-partial.traces.jsonl",
+      "sha256": "1664281d1f37fa39f42c02f6edf07d0d6c94dfce98600335f29eddbab38bb465"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_092d5709e1a25493016aa75b3cc22487d0aaa04f472a8e60df",
+        "request_id": "req_e40cdebdb39d446da3e4cf583cce9f91",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3133,
+          "input_tokens_details": {
+            "cache_write_tokens": 3130,
+            "cached_tokens": 0
+          },
+          "output_tokens": 297,
+          "output_tokens_details": {
+            "reasoning_tokens": 44
+          },
+          "total_tokens": 3430
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_run": "run-v1",
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/l01-sub1-partial.input.json",
+        "sha256": "0dc30c25d267d1402c95361375ef3f323f9bd08d814ed364986d836b0851eb61"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/l01-sub1-partial.request-1.json",
+        "sha256": "406b18193515733b97771138c2ce6e43ba9add58737eaeb6250eb2611737e285"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/l01-sub1-partial.response-1.json",
+        "sha256": "1d4c88d9f8ab83cda6453c0cdd39a12b8ad38729bb2ac25aa13c100521f03c79"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/l01-sub1-partial.trace.json",
+        "sha256": "dcff5692cd500221e3637b8fed3e6ee9609536ad1a4cbe0b6f6f3f1d9f51815d"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/l01-sub1-partial.usage.json",
+        "sha256": "26779e492fb906daf25d2ae5cd30f18416467ce48cf8180018bf88454d977d4f"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-priority-2026-09-14/grading/run-v1/l01-sub1-partial.result.json",
+        "sha256": "5a6111f8fa616598d4ba0ceb1705cb1d78fed55c3210df4fe8d1311906ad86af"
+      }
+    ],
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/grading-manifest.json",
+    "sha256": "91aedb70b424320ad48a426c78806a495dfdcb917c7176bb73e048c7048bfe52"
+  }
+}

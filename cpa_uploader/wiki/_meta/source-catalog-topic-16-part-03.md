@@ -1,7 +1,7 @@
 ---
 title: "16. 핵심감사사항·강조사항·비교정보·기타정보 원자료 단위 3/5"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: source-map
 status: generated
 review_required: true

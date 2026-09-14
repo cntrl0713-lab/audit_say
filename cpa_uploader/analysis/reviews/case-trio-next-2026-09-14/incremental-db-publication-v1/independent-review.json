@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "status": "passed_static_review",
+  "reviewer_id": "agent:/root/next_cases_early",
+  "reviewed_at": "2026-09-14T08:53:52.614113+00:00",
+  "human_review_performed": false,
+  "method": "직전 독립 검토와 동일한 코드의 바이트·경로 차이를 확인하고 실제 새 driver/append 전문·README·provenance 및 원 사본을 읽은 독립 정적 검토",
+  "files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1/driver.mjs",
+      "sha256": "e51c9e483bd34cb33d40193a0d535319bf728ba9c52f164644dfa43cb24e7a9c"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1/append-contract.mjs",
+      "sha256": "2dc36acda729c7aaa616236dc788edd788a3c1c29ace358dc81b364a96721b90"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1/source-provenance.json",
+      "sha256": "5db4c2562a2753ba45b6ab54e7299276078040f13ba0c75c3b96c2ab1f96b49d"
+    }
+  ],
+  "supporting_files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/independent-review.json",
+      "sha256": "c9e74c4001b795bb1a0aa87167a89fecbf73f43a5b64d88b73988be14469a508"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1/README.md",
+      "sha256": "f8859ecacfebcc3ceeab614bb16cac4719c87f6e8bf5844cea79d4ae377b7537"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1/sources/append-contract.mjs.txt",
+      "sha256": "5a7888e845707fc8bd5588d80f5c39901d4d24ade27054e8cb8e51ddb89bbf4a"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1/sources/driver.mjs.txt",
+      "sha256": "e51c9e483bd34cb33d40193a0d535319bf728ba9c52f164644dfa43cb24e7a9c"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1/sources/prior-db-roundtrip.json.txt",
+      "sha256": "784511c46e75c525590ce0af12795910a7712c5a09b4e714fb3ef10c0e821496"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1/sources/installed-functions-after.json",
+      "sha256": "7faa066854cc75fba4ccd8892280d4e990e08f34978b7eebdb23aafc213c7278"
+    },
+    {
+      "file": "scripts/import-question-bank-v3.ts",
+      "sha256": "ff78922969a649abe65ed1b293b5b0e150ee2da50b1441b12563d0ce01bbd2db"
+    },
+    {
+      "file": "supabase/migrations/20260911030000_cpa_question_learning_units.sql",
+      "sha256": "6e45c144bf661fa10afd0d001cd0879d3d09c0b2d67d91ef45c70801e96f837b"
+    },
+    {
+      "file": "supabase/migrations/20260912060000_cpa_private_source_metadata.sql",
+      "sha256": "a6a6300fd1f1df32fe822f137f832f07f306ed1ada5ecb9c98c301882c35a789"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v1/validation.json",
+      "sha256": "0ea42610918f054fd65f8a032ae4af1c1bd6443bec1ad9e67b02fe658b4ee200"
+    }
+  ],
+  "checks": [
+    {
+      "id": "prior_diff_scope",
+      "decision": "pass",
+      "evidence": "append-contract.mjs L9; driver.mjs L1~104",
+      "rationale": "직전 독립 검토 코드와 직접 줄 단위 대조했다. driver는 바이트가 완전히 같고 append-contract는 R의 case-trio→case-trio-next 경로 한 줄만 바뀌었다. 전체 원문 보존, 정확히3개 추가, 재실행·SQL·게시 동작의 의미 변화는 없다."
+    },
+    {
+      "id": "baseline_exact_append",
+      "decision": "pass",
+      "evidence": "append-contract.mjs L18~39",
+      "rationale": "integration-baseline의 실제 길이를 읽고 전체 객체·배열 순서를 deepEqual로 보존한다. 검토ID가 중복 없이 정확히3개이고 기존ID와 충돌하지 않으며, 기존 원문 끝의 LF ] LF를 이용한 결합 문자열이 stage와 바이트 수준으로 같아야 한다. 372→375 등 실제 개수는 준비 실행 입력으로 결정된다."
+    },
+    {
+      "id": "full_payload_contract",
+      "decision": "pass",
+      "evidence": "append-contract.mjs L29~38,69~78; scripts/import-question-bank-v3.ts",
+      "rationale": "정식 learningCatalogForBank·public compiler와 동일한 전체 payload 계약을 재사용한다. readiness와 원문·public·은행 해시/개수/배점, stage public/canonical 일치를 검사한다. localProof는 PGlite에서 복원한 source_document와 전체 payload JSONB를 정식 payload에 직접 대조하도록 구현된다."
+    },
+    {
+      "id": "sql_literals_and_counts",
+      "decision": "pass",
+      "evidence": "append-contract.mjs L42~51,65~66",
+      "rationale": "JSON은 해시로 만든 dollar quote로 감싸고 구분자 충돌을 거부한다. source/hash는64자리 소문자hex, signature와release ID는 제한된 형상, set_count는 양의 safe integer를 요구한다. 신규 원문을 SQL 단일따옴표에 직접 삽입하지 않는다."
+    },
+    {
+      "id": "transaction_cas_and_lock",
+      "decision": "pass",
+      "evidence": "append-contract.mjs L46~66; 20260911030000 migration L794~826",
+      "rationale": "BEGIN과 SET LOCAL ROLE service_role/120s timeout 안에서 정식 importer와 같은 advisory transaction lock 7261202609080502를 취득한다. 동일 트랜잭션의 예상 active UUID·저장sourceSHA·원문UTF8실제SHA·배열수·끝문자열을 검사한 후 복원 payloadSHA와 최종 sourceSHA를 확인하고 정식 importer를1회 호출한다."
+    },
+    {
+      "id": "atomic_postconditions",
+      "decision": "pass",
+      "evidence": "append-contract.mjs L55~66",
+      "rationale": "COMMIT 전 기존 모든 set_version_id/position, 최종전체ID/ordinality, 기존 분류 전체JSONB 및 주제 전체JSONB를 대조한다. 실패는 같은 트랜잭션을 중단하여 importer에 의한 활성화·분류·주제 변경도 함께 롤백한다. 영구 함수나 권한을 수정하지 않는다."
+    },
+    {
+      "id": "prepare_no_network",
+      "decision": "pass",
+      "evidence": "driver.mjs L18~51",
+      "rationale": "prepare는 명시적 root active UUID, 새 출력 경로, 독립review status와 현재3파일 해시를 확인한다. 운영 query/fetch/createClient/verifier는 이 분기에서 호출되지 않는다. buildLocal/localProof는 로컬 입력만 사용하며 준비 결과를 적용 성공으로 기록하지 않는다."
+    },
+    {
+      "id": "apply_exact_target",
+      "decision": "pass",
+      "evidence": "driver.mjs L53~66",
+      "rationale": "expected preparation SHA, --env-file=.env.local, HTTPS exact host xvifzicrjmbfqaepcfpp.supabase.co, 빈 port/user/password/query/hash와 path /를 네트워크 전에 검사한다. Management endpoint도 같은 상수 프로젝트이며 모델API 경로는 없다."
+    },
+    {
+      "id": "frozen_input_boundary",
+      "decision": "pass",
+      "evidence": "driver.mjs L38~46,53~62,66,74,86,98",
+      "rationale": "stage·baseline·sealed batch·code/runtime·출처·review와 pack/SQL이 해시로 결속된다. canonical install 완료 및 현재 원문SHA·public·학습catalog 일치가 요구되고, SQL은 현재 고정 코드로 재생성하여 준비본과 일치해야 한다."
+    },
+    {
+      "id": "rerun_and_failure_record",
+      "decision": "pass",
+      "evidence": "driver.mjs L37,64~76,87~99; append-contract.mjs L15",
+      "rationale": "기존 준비/시도 폴더를 거부하고 wx로 출력 보존한다. mutation 전에 apply-started를 남기며 응답/실패를 보존하고 자동 retry하지 않는다. --verify는 원 성공 response 없이 진행할 수 없고, 실패한 verifier 실행로그를 덮어 반복하지 않는다."
+    },
+    {
+      "id": "roundtrip_completion_boundary",
+      "decision": "pass",
+      "evidence": "driver.mjs L75~99",
+      "rationale": "응답 role/timeout/release/count 뒤 실제 public 전체 내용·분류·주제·source 원문 및세해시를 읽어 대조한다. 함수 정의/ACL/default role setting 전후도 확인한다. receipt와 독립검증은 구별되며 verifier passed 뒤에만 completion을 만든다."
+    },
+    {
+      "id": "provenance_integrity",
+      "decision": "pass",
+      "evidence": "source-provenance.json; sources/prior-db-roundtrip.json.txt; sources/installed-functions-after.json",
+      "rationale": "12개 원파일과 보존 사본 해시를 모두 직접 대조하고 파생파일 해시도 확인했다. 함수배열은 직전 a4fb1719-b3fa-43bb-975f-5e1c481e67bd roundtrip.after.functions와 동일하다. 이 성공기록은 함수 계보일 뿐 새 active 상태나 이번 게시 성공을 대신하지 않으며 현재 live CAS/함수 비교가 실행 때 필요하다."
+    }
+  ],
+  "unresolved_findings": [],
+  "review_scope_limits": [
+    "prepare/apply/verify와 DB/API는 실행하지 않았다. 현재active·이번stage·실제복원 증거와 적용 완료는 root 후속 실행 기록에서 확인한다.",
+    "기존 importer/migration 검토를 동일 바이트에서 재사용하고 이번 변화인 배치경로 및 최신 원문/함수계보를 독립 대조했다. 전체 migration 또는 운영보안 전수감사가 아니다.",
+    "작성자의 validation.json 로컬 검사 결과는 보조증거로 읽었으며 이를 독립 실행으로 기록하지 않는다."
+  ],
+  "api_calls": 0,
+  "model_api_calls": 0,
+  "db_writes": 0,
+  "canonical_writes": 0,
+  "code_modifications": 0
+}

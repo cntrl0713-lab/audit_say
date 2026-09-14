@@ -1,0 +1,3101 @@
+{
+  "version": 1,
+  "created_at": "2026-09-14T13:36:37.285Z",
+  "action": "moved_out_of_repository_not_deleted",
+  "archive_location": "C:/Users/cntrl/Workspace/study/audit_say-archive/review-copies-2026-09-14 (같은 상대 경로. 로컬 전용, 저장소에 없음)",
+  "authorization": "2026-09-14 사용자 지시: 불필요한 파일 정리 후 커밋·푸시. 검증 사본 중 B(게시 기록이 가리키는 작업 전·stage 사본)와 C(참조 없는 사본) 삭제를 선택했다. 되돌릴 수 없는 삭제 대신 저장소 밖으로 옮겼다.",
+  "criteria": {
+    "kept": "A: validate_cpa_v3(승급 장부 → 수락 batch → 채점 manifest → 은행 사본·투영·관측·실행 코드·입력)가 직접 읽는 파일 8,618개는 모두 남겼다. README·스크립트·로그·검토 장부·완료/receipt/검증 기록은 옮기지 않았다. 테스트 고정 입력과 coverage links.json이 정확한 경로로 가리키는 파일도 남겼다.",
+    "moved": "B·C 중 정본 5종(authoring·promotions/ledger·public·encrypted·catalog) 사본, stage·baseline·backup·db-before 폴더의 사본, 후보·스냅숏 은행, 초안 원자료 카탈로그 사본, DB payload·SQL."
+  },
+  "recovery": "게시된 모든 은행 원문은 운영 DB cpa_question_bank_releases(active 1, retired 18)의 source_document에 남아 있다. 승급 장부는 추가 전용이라 과거 상태는 현재 장부의 앞부분이다. 공개본·카탈로그는 은행에서 다시 만들 수 있다. 옮긴 파일의 정확한 바이트가 필요하면 보관 폴더에서 같은 경로로 되돌리고 아래 SHA-256으로 확인한다.",
+  "effect": "옮긴 파일을 가리키는 게시·DB 반영 기록(baseline.json, stage-completion.json, preparation.json 등)은 보관 폴더 없이는 파일 해시를 다시 확인할 수 없다. 현재 정본 검증과 앱에는 영향이 없다.",
+  "moved_files": 318,
+  "bytes": 1092916673,
+  "removed_empty_dirs": 45,
+  "rows": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/backup/authoring.json",
+      "size": 4281939,
+      "sha256": "c2f233fed20c4fe553f1fc24a474f0366866df8c1ad52b5930e3a424757e63d4",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/backup/catalog.json",
+      "size": 436285,
+      "sha256": "1112c87c0427bbe86037ae94b3f1027dd46ec9e567dc91eedb32535bba9b02ba",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/backup/encrypted.json",
+      "size": 5709404,
+      "sha256": "680316490fd2960d003190c8edcabd4099346f49b00dfe94f31e42a141f0687c",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/backup/ledger.json",
+      "size": 6884965,
+      "sha256": "37ae6977627fe3e759e95faa4753527ae1d89ed8deb6426b132eca5c97cfbf48",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/backup/public.json",
+      "size": 816096,
+      "sha256": "57d42dfd80580da4a6597ed5a118e7861beee793909e71686788121f0944884b",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/canonical-catalog.json",
+      "size": 451621,
+      "sha256": "43c0e0040c696f1d3eb8d19baa28d254760b5f5fa153967dda59e9b6efee0a13",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/08-canonical-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage/authoring.json",
+      "size": 4451850,
+      "sha256": "7dbf962d6a86c8659d120c643e70b407ce4da7e95bcffe366f18e6b8d4d5ca7e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage-completion.json",
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage/catalog.json",
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage/classification-review.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage/catalog.json",
+      "size": 451615,
+      "sha256": "14293d4a81765b8ba2040ea9995e4c661ab6e2706a12a21b347143944f26190e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/05-catalog.log",
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage/classification-review.json",
+      "size": 347601,
+      "sha256": "9855fc1c88e665a26281f68f4dbcae4446fd2752e2d68c72f996565ccbaf039a",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/05-catalog.log",
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage-completion.json",
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage/catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage/encrypted.json",
+      "size": 5935952,
+      "sha256": "42b04cfc72f62a8f0c28b085fba455a80c69dd6b3aede247695e9d111f0d0dcc",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage/promotions.json",
+      "size": 6895294,
+      "sha256": "08e19341e9445fc36c9562cc7d2ea6d438ed8073bc580bc7dcc9e4e3f6e2e57c",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/02-verify-new.log",
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/03-publish.log",
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage/public.json",
+      "size": 853884,
+      "sha256": "fe95f86e6ef0b3e65651f54fd618e5683193da5f4d6336e6be177d85a056a3f6",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage/readiness.json",
+      "size": 676,
+      "sha256": "cf180296be249c5632adbb4ab044085365bedb61ef73d52544b134af07a8d5e8",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/07-db-readiness.log",
+        "cpa_uploader/analysis/reviews/case-additional-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/integration-pre-peer/candidate-v1.json",
+      "size": 4977020,
+      "sha256": "2f7c9e53b81ea02d5b5ddd6c81721af0c6085fee30217ac8d500b77ab10bf1b5",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/backup/authoring.json",
+      "size": 4783313,
+      "sha256": "8bba1a2860f05c10b116c44b64ce922a39cb80ee51a39d2d8f515ff965818df9",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/backup/catalog.json",
+      "size": 480351,
+      "sha256": "69af538222caad205563836c5651d94822e203b2733e81ebd4cf9e5203d9489d",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/backup/encrypted.json",
+      "size": 6377904,
+      "sha256": "e13d7775ed8c547669067a7a8952ed7ef3f93cdc0a1edd932cfc56378c4d6b2a",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/backup/ledger.json",
+      "size": 6914997,
+      "sha256": "1c87d9849d6f3df10e2b5f335582e528242df1fd24fb0af705e1404b7a3e720b",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/backup/public.json",
+      "size": 934470,
+      "sha256": "28cd1034426a203d1a1f7213e96a326943c06dcd9a2fe374a13486f72cc612c6",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/canonical-catalog.json",
+      "size": 495875,
+      "sha256": "47b0b95c3dd5f01be06b65e7ee65d3301b554754ed23e1fd1a9717c7ec0453df",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/08-canonical-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage/authoring.json",
+      "size": 4976942,
+      "sha256": "0626b0396ae96d1fd0d05cd95afe7335b6a0b7ba28007923504a6c796a206624",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage-completion.json",
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage/catalog.json",
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage/classification-review.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage/catalog.json",
+      "size": 495866,
+      "sha256": "77df31d30bf727113d191cbf5e588b2ef80d879de36d987e7642d6d51b333649",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/05-catalog.log",
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage/classification-review.json",
+      "size": 381280,
+      "sha256": "2b2fb55889b19172dcf0b5f10919a9e9a792ae80d5ccf11f47a9e93753bac477",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/05-catalog.log",
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage-completion.json",
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage/catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage/encrypted.json",
+      "size": 6636076,
+      "sha256": "368472d81688e830f708596aeb727a3184f1a5a8f535d76579f1ae14dc087794",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage/promotions.json",
+      "size": 6925326,
+      "sha256": "3febbc83520ba5f000b82fb280e5647dd70227ffe0aafd7041c03f188866a910",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/02-verify-new.log",
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/03-publish.log",
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage/public.json",
+      "size": 985231,
+      "sha256": "d07b62f27c84d1f074faea04036b4c497fd3f674f898cbaf2bcce3a0a39ab575",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage/readiness.json",
+      "size": 676,
+      "sha256": "bf6e5dae8328bbcca7d7849594a15989652c0481966ff3b3e4163e3b24ac6dba",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/07-db-readiness.log",
+        "cpa_uploader/analysis/reviews/case-applied-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/candidate-v2.json",
+      "size": 6045933,
+      "sha256": "f9d50fbc8609cc27250243e95aa26fe40b3fe1586d24f54fcb36d87046492e35",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/README.md",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/catalog-v2.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/check-concurrent-reuse-v2.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/preparation-v1/guarded-import.sql",
+      "size": 393343,
+      "sha256": "6be8f320a92a5501de8f9e96c672c7fda9324f2358fb042e1e07494c59ca9ff2",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/db-publication-v2/apply-started.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/db-publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/integration-baseline-v2/bank.json",
+      "size": 5863528,
+      "sha256": "895d44668c6bd86f89793c3355545bd7745398489845e8e26fe71609ad972104",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/db-publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/independent-review.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/integration-baseline-v2/catalog.json",
+      "size": 517805,
+      "sha256": "ebbb59bde41426e34da5abee68138a6266bb313c2a0ba1c09d617792a1534250",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/db-publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/integration-baseline-v2.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/backup/authoring.json",
+      "size": 4976942,
+      "sha256": "0626b0396ae96d1fd0d05cd95afe7335b6a0b7ba28007923504a6c796a206624",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/resume-publication-validation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/backup/catalog.json",
+      "size": 495875,
+      "sha256": "47b0b95c3dd5f01be06b65e7ee65d3301b554754ed23e1fd1a9717c7ec0453df",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/backup/encrypted.json",
+      "size": 6636076,
+      "sha256": "368472d81688e830f708596aeb727a3184f1a5a8f535d76579f1ae14dc087794",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/backup/ledger.json",
+      "size": 6925326,
+      "sha256": "3febbc83520ba5f000b82fb280e5647dd70227ffe0aafd7041c03f188866a910",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/backup/public.json",
+      "size": 985231,
+      "sha256": "d07b62f27c84d1f074faea04036b4c497fd3f674f898cbaf2bcce3a0a39ab575",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/stage/authoring.json",
+      "size": 5159269,
+      "sha256": "71fb91120bebea9292a2ecc5d8c40718f7038c42f371f721d7c25f8b65927250",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-stage-failure-review.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/resume-publication-validation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/stage/promotions.json",
+      "size": 6935725,
+      "sha256": "78adf025807e6f80ceeeb4b0ae3bd98c8e3f77ea5498c2dab1541c58d17a1c79",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-stage-failure-review.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/02-verify-new.log",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v1/03-publish.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/backup/authoring.json",
+      "size": 5863528,
+      "sha256": "895d44668c6bd86f89793c3355545bd7745398489845e8e26fe71609ad972104",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/concurrent-publication-handoff.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/backup/catalog.json",
+      "size": 517805,
+      "sha256": "ebbb59bde41426e34da5abee68138a6266bb313c2a0ba1c09d617792a1534250",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/concurrent-publication-handoff.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/backup/encrypted.json",
+      "size": 7818192,
+      "sha256": "77b50292d6a9a58bf8cf6d0aa59dd30bded197ff576b218d6a49095876a0d653",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/concurrent-publication-handoff.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/backup/ledger.json",
+      "size": 7559962,
+      "sha256": "5f0d4e772a6eead2fb0fd0a15499a86f1d61e23a416a72c953cfffe106e101ae",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/concurrent-publication-handoff.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/backup/public.json",
+      "size": 1154234,
+      "sha256": "a8f576d06cc9bd886cc94a14fa3bb1a79f840eb95779f8871b2e3493ad6c9fcb",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/concurrent-publication-handoff.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/canonical-catalog.json",
+      "size": 533344,
+      "sha256": "5010ddd69f96f41ad56adaf9e16512f715c8cb59285f3ade6563f4f64698c802",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/08-canonical-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/stage/authoring.json",
+      "size": 6045855,
+      "sha256": "2c1ddef36cbcb0b7bfdf6ac9811f0e12927b470bf97be2bcff2ad667d7017d70",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/db-publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/independent-review.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/stage/catalog.json",
+      "size": 533337,
+      "sha256": "ba3be1aca0942816be4b8cd49ea74eca18ce7ab5c1b2d83c63a146c09d9e804f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/db-publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/05-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/stage/classification-review.json",
+      "size": 446559,
+      "sha256": "870e0161c2bff6bb7a7d793973aea531d273036f066c0e28dc95b4646348e5bd",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/db-publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/05-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/stage/encrypted.json",
+      "size": 8061292,
+      "sha256": "870877c4956899b2a5e08985aa98eb2aa18dc3b2e73f65dc25201e039d13710e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/db-publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/stage/promotions.json",
+      "size": 7570361,
+      "sha256": "41cc0dd425bc6fb93270b6d033a0319fbe5f65f03d77916fe1a567c7459506cc",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/db-publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/02-verify-new.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/stage/public.json",
+      "size": 1197761,
+      "sha256": "b81f44c627c2233433907bfe188710a91b5deb687edcca796b46dba8273f996a",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/db-publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/publication-v2/stage/readiness.json",
+      "size": 676,
+      "sha256": "c94e2d4da8545ddaa4c4c03b06cb4056e1b4ae953ad6ff3a2cc4c1d9d1dd9fe1",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/db-publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/db-publication-v2/readiness.json",
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/independent-review.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/backup/authoring.json",
+      "size": 3709582,
+      "sha256": "8c8b2e5ab1de4222a6be4be69958b3a52650ce90054dd2bdf78b1c69a36ea668",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/backup/catalog.json",
+      "size": 350357,
+      "sha256": "14cedd646454e8f8e8a2f544f3e88f3c9b694e2784f8f6082bf3e039e1b31145",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/backup/encrypted.json",
+      "size": 4946264,
+      "sha256": "d5f97e7cdd2145b6cf811488baff45c840496d64d63b7ca584b82cb1d4f90295",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/backup/ledger.json",
+      "size": 6741651,
+      "sha256": "cf3e57a1751565ca463e7099d7351bc6bc394215f52b82778a0694da1be409d7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publish-merged.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/backup/public.json",
+      "size": 653897,
+      "sha256": "932755f798acbfe238d66ae76a73625d032cad28f6b95b80ecb3ef6036673712",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/stage/authoring.json",
+      "size": 3742427,
+      "sha256": "1d00b480f79df2167ed66c1487930d12868af31db743a0cb5f0e72c87d3b9a93",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publish-merged.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/stage/encrypted.json",
+      "size": 4990056,
+      "sha256": "61e7c75ccf93b54829fdd4cef8115228fd9e4e4c4c933f0746c8de1ff997f2cd",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/stage/promotions.json",
+      "size": 6822213,
+      "sha256": "e38fbd70cb87d1245d4de217ba0c130e6c950d97e4c7f394031ff8701941516f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/01-reverify.log",
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/02-verify-new.log",
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/03-publish.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v1/stage/public.json",
+      "size": 691460,
+      "sha256": "ae2c5148c7756f8360bfd5a6ac056d396109605200a402dd5109e1164a79c759",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/backup/authoring.json",
+      "size": 3836097,
+      "sha256": "c429b6fead174a647cd6575f40dcb87a56fd4fb78bc098aaa2c229cab9660b38",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/backup/catalog.json",
+      "size": 365288,
+      "sha256": "c6ff572a65ca4b8a6ae955f270ecfc96c0e19b9a6f65266693b07e8a47936a54",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/canonical-classification-review.json",
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage/classification-review.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/backup/encrypted.json",
+      "size": 5114948,
+      "sha256": "237d96a5b71fb405a100ed90557a1674702120c97aca311868b342a849ff4c05",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/backup/ledger.json",
+      "size": 6753019,
+      "sha256": "4f4c9ac5c9917f12175c07f51b4d04f882a62df1890235d9a949ed3105b5582d",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/backup/public.json",
+      "size": 683538,
+      "sha256": "6d8c7ff0eacd80760c2365cf7b2cb9ff65f40186eaea26a3e4aaa63c7b3544b1",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/canonical-catalog.json",
+      "size": 387877,
+      "sha256": "1d0910a4276b21a0ae2761b24ebb207fdf12a8e58e9094b8624a0cb9b93b54bf",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/08-canonical-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage/authoring.json",
+      "size": 3868942,
+      "sha256": "c8741c1b6b7c739fe4266597411bef8ec3468b8a3e83f7e559f98ff04af86ddf",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/canonical-classification-review.json",
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage-completion.json",
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage/catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage/catalog.json",
+      "size": 387870,
+      "sha256": "30d7e5902bbb482a798e42e064013b08fe3ae9d541569fcf894ac0f71d4e02f4",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/05-catalog.log",
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage/classification-review.json",
+      "size": 432656,
+      "sha256": "c9777c6fef91367959aec4749765c5a7be0c63b2bd8cd58e9d7ea292b7e59964",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/canonical-classification-review.json",
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage-completion.json",
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage/catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage/encrypted.json",
+      "size": 5158744,
+      "sha256": "7fc6c330ee72128da3ff8e2df14d5724f3f9892556c6aec1d5e43e37354de781",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage/promotions.json",
+      "size": 6833581,
+      "sha256": "134e81e9ab9fc5c5030491c6ca1b21005603076633caa78b2fe146ab5453213a",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage/public.json",
+      "size": 721101,
+      "sha256": "ac812622ea0706c5293345acd66b63a65e8d7f936f32ac6c26ce0f94bc611f43",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage/readiness.json",
+      "size": 676,
+      "sha256": "84106407dc06828eaf0bfd64513749090d931d82813429f331bed171e03bb8d6",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/07-db-readiness.log",
+        "cpa_uploader/analysis/reviews/case-expansion-2026-09-13/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/backup/authoring.json",
+      "size": 4607400,
+      "sha256": "c2767649d51a95b6016710a33f9796bbfdf34f1394a73589dd9a65d2c286602e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/backup/catalog.json",
+      "size": 464981,
+      "sha256": "61e5255343fd98bd41af253be15f454eae060b67d98d62b5bf70a8d0c95f44d7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/backup/encrypted.json",
+      "size": 6143352,
+      "sha256": "a497e0080d42f2081abb86f07c661bba6a1fbc173cee1fe983bbcdbff0490b74",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/backup/ledger.json",
+      "size": 6904689,
+      "sha256": "9ce1fefb2bc9d4639b751de8cf512d3bfcd72e93099914e7444dcf74a438ff1e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/backup/public.json",
+      "size": 887637,
+      "sha256": "0c9848ee77e139dd8c3076d01ca22e65f012dd5951c00372e56be2b6426a8706",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/canonical-catalog.json",
+      "size": 480351,
+      "sha256": "69af538222caad205563836c5651d94822e203b2733e81ebd4cf9e5203d9489d",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/08-canonical-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage/authoring.json",
+      "size": 4783313,
+      "sha256": "8bba1a2860f05c10b116c44b64ce922a39cb80ee51a39d2d8f515ff965818df9",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage-completion.json",
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage/catalog.json",
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage/classification-review.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage/catalog.json",
+      "size": 480343,
+      "sha256": "1e28b8f7c8f10f73300c3ed348c273264351dcb39647e48f1c1c417b3cf0752f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/05-catalog.log",
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage/classification-review.json",
+      "size": 361308,
+      "sha256": "b0ed9acbe78fae6567c2fea0c3a853b9d868ea33b70c1478efb1cb6a4e71e167",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/05-catalog.log",
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage-completion.json",
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage/catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage/encrypted.json",
+      "size": 6377904,
+      "sha256": "e13d7775ed8c547669067a7a8952ed7ef3f93cdc0a1edd932cfc56378c4d6b2a",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage/promotions.json",
+      "size": 6914997,
+      "sha256": "1c87d9849d6f3df10e2b5f335582e528242df1fd24fb0af705e1404b7a3e720b",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/02-verify-new.log",
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/03-publish.log",
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage/public.json",
+      "size": 934470,
+      "sha256": "28cd1034426a203d1a1f7213e96a326943c06dcd9a2fe374a13486f72cc612c6",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage/readiness.json",
+      "size": 676,
+      "sha256": "44a8546cc8c4c7fc931c85d0d0275272e5bc0df17e9ff3fedbb4bdfca96e7e48",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/07-db-readiness.log",
+        "cpa_uploader/analysis/reviews/case-followup-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/backup/authoring.json",
+      "size": 3701382,
+      "sha256": "4891f97bcfc98cdeda77567b59657577da184317df199fd53c859004728acd80",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/backup/catalog.json",
+      "size": 338157,
+      "sha256": "6db2a33c3c1bd1e3c9a4d2826f274b6644f20eb1a6c3a25233dbe1acc532c7af",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/backup/encrypted.json",
+      "size": 4935328,
+      "sha256": "8beb05b7891c4be188ebe9d92c524f67b0b6037328991e7557ac7ef37e3c13e5",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/backup/ledger.json",
+      "size": 6687450,
+      "sha256": "5a6b185364ef86105ca13e608f2029bc202a3c885d7947154f3645959fe71862",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/backup/public.json",
+      "size": 657188,
+      "sha256": "dadf488bfeb5ce1e3f3fea77f28b66cf9b128250104ddaf561be817457045e3c",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/canonical-catalog.json",
+      "size": 350357,
+      "sha256": "14cedd646454e8f8e8a2f544f3e88f3c9b694e2784f8f6082bf3e039e1b31145",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/08-canonical-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage/authoring.json",
+      "size": 3709582,
+      "sha256": "8c8b2e5ab1de4222a6be4be69958b3a52650ce90054dd2bdf78b1c69a36ea668",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage-completion.json",
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage/catalog.json",
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage/classification-review.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage/catalog.json",
+      "size": 350348,
+      "sha256": "e9e41b89e8b4eea08a1a1b9e650d27a0db7e8b1afb887281a0fe72a6a360b516",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/05-catalog.log",
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage/classification-review.json",
+      "size": 375043,
+      "sha256": "661ba2c65bfc9aa9195ba5ba624fccb276dc3cefffc9dd8c7c0111c323abdac0",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/05-catalog.log",
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage-completion.json",
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage/catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage/encrypted.json",
+      "size": 4946264,
+      "sha256": "d5f97e7cdd2145b6cf811488baff45c840496d64d63b7ca584b82cb1d4f90295",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage/promotions.json",
+      "size": 6741651,
+      "sha256": "cf3e57a1751565ca463e7099d7351bc6bc394215f52b82778a0694da1be409d7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/01-reverify.log",
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/02-verify-new.log",
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/03-publish.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage/public.json",
+      "size": 653897,
+      "sha256": "932755f798acbfe238d66ae76a73625d032cad28f6b95b80ecb3ef6036673712",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage/readiness.json",
+      "size": 555,
+      "sha256": "e450af1b8dfa2b62ebf51b1c9912ea9f1baeabc9795aa4ad2b15b3537630ca2e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/07-db-readiness.log",
+        "cpa_uploader/analysis/reviews/case-quality-2026-09-13/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/preparation-v1/guarded-import.sql",
+      "size": 301385,
+      "sha256": "5b0c09a7fc74bcda0c7964fe9f9defa2dd43eb94cd7fa9699738e5e6937714bd",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/db-publication-v1/apply-started.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/preparation-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/backup/authoring.json",
+      "size": 6045855,
+      "sha256": "2c1ddef36cbcb0b7bfdf6ac9811f0e12927b470bf97be2bcff2ad667d7017d70",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/backup/catalog.json",
+      "size": 533344,
+      "sha256": "5010ddd69f96f41ad56adaf9e16512f715c8cb59285f3ade6563f4f64698c802",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/backup/encrypted.json",
+      "size": 8061292,
+      "sha256": "870877c4956899b2a5e08985aa98eb2aa18dc3b2e73f65dc25201e039d13710e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/backup/ledger.json",
+      "size": 7570361,
+      "sha256": "41cc0dd425bc6fb93270b6d033a0319fbe5f65f03d77916fe1a567c7459506cc",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/backup/public.json",
+      "size": 1197761,
+      "sha256": "b81f44c627c2233433907bfe188710a91b5deb687edcca796b46dba8273f996a",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/canonical-catalog.json",
+      "size": 541071,
+      "sha256": "d602359b6be8ca18627cfbcfd142fb7230fb601cca99fc08a4f4c695300f0787",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/08-canonical-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/stage/authoring.json",
+      "size": 6138468,
+      "sha256": "fe106741e3b8575f20b1be07786cd034c2ba2f3f4b1a823f2016a2e19a2a9293",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/stage/catalog.json",
+      "size": 541059,
+      "sha256": "f675a3b194b751f9bf1f31713830bf42d4be73d516645f71e501e718b21a4491",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/05-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/stage/classification-review.json",
+      "size": 458273,
+      "sha256": "02be09999f94f59884d1b73ac153ab59a36cea00ed2aa0cec7e070eeec8dda83",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/05-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/stage/encrypted.json",
+      "size": 8184776,
+      "sha256": "5485044dd49ad91a55f7236b0ee7b849d213079dcc37a71660087521d0c332cb",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/stage/promotions.json",
+      "size": 7575538,
+      "sha256": "f45f3d8d7341e3e5f8935aa033e755b31a2cf72e98e05269cc1e294e3d23f7a1",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/02-verify-new.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/stage/public.json",
+      "size": 1219480,
+      "sha256": "fb2b9048fe9201f46272022f5af6a0100e839238b681d99735a29299b08bf385",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-2026-09-14/publication-v1/stage/readiness.json",
+      "size": 677,
+      "sha256": "f8b9925600bc37ad2c9440af3554e73462f25efc6923d977a04392c8d70c64a3",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/db-publication-v1/readiness.json",
+        "cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/preparation-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/candidate-publication-v2.json",
+      "size": 6237287,
+      "sha256": "d61d0cd9ef1dc0c95c945bd50ff43d9f03905b51137fde5e7a9d58bd0a44e1d6",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/classification-publication-v2.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/preparation-v1/guarded-import.sql",
+      "size": 299142,
+      "sha256": "f53a3504dbac430b3de9167bd64a8409d8c80ed8e35cb84541e5833729166de4",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/apply-started.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/integration-baseline-v2/bank.json",
+      "size": 6148788,
+      "sha256": "67a8738f4f9dc959ca52a213c7e07b224836fc3a94effe1f20b56090d01f9da7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/final-documentation-path-review.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/final-report-v2.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/integration-baseline-v2/catalog.json",
+      "size": 541656,
+      "sha256": "ddeee083c29c174ecb9ac7215e5262de9aa64da37c956bfea1ed83d988035223",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/final-report-v2.mjs",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/integration-baseline-v2/encrypted.json",
+      "size": 8198536,
+      "sha256": "e89b4006e4e4d6a82234f981356413c1f6c6cd0fc74e4e22cd9ceca00c1d75c7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/integration-baseline-v2.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/integration-baseline-v2/ledger.json",
+      "size": 7634690,
+      "sha256": "e39a9ad2243dcec5a1cfeed41c2a1b632de4d4e5d86866c7fef01cb4221a57af",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/integration-baseline-v2.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/integration-baseline-v2/public.json",
+      "size": 1220556,
+      "sha256": "288551b49b7af8ac4a53bde605aa2dfdb233cb4b6b6ddadf34f038d688b9c716",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/integration-baseline-v2.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/backup/authoring.json",
+      "size": 6141397,
+      "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/backup/catalog.json",
+      "size": 541151,
+      "sha256": "95000e6256acf26868013183f3c1854e5a84e57be52a76556b9cf1fd16455aea",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/backup/encrypted.json",
+      "size": 8188684,
+      "sha256": "f0e9424df4602a22a258afba2cf677b8241f72d91891c7dbeac7ecd37021e66c",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/backup/ledger.json",
+      "size": 7594658,
+      "sha256": "5f61538f37b3ed69beb79b66a024e1cad844d0b0fbb938d9d8704151c432cf77",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-reconciliation-v2.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/01-reused-original-transitions.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/backup/public.json",
+      "size": 1219676,
+      "sha256": "5ad3ccb17ac63ecc41f182454c6968c333be788dfda6531d614bbf105865962e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/stage/authoring.json",
+      "size": 6229896,
+      "sha256": "c020eeb719729ea1f712296a0f09d1df9e685f8b2fdb918a2317e405621e9088",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-reconciliation-v2.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/stage/catalog.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/stage/classification-review.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/stage/catalog.json",
+      "size": 548958,
+      "sha256": "d734115f59ae4965fd264c07aaec6472b9b57c0b7de94f2a8ca0108d80e8c258",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/05-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/stage/classification-review.json",
+      "size": 471158,
+      "sha256": "6279686ea0c30918ae865fce02f03c7fe921a6a0343d2e325a4b36e7c67326b2",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/05-catalog.log",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/stage/catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/stage/encrypted.json",
+      "size": 8306680,
+      "sha256": "0ef12042c14c461c6e67171ff1fe5e25f1875adfcae8d21f99715db69116b8ce",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/stage/promotions.json",
+      "size": 7599879,
+      "sha256": "ebfc3ac35bc65c2ffc050dbf6b95719e262357565b7b3b4278718005930122f2",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-reconciliation-v2.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/02-verify-new.log",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/03-publish.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v1/stage/public.json",
+      "size": 1242169,
+      "sha256": "a08cef718693108243c22f3335582c1c96c02ab7872bcad3c09dd997dc98a6b4",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/backup/authoring.json",
+      "size": 6148788,
+      "sha256": "67a8738f4f9dc959ca52a213c7e07b224836fc3a94effe1f20b56090d01f9da7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/backup/catalog.json",
+      "size": 541656,
+      "sha256": "ddeee083c29c174ecb9ac7215e5262de9aa64da37c956bfea1ed83d988035223",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/backup/encrypted.json",
+      "size": 8198536,
+      "sha256": "e89b4006e4e4d6a82234f981356413c1f6c6cd0fc74e4e22cd9ceca00c1d75c7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/backup/ledger.json",
+      "size": 7634690,
+      "sha256": "e39a9ad2243dcec5a1cfeed41c2a1b632de4d4e5d86866c7fef01cb4221a57af",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/backup/public.json",
+      "size": 1220556,
+      "sha256": "288551b49b7af8ac4a53bde605aa2dfdb233cb4b6b6ddadf34f038d688b9c716",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/canonical-catalog.json",
+      "size": 549470,
+      "sha256": "2c1d33833747cdf18ae77627d8016a68c46438569c431800114e6897ad7b8e6f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/08-canonical-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/stage/authoring.json",
+      "size": 6237287,
+      "sha256": "d61d0cd9ef1dc0c95c945bd50ff43d9f03905b51137fde5e7a9d58bd0a44e1d6",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/stage/catalog.json",
+      "size": 549463,
+      "sha256": "6a71a070207e52165682baedd7924f810008a13d335f9a02980a8f94248b65de",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/05-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/stage/classification-review.json",
+      "size": 473370,
+      "sha256": "8c5ce8b4315dbf4aa1bdddf448b9e8f9ce047c5573761e0ac9b44d37f464eee2",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/05-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/stage/encrypted.json",
+      "size": 8316536,
+      "sha256": "b24b52f1431179b70dfac0ea929f9b54abba9c4cb3d7a6aaa8d5a42565b0035b",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/stage/promotions.json",
+      "size": 7639911,
+      "sha256": "09108b614bdbf1618771c65a713f40bc1a17f2096d9892e78c02444eee5c850f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/stage/public.json",
+      "size": 1243049,
+      "sha256": "56305d6ae13d3bd4278e43c58cd1105c81c66769c079870dd5df1f378138e51f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/publication-v2/stage/readiness.json",
+      "size": 677,
+      "sha256": "025175b8fd61a62a8f764abe2e3522f36841cd951d213f1457b6db9e4ccc3c51",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/db-publication-v1/readiness.json",
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/incremental-db-publication-v2/preparation-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/baseline/authoring.json",
+      "size": 3868942,
+      "sha256": "c8741c1b6b7c739fe4266597411bef8ec3468b8a3e83f7e559f98ff04af86ddf",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/baseline.json",
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/publish.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/baseline/catalog.json",
+      "size": 387877,
+      "sha256": "1d0910a4276b21a0ae2761b24ebb207fdf12a8e58e9094b8624a0cb9b93b54bf",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/baseline/encrypted.json",
+      "size": 5158744,
+      "sha256": "7fc6c330ee72128da3ff8e2df14d5724f3f9892556c6aec1d5e43e37354de781",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/baseline/ledger.json",
+      "size": 6833581,
+      "sha256": "134e81e9ab9fc5c5030491c6ca1b21005603076633caa78b2fe146ab5453213a",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/baseline.json",
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/publish.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/baseline/public.json",
+      "size": 721101,
+      "sha256": "ac812622ea0706c5293345acd66b63a65e8d7f936f32ac6c26ce0f94bc611f43",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/canonical-catalog.json",
+      "size": 436285,
+      "sha256": "1112c87c0427bbe86037ae94b3f1027dd46ec9e567dc91eedb32535bba9b02ba",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage/authoring.json",
+      "size": 4281939,
+      "sha256": "c2f233fed20c4fe553f1fc24a474f0366866df8c1ad52b5930e3a424757e63d4",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage-completion.json",
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage/learning-catalog.json",
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage/learning-classification-review.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage/db-readiness.json",
+      "size": 676,
+      "sha256": "0c96ecb3db6d41a23b53f138ef9e9304f1cb1910927b71e08b8750697fd8da3b",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/05-db-readiness.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage/encrypted.json",
+      "size": 5709404,
+      "sha256": "680316490fd2960d003190c8edcabd4099346f49b00dfe94f31e42a141f0687c",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage/learning-catalog.json",
+      "size": 436327,
+      "sha256": "7497321fbb2f990d69f861f7f20d062f6211559694e8903b6fc789c4c7846d76",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage/learning-classification-review.json",
+      "size": 246878,
+      "sha256": "f5312269e55acf81a39f9f8ad07dbcdd0f18086ee8a099865c61d4ba72e43aea",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage/learning-catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage/promotions.json",
+      "size": 6884965,
+      "sha256": "37ae6977627fe3e759e95faa4753527ae1d89ed8deb6426b132eca5c97cfbf48",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/01-verify.log",
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/02-publish.log",
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage/public.json",
+      "size": 816096,
+      "sha256": "57d42dfd80580da4a6597ed5a118e7861beee793909e71686788121f0944884b",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/baseline/authoring.json",
+      "size": 6138468,
+      "sha256": "fe106741e3b8575f20b1be07786cd034c2ba2f3f4b1a823f2016a2e19a2a9293",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/integration-baseline-successor-evidence.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/baseline.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/changes.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/baseline/catalog.json",
+      "size": 541071,
+      "sha256": "d602359b6be8ca18627cfbcfd142fb7230fb601cca99fc08a4f4c695300f0787",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/baseline/encrypted.json",
+      "size": 8184776,
+      "sha256": "5485044dd49ad91a55f7236b0ee7b849d213079dcc37a71660087521d0c332cb",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/baseline/ledger.json",
+      "size": 7575538,
+      "sha256": "f45f3d8d7341e3e5f8935aa033e755b31a2cf72e98e05269cc1e294e3d23f7a1",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/baseline.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/publish.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/baseline/public.json",
+      "size": 1219480,
+      "sha256": "fb2b9048fe9201f46272022f5af6a0100e839238b681d99735a29299b08bf385",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/guarded-import.sql",
+      "size": 318214,
+      "sha256": "e0f92d2b7672ee0da301b478bc2f7a656b82e6504f829775809ad4752d872223",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/probe.sql",
+      "size": 313221,
+      "sha256": "0d5996b6108959b409a81ff7baaecc2ff0293cb4e7591eb18bac5eefd0f96e71",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/replace-pack.json",
+      "size": 365065,
+      "sha256": "338912add6e99bdb434a996cd5a5c696ffd288bd82613b0653d5b3e0e5f9782b",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/guarded-import.sql",
+      "size": 318214,
+      "sha256": "e0f92d2b7672ee0da301b478bc2f7a656b82e6504f829775809ad4752d872223",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-publication-v1/apply-started.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/probe.sql",
+      "size": 312777,
+      "sha256": "e59ed68ad359ac90d478a31f06f89cf92973f93846715fc5508742481faff301",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/replace-pack.json",
+      "size": 365065,
+      "sha256": "338912add6e99bdb434a996cd5a5c696ffd288bd82613b0653d5b3e0e5f9782b",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/publication-v1/canonical-catalog.json",
+      "size": 541151,
+      "sha256": "95000e6256acf26868013183f3c1854e5a84e57be52a76556b9cf1fd16455aea",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/publication-v1/stage/authoring.json",
+      "size": 6141397,
+      "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/publication-v1/stage/db-readiness.json",
+      "size": 677,
+      "sha256": "57776d7ae29d7e67247831a426e40ac908422dda84a501b22b3a3c944e24f736",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/publication-v1/stage/encrypted.json",
+      "size": 8188684,
+      "sha256": "f0e9424df4602a22a258afba2cf677b8241f72d91891c7dbeac7ecd37021e66c",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/publication-v1/stage/learning-catalog.json",
+      "size": 541212,
+      "sha256": "93024fe0cf931a68c8deb8ec4145008ad9f8e80091781aa99e6ec2d3546cdc48",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/publication-v1/stage/learning-classification-review.json",
+      "size": 321353,
+      "sha256": "0b3d7cb16ddd37157a49db52ccbf0912ac7d2291f4635fa22f92e6f567ebdaab",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/publication-v1/stage/learning-catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/publication-v1/stage/promotions.json",
+      "size": 7594658,
+      "sha256": "5f61538f37b3ed69beb79b66a024e1cad844d0b0fbb938d9d8704151c432cf77",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/publication-v1/stage/public.json",
+      "size": 1219676,
+      "sha256": "5ad3ccb17ac63ecc41f182454c6968c333be788dfda6531d614bbf105865962e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-incremental-v1/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/baseline/authoring.json",
+      "size": 6141397,
+      "sha256": "27ccb6455611e8ea92e1a3ffd8f76ca15a598931ef403177e0217cae14b3a37f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/baseline.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/changes.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/inspection.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/baseline/catalog.json",
+      "size": 541151,
+      "sha256": "95000e6256acf26868013183f3c1854e5a84e57be52a76556b9cf1fd16455aea",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/baseline/encrypted.json",
+      "size": 8188684,
+      "sha256": "f0e9424df4602a22a258afba2cf677b8241f72d91891c7dbeac7ecd37021e66c",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/baseline/ledger.json",
+      "size": 7594658,
+      "sha256": "5f61538f37b3ed69beb79b66a024e1cad844d0b0fbb938d9d8704151c432cf77",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/baseline.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publish.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/baseline/public.json",
+      "size": 1219676,
+      "sha256": "5ad3ccb17ac63ecc41f182454c6968c333be788dfda6531d614bbf105865962e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/guarded-import.sql",
+      "size": 509840,
+      "sha256": "e31f0324d2531e3126f3487a176500157057911897bc15cc28cba287ebb22ea6",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/apply-started.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/probe.sql",
+      "size": 502678,
+      "sha256": "e6bb2a51700a6b81a6a0fddc3e1154acc69d3108db3b518bff34f2ae6777b3a0",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/replace-pack.json",
+      "size": 555432,
+      "sha256": "0c6492ab77a9ae56197a7d02de18060825a5b853e4a20a8c8c9829444f80a53f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/canonical-catalog.json",
+      "size": 541656,
+      "sha256": "ddeee083c29c174ecb9ac7215e5262de9aa64da37c956bfea1ed83d988035223",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage/authoring.json",
+      "size": 6148788,
+      "sha256": "67a8738f4f9dc959ca52a213c7e07b224836fc3a94effe1f20b56090d01f9da7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage/db-readiness.json",
+      "size": 676,
+      "sha256": "bd903c803f3235e3bafe5a3090e629f621b8624d51d6a1975ae20159b1fcc0e9",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/05-db-readiness.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage/encrypted.json",
+      "size": 8198536,
+      "sha256": "e89b4006e4e4d6a82234f981356413c1f6c6cd0fc74e4e22cd9ceca00c1d75c7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage/learning-catalog.json",
+      "size": 541717,
+      "sha256": "9eee48d93a25d4b597944ef4dd74118a324d7f0ac1faf7bec75fe35f1f5c11fe",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage/learning-classification-review.json",
+      "size": 323580,
+      "sha256": "f11d5672a45c3df09e43bf5b376f16e9ea93fbcb3167274497db6d9d88483813",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage/learning-catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage/promotions.json",
+      "size": 7634690,
+      "sha256": "e39a9ad2243dcec5a1cfeed41c2a1b632de4d4e5d86866c7fef01cb4221a57af",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/01-reverify.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage/public.json",
+      "size": 1220556,
+      "sha256": "288551b49b7af8ac4a53bde605aa2dfdb233cb4b6b6ddadf34f038d688b9c716",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/baseline/authoring.json",
+      "size": 6237287,
+      "sha256": "d61d0cd9ef1dc0c95c945bd50ff43d9f03905b51137fde5e7a9d58bd0a44e1d6",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/baseline.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/changes.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/inspection.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/baseline/catalog.json",
+      "size": 549470,
+      "sha256": "2c1d33833747cdf18ae77627d8016a68c46438569c431800114e6897ad7b8e6f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/baseline/encrypted.json",
+      "size": 8316536,
+      "sha256": "b24b52f1431179b70dfac0ea929f9b54abba9c4cb3d7a6aaa8d5a42565b0035b",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/baseline/ledger.json",
+      "size": 7639911,
+      "sha256": "09108b614bdbf1618771c65a713f40bc1a17f2096d9892e78c02444eee5c850f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/baseline.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publish.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/baseline/public.json",
+      "size": 1243049,
+      "sha256": "56305d6ae13d3bd4278e43c58cd1105c81c66769c079870dd5df1f378138e51f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/guarded-import.sql",
+      "size": 273480,
+      "sha256": "41cb4611f5b6481b191f05ed7265f3da62e58ec9ecc81e47588600cfcc1ca9f1",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-publication-v1/apply-started.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/probe.sql",
+      "size": 269399,
+      "sha256": "e203c06f425c037f1d006b2804a87a752c3e532409865fbd982cac7758bf43d4",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/replace-pack.json",
+      "size": 322230,
+      "sha256": "47c2fe6d18170cfa96aa326ecbd6a365941735ca815e5064a1dbb1147fbb3f4c",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/canonical-catalog.json",
+      "size": 549447,
+      "sha256": "234b672b54f1d22d7a1115595a43a5615b45b531092eb5e23bed371899eeb0a6",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage/authoring.json",
+      "size": 6238186,
+      "sha256": "06fc7249166cd9bb75026191e98261334c4de217bd6f80b0a8dd3ed939ed9e22",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage/db-readiness.json",
+      "size": 677,
+      "sha256": "917be06ea37c8c7a1b9f63db60f9ee8a3b751a1bcbe5468f5a243e65e324c005",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/05-db-readiness.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage/encrypted.json",
+      "size": 8317736,
+      "sha256": "1082f4a2288db2a5378684ddb72310ce4b624025355b2d1140d4d03037d5f9a8",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage/learning-catalog.json",
+      "size": 549508,
+      "sha256": "3d06459c055738458ebe2a63fa1b12d5f3c1aef2747798f0f2e90b603098b2be",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage/learning-classification-review.json",
+      "size": 335150,
+      "sha256": "2591ff6f23cf51ee885abc71cf02bb887f21556f66b8ae471645a97e59e42ea9",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage/learning-catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage/promotions.json",
+      "size": 7643768,
+      "sha256": "4d4585d9bc69445105b8d228d570f4ab3a86cb8e67e8a9fadc421fc2e7d1d584",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/01-reverify.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage/public.json",
+      "size": 1243049,
+      "sha256": "56305d6ae13d3bd4278e43c58cd1105c81c66769c079870dd5df1f378138e51f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/baseline/authoring.json",
+      "size": 6238186,
+      "sha256": "06fc7249166cd9bb75026191e98261334c4de217bd6f80b0a8dd3ed939ed9e22",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/baseline.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/changes.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/inspection.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/baseline/catalog.json",
+      "size": 549447,
+      "sha256": "234b672b54f1d22d7a1115595a43a5615b45b531092eb5e23bed371899eeb0a6",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/baseline/encrypted.json",
+      "size": 8317736,
+      "sha256": "1082f4a2288db2a5378684ddb72310ce4b624025355b2d1140d4d03037d5f9a8",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/baseline/ledger.json",
+      "size": 7643768,
+      "sha256": "4d4585d9bc69445105b8d228d570f4ab3a86cb8e67e8a9fadc421fc2e7d1d584",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/baseline.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publish.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/baseline/public.json",
+      "size": 1243049,
+      "sha256": "56305d6ae13d3bd4278e43c58cd1105c81c66769c079870dd5df1f378138e51f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/guarded-import.sql",
+      "size": 352230,
+      "sha256": "1ab7e3f3192b75b9c009edc22f1159434d7b8c961856da2de1ecb7a8b33c387f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-publication-v1/apply-started.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/probe.sql",
+      "size": 346698,
+      "sha256": "248282beb6e7606e8fc34666123846490746ffea7721993eec7a6440afa15fc9",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/replace-pack.json",
+      "size": 399865,
+      "sha256": "d6d1df2c396fcc6eeb0cc6ce1e616cff8cc3e3e25a31693baef5869f0ea7a559",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/evidence-bank.json",
+      "size": 6240191,
+      "sha256": "3a53e9e7e2d6cf293713b119a0944cf864b2190a7519e4991c2519ae29695895",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/changes.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/classification-review.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/evidence-catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/canonical-catalog.json",
+      "size": 549447,
+      "sha256": "e527ef0b2ac3771fc99320af66b669742655ccb35864accad86990ce227485ed",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage/authoring.json",
+      "size": 6241297,
+      "sha256": "e325ff1e5258e9aaae323f48c5ffb69d5234937194ae2a532f253237f08b2ee7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage/db-readiness.json",
+      "size": 677,
+      "sha256": "60b799fbcc50899057c6287c16e974d56e10e8d4d009e006a810c38a9ceb719a",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/05-db-readiness.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage/encrypted.json",
+      "size": 8321884,
+      "sha256": "36dc93568f5b2ecda4bf7967a7519080050a092a01a5f33241445dfd89b618c3",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage/learning-catalog.json",
+      "size": 549508,
+      "sha256": "d9c76e6ab016cd7a38fc88cfd77a3266d3fcf638861b52298cea4a33908e43b2",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage/learning-classification-review.json",
+      "size": 336650,
+      "sha256": "d303ed328ddbdbf8f3bd6cf8c8a202c8904eb86e983b34267bb57daf53d2d508",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage/learning-catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage/promotions.json",
+      "size": 7664897,
+      "sha256": "534ea5010fcc900468087af3108499093ca009bfa9c8bc6eef86a7b5e16e308b",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/01-reverify.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage/public.json",
+      "size": 1243064,
+      "sha256": "c40415e008dd122148e4470cde71a549fd8ea2875af757dd5f8af468a818f804",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-incremental-v1/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-publication-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v2/evidence-bank.json",
+      "size": 6240204,
+      "sha256": "a659e3e9b4f96fa538438df72c784b3c0e104c0aabf3741d5ec5481931b44960",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v2/changes.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v2/classification-review.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v2/evidence-catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-2026-09-14/bank.snapshot.json",
+      "size": 4607400,
+      "sha256": "c2767649d51a95b6016710a33f9796bbfdf34f1394a73589dd9a65d2c286602e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-2026-09-14/README.md",
+        "cpa_uploader/analysis/reviews/standard-points-2026-09-14/check-scope.mjs",
+        "cpa_uploader/analysis/reviews/standard-points-2026-09-14/prepare.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-2026-09-14/classifications.snapshot.json",
+      "size": 464981,
+      "sha256": "61e5255343fd98bd41af253be15f454eae060b67d98d62b5bf70a8d0c95f44d7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-2026-09-14/README.md",
+        "cpa_uploader/analysis/reviews/standard-points-2026-09-14/compile-report.mjs",
+        "cpa_uploader/analysis/reviews/standard-points-2026-09-14/prepare.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v1/public.json",
+      "size": 1103449,
+      "sha256": "f3bef520571edca6487abfc076d3447b30f1afc4be69ac25d74a4f7052b241da",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v2/bank.json",
+      "size": 5672265,
+      "sha256": "c636044c0bd5c10a42a69ffc7022cb35b39a96fe6cdfd306de7b695d7f10b87c",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v2/catalog.json",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v2/checks.json",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v2/classification-review.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v2/catalog.json",
+      "size": 502175,
+      "sha256": "94ba5abb179c6f54fb00c97aab600e39f61d1f8a81a344fc585353cd39b8fe88",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v2/public.json",
+      "size": 1103473,
+      "sha256": "b40588fe9c7434b577ad034a0546bb311bded335fe66778175e20e3d29461c1c",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/public.json",
+      "size": 1154234,
+      "sha256": "a8f576d06cc9bd886cc94a14fa3bb1a79f840eb95779f8871b2e3493ad6c9fcb",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/bank.snapshot.json",
+      "size": 4976942,
+      "sha256": "0626b0396ae96d1fd0d05cd95afe7335b6a0b7ba28007923504a6c796a206624",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/build-final-report.mjs",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/catalog.snapshot.json",
+      "size": 495875,
+      "sha256": "47b0b95c3dd5f01be06b65e7ee65d3301b554754ed23e1fd1a9717c7ec0453df",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/db-before/authoring.json",
+      "size": 4976942,
+      "sha256": "0626b0396ae96d1fd0d05cd95afe7335b6a0b7ba28007923504a6c796a206624",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/db-before/classifications.json",
+      "size": 468201,
+      "sha256": "0e058e9cf5ef5075862c6001bba89999e46b0d3d589a13818a59cfd59eb5e832",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/db-before/public-bank.json",
+      "size": 1115351,
+      "sha256": "90e1c6ceea32e5794fc57d450d9f2c907d944f0dca829bd023a0dde7c1e238bf",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/db-before/summary.json",
+      "size": 522,
+      "sha256": "70e3ed2138279602ed676c7d5d2b24553f9a40d10ea3e0707f0fcd950c7f7d40",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/deploy.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/encrypted.snapshot.json",
+      "size": 6636076,
+      "sha256": "368472d81688e830f708596aeb727a3184f1a5a8f535d76579f1ae14dc087794",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/promotions.snapshot.json",
+      "size": 6925326,
+      "sha256": "3febbc83520ba5f000b82fb280e5647dd70227ffe0aafd7041c03f188866a910",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/public.snapshot.json",
+      "size": 985231,
+      "sha256": "d07b62f27c84d1f074faea04036b4c497fd3f674f898cbaf2bcce3a0a39ab575",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/concurrent-additions-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/coverage-concurrent-links.snapshot.json",
+      "size": 1820392,
+      "sha256": "7b0d91c6f6f7191a68bc918c6154908ba091181d35b3906dfaf78ff3d1c8cf32",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/coverage-reconciliation.json",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/coverage-update-application.json",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/coverage-update-checks.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/coverage-concurrent-sets.snapshot.json",
+      "size": 193632,
+      "sha256": "ac7fd2a876028c739fad9eb0afa5d9aa6759ab27220ea961413d5f59ed232232",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/coverage-reconciliation.json",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/finalize-coverage-candidate.mjs",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/reconcile-coverage-additions.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/coverage-elements.snapshot.json",
+      "size": 17201451,
+      "sha256": "1f05ad6ee27e403e34e0026f04c5a9ac7b645b3d60e98d7a79d1a128e60da7c0",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/prepare-coverage-review.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/coverage-source-units.snapshot.json",
+      "size": 1086713,
+      "sha256": "3d8adeb50fd7c3f1f6b4b05bbb4edc13f2f569aea79577d9cd27f29b39895661",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/build-coverage-plan.mjs",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/prepare-coverage-review.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-before/authoring.json",
+      "size": 4783313,
+      "sha256": "8bba1a2860f05c10b116c44b64ce922a39cb80ee51a39d2d8f515ff965818df9",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-before/classifications.json",
+      "size": 454485,
+      "sha256": "a9cfc0e9fd5141786cc6c86e61a172648bf8250eb1b1a56fba735dff99717d8a",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-before/public-bank.json",
+      "size": 1060392,
+      "sha256": "a2540635a87f9896df57a44947d053f46dbc84a4bfdfeb6e31521efa62264f6a",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-before/summary.json",
+      "size": 522,
+      "sha256": "ff1fbfe68cc2bf77949b900468d9ca44a83ddfb90c72105372e53fb978f22b65",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v2/guarded-import.sql",
+      "size": 11178204,
+      "sha256": "f466c3e6c3280bbc0fb36216908c2755e71593fdf556b6ba8011ab71d15fd437",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v2/apply-started.json",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v5/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v2/payload.json",
+      "size": 11175827,
+      "sha256": "50e28a2459363d5d391d7b64702610b3c6eb334ff3dafff1168d273f86ef827a",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/sources/peer-v5-transport-probe.json.txt",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-import-pgp-transport.json",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v2/apply-started.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v5/guarded-import.sql",
+      "size": 1820384,
+      "sha256": "0cddb8c1aeb39202361426bedac7d7fa67d4953fdea0f15ef6c6eb4bfd2c1892",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v5/apply-started.json",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v5/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v5/payload.json",
+      "size": 11175827,
+      "sha256": "50e28a2459363d5d391d7b64702610b3c6eb334ff3dafff1168d273f86ef827a",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v5/apply-started.json",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-publication-v5/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/public.snapshot.json",
+      "size": 934470,
+      "sha256": "28cd1034426a203d1a1f7213e96a326943c06dcd9a2fe374a13486f72cc612c6",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/backup/authoring.json",
+      "size": 4976942,
+      "sha256": "0626b0396ae96d1fd0d05cd95afe7335b6a0b7ba28007923504a6c796a206624",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/backup/catalog.json",
+      "size": 495875,
+      "sha256": "47b0b95c3dd5f01be06b65e7ee65d3301b554754ed23e1fd1a9717c7ec0453df",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/backup/encrypted.json",
+      "size": 6636076,
+      "sha256": "368472d81688e830f708596aeb727a3184f1a5a8f535d76579f1ae14dc087794",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/backup/ledger.json",
+      "size": 6925326,
+      "sha256": "3febbc83520ba5f000b82fb280e5647dd70227ffe0aafd7041c03f188866a910",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/backup/public.json",
+      "size": 985231,
+      "sha256": "d07b62f27c84d1f074faea04036b4c497fd3f674f898cbaf2bcce3a0a39ab575",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/stage/authoring.json",
+      "size": 5865894,
+      "sha256": "8880a6b26fee65a4bf4eea7763a4c37e9d8639ab714666e7a9a21ce1c79c523e",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/stage/promotions.json",
+      "size": 6925326,
+      "sha256": "3febbc83520ba5f000b82fb280e5647dd70227ffe0aafd7041c03f188866a910",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/backup/authoring.json",
+      "size": 4976942,
+      "sha256": "0626b0396ae96d1fd0d05cd95afe7335b6a0b7ba28007923504a6c796a206624",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/backup/catalog.json",
+      "size": 495875,
+      "sha256": "47b0b95c3dd5f01be06b65e7ee65d3301b554754ed23e1fd1a9717c7ec0453df",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/backup/encrypted.json",
+      "size": 6636076,
+      "sha256": "368472d81688e830f708596aeb727a3184f1a5a8f535d76579f1ae14dc087794",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/backup/ledger.json",
+      "size": 6925326,
+      "sha256": "3febbc83520ba5f000b82fb280e5647dd70227ffe0aafd7041c03f188866a910",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/backup/public.json",
+      "size": 985231,
+      "sha256": "d07b62f27c84d1f074faea04036b4c497fd3f674f898cbaf2bcce3a0a39ab575",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/stage/authoring.json",
+      "size": 5865894,
+      "sha256": "8880a6b26fee65a4bf4eea7763a4c37e9d8639ab714666e7a9a21ce1c79c523e",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/stage/promotions.json",
+      "size": 6925326,
+      "sha256": "3febbc83520ba5f000b82fb280e5647dd70227ffe0aafd7041c03f188866a910",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/backup/authoring.json",
+      "size": 4976942,
+      "sha256": "0626b0396ae96d1fd0d05cd95afe7335b6a0b7ba28007923504a6c796a206624",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/backup/catalog.json",
+      "size": 495875,
+      "sha256": "47b0b95c3dd5f01be06b65e7ee65d3301b554754ed23e1fd1a9717c7ec0453df",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/backup/encrypted.json",
+      "size": 6636076,
+      "sha256": "368472d81688e830f708596aeb727a3184f1a5a8f535d76579f1ae14dc087794",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/backup/ledger.json",
+      "size": 6925326,
+      "sha256": "3febbc83520ba5f000b82fb280e5647dd70227ffe0aafd7041c03f188866a910",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/backup/public.json",
+      "size": 985231,
+      "sha256": "d07b62f27c84d1f074faea04036b4c497fd3f674f898cbaf2bcce3a0a39ab575",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/canonical-catalog.json",
+      "size": 517805,
+      "sha256": "ebbb59bde41426e34da5abee68138a6266bb313c2a0ba1c09d617792a1534250",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/08-canonical-catalog.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage/authoring.json",
+      "size": 5863528,
+      "sha256": "895d44668c6bd86f89793c3355545bd7745398489845e8e26fe71609ad972104",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/build-retirement-manifest.mjs",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage-completion.json",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage/catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage/catalog.json",
+      "size": 517814,
+      "sha256": "33bbdfe7d3ba8eada91f92060a383dc1b9cee9f3fbbd9f6fb6d1739b400b904e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/05-catalog.log",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage/classification-review.json",
+      "size": 429742,
+      "sha256": "960228273465185449986ff1d368fe2460c7790f9c27cb912343f531999481bc",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/05-catalog.log",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage-completion.json",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage/catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage/encrypted.json",
+      "size": 7818192,
+      "sha256": "77b50292d6a9a58bf8cf6d0aa59dd30bded197ff576b218d6a49095876a0d653",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage/promotions.json",
+      "size": 7559962,
+      "sha256": "5f0d4e772a6eead2fb0fd0a15499a86f1d61e23a416a72c953cfffe106e101ae",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage/public.json",
+      "size": 1154234,
+      "sha256": "a8f576d06cc9bd886cc94a14fa3bb1a79f840eb95779f8871b2e3493ad6c9fcb",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage/readiness.json",
+      "size": 676,
+      "sha256": "6839a72c66ccc810e2124c9df8ca69ee881d95716728e01d8b4814361aa53e85",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/07-db-readiness.log",
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v3/stage/receipt-transaction.json",
+      "size": 383390,
+      "sha256": "385e7f65e33aca481ce7d7b60b5e2d87b97b890f816627b0d0b8181807b22dca",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/prepare-published-stage.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/case-deepening-2026-09-14/source-catalog-before.json",
+      "size": 24011061,
+      "sha256": "e263cf07bc5ed5f3795ce1cc482dae2f2a7a8558565d21691cdfae766faaddd7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/case-deepening-2026-09-14/candidates-a.md"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/case-deepening-2026-09-14/source-catalog-with-501.json",
+      "size": 24017248,
+      "sha256": "c407bcbeb4286462c3ac790c19c4c365da5b783fa1d97e9706ac258d5d097fd3",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/baseline/authoring.json",
+      "size": 3709582,
+      "sha256": "8c8b2e5ab1de4222a6be4be69958b3a52650ce90054dd2bdf78b1c69a36ea668",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-2026-09-14/source-and-scope-checks.json",
+        "cpa_uploader/drafts/case-followup-2026-09-14/b/comparison-inventory.json",
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/baseline/catalog.json",
+      "size": 350357,
+      "sha256": "14cedd646454e8f8e8a2f544f3e88f3c9b694e2784f8f6082bf3e039e1b31145",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/baseline/encrypted.json",
+      "size": 4946264,
+      "sha256": "d5f97e7cdd2145b6cf811488baff45c840496d64d63b7ca584b82cb1d4f90295",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/baseline/ledger.json",
+      "size": 6741651,
+      "sha256": "cf3e57a1751565ca463e7099d7351bc6bc394215f52b82778a0694da1be409d7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/baseline/public.json",
+      "size": 653897,
+      "sha256": "932755f798acbfe238d66ae76a73625d032cad28f6b95b80ecb3ef6036673712",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/case-followup-2026-09-14/b/comparison-inventory.json",
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/evidence-bank.json",
+      "size": 3836175,
+      "sha256": "a0cfbd0498e7220bfa55136d05b2cf71ed73b236d4e268c809cc7c49e50fb5c1",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-2026-09-14/source-and-scope-checks.json",
+        "cpa_uploader/drafts/case-followup-2026-09-14/b/comparison-inventory.json",
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/classification-review.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/baseline/authoring.json",
+      "size": 3709582,
+      "sha256": "8c8b2e5ab1de4222a6be4be69958b3a52650ce90054dd2bdf78b1c69a36ea668",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/current-review.json",
+        "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/current-review.mjs",
+        "cpa_uploader/analysis/reviews/standard-points-2026-09-14/source-and-scope-checks.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/baseline/catalog.json",
+      "size": 350357,
+      "sha256": "14cedd646454e8f8e8a2f544f3e88f3c9b694e2784f8f6082bf3e039e1b31145",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/baseline/encrypted.json",
+      "size": 4946264,
+      "sha256": "d5f97e7cdd2145b6cf811488baff45c840496d64d63b7ca584b82cb1d4f90295",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/baseline/ledger.json",
+      "size": 6741651,
+      "sha256": "cf3e57a1751565ca463e7099d7351bc6bc394215f52b82778a0694da1be409d7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/baseline.json",
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/finish-stage.mjs",
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/publish.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/baseline/public.json",
+      "size": 653897,
+      "sha256": "932755f798acbfe238d66ae76a73625d032cad28f6b95b80ecb3ef6036673712",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/case-followup-2026-09-14/b/comparison-inventory.json",
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/canonical-catalog.json",
+      "size": 365288,
+      "sha256": "c6ff572a65ca4b8a6ae955f270ecfc96c0e19b9a6f65266693b07e8a47936a54",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/finish-stage.mjs",
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage/authoring.json",
+      "size": 3836097,
+      "sha256": "c429b6fead174a647cd6575f40dcb87a56fd4fb78bc098aaa2c229cab9660b38",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-2026-09-14/source-and-scope-checks.json",
+        "cpa_uploader/drafts/case-followup-2026-09-14/b/comparison-inventory.json",
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage/db-readiness-v2.json",
+      "size": 676,
+      "sha256": "77212441d8883a808e0c057a23243c6ebe2c5b52b5b57f3b285075c910bee43c",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/05b-db-readiness.log",
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/README.md"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage/db-readiness.json",
+      "size": 726,
+      "sha256": "d20d7a386e997293a50f91309c1f1b9738c98fcf28042dd56ad58e2bce7b00d4",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/05-db-readiness.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage/encrypted.json",
+      "size": 5114948,
+      "sha256": "237d96a5b71fb405a100ed90557a1674702120c97aca311868b342a849ff4c05",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage/learning-catalog.json",
+      "size": 365326,
+      "sha256": "00d84d90f1242c0a122de9ae10c0f2ab31d152e82823747856b4f5cfae2bb8e7",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage/learning-classification-review.json",
+      "size": 202462,
+      "sha256": "deeb29574b3d3e46ae75088a298cb87ddb81c74278c4b7f494f974ade89f9d73",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage/learning-catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage/promotions.json",
+      "size": 6753019,
+      "sha256": "4f4c9ac5c9917f12175c07f51b4d04f882a62df1890235d9a949ed3105b5582d",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/01-verify.log",
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/02-publish.log",
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage/public.json",
+      "size": 683538,
+      "sha256": "6d8c7ff0eacd80760c2365cf7b2cb9ff65f40186eaea26a3e4aaa63c7b3544b1",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/case-followup-2026-09-14/b/comparison-inventory.json",
+        "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/baseline/authoring.json",
+      "size": 4451850,
+      "sha256": "7dbf962d6a86c8659d120c643e70b407ce4da7e95bcffe366f18e6b8d4d5ca7e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-points-2026-09-14/source-and-scope-checks.json",
+        "cpa_uploader/drafts/case-followup-2026-09-14/b/comparison-inventory.json",
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/baseline/catalog.json",
+      "size": 451621,
+      "sha256": "43c0e0040c696f1d3eb8d19baa28d254760b5f5fa153967dda59e9b6efee0a13",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/baseline/encrypted.json",
+      "size": 5935952,
+      "sha256": "42b04cfc72f62a8f0c28b085fba455a80c69dd6b3aede247695e9d111f0d0dcc",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/baseline/ledger.json",
+      "size": 6895294,
+      "sha256": "08e19341e9445fc36c9562cc7d2ea6d438ed8073bc580bc7dcc9e4e3f6e2e57c",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/baseline.json",
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/publish.mjs"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/baseline/public.json",
+      "size": 853884,
+      "sha256": "fe95f86e6ef0b3e65651f54fd618e5683193da5f4d6336e6be177d85a056a3f6",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/case-followup-2026-09-14/b/comparison-inventory.json",
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/canonical-catalog.json",
+      "size": 464981,
+      "sha256": "61e5255343fd98bd41af253be15f454eae060b67d98d62b5bf70a8d0c95f44d7",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/stage/authoring.json",
+      "size": 4607400,
+      "sha256": "c2767649d51a95b6016710a33f9796bbfdf34f1394a73589dd9a65d2c286602e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/scope.json",
+        "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/scope.mjs",
+        "cpa_uploader/analysis/reviews/standard-points-2026-09-14/source-and-scope-checks.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/stage/db-readiness.json",
+      "size": 676,
+      "sha256": "fcc0d9abe4baacb374f39034325eacced994f949f6f6a307f14660b6d939a07f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/05-db-readiness.log"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/stage/encrypted.json",
+      "size": 6143352,
+      "sha256": "a497e0080d42f2081abb86f07c661bba6a1fbc173cee1fe983bbcdbff0490b74",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/stage/learning-catalog.json",
+      "size": 465017,
+      "sha256": "f41cdc253789a56d6fde5db62cfb88c42035d8ff4c7ebae5a5d9e9350845e7a4",
+      "category": "C_unreferenced",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/stage/learning-classification-review.json",
+      "size": 259533,
+      "sha256": "7d26c7df83dfef967a8d9aba401c2a58286a6aa585b72c76f74cdb33ebbfe02f",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/stage/learning-catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/stage/promotions.json",
+      "size": 6904689,
+      "sha256": "9ce1fefb2bc9d4639b751de8cf512d3bfcd72e93099914e7444dcf74a438ff1e",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/01-verify.log",
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/02-publish.log",
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/stage/public.json",
+      "size": 887637,
+      "sha256": "0c9848ee77e139dd8c3076d01ca22e65f012dd5951c00372e56be2b6426a8706",
+      "category": "B_referenced_by_record",
+      "referenced_by": [
+        "cpa_uploader/drafts/case-followup-2026-09-14/b/comparison-inventory.json",
+        "cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/stage-completion.json"
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 ---
 title: "07. 평가위험 대응·통제테스트·실증절차 원자료 단위 7/12"
 created: 2026-08-08
-updated: 2026-09-12
+updated: 2026-09-14
 type: source-map
 status: generated
 review_required: true
@@ -12,7 +12,7 @@ confidence: medium
 
 # 07. 평가위험 대응·통제테스트·실증절차 원자료 단위 7/12
 
-주제 전체 1763개: 기준서 376, 이론 448, 연습 440, 기출 499. 이 페이지는 150개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
+주제 전체 1764개: 기준서 377, 이론 448, 연습 440, 기출 499. 이 페이지는 150개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
 
 [[source-catalog-topic-07]] (1/12) · [[source-catalog-topic-07-part-02]] (2/12) · [[source-catalog-topic-07-part-03]] (3/12) · [[source-catalog-topic-07-part-04]] (4/12) · [[source-catalog-topic-07-part-05]] (5/12) · [[source-catalog-topic-07-part-06]] (6/12) · [[source-catalog-topic-07-part-07]] (7/12) · [[source-catalog-topic-07-part-08]] (8/12) · [[source-catalog-topic-07-part-09]] (9/12) · [[source-catalog-topic-07-part-10]] (10/12) · [[source-catalog-topic-07-part-11]] (11/12) · [[source-catalog-topic-07-part-12]] (12/12)
 
@@ -22,6 +22,7 @@ confidence: medium
 
 | 원자료 ID | 종류·근거 계층 | 실제 파일·위치 | 절·판본·원문 한계 | 참조 의존 | 은행 인용 연결 | 원문 인용 SHA-256 |
 |---|---|---|---|---|---|---|
+| <a id="src-8efd1d06a1db20672f"></a>`src-8efd1d06a1db20672f` | practice / learning_material | [고급_회계감사_연습.md · 고급_회계감사_연습 원문 페이지 175; L5751-L5788](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EA%B3%A0%EA%B8%89_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 고급_회계감사_연습 | 원문 페이지 175; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | cdc75aa82f6c3f55ec5187662b8b07df349234e007df2c3d2adae88fed8e9516 |
 | <a id="src-565b9ff6d921ef08d4"></a>`src-565b9ff6d921ef08d4` | practice / learning_material | [고급_회계감사_연습.md · 고급_회계감사_연습 원문 페이지 179; L5832-L5845](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EA%B3%A0%EA%B8%89_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 고급_회계감사_연습 | 원문 페이지 179; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | ec4848c115e3d869f480c60a1d2f7c371b3a1b83abf4b6e2593a08d195c0699c |
 | <a id="src-754d54ccee32a15e40"></a>`src-754d54ccee32a15e40` | practice / learning_material | [고급_회계감사_연습.md · 고급_회계감사_연습 원문 페이지 181; L5885-L5910](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EA%B3%A0%EA%B8%89_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 고급_회계감사_연습 | 원문 페이지 181; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | a98a3ad03cc3bf3982d9b38e94bd27af0c6046d804c5ae66af1eba0fefb04f20 |
 | <a id="src-d1098fb72ee8a6f192"></a>`src-d1098fb72ee8a6f192` | practice / learning_material | [고급_회계감사_연습.md · 고급_회계감사_연습 원문 페이지 183; L5950-L5966](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EA%B3%A0%EA%B8%89_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 고급_회계감사_연습 | 원문 페이지 183; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | b87e3429249b174b092e1b73f52ccb07a6208cea6a1a4a0978d0c45d6162e65e |
@@ -171,7 +172,6 @@ confidence: medium
 | <a id="src-a1b5cc0667b252c346"></a>`src-a1b5cc0667b252c346` | practice / learning_material | [주제별_회계감사_연습.md · 주제별_회계감사_연습 원문 페이지 259; L7594-L7624](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 주제별_회계감사_연습 | 원문 페이지 259; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | d07b8d48ed6233b299c0a54d91cc801c6d5aa4e027140fa0fa6294d1df4c7e1c |
 | <a id="src-f87c0f16bbd62c97be"></a>`src-f87c0f16bbd62c97be` | practice / learning_material | [주제별_회계감사_연습.md · 주제별_회계감사_연습 원문 페이지 265; L7763-L7780](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 주제별_회계감사_연습 | 원문 페이지 265; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | e31621e37c54f0c33d5631e62cb3c6abf4b8001b1f843d0c568a0f3d65019869 |
 | <a id="src-26dfcbfb91fad0dd77"></a>`src-26dfcbfb91fad0dd77` | practice / learning_material | [주제별_회계감사_연습.md · 주제별_회계감사_연습 원문 페이지 270; L7864-L7871](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 주제별_회계감사_연습 | 원문 페이지 270; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 8489443ed433204ba569aecd2664725d8b7987b61af1ba9fa974d94c8950bae4 |
-| <a id="src-338e8073db461b8816"></a>`src-338e8073db461b8816` | practice / learning_material | [주제별_회계감사_연습.md · 주제별_회계감사_연습 원문 페이지 271; L7873-L7983](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/03_%EB%AC%B8%EC%A0%9C%EC%97%B0%EC%8A%B5/%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%EC%97%B0%EC%8A%B5.md); 주제별_회계감사_연습 | 원문 페이지 271; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | bec87d3d8e5ba4dda9c1730ed70fd4407f1302d09ac999225a223c88b038423d |
 
 ## Related
 

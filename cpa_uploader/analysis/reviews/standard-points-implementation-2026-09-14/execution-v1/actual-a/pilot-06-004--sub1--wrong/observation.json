@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "pilot-06-004--sub1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-06-004--sub1--standard",
+  "source_set_id": "pilot-06-004",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "b949e559540742284a62ce090d24801a5215b116a47bd1a36fdada1c9364f3f9",
+  "answers": {
+    "sub1": "위험을 영업위험과 감사보수 회수위험으로만 나누며 유의적 위험 여부와 실증절차만으로 증거를 얻을 수 없는 위험은 판단하지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 wrong 답안. 대상 명제: 평가된 위험 중 유의적 위험이 있는지 결정함"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 wrong 답안. 대상 명제: 실증절차만으로 충분하고 적합한 감사증거를 제공할 수 없는 위험이 있는지 결정함"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ae682faee5906b8587db669eca72eb67b68685eb3c9f5e7467febe888a6b7dc3",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "위험을 영업위험과 감사보수 회수위험으로만 나누며 유의적 위험 여부와 실증절차만으로 증거를 얻을 수 없는 위험은 판단하지 않는다.",
+            "reason": "유의적 위험 여부를 판단하지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "위험을 영업위험과 감사보수 회수위험으로만 나누며 유의적 위험 여부와 실증절차만으로 증거를 얻을 수 없는 위험은 판단하지 않는다.",
+            "reason": "실증절차만으로 충분한 증거를 얻을 수 없는 위험을 판단하지 않는다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "유의적 위험 여부를 판단하지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "실증절차만으로 충분한 증거를 얻을 수 없는 위험을 판단하지 않는다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-06-004",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 315 문단 32~33에 따라 중요왜곡표시위험 중 해당 여부를 결정해야 하는 두 가지 위험 범주를 모두 제시하시오.",
+        "user_answer": "위험을 영업위험과 감사보수 회수위험으로만 나누며 유의적 위험 여부와 실증절차만으로 증거를 얻을 수 없는 위험은 판단하지 않는다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "위험을 영업위험과 감사보수 회수위험으로만 나누며 유의적 위험 여부와 실증절차만으로 증거를 얻을 수 없는 위험은 판단하지 않는다.",
+            "reason": "유의적 위험 여부를 판단하지 않는다고 명시했다.",
+            "claim": "평가된 위험 중 유의적 위험이 있는지 결정함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "위험을 영업위험과 감사보수 회수위험으로만 나누며 유의적 위험 여부와 실증절차만으로 증거를 얻을 수 없는 위험은 판단하지 않는다.",
+            "reason": "실증절차만으로 충분한 증거를 얻을 수 없는 위험을 판단하지 않는다고 명시했다.",
+            "claim": "실증절차만으로 충분하고 적합한 감사증거를 제공할 수 없는 위험이 있는지 결정함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "평가된 위험 중 유의적 위험이 있는지 결정한다.",
+          "경영진주장 수준의 중요왜곡표시위험 중 실증절차만으로 충분하고 적합한 감사증거를 제공할 수 없는 위험이 있는지 결정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_090aca89ef7280d4016aa787f536fc87d0a5e67a0ec0eb5849",
+        "request_id": "req_8de6b24664724aca838f38a8777f53bc",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2357,
+          "input_tokens_details": {
+            "cache_write_tokens": 2354,
+            "cached_tokens": 0
+          },
+          "output_tokens": 182,
+          "output_tokens_details": {
+            "reasoning_tokens": 37
+          },
+          "total_tokens": 2539
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008075,
+        "min_usd": 0.0008075,
+        "max_usd": 0.0008075,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/pilot-06-004--sub1--wrong/input.json",
+      "sha256": "6cea8b4c0a8e3996314421a77cb865a436e5b652429f3e9e1b6c9c6e80771006"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/pilot-06-004--sub1--wrong/transport.jsonl",
+      "sha256": "e62dd217e82128470fc74073378d23f80aff8a50768f3e03ee5c210dda128ab9"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-a/pilot-06-004--sub1--wrong/traces.jsonl",
+      "sha256": "c7aa3a0e128f656b8c3a389ea1b9e8c424a87680eca55d35671675a9ec3b96f8"
+    }
+  }
+}

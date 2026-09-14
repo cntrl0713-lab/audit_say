@@ -1,0 +1,283 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "s03-sub2-partial",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-additional-20260913-s03",
+  "learning_unit_id": "draft-standard-additional-20260913-s03--sub2--standard",
+  "kind": "partial",
+  "projected_body_hash": "e73a9253d0f46312bee759fb53406b2b2d4ef5b148566b1edf909b8e28500ed3",
+  "answers": {
+    "sub2": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 토의한 유의적 사항의 성격을 문서화한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 토의 시기를 문서화한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 토의 상대자를 문서화한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 최종 결론과 일관성이 없는 정보를 어떻게 처리하였는지 문서화한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "cfed24e353ab8e7594ccddb31ddd5a208b9eb5750d63aa611be9993bac2dfc4a",
+  "schema_hash": "7337b4420533bce90f31c125a1b093a5c08c040c259cc890a1818d5ae4785eff",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+            "reason": "토의한 사항의 성격을 기록한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+            "reason": "토의 시기를 기록한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "토의 상대자를 기록한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+            "reason": "최종 결론과 맞지 않는 정보의 처리 방법을 기록한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e1"
+                ],
+                "reason": "토의한 사항의 성격을 기록한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e1"
+                ],
+                "reason": "토의 시기를 기록한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "토의 상대자를 기록한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e2"
+                ],
+                "reason": "최종 결론과 맞지 않는 정보의 처리 방법을 기록한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-additional-20260913-s03",
+    "score": 3,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 230 문단 10에 따라 경영진·지배기구·기타 관련자와 유의적 사항을 토의한 내용을 문서화할 때 포함할 세 가지 정보를 제시하시오. 이어 문단 11에 따라 유의적 사항의 최종 결론과 일관성이 없는 정보를 식별한 경우 무엇을 문서화해야 하는지 설명하시오.",
+        "user_answer": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+        "score": 3,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+            "reason": "토의한 사항의 성격을 기록한다고 명시했다.",
+            "claim": "토의한 유의적 사항의 성격을 문서화한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+            "reason": "토의 시기를 기록한다고 명시했다.",
+            "claim": "토의 시기를 문서화한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "토의 상대자를 기록한다는 내용이 없다.",
+            "claim": "토의 상대자를 문서화한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+            "reason": "최종 결론과 맞지 않는 정보의 처리 방법을 기록한다고 명시했다.",
+            "claim": "최종 결론과 일관성이 없는 정보를 어떻게 처리하였는지 문서화한다. 불일치 정보의 존재만 적거나 최종 결론만 적는 답은 처리방식의 기록을 대신하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "토의한 유의적 사항의 성격을 문서화한다.",
+          "토의 시기를 문서화한다.",
+          "토의 상대자를 문서화한다.",
+          "최종 결론과 일관성이 없는 정보를 어떻게 처리하였는지 문서화한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/s03-sub2-partial.input.json",
+      "sha256": "cd8683b79a1e69e9228389465a899d5ce8ed2b4931f1057d610db912c1dcfba3"
+    },
+    "transport": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/s03-sub2-partial.transport.jsonl",
+      "sha256": "1750f9f711f1a8c4997f0e8bacbed75bc69908d5a30488934c276e0d2636923c"
+    },
+    "traces": {
+      "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/replayed/s03-sub2-partial.traces.jsonl",
+      "sha256": "5b957fa019e097b1ffc15c91093b250371461b9f0fdd9afb947c3b77dd94213f"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_01f4b01646b02e34016aa602b5012887d09438f9f80df59503",
+        "request_id": "req_94fbe637dcee4c509044946859891342",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2697,
+          "input_tokens_details": {
+            "cache_write_tokens": 2694,
+            "cached_tokens": 0
+          },
+          "output_tokens": 276,
+          "output_tokens_details": {
+            "reasoning_tokens": 61
+          },
+          "total_tokens": 2973
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s03-sub2-partial.input.json",
+        "sha256": "dbe7656a9b57ff5000c7b69055eee5373b2847713e01682b82ac04dfb977baf3"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s03-sub2-partial.request-1.json",
+        "sha256": "eafc9ff17624c9f0617e98e5fcb1241874524e46309487aaab77731a9c4a7b9d"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s03-sub2-partial.response-1.json",
+        "sha256": "7062dce0ea7deb447534e7a2c7a7c4dc54d0d51ea7cedabdf11de70f343da5f3"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s03-sub2-partial.trace.json",
+        "sha256": "66d91c3fbf5023e262eb325f4655aeee4bd01eae80266ddb4fc0309cd5d111e3"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s03-sub2-partial.usage.json",
+        "sha256": "5ae8950072ed215b99035afa7acf7deca55425de70eaa0444bdc6019dd3200fd"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-additional-2026-09-13/grading/run-v1/s03-sub2-partial.result.json",
+        "sha256": "4b64d133cd29fe9d220bf40d9961fc9c54413da576e3a9e2edfa8172082c240f"
+      }
+    ],
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/grading-manifest.json",
+    "sha256": "cf8db16647798968c6c09a1b9055098afac98db30850d7e90825526af41579b4"
+  }
+}

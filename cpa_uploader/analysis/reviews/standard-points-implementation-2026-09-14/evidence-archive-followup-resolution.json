@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-09-14",
+  "status": "pass",
+  "code": {
+    "file": "cpa_uploader/questionEfficientReview.ts",
+    "sha256": "1f4893633012b5acb72235ece2dbceff9ada0b6410dc14eb8a31661c152cb770"
+  },
+  "prior_evidence": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/evidence-archive-followup.json",
+    "sha256": "85dbc6889d498c924d2736adb04295fd38d9d13994c4f2cc32c518c7a4fd8227"
+  },
+  "tests": [
+    {
+      "log": {
+        "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/code-checks/auxiliary-regression.log",
+        "sha256": "ad60edcd946c6fc7acefecf86504547b698690f5c67a3d3df7bf2375d1feb320"
+      },
+      "pass": 2,
+      "fail": 0
+    },
+    {
+      "log": {
+        "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/code-checks/source-reuse-followup.log",
+        "sha256": "9e97c5c46fe287fb2455d1052e52104c71a0f0ddac11d35b6a0f82b059ea49b8"
+      },
+      "pass": 1,
+      "fail": 0
+    },
+    {
+      "log": {
+        "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/code-checks/efficient-review-followup.log",
+        "sha256": "b56be791e7f5d837906bd232cb410ea9fa4d5d05e24c7d9a51023d4137d60923"
+      },
+      "pass": 59,
+      "fail": 0
+    }
+  ],
+  "typecheck": {
+    "status": "pass",
+    "exit_code": 0,
+    "log": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/code-checks/auxiliary-typecheck-followup.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "prior_failure": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/code-checks/auxiliary-typecheck.log",
+      "sha256": "e8d572db0306c03d17fc4c2db93d728cfd06baa750f700b672e5661a95e94a0c"
+    },
+    "resolution": "root가 tsconfig에서 기존 execution runtime 제외와 같은 방식으로 publication-*/runtime/** 보존코드를 제외했다. 평면보존 코드의바이트·경로를 바꾸지 않았다."
+  },
+  "preserved": {
+    "original_tests": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/code-checks/tests.log",
+      "sha256": "4a7ad3bb9d79deeaecc8090cc32b0ea9d4ecc0a3c7f04d8658bfd46ecb22f6c0"
+    },
+    "original_full_result": {
+      "pass": 591,
+      "fail": 1
+    },
+    "receipts_unchanged": 6,
+    "reprocessed_answers": 54,
+    "original_provider_observations": 18,
+    "actual_new_model_calls": 0,
+    "all_evidence_final_guard_files": 211
+  },
+  "procedure": {
+    "file": ".agents/skills/audit-question-review/references/cost-controlled-verification.md",
+    "sha256": "9e73a9ef3eb9604945500a922c96d85d825085898974f2aed49043f3be3264bc"
+  },
+  "limitations": "전체suite를재반복한결과가아니다. 원591통과/1실패를보존하고변경한수락경로의62개표적회귀와타입검사를수행했다. 새승급시code일치검사는유지하며별도새수락batch를root가작성한다."
+}

@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "entry_id": "gap-g04-sub2-model",
+  "model": "gpt-5.6-luna",
+  "source_set_id": "draft-standard-gap-20260913-g04",
+  "learning_unit_id": "draft-standard-gap-20260913-g04--sub2--standard",
+  "kind": "model",
+  "projected_body_hash": "263ca3569cce71d1fe62730ee5effc4533fe1e74d2872a41d1f33ed2edb26740",
+  "answers": {
+    "sub2": "경영진에게 감사보고서에 대한 차후 의존을 방지할 조치를 취할 것이라고 통보한다. 지배기구 구성원 전원이 경영에 참여하는 경우가 아니라면 지배기구에도 통보한다.\n그 통보에도 불구하고 경영진 또는 지배기구가 필요한 조치를 취하지 않으면 감사보고서에 대한 의존을 방지하기 위한 적합한 조치를 취한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안에서 직접 충족하는 요구: 경영진에게 감사보고서에 대한 차후 의존을 방지할 조치를 취할 것이라고 통보한다. 지배기구 구성원 전원이 경영에 참여하는 경우가 아니라면 지배기구에도 통보한다. 상대방·예외는 하나의 사전 통보 조치에 속한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안에서 직접 충족하는 요구: 그 통보에도 불구하고 경영진 또는 지배기구가 필요한 조치를 취하지 않으면 감사보고서에 대한 의존을 방지하기 위한 적합한 조치를 취한다. 공개 공고·고발 등 특정 법적 수단을 일률적인 필수조치로 강제하지 않는다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "766a9f5831a7bddcd4bf237bd657439c8be0fcfaa32752799ab34d7dea4d8ac4",
+  "schema_hash": "9c3f899cbaafb79755e76e4f5eac07c828973cb2f02ef535da087c15e798b5ff",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "경영진에게 감사보고서에 대한 차후 의존을 방지할 조치를 취할 것이라고 통보한다. 지배기구 구성원 전원이 경영에 참여하는 경우가 아니라면 지배기구에도 통보한다.\n",
+            "reason": "경영진에 통보하고, 예외가 아니면 지배기구에도 통보한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그 통보에도 불구하고 경영진 또는 지배기구가 필요한 조치를 취하지 않으면 감사보고서에 대한 의존을 방지하기 위한 적합한 조치를 취한다.",
+            "reason": "통보 후에도 필요한 조치가 없으면 의존 방지를 위한 적합한 조치를 취한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1",
+                  "sub2/e2"
+                ],
+                "reason": "경영진에 통보하고, 예외가 아니면 지배기구에도 통보한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e3"
+                ],
+                "reason": "통보 후에도 필요한 조치가 없으면 의존 방지를 위한 적합한 조치를 취한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-gap-20260913-g04",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "재무제표 발행 후 알게 된 사실 때문에 감사인은 재무제표의 수정이 필요하다고 판단하였다. 그런데 경영진이 재무제표를 수정하지 않고, 종전 재무제표 수령자에게 상황을 확실히 알리기 위한 필요한 조치도 취하지 않는 경우, 감사보고서에 대한 차후 의존을 방지하기 위해 감사인이 취할 조치를 순서에 따라 설명하시오. 최초 통보의 상대방과 그 통보 후에도 필요한 조치가 없는 경우를 포함하시오.",
+        "user_answer": "경영진에게 감사보고서에 대한 차후 의존을 방지할 조치를 취할 것이라고 통보한다. 지배기구 구성원 전원이 경영에 참여하는 경우가 아니라면 지배기구에도 통보한다.\n그 통보에도 불구하고 경영진 또는 지배기구가 필요한 조치를 취하지 않으면 감사보고서에 대한 의존을 방지하기 위한 적합한 조치를 취한다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "경영진에게 감사보고서에 대한 차후 의존을 방지할 조치를 취할 것이라고 통보한다. 지배기구 구성원 전원이 경영에 참여하는 경우가 아니라면 지배기구에도 통보한다.",
+            "reason": "경영진에 통보하고, 예외가 아니면 지배기구에도 통보한다고 명시했다.",
+            "claim": "경영진에게 감사보고서에 대한 차후 의존을 방지할 조치를 취할 것이라고 통보한다. 지배기구 구성원 전원이 경영에 참여하는 경우가 아니라면 지배기구에도 통보한다. 상대방·예외는 하나의 사전 통보 조치에 속한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그 통보에도 불구하고 경영진 또는 지배기구가 필요한 조치를 취하지 않으면 감사보고서에 대한 의존을 방지하기 위한 적합한 조치를 취한다.",
+            "reason": "통보 후에도 필요한 조치가 없으면 의존 방지를 위한 적합한 조치를 취한다고 명시했다.",
+            "claim": "그 통보에도 불구하고 경영진 또는 지배기구가 필요한 조치를 취하지 않으면 감사보고서에 대한 의존을 방지하기 위한 적합한 조치를 취한다. 공개 공고·고발 등 특정 법적 수단을 일률적인 필수조치로 강제하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "경영진에게 감사보고서에 대한 차후 의존을 방지할 조치를 취할 것이라고 통보한다. 지배기구 구성원 전원이 경영에 참여하는 경우가 아니라면 지배기구에도 통보한다.",
+          "그 통보에도 불구하고 경영진 또는 지배기구가 필요한 조치를 취하지 않으면 감사보고서에 대한 의존을 방지하기 위한 적합한 조치를 취한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/gap-g04-sub2-model.input.json",
+      "sha256": "4772ebcb74399660b6f92f9ce22c56b864fe080992bd4f818fac92fa588d1730"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/gap-g04-sub2-model.transport.jsonl",
+      "sha256": "38f0ffd3b8c5af610aaa311cb15e8f6e3ff1648f49393142afe014b63a43b9ce"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/replayed/gap-g04-sub2-model.traces.jsonl",
+      "sha256": "ca3202df88bbd64b470a7b1e39c6b05f19a98109744f4a87b0e2230453b730cd"
+    }
+  },
+  "security_findings": [],
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0191bf2b93309d06016aa5db97f97c87d08de5bee24edfeaa9",
+        "request_id": "req_e207b59612a6484a84d0d438dd4335e9",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2977,
+          "input_tokens_details": {
+            "cache_write_tokens": 2974,
+            "cached_tokens": 0
+          },
+          "output_tokens": 187,
+          "output_tokens_details": {
+            "reasoning_tokens": 29
+          },
+          "total_tokens": 3164
+        }
+      }
+    }
+  ],
+  "normalization": {
+    "new_api_calls": 0,
+    "origin_files": [
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g04-sub2-model.input.json",
+        "sha256": "32b8b9ac9aad9d592fca34052aa9fa50a29852ab39290d0186fa41eeccd1c7ea"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g04-sub2-model.request-1.json",
+        "sha256": "11f9d6e55342c918a63e034f5a08943985b77d6dc25698ee58e709b3625f55c6"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g04-sub2-model.response-1.json",
+        "sha256": "9e1a5819382c0b93589fe7b147938e8edb95d7d06116552e6b17437007e5909a"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g04-sub2-model.trace.json",
+        "sha256": "3fe183d1fd289e286b07a663c4f3c684e31420a4cf9237cf8255b4c38f9ad748"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g04-sub2-model.usage.json",
+        "sha256": "464a5d3bae98cc52ddb66f7d16b7be970d8b5a6188623d5cfe82e26c53aa5ef3"
+      },
+      {
+        "file": "cpa_uploader/drafts/standard-gap-2026-09-13/grading/run-v1/g04-sub2-model.result.json",
+        "sha256": "fd5224a3257f35604ead66c24d9dfeb8a127752d1b47a2d149c2638f2c5977fa"
+      }
+    ],
+    "original_case_id": "g04-sub2-model",
+    "origin_batch": "cpa_uploader/drafts/standard-gap-2026-09-13",
+    "method": "Immutable earlier provider request/response reprocessed; no new execution or expected-value substitution"
+  },
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/grading-manifest.json",
+    "sha256": "c12ea467a456e0a3ceac6682a2d145cd955fa7d2adcb8e960ebe57611c6fd673"
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/grading-manifest.json",
+    "sha256": "224b40ba1b2e1a1c57941aa7c4d2ce2499fb74552551e068d3152cf0bd89f555"
+  },
+  "entry_id": "std-points-20260914-4b6d4f380dd2--sub1--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-4b6d4f380dd2--sub1--standard",
+  "source_set_id": "std-points-20260914-4b6d4f380dd2",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "a439fdc676e552cad1bb3916a8820f09f78dc0a5dca24ab4366779353833397f",
+  "answers": {
+    "sub1": "신규업무는 수임을 거절하고, 계속업무는 관련 법규상 가능하다면 해지한다. 법규상 수임거부가 금지되거나 해지할 수 없다면 가능한 범위까지 그룹감사를 수행하고 그룹재무제표에 대하여 의견을 거절한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 4,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 경영진의 범위제한으로 의견거절이 예상되면 신규 그룹감사업무를 수임하지 않는다."
+        },
+        {
+          "criterion_id": "crit2.p2",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 경영진의 범위제한으로 의견거절이 예상되면 법규상 가능한 경우 계속 그룹감사업무를 해지한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 경영진 제한으로 의견거절이 예상되나 법규상 거절·해지할 수 없으면 가능한 범위에서 그룹감사를 수행한다."
+        },
+        {
+          "criterion_id": "crit3.p2",
+          "verdict": "met",
+          "reason": "직접 출처와 각 명제에 맞춰 대조한 저장 모범답안. 경영진 제한으로 의견거절이 예상되나 법규상 거절·해지할 수 없으면 그룹재무제표에 의견을 거절한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "a42bf402084fd7e8fdbb3731145120dd4b56da81c46575fc09bf164bdf6fdb1f",
+  "schema_hash": "b1fc118506a3accb7a28173114186c44db703182d472ff437b3188c55d161647",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "신규업무는 수임을 거절하고, 계속업무는 관련 법규상 가능하다면 해지한다. ",
+            "reason": "신규업무의 수임을 거절한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2.p2",
+            "verdict": "met",
+            "quote": "신규업무는 수임을 거절하고, 계속업무는 관련 법규상 가능하다면 해지한다. ",
+            "reason": "계속업무는 법규상 가능한 경우 해지한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "법규상 수임거부가 금지되거나 해지할 수 없다면 가능한 범위까지 그룹감사를 수행하고 그룹재무제표에 대하여 의견을 거절한다.",
+            "reason": "거절·해지가 불가능한 경우 가능한 범위까지 그룹감사를 수행한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "met",
+            "quote": "법규상 수임거부가 금지되거나 해지할 수 없다면 가능한 범위까지 그룹감사를 수행하고 그룹재무제표에 대하여 의견을 거절한다.",
+            "reason": "거절·해지가 불가능한 경우 그룹재무제표에 대한 의견을 거절한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "신규업무의 수임을 거절한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2.p2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "계속업무는 법규상 가능한 경우 해지한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "거절·해지가 불가능한 경우 가능한 범위까지 그룹감사를 수행한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3.p2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "거절·해지가 불가능한 경우 그룹재무제표에 대한 의견을 거절한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-4b6d4f380dd2",
+    "score": 4,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "그룹경영진의 제약으로 충분하고 적합한 감사증거를 입수할 수 없고 그 영향으로 그룹재무제표에 의견거절이 예상된다. 신규·계속 그룹감사업무에서 취할 조치와 법규상 수임거부·해지가 불가능한 경우 수행할 감사 및 표명할 의견을 설명하시오.",
+        "user_answer": "신규업무는 수임을 거절하고, 계속업무는 관련 법규상 가능하다면 해지한다. 법규상 수임거부가 금지되거나 해지할 수 없다면 가능한 범위까지 그룹감사를 수행하고 그룹재무제표에 대하여 의견을 거절한다.",
+        "score": 4,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "신규업무는 수임을 거절하고, 계속업무는 관련 법규상 가능하다면 해지한다.",
+            "reason": "신규업무의 수임을 거절한다고 명시했다.",
+            "claim": "경영진의 범위제한으로 의견거절이 예상되면 신규 그룹감사업무를 수임하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2.p2",
+            "verdict": "met",
+            "quote": "신규업무는 수임을 거절하고, 계속업무는 관련 법규상 가능하다면 해지한다.",
+            "reason": "계속업무는 법규상 가능한 경우 해지한다고 명시했다.",
+            "claim": "경영진의 범위제한으로 의견거절이 예상되면 법규상 가능한 경우 계속 그룹감사업무를 해지한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "법규상 수임거부가 금지되거나 해지할 수 없다면 가능한 범위까지 그룹감사를 수행하고 그룹재무제표에 대하여 의견을 거절한다.",
+            "reason": "거절·해지가 불가능한 경우 가능한 범위까지 그룹감사를 수행한다고 명시했다.",
+            "claim": "경영진 제한으로 의견거절이 예상되나 법규상 거절·해지할 수 없으면 가능한 범위에서 그룹감사를 수행한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "met",
+            "quote": "법규상 수임거부가 금지되거나 해지할 수 없다면 가능한 범위까지 그룹감사를 수행하고 그룹재무제표에 대하여 의견을 거절한다.",
+            "reason": "거절·해지가 불가능한 경우 그룹재무제표에 대한 의견을 거절한다고 명시했다.",
+            "claim": "경영진 제한으로 의견거절이 예상되나 법규상 거절·해지할 수 없으면 그룹재무제표에 의견을 거절한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "신규업무는 수임을 거절하고, 계속업무는 관련 법규상 가능하다면 해지한다. 법규상 수임거부가 금지되거나 해지할 수 없다면 가능한 범위까지 그룹감사를 수행하고 그룹재무제표에 대하여 의견을 거절한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 4,
+      "actual_points": 4,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0fd6276742ca6a40016aa78711a55887d0825a459bc70bd648",
+        "request_id": "req_643ba65092604c0696307373bcfa229f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2931,
+          "input_tokens_details": {
+            "cache_write_tokens": 2928,
+            "cached_tokens": 0
+          },
+          "output_tokens": 261,
+          "output_tokens_details": {
+            "reasoning_tokens": 28
+          },
+          "total_tokens": 3192
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010458,
+        "min_usd": 0.0010458,
+        "max_usd": 0.0010458,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-4b6d4f380dd2--sub1--model/input.json",
+      "sha256": "822b79bdd134a5fdbc90d89b2c94d5026aaf9a6991347cd6a3b0fa081bd32439"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-4b6d4f380dd2--sub1--model/transport.jsonl",
+      "sha256": "450e095b3c7788614ed865b5afecc80941fb0ced95e9bbdd49183bb4a9d205a2"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/actual-b/std-points-20260914-4b6d4f380dd2--sub1--model/traces.jsonl",
+      "sha256": "2dd3511e230554406ae06b8e60e36fd7959aac0b3cda7daae635fb0d294c9436"
+    }
+  }
+}

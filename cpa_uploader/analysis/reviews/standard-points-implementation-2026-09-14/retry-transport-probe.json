@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-09-14T06:28:30.507Z",
+  "read_only": true,
+  "http_status": 400,
+  "query_sha256": "aea5f240da70a6200c4f469cdb49b038e4ac2081cf930b4c2d7edeb2b9c7c45c",
+  "query": "begin read only; set local role service_role; set local statement_timeout='120s'; select current_user as effective_role,current_setting('statement_timeout') as statement_timeout,current_setting('transaction_read_only') as transaction_read_only,(select id from public.cpa_question_bank_releases where status='active') as active_release_id; commit;",
+  "result": {
+    "message": "Failed to run sql query: ERROR:  42501: permission denied to set role \"service_role\"\n"
+  }
+}

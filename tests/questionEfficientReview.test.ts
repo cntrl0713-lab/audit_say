@@ -5,7 +5,7 @@ import path from 'node:path';
 import os from 'node:os';
 import { spawnSync } from 'node:child_process';
 import { createEfficientReviewReceipt, validateRecordedEfficientReview, createEfficientValidationContext,
-    assertEfficientEvidenceUnchanged, CONTENT_CHECKS, EFFICIENT_RUNTIME_FILES } from '../cpa_uploader/questionEfficientReview.ts';
+    assertEfficientEvidenceUnchanged, validateReusableEfficientObservation, CONTENT_CHECKS, EFFICIENT_RUNTIME_FILES } from '../cpa_uploader/questionEfficientReview.ts';
 import type { EfficientReviewBatch, AgentSetReview, ReviewFile } from '../cpa_uploader/questionEfficientReview.ts';
 import { reviewedContentHash, sha256 } from '../cpa_uploader/questionReviewIdentity.ts';
 import { loadPromotionLedger } from '../cpa_uploader/questionBankPublication.ts';
@@ -123,6 +123,22 @@ check('valid synthetic efficient receipt preserves case context and exactly five
     assert.deepEqual(validateRecordedEfficientReview(receipt, f.sets[0], createEfficientValidationContext(), f.root), []);
     assert.equal(f.jobs[1].entry.evaluated_subquestion_ids.length, 1); assert.equal(f.jobs[1].projected.subquestions.length, 2);
 });
+check('unspecified budget is recorded as null without claiming a provider limit', f => {
+    Object.assign(f.manifest, { budget_usd: null, budget_enforcement: 'not_specified' });
+    assert.equal(f.run().observed_answers, 5);
+});
+check('a different positive provider budget preserves the same evidence requirements', f => {
+    Object.assign(f.manifest, { budget_usd: 10 });
+    assert.equal(f.run().observed_answers, 5);
+});
+check('missing or contradictory budget metadata is rejected', f => {
+    Object.assign(f.manifest, { budget_usd: null });
+    assert.throws(f.run, /Provider budget/);
+    Object.assign(f.manifest, { budget_usd: 20, budget_enforcement: 'not_specified' });
+    assert.throws(f.run, /Unspecified budget/);
+    Object.assign(f.manifest, { budget_usd: 0, budget_enforcement: 'provider_limit' });
+    assert.throws(f.run, /Provider budget/);
+});
 check('agent known content findings are never waived by perfect score accuracy', f => {
     (f.reviews[0].unresolved_content_findings as unknown[]) .push({ issue: 'wrong standard' }); assert.throws(f.run, /Content defects/);
 });
@@ -228,18 +244,20 @@ check('missing serialized header never relaxes the actual provider response iden
     assert.throws(f.run, /resp_different/);
 });
 
-function resumedFixture(f: Fixture) {
+function resumedFixture(f: Fixture, reviseRecorder = true) {
     f.manifest.inputs.push(f.write('runtime-snapshots.json', f.batch.runtime_snapshots));
     f.flush();
     const manifest = structuredClone(f.manifest), batch = structuredClone(f.batch);
     manifest.reused_observations = [{ entry_id: f.jobs[0].entry.id, worker: 'b',
         observation: batch.observations[0], origin_manifest: batch.grading_manifest }];
     // Recorder/consumer bytes may change; the eight grading behavior files may not.
-    const recorder = manifest.code_files.find(c => c.file === 'cpa_uploader/questionEfficientReview.ts')!;
-    const next = f.write(recorder.file, fs.readFileSync(path.join(f.root, recorder.file), 'utf8') + '\n// fixture recorder revision', true);
-    manifest.code_files = manifest.code_files.map(c => c.file === next.file ? next : c);
-    batch.runtime_snapshots = batch.runtime_snapshots.map(s => s.runtime_file === next.file
-        ? { ...f.write('resume/recorder.txt', fs.readFileSync(path.join(f.root, next.file), 'utf8'), true), runtime_file: next.file } : s);
+    if (reviseRecorder) {
+        const recorder = manifest.code_files.find(c => c.file === 'cpa_uploader/questionEfficientReview.ts')!;
+        const next = f.write(recorder.file, fs.readFileSync(path.join(f.root, recorder.file), 'utf8') + '\n// fixture recorder revision', true);
+        manifest.code_files = manifest.code_files.map(c => c.file === next.file ? next : c);
+        batch.runtime_snapshots = batch.runtime_snapshots.map(s => s.runtime_file === next.file
+            ? { ...f.write('resume/recorder.txt', fs.readFileSync(path.join(f.root, next.file), 'utf8'), true), runtime_file: next.file } : s);
+    }
     const run = () => {
         batch.grading_manifest = f.write('resume/manifest.json', manifest);
         batch.observations = [f.batch.observations[0], ...f.jobs.slice(1).map(job =>
@@ -247,6 +265,21 @@ function resumedFixture(f: Fixture) {
         return createEfficientReviewReceipt(f.write('resume/batch.json', batch), f.sets[0], createEfficientValidationContext(), f.root);
     };
     return { manifest, batch, run };
+}
+function twiceResumedFixture(f: Fixture) {
+    const first = resumedFixture(f, false);
+    const manifest = structuredClone(first.manifest), batch = structuredClone(first.batch);
+    const run = () => {
+        first.run();
+        manifest.reused_observations = first.batch.observations.map((observation, index) => ({
+            entry_id: f.jobs[index].entry.id, worker: 'b', observation,
+            origin_manifest: index === 0 ? f.batch.grading_manifest : first.batch.grading_manifest,
+        }));
+        batch.grading_manifest = f.write('resume-again/manifest.json', manifest);
+        batch.observations = [...first.batch.observations];
+        return createEfficientReviewReceipt(f.write('resume-again/batch.json', batch), f.sets[0], createEfficientValidationContext(), f.root);
+    };
+    return { first, manifest, batch, run };
 }
 check('explicit reuse accepts immutable raw evidence after a recorder-only revision', f => {
     const resumed = resumedFixture(f), original = fs.readFileSync(path.join(f.root, f.batch.observations[0].file));
@@ -257,6 +290,89 @@ check('reuse selects the original manifest sibling snapshot despite an earlier a
     f.manifest.inputs.unshift(f.write('ancestor/runtime-snapshots.json', []));
     const resumed = resumedFixture(f);
     assert.equal(resumed.run().observed_answers, 5);
+});
+check('a second recovery reuses observations whose unchanged runtime index was inherited', f => {
+    const resumed = twiceResumedFixture(f);
+    assert.equal(resumed.run().observed_answers, 5);
+    assert(!fs.existsSync(path.join(f.root, 'resume/runtime-snapshots.json')));
+    const context = createEfficientValidationContext();
+    createEfficientReviewReceipt(f.identity('resume-again/batch.json'), f.sets[0], context, f.root);
+    assert(context.files.has(path.resolve(f.root, 'manifest.json')));
+    assert(context.files.has(path.resolve(f.root, 'runtime-snapshots.json')));
+    assert(context.files.has(path.resolve(f.root, f.batch.runtime_snapshots[0].file)));
+    fs.appendFileSync(path.join(f.root, 'manifest.json'), ' ');
+    assert.throws(() => assertEfficientEvidenceUnchanged(context), /Evidence changed/);
+});
+check('repeated links to one ancestor count as one inherited snapshot candidate', f => {
+    const resumed = twiceResumedFixture(f);
+    resumed.first.manifest.reused_observations!.push({ entry_id: f.jobs[1].entry.id, worker: 'b',
+        observation: f.batch.observations[1], origin_manifest: f.batch.grading_manifest });
+    // Only the origin manifest is needed here: the existing first-run recorder
+    // would otherwise rewrite this additionally reused observation's origin.
+    const origin = f.write('resume/manifest.json', resumed.first.manifest);
+    const observation = f.write('resume/second-observation.json', { ...f.jobs[2].observation, manifest: origin });
+    assert.doesNotThrow(() => validateReusableEfficientObservation({ entry_id: f.jobs[2].entry.id, worker: 'b',
+        observation, origin_manifest: origin }, resumed.manifest, createEfficientValidationContext(), f.root));
+});
+check('a present incomplete sibling cannot fall back to a complete ancestor index', f => {
+    const resumed = twiceResumedFixture(f);
+    resumed.first.manifest.inputs.push(f.write('resume/runtime-snapshots.json', f.batch.runtime_snapshots.slice(1)));
+    assert.throws(resumed.run, /Original execution runtime snapshot missing/);
+});
+check('an unlinked snapshot index cannot establish inherited execution provenance', f => {
+    const resumed = twiceResumedFixture(f);
+    resumed.first.manifest.inputs = resumed.first.manifest.inputs.filter(i => i.file !== 'runtime-snapshots.json');
+    resumed.first.manifest.inputs.push(f.write('unrelated/runtime-snapshots.json', f.batch.runtime_snapshots));
+    assert.throws(resumed.run, /Exactly one linked ancestor/);
+});
+check('an inherited snapshot must cover recorder bytes as well as the eight grading files', f => {
+    const resumed = twiceResumedFixture(f);
+    const file = 'cpa_uploader/questionEfficientReview.ts';
+    const next = f.write(file, fs.readFileSync(path.join(f.root, file), 'utf8') + '\n// second runtime', true);
+    for (const manifest of [resumed.first.manifest, resumed.manifest])
+        manifest.code_files = manifest.code_files.map(code => code.file === file ? next : code);
+    for (const batch of [resumed.first.batch, resumed.batch])
+        batch.runtime_snapshots = batch.runtime_snapshots.map(snapshot => snapshot.runtime_file === file
+            ? { ...f.write('resume/new-recorder.txt', fs.readFileSync(path.join(f.root, file), 'utf8'), true), runtime_file: file } : snapshot);
+    assert.throws(resumed.run, /Exactly one linked ancestor/);
+});
+check('two distinct complete linked ancestor indexes are ambiguous rather than first-match wins', f => {
+    const resumed = twiceResumedFixture(f), ancestor = structuredClone(f.manifest);
+    ancestor.inputs.push(f.write('another-origin/runtime-snapshots.json', f.batch.runtime_snapshots));
+    const otherOrigin = f.write('another-origin/manifest.json', ancestor);
+    const otherObservation = f.write('another-origin/observation.json', { ...f.jobs[1].observation, manifest: otherOrigin });
+    resumed.first.manifest.inputs.push(ancestor.inputs.at(-1)!);
+    resumed.first.manifest.reused_observations!.push({ entry_id: f.jobs[1].entry.id, worker: 'b',
+        observation: otherObservation, origin_manifest: otherOrigin });
+    const origin = f.write('resume/manifest.json', resumed.first.manifest);
+    const observation = f.write('resume/second-observation.json', { ...f.jobs[2].observation, manifest: origin });
+    assert.throws(() => validateReusableEfficientObservation({ entry_id: f.jobs[2].entry.id, worker: 'b',
+        observation, origin_manifest: origin }, resumed.manifest, createEfficientValidationContext(), f.root), /Exactly one linked ancestor/);
+});
+check('linked ancestor manifest bytes cannot be changed while retaining their declared identity', f => {
+    const resumed = twiceResumedFixture(f);
+    const origin = f.write('resume/manifest.json', resumed.first.manifest);
+    const observation = f.write('resume/second-observation.json', { ...f.jobs[2].observation, manifest: origin });
+    fs.appendFileSync(path.join(f.root, f.batch.grading_manifest.file), ' ');
+    assert.throws(() => validateReusableEfficientObservation({ entry_id: f.jobs[2].entry.id, worker: 'b',
+        observation, origin_manifest: origin }, resumed.manifest, createEfficientValidationContext(), f.root), /Changed evidence/);
+});
+check('inherited index bytes remain bound to the index identity in the ancestor manifest', f => {
+    const resumed = twiceResumedFixture(f);
+    const changed = f.write('runtime-snapshots.json', f.batch.runtime_snapshots.slice(1));
+    resumed.first.manifest.inputs = resumed.first.manifest.inputs.map(input => input.file === changed.file ? changed : input);
+    const origin = f.write('resume/manifest.json', resumed.first.manifest);
+    const observation = f.write('resume/second-observation.json', { ...f.jobs[2].observation, manifest: origin });
+    assert.throws(() => validateReusableEfficientObservation({ entry_id: f.jobs[2].entry.id, worker: 'b',
+        observation, origin_manifest: origin }, resumed.manifest, createEfficientValidationContext(), f.root), /index identity differs/);
+});
+check('inherited archived runtime bytes are verified before accepting the observation', f => {
+    const resumed = twiceResumedFixture(f);
+    const origin = f.write('resume/manifest.json', resumed.first.manifest);
+    const observation = f.write('resume/second-observation.json', { ...f.jobs[2].observation, manifest: origin });
+    fs.appendFileSync(path.join(f.root, f.batch.runtime_snapshots[0].file), ' ');
+    assert.throws(() => validateReusableEfficientObservation({ entry_id: f.jobs[2].entry.id, worker: 'b',
+        observation, origin_manifest: origin }, resumed.manifest, createEfficientValidationContext(), f.root), /Changed evidence/);
 });
 check('historical reused receipt retains archive compatibility while new acceptance rejects current grading drift', f => {
     const resumed = resumedFixture(f), receipt = resumed.run();

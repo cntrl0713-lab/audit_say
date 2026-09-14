@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v2/grading-manifest.json",
+    "sha256": "8b0a3889c7b49c59969f739a6ceaeee1003f2b994ffd41d3449c92d9e2f4c011"
+  },
+  "entry_id": "pilot-13-008--sub1--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-008--sub1--standard",
+  "source_set_id": "pilot-13-008",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "67b600b16ef492f6d6e5f84b4f227f69e0fa12a4076c3cac9daec338b69153d1",
+  "answers": {
+    "sub1": "서비스조직에 대한 증거부족은 감사범위의 제한에 해당하지 않으며, 그 책임은 서비스조직에 있으므로 이용자기업 감사인은 적정의견을 표명한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 wrong 답안. 대상 명제: 감사기준서 705에 따라 감사의견을 변형한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "잔존 물음의 원기준 전체와 자연어 답안을 전수 대조한 대표 wrong 답안. 대상 명제: 서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "64c3eef06b6bac0c3e9607f6332d0d429054f81d06b45c16fff141d819169b75",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "서비스조직에 대한 증거부족은 감사범위의 제한에 해당하지 않으며, 그 책임은 서비스조직에 있으므로 이용자기업 감사인은 적정의견을 표명한다.",
+            "reason": "적정의견을 표명한다고 하여 감사의견 변형 원칙을 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "서비스조직에 대한 증거부족은 감사범위의 제한에 해당하지 않으며, 그 책임은 서비스조직에 있으므로 이용자기업 감사인은 적정의견을 표명한다.",
+            "reason": "증거부족이 감사범위의 제한에 해당하지 않는다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "적정의견을 표명한다고 하여 감사의견 변형 원칙을 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "증거부족이 감사범위의 제한에 해당하지 않는다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-008",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "재무제표감사와 관련된 서비스조직의 서비스에 관하여 충분하고 적합한 감사증거를 입수할 수 없다. 이용자기업 감사인이 감사의견에 관하여 따라야 할 대응 원칙을 제시하고, 이러한 증거부족이 감사상 어떤 제한에 해당하는지 설명하시오. 한정의견과 의견거절 중 하나를 선택하는 것은 요구하지 않는다.",
+        "user_answer": "서비스조직에 대한 증거부족은 감사범위의 제한에 해당하지 않으며, 그 책임은 서비스조직에 있으므로 이용자기업 감사인은 적정의견을 표명한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "서비스조직에 대한 증거부족은 감사범위의 제한에 해당하지 않으며, 그 책임은 서비스조직에 있으므로 이용자기업 감사인은 적정의견을 표명한다.",
+            "reason": "적정의견을 표명한다고 하여 감사의견 변형 원칙을 명시적으로 부정했다.",
+            "claim": "감사기준서 705에 따라 감사의견을 변형한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "서비스조직에 대한 증거부족은 감사범위의 제한에 해당하지 않으며, 그 책임은 서비스조직에 있으므로 이용자기업 감사인은 적정의견을 표명한다.",
+            "reason": "증거부족이 감사범위의 제한에 해당하지 않는다고 명시했다.",
+            "claim": "서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사기준서 705에 따라 감사의견을 변형한다.",
+          "서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0502c2c43ff9cfdc016aa78768108087d0a803c2ba83ca3748",
+        "request_id": "req_f60dbf54f5cc4926a06e7103acd9d7de",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2430,
+          "input_tokens_details": {
+            "cache_write_tokens": 2427,
+            "cached_tokens": 0
+          },
+          "output_tokens": 220,
+          "output_tokens_details": {
+            "reasoning_tokens": 70
+          },
+          "total_tokens": 2650
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00087135,
+        "min_usd": 0.00087135,
+        "max_usd": 0.00087135,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v2/actual-a/pilot-13-008--sub1--wrong/input.json",
+      "sha256": "df9b9cfe46585a4e05cf5e1314f719d47a5cf2877c6ed89395b34fbc7099004d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v2/actual-a/pilot-13-008--sub1--wrong/transport.jsonl",
+      "sha256": "2e026adbfdcf6a0679cf5a52dfa088515576dc27d71328ecab4dec7fccb16f70"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v2/actual-a/pilot-13-008--sub1--wrong/traces.jsonl",
+      "sha256": "111f99aa79b8d569269280af47e41ead8ff1546997a0ea70971a26df661aed71"
+    }
+  }
+}

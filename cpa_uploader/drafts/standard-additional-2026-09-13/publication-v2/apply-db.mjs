@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {createClient} from '@supabase/supabase-js';
+import {main as importBank} from '../../../../scripts/import-question-bank-v3.ts';
+const P='cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2';
+const read=f=>JSON.parse(fs.readFileSync(f,'utf8')),sha=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const installed=read(P+'/install-completion.json'),before=read(P+'/db-baseline.json');assert.equal(installed.status,'canonical_installed_and_validated');
+for(const r of installed.files)assert.equal(sha(r.file),r.sha256,'등록 전 로컬 변경: '+r.file);
+const client=createClient(process.env.NEXT_PUBLIC_SUPABASE_URL,process.env.SUPABASE_SERVICE_ROLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
+const{data,error}=await client.rpc('cpa_get_active_question_bank');assert(!error&&Array.isArray(data)&&data.length);
+assert(data.every(s=>s.release_id===before.release.id),'준비 중 다른 운영 릴리스가 게시됨');
+assert(!fs.existsSync(P+'/db-applied.json'),'이미 등록된 실행; 먼저 영수증을 확인한다');
+await importBank(['--apply','--expected-hash',sha('cpa_uploader/data/cpa_question_sets_v3.authoring.json'),'--project-host',before.project_host,'--evidence',P+'/authorization.md; '+P+'/batch.json','--report',P+'/db-readiness.json','--receipt',P+'/db-applied.json']);
+assert(fs.existsSync(P+'/db-applied.json'),'DB 등록이 완료되지 않음');

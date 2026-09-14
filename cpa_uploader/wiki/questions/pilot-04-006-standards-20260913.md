@@ -1,0 +1,124 @@
+---
+title: "pilot-04-006-standards-20260913. 최종감사파일의 행정적 취합과 수정 기록"
+created: 2026-08-08
+updated: 2026-09-14
+type: question
+status: generated
+review_required: true
+tags: [audit, question-generation, quality]
+sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/data/official/delegated-n01-kga200-210-230-2025.txt","cpa_uploader/data/official/delegated-n01-kga230-supplement-2025.txt","cpa_uploader/analysis/reviews/question-review-2027/04.json"]
+confidence: high
+---
+
+# pilot-04-006-standards-20260913. 최종감사파일의 행정적 취합과 수정 기록
+
+
+이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
+- 주제: [[planning-documentation-materiality]] · [[topic-04-design]]
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/136`
+- 상태: published / verified · source_fidelity: reconstructed
+- 검토·근거 장부: [04.json](../../analysis/reviews/question-review-2027/04.json)
+- 학습 순서: sub2 → sub3
+
+## 공통 사실
+
+
+## sub2
+
+유형: enumeration · JSON Pointer `/136/subquestions/0`
+
+### 발문
+
+감사보고서일 후 최종감사파일 취합이 진행되는 동안 가능한 행정적인 감사문서 변경의 예로 감사기준서가 제시한 네 범주를 모두 제시하시오. 감사조서의 정리 범주는 분류·병합·상호 참조의 기능을 구별하여 작성하고, 조건이 필요한 범주는 그 조건도 설명하시오.
+
+### 모범답안
+
+- 최종 취합 진행 중 교체된 문서의 삭제 또는 폐기를 제시한다.
+- 감사조서의 분류를 행정적 변경으로 제시한다.
+- 감사조서의 병합을 행정적 변경으로 제시한다.
+- 감사조서의 상호 참조를 행정적 변경으로 제시한다.
+- 감사파일 취합절차의 완결에 대한 점검표의 서명 확인을 제시한다.
+- 감사보고서일 전에 이미 입수하고 관련 업무팀원들과 토의·합의한 감사증거의 문서화를 제시한다.
+
+### 답안 계약
+
+selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entries":null,"overflow_policy":"none"}`
+
+### 학습목표·채점명제와 핵심 조건
+
+| criterion | 정본 명제 | 핵심 사실·조건 | 배점·판정별 점수 | requirement | source |
+|---|---|---|---|---|---|
+| crit3 | 최종 취합 진행 중 교체된 문서의 삭제 또는 폐기를 제시한다. 모든 감사문서나 최종 취합 완료 후의 삭제로 범위를 바꾸면 반대이다. | crit3.fact (condition): 최종 취합 진행 중 교체된 문서의 삭제 또는 폐기를 제시한다. 모든 감사문서나 최종 취합 완료 후의 삭제로 범위를 바꾸면 반대이다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub2.req1 | src-b54be20acba919f30f |
+| crit4 | 감사조서의 분류를 행정적 변경으로 제시한다. 정렬이라는 동의표현을 허용한다. | crit4.fact (action): 감사조서의 분류를 행정적 변경으로 제시한다. 정렬이라는 동의표현을 허용한다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub2.req1 | src-b54be20acba919f30f |
+| crit11 | 감사조서의 병합을 행정적 변경으로 제시한다. 모으기라는 동의표현을 허용한다. | crit11.fact (action): 감사조서의 병합을 행정적 변경으로 제시한다. 모으기라는 동의표현을 허용한다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub2.req1 | src-b54be20acba919f30f |
+| crit12 | 감사조서의 상호 참조를 행정적 변경으로 제시한다. 연결 표시라는 동의표현을 허용한다. | crit12.fact (action): 감사조서의 상호 참조를 행정적 변경으로 제시한다. 연결 표시라는 동의표현을 허용한다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub2.req1 | src-b54be20acba919f30f |
+| crit5 | 감사파일 취합절차의 완결에 대한 점검표의 서명 확인을 제시한다. | crit5.fact (action): 감사파일 취합절차의 완결에 대한 점검표의 서명 확인을 제시한다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub2.req1 | src-b54be20acba919f30f |
+| crit6 | 감사보고서일 전에 이미 입수하고 관련 업무팀원들과 토의·합의한 감사증거의 문서화를 제시한다. 보고서일 후 새 증거를 입수하는 것으로 바꾸면 반대이다. | crit6.fact (condition): 감사보고서일 전에 이미 입수하고 관련 업무팀원들과 토의·합의한 감사증거의 문서화를 제시한다. 보고서일 후 새 증거를 입수하는 것으로 바꾸면 반대이다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub2.req1 | src-b54be20acba919f30f |
+
+### 요구사항과 직접 근거
+
+| requirement | 문단·페이지·판본 | source | 원문 인용 |
+|---|---|---|---|
+| sub2.req1 | L20-L27; KGA 230 문단 A22; PDF 79쪽; 수동 확인한 연속 인용 | [src-b54be20acba919f30f](../../data/official/delegated-n01-kga230-supplement-2025.txt) | A22. 감사보고서일 후 최종감사파일의 취합을 완료하는 것은 새로운 감사절차의 수행이나 새로 운 결론의 도출과는 관계없는 행정적 절차이다. 그 성격이 행정적이라면 최종 취합절차의 진행 중에도 감사문서의 변경이 가능할 것이다. 그러한 변경은 예를 들어 다음과 같다.  교체된 문서의 삭제 또는 폐기  감사조서의 분류, 병합 및 상호 참조  감사파일 취합절차의 완결에 대한 점검표의 서명 확인  감사인이 감사보고서일 전에 입수하여 관련 업무팀원들과 토의하고 합의한 감사증거 에 대한 문서화 |
+
+## sub3
+
+유형: enumeration · JSON Pointer `/136/subquestions/1`
+
+### 발문
+
+감사보고서일 후 새로운·추가적인 감사절차를 수행하거나 새로운 결론을 도출하는 경우는 제외한다. 최종감사파일 취합 완료 후에 기존 감사문서를 수정하거나 새 문서를 추가할 때, 변경의 성격과 관계없이 추가로 문서화해야 할 사항을 모두 제시하시오. 수정·추가 자체와 그 검토에 관한 기록을 구별하여 작성하시오.
+
+### 모범답안
+
+- 감사문서를 수정하거나 추가하는 구체적인 이유를 문서화할 사항으로 제시한다.
+- 감사문서를 수정하거나 추가한 사람을 문서화해야 한다.
+- 감사문서를 수정하거나 추가한 시기를 문서화해야 한다.
+- 수정·추가를 검토한 사람을 문서화해야 한다.
+- 수정·추가를 검토한 시기를 문서화해야 한다.
+
+### 답안 계약
+
+selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entries":null,"overflow_policy":"none"}`
+
+### 학습목표·채점명제와 핵심 조건
+
+| criterion | 정본 명제 | 핵심 사실·조건 | 배점·판정별 점수 | requirement | source |
+|---|---|---|---|---|---|
+| crit7 | 감사문서를 수정하거나 추가하는 구체적인 이유를 문서화할 사항으로 제시한다. 지문에 오기가 주어졌다는 사실의 반복만으로 문서화 의무를 대신하지 않는다. | crit7.fact (action): 감사문서를 수정하거나 추가하는 구체적인 이유를 문서화할 사항으로 제시한다. 지문에 오기가 주어졌다는 사실의 반복만으로 문서화 의무를 대신하지 않는다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub3.req1 | src-4ffcde01b7a6c483ae |
+| crit8 | 감사문서를 수정하거나 추가한 사람을 문서화해야 한다. | crit8.fact (actor): 감사문서를 수정하거나 추가한 사람을 문서화해야 한다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub3.req1 | src-4ffcde01b7a6c483ae |
+| crit13 | 감사문서를 수정하거나 추가한 시기를 문서화해야 한다. | crit13.fact (condition): 감사문서를 수정하거나 추가한 시기를 문서화해야 한다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub3.req1 | src-4ffcde01b7a6c483ae |
+| crit9 | 수정·추가를 검토한 사람을 문서화해야 한다. | crit9.fact (actor): 수정·추가를 검토한 사람을 문서화해야 한다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub3.req1 | src-4ffcde01b7a6c483ae |
+| crit14 | 수정·추가를 검토한 시기를 문서화해야 한다. | crit14.fact (condition): 수정·추가를 검토한 시기를 문서화해야 한다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub3.req1 | src-4ffcde01b7a6c483ae |
+
+### 요구사항과 직접 근거
+
+| requirement | 문단·페이지·판본 | source | 원문 인용 |
+|---|---|---|---|
+| sub3.req1 | L675-L682; KGA 230 문단 16; PDF 73쪽; 수동 확인한 연속 인용 | [src-4ffcde01b7a6c483ae](../../data/official/delegated-n01-kga200-210-230-2025.txt) | 16. 감사인은 최종감사파일의 취합이 완료된 후에 문단 13 외의 상황으로 인하여 기존 감사문 서를 수정하거나 새로운 감사문서를 추가할 필요성을 발견한 경우, 감사문서의 수정 또는 추가의 성격과 관계없이 다음 사항을 문서화하여야 한다. (문단 A24 참조) (a) 감사문서를 수정하거나 추가하는 구체적 이유 (b) 감사문서를 수정, 추가하고 이를 검토한 사람과 그 시기 |
+
+## 출처 파일·위치
+
+| source | 직접 출처 | page | 인용 SHA-256 |
+|---|---|---|---|
+| src-4ffcde01b7a6c483ae | [KGA 230: 감사문서](../../data/official/delegated-n01-kga200-210-230-2025.txt) | KGA 230 | 0aa28d01eb36f4d8d3fe21b42afe861001b3aa4dc68339971de8bb1b6e01dd59 |
+| src-b54be20acba919f30f | [KGA 230: 감사문서](../../data/official/delegated-n01-kga230-supplement-2025.txt) | KGA 230 | 3ea6ff2bc2f0ebe14614959e53c0aa2e50ea21ac413a5489cd893d103a0e5253 |
+
+## 판본·검수 메모
+
+- 계획 ID: T04-B; 수동 제작, 총괄 배정 ID 사용.
+- 사례·발문·답안을 수동으로 재구성하였다. 등록된 source ID와 공식 파일을 사용하며 인용은 해당 카탈로그 문단 전체 또는 정확한 연속 부분이다. 수동 인용·의존 문맥·판본 대조는 manual-source-evidence.md에 기록한다.
+- 2027년 CPA 시험 대비이며 사례는 2026-01-01 개시 보고기간이다. KICPA 2025년11월 전문의 2026 시행 요구를 사용하고 2026년7월 전문의 해당 본문·하위항목·적용자료와 대조했다. 2026 전문의 연계 품질관리 문구는 개정220의 미래 시행과 구별한다. 직접 채점 명제는 두 전문에서 유지됨을 확인했으며, 210.10은 공식 양 판본 모두 (a)~(f)의 여섯 항목이다. 금융위원회 공고가 개별 판본을 지정했다는 주장은 하지 않는다.
+- 수동 저작 version 1 계획을 sidecar로 유지한다. 자동 생성 packet을 사용하거나 완전하다고 선언하지 않는다. 실패한 예비 packet 실행은 문항 파일을 생성하지 않았다.
+- source_refs에는 직접 requirement 근거 외에 명시적인 주변 문맥도 포함하여 모델 검수 입력에 전달한다. 요구사항·criterion으로 연결하지 않은 주변 문단은 숨은 배점 요건이 아니다.
+- 초안 준비 단계. 형상·인용 검사는 의미검수·실제 모델 채점·사람 승인과 별개이다.
+- 2026-09-11 사용자 확정: 사례 사실과의 연계가 필요한 물음은 사례형, 기준서만으로 답할 수 있는 물음은 기준서형. 기준서형은 사례 지문 없이 독립 발문으로 구성한다. 학습 묶음은 유형별로 분리한다. 정답·criterion·출처·ID·배점은 유지하며 모델 검증 완료로 승계하지 않는다.
+- 2026-09-13 사례형 전수 검토 후속본: 사실 활용·요구 범위 수정. 최종 검수·게시 여부는 새 실행 장부로 확인.
+- 2026-09-13 사례 보강에 따른 독립 기준서형 저장 분리. 기존 학습 발문·답안·기준·정수 배점과 공식 인용을 보존. 과거 source_set_id와 새 ID의 대응은 case-expansion-2026-09-13/standard-lineage.json 참조.
+
+2027 시험 적용 여부는 아래 판본 기록과 공식 시험 공고 확인 상태를 따른다. 게시 상태 또는 이 색인의 생성 상태로 대신 확정하지 않는다.
+
+## Related
+
+- [[source-review-map]]
+- [[requirement-coverage]]

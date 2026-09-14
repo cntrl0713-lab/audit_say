@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "status": "ready_for_root_local_prepare_not_applied",
+  "recorded_at": "2026-09-14T06:59:09.061Z",
+  "files": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/append-contract.mjs",
+      "sha256": "fcded3de3912f96228d6b24ee438f3a5e48336fa62038783bb7225b4ed17ed30"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs",
+      "sha256": "b6b472b1cb9d4f542e31e8830948890e05be1439f85b7a267872d1c72b3efa2a"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/README.md",
+      "sha256": "359a95c7a9a0f80fd393abe835f4460bbb07cff17f0a8eb548757f95db0299a5"
+    }
+  ],
+  "source_provenance": {
+    "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/source-provenance.json",
+    "sha256": "eef42f334d7d79243975c44a799808b5b1e6c258f76f60a633a25aeb791b43cd"
+  },
+  "runtime_validation": {
+    "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/runtime-validation.json",
+    "sha256": "1fcd031f78237865c817f54bd6aab525dab230208efe36696258c0813fa91e84"
+  },
+  "local_reconstruction": {
+    "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/local-reconstruction-validation.json",
+    "sha256": "6cfc34983464d423c1b0cf5b5d987f1305f5a79aef575c55114771fa6007034e"
+  },
+  "transaction_test_review": {
+    "file": "cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/tests/append-contract-review-v2.json",
+    "sha256": "91481c49f4fb8bea995ee129c631f4e088758834c59bc0089448adc70ade7a4d"
+  },
+  "construction": [
+    "Reuse existing payload compilation, catalog construction, public roundtrip and independent full verifier contracts from the repository.",
+    "Reuse the reviewed Management SQL service_role/transaction-local 120-second timeout and write-once response-before-readback pattern.",
+    "Replace full-source transport with exact appended six-case source fragment; read the guarded active baseline source within the same advisory transaction lock.",
+    "Add pre-COMMIT preservation checks for prior version IDs/positions, complete target IDs/positions, prior classification versions and topics.",
+    "Keep original post-concurrent deploy and common code unchanged; write the same db-publication-v2 receipt/readiness/verification/completion contract."
+  ],
+  "root_prepare_command": "node --import tsx cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs --prepare --expected-active-release-id 291abae8-15e8-4f88-aff0-e755cd7c1b1f",
+  "root_apply_command": "node --env-file=.env.local --import tsx cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/driver.mjs --apply --expected-preparation-sha256 PREPARATION_SHA256",
+  "limits": [
+    "No operating database or API call has been performed by this helper preparation.",
+    "The local proof does not confirm live active state or transport acceptance; apply checks these against the root-reviewed preparation.",
+    "If the import response is absent after an uncertain outcome, this helper refuses automatic retry and needs a separately reviewed read-only investigation."
+  ],
+  "api_calls": 0,
+  "db_writes": 0,
+  "canonical_writes": 0,
+  "model_api_calls": 0
+}
