@@ -21,7 +21,7 @@
 
 ## 게시와 운영 반영
 
-사용자 지시(2026-09-15): “불필요한 파일은 아카이브에 넣고 지적했던 문제들 대체해서 운영Db적용해줘”, 이어서 “불필요한 파일 정리후 커밋 푸시”. 승인 기록은 [publication/authorization.md](publication/authorization.md), 퇴역·추가 계획은 [plan.json](publication/plan.json)이다. 원 8세트(`case-14-component-evidence-gap-20260914`·`pilot-14-006`·`pilot-14-007`·`case-16-other-information-cause-20260914`·`pilot-16-011`·`case-13-type2-period-exceptions-20260914`·`pilot-13-011`·`pilot-09-010`)를 빼고 새 4세트를 은행 끝에 붙였다.
+사용자 지시(2026-09-15): “불필요한 파일은 아카이브에 넣고 지적했던 문제들 대체해서 운영Db적용해줘”, 이어서 “불필요한 파일 정리후 커밋 푸시”, 2026-09-16 “운영DB 대체해줘”. 승인 기록은 [publication/authorization.md](publication/authorization.md), 퇴역·추가 계획은 [plan.json](publication/plan.json)이다. 원 8세트(`case-14-component-evidence-gap-20260914`·`pilot-14-006`·`pilot-14-007`·`case-16-other-information-cause-20260914`·`pilot-16-011`·`case-13-type2-period-exceptions-20260914`·`pilot-13-011`·`pilot-09-010`)를 빼고 새 4세트를 은행 끝에 붙였다.
 
 | 단계 | 결과 | 기록 |
 | --- | --- | --- |
@@ -31,11 +31,13 @@
 | coverage | 퇴역 세트를 가리키던 은행 대상 관계 3건을 대체 물음으로 다시 연결(partial·adjacent·direct 유지 판단 기록). 초안 대상 관계 14건은 보존된 초안을 가리키므로 유지 | [coverage-update.json](publication/coverage-update.json), [관계 검토](publication/coverage-retarget-review.json) |
 | wiki | 퇴역 세트 생성 페이지 8개를 원 바이트로 보존한 뒤 제거하고 새 4페이지를 생성 | [wiki-retirement](publication/wiki-retirement/manifest.json) |
 | 사본 정리 | 대체된 판본의 후보 은행·분류·카탈로그 사본, 게시 stage·baseline·후보 사본 29개(약 90MB)를 저장소 밖으로 이동. 삭제하지 않음 | [copy-archive-2026-09-15.json](../copy-archive-2026-09-15.json) |
-| 운영 DB | **대기.** 사례형 퇴역 허용 마이그레이션 → 퇴역·추가 import 준비 → read-only probe → apply와 독립 검증 | [마이그레이션 준비](publication/db-migration/preparation.json), [import 도구](publication/db-import/driver.mjs) |
+| 운영 DB 마이그레이션 | 2026-09-16 07:14(KST) `cpa_assert_reviewed_question_retirements(jsonb)` 한 함수만 교체(정의 해시 `bdb7dad4…` → `64a2f3b0…`). 권한·다른 6개 함수·active release 불변 | [완료](publication/db-migration/completion.json), [before](publication/db-migration/before.json)·[after](publication/db-migration/after.json) |
+| 운영 DB 반영 | read-only probe 통과(payload `5e83d0ff…`) 뒤 apply 1회(service_role, 23초). 새 active release `906ca962-49f3-4155-8c9d-1b3014e6edda`. 왕복 검증: 원문 바이트·공개 payload·분류 551행·주제·학습 단위 441개 일치, 남은 367세트의 판본·분류 불변, 원 8세트 비활성, 새 4세트는 새 판본, 함수·권한·DB 설정 불변. 독립 검증(read-only 375요청, 쓰기 0) 통과 | [완료](publication/db-import/publication-v1/completion.json), [왕복](publication/db-import/publication-v1/roundtrip.json), [독립 검증](publication/db-import/publication-v1/verification.json), [준비](publication/db-import/preparation-v1/preparation.json) |
+| DB 사본 정리 | 반영이 끝난 뒤 DB 전송 payload·guarded/probe SQL과 마이그레이션 SQL 사본 5개(약 1.3MB)를 저장소 밖으로 이동 | [copy-archive-2026-09-15-db.json](../copy-archive-2026-09-15-db.json) |
 
-운영 DB 명령은 사용자가 직접 실행한다. 순서는 ① `db-migration/driver.mjs --apply --expected-preparation-sha256 59782acbead94e77bba3ed7719fa5ef54d1a64ac187befb5ca14d1edd631a339`(`cpa_assert_reviewed_question_retirements` 한 함수만 교체), ② agent가 `db-import/driver.mjs --prepare`(네트워크 없음)로 준비 SHA를 만든다, ③ `--probe` 후 `--apply --expected-preparation-sha256 <SHA>`, ④ 완료 뒤 `archive.mjs --apply-db`로 DB 전송 사본을 옮긴다. 모두 `node --env-file=.env.local --import tsx cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/…`로 실행한다.
+운영 DB 명령은 사용자가 직접 실행했다. ① `db-migration/driver.mjs --apply --expected-preparation-sha256 59782acb…`, ② agent가 `db-import/driver.mjs --prepare`(네트워크 없음)로 준비 기록(`852234ba…`)을 만들고 SQL의 함수 해시·기대 release·payload 해시·사후 검사를 대조했다, ③ 사용자가 `--probe`와 `--apply --expected-preparation-sha256 852234ba…`를 실행했다(모두 `node --env-file=.env.local --import tsx …`). apply는 재시도 없이 한 번 실행했다.
 
-import 도구는 옮긴 stage·baseline 사본을 읽지 않는다. 최종 원문은 설치 기록으로 검증된 stage와 같은 바이트임을 확인한 정본에서, 기준 원문은 반영 전 커밋 `76e8da75`의 정본에서 기록한 SHA-256을 대조해 읽는다. 사본을 옮긴 뒤 로컬 PGlite 복원 시험의 payload 해시(`8a9fbc73…`)와 최종 원문 해시(`18082e54…`)가 옮기기 전과 같았다. 앱은 `CPA_LEARNING_DB_ENABLED=true`일 때 문항·채점 판본을 DB에서 읽고 파일 정본은 DB를 끈 경우에만 쓰므로, DB 반영 전까지 학습 DB를 쓰는 앱은 기존 release(375세트)를 제공한다.
+import 도구는 옮긴 stage·baseline 사본을 읽지 않는다. 최종 원문은 설치 기록으로 검증된 stage와 같은 바이트임을 확인한 정본에서, 기준 원문은 반영 전 커밋 `76e8da75`의 정본에서 기록한 SHA-256을 대조해 읽는다. 사본을 옮긴 뒤 자리표시 manifest로 한 로컬 PGlite 복원 시험의 payload 해시(`8a9fbc73…`)와 최종 원문 해시(`18082e54…`)가 옮기기 전과 같았고, 실제 준비는 퇴역 manifest를 넣어 payload `5e83d0ff…`가 되었다. 앱은 `CPA_LEARNING_DB_ENABLED=true`일 때 문항·채점 판본을 DB에서 읽으므로 이 반영 뒤 새 release(371세트)를 제공한다. 퇴역한 원 세트의 과거 판본·풀이 기록은 DB에 보존된다.
 
 ## r04 입력과 실행
 

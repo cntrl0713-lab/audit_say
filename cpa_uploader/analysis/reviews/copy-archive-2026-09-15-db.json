@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "created_at": "2026-09-15T22:27:05.967Z",
+  "action": "moved_out_of_repository_not_deleted",
+  "archive_location": "C:/Users/cntrl/Workspace/study/audit_say-archive/case-review-2026-09-15 (같은 상대 경로. 로컬 전용, 저장소에 없음)",
+  "authorization": "2026-09-15 사용자 지시: 불필요한 파일은 아카이브에 넣고 운영DB 적용. cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/authorization.md",
+  "criteria": {
+    "kept": "운영 DB 반영 완료·왕복·독립 검증 기록, 퇴역 manifest, 로컬 복원 증명, 준비 기록, 마이그레이션 before/after·완료 기록은 남겼다.",
+    "moved": "DB 전송 payload(replace-pack)·guarded/probe SQL, 마이그레이션 SQL 사본."
+  },
+  "recovery": "적용한 SQL과 payload는 준비 기록의 SHA-256으로 확인한다. 최종 원문은 운영 DB의 active release source_document와 정본 은행에 있다. 옮긴 파일이 필요하면 보관 폴더에서 같은 경로로 되돌리고 아래 SHA-256으로 확인한다.",
+  "effect": "옮긴 파일을 가리키는 DB 준비·반영 기록은 보관 폴더 없이는 파일 해시를 다시 확인할 수 없다. 운영 DB·정본 검증·앱에는 영향이 없다.",
+  "moved_files": 5,
+  "bytes": 1303572,
+  "protected_files_checked": 212,
+  "removed_empty_dirs": [],
+  "rows": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-import/preparation-v1/guarded-import.sql",
+      "size": 416510,
+      "sha256": "9829a3bf40204c891ddd48bf3798d10f2d1ad211fdce87f9b74d22ad232cc171",
+      "category": "db_payload_or_sql_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-import/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-import/publication-v1/apply-started.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-import/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-import/preparation-v1/probe.sql",
+      "size": 412019,
+      "sha256": "b5f290a4269e338ae39cf1b4694ea36b36c891e25b046069282667a15d9c3440",
+      "category": "db_payload_or_sql_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-import/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-import/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-import/preparation-v1/replace-pack.json",
+      "size": 462617,
+      "sha256": "952ce683b2b11a26f9b803b791be2ca5cd645595e572b71012e9815729a4b759",
+      "category": "db_payload_or_sql_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-import/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-import/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-migration/guarded-migration.sql",
+      "size": 7409,
+      "sha256": "1bac6d60c5b0f3bdf10423d9a0619d94a8a437fefedd9e2880f931de1d568358",
+      "category": "db_payload_or_sql_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-migration/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-migration/migration.sql",
+      "size": 5017,
+      "sha256": "b30c6dbf47058bd11df28f1fc194c0a71b34b4179cc942de892409044912bbda",
+      "category": "db_payload_or_sql_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-migration/preparation.json"
+      ]
+    }
+  ]
+}
