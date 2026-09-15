@@ -14,6 +14,7 @@
 
 | 작업 | 데이터와 근거 | 사람이 읽는 보고서 |
 | --- | --- | --- |
+| 사용자 지정 사례형 검토·수정(r01: 55·18·19 병합 v3, r02: 60·21 기타정보 종합, r03: 59·30 급여 서비스조직 병합, r04: 29 초도감사 재구성). 원 8세트를 퇴역하고 새 4세트를 정본에 게시(371세트), 운영 DB 반영은 사용자 실행 대기 | [case-review-2026-09-15](case-review-2026-09-15/README.md) | [r01 v3 문제지](../../drafts/case-review-2026-09-15/r01-group-audit-merge/v3/questions-and-answers.md), [r02 문제지](../../drafts/case-review-2026-09-15/r02-other-information-merge/questions-and-answers.md), [r03 v2 문제지](../../drafts/case-review-2026-09-15/r03-payroll-service-merge/v2/questions-and-answers.md), [r04 v2 문제지](../../drafts/case-review-2026-09-15/r04-initial-audit/v2/questions-and-answers.md) |
 | 기출·고급연습 참고 추가 사례3개·9물음 | [case-trio-next-2026-09-14](case-trio-next-2026-09-14/README.md) | [제작·검증 결과](../../../docs/reports/case-trio-next-2026-09-14.md) |
 | 사례형 3개·9물음 추가 제작·운영 반영 | [case-trio-2026-09-14](case-trio-2026-09-14/README.md) | [제작·검증 결과](../../../docs/reports/case-trio-2026-09-14.md) |
 | 신규 기준서형 53물음(현재 78물음) 전수 검증과 F1–F3·KGA 약칭 21개·경계 사례 B1·B2·관찰 O1–O6 수정·운영 반영 | [standard-new-verification-2026-09-14](standard-new-verification-2026-09-14/README.md) | 같은 폴더 README, [수정 기록](standard-new-verification-2026-09-14/fix-v1/README.md), [v2](standard-new-verification-2026-09-14/fix-v2/README.md), [v3](standard-new-verification-2026-09-14/fix-v3/README.md), [v4](standard-new-verification-2026-09-14/fix-v4/README.md) |
@@ -36,6 +37,10 @@
 
 - `validate_cpa_v3`가 승급 장부의 검수 기록을 따라 직접 읽는 파일은 모두 남겼다. README·스크립트·로그·검토 장부·완료 기록과 테스트 고정 입력도 남겼다. 현재 정본 검증과 앱에는 영향이 없다.
 - 옮긴 파일을 가리키는 게시·DB 반영 기록(`baseline.json`, `stage-completion.json`, `preparation.json` 등)은 보관 폴더 없이는 파일 해시를 다시 확인할 수 없다. 게시된 은행 원문은 운영 DB의 릴리스 이력에 남아 있고, 승급 장부의 과거 상태는 현재 장부의 앞부분이다.
+
+## 2026-09-15 사례형 지정 검토 사본 정리
+
+[case-review-2026-09-15](case-review-2026-09-15/README.md)의 사본 29개(약 90MB)를 같은 기준으로 저장소 밖 보관 폴더로 옮겼다. 대체된 판본 실행(r01 v1~v3, r02 v1, r03 v1, r04 v1)의 후보 은행·분류·카탈로그 사본과 게시 stage·baseline·후보 사본, coverage 반영 전 사본이 대상이며, 목록·SHA-256·이유는 [copy-archive-2026-09-15.json](copy-archive-2026-09-15.json)에 있다. 게시 근거 실행(r01 v4, r02·r03·r04 v2)이 읽는 은행·분류 사본과 DB 준비 보고서는 남겼다. 남은 운영 DB 반영 도구는 옮긴 사본 대신 설치된 정본과 반영 전 커밋의 정본을 해시 대조해 읽는다. DB 반영 뒤의 전송 payload·SQL 사본은 반영이 끝난 다음 별도 기록으로 옮긴다.
 
 기존 자료를 옮길 때에는 이전/현재 경로와 SHA-256을 이전 장부에 남긴다. 문서 링크와 실제 코드의 입력 경로를 갱신하되, 과거 실행 JSON 안에 기록된 당시 경로는 보존한다.
 

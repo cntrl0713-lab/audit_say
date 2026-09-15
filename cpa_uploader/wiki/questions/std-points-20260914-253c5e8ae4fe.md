@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-253c5e8ae4fe. 재무제표 발행 후 알게 된 사실 때문에 감사인은 재무제표의 수정이 필요하다고 판단하였다. 그런데 경영진이 재무제표를 수정하지 않고, 종전 재무제표 수령자에게 상황을 확실히 알리기 위한 필요한 조치도 취하지 않는 경우, 감사보고서에 대한 차후 의존을 방지하기 위해 감사인이 취할 조치를 순서에 따라 설명하시오. 최초 통보의 상대방과 그 통보 후에도 필요한 조치가 없는 경우를 포함하시오."
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[completion-subsequent-events-going-concern]] · [[topic-12-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/321`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/313`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [12.json](../../analysis/reviews/question-review-2027/12.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/321/subquestions/0`
+유형: descriptive · JSON Pointer `/313/subquestions/0`
 
 ### 발문
 

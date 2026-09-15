@@ -1,0 +1,367 @@
+{
+  "version": 1,
+  "artifact_type": "supplementary_grading_observation",
+  "transport": "model",
+  "model": "gpt-5.6-luna",
+  "case_id": "r03-supp-reason-or-procedure",
+  "purpose": "번호 없이 이유로 특정한 답과 보완절차만 간략히 쓴 답의 만점 확인",
+  "projected_body_hash": "eee420e4df93082cebe1b2b1d683c5a6479b2fbec982432cefaf06fe7c8ce105",
+  "answers": {
+    "sub1": "다온을 검토대상에서 제외한 처리는 잘못이다. 그 변환업무가 온유회사의 급여 산정과 관련되기 때문이다. 온유회사 통제가 당기 내내 효과적이었다는 결론도 잘못이다. 검토규정과 새롬의 보고서만으로 온유회사 통제의 실제 운영을 입증하지 못하기 때문이다.",
+    "sub2": "⑤, ⑥, ⑧이 옳지 않다. ⑤ 10~12월에 관한 추가 증거를 입수해야 한다. ⑥ 변경된 승인통제를 고려해 필요한 증거의 범위를 정해야 한다. ⑧ 온유회사 급여 승인통제에 대한 예외의 영향을 평가해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "met",
+          "reason": "내용으로 ②·④만 특정."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "met",
+          "reason": "관련성 이유."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "met",
+          "reason": "증거 대체 불가 이유."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 4,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "met",
+          "reason": "⑤·⑥·⑧ 정확히 식별."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "met",
+          "reason": "잔여기간 증거 절차."
+        },
+        {
+          "criterion_id": "sub2.c3",
+          "verdict": "met",
+          "reason": "변경 고려 절차."
+        },
+        {
+          "criterion_id": "sub2.c4",
+          "verdict": "met",
+          "reason": "예외 영향 평가 절차."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "7c954833381e922548911d72b4d0922c97a02e4faad3f9e2da4b2046705c99b0",
+  "schema_hash": "bddfaa410eec72e3c80d29f113323b27650f89029265cd4072823e529311a48f",
+  "actual_sdk_calls": 1,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "다온을 검토대상에서 제외한 처리는 잘못이다. 그 변환업무가 온유회사의 급여 산정과 관련되기 때문이다. 온유회사 통제가 당기 내내 효과적이었다는 결론도 잘못이다. 검토규정과 새롬의 보고서만으로 온유회사 통제의 실제 운영을 입증하지 못하기 때문이다.",
+            "reason": "다온 제외와 당기 내내 효과적이라는 결론을 잘못된 처리로 식별하여 ②와 ④를 모두 특정했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "met",
+            "quote": "다온을 검토대상에서 제외한 처리는 잘못이다. 그 변환업무가 온유회사의 급여 산정과 관련되기 때문이다. ",
+            "reason": "다온의 변환업무가 급여 산정과 관련되므로 제외가 잘못되었다고 설명했다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "met",
+            "quote": "온유회사 통제가 당기 내내 효과적이었다는 결론도 잘못이다. 검토규정과 새롬의 보고서만으로 온유회사 통제의 실제 운영을 입증하지 못하기 때문이다.",
+            "reason": "규정과 새롬의 보고서만으로 온유회사 통제의 실제 운영을 입증할 수 없다고 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "⑤, ⑥, ⑧이 옳지 않다. ⑤ 10~12월에 관한 추가 증거를 입수해야 한다. ⑥ 변경된 승인통제를 고려해 필요한 증거의 범위를 정해야 한다. ⑧ 온유회사 급여 승인통제에 대한 예외의 영향을 평가해야 한다.",
+            "reason": "옳지 않은 사항으로 ⑤, ⑥, ⑧만 모두 식별했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "met",
+            "quote": "⑤ 10~12월에 관한 추가 증거를 입수해야 한다. ",
+            "reason": "10~12월 통제 운영에 관한 추가 증거를 입수해야 한다고 제시했다."
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "met",
+            "quote": "⑥ 변경된 승인통제를 고려해 필요한 증거의 범위를 정해야 한다. ",
+            "reason": "변경된 승인통제를 고려하여 필요한 증거의 범위를 정해야 한다고 제시했다."
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "met",
+            "quote": "⑧ 온유회사 급여 승인통제에 대한 예외의 영향을 평가해야 한다.",
+            "reason": "온유회사 급여 승인통제의 예외가 미치는 영향을 평가해야 한다고 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "다온 제외와 당기 내내 효과적이라는 결론을 잘못된 처리로 식별하여 ②와 ④를 모두 특정했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1",
+                  "sub1/e2"
+                ],
+                "reason": "다온의 변환업무가 급여 산정과 관련되므로 제외가 잘못되었다고 설명했다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3",
+                  "sub1/e4"
+                ],
+                "reason": "규정과 새롬의 보고서만으로 온유회사 통제의 실제 운영을 입증할 수 없다고 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "옳지 않은 사항으로 ⑤, ⑥, ⑧만 모두 식별했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "10~12월 통제 운영에 관한 추가 증거를 입수해야 한다고 제시했다."
+              },
+              {
+                "criterion_id": "sub2.c3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e3"
+                ],
+                "reason": "변경된 승인통제를 고려하여 필요한 증거의 범위를 정해야 한다고 제시했다."
+              },
+              {
+                "criterion_id": "sub2.c4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e4"
+                ],
+                "reason": "온유회사 급여 승인통제의 예외가 미치는 영향을 평가해야 한다고 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-13-payroll-service-20260915",
+    "score": 7,
+    "max_points": 7,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사팀의 처리 ①~④ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "다온을 검토대상에서 제외한 처리는 잘못이다. 그 변환업무가 온유회사의 급여 산정과 관련되기 때문이다. 온유회사 통제가 당기 내내 효과적이었다는 결론도 잘못이다. 검토규정과 새롬의 보고서만으로 온유회사 통제의 실제 운영을 입증하지 못하기 때문이다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "다온을 검토대상에서 제외한 처리는 잘못이다. 그 변환업무가 온유회사의 급여 산정과 관련되기 때문이다. 온유회사 통제가 당기 내내 효과적이었다는 결론도 잘못이다. 검토규정과 새롬의 보고서만으로 온유회사 통제의 실제 운영을 입증하지 못하기 때문이다.",
+            "reason": "다온 제외와 당기 내내 효과적이라는 결론을 잘못된 처리로 식별하여 ②와 ④를 모두 특정했다.",
+            "claim": "옳지 않은 것으로 ②·④만 모두 식별한다. 번호 대신 내용을 특정하거나 이유·보완절차에서 해당 항목의 부적절성이 분명히 드러나도 인정한다. 어느 하나를 빠뜨리거나 옳은 ①·③을 옳지 않다고 고르면 이 식별 점수는 주지 않는다. 번호만 정확히 쓴 답은 이 식별 점수만 받는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "met",
+            "quote": "다온을 검토대상에서 제외한 처리는 잘못이다. 그 변환업무가 온유회사의 급여 산정과 관련되기 때문이다.",
+            "reason": "다온의 변환업무가 급여 산정과 관련되므로 제외가 잘못되었다고 설명했다.",
+            "claim": "② 다온의 코드 변환은 온유회사의 급여 감사와 관련되므로 보고서에서 제외되어도 감사 검토에서 제외할 수 없다는 이유, 또는 해당 하위서비스에 감사기준서 402를 적용하여 검토해야 한다는 절차를 제시한다. 한 가지만 핵심 원칙 수준으로 쓰면 인정하고 구체적 검사방법이나 기준서 번호 암기는 요구하지 않는다. 제외가 적절하다고 명시하면 이 항목은 인정하지 않는다. 다른 항목의 오선택은 이 독립 점수에 영향을 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "met",
+            "quote": "온유회사 통제가 당기 내내 효과적이었다는 결론도 잘못이다. 검토규정과 새롬의 보고서만으로 온유회사 통제의 실제 운영을 입증하지 못하기 때문이다.",
+            "reason": "규정과 새롬의 보고서만으로 온유회사 통제의 실제 운영을 입증할 수 없다고 설명했다.",
+            "claim": "④ 온유회사의 검토규정과 새롬의 보고서만으로 온유회사 통제의 실제 운영효과성을 입증할 수 없다는 이유, 또는 온유회사의 해당 통제에 대한 운영효과성을 테스트해야 한다는 절차를 제시한다. 이유 또는 절차 한 가지만 핵심 원칙 수준으로 쓰면 인정하고, 실행 이해·테스트를 모두 열거하거나 후임자별·월별 구체적 검사방법을 쓰도록 요구하지 않는다. 규정의 존재나 새롬의 보고서가 온유회사 통제의 실제 운영효과성을 대신 입증한다고 하면 인정하지 않는다. 다른 항목의 오선택은 이 독립 점수에 영향을 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ②와 ④이다.",
+          "② 다온의 코드 변환업무는 온유회사의 급여액 산정에 영향을 주므로, 새롬의 보고범위에서 제외되어 있어도 해당 서비스에 감사기준서 402의 요구사항을 적용하여야 한다.",
+          "④ 검토규정과 새롬의 보고서만으로 온유회사 통제의 실제 운영효과성을 입증할 수 없다. 온유회사에서 해당 통제가 실제 실행되었는지 이해하고 운영효과성을 테스트하여야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "검토조서의 기재사항 ⑤~⑧ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "⑤, ⑥, ⑧이 옳지 않다. ⑤ 10~12월에 관한 추가 증거를 입수해야 한다. ⑥ 변경된 승인통제를 고려해 필요한 증거의 범위를 정해야 한다. ⑧ 온유회사 급여 승인통제에 대한 예외의 영향을 평가해야 한다.",
+        "score": 4,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "⑤, ⑥, ⑧이 옳지 않다. ⑤ 10~12월에 관한 추가 증거를 입수해야 한다. ⑥ 변경된 승인통제를 고려해 필요한 증거의 범위를 정해야 한다. ⑧ 온유회사 급여 승인통제에 대한 예외의 영향을 평가해야 한다.",
+            "reason": "옳지 않은 사항으로 ⑤, ⑥, ⑧만 모두 식별했다.",
+            "claim": "옳지 않은 것으로 ⑤·⑥·⑧만 모두 식별한다. 번호 대신 내용을 특정하거나 이유·보완절차에서 해당 항목의 부적절성이 분명히 드러나도 인정한다. 어느 하나를 빠뜨리거나 옳은 ⑦을 옳지 않다고 고르면 이 식별 점수는 주지 않는다. 번호만 정확히 쓴 답은 이 식별 점수만 받는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "met",
+            "quote": "⑤ 10~12월에 관한 추가 증거를 입수해야 한다.",
+            "reason": "10~12월 통제 운영에 관한 추가 증거를 입수해야 한다고 제시했다.",
+            "claim": "⑤ 보고서와 테스트가 1~9월에 한정되어 10~12월을 다루지 못한다는 이유, 또는 10~12월의 통제 운영에 필요한 추가 증거를 입수해야 한다는 절차를 제시한다. 이유 또는 절차 한 가지만 쓰면 인정한다. 특정 증거입수방법은 요구하지 않는다. 현재 보고서가 연간 운영효과성을 그대로 입증한다고 하면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "met",
+            "quote": "⑥ 변경된 승인통제를 고려해 필요한 증거의 범위를 정해야 한다.",
+            "reason": "변경된 승인통제를 고려하여 필요한 증거의 범위를 정해야 한다고 제시했다.",
+            "claim": "⑥ 담당자가 같아도 시스템·승인절차 변경이 통제에 영향을 줄 수 있다는 이유, 또는 해당 변경을 고려하여 잔여기간 통제에 필요한 추가 증거를 결정해야 한다는 절차를 제시한다. 이유 또는 절차 중 한 가지만 핵심 원칙 수준으로 쓰면 인정한다. 변경 후 통제를 테스트해야 한다는 보완절차도 인정하되 구체적인 테스트방법·자료·변경요소 전부의 나열은 요구하지 않는다. 기간 부족만 언급하고 변경과 연결하지 않은 답이나 인원이 같아 변경을 무시할 수 있다는 답은 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "met",
+            "quote": "⑧ 온유회사 급여 승인통제에 대한 예외의 영향을 평가해야 한다.",
+            "reason": "온유회사 급여 승인통제의 예외가 미치는 영향을 평가해야 한다고 제시했다.",
+            "claim": "⑧ 예외가 있다는 이유만으로 유형 2 보고서 전체가 위험평가에 도움이 되지 않는 것은 아니라는 이유, 또는 온유회사의 급여 승인통제와 관련하여 예외가 테스트 결과와 증거의 충분성·적합성에 미치는 영향을 평가해야 한다는 절차를 제시한다. 이유 또는 절차 중 한 가지만 핵심 원칙 수준으로 쓰면 인정한다. 예외를 무시하고 무조건 의존하거나 예외만으로 보고서 전체를 자동 배제한다는 답은 인정하지 않는다. 다른 항목의 오선택은 이 독립 점수에 영향을 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ⑤, ⑥, ⑧이다.",
+          "⑤ 보고서와 테스트의 대상은 1~9월이므로 그 보고서만으로 10~12월의 통제 운영까지 입증할 수 없다.",
+          "⑥ 담당자가 같아도 시스템과 승인절차의 변경은 테스트된 통제에 영향을 줄 수 있으므로, 변경내용을 고려하여 잔여기간에 필요한 추가 증거를 결정하여야 한다.",
+          "⑧ 예외가 있다는 이유만으로 보고서 전체의 유용성을 자동으로 부정할 수 없다. 온유회사의 급여 승인통제에 대한 예외의 영향을 평가하여 보고서가 제공하는 증거의 충분성과 적합성을 판단하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 4,
+      "actual_points": 4,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0287335ce7dd7b91016aa8a9890dc487d08af0069b1c9f881f",
+        "request_id": "req_9bdd9433b2944e1c802316210351ee0c",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 6559,
+          "input_tokens_details": {
+            "cache_write_tokens": 6556,
+            "cached_tokens": 0
+          },
+          "output_tokens": 526,
+          "output_tokens_details": {
+            "reasoning_tokens": 70
+          },
+          "total_tokens": 7085
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0022708,
+        "min_usd": 0.0022708,
+        "max_usd": 0.0022708,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ]
+}

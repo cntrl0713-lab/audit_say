@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "project": "xvifzicrjmbfqaepcfpp",
+  "prepared_at": "2026-09-15T07:38:13.141Z",
+  "migration": {
+    "file": "supabase/migrations/20260915090000_cpa_reviewed_case_question_retirements.sql",
+    "sha256": "b30c6dbf47058bd11df28f1fc194c0a71b34b4179cc942de892409044912bbda"
+  },
+  "snapshot": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-migration/migration.sql",
+    "sha256": "b30c6dbf47058bd11df28f1fc194c0a71b34b4179cc942de892409044912bbda"
+  },
+  "guarded_sql": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-migration/guarded-migration.sql",
+    "sha256": "1bac6d60c5b0f3bdf10423d9a0619d94a8a437fefedd9e2880f931de1d568358"
+  },
+  "expected": {
+    "active": {
+      "release_id": "a80b2a14-7ed3-4642-ba1c-346ac0aa8d6b",
+      "source_file_hash": "e325ff1e5258e9aaae323f48c5ffb69d5234937194ae2a532f253237f08b2ee7"
+    },
+    "functions": [
+      {
+        "signature": "cpa_assert_reviewed_question_retirements(jsonb)",
+        "definition_sha256": "bdb7dad45e114ffd5c1fce7c7e8b6e6452e499e7b02477ce6df20791397ba7bb",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false,
+        "public_execute": false,
+        "authenticated_execute": false,
+        "service_execute": true
+      },
+      {
+        "signature": "cpa_get_question_version(uuid)",
+        "definition_sha256": "b0ac20592fa6603420a4c9fc129b7af4a15ae2f94a44bf0ab3be2925fa80b2f4",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false,
+        "public_execute": false,
+        "authenticated_execute": false,
+        "service_execute": true
+      },
+      {
+        "signature": "cpa_get_question_version_with_source_metadata(uuid)",
+        "definition_sha256": "74697d51accd5f6e9c8cd03e9b0d2ffbd2e3df5467c24e6d1565104ba47e9401",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false,
+        "public_execute": false,
+        "authenticated_execute": false,
+        "service_execute": true
+      },
+      {
+        "signature": "cpa_import_learning_question_bank(jsonb)",
+        "definition_sha256": "00ea299c46a0d4c4fd7e8e28f60e3de1dd2c9c5e3341bd2f5187286d73739983",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false,
+        "public_execute": false,
+        "authenticated_execute": false,
+        "service_execute": true
+      },
+      {
+        "signature": "cpa_import_learning_question_bank_with_retirements(jsonb)",
+        "definition_sha256": "c79b43b6be43070c4b392c22aa4c8a6164350f898b3fef7e4c22a22075741445",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false,
+        "public_execute": false,
+        "authenticated_execute": false,
+        "service_execute": true
+      },
+      {
+        "signature": "cpa_import_question_bank(jsonb)",
+        "definition_sha256": "a95ae21fe483c2eb3eac9ec8198803028a8e206c468ce50850472bb8e54a6b42",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false,
+        "public_execute": false,
+        "authenticated_execute": false,
+        "service_execute": true
+      },
+      {
+        "signature": "cpa_import_question_bank_with_retirements(jsonb)",
+        "definition_sha256": "a80ecdea245f0b78ac9fc08d4361391f3abad54b8ca416277866dd204784dda5",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false,
+        "public_execute": false,
+        "authenticated_execute": false,
+        "service_execute": true
+      }
+    ]
+  },
+  "expected_sources": [
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/db-retirement-migration-v1/after.json",
+      "sha256": "bc40c07fe23a52a654dcb75600f1e5fdb6aff5ca8530d7f9262bcc7b56fb3d72"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/db-publication-v1/completion.json",
+      "sha256": "54fe014182a6cc7ff26ee5ddc08f44cff9c7154a58482dce2ef0aed45565297b"
+    }
+  ],
+  "changed_function": "cpa_assert_reviewed_question_retirements(jsonb)",
+  "local_proof": {
+    "test": "tests/cpaCaseQuestionRetirementsDatabase.test.ts",
+    "regression": "tests/cpaQuestionRetirementsDatabase.test.ts",
+    "note": "PGlite에서 두 마이그레이션을 차례로 적용해 사례형 퇴역 성공, 다른 7개 함수 정의 불변(퇴역 함수 제외), 역사행·풀이 보존, CAS·완전성·권한 거절을 확인한다.",
+    "files": [
+      {
+        "file": "tests/cpaCaseQuestionRetirementsDatabase.test.ts",
+        "sha256": "eec98952506d8d9c7dceba419aafaee74220c07916328a4b0af1f8b110ae7261"
+      },
+      {
+        "file": "tests/cpaQuestionRetirementsDatabase.test.ts",
+        "sha256": "387c4fb75da21240e7c768aad6029aa02f7a734815292387d5d2380ef44e3fab"
+      }
+    ]
+  },
+  "authorization": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/authorization.md",
+    "sha256": "8adc229d904a4bf62a6fff107aa2cc317d6b99eabfdbdc13f4d2f4cc101bb3f2"
+  },
+  "api_calls": 0,
+  "db_writes": 0
+}

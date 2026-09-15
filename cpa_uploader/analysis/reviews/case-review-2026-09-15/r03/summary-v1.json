@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "round": "r03",
+  "draft_version": "v1",
+  "set_id": "case-13-payroll-service-20260915",
+  "created_at": "2026-09-15T02:12:54.757Z",
+  "draft": {
+    "file": "cpa_uploader/drafts/case-review-2026-09-15/r03-payroll-service-merge/sets.json",
+    "sha256": "6c8e56d283fa55f92579f36803d6510c3ac3af7f7024eec016ca6da75652c632"
+  },
+  "content_review": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r03/root-content-review-v1.json",
+    "sha256": "e4c80000b9817b249065b67206bf9e6a9d9ddcf96f75c2f614329524feae962c"
+  },
+  "grading": {
+    "model": "gpt-5.6-luna",
+    "manifest": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r03/execution-v1/grading-manifest.json",
+      "sha256": "ebd6d9510c86eb799ba1ba2b04895528fcc06a943d438ab3570f5bda8500745e"
+    },
+    "summary": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r03/execution-v1/actual-a/summary.json",
+      "sha256": "6d61b4c06507eaf452735a23276b8a7f2c04d895b3bd1dd2fd801aa015615c3e"
+    },
+    "transport": "model",
+    "actual_sdk_calls": 3,
+    "representative_answers": 6,
+    "within_tolerance": 6,
+    "exact_points": 6,
+    "rows": [
+      {
+        "entry": "case-13-payroll-service-20260915--case--model",
+        "kind": "model",
+        "subquestion_id": "sub1",
+        "expected": 3,
+        "actual": 3,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-13-payroll-service-20260915--case--model",
+        "kind": "model",
+        "subquestion_id": "sub2",
+        "expected": 4,
+        "actual": 4,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-13-payroll-service-20260915--case--partial",
+        "kind": "partial",
+        "subquestion_id": "sub1",
+        "expected": 1,
+        "actual": 1,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-13-payroll-service-20260915--case--partial",
+        "kind": "partial",
+        "subquestion_id": "sub2",
+        "expected": 2,
+        "actual": 2,
+        "delta": 0,
+        "verdict_state_differences": [
+          "sub2.c1"
+        ]
+      },
+      {
+        "entry": "case-13-payroll-service-20260915--case--wrong",
+        "kind": "wrong",
+        "subquestion_id": "sub1",
+        "expected": 0,
+        "actual": 0,
+        "delta": 0,
+        "verdict_state_differences": [
+          "sub1.c1"
+        ]
+      },
+      {
+        "entry": "case-13-payroll-service-20260915--case--wrong",
+        "kind": "wrong",
+        "subquestion_id": "sub2",
+        "expected": 0,
+        "actual": 0,
+        "delta": 0,
+        "verdict_state_differences": [
+          "sub2.c1"
+        ]
+      }
+    ],
+    "verdict_state_note": "기대 판정과 실제 판정의 상태 차이가 있으면 모두 0점 상태(contradicted/not_met) 사이의 차이인지 rows에서 확인한다. 원 기대값을 바꾸거나 재채점하지 않았다.",
+    "usd": 0.006895699999999999,
+    "provider_token_totals": {
+      "input_tokens": 19415,
+      "output_tokens": 1702,
+      "total_tokens": 21117
+    }
+  },
+  "supplementary": {
+    "summary": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r03/supplementary-v1/summary.json",
+      "sha256": "a867268caf55fc266a22e19fe79c58ddd5761a0af77f343e05ce2c3c65dcfd29"
+    },
+    "receipt_denominator": false,
+    "actual_sdk_calls": 1,
+    "rows": [
+      {
+        "id": "r03-supp-reason-or-procedure",
+        "strict_matched": true,
+        "points": [
+          [
+            "sub1",
+            3,
+            3
+          ],
+          [
+            "sub2",
+            4,
+            4
+          ]
+        ]
+      }
+    ],
+    "usd": 0.0022708
+  },
+  "total_actual_sdk_calls": 4,
+  "total_usd_provider_usage_arithmetic": 0.0091665,
+  "costs_are_provider_usage_arithmetic_not_invoice": true,
+  "separate_paid_semantic_review": "not_run",
+  "human_review_performed": false,
+  "not_done": [
+    "정본·공개본·암호화본 반영",
+    "운영 DB 등록",
+    "원 세트의 활성 릴리스 제외(퇴역)",
+    "승급 receipt 봉인(authorization.production_publication 미승인)",
+    "coverage links 갱신"
+  ]
+}

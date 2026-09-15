@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "artifact_type": "case_merge_lineage",
+  "created_at": "2026-09-15",
+  "user_instruction": "docs/case-question-edit-notes-2026-09-14.md 항목 29 및 2026-09-15 대화의 선택(물음 1 계획 단계 선택형, 물음 2 열거형, 추가 요소는 사실관계에 맞게)",
+  "source_bank": {
+    "file": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+    "sha256": "e325ff1e5258e9aaae323f48c5ffb69d5234937194ae2a532f253237f08b2ee7"
+  },
+  "sources": [
+    {
+      "set_id": "pilot-09-010",
+      "title": "전임감사 조서 접근 없이 기초잔액의 증거와 의견 판단",
+      "status": "published",
+      "reviewed_content_sha256": "fac141115f460c2a87ced820896b7654d0218c4659db768da8a5b088dba08cb9",
+      "points": 14
+    }
+  ],
+  "target": {
+    "set_id": "case-09-initial-audit-20260915",
+    "reviewed_content_sha256": "876531b330f891bb61f1a83c60ad8446a3a943b7543c6d2ad5042d6e6539a5b7",
+    "points": 12
+  },
+  "mapping": [
+    {
+      "from": "pilot-09-010/sub1 crit1 (팀장 계획의 부적절 판단)",
+      "disposition": "converted_to_incorrect_item",
+      "to": "fact2 ③, sub1.c2",
+      "reason": "팀장의 계획을 계획 단계 목록의 옳지 않은 항목으로 두고 이유나 보완절차 한 가지를 1점으로 채점한다."
+    },
+    {
+      "from": "pilot-09-010/sub1 crit2·crit3 (510.6(c)의 두 증거경로 열거)",
+      "disposition": "merged_into_reason",
+      "to": "sub1.c2",
+      "reason": "경로의 완전 열거는 기준서 암기이므로 없애고, 두 경로 중 하나나 다른 방법으로 증거를 입수한다는 원칙을 ③의 이유·절차로 인정한다."
+    },
+    {
+      "from": "pilot-09-010/sub2 crit1~crit4 (회수내역이 제공하는 실재성·권리·완전성·평가)",
+      "disposition": "retained",
+      "to": "fact3 (가)·(나), sub2.c1~c4",
+      "reason": "사용자 지시대로 자료별 경영진주장을 나열하는 열거형으로 바꾸고, 같은 A6 문장의 매입채무 지급내역 (나)를 더했다."
+    },
+    {
+      "from": "pilot-09-010/sub2 crit5 (회수내역만으로 얻는 증거의 범위 한계)",
+      "disposition": "deleted",
+      "to": null,
+      "reason": "나열식 물음으로 바꾸라는 사용자 지시에 따라 서술 요소를 뺐다."
+    },
+    {
+      "from": "pilot-09-010/sub4 crit6·crit7 (실사 조정, 기초 재고 평가 절차)",
+      "disposition": "converted_to_trap",
+      "to": "fact4 ⑥(옳지 않음), sub3.c2",
+      "reason": "사용자 지정 함정: 당기 실사·수량변동 자료로 기초 재고자산 항목의 평가 증거까지 입수했다고 결론 낸 항목으로 바꾸었다."
+    },
+    {
+      "from": "pilot-09-010/sub4 발문의 매출총이익·기간귀속 제외",
+      "disposition": "converted_to_trap",
+      "to": "fact4 ⑦(옳음)",
+      "reason": "원 발문이 범위에서 뺀 A6의 세 번째 절차를 옳은 항목으로 두었다."
+    },
+    {
+      "from": "pilot-09-010/sub3 crit1~crit4 (상황 A·B 변형의견 계열)",
+      "disposition": "deleted",
+      "to": null,
+      "reason": "사용자 지시(물음 4 삭제)."
+    },
+    {
+      "from": "pilot-09-010 facts f1·case-team-plan·f2·f3",
+      "disposition": "rewritten",
+      "to": "fact1~fact5",
+      "reason": "실제 연도를 20X0·20X1·20X2로 바꾸고 암시·미결 사실과 상황 A·B를 없앴다. 전임감사인의 한정의견(장기대여금), 외부감사법 감사, 감사보고서 미재발행을 새 공통 사실로 두었다."
+    },
+    {
+      "from": null,
+      "disposition": "new_elements",
+      "to": "①(300.13), ②(510.5), ④(510.6(a)), ⑤(510.9), ⑧(510.A7), ⑨(510.7), ⑩(510.13·A9), ⑪·⑫(710.2·17)",
+      "reason": "사용자 요청: 초도감사 관련 요소를 사실관계에 맞게 추가한다."
+    },
+    {
+      "from": null,
+      "disposition": "new_criteria",
+      "to": "sub1.c1, sub3.c1, sub4.c1",
+      "reason": "선택형 식별 기준. 함정 선택·누락 모두 미득점."
+    }
+  ],
+  "retirement": {
+    "requested_by_user": "restructure_into_new_set",
+    "active_release_exclusion": "not_performed",
+    "note": "원 세트의 활성 릴리스 제외는 사용자 퇴역 승인과 DB 퇴역 경로 확인 뒤 모아서 한 번에 수행한다. 현재 운영 퇴역 RPC는 기준서형 세트만 허용한다."
+  }
+}

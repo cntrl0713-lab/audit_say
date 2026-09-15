@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "artifact_type": "case_merge_lineage",
+  "created_at": "2026-09-15",
+  "user_instruction": "docs/case-question-edit-notes-2026-09-14.md 항목 60·21 및 2026-09-15 대화 지시(기타정보 종합 문제로 확장)",
+  "source_bank": {
+    "file": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+    "sha256": "e325ff1e5258e9aaae323f48c5ffb69d5234937194ae2a532f253237f08b2ee7"
+  },
+  "sources": [
+    {
+      "set_id": "case-16-other-information-cause-20260914",
+      "title": "사업보고서 불일치의 원인과 재무제표감사의 후속 대응",
+      "status": "published",
+      "reviewed_content_sha256": "f3ff79ada3605f4de4ebf517f7ed26091e42d7f3d46963ba35751c638e8b5441",
+      "points": 6
+    },
+    {
+      "set_id": "pilot-16-011",
+      "title": "기타정보 수정거부에 대한 보고서일 전후 대응",
+      "status": "published",
+      "reviewed_content_sha256": "04445b445c438088596a89c9c3664aeddce3c829978b1d4804e079d449c8f39d",
+      "points": 5
+    }
+  ],
+  "target": {
+    "set_id": "case-16-other-information-20260915",
+    "reviewed_content_sha256": "c7601bbc88b61002cf5cf0693332136aa386dfddfdbaf8d6210a4e00a61a4b1a",
+    "points": 8
+  },
+  "mapping": [
+    {
+      "from": "case-16-other-information-cause-20260914/sub1 (c1 경영진 논의, c2 계약조건·판매내역 조사)",
+      "disposition": "converted_to_trap",
+      "to": "fact2 ③(옳음)",
+      "reason": "팀원 갑의 삭제 요구 대신 적절한 논의·조사를 옳은 절차로 두어 뒤 단계의 조사 결과가 앞 항목의 정답을 드러내지 않게 했다."
+    },
+    {
+      "from": "case-16-other-information-cause-20260914/sub2 (c1 한정의견, c2 그 이유)",
+      "disposition": "converted_to_incorrect_item",
+      "to": "fact3 ⑥, sub2.c2",
+      "reason": "팀원 을의 제안을 팀의 판단으로 바꾸고 이유 또는 판단 한 가지를 1점으로 채점한다."
+    },
+    {
+      "from": "case-16-other-information-cause-20260914/sub3 (c1 위험평가 수정, c2 절차 재설계)",
+      "disposition": "converted_to_incorrect_item",
+      "to": "fact2 ④, sub1.c3",
+      "reason": "팀원 병의 제안을 팀의 절차로 바꾸고 이해 갱신·위험평가 수정 또는 절차 보완 중 하나를 1점으로 채점한다."
+    },
+    {
+      "from": "pilot-16-011/sub1 (crit1 의견거절 자동 불필요, crit2 기타정보 단락 기술, crit3 보고계획 전달)",
+      "disposition": "split",
+      "to": "fact3 ⑦(옳음: crit1·crit3), ⑧(옳지 않음: crit2), sub2.c3",
+      "reason": "갑의 상황을 같은 회사의 영업손익 설명 왜곡표시로 옮겼다. 의견거절 불필요와 보고계획 전달은 함정으로, 기타정보 단락 기술은 옳지 않은 항목의 채점으로 둔다."
+    },
+    {
+      "from": "pilot-16-011/exp1 (crit1 법적 권리·의무 고려, crit2 이용자 주의 환기 조치)",
+      "disposition": "converted_to_incorrect_item",
+      "to": "fact4 ⑩(옳음), ⑪(옳지 않음), sub2.c4",
+      "reason": "을의 상황을 같은 회사의 연차보고서로 옮기고 담당자의 종결 제안을 팀의 판단 ⑪로 바꿨다. 두 의미 단위는 한 가지 이유나 조치로 1점을 준다."
+    },
+    {
+      "from": null,
+      "disposition": "new_elements",
+      "to": "①(문단 13 서면진술), ②(문단 7(b) 적용 제외), ⑤(문단 14·15 주의 유지), ⑨(문단 21·22(b) 식별)",
+      "reason": "사용자 요청: 기타정보에 관해 물어볼 다른 요소를 추가해 종합 문제로 만든다."
+    },
+    {
+      "from": null,
+      "disposition": "new_criteria",
+      "to": "sub1.c1, sub2.c1",
+      "reason": "선택형 식별 기준. 함정 선택·누락 모두 미득점."
+    }
+  ],
+  "retirement": {
+    "requested_by_user": "merge_into_one_problem",
+    "active_release_exclusion": "not_performed",
+    "note": "원 두 세트의 활성 릴리스 제외는 사용자 퇴역 승인과 DB 퇴역 경로 확인 뒤 별도로 수행한다. 현재 운영 퇴역 RPC는 기준서형 세트만 허용한다."
+  }
+}

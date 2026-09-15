@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-c2bce35fe3c4. 감사기준서 720이 적용되는 상장기업 감사에서 재무제표에 적정의견을 표명하고 별도의 법규상 기타정보 보고 요구는 없다고 가정한다. 감사보고서일 전에 기타정보의 일부를 입수했고 나머지도 이후 입수할 것으로 예상되어 기타정보 단락을 포함한다. 문단 22에 따라 이 단락에 포함할 경영진 책임, 기타정보의 식별 및 감사의견·확신의 범위에 관한 설명을 모두 제시하시오."
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[kam-emphasis-comparatives-other-information]] · [[topic-16-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/345`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/337`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [16.json](../../analysis/reviews/question-review-2027/16.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/345/subquestions/0`
+유형: enumeration · JSON Pointer `/337/subquestions/0`
 
 ### 발문
 

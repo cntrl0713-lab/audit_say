@@ -1,0 +1,395 @@
+{
+  "version": 1,
+  "artifact_type": "supplementary_grading_observation",
+  "transport": "model",
+  "model": "gpt-5.6-luna",
+  "case_id": "r01-supp-numbers-only",
+  "purpose": "번호만 쓴 답이 식별 1점만 받고 이유·올바른 절차 점수는 받지 않는지 확인한다.",
+  "projected_body_hash": "6c81cc2061198cfa232b9af6314236fd4f9837faf4b8d38e6f1097e4de04a52c",
+  "answers": {
+    "sub1": "①, ④",
+    "sub2": "⑥"
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "met",
+          "reason": "옳지 않은 절차 ①·④만 정확히 골랐다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "이유가 없다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "not_met",
+          "reason": "올바른 절차가 없다."
+        },
+        {
+          "criterion_id": "sub1.c4",
+          "verdict": "not_met",
+          "reason": "이유가 없다."
+        },
+        {
+          "criterion_id": "sub1.c5",
+          "verdict": "not_met",
+          "reason": "올바른 절차가 없다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "met",
+          "reason": "옳지 않은 절차 ⑥만 정확히 골랐다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "not_met",
+          "reason": "이유가 없다."
+        },
+        {
+          "criterion_id": "sub2.c3",
+          "verdict": "not_met",
+          "reason": "올바른 절차가 없다."
+        },
+        {
+          "criterion_id": "sub2.c4",
+          "verdict": "not_met",
+          "reason": "올바른 절차가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "bdc373941e72a09cbd87abaf943c5de7df8965b57f88359d658da7b2429ddb94",
+  "schema_hash": "62b0a58d196b32bba9e5e6bb38c10dbc7eb996fc69d11adc6eb6785736530a56",
+  "actual_sdk_calls": 1,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "①, ④",
+            "reason": "옳지 않은 절차로 ①과 ④를 모두 지적했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "독립성 결격 사유를 제시하지 않았다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "not_met",
+            "reason": "그룹업무팀의 직접 감사절차를 제시하지 않았다."
+          },
+          {
+            "criterion_id": "sub1.c4",
+            "verdict": "not_met",
+            "reason": "추가 업무를 생략할 수 없는 이유를 설명하지 않았다."
+          },
+          {
+            "criterion_id": "sub1.c5",
+            "verdict": "not_met",
+            "reason": "선정 부문에 수행할 추가 업무를 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "⑥",
+            "reason": "옳지 않은 절차로 ⑥을 지적했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "부문 적정의견이 그룹 수준 평가를 대신할 수 없는 이유를 설명하지 않았다."
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "not_met",
+            "reason": "미수정 매출 과대계상을 합산하여 영향을 평가하는 절차를 제시하지 않았다."
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "not_met",
+            "reason": "소송충당부채의 증거 미입수 상황에 대한 영향 평가를 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "옳지 않은 절차로 ①과 ④를 모두 지적했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "독립성 결격 사유를 제시하지 않았다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "그룹업무팀의 직접 감사절차를 제시하지 않았다."
+              },
+              {
+                "criterion_id": "sub1.c4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "추가 업무를 생략할 수 없는 이유를 설명하지 않았다."
+              },
+              {
+                "criterion_id": "sub1.c5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "선정 부문에 수행할 추가 업무를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "옳지 않은 절차로 ⑥을 지적했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "부문 적정의견이 그룹 수준 평가를 대신할 수 없는 이유를 설명하지 않았다."
+              },
+              {
+                "criterion_id": "sub2.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "미수정 매출 과대계상을 합산하여 영향을 평가하는 절차를 제시하지 않았다."
+              },
+              {
+                "criterion_id": "sub2.c4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "소송충당부채의 증거 미입수 상황에 대한 영향 평가를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-14-group-procedures-20260915",
+    "score": 2,
+    "max_points": 9,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "계획 단계에서 그룹업무팀이 수행한 절차 ①~④ 중 감사기준에 비추어 옳지 않은 절차를 모두 찾아 번호를 쓰고, 각 절차가 옳지 않은 이유와 그룹업무팀이 수행하였어야 할 올바른 절차를 설명하시오.",
+        "user_answer": "①, ④",
+        "score": 1,
+        "max_points": 5,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "①, ④",
+            "reason": "옳지 않은 절차로 ①과 ④를 모두 지적했다.",
+            "claim": "옳지 않은 절차로 ①과 ④를 모두 지적한다. 번호 대신 절차의 내용으로 특정해도 인정한다. ①·④ 중 하나를 빠뜨리거나, 옳은 절차인 ②(심각하지 않은 적격성 우려에 대한 관여)나 ③(유의적 위험에 대응한 특정 감사절차만 수행)을 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "독립성 결격 사유를 제시하지 않았다.",
+            "claim": "① 병이 그룹감사에 적용되는 독립성 요구사항을 충족하지 못하므로 그룹업무팀이 위험평가 참여나 감사조서 검토 확대로 관여하더라도 이를 극복할 수 없어 병에게 업무를 요청할 수 없다는 이유를 제시한다. 독립성 요구사항을 충족하지 못한 부문감사인에게는 관여 여부와 관계없이 업무를 요청할 수 없다는 취지면 인정한다. 독립성 결격을 이유로 들지 않고 그룹업무팀이 직접 증거를 입수한다는 절차만 쓰거나, 관여나 조서 검토로 독립성 문제를 보완할 수 있다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "not_met",
+            "reason": "그룹업무팀의 직접 감사절차를 제시하지 않았다.",
+            "claim": "① 병에게 업무를 요청하지 않고 그룹감사인(그룹업무팀)이 물류부문 재무정보에 관하여 충분하고 적합한 감사증거를 직접 입수하여야 한다는 올바른 절차를 제시한다. 그룹업무팀이 물류부문에 필요한 감사절차를 직접 수행한다는 표현도 인정한다. 병의 업무를 이용하면서 검토만 강화한다는 대안은 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c4",
+            "verdict": "not_met",
+            "reason": "추가 업무를 생략할 수 없는 이유를 설명하지 않았다.",
+            "claim": "④ 그룹업무팀이 유의적 부문 업무, 그룹차원의 통제·연결절차 업무와 그룹 수준의 분석적절차만으로는 충분하고 적합한 감사증거를 입수하지 못할 것으로 예상한 상황이므로, 판매부문이 유의적이지 않다는 이유만으로 추가 업무를 생략할 수 없다는 이유를 제시한다. 사례의 증거 부족 예상과 연결하지 않고 유의적이지 않은 부문에는 언제나 추가 업무가 필요하다고만 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c5",
+            "verdict": "not_met",
+            "reason": "선정 부문에 수행할 추가 업무를 제시하지 않았다.",
+            "claim": "④ 유의적이지 않은 판매부문 중 일부를 선정하여, 선정한 부문의 재무정보에 대하여 부문중요성을 사용한 감사, 하나 이상의 거래유형·계정잔액·공시에 대한 감사, 부문중요성을 사용한 검토 또는 특정 절차 중 하나 이상을 수행하거나 부문감사인에게 요청하여야 한다는 올바른 절차를 제시한다. 일부 부문의 선정과 추가 업무의 수행이 함께 드러나면 네 업무유형의 명칭을 모두 열거하지 않아도 인정한다. 선정할 부문 수나 특정 업무유형은 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 절차는 ①과 ④이다. ②는 심각하지 않은 전문가적 적격성 우려를 그룹업무팀의 관여로 보완한 것이고, ③은 유의적 위험을 포함할 것 같은 부문에 허용되는 업무유형 중 하나를 수행한 것이므로 옳다.",
+          "① 병은 그룹감사에 적용되는 독립성 요구사항을 충족하지 못하므로, 그룹업무팀이 병의 위험평가에 참여하거나 감사조서 검토를 넓히더라도 이를 극복할 수 없어 병에게 물류부문 재무정보에 관한 업무를 요청할 수 없다.",
+          "① 병에게 업무를 요청하지 않고, 그룹감사인이 물류부문 재무정보에 관하여 충분하고 적합한 감사증거를 직접 입수하여야 한다.",
+          "④ 유의적 부문 업무, 그룹차원의 통제와 연결절차에 대한 업무 및 그룹 수준의 분석적절차만으로는 충분하고 적합한 감사증거를 입수하지 못할 것으로 예상하였으므로, 판매부문이 유의적이지 않다는 이유로 그룹 수준의 분석적절차에 그치고 추가 업무를 생략할 수 없다.",
+          "④ 유의적이지 않은 판매부문 중 일부를 선정하여, 선정한 부문의 재무정보에 대하여 부문중요성을 사용한 감사, 하나 이상의 거래유형·계정잔액·공시에 대한 감사, 부문중요성을 사용한 검토 또는 특정 절차 중 하나 이상을 수행하거나 부문감사인에게 수행하도록 요청하여야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "업무 수행과 종결 단계에서 그룹업무팀이 수행한 절차 ⑤와 ⑥ 중 감사기준에 비추어 옳지 않은 절차를 모두 찾아 번호를 쓰고, 각 절차가 옳지 않은 이유와 그룹업무팀이 수행하였어야 할 올바른 절차를 설명하시오.",
+        "user_answer": "⑥",
+        "score": 1,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "⑥",
+            "reason": "옳지 않은 절차로 ⑥을 지적했다.",
+            "claim": "옳지 않은 절차로 ⑥을 지적한다. 번호 대신 절차의 내용으로 특정해도 인정한다. ⑥을 빠뜨리거나, 옳은 절차인 ⑤(을에게 창고 재고의 추가 감사절차를 수행하도록 지시하고 그 결과를 그룹업무팀이 평가함)를 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "부문 적정의견이 그룹 수준 평가를 대신할 수 없는 이유를 설명하지 않았다.",
+            "claim": "⑥이 옳지 않은 이유로, 갑과 을의 적정의견은 각 부문재무제표에 대한 결론일 뿐 그룹감사의견을 위한 평가를 대신할 수 없으므로 그룹 수준의 평가를 생략할 수 없다는 점을 제시한다. 그룹업무팀이나 그룹업무수행이사가 부문 의견과 별도로 그룹감사의견의 근거가 되는 증거의 충분성 또는 미수정왜곡표시와 증거 미입수 상황의 영향을 평가하여야 한다는 이유를 들어도 인정한다. 부문 적정의견으로 그룹 수준 평가를 대신할 수 있다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "not_met",
+            "reason": "미수정 매출 과대계상을 합산하여 영향을 평가하는 절차를 제시하지 않았다.",
+            "claim": "⑥ 제조부문과 해외판매부문에서 같은 방향으로 발생한 미수정 매출 과대계상을 합하여 그룹재무제표와 그룹감사의견에 미치는 영향을 평가하여야 한다는 올바른 절차를 제시한다. 각 부문에서 금액이 작거나 적정의견이 표명되었다는 이유로 제외하지 않고 그룹 수준에서 집계한다는 의미면 인정하며 금액 계산은 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "not_met",
+            "reason": "소송충당부채의 증거 미입수 상황에 대한 영향 평가를 제시하지 않았다.",
+            "claim": "⑥ 소송충당부채에 관하여 충분하고 적합한 감사증거를 입수하지 못한 상황은 확정된 매출 왜곡표시와 구별하여 그 상황이 그룹감사의견에 미치는 영향을 평가하여야 한다는 올바른 절차를 제시한다. 소송충당부채가 왜곡표시되었다고 단정하거나 입수하지 못한 금액을 미수정왜곡표시 합계에 확정 오류처럼 더하면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 절차는 ⑥이다. 부문감사인의 업무가 불충분하면 그룹업무팀은 추가 절차와 그 절차를 부문감사인과 그룹업무팀 중 누가 수행할지를 결정하므로, 을에게 추가 감사절차를 수행하도록 지시하고 그 결과를 그룹업무팀이 평가하기로 한 ⑤는 옳다.",
+          "⑥ 갑과 을의 적정의견은 각 부문재무제표에 대한 결론일 뿐 그룹감사의견을 위한 평가를 대신할 수 없으므로, 그룹 수준의 평가를 생략할 수 없다.",
+          "⑥ 제조부문과 해외판매부문에서 같은 방향으로 발생한 미수정 매출 과대계상을 합하여 그룹재무제표와 그룹감사의견에 미치는 영향을 평가하여야 한다.",
+          "⑥ 소송충당부채에 관하여 충분하고 적합한 감사증거를 입수하지 못한 상황은 확정된 매출 왜곡표시와 구별하여, 그 상황이 그룹감사의견에 미치는 영향을 평가하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0776650d291c64ec016aa860c0e1a887d089a382a7684015fd",
+        "request_id": "req_79f76f9409f042c092bfb1c20c13623b",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 6892,
+          "input_tokens_details": {
+            "cache_write_tokens": 6889,
+            "cached_tokens": 0
+          },
+          "output_tokens": 511,
+          "output_tokens_details": {
+            "reasoning_tokens": 58
+          },
+          "total_tokens": 7403
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0023360499999999997,
+        "min_usd": 0.0023360499999999997,
+        "max_usd": 0.0023360499999999997,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ]
+}

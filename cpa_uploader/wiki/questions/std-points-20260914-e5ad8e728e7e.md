@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-e5ad8e728e7e. 경영진이 감사에 필요한 정보를 제공하거나 확보할 능력이 있다는 일반적 전제 아래, 감사인이 감사업무를 수임하기 위해 경영진으로부터 인정하고 이해함을 확인받아야 하는 책임의 핵심 세 범주를 기술하시오. 정보·접근권의 세부 목록과 책임 불인정 시의 수임 판단은 제외한다."
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[engagement-acceptance-contract]] · [[topic-03-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/186`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/178`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [03.json](../../analysis/reviews/question-review-2027/03.json)
 - 학습 순서: sub1
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/186/subquestions/0`
+유형: descriptive · JSON Pointer `/178/subquestions/0`
 
 ### 발문
 

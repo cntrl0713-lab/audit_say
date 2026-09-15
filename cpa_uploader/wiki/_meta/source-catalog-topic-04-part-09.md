@@ -1,18 +1,18 @@
 ---
 title: "04. 계획·문서화·중요성 원자료 단위 9/9"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: source-map
 status: generated
 review_required: true
 tags: [audit, question-generation, quality]
-sources: ["cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md","cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_주제별_해설.md"]
+sources: ["cpa_uploader/data/회계감사_통합학습자료/00_통합_목차.md","cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_B.md","cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_주제별_해설.md"]
 confidence: medium
 ---
 
 # 04. 계획·문서화·중요성 원자료 단위 9/9
 
-주제 전체 1341개: 기준서 163, 이론 253, 연습 463, 기출 462. 이 페이지는 141개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
+주제 전체 1344개: 기준서 166, 이론 253, 연습 463, 기출 462. 이 페이지는 144개를 표시한다. 같은 원자료 단위가 여러 주제에 연결될 수 있다.
 
 [[source-catalog-topic-04]] (1/9) · [[source-catalog-topic-04-part-02]] (2/9) · [[source-catalog-topic-04-part-03]] (3/9) · [[source-catalog-topic-04-part-04]] (4/9) · [[source-catalog-topic-04-part-05]] (5/9) · [[source-catalog-topic-04-part-06]] (6/9) · [[source-catalog-topic-04-part-07]] (7/9) · [[source-catalog-topic-04-part-08]] (8/9) · [[source-catalog-topic-04-part-09]] (9/9)
 
@@ -22,6 +22,9 @@ confidence: medium
 
 | 원자료 ID | 종류·근거 계층 | 실제 파일·위치 | 절·판본·원문 한계 | 참조 의존 | 은행 인용 연결 | 원문 인용 SHA-256 |
 |---|---|---|---|---|---|---|
+| <a id="src-c72e40269b33ac4161"></a>`src-c72e40269b33ac4161` | past_exam / learning_material | [기출문제_연도별_해설_B.md · 기출문제_연도별_해설_B 원문 페이지 431; L17996-L18053](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%97%B0%EB%8F%84%EB%B3%84_%ED%95%B4%EC%84%A4_B.md); 기출문제_연도별_해설_B | 원문 페이지 431; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | d42f3583376538938402778c925f8db6dae642c1bfa0c66710aecbdee019d5b6 |
+| <a id="src-b315b3c640169561e9"></a>`src-b315b3c640169561e9` | past_exam / learning_material | [기출문제_연도별_해설_B.md · 기출문제_연도별_해설_B 원문 페이지 432; L18055-L18103](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%97%B0%EB%8F%84%EB%B3%84_%ED%95%B4%EC%84%A4_B.md); 기출문제_연도별_해설_B | 원문 페이지 432; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 1d3b5260c9d1e460d985b36036c1650cd2e6899d61d77f7ee5ecc1d2c07aa172 |
+| <a id="src-1452f5c29905e7cad1"></a>`src-1452f5c29905e7cad1` | past_exam / learning_material | [기출문제_연도별_해설_B.md · 기출문제_연도별_해설_B 원문 페이지 433; L18105-L18153](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%97%B0%EB%8F%84%EB%B3%84_%ED%95%B4%EC%84%A4_B.md); 기출문제_연도별_해설_B | 원문 페이지 433; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | ab6913c6f68790d08a776d2632fffc62cf7979dfb4fae3dda0894c03d02ba4e2 |
 | <a id="src-2afedf740426ad81a3"></a>`src-2afedf740426ad81a3` | past_exam / learning_material | [기출문제_주제별_해설.md · 기출문제_주제별_해설 원문 페이지 8; L834-L865](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md); 기출문제_주제별_해설 | 원문 페이지 8; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 7e730c560c68b5f74e9ff69db6c5236f4d22ff4b8c83a2329be5ed5eeabfccaf |
 | <a id="src-3b82a47034a92f3a6b"></a>`src-3b82a47034a92f3a6b` | past_exam / learning_material | [기출문제_주제별_해설.md · 기출문제_주제별_해설 원문 페이지 15; L1710-L1914](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md); 기출문제_주제별_해설 | 원문 페이지 15; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 7637c6794384bfdf23bc14f5344e7bbf4bdc3c080754194a108850f65b7486c1 |
 | <a id="src-a249f2ef9965032861"></a>`src-a249f2ef9965032861` | past_exam / learning_material | [기출문제_주제별_해설.md · 기출문제_주제별_해설 원문 페이지 20; L2105-L2144](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/04_%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C/%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C_%EC%A3%BC%EC%A0%9C%EB%B3%84_%ED%95%B4%EC%84%A4.md); 기출문제_주제별_해설 | 원문 페이지 20; 학습자료/OCR 전사. 공식 판본 대조 필요.; OCR 원문 페이지 단위 자료. 문제·해설의 경계와 전후 페이지 연속성을 사람이 확인해야 한다. | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 90704a6ec65c5fd986e4202083d43ab599199899e7173022f9e5a9bed1f4e9ae |

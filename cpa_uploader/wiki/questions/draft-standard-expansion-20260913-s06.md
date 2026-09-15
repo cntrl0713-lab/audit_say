@@ -1,7 +1,7 @@
 ---
 title: "draft-standard-expansion-20260913-s06. 통제환경에 대한 평가 사항"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[risk-assessment-internal-control]] · [[topic-06-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/155`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/150`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [06.json](../../analysis/reviews/question-review-2027/06.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/155/subquestions/0`
+유형: enumeration · JSON Pointer `/150/subquestions/0`
 
 ### 발문
 

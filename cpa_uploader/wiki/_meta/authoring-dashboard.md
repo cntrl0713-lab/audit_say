@@ -1,7 +1,7 @@
 ---
 title: "출제 요소·빈도·문항 상태 통합 현황"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: coverage
 status: generated
 review_required: true
@@ -30,12 +30,12 @@ confidence: high
 | 8 | [09 재고·소송·부문정보·외부조회·기초잔액](../../analysis/coverage/topics/09.md) | 246 | 229 | 0 | 0 | 25 |
 | 9 | [05 부정·법규·지배기구 커뮤니케이션](../../analysis/coverage/topics/05.md) | 233 | 209 | 0 | 0 | 34 |
 | 10 | [11 회계추정치와 특수관계자](../../analysis/coverage/topics/11.md) | 132 | 124 | 0 | 0 | 12 |
-| 11 | [13 서비스조직·내부감사·감사인측 전문가](../../analysis/coverage/topics/13.md) | 64 | 49 | 0 | 0 | 21 |
+| 11 | [13 서비스조직·내부감사·감사인측 전문가](../../analysis/coverage/topics/13.md) | 64 | 49 | 0 | 0 | 20 |
 | 12 | [10 분석적절차와 표본감사](../../analysis/coverage/topics/10.md) | 180 | 158 | 0 | 0 | 16 |
 | 13 | [12 감사 완료: 왜곡표시·후속사건·계속기업·서면진술](../../analysis/coverage/topics/12.md) | 188 | 171 | 0 | 0 | 29 |
 | 14 | [15 감사의견 형성과 감사보고서](../../analysis/coverage/topics/15.md) | 120 | 110 | 0 | 0 | 21 |
-| 15 | [16 핵심감사사항·강조사항·비교정보·기타정보](../../analysis/coverage/topics/16.md) | 97 | 84 | 0 | 0 | 19 |
-| 16 | [14 그룹재무제표감사](../../analysis/coverage/topics/14.md) | 175 | 162 | 0 | 0 | 23 |
+| 15 | [16 핵심감사사항·강조사항·비교정보·기타정보](../../analysis/coverage/topics/16.md) | 97 | 84 | 0 | 0 | 18 |
+| 16 | [14 그룹재무제표감사](../../analysis/coverage/topics/14.md) | 175 | 162 | 0 | 0 | 21 |
 | 17 | [17 내부회계관리제도 감사](../../analysis/coverage/topics/17.md) | 203 | 192 | 0 | 0 | 11 |
 | 18 | [18 소규모기업 감사](../../analysis/coverage/topics/18.md) | 7 | 5 | 0 | 0 | 12 |
 | 19 | [19 기타 인증·검토 및 관련 업무](../../analysis/coverage/topics/19.md) | 39 | 34 | 0 | 0 | 7 |

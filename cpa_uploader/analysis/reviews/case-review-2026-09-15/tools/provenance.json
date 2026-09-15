@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "copied_from_prior_batch": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/run-efficient-grading.ts",
+      "origin": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/run-efficient-grading.ts",
+      "sha256": "e00080484ea0cec2d934d6b1a5f9ab6ae51b8fb1b7e6fa72b867f8e24367ef54",
+      "origin_sha256": "e00080484ea0cec2d934d6b1a5f9ab6ae51b8fb1b7e6fa72b867f8e24367ef54",
+      "byte_identical": true
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/accounting.ts",
+      "origin": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/accounting.ts",
+      "sha256": "bc9a859583ceb001eceea175318cd09063eb3c6df9a9eb4f764680705e2fc50a",
+      "origin_sha256": "bc9a859583ceb001eceea175318cd09063eb3c6df9a9eb4f764680705e2fc50a",
+      "byte_identical": true
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/contract.ts",
+      "origin": "cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/helpers/contract.ts",
+      "sha256": "e878c9afab9380b7af185ae17fc3cf584adb73d99d062fc2453a6199b7f020bb",
+      "origin_sha256": "e878c9afab9380b7af185ae17fc3cf584adb73d99d062fc2453a6199b7f020bb",
+      "byte_identical": true
+    }
+  ],
+  "new_tools": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/build-r01.mjs",
+      "sha256": "7c756ffdcc0598a9d939a7851899330eca0abf050bedae9bb45de448b03fb20e"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/build-round.mjs",
+      "sha256": "379d582f4b9f8b5f2da73641308ffb5a3d0b80d9fd2c70be4a1ad6771fb7ad50"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/summarize-round.mjs",
+      "sha256": "17ce49559067e1410e44dfe092ddc9ee7e179f32c4c67c430558d1575a232e93"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/run-supplementary.ts",
+      "sha256": "d663aa69d555ed241e63abff7f222ef6d6b45aca4dc0e25c6c619a1e2636964f"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/record-r02-review.mts",
+      "sha256": "45472a9971fbc7353c2618cee94e7b4bc62d4d3d23f10226b2156c1e99e184c1"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/record-r01v3-review.mts",
+      "sha256": "fb3ba43ca2e137065d874184507dd565c5997fd65bbc6aacb9e2145f5f9de3c2"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/tsconfig.tools.json",
+      "sha256": "bc0d2da9741ae2e6bb9c242567a7a72d70bcf652723d03afc6f904e58e7f4a0d"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/build-round2.mjs",
+      "sha256": "81babaeaf0f000007b0420fc5242710bbba19d0530a699c2693cb25aaa0eae97"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/summarize-round2.mjs",
+      "sha256": "1758c8f5bbbeb873aa2aa629765b7343b093876cc7806cf94f1120e2459d941d"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/record-r04-review.mts",
+      "sha256": "78c2c63827286e7238a0c03d8290dc244a08abe44f5967f9053947d01c8b0bcd"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/record-r04v2-review.mts",
+      "sha256": "29cbfb90bbd7396845f8e787040e85ee0dba82c6e6c05585ee2afb2b90c33ec9"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/record-r03v2-review.mts",
+      "sha256": "00e9cee4af5ec9a3df9a819e2cb61f6398e24362d420b060f1c75bc033125fe0"
+    }
+  ],
+  "checks": {
+    "tsc": "npx tsc -p tools/tsconfig.tools.json (tools *.ts·*.mts와 drafts/case-review-2026-09-15의 *.mts 포함) → exit 0",
+    "eslint": "build-r01.mjs, build-round.mjs, summarize-round.mjs, run-supplementary.ts, 초안 build-draft.mjs·render-sheet.mjs → exit 0"
+  },
+  "notes": [
+    "build-round.mjs는 build-r01.mjs를 회차·판본 인자로 일반화했다. build-r01.mjs는 execution-v1의 고정 입력이므로 바꾸지 않는다.",
+    "summarize-round.mjs는 r02부터 쓰는 요약 도구다. r01 요약(summary.json, summary-v2.json)은 당시 임시 스크립트로 기록했다.",
+    "2026-09-15 r04: build-round.mjs·summarize-round.mjs는 이전 실행 manifest·계보가 바이트를 고정하므로 고치지 않고 후속판 build-round2.mjs(설계 장부 classification_note를 분류 사유에 사용)와 summarize-round2.mjs(--actual로 대표 실측 폴더 지정)를 추가했다."
+  ]
+}

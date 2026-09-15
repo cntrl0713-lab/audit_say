@@ -1,7 +1,7 @@
 ---
 title: "07. 평가위험 대응·통제테스트·실증절차 원자료 단위 1/12"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: source-map
 status: generated
 review_required: true
@@ -98,7 +98,7 @@ confidence: medium
 | <a id="src-16f393828d4aed72d9"></a>`src-16f393828d4aed72d9` | standard / official_transcription | [kga330-2025-review07.txt · KGA 330 문단 3; L14-L16](../../data/official/kga330-2025-review07.txt); KGA 330 | KGA 330: 평가된 위험에 대한 감사인의 대응 / 목적; 시행일 ; | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 7354a347aa9656014253dfcd2e678c4c3f7c3f70538a7706010a52c9083893b4 |
 | <a id="src-b44d6bab31857866ce"></a>`src-b44d6bab31857866ce` | standard / official_transcription | [kga330-2025-review07.txt · KGA 330 문단 4; L17-L25](../../data/official/kga330-2025-review07.txt); KGA 330 | KGA 330: 평가된 위험에 대한 감사인의 대응 / 용어의 정의; 시행일 ; | 0개 / 미확보 0개 | 직접 인용 연결 없음 · 목표 검토 후보 | 123e98cd11a556dcb6cc434e3f5921e8de0127cbb5fc8aea4c67a70ef195ef94 |
 | <a id="src-e03e85029eef48ed25"></a>`src-e03e85029eef48ed25` | standard / official_transcription | [kga330-2025-review07.txt · KGA 330 문단 5; L26-L28](../../data/official/kga330-2025-review07.txt); KGA 330 | KGA 330: 평가된 위험에 대한 감사인의 대응 / 요구사항 / 전반적인 대응; 시행일 ; | 3개 / 미확보 0개 | [[pilot-07-005]] | 822680a27518ac6386366ca21898cc1c806ccf1615a04adb8d711fc564de51a2 |
-| <a id="src-b49e40067ef7ebb817"></a>`src-b49e40067ef7ebb817` | standard / official_transcription | [kga330-2025-review07.txt · KGA 330 문단 6; L29-L32](../../data/official/kga330-2025-review07.txt); KGA 330 | KGA 330: 평가된 위험에 대한 감사인의 대응 / 요구사항 / 경영진주장 수준의 평가된 중요왜곡표시위험에 대응한 감사절차; 시행일 ; | 17개 / 미확보 1개 | [[case-16-other-information-cause-20260914]] | 2f705477b9b37915c4c13e4f19861947db1583485d41be669d4ec1743d06fade |
+| <a id="src-b49e40067ef7ebb817"></a>`src-b49e40067ef7ebb817` | standard / official_transcription | [kga330-2025-review07.txt · KGA 330 문단 6; L29-L32](../../data/official/kga330-2025-review07.txt); KGA 330 | KGA 330: 평가된 위험에 대한 감사인의 대응 / 요구사항 / 경영진주장 수준의 평가된 중요왜곡표시위험에 대응한 감사절차; 시행일 ; | 17개 / 미확보 1개 | [[case-16-other-information-20260915]] | 2f705477b9b37915c4c13e4f19861947db1583485d41be669d4ec1743d06fade |
 | <a id="src-4f231e671912738f65"></a>`src-4f231e671912738f65` | standard / official_transcription | [kga330-2025-review07.txt · KGA 330 문단 7; L36-L47](../../data/official/kga330-2025-review07.txt); KGA 330 | KGA 330: 평가된 위험에 대한 감사인의 대응 / 요구사항 / 경영진주장 수준의 평가된 중요왜곡표시위험에 대응한 감사절차; 시행일 ; | 11개 / 미확보 0개 | [[pilot-07-005]] · [[std-points-20260914-a3ca61fccae4]] | 123bd06736417c6bccd155055c175e5241aa23d8f5ae05baf4f78b6dda5559fc |
 | <a id="src-d556f9eb752a712a8c"></a>`src-d556f9eb752a712a8c` | standard / official_transcription | [kga330-2025-review07.txt · KGA 330 문단 8; L48-L54](../../data/official/kga330-2025-review07.txt); KGA 330 | KGA 330: 평가된 위험에 대한 감사인의 대응 / 요구사항 / 경영진주장 수준의 평가된 중요왜곡표시위험에 대응한 감사절차 / 통제테스트; 시행일 ; | 5개 / 미확보 0개 | [[pilot-07-002]] · [[pilot-06-007]] | 01a79e32f566e8ae0743619bfb109e9e0c4f3090d6548ccc66e2eac22196d62f |
 | <a id="src-9c258cced107458f95"></a>`src-9c258cced107458f95` | standard / official_transcription | [kga330-2025-review07.txt · KGA 330 문단 9; L55-L57](../../data/official/kga330-2025-review07.txt); KGA 330 | KGA 330: 평가된 위험에 대한 감사인의 대응 / 요구사항 / 경영진주장 수준의 평가된 중요왜곡표시위험에 대응한 감사절차 / 통제테스트; 시행일 ; | 1개 / 미확보 0개 | [[std-points-20260914-a3ca61fccae4]] | 54e83a0cdda5bac7c35088af71cdf1253ad46c345279fd5bedfc742e912e39c4 |

@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "artifact_type": "case_merge_lineage",
+  "created_at": "2026-09-15T02:08:44.467Z",
+  "source_bank": {
+    "file": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+    "sha256": "e325ff1e5258e9aaae323f48c5ffb69d5234937194ae2a532f253237f08b2ee7"
+  },
+  "snapshot": {
+    "file": "cpa_uploader/drafts/case-review-2026-09-15/r03-payroll-service-merge/original-sets.json",
+    "sha256": "0a696b7d9939a7c0b28e372cc748d9c1f109703653f36056027dc5a3c09b7375"
+  },
+  "sources": [
+    {
+      "set_id": "pilot-13-011",
+      "title": "급여 유형 2 보고서의 제외 범위와 이용자기업 통제",
+      "reviewed_content_sha256": "efb37d58e7fc85adce43b59c80f1ad9567f25873e44c95bdb5d92bd0b962a90e",
+      "points": 6
+    },
+    {
+      "set_id": "case-13-type2-period-exceptions-20260914",
+      "title": "급여 유형 2 보고서의 기간 공백과 통제변경·예외 평가",
+      "reviewed_content_sha256": "c4bcc33f499933d044d9f2f76f77a81ad32b09f92933a973cd159749e7737835",
+      "points": 6
+    }
+  ],
+  "target": {
+    "set_id": "case-13-payroll-service-20260915",
+    "reviewed_content_sha256": "9c5558322aa830892f114b2b269eb3bf335a8a6e6b3885626e791e83ada15ad6",
+    "points": 7
+  },
+  "mapping": [
+    {
+      "from": {
+        "set_id": "pilot-13-011",
+        "subquestion_id": "sub2",
+        "criterion_ids": [
+          "sub2.crit1",
+          "sub2.crit2"
+        ]
+      },
+      "to": "② / sub1.c2",
+      "disposition": "merge",
+      "reason": "제외 불가 판단과 402 적용 요구를 하나의 이유 또는 절차 항목으로 통합."
+    },
+    {
+      "from": {
+        "set_id": "pilot-13-011",
+        "subquestion_id": "exp1",
+        "criterion_ids": [
+          "exp1.c1"
+        ]
+      },
+      "to": "① / sub1.c1 식별",
+      "disposition": "correct_item",
+      "reason": "보충통제 관련성 결정은 옳은 항목으로 승계."
+    },
+    {
+      "from": {
+        "set_id": "pilot-13-011",
+        "subquestion_id": "exp1",
+        "criterion_ids": [
+          "exp1.c2"
+        ]
+      },
+      "to": "③ / sub1.c1 식별",
+      "disposition": "correct_item",
+      "reason": "규정을 활용한 설계 이해로 승계. 운영효과성과 구분."
+    },
+    {
+      "from": {
+        "set_id": "pilot-13-011",
+        "subquestion_id": "exp1",
+        "criterion_ids": [
+          "exp1.c3",
+          "exp1.c4"
+        ]
+      },
+      "to": "④ / sub1.c3",
+      "disposition": "merge",
+      "reason": "실제 실행·운영 입증을 규정과 서비스조직 보고서로 대체하는 한 오류로 통합. 월별 검사 등 세부 나열을 요구하지 않음."
+    },
+    {
+      "from": {
+        "set_id": "case-13-type2-period-exceptions-20260914",
+        "subquestion_id": "sub1",
+        "criterion_ids": [
+          "sub1.c1",
+          "sub1.c2"
+        ]
+      },
+      "to": "⑤ / sub2.c2",
+      "disposition": "merge",
+      "reason": "기간 한계를 이유 또는 절차 한 가지로 평가."
+    },
+    {
+      "from": {
+        "set_id": "case-13-type2-period-exceptions-20260914",
+        "subquestion_id": "sub2",
+        "criterion_ids": [
+          "sub2.c1",
+          "sub2.c2"
+        ]
+      },
+      "to": "⑥ / sub2.c3",
+      "disposition": "merge",
+      "reason": "변경 고려와 변경 후 추가 통제증거를 대안 인정. 구체적 테스트방법의 별도 의무를 제거."
+    },
+    {
+      "from": {
+        "set_id": "case-13-type2-period-exceptions-20260914",
+        "subquestion_id": "sub3",
+        "criterion_ids": [
+          "sub3.c1",
+          "sub3.c2"
+        ]
+      },
+      "to": "⑧ / sub2.c4",
+      "disposition": "merge",
+      "reason": "자동 배제 불가 또는 예외 영향 평가 중 한 가지로 인정."
+    }
+  ],
+  "new_elements": [
+    "sub1.c1·sub2.c1: 옳지 않은 항목 전체를 정확히 식별하면 물음별 1점",
+    "⑦: KGA 402.A38상 허용되는 논의 요청을 옳은 항목으로 추가. 별도 설명점수 없음."
+  ],
+  "changed_facts": [
+    "이용자기업 온유·서비스조직 새롬·하위서비스조직 다온으로 통일. 원 59의 다온은 이용자기업이었으므로 역할 혼동 제거.",
+    "원 30의 연간 보고서와 원 59의 1~9월 보고서를 1~9월로 통일.",
+    "원 59의 하위서비스 없음·보충통제 문제 없음 전제를 제거하여 원 30의 검토 대상과 결합.",
+    "확인되지 않은 후임자·미입수 기록 목록 대신 후임자 배정 사실과 감사팀이 근거로 사용한 자료를 제시."
+  ],
+  "retirement": {
+    "requested": "사용자 지정 두 사례의 병합",
+    "active_release_exclusion": "not_performed",
+    "reason": "기존 결정에 따라 지정 검토를 모아 운영 반영. 현재 원 세트와 원 제출·receipt는 보존."
+  }
+}

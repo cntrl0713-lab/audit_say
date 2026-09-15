@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-cd4c5fa077a8. 부정 또는 부정으로 의심되는 사건의 왜곡표시 때문에 감사를 계속 수행할 능력에 의문이 생기는 예외적인 환경에 직면하였다. 아직 해지를 결정하지 않은 단계에서 감사기준서 240 문단 39(a)~(b)에 따라 수행해야 할 사항을 설명하시오. 책임 결정에 포함할 보고 요구사항과 법규상 해지 가능조건을 포함하시오."
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[fraud-laws-governance-communication]] · [[topic-05-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/194`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/186`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [05.json](../../analysis/reviews/question-review-2027/05.json)
 - 학습 순서: sub1
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub1
 
-유형: enumeration · JSON Pointer `/194/subquestions/0`
+유형: enumeration · JSON Pointer `/186/subquestions/0`
 
 ### 발문
 

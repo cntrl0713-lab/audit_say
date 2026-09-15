@@ -1,0 +1,103 @@
+{
+  "version": 3,
+  "method": "agent_content_review",
+  "human_review_performed": false,
+  "reviewer_id": "agent:claude-opus-5 (author agent; no independent peer review)",
+  "reviewed_at": "2026-09-15T07:17:48.763Z",
+  "supersedes": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r01/root-content-review-v2.json",
+    "sha256": "0e1f1e81d313d5d759947ef885a6d58d29df6e271922b9ccbda708d9f60bf2a2"
+  },
+  "target": {
+    "file": "cpa_uploader/drafts/case-review-2026-09-15/r01-group-audit-merge/v3/sets.json",
+    "sha256": "dfbe1e76fe788fc3f500e8e34091286966042dfb085620edfb0b030ffb04d3d2",
+    "set_id": "case-14-group-procedures-20260915",
+    "reviewed_content_sha256": "e584f13a9d52c853373438dab47a839aeb03851c3da4eda83d520ff1fae9a253"
+  },
+  "evidence": [
+    {
+      "file": "cpa_uploader/drafts/case-review-2026-09-15/r01-group-audit-merge/v3/design.json",
+      "sha256": "a17955bca404a306004cba0773caf8b73dc750ef76a821709a6ab1ed675914d5"
+    },
+    {
+      "file": "cpa_uploader/drafts/case-review-2026-09-15/r01-group-audit-merge/v3/lineage.json",
+      "sha256": "007f90a31d3e80f50e63e92fffbb2e7844ddea5f1d27167ba9f986b52f90ad9f"
+    },
+    {
+      "file": "cpa_uploader/drafts/case-review-2026-09-15/r01-group-audit-merge/v3/qa.json",
+      "sha256": "403e91b3c07dcb1e7035691f587e741e6ca98e3ddbe7747c4873365b9c0f403a"
+    },
+    {
+      "file": "cpa_uploader/drafts/case-review-2026-09-15/r01-group-audit-merge/v3/build-draft.mjs",
+      "sha256": "2b4b21a75dfe7a9e0045e41da4dd6bd6e7f8d3d47e34324405923ce2b81cc37b"
+    },
+    {
+      "file": "cpa_uploader/data/official/kga600-2025-review14.txt",
+      "sha256": "22f6a25d59636722831adc8e50f53c1bb4d711cda61a38eee3434ffbe3be957a"
+    }
+  ],
+  "method_detail": "v3는 v2의 사실관계·출처를 바이트까지 유지하고(build-draft.mjs의 동일성 검사) 발문·모범답안·criterion만 새 배점 기준으로 바꾸었다. 바뀐 부분을 등록 전문 문단 20·29·A39·A43·A44·A8·45·A63과 다시 대조하고, 각 항목 기준이 이유와 보완절차를 각각 단독으로 인정하는지와 반대 조건을 확인했다. v2 대표 답안 원문의 v3 기대 판정을 실제 채점 전에 정했다.",
+  "questions": [
+    {
+      "set_id": "case-14-group-procedures-20260915",
+      "subquestion_id": "sub1",
+      "checks": {
+        "source": "pass",
+        "answer": "pass",
+        "prompt": "pass",
+        "points": "pass",
+        "style": "pass",
+        "topics": "pass",
+        "edition": "pass",
+        "nonduplication": "pass"
+      },
+      "rationale": "식별 c1은 v2와 같다. c2는 ①의 이유(독립성 결격은 관여로 극복 불가, 문단 A39)나 절차(그룹감사인이 직접 증거 입수, 문단 20) 중 하나로, c3은 ④의 이유(증거 부족 예상, 문단 29 전단)나 절차(일부 부문 선정과 추가 업무, 문단 29 후단) 중 하나로 1점을 준다. ④의 이유만 쓸 때에는 분석적절차만으로 부족한 상황이 드러나야 한다는 조건을 두어 일반화 오답을 막는다. 모범답안 세 문장이 각 기준을 충족한다. 사실 판단: ①은 문단 A39·20에 따라 옳지 않고(독립성 결격은 관여로 극복 불가, 요청 금지·그룹감사인 직접 입수), ②는 문단 A40의 심각하지 않은 적격성 우려(산업 고유 지식 결여)로 관여에 의한 보완이 허용되며 사실관계가 우려의 정도를 평가로 확정한다. ③은 문단 27이 위험 기준 유의적 부문에 (a)~(c) 중 하나 이상을 요구하므로 특정 감사절차만 수행해도 옳다. ④는 자료 2 첫 문장의 증거 부족 예상이 문단 29 조건에 해당하므로 분석적절차(문단 28)만으로 끝낼 수 없어 옳지 않다. c1 식별은 함정 선택과 누락을 모두 미득점으로, c2·c4 이유와 c3·c5 올바른 절차는 서로 독립적으로 채점된다. 모범답안 다섯 문장이 각 criterion을 충족한다.",
+      "check_rationales": {
+        "source": "각 requirement 인용은 등록 전문의 해당 문단 exact 부분문자열이며(초안 검증 통과), 식별 기준의 근거 문단(20·A39·A40·27·29)을 criterion source_ref_ids에 모두 연결했다.",
+        "answer": "모범답안이 c1~c3을 충족한다. v2 부분정답(③ 선택)=2점, v2 오답=0점, 보조 사례(보완절차만)=3점을 원문으로 정했다.",
+        "prompt": "발문은 범위(①~④)와 요구(번호, 이유나 수행하였어야 할 절차를 간략히)만 적는다. v2의 “이유와 올바른 절차를 설명” 요구를 사용자 확정 기준에 맞춰 바꾸었다.",
+        "points": "3점. 옳지 않은 항목 두 개에 각 1점(이유 또는 보완절차), 식별 1점. v2의 항목당 2점을 줄였다.",
+        "style": "번호가 붙은 사례 절차를 판단하고 병·판매부문의 사실에 연결해야 하므로 사례형이다. 일반 기준서 목록만으로는 식별 점수와 ④ 이유 점수를 얻을 수 없다.",
+        "topics": "14(부문감사인 이해·업무유형 결정)와 01(부문감사인 독립성 결격의 결과). 06은 함정 ②에만 남아 득점 요구가 아니므로 제외.",
+        "edition": "20X1년은 KGA 600 2025 개정 전문(문단 7: 2026-01-01 이후 개시 보고기간 시행)이 적용되는 기간으로 가정하며 원 세트와 같은 판본을 대조했다.",
+        "nonduplication": "pilot-14-001 sub2(문단 19 열거), pilot-14-007-standards-20260913(문단 29 업무유형 열거)은 일반 요구의 열거이고, 이 물음은 사례 절차의 판단과 적용이다. 원 pilot-14-006·pilot-14-007은 병합 후 퇴역 대상이다."
+      },
+      "unresolved_content_findings": []
+    },
+    {
+      "set_id": "case-14-group-procedures-20260915",
+      "subquestion_id": "sub2",
+      "checks": {
+        "source": "pass",
+        "answer": "pass",
+        "prompt": "pass",
+        "points": "pass",
+        "style": "pass",
+        "topics": "pass",
+        "edition": "pass",
+        "nonduplication": "pass"
+      },
+      "rationale": "식별 c1은 v2와 같다. c2는 ⑦의 이유(부문 수준 판단은 그룹 평가를 대신 못함, 문단 A43·A44·A8)나 절차(같은 방향 과대계상 합산 평가, 문단 45·A63) 중 하나로, c3은 ⑧의 이유(증거 미입수는 미수정왜곡표시가 아님)나 절차(구별해 영향 평가, 문단 45) 중 하나로 1점을 준다. 모범답안 세 문장이 각 기준을 충족한다. 사실 판단: ⑤는 문단 43·A62에 따라 옳다(책임 근거 문장을 빼도 을의 불충분 원인이 요청 범위 오해이고 독립성·적격성 우려가 없다는 사실로 판단이 확정됨). ⑥은 문단 41(e)·40(c)에 따라 그룹업무팀이 전달한 한도기준 미달 왜곡표시는 목록에 포함될 필요가 없으므로 옳고, 한도기준 전달 사실이 자료 1에 있다. ⑦은 부문중요성 미달(문단 A43·A44: 합계 위험 때문에 그룹 중요성보다 낮게 정한 부문 수준 금액)과 부문 적정의견(문단 A8)을 근거로 그룹 수준 총영향 평가(문단 45·A63) 없이 결론 내렸으므로 옳지 않다. ⑧은 증거 미입수 사항을 미수정왜곡표시로 간주해 문단 45의 두 범주를 섞었으므로 옳지 않다. ⑨는 문단 11·A9에 따라 옳다. c1 식별은 ⑤·⑥·⑨ 선택과 ⑦·⑧ 누락을 모두 미득점으로, c2·c3는 ⑦의 이유·올바른 절차를 독립적으로, c4는 ⑧의 구별을 한 의미 단위로 채점한다. 모범답안 네 문장이 각 criterion을 충족한다.",
+      "check_rationales": {
+        "source": "새 인용(문단 11·41(e)·A9·A43·A44)은 등록 전문의 exact 부분문자열이며 KGA 600 구간 안에 있다(초안 검증·전체 은행 검사 통과). 식별 기준 근거를 c1 source_ref_ids에 연결했다.",
+        "answer": "모범답안이 c1~c3을 충족한다. v2 부분정답(⑨ 선택, ⑧ 평가 제외)=1점, v2 오답=0점, 보조 사례(이유만)=3점을 원문으로 정했다.",
+        "prompt": "범위(⑤~⑨)와 요구(번호, 이유나 수행하였어야 할 절차를 간략히)만 적는다.",
+        "points": "3점. 옳지 않은 항목 두 개에 각 1점, 식별 1점. v2의 ⑦ 2점을 1점으로 줄였다.",
+        "style": "부문중요성·부문 의견·한도기준·증거 미입수·보고서 기재 방침이라는 사례 사실을 판단해야 하므로 사례형이다.",
+        "topics": "14만 연결한다. 보고서 관련 ⑨는 득점 기준이 없는 함정이라 15를 붙이지 않았다.",
+        "edition": "sub1과 같은 판본·가정.",
+        "nonduplication": "문단 41 열거형 기준서형(std-points-20260914-10e28726886d, -97a86c8d6e2f), 문단 44·45 기준서형(std-points-20260914-c228552756b4)과 달리 사례 절차의 판단이다. pilot-14-008 sub3(부문중요성 합계와 그룹 중요성의 관계 판단)과 부문중요성 개념을 공유하지만 이 물음은 미수정왜곡표시의 그룹 수준 평가에 적용한다."
+      },
+      "unresolved_content_findings": []
+    }
+  ],
+  "observations_not_blocking": [
+    "작성 agent가 직접 검토했으며 독립 agent 교차검토·사람 확인은 수행하지 않았다."
+  ],
+  "unresolved_content_findings": [],
+  "previous_review": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r01/root-content-review-v3.json",
+    "sha256": "f8fcd4560a8c514fee5b1e725c5a5b343ea2c7e46309cec6fed073ff60e59912"
+  },
+  "rerun_reason": "운영 반영 전 재실측: cpa_uploader/analysis/reviews/case-review-2026-09-15/r01/execution-v3/grading-manifest.json가 입력으로 고정한 cpa_uploader/analysis/reviews/case-review-2026-09-15/authorization.md 해시(51a173b51c4e63396bef9f6eba2d3d9de53a7f88a865518aea07a7078efbe98f)가 이후 사용자 결정 추가로 현재 파일(fe924c2f33a4649c4a1c6eb287ddaffff15b7ba7a5fbad965c23e5b6c9131d5c)과 달라 승급 검증이 이 실행 증거를 읽을 수 없다. 초안과 문항별 검토 판단은 v3과 같고 새 실행 판본 v4에서 같은 대표 답안을 다시 채점한다."
+}

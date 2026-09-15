@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-7c8d41e23fcc. 당초 중요왜곡표시위험의 식별·평가 근거와 일관되지 않은 새 정보를 확인했을 때, 위험평가와 계획된 추가감사절차에 관하여 각각 취할 조치를 설명하시오. 추가감사절차는 계획의 세 차원을 구별하시오."
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[risk-assessment-internal-control]] · [[topic-06-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/261`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/253`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [06.json](../../analysis/reviews/question-review-2027/06.json)
 - 학습 순서: sub3
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub3
 
-유형: descriptive · JSON Pointer `/261/subquestions/0`
+유형: descriptive · JSON Pointer `/253/subquestions/0`
 
 ### 발문
 

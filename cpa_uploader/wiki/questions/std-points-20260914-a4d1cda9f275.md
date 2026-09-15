@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-a4d1cda9f275. 외부감사법 제31조제7항에 따라 감사인 또는 감사참여 회계사가 손해배상책임을 면하기 위해 증명할 사항을 설명하시오. 그 대신 원고가 임무 해태를 증명해야 하는 회사와 금융기관의 범위도 구별하여 제시하시오. 금융기관은 법에 열거된 범주를 드러내면 되며 보장조치·소멸기간은 제외한다."
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[ethics-independence-quality]] · [[topic-01-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/229`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/221`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [01.json](../../analysis/reviews/question-review-2027/01.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/229/subquestions/0`
+유형: descriptive · JSON Pointer `/221/subquestions/0`
 
 ### 발문
 

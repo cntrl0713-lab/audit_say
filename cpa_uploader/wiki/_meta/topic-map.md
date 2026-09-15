@@ -1,7 +1,7 @@
 ---
 title: "회계감사 주제 지도"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: source-map
 status: generated
 review_required: true
@@ -26,12 +26,12 @@ confidence: high
 | 8 | 09 | [[inventory-litigation-confirmations-opening-balances]] | KGA 501 · KGA 505 · KGA 510 | [[topic-09-design]] | 25 |
 | 9 | 05 | [[fraud-laws-governance-communication]] | KGA 240 · KGA 250 · KGA 260 · KGA 265 | [[topic-05-design]] | 34 |
 | 10 | 11 | [[estimates-related-parties]] | KGA 540 · KGA 550 | [[topic-11-design]] | 12 |
-| 11 | 13 | [[service-organizations-internal-audit-experts]] | KGA 402 · KGA 610 · KGA 620 | [[topic-13-design]] | 21 |
+| 11 | 13 | [[service-organizations-internal-audit-experts]] | KGA 402 · KGA 610 · KGA 620 | [[topic-13-design]] | 20 |
 | 12 | 10 | [[analytics-audit-sampling]] | KGA 315 · KGA 520 · KGA 530 | [[topic-10-design]] | 16 |
 | 13 | 12 | [[completion-subsequent-events-going-concern]] | KGA 450 · KGA 560 · KGA 570 · KGA 580 | [[topic-12-design]] | 29 |
 | 14 | 15 | [[audit-opinions-reports]] | KGA 700 · KGA 705 | [[topic-15-design]] | 21 |
-| 15 | 16 | [[kam-emphasis-comparatives-other-information]] | KGA 701 · KGA 706 · KGA 710 · KGA 720 | [[topic-16-design]] | 19 |
-| 16 | 14 | [[group-audit]] | KGA 600 | [[topic-14-design]] | 23 |
+| 15 | 16 | [[kam-emphasis-comparatives-other-information]] | KGA 701 · KGA 706 · KGA 710 · KGA 720 | [[topic-16-design]] | 18 |
+| 16 | 14 | [[group-audit]] | KGA 600 | [[topic-14-design]] | 21 |
 | 17 | 17 | [[internal-control-over-financial-reporting]] | KGA 1100 | [[topic-17-design]] | 11 |
 | 18 | 18 | [[small-entity-audit]] | KGA 1200 | [[topic-18-design]] | 12 |
 | 19 | 19 | [[assurance-review-related-services]] | 인증업무개념체계 · 검토업무기준 · 분·반기재무제표 검토준칙 · 합의된 절차 수행업무기준 · ISA 800 (국내 판본 미확인) | [[topic-19-design]] | 7 |

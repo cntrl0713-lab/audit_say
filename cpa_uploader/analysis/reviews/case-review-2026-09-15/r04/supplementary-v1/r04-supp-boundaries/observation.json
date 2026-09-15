@@ -1,0 +1,595 @@
+{
+  "version": 1,
+  "artifact_type": "supplementary_grading_observation",
+  "transport": "model",
+  "model": "gpt-5.6-luna",
+  "case_id": "r04-supp-boundaries",
+  "purpose": "물음 1은 보완절차만, 물음 3·4는 이유만 쓴 답이 항목별 1점을 받는지, 물음 2는 자료별로 나누어 한 자료에만 붙인 주장과 KGA 315의 범주명(정확성, 평가 및 배분)을 인정하는지 확인한다.",
+  "projected_body_hash": "5febc4e7a4bc6a64f2a90d9ca3c0c0a472c2af2b48a101faa176d3bf08a5f085",
+  "answers": {
+    "sub1": "③, ⑤가 옳지 않다.\n③ 당기에 수행한 감사절차에서 기초잔액에 관한 증거를 찾거나 기초잔액에 대한 별도 절차를 수행했어야 한다.\n⑤ 장기대여금의 회수가능성 문제를 20X1년 위험평가에 반영했어야 한다.",
+    "sub2": "(가) 매출채권: 실재성, 권리, 정확성·평가 및 배분\n(나) 매입채무: 완전성, 의무",
+    "sub3": "⑥, ⑨가 옳지 않다.\n⑥ 실사 수량을 기초수량으로 조정한 결과는 수량에 관한 증거일 뿐 평가에 관한 증거가 아니기 때문이다.\n⑨ 기초잔액에 포함된 이 왜곡표시는 20X1년 재무제표에 중요한 영향을 미칠 수 있기 때문이다.",
+    "sub4": "⑫가 옳지 않다. 전임감사인이 감사한 전기재무제표에 대해서는 기타사항문단에 전임감사인이 표명한 의견의 유형과 그 의견이 변형된 사유를 기재하도록 되어 있기 때문이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "met",
+          "reason": "③·⑤만 정확히 골랐다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "met",
+          "reason": "당기 절차 증거 평가·별도 절차 수행을 적었다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "met",
+          "reason": "장기대여금 문제를 위험평가에 반영하는 절차를 적었다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 4,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "met",
+          "reason": "실재성을 (가)에 붙여 나열했다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "met",
+          "reason": "권리·의무로 나누어 썼다."
+        },
+        {
+          "criterion_id": "sub2.c3",
+          "verdict": "met",
+          "reason": "완전성을 (나)에 붙여 나열했다."
+        },
+        {
+          "criterion_id": "sub2.c4",
+          "verdict": "met",
+          "reason": "정확성·평가 및 배분 명칭을 썼다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.c1",
+          "verdict": "met",
+          "reason": "⑥·⑨만 정확히 골랐다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "verdict": "met",
+          "reason": "수량 조정은 평가 증거가 아니라는 이유를 적었다."
+        },
+        {
+          "criterion_id": "sub3.c3",
+          "verdict": "met",
+          "reason": "당기재무제표에 중요한 영향을 미칠 수 있다는 이유를 적었다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub4",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub4.c1",
+          "verdict": "met",
+          "reason": "⑫만 골랐다."
+        },
+        {
+          "criterion_id": "sub4.c2",
+          "verdict": "met",
+          "reason": "의견의 유형과 변형 사유를 기재해야 한다는 이유를 적었다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "01db42192a0aa6b534e36c3462777e0b33b3f51ec24746a31e90c483f10e83a5",
+  "schema_hash": "575fc72e29dc088feb0f65facbacacc5953a335487a24e8658f6df422d9ef15d",
+  "actual_sdk_calls": 1,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "③, ⑤가 옳지 않다.\n",
+            "reason": "③과 ⑤를 모두 옳지 않은 것으로 특정했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "met",
+            "quote": "③ 당기에 수행한 감사절차에서 기초잔액에 관한 증거를 찾거나 기초잔액에 대한 별도 절차를 수행했어야 한다.\n",
+            "reason": "전임감사인 조서 외에 당기 절차 또는 별도 절차로 기초잔액 증거를 입수해야 한다고 제시했다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "met",
+            "quote": "⑤ 장기대여금의 회수가능성 문제를 20X1년 위험평가에 반영했어야 한다.",
+            "reason": "장기대여금 회수가능성 문제를 당기 위험평가에 반영해야 한다고 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "(가) 매출채권: 실재성, 권리, 정확성·평가 및 배분\n",
+            "reason": "매출채권 자료가 실재성 증거를 제공한다고 제시했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "met",
+            "quote": "(가) 매출채권: 실재성, 권리, 정확성·평가 및 배분\n(나) 매입채무: 완전성, 의무",
+            "reason": "매출채권의 권리와 매입채무의 의무를 제시했다."
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "met",
+            "quote": "(나) 매입채무: 완전성, 의무",
+            "reason": "매입채무 자료가 완전성 증거를 제공한다고 제시했다."
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "met",
+            "quote": "(가) 매출채권: 실재성, 권리, 정확성·평가 및 배분\n",
+            "reason": "매출채권 자료가 정확성·평가 및 배분 증거를 제공한다고 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "met",
+            "quote": "⑥, ⑨가 옳지 않다.\n",
+            "reason": "⑥과 ⑨를 모두 옳지 않은 것으로 특정했다."
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "met",
+            "quote": "⑥ 실사 수량을 기초수량으로 조정한 결과는 수량에 관한 증거일 뿐 평가에 관한 증거가 아니기 때문이다.\n",
+            "reason": "수량 조정 결과는 평가에 관한 증거가 아니라고 제시했다."
+          },
+          {
+            "criterion_id": "sub3.c3",
+            "verdict": "met",
+            "quote": "⑨ 기초잔액에 포함된 이 왜곡표시는 20X1년 재무제표에 중요한 영향을 미칠 수 있기 때문이다.",
+            "reason": "해당 왜곡표시가 당기 재무제표에 중요하게 영향을 미칠 수 있다고 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub4",
+        "verdicts": [
+          {
+            "criterion_id": "sub4.c1",
+            "verdict": "met",
+            "quote": "⑫가 옳지 않다. ",
+            "reason": "⑫를 옳지 않은 것으로 특정했다."
+          },
+          {
+            "criterion_id": "sub4.c2",
+            "verdict": "met",
+            "quote": "전임감사인이 감사한 전기재무제표에 대해서는 기타사항문단에 전임감사인이 표명한 의견의 유형과 그 의견이 변형된 사유를 기재하도록 되어 있기 때문이다.",
+            "reason": "기타사항문단에 전임감사인의 의견 유형과 변형 사유를 기재해야 한다고 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "③과 ⑤를 모두 옳지 않은 것으로 특정했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "전임감사인 조서 외에 당기 절차 또는 별도 절차로 기초잔액 증거를 입수해야 한다고 제시했다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "장기대여금 회수가능성 문제를 당기 위험평가에 반영해야 한다고 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "매출채권 자료가 실재성 증거를 제공한다고 제시했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1",
+                  "sub2/e2"
+                ],
+                "reason": "매출채권의 권리와 매입채무의 의무를 제시했다."
+              },
+              {
+                "criterion_id": "sub2.c3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "매입채무 자료가 완전성 증거를 제공한다고 제시했다."
+              },
+              {
+                "criterion_id": "sub2.c4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "매출채권 자료가 정확성·평가 및 배분 증거를 제공한다고 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "⑥과 ⑨를 모두 옳지 않은 것으로 특정했다."
+              },
+              {
+                "criterion_id": "sub3.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "수량 조정 결과는 평가에 관한 증거가 아니라고 제시했다."
+              },
+              {
+                "criterion_id": "sub3.c3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e3"
+                ],
+                "reason": "해당 왜곡표시가 당기 재무제표에 중요하게 영향을 미칠 수 있다고 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub4",
+            "verdicts": [
+              {
+                "criterion_id": "sub4.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub4/e1"
+                ],
+                "reason": "⑫를 옳지 않은 것으로 특정했다."
+              },
+              {
+                "criterion_id": "sub4.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub4/e2"
+                ],
+                "reason": "기타사항문단에 전임감사인의 의견 유형과 변형 사유를 기재해야 한다고 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-09-initial-audit-20260915",
+    "score": 12,
+    "max_points": 12,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사 착수와 계획 단계의 절차와 판단 ①~⑤ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "③, ⑤가 옳지 않다.\n③ 당기에 수행한 감사절차에서 기초잔액에 관한 증거를 찾거나 기초잔액에 대한 별도 절차를 수행했어야 한다.\n⑤ 장기대여금의 회수가능성 문제를 20X1년 위험평가에 반영했어야 한다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "③, ⑤가 옳지 않다.",
+            "reason": "③과 ⑤를 모두 옳지 않은 것으로 특정했다.",
+            "claim": "옳지 않은 것으로 ③·⑤를 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. ③·⑤ 중 하나라도 빠뜨리거나, 옳은 것인 ①(감사계약 체결 전 수임 절차와 전임감사인과의 커뮤니케이션), ②(전기 재무제표·공시와 전임감사인 감사보고서의 열람), ④(전기 마감잔액의 이월 확인)를 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "met",
+            "quote": "③ 당기에 수행한 감사절차에서 기초잔액에 관한 증거를 찾거나 기초잔액에 대한 별도 절차를 수행했어야 한다.",
+            "reason": "전임감사인 조서 외에 당기 절차 또는 별도 절차로 기초잔액 증거를 입수해야 한다고 제시했다.",
+            "claim": "③ 전임감사인의 감사조서를 검토할 수 없더라도 당기에 수행한 감사절차가 기초잔액에 관한 증거를 제공하는지 평가하거나 기초잔액에 관한 특정 감사절차를 수행하여 증거를 입수할 수 있으므로, 조서를 볼 수 없다는 사실로 증거 입수가 불가능하다고 보고 의견변형을 계획할 수 없다는 이유 또는 다른 경로로 증거를 입수해야 한다는 절차를 제시한다. 두 경로 중 하나만 들거나 다른 방법으로 기초잔액 증거를 입수해야 한다는 원칙만 써도 인정하며, 경로의 완전한 나열은 요구하지 않는다. 조서를 볼 수 없으면 의견을 변형해야 한다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "met",
+            "quote": "⑤ 장기대여금의 회수가능성 문제를 20X1년 위험평가에 반영했어야 한다.",
+            "reason": "장기대여금 회수가능성 문제를 당기 위험평가에 반영해야 한다고 제시했다.",
+            "claim": "⑤ 전기재무제표에 대한 전임감사인의 감사의견이 변형되었으면 당기재무제표의 중요왜곡표시위험을 평가할 때 그 변형을 초래한 사항(장기대여금)이 미치는 영향을 평가해야 한다는 이유나 절차를 제시한다. 장기대여금 문제를 당기 위험평가에 반영해야 한다는 절차나, 전임감사인의 의견변형 사유가 당기 중요왜곡표시위험에 영향을 미칠 수 있다는 이유 중 하나만 써도 인정한다. 전임감사인이 이미 보고했거나 전기 사항이므로 당기 위험평가에서 고려하지 않아도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ③, ⑤이다. ①은 초도감사 착수 전의 수임 절차와 전임감사인과의 커뮤니케이션, ②는 최근 재무제표와 전임감사인 감사보고서의 열람, ④는 전기 마감잔액의 이월 확인으로 모두 옳다.",
+          "③ 전임감사인의 감사조서를 검토할 수 없더라도 당기에 수행한 감사절차가 기초잔액에 관한 증거를 제공하는지 평가하거나 기초잔액에 관한 특정 감사절차를 수행하여 증거를 입수하여야 하며, 그래도 충분하고 적합한 증거를 입수할 수 없을 때 의견변형을 고려한다.",
+          "⑤ 전임감사인의 감사의견이 변형되었으므로 당기재무제표의 중요왜곡표시위험을 평가할 때 그 변형을 초래한 장기대여금 문제가 미치는 영향을 평가하여야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "기초잔액과 관련하여 감사팀이 입수한 자료 (가)와 (나)가 보고기간 개시일 잔액의 어떤 경영진주장에 관한 감사증거를 제공하는지 모두 나열하시오.",
+        "user_answer": "(가) 매출채권: 실재성, 권리, 정확성·평가 및 배분\n(나) 매입채무: 완전성, 의무",
+        "score": 4,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "(가) 매출채권: 실재성, 권리, 정확성·평가 및 배분",
+            "reason": "매출채권 자료가 실재성 증거를 제공한다고 제시했다.",
+            "claim": "(가)·(나)가 보고기간 개시일 잔액의 실재성에 관한 감사증거를 제공한다고 제시한다. 두 자료를 합쳐 한 번에 나열하거나 자료별로 나누어 써도 인정하며, 자료별로 나눌 때 이 주장을 한 자료에만 붙여 써도 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "met",
+            "quote": "(가) 매출채권: 실재성, 권리, 정확성·평가 및 배분\n(나) 매입채무: 완전성, 의무",
+            "reason": "매출채권의 권리와 매입채무의 의무를 제시했다.",
+            "claim": "(가)·(나)가 보고기간 개시일 잔액의 권리와 의무에 관한 감사증거를 제공한다고 제시한다. 두 자료를 합쳐 한 번에 나열하거나 자료별로 나누어 써도 인정하며, 자료별로 나눌 때 이 주장을 한 자료에만 붙여 써도 인정한다. 매출채권은 권리, 매입채무는 의무로 나누어 쓰거나 권리 또는 의무라는 명칭으로 이 주장을 가리켜도 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "met",
+            "quote": "(나) 매입채무: 완전성, 의무",
+            "reason": "매입채무 자료가 완전성 증거를 제공한다고 제시했다.",
+            "claim": "(가)·(나)가 보고기간 개시일 잔액의 완전성에 관한 감사증거를 제공한다고 제시한다. 두 자료를 합쳐 한 번에 나열하거나 자료별로 나누어 써도 인정하며, 자료별로 나눌 때 이 주장을 한 자료에만 붙여 써도 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "met",
+            "quote": "(가) 매출채권: 실재성, 권리, 정확성·평가 및 배분",
+            "reason": "매출채권 자료가 정확성·평가 및 배분 증거를 제공한다고 제시했다.",
+            "claim": "(가)·(나)가 보고기간 개시일 잔액의 평가에 관한 감사증거를 제공한다고 제시한다. 두 자료를 합쳐 한 번에 나열하거나 자료별로 나누어 써도 인정하며, 자료별로 나눌 때 이 주장을 한 자료에만 붙여 써도 인정한다. 정확성, 평가 및 배분 또는 평가와 배분이라는 명칭도 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "(가)와 (나)는 보고기간 개시일 잔액의 실재성에 관한 감사증거를 제공한다.",
+          "(가)와 (나)는 보고기간 개시일 잔액의 권리와 의무(매출채권은 권리, 매입채무는 의무)에 관한 감사증거를 제공한다.",
+          "(가)와 (나)는 보고기간 개시일 잔액의 완전성에 관한 감사증거를 제공한다.",
+          "(가)와 (나)는 보고기간 개시일 잔액의 평가에 관한 감사증거를 제공한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "기초잔액에 관한 절차와 판단 ⑥~⑨ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "⑥, ⑨가 옳지 않다.\n⑥ 실사 수량을 기초수량으로 조정한 결과는 수량에 관한 증거일 뿐 평가에 관한 증거가 아니기 때문이다.\n⑨ 기초잔액에 포함된 이 왜곡표시는 20X1년 재무제표에 중요한 영향을 미칠 수 있기 때문이다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "met",
+            "quote": "⑥, ⑨가 옳지 않다.",
+            "reason": "⑥과 ⑨를 모두 옳지 않은 것으로 특정했다.",
+            "claim": "옳지 않은 것으로 ⑥·⑨를 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. ⑥·⑨ 중 하나라도 빠뜨리거나, 옳은 것인 ⑦(기초 재고자산 증거를 위한 매출총이익률 분석과 기초 전후 기간귀속 테스트), ⑧(기초 장기차입금 잔액의 은행 조회와 차입약정서 대조)을 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "met",
+            "quote": "⑥ 실사 수량을 기초수량으로 조정한 결과는 수량에 관한 증거일 뿐 평가에 관한 증거가 아니기 때문이다.",
+            "reason": "수량 조정 결과는 평가에 관한 증거가 아니라고 제시했다.",
+            "claim": "⑥ 실사 수량을 기초 재고수량으로 조정한 결과는 기초 재고의 수량(실재성)에 관한 증거일 뿐 평가에 관한 증거를 대신하지 못하므로 기초 재고자산 항목의 평가에 대한 감사절차를 따로 수행해야 한다는 이유나 절차를 제시한다. 수량 조정은 평가에 관한 증거가 아니라는 이유와 평가 절차가 따로 필요하다는 절차 중 하나만 써도 인정하며, 구체적인 평가 절차의 예시는 요구하지 않는다. 수량 조정으로 평가에 관한 증거도 얻을 수 있다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub3.c3",
+            "verdict": "met",
+            "quote": "⑨ 기초잔액에 포함된 이 왜곡표시는 20X1년 재무제표에 중요한 영향을 미칠 수 있기 때문이다.",
+            "reason": "해당 왜곡표시가 당기 재무제표에 중요하게 영향을 미칠 수 있다고 제시했다.",
+            "claim": "⑨ 기초잔액에 포함된 이 왜곡표시는 당기재무제표에 중요하게 영향을 미칠 수 있으므로 당기 감사에서 다뤄야 한다는 이유, 또는 당기재무제표에 대한 영향을 결정하기 위한 감사절차를 추가로 수행해야 한다는 절차를 제시한다. 이유와 절차 중 하나만 써도 인정하며, 왜곡표시가 있으면 경영진·지배기구와 커뮤니케이션해야 한다는 절차도 인정한다. 전기 사항이므로 다루지 않아도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ⑥, ⑨이다. ⑦의 매출총이익과 기간귀속에 대한 절차와 ⑧의 장기차입금 조회는 기초잔액에 관한 감사증거를 제공하는 절차로 옳다.",
+          "⑥ 당기 실사 결과를 기초 재고수량으로 조정한 결과는 기초 재고수량에 관한 증거이며 평가에 관한 증거를 대신하지 못하므로, 기초 재고자산 항목의 평가에 대한 감사절차를 따로 수행하여야 한다.",
+          "⑨ 기초잔액에 당기재무제표에 중요하게 영향을 미칠 수 있는 왜곡표시가 포함되어 있다는 증거를 입수하였으므로, 당기재무제표에 대한 영향을 결정하기 위한 감사절차를 추가로 수행하고 왜곡표시가 있으면 경영진 및 지배기구와 커뮤니케이션하여야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub4",
+        "prompt": "감사보고서를 작성하는 단계의 판단 ⑩~⑫ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "⑫가 옳지 않다. 전임감사인이 감사한 전기재무제표에 대해서는 기타사항문단에 전임감사인이 표명한 의견의 유형과 그 의견이 변형된 사유를 기재하도록 되어 있기 때문이다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "sub4.c1",
+            "verdict": "met",
+            "quote": "⑫가 옳지 않다.",
+            "reason": "⑫를 옳지 않은 것으로 특정했다.",
+            "claim": "옳지 않은 것으로 ⑫를 지적한다. 번호 대신 내용으로 특정해도 인정한다. ⑫를 빠뜨리거나, 옳은 것인 ⑩(전임감사인의 한정의견을 초래한 사항이 당기 감사의견의 변형 사유가 되지 않는다는 판단), ⑪(당기재무제표에 대하여 의견을 표명하고 전임감사인이 감사한 전기재무제표에는 의견을 표명하지 않음)을 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub4.c2",
+            "verdict": "met",
+            "quote": "전임감사인이 감사한 전기재무제표에 대해서는 기타사항문단에 전임감사인이 표명한 의견의 유형과 그 의견이 변형된 사유를 기재하도록 되어 있기 때문이다.",
+            "reason": "기타사항문단에 전임감사인의 의견 유형과 변형 사유를 기재해야 한다고 제시했다.",
+            "claim": "⑫ 전기재무제표를 전임감사인이 감사하였고 그 감사보고서가 재발행되지 않으므로 기타사항문단에 전임감사인이 표명한 의견의 유형과, 의견이 변형되었으면 그 사유를 기재해야 한다는 이유나 절차를 제시한다. 한정의견이었다는 사실과 그 사유를 기재해야 한다는 설명도 인정한다. 의견의 유형이나 사유를 기재하지 않아도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ⑫이다. ⑩은 전임감사인의 의견변형을 초래한 사항이 당기에 해결되어 당기재무제표에 대한 의견과 관련성이 없으므로 옳고, ⑪은 전임감사인이 감사한 전기재무제표에 대해서는 기타사항문단에 기재하고 당기재무제표에 대하여 의견을 표명하므로 옳다.",
+          "⑫ 전기재무제표를 전임감사인이 감사하였고 그 감사보고서가 재발행되지 않으므로, 기타사항문단에 전임감사인이 표명한 의견의 유형(한정의견)과 그 사유도 기재하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 4,
+      "actual_points": 4,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub4",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0ea4dc947dd2ecc8016aa8b2031c6887d0abdb0f86652e8099",
+        "request_id": "req_dcf454ce27f144a29c71d634f6d3b3ce",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 9988,
+          "input_tokens_details": {
+            "cache_write_tokens": 9985,
+            "cached_tokens": 0
+          },
+          "output_tokens": 941,
+          "output_tokens_details": {
+            "reasoning_tokens": 216
+          },
+          "total_tokens": 10929
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00362605,
+        "min_usd": 0.00362605,
+        "max_usd": 0.00362605,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ]
+}

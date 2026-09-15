@@ -1,7 +1,7 @@
 ---
 title: "case-13-expert-remediation-20260914. 복구충당부채 전문가 보고서의 검증과 후속업무"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[service-organizations-internal-audit-experts]] · [[topic-13-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/165`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/160`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [13.json](../../analysis/reviews/question-review-2027/13.json)
 - 학습 순서: sub1 → sub2 → sub3
@@ -28,7 +28,7 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/165/subquestions/0`
+유형: descriptive · JSON Pointer `/160/subquestions/0`
 
 ### 발문
 
@@ -59,7 +59,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/165/subquestions/1`
+유형: descriptive · JSON Pointer `/160/subquestions/1`
 
 ### 발문
 
@@ -93,7 +93,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub3
 
-유형: descriptive · JSON Pointer `/165/subquestions/2`
+유형: descriptive · JSON Pointer `/160/subquestions/2`
 
 ### 발문
 

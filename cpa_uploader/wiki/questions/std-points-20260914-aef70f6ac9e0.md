@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-aef70f6ac9e0. 유의적 내부통제 미비점에 관한 서면 커뮤니케이션에서 미비점 자체에 관하여 포함해야 할 두 내용을 제시하시오. 감사의 목적·내부통제 고려의 목적·보고범위에 관한 설명은 제외한다."
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-15
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[fraud-laws-governance-communication]] · [[topic-05-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/192`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/184`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [05.json](../../analysis/reviews/question-review-2027/05.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/192/subquestions/0`
+유형: enumeration · JSON Pointer `/184/subquestions/0`
 
 ### 발문
 
