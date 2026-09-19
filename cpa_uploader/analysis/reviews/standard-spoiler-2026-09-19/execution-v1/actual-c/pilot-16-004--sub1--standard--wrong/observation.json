@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-16-004--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-004--sub1--standard",
+  "source_set_id": "pilot-16-004",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "ae4857a0f3e787e0bb9b9553e2ae112cc8008d80c34f01b2fcee9bac0fa03ff5",
+  "answers": {
+    "sub1": "강조사항문단은 재무제표에 공시되지 않은 사항을 알리는 문단이고, 기타사항문단은 재무제표 주석에 공시된 사항을 반복하는 문단이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (두 문단의 대상을 서로 바꿨다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (두 문단의 대상을 서로 바꿨다.)"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (두 문단의 대상을 서로 바꿨다.)"
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (두 문단의 대상을 서로 바꿨다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ba9135f7f325ab3b7ffbdaec9fd38600e6ffcee4febe777cc24fdb3d7b8e60b1",
+  "schema_hash": "95927f22b9183a4de751fba4a57ac9d0c2eeea99ce206606bc0d87e7b3c205cb",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "강조사항문단은 재무제표에 공시되지 않은 사항을 알리는 문단이고, 기타사항문단은 재무제표 주석에 공시된 사항을 반복하는 문단이다.",
+            "reason": "강조사항문단이 공시되지 않은 사항을 다룬다고 하여 요구 내용과 반대로 설명했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "재무제표 이해에 근본이 될 정도의 중요성을 설명하지 않았다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "강조사항문단은 재무제표에 공시되지 않은 사항을 알리는 문단이고, 기타사항문단은 재무제표 주석에 공시된 사항을 반복하는 문단이다.",
+            "reason": "기타사항문단이 주석에 공시된 사항을 다룬다고 하여 요구 내용과 반대로 설명했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "감사·감사인의 책임·감사보고서 이해와의 관련성을 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "강조사항문단이 공시되지 않은 사항을 다룬다고 하여 요구 내용과 반대로 설명했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표 이해에 근본이 될 정도의 중요성을 설명하지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "기타사항문단이 주석에 공시된 사항을 다룬다고 하여 요구 내용과 반대로 설명했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사·감사인의 책임·감사보고서 이해와의 관련성을 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-004",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "강조사항문단과 기타사항문단이 각각 다루는 사항의 재무제표 표시·공시 여부와 이용자 이해 측면의 관련성을 구분하여 설명하시오.",
+        "user_answer": "강조사항문단은 재무제표에 공시되지 않은 사항을 알리는 문단이고, 기타사항문단은 재무제표 주석에 공시된 사항을 반복하는 문단이다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "강조사항문단은 재무제표에 공시되지 않은 사항을 알리는 문단이고, 기타사항문단은 재무제표 주석에 공시된 사항을 반복하는 문단이다.",
+            "reason": "강조사항문단이 공시되지 않은 사항을 다룬다고 하여 요구 내용과 반대로 설명했다.",
+            "claim": "강조사항문단은 재무제표에 적절하게 표시되거나 공시된 사항을 다룬다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "재무제표 이해에 근본이 될 정도의 중요성을 설명하지 않았다.",
+            "claim": "강조사항은 이용자가 재무제표를 이해하는 데 근본이 될 정도로 중요하다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "강조사항문단은 재무제표에 공시되지 않은 사항을 알리는 문단이고, 기타사항문단은 재무제표 주석에 공시된 사항을 반복하는 문단이다.",
+            "reason": "기타사항문단이 주석에 공시된 사항을 다룬다고 하여 요구 내용과 반대로 설명했다.",
+            "claim": "기타사항문단은 재무제표에 표시되거나 공시되지 않은 사항을 다룬다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "감사·감사인의 책임·감사보고서 이해와의 관련성을 설명하지 않았다.",
+            "claim": "기타사항은 감사·감사인의 책임·감사보고서에 대한 이용자의 이해와 관련된다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "강조사항문단은 재무제표에 적절하게 표시되거나 공시된 사항을 다룬다.",
+          "그 사항은 이용자가 재무제표를 이해하는 데 근본이 될 정도로 중요하다.",
+          "기타사항문단은 재무제표에 표시되거나 공시되지 않은 사항을 다룬다.",
+          "그 사항은 이용자가 감사, 감사인의 책임 또는 감사보고서를 이해하는 데 관련성이 있다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02e657772170d786016aae0725f38487d0afe2d54caf075054",
+        "request_id": "req_2cef2a017ffe40838b965c144a8fb37b",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2646,
+          "input_tokens_details": {
+            "cache_write_tokens": 2643,
+            "cached_tokens": 0
+          },
+          "output_tokens": 313,
+          "output_tokens_details": {
+            "reasoning_tokens": 74
+          },
+          "total_tokens": 2959
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00103695,
+        "min_usd": 0.00103695,
+        "max_usd": 0.00103695,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-16-004--sub1--standard--wrong/input.json",
+      "sha256": "969dc0ae5e5fc1305a19d1ec0b0d770ead2552f1c21ddbd82ef075e00223229b"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-16-004--sub1--standard--wrong/transport.jsonl",
+      "sha256": "0057a5141c79ef4140f5ebd0e98ad8e0df907d6d7b42f0d7fd8bb644a5784389"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-16-004--sub1--standard--wrong/traces.jsonl",
+      "sha256": "bd477c30f1e28318543dd35927e861f10fbf0074f2412ee0b12279be6696f3b1"
+    }
+  }
+}

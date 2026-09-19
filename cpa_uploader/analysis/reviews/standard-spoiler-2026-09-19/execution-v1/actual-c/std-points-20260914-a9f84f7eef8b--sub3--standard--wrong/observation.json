@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "std-points-20260914-a9f84f7eef8b--sub3--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-a9f84f7eef8b--sub3--standard",
+  "source_set_id": "std-points-20260914-a9f84f7eef8b",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub3"
+  ],
+  "projected_body_hash": "46e23b4f680a3ee7d5788c69330a8e41b0fefa39a4a00092920394e702ecc129",
+  "answers": {
+    "sub3": "표본이 합리적인 결론의 근거를 제공하지 않아도 경영진의 조사나 수정, 감사인의 추가절차 조정 없이 기존 결론을 그대로 확정한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "a02c21fcb76c9e18710bab213a4f96cdac2e900fdcc44b16d0d6ba7c91222a02",
+  "schema_hash": "1579c87dc601e8f079421f9b999264686e45b9d32132287d395d5bf729e885fd",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "표본이 합리적인 결론의 근거를 제공하지 않아도 경영진의 조사나 수정, 감사인의 추가절차 조정 없이 기존 결론을 그대로 확정한다.",
+            "reason": "경영진의 조사를 하지 않고 기존 결론을 확정한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "contradicted",
+            "quote": "표본이 합리적인 결론의 근거를 제공하지 않아도 경영진의 조사나 수정, 감사인의 추가절차 조정 없이 기존 결론을 그대로 확정한다.",
+            "reason": "경영진의 수정을 하지 않고 기존 결론을 확정한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "표본이 합리적인 결론의 근거를 제공하지 않아도 경영진의 조사나 수정, 감사인의 추가절차 조정 없이 기존 결론을 그대로 확정한다.",
+            "reason": "감사인의 추가감사절차 조정 없이 기존 결론을 확정한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "경영진의 조사를 하지 않고 기존 결론을 확정한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit9",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "경영진의 수정을 하지 않고 기존 결론을 확정한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "감사인의 추가감사절차 조정 없이 기존 결론을 확정한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-a9f84f7eef8b",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "감사기준서 530에 따라 표본감사가 테스트 대상 모집단에 대한 결론의 합리적인 근거를 제공하지 못한다고 결론 내린 경우 감사인이 취할 수 있는 대응을 모두 설명하시오.",
+        "user_answer": "표본이 합리적인 결론의 근거를 제공하지 않아도 경영진의 조사나 수정, 감사인의 추가절차 조정 없이 기존 결론을 그대로 확정한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "표본이 합리적인 결론의 근거를 제공하지 않아도 경영진의 조사나 수정, 감사인의 추가절차 조정 없이 기존 결론을 그대로 확정한다.",
+            "reason": "경영진의 조사를 하지 않고 기존 결론을 확정한다고 명시했다.",
+            "claim": "경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하도록 요구할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit9",
+            "verdict": "contradicted",
+            "quote": "표본이 합리적인 결론의 근거를 제공하지 않아도 경영진의 조사나 수정, 감사인의 추가절차 조정 없이 기존 결론을 그대로 확정한다.",
+            "reason": "경영진의 수정을 하지 않고 기존 결론을 확정한다고 명시했다.",
+            "claim": "경영진에게 조사 결과에 따른 필요한 수정을 하도록 요구할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "표본이 합리적인 결론의 근거를 제공하지 않아도 경영진의 조사나 수정, 감사인의 추가절차 조정 없이 기존 결론을 그대로 확정한다.",
+            "reason": "감사인의 추가감사절차 조정 없이 기존 결론을 확정한다고 명시했다.",
+            "claim": "요구되는 확신을 가장 잘 달성하도록 감사인 자신의 추가감사절차를 적합하게 조정할 수 있다. 성격·시기·범위의 조정이 여기에 포함되지만, 이 물음은 두 대응 경로를 묻는 범위이므로 세 차원의 전체 열거를 별도 필수요건으로 삼지 않는다. 두 경로를 항상 동시에 수행해야 하는 것은 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "한 경로는 경영진에게 식별된 왜곡표시와 잠재적인 추가 왜곡표시를 조사하고 필요한 수정을 하도록 요구하는 것이다. 다른 경로는 요구되는 확신을 가장 잘 달성하도록 감사인 자신의 추가감사절차를 조정하는 것이다. 상황에 맞게 대응하며 두 경로를 언제나 동시에 수행해야 한다는 뜻은 아니다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_04d0f884288433a6016aae0884736087d0b6e2047b60baa804",
+        "request_id": "req_30469418315b449fb5050c5e5a084b1a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2658,
+          "input_tokens_details": {
+            "cache_write_tokens": 2655,
+            "cached_tokens": 0
+          },
+          "output_tokens": 259,
+          "output_tokens_details": {
+            "reasoning_tokens": 67
+          },
+          "total_tokens": 2917
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00097515,
+        "min_usd": 0.00097515,
+        "max_usd": 0.00097515,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-a9f84f7eef8b--sub3--standard--wrong/input.json",
+      "sha256": "35410be83998eda6de8878bb7740f1e3b5db9afef62e34b4d6bd24e43ef00931"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-a9f84f7eef8b--sub3--standard--wrong/transport.jsonl",
+      "sha256": "0ca12998d8da0df6dc422d86c6149c95523609f82f623e9a9faf7386639e88f6"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-a9f84f7eef8b--sub3--standard--wrong/traces.jsonl",
+      "sha256": "cccabb4da0616027304df11458466533fea7554ef3404a5a6158986234070365"
+    }
+  }
+}

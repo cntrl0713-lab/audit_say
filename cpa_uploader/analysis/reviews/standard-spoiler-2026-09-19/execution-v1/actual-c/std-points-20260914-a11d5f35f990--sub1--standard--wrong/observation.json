@@ -1,0 +1,226 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "std-points-20260914-a11d5f35f990--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-a11d5f35f990--sub1--standard",
+  "source_set_id": "std-points-20260914-a11d5f35f990",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "9e78fbd800008542276384b1949fa97a18ae2b4f883552ae3fc39167959a4f3e",
+  "answers": {
+    "sub1": "표본위험은 회계법인의 영업손실 위험이며 원하는 항목만 선택하고 다른 표본단위는 영구 제외해도 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit1.sp2",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "96a7a21d48bf98c99eff24feacf1ab371007483f5780f604e56defb53176ab65",
+  "schema_hash": "5eb41d9e01f2406190d7e1c6412ed6bcf0c3f55075d9675e4c6ae9d593be1a58",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "표본위험은 회계법인의 영업손실 위험이며 원하는 항목만 선택하고 다른 표본단위는 영구 제외해도 된다.",
+            "reason": "표본위험을 모집단 결론과의 차이가 아닌 회계법인의 영업손실 위험으로 정의했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "수용가능한 낮은 수준으로 표본위험을 낮추기 위한 표본규모 결정이 언급되지 않았다."
+          },
+          {
+            "criterion_id": "crit1.sp2",
+            "verdict": "contradicted",
+            "quote": "표본위험은 회계법인의 영업손실 위험이며 원하는 항목만 선택하고 다른 표본단위는 영구 제외해도 된다.",
+            "reason": "모든 표본단위에 추출 기회를 부여해야 하는 요구와 반대로 다른 표본단위를 영구 제외해도 된다고 했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "표본위험을 모집단 결론과의 차이가 아닌 회계법인의 영업손실 위험으로 정의했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "수용가능한 낮은 수준으로 표본위험을 낮추기 위한 표본규모 결정이 언급되지 않았다."
+              },
+              {
+                "criterion_id": "crit1.sp2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "모든 표본단위에 추출 기회를 부여해야 하는 요구와 반대로 다른 표본단위를 영구 제외해도 된다고 했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-a11d5f35f990",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "표본위험을 정의하고, 감사기준서 530에 따라 감사인이 표본규모를 결정할 때와 표본항목을 추출할 때 각각 충족하여야 할 요구사항을 설명하시오.",
+        "user_answer": "표본위험은 회계법인의 영업손실 위험이며 원하는 항목만 선택하고 다른 표본단위는 영구 제외해도 된다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "표본위험은 회계법인의 영업손실 위험이며 원하는 항목만 선택하고 다른 표본단위는 영구 제외해도 된다.",
+            "reason": "표본위험을 모집단 결론과의 차이가 아닌 회계법인의 영업손실 위험으로 정의했다.",
+            "claim": "표본결론이 전체 모집단 적용 시의 결론과 달라질 수 있는 위험으로 정의함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "수용가능한 낮은 수준으로 표본위험을 낮추기 위한 표본규모 결정이 언급되지 않았다.",
+            "claim": "표본위험을 수용가능한 낮은 수준으로 충분히 낮추도록 표본규모를 정한다는 기준을 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit1.sp2",
+            "verdict": "contradicted",
+            "quote": "표본위험은 회계법인의 영업손실 위험이며 원하는 항목만 선택하고 다른 표본단위는 영구 제외해도 된다.",
+            "reason": "모든 표본단위에 추출 기회를 부여해야 하는 요구와 반대로 다른 표본단위를 영구 제외해도 된다고 했다.",
+            "claim": "모집단의 모든 표본단위에 추출 기회가 부여되어야 함을 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "표본위험은 표본에 근거한 결론이 모집단 전체에 같은 감사절차를 적용했을 때의 결론과 달라질 수 있는 위험이다. 이 위험을 수용가능한 낮은 수준으로 낮추기에 충분한 표본규모를 결정하고, 모집단의 모든 표본단위에 추출 기회가 있도록 표본항목을 선택한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0984e1d48ae578f2016aae087d0f4887d0b7bc6e1125dfc951",
+        "request_id": "req_8898af40538548c79a76d415e9dc56a9",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2492,
+          "input_tokens_details": {
+            "cache_write_tokens": 2489,
+            "cached_tokens": 0
+          },
+          "output_tokens": 313,
+          "output_tokens_details": {
+            "reasoning_tokens": 97
+          },
+          "total_tokens": 2805
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009984500000000001,
+        "min_usd": 0.0009984500000000001,
+        "max_usd": 0.0009984500000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-a11d5f35f990--sub1--standard--wrong/input.json",
+      "sha256": "53fb886ca6591c60f9f46704cde36cf8c21c9a89f2dc92c3900abe52bd82eca0"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-a11d5f35f990--sub1--standard--wrong/transport.jsonl",
+      "sha256": "ff1e9b05e9d2d2830aec9762323056f4cffc3250b3c231d2f8816e93e4cdd127"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-a11d5f35f990--sub1--standard--wrong/traces.jsonl",
+      "sha256": "50c924e7800f05cd1cf84a5f5fe7ab054122b193f1f60e531ed8ae85ccb6214d"
+    }
+  }
+}

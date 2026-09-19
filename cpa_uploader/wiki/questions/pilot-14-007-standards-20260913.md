@@ -1,7 +1,7 @@
 ---
 title: "pilot-14-007-standards-20260913. 유의적이지 않은 부문의 추가 업무 대안"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[group-audit]] · [[topic-14-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/132`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/124`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [14.json](../../analysis/reviews/question-review-2027/14.json)
 - 학습 순서: sub4
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub4
 
-유형: enumeration · JSON Pointer `/132/subquestions/0`
+유형: enumeration · JSON Pointer `/124/subquestions/0`
 
 ### 발문
 
-그룹감사의견을 위한 충분하고 적합한 증거를 얻기 어려울 것으로 예상하여 유의적이지 않은 부문 중 일부를 추가 업무 대상으로 선정하였다. 감사기준서 600 문단 29에 따라 해당 부문에서 선택할 수 있는 네 업무유형과, 부문재무정보 전체의 감사 또는 검토에 사용할 중요성을 제시하시오.
+그룹감사의견을 위한 충분하고 적합한 감사증거를 얻기 어려울 것으로 예상하여 유의적이지 않은 부문 중 일부를 추가 업무 대상으로 선정하였다. 감사기준서 600 문단 29에 따라 선정된 부문에 대하여 수행할 수 있는 업무유형을 모두 제시하시오. 업무유형에 사용할 중요성이 정해져 있으면 함께 쓰시오.
 
 ### 모범답안
 

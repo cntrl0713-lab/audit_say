@@ -1,7 +1,7 @@
 ---
 title: "13. 서비스조직·내부감사·감사인측 전문가 원자료 단위 1/4"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-18
 type: source-map
 status: generated
 review_required: true

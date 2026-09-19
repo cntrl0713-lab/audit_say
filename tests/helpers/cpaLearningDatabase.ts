@@ -1,14 +1,15 @@
 import fs from 'node:fs';
 import { createHash } from 'node:crypto';
 import { PGlite } from '@electric-sql/pglite';
+import type { PGliteOptions } from '@electric-sql/pglite';
 import type { QuestionSetV3 } from '../../lib/questionV3.ts';
 
 export const memberId = '00000000-0000-4000-8000-000000000001';
 export const otherMemberId = '00000000-0000-4000-8000-000000000002';
 export const guestId = '00000000-0000-4000-8000-000000000003';
 
-export async function createLearningDatabase(options: { learningRpc?: boolean } = {}): Promise<PGlite> {
-    const db = new PGlite();
+export async function createLearningDatabase(options: { learningRpc?: boolean; extensions?: PGliteOptions['extensions'] } = {}): Promise<PGlite> {
+    const db = new PGlite(options.extensions ? { extensions: options.extensions } : undefined);
     try {
         await db.exec(`
             create role anon; create role authenticated; create role service_role bypassrls;

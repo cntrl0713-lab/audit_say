@@ -1,7 +1,7 @@
 ---
 title: "18. 소규모기업 감사 원자료 단위 1/1"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-18
 type: source-map
 status: generated
 review_required: true

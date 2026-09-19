@@ -1,12 +1,12 @@
 ---
 title: "원자료 매니페스트"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: source-map
 status: generated
 review_required: true
 tags: [audit, question-generation, quality]
-sources: ["cpa_uploader/data","cpa_uploader/raw/collections/2026-09-11-initial/manifest.json","cpa_uploader/raw/collections/2026-09-12-kga250-edition-followup/manifest.json","cpa_uploader/raw/collections/2026-09-12-kga800-edition-followup/manifest.json","cpa_uploader/raw/collections/2026-09-13-standard-additional/manifest.json","cpa_uploader/raw/collections/2026-09-13-standard-expansion/manifest.json","cpa_uploader/raw/collections/2026-09-13-standard-followup/manifest.json","cpa_uploader/raw/collections/2026-09-13-standard-gap/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-additional/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-applied/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-deepening/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-followup-pages/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-followup/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-trio-next/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-trio/manifest.json","cpa_uploader/raw/collections/2026-09-14-standard-priority/manifest.json","cpa_uploader/raw/collections/2026-09-15-case-review-r04-v2/manifest.json","cpa_uploader/raw/collections/2026-09-15-case-review-r04/manifest.json"]
+sources: ["cpa_uploader/data","cpa_uploader/raw/collections/2026-09-11-initial/manifest.json","cpa_uploader/raw/collections/2026-09-12-kga250-edition-followup/manifest.json","cpa_uploader/raw/collections/2026-09-12-kga800-edition-followup/manifest.json","cpa_uploader/raw/collections/2026-09-13-standard-additional/manifest.json","cpa_uploader/raw/collections/2026-09-13-standard-expansion/manifest.json","cpa_uploader/raw/collections/2026-09-13-standard-followup/manifest.json","cpa_uploader/raw/collections/2026-09-13-standard-gap/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-additional/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-applied/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-deepening/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-followup-pages/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-followup/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-trio-next/manifest.json","cpa_uploader/raw/collections/2026-09-14-case-trio/manifest.json","cpa_uploader/raw/collections/2026-09-14-standard-priority/manifest.json","cpa_uploader/raw/collections/2026-09-15-case-review-r04-v2/manifest.json","cpa_uploader/raw/collections/2026-09-15-case-review-r04/manifest.json","cpa_uploader/raw/collections/2026-09-17-case-review-r05/manifest.json","cpa_uploader/raw/collections/2026-09-17-case-review-r06/manifest.json","cpa_uploader/raw/collections/2026-09-19-case-review-r08/manifest.json","cpa_uploader/raw/collections/2026-09-19-case-review-r11/manifest.json"]
 confidence: high
 ---
 
@@ -35,10 +35,14 @@ confidence: high
 | [2026-09-14-standard-priority](../../raw/collections/2026-09-14-standard-priority/index.md) | 3 | 2 | 0 |
 | [2026-09-15-case-review-r04-v2](../../raw/collections/2026-09-15-case-review-r04-v2/index.md) | 3 | 2 | 0 |
 | [2026-09-15-case-review-r04](../../raw/collections/2026-09-15-case-review-r04/index.md) | 15 | 14 | 0 |
+| [2026-09-17-case-review-r05](../../raw/collections/2026-09-17-case-review-r05/index.md) | 23 | 22 | 0 |
+| [2026-09-17-case-review-r06](../../raw/collections/2026-09-17-case-review-r06/index.md) | 18 | 17 | 0 |
+| [2026-09-19-case-review-r08](../../raw/collections/2026-09-19-case-review-r08/index.md) | 29 | 28 | 0 |
+| [2026-09-19-case-review-r11](../../raw/collections/2026-09-19-case-review-r11/index.md) | 29 | 28 | 0 |
 
 ## 현행 등록 입력
 
-파일 74개 · 동일 해시 중복 0그룹 · NUL 포함 0개. 아래는 현재 data 입력이고 raw의 과거 시점 사본과 구분한다. 원자료를 수정하지 않고 읽으며 편집 정본과 배포물은 각각의 생성·검수 절차로만 갱신한다.
+파일 79개 · 동일 해시 중복 0그룹 · NUL 포함 0개. 아래는 현재 data 입력이고 raw의 과거 시점 사본과 구분한다. 원자료를 수정하지 않고 읽으며 편집 정본과 배포물은 각각의 생성·검수 절차로만 갱신한다.
 
 | 경로 | bytes | SHA-256 | NUL | 중복 그룹 |
 |---|---|---|---|---|
@@ -64,10 +68,11 @@ confidence: high
 | [data/회계감사_통합학습자료/99_문자_판독_검토대상.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EB%AC%B8%EC%9E%90_%ED%8C%90%EB%8F%85_%EA%B2%80%ED%86%A0%EB%8C%80%EC%83%81.md) | 32547 | b7ada42c94d11d0685af07fd97f447cb536cb2479445e29a7a831b80d36f4b1e | 0 | - |
 | [data/회계감사_통합학습자료/99_완전성_검증.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EC%99%84%EC%A0%84%EC%84%B1_%EA%B2%80%EC%A6%9D.md) | 3806 | d645692493fa616bdbdb386018d26c4f14f91dd18536cd84f8233446f541f21f | 0 | - |
 | [data/회계감사_통합학습자료/README.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/README.md) | 3608 | 73089ee49076f373e38fc33f5be4b30f5f2ed3b33e9763a62b4d77de70dac306 | 0 | - |
-| [data/cpa_question_sets_v3.authoring.json](../../data/cpa_question_sets_v3.authoring.json) | 6188357 | 18082e546c3fb99a8169c49d65e708bb5dc3d33802251a2bf5c00525deb4b706 | 0 | - |
-| [data/cpa_question_sets_v3.promotions.json](../../data/cpa_question_sets_v3.promotions.json) | 7672498 | 77510513acd69ed1b859a6acc17d3e503b343bdf50a297601f07264e2eb326eb | 0 | - |
-| [data/cpa_question_sets_v3.public.json](../../data/cpa_question_sets_v3.public.json) | 1227343 | f98ce8141c89266358aff76989691a50c688217b4b2af359135bbdbfa0035a69 | 0 | - |
-| [data/learning-question-classifications.json](../../data/learning-question-classifications.json) | 539063 | 84f8af1042a938a61632c04ab4de1b0c1275a23f4da3948fdb29d92b27e6dd66 | 0 | - |
+| [data/cpa_question_sets_v3.authoring.json](../../data/cpa_question_sets_v3.authoring.json) | 6234177 | 213b18f79fd2d0e0dd302a7c125c0894edab3c8ececfa1882eca5b6060af7759 | 0 | - |
+| [data/cpa_question_sets_v3.promotions.json](../../data/cpa_question_sets_v3.promotions.json) | 12472564 | 485836ec80e0e8fe0cc1ff0ffa4e463d7594975112e6c658d8161a7a8b6009f6 | 0 | - |
+| [data/cpa_question_sets_v3.public.json](../../data/cpa_question_sets_v3.public.json) | 1203736 | 7ed54825bbfd45d143c82807aebf59ce392e2b096a33caa8de964dc739d91c41 | 0 | - |
+| [data/learning-question-classification-review.json](../../data/learning-question-classification-review.json) | 319870 | 3aa3c08809eca11f5cded33982551dec55922d8750feb399da07628bf5effcd2 | 0 | - |
+| [data/learning-question-classifications.json](../../data/learning-question-classifications.json) | 510855 | 54afea41d2237c74431f5cea04b13b4fed25c5d468b8119a74c3544c88eaa60a | 0 | - |
 | [data/official/assurance-review-2027-topic19.txt](../../data/official/assurance-review-2027-topic19.txt) | 7954 | 864546d0b2a109a3b0a254ef83ec4c13954d240a111025ccc0c4502dccea93a5 | 0 | - |
 | [data/official/case-applied-2026-09-14-kga570.md](../../data/official/case-applied-2026-09-14-kga570.md) | 2885 | 4c0cbc0e724f224badb27c59d58a7f46747e36bb5ac27e4e729c62ee1b070e8a | 0 | - |
 | [data/official/case-deepening-2026-09-14-kga230.md](../../data/official/case-deepening-2026-09-14-kga230.md) | 2584 | 27420e7e99ff52251eda9cb5e75dcbba3058bc6fd45fd0bd2bf1facc2e881781 | 0 | - |
@@ -75,7 +80,11 @@ confidence: high
 | [data/official/case-deepening-2026-09-14-kga330.md](../../data/official/case-deepening-2026-09-14-kga330.md) | 1084 | f8f0407459445103b5ed113a7b5584fc781fef081c38efb02750c07c44d5c549 | 0 | - |
 | [data/official/case-deepening-2026-09-14-kga501.md](../../data/official/case-deepening-2026-09-14-kga501.md) | 1789 | 2db48aca8b162f519260d6681fb647060bb06459e57f9b932f051f13f71a1425 | 0 | - |
 | [data/official/case-followup-2026-09-14-kga540.md](../../data/official/case-followup-2026-09-14-kga540.md) | 10931 | 410c12ffec1d41ea204f976af9dcc5d1a56cada9792aa59c0733e4940caa6e87 | 0 | - |
+| [data/official/case-review-2026-09-15-kga230.md](../../data/official/case-review-2026-09-15-kga230.md) | 4377 | dd9de39179849f8aa9297878c4279589ca7c98493a50a4dd0e83433193ef88b3 | 0 | - |
 | [data/official/case-review-2026-09-15-kga300.md](../../data/official/case-review-2026-09-15-kga300.md) | 1262 | fb4f2c93a9928a85ff9e25944e6583a2002fdadc0a723486a2caa410c87051dd | 0 | - |
+| [data/official/case-review-2026-09-15-kga320.md](../../data/official/case-review-2026-09-15-kga320.md) | 3153 | a20c490d2dda29eb0c093b51a6ca5b69be8f44d03107465b5e9648dd074ff643 | 0 | - |
+| [data/official/case-review-2026-09-15-kga701-706.md](../../data/official/case-review-2026-09-15-kga701-706.md) | 10631 | d06922bedae2a885480d04f82631aa6ac8393f767176e03c967688bf070abb1b | 0 | - |
+| [data/official/case-review-2026-09-15-r11-kga705.md](../../data/official/case-review-2026-09-15-r11-kga705.md) | 6854 | 8a2861a0de41518a6146fe68efc2da05a92aecee470853bd8f4cf8f7e237ee78 | 0 | - |
 | [data/official/delegated-n01-ethics-2024.txt](../../data/official/delegated-n01-ethics-2024.txt) | 18807 | e941e356c3f22b580424fa2b34a908e04296c90e10a6fac0f1a56194d5e485cd | 0 | - |
 | [data/official/delegated-n01-kga200-210-230-2025.txt](../../data/official/delegated-n01-kga200-210-230-2025.txt) | 49542 | d73a24553dc65f8ffc106d324ec77dd99dd578426318213bfb249d957d67bd6f | 0 | - |
 | [data/official/delegated-n01-kga230-supplement-2025.txt](../../data/official/delegated-n01-kga230-supplement-2025.txt) | 2995 | f0dc1bae9defddc953bad9ddf8a1013c10309891f6e046bcb15021102fb15ebe | 0 | - |

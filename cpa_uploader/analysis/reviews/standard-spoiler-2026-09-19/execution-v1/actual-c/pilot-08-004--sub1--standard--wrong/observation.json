@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-08-004--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-08-004--sub1--standard",
+  "source_set_id": "pilot-08-004",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "5c2505d0691373f0f2422fad95c136bee791838438af882fe3b5e075394b24d0",
+  "answers": {
+    "sub1": "기업 내부에서 생성된 증거는 통제와 관계없이 외부 증거보다 항상 신뢰성이 높다. 경영진에게 구두로 확인한 증거는 문서 증거보다 신뢰성이 높다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (일반화를 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (일반화를 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (일반화를 반대로 썼다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "5504986e4488874ddf29d93b79f8c53b5519cfe859b257d4480fe13838c685da",
+  "schema_hash": "172d5de6570c09a29f717bb90ebbf3ab6007312ced42f430d537597c8d473ae9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "기업 내부에서 생성된 증거는 통제와 관계없이 외부 증거보다 항상 신뢰성이 높다. 경영진에게 구두로 확인한 증거는 문서 증거보다 신뢰성이 높다.",
+            "reason": "내부 증거가 외부 증거보다 항상 신뢰성이 높다고 하여 외부 원천 증거의 상대적 신뢰성 우위를 반대로 제시함."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "기업 내부에서 생성된 증거는 통제와 관계없이 외부 증거보다 항상 신뢰성이 높다. ",
+            "reason": "내부 증거의 신뢰성이 통제와 관계없이 항상 높다고 하여 관련 통제의 효과성 조건을 명시적으로 부정함."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "직접 입수 증거와 간접·추론 입수 증거의 상대적 신뢰성 비교가 없음."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "내부 증거가 외부 증거보다 항상 신뢰성이 높다고 하여 외부 원천 증거의 상대적 신뢰성 우위를 반대로 제시함."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "내부 증거의 신뢰성이 통제와 관계없이 항상 높다고 하여 관련 통제의 효과성 조건을 명시적으로 부정함."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "직접 입수 증거와 간접·추론 입수 증거의 상대적 신뢰성 비교가 없음."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-08-004",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사증거의 신뢰성에 대한 일반화에는 예외가 있을 수 있다. 이를 전제로 기준서가 제시하는 일반화 중 원천, 내부통제 및 입수방식과 관련된 세 가지를 모두 제시하시오.",
+        "user_answer": "기업 내부에서 생성된 증거는 통제와 관계없이 외부 증거보다 항상 신뢰성이 높다. 경영진에게 구두로 확인한 증거는 문서 증거보다 신뢰성이 높다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "기업 내부에서 생성된 증거는 통제와 관계없이 외부 증거보다 항상 신뢰성이 높다. 경영진에게 구두로 확인한 증거는 문서 증거보다 신뢰성이 높다.",
+            "reason": "내부 증거가 외부 증거보다 항상 신뢰성이 높다고 하여 외부 원천 증거의 상대적 신뢰성 우위를 반대로 제시함.",
+            "claim": "기업 외부의 독립된 원천에서 얻은 감사증거는 신뢰성이 증가한다고 제시함 (예외가 있을 수 있는 일반화이며, 예외 없이 항상 성립한다고 명시하면 인정하지 않음)",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "기업 내부에서 생성된 증거는 통제와 관계없이 외부 증거보다 항상 신뢰성이 높다.",
+            "reason": "내부 증거의 신뢰성이 통제와 관계없이 항상 높다고 하여 관련 통제의 효과성 조건을 명시적으로 부정함.",
+            "claim": "내부 생성 증거는 관련 통제가 효과적일 때 신뢰성이 증가한다고 제시함 (예외가 있을 수 있는 일반화이며, 예외 없이 항상 성립한다고 명시하면 인정하지 않음)",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "직접 입수 증거와 간접·추론 입수 증거의 상대적 신뢰성 비교가 없음.",
+            "claim": "직접 입수한 증거가 간접 또는 추론으로 입수한 증거보다 신뢰성이 높다고 제시함 (예외가 있을 수 있는 일반화이며, 예외 없이 항상 성립한다고 명시하면 인정하지 않음)",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "일반적으로 기업 외부의 독립된 원천에서 얻은 감사증거는 신뢰성이 증가한다.",
+          "일반적으로 내부적으로 생성된 감사증거는 그 작성과 유지에 관한 기업의 관련 통제가 효과적일 때 신뢰성이 증가한다.",
+          "일반적으로 감사인이 직접 입수한 감사증거는 간접적으로 또는 추론으로 입수한 감사증거보다 신뢰성이 높다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_073d0a8ee66a60ce016aae06b1cbb887d0bd6c8e49d8b3ad71",
+        "request_id": "req_b0307f50afaa49458e2bdf9363e67ccc",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2730,
+          "input_tokens_details": {
+            "cache_write_tokens": 2727,
+            "cached_tokens": 0
+          },
+          "output_tokens": 392,
+          "output_tokens_details": {
+            "reasoning_tokens": 169
+          },
+          "total_tokens": 3122
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00115275,
+        "min_usd": 0.00115275,
+        "max_usd": 0.00115275,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-08-004--sub1--standard--wrong/input.json",
+      "sha256": "93113e7b35dfab99465b01ae2d9e6562fa4ee5e28017f18f3c200f1d59a88502"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-08-004--sub1--standard--wrong/transport.jsonl",
+      "sha256": "97386ec1f99e0a6ea0dcd1be114b8820119eeecb7df886870b9da00634b836fc"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-08-004--sub1--standard--wrong/traces.jsonl",
+      "sha256": "74894d11faef393f2a30ae17e508dd1c6eb2e23ed4aa0190e46c127a5726c560"
+    }
+  }
+}

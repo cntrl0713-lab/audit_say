@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-04-001--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-001--sub1--standard",
+  "source_set_id": "pilot-04-001",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "565b8e06ea83122c4e14cc4fe447e3e9e9dc8a2014d55fc097b9e30b5b5abbd9",
+  "answers": {
+    "sub1": "전반감사전략과 세부적인 감사계획은 반드시 개별적이거나 순차적인 과정으로 수립할 필요는 없다. 한쪽이 변경되면 다른 쪽도 변경될 수 있으므로 서로 밀접하게 관련되어 있기 때문이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "eaf5715f3eda3452bee7c5f5a07c721bda8d6409033bf2ca3e7517087a70fd20",
+  "schema_hash": "450e5450f39cb179dc330749e1eda21d00cb61df1fdc3d16477169ae47fd8af5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "전반감사전략과 세부적인 감사계획은 반드시 개별적이거나 순차적인 과정으로 수립할 필요는 없다. ",
+            "reason": "순차적으로 수립할 필요가 없다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "한쪽이 변경되면 다른 쪽도 변경될 수 있으므로 서로 밀접하게 관련되어 있기 때문이다.",
+            "reason": "한쪽 변경 시 다른 쪽도 변경될 수 있는 상호 밀접한 관련성을 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "순차적으로 수립할 필요가 없다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "한쪽 변경 시 다른 쪽도 변경될 수 있는 상호 밀접한 관련성을 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-001",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "전반감사전략과 세부적인 감사계획을 순차적으로 수립하여야 하는지 판단하고, 감사기준서 300에 따라 그 이유를 설명하시오.",
+        "user_answer": "전반감사전략과 세부적인 감사계획은 반드시 개별적이거나 순차적인 과정으로 수립할 필요는 없다. 한쪽이 변경되면 다른 쪽도 변경될 수 있으므로 서로 밀접하게 관련되어 있기 때문이다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "전반감사전략과 세부적인 감사계획은 반드시 개별적이거나 순차적인 과정으로 수립할 필요는 없다.",
+            "reason": "순차적으로 수립할 필요가 없다고 명시했다.",
+            "claim": "전반감사전략과 감사계획은 반드시 순차적일 필요가 없음을 명시함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "한쪽이 변경되면 다른 쪽도 변경될 수 있으므로 서로 밀접하게 관련되어 있기 때문이다.",
+            "reason": "한쪽 변경 시 다른 쪽도 변경될 수 있는 상호 밀접한 관련성을 설명했다.",
+            "claim": "상호 밀접한 관련성 및 변경 시 영향에 대해 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "전반감사전략과 세부적인 감사계획은 반드시 개별적이거나 순차적인 과정으로 수립할 필요는 없다. 한쪽이 변경되면 다른 쪽도 변경될 수 있으므로 서로 밀접하게 관련되어 있기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0739e73d50c8151d016aae0697a56887d09d0b81c521bf1291",
+        "request_id": "req_be903631218741c385991b74f660c5d0",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2521,
+          "input_tokens_details": {
+            "cache_write_tokens": 2518,
+            "cached_tokens": 0
+          },
+          "output_tokens": 166,
+          "output_tokens_details": {
+            "reasoning_tokens": 28
+          },
+          "total_tokens": 2687
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008292999999999999,
+        "min_usd": 0.0008292999999999999,
+        "max_usd": 0.0008292999999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-04-001--sub1--standard--model/input.json",
+      "sha256": "473c7a0dbe18dd1e45a7974d89ef29533932823310f779b245e168a90a27997f"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-04-001--sub1--standard--model/transport.jsonl",
+      "sha256": "08761d26afed6a55cb4ee9f1dbb317742bc452f7a8fc9ef0dc5bfd9063f2d948"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-04-001--sub1--standard--model/traces.jsonl",
+      "sha256": "eb55617d889984d3b8c6fe96917e3ebaa12f249f9d3e70a1c5d781fee72fae7b"
+    }
+  }
+}

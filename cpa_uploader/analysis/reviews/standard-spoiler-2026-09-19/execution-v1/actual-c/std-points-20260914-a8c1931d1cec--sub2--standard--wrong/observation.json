@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "std-points-20260914-a8c1931d1cec--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-a8c1931d1cec--sub2--standard",
+  "source_set_id": "std-points-20260914-a8c1931d1cec",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "c020a830bcf5f63a0c6f3269ca9294076b8385a3690562e76d442ffffd6667d6",
+  "answers": {
+    "sub2": "실증절차가 불충분하면 관련 통제를 테스트하지 말고 아무 증거 없이 적정의견을 낸다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "fde272c9cc4056b88b9a645e08547e8db37641e1c0084219b0c6f59e46196bd6",
+  "schema_hash": "d11fa709d4bb59744462d5bf3dbad02c3329bc615bbd47c30ca7e01097bc56b5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "실증절차만으로 부족한 이유와 통제테스트만이 유일한 방법일 수 있다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "실증절차가 불충분하면 관련 통제를 테스트하지 말고 아무 증거 없이 적정의견을 낸다.",
+            "reason": "관련 통제를 테스트하지 말라고 명시하여 요구 절차를 반대로 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "실증절차만으로 부족한 이유와 통제테스트만이 유일한 방법일 수 있다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "관련 통제를 테스트하지 말라고 명시하여 요구 절차를 반대로 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-a8c1931d1cec",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사인이 경영진주장 수준에서 실증절차만으로는 충분하고 적합한 감사증거를 얻을 수 없는 경우가 있는 이유와, 그러한 경우 감사기준서 330에 따라 감사인에게 요구되는 절차를 설명하시오.",
+        "user_answer": "실증절차가 불충분하면 관련 통제를 테스트하지 말고 아무 증거 없이 적정의견을 낸다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "실증절차만으로 부족한 이유와 통제테스트만이 유일한 방법일 수 있다는 내용이 없다.",
+            "claim": "위험·통제활동의 성격상 통제 운영효과성 테스트만이 충분하고 적합한 증거를 얻는 유일한 방법일 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "실증절차가 불충분하면 관련 통제를 테스트하지 말고 아무 증거 없이 적정의견을 낸다.",
+            "reason": "관련 통제를 테스트하지 말라고 명시하여 요구 절차를 반대로 제시했다.",
+            "claim": "그 위험에 대처하는 통제의 운영효과성에 관한 증거를 얻도록 통제테스트를 설계하고 수행해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "중요왜곡표시위험과 이에 대처하는 통제활동의 성격상 통제의 운영효과성을 테스트하는 것이 충분하고 적합한 감사증거를 입수하는 유일한 방법일 수 있기 때문이다.",
+          "이 경우 감사인은 그 위험에 대처하는 관련 통제의 운영효과성에 대하여 충분하고 적합한 감사증거를 입수할 수 있도록 통제테스트를 설계하고 수행하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0c97b65b655dbacb016aae086eddf887d08548ff8a4aad7d8a",
+        "request_id": "req_3c47a4ae753a4fb09d4492207577eb0f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2465,
+          "input_tokens_details": {
+            "cache_write_tokens": 2462,
+            "cached_tokens": 0
+          },
+          "output_tokens": 253,
+          "output_tokens_details": {
+            "reasoning_tokens": 106
+          },
+          "total_tokens": 2718
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009197000000000001,
+        "min_usd": 0.0009197000000000001,
+        "max_usd": 0.0009197000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-a8c1931d1cec--sub2--standard--wrong/input.json",
+      "sha256": "c5817de78d693a943e9fc122f766656648a0d84155de3cc2e61b8390d338c86e"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-a8c1931d1cec--sub2--standard--wrong/transport.jsonl",
+      "sha256": "f778f29da761a16333178a94f59060687b5171b18108c00acd0c97e4a2bd3cfc"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-a8c1931d1cec--sub2--standard--wrong/traces.jsonl",
+      "sha256": "76ce929b5b48a6be8ade2110ca7fdb3212cd8acf27645b9d851429433b4e4a8b"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 ---
 title: "pilot-06-008-standards-20260913. 기업 위험평가절차와 감사인의 위험 재평가"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[risk-assessment-internal-control]] · [[topic-06-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/136`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/128`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [06.json](../../analysis/reviews/question-review-2027/06.json)
 - 학습 순서: sub1
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/136/subquestions/0`
+유형: descriptive · JSON Pointer `/128/subquestions/0`
 
 ### 발문
 
-경영진이 식별하지 못한 중요왜곡표시위험을 감사인이 식별한 뒤 수행해야 할 사항을 모두 설명하시오. 기업절차가 그 위험을 식별할 것으로 기대했는지의 판단, 그 판단에 따른 이유 이해, 기업 위험평가절차에 대한 평가에 미치는 시사점을 구별하시오.
+경영진이 식별하지 못한 중요왜곡표시위험을 감사인이 식별한 경우 감사기준서 315 문단 23에 따라 감사인이 수행해야 할 사항을 모두 설명하시오.
 
 ### 모범답안
 

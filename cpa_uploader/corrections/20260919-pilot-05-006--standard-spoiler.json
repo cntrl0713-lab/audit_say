@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "artifact_type": "question_set_correction",
+  "correction_id": "20260919-pilot-05-006--standard-spoiler",
+  "set_id": "pilot-05-006",
+  "summary": "기준서형 발문의 정답 암시 제거(sub2)",
+  "note": "기준서형 수정·스포일러 전수 검토(cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/plan-v1.json). 학습 유형·주제·배점 구조는 바꾸지 않는다.",
+  "base_content_hash": "1d36fed6ce00b0d65a7c78d1d3a1271d08b55d64060b039fbd8bf0e0441fffb2",
+  "patches": [
+    {
+      "target": {
+        "subquestion": "sub2",
+        "field": "prompt"
+      },
+      "reason": "정답 암시: '거래의 형식적 적법성만 확인해도 충분한지'가 판단(불충분)을 유도해 1점을 공짜로 주었다.",
+      "expected_before": "기업의 정상적인 사업과정을 벗어나는 거래, 또는 기업과 그 환경에 대한 이해와 감사 중 입수한 정보에 비추어 비경상적으로 보이는 유의적 거래를 발견하였다. 거래의 형식적 적법성만 확인해도 충분한지 판단하고, 기준서가 요구하는 평가를 설명하시오.",
+      "set": "기업의 정상적인 사업과정을 벗어나는 거래, 또는 기업과 그 환경에 대한 이해와 감사 중 입수한 정보에 비추어 비경상적으로 보이는 유의적 거래를 발견하였다. 감사기준서 240에 따라 감사인이 그 거래에 관하여 수행하여야 할 평가를 설명하시오."
+    },
+    {
+      "target": {
+        "subquestion": "sub2",
+        "field": "type"
+      },
+      "reason": "답안 형식: '거래의 형식적 적법성만 확인해도 충분한지'가 판단(불충분)을 유도해 1점을 공짜로 주었다. 새 발문은 서술을 요구한다.",
+      "expected_before": "judgment",
+      "set": "descriptive"
+    },
+    {
+      "target": {
+        "subquestion": "sub2",
+        "field": "model_answer"
+      },
+      "reason": "새 발문과 바뀐 criterion에 맞춘 모범답안이다.",
+      "expected_before": [
+        "형식적 적법성만 확인해서는 안 된다. 해당 거래의 사업상 논리적 근거(또는 그 결여)에 비추어, 그 거래가 부정한 재무보고를 수행하거나 자산횡령을 은폐하기 위해 체결되었음을 나타내는 것인지 여부를 평가해야 한다."
+      ],
+      "set": [
+        "해당 거래의 사업상 논리적 근거(또는 그 결여)에 비추어, 그 거래가 부정한 재무보고를 수행하기 위해 체결되었음을 나타내는 것인지 평가해야 한다.",
+        "같은 기준으로 그 거래가 자산횡령을 은폐하기 위해 체결되었음을 나타내는 것인지도 평가해야 한다."
+      ]
+    },
+    {
+      "target": {
+        "subquestion": "sub2",
+        "field": "criteria"
+      },
+      "reason": "KGA 240 문단 33(c)와 대조했다. 사업상 논리적 근거에 비추어 부정한 재무보고·자산횡령 은폐를 나타내는지 평가하는 두 명제가 남은 criterion과 일치한다. 유도 문구로만 성립하던 판단 점수(crit2)는 평가 요구가 이를 함축하므로 삭제했다. 3점에서 2점.",
+      "expected_before": [
+        {
+          "id": "crit2",
+          "requirement_id": "req2",
+          "claim": "거래의 형식적 적법성 확인만으로는 충분하지 않다. 필요한 추가 평가를 분명히 제시하여 형식적 적법성 확인만으로 불충분함을 함축해도 인정하되, 명시적 반대 결론은 인정하지 않는다.",
+          "critical_facts": [
+            {
+              "id": "cf-crit2",
+              "type": "negation",
+              "expected": "거래의 형식적 적법성 확인만으로는 충분하지 않다. 필요한 추가 평가를 분명히 제시하여 형식적 적법성 확인만으로 불충분함을 함축해도 인정하되, 명시적 반대 결론은 인정하지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit3",
+          "requirement_id": "req2",
+          "claim": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 부정한 재무보고를 수행하기 위해 체결되었음을 나타내는지 평가한다.",
+          "critical_facts": [
+            {
+              "id": "cf-crit3",
+              "type": "action",
+              "expected": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 부정한 재무보고를 수행하기 위해 체결되었음을 나타내는지 평가한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit4",
+          "requirement_id": "req2",
+          "claim": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 자산횡령을 은폐하기 위해 체결되었음을 나타내는지 평가한다.",
+          "critical_facts": [
+            {
+              "id": "cf-crit4",
+              "type": "action",
+              "expected": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 자산횡령을 은폐하기 위해 체결되었음을 나타내는지 평가한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        }
+      ],
+      "set": [
+        {
+          "id": "crit3",
+          "requirement_id": "req2",
+          "claim": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 부정한 재무보고를 수행하기 위해 체결되었음을 나타내는지 평가한다.",
+          "critical_facts": [
+            {
+              "id": "cf-crit3",
+              "type": "action",
+              "expected": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 부정한 재무보고를 수행하기 위해 체결되었음을 나타내는지 평가한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit4",
+          "requirement_id": "req2",
+          "claim": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 자산횡령을 은폐하기 위해 체결되었음을 나타내는지 평가한다.",
+          "critical_facts": [
+            {
+              "id": "cf-crit4",
+              "type": "action",
+              "expected": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 자산횡령을 은폐하기 위해 체결되었음을 나타내는지 평가한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        }
+      ]
+    }
+  ]
+}

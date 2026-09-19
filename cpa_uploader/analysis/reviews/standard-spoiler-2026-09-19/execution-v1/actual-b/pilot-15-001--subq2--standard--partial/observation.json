@@ -1,0 +1,250 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-15-001--subq2--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-15-001--subq2--standard",
+  "source_set_id": "pilot-15-001",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "subq2"
+  ],
+  "projected_body_hash": "1af3c58be345ad6bbc4cb039c314b0dd1eb879e1deed70c731d99474846b6814",
+  "answers": {
+    "subq2": "한정의견이면 제목을 '한정의견근거'로, 부적정의견이면 '부적정의견근거'로 수정한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "subq2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (의견거절 제목과 변형 사항 설명을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit5.p2",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (의견거절 제목과 변형 사항 설명을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit5.p3",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (의견거절 제목과 변형 사항 설명을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit5.p4",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (의견거절 제목과 변형 사항 설명을 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "75421f3eaab8858d191b2e80cddd1236acd900daef981bfe78f2a860a9e58d33",
+  "schema_hash": "fd73fb6422d6dda33cbe4dbed3a2967b7bbcdcf8bc3b9b9e76d386960548cb05",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "subq2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "한정의견이면 제목을 '한정의견근거'로, 부적정의견이면 '부적정의견근거'로 수정한다.",
+            "reason": "한정의견근거로 제목을 수정한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "met",
+            "quote": "한정의견이면 제목을 '한정의견근거'로, 부적정의견이면 '부적정의견근거'로 수정한다.",
+            "reason": "부적정의견근거로 제목을 수정한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit5.p3",
+            "verdict": "not_met",
+            "reason": "의견거절근거 제목 수정 내용이 없다."
+          },
+          {
+            "criterion_id": "crit5.p4",
+            "verdict": "not_met",
+            "reason": "변형의견을 초래한 사항의 설명 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "subq2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "met",
+                "evidence_ids": [
+                  "subq2/e0"
+                ],
+                "reason": "한정의견근거로 제목을 수정한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit5.p2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "subq2/e0"
+                ],
+                "reason": "부적정의견근거로 제목을 수정한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit5.p3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "의견거절근거 제목 수정 내용이 없다."
+              },
+              {
+                "criterion_id": "crit5.p4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "변형의견을 초래한 사항의 설명 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-15-001",
+    "score": 2,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "subq2",
+        "prompt": "감사의견이 변형된 경우, 감사기준서 705 문단 20에 따라 감사의견의 근거를 기재하는 단락에 관하여 감사인이 수행하여야 할 사항을 서술하시오.",
+        "user_answer": "한정의견이면 제목을 '한정의견근거'로, 부적정의견이면 '부적정의견근거'로 수정한다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "한정의견이면 제목을 '한정의견근거'로, 부적정의견이면 '부적정의견근거'로 수정한다.",
+            "reason": "한정의견근거로 제목을 수정한다고 명시했다.",
+            "claim": "한정의견의 경우 근거단락 제목을 한정의견근거로 수정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "met",
+            "quote": "한정의견이면 제목을 '한정의견근거'로, 부적정의견이면 '부적정의견근거'로 수정한다.",
+            "reason": "부적정의견근거로 제목을 수정한다고 명시했다.",
+            "claim": "부적정의견의 경우 근거단락 제목을 부적정의견근거로 수정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit5.p3",
+            "verdict": "not_met",
+            "reason": "의견거절근거 제목 수정 내용이 없다.",
+            "claim": "의견거절의 경우 근거단락 제목을 의견거절근거로 수정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5.p4",
+            "verdict": "not_met",
+            "reason": "변형의견을 초래한 사항의 설명 내용이 없다.",
+            "claim": "변형의견을 초래한 사항을 근거단락에서 설명한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "의견 유형에 따라 제목을 한정의견근거, 부적정의견근거 또는 의견거절근거로 수정하고, 해당 단락에 의견변형을 발생시킨 사항에 대한 설명을 포함한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "subq2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0fca96a8fcf150be016aae06efd20c87d094b892de335fb2ba",
+        "request_id": "req_cd390ca02bb847db94952004de1f1417",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2588,
+          "input_tokens_details": {
+            "cache_write_tokens": 2585,
+            "cached_tokens": 0
+          },
+          "output_tokens": 262,
+          "output_tokens_details": {
+            "reasoning_tokens": 53
+          },
+          "total_tokens": 2850
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00096125,
+        "min_usd": 0.00096125,
+        "max_usd": 0.00096125,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-15-001--subq2--standard--partial/input.json",
+      "sha256": "55dad4983720f1962fc988d8f7d22d08b658385016db1702d890b7add059d15d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-15-001--subq2--standard--partial/transport.jsonl",
+      "sha256": "a354aa9e545b36aed2af394bdad54349aa497bd5ca7438dfb01d30d81f76641c"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-15-001--subq2--standard--partial/traces.jsonl",
+      "sha256": "ea00782b77b10a76804fcffa160b873068f8f761ae3dcd6705600b658dc956b2"
+    }
+  }
+}

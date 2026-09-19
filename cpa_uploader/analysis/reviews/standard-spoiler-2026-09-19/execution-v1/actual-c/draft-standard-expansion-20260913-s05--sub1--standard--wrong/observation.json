@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "draft-standard-expansion-20260913-s05--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-standard-expansion-20260913-s05--sub1--standard",
+  "source_set_id": "draft-standard-expansion-20260913-s05",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "ed6f470c28ae8c57224fa8a6356763be330f553dfeb8cc768a137a674ccb0a44",
+  "answers": {
+    "sub1": "내부통제 미비점은 감사 중 실제로 왜곡표시가 발견된 경우에만 존재하며, 유의적 미비점은 금액이 수행중요성을 넘는 미비점이다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (미비점과 유의적 미비점의 정의를 틀렸다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (미비점과 유의적 미비점의 정의를 틀렸다.)"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (미비점과 유의적 미비점의 정의를 틀렸다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "02a87cc4e0ec219ee0e731a6f63bf44f0ef040f615191aa6f9cfee071de783ed",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "내부통제 미비점은 감사 중 실제로 왜곡표시가 발견된 경우에만 존재하며, 유의적 미비점은 금액이 수행중요성을 넘는 미비점이다.",
+            "reason": "실제 왜곡표시 발견을 미비점의 필요조건으로 한정하여, 통제의 설계·실행·운영상 결함이라는 기준과 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "내부통제 미비점은 감사 중 실제로 왜곡표시가 발견된 경우에만 존재하며, 유의적 미비점은 금액이 수행중요성을 넘는 미비점이다.",
+            "reason": "실제 왜곡표시 발견이 있어야만 미비점이 존재한다고 하여, 필요한 통제의 누락만으로도 미비점이 된다는 명제와 반대된다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "내부통제 미비점은 감사 중 실제로 왜곡표시가 발견된 경우에만 존재하며, 유의적 미비점은 금액이 수행중요성을 넘는 미비점이다.",
+            "reason": "유의적 미비점을 수행중요성을 초과하는 금액 기준으로 정의하여, 지배기구의 주의를 요하는 감사인의 판단이라는 정의와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "실제 왜곡표시 발견을 미비점의 필요조건으로 한정하여, 통제의 설계·실행·운영상 결함이라는 기준과 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "실제 왜곡표시 발견이 있어야만 미비점이 존재한다고 하여, 필요한 통제의 누락만으로도 미비점이 된다는 명제와 반대된다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "유의적 미비점을 수행중요성을 초과하는 금액 기준으로 정의하여, 지배기구의 주의를 요하는 감사인의 판단이라는 정의와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-expansion-20260913-s05",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 265 문단 6에 따라 내부통제의 미비점이 존재하는 두 경우를 설명하고, 유의적 내부통제 미비점의 정의를 제시하시오.",
+        "user_answer": "내부통제 미비점은 감사 중 실제로 왜곡표시가 발견된 경우에만 존재하며, 유의적 미비점은 금액이 수행중요성을 넘는 미비점이다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "내부통제 미비점은 감사 중 실제로 왜곡표시가 발견된 경우에만 존재하며, 유의적 미비점은 금액이 수행중요성을 넘는 미비점이다.",
+            "reason": "실제 왜곡표시 발견을 미비점의 필요조건으로 한정하여, 통제의 설계·실행·운영상 결함이라는 기준과 반대된다.",
+            "claim": "통제가 재무제표의 왜곡표시를 적시에 예방하거나 발견·수정할 수 없도록 설계·실행 또는 운영되는 경우 내부통제 미비점이 존재한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "내부통제 미비점은 감사 중 실제로 왜곡표시가 발견된 경우에만 존재하며, 유의적 미비점은 금액이 수행중요성을 넘는 미비점이다.",
+            "reason": "실제 왜곡표시 발견이 있어야만 미비점이 존재한다고 하여, 필요한 통제의 누락만으로도 미비점이 된다는 명제와 반대된다.",
+            "claim": "재무제표의 왜곡표시를 적시에 예방하거나 발견·수정하기 위해 필요한 통제가 누락된 경우 내부통제 미비점이 존재한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "내부통제 미비점은 감사 중 실제로 왜곡표시가 발견된 경우에만 존재하며, 유의적 미비점은 금액이 수행중요성을 넘는 미비점이다.",
+            "reason": "유의적 미비점을 수행중요성을 초과하는 금액 기준으로 정의하여, 지배기구의 주의를 요하는 감사인의 판단이라는 정의와 반대된다.",
+            "claim": "유의적 내부통제 미비점은 감사인의 전문가적 판단에 따라 지배기구가 주의를 기울일 만큼 충분히 중요하다고 판단하는 내부통제 미비점 또는 미비점들의 결합이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "통제가 재무제표의 왜곡표시를 적시에 예방하거나 발견·수정할 수 없도록 설계·실행 또는 운영되는 경우 내부통제 미비점이 존재한다.",
+          "재무제표의 왜곡표시를 적시에 예방하거나 발견·수정하기 위해 필요한 통제가 누락된 경우 내부통제 미비점이 존재한다.",
+          "유의적 내부통제 미비점은 감사인의 전문가적 판단에 따라 지배기구가 주의를 기울일 만큼 충분히 중요하다고 판단하는 내부통제 미비점 또는 미비점들의 결합이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0cd701c0dd7b589d016aae07efd99887d08f99b934778f8c0c",
+        "request_id": "req_cc23b59e148145cd8f8d539e7dca4464",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2694,
+          "input_tokens_details": {
+            "cache_write_tokens": 2691,
+            "cached_tokens": 0
+          },
+          "output_tokens": 517,
+          "output_tokens_details": {
+            "reasoning_tokens": 264
+          },
+          "total_tokens": 3211
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00129375,
+        "min_usd": 0.00129375,
+        "max_usd": 0.00129375,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/draft-standard-expansion-20260913-s05--sub1--standard--wrong/input.json",
+      "sha256": "c05ff7c86e5e9d32aed898ee000c38923e96648259a97115dd7c672d72545194"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/draft-standard-expansion-20260913-s05--sub1--standard--wrong/transport.jsonl",
+      "sha256": "2f67d55b7a25957dd224de24abb7d93b98f34170e1daa0f8c7cea735130791f2"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/draft-standard-expansion-20260913-s05--sub1--standard--wrong/traces.jsonl",
+      "sha256": "24dca26aafa9d3cbbaae1db0d6130ce43d87cb6c6700cee267ae665a7a389a91"
+    }
+  }
+}

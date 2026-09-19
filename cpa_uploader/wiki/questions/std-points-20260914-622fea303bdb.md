@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-622fea303bdb. 법규가 감사업무 조건을 충분히 상세하게 정하지 않은 일반적인 경우, 감사계약서 또는 적절한 합의서에 예상 감사보고서와 관련하여 기록해야 할 내용을 모두 제시하시오. 감사보고서에 관한 복수의 기록사항을 구별하여 쓰시오."
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[engagement-acceptance-contract]] · [[topic-03-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/202`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/189`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [03.json](../../analysis/reviews/question-review-2027/03.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/202/subquestions/0`
+유형: enumeration · JSON Pointer `/189/subquestions/0`
 
 ### 발문
 

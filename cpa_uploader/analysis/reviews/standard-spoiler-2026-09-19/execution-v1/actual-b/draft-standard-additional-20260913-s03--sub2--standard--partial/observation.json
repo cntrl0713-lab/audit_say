@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "draft-standard-additional-20260913-s03--sub2--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-standard-additional-20260913-s03--sub2--standard",
+  "source_set_id": "draft-standard-additional-20260913-s03",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "6fa79bde2a487e164b142d80ce74e0110aad7f07aeed10f9bbae21f7f2680c30",
+  "answers": {
+    "sub2": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 토의한 유의적 사항의 성격을 문서화한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 토의 시기를 문서화한다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "정답 의미의 누락 또는 명시적 부정: 토의 상대자를 문서화한다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "답안이 충족하는 독립 의미: 최종 결론과 일관성이 없는 정보를 어떻게 처리하였는지 문서화한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "cfed24e353ab8e7594ccddb31ddd5a208b9eb5750d63aa611be9993bac2dfc4a",
+  "schema_hash": "7337b4420533bce90f31c125a1b093a5c08c040c259cc890a1818d5ae4785eff",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+            "reason": "토의한 사항의 성격을 기록한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+            "reason": "토의 시기를 기록한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "토의 상대자를 기록한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+            "reason": "최종 결론과 맞지 않는 정보의 처리 방법을 기록한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "토의한 사항의 성격을 기록한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "토의 시기를 기록한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "토의 상대자를 기록한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "최종 결론과 맞지 않는 정보의 처리 방법을 기록한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-additional-20260913-s03",
+    "score": 3,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 230 문단 10에 따라 경영진·지배기구·기타 관련자와 유의적 사항을 토의한 내용을 문서화할 때 포함할 세 가지 정보를 제시하시오. 이어 문단 11에 따라 유의적 사항의 최종 결론과 일관성이 없는 정보를 식별한 경우 무엇을 문서화해야 하는지 설명하시오.",
+        "user_answer": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+        "score": 3,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+            "reason": "토의한 사항의 성격을 기록한다고 명시했다.",
+            "claim": "토의한 유의적 사항의 성격을 문서화한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "토의한 사항의 성격과 토의 시기를 기록한다. 최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+            "reason": "토의 시기를 기록한다고 명시했다.",
+            "claim": "토의 시기를 문서화한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "토의 상대자를 기록한다는 내용이 없다.",
+            "claim": "토의 상대자를 문서화한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "최종 결론과 맞지 않는 정보는 어떻게 처리했는지도 기록한다.",
+            "reason": "최종 결론과 맞지 않는 정보의 처리 방법을 기록한다고 명시했다.",
+            "claim": "최종 결론과 일관성이 없는 정보를 어떻게 처리하였는지 문서화한다. 불일치 정보의 존재만 적거나 최종 결론만 적는 답은 처리방식의 기록을 대신하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "토의한 유의적 사항의 성격을 문서화한다.",
+          "토의 시기를 문서화한다.",
+          "토의 상대자를 문서화한다.",
+          "최종 결론과 일관성이 없는 정보를 어떻게 처리하였는지 문서화한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0638583f22b4c663016aae07845ef887d0a35200d5b5da09c9",
+        "request_id": "req_8bd07af28d404f20a84fe0b8db6da67d",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2697,
+          "input_tokens_details": {
+            "cache_write_tokens": 2694,
+            "cached_tokens": 0
+          },
+          "output_tokens": 288,
+          "output_tokens_details": {
+            "reasoning_tokens": 88
+          },
+          "total_tokens": 2985
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010197000000000001,
+        "min_usd": 0.0010197000000000001,
+        "max_usd": 0.0010197000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/draft-standard-additional-20260913-s03--sub2--standard--partial/input.json",
+      "sha256": "8fe2a17a0c399124191f458e3a271300e0aba2cb8b4e8f1538526b2c9dc550bb"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/draft-standard-additional-20260913-s03--sub2--standard--partial/transport.jsonl",
+      "sha256": "a4812a5de5ddbdc73c15ffa68c1803c3bacd5d580ef006a07d58a2bc3ab84da3"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/draft-standard-additional-20260913-s03--sub2--standard--partial/traces.jsonl",
+      "sha256": "0f23fe955cbd5ce093699fbcf29733ef9a56c8e60bdee6dd2dd563678ec5bde7"
+    }
+  }
+}

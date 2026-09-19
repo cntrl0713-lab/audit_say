@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "std-points-20260914-b0790aeef077--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-b0790aeef077--sub1--standard",
+  "source_set_id": "std-points-20260914-b0790aeef077",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "5b3b65f40d4a675651c4d5b04031512995c1d71a2708c6328fc1b2fa13e53f66",
+  "answers": {
+    "sub1": "통합감사에서는 재무제표감사에만 필요한 증거를 모으고 내부회계관리제도 의견을 위한 증거는 필요하지 않다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit1.sp2",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "d68e9d9b0d5bf1669abfb286db7a743e4ce3388a80b16e5a5dcc723fd38bdd72",
+  "schema_hash": "1ed5a2e4d7e9c6b27b02cf01269ca766d5c64ba9317b86c9e4e2b7aa9f26cb98",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "통합감사에서는 재무제표감사에만 필요한 증거를 모으고 내부회계관리제도 의견을 위한 증거는 필요하지 않다.",
+            "reason": "통합감사에서 재무제표감사에만 필요한 증거를 모은다고 하여 두 감사목적을 동시에 달성해야 한다는 원칙을 부정했다."
+          },
+          {
+            "criterion_id": "crit1.sp2",
+            "verdict": "contradicted",
+            "quote": "통합감사에서는 재무제표감사에만 필요한 증거를 모으고 내부회계관리제도 의견을 위한 증거는 필요하지 않다.",
+            "reason": "내부회계관리제도 의견을 위한 증거가 필요하지 않다고 명시하여 해당 의견을 뒷받침할 증거 입수를 부정했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "재무제표감사의 통제위험 평가를 뒷받침할 충분하고 적합한 증거를 통제테스트 목적으로 입수한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "통합감사에서 재무제표감사에만 필요한 증거를 모은다고 하여 두 감사목적을 동시에 달성해야 한다는 원칙을 부정했다."
+              },
+              {
+                "criterion_id": "crit1.sp2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "내부회계관리제도 의견을 위한 증거가 필요하지 않다고 명시하여 해당 의견을 뒷받침할 증거 입수를 부정했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표감사의 통제위험 평가를 뒷받침할 충분하고 적합한 증거를 통제테스트 목적으로 입수한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-b0790aeef077",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 1100 문단 10에 따라 내부회계관리제도감사와 재무제표감사를 함께 수행하는 통합감사를 계획·수행할 때의 원칙과, 통제테스트를 설계할 때 달성하여야 할 목적을 설명하시오.",
+        "user_answer": "통합감사에서는 재무제표감사에만 필요한 증거를 모으고 내부회계관리제도 의견을 위한 증거는 필요하지 않다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "통합감사에서는 재무제표감사에만 필요한 증거를 모으고 내부회계관리제도 의견을 위한 증거는 필요하지 않다.",
+            "reason": "통합감사에서 재무제표감사에만 필요한 증거를 모은다고 하여 두 감사목적을 동시에 달성해야 한다는 원칙을 부정했다.",
+            "claim": "두 감사목적을 동시에 달성하도록 통합감사를 계획·수행해야 함을 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit1.sp2",
+            "verdict": "contradicted",
+            "quote": "통합감사에서는 재무제표감사에만 필요한 증거를 모으고 내부회계관리제도 의견을 위한 증거는 필요하지 않다.",
+            "reason": "내부회계관리제도 의견을 위한 증거가 필요하지 않다고 명시하여 해당 의견을 뒷받침할 증거 입수를 부정했다.",
+            "claim": "평가기준일 현재의 내부회계관리제도 감사의견을 뒷받침할 충분하고 적합한 증거를 입수함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "재무제표감사의 통제위험 평가를 뒷받침할 충분하고 적합한 증거를 통제테스트 목적으로 입수한다는 내용이 없다.",
+            "claim": "재무제표감사의 통제위험 평가를 뒷받침할 증거 입수를 통제테스트 목적으로 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "두 감사의 목적을 동시에 달성하도록 통합감사를 계획하고 수행한다.",
+          "평가기준일 현재 내부회계관리제도 의견을 뒷받침하는 충분하고 적합한 증거와 재무제표감사의 통제위험 평가를 뒷받침하는 충분하고 적합한 증거를 확보하도록 통제테스트를 설계한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_08a5c22ad1112cb9016aae096126d487d0b60c6b88a0698dd4",
+        "request_id": "req_7dc56c7ce89847be988fc6a85e38bfca",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2562,
+          "input_tokens_details": {
+            "cache_write_tokens": 2559,
+            "cached_tokens": 0
+          },
+          "output_tokens": 481,
+          "output_tokens_details": {
+            "reasoning_tokens": 236
+          },
+          "total_tokens": 3043
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00121755,
+        "min_usd": 0.00121755,
+        "max_usd": 0.00121755,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-b0790aeef077--sub1--standard--wrong/input.json",
+      "sha256": "3c9546e180cd4f013b05067db09eb8b5b2b9c97dcf433b6f206165f7a127820d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-b0790aeef077--sub1--standard--wrong/transport.jsonl",
+      "sha256": "18fc74133832a17d6bb8904234565ec108c84cf67033a0e2fad064c57ef0c22d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-b0790aeef077--sub1--standard--wrong/traces.jsonl",
+      "sha256": "de2d51ba025715b2cb971c4634035ce9cd34dd58cf98d72702c8022621b559b6"
+    }
+  }
+}

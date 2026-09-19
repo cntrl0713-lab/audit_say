@@ -1,0 +1,260 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-14-002--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-14-002--sub1--standard",
+  "source_set_id": "pilot-14-002",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "a235213c5b03d1ba1a09f6c302764ad8e9ef88e08d62e2022dbd3a2611cce9be",
+  "answers": {
+    "sub1": "그룹재무제표 전체에 대한 중요성\n그룹 수준의 수행중요성\n그룹감사 목적으로 감사나 검토를 수행할 부문에 대한 부문중요성으로, 그룹재무제표 전체 중요성보다 낮게 설정한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 4,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit3.p2",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "05ef2294c3db0ec9a9c6965b146b53dfd5be8251b7c601c57199e64683e3bc26",
+  "schema_hash": "040dc10858bd10beceb4abaddf7b156055ac22ce3a9ffa5307609509dbe12168",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "그룹재무제표 전체에 대한 중요성\n",
+            "reason": "그룹재무제표 전체에 대한 중요성을 제시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그룹 수준의 수행중요성\n",
+            "reason": "그룹 수준의 수행중요성을 제시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "그룹감사 목적으로 감사나 검토를 수행할 부문에 대한 부문중요성으로, 그룹재무제표 전체 중요성보다 낮게 설정한다.",
+            "reason": "부문중요성을 제시했다."
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "met",
+            "quote": "그룹감사 목적으로 감사나 검토를 수행할 부문에 대한 부문중요성으로, 그룹재무제표 전체 중요성보다 낮게 설정한다.",
+            "reason": "부문중요성을 그룹재무제표 전체 중요성보다 낮게 설정한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "그룹재무제표 전체에 대한 중요성을 제시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "그룹 수준의 수행중요성을 제시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "부문중요성을 제시했다."
+              },
+              {
+                "criterion_id": "crit3.p2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "부문중요성을 그룹재무제표 전체 중요성보다 낮게 설정한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-14-002",
+    "score": 4,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 600에 따라 그룹업무팀이 그룹감사를 계획할 때 결정하여야 하는 중요성을 모두 제시하시오. 또한 그룹감사 목적으로 부문감사인이 감사나 검토를 수행하는 부문에 적용할 중요성의 수준에 관한 요구사항을 서술하시오.",
+        "user_answer": "그룹재무제표 전체에 대한 중요성\n그룹 수준의 수행중요성\n그룹감사 목적으로 감사나 검토를 수행할 부문에 대한 부문중요성으로, 그룹재무제표 전체 중요성보다 낮게 설정한다.",
+        "score": 4,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "그룹재무제표 전체에 대한 중요성",
+            "reason": "그룹재무제표 전체에 대한 중요성을 제시했다.",
+            "claim": "그룹재무제표 전체에 대한 중요성",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그룹 수준의 수행중요성",
+            "reason": "그룹 수준의 수행중요성을 제시했다.",
+            "claim": "그룹 수준의 수행중요성",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "그룹감사 목적으로 감사나 검토를 수행할 부문에 대한 부문중요성으로, 그룹재무제표 전체 중요성보다 낮게 설정한다.",
+            "reason": "부문중요성을 제시했다.",
+            "claim": "부문중요성을 제시한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "met",
+            "quote": "그룹감사 목적으로 감사나 검토를 수행할 부문에 대한 부문중요성으로, 그룹재무제표 전체 중요성보다 낮게 설정한다.",
+            "reason": "부문중요성을 그룹재무제표 전체 중요성보다 낮게 설정한다고 명시했다.",
+            "claim": "부문중요성은 그룹재무제표 전체중요성보다 낮게 설정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "그룹재무제표 전체에 대한 중요성",
+          "그룹 수준의 수행중요성",
+          "그룹감사 목적으로 감사나 검토를 수행할 부문에 대한 부문중요성으로, 그룹재무제표 전체 중요성보다 낮게 설정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 4,
+      "actual_points": 4,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0ae7ca65b7226fbe016aae06e4f54c87d0a1a0c7c3743261cd",
+        "request_id": "req_72c17f67af1a4441bf0154e38f43f27c",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2771,
+          "input_tokens_details": {
+            "cache_write_tokens": 2768,
+            "cached_tokens": 0
+          },
+          "output_tokens": 236,
+          "output_tokens_details": {
+            "reasoning_tokens": 26
+          },
+          "total_tokens": 3007
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009758,
+        "min_usd": 0.0009758,
+        "max_usd": 0.0009758,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-14-002--sub1--standard--model/input.json",
+      "sha256": "ba55a43197c7c35dc3d426ef3192ed200e09541f47e1851e48b9de8dd0f64dec"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-14-002--sub1--standard--model/transport.jsonl",
+      "sha256": "8768fe88ea96cf04f81fa3dfa2b81af03a441344e37963a11ddadd59c857deee"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-14-002--sub1--standard--model/traces.jsonl",
+      "sha256": "b44113a214a56011ece79bb55147ae117c6e06ca6d823af8bea8ade555e9213b"
+    }
+  }
+}

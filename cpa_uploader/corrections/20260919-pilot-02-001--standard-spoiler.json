@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "artifact_type": "question_set_correction",
+  "correction_id": "20260919-pilot-02-001--standard-spoiler",
+  "set_id": "pilot-02-001",
+  "summary": "기준서형 발문의 정답 암시 제거(sub1)",
+  "note": "기준서형 수정·스포일러 전수 검토(cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/plan-v1.json). 학습 유형·주제·배점 구조는 바꾸지 않는다.",
+  "base_content_hash": "3fee932997b0e0bcbd5d8a9b5091d43799070385a4c22c82786a779565fe10df",
+  "patches": [
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "prompt"
+      },
+      "reason": "정답 암시: 두 판단을 예/아니오로 묻고 '설득력이 낮은 감사증거에 만족해도 되는지'라는 경멸적 표현으로 결론(허용되지 않음)을 드러냈다.",
+      "expected_before": "감사인이 경영진의 정직성과 성실성을 신뢰하는 경우, 전문가적 의구심 유지의 필요성이 경감되는지와 설득력이 낮은 감사증거에 만족해도 되는지를 각각 판단하시오.",
+      "set": "감사인이 경영진과 지배기구의 정직성과 성실성을 믿는 경우, 그 믿음이 합리적 확신을 얻는 과정에서 전문가적 의구심의 유지와 감사인이 받아들일 감사증거에 미치는 영향을 설명하시오."
+    },
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "type"
+      },
+      "reason": "답안 형식: 두 판단을 예/아니오로 묻고 '설득력이 낮은 감사증거에 만족해도 되는지'라는 경멸적 표현으로 결론(허용되지 않음)을 드러냈다. 새 발문은 서술을 요구한다.",
+      "expected_before": "judgment",
+      "set": "descriptive"
+    },
+    {
+      "target": {
+        "subquestion": "sub1",
+        "criterion": "crit2",
+        "field": "claim"
+      },
+      "reason": "criterion 명제: KGA 200 A25 원문과 대조했다. 두 명제(의구심 유지 필요성 비경감, 설득력 낮은 증거 만족 불허)가 모범답안·criterion과 일치한다. 새 발문은 영향을 묻기만 하고 방향을 주지 않는다. 판단 두 개를 서술로 요구하므로 답안 형식을 서술형으로 바꾸고 crit2의 '근거로 제시함' 표현을 실제 요구(허용되지 않음 설명)에 맞췄다. 2점 유지.",
+      "expected_before": "설득력이 낮은 감사증거에 만족할 수 없음을 근거로 제시함",
+      "set": "경영진과 지배기구를 믿더라도 설득력이 낮은 감사증거에 만족하는 것은 허용되지 않는다고 설명함"
+    }
+  ]
+}

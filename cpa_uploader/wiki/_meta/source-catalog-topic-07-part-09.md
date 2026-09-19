@@ -1,7 +1,7 @@
 ---
 title: "07. 평가위험 대응·통제테스트·실증절차 원자료 단위 9/12"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-18
 type: source-map
 status: generated
 review_required: true

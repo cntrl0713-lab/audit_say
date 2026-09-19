@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-02-001--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-02-001--sub1--standard",
+  "source_set_id": "pilot-02-001",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "f424a830d85459314dab3fc8ca313ae212670484712fabae0ff7afc68e7e98cd",
+  "answers": {
+    "sub1": "경영진을 신뢰할 수 있으므로 전문가적 의구심의 수준을 낮출 수 있고, 경영진의 구두 설명처럼 설득력이 다소 낮은 증거로도 충분하다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (두 명제를 모두 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (두 명제를 모두 반대로 썼다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "cdaf40f93996d2c0f0e54f0794785f04eb708c230f8f8a6fa180ea7648c9bfc7",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "경영진을 신뢰할 수 있으므로 전문가적 의구심의 수준을 낮출 수 있고, 경영진의 구두 설명처럼 설득력이 다소 낮은 증거로도 충분하다.",
+            "reason": "전문가적 의구심의 수준을 낮출 수 있다고 명시하여 요구 명제와 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "경영진을 신뢰할 수 있으므로 전문가적 의구심의 수준을 낮출 수 있고, 경영진의 구두 설명처럼 설득력이 다소 낮은 증거로도 충분하다.",
+            "reason": "설득력이 낮은 증거로도 충분하다고 명시하여 요구 명제와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "전문가적 의구심의 수준을 낮출 수 있다고 명시하여 요구 명제와 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "설득력이 낮은 증거로도 충분하다고 명시하여 요구 명제와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-02-001",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사인이 경영진과 지배기구의 정직성과 성실성을 믿는 경우, 그 믿음이 합리적 확신을 얻는 과정에서 전문가적 의구심의 유지와 감사인이 받아들일 감사증거에 미치는 영향을 설명하시오.",
+        "user_answer": "경영진을 신뢰할 수 있으므로 전문가적 의구심의 수준을 낮출 수 있고, 경영진의 구두 설명처럼 설득력이 다소 낮은 증거로도 충분하다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "경영진을 신뢰할 수 있으므로 전문가적 의구심의 수준을 낮출 수 있고, 경영진의 구두 설명처럼 설득력이 다소 낮은 증거로도 충분하다.",
+            "reason": "전문가적 의구심의 수준을 낮출 수 있다고 명시하여 요구 명제와 반대된다.",
+            "claim": "경영진을 신뢰해도 전문가적 의구심 유지 필요성은 경감되지 않는다고 판단함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "경영진을 신뢰할 수 있으므로 전문가적 의구심의 수준을 낮출 수 있고, 경영진의 구두 설명처럼 설득력이 다소 낮은 증거로도 충분하다.",
+            "reason": "설득력이 낮은 증거로도 충분하다고 명시하여 요구 명제와 반대된다.",
+            "claim": "경영진과 지배기구를 믿더라도 설득력이 낮은 감사증거에 만족하는 것은 허용되지 않는다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진의 정직성과 성실성을 신뢰하더라도 전문가적 의구심을 유지할 필요성은 경감되지 않으며, 설득력이 낮은 감사증거에 만족할 수 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f6cd47b1e4e72a7016aae0693b27c87d0964860f81ab3052c",
+        "request_id": "req_af5fae456f5d4fdabf8d219f5a4b6f30",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2387,
+          "input_tokens_details": {
+            "cache_write_tokens": 2384,
+            "cached_tokens": 0
+          },
+          "output_tokens": 226,
+          "output_tokens_details": {
+            "reasoning_tokens": 72
+          },
+          "total_tokens": 2613
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008678,
+        "min_usd": 0.0008678,
+        "max_usd": 0.0008678,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-02-001--sub1--standard--wrong/input.json",
+      "sha256": "d5fd2cb8e16b91ad98722b9d8530685e0d5f43fba67a6091e1fd74fa6cd32a0f"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-02-001--sub1--standard--wrong/transport.jsonl",
+      "sha256": "a4d157d8fde6e4c69bebc28064d5b296bada2ee9fd2d383bac9a5be1773cfaa3"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-02-001--sub1--standard--wrong/traces.jsonl",
+      "sha256": "13355830819480c26bc80930dd33c71424cbd675ecce4f42b181c4997a204f81"
+    }
+  }
+}

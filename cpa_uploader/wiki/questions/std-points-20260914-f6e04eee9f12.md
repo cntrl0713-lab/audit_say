@@ -1,7 +1,7 @@
 ---
-title: "std-points-20260914-f6e04eee9f12. 미수정왜곡표시의 영향을 평가하기 전에 중요성에 관하여 확인할 사항을 설명하시오. 이어 미수정왜곡표시가 개별적으로 또는 집합적으로 중요한지 결정할 때, 당기 항목의 규모·성격·발생상황과 관련 수준, 과거기간 미수정 항목의 영향을 모두 설명하시오. 중요성 금액이나 최종 의견은 계산·결정하지 마시오."
+title: "std-points-20260914-f6e04eee9f12. 감사기준서 450에 따라 미수정왜곡표시의 영향을 평가하기 전에 중요성에 관하여 수행할 절차를 설명하시오. 이어 미수정왜곡표시가 개별적으로 또는 집합적으로 중요한지 결정할 때 고려할 사항을 모두 설명하시오. 중요성 금액이나 최종 의견은 계산·결정하지 마시오."
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -10,12 +10,12 @@ sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/
 confidence: high
 ---
 
-# std-points-20260914-f6e04eee9f12. 미수정왜곡표시의 영향을 평가하기 전에 중요성에 관하여 확인할 사항을 설명하시오. 이어 미수정왜곡표시가 개별적으로 또는 집합적으로 중요한지 결정할 때, 당기 항목의 규모·성격·발생상황과 관련 수준, 과거기간 미수정 항목의 영향을 모두 설명하시오. 중요성 금액이나 최종 의견은 계산·결정하지 마시오.
+# std-points-20260914-f6e04eee9f12. 감사기준서 450에 따라 미수정왜곡표시의 영향을 평가하기 전에 중요성에 관하여 수행할 절차를 설명하시오. 이어 미수정왜곡표시가 개별적으로 또는 집합적으로 중요한지 결정할 때 고려할 사항을 모두 설명하시오. 중요성 금액이나 최종 의견은 계산·결정하지 마시오.
 
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[planning-documentation-materiality]] · [[topic-04-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/307`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/294`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [04.json](../../analysis/reviews/question-review-2027/04.json)
 - 학습 순서: sub3
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub3
 
-유형: descriptive · JSON Pointer `/307/subquestions/0`
+유형: descriptive · JSON Pointer `/294/subquestions/0`
 
 ### 발문
 
-미수정왜곡표시의 영향을 평가하기 전에 중요성에 관하여 확인할 사항을 설명하시오. 이어 미수정왜곡표시가 개별적으로 또는 집합적으로 중요한지 결정할 때, 당기 항목의 규모·성격·발생상황과 관련 수준, 과거기간 미수정 항목의 영향을 모두 설명하시오. 중요성 금액이나 최종 의견은 계산·결정하지 마시오.
+감사기준서 450에 따라 미수정왜곡표시의 영향을 평가하기 전에 중요성에 관하여 수행할 절차를 설명하시오. 이어 미수정왜곡표시가 개별적으로 또는 집합적으로 중요한지 결정할 때 고려할 사항을 모두 설명하시오. 중요성 금액이나 최종 의견은 계산·결정하지 마시오.
 
 ### 모범답안
 

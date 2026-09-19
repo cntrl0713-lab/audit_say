@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "artifact_type": "case_merge_lineage",
+  "created_at": "2026-09-17",
+  "user_instruction": "docs/case-question-edit-notes-2026-09-14.md 항목 5·25·45(2026-09-17 대화: 세 문제를 합쳐 중요성에 관한 종합문제를 만들고 스포일러 요소를 없앤다)",
+  "source_bank": {
+    "file": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+    "sha256": "18082e546c3fb99a8169c49d65e708bb5dc3d33802251a2bf5c00525deb4b706"
+  },
+  "sources": [
+    {
+      "set_id": "draft-04-320-freq01",
+      "title": "일회성 이익 감소와 기업 인수 공시의 중요성",
+      "status": "published",
+      "reviewed_content_sha256": "0242079cff08d7f2991ea26bf6393d27399f0872d865eeb53d557e18f535d205",
+      "points": 4
+    },
+    {
+      "set_id": "pilot-04-007",
+      "title": "수행중요성 결정과 기업 상황의 변화",
+      "status": "published",
+      "reviewed_content_sha256": "89022268f04cc5892cbd75ffa543b5ba97581ce25078a7647df24b1535f6c951",
+      "points": 5
+    },
+    {
+      "set_id": "case-04-materiality-reset-20260914",
+      "title": "사업축소 후 중요성 수정과 기존 감사계획의 재평가",
+      "status": "published",
+      "reviewed_content_sha256": "03893d673eac04cdf955c6c85da36007812663de10b5a2963430b2bfe68a0867",
+      "points": 9
+    }
+  ],
+  "target": {
+    "set_id": "case-04-materiality-20260917",
+    "reviewed_content_sha256": "baea670944066387dcadeee201274274c4dd6da394a6e0136ad29b287738d1f2",
+    "points": 7
+  },
+  "mapping": [
+    {
+      "from": "draft-04-320-freq01 f0(한빛회사, 안정적 계속영업이익, 이용자는 법인세비용차감전계속영업이익에 중점)",
+      "disposition": "rewritten",
+      "to": "fact1",
+      "reason": "회사명을 새봄회사로 통일하고 이용자의 중점 항목을 배경 사실로 유지했다. 전기 중요성 자료 검토 문장은 판단에 쓰이지 않아 뺐다."
+    },
+    {
+      "from": "draft-04-320-freq01 f1(일회성 손상차손, 감사팀의 일시성·비교가능성 확인 결론)",
+      "disposition": "rewritten",
+      "to": "fact2, fact3 ①",
+      "reason": "감사팀의 결론 문장을 없애고 손실이 과거에 없었고 다시 발생할 사정이 없다는 사실만 남겼다."
+    },
+    {
+      "from": "draft-04-320-freq01 q1 c1·c2(정상적 수준으로 조정한 이익과 그 근거)",
+      "disposition": "converted_to_trap",
+      "to": "fact3 ①(옳음), sub1.c1",
+      "reason": "정상화 이익 벤치마크를 옳은 항목으로 두어 식별 기준으로만 평가한다(함정에는 별도 득점 기준을 두지 않는 계약)."
+    },
+    {
+      "from": "draft-04-320-freq01 f2·f3(중소기업 인수, 주주 관심, 인수 공시에 전체 중요성만 적용하자는 팀원 제안)",
+      "disposition": "converted_to_incorrect_item",
+      "to": "fact2, fact3 ②, sub1.c2",
+      "reason": "“투자 판단을 바꿀 수 있는 정보가 포함되어 있다”는 결론 문장과 팀원의 주장을 없애고 감사팀의 결정으로 바꾸었다."
+    },
+    {
+      "from": "draft-04-320-freq01 exp1 c1(제안이 부적절하다는 판단)",
+      "disposition": "merged_into_identification",
+      "to": "sub1.c1",
+      "reason": "식별 1점으로 채점한다."
+    },
+    {
+      "from": "draft-04-320-freq01 exp1 c2(주주 관심과 작은 왜곡표시의 영향을 연결해 별도 중요성 결정)",
+      "disposition": "retained_as_reason",
+      "to": "sub1.c2",
+      "reason": "②의 이유 또는 보완절차로 승계했다."
+    },
+    {
+      "from": "pilot-04-007 f1·f3·f4(새봄회사 지점 매출·반품, 전기 반품 지연 왜곡표시, 시스템 전환 후 수작업 연결·담당자 교체)",
+      "disposition": "rewritten",
+      "to": "fact1, fact2",
+      "reason": "전기 왜곡표시와 시스템 전환·수작업 연결 사실만 남기고, 담당자 교체와 “당기에도 여러 건의 오류가 발생할 수 있다고 예상한다”는 결론 문장은 뺐다."
+    },
+    {
+      "from": "pilot-04-007 f2(을의 고정 비율 기계적 계산 제안)",
+      "disposition": "converted_to_incorrect_item",
+      "to": "fact3 ③, sub1.c3",
+      "reason": "“업무 시간을 줄이기 위해 기업의 사정과 무관하게” 같은 암시를 없애고 감사팀이 일관성을 이유로 전기 비율을 적용한 결정으로 바꾸었다."
+    },
+    {
+      "from": "pilot-04-007 sub2 crit4(제안이 부적절)",
+      "disposition": "merged_into_identification",
+      "to": "sub1.c1",
+      "reason": "식별 1점으로 채점한다."
+    },
+    {
+      "from": "pilot-04-007 sub2 crit10(수행중요성 결정에는 전문가적 판단이 필요)",
+      "disposition": "retained_as_reason",
+      "to": "sub1.c3",
+      "reason": "③의 이유로 인정한다."
+    },
+    {
+      "from": "pilot-04-007 exp1 c1~c3(갱신된 기업 이해, 전기 왜곡표시의 성격·범위, 당기 왜곡표시 예상)",
+      "disposition": "merged_into_reason",
+      "to": "sub1.c3",
+      "reason": "발문의 세 고려사항 나열을 없애고 그중 하나 이상을 반영해야 한다는 보완절차도 ③의 1점으로 인정한다."
+    },
+    {
+      "from": "case-04-materiality-reset-20260914 fact1(도현회사, 전체 중요성 5억원·수행중요성 3억원, 월별 매출 분석·중간감사 일정·표본범위)",
+      "disposition": "rewritten",
+      "to": "fact1, fact4",
+      "reason": "금액을 빼고 계획 단계 수행중요성에 따른 중간감사 표본과 기말 조회·기간귀속 테스트로 바꾸었다."
+    },
+    {
+      "from": "case-04-materiality-reset-20260914 fact2(주요사업 처분결정·계약종료, “일회성 평가손실이 아니라 수익구조 축소”, 계획 당시 몰랐던 정보)",
+      "disposition": "rewritten",
+      "to": "fact4",
+      "reason": "결론을 요약하던 문장을 없애고, 새 예측이 손상차손을 제외하더라도 최초 금액에 크게 미달한다는 사실로 바꾸었다."
+    },
+    {
+      "from": "case-04-materiality-reset-20260914 sub1 c1·c2(갑의 최초 중요성 유지 제안이 부적절, 새 정보의 의미)",
+      "disposition": "converted_to_trap",
+      "to": "fact4 ④(옳음), sub2.c1",
+      "reason": "갑의 틀린 제안을 없애고 감사팀이 중요성을 낮춘 옳은 항목으로 바꾸어 식별 기준으로 평가한다."
+    },
+    {
+      "from": "case-04-materiality-reset-20260914 fact3 조건부 후속안과 sub2 c1(수행중요성 수정 필요성)",
+      "disposition": "converted_to_incorrect_item",
+      "to": "fact4 ⑤, sub2.c2",
+      "reason": "조건부 계획을 중요성을 낮춘 뒤의 실제 결정으로 바꾸었다."
+    },
+    {
+      "from": "case-04-materiality-reset-20260914 sub2 c2~c4(분석 방법·일정·표본범위와 추가감사절차의 성격·시기·범위)",
+      "disposition": "merged_into_reason",
+      "to": "fact4 ⑥, sub2.c3",
+      "reason": "세 측면을 각각 연결하게 하던 발문을 없애고, 추가감사절차가 여전히 적합한지 결정해야 한다는 이유나 일부 측면의 보완절차를 1점으로 인정한다."
+    },
+    {
+      "from": "case-04-materiality-reset-20260914 fact4·sub3 c1~c3(최종액 덮어쓰기, 구두 인계, 전체·수행중요성의 수정내용과 고려 요소 문서화)",
+      "disposition": "merged_into_reason",
+      "to": "fact4 ⑦, sub2.c4",
+      "reason": "문서화 담당자의 주장을 감사팀의 행위로 바꾸고, 수정내용 또는 고려한 요소의 문서화를 ⑦의 1점으로 인정한다. 특정 공시 중요성을 범위에서 뺀다는 안내는 ②가 그 요소를 다루므로 없앴다."
+    },
+    {
+      "from": "new_element",
+      "disposition": "added",
+      "to": "fact5 ⑧, sub2.c1",
+      "reason": "중요성 종합 문제로서 미수정왜곡표시를 평가할 때 크기뿐 아니라 성격을 고려한다는 KGA 320 문단 6을 옳은 항목(함정)으로 더했다."
+    }
+  ],
+  "points_change": {
+    "from": 18,
+    "to": 7,
+    "reason": "원 세 세트는 판단·근거·요소를 각각 채점해 4점·5점·9점이었다. 선택형으로 바꾸면서 옳은 항목(원 q1, sub1)의 점수를 식별 기준으로 옮기고, 여러 요소의 서술을 옳지 않은 항목별 이유나 보완절차 1점으로 통합해 7점이 되었다."
+  }
+}

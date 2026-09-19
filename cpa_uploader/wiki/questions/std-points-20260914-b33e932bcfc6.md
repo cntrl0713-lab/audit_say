@@ -1,7 +1,7 @@
 ---
-title: "std-points-20260914-b33e932bcfc6. 감사인이 감사기준서의 관련 요구사항을 이탈할 수 있는 경우와 이때 수행해야 할 조치를 설명하시오. 이어 이탈할 때 감사기준서 230 문단 12에 따라 문서화해야 할 두 사항을 제시하시오. 개별 감사기준서의 목적을 달성할 수 없는 경우의 의견변형·업무해지 판단은 제외한다."
+title: "std-points-20260914-b33e932bcfc6. 감사인이 감사기준서의 관련 요구사항을 이탈할 수 있는 경우와 이때 수행해야 할 조치를 설명하시오. 이어 이탈할 때 감사기준서 230 문단 12에 따라 문서화해야 할 두 사항을 제시하시오. 개별 감사기준서의 목적을 달성할 수 없는 경우의 처리는 제외한다."
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -10,12 +10,12 @@ sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/
 confidence: high
 ---
 
-# std-points-20260914-b33e932bcfc6. 감사인이 감사기준서의 관련 요구사항을 이탈할 수 있는 경우와 이때 수행해야 할 조치를 설명하시오. 이어 이탈할 때 감사기준서 230 문단 12에 따라 문서화해야 할 두 사항을 제시하시오. 개별 감사기준서의 목적을 달성할 수 없는 경우의 의견변형·업무해지 판단은 제외한다.
+# std-points-20260914-b33e932bcfc6. 감사인이 감사기준서의 관련 요구사항을 이탈할 수 있는 경우와 이때 수행해야 할 조치를 설명하시오. 이어 이탈할 때 감사기준서 230 문단 12에 따라 문서화해야 할 두 사항을 제시하시오. 개별 감사기준서의 목적을 달성할 수 없는 경우의 처리는 제외한다.
 
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[planning-documentation-materiality]] · [[topic-04-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/176`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/163`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [04.json](../../analysis/reviews/question-review-2027/04.json)
 - 학습 순서: sub3
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub3
 
-유형: descriptive · JSON Pointer `/176/subquestions/0`
+유형: descriptive · JSON Pointer `/163/subquestions/0`
 
 ### 발문
 
-감사인이 감사기준서의 관련 요구사항을 이탈할 수 있는 경우와 이때 수행해야 할 조치를 설명하시오. 이어 이탈할 때 감사기준서 230 문단 12에 따라 문서화해야 할 두 사항을 제시하시오. 개별 감사기준서의 목적을 달성할 수 없는 경우의 의견변형·업무해지 판단은 제외한다.
+감사인이 감사기준서의 관련 요구사항을 이탈할 수 있는 경우와 이때 수행해야 할 조치를 설명하시오. 이어 이탈할 때 감사기준서 230 문단 12에 따라 문서화해야 할 두 사항을 제시하시오. 개별 감사기준서의 목적을 달성할 수 없는 경우의 처리는 제외한다.
 
 ### 모범답안
 

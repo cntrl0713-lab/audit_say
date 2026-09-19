@@ -1,0 +1,63 @@
+// r09 v1 agent 내용 검토 기록(한 번만 실행; 기존 파일이 있으면 쓰지 않는다).
+//   npx tsx cpa_uploader/analysis/reviews/case-review-2026-09-15/tools/record-r09-review.mts
+import fs from 'node:fs';
+import { createHash } from 'node:crypto';
+import { reviewedContentHash } from '../../../../questionReviewIdentity.ts';
+
+const D = 'cpa_uploader/drafts/case-review-2026-09-15/r09-comparative-statements-merge';
+const R = 'cpa_uploader/analysis/reviews/case-review-2026-09-15/r09';
+const file = `${D}/sets.json`;
+const [set] = JSON.parse(fs.readFileSync(file, 'utf8'));
+const sha = (p: string) => createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const pass = { source: 'pass', answer: 'pass', prompt: 'pass', points: 'pass', style: 'pass', topics: 'pass', edition: 'pass', nonduplication: 'pass' };
+fs.mkdirSync(R, { recursive: true });
+const review = {
+    version: 1, method: 'agent_content_review', human_review_performed: false,
+    reviewer_id: 'agent:claude-opus-5 (author agent; no independent peer review)', reviewed_at: new Date().toISOString(),
+    target: { file, sha256: sha(file), set_id: set.id, reviewed_content_sha256: reviewedContentHash(set) },
+    evidence: [`${D}/design.json`, `${D}/lineage.json`, `${D}/qa.json`, `${D}/build-draft.mjs`,
+        'cpa_uploader/data/official/kga701-706-710-720-2025-review16.txt', 'cpa_uploader/data/official/kga700-705-2025-review15.txt',
+        'cpa_uploader/data/official/point-review-710-appendix-2026-09-11.txt', 'cpa_uploader/data/official/delegated-n06-kga710-720-1100-supplement-2025.txt',
+        'cpa_uploader/data/official/point-review-b-source-followup-2026-09-11.txt',
+        'cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2025-pymupdf-pages.txt', 'cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt',
+        'cpa_uploader/data/회계감사_통합학습자료/04_기출문제/기출문제_연도별_해설_A.md',
+        'cpa_uploader/data/cpa_question_sets_v3.authoring.json'].map((f) => ({ file: f, sha256: sha(f) })),
+    method_detail: '2025 전문 추출본에서 KGA 710 문단 1~19·A1~A13, KGA 706 문단 1~12, KGA 705 문단 5~9, KGA 700 문단 16을 읽고, 2026 전문(2026년 7월 개정) 추출본과 인용 문단을 공백을 제거해 대조했다(706.9의 쪽 머리말 외 동일). 두 판본의 KGA 700·705·706·710 시행일(2026-01-01 이후 개시 보고기간)과 2026 전문의 2027년 이후 시행 규정(KGA 220, 상장 대상 KGA 720)을 확인했다. 원 두 세트(pilot-16-010, case-16-comparative-opinion-change-20260914)의 사실관계·발문·모범답안·criterion, 비교정보·강조사항·서면진술 관련 은행 문항(case-09-initial-audit-20260915, pilot-16-008, pilot-16-004, std-points-20260914-99e4265696b2, pilot-12-002, case-16-report-paragraphs-20260914)과 기출 2017 제52회 문제 2 물음 1·2, 2020 제55회 문제 9 물음 3, 2022 제57회 문제 3 물음 4, 2023 제58회 문제 6 물음 3·문제 10 물음 4, 2025 제60회 문제 4 물음 1의 쟁점과 해설을 비교했다. 아홉 항목의 옳고 그름, 각 criterion의 claim·허용 범위·반대 조건과 모범답안의 충족 여부, 두 원 세트의 상충하는 전제(전임감사인이 있는 초도감사, 계속감사)를 한 회사의 두 해로 이은 정합성, 근거 문구의 분포와 뒤 단계 사실의 정답 노출 여부를 양방향으로 대조했다.',
+    questions: [
+        { set_id: set.id, subquestion_id: 'sub1', checks: pass,
+            rationale: '①은 KGA 710 문단 18에 따라 옳지 않다(전임감사인이 적정의견을 표명한 전기 재무제표의 중요한 왜곡표시는 경영진과 지배기구에 커뮤니케이션하고 전임감사인에게 알리도록 요청하며, 감사인이 직접 알리는 절차가 아님. 2017·2025 기출 해설과 같음). ②는 문단 17·A12에 따라 옳다(재발행되지 않으면 기타사항문단에 전임감사인이 감사하였음·의견의 유형·감사보고서일을 기재하고, 수정 전 재무제표에 대하여 의견을 표명했다는 사실을 나타낼 수 있음). ③은 문단 A12에 따라 옳지 않다(조정사항을 감사하였다는 문단은 감사계약 체결과 수정의 적절성에 관한 충분하고 적합한 증거가 모두 있어야 포함할 수 있으며, 20X1년 재무제표 감사계약에 따른 기초잔액 감사에서의 확인은 두 조건을 충족하지 않음). ④는 KGA 706 문단 7(a)·8에 따라 옳다(주석에 공시된 재작성이 이용자 이해에 근본이 될 정도로 중요하다고 판단하고 의견변형이 요구되지 않으면 강조사항문단을 포함함. 비상장회사여서 KGA 701은 적용되지 않음). ⑤는 KGA 710 문단 9·A1에 따라 옳지 않다(감사의견이 20X1년만 언급해도 비교정보에 영향을 미치는 재작성에 대하여 구체적인 서면진술을 입수해야 함). c1 식별과 c2~c4(이유나 보완절차 한 가지, 핵심 원칙 수준)가 독립적으로 채점된다.',
+            check_rationales: {
+                source: 'KGA 710 문단 17과 A12는 pilot-16-010의 인용을 해시 그대로 재사용했다. 문단 18은 원 인용 끝의 각주 세 줄을 빼고 같은 등록본(kga701-706-710-720-2025-review16.txt)에서 문단 본문만 발췌했다. 문단 9·6(c)와 KGA 706 문단 7·8은 같은 등록본, 문단 A1은 point-review-710-appendix-2026-09-11.txt에서 새로 발췌했다. 모두 해당 KGA 구간 안에 있고 초안 검증(--against-bank)을 통과했다.',
+                answer: '모범답안이 c1~c4를 충족한다. 부분정답(함정 ④ 선택과 ⑤ 누락, ①·③ 이유)=2점, 오답(②·④만 선택, ①·③·⑤가 옳다고 명시)=0점, 보조 사례(①은 보완절차만, ③은 증거 조건만, ⑤는 이유만)=4점, 번호 없이 내용으로 특정한 답=4점, 결론만 되풀이한 답=1점을 원문으로 정했다.',
+                prompt: '발문은 범위(20X1년 감사의 ①~⑤)와 요구(번호, 이유나 수행하였어야 할 절차를 간략히)만 적는다. 원 발문의 “각각 바로잡아”, “확신의 범위를 설명하시오”, “먼저 갖추어야 할 계약 및 감사증거의 조건을 모두 설명하시오”와 원 사실의 미결 문장(“별도 검토는 아직 이루어지지 않았다”)을 없앴다.',
+                points: '4점. 옳지 않은 항목 세 개에 각 1점, 식별 1점. 계약과 증거의 동시 서술, 서면진술의 구체적 문안, 요청의 형식은 요구하지 않는다. 옳은 항목 ②·④는 식별 기준으로만 평가한다.',
+                style: '전임감사인의 적정의견, 전기 재작성, 재발행 거절, 연도별 감사계약, 서면진술의 대상 기간이라는 사실에 기준을 적용해 각 절차·판단의 옳고 그름을 판단해야 하므로 사례형이다.',
+                topics: '16(KGA 710 문단 17·18·A12의 전임감사인 관련 보고, KGA 706 문단 8의 강조사항문단), 03(조정사항 문단에 필요한 감사계약의 범위), 12(재작성에 대한 서면진술, KGA 710 문단 9·KGA 580).',
+                edition: '대상 연도 2027년. 20X1년을 2026-01-01 개시 보고기간으로 보고 2025 전문을 적용했다. 2026 전문과 인용 문단의 본문이 같다.',
+                nonduplication: '원 pilot-16-010 sub3의 요소를 ③으로, sub1 crit1을 옳은 항목 ②로 옮겼다. ①(710.18)·④(706.8)·⑤(710.9)는 종합하며 더한 항목이다. case-09-initial-audit-20260915의 ⑪·⑫(당기만 의견, 전임감사인 의견 유형 누락)와 요구가 다르고, pilot-12-002 sub2(서면진술 대상 기간, 기준서형)와 달리 재작성에 대한 구체적 서면진술을 사례에 적용한다.' },
+            unresolved_content_findings: [] },
+        { set_id: set.id, subquestion_id: 'sub2', checks: pass,
+            rationale: '⑥은 KGA 710 문단 15·16·A9와 KGA 700 문단 16에 따라 옳다(비교재무제표의 감사의견은 각 기간을 언급하고 기간마다 달리 표명할 수 있으며 전기 의견은 이전에 표명한 의견과 다를 수 있음. 종전 한정의견의 원인이 재작성으로 수정되었고 재작성된 20X1년 재무제표에 중요한 왜곡표시가 없다는 충분하고 적합한 증거가 있음). ⑦은 KGA 705 문단 5(a)·7(a)·8에 따라 옳지 않다(누락 40억원은 중요성 25억원을 넘지만 영향이 소송충당부채·관련 비용·이익잉여금에 국한되고 법인세비용차감전순이익 500억원·총자산 6,000억원에 비추어 상당한 부분이 아니어서 전반적이지 않으므로 한정의견). ⑧은 KGA 710 문단 16과 KGA 706 문단 7에 따라 옳지 않다(전기 의견이 달라진 중요한 사유는 기타사항문단에 공시하며 강조사항문단은 재무제표에 공시된 사항을 언급함). ⑨는 KGA 710 문단 6(c)·17에 따라 옳다(20X2년 감사보고서의 전기인 20X1년 재무제표는 소담회계법인이 감사하였고 20X0년 재무제표는 표시되지 않음). c1 식별과 c2·c3이 독립적으로 채점된다.',
+            check_rationales: {
+                source: 'KGA 710 문단 15·A9, KGA 700 문단 16, KGA 705 문단 7은 case-16-comparative-opinion-change-20260914의 인용을 해시 그대로 재사용했다. 문단 16은 원 인용 끝의 다음 절 제목을 빼고 같은 등록본에서 문단 본문만 발췌했다. KGA 705 문단 5(a)·8은 kga700-705-2025-review15.txt에서 새로 발췌했다.',
+                answer: '모범답안이 c1~c3을 충족한다. 부분정답(함정 ⑨ 선택, ⑦·⑧ 이유)=2점, 오답(⑥·⑨만 선택, ⑦·⑧이 옳다고 명시)=0점, 보조 사례(⑦은 부적정의견의 요건만, ⑧은 보완절차만)=3점, 내용 특정 답=3점, 결론만 되풀이한 답=1점을 원문으로 정했다.',
+                prompt: '범위(20X2년 감사의 ⑥~⑨)와 요구만 적는다. 원 발문의 “각각 표명할 감사의견을 제시하시오”, “을의 의견문단 작성 제안을 바로잡아”, “포함할 문단과 이 사례에서 설명할 중요한 사유를 구별하시오”와 원 사실의 전반성 결론 요약을 없앴다.',
+                points: '3점. 옳지 않은 항목 두 개에 각 1점, 식별 1점. 전반성 판단의 세 기준 나열, 기타사항문단의 문안, 의견이 달라진 사유의 구체적 내용은 요구하지 않는다. 함정 ⑥·⑨는 식별 기준으로만 평가한다.',
+                style: '20X1년 한정의견과 그 원인의 재작성, 재작성된 20X1년의 증거, 소송충당부채 누락의 금액·영향 범위, 전임감사인이 감사한 기간이라는 사실에 기준을 적용해야 하므로 사례형이다.',
+                topics: '16(KGA 710 문단 6·15·16·17·A9의 계속감사 비교재무제표 보고, KGA 706 문단 7), 15(KGA 700 문단 16과 KGA 705 문단 5·7·8에 따른 기간별 감사의견).',
+                edition: '20X2년을 2027-01-01 개시 보고기간으로 본다. 두 판본의 KGA 700·705·706·710 시행일과 인용 문단이 같고, 2027년 이후 새로 시행되는 KGA 220·상장 대상 KGA 720은 이 사례에 적용되지 않는다.',
+                nonduplication: '원 case-16-comparative-opinion-change-20260914 sub1·sub3의 요소를 ⑥~⑧로 옮겼고 ⑨는 새 옳은 항목이다. pilot-16-004(강조사항·기타사항 구분, 기준서형)와 달리 전기 의견이 달라진 사유의 보고 위치를 사례에 적용한다. 은행의 다른 물음은 KGA 710 문단 16을 사례의 옳고 그름으로 묻지 않는다.' },
+            unresolved_content_findings: [] },
+    ],
+    observations_not_blocking: [
+        '사실관계 2,238자, 항목 9개로 원 두 세트(사실 5·3개)를 한 회사의 두 해(20X1년 초도감사, 20X2년 계속감사)로 이었다. pilot-16-010의 세 독립 상황은 재발행 거절 한 상황으로 모았다.',
+        '사용자가 형식을 지정하지 않아 학습 단위 계약의 기본인 옳지 않은 것 선택형을 적용했다. 사용자가 단순하다고 한 pilot-16-010 물음 1·2와 지목하지 않은 case-16-comparative-opinion-change-20260914 물음 2는 독립 물음으로 두지 않았다. 구성은 실행 전에 사용자에게 따로 확인받지 않았다.',
+        '판본 정책은 시험 연도를 이유로 2027년 개시 보고기간을 가정하지 말라고 한다. 이 사례는 연속한 두 감사를 다루므로 20X2년을 2027년 개시 보고기간으로 보고, 인용한 규정이 그 기간에도 같게 적용됨을 2026 전문으로 확인했다.',
+        '옳지 않은 항목 수는 물음 1이 3개, 물음 2가 2개이며 발문에 밝히지 않는다. ④(재작성에 대한 강조사항문단, 옳음)와 ⑧(의견이 달라진 사유를 강조사항문단에 적음, 옳지 않음)은 서로 다른 사항에 관한 쌍이다.',
+        '같은 배치의 r08(핵심감사사항·강조사항, 다른 세션 진행 중)과 강조사항문단 요구가 겹칠 수 있다. 이 사례의 ④·⑧은 비교정보(재작성, 전기 의견 변경)에 한정한다.',
+        '작성 agent가 직접 검토했으며 독립 agent 교차검토·사람 확인은 수행하지 않았다.',
+    ],
+    unresolved_content_findings: [],
+};
+fs.writeFileSync(`${R}/root-content-review-v1.json`, JSON.stringify(review, null, 2) + '\n', { flag: 'wx' });
+console.log(review.target);

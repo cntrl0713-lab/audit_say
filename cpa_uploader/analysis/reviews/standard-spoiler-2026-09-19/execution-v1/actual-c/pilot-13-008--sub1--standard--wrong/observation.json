@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-13-008--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-008--sub1--standard",
+  "source_set_id": "pilot-13-008",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "89b30f551b021d9b7074ea8d8f72959625f65e9c69651236df5a2cfac4b92bd4",
+  "answers": {
+    "sub1": "서비스조직의 서비스는 서비스조직이 책임지므로 이용자기업 감사인은 적정의견을 표명하고 감사보고서에 서비스감사인의 보고서를 언급하면 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (의견 변형을 부정했다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (의견 변형을 부정했다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "028dbc0fcd8c866a29d3e58ee72c274770b2dce9e99070d6af764903d4606b26",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "서비스조직의 서비스는 서비스조직이 책임지므로 이용자기업 감사인은 적정의견을 표명하고 감사보고서에 서비스감사인의 보고서를 언급하면 된다.",
+            "reason": "이용자기업 감사인이 적정의견을 표명한다고 하여 감사의견 변형과 명시적으로 반대한다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "서비스조직의 서비스는 서비스조직이 책임지므로 이용자기업 감사인은 적정의견을 표명하고 감사보고서에 서비스감사인의 보고서를 언급하면 된다.",
+            "reason": "적정의견을 표명하면 된다고 하여 감사범위의 제한에 해당한다는 결론과 반대한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "이용자기업 감사인이 적정의견을 표명한다고 하여 감사의견 변형과 명시적으로 반대한다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "적정의견을 표명하면 된다고 하여 감사범위의 제한에 해당한다는 결론과 반대한다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-008",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "재무제표감사와 관련된 서비스조직의 서비스에 관하여 이용자기업 감사인이 충분하고 적합한 감사증거를 입수할 수 없다. 감사기준서 402에 따라 이용자기업 감사인이 감사의견에 관하여 취할 조치와 그 근거를 설명하시오.",
+        "user_answer": "서비스조직의 서비스는 서비스조직이 책임지므로 이용자기업 감사인은 적정의견을 표명하고 감사보고서에 서비스감사인의 보고서를 언급하면 된다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "서비스조직의 서비스는 서비스조직이 책임지므로 이용자기업 감사인은 적정의견을 표명하고 감사보고서에 서비스감사인의 보고서를 언급하면 된다.",
+            "reason": "이용자기업 감사인이 적정의견을 표명한다고 하여 감사의견 변형과 명시적으로 반대한다.",
+            "claim": "감사기준서 705에 따라 감사의견을 변형한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "서비스조직의 서비스는 서비스조직이 책임지므로 이용자기업 감사인은 적정의견을 표명하고 감사보고서에 서비스감사인의 보고서를 언급하면 된다.",
+            "reason": "적정의견을 표명하면 된다고 하여 감사범위의 제한에 해당한다는 결론과 반대한다.",
+            "claim": "서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사기준서 705에 따라 감사의견을 변형한다.",
+          "서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_05788b7aba9888aa016aae0700facc87d0a8b7daedb24da4f0",
+        "request_id": "req_eda582a32c9b4409be66c569248f7a14",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2403,
+          "input_tokens_details": {
+            "cache_write_tokens": 2400,
+            "cached_tokens": 0
+          },
+          "output_tokens": 271,
+          "output_tokens_details": {
+            "reasoning_tokens": 108
+          },
+          "total_tokens": 2674
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009258,
+        "min_usd": 0.0009258,
+        "max_usd": 0.0009258,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-13-008--sub1--standard--wrong/input.json",
+      "sha256": "f0d4508841d2cd06e8f4bee271ca148e511588af034662d0f8f46c78a1cd7171"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-13-008--sub1--standard--wrong/transport.jsonl",
+      "sha256": "c4ce8654dfbe603465f2fb86291c748af9a9fcb08ace1bc22d3a415f7727b5d9"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-13-008--sub1--standard--wrong/traces.jsonl",
+      "sha256": "a60edc9552585ad09fc2f3f90e894f4ad8b1f433339cca0b952336f88afdb488"
+    }
+  }
+}

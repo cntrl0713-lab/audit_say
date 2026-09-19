@@ -1,7 +1,7 @@
 ---
 title: "draft-standard-followup-20260913-e01. 비인증업무 성공보수의 안전장치"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[ethics-independence-quality]] · [[topic-01-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/151`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/143`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [01.json](../../analysis/reviews/question-review-2027/01.json)
 - 학습 순서: sub2
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/151/subquestions/0`
+유형: enumeration · JSON Pointer `/143/subquestions/0`
 
 ### 발문
 
-비인증업무의 성공보수와 관련된 윤리적 위협이 명백하게 경미하지 않은 경우, 공인회계사윤리기준 문단 240.4에 예시된 네 가지 안전장치를 모두 설명하시오. 사전동의의 대상·형식·시점과 업무결과 예정이용자에게 제공할 두 가지 정보도 포함하시오. 다른 규정에서 금지한 업무를 이 안전장치만으로 허용할 수 있다는 의미는 아니다.
+비인증업무의 성공보수와 관련된 윤리적 위협이 명백하게 경미하지 않은 경우, 공인회계사윤리기준 문단 240.4에 예시된 네 가지 안전장치를 모두 설명하시오. 각 안전장치는 그 대상과 방법이 드러나도록 구체적으로 쓰시오. 다른 규정에서 금지한 업무를 이 안전장치만으로 허용할 수 있다는 의미는 아니다.
 
 ### 모범답안
 

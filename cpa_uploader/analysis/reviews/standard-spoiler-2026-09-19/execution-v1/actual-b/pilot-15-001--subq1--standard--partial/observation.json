@@ -1,0 +1,250 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-15-001--subq1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-15-001--subq1--standard",
+  "source_set_id": "pilot-15-001",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "subq1"
+  ],
+  "projected_body_hash": "1370a064e51c8123168838bd1a9d6142153e35bdae7ca365b6deefe1799aab7c",
+  "answers": {
+    "subq1": "감사보고서의 첫 번째 단락에 감사의견을 포함하고 그 제목을 '감사의견'으로 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "subq1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (근거 단락의 위치와 제목을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (근거 단락의 위치와 제목을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (근거 단락의 위치와 제목을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (근거 단락의 위치와 제목을 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "a9fc2a7dcf7d6af9d98a47a5951d7fa6007603707d7b3d2d25c7cb97f2f91adf",
+  "schema_hash": "2e9926496cb46ee5978e21bdd296dde5e21b07e16d74d815a2b649b586df0b06",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "subq1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사보고서의 첫 번째 단락에 감사의견을 포함하고 그 제목을 '감사의견'으로 한다.",
+            "reason": "첫 번째 단락에 감사의견을 포함한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "감사보고서의 첫 번째 단락에 감사의견을 포함하고 그 제목을 '감사의견'으로 한다.",
+            "reason": "감사의견 단락의 제목을 '감사의견'으로 제시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "감사의견 단락 바로 다음에 근거 단락을 배치한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "근거 단락의 제목을 '감사의견근거'로 한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "subq1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "subq1/e0"
+                ],
+                "reason": "첫 번째 단락에 감사의견을 포함한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "subq1/e0"
+                ],
+                "reason": "감사의견 단락의 제목을 '감사의견'으로 제시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사의견 단락 바로 다음에 근거 단락을 배치한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "근거 단락의 제목을 '감사의견근거'로 한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-15-001",
+    "score": 2,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "subq1",
+        "prompt": "적정의견을 표명하는 감사보고서에서 감사의견을 기재하는 단락과 그 근거를 기재하는 단락의 위치와 제목에 관한 감사기준서 700의 요구사항을 설명하시오.",
+        "user_answer": "감사보고서의 첫 번째 단락에 감사의견을 포함하고 그 제목을 '감사의견'으로 한다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사보고서의 첫 번째 단락에 감사의견을 포함하고 그 제목을 '감사의견'으로 한다.",
+            "reason": "첫 번째 단락에 감사의견을 포함한다고 명시했다.",
+            "claim": "감사보고서 첫 번째 단락에 감사의견을 포함함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "감사보고서의 첫 번째 단락에 감사의견을 포함하고 그 제목을 '감사의견'으로 한다.",
+            "reason": "감사의견 단락의 제목을 '감사의견'으로 제시했다.",
+            "claim": "감사의견을 담는 단락의 제목이 감사의견임을 제시함. 제목 명칭을 평가하는 독립 요소로서 첫 번째 배치 여부는 crit1에서만 평가함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "감사의견 단락 바로 다음에 근거 단락을 배치한다는 내용이 없다.",
+            "claim": "감사의견 단락 바로 다음에 근거 단락을 배치함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "근거 단락의 제목을 '감사의견근거'로 한다는 내용이 없다.",
+            "claim": "근거 단락의 제목을 감사의견근거로 함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사보고서의 첫 번째 단락은 '감사의견'이라는 제목으로 감사의견을 포함해야 하며, 그 바로 다음 단락으로 '감사의견근거'라는 제목의 단락을 포함해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "subq1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_01ee1316a3a35ef7016aae06ec99b087d0b770870d4a78d5c7",
+        "request_id": "req_2d838c07acf14f1bac8d3902fb361e92",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2557,
+          "input_tokens_details": {
+            "cache_write_tokens": 2554,
+            "cached_tokens": 0
+          },
+          "output_tokens": 257,
+          "output_tokens_details": {
+            "reasoning_tokens": 37
+          },
+          "total_tokens": 2814
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009475,
+        "min_usd": 0.0009475,
+        "max_usd": 0.0009475,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-15-001--subq1--standard--partial/input.json",
+      "sha256": "6de0ab414c9ebe8f0e2126402850a41f6f1e3f408536f32e951c9fb6b5c9f397"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-15-001--subq1--standard--partial/transport.jsonl",
+      "sha256": "b715d8b6a34aeb981c3188d7a2e4cae9e347c5385697a214ef488969371b44e7"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-15-001--subq1--standard--partial/traces.jsonl",
+      "sha256": "3fa5e6c69b96b48adcd2ce5c5076e4964f0367da3883a08e42aa082872aa334a"
+    }
+  }
+}

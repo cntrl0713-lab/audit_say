@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-05-009--sub3--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-05-009--sub3--standard",
+  "source_set_id": "pilot-05-009",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub3"
+  ],
+  "projected_body_hash": "e91ee7532630c235c2ff2e4967778c8f2b47585228ca506c27670526a368a1d4",
+  "answers": {
+    "sub3": "경영진을 신뢰할 수 있고 통제무력화 위험이 낮게 평가되었다면 관련 대응 절차는 생략할 수 있다. 통제무력화는 일반 위험으로 취급한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (원칙과 위험 성격을 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (원칙과 위험 성격을 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (원칙과 위험 성격을 반대로 썼다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "292fe8c4c96f19aa6d352499857e946e92e04214ad526b88065912da02a3c206",
+  "schema_hash": "f6bee803b22c42887b452c67b62dc259e78341558ebb300eab7661786db184aa",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "경영진을 신뢰할 수 있고 통제무력화 위험이 낮게 평가되었다면 관련 대응 절차는 생략할 수 있다. 통제무력화는 일반 위험으로 취급한다.",
+            "reason": "낮은 위험 평가나 경영진 신뢰를 이유로 대응 절차를 생략할 수 있다고 명시했다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "통제무력화가 예측불가능하게 발생할 수 있다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "contradicted",
+            "quote": "경영진을 신뢰할 수 있고 통제무력화 위험이 낮게 평가되었다면 관련 대응 절차는 생략할 수 있다. 통제무력화는 일반 위험으로 취급한다.",
+            "reason": "통제무력화를 일반 위험으로 취급한다고 하여 유의적 부정위험이라는 결론과 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0",
+                  "sub3/e1"
+                ],
+                "reason": "낮은 위험 평가나 경영진 신뢰를 이유로 대응 절차를 생략할 수 있다고 명시했다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "통제무력화가 예측불가능하게 발생할 수 있다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit8",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0",
+                  "sub3/e2"
+                ],
+                "reason": "통제무력화를 일반 위험으로 취급한다고 하여 유의적 부정위험이라는 결론과 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-05-009",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "경영진에 의한 통제무력화 위험에 대응하는 감사절차의 계획·수행에 관한 감사기준서 240의 원칙과 그 이유를 설명하시오. 세부 대응절차 목록을 열거할 필요는 없다.",
+        "user_answer": "경영진을 신뢰할 수 있고 통제무력화 위험이 낮게 평가되었다면 관련 대응 절차는 생략할 수 있다. 통제무력화는 일반 위험으로 취급한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "경영진을 신뢰할 수 있고 통제무력화 위험이 낮게 평가되었다면 관련 대응 절차는 생략할 수 있다. 통제무력화는 일반 위험으로 취급한다.",
+            "reason": "낮은 위험 평가나 경영진 신뢰를 이유로 대응 절차를 생략할 수 있다고 명시했다.",
+            "claim": "경영진에 의한 통제무력화 위험에 대한 평가결과와 관계없이 기준서가 정한 대응 감사절차를 계획하고 수행해야 한다. 위험이 낮게 평가되었거나 경영진을 신뢰한다는 이유로 생략할 수 있다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "통제무력화가 예측불가능하게 발생할 수 있다는 내용이 없다.",
+            "claim": "경영진의 통제무력화는 예측불가능하게 발생할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "contradicted",
+            "quote": "경영진을 신뢰할 수 있고 통제무력화 위험이 낮게 평가되었다면 관련 대응 절차는 생략할 수 있다. 통제무력화는 일반 위험으로 취급한다.",
+            "reason": "통제무력화를 일반 위험으로 취급한다고 하여 유의적 부정위험이라는 결론과 반대된다.",
+            "claim": "경영진의 통제무력화는 부정으로 인한 중요왜곡표시의 유의적 위험이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진에 의한 통제무력화 위험의 평가결과와 관계없이 기준서가 정한 대응 감사절차를 계획하고 수행해야 한다.",
+          "경영진의 통제무력화는 예측불가능하게 발생할 수 있다.",
+          "따라서 경영진의 통제무력화는 부정으로 인한 중요왜곡표시위험이며 유의적 위험이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02564dd0208ec804016aae07762ca887d08534f20ce2367c10",
+        "request_id": "req_3d068b8418f04e46b33a667c0914e3e9",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2760,
+          "input_tokens_details": {
+            "cache_write_tokens": 2757,
+            "cached_tokens": 0
+          },
+          "output_tokens": 277,
+          "output_tokens_details": {
+            "reasoning_tokens": 67
+          },
+          "total_tokens": 3037
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00102225,
+        "min_usd": 0.00102225,
+        "max_usd": 0.00102225,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-05-009--sub3--standard--wrong/input.json",
+      "sha256": "63ae4e7ade7cb6145b4a7e086a76f257188d63339a0e5a2013c2bb3a407416d9"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-05-009--sub3--standard--wrong/transport.jsonl",
+      "sha256": "1a2a0ec7d4ef509bf0d5d5c17e397929cfcc269f1b411abd3174be61c2046c75"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-05-009--sub3--standard--wrong/traces.jsonl",
+      "sha256": "a32d30d53c2790948c40a4dc96cb13e6c39c66840ede40d5213468343e9a3a60"
+    }
+  }
+}

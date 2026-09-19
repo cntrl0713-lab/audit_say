@@ -1,7 +1,7 @@
 ---
-title: "std-points-20260914-a76ead6fb70b. 적정의견 감사보고서에서 서비스감사인 업무를 언급하는 원칙과 법규상 예외, 그 예외 시 명시할 사항을 설명하시오. 별도로 변형의견을 이해시키는 데 관련성이 있어 서비스감사인 업무를 언급하는 경우 보고서에 명시할 사항도 설명하시오."
+title: "std-points-20260914-a76ead6fb70b. 적정의견 감사보고서에 서비스감사인이 수행한 업무를 언급할 수 있는지 설명하고, 이를 언급하는 경우 감사보고서에 명시하여야 할 사항을 설명하시오. 별도로 변형의견을 이해시키는 데 관련성이 있어 서비스감사인의 업무를 언급하는 경우 명시할 사항도 설명하시오."
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -10,12 +10,12 @@ sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/
 confidence: high
 ---
 
-# std-points-20260914-a76ead6fb70b. 적정의견 감사보고서에서 서비스감사인 업무를 언급하는 원칙과 법규상 예외, 그 예외 시 명시할 사항을 설명하시오. 별도로 변형의견을 이해시키는 데 관련성이 있어 서비스감사인 업무를 언급하는 경우 보고서에 명시할 사항도 설명하시오.
+# std-points-20260914-a76ead6fb70b. 적정의견 감사보고서에 서비스감사인이 수행한 업무를 언급할 수 있는지 설명하고, 이를 언급하는 경우 감사보고서에 명시하여야 할 사항을 설명하시오. 별도로 변형의견을 이해시키는 데 관련성이 있어 서비스감사인의 업무를 언급하는 경우 명시할 사항도 설명하시오.
 
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[service-organizations-internal-audit-experts]] · [[topic-13-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/285`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/272`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [13.json](../../analysis/reviews/question-review-2027/13.json)
 - 학습 순서: sub2
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/285/subquestions/0`
+유형: descriptive · JSON Pointer `/272/subquestions/0`
 
 ### 발문
 
-적정의견 감사보고서에서 서비스감사인 업무를 언급하는 원칙과 법규상 예외, 그 예외 시 명시할 사항을 설명하시오. 별도로 변형의견을 이해시키는 데 관련성이 있어 서비스감사인 업무를 언급하는 경우 보고서에 명시할 사항도 설명하시오.
+적정의견 감사보고서에 서비스감사인이 수행한 업무를 언급할 수 있는지 설명하고, 이를 언급하는 경우 감사보고서에 명시하여야 할 사항을 설명하시오. 별도로 변형의견을 이해시키는 데 관련성이 있어 서비스감사인의 업무를 언급하는 경우 명시할 사항도 설명하시오.
 
 ### 모범답안
 

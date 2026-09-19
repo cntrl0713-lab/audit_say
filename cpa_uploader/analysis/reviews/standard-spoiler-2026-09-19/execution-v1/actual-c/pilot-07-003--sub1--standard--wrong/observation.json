@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-07-003--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-07-003--sub1--standard",
+  "source_set_id": "pilot-07-003",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "29ffcde61a1429ab0eb3628b887170a2ebec611a3e525ee0983ba48791d52450",
+  "answers": {
+    "sub1": "실증절차에서 발견된 왜곡표시는 통제와 무관하므로 통제 평가에 고려하지 않는다. 또한 실증절차에서 왜곡표시가 발견되지 않았다면 관련 통제가 효과적이라는 충분한 감사증거가 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (두 명제를 모두 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (두 명제를 모두 반대로 썼다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "991c39f6beb6661b2119516f895975f08967303a465f9ee0b686cca4b900b6bb",
+  "schema_hash": "450e5450f39cb179dc330749e1eda21d00cb61df1fdc3d16477169ae47fd8af5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "실증절차에서 발견된 왜곡표시는 통제와 무관하므로 통제 평가에 고려하지 않는다. 또한 실증절차에서 왜곡표시가 발견되지 않았다면 관련 통제가 효과적이라는 충분한 감사증거가 된다.",
+            "reason": "발견된 왜곡표시를 통제와 무관하다고 하며 통제 평가에 고려하지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "실증절차에서 발견된 왜곡표시는 통제와 무관하므로 통제 평가에 고려하지 않는다. 또한 실증절차에서 왜곡표시가 발견되지 않았다면 관련 통제가 효과적이라는 충분한 감사증거가 된다.",
+            "reason": "왜곡표시 미발견이 통제 효과성에 대한 충분한 감사증거가 된다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0",
+                  "sub1/e1"
+                ],
+                "reason": "발견된 왜곡표시를 통제와 무관하다고 하며 통제 평가에 고려하지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0",
+                  "sub1/e2"
+                ],
+                "reason": "왜곡표시 미발견이 통제 효과성에 대한 충분한 감사증거가 된다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-07-003",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "의존하려는 통제의 운영효과성을 평가할 때, 실증절차에서 왜곡표시가 발견된 경우 감사인이 평가할 사항을 설명하시오. 또한 실증절차에서 왜곡표시가 발견되지 않은 경우 그 사실이 관련 통제가 효과적이라는 감사증거가 되는지 판단하시오.",
+        "user_answer": "실증절차에서 발견된 왜곡표시는 통제와 무관하므로 통제 평가에 고려하지 않는다. 또한 실증절차에서 왜곡표시가 발견되지 않았다면 관련 통제가 효과적이라는 충분한 감사증거가 된다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "실증절차에서 발견된 왜곡표시는 통제와 무관하므로 통제 평가에 고려하지 않는다. 또한 실증절차에서 왜곡표시가 발견되지 않았다면 관련 통제가 효과적이라는 충분한 감사증거가 된다.",
+            "reason": "발견된 왜곡표시를 통제와 무관하다고 하며 통제 평가에 고려하지 않는다고 명시했다.",
+            "claim": "실증절차에서 발견된 왜곡표시가 통제가 효과적으로 운영되지 않고 있음을 나타내는지 평가함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "실증절차에서 발견된 왜곡표시는 통제와 무관하므로 통제 평가에 고려하지 않는다. 또한 실증절차에서 왜곡표시가 발견되지 않았다면 관련 통제가 효과적이라는 충분한 감사증거가 된다.",
+            "reason": "왜곡표시 미발견이 통제 효과성에 대한 충분한 감사증거가 된다고 명시했다.",
+            "claim": "실증절차에서 왜곡표시가 발견되지 않았다는 사실만으로는 통제 효과성의 감사증거가 되지 않는다고 판단함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "실증절차에서 발견된 왜곡표시가 통제가 효과적으로 운영되지 않고 있음을 나타내는지 평가해야 한다.",
+          "실증절차에서 왜곡표시가 발견되지 않았다는 사실만으로는 관련 통제가 효과적이라는 감사증거가 되지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0b3333094fd5b70e016aae06ac4a5087d0b8da50d5dd670623",
+        "request_id": "req_ba26384c190746b19e15b4d35bec8c57",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2592,
+          "input_tokens_details": {
+            "cache_write_tokens": 2589,
+            "cached_tokens": 0
+          },
+          "output_tokens": 216,
+          "output_tokens_details": {
+            "reasoning_tokens": 45
+          },
+          "total_tokens": 2808
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00090705,
+        "min_usd": 0.00090705,
+        "max_usd": 0.00090705,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-07-003--sub1--standard--wrong/input.json",
+      "sha256": "8cb74a09c673d472c9fd9e6d996feaf68f8df5fc42eced93568c79747f0334cc"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-07-003--sub1--standard--wrong/transport.jsonl",
+      "sha256": "aecd25dd7eb8bdbb79f540cc9d661b2774427c8b96e0622f1ce89ee80eb53db3"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-07-003--sub1--standard--wrong/traces.jsonl",
+      "sha256": "09f672dccdadb4659eee7c5350582f0e90f360ee7c2e8c4111424165071fccbf"
+    }
+  }
+}

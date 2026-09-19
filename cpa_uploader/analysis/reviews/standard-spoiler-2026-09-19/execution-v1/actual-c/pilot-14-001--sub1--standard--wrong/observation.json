@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-14-001--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-14-001--sub1--standard",
+  "source_set_id": "pilot-14-001",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "a99622ded9365ce125fb00f7e5666bef2c2e3c2ab952b9072afc282e27cc9cd7",
+  "answers": {
+    "sub1": "부문감사인이 감사한 부문에 대해서는 부문감사인이 책임을 지므로 그룹감사인의 책임은 그만큼 줄어든다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (책임 경감을 명시했다.)"
+        },
+        {
+          "criterion_id": "crit1.p2",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (책임 경감을 명시했다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "dd744714004f4db8c87293502889ed97e4515e3f28033892337c0f4be20864b4",
+  "schema_hash": "8dce5c6a9209e5ee2003b419d88c1b5032b5cd2b6ca6647efd2c6121ab97a41b",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "부문감사인이 감사한 부문에 대해서는 부문감사인이 책임을 지므로 그룹감사인의 책임은 그만큼 줄어든다.",
+            "reason": "그룹감사인의 책임이 감소한다고 명시하여, 그룹재무제표 전체 감사의견 책임 주체를 반대로 서술했다."
+          },
+          {
+            "criterion_id": "crit1.p2",
+            "verdict": "contradicted",
+            "quote": "부문감사인이 감사한 부문에 대해서는 부문감사인이 책임을 지므로 그룹감사인의 책임은 그만큼 줄어든다.",
+            "reason": "부문감사인의 책임으로 인해 그룹감사인의 책임이 줄어든다고 명시하여 요구 명제와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "그룹감사인의 책임이 감소한다고 명시하여, 그룹재무제표 전체 감사의견 책임 주체를 반대로 서술했다."
+              },
+              {
+                "criterion_id": "crit1.p2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "부문감사인의 책임으로 인해 그룹감사인의 책임이 줄어든다고 명시하여 요구 명제와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-14-001",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "부문감사인이 그룹감사에 참여하는 경우 그룹재무제표에 대한 감사의견의 책임이 누구에게 있는지와 부문감사인의 참여가 그 책임에 미치는 영향을 서술하시오.",
+        "user_answer": "부문감사인이 감사한 부문에 대해서는 부문감사인이 책임을 지므로 그룹감사인의 책임은 그만큼 줄어든다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "부문감사인이 감사한 부문에 대해서는 부문감사인이 책임을 지므로 그룹감사인의 책임은 그만큼 줄어든다.",
+            "reason": "그룹감사인의 책임이 감소한다고 명시하여, 그룹재무제표 전체 감사의견 책임 주체를 반대로 서술했다.",
+            "claim": "그룹재무제표 전체 감사의견의 책임은 그룹업무수행이사 또는 그가 속한 회계법인에 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit1.p2",
+            "verdict": "contradicted",
+            "quote": "부문감사인이 감사한 부문에 대해서는 부문감사인이 책임을 지므로 그룹감사인의 책임은 그만큼 줄어든다.",
+            "reason": "부문감사인의 책임으로 인해 그룹감사인의 책임이 줄어든다고 명시하여 요구 명제와 반대된다.",
+            "claim": "부문감사인의 업무를 이용하더라도 그룹감사인의 책임은 감소하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "그룹업무수행이사 또는 그가 속한 회계법인이 그룹재무제표 전체에 대한 감사의견을 책임지며, 부문감사인의 참여로 그 책임이 경감되지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0eb21fd10278f8a6016aae070408f887d0a5bffb926b5ddb9c",
+        "request_id": "req_81038fa6531d4fa79f41854b63baead8",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2379,
+          "input_tokens_details": {
+            "cache_write_tokens": 2376,
+            "cached_tokens": 0
+          },
+          "output_tokens": 209,
+          "output_tokens_details": {
+            "reasoning_tokens": 40
+          },
+          "total_tokens": 2588
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008454,
+        "min_usd": 0.0008454,
+        "max_usd": 0.0008454,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-14-001--sub1--standard--wrong/input.json",
+      "sha256": "3ab5ebf49fff6a9a3c8534ce073647a5ff78e58a1879e083e49d25d5e62f6fd3"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-14-001--sub1--standard--wrong/transport.jsonl",
+      "sha256": "4d47f2dbe9be0391934f6af042306a10c75e9d3af226aa67d0d24b816378547d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-14-001--sub1--standard--wrong/traces.jsonl",
+      "sha256": "328d5473daae71cf6b36f1d31a2d7cf433b2ae0ae9cc983f1765f3b561b89319"
+    }
+  }
+}

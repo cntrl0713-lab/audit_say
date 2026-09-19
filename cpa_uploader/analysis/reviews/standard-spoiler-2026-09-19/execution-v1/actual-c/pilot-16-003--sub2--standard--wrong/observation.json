@@ -1,0 +1,248 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-16-003--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-003--sub2--standard",
+  "source_set_id": "pilot-16-003",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "19c464c0c16ed75d368e147dc24be34e4b149daf6dd8b75243975b9446cd3b0f",
+  "answers": {
+    "sub2": "기타정보의 왜곡표시는 재무제표와 무관하므로 감사인이 직접 기타정보를 고쳐서 발행한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요구 절차를 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요구 절차를 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요구 절차를 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit6.p2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요구 절차를 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "e927d5cbd1ae2c7dca0f13de6d4eed016759abaca2de270aa4b2e931a20f82b5",
+  "schema_hash": "b5da251268de24c5257b593561fc49332bfb045e48e1b0be4e7311ee020171d7",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "기타정보의 왜곡표시는 재무제표와 무관하므로 감사인이 직접 기타정보를 고쳐서 발행한다.",
+            "reason": "경영진에게 수정을 요구하는 대신 감사인이 직접 기타정보를 고친다고 명시했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "경영진의 수정 동의 시 실제 수정 여부를 결정한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "경영진의 수정 거부 사실을 지배기구와 커뮤니케이션한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit6.p2",
+            "verdict": "not_met",
+            "reason": "경영진의 수정 거부 시 지배기구에 수정을 요구한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "경영진에게 수정을 요구하는 대신 감사인이 직접 기타정보를 고친다고 명시했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진의 수정 동의 시 실제 수정 여부를 결정한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진의 수정 거부 사실을 지배기구와 커뮤니케이션한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit6.p2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진의 수정 거부 시 지배기구에 수정을 요구한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-003",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사인이 기타정보에 중요한 왜곡표시가 존재한다고 결론 내렸다. 감사기준서 720 문단 17에 따라 감사인이 수행하여야 할 절차를 설명하시오.",
+        "user_answer": "기타정보의 왜곡표시는 재무제표와 무관하므로 감사인이 직접 기타정보를 고쳐서 발행한다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "기타정보의 왜곡표시는 재무제표와 무관하므로 감사인이 직접 기타정보를 고쳐서 발행한다.",
+            "reason": "경영진에게 수정을 요구하는 대신 감사인이 직접 기타정보를 고친다고 명시했다.",
+            "claim": "경영진에게 기타정보의 수정을 요구함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "경영진의 수정 동의 시 실제 수정 여부를 결정한다는 내용이 없다.",
+            "claim": "경영진이 동의한 경우 수정이 이루어졌는지 결정함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "경영진의 수정 거부 사실을 지배기구와 커뮤니케이션한다는 내용이 없다.",
+            "claim": "경영진이 기타정보 수정을 거부하면 그 사실을 지배기구와 커뮤니케이션한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6.p2",
+            "verdict": "not_met",
+            "reason": "경영진의 수정 거부 시 지배기구에 수정을 요구한다는 내용이 없다.",
+            "claim": "경영진이 기타정보 수정을 거부하면 지배기구에 수정을 요구한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진에게 기타정보의 수정을 요구한다.",
+          "경영진이 수정에 동의하면 실제로 수정되었는지 결정한다.",
+          "경영진이 수정을 거부하면 이를 지배기구와 커뮤니케이션하고 지배기구에 수정을 요구한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f8cdc95686780c4016aae0722689487d0b53e1024291ccbff",
+        "request_id": "req_275b15eafb4842f5984a6151cbf725e1",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2539,
+          "input_tokens_details": {
+            "cache_write_tokens": 2536,
+            "cached_tokens": 0
+          },
+          "output_tokens": 302,
+          "output_tokens_details": {
+            "reasoning_tokens": 73
+          },
+          "total_tokens": 2841
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.000997,
+        "min_usd": 0.000997,
+        "max_usd": 0.000997,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-16-003--sub2--standard--wrong/input.json",
+      "sha256": "16523aa62ca245a707f40b400553d1d862aa46e80a390a9ed597b35cc0764b50"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-16-003--sub2--standard--wrong/transport.jsonl",
+      "sha256": "c656ff4893280acc11970d21a03fb7cc54bef6803ae0b90dfc325912330e0d4a"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-16-003--sub2--standard--wrong/traces.jsonl",
+      "sha256": "bb00448ecc38432a81f9cec77ca28fee65d9776c6473f002f2e2c6ba129f2ef8"
+    }
+  }
+}

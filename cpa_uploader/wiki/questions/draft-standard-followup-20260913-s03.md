@@ -1,7 +1,7 @@
 ---
 title: "draft-standard-followup-20260913-s03. 통계적 표본감사의 특성과 임의추출·구획추출"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[analytics-audit-sampling]] · [[topic-10-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/154`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/146`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [10.json](../../analysis/reviews/question-review-2027/10.json)
 - 학습 순서: sub1 → sub3 → sub4
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/154/subquestions/0`
+유형: descriptive · JSON Pointer `/146/subquestions/0`
 
 ### 발문
 
@@ -60,11 +60,11 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub3
 
-유형: descriptive · JSON Pointer `/154/subquestions/1`
+유형: descriptive · JSON Pointer `/146/subquestions/1`
 
 ### 발문
 
-감사기준서 530 보론 4의 임의추출을 설명하시오. 추출방식의 특징, 편의·예측가능성과 모든 항목의 추출기회에 대한 유의사항, 통계적 표본감사에서의 적합성을 제시하시오.
+감사기준서 530 보론 4의 임의추출이 어떤 추출방법인지 설명하고, 이 방법으로 표본을 추출할 때 감사인이 유의할 사항을 설명하시오. 또한 통계적 표본감사에서 임의추출을 사용할 수 있는지 판단하시오.
 
 ### 모범답안
 
@@ -94,11 +94,11 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub4
 
-유형: descriptive · JSON Pointer `/154/subquestions/2`
+유형: descriptive · JSON Pointer `/146/subquestions/2`
 
 ### 발문
 
-감사기준서 530 보론 4의 구획추출을 정의하고, 표본에 근거하여 전체 모집단에 대한 유효한 추론을 하려는 목적에 일반적으로 적합한지와 그 이유를 설명하시오. 특정 구획을 검사하는 모든 감사절차가 절대 금지된다고 해석하지 않도록 답하시오.
+감사기준서 530 보론 4의 구획추출을 정의하고, 표본에 근거하여 전체 모집단에 대하여 유효한 추론을 하려는 경우 구획추출이 적절한 표본추출 기법인지 판단하여 그 이유를 설명하시오.
 
 ### 모범답안
 
@@ -115,7 +115,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 | criterion | 정본 명제 | 핵심 사실·조건 | 배점·판정별 점수 | requirement | source |
 |---|---|---|---|---|---|
 | crit1 | 모집단 안에서 이웃하는 항목들로 구성된 하나 또는 복수의 구획을 선택하는 방법이다. | fact1 (action): 모집단 안에서 이웃하는 항목들로 구성된 하나 또는 복수의 구획을 선택하는 방법이다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-19902-19907 | src-530-19902-19907 |
-| crit2 | 전체 모집단을 추론하는 표본감사에는 일반적으로 적합하지 않다. "일반적으로" 등으로 절대적 금지가 아님이 드러나면 특정 구획의 항목을 조사하는 절차가 항상 금지되는 것은 아니라는 부연을 따로 쓰지 않아도 인정한다. 구획추출이나 특정 구획의 조사가 언제나 금지된다고 단정하면 인정하지 않는다. | fact2 (action): 전체 모집단을 추론하는 표본감사에는 일반적으로 적합하지 않다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-19902-19907 | src-530-19902-19907 |
+| crit2 | 표본에 근거하여 전체 모집단을 추론하려는 경우 구획추출은 일반적으로 적절한 표본추출 기법이 아니다(적절한 경우가 드물다). '일반적으로'라는 한정 없이 적절하지 않다고 판단해도 인정한다. 특정 구획의 항목을 조사하는 감사절차까지 언제나 금지된다고 단정하면 인정하지 않는다. | fact2 (action): 전체 모집단을 추론하는 표본감사에는 일반적으로 적합하지 않다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-19902-19907 | src-530-19902-19907 |
 | crit3 | 대부분의 모집단은 연속된 항목끼리는 서로 유사하지만 다른 부분의 항목들은 다른 특징을 가져 그 구획이 전체를 대표하기 어렵기 때문이다. | fact3 (action): 대부분의 모집단은 연속된 항목끼리는 서로 유사하지만 다른 부분의 항목들은 다른 특징을 가져 그 구획이 전체를 대표하기 어렵기 때문이다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-19902-19907 | src-530-19902-19907 |
 
 ### 요구사항과 직접 근거

@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "artifact_type": "question_set_correction",
+  "correction_id": "20260919-pilot-12-008--standard-spoiler",
+  "set_id": "pilot-12-008",
+  "summary": "기준서형 발문의 정답 암시 제거(sub1)",
+  "note": "기준서형 수정·스포일러 전수 검토(cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/plan-v1.json). 학습 유형·주제·배점 구조는 바꾸지 않는다.",
+  "base_content_hash": "e7308d0ded306a7fbb72587bee41cf0c6c28884ca4d14c7a7c47003cdb66334f",
+  "patches": [
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "prompt"
+      },
+      "reason": "정답 암시: '금액이 작아 눈에 띄지 않는 … 모두 제외해도 되는지'가 판단(모두 제외할 수 없음)을 유도했다.",
+      "expected_before": "금액이 작아 눈에 띄지 않는 왜곡표시라면 집계 대상에서 모두 제외해도 되는지 판단하고, 집계 기준을 설명하시오.",
+      "set": "금액이 작은 왜곡표시를 집계 대상에서 제외할 수 있는지 판단하고, 감사기준서 450에 따른 왜곡표시의 집계 기준을 설명하시오."
+    },
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "model_answer"
+      },
+      "reason": "새 발문과 바뀐 criterion에 맞춘 모범답안이다.",
+      "expected_before": [
+        "모두 제외할 수 없다. 명백하게 사소한(clearly trivial) 것을 제외하고는 감사 중 식별된 왜곡표시를 집계해야 한다."
+      ],
+      "set": [
+        "금액이 작다는 이유만으로 집계에서 제외할 수는 없다.",
+        "명백하게 사소한(clearly trivial) 것을 제외하고는 감사 중 식별된 왜곡표시를 집계해야 한다."
+      ]
+    },
+    {
+      "target": {
+        "subquestion": "sub1",
+        "criterion": "crit1",
+        "field": "claim"
+      },
+      "reason": "criterion 명제: KGA 450 문단 5와 대조했다. 금액이 작다는 이유만으로 제외할 수 없다는 판단과 명백하게 사소한 것을 제외한 집계 기준의 2개 criterion이 일치한다. 발문의 '눈에 띄지 않는'·'모두'를 삭제하고 crit1을 중립 발문에 맞춰 명시했다. 2점 유지.",
+      "expected_before": "작은 왜곡표시를 무조건 집계 제외하는 것은 허용되지 않는다고 판단함",
+      "set": "금액이 작다는 이유만으로 왜곡표시를 집계에서 제외할 수는 없다고 판단한다. 명백하게 사소한 것만 제외할 수 있다는 답은 이 판단을 함축하므로 인정한다. 금액이 작으면 제외할 수 있다고만 쓰면 인정하지 않는다."
+    }
+  ]
+}

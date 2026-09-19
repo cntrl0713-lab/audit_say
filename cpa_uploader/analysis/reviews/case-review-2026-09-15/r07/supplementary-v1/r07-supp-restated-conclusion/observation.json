@@ -1,0 +1,370 @@
+{
+  "version": 1,
+  "artifact_type": "supplementary_grading_observation",
+  "transport": "model",
+  "model": "gpt-5.6-luna",
+  "case_id": "r07-supp-restated-conclusion",
+  "purpose": "옳지 않은 항목을 모두 고르되 각 항목에 옳지 않다는 결론만 되풀이하고 원칙·보완절차를 쓰지 않은 답이 식별 점수만 받는지 확인한다(조건 경계).",
+  "projected_body_hash": "2f04fa75d28e4b98aafe5024520f58ac98e1fb542b9cb744ab18384ea6a503b2",
+  "answers": {
+    "sub1": "옳지 않은 것은 ①, ②, ④이다.\n① 재무담당이사가 말한 거부 사유를 그대로 받아들인 것은 잘못이다.\n② 두 사람의 설명 가운데 재무담당이사의 설명을 채택한 것은 잘못이다.\n④ 출고증과 입금 내역을 대조한 결과로 결론을 내리기로 한 것은 잘못이다.",
+    "sub2": "옳지 않은 것은 ⑥, ⑦, ⑨이다.\n⑥ 대표이사와 재무담당이사에게 알린 조치는 적절하지 않다.\n⑦ 지금까지의 증거로 감사를 종결하기로 한 판단은 적절하지 않다.\n⑨ 당시 감사가 감사기준에 따라 수행되었다고 결론 내린 것은 적절하지 않다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "met",
+          "reason": "①·②·④만 골랐다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "거부 사유의 타당성·합리성에 관한 증거를 구해야 한다는 이유나 절차가 없다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "not_met",
+          "reason": "과거 신뢰에 관한 원칙이나 설명을 해소하는 절차가 없다."
+        },
+        {
+          "criterion_id": "sub1.c4",
+          "verdict": "not_met",
+          "reason": "적극적 조회 회신이 필요한 이유나 절차가 없다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "met",
+          "reason": "⑥·⑦·⑨만 골랐다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "not_met",
+          "reason": "지배기구와 커뮤니케이션해야 한다는 내용이 없다."
+        },
+        {
+          "criterion_id": "sub2.c3",
+          "verdict": "not_met",
+          "reason": "시간·비용에 관한 원칙이나 감사의견 시사점 결정이 없다."
+        },
+        {
+          "criterion_id": "sub2.c4",
+          "verdict": "not_met",
+          "reason": "감사수행 평가의 기준이나 검토 절차가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "29550e1ba6e6d5e8cb41e6ff9a41a12355d2aff1cd60a4749929a20871ceb380",
+  "schema_hash": "c8b1f3de59f96deed10016d3636e09594ad5a87dda5fc8974e9c5127b04181e4",
+  "actual_sdk_calls": 1,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "옳지 않은 것은 ①, ②, ④이다.\n",
+            "reason": "①·②·④를 모두 옳지 않은 것으로 지적했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "거부 사유의 타당성을 확인할 감사증거를 구해야 한다는 절차나 이유가 없다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "not_met",
+            "reason": "전문가적 의구심 유지 또는 추가 증거로 설명을 조사해야 한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "sub1.c4",
+            "verdict": "not_met",
+            "reason": "적극적 조회 회신이 필요하고 대체절차로 충분하지 않다는 이유나 절차가 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "옳지 않은 것은 ⑥, ⑦, ⑨이다.\n",
+            "reason": "⑥·⑦·⑨를 모두 옳지 않은 것으로 지적했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "지배기구와 커뮤니케이션해야 한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "not_met",
+            "reason": "시간·비용이 정당한 근거가 아니라는 이유나 감사기준서 705에 따른 판단 절차가 없다."
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "not_met",
+            "reason": "당시 감사절차와 감사증거를 검토해야 한다는 이유나 절차가 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "①·②·④를 모두 옳지 않은 것으로 지적했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "거부 사유의 타당성을 확인할 감사증거를 구해야 한다는 절차나 이유가 없다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전문가적 의구심 유지 또는 추가 증거로 설명을 조사해야 한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "sub1.c4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "적극적 조회 회신이 필요하고 대체절차로 충분하지 않다는 이유나 절차가 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "⑥·⑦·⑨를 모두 옳지 않은 것으로 지적했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "지배기구와 커뮤니케이션해야 한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "sub2.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "시간·비용이 정당한 근거가 아니라는 이유나 감사기준서 705에 따른 판단 절차가 없다."
+              },
+              {
+                "criterion_id": "sub2.c4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "당시 감사절차와 감사증거를 검토해야 한다는 이유나 절차가 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-09-confirmation-skepticism-20260918",
+    "score": 2,
+    "max_points": 8,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "기말감사 중 감사팀의 절차와 판단 ①~⑤ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "옳지 않은 것은 ①, ②, ④이다.\n① 재무담당이사가 말한 거부 사유를 그대로 받아들인 것은 잘못이다.\n② 두 사람의 설명 가운데 재무담당이사의 설명을 채택한 것은 잘못이다.\n④ 출고증과 입금 내역을 대조한 결과로 결론을 내리기로 한 것은 잘못이다.",
+        "score": 1,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "옳지 않은 것은 ①, ②, ④이다.",
+            "reason": "①·②·④를 모두 옳지 않은 것으로 지적했다.",
+            "claim": "옳지 않은 것으로 ①·②·④를 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. ①·②·④ 중 하나라도 빠뜨리거나, 옳은 것인 ③(관리자 계정의 공동 사용과 반복 수정, 서로 다른 설명, 발송 거부가 함께 나타나자 부정 여부를 확인하기 전에 부정위험 평가를 높이고 다른 특별약정에 대한 감사절차의 범위를 넓힘), ⑤(특별약정에 감사노력을 집중하고 일반 판매는 모든 거래를 추적하는 대신 위험평가 결과에 따라 추출한 표본을 테스트)를 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "거부 사유의 타당성을 확인할 감사증거를 구해야 한다는 절차나 이유가 없다.",
+            "claim": "① 경영진이 조회서 발송을 거부하면 사유를 질문하고 기록하는 데 그치지 않고, 가온상사의 요청이나 관련 교신 등 그 사유의 타당성과 합리성에 관한 감사증거를 구해야 한다는 이유나 절차를 제시한다. 질문과 답변의 기록만으로는 거부 사유가 타당하고 합리적인지 확인할 수 없다는 이유와, 거부 사유를 뒷받침하는 감사증거를 입수해야 한다는 절차 중 하나만 써도 인정하며 증거의 구체적 종류는 요구하지 않는다. 거래관계에 관한 경영진의 판단이면 증거 없이 받아들여도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "not_met",
+            "reason": "전문가적 의구심 유지 또는 추가 증거로 설명을 조사해야 한다는 내용이 없다.",
+            "claim": "② 경영진의 정직성과 성실성에 대한 과거의 경험이 있더라도 전문가적 의구심을 유지할 필요성이 줄거나 설득력이 낮은 감사증거에 만족할 수 있는 것은 아니라는 이유나, 두 사람의 서로 다른 설명에 의문을 갖고 추가 증거로 조사하여 해소해야 한다는 절차를 제시한다. 둘 중 하나만 써도 인정한다. 과거에 성실하게 답해 온 경영진의 설명은 그대로 채택할 수 있다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c4",
+            "verdict": "not_met",
+            "reason": "적극적 조회 회신이 필요하고 대체절차로 충분하지 않다는 이유나 절차가 없다.",
+            "claim": "④ 약정 조건은 가온상사가 보관한 원본 등 기업 외부에서만 확인할 수 있거나, 관리자 계정의 공동 사용과 반복 수정 등 부정위험요소 때문에 회사에서 입수한 자료를 신뢰할 수 없으므로 적극적 조회에 대한 회신이 필요하고, 출고증과 입금 내역의 대조 같은 대체적 감사절차로는 필요한 감사증거를 얻을 수 없다는 이유나 절차를 제시한다. 적극적 조회 회신이 필요한 두 사정 중 하나만 들어도 인정하며, 출고증과 입금 내역이 반품·지급 조건을 확인해 주지 못한다는 이유나 적극적 조회에 대한 회신을 입수해야 한다는 절차도 인정한다. 출고증과 입금 내역을 대조하면 약정 조건에 관한 충분한 증거가 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ①, ②, ④이다. ③은 관리자 계정의 공동 사용과 반복 수정, 서로 다른 설명, 발송 거부가 부정의 가능성을 나타낼 수 있는 상황이므로 부정 여부가 확인되기 전이라도 부정위험 평가와 다른 감사절차에 대한 시사점을 반영한 것이고, ⑤는 모든 사항을 누락 없이 추적하는 것은 실행가능하지 않으므로 위험이 높은 분야에 감사노력을 집중하고 나머지는 표본으로 테스트한 것이므로 옳다.",
+          "① 경영진이 조회서 발송을 거부하면 그 사유를 질문하는 데 그치지 않고, 가온상사의 요청이나 관련 교신 등 거부 사유의 타당성과 합리성에 관한 감사증거를 구하여야 한다.",
+          "② 경영진의 정직성에 대한 과거의 경험이 있더라도 전문가적 의구심을 유지할 필요성이 줄거나 설득력이 낮은 감사증거에 만족할 수 있는 것은 아니므로, 두 사람의 서로 다른 설명에 의문을 갖고 추가 증거로 조사하여 해소하여야 한다.",
+          "④ 약정 조건은 가온상사가 보관한 원본 등 기업 외부에서만 확인할 수 있고, 관리자 계정의 공동 사용과 반복 수정 등으로 회사에서 입수한 자료를 신뢰할 수 없으므로 적극적 조회에 대한 회신이 필요하다. 출고증과 입금 내역의 대조 같은 대체적 감사절차로는 필요한 감사증거를 얻을 수 없다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "업무 종결 단계와 감사보고서 발행 후의 조치와 판단 ⑥~⑨ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "옳지 않은 것은 ⑥, ⑦, ⑨이다.\n⑥ 대표이사와 재무담당이사에게 알린 조치는 적절하지 않다.\n⑦ 지금까지의 증거로 감사를 종결하기로 한 판단은 적절하지 않다.\n⑨ 당시 감사가 감사기준에 따라 수행되었다고 결론 내린 것은 적절하지 않다.",
+        "score": 1,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "옳지 않은 것은 ⑥, ⑦, ⑨이다.",
+            "reason": "⑥·⑦·⑨를 모두 옳지 않은 것으로 지적했다.",
+            "claim": "옳지 않은 것으로 ⑥·⑦·⑨를 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. ⑥·⑦·⑨ 중 하나라도 빠뜨리거나, 옳은 것인 ⑧(감사보고서 발행 후 중요한 왜곡표시가 발견되었다는 사실만으로는 당시 감사가 감사기준에 따라 수행되지 않았다고 판단할 수 없다고 봄)을 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "지배기구와 커뮤니케이션해야 한다는 내용이 없다.",
+            "claim": "⑥ 경영진의 발송 거부로 필요한 회신과 감사증거를 입수하지 못한 상황은 대표이사와 재무담당이사에게 알리는 데 그치지 않고 지배기구와 커뮤니케이션해야 한다는 이유나 절차를 제시한다. 지배기구에 알려야 한다는 취지면 커뮤니케이션의 형식이나 시기는 요구하지 않는다. 경영진에게 서면으로 알리면 충분하다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "not_met",
+            "reason": "시간·비용이 정당한 근거가 아니라는 이유나 감사기준서 705에 따른 판단 절차가 없다.",
+            "claim": "⑦ 시간·비용·어려움의 문제 그 자체는 설득력이 낮은 감사증거에 만족하는 정당한 근거가 되지 못한다는 이유나, 필요한 적극적 조회 회신을 입수하지 못했으므로 감사기준서 705에 따라 해당 감사와 감사의견에 대한 시사점(의견변형의 필요성)을 결정해야 한다는 절차를 제시한다. 둘 중 하나만 써도 인정하며, 한정의견과 의견거절 중 하나를 확정할 필요는 없다. 제출기한이나 예산 때문이라면 지금까지의 증거로 감사를 종결해도 된다고 쓰거나, 왜곡표시가 확인되지 않았으므로 적정의견을 표명하면 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "not_met",
+            "reason": "당시 감사절차와 감사증거를 검토해야 한다는 이유나 절차가 없다.",
+            "claim": "⑨ 감사기준에 따라 감사를 수행하였는지는 당시 수행한 감사절차, 입수한 감사증거의 충분성과 적합성, 그 증거의 평가에 기초한 감사보고서의 적합성에 의해 결정된다는 이유나, 이를 검토하여 판단해야 한다는 절차를 제시한다. 세 측면을 모두 나열할 필요는 없으며, 당시 수행한 감사절차나 입수한 감사증거를 검토해야 한다는 취지나, 감사의 고유한계가 설득력이 부족한 감사증거에 만족하는 것을 정당화하지 않는다는 이유도 인정한다. 공모와 조작이 정교했다는 사실만으로 감사가 감사기준에 따라 수행되었다고 볼 수 있다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ⑥, ⑦, ⑨이다. ⑧은 감사의 고유한계 때문에 감사기준에 따라 적절히 계획하고 수행한 감사에서도 중요한 왜곡표시가 발견되지 않을 수 있으므로, 사후에 중요한 왜곡표시가 발견되었다는 사실만으로 감사기준을 따르지 않았다고 볼 수 없다는 판단이어서 옳다.",
+          "⑥ 경영진의 발송 거부로 필요한 회신과 감사증거를 입수하지 못한 상황은 대표이사와 재무담당이사에게 알리는 데 그치지 않고 지배기구와 커뮤니케이션하여야 한다.",
+          "⑦ 시간이나 비용의 문제 그 자체는 설득력이 낮은 감사증거에 만족하는 정당한 근거가 되지 못한다. 필요한 적극적 조회 회신을 입수하지 못했으므로 감사기준서 705에 따라 해당 감사와 감사의견에 대한 시사점을 결정하여야 한다.",
+          "⑨ 감사기준에 따라 감사를 수행하였는지는 당시 수행한 감사절차, 입수한 감사증거의 충분성과 적합성, 그 증거의 평가에 기초한 감사보고서의 적합성에 의해 결정되므로, 조작이 정교했다는 사실만으로 결론 내릴 수 없고 이를 검토하여 판단하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_055e1196c74f27d8016aaccb87bf7c87d0a0996163307bbb0d",
+        "request_id": "req_03157b5fc56d4afbb362daf46d464e9e",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 8070,
+          "input_tokens_details": {
+            "cache_write_tokens": 8067,
+            "cached_tokens": 0
+          },
+          "output_tokens": 510,
+          "output_tokens_details": {
+            "reasoning_tokens": 63
+          },
+          "total_tokens": 8580
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00262935,
+        "min_usd": 0.00262935,
+        "max_usd": 0.00262935,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ]
+}

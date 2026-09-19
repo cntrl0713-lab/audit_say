@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { buildWiki } from './build-wiki.mjs';
+import { buildWiki, normalizeGeneratedPage } from './build-wiki.mjs';
 import { allMarkdown, lintWiki, parseFrontmatter } from './lint-wiki.mjs';
 import { topicDefinitions } from './topic-definitions.mjs';
 
@@ -85,13 +85,8 @@ export function checkSourceNavigation({ repoDir = defaultRepoDir, pages } = {}) 
   return { expectedLinks, actualLinks, topics: expected.size, errors };
 }
 
-export function normalizeGeneratedPage(text) {
-  // Ignore build dates and line endings; dates inside source evidence remain significant.
-  return text.replace(/^\uFEFF/u, '').replace(/\r\n?/gu, '\n')
-    .replace(/^---\n[\s\S]*?\n---(?=\n|$)/u, frontmatter => frontmatter.replace(/^(created|updated): \d{4}-\d{2}-\d{2}$/gmu, '$1: <build-date>'))
-    .replace(/^(> Last updated: )\d{4}-\d{2}-\d{2}(?= \|)/gmu, '$1<build-date>')
-    .trimEnd();
-}
+// The builder applies the same normalization when deciding which pages to rewrite.
+export { normalizeGeneratedPage };
 
 export function checkWiki({ repoDir = defaultRepoDir } = {}) {
   const wikiDir = path.join(repoDir, 'cpa_uploader/wiki');

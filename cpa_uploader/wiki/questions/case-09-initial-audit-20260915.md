@@ -1,7 +1,7 @@
 ---
 title: "case-09-initial-audit-20260915. 초도감사에서 기초잔액의 감사절차와 감사보고"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[inventory-litigation-confirmations-opening-balances]] · [[topic-09-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/370`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/356`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [09.json](../../analysis/reviews/question-review-2027/09.json)
 - 학습 순서: sub1 → sub2 → sub3 → sub4
@@ -30,7 +30,7 @@ confidence: high
 
 ## sub1
 
-유형: judgment · JSON Pointer `/370/subquestions/0`
+유형: judgment · JSON Pointer `/356/subquestions/0`
 
 ### 발문
 
@@ -64,7 +64,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/370/subquestions/1`
+유형: enumeration · JSON Pointer `/356/subquestions/1`
 
 ### 발문
 
@@ -101,7 +101,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub3
 
-유형: judgment · JSON Pointer `/370/subquestions/2`
+유형: judgment · JSON Pointer `/356/subquestions/2`
 
 ### 발문
 
@@ -135,7 +135,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub4
 
-유형: judgment · JSON Pointer `/370/subquestions/3`
+유형: judgment · JSON Pointer `/356/subquestions/3`
 
 ### 발문
 

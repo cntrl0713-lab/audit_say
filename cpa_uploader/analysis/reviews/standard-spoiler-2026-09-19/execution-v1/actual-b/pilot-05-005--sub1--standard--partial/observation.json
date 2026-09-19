@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-05-005--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-05-005--sub1--standard",
+  "source_set_id": "pilot-05-005",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "2062872c0b081c7672b1d4dd72b4ed7aee45a457d6e8962ad6bcab24bb960bf9",
+  "answers": {
+    "sub1": "감사인은 수익인식에 부정위험이 존재한다는 가정에 기초하여 부정으로 인한 중요왜곡표시위험을 식별하고 평가한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (위험을 발생시키는 수익 유형·거래·경영진주장의 평가를 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (위험을 발생시키는 수익 유형·거래·경영진주장의 평가를 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "39c37e5b1bdb16f07a8699ef91bdb4308e99583dfbefbfa13cac88d8f8713aee",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사인은 수익인식에 부정위험이 존재한다는 가정에 기초하여 부정으로 인한 중요왜곡표시위험을 식별하고 평가한다.",
+            "reason": "수익인식에 부정위험이 존재한다는 가정에 기초하여 위험을 식별·평가한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "위험을 발생시키는 수익 유형·거래·경영진주장을 평가하는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "수익인식에 부정위험이 존재한다는 가정에 기초하여 위험을 식별·평가한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "위험을 발생시키는 수익 유형·거래·경영진주장을 평가하는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-05-005",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 240에 따라 부정으로 인한 중요왜곡표시위험을 식별하고 평가할 때 수익인식과 관련하여 감사인이 따라야 하는 접근방식을 설명하시오.",
+        "user_answer": "감사인은 수익인식에 부정위험이 존재한다는 가정에 기초하여 부정으로 인한 중요왜곡표시위험을 식별하고 평가한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사인은 수익인식에 부정위험이 존재한다는 가정에 기초하여 부정으로 인한 중요왜곡표시위험을 식별하고 평가한다.",
+            "reason": "수익인식에 부정위험이 존재한다는 가정에 기초하여 위험을 식별·평가한다고 명시했다.",
+            "claim": "감사인은 수익인식에 부정위험이 존재한다는 가정(추정)에 기초하여 부정으로 인한 중요왜곡표시위험을 식별·평가한다. 처음부터 수익인식 부정위험이 없다고 평가해도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "위험을 발생시키는 수익 유형·거래·경영진주장을 평가하는 내용이 없다.",
+            "claim": "수익인식에 부정위험이 존재한다는 가정 하에 위험을 발생시키는 수익 유형·거래·경영진주장을 평가하는 접근방식을 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사인은 수익의 인식에 부정위험이 존재한다는 가정에 기초하여 부정으로 인한 중요왜곡표시위험을 식별하고 평가한다.",
+          "그 가정에 따라 어떤 유형의 수익이나 수익거래 또는 경영진주장이 그러한 위험을 발생시키는지 평가해야 한다.",
+          "해당 업무의 상황에 이 가정을 적용할 수 없다고 결론을 내린 경우에는 그 결론을 내리게 된 이유를 감사문서에 포함해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0119c326a185efe1016aae069c9bac87d0b6828ee89cffd383",
+        "request_id": "req_cb9ec7f7911d46b88f9d595a6f3aee7f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2537,
+          "input_tokens_details": {
+            "cache_write_tokens": 2534,
+            "cached_tokens": 0
+          },
+          "output_tokens": 201,
+          "output_tokens_details": {
+            "reasoning_tokens": 48
+          },
+          "total_tokens": 2738
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008753,
+        "min_usd": 0.0008753,
+        "max_usd": 0.0008753,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-05-005--sub1--standard--partial/input.json",
+      "sha256": "491afcbebe0afe6afcc2802b2e0f26a91eb307f82a4a92ed10a5909e0147ab95"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-05-005--sub1--standard--partial/transport.jsonl",
+      "sha256": "f270d706f2ab1b5f43d2bb905718bdab48870dd7687cafa7fcfcf4e900ae29db"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-05-005--sub1--standard--partial/traces.jsonl",
+      "sha256": "c4f1f2016b3eb5d350000153b0d3db75808ae8f0c14f8eeca04ed491598b423c"
+    }
+  }
+}

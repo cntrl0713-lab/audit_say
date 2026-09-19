@@ -1,7 +1,7 @@
 ---
 title: "draft-standard-additional-20260913-s02. 재무보고체계의 수용가능성과 법정 보고서"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[engagement-acceptance-contract]] · [[topic-03-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/123`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/115`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [03.json](../../analysis/reviews/question-review-2027/03.json)
 - 학습 순서: sub1 → sub3
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub1
 
-유형: enumeration · JSON Pointer `/123/subquestions/0`
+유형: enumeration · JSON Pointer `/115/subquestions/0`
 
 ### 발문
 
-감사기준서 210 문단 A4에서 재무제표 작성에 적용되는 재무보고체계의 수용가능성을 결정할 때 고려하도록 제시한 네 가지 요인을 모두 설명하시오. 기업의 성격, 재무제표의 목적과 성격은 각기 무엇을 구별하는지 예시 또는 동등한 설명을 포함하시오.
+감사기준서 210 문단 A4에서 재무제표 작성에 적용되는 재무보고체계의 수용가능성을 결정할 때 관련되는 요인으로 제시한 네 가지를 모두 설명하시오. 예시가 붙은 요인은 무엇을 구별하는지 예시나 동등한 설명을 함께 쓰시오.
 
 ### 모범답안
 
@@ -62,11 +62,11 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub3
 
-유형: descriptive · JSON Pointer `/123/subquestions/1`
+유형: descriptive · JSON Pointer `/115/subquestions/1`
 
 ### 발문
 
-법규가 감사기준의 요구사항과 유의적으로 다른 형태·용어의 감사보고서를 규정할 때, 감사기준서 210 문단 21에 따라 감사인이 평가할 두 사항을 제시하시오. 추가 설명으로 오해 가능성을 완화할 수 없다고 결론 내린 경우의 수임 원칙과 법규상 예외, 그 예외로 수행한 감사의 감사기준 준수 여부 및 감사보고서의 준수 언급 가능 여부도 설명하시오.
+법규가 감사기준의 요구사항과 유의적으로 다른 형태나 용어로 감사보고서의 구성이나 문구를 규정하는 경우, 감사기준서 210 문단 21에 따라 감사인이 평가할 사항과 그 평가 결과에 따른 감사업무 수임 여부를 설명하시오. 그러한 법규에 따라 수행하는 감사가 감사기준을 준수한 감사인지와 감사보고서에 감사기준 준수를 언급할 수 있는지도 설명하시오.
 
 ### 모범답안
 

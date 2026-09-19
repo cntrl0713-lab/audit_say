@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-10-004--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-10-004--sub2--standard",
+  "source_set_id": "pilot-10-004",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "22ce256c87608c2d78a49b799aa5e526855bc9d587f770dc55835441211c2d0b",
+  "answers": {
+    "sub2": "변이가 아닌 왜곡표시는 해당 표본 항목만 수정하면 되고 모집단에는 반영하지 않는다. 예상왜곡표시보다 크더라도 표본규모를 충분히 정했으므로 추가 결론은 필요 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (투영을 부정하고 결론도 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (투영을 부정하고 결론도 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (투영을 부정하고 결론도 반대로 썼다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "c117f8a5bfbbe6830d0d28cf868739739d52d9fa9715dc0cbfc52797419c09cb",
+  "schema_hash": "b13439f9ab284598cdfdfe5a741f21f693d2d3295ea4cb0d62789ad8b8f686a0",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "변이가 아닌 왜곡표시는 해당 표본 항목만 수정하면 되고 모집단에는 반영하지 않는다. 예상왜곡표시보다 크더라도 표본규모를 충분히 정했으므로 추가 결론은 필요 없다.",
+            "reason": "왜곡표시를 모집단에 반영하지 않는다고 명시하였다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "투영의 목적을 설명하지 않았다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "변이가 아닌 왜곡표시는 해당 표본 항목만 수정하면 되고 모집단에는 반영하지 않는다. 예상왜곡표시보다 크더라도 표본규모를 충분히 정했으므로 추가 결론은 필요 없다.",
+            "reason": "예상왜곡표시보다 커도 추가 결론이 필요 없다고 명시하여 요구된 결론을 부정하였다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e1"
+                ],
+                "reason": "왜곡표시를 모집단에 반영하지 않는다고 명시하였다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "투영의 목적을 설명하지 않았다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e2"
+                ],
+                "reason": "예상왜곡표시보다 커도 추가 결론이 필요 없다고 명시하여 요구된 결론을 부정하였다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-10-004",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "세부테스트의 표본에서 변이에 해당하지 않는 왜곡표시를 발견하였다. 감사기준서 530에 따라 감사인이 그 왜곡표시를 모집단과 관련하여 어떻게 처리하여야 하는지와 그 처리의 목적을 설명하시오. 또한 그 처리 결과가 표본규모를 결정할 때 적용한 예상왜곡표시보다 큰 경우 감사인이 내릴 수 있는 결론을 설명하시오.",
+        "user_answer": "변이가 아닌 왜곡표시는 해당 표본 항목만 수정하면 되고 모집단에는 반영하지 않는다. 예상왜곡표시보다 크더라도 표본규모를 충분히 정했으므로 추가 결론은 필요 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "변이가 아닌 왜곡표시는 해당 표본 항목만 수정하면 되고 모집단에는 반영하지 않는다. 예상왜곡표시보다 크더라도 표본규모를 충분히 정했으므로 추가 결론은 필요 없다.",
+            "reason": "왜곡표시를 모집단에 반영하지 않는다고 명시하였다.",
+            "claim": "발견한 왜곡표시를 모집단으로 투영한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "투영의 목적을 설명하지 않았다.",
+            "claim": "투영은 모집단 왜곡표시 규모의 개괄적 관점을 얻기 위한 것이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "변이가 아닌 왜곡표시는 해당 표본 항목만 수정하면 되고 모집단에는 반영하지 않는다. 예상왜곡표시보다 크더라도 표본규모를 충분히 정했으므로 추가 결론은 필요 없다.",
+            "reason": "예상왜곡표시보다 커도 추가 결론이 필요 없다고 명시하여 요구된 결론을 부정하였다.",
+            "claim": "투영된 왜곡표시가 표본규모를 결정할 때 적용한 예상왜곡표시보다 크면, 모집단의 실제 왜곡표시가 허용왜곡표시를 초과한다는 수용할 수 없는 표본위험이 존재한다고 결론 내릴 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "표본에서 발견된 왜곡표시를 모집단으로 투영한다.",
+          "투영은 모집단 왜곡표시 규모에 대한 개괄적 관점을 얻기 위한 것이다.",
+          "투영된 왜곡표시가 표본규모를 결정할 때 적용한 예상왜곡표시보다 크면, 모집단의 실제 왜곡표시가 허용왜곡표시를 초과한다는 수용할 수 없는 표본위험이 존재한다고 결론 내릴 수 있다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_06b2b2c2be865581016aae06d6eba487d0ac2e911c240c23eb",
+        "request_id": "req_b5a18ff0754b47a5bfbeb1b8bc9d0032",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2817,
+          "input_tokens_details": {
+            "cache_write_tokens": 2814,
+            "cached_tokens": 0
+          },
+          "output_tokens": 273,
+          "output_tokens_details": {
+            "reasoning_tokens": 83
+          },
+          "total_tokens": 3090
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010317,
+        "min_usd": 0.0010317,
+        "max_usd": 0.0010317,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-10-004--sub2--standard--wrong/input.json",
+      "sha256": "0e9dced47b813d126d2bfd0c49717700206232d4cbc3f97475fdc7e1ed5f3831"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-10-004--sub2--standard--wrong/transport.jsonl",
+      "sha256": "4e585d75084e492f00d1cfb3e1758e0a374d3fa89adc4bff0222ff3e434fcee6"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-10-004--sub2--standard--wrong/traces.jsonl",
+      "sha256": "f6be47f07ea5007bf35a7ffbdd102d42ee5059e26d36b403d051efd34017aedb"
+    }
+  }
+}

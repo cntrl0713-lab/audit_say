@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-19-005--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-19-005--sub1--standard",
+  "source_set_id": "pilot-19-005",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "c526b241722e91119399dbb5f9d6188d42f076d579ea087ae919593e477d779c",
+  "answers": {
+    "sub1": "우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "대상명제가다른남은문장에함축되어있지않은진짜누락을평가한다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "대상명제가다른남은문장에함축되어있지않은진짜누락을평가한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "0bbf55aaaa82704739578a6792f818769fe0332d6b6c9fe6ddb72599f50a77d2",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "검토의 확신 수준에 대한 언급이 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다.",
+            "reason": "반기재무제표, 한국채택국제회계기준, 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 않았다는 소극적 결론을 모두 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "검토의 확신 수준에 대한 언급이 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "반기재무제표, 한국채택국제회계기준, 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 않았다는 소극적 결론을 모두 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-19-005",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "독립된 연간재무제표 감사인이 분·반기재무제표 검토준칙에 따라 한국채택국제회계기준으로 작성된 전체 형식의 반기재무제표를 검토한다. 필요한 종결절차를 완료하였고 중요한 수정이나 변형된 검토의견을 필요로 하는 사항이 없다. 이 검토의 확신 수준을 제시하고, 검토보고서에 기재할 결론 문구를 대상 반기재무제표와 적용한 회계기준이 드러나도록 작성하시오.",
+        "user_answer": "우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "검토의 확신 수준에 대한 언급이 없다.",
+            "claim": "중간검토의 확신은 감사의 합리적 확신보다 낮은 제한적 확신임을 제시한다. 이 준칙 보론4의 보통수준의 확신이라는 동의 표현도 허용한다. 무확신 업무나 합리적 확신으로 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다.",
+            "reason": "반기재무제표, 한국채택국제회계기준, 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 않았다는 소극적 결론을 모두 제시했다.",
+            "claim": "대상 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않았다고 믿게 하는 사항이 발견되지 않았다는 소극적 결론을 작성한다. 문구의 완전한 축자재현은 요구하지 않지만 적극적 공정표시 감사의견이나 발견된 중요한 왜곡이 없다는 무근거 보장으로 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "검토가 제공하는 확신은 감사보다 낮은 제한적 확신이다. 이 준칙의 보통수준의 확신이라는 표현도 같은 취지로 이해하며 합리적 확신의 감사의견을 표명하지 않는다.",
+          "우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0701f9ada22993cc016aae07723afc87d0934b3a42b78c08c0",
+        "request_id": "req_09342568a48c43259e66a1943d208b20",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2750,
+          "input_tokens_details": {
+            "cache_write_tokens": 2747,
+            "cached_tokens": 0
+          },
+          "output_tokens": 202,
+          "output_tokens_details": {
+            "reasoning_tokens": 45
+          },
+          "total_tokens": 2952
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00092975,
+        "min_usd": 0.00092975,
+        "max_usd": 0.00092975,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-19-005--sub1--standard--partial/input.json",
+      "sha256": "a1309fd2287e18bf57cd1af23ccacfb668fd902f8b046fb297cdf9a62b900eae"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-19-005--sub1--standard--partial/transport.jsonl",
+      "sha256": "40c6ff2008e6bee1c68cd38141381419d7a591527e51abeecd101adc2e5aad82"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-19-005--sub1--standard--partial/traces.jsonl",
+      "sha256": "bda5af1b777026dac98b0185cc86553592ed49916601aea04c335e9194941d3f"
+    }
+  }
+}

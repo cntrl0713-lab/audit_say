@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-03-004--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-03-004--sub1--standard",
+  "source_set_id": "pilot-03-004",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "458b913103babdd1a0b327c5073335894604a6793f44ac69d1f361c6f90e4986",
+  "answers": {
+    "sub1": "재무제표 작성에 적용되는 재무보고체계가 수용가능한지 결정한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (경영진 책임에 대한 동의 절차를 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (경영진 책임에 대한 동의 절차를 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "04aa1bf7044976abf8768f17d889ef0af5bfa6af1b7a52f95851881301afc113",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "재무제표 작성에 적용되는 재무보고체계가 수용가능한지 결정한다.",
+            "reason": "재무보고체계의 수용가능성을 결정한다고 제시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "경영진의 책임 인정·이해에 대한 동의를 받는 절차가 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "재무보고체계의 수용가능성을 결정한다고 제시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "경영진의 책임 인정·이해에 대한 동의를 받는 절차가 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-03-004",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사인이 감사를 위한 전제조건이 존재하는지 확인하기 위하여 수행해야 할 두 가지 절차를 제시하시오.",
+        "user_answer": "재무제표 작성에 적용되는 재무보고체계가 수용가능한지 결정한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "재무제표 작성에 적용되는 재무보고체계가 수용가능한지 결정한다.",
+            "reason": "재무보고체계의 수용가능성을 결정한다고 제시했다.",
+            "claim": "재무제표 작성에 적용되는 재무보고체계의 수용가능성 여부를 결정하는 절차를 제시함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "경영진의 책임 인정·이해에 대한 동의를 받는 절차가 없다.",
+            "claim": "경영진의 책임 인정·이해에 대한 경영진의 동의를 받는 절차를 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "재무제표 작성에 적용되는 재무보고체계가 수용가능한지 여부를 결정한다.",
+          "경영진이 재무보고체계에 따른 재무제표 작성 책임, 내부통제에 대한 책임, 감사인에게 정보와 접근을 제공할 책임을 인정하고 이해하고 있다는 점에 대하여 경영진의 동의를 받는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_09cf02b51428fa21016aae0693e39c87d08f9a251770725b2f",
+        "request_id": "req_d0d1f630014342f69ac5d89be00d1fdc",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2337,
+          "input_tokens_details": {
+            "cache_write_tokens": 2334,
+            "cached_tokens": 0
+          },
+          "output_tokens": 167,
+          "output_tokens_details": {
+            "reasoning_tokens": 33
+          },
+          "total_tokens": 2504
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0007845,
+        "min_usd": 0.0007845,
+        "max_usd": 0.0007845,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-03-004--sub1--standard--partial/input.json",
+      "sha256": "65db9922c97b855999b4dffbe4185708affc650a64003eb0be2dc9561b088f4d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-03-004--sub1--standard--partial/transport.jsonl",
+      "sha256": "e1da8dfbcd4ee1ddaf0c9406673e638a17e5d4a87b7023488c17146632ef5c70"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-03-004--sub1--standard--partial/traces.jsonl",
+      "sha256": "7bc39810c386e76af2c59ee54d4773069168a1821889fdb59d9ed749ef965aa3"
+    }
+  }
+}

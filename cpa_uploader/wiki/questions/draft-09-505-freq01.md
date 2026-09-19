@@ -1,7 +1,7 @@
 ---
 title: "draft-09-505-freq01. 공란형 적극적 조회의 장단점과 회신 자체가 필요한 경우"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[inventory-litigation-confirmations-opening-balances]] · [[topic-09-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/79`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/78`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [09.json](../../analysis/reviews/question-review-2027/09.json)
 - 학습 순서: q1 → q2
@@ -27,11 +27,11 @@ confidence: high
 
 ## q1
 
-유형: descriptive · JSON Pointer `/79/subquestions/0`
+유형: descriptive · JSON Pointer `/78/subquestions/0`
 
 ### 발문
 
-조회처가 금액의 정확성을 확인하지 않고 회신할 위험을 줄이려고 공란형 적극적 조회를 사용하려 한다. 공란형의 작성·회신 방식, 기대되는 위험 감소 효과, 일반적인 금액 기재형과 비교한 회신율의 한계 및 그 이유를 설명하시오.
+감사기준서 505에 따른 공란형 적극적 조회의 작성·회신 방식을 설명하시오. 이어 일반적인 금액 기재형 적극적 조회와 비교하여 공란형이 가지는 효과와 한계를 각각 그 이유와 함께 설명하시오.
 
 ### 모범답안
 
@@ -63,11 +63,11 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## q2
 
-유형: descriptive · JSON Pointer `/79/subquestions/1`
+유형: descriptive · JSON Pointer `/78/subquestions/1`
 
 ### 발문
 
-감사기준서 505에 따라 충분하고 적합한 감사증거를 입수하기 위하여 적극적 조회에 대한 회신 자체가 필요하다고 결정한 경우를 전제로 하시오. 그 회신을 입수하지 못하면 일반적인 미회신처럼 대체절차로 필요한 증거를 대신할 수 있는지 설명하고, 회신 미입수가 감사의 수행과 감사의견 각각에 관하여 결정하게 하는 사항을 제시하시오.
+감사기준서 505에 따라 충분하고 적합한 감사증거를 입수하기 위하여 적극적 조회에 대한 회신 자체가 필요하다고 결정한 경우를 전제로 하시오. 그 회신을 입수하지 못한 경우 대체적 감사절차로 필요한 감사증거를 대신할 수 있는지와 감사인이 결정하여야 할 사항을 설명하시오.
 
 ### 모범답안
 

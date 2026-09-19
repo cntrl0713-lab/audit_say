@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-13-003--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-003--sub2--standard",
+  "source_set_id": "pilot-13-003",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "4b731533bff3f82bdca2a574f5867a82f622677038eb4ce5fbee94da1578667f",
+  "answers": {
+    "sub2": "전문가의 업무가 부적합하더라도 전문가의 책임이므로 그 결과를 그대로 사용하고 감사보고서에 전문가의 이름을 기재한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요구 절차를 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit5.p2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요구 절차를 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요구 절차를 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "73f717e52c9803e371fb6825de82495c518d33bb378508093c96df78a632abd8",
+  "schema_hash": "c02b0200f5711c3b68f0305ae101abb368d1d83a9cbd594ba4e6234c79a8549d",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "전문가의 업무가 부적합하더라도 전문가의 책임이므로 그 결과를 그대로 사용하고 감사보고서에 전문가의 이름을 기재한다.",
+            "reason": "부적합한 업무 결과를 그대로 사용한다고 하여 후속업무 성격의 합의를 부정한다."
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "contradicted",
+            "quote": "전문가의 업무가 부적합하더라도 전문가의 책임이므로 그 결과를 그대로 사용하고 감사보고서에 전문가의 이름을 기재한다.",
+            "reason": "부적합한 업무 결과를 그대로 사용한다고 하여 후속업무 범위의 합의를 부정한다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "전문가의 업무가 부적합하더라도 전문가의 책임이므로 그 결과를 그대로 사용하고 감사보고서에 전문가의 이름을 기재한다.",
+            "reason": "부적합하더라도 결과를 그대로 사용한다고 하여 추가 감사절차의 필요성을 부정한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "부적합한 업무 결과를 그대로 사용한다고 하여 후속업무 성격의 합의를 부정한다."
+              },
+              {
+                "criterion_id": "crit5.p2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "부적합한 업무 결과를 그대로 사용한다고 하여 후속업무 범위의 합의를 부정한다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "부적합하더라도 결과를 그대로 사용한다고 하여 추가 감사절차의 필요성을 부정한다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-003",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사인측 전문가의 업무가 감사목적상 적합하지 않다고 판단한 경우 감사인이 수행해야 할 두 가지 절차를 제시하시오.",
+        "user_answer": "전문가의 업무가 부적합하더라도 전문가의 책임이므로 그 결과를 그대로 사용하고 감사보고서에 전문가의 이름을 기재한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "전문가의 업무가 부적합하더라도 전문가의 책임이므로 그 결과를 그대로 사용하고 감사보고서에 전문가의 이름을 기재한다.",
+            "reason": "부적합한 업무 결과를 그대로 사용한다고 하여 후속업무 성격의 합의를 부정한다.",
+            "claim": "감사목적에 적합하지 않은 전문가 업무의 후속업무 성격을 전문가와 합의한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "contradicted",
+            "quote": "전문가의 업무가 부적합하더라도 전문가의 책임이므로 그 결과를 그대로 사용하고 감사보고서에 전문가의 이름을 기재한다.",
+            "reason": "부적합한 업무 결과를 그대로 사용한다고 하여 후속업무 범위의 합의를 부정한다.",
+            "claim": "감사목적에 적합하지 않은 전문가 업무의 후속업무 범위를 전문가와 합의한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "전문가의 업무가 부적합하더라도 전문가의 책임이므로 그 결과를 그대로 사용하고 감사보고서에 전문가의 이름을 기재한다.",
+            "reason": "부적합하더라도 결과를 그대로 사용한다고 하여 추가 감사절차의 필요성을 부정한다.",
+            "claim": "해당 상황에 적합한 추가적인 감사절차를 수행한다고 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "전문가가 수행할 후속업무의 성격과 범위에 대하여 전문가와 합의한다.",
+          "해당 상황에 적합한 추가적인 감사절차를 수행한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0c5121e54de727f6016aae06fe16d887d09440e6fbbf04a635",
+        "request_id": "req_3e949468342f434eafc084c688a27ce6",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2442,
+          "input_tokens_details": {
+            "cache_write_tokens": 2439,
+            "cached_tokens": 0
+          },
+          "output_tokens": 392,
+          "output_tokens_details": {
+            "reasoning_tokens": 184
+          },
+          "total_tokens": 2834
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00108075,
+        "min_usd": 0.00108075,
+        "max_usd": 0.00108075,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-13-003--sub2--standard--wrong/input.json",
+      "sha256": "5edb858c399ae9d3a04053552d5b1e757c9ca96c6a94090ca2bb1ffb80458d7d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-13-003--sub2--standard--wrong/transport.jsonl",
+      "sha256": "3339310a5d2be73cf002a5009c4a0580af6f73818d7d7038c37efaa648a4fd07"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-13-003--sub2--standard--wrong/traces.jsonl",
+      "sha256": "92c8007e7c57a9cc4823530185cc4fe6c87f432665f9751cb3cd6a5f2c197583"
+    }
+  }
+}

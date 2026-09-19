@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-01-006--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-01-006--sub1--standard",
+  "source_set_id": "pilot-01-006",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "470aa9ba1d05eb78d79212c89201afe263627493ae9edddd75ff372569099a9c",
+  "answers": {
+    "sub1": "업무품질관리검토는 감사보고서를 발행한 후 다음 달까지 끝내면 되고, 검토자와의 논의는 필요하지 않다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (시점과 논의를 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (시점과 논의를 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (시점과 논의를 반대로 썼다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "e5c25b83f700c6913c86ff0c288607f34102f0d9ef598298937f3c003df397c6",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "업무품질관리검토자의 선임 여부 결정·확인 내용이 없다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "업무품질관리검토는 감사보고서를 발행한 후 다음 달까지 끝내면 되고, 검토자와의 논의는 필요하지 않다.",
+            "reason": "검토자와의 논의가 필요하지 않다고 명시하여 논의 의무를 부정한다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "업무품질관리검토는 감사보고서를 발행한 후 다음 달까지 끝내면 되고, 검토자와의 논의는 필요하지 않다.",
+            "reason": "감사보고서 발행 후 다음 달까지 검토를 끝내면 된다고 하여 실제 검토 종료 전 보고서일 요건과 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "업무품질관리검토자의 선임 여부 결정·확인 내용이 없다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "검토자와의 논의가 필요하지 않다고 명시하여 논의 의무를 부정한다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "감사보고서 발행 후 다음 달까지 검토를 끝내면 된다고 하여 실제 검토 종료 전 보고서일 요건과 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-01-006",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "종전 품질관리체계를 적용하고 업무품질관리검토를 받아야 하는 재무제표감사에서 업무품질관리검토와 관련하여 업무수행이사가 수행해야 할 사항을 모두 제시하시오.",
+        "user_answer": "업무품질관리검토는 감사보고서를 발행한 후 다음 달까지 끝내면 되고, 검토자와의 논의는 필요하지 않다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "업무품질관리검토자의 선임 여부 결정·확인 내용이 없다.",
+            "claim": "업무수행이사가 업무품질관리검토자의 선임 여부를 결정·확인함을 제시한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "업무품질관리검토는 감사보고서를 발행한 후 다음 달까지 끝내면 되고, 검토자와의 논의는 필요하지 않다.",
+            "reason": "검토자와의 논의가 필요하지 않다고 명시하여 논의 의무를 부정한다.",
+            "claim": "업무수행이사가 검토 중 식별된 사항 등 감사업무의 유의적 사항을 업무품질관리검토자와 논의함을 제시한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "업무품질관리검토는 감사보고서를 발행한 후 다음 달까지 끝내면 되고, 검토자와의 논의는 필요하지 않다.",
+            "reason": "감사보고서 발행 후 다음 달까지 검토를 끝내면 된다고 하여 실제 검토 종료 전 보고서일 요건과 반대된다.",
+            "claim": "감사보고서일을 업무품질관리검토의 실제 종료일 전으로 하지 않는다고 제시한다. 보고서 발송 전에만 끝내면 된다는 시점으로 늦추지 않는다. 검토 문서의 최종 취합 완료일과 실제 검토 종료일을 혼동하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "업무품질관리검토자가 선임되었는지 결정한다.",
+          "검토 중 식별된 사항을 포함하여 감사 수행 중 생긴 유의적 사항을 업무품질관리검토자와 논의한다.",
+          "감사보고서일자를 업무품질관리검토의 실제 종료일보다 앞선 일자로 하지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_03a237c696bd036a016aae0787d90487d0848a68c186affaef",
+        "request_id": "req_f0e9368a08194f72aff6a1fa62ad79cd",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2633,
+          "input_tokens_details": {
+            "cache_write_tokens": 2630,
+            "cached_tokens": 0
+          },
+          "output_tokens": 291,
+          "output_tokens_details": {
+            "reasoning_tokens": 87
+          },
+          "total_tokens": 2924
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010073,
+        "min_usd": 0.0010073,
+        "max_usd": 0.0010073,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-01-006--sub1--standard--wrong/input.json",
+      "sha256": "4b5d32803c32124254668b9fe152939147087209b68af39f790e716002b675b2"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-01-006--sub1--standard--wrong/transport.jsonl",
+      "sha256": "5fd116cb54ba4cc6e7b62d76153e4fc5d6a0b8868166f7061c355aaf200161f3"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-01-006--sub1--standard--wrong/traces.jsonl",
+      "sha256": "6463e63a0d092684098cd299bd6225bbd02c470f49e59b01be93c7f395b98c21"
+    }
+  }
+}

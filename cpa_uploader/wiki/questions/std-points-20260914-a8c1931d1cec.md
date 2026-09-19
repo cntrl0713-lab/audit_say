@@ -1,7 +1,7 @@
 ---
-title: "std-points-20260914-a8c1931d1cec. 감사인이 경영진주장 수준에서 실증절차만으로 충분하고 적합한 감사증거를 얻을 수 없다고 판단하는 경우, 그 이유가 될 수 있는 통제 의존 상황과 요구되는 감사절차를 설명하시오."
+title: "std-points-20260914-a8c1931d1cec. 감사인이 경영진주장 수준에서 실증절차만으로는 충분하고 적합한 감사증거를 얻을 수 없는 경우가 있는 이유와, 그러한 경우 감사기준서 330에 따라 감사인에게 요구되는 절차를 설명하시오."
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -10,12 +10,12 @@ sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/
 confidence: high
 ---
 
-# std-points-20260914-a8c1931d1cec. 감사인이 경영진주장 수준에서 실증절차만으로 충분하고 적합한 감사증거를 얻을 수 없다고 판단하는 경우, 그 이유가 될 수 있는 통제 의존 상황과 요구되는 감사절차를 설명하시오.
+# std-points-20260914-a8c1931d1cec. 감사인이 경영진주장 수준에서 실증절차만으로는 충분하고 적합한 감사증거를 얻을 수 없는 경우가 있는 이유와, 그러한 경우 감사기준서 330에 따라 감사인에게 요구되는 절차를 설명하시오.
 
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[risk-assessment-internal-control]] · [[topic-06-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/234`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/221`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [06.json](../../analysis/reviews/question-review-2027/06.json)
 - 학습 순서: sub2
@@ -25,15 +25,16 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/234/subquestions/0`
+유형: descriptive · JSON Pointer `/221/subquestions/0`
 
 ### 발문
 
-감사인이 경영진주장 수준에서 실증절차만으로 충분하고 적합한 감사증거를 얻을 수 없다고 판단하는 경우, 그 이유가 될 수 있는 통제 의존 상황과 요구되는 감사절차를 설명하시오.
+감사인이 경영진주장 수준에서 실증절차만으로는 충분하고 적합한 감사증거를 얻을 수 없는 경우가 있는 이유와, 그러한 경우 감사기준서 330에 따라 감사인에게 요구되는 절차를 설명하시오.
 
 ### 모범답안
 
-- 통제테스트만으로 충분하고 적합한 감사증거를 입수할 수 있는 경영진주장이 있기 때문이다. 실증절차만으로 충분하고 적합한 감사증거를 얻을 수 없으면 관련 통제의 운영효과성을 테스트한다.
+- 중요왜곡표시위험과 이에 대처하는 통제활동의 성격상 통제의 운영효과성을 테스트하는 것이 충분하고 적합한 감사증거를 입수하는 유일한 방법일 수 있기 때문이다.
+- 이 경우 감사인은 그 위험에 대처하는 관련 통제의 운영효과성에 대하여 충분하고 적합한 감사증거를 입수할 수 있도록 통제테스트를 설계하고 수행하여야 한다.
 
 ### 답안 계약
 

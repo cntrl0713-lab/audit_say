@@ -1,7 +1,7 @@
 ---
 title: "draft-standard-expansion-20260913-s05. 내부통제 미비점의 의미와 유의성"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[fraud-laws-governance-communication]] · [[topic-05-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/149`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/141`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [05.json](../../analysis/reviews/question-review-2027/05.json)
 - 학습 순서: sub1 → sub2
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/149/subquestions/0`
+유형: descriptive · JSON Pointer `/141/subquestions/0`
 
 ### 발문
 
-감사기준서 265 문단 6에 따라 내부통제의 미비점이 존재하는 두 경우를 설명하고, 유의적 내부통제 미비점의 정의를 제시하시오. 유의적 미비점은 개별 미비점과 미비점들의 결합을 포함하여 설명하시오.
+감사기준서 265 문단 6에 따라 내부통제의 미비점이 존재하는 두 경우를 설명하고, 유의적 내부통제 미비점의 정의를 제시하시오.
 
 ### 모범답안
 
@@ -59,11 +59,11 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub2
 
-유형: judgment · JSON Pointer `/149/subquestions/1`
+유형: judgment · JSON Pointer `/141/subquestions/1`
 
 ### 발문
 
-재무제표감사에서 왜곡표시를 발견하지 못했다는 사실만으로 유의적 내부통제 미비점이 존재하지 않는다고 결론 내려도 되는지 판단하시오. 감사기준서 265 문단 A5에 따라 실제 왜곡표시의 발생 여부 외에 미비점의 유의성을 좌우하는 두 측면을 들어 이유를 설명하시오.
+감사기준서 265 문단 A5에 따라 내부통제 미비점의 유의성이 무엇에 따라 달라지는지 설명하고, 이에 비추어 감사 중 왜곡표시를 식별하지 못한 경우 유의적 미비점이 없다고 결론 내릴 수 있는지 판단하시오.
 
 ### 모범답안
 

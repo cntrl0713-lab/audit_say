@@ -1,7 +1,7 @@
 ---
 title: "pilot-04-006-standards-20260913. 최종감사파일의 행정적 취합과 수정 기록"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[planning-documentation-materiality]] · [[topic-04-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/131`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/123`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [04.json](../../analysis/reviews/question-review-2027/04.json)
 - 학습 순서: sub2 → sub3
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/131/subquestions/0`
+유형: enumeration · JSON Pointer `/123/subquestions/0`
 
 ### 발문
 
-감사보고서일 후 최종감사파일 취합이 진행되는 동안 가능한 행정적인 감사문서 변경의 예로 감사기준서가 제시한 네 범주를 모두 제시하시오. 감사조서의 정리 범주는 분류·병합·상호 참조의 기능을 구별하여 작성하고, 조건이 필요한 범주는 그 조건도 설명하시오.
+감사보고서일 후 최종감사파일 취합이 진행되는 동안 가능한 행정적인 감사문서 변경의 예로 감사기준서 230이 제시한 사항을 모두 제시하시오. 각 사항은 적용 범위가 드러나도록 구체적으로 쓰시오.
 
 ### 모범답안
 
@@ -63,11 +63,11 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub3
 
-유형: enumeration · JSON Pointer `/131/subquestions/1`
+유형: enumeration · JSON Pointer `/123/subquestions/1`
 
 ### 발문
 
-감사보고서일 후 새로운·추가적인 감사절차를 수행하거나 새로운 결론을 도출하는 경우는 제외한다. 최종감사파일 취합 완료 후에 기존 감사문서를 수정하거나 새 문서를 추가할 때, 변경의 성격과 관계없이 추가로 문서화해야 할 사항을 모두 제시하시오. 수정·추가 자체와 그 검토에 관한 기록을 구별하여 작성하시오.
+감사보고서일 후 새로운 또는 추가적인 감사절차를 수행하거나 새로운 결론을 도출하는 경우는 제외한다. 최종감사파일의 취합이 완료된 후 기존 감사문서를 수정하거나 새로운 감사문서를 추가할 필요가 생긴 경우 감사기준서 230에 따라 문서화하여야 할 사항을 모두 제시하시오.
 
 ### 모범답안
 
@@ -85,7 +85,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 | criterion | 정본 명제 | 핵심 사실·조건 | 배점·판정별 점수 | requirement | source |
 |---|---|---|---|---|---|
-| crit7 | 감사문서를 수정하거나 추가하는 구체적인 이유를 문서화할 사항으로 제시한다. 지문에 오기가 주어졌다는 사실의 반복만으로 문서화 의무를 대신하지 않는다. | crit7.fact (action): 감사문서를 수정하거나 추가하는 구체적인 이유를 문서화할 사항으로 제시한다. 지문에 오기가 주어졌다는 사실의 반복만으로 문서화 의무를 대신하지 않는다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub3.req1 | src-4ffcde01b7a6c483ae |
+| crit7 | 감사문서를 수정하거나 추가하는 구체적인 이유를 문서화할 사항으로 제시한다. 수정하거나 추가한 사실만 적고 그 이유를 적지 않으면 인정하지 않는다. | crit7.fact (action): 감사문서를 수정하거나 추가하는 구체적인 이유를 문서화할 사항으로 제시한다. 수정하거나 추가한 사실만 적고 그 이유를 적지 않으면 인정하지 않는다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub3.req1 | src-4ffcde01b7a6c483ae |
 | crit8 | 감사문서를 수정하거나 추가한 사람을 문서화해야 한다. | crit8.fact (actor): 감사문서를 수정하거나 추가한 사람을 문서화해야 한다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub3.req1 | src-4ffcde01b7a6c483ae |
 | crit13 | 감사문서를 수정하거나 추가한 시기를 문서화해야 한다. | crit13.fact (condition): 감사문서를 수정하거나 추가한 시기를 문서화해야 한다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub3.req1 | src-4ffcde01b7a6c483ae |
 | crit9 | 수정·추가를 검토한 사람을 문서화해야 한다. | crit9.fact (actor): 수정·추가를 검토한 사람을 문서화해야 한다. | 1; {"met":1,"not_met":0,"contradicted":0} | sub3.req1 | src-4ffcde01b7a6c483ae |

@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "std-points-20260914-cd4c5fa077a8--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-cd4c5fa077a8--sub1--standard",
+  "source_set_id": "std-points-20260914-cd4c5fa077a8",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "739c3c77c67c6b438acf845b3c8c01e424cd5ba6e395f58efc3d32daa0198690",
+  "answers": {
+    "sub1": "해지 가능 여부나 법적 책임을 확인하지 않고 무조건 감사를 계속한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "107640588d6f732bb5edfa6936fc9fbb23f4befd95734a38be2f41d6d8516082",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "해지 가능 여부나 법적 책임을 확인하지 않고 무조건 감사를 계속한다.",
+            "reason": "법적 책임을 확인하지 않는다고 명시하여 전문가·법률적 책임을 결정해야 한다는 요구와 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "해지 가능 여부나 법적 책임을 확인하지 않고 무조건 감사를 계속한다.",
+            "reason": "무조건 감사를 계속한다고 명시하여 해지 가능 시 해지의 적절성을 고려해야 한다는 요구와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "법적 책임을 확인하지 않는다고 명시하여 전문가·법률적 책임을 결정해야 한다는 요구와 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "무조건 감사를 계속한다고 명시하여 해지 가능 시 해지의 적절성을 고려해야 한다는 요구와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-cd4c5fa077a8",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "부정 또는 부정으로 의심되는 사건의 왜곡표시 때문에 감사를 계속 수행할 능력에 의문이 생기는 예외적인 환경에 직면하였다. 아직 해지를 결정하지 않은 단계에서 감사기준서 240 문단 39(a)·(b)에 따라 수행해야 할 사항을 설명하시오.",
+        "user_answer": "해지 가능 여부나 법적 책임을 확인하지 않고 무조건 감사를 계속한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "해지 가능 여부나 법적 책임을 확인하지 않고 무조건 감사를 계속한다.",
+            "reason": "법적 책임을 확인하지 않는다고 명시하여 전문가·법률적 책임을 결정해야 한다는 요구와 반대된다.",
+            "claim": "감사인을 선임한 당사자 또는 경우에 따라 규제기관에 보고할 요구사항이 있는지 등을 포함하여 해당 상황에 맞는 전문가로서의 책임과 법률적 책임을 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "해지 가능 여부나 법적 책임을 확인하지 않고 무조건 감사를 계속한다.",
+            "reason": "무조건 감사를 계속한다고 명시하여 해지 가능 시 해지의 적절성을 고려해야 한다는 요구와 반대된다.",
+            "claim": "관련 법규상 감사업무의 해지가 가능하면 해당 업무를 해지하는 것이 적절한지 고려한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사인을 선임한 당사자 또는 경우에 따라 규제기관에 보고할 요구사항이 있는지 등을 포함하여 해당 상황에 맞는 전문가·법률 책임을 결정한다.",
+          "관련 법규상 해지가 가능하면 해당 감사업무를 해지하는 것이 적합한지 고려한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_01ef0a8c98c39e2e016aae081ff9d487d092505ad2dabb3b47",
+        "request_id": "req_1185235e5c5542718e1a3216a467c246",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2425,
+          "input_tokens_details": {
+            "cache_write_tokens": 2422,
+            "cached_tokens": 0
+          },
+          "output_tokens": 239,
+          "output_tokens_details": {
+            "reasoning_tokens": 76
+          },
+          "total_tokens": 2664
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008929000000000001,
+        "min_usd": 0.0008929000000000001,
+        "max_usd": 0.0008929000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-cd4c5fa077a8--sub1--standard--wrong/input.json",
+      "sha256": "2d8d4bd899053b7aa919d1939f5f280352535d13f3ea15739987dc0149d60d38"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-cd4c5fa077a8--sub1--standard--wrong/transport.jsonl",
+      "sha256": "3ce7c0b577665a6b462f0555a5ea241922b4494ae86deae76f4a8c4c16d9b3c9"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-cd4c5fa077a8--sub1--standard--wrong/traces.jsonl",
+      "sha256": "7da570d99aea2b19ad676e0511a740d690ecb0c1536ae93da1dd89390e5ff26c"
+    }
+  }
+}

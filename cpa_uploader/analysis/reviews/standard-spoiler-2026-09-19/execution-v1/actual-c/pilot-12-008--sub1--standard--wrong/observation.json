@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-12-008--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-008--sub1--standard",
+  "source_set_id": "pilot-12-008",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "b4d808abee7e47e630d0af7d9df24b3bc4bb040c73a1c3947b72858e5a7676fc",
+  "answers": {
+    "sub1": "금액이 수행중요성보다 작은 왜곡표시는 모두 집계 대상에서 제외할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (판단과 기준을 모두 틀렸다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (판단과 기준을 모두 틀렸다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "aa01a9577ca521ef20d9087e3c33e69f7d8fa69264f2a04f3ce0a0ee1da1eb11",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "금액이 수행중요성보다 작은 왜곡표시는 모두 집계 대상에서 제외할 수 있다.",
+            "reason": "수행중요성보다 작으면 모두 집계에서 제외할 수 있다고 명시하여, 금액이 작다는 이유로 제외할 수 없다는 판단과 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "금액이 수행중요성보다 작은 왜곡표시는 모두 집계 대상에서 제외할 수 있다.",
+            "reason": "명백하게 사소한 것만 제외하는 기준이 아니라 수행중요성보다 작은 왜곡표시를 모두 제외한다고 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "수행중요성보다 작으면 모두 집계에서 제외할 수 있다고 명시하여, 금액이 작다는 이유로 제외할 수 없다는 판단과 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "명백하게 사소한 것만 제외하는 기준이 아니라 수행중요성보다 작은 왜곡표시를 모두 제외한다고 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-008",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "금액이 작은 왜곡표시를 집계 대상에서 제외할 수 있는지 판단하고, 감사기준서 450에 따른 왜곡표시의 집계 기준을 설명하시오.",
+        "user_answer": "금액이 수행중요성보다 작은 왜곡표시는 모두 집계 대상에서 제외할 수 있다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "금액이 수행중요성보다 작은 왜곡표시는 모두 집계 대상에서 제외할 수 있다.",
+            "reason": "수행중요성보다 작으면 모두 집계에서 제외할 수 있다고 명시하여, 금액이 작다는 이유로 제외할 수 없다는 판단과 반대된다.",
+            "claim": "금액이 작다는 이유만으로 왜곡표시를 집계에서 제외할 수는 없다고 판단한다. 명백하게 사소한 것만 제외할 수 있다는 답은 이 판단을 함축하므로 인정한다. 금액이 작으면 제외할 수 있다고만 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "금액이 수행중요성보다 작은 왜곡표시는 모두 집계 대상에서 제외할 수 있다.",
+            "reason": "명백하게 사소한 것만 제외하는 기준이 아니라 수행중요성보다 작은 왜곡표시를 모두 제외한다고 제시했다.",
+            "claim": "명백하게 사소한 것만 제외하고 나머지는 집계함을 기준으로 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "금액이 작다는 이유만으로 집계에서 제외할 수는 없다.",
+          "명백하게 사소한(clearly trivial) 것을 제외하고는 감사 중 식별된 왜곡표시를 집계해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0fd6a104a04274ab016aae06f86fdc87d093b01c66c08b1ed4",
+        "request_id": "req_58790b885d0b40b7ba10af77ed8b99b3",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2366,
+          "input_tokens_details": {
+            "cache_write_tokens": 2363,
+            "cached_tokens": 0
+          },
+          "output_tokens": 279,
+          "output_tokens_details": {
+            "reasoning_tokens": 104
+          },
+          "total_tokens": 2645
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00092615,
+        "min_usd": 0.00092615,
+        "max_usd": 0.00092615,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-12-008--sub1--standard--wrong/input.json",
+      "sha256": "eb91f56cb634f3dea7d78efcbd1c45bd89a46590b54c9effd91950d4c1a36186"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-12-008--sub1--standard--wrong/transport.jsonl",
+      "sha256": "31a3e83e3b506f5596bc7dc043cf4df00b88bb108b795598a88fdea41b801eec"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-12-008--sub1--standard--wrong/traces.jsonl",
+      "sha256": "db01098c8ecd0a1e0ab6ab3755f04868307a09c92249fdab0685b96b1ea1b1c1"
+    }
+  }
+}

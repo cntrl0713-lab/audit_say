@@ -1,7 +1,7 @@
 ---
 title: "pilot-04-007-standards-20260913. 수행중요성의 정의·결정·수정"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[planning-documentation-materiality]] · [[topic-04-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/135`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/127`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [04.json](../../analysis/reviews/question-review-2027/04.json)
 - 학습 순서: sub1
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/135/subquestions/0`
+유형: descriptive · JSON Pointer `/127/subquestions/0`
 
 ### 발문
 
-재무제표 전체 중요성을 기준으로 설정하는 수행중요성이 어떤 금액인지와 그 설정 목적을 정의하시오. 전체 중요성과의 크기 관계, 합산하여 고려하는 왜곡표시의 범위 및 통제하려는 가능성의 수준을 모두 설명하시오. 특정 거래유형·계정잔액·공시의 별도 중요성에 적용하는 경우는 제외한다.
+감사기준서 320에 따른 수행중요성의 의미와 설정 목적을 설명하시오. 특정 거래유형·계정잔액·공시에 대하여 설정하는 수행중요성은 제외한다.
 
 ### 모범답안
 

@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import type { PGliteOptions } from '@electric-sql/pglite';
 import { createLearningDatabase } from './cpaLearningDatabase.ts';
 // Use the actual common-account migration and historical CTA fixtures, so the
 // selected-question tests exercise production membership wrappers unchanged.
@@ -7,8 +8,8 @@ const ctaMigration=(name:string)=>readFileSync(new URL('../fixtures/sharedAccoun
 export async function applyLearningUnitsMigration(db: Awaited<ReturnType<typeof createLearningDatabase>>) {
   await db.exec(readFileSync(new URL('../../supabase/migrations/20260911030000_cpa_question_learning_units.sql',import.meta.url),'utf8'));
 }
-export async function createLearningUnitsDatabase(options: { applyLearningUnits?: boolean } = {}) {
-  const db = await createLearningDatabase({ learningRpc: true });
+export async function createLearningUnitsDatabase(options: { applyLearningUnits?: boolean; extensions?: PGliteOptions['extensions'] } = {}) {
+  const db = await createLearningDatabase({ learningRpc: true, extensions: options.extensions });
   try {
     await db.exec(`
       alter table auth.users add column email text, add column email_confirmed_at timestamptz,

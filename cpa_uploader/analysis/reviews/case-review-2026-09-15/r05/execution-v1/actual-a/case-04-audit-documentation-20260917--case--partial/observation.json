@@ -1,0 +1,383 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r05/execution-v1/grading-manifest.json",
+    "sha256": "2507fad1c6baf4d13de8b6c351aad40b75466d9b7a2b327f08251ac94fd1ddfd"
+  },
+  "entry_id": "case-04-audit-documentation-20260917--case--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "case-04-audit-documentation-20260917--case",
+  "source_set_id": "case-04-audit-documentation-20260917",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2"
+  ],
+  "projected_body_hash": "1bdc4bbe7dca7c12f21fa3f3a95d4d919632bb554c1ecd34312cefc2e900d3da",
+  "answers": {
+    "sub1": "① 적절하다.\n② 적절하지 않다. 감사문서는 적시에 작성해야 하므로 조사 내용과 결론을 감사보고서일 전에 조서로 작성하고 검토를 받아야 한다.\n③ 적절하지 않다. 감사인의 구두설명만으로는 결론의 적절한 근거가 되지 못하므로 평가충당금에 관한 판단의 근거를 조서에 기록해야 한다.\n④ 적절하다.\n⑤ 적절하다.\n⑥ 적절하지 않다. 불일치를 확인하는 과정에서 작성한 분석표 초안도 감사파일에 보존해야 한다.",
+    "sub2": "⑦ 적절하다.\n⑧ 적절하지 않다. 감사문서는 적시에 작성해야 하므로 감사보고서일 후에 조서를 작성해서는 안 된다.\n⑨ 적절하지 않다. 감사보고서일 후 추가적인 감사절차를 수행한 것은 행정적인 취합 절차가 아니므로 당면한 상황과 감사보고서에 미친 영향, 조서를 변경한 사람과 검토한 사람 및 그 시기를 문서화해야 한다.\n⑩ 적절하지 않다. 취합이 완료된 후 조서를 수정하면 단순한 오기라도 수정 이유와 수정한 사람·검토한 사람 및 그 시기를 문서화해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "contradicted",
+          "reason": "적절하지 않은 ⑤를 적절하다고 하고 적절한 ⑥을 적절하지 않다고 판단했다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "met",
+          "reason": "감사문서를 적시에 작성해 보고서일 전에 검토받아야 한다고 적었다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "met",
+          "reason": "구두설명만으로는 근거가 되지 못하므로 판단 근거를 조서에 기록해야 한다고 적었다."
+        },
+        {
+          "criterion_id": "sub1.c4",
+          "verdict": "contradicted",
+          "reason": "⑤가 적절하다고 명시했다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "contradicted",
+          "reason": "적절한 ⑧을 적절하지 않다고 판단했다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "met",
+          "reason": "추가 절차는 행정적 취합이 아니며 문단 13의 사항을 문서화해야 한다고 적었다."
+        },
+        {
+          "criterion_id": "sub2.c3",
+          "verdict": "met",
+          "reason": "단순 오기라도 수정 이유와 수정자·검토자·시기를 문서화해야 한다고 적었다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "bb0b5ccfaa5e2c68191491bdc573660a931ddee76621607e0b4693ee20314519",
+  "schema_hash": "1fe9f1d41565a7dca4142219b3b293e5a2827c5ed7e12ff3409bff0caf79a231",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "not_met",
+            "reason": "⑤를 적절하다고 판단하고 ⑥을 적절하지 않다고 판단했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "met",
+            "quote": "감사문서는 적시에 작성해야 하므로 조사 내용과 결론을 감사보고서일 전에 조서로 작성하고 검토를 받아야 한다.\n",
+            "reason": "조사 내용과 결론을 감사보고서일 전에 작성하고 검토받아야 한다고 제시했다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "met",
+            "quote": "감사인의 구두설명만으로는 결론의 적절한 근거가 되지 못하므로 평가충당금에 관한 판단의 근거를 조서에 기록해야 한다.\n",
+            "reason": "판단의 근거를 조서에 기록해야 하며 구두설명만으로는 부족하다고 제시했다."
+          },
+          {
+            "criterion_id": "sub1.c4",
+            "verdict": "contradicted",
+            "quote": "⑤ 적절하다.\n",
+            "reason": "유의적 사항에 대한 토의 내용을 별도로 문서화하지 않은 ⑤를 적절하다고 판단했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "not_met",
+            "reason": "⑧을 적절하지 않다고 판단했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "met",
+            "quote": "감사보고서일 후 추가적인 감사절차를 수행한 것은 행정적인 취합 절차가 아니므로 당면한 상황과 감사보고서에 미친 영향, 조서를 변경한 사람과 검토한 사람 및 그 시기를 문서화해야 한다.\n",
+            "reason": "추가 감사절차가 행정적 취합이 아니며 관련 상황, 영향, 변경·검토자와 시기를 문서화해야 한다고 제시했다."
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "met",
+            "quote": "취합이 완료된 후 조서를 수정하면 단순한 오기라도 수정 이유와 수정한 사람·검토한 사람 및 그 시기를 문서화해야 한다.",
+            "reason": "단순한 오기라도 수정 이유와 수정·검토자 및 시기를 문서화해야 한다고 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "⑤를 적절하다고 판단하고 ⑥을 적절하지 않다고 판단했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "조사 내용과 결론을 감사보고서일 전에 작성하고 검토받아야 한다고 제시했다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e5"
+                ],
+                "reason": "판단의 근거를 조서에 기록해야 하며 구두설명만으로는 부족하다고 제시했다."
+              },
+              {
+                "criterion_id": "sub1.c4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e7"
+                ],
+                "reason": "유의적 사항에 대한 토의 내용을 별도로 문서화하지 않은 ⑤를 적절하다고 판단했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "⑧을 적절하지 않다고 판단했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e5"
+                ],
+                "reason": "추가 감사절차가 행정적 취합이 아니며 관련 상황, 영향, 변경·검토자와 시기를 문서화해야 한다고 제시했다."
+              },
+              {
+                "criterion_id": "sub2.c3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e7"
+                ],
+                "reason": "단순한 오기라도 수정 이유와 수정·검토자 및 시기를 문서화해야 한다고 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-04-audit-documentation-20260917",
+    "score": 4,
+    "max_points": 7,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사보고서일 전의 감사문서 작성과 검토에 관한 ①~⑥이 감사기준에 비추어 적절한지 각각 판단하고, 적절하지 않은 것은 그 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "① 적절하다.\n② 적절하지 않다. 감사문서는 적시에 작성해야 하므로 조사 내용과 결론을 감사보고서일 전에 조서로 작성하고 검토를 받아야 한다.\n③ 적절하지 않다. 감사인의 구두설명만으로는 결론의 적절한 근거가 되지 못하므로 평가충당금에 관한 판단의 근거를 조서에 기록해야 한다.\n④ 적절하다.\n⑤ 적절하다.\n⑥ 적절하지 않다. 불일치를 확인하는 과정에서 작성한 분석표 초안도 감사파일에 보존해야 한다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "not_met",
+            "reason": "⑤를 적절하다고 판단하고 ⑥을 적절하지 않다고 판단했다.",
+            "claim": "적절하지 않은 것으로 ②·③·⑤를 모두 판단한다. 항목마다 적절 여부를 쓰거나 적절하지 않은 것만 골라 써도 인정하고, 번호 대신 내용으로 특정하거나 이유·보완절차로 적절하지 않다는 판단이 분명히 드러나도 인정한다. ②·③·⑤ 중 하나라도 적절하다고 판단하거나 빠뜨리거나, 적절한 것인 ①(체계적 추출에서 출하기록의 기간·시작 송장번호·추출 간격을 기록), ④(조서마다 검토 서명을 남기지 않고 검토한 조서의 범위·검토자·검토일을 검토 기록표에 기록), ⑥(선적일자 불일치를 확인한 경위·결과와 판단 근거를 기록하고 교체한 분석표 초안을 감사파일에서 제외)을 적절하지 않다고 판단하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "met",
+            "quote": "감사문서는 적시에 작성해야 하므로 조사 내용과 결론을 감사보고서일 전에 조서로 작성하고 검토를 받아야 한다.",
+            "reason": "조사 내용과 결론을 감사보고서일 전에 작성하고 검토받아야 한다고 제시했다.",
+            "claim": "② 감사문서는 적시에 작성해야 하므로 조사 내용과 결론을 조사 시점에 조서로 작성하고 감사보고서일 전에 검토받아야 한다는 이유나 절차를 제시한다. 감사문서를 적시에 작성해야 한다는 이유, 감사보고서가 확정되기 전에 증거와 결론을 검토·평가할 수 있도록 작성해야 한다는 이유, 감사보고서일 후의 취합 기간에는 최초 문서화를 미룰 수 없다는 이유, 감사보고서일 전에 조서를 작성하고 검토받아야 한다는 절차 중 하나만 써도 인정한다. 최종감사파일 취합 기간 안에만 작성하면 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "met",
+            "quote": "감사인의 구두설명만으로는 결론의 적절한 근거가 되지 못하므로 평가충당금에 관한 판단의 근거를 조서에 기록해야 한다.",
+            "reason": "판단의 근거를 조서에 기록해야 하며 구두설명만으로는 부족하다고 제시했다.",
+            "claim": "③ 유의적 사항에 관하여 결론에 도달할 때 내린 유의적인 전문가적 판단(평가충당금이 적정하다고 본 판단의 근거)을 조서에 문서화해야 한다는 이유나 절차를 제시한다. 구두설명만으로는 수행한 업무나 결론의 적절한 근거가 되지 못한다는 이유, 이전에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 판단 근거를 기록해야 한다는 이유, 판단의 근거를 조서에 기록해야 한다는 절차 중 하나만 써도 인정한다. 요청이 있을 때 구두로 설명하면 충분하다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c4",
+            "verdict": "contradicted",
+            "quote": "⑤ 적절하다.",
+            "reason": "유의적 사항에 대한 토의 내용을 별도로 문서화하지 않은 ⑤를 적절하다고 판단했다.",
+            "claim": "⑤ 유의적 사항에 관하여 경영진·지배기구와 토의한 내용을 문서화해야 한다는 이유나 절차를 제시한다. 토의한 사항의 성격, 토의 시기, 토의 상대자 중 일부만 들거나 토의 내용을 조서에 기록해야 한다는 원칙만 써도 인정하며, 세 요소의 완전한 나열은 요구하지 않는다. 토의 결과가 결론에 반영되었으면 토의 내용은 기록하지 않아도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "적절하지 않은 것은 ②, ③, ⑤이다. ①(체계적 추출의 원천·시작점·추출 간격 기록), ④(조서마다 서명하지 않고 검토한 범위·검토자·검토일을 기록), ⑥(불일치를 해소한 경위와 판단 근거를 기록하고 교체한 초안은 제외)은 적절하다.",
+          "② 감사문서는 적시에 작성하여야 하므로 조사 내용과 결론을 조사할 때 조서로 작성하고 감사보고서일 전에 검토받아야 한다. 감사보고서일 후의 취합 기간은 최초 문서화를 미루는 기간이 아니다.",
+          "③ 유의적 사항에 관하여 결론에 도달할 때 행한 유의적인 전문가적 판단은 조서에 문서화하여야 하며, 감사인의 구두설명만으로는 결론의 적절한 근거가 되지 못한다.",
+          "⑤ 유의적 사항에 관하여 경영진 및 지배기구와 토의한 내용은 해당 사항의 성격, 토의 시기와 토의 상대자를 포함하여 문서화하여야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사보고서일 후의 조치 ⑦~⑩이 감사기준에 비추어 적절한지 각각 판단하고, 적절하지 않은 것은 그 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "⑦ 적절하다.\n⑧ 적절하지 않다. 감사문서는 적시에 작성해야 하므로 감사보고서일 후에 조서를 작성해서는 안 된다.\n⑨ 적절하지 않다. 감사보고서일 후 추가적인 감사절차를 수행한 것은 행정적인 취합 절차가 아니므로 당면한 상황과 감사보고서에 미친 영향, 조서를 변경한 사람과 검토한 사람 및 그 시기를 문서화해야 한다.\n⑩ 적절하지 않다. 취합이 완료된 후 조서를 수정하면 단순한 오기라도 수정 이유와 수정한 사람·검토한 사람 및 그 시기를 문서화해야 한다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "not_met",
+            "reason": "⑧을 적절하지 않다고 판단했다.",
+            "claim": "적절하지 않은 것으로 ⑨·⑩을 모두 판단한다. 항목마다 적절 여부를 쓰거나 적절하지 않은 것만 골라 써도 인정하고, 번호 대신 내용으로 특정하거나 이유·보완절차로 적절하지 않다는 판단이 분명히 드러나도 인정한다. ⑨·⑩ 중 하나라도 적절하다고 판단하거나 빠뜨리거나, 적절한 것인 ⑦(취합 기간에 조서를 분류·병합하고 상호 참조를 연결하며 교체된 이전 버전 조서 파일을 삭제), ⑧(감사보고서일 전에 입수하고 담당 이사가 참석한 회의에서 토의·합의한 감사증거의 조서를 취합 기간에 작성)을 적절하지 않다고 판단하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "met",
+            "quote": "감사보고서일 후 추가적인 감사절차를 수행한 것은 행정적인 취합 절차가 아니므로 당면한 상황과 감사보고서에 미친 영향, 조서를 변경한 사람과 검토한 사람 및 그 시기를 문서화해야 한다.",
+            "reason": "추가 감사절차가 행정적 취합이 아니며 관련 상황, 영향, 변경·검토자와 시기를 문서화해야 한다고 제시했다.",
+            "claim": "⑨ 감사보고서일 후 새로운 감사절차나 추가적인 감사절차를 수행하고 결론을 내린 작업은 행정적인 최종감사파일 취합에 해당하지 않는다는 이유, 또는 당면한 상황, 수행한 절차·입수한 감사증거·도달한 결론과 감사보고서에 미친 영향, 조서의 변경자·검토자와 그 시기를 문서화해야 한다는 절차를 제시한다. 이유만 쓰거나, 절차로 이들 사항 중 일부(예: 당면한 상황, 감사보고서에 미친 영향, 변경자·검토자와 그 시기)를 문서화해야 한다고 써도 인정하며, 모든 사항의 나열은 요구하지 않는다. 취합 기간 중에 수행했으므로 취합 절차로 처리해도 된다고 쓰거나, 답변과 대조 결과를 기존 조서에 덧붙이는 것만 제시하면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "met",
+            "quote": "취합이 완료된 후 조서를 수정하면 단순한 오기라도 수정 이유와 수정한 사람·검토한 사람 및 그 시기를 문서화해야 한다.",
+            "reason": "단순한 오기라도 수정 이유와 수정·검토자 및 시기를 문서화해야 한다고 제시했다.",
+            "claim": "⑩ 최종감사파일의 취합이 완료된 후 기존 조서를 수정할 때에는 단순한 오기의 정정이라도 수정하는 구체적 이유와 수정·검토한 사람 및 그 시기를 문서화해야 한다는 이유나 절차를 제시한다. 수정의 성격과 관계없이 수정 내역을 문서화해야 한다는 원칙만 쓰거나, 수정 이유, 수정한 사람, 검토한 사람, 그 시기 중 일부만 들어도 인정한다. 결론에 영향이 없는 단순한 오기이므로 기록하지 않아도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "적절하지 않은 것은 ⑨, ⑩이다. ⑦(조서의 분류·병합·상호 참조와 교체된 문서의 삭제)과 ⑧(감사보고서일 전에 입수하여 관련 업무팀원들과 토의하고 합의한 감사증거의 문서화)은 최종감사파일 취합 기간에 할 수 있는 행정적 변경이므로 적절하다.",
+          "⑨ 감사보고서일 후 새로운 감사절차나 추가적인 감사절차를 수행하고 결론을 내린 것은 행정적인 취합 절차가 아니므로, 당면한 상황, 수행한 절차·입수한 감사증거·도달한 결론과 감사보고서에 미친 영향, 조서를 변경한 사람과 검토한 사람 및 그 시기를 문서화하여야 한다.",
+          "⑩ 최종감사파일의 취합이 완료된 후 기존 조서를 수정할 때에는 수정의 성격과 관계없이 수정하는 구체적 이유와 수정하고 검토한 사람 및 그 시기를 문서화하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0c634330a6572c3f016aab9576069487d098977bd1bc2634c4",
+        "request_id": "req_d3d787c3a02e4facbf96b18cdc701983",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 8508,
+          "input_tokens_details": {
+            "cache_write_tokens": 8505,
+            "cached_tokens": 0
+          },
+          "output_tokens": 708,
+          "output_tokens_details": {
+            "reasoning_tokens": 271
+          },
+          "total_tokens": 9216
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00297645,
+        "min_usd": 0.00297645,
+        "max_usd": 0.00297645,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r05/execution-v1/actual-a/case-04-audit-documentation-20260917--case--partial/input.json",
+      "sha256": "31446d8044447fea3f82f570ab42b23366777a10dfcd849be5c4aba2f85b6cc7"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r05/execution-v1/actual-a/case-04-audit-documentation-20260917--case--partial/transport.jsonl",
+      "sha256": "566d2118fa6cefb4b8250938b549679e10934a7fa1ed53a8ccecab5b21460c0b"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r05/execution-v1/actual-a/case-04-audit-documentation-20260917--case--partial/traces.jsonl",
+      "sha256": "326c8826c7b2b6a9f72936af2578512b516240b5b6bce52dcd510c7e40778ba9"
+    }
+  }
+}

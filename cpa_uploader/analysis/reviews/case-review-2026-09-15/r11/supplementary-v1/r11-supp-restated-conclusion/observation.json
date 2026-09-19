@@ -1,0 +1,420 @@
+{
+  "version": 1,
+  "artifact_type": "supplementary_grading_observation",
+  "transport": "model",
+  "model": "gpt-5.6-luna",
+  "case_id": "r11-supp-restated-conclusion",
+  "purpose": "옳지 않다는 결론만 되풀이하고 이유나 처리를 쓰지 않은 경계 답이 물음마다 식별 1점만 받는지 확인한다.",
+  "projected_body_hash": "94d6d12dbc1ab95bace69ef99971b789ac6761c33170efe91fd787aafb9da040",
+  "answers": {
+    "sub1": "②, ③, ⑤는 옳지 않다.",
+    "sub2": "⑦, ⑧, ⑨, ⑩, ⑪은 옳지 않다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "met",
+          "reason": "②·③·⑤만 골랐다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "이유나 절차가 없다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "not_met",
+          "reason": "이유나 절차가 없다."
+        },
+        {
+          "criterion_id": "sub1.c4",
+          "verdict": "not_met",
+          "reason": "이유나 절차가 없다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "met",
+          "reason": "⑦~⑪만 골랐다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "not_met",
+          "reason": "이유나 처리가 없다."
+        },
+        {
+          "criterion_id": "sub2.c3",
+          "verdict": "not_met",
+          "reason": "이유나 처리가 없다."
+        },
+        {
+          "criterion_id": "sub2.c4",
+          "verdict": "not_met",
+          "reason": "이유나 처리가 없다."
+        },
+        {
+          "criterion_id": "sub2.c5",
+          "verdict": "not_met",
+          "reason": "이유나 처리가 없다."
+        },
+        {
+          "criterion_id": "sub2.c6",
+          "verdict": "not_met",
+          "reason": "이유나 처리가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "c8a8c2db0555c9922dc1a0ceccd0b8cc6cbebac9d3802c8685ac4a8b6ea08b66",
+  "schema_hash": "900bd6ea8abe976bb9c21750cc0a54ed15ae667ddb53dcdc244d31b1dc8d79bb",
+  "actual_sdk_calls": 1,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "②, ③, ⑤는 옳지 않다.",
+            "reason": "②·③·⑤를 모두 옳지 않은 것으로 지적했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "②의 이유나 올바른 절차를 설명하지 않았다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "not_met",
+            "reason": "③의 부정위험 재검토 필요성을 설명하지 않았다."
+          },
+          {
+            "criterion_id": "sub1.c4",
+            "verdict": "not_met",
+            "reason": "⑤의 사전 커뮤니케이션 필요성을 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "⑦, ⑧, ⑨, ⑩, ⑪은 옳지 않다.",
+            "reason": "⑦·⑧·⑨·⑩·⑪을 모두 옳지 않은 것으로 지적했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "⑦의 이유나 올바른 처리 방법을 설명하지 않았다."
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "not_met",
+            "reason": "⑧의 수정 필요성을 설명하지 않았다."
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "not_met",
+            "reason": "⑨의 문장 삭제 필요성을 설명하지 않았다."
+          },
+          {
+            "criterion_id": "sub2.c5",
+            "verdict": "not_met",
+            "reason": "⑩의 왜곡표시 기술 필요성을 설명하지 않았다."
+          },
+          {
+            "criterion_id": "sub2.c6",
+            "verdict": "not_met",
+            "reason": "⑪의 핵심감사사항 단락 삭제 필요성을 설명하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "②·③·⑤를 모두 옳지 않은 것으로 지적했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "②의 이유나 올바른 절차를 설명하지 않았다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "③의 부정위험 재검토 필요성을 설명하지 않았다."
+              },
+              {
+                "criterion_id": "sub1.c4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "⑤의 사전 커뮤니케이션 필요성을 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "⑦·⑧·⑨·⑩·⑪을 모두 옳지 않은 것으로 지적했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "⑦의 이유나 올바른 처리 방법을 설명하지 않았다."
+              },
+              {
+                "criterion_id": "sub2.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "⑧의 수정 필요성을 설명하지 않았다."
+              },
+              {
+                "criterion_id": "sub2.c4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "⑨의 문장 삭제 필요성을 설명하지 않았다."
+              },
+              {
+                "criterion_id": "sub2.c5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "⑩의 왜곡표시 기술 필요성을 설명하지 않았다."
+              },
+              {
+                "criterion_id": "sub2.c6",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "⑪의 핵심감사사항 단락 삭제 필요성을 설명하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-15-scope-limitation-disclaimer-20260919",
+    "score": 2,
+    "max_points": 10,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "기말감사 과정에서 업무수행이사와 감사팀이 수행한 절차와 판단 ①~⑤ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "②, ③, ⑤는 옳지 않다.",
+        "score": 1,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "②, ③, ⑤는 옳지 않다.",
+            "reason": "②·③·⑤를 모두 옳지 않은 것으로 지적했다.",
+            "claim": "옳지 않은 것으로 ②·③·⑤를 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. ②·③·⑤ 중 하나라도 빠뜨리거나, 옳은 것인 ①(대표이사가 제한 제거를 거절하면서 감사위원회에도 알리지 말아 달라고 하였으나 업무수행이사가 제한 사실과 거절을 감사위원회에 알리고 대체적 절차를 검토), ④(폭설로 기말 재고실사에 입회하지 못해 다른 일자에 일부 품목을 실사하고 두 날짜 사이의 입출고를 테스트하여 충분하고 적합한 감사증거를 입수하였으므로 감사범위의 제한으로 보지 않음)를 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "②의 이유나 올바른 절차를 설명하지 않았다.",
+            "claim": "② 서면진술은 그 자체로는 충분하고 적합한 감사증거를 제공하지 않는다는 이유, 서면진술을 받았다는 사실이 다른 감사증거의 성격이나 범위에 영향을 미치지 않는다는 이유, 계획했던 금융기관 조회서의 지급보증 항목 검토나 이사회 의사록 열람 등으로 추가 출자의무·지급보증 여부를 확인해야 한다는 절차 중 하나를 제시한다. 확인 절차는 한 가지만 들어도 인정한다. 대표이사의 서면진술을 받았으면 해당 절차를 생략해도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "not_met",
+            "reason": "③의 부정위험 재검토 필요성을 설명하지 않았다.",
+            "claim": "③ 경영진에 의한 감사범위의 제한은 부정위험에 대한 감사인의 평가에 시사점을 가질 수 있다는 이유나, 대표이사의 제한을 고려하여 부정위험 평가를 다시 검토하고 필요하면 감사절차를 조정해야 한다는 절차를 제시한다. 둘 중 하나만 써도 인정하며, 경영진이 감사인의 정보 접근을 제한하는 것이 부정위험요소가 될 수 있다는 취지도 인정한다. 구체적인 추가절차는 요구하지 않는다. 감사의 계속적 수행 여부만 들고 부정위험 평가와의 관계를 쓰지 않으면 인정하지 않는다. 경영진에 의한 제한은 해당 계정의 증거 문제일 뿐이어서 부정위험 평가와 관계가 없다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c4",
+            "verdict": "not_met",
+            "reason": "⑤의 사전 커뮤니케이션 필요성을 설명하지 않았다.",
+            "claim": "⑤ 감사의견의 변형이 예상되면 감사보고서를 발행하기 전에 예상되는 변형을 발생시킨 상황과 변형 문안을 감사위원회(지배기구)와 커뮤니케이션해야 한다는 이유나 절차를 제시한다. 발행 전에 지배기구와 커뮤니케이션해야 한다는 취지면 변형 문안을 따로 언급하지 않아도 인정하며, 커뮤니케이션의 목적은 요구하지 않는다. 감사보고서를 발행한 뒤에 설명해도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ②, ③, ⑤이다. ①은 경영진에 의한 감사범위의 제한을 알게 되면 경영진에게 제한의 제거를 요청하고, 경영진이 거절하면 지배기구의 모든 구성원이 경영에 참여하는 경우가 아닌 한 지배기구와 커뮤니케이션하고 대체적 절차의 수행이 가능한지 결정하여야 하므로 옳다. ④는 예상하지 못한 상황으로 실사에 입회하지 못하였을 때 다른 일자에 실사하고 그 사이의 거래를 테스트하는 대체적 절차로 충분하고 적합한 감사증거를 입수하였으므로 감사범위의 제한에 해당하지 않아 옳다.",
+          "② 서면진술은 필요한 감사증거이지만 그 자체로는 충분하고 적합한 감사증거를 제공하지 않고, 서면진술을 받았다는 사실이 다른 감사증거의 성격이나 범위에 영향을 미치지 않는다. 계획한 금융기관 조회서의 지급보증 항목 검토와 이사회 의사록 열람을 수행하여야 한다.",
+          "③ 경영진에 의한 감사범위의 제한은 부정위험에 대한 감사인의 평가나 감사의 계속적 수행 여부에 대한 고려에 시사점을 가질 수 있으므로, 대표이사의 제한을 고려하여 부정위험 평가를 다시 검토하여야 한다.",
+          "⑤ 감사의견의 변형이 예상되면 감사보고서를 발행하기 전에 예상되는 변형을 발생시킨 상황과 변형 문안을 감사위원회와 커뮤니케이션하여야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사보고서를 작성하는 단계의 판단과 초안 작성 내용 ⑥~⑫ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 바르게 처리하는 방법을 간략히 서술하시오.",
+        "user_answer": "⑦, ⑧, ⑨, ⑩, ⑪은 옳지 않다.",
+        "score": 1,
+        "max_points": 6,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "⑦, ⑧, ⑨, ⑩, ⑪은 옳지 않다.",
+            "reason": "⑦·⑧·⑨·⑩·⑪을 모두 옳지 않은 것으로 지적했다.",
+            "claim": "옳지 않은 것으로 ⑦·⑧·⑨·⑩·⑪을 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. ⑦·⑧·⑨·⑩·⑪ 중 하나라도 빠뜨리거나, 옳은 것인 ⑥(가능한 영향이 관계기업투자와 지분법이익에 국한되더라도 재무제표의 상당한 부분을 차지하므로 전반적일 수 있다고 보고 감사계약을 해지할 수 없어 의견을 거절하기로 함), ⑫(감사인의 책임 단락에서 표준 설명을 삭제하고 감사 수행·보고서 발행 책임, 증거 미입수, 독립성·윤리적 책임 이행에 관한 내용만 기재)를 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "⑦의 이유나 올바른 처리 방법을 설명하지 않았다.",
+            "claim": "⑦ 재무제표 전체에 대하여 의견을 거절하는 경우 같은 감사보고서에 특정 계정과목(현금및현금성자산·차입금)에 대한 적정의견을 함께 포함해서는 안 된다는 이유나, 두 계정에 대한 적정의견을 표명하지 않아야 한다는 처리를 제시한다. 의견거절과 상충한다는 취지도 인정한다. 충분하고 적합한 감사증거를 입수한 계정에는 적정의견을 함께 표명할 수 있다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "not_met",
+            "reason": "⑧의 수정 필요성을 설명하지 않았다.",
+            "claim": "⑧ 의견을 거절하는 경우 “재무제표를 감사하였습니다”를 “재무제표에 대한 감사계약을 체결하였습니다”로 수정해야 한다는 이유나 처리를 제시한다. 감사계약을 체결하였다는 표현으로 바꾸어야 한다는 취지면 문장을 그대로 재현하지 않아도 인정한다. “감사하였습니다”라는 표현을 유지해도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "not_met",
+            "reason": "⑨의 문장 삭제 필요성을 설명하지 않았다.",
+            "claim": "⑨ 의견을 거절하는 경우 입수한 감사증거가 감사의견의 근거를 제공하는 데 충분하고 적합한지에 관한 기술을 감사보고서에 포함해서는 안 된다는 이유나, 단락 끝의 그 문장을 삭제해야 한다는 처리를 제시한다. 한정의견·부적정의견처럼 “의견거절”로 문구를 수정해 포함하면 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c5",
+            "verdict": "not_met",
+            "reason": "⑩의 왜곡표시 기술 필요성을 설명하지 않았다.",
+            "claim": "⑩ 의견을 거절하더라도 의견의 변형이 요구되었을 다른 사항(재고자산 평가손실 미반영)을 알고 있으면 그 이유와 영향을 의견거절근거 단락에 기술해야 한다는 이유나 처리를 제시한다. 기술할 위치를 밝히지 않고 감사보고서에 기술해야 한다는 취지만 써도 인정한다. 의견을 거절하면 다른 왜곡표시는 보고할 필요가 없다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c6",
+            "verdict": "not_met",
+            "reason": "⑪의 핵심감사사항 단락 삭제 필요성을 설명하지 않았다.",
+            "claim": "⑪ 법규에서 요구하지 않는 한 의견을 거절하는 감사보고서에는 핵심감사사항 단락을 포함해서는 안 된다는 이유나, 핵심감사사항 단락을 삭제해야 한다는 처리를 제시한다. 다른 사항을 핵심감사사항으로 기술하면 재무제표가 그 사항과 관련하여서는 더 신뢰성이 있다는 의미를 주어 의견거절과 일관성이 없다는 이유도 인정한다. 상장기업이면 의견거절 감사보고서에도 핵심감사사항 단락을 두어야 한다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ⑦, ⑧, ⑨, ⑩, ⑪이다. ⑥은 발견되지 아니한 왜곡표시의 가능한 영향이 특정 계정과목에 국한되더라도 그 계정이 재무제표의 상당한 부분을 차지하면 전반적이고, 감사업무의 해지가 법규상 가능하지 않으면 의견을 거절하여야 하므로 옳다. ⑫는 의견을 거절하는 경우 감사인의 책임 단락을 수정하여 감사를 수행하고 감사보고서를 발행할 책임, 충분하고 적합한 감사증거를 입수할 수 없었다는 사실, 독립성과 그 밖의 윤리적 책임에 관한 기술만 포함하여야 하므로 옳다.",
+          "⑦ 재무제표 전체에 대하여 의견을 거절하면서 같은 감사보고서에 특정 계정과목에 대한 적정의견을 함께 포함하는 것은 의견거절과 상충하므로 허용되지 않는다.",
+          "⑧ 의견을 거절하는 경우 “재무제표를 감사하였습니다”를 “재무제표에 대한 감사계약을 체결하였습니다”로 수정하여 기술하여야 한다.",
+          "⑨ 의견을 거절하는 경우 입수한 감사증거가 감사의견의 근거를 제공하는 데 충분하고 적합한지에 관한 기술을 감사보고서에 포함해서는 안 되므로 해당 문장을 삭제하여야 한다.",
+          "⑩ 의견을 거절하더라도 의견의 변형이 요구되었을 다른 사항을 알고 있으면 그 이유와 영향을 의견거절근거 단락에 기술하여야 하므로, 재고자산 평가손실 미반영을 기술하여야 한다.",
+          "⑪ 법규에서 요구하지 않는 한 의견을 거절하는 감사보고서에는 핵심감사사항 단락을 포함해서는 안 된다. 다른 사항을 핵심감사사항으로 기술하면 재무제표가 그 사항과 관련하여서는 더 신뢰성이 있다는 의미를 줄 수 있어 의견거절과 일관성이 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0c6991cfde7439f8016aadf960dcc487d0adeaa67b05a6c9e9",
+        "request_id": "req_5b80aa0ba0d04487bf2f3dc3d6f3d585",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 8311,
+          "input_tokens_details": {
+            "cache_write_tokens": 8308,
+            "cached_tokens": 0
+          },
+          "output_tokens": 523,
+          "output_tokens_details": {
+            "reasoning_tokens": 55
+          },
+          "total_tokens": 8834
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0027051999999999996,
+        "min_usd": 0.0027051999999999996,
+        "max_usd": 0.0027051999999999996,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ]
+}

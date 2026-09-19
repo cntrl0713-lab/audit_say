@@ -1,0 +1,345 @@
+{
+  "version": 1,
+  "artifact_type": "supplementary_grading_observation",
+  "transport": "model",
+  "model": "gpt-5.6-luna",
+  "case_id": "r05-supp-judgment-only",
+  "purpose": "이유나 보완절차 없이 항목마다 적절·부적절만 정확히 쓴 답이 물음마다 식별 1점만 받는지 확인한다.",
+  "projected_body_hash": "1bdc4bbe7dca7c12f21fa3f3a95d4d919632bb554c1ecd34312cefc2e900d3da",
+  "answers": {
+    "sub1": "① 적절\n② 부적절\n③ 부적절\n④ 적절\n⑤ 부적절\n⑥ 적절",
+    "sub2": "⑦ 적절\n⑧ 적절\n⑨ 부적절\n⑩ 부적절"
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "met",
+          "reason": "②·③·⑤만 부적절로 판단했다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "not_met",
+          "reason": "이유나 보완절차를 쓰지 않았다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "not_met",
+          "reason": "이유나 보완절차를 쓰지 않았다."
+        },
+        {
+          "criterion_id": "sub1.c4",
+          "verdict": "not_met",
+          "reason": "이유나 보완절차를 쓰지 않았다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "met",
+          "reason": "⑨·⑩만 부적절로 판단했다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "not_met",
+          "reason": "이유나 보완절차를 쓰지 않았다."
+        },
+        {
+          "criterion_id": "sub2.c3",
+          "verdict": "not_met",
+          "reason": "이유나 보완절차를 쓰지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "93490eafca461c13d625a76641f7a1153874a0e6c1db8f292d41ec96bb685576",
+  "schema_hash": "441cf8d050ae45bcfcc83d4da3fee16067b7e1b1b52e459ee214a23380110ffa",
+  "actual_sdk_calls": 1,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "① 적절\n② 부적절\n③ 부적절\n④ 적절\n⑤ 부적절\n⑥ 적절",
+            "reason": "②·③·⑤를 모두 부적절로, ①·④·⑥을 적절로 판단했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "②가 부적절하다는 판단의 이유나 보완 절차를 제시하지 않았다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "not_met",
+            "reason": "③이 부적절하다는 판단의 이유나 보완 절차를 제시하지 않았다."
+          },
+          {
+            "criterion_id": "sub1.c4",
+            "verdict": "not_met",
+            "reason": "⑤가 부적절하다는 판단의 이유나 보완 절차를 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "⑦ 적절\n⑧ 적절\n⑨ 부적절\n⑩ 부적절",
+            "reason": "⑨·⑩을 모두 부적절로, ⑦·⑧을 적절로 판단했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "⑨가 부적절하다는 판단의 이유나 요구되는 문서화 절차를 제시하지 않았다."
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "not_met",
+            "reason": "⑩이 부적절하다는 판단의 이유나 요구되는 문서화 절차를 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "②·③·⑤를 모두 부적절로, ①·④·⑥을 적절로 판단했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "②가 부적절하다는 판단의 이유나 보완 절차를 제시하지 않았다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "③이 부적절하다는 판단의 이유나 보완 절차를 제시하지 않았다."
+              },
+              {
+                "criterion_id": "sub1.c4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "⑤가 부적절하다는 판단의 이유나 보완 절차를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "⑨·⑩을 모두 부적절로, ⑦·⑧을 적절로 판단했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "⑨가 부적절하다는 판단의 이유나 요구되는 문서화 절차를 제시하지 않았다."
+              },
+              {
+                "criterion_id": "sub2.c3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "⑩이 부적절하다는 판단의 이유나 요구되는 문서화 절차를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-04-audit-documentation-20260917",
+    "score": 2,
+    "max_points": 7,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사보고서일 전의 감사문서 작성과 검토에 관한 ①~⑥이 감사기준에 비추어 적절한지 각각 판단하고, 적절하지 않은 것은 그 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "① 적절\n② 부적절\n③ 부적절\n④ 적절\n⑤ 부적절\n⑥ 적절",
+        "score": 1,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "① 적절\n② 부적절\n③ 부적절\n④ 적절\n⑤ 부적절\n⑥ 적절",
+            "reason": "②·③·⑤를 모두 부적절로, ①·④·⑥을 적절로 판단했다.",
+            "claim": "적절하지 않은 것으로 ②·③·⑤를 모두 판단한다. 항목마다 적절 여부를 쓰거나 적절하지 않은 것만 골라 써도 인정하고, 번호 대신 내용으로 특정하거나 이유·보완절차로 적절하지 않다는 판단이 분명히 드러나도 인정한다. ②·③·⑤ 중 하나라도 적절하다고 판단하거나 빠뜨리거나, 적절한 것인 ①(체계적 추출에서 출하기록의 기간·시작 송장번호·추출 간격을 기록), ④(조서마다 검토 서명을 남기지 않고 검토한 조서의 범위·검토자·검토일을 검토 기록표에 기록), ⑥(선적일자 불일치를 확인한 경위·결과와 판단 근거를 기록하고 교체한 분석표 초안을 감사파일에서 제외)을 적절하지 않다고 판단하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "not_met",
+            "reason": "②가 부적절하다는 판단의 이유나 보완 절차를 제시하지 않았다.",
+            "claim": "② 감사문서는 적시에 작성해야 하므로 조사 내용과 결론을 조사 시점에 조서로 작성하고 감사보고서일 전에 검토받아야 한다는 이유나 절차를 제시한다. 감사문서를 적시에 작성해야 한다는 이유, 감사보고서가 확정되기 전에 증거와 결론을 검토·평가할 수 있도록 작성해야 한다는 이유, 감사보고서일 후의 취합 기간에는 최초 문서화를 미룰 수 없다는 이유, 감사보고서일 전에 조서를 작성하고 검토받아야 한다는 절차 중 하나만 써도 인정한다. 최종감사파일 취합 기간 안에만 작성하면 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "not_met",
+            "reason": "③이 부적절하다는 판단의 이유나 보완 절차를 제시하지 않았다.",
+            "claim": "③ 유의적 사항에 관하여 결론에 도달할 때 내린 유의적인 전문가적 판단(평가충당금이 적정하다고 본 판단의 근거)을 조서에 문서화해야 한다는 이유나 절차를 제시한다. 구두설명만으로는 수행한 업무나 결론의 적절한 근거가 되지 못한다는 이유, 이전에 관여하지 않은 숙련된 감사인이 이해할 수 있도록 판단 근거를 기록해야 한다는 이유, 판단의 근거를 조서에 기록해야 한다는 절차 중 하나만 써도 인정한다. 요청이 있을 때 구두로 설명하면 충분하다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c4",
+            "verdict": "not_met",
+            "reason": "⑤가 부적절하다는 판단의 이유나 보완 절차를 제시하지 않았다.",
+            "claim": "⑤ 유의적 사항에 관하여 경영진·지배기구와 토의한 내용을 문서화해야 한다는 이유나 절차를 제시한다. 토의한 사항의 성격, 토의 시기, 토의 상대자 중 일부만 들거나 토의 내용을 조서에 기록해야 한다는 원칙만 써도 인정하며, 세 요소의 완전한 나열은 요구하지 않는다. 토의 결과가 결론에 반영되었으면 토의 내용은 기록하지 않아도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "적절하지 않은 것은 ②, ③, ⑤이다. ①(체계적 추출의 원천·시작점·추출 간격 기록), ④(조서마다 서명하지 않고 검토한 범위·검토자·검토일을 기록), ⑥(불일치를 해소한 경위와 판단 근거를 기록하고 교체한 초안은 제외)은 적절하다.",
+          "② 감사문서는 적시에 작성하여야 하므로 조사 내용과 결론을 조사할 때 조서로 작성하고 감사보고서일 전에 검토받아야 한다. 감사보고서일 후의 취합 기간은 최초 문서화를 미루는 기간이 아니다.",
+          "③ 유의적 사항에 관하여 결론에 도달할 때 행한 유의적인 전문가적 판단은 조서에 문서화하여야 하며, 감사인의 구두설명만으로는 결론의 적절한 근거가 되지 못한다.",
+          "⑤ 유의적 사항에 관하여 경영진 및 지배기구와 토의한 내용은 해당 사항의 성격, 토의 시기와 토의 상대자를 포함하여 문서화하여야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사보고서일 후의 조치 ⑦~⑩이 감사기준에 비추어 적절한지 각각 판단하고, 적절하지 않은 것은 그 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "⑦ 적절\n⑧ 적절\n⑨ 부적절\n⑩ 부적절",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "⑦ 적절\n⑧ 적절\n⑨ 부적절\n⑩ 부적절",
+            "reason": "⑨·⑩을 모두 부적절로, ⑦·⑧을 적절로 판단했다.",
+            "claim": "적절하지 않은 것으로 ⑨·⑩을 모두 판단한다. 항목마다 적절 여부를 쓰거나 적절하지 않은 것만 골라 써도 인정하고, 번호 대신 내용으로 특정하거나 이유·보완절차로 적절하지 않다는 판단이 분명히 드러나도 인정한다. ⑨·⑩ 중 하나라도 적절하다고 판단하거나 빠뜨리거나, 적절한 것인 ⑦(취합 기간에 조서를 분류·병합하고 상호 참조를 연결하며 교체된 이전 버전 조서 파일을 삭제), ⑧(감사보고서일 전에 입수하고 담당 이사가 참석한 회의에서 토의·합의한 감사증거의 조서를 취합 기간에 작성)을 적절하지 않다고 판단하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "not_met",
+            "reason": "⑨가 부적절하다는 판단의 이유나 요구되는 문서화 절차를 제시하지 않았다.",
+            "claim": "⑨ 감사보고서일 후 새로운 감사절차나 추가적인 감사절차를 수행하고 결론을 내린 작업은 행정적인 최종감사파일 취합에 해당하지 않는다는 이유, 또는 당면한 상황, 수행한 절차·입수한 감사증거·도달한 결론과 감사보고서에 미친 영향, 조서의 변경자·검토자와 그 시기를 문서화해야 한다는 절차를 제시한다. 이유만 쓰거나, 절차로 이들 사항 중 일부(예: 당면한 상황, 감사보고서에 미친 영향, 변경자·검토자와 그 시기)를 문서화해야 한다고 써도 인정하며, 모든 사항의 나열은 요구하지 않는다. 취합 기간 중에 수행했으므로 취합 절차로 처리해도 된다고 쓰거나, 답변과 대조 결과를 기존 조서에 덧붙이는 것만 제시하면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "not_met",
+            "reason": "⑩이 부적절하다는 판단의 이유나 요구되는 문서화 절차를 제시하지 않았다.",
+            "claim": "⑩ 최종감사파일의 취합이 완료된 후 기존 조서를 수정할 때에는 단순한 오기의 정정이라도 수정하는 구체적 이유와 수정·검토한 사람 및 그 시기를 문서화해야 한다는 이유나 절차를 제시한다. 수정의 성격과 관계없이 수정 내역을 문서화해야 한다는 원칙만 쓰거나, 수정 이유, 수정한 사람, 검토한 사람, 그 시기 중 일부만 들어도 인정한다. 결론에 영향이 없는 단순한 오기이므로 기록하지 않아도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "적절하지 않은 것은 ⑨, ⑩이다. ⑦(조서의 분류·병합·상호 참조와 교체된 문서의 삭제)과 ⑧(감사보고서일 전에 입수하여 관련 업무팀원들과 토의하고 합의한 감사증거의 문서화)은 최종감사파일 취합 기간에 할 수 있는 행정적 변경이므로 적절하다.",
+          "⑨ 감사보고서일 후 새로운 감사절차나 추가적인 감사절차를 수행하고 결론을 내린 것은 행정적인 취합 절차가 아니므로, 당면한 상황, 수행한 절차·입수한 감사증거·도달한 결론과 감사보고서에 미친 영향, 조서를 변경한 사람과 검토한 사람 및 그 시기를 문서화하여야 한다.",
+          "⑩ 최종감사파일의 취합이 완료된 후 기존 조서를 수정할 때에는 수정의 성격과 관계없이 수정하는 구체적 이유와 수정하고 검토한 사람 및 그 시기를 문서화하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_03a6fcaca8852649016aab95bd8b7487d0b200b1c9cc76da3f",
+        "request_id": "req_894b2863bcb24ef8b91e0d63c1243736",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 7529,
+          "input_tokens_details": {
+            "cache_write_tokens": 7526,
+            "cached_tokens": 0
+          },
+          "output_tokens": 504,
+          "output_tokens_details": {
+            "reasoning_tokens": 90
+          },
+          "total_tokens": 8033
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0024869,
+        "min_usd": 0.0024869,
+        "max_usd": 0.0024869,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ]
+}

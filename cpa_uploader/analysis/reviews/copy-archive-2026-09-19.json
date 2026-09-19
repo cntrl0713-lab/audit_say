@@ -1,0 +1,366 @@
+{
+  "version": 1,
+  "created_at": "2026-09-19T11:13:15.413Z",
+  "action": "moved_out_of_repository_not_deleted",
+  "archive_location": "C:/Users/cntrl/Workspace/study/audit_say-archive/copies-2026-09-19 (같은 상대 경로. 로컬 전용, 저장소에 없음)",
+  "authorization": "2026-09-19 사용자 지시: 두 초안을 그대로 두고 전체 운영DB 대체 및 커밋 푸시 진행. cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r07-r11/authorization.md. 사본은 커밋하지 않고 보관 폴더로 옮긴다는 기준은 2026-09-14·09-15 사용자 확인(“불필요한 파일 정리 후 커밋·푸시”)을 따른다.",
+  "criteria": {
+    "kept": "승급 장부의 모든 효율 검수 receipt 검증이 직접 읽는 파일(수락 batch, 채점 manifest, 은행 사본·분류·입력·관측·실행 코드·검토 증거), 현재 정본 분류 카탈로그의 분류 입력, 현재 자료(정본·coverage·wiki·릴리스·correction)가 가리키는 파일, DB 준비 보고서, README·도구·로그·장부·완료/receipt/검증 기록, wiki 퇴역 페이지 보존본은 남겼다.",
+    "moved": "대체된 r10 v1 실행의 전체 은행·분류·카탈로그 사본, 운영 반영이 끝난 r05·r06 게시의 stage·baseline·후보·정본 카탈로그 사본과 coverage 반영 전 사본·DB 전송 payload와 SQL, 운영 반영이 끝난 pilot-01-005 게시의 stage·backup·정본 카탈로그 사본."
+  },
+  "recovery": "r05·r06 stage의 은행 원문은 운영 release 31504e78의 source_document와 같고, pilot-01-005 stage는 그 뒤 기준서형 검토 반영(release c43c59e4) 이전의 로컬 정본이었다. baseline·backup은 각 설치 직전 정본의 사본이다. 옮긴 파일의 정확한 바이트가 필요하면 보관 폴더에서 같은 경로로 되돌리고 아래 SHA-256으로 확인한다.",
+  "effect": "옮긴 파일을 가리키는 과거 실행·게시·DB 준비 기록(r10 v1 manifest, r05·r06 stage-completion.json·baseline.json·db-import 준비 기록, pilot-01-005 install-completion.json 등)은 보관 폴더 없이는 파일 해시를 다시 확인할 수 없다. 현재 정본 검증·앱·운영 DB와 r07~r11 운영 반영 도구(db-import)는 이 사본을 읽지 않는다.",
+  "moved_files": 33,
+  "bytes": 99598916,
+  "protected_files_checked": 17914,
+  "ledger_batches": 34,
+  "skipped": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage/authoring.json",
+      "reason": "referenced_by_current_data",
+      "referenced_by": [
+        "cpa_uploader/releases/20260919-standard-spoiler/preparation.json",
+        "cpa_uploader/releases/20260919-standard-spoiler-compressed/preparation.json"
+      ]
+    }
+  ],
+  "removed_empty_dirs": [
+    "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/baseline",
+    "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/backup"
+  ],
+  "rows": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/baseline/authoring.json",
+      "size": 6188357,
+      "sha256": "18082e546c3fb99a8169c49d65e708bb5dc3d33802251a2bf5c00525deb4b706",
+      "category": "publication_stage_baseline_or_candidate_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/baseline/ledger.json",
+      "size": 7672498,
+      "sha256": "77510513acd69ed1b859a6acc17d3e503b343bdf50a297601f07264e2eb326eb",
+      "category": "publication_stage_baseline_or_candidate_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/baseline.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/candidate.json",
+      "size": 6205511,
+      "sha256": "a710d620123e3789092a38516fc5f3af2002c0c0a589de8d0441f3719d9c9752",
+      "category": "publication_stage_baseline_or_candidate_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/canonical-catalog.json",
+      "size": 535002,
+      "sha256": "75f6fa821f18993a8011320743369ed09d186fab8eb59727c3becbb8b53b35d1",
+      "category": "publication_stage_baseline_or_candidate_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/canonical-classification-review.json",
+      "size": 333728,
+      "sha256": "428ae5e7cf70966802e0afc926652df536e05dfa4390af78d7860a5784b07612",
+      "category": "publication_stage_baseline_or_candidate_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/canonical-catalog.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r07/baseline-v1.json",
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/baseline-v1.json",
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/backup/catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/coverage-links-before.json",
+      "size": 2212777,
+      "sha256": "0d127dff53e1eda8fbd33dac22b51ae41bc3d2160676801044a056601a53921c",
+      "category": "publication_stage_baseline_or_candidate_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/coverage-update.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v1/guarded-import.sql",
+      "size": 302448,
+      "sha256": "4276a59e921afe00fe28b3d308a03d4348a3824cd82c8cc05f20b512d1d4749e",
+      "category": "db_payload_or_sql_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v1/apply-started.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v1/probe.sql",
+      "size": 298441,
+      "sha256": "0552424d7a845eec3f8e9ebf2c80c1f3d63822d80cca8a60c965004af09c88ff",
+      "category": "db_payload_or_sql_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v1/replace-pack.json",
+      "size": 348903,
+      "sha256": "4d8380134824fd2e383dba89873413318cda8e99eb6425a1147d117d86e449cd",
+      "category": "db_payload_or_sql_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v1/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v2/guarded-import.sql",
+      "size": 302448,
+      "sha256": "4276a59e921afe00fe28b3d308a03d4348a3824cd82c8cc05f20b512d1d4749e",
+      "category": "db_payload_or_sql_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v2/apply-started.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v2/probe.sql",
+      "size": 298441,
+      "sha256": "0552424d7a845eec3f8e9ebf2c80c1f3d63822d80cca8a60c965004af09c88ff",
+      "category": "db_payload_or_sql_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v2/replace-pack.json",
+      "size": 348903,
+      "sha256": "4d8380134824fd2e383dba89873413318cda8e99eb6425a1147d117d86e449cd",
+      "category": "db_payload_or_sql_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v2/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage/encrypted.json",
+      "size": 8274132,
+      "sha256": "3ef3724695cb52d8997ae7b453ab943a16d0dc4b1f1d8c8892c2630635a6704d",
+      "category": "publication_stage_baseline_or_candidate_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage/learning-catalog.json",
+      "size": 535047,
+      "sha256": "aee1a657905db89165ca100fbfd522545dc75c65e733da83593114fac1ce8798",
+      "category": "publication_stage_baseline_or_candidate_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v2/completion.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage/learning-classification-review.json",
+      "size": 333768,
+      "sha256": "9f20cd09e1205861f8ced798c1d4ca03f5e3cde71f37cc974eab7c85e7cf3c16",
+      "category": "publication_stage_baseline_or_candidate_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage/learning-catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage/promotions.json",
+      "size": 7676374,
+      "sha256": "858b4a69ad7c50aa38a8e217a141a70b0730e7d46bdbbbe7b4329a193f4048c9",
+      "category": "publication_stage_baseline_or_candidate_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage/public.json",
+      "size": 1227501,
+      "sha256": "c52dd0feabe402206ca8e0983c4d8f307d65e2753ca98284a570b0c5fbc995a3",
+      "category": "publication_stage_baseline_or_candidate_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/publication-v2/preparation.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/candidate-v1.json",
+      "size": 6276155,
+      "sha256": "51c840a44fbda4cab2d2aa37eb881fc5ea8c00eadd3f3c03a43024f03d0fcd36",
+      "category": "superseded_run_bank_or_classification_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/catalog-v1.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/classification-v1.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/actual-a/case-12-report-date-subsequent-20260919--case--model/input.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/actual-a/preflight.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/dry-a/preflight.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/grading-manifest.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/catalog-v1.json",
+      "size": 538246,
+      "sha256": "08e9a3a7026500c7bba3764ab879e595664e7b959865415788db303aa2bb8163",
+      "category": "superseded_run_bank_or_classification_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/actual-a/preflight.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/dry-a/preflight.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/grading-manifest.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/classification-v1.json",
+      "size": 336208,
+      "sha256": "def5cfffcdb3a86f6f7f4173463a9292fe2291eb8dfe4267222bbd8198ae94fc",
+      "category": "superseded_run_bank_or_classification_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/catalog-v1.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/actual-a/preflight.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/agent-reviews.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/dry-a/preflight.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/grading-manifest.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/backup/authoring.json",
+      "size": 6205485,
+      "sha256": "7127f42b5ca7fc64b9bd2b75ec4c07ae5eefe27a0bd2f9f0f5280bfbf5453104",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/backup/catalog.json",
+      "size": 535002,
+      "sha256": "75f6fa821f18993a8011320743369ed09d186fab8eb59727c3becbb8b53b35d1",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/backup/encrypted.json",
+      "size": 8274132,
+      "sha256": "3ef3724695cb52d8997ae7b453ab943a16d0dc4b1f1d8c8892c2630635a6704d",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/backup/ledger.json",
+      "size": 7676374,
+      "sha256": "858b4a69ad7c50aa38a8e217a141a70b0730e7d46bdbbbe7b4329a193f4048c9",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/backup/public.json",
+      "size": 1227501,
+      "sha256": "c52dd0feabe402206ca8e0983c4d8f307d65e2753ca98284a570b0c5fbc995a3",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/preparation.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/canonical-catalog.json",
+      "size": 535796,
+      "sha256": "58294467a228a8330d4a07f015918862e0dbaa36415e26fc7c6324c4ec8acf8b",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": []
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/canonical-classification-review.json",
+      "size": 471208,
+      "sha256": "0bb84e62cb550eb802e76b5590d8632f8c39e7bda3144f01dd366c820b61137b",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r08/baseline-v1.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r09/baseline-v1.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/baseline-v1.json",
+        "cpa_uploader/analysis/reviews/case-review-2026-09-15/r11/baseline-v1.json",
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/canonical-catalog.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage/authoring.json",
+      "size": 6219961,
+      "sha256": "09e5c9a67b85e97ee9303e66f1f10b9819956d81fda247ebc231587eadc34b0a",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage/catalog.json",
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage/classification-review.json",
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage/catalog.json",
+      "size": 535801,
+      "sha256": "13a0c5a35efaa17e61718848b22d128e2222add48b90e9042d8b75bbf8e0a74e",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage/classification-review.json",
+      "size": 471217,
+      "sha256": "3e82bff7106c92141dce13b6dff2b4afb44bdd4a9f591c7ea09b5e2c3b0cde64",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage/catalog.json",
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage/encrypted.json",
+      "size": 8293436,
+      "sha256": "44e92c3ef28a30f07c0270961c3d469f20373d8d8bb2fe560d18f4fe30b79783",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage/promotions.json",
+      "size": 7678035,
+      "sha256": "f8d1f2fdaa23dfe12029296f816590b2ba3739b3a110f804c931f8308c6b3d63",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage-completion.json"
+      ]
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage/public.json",
+      "size": 1230080,
+      "sha256": "0fd72be63c333ecafad1dd23c15583ac8bf3172cc5d8eec0e434c4a5e2e16281",
+      "category": "publication_stage_backup_or_catalog_copy",
+      "referenced_by": [
+        "cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/publication-v1/stage-completion.json"
+      ]
+    }
+  ]
+}

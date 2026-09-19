@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-04-001--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-001--sub1--standard",
+  "source_set_id": "pilot-04-001",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "565b8e06ea83122c4e14cc4fe447e3e9e9dc8a2014d55fc097b9e30b5b5abbd9",
+  "answers": {
+    "sub1": "반드시 순차적으로 수립할 필요는 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (판단만 쓰고 상호 관련성과 변경 영향을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (판단만 쓰고 상호 관련성과 변경 영향을 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "06247db635f84bc858e10dc3ae79e051f4ecf8e36b09059de56afff42feb7110",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "반드시 순차적으로 수립할 필요는 없다.",
+            "reason": "순차적으로 수립할 필요가 없다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "상호 밀접한 관련성이나 한쪽 변경 시 다른 쪽도 변경될 수 있다는 설명이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "순차적으로 수립할 필요가 없다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "상호 밀접한 관련성이나 한쪽 변경 시 다른 쪽도 변경될 수 있다는 설명이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-001",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "전반감사전략과 세부적인 감사계획을 순차적으로 수립하여야 하는지 판단하고, 감사기준서 300에 따라 그 이유를 설명하시오.",
+        "user_answer": "반드시 순차적으로 수립할 필요는 없다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "반드시 순차적으로 수립할 필요는 없다.",
+            "reason": "순차적으로 수립할 필요가 없다고 명시했다.",
+            "claim": "전반감사전략과 감사계획은 반드시 순차적일 필요가 없음을 명시함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "상호 밀접한 관련성이나 한쪽 변경 시 다른 쪽도 변경될 수 있다는 설명이 없다.",
+            "claim": "상호 밀접한 관련성 및 변경 시 영향에 대해 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "전반감사전략과 세부적인 감사계획은 반드시 개별적이거나 순차적인 과정으로 수립할 필요는 없다. 한쪽이 변경되면 다른 쪽도 변경될 수 있으므로 서로 밀접하게 관련되어 있기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_004b8956683849bb016aae0698492c87d09119e8c0137802e0",
+        "request_id": "req_054b19d403ca4d0c80b1f7068d0ff428",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2290,
+          "input_tokens_details": {
+            "cache_write_tokens": 2287,
+            "cached_tokens": 0
+          },
+          "output_tokens": 166,
+          "output_tokens_details": {
+            "reasoning_tokens": 30
+          },
+          "total_tokens": 2456
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00077155,
+        "min_usd": 0.00077155,
+        "max_usd": 0.00077155,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-04-001--sub1--standard--partial/input.json",
+      "sha256": "1fc779ec69c1df1f167a15a843cbf14b899058d4001069b6307f454083dca3eb"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-04-001--sub1--standard--partial/transport.jsonl",
+      "sha256": "1f0223331ecb27b106564e6f5f86c810b12cd89c7be5a19ae990ef9c1b92bdd8"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-04-001--sub1--standard--partial/traces.jsonl",
+      "sha256": "f7b37a69d7f24ce6d77eeca8fec02b099b8003701f1a3e4caa4ed86f4b7a943a"
+    }
+  }
+}

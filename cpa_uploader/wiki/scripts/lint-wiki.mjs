@@ -16,6 +16,10 @@ const allowedValues = {
   confidence: ['high', 'medium', 'low'],
 };
 const exemptFrontmatter = new Set(['SCHEMA.md', 'index.md', 'log.md']);
+// Entries moved out of log.md keep their wording and relative links, so archives sit beside it and
+// share its exemptions. Line limits and links still apply, and log.md must link every archive.
+export const isLogArchive = relative => /^log-archive-[a-z0-9-]+\.md$/u.test(relative);
+const exempt = relative => exemptFrontmatter.has(relative) || isLogArchive(relative);
 const normalizeLines = text => text.replace(/^\uFEFF/u, '').replace(/\r\n?/gu, '\n');
 
 export function allMarkdown(root) {
@@ -107,6 +111,7 @@ export function lintWiki({ repoDir = defaultRepoDir } = {}) {
   const errors = [];
   const warnings = [];
   const inbound = new Map();
+  const linkedFromLog = new Set();
   const anchorCache = new Map();
   const getAnchors = (file) => {
     if (!anchorCache.has(file)) anchorCache.set(file, anchors(fs.readFileSync(file, 'utf8')));
@@ -134,7 +139,7 @@ export function lintWiki({ repoDir = defaultRepoDir } = {}) {
     const lines = text.trimEnd().split('\n').length;
     const basename = path.basename(file);
     const frontmatter = parseFrontmatter(text);
-    if (!exemptFrontmatter.has(relative)) {
+    if (!exempt(relative)) {
       if (!frontmatter) errors.push(`${relative}: frontmatter 없음`);
       else {
         for (const field of requiredFields) {
@@ -161,13 +166,14 @@ export function lintWiki({ repoDir = defaultRepoDir } = {}) {
     if (basename !== 'SCHEMA.md' && !/^[a-z0-9][a-z0-9-]*\.md$/u.test(basename)) errors.push(`${relative}: 파일명 규칙 위반`);
     const body = withoutCode(text);
     const wikilinks = [...body.matchAll(/\[\[([^\]]+)\]\]/gu)].map(match => wikiTarget(match[1]));
-    if (!exemptFrontmatter.has(relative) && wikilinks.length < 2) errors.push(`${relative}: outbound wikilink가 2개 미만`);
+    if (!exempt(relative) && wikilinks.length < 2) errors.push(`${relative}: outbound wikilink가 2개 미만`);
     for (const { slug, fragment } of wikilinks) {
       const resolved = slug ? pageByBasename.get(slug) : file;
       if (!resolved) errors.push(`${relative}: 깨진 wikilink [[${slug}]]`);
       else {
         const target = path.basename(resolved, '.md');
         inbound.set(target, (inbound.get(target) ?? 0) + 1);
+        if (relative === 'log.md') linkedFromLog.add(target);
         checkAnchor(resolved, fragment, relative, true);
       }
     }
@@ -193,14 +199,15 @@ export function lintWiki({ repoDir = defaultRepoDir } = {}) {
   const indexed = new Set([...indexText.matchAll(/\[\[([^\]]+)\]\]/gu)].map(match => wikiTarget(match[1]).slug));
   for (const file of files) {
     const relative = path.relative(wikiDir, file).split(path.sep).join('/');
-    if (exemptFrontmatter.has(relative)) continue;
     const slug = path.basename(file, '.md');
+    if (isLogArchive(relative) && !linkedFromLog.has(slug)) errors.push(`log.md: 보관본 [[${slug}]] 연결 누락`);
+    if (exempt(relative)) continue;
     if (!indexed.has(slug)) errors.push(`index.md: [[${slug}]] 누락`);
     if (!inbound.get(slug)) errors.push(`orphan page: ${slug}`);
   }
   return {
     wikiDir, markdownFiles: files.length,
-    contentPages: files.filter(file => !exemptFrontmatter.has(path.relative(wikiDir, file).split(path.sep).join('/'))).length,
+    contentPages: files.filter(file => !exempt(path.relative(wikiDir, file).split(path.sep).join('/'))).length,
     errors, warnings,
   };
 }

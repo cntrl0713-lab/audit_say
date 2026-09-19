@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "draft-09-505-freq01--q2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-09-505-freq01--q2--standard",
+  "source_set_id": "draft-09-505-freq01",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "q2"
+  ],
+  "projected_body_hash": "734eb69052396e2fc697c920ce275a10327d9aca09c6c8fe77c09f1e572a69ed",
+  "answers": {
+    "q2": "회신을 받지 못해도 후속 현금수취 확인 등 대체적 감사절차를 수행하면 필요한 증거를 대신할 수 있으므로 감사의견에는 영향이 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "q2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "q2.c1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (대체 불가와 의견 시사점을 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "q2.c2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (대체 불가와 의견 시사점을 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "q2.c3",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (대체 불가와 의견 시사점을 반대로 썼다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "294c78360bce2efc0ae1002c578138e326f38e1fb6a5ec9b62cd64d466f69397",
+  "schema_hash": "75894e468ac4c334eabffa02301a3eed48f59c0135da7b7707be9ef6dd8b4ad2",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "q2",
+        "verdicts": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "contradicted",
+            "quote": "회신을 받지 못해도 후속 현금수취 확인 등 대체적 감사절차를 수행하면 필요한 증거를 대신할 수 있으므로 감사의견에는 영향이 없다.",
+            "reason": "대체적 감사절차로 필요한 증거를 대신할 수 있다고 명시하여 요구 결론과 반대이다."
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "not_met",
+            "reason": "미입수가 감사 수행에 미치는 시사점을 결정한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "contradicted",
+            "quote": "회신을 받지 못해도 후속 현금수취 확인 등 대체적 감사절차를 수행하면 필요한 증거를 대신할 수 있으므로 감사의견에는 영향이 없다.",
+            "reason": "감사의견에 영향이 없다고 단정하여 감사의견에 미치는 시사점을 변형 기준에 따라 결정해야 한다는 요구와 반대이다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "q2",
+            "verdicts": [
+              {
+                "criterion_id": "q2.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q2/e0"
+                ],
+                "reason": "대체적 감사절차로 필요한 증거를 대신할 수 있다고 명시하여 요구 결론과 반대이다."
+              },
+              {
+                "criterion_id": "q2.c2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "미입수가 감사 수행에 미치는 시사점을 결정한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "q2.c3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "q2/e0"
+                ],
+                "reason": "감사의견에 영향이 없다고 단정하여 감사의견에 미치는 시사점을 변형 기준에 따라 결정해야 한다는 요구와 반대이다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-09-505-freq01",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "q2",
+        "prompt": "감사기준서 505에 따라 충분하고 적합한 감사증거를 입수하기 위하여 적극적 조회에 대한 회신 자체가 필요하다고 결정한 경우를 전제로 하시오. 그 회신을 입수하지 못한 경우 대체적 감사절차로 필요한 감사증거를 대신할 수 있는지와 감사인이 결정하여야 할 사항을 설명하시오.",
+        "user_answer": "회신을 받지 못해도 후속 현금수취 확인 등 대체적 감사절차를 수행하면 필요한 증거를 대신할 수 있으므로 감사의견에는 영향이 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "q2.c1",
+            "verdict": "contradicted",
+            "quote": "회신을 받지 못해도 후속 현금수취 확인 등 대체적 감사절차를 수행하면 필요한 증거를 대신할 수 있으므로 감사의견에는 영향이 없다.",
+            "reason": "대체적 감사절차로 필요한 증거를 대신할 수 있다고 명시하여 요구 결론과 반대이다.",
+            "claim": "이 경우 대체적 감사절차는 감사인이 요구하는 감사증거를 제공하지 못하므로 회신을 대신하여 증거 문제를 해소할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "q2.c2",
+            "verdict": "not_met",
+            "reason": "미입수가 감사 수행에 미치는 시사점을 결정한다는 내용이 없다.",
+            "claim": "필수 회신 미입수가 해당 감사의 수행에 미치는 시사점을 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "q2.c3",
+            "verdict": "contradicted",
+            "quote": "회신을 받지 못해도 후속 현금수취 확인 등 대체적 감사절차를 수행하면 필요한 증거를 대신할 수 있으므로 감사의견에는 영향이 없다.",
+            "reason": "감사의견에 영향이 없다고 단정하여 감사의견에 미치는 시사점을 변형 기준에 따라 결정해야 한다는 요구와 반대이다.",
+            "claim": "필수 회신 미입수가 감사의견에 미치는 시사점을 감사의견 변형 기준에 따라 결정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "이 경우 대체적 감사절차는 감사인이 요구하는 감사증거를 제공하지 못하므로 회신을 대신하여 증거 문제를 해소할 수 없다.",
+          "필수 회신 미입수가 해당 감사의 수행에 미치는 시사점을 결정한다.",
+          "필수 회신 미입수가 감사의견에 미치는 시사점을 감사의견 변형 기준에 따라 결정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "q2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0660b9e98a3a8a06016aae0761b84487d0861a3b035dfa0c10",
+        "request_id": "req_052be725a7464b2694fb44efe94e28b5",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2744,
+          "input_tokens_details": {
+            "cache_write_tokens": 2741,
+            "cached_tokens": 0
+          },
+          "output_tokens": 334,
+          "output_tokens_details": {
+            "reasoning_tokens": 123
+          },
+          "total_tokens": 3078
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00108665,
+        "min_usd": 0.00108665,
+        "max_usd": 0.00108665,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/draft-09-505-freq01--q2--standard--wrong/input.json",
+      "sha256": "13e878232ca4baed560652c1ca070b7de87d7cd97c1338ca6079c806fd01cc48"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/draft-09-505-freq01--q2--standard--wrong/transport.jsonl",
+      "sha256": "a5afd68eff7ac7e68eeb83fad1976af69128644b98d73ce821995dac49f40c54"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/draft-09-505-freq01--q2--standard--wrong/traces.jsonl",
+      "sha256": "b1ea9e8becf11c1486b39d7515168d29bc25f7fa5252346582899a05ca786025"
+    }
+  }
+}

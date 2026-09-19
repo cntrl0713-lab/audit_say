@@ -5,8 +5,9 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { buildWiki } from '../cpa_uploader/wiki/scripts/build-wiki.mjs';
+import { buildWiki, writeChangedPages } from '../cpa_uploader/wiki/scripts/build-wiki.mjs';
 import { checkSourceNavigation, checkWiki, normalizeGeneratedPage } from '../cpa_uploader/wiki/scripts/check-wiki.mjs';
+import { lintWiki } from '../cpa_uploader/wiki/scripts/lint-wiki.mjs';
 import { buildSourceCatalog } from '../cpa_uploader/questionSourceCatalog.mjs';
 import { studyTopics } from '../cpa_uploader/wiki/scripts/ox-study-order.mjs';
 import type { QuestionSetV3 } from '../lib/questionV3.ts';
@@ -108,6 +109,46 @@ test('wiki check compares the pure build without writing and ignores only build 
     assert.deepEqual(result.drift, []);
     assert.deepEqual(snapshot(root), beforeCheck, 'freshness checks must not write');
     assert.notEqual(normalizeGeneratedPage('기준서 시행일 2026-09-09\n'), normalizeGeneratedPage('기준서 시행일 2026-09-10\n'));
+});
+
+test('wiki build rewrites only new or changed pages and keeps the bytes and dates of date-only pages', (context) => {
+    const root = fixture(context);
+    const wikiDir = path.join(root, 'cpa_uploader/wiki');
+    const first = buildWiki({ repoDir: root, date: '2026-09-09' }).pages as Map<string, string>;
+    assert.deepEqual(writeChangedPages(wikiDir, first), [...first.keys()]);
+    const recorded = snapshot(root);
+    const nextDay = buildWiki({ repoDir: root, date: '2026-09-10' }).pages as Map<string, string>;
+    assert.ok([...nextDay].every(([relative, content]) => content !== first.get(relative)), 'every rendered page carries the build date');
+    assert.deepEqual(writeChangedPages(wikiDir, nextDay), []);
+    assert.deepEqual(snapshot(root), recorded, 'a date-only rebuild must not touch any file');
+    const bank = JSON.parse(fs.readFileSync(path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.authoring.json'), 'utf8')) as QuestionSetV3[];
+    const questionPage = `questions/${bank[0].id}.md`;
+    alterBank(root, sets => { sets[0].subquestions[0].criteria[0].claim += ' 변경된 채점 명제'; });
+    const later = buildWiki({ repoDir: root, date: '2026-09-11' }).pages as Map<string, string>;
+    const changed = [...later].filter(([relative, content]) => normalizeGeneratedPage(content) !== normalizeGeneratedPage(first.get(relative) ?? '')).map(([relative]) => relative);
+    assert.ok(changed.includes(questionPage) && !changed.includes('index.md'), changed.join(', '));
+    assert.deepEqual(writeChangedPages(wikiDir, later), changed);
+    for (const [relative, content] of later) {
+        assert.equal(fs.readFileSync(path.join(wikiDir, relative), 'utf8'), changed.includes(relative) ? content : first.get(relative), relative);
+    }
+    assert.match(fs.readFileSync(path.join(wikiDir, questionPage), 'utf8'), /^updated: 2026-09-11$/mu);
+    assert.match(fs.readFileSync(path.join(wikiDir, 'index.md'), 'utf8'), /^> Last updated: 2026-09-09 \|/mu);
+    assert.deepEqual(checkWiki({ repoDir: root }).errors, []);
+});
+
+test('log archives beside log.md stay out of the generated index and content page counts', (context) => {
+    const root = fixture(context);
+    const first = buildWiki({ repoDir: root, date: '2026-09-09' });
+    for (const [relative, content] of first.pages) write(root, `cpa_uploader/wiki/${relative}`, content);
+    const contentPages = lintWiki({ repoDir: root }).contentPages;
+    write(root, 'cpa_uploader/wiki/log.md', '# 갱신 기록\n\n보관본: [[log-archive-2026-09-01-to-2026-09-02]]\n');
+    write(root, 'cpa_uploader/wiki/log-archive-2026-09-01-to-2026-09-02.md', '# 갱신 기록 보관본\n\n## 2026-09-01 — 기록\n\n- [[log]]에서 옮긴 기록\n');
+    const result = checkWiki({ repoDir: root });
+    assert.deepEqual(result.errors, []);
+    assert.deepEqual(result.drift, [], 'the archive must not enter the guide list of index.md');
+    assert.equal(result.contentPages, contentPages);
+    assert.ok('summary' in result);
+    assert.equal(result.summary.contentPages, first.summary.contentPages);
 });
 
 test('wiki check detects bank claims, requirements, conditions, source links and identity drift', (context) => {

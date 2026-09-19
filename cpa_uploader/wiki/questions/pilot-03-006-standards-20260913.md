@@ -1,7 +1,7 @@
 ---
 title: "pilot-03-006-standards-20260913. 업무변경 거절 후 조치와 변경 후 보고"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[engagement-acceptance-contract]] · [[topic-03-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/134`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/126`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [03.json](../../analysis/reviews/question-review-2027/03.json)
 - 학습 순서: sub2
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/134/subquestions/0`
+유형: descriptive · JSON Pointer `/126/subquestions/0`
 
 ### 발문
 
-감사인이 업무변경에 동의할 수 없고 원래 감사업무의 계속도 허용되지 않을 때 수행할 후속 조치를 모두 설명하시오. 법규상 해지 가능성과 다른 이해관계자에게 보고할 의무를 구별하시오.
+감사인이 감사업무 조건의 변경에 동의할 수 없고 경영진은 원래 감사업무의 계속도 허용하지 않는 경우, 감사기준서 210 문단 17에 따라 감사인이 수행할 절차를 모두 설명하시오.
 
 ### 모범답안
 

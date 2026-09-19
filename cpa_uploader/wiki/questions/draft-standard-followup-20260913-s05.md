@@ -1,7 +1,7 @@
 ---
 title: "draft-standard-followup-20260913-s05. 강조사항문단이 대체할 수 없는 사항"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[kam-emphasis-comparatives-other-information]] · [[topic-16-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/156`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/148`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [16.json](../../analysis/reviews/question-review-2027/16.json)
 - 학습 순서: sub1
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub1
 
-유형: enumeration · JSON Pointer `/156/subquestions/0`
+유형: enumeration · JSON Pointer `/148/subquestions/0`
 
 ### 발문
 
@@ -46,10 +46,10 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 | criterion | 정본 명제 | 핵심 사실·조건 | 배점·판정별 점수 | requirement | source |
 |---|---|---|---|---|---|
-| crit1 | 감사기준서 701이 적용되는 경우 개별 핵심감사사항의 기술을 대체하지 않는다. | fact1 (action): 감사기준서 701이 적용되는 경우 개별 핵심감사사항의 기술을 대체하지 않는다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-33326-33327 | src-706-33326-33327 |
-| crit2 | 특정 감사업무 상황에서 요구되는 감사기준서 705에 따른 변형의견을 대체하지 않는다. | fact2 (action): 특정 감사업무 상황에서 요구되는 감사기준서 705에 따른 변형의견을 대체하지 않는다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-33380-33384 | src-706-33380-33384 |
+| crit1 | 감사기준서 701이 적용되는 경우 개별 핵심감사사항의 기술을 대체하지 않는다. 기준서 번호는 쓰지 않아도 되며 핵심감사사항을 커뮤니케이션하는 경우라는 적용조건이 드러나면 인정한다. | fact1 (action): 감사기준서 701이 적용되는 경우 개별 핵심감사사항의 기술을 대체하지 않는다. 기준서 번호는 쓰지 않아도 되며 핵심감사사항을 커뮤니케이션하는 경우라는 적용조건이 드러나면 인정한다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-33326-33327 | src-706-33326-33327 |
+| crit2 | 특정 감사업무 상황에서 요구되는 감사기준서 705에 따른 변형의견을 대체하지 않는다. 기준서 번호는 쓰지 않아도 되며 상황에서 요구되는 변형의견임이 드러나면 인정한다. | fact2 (action): 특정 감사업무 상황에서 요구되는 감사기준서 705에 따른 변형의견을 대체하지 않는다. 기준서 번호는 쓰지 않아도 되며 상황에서 요구되는 변형의견임이 드러나면 인정한다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-33380-33384 | src-706-33380-33384 |
 | crit3 | 해당 재무보고체계가 경영진에게 요구하거나 공정한 표시 달성에 필요한 재무제표 공시를 대체하지 않는다. | fact3 (action): 해당 재무보고체계가 경영진에게 요구하거나 공정한 표시 달성에 필요한 재무제표 공시를 대체하지 않는다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-33385-33387 | src-706-33385-33387 |
-| crit4 | 계속기업 존속능력에 유의적 의문을 초래할 수 있는 사건·상황과 관련된 중요한 불확실성이 존재할 때 감사기준서 570에 따른 보고를 대체하지 않는다. | fact4 (action): 계속기업 존속능력에 유의적 의문을 초래할 수 있는 사건·상황과 관련된 중요한 불확실성이 존재할 때 감사기준서 570에 따른 보고를 대체하지 않는다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-33388-33390 | src-706-33388-33390 |
+| crit4 | 계속기업 존속능력에 유의적 의문을 초래할 수 있는 사건·상황과 관련된 중요한 불확실성이 존재할 때 감사기준서 570에 따른 보고를 대체하지 않는다. 기준서 번호는 쓰지 않아도 되며 그 중요한 불확실성에 관한 보고임이 드러나면 인정한다. | fact4 (action): 계속기업 존속능력에 유의적 의문을 초래할 수 있는 사건·상황과 관련된 중요한 불확실성이 존재할 때 감사기준서 570에 따른 보고를 대체하지 않는다. 기준서 번호는 쓰지 않아도 되며 그 중요한 불확실성에 관한 보고임이 드러나면 인정한다. | 1; {"met":1,"not_met":0,"contradicted":0} | req-33388-33390 | src-706-33388-33390 |
 
 ### 요구사항과 직접 근거
 

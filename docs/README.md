@@ -7,6 +7,7 @@
 | 필요한 자료 | 위치 |
 | --- | --- |
 | 문서·데이터 소유권과 갱신 방법 | [자료 관리 원칙](출제-검토-자료-관리.md) |
+| 게시 문항 수정과 운영 증분 반영 | [문항 수정 패치 운영](문항-수정-패치-운영.md) |
 | 현재 출제·검토 현황과 연결 자료 | [wiki 현황](../cpa_uploader/wiki/_meta/authoring-dashboard.md) · [연결 분석](../cpa_uploader/analysis/coverage/README.md) |
 | 계획·정책 결정과 변경 이유 | [plans](plans/) 및 해당 설계 문서 |
 | 날짜별 검토 결과·제작 이유·당시의 판단 | [reports](reports/) |

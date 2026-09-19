@@ -1,7 +1,7 @@
 ---
 title: "pilot-16-012-standards-20260913. 핵심감사사항에 관한 감사문서 기록"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[kam-emphasis-comparatives-other-information]] · [[topic-16-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/138`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/130`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [16.json](../../analysis/reviews/question-review-2027/16.json)
 - 학습 순서: sub2
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/138/subquestions/0`
+유형: enumeration · JSON Pointer `/130/subquestions/0`
 
 ### 발문
 
-감사기준서 701 문단 18에 따라 핵심감사사항과 관련하여 감사문서에 포함할 사항을 모두 제시하시오. 유의적 감사인 주의를 요구한 사항의 기록, 각 사항의 핵심감사사항 해당 여부 판단, 핵심감사사항이 없거나 특정 사항뿐인 경우, 결정된 핵심감사사항을 공개하지 않는 경우를 구별하고 해당되는 경우라는 조건을 보존하시오.
+감사기준서 701 문단 18에 따라 핵심감사사항과 관련하여 감사문서에 포함하여야 할 사항을 모두 제시하시오. 해당되는 경우에만 포함하는 사항은 그 조건을 함께 쓰시오.
 
 ### 모범답안
 

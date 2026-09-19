@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-08-004--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-08-004--sub1--standard",
+  "source_set_id": "pilot-08-004",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "5c2505d0691373f0f2422fad95c136bee791838438af882fe3b5e075394b24d0",
+  "answers": {
+    "sub1": "일반적으로 기업 외부의 독립된 원천에서 얻은 감사증거는 신뢰성이 증가한다.\n일반적으로 내부적으로 생성된 감사증거는 그 작성과 유지에 관한 기업의 관련 통제가 효과적일 때 신뢰성이 증가한다.\n일반적으로 감사인이 직접 입수한 감사증거는 간접적으로 또는 추론으로 입수한 감사증거보다 신뢰성이 높다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ce6e30bf32dcb427a1eb6c42bbf1b0ea7852b27e5bfdbd63206efd0cc68cc66f",
+  "schema_hash": "70352bfbe1be1719e5db73c06f51d936a518ded990f1fd8452e13d4fe049d4a1",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "일반적으로 기업 외부의 독립된 원천에서 얻은 감사증거는 신뢰성이 증가한다.\n",
+            "reason": "외부 독립 원천의 감사증거는 일반적으로 신뢰성이 증가한다고 제시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "일반적으로 내부적으로 생성된 감사증거는 그 작성과 유지에 관한 기업의 관련 통제가 효과적일 때 신뢰성이 증가한다.\n",
+            "reason": "내부 생성 증거는 작성·유지 관련 통제가 효과적일 때 신뢰성이 증가한다고 제시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "일반적으로 감사인이 직접 입수한 감사증거는 간접적으로 또는 추론으로 입수한 감사증거보다 신뢰성이 높다.",
+            "reason": "직접 입수한 증거가 간접 또는 추론으로 입수한 증거보다 신뢰성이 높다고 제시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "외부 독립 원천의 감사증거는 일반적으로 신뢰성이 증가한다고 제시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "내부 생성 증거는 작성·유지 관련 통제가 효과적일 때 신뢰성이 증가한다고 제시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "직접 입수한 증거가 간접 또는 추론으로 입수한 증거보다 신뢰성이 높다고 제시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-08-004",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사증거의 신뢰성에 대한 일반화에는 예외가 있을 수 있다. 이를 전제로 기준서가 제시하는 일반화 중 원천, 내부통제 및 입수방식과 관련된 세 가지를 모두 제시하시오.",
+        "user_answer": "일반적으로 기업 외부의 독립된 원천에서 얻은 감사증거는 신뢰성이 증가한다.\n일반적으로 내부적으로 생성된 감사증거는 그 작성과 유지에 관한 기업의 관련 통제가 효과적일 때 신뢰성이 증가한다.\n일반적으로 감사인이 직접 입수한 감사증거는 간접적으로 또는 추론으로 입수한 감사증거보다 신뢰성이 높다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "일반적으로 기업 외부의 독립된 원천에서 얻은 감사증거는 신뢰성이 증가한다.",
+            "reason": "외부 독립 원천의 감사증거는 일반적으로 신뢰성이 증가한다고 제시했다.",
+            "claim": "기업 외부의 독립된 원천에서 얻은 감사증거는 신뢰성이 증가한다고 제시함 (예외가 있을 수 있는 일반화이며, 예외 없이 항상 성립한다고 명시하면 인정하지 않음)",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "일반적으로 내부적으로 생성된 감사증거는 그 작성과 유지에 관한 기업의 관련 통제가 효과적일 때 신뢰성이 증가한다.",
+            "reason": "내부 생성 증거는 작성·유지 관련 통제가 효과적일 때 신뢰성이 증가한다고 제시했다.",
+            "claim": "내부 생성 증거는 관련 통제가 효과적일 때 신뢰성이 증가한다고 제시함 (예외가 있을 수 있는 일반화이며, 예외 없이 항상 성립한다고 명시하면 인정하지 않음)",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "일반적으로 감사인이 직접 입수한 감사증거는 간접적으로 또는 추론으로 입수한 감사증거보다 신뢰성이 높다.",
+            "reason": "직접 입수한 증거가 간접 또는 추론으로 입수한 증거보다 신뢰성이 높다고 제시했다.",
+            "claim": "직접 입수한 증거가 간접 또는 추론으로 입수한 증거보다 신뢰성이 높다고 제시함 (예외가 있을 수 있는 일반화이며, 예외 없이 항상 성립한다고 명시하면 인정하지 않음)",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "일반적으로 기업 외부의 독립된 원천에서 얻은 감사증거는 신뢰성이 증가한다.",
+          "일반적으로 내부적으로 생성된 감사증거는 그 작성과 유지에 관한 기업의 관련 통제가 효과적일 때 신뢰성이 증가한다.",
+          "일반적으로 감사인이 직접 입수한 감사증거는 간접적으로 또는 추론으로 입수한 감사증거보다 신뢰성이 높다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_08fcef977e1cf118016aae06a7930887d0bdb485841a953600",
+        "request_id": "req_0b645b824de040aca31c9bbbedb6581a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2906,
+          "input_tokens_details": {
+            "cache_write_tokens": 2903,
+            "cached_tokens": 0
+          },
+          "output_tokens": 228,
+          "output_tokens_details": {
+            "reasoning_tokens": 25
+          },
+          "total_tokens": 3134
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00099995,
+        "min_usd": 0.00099995,
+        "max_usd": 0.00099995,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-08-004--sub1--standard--model/input.json",
+      "sha256": "7bbfe84d524db402e54fc57d94fe7dd6278d1d1100b44420f285f47acc9162e6"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-08-004--sub1--standard--model/transport.jsonl",
+      "sha256": "e88c8b934850655ad301148ba20b0acb2558023083767f8f2fb357d92e391129"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-08-004--sub1--standard--model/traces.jsonl",
+      "sha256": "b26c5f68114aa6a53eb14449e893ef67b63cae261f2cdbb8efe7de38a57774b0"
+    }
+  }
+}

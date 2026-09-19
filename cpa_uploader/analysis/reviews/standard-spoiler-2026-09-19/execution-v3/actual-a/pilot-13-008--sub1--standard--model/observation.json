@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v3/grading-manifest.json",
+    "sha256": "6e9afde14c37d1508d36ef44178d27d86f1632359a5e9c569fcc9dc312a81a28"
+  },
+  "entry_id": "pilot-13-008--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-008--sub1--standard",
+  "source_set_id": "pilot-13-008",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "f467eceb8c1831f40a4828994d5117d35e70cc0b73fe647e10949e02a88e926d",
+  "answers": {
+    "sub1": "감사기준서 705에 따라 감사의견을 변형한다.\n서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ec20daef6edd66397d96e40bde06dbece77ef020073481b896b75d526a1debef",
+  "schema_hash": "450e5450f39cb179dc330749e1eda21d00cb61df1fdc3d16477169ae47fd8af5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사기준서 705에 따라 감사의견을 변형한다.\n",
+            "reason": "감사기준서 705에 따른 감사의견 변형 조치를 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다.",
+            "reason": "충분하고 적합한 감사증거를 입수하지 못한 사유를 감사범위 제한으로 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "감사기준서 705에 따른 감사의견 변형 조치를 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "충분하고 적합한 감사증거를 입수하지 못한 사유를 감사범위 제한으로 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-008",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "재무제표감사와 관련된 서비스조직의 서비스에 관하여 이용자기업 감사인이 충분하고 적합한 감사증거를 입수할 수 없다. 감사기준서 402에 따라 이용자기업 감사인이 감사의견에 관하여 취할 조치와 그 근거를 설명하시오.",
+        "user_answer": "감사기준서 705에 따라 감사의견을 변형한다.\n서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사기준서 705에 따라 감사의견을 변형한다.",
+            "reason": "감사기준서 705에 따른 감사의견 변형 조치를 명시했다.",
+            "claim": "감사기준서 705에 따라 감사의견을 변형한다. 기준서 번호는 쓰지 않아도 되며 감사의견을 변형한다는 조치가 드러나면 인정한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다.",
+            "reason": "충분하고 적합한 감사증거를 입수하지 못한 사유를 감사범위 제한으로 명시했다.",
+            "claim": "서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "감사기준서 705에 따라 감사의견을 변형한다.",
+          "서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0d3b3fff64ec0627016aae1634bdec87d09c3f39aa3dc9230c",
+        "request_id": "req_c76d6891f66b47f8bda3008510a0e649",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2608,
+          "input_tokens_details": {
+            "cache_write_tokens": 2605,
+            "cached_tokens": 0
+          },
+          "output_tokens": 205,
+          "output_tokens_details": {
+            "reasoning_tokens": 56
+          },
+          "total_tokens": 2813
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008978500000000001,
+        "min_usd": 0.0008978500000000001,
+        "max_usd": 0.0008978500000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v3/actual-a/pilot-13-008--sub1--standard--model/input.json",
+      "sha256": "23508b33acf9421d4544162236425ff20170300ef223221ded9a84e3da0b009e"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v3/actual-a/pilot-13-008--sub1--standard--model/transport.jsonl",
+      "sha256": "a3d2d853975e89a46613601eb4d455fc898f6f05b563ea901b4853c651e8fd6a"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v3/actual-a/pilot-13-008--sub1--standard--model/traces.jsonl",
+      "sha256": "0a7b56dab4068be7382fde340e6cb47fe07b025672ef66b365fc0cdf1a1edf5a"
+    }
+  }
+}

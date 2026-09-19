@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "artifact_type": "question_set_correction",
+  "correction_id": "20260919-std-points-20260914-b10e300423f0--standard-spoiler-followup",
+  "set_id": "std-points-20260914-b10e300423f0",
+  "summary": "기준서형 검토 후속: 실측에서 드러난 채점 입력 오류 수정(sub3)",
+  "note": "기준서형 수정·스포일러 전수 검토의 v1 실측(cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/batch-v1.json)에서 드러난 명제·critical_facts·모범답안의 오류를 고친다(cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/plan-v2.json). 발문·학습 유형·주제·배점은 바꾸지 않는다.",
+  "base_content_hash": "1ef3f5d1b41b723ce77e58a415f8ec5286448865dfddc6f1e6059f17684526ca",
+  "patches": [
+    {
+      "target": {
+        "subquestion": "sub3",
+        "criterion": "crit5",
+        "field": "claim"
+      },
+      "reason": "발문이 묻지 않는 설명이 득점 요건으로 읽힘: 발문은 변경 후 수행할 업무와 발행할 보고서에 관한 요구를 묻는다. 종전 감사의 관련성(A35 첫 문장)은 요구가 아니므로 명제에서 요건으로 두지 않고 쓰지 않아도 된다고 밝힌다.",
+      "expected_before": "변경 후 수행할 업무가 변경된 업무에 적합해야 한다. 종전 절차의 전부 폐기나 전면 재수행이 자동 요구되는 것은 아니다.",
+      "set": "변경 후 수행할 업무가 변경된 업무에 적합해야 한다. 변경일까지 수행한 감사가 변경된 업무와 관련될 수 있다는 점은 쓰지 않아도 된다."
+    },
+    {
+      "target": {
+        "subquestion": "sub3",
+        "criterion": "crit5",
+        "field": "critical_facts"
+      },
+      "reason": "critical_facts가 요구가 아닌 둘째 문장까지 negation으로 담고 있었다. 요구 문장만 남기고 보고서에 관한 crit10과 같은 condition으로 맞춘다.",
+      "expected_before": [
+        {
+          "id": "crit5.fact",
+          "type": "negation",
+          "expected": "변경 후 수행할 업무가 변경된 업무에 적합해야 한다. 종전 절차의 전부 폐기나 전면 재수행이 자동 요구되는 것은 아니다."
+        }
+      ],
+      "set": [
+        {
+          "id": "crit5.fact",
+          "type": "condition",
+          "expected": "변경 후 수행할 업무가 변경된 업무에 적합해야 한다."
+        }
+      ]
+    }
+  ]
+}

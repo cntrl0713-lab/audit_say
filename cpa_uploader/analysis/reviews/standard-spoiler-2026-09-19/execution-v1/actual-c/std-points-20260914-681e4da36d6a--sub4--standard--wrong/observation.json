@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "std-points-20260914-681e4da36d6a--sub4--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-681e4da36d6a--sub4--standard",
+  "source_set_id": "std-points-20260914-681e4da36d6a",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub4"
+  ],
+  "projected_body_hash": "a67c9aed4456850e716054b5f5d353c9fff20012c343e5fccb6e7f118682e8c1",
+  "answers": {
+    "sub4": "감사보고서를 발행하면 감사문서를 모두 즉시 폐기한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub4",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "fb933c41aca779216a0c231b2fce8e8725df0335fa7172c1ec36670a87ac36ee",
+  "schema_hash": "4412bea24bfa9431b2a108b086ec5524157913b2c0399d5c4375dfc0aea75ded",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "verdicts": [
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "하나의 감사파일로 취합한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "not_met",
+            "reason": "감사보고서일 후 적시에 최종감사파일 취합을 완료한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "contradicted",
+            "quote": "감사보고서를 발행하면 감사문서를 모두 즉시 폐기한다.",
+            "reason": "감사문서를 즉시 폐기한다고 하여 보존기간 종료 전 삭제·폐기 금지와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub4",
+            "verdicts": [
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "하나의 감사파일로 취합한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit7",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사보고서일 후 적시에 최종감사파일 취합을 완료한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit8",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e0"
+                ],
+                "reason": "감사문서를 즉시 폐기한다고 하여 보존기간 종료 전 삭제·폐기 금지와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-681e4da36d6a",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "prompt": "감사기준서 1200(소규모기업 재무제표에 대한 감사) 문단 30과 문단 31 첫 문장에 따라 최종감사파일의 취합과 그 후의 감사문서 관리에 관한 요구사항을 설명하시오.",
+        "user_answer": "감사보고서를 발행하면 감사문서를 모두 즉시 폐기한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "하나의 감사파일로 취합한다는 내용이 없다.",
+            "claim": "감사 관련 문서를 하나의 감사파일로 취합함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "not_met",
+            "reason": "감사보고서일 후 적시에 최종감사파일 취합을 완료한다는 내용이 없다.",
+            "claim": "감사보고서일 후 적시에 최종감사파일 취합 절차를 완료함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "contradicted",
+            "quote": "감사보고서를 발행하면 감사문서를 모두 즉시 폐기한다.",
+            "reason": "감사문서를 즉시 폐기한다고 하여 보존기간 종료 전 삭제·폐기 금지와 반대된다.",
+            "claim": "최종파일 취합 후 보존기간 종료 전 감사문서를 삭제·폐기하지 않음",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사 관련 문서를 하나의 감사파일로 취합한다.",
+          "감사보고서일 후 적시에 최종감사파일 취합을 완료한다.",
+          "취합 후 보존기간 종료 전에는 감사문서를 삭제하거나 폐기하지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub4",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_05f3a2ecead86225016aae097cbeb487d0ab866e51fc879c18",
+        "request_id": "req_3efe0ac3b87f41cdb0b447c0b1d40ba3",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2463,
+          "input_tokens_details": {
+            "cache_write_tokens": 2460,
+            "cached_tokens": 0
+          },
+          "output_tokens": 292,
+          "output_tokens_details": {
+            "reasoning_tokens": 108
+          },
+          "total_tokens": 2755
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.000966,
+        "min_usd": 0.000966,
+        "max_usd": 0.000966,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-681e4da36d6a--sub4--standard--wrong/input.json",
+      "sha256": "c6523f081528828c21088eb744cbdaa00951338a088c664e9957fea814bbcee5"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-681e4da36d6a--sub4--standard--wrong/transport.jsonl",
+      "sha256": "c9efbe627ce590c5592b05a82a89fcebb5a20f266f6fb37b2679afb0d73e5dc2"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-681e4da36d6a--sub4--standard--wrong/traces.jsonl",
+      "sha256": "5f8eacefc93a8a8ceba685eb2862927d623bf98ba1451c8ddbae33be2b40a23c"
+    }
+  }
+}

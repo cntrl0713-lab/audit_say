@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "std-points-20260914-75a082c48cbc--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-75a082c48cbc--sub1--standard",
+  "source_set_id": "std-points-20260914-75a082c48cbc",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "d4fe841421200e6691c15d0dd203f358a42e801b2924eb8ae341754e16549db3",
+  "answers": {
+    "sub1": "회계추정치와 관련 공시는 경영진 판단이므로 합리성을 평가하지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit3.p2",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "51963914cfec80d9e4e4e098dc0128792bb53fa3d4c23ee414a603d114398f16",
+  "schema_hash": "8a76100d9c659d85c503c198b8490243f42cbe2546f6c3232a58394fb26e7bed",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "회계추정치와 관련 공시는 경영진 판단이므로 합리성을 평가하지 않는다.",
+            "reason": "회계추정치의 합리성을 평가하지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "contradicted",
+            "quote": "회계추정치와 관련 공시는 경영진 판단이므로 합리성을 평가하지 않는다.",
+            "reason": "관련 공시의 합리성을 평가하지 않는다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "회계추정치의 합리성을 평가하지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3.p2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "관련 공시의 합리성을 평가하지 않는다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-75a082c48cbc",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "재무제표가 해당 재무보고체계에 따라 작성되었는지 평가할 때 감사기준서 700 문단 13(c)에 따라 감사인이 평가하여야 할 사항을 설명하시오.",
+        "user_answer": "회계추정치와 관련 공시는 경영진 판단이므로 합리성을 평가하지 않는다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "회계추정치와 관련 공시는 경영진 판단이므로 합리성을 평가하지 않는다.",
+            "reason": "회계추정치의 합리성을 평가하지 않는다고 명시했다.",
+            "claim": "경영진의 회계추정치가 합리적인지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "contradicted",
+            "quote": "회계추정치와 관련 공시는 경영진 판단이므로 합리성을 평가하지 않는다.",
+            "reason": "관련 공시의 합리성을 평가하지 않는다고 명시했다.",
+            "claim": "회계추정치에 관련된 공시가 합리적인지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진의 회계추정치가 합리적인지 평가한다.",
+          "회계추정치에 관련된 공시가 합리적인지 평가한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_089d7e36d76647f5016aae0935ba5087d08074afc5ab2f4291",
+        "request_id": "req_467f4497812444ecb3e89cb78f086eb2",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2304,
+          "input_tokens_details": {
+            "cache_write_tokens": 2301,
+            "cached_tokens": 0
+          },
+          "output_tokens": 191,
+          "output_tokens_details": {
+            "reasoning_tokens": 51
+          },
+          "total_tokens": 2495
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00080505,
+        "min_usd": 0.00080505,
+        "max_usd": 0.00080505,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-75a082c48cbc--sub1--standard--wrong/input.json",
+      "sha256": "6e4df4804a3381c550aa528e0289ce8adcc3ceb751990b77cde30ea5b6fa7f09"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-75a082c48cbc--sub1--standard--wrong/transport.jsonl",
+      "sha256": "3469fdea83ca2017902c9e1043c3a8ce36d7e1e976caf26609faa60706546c31"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-75a082c48cbc--sub1--standard--wrong/traces.jsonl",
+      "sha256": "cac765adcfd5672f7b2b7c624905a45d883138155f4fc3b32d7a3872efae63e7"
+    }
+  }
+}

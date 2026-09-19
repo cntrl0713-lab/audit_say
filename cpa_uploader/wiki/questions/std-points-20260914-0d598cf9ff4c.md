@@ -1,7 +1,7 @@
 ---
-title: "std-points-20260914-0d598cf9ff4c. 재무제표가 중요성의 관점에서 해당 재무보고체계에 따라 작성되었다고 결론을 내린 경우 표명할 감사의견을 제시하시오. 이어 감사의견을 변형해야 하는 두 경우를 설명하시오."
+title: "std-points-20260914-0d598cf9ff4c. 감사기준서 700 문단 16·17에 따라 감사인이 적정의견을 표명하여야 하는 경우와 감사의견을 변형하여야 하는 경우를 모두 설명하시오."
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -10,12 +10,12 @@ sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/
 confidence: high
 ---
 
-# std-points-20260914-0d598cf9ff4c. 재무제표가 중요성의 관점에서 해당 재무보고체계에 따라 작성되었다고 결론을 내린 경우 표명할 감사의견을 제시하시오. 이어 감사의견을 변형해야 하는 두 경우를 설명하시오.
+# std-points-20260914-0d598cf9ff4c. 감사기준서 700 문단 16·17에 따라 감사인이 적정의견을 표명하여야 하는 경우와 감사의견을 변형하여야 하는 경우를 모두 설명하시오.
 
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[audit-opinions-reports]] · [[topic-15-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/330`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/317`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [15.json](../../analysis/reviews/question-review-2027/15.json)
 - 학습 순서: sub2
@@ -25,16 +25,16 @@ confidence: high
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/330/subquestions/0`
+유형: enumeration · JSON Pointer `/317/subquestions/0`
 
 ### 발문
 
-재무제표가 중요성의 관점에서 해당 재무보고체계에 따라 작성되었다고 결론을 내린 경우 표명할 감사의견을 제시하시오. 이어 감사의견을 변형해야 하는 두 경우를 설명하시오.
+감사기준서 700 문단 16·17에 따라 감사인이 적정의견을 표명하여야 하는 경우와 감사의견을 변형하여야 하는 경우를 모두 설명하시오.
 
 ### 모범답안
 
 - 해당 재무보고체계에 따라 중요성의 관점에서 작성되었다고 결론 내리면 적정의견을 표명한다.
-- 재무제표 전체에 중요한 왜곡표시가 있다고 결론 내리거나, 중요한 왜곡표시가 없다고 결론 내릴 충분하고 적합한 감사증거를 입수할 수 없으면 의견을 변형한다.
+- 입수한 감사증거에 근거할 때 재무제표 전체에 중요한 왜곡표시가 있다고 결론 내리거나, 중요한 왜곡표시가 없다고 결론 내릴 충분하고 적합한 감사증거를 입수할 수 없으면 의견을 변형한다.
 
 ### 답안 계약
 
@@ -44,7 +44,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 | criterion | 정본 명제 | 핵심 사실·조건 | 배점·판정별 점수 | requirement | source |
 |---|---|---|---|---|---|
-| crit1 | 주어진 결론에 대응하여 적정의견을 제시함. 의견 명칭만으로 인정하며 주어진 조건을 다시 쓰도록 요구하지 않음 | crit1-fact (conclusion): 적정의견을 표명 | 1; {"met":1,"not_met":0,"contradicted":0} | req-1 | src-597829e69f241911 |
+| crit1 | 재무제표가 중요성의 관점에서 해당 재무보고체계에 따라 작성되었다고 결론 내린 경우 적정의견을 표명한다. 적정의견이라는 명칭만 쓰고 그 조건을 쓰지 않으면 인정하지 않는다. | crit1-fact (conclusion): 적정의견을 표명 / crit1-condition (condition): 재무제표가 중요성의 관점에서 해당 재무보고체계에 따라 작성되었다고 결론 내린 경우 | 1; {"met":1,"not_met":0,"contradicted":0} | req-1 | src-597829e69f241911 |
 | crit2 | 증거에 근거하여 재무제표 전체의 중요한 왜곡표시를 결론 내린 경우를 제시함 | crit1-fact (condition): 입수한 감사증거에 근거한 재무제표 전체의 중요한 왜곡표시 결론 | 1; {"met":1,"not_met":0,"contradicted":0} | req-2 | src-6e02e3596ec20748, src-5b1d99a09e00a1b7 |
 | crit3 | 재무제표 전체에 중요한 왜곡표시가 없다고 결론 내리기에 충분하고 적합한 증거를 입수할 수 없는 경우를 제시함 | crit2-fact (condition): 재무제표 전체가 중요하게 왜곡표시되지 않았다고 결론 내리기에 충분하고 적합한 감사증거의 입수 불가 | 1; {"met":1,"not_met":0,"contradicted":0} | req-3 | src-65285bb522d3a84c, src-5b1d99a09e00a1b7 |
 

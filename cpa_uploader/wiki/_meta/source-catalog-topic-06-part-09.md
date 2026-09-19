@@ -1,7 +1,7 @@
 ---
 title: "06. 위험평가와 내부통제 이해 원자료 단위 9/12"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-18
 type: source-map
 status: generated
 review_required: true

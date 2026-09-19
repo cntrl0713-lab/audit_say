@@ -1,0 +1,225 @@
+{
+  "version": 1,
+  "artifact_type": "case_merge_lineage",
+  "created_at": "2026-09-18",
+  "user_instruction": "docs/case-question-edit-notes-2026-09-14.md 항목 46·7·23(2026-09-18 대화: 세 문제를 종합해서 새로운 문제로 만든다. 원 세 세트는 기준서형 물음까지 모두 대체·퇴역하고, 발행 후 단계를 넣은 2물음 구성으로 진행한다)",
+  "source_bank": {
+    "file": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+    "sha256": "7127f42b5ca7fc64b9bd2b75ec4c07ae5eefe27a0bd2f9f0f5280bfbf5453104"
+  },
+  "sources": [
+    {
+      "set_id": "case-09-confirmation-barrier-20260914",
+      "title": "특별 판매약정의 조회 거부와 대체증거의 한계",
+      "status": "published",
+      "reviewed_content_sha256": "ae882bb15523ead4c188c91f6e0705cfee2e3b938e24cad7003ec97d1a5f6ffa",
+      "points": 9
+    },
+    {
+      "set_id": "pilot-02-006",
+      "title": "전문가적 의구심의 의미와 증거평가",
+      "status": "published",
+      "reviewed_content_sha256": "cd77f0f1c078a513aa88663c156c3358383536a12019a6456a9ed80330cacf94",
+      "points": 10
+    },
+    {
+      "set_id": "pilot-02-007",
+      "title": "감사절차의 비용 제약과 사후 부정 발견의 평가",
+      "status": "published",
+      "reviewed_content_sha256": "71763c0066620a07f288c9ca43a7009366efa68298e2a7afe8c8a9084061c179",
+      "points": 7
+    }
+  ],
+  "target": {
+    "set_id": "case-09-confirmation-skepticism-20260918",
+    "reviewed_content_sha256": "72f976ed121e2e86b013d0d1c479aeb228ba83e55d6e509af9005ec192f6559c",
+    "points": 8
+  },
+  "mapping": [
+    {
+      "from": "case-09-confirmation-barrier-20260914 fact1(한결회계법인·라온회사, 연말 특별 판매약정, 적극적 조회 계획, 조건의 중요성)",
+      "disposition": "rewritten",
+      "to": "fact1, fact2",
+      "reason": "회사명을 누리회계법인·하람회사·가온상사로 바꾸고 조건의 중요성을 배경 사실로 유지했다. 적극적 조회 계획은 자료 2의 발송 시도로 옮겼다."
+    },
+    {
+      "from": "case-09-confirmation-barrier-20260914 fact2(재무담당이사의 거부와 문서 미제시, 관리자 계정 수정 기록, 담당자별 설명 불일치)",
+      "disposition": "rewritten",
+      "to": "fact2",
+      "reason": "거부·수정 기록·설명 불일치는 유지하고 설명 불일치를 반품 조건에 관한 두 사람의 설명으로 구체화했다. ①의 결론 방향을 알려 주던 “문서는 제시하지 않았다”를 뺐다."
+    },
+    {
+      "from": "case-09-confirmation-barrier-20260914 fact3(원본은 거래처만 보관, 다른 외부 기록 없음, 요약파일 공란, 출고증·입금내역으로 충분하다는 팀원 제안)",
+      "disposition": "rewritten",
+      "to": "fact1, fact2 ④",
+      "reason": "원본 보관 위치와 요약파일 공란은 자료 1의 사실로 두고, 팀원의 틀린 주장은 감사팀이 대조 결과로 결론을 내리기로 한 절차 ④로 바꾸었다."
+    },
+    {
+      "from": "case-09-confirmation-barrier-20260914 fact4(추가 대조 후 조건 미확인, 끝까지 거부, 회신 미입수, 다른 증거 부재, 지배기구 구성과 법규 제한 없음)",
+      "disposition": "rewritten",
+      "to": "fact3",
+      "reason": "끝까지 거부와 회신 미입수, 지배기구에 경영에 참여하지 않는 구성원이 있다는 사실만 남겼다. ④의 정답을 드러내던 대조 결과 문장과 법규 문장은 뺐다."
+    },
+    {
+      "from": "case-09-confirmation-barrier-20260914 sub1 c1(거부 사유의 타당성·합리성에 관한 추가 증거)",
+      "disposition": "converted_to_incorrect_item",
+      "to": "fact2 ①, sub1.c2",
+      "reason": "질문·기록 뒤 경영진의 판단을 존중해 받아들인 절차로 바꾸어 이유 또는 보완절차 1점으로 채점한다."
+    },
+    {
+      "from": "case-09-confirmation-barrier-20260914 sub1 c2·c3(부정위험 평가와 다른 감사절차의 성격·시기·범위에 대한 시사점)",
+      "disposition": "converted_to_trap",
+      "to": "fact2 ③(옳음), sub1.c1",
+      "reason": "부정 확인 전에 부정위험 평가를 높이고 다른 특별약정의 절차 범위를 넓힌 옳은 판단으로 바꾸어 식별 기준으로만 평가한다."
+    },
+    {
+      "from": "case-09-confirmation-barrier-20260914 sub2 c1(적극적 조회 회신 필요 판단, 대체 불가)",
+      "disposition": "merged_into_identification",
+      "to": "sub1.c1, sub1.c4",
+      "reason": "④를 옳지 않다고 고르는 식별과 ④의 이유로 채점한다."
+    },
+    {
+      "from": "case-09-confirmation-barrier-20260914 sub2 c2·c3(기업 외부에서만 입수 가능, 특정 부정위험요소로 내부 증거 불신)",
+      "disposition": "retained_as_reason",
+      "to": "sub1.c4",
+      "reason": "두 사정 중 하나만 들어도 ④의 이유로 인정한다."
+    },
+    {
+      "from": "case-09-confirmation-barrier-20260914 sub3 c1(지배기구 커뮤니케이션)",
+      "disposition": "converted_to_incorrect_item",
+      "to": "fact3 ⑥, sub2.c2",
+      "reason": "대표이사와 재무담당이사에게만 서면으로 알린 조치로 바꾸었다."
+    },
+    {
+      "from": "case-09-confirmation-barrier-20260914 sub3 c2·c3(해당 감사의 수행과 감사의견에 대한 시사점, 적정의견 종결 불가)",
+      "disposition": "retained_as_reason",
+      "to": "fact3 ⑦, sub2.c3",
+      "reason": "기한·예산을 이유로 현재 증거로 충분하다고 보고 종결한 판단의 보완절차(705에 따른 감사와 감사의견의 시사점 결정)로 합쳤다."
+    },
+    {
+      "from": "pilot-02-006 f1(한결회계법인·다온회사, 네 독립 상황, 부정 미확정)",
+      "disposition": "deleted",
+      "to": null,
+      "reason": "같은 회사의 시간 순서 사례로 바꾸면서 독립 상황 안내를 없앴다. 부정이 확정되지 않은 상태는 ③의 “부정 여부를 확인하기 전에”로 남겼다."
+    },
+    {
+      "from": "pilot-02-006 f2(회사 계약서와 고객 확인서의 상반)",
+      "disposition": "absorbed",
+      "to": "fact2 ②, sub1.c3",
+      "reason": "상반된 감사증거 요소를 판매담당자와 재무담당이사의 서로 다른 설명으로 옮겼다. 계약 취소 확인서 상황은 삭제했다."
+    },
+    {
+      "from": "pilot-02-006 f3(납품확인서 서명 부인)",
+      "disposition": "deleted",
+      "to": null,
+      "reason": "문서 신뢰성 의문 요소는 결산 직전 관리자 계정의 반복 수정(②·③·④의 사실)으로 대신했다."
+    },
+    {
+      "from": "pilot-02-006 f4(승인권자 개인계좌 송금)",
+      "disposition": "deleted",
+      "to": null,
+      "reason": "부정 가능성 상황은 관리자 계정 수정·설명 불일치·발송 거부(③)로 대신했다."
+    },
+    {
+      "from": "pilot-02-006 f5(계획에 없던 해외 보관재고)",
+      "disposition": "deleted",
+      "to": null,
+      "reason": "추가 감사절차의 필요성은 ③의 다른 특별약정에 대한 절차 범위 확대로 대신했다."
+    },
+    {
+      "from": "pilot-02-006 f6(과거의 정직한 설명을 들어 추가조사 없이 만족하자는 팀장 제안)",
+      "disposition": "converted_to_incorrect_item",
+      "to": "fact2 ②, sub1.c3",
+      "reason": "“더 조사하지 말고”라는 부정형을 없애고 과거 성실한 답변을 이유로 재무담당이사의 설명을 채택한 판단으로 바꾸었다."
+    },
+    {
+      "from": "pilot-02-006 sub1 crit1~crit3(전문가적 의구심의 정의, 기준서형 3점)",
+      "disposition": "deleted",
+      "to": null,
+      "reason": "사례와 무관한 기준서형 물음이어서 사례 병합 대상이 아니다. 사용자 결정(2026-09-18)에 따라 별도로 보존하지 않고 원 세트와 함께 퇴역한다."
+    },
+    {
+      "from": "pilot-02-006 sub2 crit4·crit5(상반된 증거, 문서 신뢰성 의문)",
+      "disposition": "absorbed",
+      "to": "sub1.c3, sub1.c4",
+      "reason": "서로 다른 설명을 해소해야 한다는 ②의 보완절차와 회사 자료를 신뢰할 수 없다는 ④의 이유로 흡수했다."
+    },
+    {
+      "from": "pilot-02-006 sub2 crit6(부정의 존재가능성을 나타낼 수 있는 상황)",
+      "disposition": "converted_to_trap",
+      "to": "fact2 ③(옳음), sub1.c1",
+      "reason": "부정 확인 전에 위험평가를 높인 옳은 판단으로 식별 기준에서 평가한다."
+    },
+    {
+      "from": "pilot-02-006 sub2 crit7(추가적인 감사절차의 필요성)",
+      "disposition": "converted_to_trap",
+      "to": "fact2 ③(옳음), sub1.c1",
+      "reason": "다른 특별약정에 대한 감사절차의 범위 확대로 옮겼다."
+    },
+    {
+      "from": "pilot-02-006 sub3 crit8(팀장 제안이 부적절하다는 판단)",
+      "disposition": "merged_into_identification",
+      "to": "sub1.c1",
+      "reason": "②를 옳지 않다고 고르는 식별로 채점한다."
+    },
+    {
+      "from": "pilot-02-006 sub3 crit10·crit9(더 조사하여 절차 변경·추가 결정, 과거 신뢰로 의구심 필요성이 경감되지 않음)",
+      "disposition": "retained_as_reason",
+      "to": "sub1.c3",
+      "reason": "둘 중 하나만 써도 ②의 이유 또는 보완절차로 인정한다."
+    },
+    {
+      "from": "pilot-02-007 f1(한결회계법인, 독립 상황 갑·을, 법적 책임 제외)",
+      "disposition": "deleted",
+      "to": null,
+      "reason": "같은 회사의 시간 순서 사례로 바꾸었다. 법적 책임 제외 문장은 판단에 쓰이지 않아 뺐다."
+    },
+    {
+      "from": "pilot-02-007 f2(해외 보관 자산의 현지 절차, 대체 절차 없음, 예산 초과·일정 촉박을 이유로 한 생략 제안)",
+      "disposition": "rewritten",
+      "to": "fact3 ⑦",
+      "reason": "A53 요건을 사실로 주던 “대체적인 절차는 없으며 … 설득력이 낮다”를 없애고, 업무 종결 단계에서 제출기한·예산을 이유로 현재 증거로 충분하다고 본 판단으로 바꾸었다."
+    },
+    {
+      "from": "pilot-02-007 f3(발행 후 거래처·직원 공모와 조회 회신 조작 발견)",
+      "disposition": "rewritten",
+      "to": "fact4",
+      "reason": "같은 회사의 다른 거래처(나래상사) 사건으로 옮기고, 당시 적극적 조회를 수행해 받은 회신이 장부와 일치했다는 사실을 두었다."
+    },
+    {
+      "from": "pilot-02-007 f4(사후 발견만으로 미준수가 확정되었다는 주장, 정교한 조작이므로 검토가 불필요하다는 주장, 검토 미실시)",
+      "disposition": "converted_to_items",
+      "to": "fact4 ⑧(옳음), ⑨(옳지 않음)",
+      "reason": "미준수 주장은 사후 발견만으로 미준수로 볼 수 없다는 품질관리실의 옳은 판단(⑧)으로, 검토 불필요 주장은 조작의 정교함을 들어 준수로 결론 낸 업무수행이사의 판단(⑨)으로 바꾸었다. 결론을 암시하던 “검토는 아직 이루어지지 않았다”를 뺐다."
+    },
+    {
+      "from": "pilot-02-007 sub2 crit4(제안이 부적절하다는 판단)",
+      "disposition": "merged_into_identification",
+      "to": "sub2.c1",
+      "reason": "⑦을 옳지 않다고 고르는 식별로 채점한다."
+    },
+    {
+      "from": "pilot-02-007 sub2 crit5·crit10(시간·비용은 대체 절차 없는 절차 생략이나 설득력 낮은 증거 만족의 근거가 아님)",
+      "disposition": "retained_as_reason",
+      "to": "sub2.c3",
+      "reason": "⑦의 이유로 승계했다. ⑦은 현재 증거에 만족한 판단이므로 두 갈래 중 설득력 낮은 증거에 관한 부분이 직접 대응하며, 절차 생략 갈래는 같은 원칙의 서술로 인정한다."
+    },
+    {
+      "from": "pilot-02-007 sub3 crit6(사후 발견만으로 미준수 단정 불가, 정교한 조작만으로 적절성 확정 불가)",
+      "disposition": "split",
+      "to": "fact4 ⑧(옳음, sub2.c1), ⑨(sub2.c1·sub2.c4)",
+      "reason": "전단은 옳은 함정 ⑧, 후단은 옳지 않은 항목 ⑨로 나누었다."
+    },
+    {
+      "from": "pilot-02-007 sub3 crit7~crit9(수행한 절차, 증거의 충분성과 적합성, 감사보고서의 적합성)",
+      "disposition": "retained_as_reason",
+      "to": "sub2.c4",
+      "reason": "⑨의 이유 또는 보완절차 1점으로 통합했다. 세 측면 중 일부만 들어도 인정한다."
+    }
+  ],
+  "points_change": {
+    "from": 26,
+    "to": 8,
+    "reason": "원 세 세트는 9점·10점·7점이었다. pilot-02-006의 기준서형 물음 1(3점)은 사용자 결정으로 병합 없이 퇴역한다. 사례형 23점은 선택형 2물음 8점(식별 2점 + 옳지 않은 항목 6점)으로 통합했다. 원 criterion의 세부 명제(두 사정, 네 범주, 세 평가 측면, 판단 문구)는 식별 기준과 항목별 이유나 보완절차 1점으로 옮겼다."
+  }
+}

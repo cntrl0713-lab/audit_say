@@ -1,0 +1,252 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-18-003--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-18-003--sub1--standard",
+  "source_set_id": "pilot-18-003",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "50e73049a07e213510269c227979af6dd0c93932062a502a40ca93a8c1bb0ffa",
+  "answers": {
+    "sub1": "감사보고서에 회계감사기준 전체를 준수하였다고 기술해서는 안 되며, 일반 감사기준서나 그 일부를 언급해서도 안 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (문단 5의 선택 적용을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (문단 5의 선택 적용을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (문단 5의 선택 적용을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit3.p2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (문단 5의 선택 적용을 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "b2b6084b5458246e14d6e7b09884e626a58f696fdd9419c09692343c89e41926",
+  "schema_hash": "62c14e23f76f48dea4dde46f49e56c3fcfebb27cda3f6f8715e1dde8baee703e",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사보고서에 회계감사기준 전체를 준수하였다고 기술해서는 안 되며, 일반 감사기준서나 그 일부를 언급해서도 안 된다.",
+            "reason": "회계감사기준 전체를 준수했다고 기술해서는 안 된다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "감사보고서에 회계감사기준 전체를 준수하였다고 기술해서는 안 되며, 일반 감사기준서나 그 일부를 언급해서도 안 된다.",
+            "reason": "일반 감사기준서나 그 일부를 언급해서는 안 된다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "적용 조건을 충족하는 기업과 서면으로 합의해야 한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "not_met",
+            "reason": "감사기준서 1200 대신 일반 감사기준서를 적용할 수 있다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "회계감사기준 전체를 준수했다고 기술해서는 안 된다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "일반 감사기준서나 그 일부를 언급해서는 안 된다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "적용 조건을 충족하는 기업과 서면으로 합의해야 한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit3.p2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사기준서 1200 대신 일반 감사기준서를 적용할 수 있다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-18-003",
+    "score": 2,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 1200(소규모기업 재무제표에 대한 감사)을 적용하여 감사를 수행한 경우 감사보고서에 기술하거나 언급해서는 안 되는 사항을 모두 제시하시오. 또한 감사기준서 1200 문단 5에 따라 문단 2의 조건을 충족하는 기업의 감사에 적용할 감사기준서에 관한 내용을 조건과 함께 설명하시오.",
+        "user_answer": "감사보고서에 회계감사기준 전체를 준수하였다고 기술해서는 안 되며, 일반 감사기준서나 그 일부를 언급해서도 안 된다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사보고서에 회계감사기준 전체를 준수하였다고 기술해서는 안 되며, 일반 감사기준서나 그 일부를 언급해서도 안 된다.",
+            "reason": "회계감사기준 전체를 준수했다고 기술해서는 안 된다고 명시했다.",
+            "claim": "감사기준서 1200 적용 시 회계감사기준 전체를 준수했다고 기술하지 않음",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "감사보고서에 회계감사기준 전체를 준수하였다고 기술해서는 안 되며, 일반 감사기준서나 그 일부를 언급해서도 안 된다.",
+            "reason": "일반 감사기준서나 그 일부를 언급해서는 안 된다고 명시했다.",
+            "claim": "감사기준서 1200 적용 시 일반 감사기준서 또는 그 일부를 언급하지 않음",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "적용 조건을 충족하는 기업과 서면으로 합의해야 한다는 내용이 없다.",
+            "claim": "감사기준서 1200 적용 조건을 충족하는 기업과 서면으로 합의해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "not_met",
+            "reason": "감사기준서 1200 대신 일반 감사기준서를 적용할 수 있다는 내용이 없다.",
+            "claim": "감사기준서 1200 대신 일반 감사기준서를 대체 적용할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사보고서에 회계감사기준 전체를 준수했다고 기술해서는 안 된다.",
+          "감사보고서에 일반 감사기준서 또는 그 일부를 언급해서는 안 된다.",
+          "감사기준서 1200 문단 2 요건을 충족하는 기업과 서면으로 합의하면 감사기준서 1200 대신 일반 감사기준서를 적용할 수 있다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_05d7d6651f77b330016aae071b8f8487d092155c9c317d170c",
+        "request_id": "req_e291951071f941f0a60ad7fabe051ac6",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2664,
+          "input_tokens_details": {
+            "cache_write_tokens": 2661,
+            "cached_tokens": 0
+          },
+          "output_tokens": 267,
+          "output_tokens_details": {
+            "reasoning_tokens": 38
+          },
+          "total_tokens": 2931
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00098625,
+        "min_usd": 0.00098625,
+        "max_usd": 0.00098625,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-18-003--sub1--standard--partial/input.json",
+      "sha256": "1f4876996283cc5364851f7c0e668ea1e47841d163525034cc1d3aee6c4faa52"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-18-003--sub1--standard--partial/transport.jsonl",
+      "sha256": "8db1f978af145f753d3375fbfdf234eeeb8ddfc4c3a84bc0a0a3a67bd1adc34f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-18-003--sub1--standard--partial/traces.jsonl",
+      "sha256": "79391a3e429188ccb6908a766f4234eed7ab25025e117c0c5175b0b14690dfdf"
+    }
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-12-003--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-003--sub1--standard",
+  "source_set_id": "pilot-12-003",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "c83ec6b3b1dea43752256811bd78a341aaaef2fac447603aaafab86dff364412",
+  "answers": {
+    "sub1": "현금흐름 예측은 경영진의 책임이므로 감사인은 예측 결과만 재무제표 주석과 대조하고, 경영진 확인서로 예측의 적정성을 확인한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요구 절차를 하나도 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요구 절차를 하나도 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요구 절차를 하나도 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "c2d6f44a662227c836499bf9ed9b1f13a749062d762bb3d4efff7692d6e828c6",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "현금흐름 예측은 경영진의 책임이므로 감사인은 예측 결과만 재무제표 주석과 대조하고, 경영진 확인서로 예측의 적정성을 확인한다.",
+            "reason": "감사인은 예측 결과만 대조한다고 하여 기초 데이터의 신뢰성 평가를 명시적으로 배제했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "현금흐름 예측은 경영진의 책임이므로 감사인은 예측 결과만 재무제표 주석과 대조하고, 경영진 확인서로 예측의 적정성을 확인한다.",
+            "reason": "예측 결과만 확인한다고 하여 예측 가정의 적절한 근거를 결정하는 절차를 배제했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "현금흐름 예측은 경영진의 책임이므로 감사인은 예측 결과만 재무제표 주석과 대조하고, 경영진 확인서로 예측의 적정성을 확인한다.",
+            "reason": "예측 결과만 대조한다고 하여 경영진 평가일 후 추가 사실·정보를 고려하는 절차를 배제했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "감사인은 예측 결과만 대조한다고 하여 기초 데이터의 신뢰성 평가를 명시적으로 배제했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "예측 결과만 확인한다고 하여 예측 가정의 적절한 근거를 결정하는 절차를 배제했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "예측 결과만 대조한다고 하여 경영진 평가일 후 추가 사실·정보를 고려하는 절차를 배제했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-003",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "계속기업 존속능력에 유의적 의문을 초래할 만한 사건이나 상황이 식별되었고, 기업이 현금흐름을 예측하였으며 그 예측의 분석이 경영진의 미래 실행계획을 평가할 때 유의적인 요소이다. 감사기준서 570 문단 16(c)·(d)에 따라 감사인이 수행하여야 할 절차를 모두 제시하시오.",
+        "user_answer": "현금흐름 예측은 경영진의 책임이므로 감사인은 예측 결과만 재무제표 주석과 대조하고, 경영진 확인서로 예측의 적정성을 확인한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "현금흐름 예측은 경영진의 책임이므로 감사인은 예측 결과만 재무제표 주석과 대조하고, 경영진 확인서로 예측의 적정성을 확인한다.",
+            "reason": "감사인은 예측 결과만 대조한다고 하여 기초 데이터의 신뢰성 평가를 명시적으로 배제했다.",
+            "claim": "현금흐름 예측의 기초 데이터 신뢰성을 평가한다고 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "현금흐름 예측은 경영진의 책임이므로 감사인은 예측 결과만 재무제표 주석과 대조하고, 경영진 확인서로 예측의 적정성을 확인한다.",
+            "reason": "예측 결과만 확인한다고 하여 예측 가정의 적절한 근거를 결정하는 절차를 배제했다.",
+            "claim": "예측의 기초가 되는 가정에 적절한 근거가 있는지 결정한다고 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "현금흐름 예측은 경영진의 책임이므로 감사인은 예측 결과만 재무제표 주석과 대조하고, 경영진 확인서로 예측의 적정성을 확인한다.",
+            "reason": "예측 결과만 대조한다고 하여 경영진 평가일 후 추가 사실·정보를 고려하는 절차를 배제했다.",
+            "claim": "경영진 평가일 후 추가적인 사실이나 정보의 이용가능성을 고려한다고 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "예측을 위해 생성된 기초 데이터의 신뢰성을 평가한다.",
+          "예측의 기초가 되는 가정들에 적절한 근거가 있는지 결정한다.",
+          "경영진이 평가를 실시한 날 후 추가적인 사실이나 정보가 이용 가능하게 되었는지 고려한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0835e306fb2c89f2016aae06e6e7bc87d083be2e268e82bacd",
+        "request_id": "req_94ea316a851446248dab9c93c0c9bdb3",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2518,
+          "input_tokens_details": {
+            "cache_write_tokens": 2515,
+            "cached_tokens": 0
+          },
+          "output_tokens": 419,
+          "output_tokens_details": {
+            "reasoning_tokens": 202
+          },
+          "total_tokens": 2937
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0011321500000000002,
+        "min_usd": 0.0011321500000000002,
+        "max_usd": 0.0011321500000000002,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-12-003--sub1--standard--wrong/input.json",
+      "sha256": "c36182bc31d489cfdeb9310b32b4c006362afa243b28f4efac6b461cb6428d87"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-12-003--sub1--standard--wrong/transport.jsonl",
+      "sha256": "9997e3ee1a19099a3dc9396f36cf7e7ad7f61c2b62de2d93973382b783eb1bf9"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-12-003--sub1--standard--wrong/traces.jsonl",
+      "sha256": "104bfc039acfcd435f39ad301936fd2aa1ec043e339503e39acfb860342ef0e5"
+    }
+  }
+}

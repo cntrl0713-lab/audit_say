@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "std-points-20260914-c228552756b4--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-c228552756b4--sub2--standard",
+  "source_set_id": "std-points-20260914-c228552756b4",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "518e1e4a14edcb7f0efbed7d8edc37ba984b10100e5559dc07c12829a53a66b2",
+  "answers": {
+    "sub2": "부문감사인이 의견을 제출했으면 미수정왜곡표시와 증거 부족은 그룹감사의견에 영향을 줄 수 없으며 그룹 차원의 증거 평가도 생략한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit6.p2",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "a6b6777e6a40ebd357e40152ce1abd1ce1e453f2748bec546175e76f662e973d",
+  "schema_hash": "9cdc216ad4c94a77ead9d937be13f1cd4e8bddeb66ac18c2c762532363e486ba",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "부문감사인이 의견을 제출했으면 미수정왜곡표시와 증거 부족은 그룹감사의견에 영향을 줄 수 없으며 그룹 차원의 증거 평가도 생략한다.",
+            "reason": "미수정왜곡표시가 그룹감사의견에 영향을 줄 수 없다고 명시적으로 반대하였다."
+          },
+          {
+            "criterion_id": "crit6.p2",
+            "verdict": "contradicted",
+            "quote": "부문감사인이 의견을 제출했으면 미수정왜곡표시와 증거 부족은 그룹감사의견에 영향을 줄 수 없으며 그룹 차원의 증거 평가도 생략한다.",
+            "reason": "증거 부족이 그룹감사의견에 영향을 줄 수 없다고 명시적으로 반대하였다."
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "contradicted",
+            "quote": "부문감사인이 의견을 제출했으면 미수정왜곡표시와 증거 부족은 그룹감사의견에 영향을 줄 수 없으며 그룹 차원의 증거 평가도 생략한다.",
+            "reason": "그룹 차원의 증거 평가를 생략한다고 명시하여 필수 평가 절차를 부정하였다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit6",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "미수정왜곡표시가 그룹감사의견에 영향을 줄 수 없다고 명시적으로 반대하였다."
+              },
+              {
+                "criterion_id": "crit6.p2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "증거 부족이 그룹감사의견에 영향을 줄 수 없다고 명시적으로 반대하였다."
+              },
+              {
+                "criterion_id": "crit7",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "그룹 차원의 증거 평가를 생략한다고 명시하여 필수 평가 절차를 부정하였다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-c228552756b4",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 600 문단 44·45에 따라 그룹감사의견을 형성하기 위하여 그룹업무팀과 그룹업무수행이사가 평가하여야 할 사항을 설명하시오.",
+        "user_answer": "부문감사인이 의견을 제출했으면 미수정왜곡표시와 증거 부족은 그룹감사의견에 영향을 줄 수 없으며 그룹 차원의 증거 평가도 생략한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "부문감사인이 의견을 제출했으면 미수정왜곡표시와 증거 부족은 그룹감사의견에 영향을 줄 수 없으며 그룹 차원의 증거 평가도 생략한다.",
+            "reason": "미수정왜곡표시가 그룹감사의견에 영향을 줄 수 없다고 명시적으로 반대하였다.",
+            "claim": "그룹감사의견에 미수정왜곡표시가 미치는 영향을 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6.p2",
+            "verdict": "contradicted",
+            "quote": "부문감사인이 의견을 제출했으면 미수정왜곡표시와 증거 부족은 그룹감사의견에 영향을 줄 수 없으며 그룹 차원의 증거 평가도 생략한다.",
+            "reason": "증거 부족이 그룹감사의견에 영향을 줄 수 없다고 명시적으로 반대하였다.",
+            "claim": "그룹감사의견에 충분하고 적합한 감사증거를 입수하지 못한 사항이 미치는 영향을 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "contradicted",
+            "quote": "부문감사인이 의견을 제출했으면 미수정왜곡표시와 증거 부족은 그룹감사의견에 영향을 줄 수 없으며 그룹 차원의 증거 평가도 생략한다.",
+            "reason": "그룹 차원의 증거 평가를 생략한다고 명시하여 필수 평가 절차를 부정하였다.",
+            "claim": "연결절차와 부문재무정보에 수행한 업무를 통하여 그룹감사의견의 근거가 되는 충분하고 적합한 감사증거를 입수했는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "미수정왜곡표시가 그룹감사의견에 미치는 영향과 충분하고 적합한 감사증거를 입수하지 못한 각 상황이 그룹감사의견에 미치는 영향을 평가한다. 연결절차 및 부문재무정보에 수행한 업무를 통하여 그룹감사의견의 근거가 되는 충분하고 적합한 감사증거를 입수하였는지 평가한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_090394a2ec136b66016aae08f9839087d08df6276f92339abf",
+        "request_id": "req_80b80dc0ff324139b1f48a8c33c305a2",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2571,
+          "input_tokens_details": {
+            "cache_write_tokens": 2568,
+            "cached_tokens": 0
+          },
+          "output_tokens": 294,
+          "output_tokens_details": {
+            "reasoning_tokens": 90
+          },
+          "total_tokens": 2865
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009954,
+        "min_usd": 0.0009954,
+        "max_usd": 0.0009954,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-c228552756b4--sub2--standard--wrong/input.json",
+      "sha256": "0c4095854787e936ff3259b6e8a8aefd8f8cbd91252c808b015ec4e19d458974"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-c228552756b4--sub2--standard--wrong/transport.jsonl",
+      "sha256": "2869699cd3c9db75bcdb79d44bd4ceeabca09cf25a354dfae143779e0f391d75"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-c228552756b4--sub2--standard--wrong/traces.jsonl",
+      "sha256": "b998c7f014223ef284f7e198c08310db7b3b4212f9325ccfdb2b47e9bddd93b4"
+    }
+  }
+}

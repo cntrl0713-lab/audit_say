@@ -1,7 +1,7 @@
 ---
-title: "std-points-20260914-f5d37b0c8b8a. 소극적 조회에 회신이 없는 경우와 적극적 조회에 회신을 받은 경우 중 어느 쪽이 더 설득력 있는 감사증거를 제공하는지 판단하시오. 소극적 조회의 미회신으로 확인할 수 없는 두 사실을 구별하여 그 이유를 설명하시오."
+title: "std-points-20260914-f5d37b0c8b8a. 소극적 조회에 회신이 없는 경우와 적극적 조회에 회신을 받은 경우 중 어느 쪽이 더 설득력 있는 감사증거를 제공하는지 판단하고 그 이유를 설명하시오."
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -10,12 +10,12 @@ sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/
 confidence: high
 ---
 
-# std-points-20260914-f5d37b0c8b8a. 소극적 조회에 회신이 없는 경우와 적극적 조회에 회신을 받은 경우 중 어느 쪽이 더 설득력 있는 감사증거를 제공하는지 판단하시오. 소극적 조회의 미회신으로 확인할 수 없는 두 사실을 구별하여 그 이유를 설명하시오.
+# std-points-20260914-f5d37b0c8b8a. 소극적 조회에 회신이 없는 경우와 적극적 조회에 회신을 받은 경우 중 어느 쪽이 더 설득력 있는 감사증거를 제공하는지 판단하고 그 이유를 설명하시오.
 
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[inventory-litigation-confirmations-opening-balances]] · [[topic-09-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/236`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/223`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [09.json](../../analysis/reviews/question-review-2027/09.json)
 - 학습 순서: subq2
@@ -25,11 +25,11 @@ confidence: high
 
 ## subq2
 
-유형: descriptive · JSON Pointer `/236/subquestions/0`
+유형: descriptive · JSON Pointer `/223/subquestions/0`
 
 ### 발문
 
-소극적 조회에 회신이 없는 경우와 적극적 조회에 회신을 받은 경우 중 어느 쪽이 더 설득력 있는 감사증거를 제공하는지 판단하시오. 소극적 조회의 미회신으로 확인할 수 없는 두 사실을 구별하여 그 이유를 설명하시오.
+소극적 조회에 회신이 없는 경우와 적극적 조회에 회신을 받은 경우 중 어느 쪽이 더 설득력 있는 감사증거를 제공하는지 판단하고 그 이유를 설명하시오.
 
 ### 모범답안
 

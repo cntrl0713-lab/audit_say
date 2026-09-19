@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "artifact_type": "question_set_correction",
+  "correction_id": "20260919-std-points-20260914-da16629297a8--standard-spoiler",
+  "set_id": "std-points-20260914-da16629297a8",
+  "summary": "기준서형 발문의 정답 암시 제거(sub1)",
+  "note": "기준서형 수정·스포일러 전수 검토(cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/plan-v1.json). 학습 유형·주제·배점 구조는 바꾸지 않는다.",
+  "base_content_hash": "95c0abbce8ec30c44ff96321620f6ffefdbf4d4f7b09cc517270210aadf23677",
+  "patches": [
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "prompt"
+      },
+      "reason": "정답 암시: 두 상황을 나란히 두고 둘째에 '활용의 기본 요건은 충족하였으나'라고 써 첫 상황의 판단(활용 불가)을 알려 주었다. crit2는 crit1의 판단을 규정 문구로 되풀이해 같은 의미를 두 번 배점했다.",
+      "expected_before": "서로 독립된 두 상황에 답하시오. 첫째, 내부감사기능의 조직 내 위상과 관련 정책·절차가 객관성을 적절히 지원하지 않는다고 결정하였다면 내부감사업무 활용 가능 여부와 근거를 설명하시오. 둘째, 활용의 기본 요건은 충족하였으나 객관성 지원 정도가 상대적으로 낮아질수록 내부감사업무의 활용 범위와 외부감사인의 직접 수행 범위를 어떻게 조정하는지 설명하시오.",
+      "set": "감사기준서 610에 따라 내부감사기능의 조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 지원하는 정도가, 내부감사기능이 수행한 업무를 활용할 수 있는지와 활용 범위에 각각 어떤 영향을 미치는지 설명하시오."
+    },
+    {
+      "target": {
+        "field": "title"
+      },
+      "reason": "세트 제목이 옛 발문과 같아 발문에서 없앤 정답 암시가 제목에 남는다. 새 발문으로 맞춘다.",
+      "expected_before": "서로 독립된 두 상황에 답하시오. 첫째, 내부감사기능의 조직 내 위상과 관련 정책·절차가 객관성을 적절히 지원하지 않는다고 결정하였다면 내부감사업무 활용 가능 여부와 근거를 설명하시오. 둘째, 활용의 기본 요건은 충족하였으나 객관성 지원 정도가 상대적으로 낮아질수록 내부감사업무의 활용 범위와 외부감사인의 직접 수행 범위를 어떻게 조정하는지 설명하시오.",
+      "set": "감사기준서 610에 따라 내부감사기능의 조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 지원하는 정도가, 내부감사기능이 수행한 업무를 활용할 수 있는지와 활용 범위에 각각 어떤 영향을 미치는지 설명하시오."
+    },
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "model_answer"
+      },
+      "reason": "새 발문과 바뀐 criterion에 맞춘 모범답안이다.",
+      "expected_before": [
+        "첫 상황에서는 업무를 활용할 수 없다. 조직 내 위상과 정책·절차가 객관성을 적절히 지원하지 않는 것은 업무 활용의 금지 요건이기 때문이다. 둘째 상황에서는 내부감사업무를 활용하는 범위를 줄이고 외부감사인이 직접 수행하는 업무를 늘린다."
+      ],
+      "set": [
+        "내부감사기능의 조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 않으면 그 업무를 활용할 수 없다.",
+        "활용할 수 있는 경우에도 객관성을 지원하는 정도가 낮을수록 내부감사기능이 수행한 업무의 활용을 줄이고 외부감사인이 직접 수행하는 업무를 늘린다."
+      ]
+    },
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "criteria"
+      },
+      "reason": "KGA 610 문단 16(a)·18(c)와 대조했다. 활용 불가 요건과 활용 축소·직접 수행 확대가 남은 3개 criterion과 일치한다. 대비 상황을 하나의 발문으로 합치고, crit1과 같은 의미를 되풀이하던 crit2를 삭제했다. 4점에서 3점.",
+      "expected_before": [
+        {
+          "id": "crit1",
+          "requirement_id": "req-1",
+          "claim": "객관성 지원 미흡 시 업무 활용 불능이라고 판단함",
+          "critical_facts": [
+            {
+              "id": "cf1",
+              "type": "negation",
+              "expected": "객관성 지원의 기본 요건 미충족 시 내부감사기능의 업무를 활용할 수 없다는 판단. 발문의 조직 내 위상과 정책·절차가 객관성을 적절히 지원하지 못하여 업무 활용의 필수 요건을 충족하지 못했다고 설명한 답안은 활용 불가를 분명히 함축하므로, 별도의 \"활용할 수 없다\" 문장이 없어도 met이다. 객관성 단어만 쓰거나 단순 평가를 하겠다는 답안은 not_met. 이 경우에도 활용할 수 있다고 명시하면 contradicted."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-c73ba6885101fe3f"
+          ]
+        },
+        {
+          "id": "crit2",
+          "requirement_id": "req-2",
+          "claim": "조직 내 위상과 관련 정책·절차가 객관성을 적절히 지원하지 않는 것이 활용 금지 요건임을 설명함",
+          "critical_facts": [
+            {
+              "id": "cf2",
+              "type": "condition",
+              "expected": "조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 못하여 업무 활용의 필수 요건을 충족하지 못한다는 근거를 설명함. 기준서 문단번호는 요구하지 않음. 단순히 활용할 수 없다고 반복하면 이 근거 criterion은 not_met."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-c73ba6885101fe3f"
+          ]
+        },
+        {
+          "id": "crit3",
+          "requirement_id": "req-3",
+          "claim": "내부감사업무를 활용하는 범위를 줄인다.",
+          "critical_facts": [
+            {
+              "id": "cf3",
+              "type": "conclusion",
+              "expected": "내부감사업무를 활용하는 범위를 줄인다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-cc40b5f81ba5c162"
+          ]
+        },
+        {
+          "id": "crit3.p2",
+          "requirement_id": "req-4",
+          "claim": "감사인이 직접 수행하는 업무를 늘린다.",
+          "critical_facts": [
+            {
+              "id": "cf3.p2",
+              "type": "conclusion",
+              "expected": "감사인이 직접 수행하는 업무를 늘린다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-cc40b5f81ba5c162"
+          ]
+        }
+      ],
+      "set": [
+        {
+          "id": "crit1",
+          "requirement_id": "req-1",
+          "claim": "내부감사기능의 조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 않으면 내부감사기능이 수행한 업무를 활용할 수 없다.",
+          "critical_facts": [
+            {
+              "id": "cf1",
+              "type": "negation",
+              "expected": "내부감사기능의 조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 않으면 내부감사기능이 수행한 업무를 활용할 수 없다는 판단. 그러한 경우 업무 활용의 필수 요건을 충족하지 못한다고 설명한 답안은 활용 불가를 분명히 함축하므로 별도의 \"활용할 수 없다\" 문장이 없어도 met이다. 객관성 단어만 쓰거나 단순히 평가를 하겠다는 답안은 not_met이다. 객관성을 지원하지 않는 경우에도 활용할 수 있다고 명시하면 contradicted이다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-c73ba6885101fe3f"
+          ]
+        },
+        {
+          "id": "crit3",
+          "requirement_id": "req-3",
+          "claim": "내부감사업무를 활용하는 범위를 줄인다.",
+          "critical_facts": [
+            {
+              "id": "cf3",
+              "type": "conclusion",
+              "expected": "내부감사업무를 활용하는 범위를 줄인다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-cc40b5f81ba5c162"
+          ]
+        },
+        {
+          "id": "crit3.p2",
+          "requirement_id": "req-4",
+          "claim": "감사인이 직접 수행하는 업무를 늘린다.",
+          "critical_facts": [
+            {
+              "id": "cf3.p2",
+              "type": "conclusion",
+              "expected": "감사인이 직접 수행하는 업무를 늘린다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-cc40b5f81ba5c162"
+          ]
+        }
+      ]
+    }
+  ]
+}

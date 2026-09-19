@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-03-004--sub2--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-03-004--sub2--standard",
+  "source_set_id": "pilot-03-004",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "996b5acbd1b1682345bb62021979383f5a064cea2c4c219d09665f77b9862c22",
+  "answers": {
+    "sub2": "감사인이 재무제표 작성에 적용된 재무보고체계가 수용가능하지 않다고 결정한 경우에는 감사업무를 수임해서는 안 된다. 경영진이 자신의 책임을 인정하고 이해한다는 데 동의하지 않은 경우에도 수임해서는 안 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (두 수임 금지 경우는 썼으나 법규상 요구되는 감사의 예외를 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (두 수임 금지 경우는 썼으나 법규상 요구되는 감사의 예외를 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (두 수임 금지 경우는 썼으나 법규상 요구되는 감사의 예외를 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "0d4e1e682598c24fe58b2a8fcc9e503dc01eb551af592e4d75bd2c7f9c1ad0ca",
+  "schema_hash": "b13439f9ab284598cdfdfe5a741f21f693d2d3295ea4cb0d62789ad8b8f686a0",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "감사인이 재무제표 작성에 적용된 재무보고체계가 수용가능하지 않다고 결정한 경우에는 감사업무를 수임해서는 안 된다. ",
+            "reason": "수용가능하지 않은 재무보고체계인 경우 수임 금지를 명시함."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "경영진이 자신의 책임을 인정하고 이해한다는 데 동의하지 않은 경우에도 수임해서는 안 된다.",
+            "reason": "경영진의 책임 인정·이해에 대한 동의가 없으면 수임하지 않는다고 명시함."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "법규에 의해 요구되는 감사에 대한 예외를 설명하지 않음."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "수용가능하지 않은 재무보고체계인 경우 수임 금지를 명시함."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "경영진의 책임 인정·이해에 대한 동의가 없으면 수임하지 않는다고 명시함."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "법규에 의해 요구되는 감사에 대한 예외를 설명하지 않음."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-03-004",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사를 위한 전제조건이 존재하지 않아 감사인이 경영진과 논의하였다. 감사기준서 210 문단 8에 따라 감사인이 제안된 감사업무를 수임해서는 안 되는 경우를 그 적용 조건과 함께 설명하시오. 문단 19의 특례는 고려하지 않는다.",
+        "user_answer": "감사인이 재무제표 작성에 적용된 재무보고체계가 수용가능하지 않다고 결정한 경우에는 감사업무를 수임해서는 안 된다. 경영진이 자신의 책임을 인정하고 이해한다는 데 동의하지 않은 경우에도 수임해서는 안 된다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "감사인이 재무제표 작성에 적용된 재무보고체계가 수용가능하지 않다고 결정한 경우에는 감사업무를 수임해서는 안 된다.",
+            "reason": "수용가능하지 않은 재무보고체계인 경우 수임 금지를 명시함.",
+            "claim": "재무제표 작성에 적용된 재무보고체계가 수용가능하지 않다고 감사인이 결정한 경우 수임해서는 안 된다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "경영진이 자신의 책임을 인정하고 이해한다는 데 동의하지 않은 경우에도 수임해서는 안 된다.",
+            "reason": "경영진의 책임 인정·이해에 대한 동의가 없으면 수임하지 않는다고 명시함.",
+            "claim": "경영진의 책임 인정·이해에 관한 동의를 받지 못한 경우 수임해서는 안 된다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "법규에 의해 요구되는 감사에 대한 예외를 설명하지 않음.",
+            "claim": "법규에 의해 요구되는 감사에는 이 수임 금지가 적용되지 않음을 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "첫째, 문단 19에서 제시된 경우를 제외하고 감사인이 재무제표 작성에 적용된 재무보고체계가 수용가능하지 않다고 결정한 경우에는 수임해서 안 된다.",
+          "둘째, 경영진의 책임 인정·이해에 관한 동의(문단 6(b))를 받지 못한 경우에는 수임해서 안 된다.",
+          "두 경우 모두 법규에 의해 요구되는 감사라면 이 수임 금지가 적용되지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_08944b45dd2650d3016aae06966e1487d093c0e9e5e574931a",
+        "request_id": "req_f1ef2cb79cdd4bc8bd68389b85033156",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2741,
+          "input_tokens_details": {
+            "cache_write_tokens": 2738,
+            "cached_tokens": 0
+          },
+          "output_tokens": 230,
+          "output_tokens_details": {
+            "reasoning_tokens": 46
+          },
+          "total_tokens": 2971
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009611,
+        "min_usd": 0.0009611,
+        "max_usd": 0.0009611,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-03-004--sub2--standard--partial/input.json",
+      "sha256": "ebac61e95d9962acaacca280fb671b6097950026467cbe71839ebbfc34381f5b"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-03-004--sub2--standard--partial/transport.jsonl",
+      "sha256": "fc09833db4ab9eb8a6705bc9eb08c578386469752dedaa4a863fcc308aa4aeec"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-03-004--sub2--standard--partial/traces.jsonl",
+      "sha256": "820c7388638e9ce80a30d4b530cdc7be4293ce4402f55b4ef8e9f7662a628ec3"
+    }
+  }
+}

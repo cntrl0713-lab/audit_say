@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-15-002--sub4--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-15-002--sub4--standard",
+  "source_set_id": "pilot-15-002",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub4"
+  ],
+  "projected_body_hash": "3a6dfc8f79e2fe1fd56027ad34211ef9702402c73429932ea92a5a4c1cbd9576",
+  "answers": {
+    "sub4": "재무제표 금액이 전기와 비교하여 크게 변동하지 않았는지와 경영진이 재무제표에 서명하였는지 평가한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub4",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (문단 13(e)(f)의 평가가 아니다.)"
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (문단 13(e)(f)의 평가가 아니다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ea7ac3d27146d1d7a2eddd6f626c2dcfbc6b3f5c3fb819fe223970b66a7dba3a",
+  "schema_hash": "ad45dc02849905116f499077b7ff542684b5156c1ef95a8d4207c103c490ec11",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "중요한 거래와 사건의 영향을 이해할 수 있도록 공시 적절성을 평가한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "단위재무제표 명칭을 포함한 재무제표 용어의 적합성을 평가한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub4",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "중요한 거래와 사건의 영향을 이해할 수 있도록 공시 적절성을 평가한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "단위재무제표 명칭을 포함한 재무제표 용어의 적합성을 평가한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-15-002",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "prompt": "재무제표가 해당 재무보고체계에 따라 작성되었는지 평가할 때 감사기준서 700 문단 13(e)·(f)에 따라 감사인이 평가하여야 할 사항을 설명하시오.",
+        "user_answer": "재무제표 금액이 전기와 비교하여 크게 변동하지 않았는지와 경영진이 재무제표에 서명하였는지 평가한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "중요한 거래와 사건의 영향을 이해할 수 있도록 공시 적절성을 평가한다는 내용이 없다.",
+            "claim": "중요한 거래와 사건의 영향을 이용자가 이해할 수 있도록 공시가 적절한지 평가함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "단위재무제표 명칭을 포함한 재무제표 용어의 적합성을 평가한다는 내용이 없다.",
+            "claim": "단위재무제표 명칭을 포함한 재무제표 용어의 적합성을 평가함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "의도된 이용자가 중요한 거래와 사건의 영향을 이해할 수 있도록 공시가 적절한지 평가한다.",
+          "단위재무제표의 명칭을 포함하여 재무제표에 사용된 용어의 적합성을 평가한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub4",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_00acc058b7809f94016aae0714d9c887d0b134c86f58b0078f",
+        "request_id": "req_81070e6f465d427b8e38c94f9618eebc",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2373,
+          "input_tokens_details": {
+            "cache_write_tokens": 2370,
+            "cached_tokens": 0
+          },
+          "output_tokens": 181,
+          "output_tokens_details": {
+            "reasoning_tokens": 35
+          },
+          "total_tokens": 2554
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008102999999999999,
+        "min_usd": 0.0008102999999999999,
+        "max_usd": 0.0008102999999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-15-002--sub4--standard--wrong/input.json",
+      "sha256": "5584f78a8c8646723f8f9bfce8302fd1c8afb2444ca7d6c98242b393f558752a"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-15-002--sub4--standard--wrong/transport.jsonl",
+      "sha256": "c031c6cea396a8605bebc5254b2e531e51cbeb20bbaea1800c1fcc8777ce4097"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-15-002--sub4--standard--wrong/traces.jsonl",
+      "sha256": "81d8b64ef48796147218c69f4031fefb4484ede2cf7d8ea4901b7c5d0baf4880"
+    }
+  }
+}

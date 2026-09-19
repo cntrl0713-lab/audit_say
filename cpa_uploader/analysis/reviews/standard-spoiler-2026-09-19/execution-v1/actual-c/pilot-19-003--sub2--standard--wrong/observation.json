@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-19-003--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-19-003--sub2--standard",
+  "source_set_id": "pilot-19-003",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "f78bdaa7bf273928d90877d545b6df3f30f8985b18ad42dfb57be9f7619dc034",
+  "answers": {
+    "sub2": "특정목적 재무제표 감사에서는 감사인이 필요하다고 판단하는 감사기준서만 선택하여 적용하면 되고, 요구사항은 비용이 많이 들면 생략할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (준수 원칙과 이탈 조건을 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (준수 원칙과 이탈 조건을 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit5.p2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (준수 원칙과 이탈 조건을 반대로 썼다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "18d6be75d8d4d7626901d57317f6b0f2758e8e03c97e06e74668802be0b5081d",
+  "schema_hash": "3e333b2c6aee9d241d0ab2075d4c60c0bbc6444d8b3b02f37f375b05eb02a3cc",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "특정목적 재무제표 감사에서는 감사인이 필요하다고 판단하는 감사기준서만 선택하여 적용하면 되고, 요구사항은 비용이 많이 들면 생략할 수 있다.",
+            "reason": "관련된 모든 감사기준서가 아니라 필요한 기준서만 선택 적용할 수 있다고 명시했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "특정목적 재무제표 감사에서는 감사인이 필요하다고 판단하는 감사기준서만 선택하여 적용하면 되고, 요구사항은 비용이 많이 들면 생략할 수 있다.",
+            "reason": "예외적 상황 및 목적 달성의 비효과성이 아니라 비용이 많이 들면 요구사항을 생략할 수 있다고 했다."
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "not_met",
+            "reason": "이탈 시 목적을 달성하기 위한 대체적 감사절차를 수행한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "관련된 모든 감사기준서가 아니라 필요한 기준서만 선택 적용할 수 있다고 명시했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "예외적 상황 및 목적 달성의 비효과성이 아니라 비용이 많이 들면 요구사항을 생략할 수 있다고 했다."
+              },
+              {
+                "criterion_id": "crit5.p2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "이탈 시 목적을 달성하기 위한 대체적 감사절차를 수행한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-19-003",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "특정목적 재무제표 감사를 계획하고 수행할 때 감사기준서 준수에 관한 원칙을 제시하시오. 또한 감사인이 감사기준서의 관련 요구사항을 이탈할 수 있는 상황과 그 경우 감사인이 하여야 할 일을 감사기준서 200에 따라 설명하시오.",
+        "user_answer": "특정목적 재무제표 감사에서는 감사인이 필요하다고 판단하는 감사기준서만 선택하여 적용하면 되고, 요구사항은 비용이 많이 들면 생략할 수 있다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "특정목적 재무제표 감사에서는 감사인이 필요하다고 판단하는 감사기준서만 선택하여 적용하면 되고, 요구사항은 비용이 많이 들면 생략할 수 있다.",
+            "reason": "관련된 모든 감사기준서가 아니라 필요한 기준서만 선택 적용할 수 있다고 명시했다.",
+            "claim": "관련된 모든 감사기준서를 준수해야 한다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "특정목적 재무제표 감사에서는 감사인이 필요하다고 판단하는 감사기준서만 선택하여 적용하면 되고, 요구사항은 비용이 많이 들면 생략할 수 있다.",
+            "reason": "예외적 상황 및 목적 달성의 비효과성이 아니라 비용이 많이 들면 요구사항을 생략할 수 있다고 했다.",
+            "claim": "예외적 상황에서 요구된 특정 절차가 해당 요구사항의 목적 달성에 비효과적이어서 이탈할 필요가 있을 때만 관련 요구사항을 이탈할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "not_met",
+            "reason": "이탈 시 목적을 달성하기 위한 대체적 감사절차를 수행한다는 내용이 없다.",
+            "claim": "그 예외적 이탈 시 해당 요구사항의 목적을 달성할 대체적 감사절차를 수행한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "해당 감사와 관련된 모든 감사기준서를 준수해야 한다.",
+          "예외적 상황에서 특정 절차가 그 요구사항의 목적을 달성하는 데 비효과적이어서 관련 요구사항을 이탈할 필요가 있다고 판단한 경우, 해당 목적을 달성하기 위한 대체적 감사절차를 수행해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0785d54b86691b6f016aae0757799487d0a1d0511fab1f9cb4",
+        "request_id": "req_e1c2247efe14452b9ad4c61d08584296",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2561,
+          "input_tokens_details": {
+            "cache_write_tokens": 2558,
+            "cached_tokens": 0
+          },
+          "output_tokens": 310,
+          "output_tokens_details": {
+            "reasoning_tokens": 108
+          },
+          "total_tokens": 2871
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010121,
+        "min_usd": 0.0010121,
+        "max_usd": 0.0010121,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-19-003--sub2--standard--wrong/input.json",
+      "sha256": "b80c1a56076c3d3cce4a8afdb953affac9d78ff01a70d4c0a30baf58eeebff9b"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-19-003--sub2--standard--wrong/transport.jsonl",
+      "sha256": "57e5f70e664c23aa1be40b65f047e4a07c3b54fbdc7e2001c6ab857af0b179b9"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-19-003--sub2--standard--wrong/traces.jsonl",
+      "sha256": "47eb77d0c3b1601f3d99bcbfe267a1d7f459b65c905b08a3fa6e8ba1e702d48e"
+    }
+  }
+}

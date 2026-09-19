@@ -1,7 +1,7 @@
 ---
 title: "02. 감사의 목적과 기본개념 원자료 단위 3/4"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-18
 type: source-map
 status: generated
 review_required: true

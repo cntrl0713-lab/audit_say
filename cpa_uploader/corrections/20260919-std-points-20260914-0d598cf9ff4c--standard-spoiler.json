@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "artifact_type": "question_set_correction",
+  "correction_id": "20260919-std-points-20260914-0d598cf9ff4c--standard-spoiler",
+  "set_id": "std-points-20260914-0d598cf9ff4c",
+  "summary": "기준서형 발문의 정답 암시 제거(sub2)",
+  "note": "기준서형 수정·스포일러 전수 검토(cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/plan-v1.json). 학습 유형·주제·배점 구조는 바꾸지 않는다.",
+  "base_content_hash": "e9a662cb4c54df64b1c5dd6f20ba348a74acc2115610a68b920a66104983d6a8",
+  "patches": [
+    {
+      "target": {
+        "subquestion": "sub2",
+        "field": "prompt"
+      },
+      "reason": "정답 암시: 첫 요구가 적정의견의 조건을 발문에 주고 의견 명칭만 묻어 1점이 사실상 공짜였다.",
+      "expected_before": "재무제표가 중요성의 관점에서 해당 재무보고체계에 따라 작성되었다고 결론을 내린 경우 표명할 감사의견을 제시하시오. 이어 감사의견을 변형해야 하는 두 경우를 설명하시오.",
+      "set": "감사기준서 700 문단 16·17에 따라 감사인이 적정의견을 표명하여야 하는 경우와 감사의견을 변형하여야 하는 경우를 모두 설명하시오."
+    },
+    {
+      "target": {
+        "field": "title"
+      },
+      "reason": "세트 제목이 옛 발문과 같아 발문에서 없앤 정답 암시가 제목에 남는다. 새 발문으로 맞춘다.",
+      "expected_before": "재무제표가 중요성의 관점에서 해당 재무보고체계에 따라 작성되었다고 결론을 내린 경우 표명할 감사의견을 제시하시오. 이어 감사의견을 변형해야 하는 두 경우를 설명하시오.",
+      "set": "감사기준서 700 문단 16·17에 따라 감사인이 적정의견을 표명하여야 하는 경우와 감사의견을 변형하여야 하는 경우를 모두 설명하시오."
+    },
+    {
+      "target": {
+        "subquestion": "sub2",
+        "criterion": "crit1",
+        "field": "claim"
+      },
+      "reason": "criterion 명제: KGA 700 문단 16·17(a)(b)와 대조했다. 적정의견의 표명 조건, 증거에 근거한 전체적 중요왜곡표시 결론, 충분하고 적합한 증거 미입수의 3개 criterion이 일치한다. 조건을 발문에서 빼고 crit1이 그 조건을 서술하도록 바꿨다. 3점 유지.",
+      "expected_before": "주어진 결론에 대응하여 적정의견을 제시함. 의견 명칭만으로 인정하며 주어진 조건을 다시 쓰도록 요구하지 않음",
+      "set": "재무제표가 중요성의 관점에서 해당 재무보고체계에 따라 작성되었다고 결론 내린 경우 적정의견을 표명한다. 적정의견이라는 명칭만 쓰고 그 조건을 쓰지 않으면 인정하지 않는다."
+    },
+    {
+      "target": {
+        "subquestion": "sub2",
+        "criterion": "crit1",
+        "field": "critical_facts"
+      },
+      "reason": "채점 입력에 함께 들어가는 critical_facts를 새 명제·새 발문과 같은 뜻으로 맞춘다.",
+      "expected_before": [
+        {
+          "id": "crit1-fact",
+          "type": "conclusion",
+          "expected": "적정의견을 표명"
+        }
+      ],
+      "set": [
+        {
+          "id": "crit1-fact",
+          "type": "conclusion",
+          "expected": "적정의견을 표명"
+        },
+        {
+          "id": "crit1-condition",
+          "type": "condition",
+          "expected": "재무제표가 중요성의 관점에서 해당 재무보고체계에 따라 작성되었다고 결론 내린 경우"
+        }
+      ]
+    }
+  ]
+}

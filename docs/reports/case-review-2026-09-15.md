@@ -48,3 +48,30 @@ r01 v3·r02 v1은 실행 입력으로 고정한 승인 기록의 해시가 이�
 - [초안 폴더](../../cpa_uploader/drafts/case-review-2026-09-15/README.md)
 
 퇴역 세트를 가리키던 은행 대상 coverage 관계 3건은 대체 물음으로 다시 연결했고 퇴역 세트의 wiki 생성 페이지 8개는 원 바이트로 보존한 뒤 제거했다. 대체된 판본 실행의 은행 사본과 게시 stage·baseline·DB 전송 사본 34개(약 91MB)는 저장소 밖 보관 폴더로 옮겼으며 목록과 SHA-256은 [copy-archive-2026-09-15.json](../../cpa_uploader/analysis/reviews/copy-archive-2026-09-15.json)·[copy-archive-2026-09-15-db.json](../../cpa_uploader/analysis/reviews/copy-archive-2026-09-15-db.json)에 있다. 정본 반영 커밋에서 타입 검사·전체 테스트 599개·분석 동기화·wiki 검사가 통과했다.
+
+## 이후 반영: r05·r06(2026-09-18), r07~r11(2026-09-19)
+
+같은 방식으로 두 묶음을 더 반영했다. 원 세트 14개를 빼고 새 7세트를 붙였으며, 모두 옳지 않은 것을 고르는 선택형이다.
+
+| 묶음 | 원 문제 → 새 세트 | 운영 release | 반영 뒤 은행 |
+| --- | --- | --- | --- |
+| r05·r06 | 10 `pilot-04-006` → [`case-04-audit-documentation-20260917`](../../cpa_uploader/drafts/case-review-2026-09-15/r05-audit-documentation/questions-and-answers.md)(2물음·7점), 5·25·45 → [`case-04-materiality-20260917`](../../cpa_uploader/drafts/case-review-2026-09-15/r06-materiality-merge/questions-and-answers.md)(2물음·7점) | `31504e78-cc30-48f0-bb09-4ae98caff453` | 369세트·546물음·1,871점 |
+| r07~r11 | 46·7·23 → [`case-09-confirmation-skepticism-20260918`](../../cpa_uploader/drafts/case-review-2026-09-15/r07-confirmation-skepticism-merge/questions-and-answers.md)(2물음·8점), 52 → [`case-16-kam-emphasis-20260919`](../../cpa_uploader/drafts/case-review-2026-09-15/r08-kam-emphasis/questions-and-answers.md)(3물음·12점), 20·61 → [`case-16-comparative-restatement-20260919`](../../cpa_uploader/drafts/case-review-2026-09-15/r09-comparative-statements-merge/questions-and-answers.md)(2물음·7점), 36·67·48 → [`case-12-report-date-subsequent-20260919`](../../cpa_uploader/drafts/case-review-2026-09-15/r10-report-date-subsequent-merge/v3/questions-and-answers.md)(3물음·9점), 35 → [`case-15-scope-limitation-disclaimer-20260919`](../../cpa_uploader/drafts/case-review-2026-09-15/r11-scope-limitation-disclaimer/questions-and-answers.md)(2물음·10점) | `2ed1a151-547d-4cc1-bd57-0fe2e0d5a8d3` | 364세트·532물음·1,843점 |
+
+r07~r11 반영 전후는 다음과 같다(반영 전은 기준서형 검토 반영 release `c43c59e4`).
+
+| 항목 | 반영 전 | 반영 후 |
+| --- | ---: | ---: |
+| 세트 | 369 | 364 |
+| 전체 물음·배점 | 547물음·1,873점 | 532물음·1,843점 |
+| 사례형 부모 | 67 | 62 |
+| 사례형 물음·배점 | 175물음·479점 | 161물음·452점 |
+| 기준서형 물음·배점 | 372물음·1,394점 | 371물음·1,391점 |
+| 학습 단위 | 439 | 433 |
+
+- 기준서형 1물음·3점이 줄어든 것은 사용자가 r07에서 `pilot-02-006`의 기준서형 물음 1(전문가적 의구심의 정의)도 보존하지 않기로 했기 때문이다.
+- 게시 근거 실행의 대표 답안은 r05·r06 12개, r07~r11 36개이며 모두 기대점수와 정확히 일치했다. 식별 기준의 예상 `contradicted`와 실제 `not_met` 차이는 모두 0점 상태 사이의 차이라 다시 채점하지 않았다. r05~r11의 실제 호출은 판본·보조 실측을 합쳐 54회, 약 $0.170이다(r10은 사용자 지적으로 세 판본을 만들어 18회 약 $0.059). 제공자 사용량에 공개 단가를 곱한 추정이며 청구액과 구별한다.
+- 두 묶음 모두 로컬 PGlite 증명 → 운영 read-only probe → apply 1회 → 왕복·독립 검증 순서로 반영했다. r05·r06의 첫 apply는 HTTP 524로 결과가 불명확하게 끝났고, 읽기 전용 확인으로 커밋되지 않았음을 확인한 뒤 새 준비 기록으로 반영했다. r07~r11은 사용자가 자리를 비운다고 해서 agent가 운영 명령을 직접 실행했고, 재시도는 없었다.
+- 퇴역 세트를 가리키던 은행 대상 coverage 관계 6건(r05·r06 1건, r07~r11 5건)을 대체 물음으로 다시 연결했고, 퇴역 세트의 wiki 생성 페이지 14개는 원 바이트로 보존한 뒤 제거했다.
+- r07~r11 게시의 stage·기준 사본과 운영 전송 SQL은 커밋하지 않는 `tmp/`에 두었다. 커밋 전에 대체된 r10 v1 전체 은행 사본과, 운영 반영이 끝난 r05·r06·pilot-01-005 게시의 사본 33개(약 99.6MB)를 저장소 밖 보관 폴더로 옮겼다([copy-archive-2026-09-19.json](../../cpa_uploader/analysis/reviews/copy-archive-2026-09-19.json)).
+- 세부 기록은 [검토 장부의 게시와 운영 반영](../../cpa_uploader/analysis/reviews/case-review-2026-09-15/README.md#게시와-운영-반영)에 있다.

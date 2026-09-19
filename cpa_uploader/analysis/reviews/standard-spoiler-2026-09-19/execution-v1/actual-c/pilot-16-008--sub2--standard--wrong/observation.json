@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-16-008--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-008--sub2--standard",
+  "source_set_id": "pilot-16-008",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "a6f39d06d037920fea26eae04c8310f4b5a7fb59954796e87dc512943047cade",
+  "answers": {
+    "sub2": "당기재무제표에는 의견거절만 가능하고 한정의견과 부적정의견은 허용되지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "명시적 반대: 답안은 '당기재무제표에 표명할 수 있는 변형의견으로 한정의견을 제시한다. 구체적 상황에서 둘 중 하나를 선택하는 근거는 요구하지 않는다. 한정의견을 두 허용 대안 중 하나로 제시하면 충족하며 한정의견만 유일하게 가능하다고 단정한 부분은 다른 대안 명제와 구분한다.'에 반하는 조건·조치·명칭 또는 관계를 제시한다."
+        },
+        {
+          "criterion_id": "crit5.p2",
+          "verdict": "contradicted",
+          "reason": "명시적 반대: 답안은 '당기재무제표에 표명할 수 있는 변형의견으로 부적정의견을 제시한다. 구체적 상황에서 둘 중 하나를 선택하는 근거는 요구하지 않는다. 부적정의견을 두 허용 대안 중 하나로 제시하면 충족하며 부적정의견만 유일하게 가능하다고 단정한 부분은 다른 대안 명제와 구분한다.'에 반하는 조건·조치·명칭 또는 관계를 제시한다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "efcf5c37f9d0804623a67eb56c9aa972bc34689ab4bd14f7384f42988bb21729",
+  "schema_hash": "58db08828541fceb5487d1416d786f23a969b0c019b3e869c738296b31b18e97",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "당기재무제표에는 의견거절만 가능하고 한정의견과 부적정의견은 허용되지 않는다.",
+            "reason": "한정의견이 허용되지 않는다고 명시적으로 부정했다."
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "contradicted",
+            "quote": "당기재무제표에는 의견거절만 가능하고 한정의견과 부적정의견은 허용되지 않는다.",
+            "reason": "부적정의견이 허용되지 않는다고 명시적으로 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "한정의견이 허용되지 않는다고 명시적으로 부정했다."
+              },
+              {
+                "criterion_id": "crit5.p2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "부적정의견이 허용되지 않는다고 명시적으로 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-008",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 710의 대응수치 방식이 적용되는 감사이다. 이전에 적정의견이 표명된 전기재무제표에 중요한 왜곡표시가 있다는 감사증거를 입수하였으나 대응수치가 적절하게 재작성되지 않았거나 적절한 공시가 이루어지지 않았다. 감사기준서 710 문단 12에 따라 당기재무제표에 표명하여야 하는 감사의견을 제시하시오.",
+        "user_answer": "당기재무제표에는 의견거절만 가능하고 한정의견과 부적정의견은 허용되지 않는다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "당기재무제표에는 의견거절만 가능하고 한정의견과 부적정의견은 허용되지 않는다.",
+            "reason": "한정의견이 허용되지 않는다고 명시적으로 부정했다.",
+            "claim": "당기재무제표에 표명할 수 있는 변형의견으로 한정의견을 제시한다. 구체적 상황에서 둘 중 하나를 선택하는 근거는 요구하지 않는다. 한정의견을 두 허용 대안 중 하나로 제시하면 충족하며 한정의견만 유일하게 가능하다고 단정한 부분은 다른 대안 명제와 구분한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5.p2",
+            "verdict": "contradicted",
+            "quote": "당기재무제표에는 의견거절만 가능하고 한정의견과 부적정의견은 허용되지 않는다.",
+            "reason": "부적정의견이 허용되지 않는다고 명시적으로 부정했다.",
+            "claim": "당기재무제표에 표명할 수 있는 변형의견으로 부적정의견을 제시한다. 구체적 상황에서 둘 중 하나를 선택하는 근거는 요구하지 않는다. 부적정의견을 두 허용 대안 중 하나로 제시하면 충족하며 부적정의견만 유일하게 가능하다고 단정한 부분은 다른 대안 명제와 구분한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "당기재무제표에 대하여 한정의견이나 부적정의견을 표명한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_01ea403d459354f3016aae072f911087d09c489f2d507ebdb1",
+        "request_id": "req_8315b208cb52477aa268895f05c39a24",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2540,
+          "input_tokens_details": {
+            "cache_write_tokens": 2537,
+            "cached_tokens": 0
+          },
+          "output_tokens": 208,
+          "output_tokens_details": {
+            "reasoning_tokens": 65
+          },
+          "total_tokens": 2748
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008844500000000001,
+        "min_usd": 0.0008844500000000001,
+        "max_usd": 0.0008844500000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-16-008--sub2--standard--wrong/input.json",
+      "sha256": "686155a450657ad5f8e75d8561279a359f2b46e19b78704491ac60a69ca9c3f6"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-16-008--sub2--standard--wrong/transport.jsonl",
+      "sha256": "bb66e9714939275cf65bc5ec852b77798f6221c5933bcc54fed4890ec317f595"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-16-008--sub2--standard--wrong/traces.jsonl",
+      "sha256": "349fc61a56e36f7924dd4d982d61e849dc697f998531edd7204cf51c597fffed"
+    }
+  }
+}

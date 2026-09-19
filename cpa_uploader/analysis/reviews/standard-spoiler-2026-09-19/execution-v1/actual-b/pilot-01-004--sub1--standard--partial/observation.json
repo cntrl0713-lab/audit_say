@@ -1,0 +1,226 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-01-004--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-01-004--sub1--standard",
+  "source_set_id": "pilot-01-004",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "c3e92c0aa8d8fb2acac746808f3844963bcf4dc6c4c7d573306dab3eb799a5ce",
+  "answers": {
+    "sub1": "업무수행이사는 입수한 정보를 회계법인에 알려야 한다. 그래야 회계법인과 업무수행이사가 필요한 조치를 취할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (회계법인 커뮤니케이션과 목적은 썼으나 신속성은 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (회계법인 커뮤니케이션과 목적은 썼으나 신속성은 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (회계법인 커뮤니케이션과 목적은 썼으나 신속성은 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "f8a859a7ee682f6c60b2bcefb8554ee02db93dd1ff9afe4284872e687f8fbe28",
+  "schema_hash": "c26cfc8a32805b66af7415dcbc61d29b39e28462565fdd561facc3924f26fa28",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "업무수행이사는 입수한 정보를 회계법인에 알려야 한다. ",
+            "reason": "회계법인에 정보를 알려야 한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그래야 회계법인과 업무수행이사가 필요한 조치를 취할 수 있다.",
+            "reason": "회계법인과 업무수행이사가 필요한 조치를 취할 수 있도록 한다는 목적을 설명했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "신속히 커뮤니케이션해야 한다는 시점 요건이 답안에 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "회계법인에 정보를 알려야 한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "회계법인과 업무수행이사가 필요한 조치를 취할 수 있도록 한다는 목적을 설명했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "신속히 커뮤니케이션해야 한다는 시점 요건이 답안에 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-01-004",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사업무를 수임한 후 업무수행이사가, 조기에 알았더라면 회계법인이 그 감사업무를 거절하였을 정보를 입수하였다. 감사기준서 220에 따라 업무수행이사가 취하여야 할 조치와 그 목적을 설명하시오.",
+        "user_answer": "업무수행이사는 입수한 정보를 회계법인에 알려야 한다. 그래야 회계법인과 업무수행이사가 필요한 조치를 취할 수 있다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "업무수행이사는 입수한 정보를 회계법인에 알려야 한다.",
+            "reason": "회계법인에 정보를 알려야 한다고 명시했다.",
+            "claim": "업무수행이사는 해당 정보를 회계법인에 커뮤니케이션하여야 한다. 업무수행이사가 자체 판단으로만 처리해도 된다고 하면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "그래야 회계법인과 업무수행이사가 필요한 조치를 취할 수 있다.",
+            "reason": "회계법인과 업무수행이사가 필요한 조치를 취할 수 있도록 한다는 목적을 설명했다.",
+            "claim": "정보 전달의 목적은 회계법인과 업무수행이사가 필요한 조치를 취할 수 있도록 하는 것이다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "신속히 커뮤니케이션해야 한다는 시점 요건이 답안에 없다.",
+            "claim": "해당 정보를 신속히 커뮤니케이션해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "업무수행이사는 회계법인과 업무수행이사가 필요한 조치를 취할 수 있도록 해당 정보를 회계법인에 신속히 커뮤니케이션해야 한다. 업무수행이사가 자체 판단만으로 처리해서는 안 된다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_059e10285126600d016aae068bbcac87d0a2cc10ea12387a25",
+        "request_id": "req_81b110f056944b4fb8247d2a73239b80",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2652,
+          "input_tokens_details": {
+            "cache_write_tokens": 2649,
+            "cached_tokens": 0
+          },
+          "output_tokens": 226,
+          "output_tokens_details": {
+            "reasoning_tokens": 46
+          },
+          "total_tokens": 2878
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00093405,
+        "min_usd": 0.00093405,
+        "max_usd": 0.00093405,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-01-004--sub1--standard--partial/input.json",
+      "sha256": "042dddb262e8fe19af6a6f0c039b285d3b7bc69113251eac4d753ba1aa8bff27"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-01-004--sub1--standard--partial/transport.jsonl",
+      "sha256": "2034a27e05a73f4b54d7253f4813cad22897a322fdda44e55a53aaafe5875951"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-01-004--sub1--standard--partial/traces.jsonl",
+      "sha256": "82b4aabaa292acd7bad2d113c8c2ff3c33db8aed06ebbaa0c26451aa7aaacd2d"
+    }
+  }
+}

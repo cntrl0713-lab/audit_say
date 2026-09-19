@@ -1,7 +1,7 @@
 ---
 title: "회계감사 주제 지도"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: source-map
 status: generated
 review_required: true
@@ -16,10 +16,10 @@ confidence: high
 
 | 학습 순서 | 주제 ID | 주제 | 기준 축 | 설계 지침 | 세트 |
 |---|---|---|---|---|---|
-| 1 | 02 | [[audit-objectives-foundations]] | KGA 200 | [[topic-02-design]] | 11 |
+| 1 | 02 | [[audit-objectives-foundations]] | KGA 200 | [[topic-02-design]] | 9 |
 | 2 | 01 | [[ethics-independence-quality]] | KGA 200 · KGA 220 | [[topic-01-design]] | 25 |
 | 3 | 03 | [[engagement-acceptance-contract]] | KGA 210 | [[topic-03-design]] | 20 |
-| 4 | 04 | [[planning-documentation-materiality]] | KGA 230 · KGA 300 · KGA 320 | [[topic-04-design]] | 23 |
+| 4 | 04 | [[planning-documentation-materiality]] | KGA 230 · KGA 300 · KGA 320 | [[topic-04-design]] | 21 |
 | 5 | 08 | [[audit-evidence-assertions]] | KGA 315 · KGA 500 | [[topic-08-design]] | 26 |
 | 6 | 06 | [[risk-assessment-internal-control]] | KGA 315 · KGA 330 | [[topic-06-design]] | 22 |
 | 7 | 07 | [[responses-controls-substantive-procedures]] | KGA 330 · KGA 500 | [[topic-07-design]] | 18 |
@@ -28,9 +28,9 @@ confidence: high
 | 10 | 11 | [[estimates-related-parties]] | KGA 540 · KGA 550 | [[topic-11-design]] | 12 |
 | 11 | 13 | [[service-organizations-internal-audit-experts]] | KGA 402 · KGA 610 · KGA 620 | [[topic-13-design]] | 20 |
 | 12 | 10 | [[analytics-audit-sampling]] | KGA 315 · KGA 520 · KGA 530 | [[topic-10-design]] | 16 |
-| 13 | 12 | [[completion-subsequent-events-going-concern]] | KGA 450 · KGA 560 · KGA 570 · KGA 580 | [[topic-12-design]] | 29 |
-| 14 | 15 | [[audit-opinions-reports]] | KGA 700 · KGA 705 | [[topic-15-design]] | 21 |
-| 15 | 16 | [[kam-emphasis-comparatives-other-information]] | KGA 701 · KGA 706 · KGA 710 · KGA 720 | [[topic-16-design]] | 18 |
+| 13 | 12 | [[completion-subsequent-events-going-concern]] | KGA 450 · KGA 560 · KGA 570 · KGA 580 | [[topic-12-design]] | 28 |
+| 14 | 15 | [[audit-opinions-reports]] | KGA 700 · KGA 705 | [[topic-15-design]] | 20 |
+| 15 | 16 | [[kam-emphasis-comparatives-other-information]] | KGA 701 · KGA 706 · KGA 710 · KGA 720 | [[topic-16-design]] | 17 |
 | 16 | 14 | [[group-audit]] | KGA 600 | [[topic-14-design]] | 21 |
 | 17 | 17 | [[internal-control-over-financial-reporting]] | KGA 1100 | [[topic-17-design]] | 11 |
 | 18 | 18 | [[small-entity-audit]] | KGA 1200 | [[topic-18-design]] | 12 |

@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "artifact_type": "db_import_baseline_reconciliation",
+  "created_at": "2026-09-18T05:55:05.904Z",
+  "reason": "정본 설치(install-completion.json, 2026-09-18T05:06:46.862Z) 이후, 사용자가 확인한 다른 작업 세션이 같은 정본 파일의 pilot-01-005(주제01)를 동시에 수정했다(2세트→3세트, KGA 220 근거 추가). r05~r06과 무관하다.",
+  "head_commit": {
+    "commit": "dc5f072fe8cf698335532ca13f3218bb1eecb28f",
+    "path": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+    "sha256": "18082e546c3fb99a8169c49d65e708bb5dc3d33802251a2bf5c00525deb4b706",
+    "set_count": 371
+  },
+  "checkpoint_commit": {
+    "commit": "1ca22ffd337957dc9ff217743c374bf8e7cfa452",
+    "path": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+    "sha256": "eaed50d47baa5e4539963e7a096ff72cad574f2b056ad19ca60fd118ee646d2a",
+    "set_count": 371,
+    "note": "어느 브랜치에도 연결하지 않은 git 객체(git commit-tree만 실행, HEAD·작업 트리·인덱스 불변). db-import baselineSource()가 참조하는 용도로만 존재한다."
+  },
+  "old_baseline_json": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/baseline.json",
+    "recorded_authoring_sha256": "18082e546c3fb99a8169c49d65e708bb5dc3d33802251a2bf5c00525deb4b706",
+    "note": "publish.mjs --baseline가 install 이전 시점(정본=HEAD)에 기록한 값이며 그대로 보존한다. pilot-01-005 동시 편집 이후에는 db-import의 참조 값으로 쓰지 않는다."
+  },
+  "changed_sets_between_head_and_checkpoint": [
+    {
+      "index": 85,
+      "set_id": "pilot-01-005",
+      "head_sha256": "4392339bea8559286cfdfd50e1ab82f9630ceaa7b0c94024e4400fd5497f2bb7",
+      "checkpoint_sha256": "53bba0449d42a9818e6f45771fe0730bd4c19bd45f02c07ab80061ef60c3e182"
+    }
+  ],
+  "verification": {
+    "checkpoint_set_ids_equal_head_set_ids": true,
+    "exactly_one_set_changed": true,
+    "changed_set_excluded_from_this_round": true,
+    "retained_sets_match_live_bank_exactly": true,
+    "live_bank_tail_is_exactly_new_sets_in_order": true
+  },
+  "live_bank": {
+    "file": "cpa_uploader/data/cpa_question_sets_v3.authoring.json",
+    "sha256": "09e5c9a67b85e97ee9303e66f1f10b9819956d81fda247ebc231587eadc34b0a",
+    "set_count": 369
+  }
+}

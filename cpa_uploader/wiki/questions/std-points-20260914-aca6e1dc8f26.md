@@ -1,7 +1,7 @@
 ---
-title: "std-points-20260914-aca6e1dc8f26. 감사기준서 580 문단 10·11에 따라 경영진에게 요청하는 핵심 책임진술의 내용을 모두 설명하시오. 재무제표 작성책임 및 감사인에게 제공된 정보와 거래의 완전성에 관한 요구사항을 포함하시오."
+title: "std-points-20260914-aca6e1dc8f26. 감사기준서 580 문단 10·11에 따라 감사인이 경영진에게 제공하도록 요청하여야 하는 서면진술의 내용을 모두 설명하시오."
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -10,12 +10,12 @@ sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/
 confidence: high
 ---
 
-# std-points-20260914-aca6e1dc8f26. 감사기준서 580 문단 10·11에 따라 경영진에게 요청하는 핵심 책임진술의 내용을 모두 설명하시오. 재무제표 작성책임 및 감사인에게 제공된 정보와 거래의 완전성에 관한 요구사항을 포함하시오.
+# std-points-20260914-aca6e1dc8f26. 감사기준서 580 문단 10·11에 따라 감사인이 경영진에게 제공하도록 요청하여야 하는 서면진술의 내용을 모두 설명하시오.
 
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[completion-subsequent-events-going-concern]] · [[topic-12-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/308`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/295`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [12.json](../../analysis/reviews/question-review-2027/12.json)
 - 학습 순서: sub2
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/308/subquestions/0`
+유형: enumeration · JSON Pointer `/295/subquestions/0`
 
 ### 발문
 
-감사기준서 580 문단 10·11에 따라 경영진에게 요청하는 핵심 책임진술의 내용을 모두 설명하시오. 재무제표 작성책임 및 감사인에게 제공된 정보와 거래의 완전성에 관한 요구사항을 포함하시오.
+감사기준서 580 문단 10·11에 따라 감사인이 경영진에게 제공하도록 요청하여야 하는 서면진술의 내용을 모두 설명하시오.
 
 ### 모범답안
 

@@ -1,0 +1,404 @@
+{
+  "version": 1,
+  "artifact_type": "question_set_correction",
+  "correction_id": "20260919-std-points-20260914-69b535e26ab0--standard-spoiler",
+  "set_id": "std-points-20260914-69b535e26ab0",
+  "summary": "기준서형 발문의 정답 암시 제거(sub1)",
+  "note": "기준서형 수정·스포일러 전수 검토(cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/plan-v1.json). 학습 유형·주제·배점 구조는 바꾸지 않는다.",
+  "base_content_hash": "94d3a10cae16cf0da9aed1920f134d2f32811463cfdd6b78353a7957137d63a3",
+  "patches": [
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "prompt"
+      },
+      "reason": "정답 암시: '협조 확인, 윤리적 요구사항, 왜곡표시 한도기준, 추가로 식별되는 유의적 위험의 회신'이 다섯 정답 중 넷을 알려 주었고, 제외 문구가 다른 세 물음(8fb759615dea, 4760b36cae38, d8f85aa968c1)의 정답을 노출했다. 문단 40(c)(d)가 두 물음에 문장 단위로 나뉘어 있어 정답을 쓰지 않고는 범위를 정할 수 없었다.",
+      "expected_before": "그룹업무팀이 감사기준서 600 문단 40에 따라 부문감사인에게 전달하거나 요청할 사항 중, 협조 확인, 윤리적 요구사항, 부문재무정보의 감사·검토 시 왜곡표시 한도기준 및 부문에서 추가로 식별되는 유의적 위험의 회신에 관한 내용을 모두 설명하시오. 수행할 업무와 보고 형식·내용, 중요성 수준, 이미 식별하여 전달하는 위험 및 특수관계자는 제외한다.",
+      "set": "감사기준서 600 문단 40(a)·(b)·(d)에 따라 그룹업무팀이 부문감사인에게 커뮤니케이션하거나 요청하여야 할 사항을 모두 설명하시오."
+    },
+    {
+      "target": {
+        "field": "title"
+      },
+      "reason": "세트 제목이 옛 발문과 같아 발문에서 없앤 정답 암시가 제목에 남는다. 새 발문으로 맞춘다.",
+      "expected_before": "그룹업무팀이 감사기준서 600 문단 40에 따라 부문감사인에게 전달하거나 요청할 사항 중, 협조 확인, 윤리적 요구사항, 부문재무정보의 감사·검토 시 왜곡표시 한도기준 및 부문에서 추가로 식별되는 유의적 위험의 회신에 관한 내용을 모두 설명하시오. 수행할 업무와 보고 형식·내용, 중요성 수준, 이미 식별하여 전달하는 위험 및 특수관계자는 제외한다.",
+      "set": "감사기준서 600 문단 40(a)·(b)·(d)에 따라 그룹업무팀이 부문감사인에게 커뮤니케이션하거나 요청하여야 할 사항을 모두 설명하시오."
+    },
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "model_answer"
+      },
+      "reason": "새 발문과 바뀐 criterion에 맞춘 모범답안이다.",
+      "expected_before": [
+        "그룹업무팀이 자신의 업무를 활용함을 알고 있는 부문감사인에게 협조할 것을 확인해 달라고 요청한다. 그룹감사 관련 윤리적 요구사항, 특히 독립성 요구사항을 전달한다. 부문재무정보를 감사·검토할 때는 그 금액을 초과하면 그룹재무제표에서 명백하게 사소하다고 볼 수 없는 왜곡표시의 한도기준을 전달한다. 부문에서 기타 유의적인 중요왜곡표시위험이 식별되면 그 위험을 적시에 알리도록 요청하고, 그 위험에 대한 부문감사인의 대응도 적시에 알리도록 요청한다."
+      ],
+      "set": [
+        "그룹업무팀이 자신의 업무를 활용함을 알고 있는 부문감사인에게 협조할 것을 확인해 달라고 요청한다. 그룹감사 관련 윤리적 요구사항, 특히 독립성 요구사항을 전달한다. 부문감사인의 업무와 관련성이 있는, 부정이나 오류로 인한 그룹재무제표의 식별된 유의적인 중요왜곡표시위험을 전달한다. 부문에서 기타 유의적인 중요왜곡표시위험이 식별되면 그 위험을 적시에 알리도록 요청하고, 그 위험에 대한 부문감사인의 대응도 적시에 알리도록 요청한다."
+      ]
+    },
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "criteria"
+      },
+      "reason": "문단 40(c)(d)가 두 물음에 문장 단위로 나뉘어 있어 정답을 쓰지 않고는 범위를 정할 수 없었다. 문단 기호로 범위를 정하도록 crit3를 다른 물음으로 옮기고 crit10을 받아온다. KGA 600 문단 40(a)(b)(d)와 대조했다. 협조 확인 요청, 윤리적 요구사항(특히 독립성), 식별된 유의적 위험의 전달, 기타 유의적 위험과 그 대응의 적시 커뮤니케이션 요청의 5개 criterion이 일치한다. 문단 기호로 범위를 정하도록 40(c)의 한도기준(crit3)을 4760b36cae38로 옮기고 40(d) 첫 문장(crit10)을 받아왔다. 5점 유지.",
+      "expected_before": [
+        {
+          "id": "crit1",
+          "requirement_id": "req-1",
+          "claim": "그룹업무팀이 자신의 업무를 활용할 것을 알고 있는 부문감사인에게 그룹업무팀에 협조할 것을 확인해 주도록 요청한다.",
+          "critical_facts": [
+            {
+              "id": "fact1",
+              "type": "action",
+              "expected": "그룹업무팀이 자신의 업무를 활용할 것을 알고 있는 부문감사인에게 그룹업무팀에 협조할 것을 확인해 주도록 요청한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-f06ac235310ddee4"
+          ]
+        },
+        {
+          "id": "crit2",
+          "requirement_id": "req-2",
+          "claim": "그룹감사와 관련된 윤리적 요구사항, 특히 독립성 요구사항을 커뮤니케이션한다.",
+          "critical_facts": [
+            {
+              "id": "fact2",
+              "type": "action",
+              "expected": "그룹감사와 관련된 윤리적 요구사항, 특히 독립성 요구사항을 커뮤니케이션한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-d3a757b838ea3283"
+          ]
+        },
+        {
+          "id": "crit3",
+          "requirement_id": "req-3",
+          "claim": "부문재무정보에 대한 감사나 검토를 수행하는 경우, 초과하면 그룹재무제표에 대하여 명백하게 사소하다고 간주할 수 없는 왜곡표시의 한도기준을 커뮤니케이션한다.",
+          "critical_facts": [
+            {
+              "id": "fact3",
+              "type": "action",
+              "expected": "부문재무정보에 대한 감사나 검토를 수행하는 경우, 초과하면 그룹재무제표에 대하여 명백하게 사소하다고 간주할 수 없는 왜곡표시의 한도기준을 커뮤니케이션한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-01e7332933c45641"
+          ]
+        },
+        {
+          "id": "crit4",
+          "requirement_id": "req-4",
+          "claim": "부문에서 그룹재무제표의 기타 유의적인 중요왜곡표시위험이 식별되면 그 위험을 적시에 커뮤니케이션하도록 부문감사인에게 요청한다.",
+          "critical_facts": [
+            {
+              "id": "crit4.fact",
+              "type": "action",
+              "expected": "부문에서 그룹재무제표의 기타 유의적인 중요왜곡표시위험이 식별되면 그 위험을 적시에 커뮤니케이션하도록 부문감사인에게 요청한다.",
+              "scope": "이 명제만 독립적으로 1점 평가한다. 원 기준의 다른 분할 명제를 충족요건으로 요구하지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-9c1c4eb25fb1d324"
+          ]
+        },
+        {
+          "id": "crit4.sp2",
+          "requirement_id": "req-5",
+          "claim": "부문에서 그룹재무제표의 기타 유의적인 중요왜곡표시위험이 식별되면 그 위험에 대한 부문감사인의 대응을 적시에 커뮤니케이션하도록 요청한다.",
+          "critical_facts": [
+            {
+              "id": "crit4.sp2.fact",
+              "type": "action",
+              "expected": "부문에서 그룹재무제표의 기타 유의적인 중요왜곡표시위험이 식별되면 그 위험에 대한 부문감사인의 대응을 적시에 커뮤니케이션하도록 요청한다.",
+              "scope": "이 명제만 독립적으로 1점 평가한다. 원 기준의 다른 분할 명제를 충족요건으로 요구하지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-9c1c4eb25fb1d324"
+          ]
+        }
+      ],
+      "set": [
+        {
+          "id": "crit1",
+          "requirement_id": "req-1",
+          "claim": "그룹업무팀이 자신의 업무를 활용할 것을 알고 있는 부문감사인에게 그룹업무팀에 협조할 것을 확인해 주도록 요청한다.",
+          "critical_facts": [
+            {
+              "id": "fact1",
+              "type": "action",
+              "expected": "그룹업무팀이 자신의 업무를 활용할 것을 알고 있는 부문감사인에게 그룹업무팀에 협조할 것을 확인해 주도록 요청한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-f06ac235310ddee4"
+          ]
+        },
+        {
+          "id": "crit2",
+          "requirement_id": "req-2",
+          "claim": "그룹감사와 관련된 윤리적 요구사항, 특히 독립성 요구사항을 커뮤니케이션한다.",
+          "critical_facts": [
+            {
+              "id": "fact2",
+              "type": "action",
+              "expected": "그룹감사와 관련된 윤리적 요구사항, 특히 독립성 요구사항을 커뮤니케이션한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-d3a757b838ea3283"
+          ]
+        },
+        {
+          "id": "crit10",
+          "requirement_id": "req-4",
+          "claim": "부문감사인의 업무와 관련성이 있는, 부정이나 오류로 인한 그룹재무제표의 식별된 유의적인 중요왜곡표시위험을 전달한다.",
+          "critical_facts": [
+            {
+              "id": "cf10",
+              "type": "action",
+              "expected": "부문감사인의 업무와 관련성이 있는, 부정이나 오류로 인한 그룹재무제표의 식별된 유의적인 중요왜곡표시위험을 전달한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-9c1c4eb25fb1d324"
+          ]
+        },
+        {
+          "id": "crit4",
+          "requirement_id": "req-4",
+          "claim": "부문에서 그룹재무제표의 기타 유의적인 중요왜곡표시위험이 식별되면 그 위험을 적시에 커뮤니케이션하도록 부문감사인에게 요청한다.",
+          "critical_facts": [
+            {
+              "id": "crit4.fact",
+              "type": "action",
+              "expected": "부문에서 그룹재무제표의 기타 유의적인 중요왜곡표시위험이 식별되면 그 위험을 적시에 커뮤니케이션하도록 부문감사인에게 요청한다.",
+              "scope": "이 명제만 독립적으로 1점 평가한다. 원 기준의 다른 분할 명제를 충족요건으로 요구하지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-9c1c4eb25fb1d324"
+          ]
+        },
+        {
+          "id": "crit4.sp2",
+          "requirement_id": "req-5",
+          "claim": "부문에서 그룹재무제표의 기타 유의적인 중요왜곡표시위험이 식별되면 그 위험에 대한 부문감사인의 대응을 적시에 커뮤니케이션하도록 요청한다.",
+          "critical_facts": [
+            {
+              "id": "crit4.sp2.fact",
+              "type": "action",
+              "expected": "부문에서 그룹재무제표의 기타 유의적인 중요왜곡표시위험이 식별되면 그 위험에 대한 부문감사인의 대응을 적시에 커뮤니케이션하도록 요청한다.",
+              "scope": "이 명제만 독립적으로 1점 평가한다. 원 기준의 다른 분할 명제를 충족요건으로 요구하지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src-9c1c4eb25fb1d324"
+          ]
+        }
+      ]
+    },
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "requirements"
+      },
+      "reason": "옮긴 criterion만 쓰던 requirement를 지운다.",
+      "expected_before": [
+        {
+          "id": "req-1",
+          "source_ref_id": "src-f06ac235310ddee4",
+          "source_quote": "(a) \n그룹업무팀이 자신의 업무를 활용할 것을 알고 있는 부문감사인이 그룹업무팀에 협\n조할 것을 확인해 주도록 하는 요청 (문단 A59 참조) ",
+          "source_span": "KGA 600 40(a)–(e); 추출본 L26215–L26217"
+        },
+        {
+          "id": "req-2",
+          "source_ref_id": "src-d3a757b838ea3283",
+          "source_quote": "(b) \n그룹감사와 관련된 윤리적 요구사항, 특히 독립성 요구사항 ",
+          "source_span": "KGA 600 40(a)–(e); 추출본 L26223–L26224"
+        },
+        {
+          "id": "req-3",
+          "source_ref_id": "src-01e7332933c45641",
+          "source_quote": "(c) \n부문의 재무정보에 대한 감사나 검토를 수행하는 경우, 부문중요성 (그리고 적용가능\n한 경우, 특정 거래유형, 계정잔액 또는 공시에 대한 중요성 수준들) 및 한도기준(즉, \n왜곡표시가 그 기준을 초과하면 그룹재무제표에 대하여 명백하게 사소하다(clearly \ntrivial)고 간주할 수 없는 한도기준) ",
+          "source_span": "KGA 600 40(a)–(e); 추출본 L26225–L26229"
+        },
+        {
+          "id": "req-4",
+          "source_ref_id": "src-9c1c4eb25fb1d324",
+          "source_quote": "(d) \n부문감사인의 업무와 관련성이 있는 부정이나 오류로 인한, 그룹재무제표의 식별된 \n유의적인 중요왜곡표시위험. 부문에서 부정이나 오류로 인하여, 그룹재무제표에 대하\n여 기타의 유의적인 중요왜곡표시위험이 식별된 경우, 그룹업무팀은 부문감사인에게 \n그러한 식별된 유의적위험과 그러한 위험에 대한 부문감사인의 대응을 적시에 커뮤\n니케이션하도록 요청하여야 한다.  ",
+          "source_span": "KGA 600 40(a)–(e); 추출본 L26230–L26235"
+        },
+        {
+          "id": "req-5",
+          "source_ref_id": "src-9c1c4eb25fb1d324",
+          "source_quote": "(d) \n부문감사인의 업무와 관련성이 있는 부정이나 오류로 인한, 그룹재무제표의 식별된 \n유의적인 중요왜곡표시위험. 부문에서 부정이나 오류로 인하여, 그룹재무제표에 대하\n여 기타의 유의적인 중요왜곡표시위험이 식별된 경우, 그룹업무팀은 부문감사인에게 \n그러한 식별된 유의적위험과 그러한 위험에 대한 부문감사인의 대응을 적시에 커뮤\n니케이션하도록 요청하여야 한다.  ",
+          "source_span": "KGA 600 40(a)–(e); 추출본 L26230–L26235"
+        }
+      ],
+      "set": [
+        {
+          "id": "req-1",
+          "source_ref_id": "src-f06ac235310ddee4",
+          "source_quote": "(a) \n그룹업무팀이 자신의 업무를 활용할 것을 알고 있는 부문감사인이 그룹업무팀에 협\n조할 것을 확인해 주도록 하는 요청 (문단 A59 참조) ",
+          "source_span": "KGA 600 40(a)–(e); 추출본 L26215–L26217"
+        },
+        {
+          "id": "req-2",
+          "source_ref_id": "src-d3a757b838ea3283",
+          "source_quote": "(b) \n그룹감사와 관련된 윤리적 요구사항, 특히 독립성 요구사항 ",
+          "source_span": "KGA 600 40(a)–(e); 추출본 L26223–L26224"
+        },
+        {
+          "id": "req-4",
+          "source_ref_id": "src-9c1c4eb25fb1d324",
+          "source_quote": "(d) \n부문감사인의 업무와 관련성이 있는 부정이나 오류로 인한, 그룹재무제표의 식별된 \n유의적인 중요왜곡표시위험. 부문에서 부정이나 오류로 인하여, 그룹재무제표에 대하\n여 기타의 유의적인 중요왜곡표시위험이 식별된 경우, 그룹업무팀은 부문감사인에게 \n그러한 식별된 유의적위험과 그러한 위험에 대한 부문감사인의 대응을 적시에 커뮤\n니케이션하도록 요청하여야 한다.  ",
+          "source_span": "KGA 600 40(a)–(e); 추출본 L26230–L26235"
+        },
+        {
+          "id": "req-5",
+          "source_ref_id": "src-9c1c4eb25fb1d324",
+          "source_quote": "(d) \n부문감사인의 업무와 관련성이 있는 부정이나 오류로 인한, 그룹재무제표의 식별된 \n유의적인 중요왜곡표시위험. 부문에서 부정이나 오류로 인하여, 그룹재무제표에 대하\n여 기타의 유의적인 중요왜곡표시위험이 식별된 경우, 그룹업무팀은 부문감사인에게 \n그러한 식별된 유의적위험과 그러한 위험에 대한 부문감사인의 대응을 적시에 커뮤\n니케이션하도록 요청하여야 한다.  ",
+          "source_span": "KGA 600 40(a)–(e); 추출본 L26230–L26235"
+        }
+      ]
+    },
+    {
+      "target": {
+        "field": "source_refs"
+      },
+      "reason": "옮긴 criterion만 인용하던 출처(문단 40(c) 발췌)를 지운다.",
+      "expected_before": [
+        {
+          "id": "src-f06ac235310ddee4",
+          "file": "cpa_uploader/drafts/standard-priority-2026-09-14/sources/official-excerpts.txt",
+          "title": "KICPA 2026년 7월 개정 전문. 해당 기준의 일반 요구를 출제하며 시험 적용연도는 별도로 확정하지 않는다. 원 추출본 L26215–L26217",
+          "page": "KGA 600",
+          "source_quote": "(a) \n그룹업무팀이 자신의 업무를 활용할 것을 알고 있는 부문감사인이 그룹업무팀에 협\n조할 것을 확인해 주도록 하는 요청 (문단 A59 참조) ",
+          "role": "standard",
+          "content_hash": "ed9d8117653978add6cebf7df70feb77b18d4ac89d4fa37a026d625248853015"
+        },
+        {
+          "id": "src-d3a757b838ea3283",
+          "file": "cpa_uploader/drafts/standard-priority-2026-09-14/sources/official-excerpts.txt",
+          "title": "KICPA 2026년 7월 개정 전문. 해당 기준의 일반 요구를 출제하며 시험 적용연도는 별도로 확정하지 않는다. 원 추출본 L26223–L26224",
+          "page": "KGA 600",
+          "source_quote": "(b) \n그룹감사와 관련된 윤리적 요구사항, 특히 독립성 요구사항 ",
+          "role": "standard",
+          "content_hash": "a1bdd70e4b9dc05cec396ec1d6b7b4bfcfcf13cacd4a94153de6aaaa88891e0b"
+        },
+        {
+          "id": "src-01e7332933c45641",
+          "file": "cpa_uploader/drafts/standard-priority-2026-09-14/sources/official-excerpts.txt",
+          "title": "KICPA 2026년 7월 개정 전문. 해당 기준의 일반 요구를 출제하며 시험 적용연도는 별도로 확정하지 않는다. 원 추출본 L26225–L26229",
+          "page": "KGA 600",
+          "source_quote": "(c) \n부문의 재무정보에 대한 감사나 검토를 수행하는 경우, 부문중요성 (그리고 적용가능\n한 경우, 특정 거래유형, 계정잔액 또는 공시에 대한 중요성 수준들) 및 한도기준(즉, \n왜곡표시가 그 기준을 초과하면 그룹재무제표에 대하여 명백하게 사소하다(clearly \ntrivial)고 간주할 수 없는 한도기준) ",
+          "role": "standard",
+          "content_hash": "9cbb4c266f5697515d45b04fa9000df0d07ed675cbc8578cd4cfc0819b167701"
+        },
+        {
+          "id": "src-9c1c4eb25fb1d324",
+          "file": "cpa_uploader/drafts/standard-priority-2026-09-14/sources/official-excerpts.txt",
+          "title": "KICPA 2026년 7월 개정 전문. 해당 기준의 일반 요구를 출제하며 시험 적용연도는 별도로 확정하지 않는다. 원 추출본 L26230–L26235",
+          "page": "KGA 600",
+          "source_quote": "(d) \n부문감사인의 업무와 관련성이 있는 부정이나 오류로 인한, 그룹재무제표의 식별된 \n유의적인 중요왜곡표시위험. 부문에서 부정이나 오류로 인하여, 그룹재무제표에 대하\n여 기타의 유의적인 중요왜곡표시위험이 식별된 경우, 그룹업무팀은 부문감사인에게 \n그러한 식별된 유의적위험과 그러한 위험에 대한 부문감사인의 대응을 적시에 커뮤\n니케이션하도록 요청하여야 한다.  ",
+          "role": "standard",
+          "content_hash": "985811791bcb1d81880a3aeb6576a2d56526bf50ff571b3e18f7353da7a573ca"
+        }
+      ],
+      "set": [
+        {
+          "id": "src-f06ac235310ddee4",
+          "file": "cpa_uploader/drafts/standard-priority-2026-09-14/sources/official-excerpts.txt",
+          "title": "KICPA 2026년 7월 개정 전문. 해당 기준의 일반 요구를 출제하며 시험 적용연도는 별도로 확정하지 않는다. 원 추출본 L26215–L26217",
+          "page": "KGA 600",
+          "source_quote": "(a) \n그룹업무팀이 자신의 업무를 활용할 것을 알고 있는 부문감사인이 그룹업무팀에 협\n조할 것을 확인해 주도록 하는 요청 (문단 A59 참조) ",
+          "role": "standard",
+          "content_hash": "ed9d8117653978add6cebf7df70feb77b18d4ac89d4fa37a026d625248853015"
+        },
+        {
+          "id": "src-d3a757b838ea3283",
+          "file": "cpa_uploader/drafts/standard-priority-2026-09-14/sources/official-excerpts.txt",
+          "title": "KICPA 2026년 7월 개정 전문. 해당 기준의 일반 요구를 출제하며 시험 적용연도는 별도로 확정하지 않는다. 원 추출본 L26223–L26224",
+          "page": "KGA 600",
+          "source_quote": "(b) \n그룹감사와 관련된 윤리적 요구사항, 특히 독립성 요구사항 ",
+          "role": "standard",
+          "content_hash": "a1bdd70e4b9dc05cec396ec1d6b7b4bfcfcf13cacd4a94153de6aaaa88891e0b"
+        },
+        {
+          "id": "src-9c1c4eb25fb1d324",
+          "file": "cpa_uploader/drafts/standard-priority-2026-09-14/sources/official-excerpts.txt",
+          "title": "KICPA 2026년 7월 개정 전문. 해당 기준의 일반 요구를 출제하며 시험 적용연도는 별도로 확정하지 않는다. 원 추출본 L26230–L26235",
+          "page": "KGA 600",
+          "source_quote": "(d) \n부문감사인의 업무와 관련성이 있는 부정이나 오류로 인한, 그룹재무제표의 식별된 \n유의적인 중요왜곡표시위험. 부문에서 부정이나 오류로 인하여, 그룹재무제표에 대하\n여 기타의 유의적인 중요왜곡표시위험이 식별된 경우, 그룹업무팀은 부문감사인에게 \n그러한 식별된 유의적위험과 그러한 위험에 대한 부문감사인의 대응을 적시에 커뮤\n니케이션하도록 요청하여야 한다.  ",
+          "role": "standard",
+          "content_hash": "985811791bcb1d81880a3aeb6576a2d56526bf50ff571b3e18f7353da7a573ca"
+        }
+      ]
+    }
+  ]
+}

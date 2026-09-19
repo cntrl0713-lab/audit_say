@@ -101,3 +101,20 @@ test('wiki lint requires a dynamic index entry for newly added nested pages', (c
     assert.ok(errors.includes('index.md: [[topic-01-design]] 누락'));
     assert.ok(errors.includes('orphan page: topic-01-design'));
 });
+
+test('wiki lint exempts log archives like log.md but checks their length, links and link from log.md', (context) => {
+    const root = fixture(context);
+    const archive = 'cpa_uploader/wiki/log-archive-2026-09-01-to-2026-09-02.md';
+    write(root, 'cpa_uploader/wiki/log.md', '# 갱신 기록\n\n보관본: [[log-archive-2026-09-01-to-2026-09-02]]\n');
+    write(root, archive, '# 보관본\n\n## 2026-09-01 — 기록\n\n- [원문](../../source.md#실제-문단)과 [[first]]\n');
+    const accepted = lintWiki({ repoDir: root });
+    assert.deepEqual(accepted.errors, []);
+    assert.equal(accepted.contentPages, 2);
+    fs.appendFileSync(path.join(root, archive), '\n[누락](../../missing.md)\n' + '- 기록\n'.repeat(400));
+    write(root, 'cpa_uploader/wiki/log.md', '# 갱신 기록\n');
+    const errors = lintWiki({ repoDir: root }).errors as string[];
+    assert.ok(errors.includes('log-archive-2026-09-01-to-2026-09-02.md: source link 없음 ../../missing.md'));
+    assert.ok(errors.includes('log-archive-2026-09-01-to-2026-09-02.md: 407줄로 hard limit 400 초과'));
+    assert.ok(errors.includes('log.md: 보관본 [[log-archive-2026-09-01-to-2026-09-02]] 연결 누락'));
+    assert.equal(errors.length, 3);
+});

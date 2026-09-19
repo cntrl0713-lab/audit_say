@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-09-008--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-09-008--sub1--standard",
+  "source_set_id": "pilot-09-008",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "9143ff95a87121e65d9ae6b7a3893b5436d4cd03f2c77e46d561d6a9b7cbb33f",
+  "answers": {
+    "sub1": "소극적 조회는 기준서가 정한 네 가지 조건을 모두 충족하는 경우에만 유일한 실증절차로 이용할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (설득력이 낮다는 근거를 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (설득력이 낮다는 근거를 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "cd1f92b7471f6843ce4fcba4458d47d349a3e2274058f1aa2dc63e47631aaf3c",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "소극적 조회는 기준서가 정한 네 가지 조건을 모두 충족하는 경우에만 유일한 실증절차로 이용할 수 있다.",
+            "reason": "네 가지 조건을 모두 충족하는 경우에만 유일한 실증절차로 이용할 수 있다고 판단했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "적극적 조회보다 설득력이 낮다는 근거가 제시되지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "네 가지 조건을 모두 충족하는 경우에만 유일한 실증절차로 이용할 수 있다고 판단했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "적극적 조회보다 설득력이 낮다는 근거가 제시되지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-09-008",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "소극적 조회를 경영진주장 수준에서 평가된 중요왜곡표시위험에 대처하기 위한 유일한 실증감사절차로 이용할 수 있는지 판단하고 그 근거를 설명하시오. 요건이 있다면 요건 사이의 충족 관계만 밝히고 각 요건의 구체적인 내용은 제시하지 않아도 된다.",
+        "user_answer": "소극적 조회는 기준서가 정한 네 가지 조건을 모두 충족하는 경우에만 유일한 실증절차로 이용할 수 있다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "소극적 조회는 기준서가 정한 네 가지 조건을 모두 충족하는 경우에만 유일한 실증절차로 이용할 수 있다.",
+            "reason": "네 가지 조건을 모두 충족하는 경우에만 유일한 실증절차로 이용할 수 있다고 판단했다.",
+            "claim": "원칙적으로 단독 이용할 수 없고 505 문단15의 네 조건을 모두 충족한 경우에만 가능함을 판단함. 여기서는 요건의 결합 관계를 채점하며 다음 물음의 세부 조건 누락을 이 criterion의 자동 감점 사유로 삼지 않음",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "적극적 조회보다 설득력이 낮다는 근거가 제시되지 않았다.",
+            "claim": "소극적 조회가 적극적 조회보다 설득력이 낮은 감사증거를 제공함을 판단 근거로 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "소극적 조회는 네 조건을 모두 충족한 경우에만 경영진주장 수준에서 평가된 중요왜곡표시위험에 대처하기 위한 유일한 실증감사절차로 이용할 수 있다.",
+          "소극적 조회는 적극적 조회보다 설득력이 낮은 감사증거를 제공하기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a0e4a41d4bbcf84016aae06b4c75887d08f7219d152c9cde8",
+        "request_id": "req_a5b89ed869b94ba4b9ab934832c6480d",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2477,
+          "input_tokens_details": {
+            "cache_write_tokens": 2474,
+            "cached_tokens": 0
+          },
+          "output_tokens": 284,
+          "output_tokens_details": {
+            "reasoning_tokens": 142
+          },
+          "total_tokens": 2761
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009599000000000001,
+        "min_usd": 0.0009599000000000001,
+        "max_usd": 0.0009599000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-09-008--sub1--standard--partial/input.json",
+      "sha256": "6a792c419b0f551f6cacf6663cf80a991d12fadc3a9ca3cfde8321e7a0888eb5"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-09-008--sub1--standard--partial/transport.jsonl",
+      "sha256": "b2179c11485f506eff68f55c1862602339b78f6f4b8d049fdefbcd0c3831def1"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-09-008--sub1--standard--partial/traces.jsonl",
+      "sha256": "97181df0067ad4b254ced097cbcabe77ca4d5c06cfba44bf990f06fb4bcd838d"
+    }
+  }
+}

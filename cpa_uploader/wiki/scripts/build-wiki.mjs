@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { topicDefinitions } from './topic-definitions.mjs';
 import { oxBookRelative, oxStudyChapters, studyTopics } from './ox-study-order.mjs';
 import { scanGaps } from './gap-scan.mjs';
+import { isLogArchive } from './lint-wiki.mjs';
 import { buildSourceCatalog } from '../../questionSourceCatalog.mjs';
 import { buildQuestionElements } from '../../questionElements.mjs';
 import { buildCoverage, renderDashboard } from '../../analysis/coverage/build-coverage.mjs';
@@ -262,7 +263,7 @@ export function buildWiki({ repoDir = path.resolve(scriptDir, '../../..'), date 
       + '통합 분석 입력이 이 작업 공간에 없다. 추출 데이터와 관계 장부를 준비한 뒤 analysis:build를 실행한다.\n\n## Related\n\n- [[source-catalog]]\n- [[question-elements]]\n- [[requirement-coverage]]\n');
   }
 
-  const manualPages = allFiles(wikiDir).filter((p) => p.endsWith('.md')).map((p) => slash(path.relative(wikiDir, p))).filter((p) => !pages.has(p) && !/^(concepts|questions|_meta|raw)\//.test(p) && !['index.md', 'log.md', 'SCHEMA.md'].includes(p));
+  const manualPages = allFiles(wikiDir).filter((p) => p.endsWith('.md')).map((p) => slash(path.relative(wikiDir, p))).filter((p) => !pages.has(p) && !/^(concepts|questions|_meta|raw)\//.test(p) && !['index.md', 'log.md', 'SCHEMA.md'].includes(p) && !isLogArchive(p));
   const guideRank = (file) => studyRank.get(file.match(/(?:^|\/)topic-(\d+)-design\.md$/u)?.[1]) || 0;
   const orderedGuides = [...manualPages].sort((a, b) => guideRank(a) - guideRank(b) || a.localeCompare(b, 'en'));
   const contentPages = pages.size + manualPages.length;
@@ -281,15 +282,34 @@ export function buildWiki({ repoDir = path.resolve(scriptDir, '../../..'), date 
   return { pages, summary };
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const { pages, summary } = buildWiki();
+export function normalizeGeneratedPage(text) {
+  // Ignore build dates and line endings; dates inside source evidence remain significant.
+  return text.replace(/^\uFEFF/u, '').replace(/\r\n?/gu, '\n')
+    .replace(/^---\n[\s\S]*?\n---(?=\n|$)/u, frontmatter => frontmatter.replace(/^(created|updated): \d{4}-\d{2}-\d{2}$/gmu, '$1: <build-date>'))
+    .replace(/^(> Last updated: )\d{4}-\d{2}-\d{2}(?= \|)/gmu, '$1<build-date>')
+    .trimEnd();
+}
+
+// A page that differs only in what wiki:check ignores keeps its old bytes and build date,
+// so a rebuild on a later day rewrites only new or changed pages.
+/** @param {string} wikiDir @param {Map<string, string>} pages @returns {string[]} */
+export function writeChangedPages(wikiDir, pages) {
+  const written = [];
   for (const [relative, body] of pages) {
-    const target = path.join(summary.wikiDir, relative);
+    const target = path.join(wikiDir, relative);
+    if (fs.existsSync(target) && normalizeGeneratedPage(fs.readFileSync(target, 'utf8')) === normalizeGeneratedPage(body)) continue;
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.writeFileSync(target, body, 'utf8');
+    written.push(relative);
   }
+  return written;
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const { pages, summary } = buildWiki();
+  const written = writeChangedPages(summary.wikiDir, pages);
   const logPath = path.join(summary.wikiDir, 'log.md');
-  const entry = `\n## ${new Date().toISOString()} — 자동 wiki 빌드\n\n생성 ${pages.size}페이지 · 전체 콘텐츠 ${summary.contentPages}페이지 · ${summary.questionSets}세트/${summary.subquestions}물음/${summary.criteria}criterion/${summary.requirements}requirement. 원자료·문제은행 변경 없음. lint·동기화 검사는 별도 명령의 실제 결과를 기록한다.\n`;
+  const entry = `\n## ${new Date().toISOString()} — 자동 wiki 빌드\n\n생성 ${pages.size}페이지 중 신규·내용 변경 ${written.length}페이지 기록(생성 날짜·줄바꿈 외 변경이 없는 ${pages.size - written.length}페이지는 기존 파일 유지) · 전체 콘텐츠 ${summary.contentPages}페이지 · ${summary.questionSets}세트/${summary.subquestions}물음/${summary.criteria}criterion/${summary.requirements}requirement. 원자료·문제은행 변경 없음. lint·동기화 검사는 별도 명령의 실제 결과를 기록한다.\n`;
   fs.appendFileSync(logPath, entry);
-  console.log(JSON.stringify(summary, null, 2));
+  console.log(JSON.stringify({ ...summary, writtenPages: written.length }, null, 2));
 }

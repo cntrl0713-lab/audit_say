@@ -1,0 +1,190 @@
+{
+  "version": 1,
+  "artifact_type": "question_set_correction",
+  "correction_id": "20260919-pilot-09-007--standard-spoiler",
+  "set_id": "pilot-09-007",
+  "summary": "기준서형 발문의 정답 암시 제거(sub1·sub2)",
+  "note": "기준서형 수정·스포일러 전수 검토(cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/plan-v1.json). 학습 유형·주제·배점 구조는 바꾸지 않는다.",
+  "base_content_hash": "7143f3632e2838447fff1a53ba1bf2d2ccc9902f449c657d63efa5f4c95c6205",
+  "patches": [
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "prompt"
+      },
+      "reason": "정답 암시: '조회서 설계 시 확인할 내용과 후속확인조회서 발송 조건'이 여섯째 정답(후속확인조회서 발송)과 설계 기준을 알려 주었다.",
+      "expected_before": "외부조회 요청에 대한 통제를 유지하기 위해 감사기준서 505 문단 7에 따라 수행할 네 가지 절차를 모두 제시하시오. 조회서 설계 시 확인할 내용과 후속확인조회서 발송 조건도 포함하시오.",
+      "set": "외부조회 요청에 대한 통제를 유지하기 위해 감사기준서 505 문단 7에 따라 수행할 네 가지 절차를 모두 제시하시오. 각 절차에 포함되는 구체적인 내용과 조건도 함께 쓰시오."
+    },
+    {
+      "target": {
+        "subquestion": "sub2",
+        "field": "prompt"
+      },
+      "reason": "정답 암시: '추가 조치 없이 … 진행하는 것', '기록만 하고 넘기는 것'이 허용되는지 묻는 부정적 서술로 판단(허용 안 됨) 두 점을 공짜로 주었다.",
+      "expected_before": "적극적 조회의 각 미회신에 대해 추가 조치 없이 기존 증거로 감사를 진행하는 것과, 회신이 기업 장부와 불일치할 때 기록만 하고 넘기는 것이 각각 허용되는지 판단하고 필요한 처리를 설명하시오. 미회신은 대체절차로 필요한 감사증거를 얻을 수 있는 상황을 전제로 한다.",
+      "set": "적극적 조회에서 조회처의 회신을 받지 못한 경우와 회신 내용이 기업의 장부와 일치하지 않는 경우 감사기준서 505에 따라 감사인이 각각 수행하여야 할 절차를 설명하시오. 미회신은 대체적 감사절차로 필요한 감사증거를 얻을 수 있는 상황을 전제로 한다."
+    },
+    {
+      "target": {
+        "subquestion": "sub2",
+        "field": "type"
+      },
+      "reason": "답안 형식: '추가 조치 없이 … 진행하는 것', '기록만 하고 넘기는 것'이 허용되는지 묻는 부정적 서술로 판단(허용 안 됨) 두 점을 공짜로 주었다. 새 발문은 서술을 요구한다.",
+      "expected_before": "judgment",
+      "set": "descriptive"
+    },
+    {
+      "target": {
+        "subquestion": "sub2",
+        "field": "model_answer"
+      },
+      "reason": "새 발문과 바뀐 criterion에 맞춘 모범답안이다.",
+      "expected_before": [
+        "둘 다 허용되지 않는다. 적극적 조회의 각 미회신에 대해 관련성이 있고 신뢰할 수 있는 감사증거를 입수하기 위한 대체적 감사절차를 수행해야 한다.",
+        "불일치사항이 왜곡표시를 나타내는지 결정하기 위해 해당 사항을 조사해야 한다."
+      ],
+      "set": [
+        "적극적 조회의 각 미회신에 대하여 관련성이 있고 신뢰할 수 있는 감사증거를 입수하기 위한 대체적 감사절차를 수행해야 한다.",
+        "불일치사항이 왜곡표시를 나타내는지 결정하기 위해 해당 사항을 조사해야 한다."
+      ]
+    },
+    {
+      "target": {
+        "subquestion": "sub2",
+        "field": "criteria"
+      },
+      "reason": "KGA 505 문단 12·14와 대조했다. 미회신마다 대체적 감사절차 수행, 불일치의 왜곡표시 여부 조사의 두 명제가 남은 criterion(crit9·crit10)과 일치한다. 발문의 유도 표현 때문에만 성립하던 판단 두 점(crit3·crit4)은 새 발문에서 조치가 판단을 함축하므로 중복 배점이 되어 삭제했다. 4점에서 2점.",
+      "expected_before": [
+        {
+          "id": "crit3",
+          "requirement_id": "req2",
+          "claim": "적극적 조회의 각 미회신에 대해 추가 조치 없이 진행하는 것은 허용되지 않는다.",
+          "critical_facts": [
+            {
+              "id": "crit3-core",
+              "type": "action",
+              "expected": "적극적 조회의 각 미회신에 대해 추가 조치 없이 진행하는 것은 허용되지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit9",
+          "requirement_id": "req2",
+          "claim": "적극적 조회의 각 미회신에 관련성 있고 신뢰할 수 있는 증거를 입수할 대체적 감사절차를 수행한다. 대체절차로 증거를 얻을 수 있다는 주어진 전제의 반복은 요구하지 않는다.",
+          "critical_facts": [
+            {
+              "id": "crit9-core",
+              "type": "action",
+              "expected": "적극적 조회의 각 미회신에 관련성 있고 신뢰할 수 있는 증거를 입수할 대체적 감사절차를 수행한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit4",
+          "requirement_id": "req3",
+          "claim": "회신 불일치를 기록만 하고 넘기는 것은 허용되지 않는다.",
+          "critical_facts": [
+            {
+              "id": "crit4-core",
+              "type": "action",
+              "expected": "회신 불일치를 기록만 하고 넘기는 것은 허용되지 않는다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src3"
+          ]
+        },
+        {
+          "id": "crit10",
+          "requirement_id": "req3",
+          "claim": "불일치가 왜곡표시를 나타내는지 결정하기 위해 조사한다.",
+          "critical_facts": [
+            {
+              "id": "crit10-core",
+              "type": "action",
+              "expected": "불일치가 왜곡표시를 나타내는지 결정하기 위해 조사한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src3"
+          ]
+        }
+      ],
+      "set": [
+        {
+          "id": "crit9",
+          "requirement_id": "req2",
+          "claim": "적극적 조회의 각 미회신에 관련성 있고 신뢰할 수 있는 증거를 입수할 대체적 감사절차를 수행한다. 대체절차로 증거를 얻을 수 있다는 주어진 전제의 반복은 요구하지 않는다.",
+          "critical_facts": [
+            {
+              "id": "crit9-core",
+              "type": "action",
+              "expected": "적극적 조회의 각 미회신에 관련성 있고 신뢰할 수 있는 증거를 입수할 대체적 감사절차를 수행한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src2"
+          ]
+        },
+        {
+          "id": "crit10",
+          "requirement_id": "req3",
+          "claim": "불일치가 왜곡표시를 나타내는지 결정하기 위해 조사한다.",
+          "critical_facts": [
+            {
+              "id": "crit10-core",
+              "type": "action",
+              "expected": "불일치가 왜곡표시를 나타내는지 결정하기 위해 조사한다."
+            }
+          ],
+          "max_points": 1,
+          "scores": {
+            "met": 1,
+            "not_met": 0,
+            "contradicted": 0
+          },
+          "source_ref_ids": [
+            "src3"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 ---
-title: "std-points-20260914-1f185dbcb15a. 감사기준서 1200(소규모기업 재무제표에 대한 감사)을 적용하던 기업이 당기에 그 적용 조건을 충족하지 못하게 되었다. 적용할 기준과 적용 시점, 업무조건 및 필요한 추가 절차·문서화에 관한 후속 조치를 모두 제시하시오. 이미 수행한 업무의 평가대상은 이 물음에서 요구하지 않는다."
+title: "std-points-20260914-1f185dbcb15a. 감사기준서 1200(소규모기업 재무제표에 대한 감사)을 적용하던 기업이 당기 감사 도중 문단 2의 조건을 충족하지 못하게 되었다. 감사기준서 1200 문단 6과 문단 7 본문에 따라 감사인이 적용할 감사기준서와 그 적용 방식을 설명하고, 문단 7(a)·(c)에 따라 감사인이 수행하여야 할 절차를 모두 제시하시오."
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -10,12 +10,12 @@ sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/
 confidence: high
 ---
 
-# std-points-20260914-1f185dbcb15a. 감사기준서 1200(소규모기업 재무제표에 대한 감사)을 적용하던 기업이 당기에 그 적용 조건을 충족하지 못하게 되었다. 적용할 기준과 적용 시점, 업무조건 및 필요한 추가 절차·문서화에 관한 후속 조치를 모두 제시하시오. 이미 수행한 업무의 평가대상은 이 물음에서 요구하지 않는다.
+# std-points-20260914-1f185dbcb15a. 감사기준서 1200(소규모기업 재무제표에 대한 감사)을 적용하던 기업이 당기 감사 도중 문단 2의 조건을 충족하지 못하게 되었다. 감사기준서 1200 문단 6과 문단 7 본문에 따라 감사인이 적용할 감사기준서와 그 적용 방식을 설명하고, 문단 7(a)·(c)에 따라 감사인이 수행하여야 할 절차를 모두 제시하시오.
 
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[small-entity-audit]] · [[topic-18-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/344`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/331`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [18.json](../../analysis/reviews/question-review-2027/18.json)
 - 학습 순서: sub1
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/344/subquestions/0`
+유형: descriptive · JSON Pointer `/331/subquestions/0`
 
 ### 발문
 
-감사기준서 1200(소규모기업 재무제표에 대한 감사)을 적용하던 기업이 당기에 그 적용 조건을 충족하지 못하게 되었다. 적용할 기준과 적용 시점, 업무조건 및 필요한 추가 절차·문서화에 관한 후속 조치를 모두 제시하시오. 이미 수행한 업무의 평가대상은 이 물음에서 요구하지 않는다.
+감사기준서 1200(소규모기업 재무제표에 대한 감사)을 적용하던 기업이 당기 감사 도중 문단 2의 조건을 충족하지 못하게 되었다. 감사기준서 1200 문단 6과 문단 7 본문에 따라 감사인이 적용할 감사기준서와 그 적용 방식을 설명하고, 문단 7(a)·(c)에 따라 감사인이 수행하여야 할 절차를 모두 제시하시오.
 
 ### 모범답안
 

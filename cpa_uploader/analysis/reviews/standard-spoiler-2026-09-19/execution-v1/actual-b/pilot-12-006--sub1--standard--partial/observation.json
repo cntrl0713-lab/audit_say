@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-12-006--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-006--sub1--standard",
+  "source_set_id": "pilot-12-006",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "3f441f9e2b0439ecee01d762b17ea40b3616146ca2e766af8c6b713837275b6e",
+  "answers": {
+    "sub1": "감사인은 경영진에게 재무제표를 적합하게 수정하도록 요청할 수 있다. 또한 식별된 왜곡표시의 원인을 이해할 수 있도록 관련 거래유형이나 계정잔액을 조사해 달라고 요청할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (실제 금액 결정 절차의 요청을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (실제 금액 결정 절차의 요청을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (실제 금액 결정 절차의 요청을 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "4f67b6aaa202c0358b8f86e30ad37d97a7291b9e523416b1a593245a10c3a904",
+  "schema_hash": "c26cfc8a32805b66af7415dcbc61d29b39e28462565fdd561facc3924f26fa28",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사인은 경영진에게 재무제표를 적합하게 수정하도록 요청할 수 있다. ",
+            "reason": "재무제표를 적합하게 수정하도록 요청할 수 있다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "또한 식별된 왜곡표시의 원인을 이해할 수 있도록 관련 거래유형이나 계정잔액을 조사해 달라고 요청할 수 있다.",
+            "reason": "왜곡표시 원인 이해를 위해 관련 거래유형이나 계정잔액을 조사하도록 요청한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "실제 왜곡표시 금액을 결정하는 절차에 대한 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "재무제표를 적합하게 수정하도록 요청할 수 있다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "왜곡표시 원인 이해를 위해 관련 거래유형이나 계정잔액을 조사하도록 요청한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "실제 왜곡표시 금액을 결정하는 절차에 대한 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-006",
+    "score": 2,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사인이 감사 중 왜곡표시를 식별하였다. 감사기준서 450 문단 A9에 따라 감사인이 경영진에게 요청할 수 있는 사항을 모두 설명하시오.",
+        "user_answer": "감사인은 경영진에게 재무제표를 적합하게 수정하도록 요청할 수 있다. 또한 식별된 왜곡표시의 원인을 이해할 수 있도록 관련 거래유형이나 계정잔액을 조사해 달라고 요청할 수 있다.",
+        "score": 2,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사인은 경영진에게 재무제표를 적합하게 수정하도록 요청할 수 있다.",
+            "reason": "재무제표를 적합하게 수정하도록 요청할 수 있다고 명시했다.",
+            "claim": "경영진에게 재무제표의 적합한 수정을 요청할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "또한 식별된 왜곡표시의 원인을 이해할 수 있도록 관련 거래유형이나 계정잔액을 조사해 달라고 요청할 수 있다.",
+            "reason": "왜곡표시 원인 이해를 위해 관련 거래유형이나 계정잔액을 조사하도록 요청한다고 명시했다.",
+            "claim": "경영진에게 왜곡표시 원인을 이해하도록 관련 거래유형·계정잔액 또는 공시를 조사해 달라고 요청할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "실제 왜곡표시 금액을 결정하는 절차에 대한 내용이 없다.",
+            "claim": "경영진에게 실제 왜곡표시 금액을 결정하는 절차를 수행하도록 요청할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사인은 경영진에게 재무제표에 적합한 수정을 하도록 요청할 수 있다.",
+          "이를 위해 경영진이 거래유형·계정잔액 또는 공시를 조사하여 식별된 왜곡표시의 원인을 이해할 수 있게 하고, 실제 왜곡표시 금액을 결정하는 절차를 수행하도록 요청할 수 있다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0fd927672ebc41c9016aae06db575c87d09969ce7377c51fe0",
+        "request_id": "req_2cfca9daf57f4a6ca15ba3e8c0baa607",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2700,
+          "input_tokens_details": {
+            "cache_write_tokens": 2697,
+            "cached_tokens": 0
+          },
+          "output_tokens": 228,
+          "output_tokens_details": {
+            "reasoning_tokens": 42
+          },
+          "total_tokens": 2928
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009484500000000001,
+        "min_usd": 0.0009484500000000001,
+        "max_usd": 0.0009484500000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-12-006--sub1--standard--partial/input.json",
+      "sha256": "47c34b3433e230ac37821f0af3fe2ef3e40ba5e4ed25c4cf07d190f4b9458bbf"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-12-006--sub1--standard--partial/transport.jsonl",
+      "sha256": "8ec0382e5f2656a0fd261c4d116bc8c7f08e0aa9dc1b305278264a76ac5701ae"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-12-006--sub1--standard--partial/traces.jsonl",
+      "sha256": "472c0e1075f51ee0f6f1dbc89185bcd909c16de2d740c3d8bfef6883f7f69d35"
+    }
+  }
+}

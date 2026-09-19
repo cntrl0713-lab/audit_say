@@ -1,7 +1,7 @@
 ---
 title: "pilot-16-011-standards-20260913. 보고서일 후 기타정보의 중요한 왜곡표시 대응"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[kam-emphasis-comparatives-other-information]] · [[topic-16-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/133`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/125`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [16.json](../../analysis/reviews/question-review-2027/16.json)
 - 학습 순서: sub2
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/133/subquestions/0`
+유형: descriptive · JSON Pointer `/125/subquestions/0`
 
 ### 발문
 
-감사보고서일 후 입수한 기타정보에 중요한 왜곡표시가 있다고 결론을 내린 경우, ① 경영진이 수정에 동의하는 경우와 ② 경영진이 수정을 거부하여 지배기구와 커뮤니케이션한 후에도 수정되지 않는 경우에 감사인이 취할 후속 조치를 각각 설명하시오. ①은 수정 여부에 관한 확인을 포함하고, ②는 법적 권리·의무와 감사보고서 이용자에 대한 조치를 구별하여 작성하시오. 가능한 모든 조치의 예시를 열거할 필요는 없다.
+감사인이 감사보고서일 후에 입수한 기타정보에 중요한 왜곡표시가 있다고 결론 내렸다. 감사기준서 720 문단 19에 따라 ① 기타정보가 수정되는 경우와 ② 필요한 커뮤니케이션을 거친 후에도 기타정보가 수정되지 않는 경우에 감사인이 취하여야 할 조치를 각각 설명하시오.
 
 ### 모범답안
 

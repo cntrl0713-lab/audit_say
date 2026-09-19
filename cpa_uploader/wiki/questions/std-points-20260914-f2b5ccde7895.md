@@ -1,7 +1,7 @@
 ---
-title: "std-points-20260914-f2b5ccde7895. 외부감사법 제22조제2항에 따라 회계처리기준 위반사실을 통보받은 회사의 감사 또는 감사위원회가 제3항과 제4항에 따라 취할 조치를 설명하시오. 조사 수행자와 비용부담, 조사 후 시정요구, 제출할 두 결과와 그 상대방·시기를 포함하시오. 대표자에 대한 지원요청과 대표자의 의무는 제외한다."
+title: "std-points-20260914-f2b5ccde7895. 외부감사법 제22조제2항에 따라 회계처리기준 위반사실을 통보받은 회사의 감사 또는 감사위원회가 같은 조 제3항과 제4항에 따라 취하여야 할 조치를 설명하시오. 같은 조 제5항의 사항은 제외한다."
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -10,12 +10,12 @@ sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/
 confidence: high
 ---
 
-# std-points-20260914-f2b5ccde7895. 외부감사법 제22조제2항에 따라 회계처리기준 위반사실을 통보받은 회사의 감사 또는 감사위원회가 제3항과 제4항에 따라 취할 조치를 설명하시오. 조사 수행자와 비용부담, 조사 후 시정요구, 제출할 두 결과와 그 상대방·시기를 포함하시오. 대표자에 대한 지원요청과 대표자의 의무는 제외한다.
+# std-points-20260914-f2b5ccde7895. 외부감사법 제22조제2항에 따라 회계처리기준 위반사실을 통보받은 회사의 감사 또는 감사위원회가 같은 조 제3항과 제4항에 따라 취하여야 할 조치를 설명하시오. 같은 조 제5항의 사항은 제외한다.
 
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[fraud-laws-governance-communication]] · [[topic-05-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/214`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/201`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [05.json](../../analysis/reviews/question-review-2027/05.json)
 - 학습 순서: sub2
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/214/subquestions/0`
+유형: descriptive · JSON Pointer `/201/subquestions/0`
 
 ### 발문
 
-외부감사법 제22조제2항에 따라 회계처리기준 위반사실을 통보받은 회사의 감사 또는 감사위원회가 제3항과 제4항에 따라 취할 조치를 설명하시오. 조사 수행자와 비용부담, 조사 후 시정요구, 제출할 두 결과와 그 상대방·시기를 포함하시오. 대표자에 대한 지원요청과 대표자의 의무는 제외한다.
+외부감사법 제22조제2항에 따라 회계처리기준 위반사실을 통보받은 회사의 감사 또는 감사위원회가 같은 조 제3항과 제4항에 따라 취하여야 할 조치를 설명하시오. 같은 조 제5항의 사항은 제외한다.
 
 ### 모범답안
 

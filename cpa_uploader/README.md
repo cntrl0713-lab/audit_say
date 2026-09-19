@@ -106,7 +106,16 @@ npm run wiki:check
 
 ## 기존 문항 수정과 과거 장부의 한계
 
-내용 해시와 receipt가 기록된 문항은 기록 이후의 문항 내용·출처 파일·등록 메타데이터 불일치가 검증 대상입니다. 실제 재검수 후 다음 명령으로 새로운 근거를 기록하고 다시 게시·컴파일합니다.
+게시된 세트는 정본을 직접 편집하거나 전체 은행 사본을 만들어 고치지 않습니다. 바꿀 필드와 수정 전 값만 적은 [수정 패치](corrections/README.md)를 작성하고 `correct_cpa_v3.ts`로 검사·검수 증거 생성·정본 설치를 합니다. 설치는 재검수·재게시·컴파일·분류 카탈로그·전체 검증을 `tmp/` 스테이지에서 마친 뒤 대상 세트만 바꿉니다. 운영 반영은 `publish_question_release.ts`로 바뀐 세트만 증분 게시합니다. 배경과 판단은 [문항 수정 패치 운영](../docs/문항-수정-패치-운영.md)을 참고하세요.
+
+```sh
+npm run questions:v3:correct -- scaffold --set CHANGED_SET_ID --slug SLUG --summary "요약" --target "crit=sub1/crit2:claim"
+npm run questions:v3:correct -- check cpa_uploader/corrections/CORRECTION_ID.json
+npm run questions:v3:correct -- evidence cpa_uploader/corrections/CORRECTION_ID.json --out-dir cpa_uploader/analysis/reviews/BATCH
+npm run questions:v3:correct -- publish cpa_uploader/corrections/CORRECTION_ID.json --efficient-review cpa_uploader/analysis/reviews/BATCH/batch.json --evidence "새 검수의 실제 근거"
+```
+
+내용 해시와 receipt가 기록된 문항은 기록 이후의 문항 내용·출처 파일·등록 메타데이터 불일치가 검증 대상입니다. `publish`는 내부에서 다음 재검수 명령과 재게시·컴파일을 스테이지 경로로 실행합니다. 제작 경로에서 교체 세트를 직접 다룰 때만 이 명령을 따로 씁니다.
 
 ```sh
 npx tsx cpa_uploader/promote_cpa_v3.ts --reverify --to verified --sets CHANGED_SET_ID --review revised.review.json --evidence "새 검수의 실제 근거"

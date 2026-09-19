@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-09-007--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-09-007--sub2--standard",
+  "source_set_id": "pilot-09-007",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "16e1c9ef883c115cccdd1b14751babd721e09f5976b4c1bf3ae6c580a7af9c74",
+  "answers": {
+    "sub2": "회신을 받지 못한 조회는 이의가 없다는 뜻으로 보아 잔액이 확인된 것으로 처리하고, 장부와 다른 회신은 조회처의 착오로 보아 장부 금액을 그대로 인정한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit9",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (두 절차를 모두 반대로 처리했다.)"
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (두 절차를 모두 반대로 처리했다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "55fe90fc46d764806bb70d436f884d01db5aed5d26f647175ab0bae393491631",
+  "schema_hash": "adf22e5253701cd084ebec4f222c0a2b262fe239a8d82ca0566795088f7c0c29",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit9",
+            "verdict": "contradicted",
+            "quote": "회신을 받지 못한 조회는 이의가 없다는 뜻으로 보아 잔액이 확인된 것으로 처리하고, 장부와 다른 회신은 조회처의 착오로 보아 장부 금액을 그대로 인정한다.",
+            "reason": "미회신을 확인된 잔액으로 처리하여 대체적 감사절차를 수행하지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "contradicted",
+            "quote": "회신을 받지 못한 조회는 이의가 없다는 뜻으로 보아 잔액이 확인된 것으로 처리하고, 장부와 다른 회신은 조회처의 착오로 보아 장부 금액을 그대로 인정한다.",
+            "reason": "장부와 다른 회신을 조회처의 착오로 단정하고 장부 금액을 인정하여 불일치가 왜곡표시인지 조사하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit9",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "미회신을 확인된 잔액으로 처리하여 대체적 감사절차를 수행하지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "crit10",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "장부와 다른 회신을 조회처의 착오로 단정하고 장부 금액을 인정하여 불일치가 왜곡표시인지 조사하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-09-007",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "적극적 조회에서 조회처의 회신을 받지 못한 경우와 회신 내용이 기업의 장부와 일치하지 않는 경우 감사기준서 505에 따라 감사인이 각각 수행하여야 할 절차를 설명하시오. 미회신은 대체적 감사절차로 필요한 감사증거를 얻을 수 있는 상황을 전제로 한다.",
+        "user_answer": "회신을 받지 못한 조회는 이의가 없다는 뜻으로 보아 잔액이 확인된 것으로 처리하고, 장부와 다른 회신은 조회처의 착오로 보아 장부 금액을 그대로 인정한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit9",
+            "verdict": "contradicted",
+            "quote": "회신을 받지 못한 조회는 이의가 없다는 뜻으로 보아 잔액이 확인된 것으로 처리하고, 장부와 다른 회신은 조회처의 착오로 보아 장부 금액을 그대로 인정한다.",
+            "reason": "미회신을 확인된 잔액으로 처리하여 대체적 감사절차를 수행하지 않는다고 명시했다.",
+            "claim": "적극적 조회의 각 미회신에 관련성 있고 신뢰할 수 있는 증거를 입수할 대체적 감사절차를 수행한다. 대체절차로 증거를 얻을 수 있다는 주어진 전제의 반복은 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit10",
+            "verdict": "contradicted",
+            "quote": "회신을 받지 못한 조회는 이의가 없다는 뜻으로 보아 잔액이 확인된 것으로 처리하고, 장부와 다른 회신은 조회처의 착오로 보아 장부 금액을 그대로 인정한다.",
+            "reason": "장부와 다른 회신을 조회처의 착오로 단정하고 장부 금액을 인정하여 불일치가 왜곡표시인지 조사하지 않았다.",
+            "claim": "불일치가 왜곡표시를 나타내는지 결정하기 위해 조사한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "적극적 조회의 각 미회신에 대하여 관련성이 있고 신뢰할 수 있는 감사증거를 입수하기 위한 대체적 감사절차를 수행해야 한다.",
+          "불일치사항이 왜곡표시를 나타내는지 결정하기 위해 해당 사항을 조사해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f3661b1101f936a016aae06bcbae887d085b34bc0f74bdfcc",
+        "request_id": "req_9cb89e0e8dc04e6192f557a789399d83",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2480,
+          "input_tokens_details": {
+            "cache_write_tokens": 2477,
+            "cached_tokens": 0
+          },
+          "output_tokens": 305,
+          "output_tokens_details": {
+            "reasoning_tokens": 136
+          },
+          "total_tokens": 2785
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00098585,
+        "min_usd": 0.00098585,
+        "max_usd": 0.00098585,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-09-007--sub2--standard--wrong/input.json",
+      "sha256": "8b4fea4251950fb6311b5a036d3cf8a074b0450efb1dc65a25ef5b4fb76f0f2a"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-09-007--sub2--standard--wrong/transport.jsonl",
+      "sha256": "d7410a2e744fed1d1889e65a1a963a2d7b1908d0d06e7c2b4940575c5c746598"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-09-007--sub2--standard--wrong/traces.jsonl",
+      "sha256": "738ed669844a9234187bad5f335641edcfdced62b03edff3582c0f511526ab3f"
+    }
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-19-005--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-19-005--case",
+  "source_set_id": "pilot-19-005",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2",
+    "sub3"
+  ],
+  "projected_body_hash": "0488cd6ee0a1be89de94a77bde196850d271468a762e5dd760e1e7bf41049992",
+  "answers": {
+    "sub2": "갑은 적절하다. 검토에서는 경영진의 서면진술을 생략해도 된다.",
+    "sub3": "을의 제안은 적절하다. 검토는 확신이 낮아서 중요성 판단기준을 완화할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "명시적반대는해당명제0점이다.다른명제까지반대가명확히함축되는경우그명제도반대로판정한다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "명시적반대는해당명제0점이다.다른명제까지반대가명확히함축되는경우그명제도반대로판정한다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "정보/이용자라는 판단근거는 쓰지 않았고 낮은 확신을 완화근거로 삼아 구별 명제는 명시적으로 반대이다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "contradicted",
+          "reason": "정보/이용자라는 판단근거는 쓰지 않았고 낮은 확신을 완화근거로 삼아 구별 명제는 명시적으로 반대이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "e95c9209954a627fa62f9a5d17a247d87fa3e731d8da408c80937dc8075bd485",
+  "schema_hash": "cfd1f626bc02a3ddccf6a0a57e457ffdfae9055725ef000bc770f6c04d5f8ff9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "갑은 적절하다. 검토에서는 경영진의 서면진술을 생략해도 된다.",
+            "reason": "서면진술 생략이 적절하다고 명시하여 요구 결론을 반대로 판단했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "을의 제안은 적절하다. 검토는 확신이 낮아서 중요성 판단기준을 완화할 수 있다.",
+            "reason": "을의 완화 제안이 적절하다고 명시하여 반대로 판단했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "중요성 판단의 근거인 보고 정보와 이용자 요구를 설명하지 않았다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "검토는 확신이 낮아서 중요성 판단기준을 완화할 수 있다.",
+            "reason": "낮은 확신을 이유로 중요성 판단기준을 완화할 수 있다고 하여 두 개념을 구별하지 않고 반대로 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "서면진술 생략이 적절하다고 명시하여 요구 결론을 반대로 판단했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e0"
+                ],
+                "reason": "을의 완화 제안이 적절하다고 명시하여 반대로 판단했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "중요성 판단의 근거인 보고 정보와 이용자 요구를 설명하지 않았다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "낮은 확신을 이유로 중요성 판단기준을 완화할 수 있다고 하여 두 개념을 구별하지 않고 반대로 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-19-005",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "갑의 서면진술 생략 제안이 적절한지 판단하고, 이 중간검토에서 경영진 서면진술을 입수해야 하는지 제시하시오. 서면진술에 담을 모든 개별 항목의 열거는 요구하지 않는다.",
+        "user_answer": "갑은 적절하다. 검토에서는 경영진의 서면진술을 생략해도 된다.",
+        "score": 0,
+        "max_points": 1,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "갑은 적절하다. 검토에서는 경영진의 서면진술을 생략해도 된다.",
+            "reason": "서면진술 생략이 적절하다고 명시하여 요구 결론을 반대로 판단했다.",
+            "claim": "갑의 생략 제안을 부적절하다고 판단하고 이 중간검토에서도 경영진 서면진술을 입수해야 함을 제시한다. 의무를 설명하여 부적절성이 명확히 함축되면 별도의 결론 단어는 요구하지 않는다. 구두진술만으로 대체하거나 문제가 발견될 때에만 받는다는 답은 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "갑의 제안은 부적절하다. 감사가 아닌 중간재무제표 검토에서도 경영진으로부터 요구되는 서면진술을 입수하여야 하므로, 발견된 문제의 부재나 낮은 확신 수준만으로 생략할 수 없다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "을의 중요성 판단기준 완화 제안이 적절한지 판단하시오. 이어 이 검토에서 무엇을 바탕으로 중요성을 판단해야 하는지 설명하고, 제공하는 확신 수준의 차이와 구별하시오.",
+        "user_answer": "을의 제안은 적절하다. 검토는 확신이 낮아서 중요성 판단기준을 완화할 수 있다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "을의 제안은 적절하다. 검토는 확신이 낮아서 중요성 판단기준을 완화할 수 있다.",
+            "reason": "을의 완화 제안이 적절하다고 명시하여 반대로 판단했다.",
+            "claim": "검토업무이고 확신이 낮다는 이유만으로 중요성 판단기준을 완화하자는 을의 제안을 부적절하다고 판단한다. 기준상 완화금지를 명확히 설명해 결론이 함축되면 충족한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "중요성 판단의 근거인 보고 정보와 이용자 요구를 설명하지 않았다.",
+            "claim": "보고해야 하는 정보와 이를 신뢰·이용하는 측의 요구를 바탕으로 무엇이 중요한지를 판단해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "검토는 확신이 낮아서 중요성 판단기준을 완화할 수 있다.",
+            "reason": "낮은 확신을 이유로 중요성 판단기준을 완화할 수 있다고 하여 두 개념을 구별하지 않고 반대로 설명했다.",
+            "claim": "검토의 낮은 확신은 감사보다 왜곡표시를 발견하지 못할 위험이 더 크다는 차이이며, 그 발견위험의 차이는 재무정보에 대한 중요성 판단기준 자체의 차이와 구별해야 한다. 완화가 부적절하다는 결론만 반복하면 이 차이의 설명을 대신하지 못한다. 위험과 중요성 기준을 동일시하거나 연간감사 중요성 숫자를 기계적으로 복사하는 뜻이 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "검토업무이고 확신이 낮다는 이유만으로 중요성 판단기준을 완화하자는 을의 제안을 부적절하다고 판단한다.",
+          "보고해야 하는 정보와 이를 신뢰·이용하는 측의 요구를 바탕으로 무엇이 중요한지를 판단해야 한다.",
+          "검토의 낮은 확신은 감사보다 왜곡표시를 발견하지 못할 위험이 더 크다는 차이이며, 그 발견위험의 차이는 재무정보에 대한 중요성 판단기준 자체의 차이와 구별해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_062d3de034898689016aae07aefdb087d0a66d65946000e7c4",
+        "request_id": "req_0d4996ce9c914ad28f1b7a58e13df1f5",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3998,
+          "input_tokens_details": {
+            "cache_write_tokens": 3995,
+            "cached_tokens": 0
+          },
+          "output_tokens": 471,
+          "output_tokens_details": {
+            "reasoning_tokens": 190
+          },
+          "total_tokens": 4469
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00156455,
+        "min_usd": 0.00156455,
+        "max_usd": 0.00156455,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-19-005--case--wrong/input.json",
+      "sha256": "fff62d3d4739782b80bc5d9d186e6fcb2c258deda11fd3c20f9fb1b5da177b12"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-19-005--case--wrong/transport.jsonl",
+      "sha256": "70d459b5a00273a7d0d78287b0db8596919d11eb3caf1333e247c27e0edbac2f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-19-005--case--wrong/traces.jsonl",
+      "sha256": "651320cf6dbb806c301401e809f06964da13949584cb0761da967ea4bcf23b92"
+    }
+  }
+}

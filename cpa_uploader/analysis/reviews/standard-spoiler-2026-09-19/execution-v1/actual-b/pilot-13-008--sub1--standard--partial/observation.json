@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-13-008--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-13-008--sub1--standard",
+  "source_set_id": "pilot-13-008",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "89b30f551b021d9b7074ea8d8f72959625f65e9c69651236df5a2cfac4b92bd4",
+  "answers": {
+    "sub1": "감사기준서 705에 따라 감사의견을 변형한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (감사범위 제한이라는 근거를 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (감사범위 제한이라는 근거를 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "963e3dbfdcc29686e5afa74b0b8ae9f21e4addad3c0d2b7b32e9d3208fe4eeb6",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사기준서 705에 따라 감사의견을 변형한다.",
+            "reason": "감사기준서 705에 따른 감사의견 변형을 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "감사범위의 제한 및 그 근거를 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "감사기준서 705에 따른 감사의견 변형을 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사범위의 제한 및 그 근거를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-13-008",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "재무제표감사와 관련된 서비스조직의 서비스에 관하여 이용자기업 감사인이 충분하고 적합한 감사증거를 입수할 수 없다. 감사기준서 402에 따라 이용자기업 감사인이 감사의견에 관하여 취할 조치와 그 근거를 설명하시오.",
+        "user_answer": "감사기준서 705에 따라 감사의견을 변형한다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사기준서 705에 따라 감사의견을 변형한다.",
+            "reason": "감사기준서 705에 따른 감사의견 변형을 명시했다.",
+            "claim": "감사기준서 705에 따라 감사의견을 변형한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "감사범위의 제한 및 그 근거를 제시하지 않았다.",
+            "claim": "서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사기준서 705에 따라 감사의견을 변형한다.",
+          "서비스조직 관련 충분하고 적합한 감사증거를 입수하지 못하였으므로 감사범위의 제한에 해당한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0487d15ad1cf70a2016aae06e3ca7c87d0b7354e954abd63e7",
+        "request_id": "req_a41bc4ee2208414e93e3853df7363ede",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2355,
+          "input_tokens_details": {
+            "cache_write_tokens": 2352,
+            "cached_tokens": 0
+          },
+          "output_tokens": 165,
+          "output_tokens_details": {
+            "reasoning_tokens": 32
+          },
+          "total_tokens": 2520
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0007866,
+        "min_usd": 0.0007866,
+        "max_usd": 0.0007866,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-13-008--sub1--standard--partial/input.json",
+      "sha256": "edd9021628536a03082475aa9a010454fd56f11ca9a48d7d23c46717ade2bfd6"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-13-008--sub1--standard--partial/transport.jsonl",
+      "sha256": "a5b09e9263453ff6a0d84f6a7f24270e023329ffaba2b1e033b0886bec609327"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-13-008--sub1--standard--partial/traces.jsonl",
+      "sha256": "9e45195c109c02e8098d9180ddb91219157cb15685c552bbf0dd0dcf0875c3df"
+    }
+  }
+}

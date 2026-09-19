@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-11-002--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-11-002--sub2--standard",
+  "source_set_id": "pilot-11-002",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "70e6462b47a85389f93a85564c93aa5ae983425fdc47c7b032dff6df29ce1638",
+  "answers": {
+    "sub2": "개별 판단이 모두 합리적이면 경영진 편의는 없다고 보아 편의가능성 평가를 생략할 수 있다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (평가 생략을 명시했다.)"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (평가 생략을 명시했다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "d8cccffaa0451e46558cc40d7a15d0af6b251e8b315ecff75c19e6ce14301154",
+  "schema_hash": "84d63657d91af1f29ec0a6dd3c718e0feef72c2a43e1937e26e83b8448a1e080",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "개별 판단이 모두 합리적이면 경영진 편의는 없다고 보아 편의가능성 평가를 생략할 수 있다.",
+            "reason": "개별 판단이 합리적이면 편의가능성 평가를 생략할 수 있다고 명시하여 평가 의무를 반대로 서술함."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "개별 판단이 모두 합리적이면 경영진 편의는 없다고 보아 편의가능성 평가를 생략할 수 있다.",
+            "reason": "개별 판단이 모두 합리적이면 경영진 편의가 없다고 단정하여, 집합·전체 또는 여러 기간에서 편의가 나타날 수 있다는 이유를 반대로 서술함."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "개별 판단이 합리적이면 편의가능성 평가를 생략할 수 있다고 명시하여 평가 의무를 반대로 서술함."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "개별 판단이 모두 합리적이면 경영진 편의가 없다고 단정하여, 집합·전체 또는 여러 기간에서 편의가 나타날 수 있다는 이유를 반대로 서술함."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-11-002",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "회계추정치를 도출할 때 경영진이 내린 판단과 결정이 개별적으로 합리적인 경우, 감사기준서 540에 따라 감사인이 경영진 편의가능성의 징후에 관하여 수행하여야 할 평가와 그 이유를 설명하시오.",
+        "user_answer": "개별 판단이 모두 합리적이면 경영진 편의는 없다고 보아 편의가능성 평가를 생략할 수 있다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "개별 판단이 모두 합리적이면 경영진 편의는 없다고 보아 편의가능성 평가를 생략할 수 있다.",
+            "reason": "개별 판단이 합리적이면 편의가능성 평가를 생략할 수 있다고 명시하여 평가 의무를 반대로 서술함.",
+            "claim": "개별 판단과 결정이 합리적이어도 경영진의 편의가능성을 나타내는 징후인지 평가하여야 한다. 개별 판단이 합리적이므로 평가를 생략할 수 있다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "개별 판단이 모두 합리적이면 경영진 편의는 없다고 보아 편의가능성 평가를 생략할 수 있다.",
+            "reason": "개별 판단이 모두 합리적이면 경영진 편의가 없다고 단정하여, 집합·전체 또는 여러 기간에서 편의가 나타날 수 있다는 이유를 반대로 서술함.",
+            "claim": "개별적으로 합리적인 판단도 추정치의 집합·전체 또는 여러 기간에서 중립성이 결여된 방향으로 나타날 수 있다는 이유를 설명함. 평가 의무의 반복만으로는 불충족. 편의가능성 징후 자체가 확정된 왜곡표시라는 설명은 인정하지 않음",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "개별 판단과 결정이 합리적이더라도 감사인은 그것이 경영진 편의가능성을 나타내는 징후인지 평가하여야 한다.",
+          "편의는 개별 계정 수준에서 드러나지 않고 회계추정치의 집합이나 전체, 또는 여러 회계기간에 걸쳐 관찰할 때 드러날 수 있으므로 개별 판단의 합리성만으로 경영진의 중립성이 확보되었다고 볼 수 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_07a8f9e83daeedbd016aae06d9d54c87d0b5841c69a449def4",
+        "request_id": "req_eb6a9574e2c841b09ca1ae9bae5f1688",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2545,
+          "input_tokens_details": {
+            "cache_write_tokens": 2542,
+            "cached_tokens": 0
+          },
+          "output_tokens": 324,
+          "output_tokens_details": {
+            "reasoning_tokens": 142
+          },
+          "total_tokens": 2869
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010249,
+        "min_usd": 0.0010249,
+        "max_usd": 0.0010249,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-11-002--sub2--standard--wrong/input.json",
+      "sha256": "05d7873ba1ee03558027d570782d086260e404b526a3cc2185d4003a387b0b6e"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-11-002--sub2--standard--wrong/transport.jsonl",
+      "sha256": "b5d5774db22dde8510c1b67d347a0507352a8ffd87e0da1b609dab57a1a4acfe"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-11-002--sub2--standard--wrong/traces.jsonl",
+      "sha256": "fb30490c9348d0a0dde43130f36041af3eb5dede68ed23458a4c4ad07b6eee67"
+    }
+  }
+}

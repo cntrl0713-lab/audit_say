@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "artifact_type": "question_set_correction",
+  "correction_id": "20260919-pilot-15-002--standard-spoiler-followup",
+  "set_id": "pilot-15-002",
+  "summary": "기준서형 검토 후속: 실측에서 드러난 채점 입력 오류 수정(sub2)",
+  "note": "기준서형 수정·스포일러 전수 검토의 v1 실측(cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/batch-v1.json)에서 드러난 명제·critical_facts·모범답안의 오류를 고친다(cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/plan-v2.json). 발문·학습 유형·주제·배점은 바꾸지 않는다.",
+  "base_content_hash": "36bff5f9e106eb48ac72872e54145e6185b5008b8de1fc5870e1861abd27dd30",
+  "patches": [
+    {
+      "target": {
+        "subquestion": "sub2",
+        "criterion": "crit7.p2",
+        "field": "claim"
+      },
+      "reason": "출처와 어긋난 명제: 감사기준서 700 문단 14(a)는 “재무제표의 전반적인 표시와 구조 및 내용”이며 '공시를 포함한'이라는 한정어가 없다. 채점 모델이 이 한정어를 요건으로 읽어 원문대로 쓴 모범답안을 감점했다.",
+      "expected_before": "공시를 포함한 재무제표의 전반적인 표시·구조·내용을 고려한다.",
+      "set": "재무제표의 전반적인 표시·구조·내용을 고려한다."
+    },
+    {
+      "target": {
+        "subquestion": "sub2",
+        "criterion": "crit7.p2",
+        "field": "critical_facts"
+      },
+      "reason": "채점 입력에 함께 들어가는 critical_facts를 새 명제와 같은 뜻으로 맞춘다.",
+      "expected_before": [
+        {
+          "id": "cf7.p2",
+          "type": "action",
+          "expected": "공시를 포함한 재무제표의 전반적인 표시·구조·내용을 고려한다."
+        }
+      ],
+      "set": [
+        {
+          "id": "cf7.p2",
+          "type": "action",
+          "expected": "재무제표의 전반적인 표시·구조·내용을 고려한다."
+        }
+      ]
+    }
+  ]
+}

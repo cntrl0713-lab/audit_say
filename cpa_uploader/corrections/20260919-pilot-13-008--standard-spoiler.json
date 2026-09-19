@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "artifact_type": "question_set_correction",
+  "correction_id": "20260919-pilot-13-008--standard-spoiler",
+  "set_id": "pilot-13-008",
+  "summary": "기준서형 발문의 정답 암시 제거(sub1)",
+  "note": "기준서형 수정·스포일러 전수 검토(cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/plan-v1.json). 학습 유형·주제·배점 구조는 바꾸지 않는다.",
+  "base_content_hash": "5f4472d0adae73057a26a6b91ff885ab04ad98967490eced2db490f8e16569bb",
+  "patches": [
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "prompt"
+      },
+      "reason": "정답 암시: '한정의견과 의견거절 중 하나를 선택하는 것은 요구하지 않는다'가 의견변형이라는 답을 알려 주었고, 공개본의 decision 선택지('705에 따라 감사의견을 변형한다' 등)가 정답을 노출했다.",
+      "expected_before": "재무제표감사와 관련된 서비스조직의 서비스에 관하여 충분하고 적합한 감사증거를 입수할 수 없다. 이용자기업 감사인이 감사의견에 관하여 따라야 할 대응 원칙을 제시하고, 이러한 증거부족이 감사상 어떤 제한에 해당하는지 설명하시오. 한정의견과 의견거절 중 하나를 선택하는 것은 요구하지 않는다.",
+      "set": "재무제표감사와 관련된 서비스조직의 서비스에 관하여 이용자기업 감사인이 충분하고 적합한 감사증거를 입수할 수 없다. 감사기준서 402에 따라 이용자기업 감사인이 감사의견에 관하여 취할 조치와 그 근거를 설명하시오."
+    },
+    {
+      "target": {
+        "subquestion": "sub1",
+        "field": "decision"
+      },
+      "reason": "공개본으로 나가는 선택지가 정답 문장을 담고 있었다. 채점은 decision을 쓰지 않으므로 선택지를 없앤다.",
+      "expected_before": {
+        "options": [
+          "705에 따라 감사의견을 변형한다",
+          "서비스조직에 책임을 넘기고 적정의견을 표명한다"
+        ],
+        "correct": "705에 따라 감사의견을 변형한다"
+      },
+      "set": null
+    }
+  ]
+}

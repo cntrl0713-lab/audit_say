@@ -1,7 +1,7 @@
 ---
 title: "08. 감사증거와 경영진주장 원자료 단위 14/19"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-18
 type: source-map
 status: generated
 review_required: true

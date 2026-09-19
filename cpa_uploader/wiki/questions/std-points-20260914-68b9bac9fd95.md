@@ -1,7 +1,7 @@
 ---
-title: "std-points-20260914-68b9bac9fd95. 내부회계관리제도감사의 하향식 접근법에서 주의를 집중할 거래유형·계정·공시·경영진주장의 선정 기준, 기업 프로세스에 관해 검증할 내용 및 테스트 대상 통제의 선정 기준을 설명하시오. 접근법의 순서가 실제 감사절차의 수행순서를 반드시 뜻하는지도 설명하시오."
+title: "std-points-20260914-68b9bac9fd95. 감사기준서 1100 문단 23에 따라 테스트할 통제를 선정하는 하향식 접근법의 단계 중 다섯째 단계부터 마지막 단계까지를 설명하시오. 또한 문단 A28에 따라 하향식 접근법의 순서와 실제 감사절차의 수행 순서의 관계를 설명하시오."
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -10,12 +10,12 @@ sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/
 confidence: high
 ---
 
-# std-points-20260914-68b9bac9fd95. 내부회계관리제도감사의 하향식 접근법에서 주의를 집중할 거래유형·계정·공시·경영진주장의 선정 기준, 기업 프로세스에 관해 검증할 내용 및 테스트 대상 통제의 선정 기준을 설명하시오. 접근법의 순서가 실제 감사절차의 수행순서를 반드시 뜻하는지도 설명하시오.
+# std-points-20260914-68b9bac9fd95. 감사기준서 1100 문단 23에 따라 테스트할 통제를 선정하는 하향식 접근법의 단계 중 다섯째 단계부터 마지막 단계까지를 설명하시오. 또한 문단 A28에 따라 하향식 접근법의 순서와 실제 감사절차의 수행 순서의 관계를 설명하시오.
 
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[internal-control-over-financial-reporting]] · [[topic-17-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/343`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/330`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [17.json](../../analysis/reviews/question-review-2027/17.json)
 - 학습 순서: sub1
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/343/subquestions/0`
+유형: descriptive · JSON Pointer `/330/subquestions/0`
 
 ### 발문
 
-내부회계관리제도감사의 하향식 접근법에서 주의를 집중할 거래유형·계정·공시·경영진주장의 선정 기준, 기업 프로세스에 관해 검증할 내용 및 테스트 대상 통제의 선정 기준을 설명하시오. 접근법의 순서가 실제 감사절차의 수행순서를 반드시 뜻하는지도 설명하시오.
+감사기준서 1100 문단 23에 따라 테스트할 통제를 선정하는 하향식 접근법의 단계 중 다섯째 단계부터 마지막 단계까지를 설명하시오. 또한 문단 A28에 따라 하향식 접근법의 순서와 실제 감사절차의 수행 순서의 관계를 설명하시오.
 
 ### 모범답안
 

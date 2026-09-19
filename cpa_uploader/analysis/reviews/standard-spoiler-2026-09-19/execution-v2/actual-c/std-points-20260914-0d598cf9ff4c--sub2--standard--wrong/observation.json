@@ -1,0 +1,223 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v2/grading-manifest.json",
+    "sha256": "0ffd459706da335b09da7c05f4dba1e5144a67fb9be0d0119144967e4f39131f"
+  },
+  "entry_id": "std-points-20260914-0d598cf9ff4c--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-0d598cf9ff4c--sub2--standard",
+  "source_set_id": "std-points-20260914-0d598cf9ff4c",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "4e19938326ba470218c268f4764421f846700b82bec8b898acc0b50e8f9bd0c1",
+  "answers": {
+    "sub2": "중요한 왜곡표시가 없다는 결론을 내리면 부적정의견을 표명한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "1d8330c03727a158af765dca2bb151c31799d0adb1997ae04fd5d4c5854e0b45",
+  "schema_hash": "0f3b9c985dc388670cfbfe91893e647e09ccda1c71068603bcf9d994e5be37a4",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "해당 재무보고체계에 따른 작성이라는 적정의견 조건을 제시하지 않았다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "중요한 왜곡표시가 없다는 결론을 내리면 부적정의견을 표명한다.",
+            "reason": "재무제표 전체에 중요한 왜곡표시가 있다는 결론이 아니라 없다는 결론을 제시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "충분하고 적합한 감사증거를 입수할 수 없다는 조건을 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "해당 재무보고체계에 따른 작성이라는 적정의견 조건을 제시하지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "재무제표 전체에 중요한 왜곡표시가 있다는 결론이 아니라 없다는 결론을 제시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "충분하고 적합한 감사증거를 입수할 수 없다는 조건을 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-0d598cf9ff4c",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 700 문단 16·17에 따라 감사인이 적정의견을 표명하여야 하는 경우와 감사의견을 변형하여야 하는 경우를 모두 설명하시오.",
+        "user_answer": "중요한 왜곡표시가 없다는 결론을 내리면 부적정의견을 표명한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "해당 재무보고체계에 따른 작성이라는 적정의견 조건을 제시하지 않았다.",
+            "claim": "재무제표가 중요성의 관점에서 해당 재무보고체계에 따라 작성되었다고 결론 내린 경우 적정의견을 표명한다. 적정의견이라는 명칭만 쓰고 그 조건을 쓰지 않으면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "중요한 왜곡표시가 없다는 결론을 내리면 부적정의견을 표명한다.",
+            "reason": "재무제표 전체에 중요한 왜곡표시가 있다는 결론이 아니라 없다는 결론을 제시했다.",
+            "claim": "증거에 근거하여 재무제표 전체의 중요한 왜곡표시를 결론 내린 경우를 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "충분하고 적합한 감사증거를 입수할 수 없다는 조건을 제시하지 않았다.",
+            "claim": "재무제표 전체에 중요한 왜곡표시가 없다고 결론 내리기에 충분하고 적합한 증거를 입수할 수 없는 경우를 제시함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "해당 재무보고체계에 따라 중요성의 관점에서 작성되었다고 결론 내리면 적정의견을 표명한다.",
+          "입수한 감사증거에 근거할 때 재무제표 전체에 중요한 왜곡표시가 있다고 결론 내리거나, 중요한 왜곡표시가 없다고 결론 내릴 충분하고 적합한 감사증거를 입수할 수 없으면 의견을 변형한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0869f9353a58a20f016aae1308965887d0b5f1b1afb9341d09",
+        "request_id": "req_1bc208fd7bb7469db05665f7ab36f400",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2608,
+          "input_tokens_details": {
+            "cache_write_tokens": 2605,
+            "cached_tokens": 0
+          },
+          "output_tokens": 364,
+          "output_tokens_details": {
+            "reasoning_tokens": 173
+          },
+          "total_tokens": 2972
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00108865,
+        "min_usd": 0.00108865,
+        "max_usd": 0.00108865,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v2/actual-c/std-points-20260914-0d598cf9ff4c--sub2--standard--wrong/input.json",
+      "sha256": "2dce0f8440f14425afaa6ed2717580b81964c5a2a647c2d317eeca7501673030"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v2/actual-c/std-points-20260914-0d598cf9ff4c--sub2--standard--wrong/transport.jsonl",
+      "sha256": "003aaea3e041b35141ba57a8870e697938b94e50117729b1728e98e4d75bdb0f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v2/actual-c/std-points-20260914-0d598cf9ff4c--sub2--standard--wrong/traces.jsonl",
+      "sha256": "05b57bde85cadfa1c9349df3eefb90cf9701f7ee8f606e0734ae7a77074aa9ea"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 ---
 title: "case-12-going-concern-evidence-20260914. 자금지원 계획의 증거와 계속기업 관련 공시·의견"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[completion-subsequent-events-going-concern]] · [[topic-12-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/171`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/159`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [12.json](../../analysis/reviews/question-review-2027/12.json)
 - 학습 순서: sub1 → sub2 → sub3
@@ -29,7 +29,7 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/171/subquestions/0`
+유형: descriptive · JSON Pointer `/159/subquestions/0`
 
 ### 발문
 
@@ -63,7 +63,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/171/subquestions/1`
+유형: descriptive · JSON Pointer `/159/subquestions/1`
 
 ### 발문
 
@@ -97,7 +97,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub3
 
-유형: descriptive · JSON Pointer `/171/subquestions/2`
+유형: descriptive · JSON Pointer `/159/subquestions/2`
 
 ### 발문
 

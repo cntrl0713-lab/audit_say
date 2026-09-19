@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-01-004--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-01-004--sub1--standard",
+  "source_set_id": "pilot-01-004",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "c3e92c0aa8d8fb2acac746808f3844963bcf4dc6c4c7d573306dab3eb799a5ce",
+  "answers": {
+    "sub1": "이미 수임한 업무이므로 업무수행이사는 그 정보를 회계법인에 알릴 필요 없이 자신의 판단으로 감사를 계속 진행하면 된다. 필요하면 감사 종료 후 감사조서에만 기록한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (회계법인에 알리지 않고 자체 판단으로 처리한다고 명시했다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (회계법인에 알리지 않고 자체 판단으로 처리한다고 명시했다.)"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (회계법인에 알리지 않고 자체 판단으로 처리한다고 명시했다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "f0e7a0917f07116c736f077ae606f898a08a0b410bf2eaa867127bdb99e28910",
+  "schema_hash": "c26cfc8a32805b66af7415dcbc61d29b39e28462565fdd561facc3924f26fa28",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "이미 수임한 업무이므로 업무수행이사는 그 정보를 회계법인에 알릴 필요 없이 자신의 판단으로 감사를 계속 진행하면 된다. 필요하면 감사 종료 후 감사조서에만 기록한다.",
+            "reason": "회계법인에 알릴 필요가 없고 업무수행이사의 판단으로 진행하면 된다고 명시하여 커뮤니케이션 의무를 반대함."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "필요한 조치를 취할 수 있도록 정보를 전달한다는 목적이 제시되지 않음."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "이미 수임한 업무이므로 업무수행이사는 그 정보를 회계법인에 알릴 필요 없이 자신의 판단으로 감사를 계속 진행하면 된다. 필요하면 감사 종료 후 감사조서에만 기록한다.",
+            "reason": "정보를 신속히 전달하지 않고 감사 종료 후에만 기록한다고 명시함."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "회계법인에 알릴 필요가 없고 업무수행이사의 판단으로 진행하면 된다고 명시하여 커뮤니케이션 의무를 반대함."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "필요한 조치를 취할 수 있도록 정보를 전달한다는 목적이 제시되지 않음."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0",
+                  "sub1/e2"
+                ],
+                "reason": "정보를 신속히 전달하지 않고 감사 종료 후에만 기록한다고 명시함."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-01-004",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사업무를 수임한 후 업무수행이사가, 조기에 알았더라면 회계법인이 그 감사업무를 거절하였을 정보를 입수하였다. 감사기준서 220에 따라 업무수행이사가 취하여야 할 조치와 그 목적을 설명하시오.",
+        "user_answer": "이미 수임한 업무이므로 업무수행이사는 그 정보를 회계법인에 알릴 필요 없이 자신의 판단으로 감사를 계속 진행하면 된다. 필요하면 감사 종료 후 감사조서에만 기록한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "이미 수임한 업무이므로 업무수행이사는 그 정보를 회계법인에 알릴 필요 없이 자신의 판단으로 감사를 계속 진행하면 된다. 필요하면 감사 종료 후 감사조서에만 기록한다.",
+            "reason": "회계법인에 알릴 필요가 없고 업무수행이사의 판단으로 진행하면 된다고 명시하여 커뮤니케이션 의무를 반대함.",
+            "claim": "업무수행이사는 해당 정보를 회계법인에 커뮤니케이션하여야 한다. 업무수행이사가 자체 판단으로만 처리해도 된다고 하면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "필요한 조치를 취할 수 있도록 정보를 전달한다는 목적이 제시되지 않음.",
+            "claim": "정보 전달의 목적은 회계법인과 업무수행이사가 필요한 조치를 취할 수 있도록 하는 것이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "이미 수임한 업무이므로 업무수행이사는 그 정보를 회계법인에 알릴 필요 없이 자신의 판단으로 감사를 계속 진행하면 된다. 필요하면 감사 종료 후 감사조서에만 기록한다.",
+            "reason": "정보를 신속히 전달하지 않고 감사 종료 후에만 기록한다고 명시함.",
+            "claim": "해당 정보를 신속히 커뮤니케이션해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "업무수행이사는 회계법인과 업무수행이사가 필요한 조치를 취할 수 있도록 해당 정보를 회계법인에 신속히 커뮤니케이션해야 한다. 업무수행이사가 자체 판단만으로 처리해서는 안 된다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_014b036d9e371ef9016aae068e230c87d0a542693365e54f02",
+        "request_id": "req_f8502ccf091d41fb923f918d96893511",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2674,
+          "input_tokens_details": {
+            "cache_write_tokens": 2671,
+            "cached_tokens": 0
+          },
+          "output_tokens": 322,
+          "output_tokens_details": {
+            "reasoning_tokens": 115
+          },
+          "total_tokens": 2996
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00105475,
+        "min_usd": 0.00105475,
+        "max_usd": 0.00105475,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-01-004--sub1--standard--wrong/input.json",
+      "sha256": "fa561499b79a9407ba5f77bd7a4d6d7ece9883ffd8b636372af5d641051d1ead"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-01-004--sub1--standard--wrong/transport.jsonl",
+      "sha256": "13af0e517f497847566a944841b49b10c3a0f31dc77cdd28a0b7301c469bd868"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-01-004--sub1--standard--wrong/traces.jsonl",
+      "sha256": "e3fd2770d8aab1e10d7c42bf4e8864ab6cbf944e25a42991cf3573c05f8e7dfd"
+    }
+  }
+}

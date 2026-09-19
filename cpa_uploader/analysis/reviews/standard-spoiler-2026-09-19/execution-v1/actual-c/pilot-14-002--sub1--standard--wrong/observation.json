@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-14-002--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-14-002--sub1--standard",
+  "source_set_id": "pilot-14-002",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "a235213c5b03d1ba1a09f6c302764ad8e9ef88e08d62e2022dbd3a2611cce9be",
+  "answers": {
+    "sub1": "그룹감사에서는 각 부문 경영진이 제시한 금액을 그대로 사용하므로 그룹업무팀이 별도로 중요성을 결정하지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (그룹업무팀의 중요성 결정을 부정했다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (그룹업무팀의 중요성 결정을 부정했다.)"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (그룹업무팀의 중요성 결정을 부정했다.)"
+        },
+        {
+          "criterion_id": "crit3.p2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (그룹업무팀의 중요성 결정을 부정했다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "34826f2f3229a41e95ca8f3f5223e8c75af1e91192b5271e064ec6017eac8dbe",
+  "schema_hash": "62c14e23f76f48dea4dde46f49e56c3fcfebb27cda3f6f8715e1dde8baee703e",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "그룹감사에서는 각 부문 경영진이 제시한 금액을 그대로 사용하므로 그룹업무팀이 별도로 중요성을 결정하지 않는다.",
+            "reason": "그룹업무팀이 중요성을 별도로 결정하지 않는다고 명시하여 요구사항을 부정했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "그룹감사에서는 각 부문 경영진이 제시한 금액을 그대로 사용하므로 그룹업무팀이 별도로 중요성을 결정하지 않는다.",
+            "reason": "그룹업무팀이 중요성을 별도로 결정하지 않는다고 명시하여 요구사항을 부정했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "그룹감사에서는 각 부문 경영진이 제시한 금액을 그대로 사용하므로 그룹업무팀이 별도로 중요성을 결정하지 않는다.",
+            "reason": "부문중요성을 포함한 중요성을 그룹업무팀이 별도로 결정하지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "not_met",
+            "reason": "부문중요성을 그룹재무제표 전체중요성보다 낮게 설정한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "그룹업무팀이 중요성을 별도로 결정하지 않는다고 명시하여 요구사항을 부정했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "그룹업무팀이 중요성을 별도로 결정하지 않는다고 명시하여 요구사항을 부정했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "부문중요성을 포함한 중요성을 그룹업무팀이 별도로 결정하지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3.p2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "부문중요성을 그룹재무제표 전체중요성보다 낮게 설정한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-14-002",
+    "score": 0,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 600에 따라 그룹업무팀이 그룹감사를 계획할 때 결정하여야 하는 중요성을 모두 제시하시오. 또한 그룹감사 목적으로 부문감사인이 감사나 검토를 수행하는 부문에 적용할 중요성의 수준에 관한 요구사항을 서술하시오.",
+        "user_answer": "그룹감사에서는 각 부문 경영진이 제시한 금액을 그대로 사용하므로 그룹업무팀이 별도로 중요성을 결정하지 않는다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "그룹감사에서는 각 부문 경영진이 제시한 금액을 그대로 사용하므로 그룹업무팀이 별도로 중요성을 결정하지 않는다.",
+            "reason": "그룹업무팀이 중요성을 별도로 결정하지 않는다고 명시하여 요구사항을 부정했다.",
+            "claim": "그룹재무제표 전체에 대한 중요성",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "그룹감사에서는 각 부문 경영진이 제시한 금액을 그대로 사용하므로 그룹업무팀이 별도로 중요성을 결정하지 않는다.",
+            "reason": "그룹업무팀이 중요성을 별도로 결정하지 않는다고 명시하여 요구사항을 부정했다.",
+            "claim": "그룹 수준의 수행중요성",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "그룹감사에서는 각 부문 경영진이 제시한 금액을 그대로 사용하므로 그룹업무팀이 별도로 중요성을 결정하지 않는다.",
+            "reason": "부문중요성을 포함한 중요성을 그룹업무팀이 별도로 결정하지 않는다고 명시했다.",
+            "claim": "부문중요성을 제시한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "not_met",
+            "reason": "부문중요성을 그룹재무제표 전체중요성보다 낮게 설정한다는 내용이 없다.",
+            "claim": "부문중요성은 그룹재무제표 전체중요성보다 낮게 설정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "그룹재무제표 전체에 대한 중요성",
+          "그룹 수준의 수행중요성",
+          "그룹감사 목적으로 감사나 검토를 수행할 부문에 대한 부문중요성으로, 그룹재무제표 전체 중요성보다 낮게 설정한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0c4c7b6762d7e820016aae0708f14487d0969e64995954dd0a",
+        "request_id": "req_cdc8ed2acd404963a1101751200eebe8",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2533,
+          "input_tokens_details": {
+            "cache_write_tokens": 2530,
+            "cached_tokens": 0
+          },
+          "output_tokens": 417,
+          "output_tokens_details": {
+            "reasoning_tokens": 167
+          },
+          "total_tokens": 2950
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0011335,
+        "min_usd": 0.0011335,
+        "max_usd": 0.0011335,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-14-002--sub1--standard--wrong/input.json",
+      "sha256": "3d2d49e83796498e7a8c04f773c9af352debe29b3a5844de63d2d8a6fbd83a4d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-14-002--sub1--standard--wrong/transport.jsonl",
+      "sha256": "31cb189f7977ef6e303231c79324f14f5c56890233177cc6ed7f54d3d397bd27"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-14-002--sub1--standard--wrong/traces.jsonl",
+      "sha256": "d23948ffbdce9c5142063637c54cdcf6492a02d6043977d88ce43646eb3588d5"
+    }
+  }
+}

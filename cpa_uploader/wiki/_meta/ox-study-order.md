@@ -1,7 +1,7 @@
 ---
 title: "필수암기·OX 200제에 맞춘 학습 순서"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-18
 type: source-map
 status: generated
 review_required: true

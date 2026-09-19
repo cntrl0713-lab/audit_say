@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-02-001--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-02-001--sub1--standard",
+  "source_set_id": "pilot-02-001",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "f424a830d85459314dab3fc8ca313ae212670484712fabae0ff7afc68e7e98cd",
+  "answers": {
+    "sub1": "경영진과 지배기구가 정직하고 성실하다고 믿더라도 전문가적 의구심을 유지할 필요성은 줄어들지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 1,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (의구심 유지는 썼으나 설득력이 낮은 증거에 만족할 수 없다는 점은 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (의구심 유지는 썼으나 설득력이 낮은 증거에 만족할 수 없다는 점은 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "3e82a21dcf779a63e24876dbb43a4d1902a8b76e56937b33b62a9ffcae15ff5a",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "경영진과 지배기구가 정직하고 성실하다고 믿더라도 전문가적 의구심을 유지할 필요성은 줄어들지 않는다.",
+            "reason": "경영진과 지배기구를 신뢰하더라도 전문가적 의구심 유지 필요성이 줄어들지 않는다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "설득력이 낮은 감사증거에 만족할 수 없다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "경영진과 지배기구를 신뢰하더라도 전문가적 의구심 유지 필요성이 줄어들지 않는다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "설득력이 낮은 감사증거에 만족할 수 없다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-02-001",
+    "score": 1,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사인이 경영진과 지배기구의 정직성과 성실성을 믿는 경우, 그 믿음이 합리적 확신을 얻는 과정에서 전문가적 의구심의 유지와 감사인이 받아들일 감사증거에 미치는 영향을 설명하시오.",
+        "user_answer": "경영진과 지배기구가 정직하고 성실하다고 믿더라도 전문가적 의구심을 유지할 필요성은 줄어들지 않는다.",
+        "score": 1,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "경영진과 지배기구가 정직하고 성실하다고 믿더라도 전문가적 의구심을 유지할 필요성은 줄어들지 않는다.",
+            "reason": "경영진과 지배기구를 신뢰하더라도 전문가적 의구심 유지 필요성이 줄어들지 않는다고 명시했다.",
+            "claim": "경영진을 신뢰해도 전문가적 의구심 유지 필요성은 경감되지 않는다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "설득력이 낮은 감사증거에 만족할 수 없다는 내용이 없다.",
+            "claim": "경영진과 지배기구를 믿더라도 설득력이 낮은 감사증거에 만족하는 것은 허용되지 않는다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "경영진의 정직성과 성실성을 신뢰하더라도 전문가적 의구심을 유지할 필요성은 경감되지 않으며, 설득력이 낮은 감사증거에 만족할 수 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 1,
+      "actual_points": 1,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02a028d092cf76e1016aae068fb2a087d0b85901019b5aa5ec",
+        "request_id": "req_7697731167b04c52bd764f2ca2f5d129",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2369,
+          "input_tokens_details": {
+            "cache_write_tokens": 2366,
+            "cached_tokens": 0
+          },
+          "output_tokens": 184,
+          "output_tokens_details": {
+            "reasoning_tokens": 36
+          },
+          "total_tokens": 2553
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008129,
+        "min_usd": 0.0008129,
+        "max_usd": 0.0008129,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-02-001--sub1--standard--partial/input.json",
+      "sha256": "52758448ca5b9f8bb6ff1d839c486f53c516df3d4556302b43752cbe4ddaf19a"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-02-001--sub1--standard--partial/transport.jsonl",
+      "sha256": "b92963be32fd438ba13d93080092fe6ca7d4a5c7f7937aa87a88206697b0bebc"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-02-001--sub1--standard--partial/traces.jsonl",
+      "sha256": "e501dc424f58df4f390c5e63dd0452699e9cd86e891bd44cfbe6f274aa2d3595"
+    }
+  }
+}

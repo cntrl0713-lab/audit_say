@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-03-004--sub2--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-03-004--sub2--standard",
+  "source_set_id": "pilot-03-004",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "996b5acbd1b1682345bb62021979383f5a064cea2c4c219d09665f77b9862c22",
+  "answers": {
+    "sub2": "첫째, 문단 19에서 제시된 경우를 제외하고 감사인이 재무제표 작성에 적용된 재무보고체계가 수용가능하지 않다고 결정한 경우에는 수임해서 안 된다.\n둘째, 경영진의 책임 인정·이해에 관한 동의(문단 6(b))를 받지 못한 경우에는 수임해서 안 된다.\n두 경우 모두 법규에 의해 요구되는 감사라면 이 수임 금지가 적용되지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "a601f61e1f32f4f4571d20c2972c5a073827e65eeb7870493095cb2532d0e303",
+  "schema_hash": "0cd6533ae7d983565948d803cf42494cdacf5aa54fe40ced76e584d4bc67ef13",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "첫째, 문단 19에서 제시된 경우를 제외하고 감사인이 재무제표 작성에 적용된 재무보고체계가 수용가능하지 않다고 결정한 경우에는 수임해서 안 된다.\n",
+            "reason": "수용가능하지 않은 재무보고체계인 경우 수임해서는 안 된다고 명시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "둘째, 경영진의 책임 인정·이해에 관한 동의(문단 6(b))를 받지 못한 경우에는 수임해서 안 된다.\n",
+            "reason": "경영진의 책임 인정·이해에 관한 동의를 받지 못하면 수임해서는 안 된다고 명시했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "두 경우 모두 법규에 의해 요구되는 감사라면 이 수임 금지가 적용되지 않는다.",
+            "reason": "법규에 의해 요구되는 감사에는 해당 수임 금지가 적용되지 않는다고 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "수용가능하지 않은 재무보고체계인 경우 수임해서는 안 된다고 명시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "경영진의 책임 인정·이해에 관한 동의를 받지 못하면 수임해서는 안 된다고 명시했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e3"
+                ],
+                "reason": "법규에 의해 요구되는 감사에는 해당 수임 금지가 적용되지 않는다고 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-03-004",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사를 위한 전제조건이 존재하지 않아 감사인이 경영진과 논의하였다. 감사기준서 210 문단 8에 따라 감사인이 제안된 감사업무를 수임해서는 안 되는 경우를 그 적용 조건과 함께 설명하시오. 문단 19의 특례는 고려하지 않는다.",
+        "user_answer": "첫째, 문단 19에서 제시된 경우를 제외하고 감사인이 재무제표 작성에 적용된 재무보고체계가 수용가능하지 않다고 결정한 경우에는 수임해서 안 된다.\n둘째, 경영진의 책임 인정·이해에 관한 동의(문단 6(b))를 받지 못한 경우에는 수임해서 안 된다.\n두 경우 모두 법규에 의해 요구되는 감사라면 이 수임 금지가 적용되지 않는다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "첫째, 문단 19에서 제시된 경우를 제외하고 감사인이 재무제표 작성에 적용된 재무보고체계가 수용가능하지 않다고 결정한 경우에는 수임해서 안 된다.",
+            "reason": "수용가능하지 않은 재무보고체계인 경우 수임해서는 안 된다고 명시했다.",
+            "claim": "재무제표 작성에 적용된 재무보고체계가 수용가능하지 않다고 감사인이 결정한 경우 수임해서는 안 된다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "둘째, 경영진의 책임 인정·이해에 관한 동의(문단 6(b))를 받지 못한 경우에는 수임해서 안 된다.",
+            "reason": "경영진의 책임 인정·이해에 관한 동의를 받지 못하면 수임해서는 안 된다고 명시했다.",
+            "claim": "경영진의 책임 인정·이해에 관한 동의를 받지 못한 경우 수임해서는 안 된다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "met",
+            "quote": "두 경우 모두 법규에 의해 요구되는 감사라면 이 수임 금지가 적용되지 않는다.",
+            "reason": "법규에 의해 요구되는 감사에는 해당 수임 금지가 적용되지 않는다고 설명했다.",
+            "claim": "법규에 의해 요구되는 감사에는 이 수임 금지가 적용되지 않음을 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "첫째, 문단 19에서 제시된 경우를 제외하고 감사인이 재무제표 작성에 적용된 재무보고체계가 수용가능하지 않다고 결정한 경우에는 수임해서 안 된다.",
+          "둘째, 경영진의 책임 인정·이해에 관한 동의(문단 6(b))를 받지 못한 경우에는 수임해서 안 된다.",
+          "두 경우 모두 법규에 의해 요구되는 감사라면 이 수임 금지가 적용되지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0cf72ca3d8d366a8016aae06959fe487d0ac393a492a240d94",
+        "request_id": "req_e1ca28ae3871462ca8d1a4509d13cf7a",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2911,
+          "input_tokens_details": {
+            "cache_write_tokens": 2908,
+            "cached_tokens": 0
+          },
+          "output_tokens": 233,
+          "output_tokens_details": {
+            "reasoning_tokens": 36
+          },
+          "total_tokens": 3144
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010072,
+        "min_usd": 0.0010072,
+        "max_usd": 0.0010072,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-03-004--sub2--standard--model/input.json",
+      "sha256": "c5c739bbc7659ed38264a9208235e1ceddd50e57e657f211393d6a90da55666c"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-03-004--sub2--standard--model/transport.jsonl",
+      "sha256": "3a440f24a9e8566b948062bc22ce3f6de3cc23c0f81c62087705da5970f3c789"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-03-004--sub2--standard--model/traces.jsonl",
+      "sha256": "f8d7be969d607e0ec8a63c403dd83ee6565e2c76b5304202239ea2a8d51d2437"
+    }
+  }
+}

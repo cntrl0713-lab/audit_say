@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "std-points-20260914-5fb89d86a799--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-5fb89d86a799--sub1--standard",
+  "source_set_id": "std-points-20260914-5fb89d86a799",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "0cc44fc7bcec42a916f7a4939e069c0cbcd14fd6ddf3b159e29dea9f15852cbd",
+  "answers": {
+    "sub1": "재무제표를 수정했으므로 추가 감사절차와 종전 수령자 통보 검토 및 후속사건 절차는 모두 생략한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "원 대표답안의 판정(cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/candidate-v3/representatives.json): 답안에 이 명제가 없다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "2090734fd066fd50dccf5674c1c25e8481e4f8403332c3cca7753c2109057aa0",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "재무제표를 수정했으므로 추가 감사절차와 종전 수령자 통보 검토 및 후속사건 절차는 모두 생략한다.",
+            "reason": "필요한 감사절차를 수행해야 하는데 모두 생략한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "재무제표를 수정했으므로 추가 감사절차와 종전 수령자 통보 검토 및 후속사건 절차는 모두 생략한다.",
+            "reason": "경영진의 종전 수령자 통보 조치 검토를 생략한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "재무제표를 수정했으므로 추가 감사절차와 종전 수령자 통보 검토 및 후속사건 절차는 모두 생략한다.",
+            "reason": "후속사건 절차를 새로운 감사보고서일까지 연장해야 하나 생략한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "필요한 감사절차를 수행해야 하는데 모두 생략한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "경영진의 종전 수령자 통보 조치 검토를 생략한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "후속사건 절차를 새로운 감사보고서일까지 연장해야 하나 생략한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-5fb89d86a799",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "재무제표 발행 후 알게 된 사실이 원래 감사보고서일에 알려졌다면 감사보고서 수정의 원인이 될 수도 있었고, 이에 경영진이 재무제표를 수정하였다. 문단 12의 상황은 아니다. 감사기준서 560 문단 15(a)·(b)·(c)(i)에 따라 감사인이 수행하여야 할 절차를 설명하시오.",
+        "user_answer": "재무제표를 수정했으므로 추가 감사절차와 종전 수령자 통보 검토 및 후속사건 절차는 모두 생략한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "재무제표를 수정했으므로 추가 감사절차와 종전 수령자 통보 검토 및 후속사건 절차는 모두 생략한다.",
+            "reason": "필요한 감사절차를 수행해야 하는데 모두 생략한다고 명시했다.",
+            "claim": "수정사항에 대하여 해당 상황에서 필요한 감사절차를 수행한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "재무제표를 수정했으므로 추가 감사절차와 종전 수령자 통보 검토 및 후속사건 절차는 모두 생략한다.",
+            "reason": "경영진의 종전 수령자 통보 조치 검토를 생략한다고 명시했다.",
+            "claim": "종전에 발행된 재무제표와 감사보고서를 받은 모든 수령자에게 상황이 통보되었는지 확인하기 위해 경영진이 취한 조치를 검토한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "재무제표를 수정했으므로 추가 감사절차와 종전 수령자 통보 검토 및 후속사건 절차는 모두 생략한다.",
+            "reason": "후속사건 절차를 새로운 감사보고서일까지 연장해야 하나 생략한다고 명시했다.",
+            "claim": "후속사건에 관한 문단 6과 7의 감사절차를 새로운 감사보고서일까지 연장한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "수정사항에 대해 상황에 필요한 감사절차를 수행한다. 종전 재무제표와 감사보고서를 받은 모든 사람에게 상황이 통보되었는지 확인하기 위해 경영진이 취한 조치를 검토한다. 문단 6·7의 후속사건 감사절차를 새로운 감사보고서일까지 연장한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0d0621ed2dbbbf05016aae090eecc087d09fc3dbc6723a0178",
+        "request_id": "req_f15ff7c9895c4c2694bb72ce8b5a4f6e",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2574,
+          "input_tokens_details": {
+            "cache_write_tokens": 2571,
+            "cached_tokens": 0
+          },
+          "output_tokens": 254,
+          "output_tokens_details": {
+            "reasoning_tokens": 57
+          },
+          "total_tokens": 2828
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009481500000000001,
+        "min_usd": 0.0009481500000000001,
+        "max_usd": 0.0009481500000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-5fb89d86a799--sub1--standard--wrong/input.json",
+      "sha256": "b6a1d71933e61f484a7a7f0a59004978ffa8462591e436f96f852a4fb3534d30"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-5fb89d86a799--sub1--standard--wrong/transport.jsonl",
+      "sha256": "966944cff86e4a4e3fb5eb9977dd8d8baa1391050d75ee1a967bacfc63349f9d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/std-points-20260914-5fb89d86a799--sub1--standard--wrong/traces.jsonl",
+      "sha256": "80d7e7e56425df456ac0a8f0450833a3a4beef9e8f3e1a02edadf11b3ba247c5"
+    }
+  }
+}

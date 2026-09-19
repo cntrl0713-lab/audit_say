@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-05-006--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-05-006--sub2--standard",
+  "source_set_id": "pilot-05-006",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "560783b6beb48110b55770f83b1d45370497b032681e40c8c91ecbe2a3c4892a",
+  "answers": {
+    "sub2": "거래가 이사회 승인을 받았는지만 확인하고 승인되었다면 추가 평가 없이 정상 거래로 본다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (사업상 근거에 비춘 부정 평가를 하지 않았다.)"
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (사업상 근거에 비춘 부정 평가를 하지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "855300ffeecf6007b6bf77a733ddb74bf8b0cd7ffdf4a44c41a66466c02f808c",
+  "schema_hash": "d11fa709d4bb59744462d5bf3dbad02c3329bc615bbd47c30ca7e01097bc56b5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "거래가 이사회 승인을 받았는지만 확인하고 승인되었다면 추가 평가 없이 정상 거래로 본다.",
+            "reason": "추가 평가 없이 정상 거래로 본다고 명시하여 요구된 부정한 재무보고 관련 평가를 부정한다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "거래가 이사회 승인을 받았는지만 확인하고 승인되었다면 추가 평가 없이 정상 거래로 본다.",
+            "reason": "추가 평가 없이 정상 거래로 본다고 명시하여 요구된 자산횡령 은폐 관련 평가를 부정한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "추가 평가 없이 정상 거래로 본다고 명시하여 요구된 부정한 재무보고 관련 평가를 부정한다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "추가 평가 없이 정상 거래로 본다고 명시하여 요구된 자산횡령 은폐 관련 평가를 부정한다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-05-006",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "기업의 정상적인 사업과정을 벗어나는 거래, 또는 기업과 그 환경에 대한 이해와 감사 중 입수한 정보에 비추어 비경상적으로 보이는 유의적 거래를 발견하였다. 감사기준서 240에 따라 감사인이 그 거래에 관하여 수행하여야 할 평가를 설명하시오.",
+        "user_answer": "거래가 이사회 승인을 받았는지만 확인하고 승인되었다면 추가 평가 없이 정상 거래로 본다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "거래가 이사회 승인을 받았는지만 확인하고 승인되었다면 추가 평가 없이 정상 거래로 본다.",
+            "reason": "추가 평가 없이 정상 거래로 본다고 명시하여 요구된 부정한 재무보고 관련 평가를 부정한다.",
+            "claim": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 부정한 재무보고를 수행하기 위해 체결되었음을 나타내는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "거래가 이사회 승인을 받았는지만 확인하고 승인되었다면 추가 평가 없이 정상 거래로 본다.",
+            "reason": "추가 평가 없이 정상 거래로 본다고 명시하여 요구된 자산횡령 은폐 관련 평가를 부정한다.",
+            "claim": "사업상 논리적 근거 또는 그 결여에 비추어 거래가 자산횡령을 은폐하기 위해 체결되었음을 나타내는지 평가한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "해당 거래의 사업상 논리적 근거(또는 그 결여)에 비추어, 그 거래가 부정한 재무보고를 수행하기 위해 체결되었음을 나타내는 것인지 평가해야 한다.",
+          "같은 기준으로 그 거래가 자산횡령을 은폐하기 위해 체결되었음을 나타내는 것인지도 평가해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0da4619c8a9cb0c9016aae06a9ebd887d0aec9493b13eb7bc5",
+        "request_id": "req_5f7fc0057b8045a79370ee5c023863d7",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2467,
+          "input_tokens_details": {
+            "cache_write_tokens": 2464,
+            "cached_tokens": 0
+          },
+          "output_tokens": 221,
+          "output_tokens_details": {
+            "reasoning_tokens": 60
+          },
+          "total_tokens": 2688
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008818,
+        "min_usd": 0.0008818,
+        "max_usd": 0.0008818,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-05-006--sub2--standard--wrong/input.json",
+      "sha256": "4cb01ed7f4b39e3a9d931021226462ef4a58264faa2090f282886854ef32f859"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-05-006--sub2--standard--wrong/transport.jsonl",
+      "sha256": "b2d3cd9d0d35e7b7895201678a0f8fedd17eb551c095fc7e2adf321d4631327a"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-05-006--sub2--standard--wrong/traces.jsonl",
+      "sha256": "665fdef07f703fe24f9c85944a367d8ffe090f3cf94ed91bfb7ed34a9bbf1096"
+    }
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-18-001--subq1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-18-001--subq1--standard",
+  "source_set_id": "pilot-18-001",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "subq1"
+  ],
+  "projected_body_hash": "704d50b426282143719e38af0be604e44ce17406685ebad82dd6db24184c2359",
+  "answers": {
+    "subq1": "감사기준서 1200을 적용할 수 없다.\n일반 감사기준서(감사기준서 200부터 720까지)를 적용해야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "subq1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "99c64227233610de8c1e15540b3fc62018e99533a387b76b780e84a1a8976585",
+  "schema_hash": "b94756b933001a5cd1a5bf7382e51ad7ff9f38c34b0a7704371183744e1a94a7",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "subq1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사기준서 1200을 적용할 수 없다.\n",
+            "reason": "감사기준서 1200을 적용할 수 없다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "일반 감사기준서(감사기준서 200부터 720까지)를 적용해야 한다.",
+            "reason": "일반 감사기준서인 감사기준서 200부터 720까지를 적용한다고 설명했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "subq1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "subq1/e1"
+                ],
+                "reason": "감사기준서 1200을 적용할 수 없다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "subq1/e2"
+                ],
+                "reason": "일반 감사기준서인 감사기준서 200부터 720까지를 적용한다고 설명했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-18-001",
+    "score": 2,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "subq1",
+        "prompt": "감사기준서 1200(소규모기업 재무제표에 대한 감사)에서 정한 소규모기업에 해당하지 않는 기업의 일반목적 재무제표 감사에 감사기준서 1200을 적용할 수 있는지 판단하고, 그 감사에 적용하는 감사기준서를 제시하시오.",
+        "user_answer": "감사기준서 1200을 적용할 수 없다.\n일반 감사기준서(감사기준서 200부터 720까지)를 적용해야 한다.",
+        "score": 2,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "감사기준서 1200을 적용할 수 없다.",
+            "reason": "감사기준서 1200을 적용할 수 없다고 명시했다.",
+            "claim": "소규모기업이 아닌 기업에는 감사기준서 1200을 적용할 수 없다고 판단함",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "met",
+            "quote": "일반 감사기준서(감사기준서 200부터 720까지)를 적용해야 한다.",
+            "reason": "일반 감사기준서인 감사기준서 200부터 720까지를 적용한다고 설명했다.",
+            "claim": "그 경우 감사기준서 200부터 720까지의 일반 감사기준서를 적용한다고 설명함",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "감사기준서 1200을 적용할 수 없다.",
+          "일반 감사기준서(감사기준서 200부터 720까지)를 적용해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "subq1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0441e5ea81cc6d31016aae0715378c87d0a995306ba4c2e246",
+        "request_id": "req_70ef5c039afe42a78ccb2a00371f9798",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2514,
+          "input_tokens_details": {
+            "cache_write_tokens": 2511,
+            "cached_tokens": 0
+          },
+          "output_tokens": 176,
+          "output_tokens_details": {
+            "reasoning_tokens": 30
+          },
+          "total_tokens": 2690
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00083955,
+        "min_usd": 0.00083955,
+        "max_usd": 0.00083955,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-18-001--subq1--standard--model/input.json",
+      "sha256": "4d1e986467ddd11ef87d44bfc2063c29349019fe43d2d7bfd212063e85129695"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-18-001--subq1--standard--model/transport.jsonl",
+      "sha256": "8f4aaa1f73fc7a89ccc5404e61a9a35fdfd75b74db144c076f1f24d5feab43d9"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/pilot-18-001--subq1--standard--model/traces.jsonl",
+      "sha256": "ae63319cd721a7277b9f322d5e8ba3b9e5f03e58f69d5b95b56d001fcf84724f"
+    }
+  }
+}

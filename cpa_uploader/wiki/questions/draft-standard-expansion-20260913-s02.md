@@ -1,7 +1,7 @@
 ---
 title: "draft-standard-expansion-20260913-s02. 전반감사전략의 수립 절차"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[planning-documentation-materiality]] · [[topic-04-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/147`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/139`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [04.json](../../analysis/reviews/question-review-2027/04.json)
 - 학습 순서: sub1
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub1
 
-유형: enumeration · JSON Pointer `/147/subquestions/0`
+유형: enumeration · JSON Pointer `/139/subquestions/0`
 
 ### 발문
 
-감사인이 전반감사전략을 수립할 때 감사기준서 300 문단 8(a)~(d)에 따라 수행해야 할 절차를 모두 제시하시오. 업무의 보고목적과 요구되는 커뮤니케이션의 성격, 예비적 활동 결과와 다른 업무에서 얻은 지식에 관한 고려사항은 각각 구별하여 작성하시오. 문단 8(e)의 자원에 관한 요구는 제외한다.
+감사인이 전반감사전략을 수립할 때 감사기준서 300 문단 8(a)~(d)에 따라 수행해야 할 절차를 모두 제시하시오.
 
 ### 모범답안
 

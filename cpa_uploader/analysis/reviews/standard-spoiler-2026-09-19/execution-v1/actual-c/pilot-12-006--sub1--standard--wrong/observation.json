@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-12-006--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-12-006--sub1--standard",
+  "source_set_id": "pilot-12-006",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "3f441f9e2b0439ecee01d762b17ea40b3616146ca2e766af8c6b713837275b6e",
+  "answers": {
+    "sub1": "감사인은 경영진에게 왜곡표시가 없다는 확인서를 요청하고, 그 확인서를 받으면 추가 조치 없이 감사를 종료한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요청 사항을 하나도 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요청 사항을 하나도 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (요청 사항을 하나도 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "839793ae28c63cc226e7f573acb4a36c18ec159ee294ebe5fa1d515e12e2e9fd",
+  "schema_hash": "06d1dd668377c955ef20adca5f406d189ca7c87db79eb0c60afc682f95880513",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "재무제표 수정 요청이 제시되지 않았다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "왜곡표시 원인을 이해하기 위한 관련 항목 조사가 제시되지 않았다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "실제 왜곡표시 금액을 결정하는 절차가 제시되지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표 수정 요청이 제시되지 않았다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "왜곡표시 원인을 이해하기 위한 관련 항목 조사가 제시되지 않았다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "실제 왜곡표시 금액을 결정하는 절차가 제시되지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-12-006",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사인이 감사 중 왜곡표시를 식별하였다. 감사기준서 450 문단 A9에 따라 감사인이 경영진에게 요청할 수 있는 사항을 모두 설명하시오.",
+        "user_answer": "감사인은 경영진에게 왜곡표시가 없다는 확인서를 요청하고, 그 확인서를 받으면 추가 조치 없이 감사를 종료한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "재무제표 수정 요청이 제시되지 않았다.",
+            "claim": "경영진에게 재무제표의 적합한 수정을 요청할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "왜곡표시 원인을 이해하기 위한 관련 항목 조사가 제시되지 않았다.",
+            "claim": "경영진에게 왜곡표시 원인을 이해하도록 관련 거래유형·계정잔액 또는 공시를 조사해 달라고 요청할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "실제 왜곡표시 금액을 결정하는 절차가 제시되지 않았다.",
+            "claim": "경영진에게 실제 왜곡표시 금액을 결정하는 절차를 수행하도록 요청할 수 있다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사인은 경영진에게 재무제표에 적합한 수정을 하도록 요청할 수 있다.",
+          "이를 위해 경영진이 거래유형·계정잔액 또는 공시를 조사하여 식별된 왜곡표시의 원인을 이해할 수 있게 하고, 실제 왜곡표시 금액을 결정하는 절차를 수행하도록 요청할 수 있다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0db07a5aea45d784016aae06f58ed087d08244fe008c17aba8",
+        "request_id": "req_a8d6950967734b448dd67c7f9dbf2e41",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2510,
+          "input_tokens_details": {
+            "cache_write_tokens": 2507,
+            "cached_tokens": 0
+          },
+          "output_tokens": 296,
+          "output_tokens_details": {
+            "reasoning_tokens": 132
+          },
+          "total_tokens": 2806
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00098255,
+        "min_usd": 0.00098255,
+        "max_usd": 0.00098255,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-12-006--sub1--standard--wrong/input.json",
+      "sha256": "e3a8f319e07364fded40a27aaa93406c4ecbfe3b05922b07568e939042aa8846"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-12-006--sub1--standard--wrong/transport.jsonl",
+      "sha256": "a94a9d8f0a73f034d8ba22bf426c112af896799c38a4a5ccb6bc22cd69804ab1"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-12-006--sub1--standard--wrong/traces.jsonl",
+      "sha256": "54f83c87f0640c9e8510a9cf8040caa4a3b3646512071def934191c132863420"
+    }
+  }
+}

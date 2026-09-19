@@ -1,7 +1,7 @@
 ---
-title: "std-points-20260914-c3d6fde34fc2. 이전 감사에서 얻은 통제 운영효과성 증거의 이용 가능성과 통제테스트 재수행까지의 경과기간을 정하려고 한다. 감사기준서 330 문단 13의 고려사항 중 통제 및 내부통제시스템의 특성과 주변 상황에 관한 사항을 설명하시오. 이전 감사에서 발견한 이탈·담당자 변화 및 해당 감사의 위험·통제 의존도는 제외한다."
+title: "std-points-20260914-c3d6fde34fc2. 이전 감사에서 얻은 통제 운영효과성 증거의 이용 가능성과 통제테스트 재수행까지의 경과기간을 정하려고 한다. 감사기준서 330 문단 13(a)·(b)·(c)·(e)에 제시된 고려사항을 설명하시오."
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -10,12 +10,12 @@ sources: ["cpa_uploader/data/cpa_question_sets_v3.authoring.json","cpa_uploader/
 confidence: high
 ---
 
-# std-points-20260914-c3d6fde34fc2. 이전 감사에서 얻은 통제 운영효과성 증거의 이용 가능성과 통제테스트 재수행까지의 경과기간을 정하려고 한다. 감사기준서 330 문단 13의 고려사항 중 통제 및 내부통제시스템의 특성과 주변 상황에 관한 사항을 설명하시오. 이전 감사에서 발견한 이탈·담당자 변화 및 해당 감사의 위험·통제 의존도는 제외한다.
+# std-points-20260914-c3d6fde34fc2. 이전 감사에서 얻은 통제 운영효과성 증거의 이용 가능성과 통제테스트 재수행까지의 경과기간을 정하려고 한다. 감사기준서 330 문단 13(a)·(b)·(c)·(e)에 제시된 고려사항을 설명하시오.
 
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[responses-controls-substantive-procedures]] · [[topic-07-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/265`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/252`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [07.json](../../analysis/reviews/question-review-2027/07.json)
 - 학습 순서: sub1
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub1
 
-유형: enumeration · JSON Pointer `/265/subquestions/0`
+유형: enumeration · JSON Pointer `/252/subquestions/0`
 
 ### 발문
 
-이전 감사에서 얻은 통제 운영효과성 증거의 이용 가능성과 통제테스트 재수행까지의 경과기간을 정하려고 한다. 감사기준서 330 문단 13의 고려사항 중 통제 및 내부통제시스템의 특성과 주변 상황에 관한 사항을 설명하시오. 이전 감사에서 발견한 이탈·담당자 변화 및 해당 감사의 위험·통제 의존도는 제외한다.
+이전 감사에서 얻은 통제 운영효과성 증거의 이용 가능성과 통제테스트 재수행까지의 경과기간을 정하려고 한다. 감사기준서 330 문단 13(a)·(b)·(c)·(e)에 제시된 고려사항을 설명하시오.
 
 ### 모범답안
 

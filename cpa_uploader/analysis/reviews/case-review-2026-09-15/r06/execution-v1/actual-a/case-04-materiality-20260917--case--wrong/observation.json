@@ -1,0 +1,391 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r06/execution-v1/grading-manifest.json",
+    "sha256": "078f3f14eb36df8325c46085762f9cdc955b9bb48a7757d3126850bfc8d641b2"
+  },
+  "entry_id": "case-04-materiality-20260917--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "case-04-materiality-20260917--case",
+  "source_set_id": "case-04-materiality-20260917",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2"
+  ],
+  "projected_body_hash": "22633ca0e583e611045f5c1075c356139e83c0d813e7458383e003527f282bd8",
+  "answers": {
+    "sub1": "옳지 않은 것은 ①이다. 손상차손을 반영한 20X1년 예측 이익을 그대로 벤치마크로 써야 한다.\n②는 인수 관련 공시 금액이 모두 전체 중요성보다 작으므로 전체 중요성만 적용하면 되어 옳다.\n③은 매년 같은 비율로 수행중요성을 정해야 감사의 일관성이 유지되므로 옳다.",
+    "sub2": "옳지 않은 것은 ④, ⑧이다.\n④ 중간감사를 이미 마쳤으므로 중요성을 바꾸면 감사의 일관성이 훼손된다.\n⑧ 금액이 중요성보다 작은 왜곡표시는 중요하지 않다.\n⑤, ⑥, ⑦은 옳다. 수행중요성은 한 번 정하면 감사가 끝날 때까지 유지하고, 인력과 일정 배정이 끝났으면 기말 절차를 계획대로 수행해도 되며, 최종 금액만 남기고 수정 이유는 구두로 보고하면 충분하다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "contradicted",
+          "reason": "옳은 ①만 고르고 ②·③이 옳다고 명시했다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "contradicted",
+          "reason": "금액이 작으면 전체 중요성만 적용하면 된다고 명시했다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "contradicted",
+          "reason": "매년 같은 비율을 적용해야 한다고 명시했다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "contradicted",
+          "reason": "옳은 ④·⑧만 고르고 ⑤·⑥·⑦이 옳다고 명시했다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "contradicted",
+          "reason": "수행중요성은 끝까지 유지한다고 명시했다."
+        },
+        {
+          "criterion_id": "sub2.c3",
+          "verdict": "contradicted",
+          "reason": "인력과 일정 배정이 끝났으면 계획대로 수행해도 된다고 명시했다."
+        },
+        {
+          "criterion_id": "sub2.c4",
+          "verdict": "contradicted",
+          "reason": "최종 금액과 구두 보고로 충분하다고 명시했다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "48887a94be7fdb079bc6d7a4a8774dfc492bcc68ca2f7848bdff0101911487a2",
+  "schema_hash": "f7f95714f68781bdfa349093e41503b0fd1b102933a54d654fd3ff8c8f52061e",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "contradicted",
+            "quote": "옳지 않은 것은 ①이다. 손상차손을 반영한 20X1년 예측 이익을 그대로 벤치마크로 써야 한다.\n②는 인수 관련 공시 금액이 모두 전체 중요성보다 작으므로 전체 중요성만 적용하면 되어 옳다.\n③은 매년 같은 비율로 수행중요성을 정해야 감사의 일관성이 유지되므로 옳다.",
+            "reason": "②·③이 아니라 ①이 옳지 않다고 명시했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "contradicted",
+            "quote": "②는 인수 관련 공시 금액이 모두 전체 중요성보다 작으므로 전체 중요성만 적용하면 되어 옳다.\n",
+            "reason": "인수 관련 공시에 전체 중요성만 적용하면 된다고 명시했다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "contradicted",
+            "quote": "③은 매년 같은 비율로 수행중요성을 정해야 감사의 일관성이 유지되므로 옳다.",
+            "reason": "매년 같은 비율로 수행중요성을 정해야 한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "옳지 않은 것은 ④, ⑧이다.\n④ 중간감사를 이미 마쳤으므로 중요성을 바꾸면 감사의 일관성이 훼손된다.\n⑧ 금액이 중요성보다 작은 왜곡표시는 중요하지 않다.\n⑤, ⑥, ⑦은 옳다. 수행중요성은 한 번 정하면 감사가 끝날 때까지 유지하고, 인력과 일정 배정이 끝났으면 기말 절차를 계획대로 수행해도 되며, 최종 금액만 남기고 수정 이유는 구두로 보고하면 충분하다.",
+            "reason": "⑤·⑥·⑦이 아니라 ④·⑧이 옳지 않다고 명시했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "contradicted",
+            "quote": "수행중요성은 한 번 정하면 감사가 끝날 때까지 유지하고, 인력과 일정 배정이 끝났으면 기말 절차를 계획대로 수행해도 되며, 최종 금액만 남기고 수정 이유는 구두로 보고하면 충분하다.",
+            "reason": "수행중요성은 감사가 끝날 때까지 유지한다고 명시했다."
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "contradicted",
+            "quote": "수행중요성은 한 번 정하면 감사가 끝날 때까지 유지하고, 인력과 일정 배정이 끝났으면 기말 절차를 계획대로 수행해도 되며, 최종 금액만 남기고 수정 이유는 구두로 보고하면 충분하다.",
+            "reason": "인력과 일정 배정이 끝나면 기말 절차를 계획대로 수행해도 된다고 명시했다."
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "contradicted",
+            "quote": "수행중요성은 한 번 정하면 감사가 끝날 때까지 유지하고, 인력과 일정 배정이 끝났으면 기말 절차를 계획대로 수행해도 되며, 최종 금액만 남기고 수정 이유는 구두로 보고하면 충분하다.",
+            "reason": "최종 금액만 남기고 수정 이유는 구두 보고로 충분하다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "②·③이 아니라 ①이 옳지 않다고 명시했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "인수 관련 공시에 전체 중요성만 적용하면 된다고 명시했다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e4"
+                ],
+                "reason": "매년 같은 비율로 수행중요성을 정해야 한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "⑤·⑥·⑦이 아니라 ④·⑧이 옳지 않다고 명시했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e5"
+                ],
+                "reason": "수행중요성은 감사가 끝날 때까지 유지한다고 명시했다."
+              },
+              {
+                "criterion_id": "sub2.c3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e5"
+                ],
+                "reason": "인력과 일정 배정이 끝나면 기말 절차를 계획대로 수행해도 된다고 명시했다."
+              },
+              {
+                "criterion_id": "sub2.c4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e5"
+                ],
+                "reason": "최종 금액만 남기고 수정 이유는 구두 보고로 충분하다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-04-materiality-20260917",
+    "score": 0,
+    "max_points": 7,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사계획 단계의 중요성 결정 ①~③ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "옳지 않은 것은 ①이다. 손상차손을 반영한 20X1년 예측 이익을 그대로 벤치마크로 써야 한다.\n②는 인수 관련 공시 금액이 모두 전체 중요성보다 작으므로 전체 중요성만 적용하면 되어 옳다.\n③은 매년 같은 비율로 수행중요성을 정해야 감사의 일관성이 유지되므로 옳다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "contradicted",
+            "quote": "옳지 않은 것은 ①이다. 손상차손을 반영한 20X1년 예측 이익을 그대로 벤치마크로 써야 한다.\n②는 인수 관련 공시 금액이 모두 전체 중요성보다 작으므로 전체 중요성만 적용하면 되어 옳다.\n③은 매년 같은 비율로 수행중요성을 정해야 감사의 일관성이 유지되므로 옳다.",
+            "reason": "②·③이 아니라 ①이 옳지 않다고 명시했다.",
+            "claim": "옳지 않은 것으로 ②·③을 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. ②·③ 중 하나라도 빠뜨리거나, 옳은 것인 ①(일회성 손상차손을 반영한 20X1년 예측치 대신 과거 3년 실적에 기초하여 정상적인 수준으로 조정한 법인세비용차감전계속영업이익을 벤치마크로 사용)을 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "contradicted",
+            "quote": "②는 인수 관련 공시 금액이 모두 전체 중요성보다 작으므로 전체 중요성만 적용하면 되어 옳다.",
+            "reason": "인수 관련 공시에 전체 중요성만 적용하면 된다고 명시했다.",
+            "claim": "② 주주들의 관심이 인수 대가와 다온회사 실적 등 인수 관련 공시에 집중되어 있어 재무제표 전체에 대한 중요성보다 작은 왜곡표시도 이용자의 경제적 의사결정에 영향을 줄 것으로 예상되므로, 인수 관련 공시에 적용할 더 낮은 중요성 수준을 결정해야 한다는 이유나 절차를 제시한다. 이용자의 관심이 집중된 공시는 전체 중요성보다 작은 왜곡표시도 의사결정에 영향을 줄 수 있다는 이유와, 인수 관련 공시에 별도의 더 낮은 중요성 수준을 정해야 한다는 절차 중 하나만 써도 인정한다. 금액이 전체 중요성보다 작거나 인수가 승인되었으면 전체 중요성만 적용하면 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "contradicted",
+            "quote": "③은 매년 같은 비율로 수행중요성을 정해야 감사의 일관성이 유지되므로 옳다.",
+            "reason": "매년 같은 비율로 수행중요성을 정해야 한다고 명시했다.",
+            "claim": "③ 수행중요성의 결정은 기계적 계산이 아니라 전문가적 판단이 수반되므로, 위험평가 중 갱신된 기업에 대한 이해(새 회계시스템 전환, 두 지점의 수작업 연결), 전기 감사에서 식별된 왜곡표시의 성격과 범위(여러 지점의 반품 반영 지연, 미수정 왜곡표시)와 그에 따른 당기 왜곡표시의 예상을 고려해 정해야 한다는 이유나 절차를 제시한다. 전문가적 판단이 필요하다는 이유와, 위 고려사항 중 하나 이상을 반영해 수행중요성을 정해야 한다는 절차 중 하나만 써도 인정하며 비율이나 금액은 요구하지 않는다. 매년 같은 비율을 적용해야 일관성이 유지된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ②, ③이다. ①은 일회성 손상차손으로 이익이 예외적으로 감소한 상황에서 과거 실적에 기초하여 정상적 수준으로 조정한 법인세비용차감전계속영업이익을 벤치마크로 사용한 것이므로 옳다.",
+          "② 주주들의 관심이 인수 관련 공시에 집중되어 재무제표 전체에 대한 중요성보다 작은 왜곡표시도 이용자의 경제적 의사결정에 영향을 줄 것으로 예상되므로, 인수 관련 공시에 적용할 더 낮은 중요성 수준을 결정하여야 한다.",
+          "③ 수행중요성의 결정은 기계적 계산이 아니라 전문가적 판단이므로, 새 회계시스템 전환과 두 지점의 수작업 연결 등 갱신된 기업 이해, 전기 반품 반영 지연 왜곡표시의 성격과 범위, 그에 따른 당기 왜곡표시의 예상을 고려하여 수행중요성을 정하여야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사 수행 중과 기말감사 단계의 절차와 판단 ④~⑧ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "옳지 않은 것은 ④, ⑧이다.\n④ 중간감사를 이미 마쳤으므로 중요성을 바꾸면 감사의 일관성이 훼손된다.\n⑧ 금액이 중요성보다 작은 왜곡표시는 중요하지 않다.\n⑤, ⑥, ⑦은 옳다. 수행중요성은 한 번 정하면 감사가 끝날 때까지 유지하고, 인력과 일정 배정이 끝났으면 기말 절차를 계획대로 수행해도 되며, 최종 금액만 남기고 수정 이유는 구두로 보고하면 충분하다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "contradicted",
+            "quote": "옳지 않은 것은 ④, ⑧이다.\n④ 중간감사를 이미 마쳤으므로 중요성을 바꾸면 감사의 일관성이 훼손된다.\n⑧ 금액이 중요성보다 작은 왜곡표시는 중요하지 않다.\n⑤, ⑥, ⑦은 옳다. 수행중요성은 한 번 정하면 감사가 끝날 때까지 유지하고, 인력과 일정 배정이 끝났으면 기말 절차를 계획대로 수행해도 되며, 최종 금액만 남기고 수정 이유는 구두로 보고하면 충분하다.",
+            "reason": "⑤·⑥·⑦이 아니라 ④·⑧이 옳지 않다고 명시했다.",
+            "claim": "옳지 않은 것으로 ⑤·⑥·⑦을 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. ⑤·⑥·⑦ 중 하나라도 빠뜨리거나, 옳은 것인 ④(사업부문 처분결정과 계약종료를 반영한 새 연간 예측에서 손상차손의 영향을 제외한 이익을 기초로 재무제표 전체에 대한 중요성을 다시 결정해 낮춤), ⑧(수정된 전체 중요성보다 작은 미수정왜곡표시가 중요한지 평가할 때 대표이사가 지배하는 회사와의 거래라는 점을 함께 고려)을 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "contradicted",
+            "quote": "수행중요성은 한 번 정하면 감사가 끝날 때까지 유지하고, 인력과 일정 배정이 끝났으면 기말 절차를 계획대로 수행해도 되며, 최종 금액만 남기고 수정 이유는 구두로 보고하면 충분하다.",
+            "reason": "수행중요성은 감사가 끝날 때까지 유지한다고 명시했다.",
+            "claim": "⑤ 재무제표 전체에 대한 중요성을 최초보다 낮추었으면 수행중요성을 수정할 필요가 있는지 결정해야 한다는 이유나 절차를 제시한다. 낮아진 전체 중요성에 비추어 수행중요성을 다시 검토하고 필요하면 낮춰야 한다는 절차도 인정한다. 수행중요성은 한 번 정하면 감사가 끝날 때까지 유지한다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "contradicted",
+            "quote": "수행중요성은 한 번 정하면 감사가 끝날 때까지 유지하고, 인력과 일정 배정이 끝났으면 기말 절차를 계획대로 수행해도 되며, 최종 금액만 남기고 수정 이유는 구두로 보고하면 충분하다.",
+            "reason": "인력과 일정 배정이 끝나면 기말 절차를 계획대로 수행해도 된다고 명시했다.",
+            "claim": "⑥ 재무제표 전체에 대한 중요성을 낮추었으면 추가감사절차의 성격, 시기 및 범위가 여전히 적합한지 결정해야 한다는 이유나 절차를 제시한다. 기말 조회·기간귀속 테스트의 표본 규모나 일정, 중간감사에서 수행한 절차가 낮아진 중요성에서도 충분한지 다시 검토하고 필요하면 표본을 늘리거나 절차를 추가해야 한다는 절차 중 하나만 써도 인정하며, 성격·시기·범위의 완전한 나열은 요구하지 않는다. 인력과 일정 배정이 끝났으면 계획대로 수행해도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "contradicted",
+            "quote": "수행중요성은 한 번 정하면 감사가 끝날 때까지 유지하고, 인력과 일정 배정이 끝났으면 기말 절차를 계획대로 수행해도 되며, 최종 금액만 남기고 수정 이유는 구두로 보고하면 충분하다.",
+            "reason": "최종 금액만 남기고 수정 이유는 구두 보고로 충분하다고 명시했다.",
+            "claim": "⑦ 중요성에 관하여 최초 금액과 감사 진행에 따른 수정내용, 그리고 수정한 금액을 결정할 때 고려한 요소(사업부문 처분결정, 계약종료, 새 연간 예측)를 감사문서에 포함해야 한다는 이유나 절차를 제시한다. 수정내용(최초 금액과 수정 금액)의 문서화와 고려한 요소(수정 이유)의 문서화 중 하나만 써도 인정한다. 최종 금액만 남기고 수정 이유는 구두로 보고하면 충분하다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ⑤, ⑥, ⑦이다. ④는 감사 중 알게 된 사업부문 처분결정과 계약종료로 실제 이익이 최초에 사용한 금액과 크게 달라질 것이므로 중요성을 수정한 것이고, ⑧은 중요성에 미달하는 왜곡표시도 그 성격과 발생 상황을 고려하여 중요한지 평가한 것이므로 옳다.",
+          "⑤ 재무제표 전체에 대한 중요성을 최초보다 낮추었으므로 수행중요성을 수정할 필요가 있는지 결정하여야 한다.",
+          "⑥ 재무제표 전체에 대한 중요성을 낮추었으므로 기말 매출채권 조회와 매출 기간귀속 테스트 등 추가감사절차의 성격, 시기 및 범위가 여전히 적합한지 결정하여야 한다.",
+          "⑦ 중요성에 관하여 최초 금액과 감사 진행에 따른 수정내용, 그리고 금액을 결정할 때 고려한 요소(사업부문 처분결정, 계약종료, 새 연간 예측)를 감사문서에 포함하여야 하며 구두 보고로 대신할 수 없다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_07598b28e359ffe0016aab9d0322ac87d0a92131a764b06234",
+        "request_id": "req_b664faa0151d42ebbaf2f74b47ea6096",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 7579,
+          "input_tokens_details": {
+            "cache_write_tokens": 7576,
+            "cached_tokens": 0
+          },
+          "output_tokens": 629,
+          "output_tokens_details": {
+            "reasoning_tokens": 203
+          },
+          "total_tokens": 8208
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0026493999999999997,
+        "min_usd": 0.0026493999999999997,
+        "max_usd": 0.0026493999999999997,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r06/execution-v1/actual-a/case-04-materiality-20260917--case--wrong/input.json",
+      "sha256": "df9d1ad0410f8ead36524651ab26673a69a982b2d16d593526be1a28829d3f06"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r06/execution-v1/actual-a/case-04-materiality-20260917--case--wrong/transport.jsonl",
+      "sha256": "bb5a1bc82d8b6ba3d7d995a8f969d651663f4edcb5254facc8a12792adc254df"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r06/execution-v1/actual-a/case-04-materiality-20260917--case--wrong/traces.jsonl",
+      "sha256": "a469d2f6054fc2799d9fbfc4511c6f1154745f51875109aeffc75ed3252175dd"
+    }
+  }
+}

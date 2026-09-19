@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "draft-standard-expansion-20260913-s05--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "draft-standard-expansion-20260913-s05--sub2--standard",
+  "source_set_id": "draft-standard-expansion-20260913-s05",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "71ba35e24f0c9e8ae2ece72c3b1519122644bae9da171391021e25de5ae0955c",
+  "answers": {
+    "sub2": "감사 중 왜곡표시가 식별되지 않았다면 유의적 미비점은 없다고 결론 내린다. 미비점의 유의성은 실제로 발생한 왜곡표시 금액으로만 판단한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (판단과 유의성 기준을 틀렸다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (판단과 유의성 기준을 틀렸다.)"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (판단과 유의성 기준을 틀렸다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "a6242df69c1e162b3bd0b19009ce3c19ffae0c1b398671db80d73137c3e366f4",
+  "schema_hash": "a72193ed80e0bc00e1d1ea549c3418ed8e9d85163bd00145cda5007ab350134b",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "감사 중 왜곡표시가 식별되지 않았다면 유의적 미비점은 없다고 결론 내린다. 미비점의 유의성은 실제로 발생한 왜곡표시 금액으로만 판단한다.",
+            "reason": "왜곡표시가 식별되지 않으면 유의적 미비점이 없다고 명시적으로 결론 내렸다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "왜곡표시 발생 가능성에 따른 유의성 판단을 제시하지 않았다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "미비점의 유의성은 실제로 발생한 왜곡표시 금액으로만 판단한다.",
+            "reason": "잠재적 크기가 아니라 실제 발생한 왜곡표시 금액으로만 판단한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0",
+                  "sub2/e1"
+                ],
+                "reason": "왜곡표시가 식별되지 않으면 유의적 미비점이 없다고 명시적으로 결론 내렸다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "왜곡표시 발생 가능성에 따른 유의성 판단을 제시하지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "잠재적 크기가 아니라 실제 발생한 왜곡표시 금액으로만 판단한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "draft-standard-expansion-20260913-s05",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 265 문단 A5에 따라 내부통제 미비점의 유의성이 무엇에 따라 달라지는지 설명하고, 이에 비추어 감사 중 왜곡표시를 식별하지 못한 경우 유의적 미비점이 없다고 결론 내릴 수 있는지 판단하시오.",
+        "user_answer": "감사 중 왜곡표시가 식별되지 않았다면 유의적 미비점은 없다고 결론 내린다. 미비점의 유의성은 실제로 발생한 왜곡표시 금액으로만 판단한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "감사 중 왜곡표시가 식별되지 않았다면 유의적 미비점은 없다고 결론 내린다. 미비점의 유의성은 실제로 발생한 왜곡표시 금액으로만 판단한다.",
+            "reason": "왜곡표시가 식별되지 않으면 유의적 미비점이 없다고 명시적으로 결론 내렸다.",
+            "claim": "그렇게 결론 내릴 수 없다. 감사 중 왜곡표시를 식별하지 못했더라도 유의적 미비점이 존재할 수 있다. 나머지 이유·설명에서 이러한 결론이 명확하게 함축되면 판단 문구를 따로 쓰지 않아도 인정한다. 명시적으로 유의적 미비점이 없다고 결론 내리면 판단 점수는 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "왜곡표시 발생 가능성에 따른 유의성 판단을 제시하지 않았다.",
+            "claim": "미비점의 유의성은 왜곡표시가 발생할 수 있는 가능성에 따라 달라진다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "미비점의 유의성은 실제로 발생한 왜곡표시 금액으로만 판단한다.",
+            "reason": "잠재적 크기가 아니라 실제 발생한 왜곡표시 금액으로만 판단한다고 명시했다.",
+            "claim": "미비점의 유의성은 왜곡표시의 잠재적 크기에 따라 달라진다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "그렇게 결론 내릴 수 없다. 감사 중 왜곡표시를 식별하지 못했더라도 유의적 미비점이 존재할 수 있다.",
+          "미비점의 유의성은 왜곡표시가 발생할 수 있는 가능성에 따라 달라진다.",
+          "미비점의 유의성은 왜곡표시의 잠재적 크기에 따라 달라진다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_041fb8493e80cdf5016aae07f3871c87d096bc7faa384f880d",
+        "request_id": "req_4fb1fca90e5844c896dd304e1e3eef3f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2789,
+          "input_tokens_details": {
+            "cache_write_tokens": 2786,
+            "cached_tokens": 0
+          },
+          "output_tokens": 282,
+          "output_tokens_details": {
+            "reasoning_tokens": 82
+          },
+          "total_tokens": 3071
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010355,
+        "min_usd": 0.0010355,
+        "max_usd": 0.0010355,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/draft-standard-expansion-20260913-s05--sub2--standard--wrong/input.json",
+      "sha256": "3b1c7091b7d39bc6aef7e7ca22ffc31e2bfb544ae54f9c2642f0103632afad01"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/draft-standard-expansion-20260913-s05--sub2--standard--wrong/transport.jsonl",
+      "sha256": "2584da1ca0f3bea1bfa607eb96bccc1b08dfebc7d6e76bb03aa1349a06883dbb"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/draft-standard-expansion-20260913-s05--sub2--standard--wrong/traces.jsonl",
+      "sha256": "43f72d6230c5f085a57f9a0ecb55addc474216725312920798ca2b8b031dc68f"
+    }
+  }
+}

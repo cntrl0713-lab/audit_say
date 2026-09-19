@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "std-points-20260914-da16629297a8--sub1--standard--model",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "std-points-20260914-da16629297a8--sub1--standard",
+  "source_set_id": "std-points-20260914-da16629297a8",
+  "kind": "model",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "56d3872f837f1001f96f6d134978236238f9c0b504219848baa0921a338b4c7d",
+  "answers": {
+    "sub1": "내부감사기능의 조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 않으면 그 업무를 활용할 수 없다.\n활용할 수 있는 경우에도 객관성을 지원하는 정도가 낮을수록 내부감사기능이 수행한 업무의 활용을 줄이고 외부감사인이 직접 수행하는 업무를 늘린다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        },
+        {
+          "criterion_id": "crit3.p2",
+          "verdict": "met",
+          "reason": "직접 출처·발문·독립 득점 조건을 대조한 저장 모범답안."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "8c6684d2b4827cf139a1a7eb025c4d0eba9ff9401288b9b01687d6c884001cf6",
+  "schema_hash": "70b90a24924de309b619735466e153af4e031b99240bc396f2077d9148a1ad52",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "내부감사기능의 조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 않으면 그 업무를 활용할 수 없다.\n",
+            "reason": "객관성을 적절히 지원하지 않으면 내부감사기능의 업무를 활용할 수 없다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "활용할 수 있는 경우에도 객관성을 지원하는 정도가 낮을수록 내부감사기능이 수행한 업무의 활용을 줄이고 외부감사인이 직접 수행하는 업무를 늘린다.",
+            "reason": "객관성 지원 정도가 낮을수록 내부감사업무의 활용을 줄인다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "met",
+            "quote": "활용할 수 있는 경우에도 객관성을 지원하는 정도가 낮을수록 내부감사기능이 수행한 업무의 활용을 줄이고 외부감사인이 직접 수행하는 업무를 늘린다.",
+            "reason": "객관성 지원 정도가 낮을수록 외부감사인이 직접 수행하는 업무를 늘린다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "객관성을 적절히 지원하지 않으면 내부감사기능의 업무를 활용할 수 없다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "객관성 지원 정도가 낮을수록 내부감사업무의 활용을 줄인다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3.p2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "객관성 지원 정도가 낮을수록 외부감사인이 직접 수행하는 업무를 늘린다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "std-points-20260914-da16629297a8",
+    "score": 3,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 610에 따라 내부감사기능의 조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 지원하는 정도가, 내부감사기능이 수행한 업무를 활용할 수 있는지와 활용 범위에 각각 어떤 영향을 미치는지 설명하시오.",
+        "user_answer": "내부감사기능의 조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 않으면 그 업무를 활용할 수 없다.\n활용할 수 있는 경우에도 객관성을 지원하는 정도가 낮을수록 내부감사기능이 수행한 업무의 활용을 줄이고 외부감사인이 직접 수행하는 업무를 늘린다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "내부감사기능의 조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 않으면 그 업무를 활용할 수 없다.",
+            "reason": "객관성을 적절히 지원하지 않으면 내부감사기능의 업무를 활용할 수 없다고 명시했다.",
+            "claim": "내부감사기능의 조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 않으면 내부감사기능이 수행한 업무를 활용할 수 없다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "활용할 수 있는 경우에도 객관성을 지원하는 정도가 낮을수록 내부감사기능이 수행한 업무의 활용을 줄이고 외부감사인이 직접 수행하는 업무를 늘린다.",
+            "reason": "객관성 지원 정도가 낮을수록 내부감사업무의 활용을 줄인다고 명시했다.",
+            "claim": "내부감사업무를 활용하는 범위를 줄인다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit3.p2",
+            "verdict": "met",
+            "quote": "활용할 수 있는 경우에도 객관성을 지원하는 정도가 낮을수록 내부감사기능이 수행한 업무의 활용을 줄이고 외부감사인이 직접 수행하는 업무를 늘린다.",
+            "reason": "객관성 지원 정도가 낮을수록 외부감사인이 직접 수행하는 업무를 늘린다고 명시했다.",
+            "claim": "감사인이 직접 수행하는 업무를 늘린다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "내부감사기능의 조직 내 위상과 관련 정책·절차가 내부감사인의 객관성을 적절히 지원하지 않으면 그 업무를 활용할 수 없다.",
+          "활용할 수 있는 경우에도 객관성을 지원하는 정도가 낮을수록 내부감사기능이 수행한 업무의 활용을 줄이고 외부감사인이 직접 수행하는 업무를 늘린다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_090208c4b07f845f016aae0851367c87d09dd862e43b128ce4",
+        "request_id": "req_a51d5ccd8e6f40eb94e31b46789ff9b7",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2911,
+          "input_tokens_details": {
+            "cache_write_tokens": 2908,
+            "cached_tokens": 0
+          },
+          "output_tokens": 234,
+          "output_tokens_details": {
+            "reasoning_tokens": 28
+          },
+          "total_tokens": 3145
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010084,
+        "min_usd": 0.0010084,
+        "max_usd": 0.0010084,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/std-points-20260914-da16629297a8--sub1--standard--model/input.json",
+      "sha256": "b708943879b21e3430e528f8759c0b68f5fb1d6a471c7b1785289ca46065ef5d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/std-points-20260914-da16629297a8--sub1--standard--model/transport.jsonl",
+      "sha256": "5f06578cd183d3f88e0d0d2b713bce4068dfe0e1fe06c65893d70cbcf1757947"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-a/std-points-20260914-da16629297a8--sub1--standard--model/traces.jsonl",
+      "sha256": "57b36a350b7b64a60ab3e9040f17ee425cef945abe70215953c58cc642c9745f"
+    }
+  }
+}

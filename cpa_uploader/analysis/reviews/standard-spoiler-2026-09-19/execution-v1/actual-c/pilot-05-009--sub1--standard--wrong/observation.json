@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-05-009--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-05-009--sub1--standard",
+  "source_set_id": "pilot-05-009",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "82251dc8c9c123df5598d05459f748be0844a8b09e1986e3a9d6bd3efa9b5cd6",
+  "answers": {
+    "sub1": "부정과 오류를 예방하고 발견할 주된 책임은 감사인에게 있으며, 감사인은 모든 부정을 발견할 수 있도록 절대적 확신을 얻어야 한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (책임과 확신 수준을 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (책임과 확신 수준을 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (책임과 확신 수준을 반대로 썼다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "7d26fccf8829b9c6c2d608bf71705f0158996fc0d0c8907fcc9761cdb0d8857c",
+  "schema_hash": "92c5b58d2f4506dfc51308aab098e173ab795f95d15c7edc66ed728c86163ba9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "부정과 오류를 예방하고 발견할 주된 책임은 감사인에게 있으며, 감사인은 모든 부정을 발견할 수 있도록 절대적 확신을 얻어야 한다.",
+            "reason": "주된 책임이 감사인에게 있다고 명시하여 요구되는 지배기구와 경영진의 책임과 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "재무제표 전체에 중요한 왜곡표시가 없다는 확신의 대상을 제시하지 않았다."
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "contradicted",
+            "quote": "부정과 오류를 예방하고 발견할 주된 책임은 감사인에게 있으며, 감사인은 모든 부정을 발견할 수 있도록 절대적 확신을 얻어야 한다.",
+            "reason": "감사인이 절대적 확신을 얻어야 한다고 명시하여 합리적 확신이며 절대적 보증이 아니라는 요구와 반대된다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "주된 책임이 감사인에게 있다고 명시하여 요구되는 지배기구와 경영진의 책임과 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "재무제표 전체에 중요한 왜곡표시가 없다는 확신의 대상을 제시하지 않았다."
+              },
+              {
+                "criterion_id": "crit7",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "감사인이 절대적 확신을 얻어야 한다고 명시하여 합리적 확신이며 절대적 보증이 아니라는 요구와 반대된다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-05-009",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "재무제표감사에서 부정과 오류의 예방과 발견에 대한 주된 책임이 누구에게 있는지 설명하고, 감사인이 입수하여야 할 확신의 대상과 수준을 설명하시오.",
+        "user_answer": "부정과 오류를 예방하고 발견할 주된 책임은 감사인에게 있으며, 감사인은 모든 부정을 발견할 수 있도록 절대적 확신을 얻어야 한다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "부정과 오류를 예방하고 발견할 주된 책임은 감사인에게 있으며, 감사인은 모든 부정을 발견할 수 있도록 절대적 확신을 얻어야 한다.",
+            "reason": "주된 책임이 감사인에게 있다고 명시하여 요구되는 지배기구와 경영진의 책임과 반대된다.",
+            "claim": "부정과 오류의 예방·발견에 대한 주된 책임은 기업의 지배기구와 경영진에게 있다. 감사인에게 같은 주된 책임이 있다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "재무제표 전체에 중요한 왜곡표시가 없다는 확신의 대상을 제시하지 않았다.",
+            "claim": "감사인이 얻을 확신의 대상은 재무제표 전체에 부정이나 오류로 인한 중요한 왜곡표시가 없다는 것이다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "contradicted",
+            "quote": "부정과 오류를 예방하고 발견할 주된 책임은 감사인에게 있으며, 감사인은 모든 부정을 발견할 수 있도록 절대적 확신을 얻어야 한다.",
+            "reason": "감사인이 절대적 확신을 얻어야 한다고 명시하여 합리적 확신이며 절대적 보증이 아니라는 요구와 반대된다.",
+            "claim": "감사인이 얻을 확신의 수준은 합리적 확신이며 절대적 보증은 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "부정과 오류의 예방과 발견에 대한 주된 책임은 기업의 지배기구와 경영진에게 있다.",
+          "감사인이 얻을 확신의 대상은 재무제표 전체에 부정이나 오류로 인한 중요한 왜곡표시가 없다는 것이다.",
+          "감사인이 얻을 확신의 수준은 합리적 확신이며 절대적 보증은 아니다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0304d5d5d4828369016aae077387c887d0bac86667f21f01e3",
+        "request_id": "req_233f0b21c9b1484db5766fc10c2debe3",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2575,
+          "input_tokens_details": {
+            "cache_write_tokens": 2572,
+            "cached_tokens": 0
+          },
+          "output_tokens": 306,
+          "output_tokens_details": {
+            "reasoning_tokens": 91
+          },
+          "total_tokens": 2881
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010107999999999998,
+        "min_usd": 0.0010107999999999998,
+        "max_usd": 0.0010107999999999998,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-05-009--sub1--standard--wrong/input.json",
+      "sha256": "6de5a54505de2637cbd77e545d549d285a0d561e373e70c4a3fc006784103113"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-05-009--sub1--standard--wrong/transport.jsonl",
+      "sha256": "ede24dcedbb56ae1c0041f10891639a0b0d899920b9b9b91b3fa4590c9c27c2d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-05-009--sub1--standard--wrong/traces.jsonl",
+      "sha256": "938bf2e323d7801cee4a7e349c824edc7dfee255952874737a5ad6384238ae60"
+    }
+  }
+}

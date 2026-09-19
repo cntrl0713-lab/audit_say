@@ -1,7 +1,7 @@
 ---
 title: "draft-standard-expansion-20260913-e01. 이해상충과 제2의견"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[ethics-independence-quality]] · [[topic-01-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/145`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/137`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [01.json](../../analysis/reviews/question-review-2027/01.json)
 - 학습 순서: sub1 → sub2 → sub3 → sub4
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/145/subquestions/0`
+유형: descriptive · JSON Pointer `/137/subquestions/0`
 
 ### 발문
 
-공인회계사윤리기준 문단 220.3의 이해상충 관련 안전장치를 설명하시오. ① 회계법인의 사업적 이해관계나 영업활동이 의뢰인과 상충할 수 있는 경우, ② 이해관계가 상충하는 둘 이상의 당사자를 위해 직무를 수행하는 경우, ③ 신규수임업무에서 어느 한 의뢰인만을 위해 배타적으로 활동하지 않는 경우를 구별하여, 각 경우의 통보 내용·상대방과 동의에 관한 요구를 모두 제시하시오.
+공인회계사윤리기준 문단 220.3에 따라 다음 각 경우에 이해상충과 관련하여 적용하여야 할 안전장치를 설명하시오. ① 회계법인의 사업적 이해관계나 영업활동이 의뢰인과 이해상충이 될 수 있는 경우 ② 이해관계가 상충하는 둘 이상의 당사자를 위해 직무를 수행하는 경우 ③ 신규수임업무에서 어느 한 의뢰인만을 위해 배타적으로 활동하지 않는 경우
 
 ### 모범답안
 
@@ -65,11 +65,11 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/145/subquestions/1`
+유형: enumeration · JSON Pointer `/137/subquestions/1`
 
 ### 발문
 
-공인회계사윤리기준 문단 220.4에서 이해상충과 관련하여 강구하도록 제시하는 추가적인 안전장치 다섯 가지를 모두 제시하시오. 검토에 관한 안전장치는 검토자의 요건과 검토 주기도 포함하시오.
+공인회계사윤리기준 문단 220.4에서 이해상충과 관련하여 강구하도록 제시하는 추가적인 안전장치 다섯 가지를 모두 제시하시오. 수행 주체나 방법이 정해진 안전장치는 그 내용도 함께 쓰시오.
 
 ### 모범답안
 
@@ -105,11 +105,11 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub3
 
-유형: descriptive · JSON Pointer `/145/subquestions/2`
+유형: descriptive · JSON Pointer `/137/subquestions/2`
 
 ### 발문
 
-공인회계사윤리기준에 따라 다음 두 상황에서 취할 조치를 각각 설명하시오. 두 상황은 서로 독립적이다. ① 이해상충으로 윤리강령 준수에 위협이 발생하였고 안전장치로도 위협을 제거하거나 수용가능한 수준 이하로 줄일 수 없는 경우: 신규 수임과 이미 수행 중인 업무를 구별하시오. ② 이해가 상충되는 사항에서 타인을 위한 업무수행에 동의해 달라고 요청하였으나 의뢰인이 거절한 경우: 업무수행을 포기해야 하는 범위를 제시하시오.
+공인회계사윤리기준에 따라 다음 두 상황에서 개업공인회계사가 취하여야 할 조치를 각각 설명하시오. 두 상황은 서로 독립적이다. ① 이해상충으로 윤리강령 준수에 위협이 발생하였고 안전장치로도 위협을 제거하거나 수용가능한 수준 이하로 줄일 수 없는 경우 ② 이해가 상충되는 사항과 관련하여 타인을 위한 업무수행에 동의해 줄 것을 의뢰인에게 요청하였으나 의뢰인이 거절한 경우
 
 ### 모범답안
 
@@ -138,7 +138,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub4
 
-유형: descriptive · JSON Pointer `/145/subquestions/3`
+유형: descriptive · JSON Pointer `/137/subquestions/3`
 
 ### 발문
 

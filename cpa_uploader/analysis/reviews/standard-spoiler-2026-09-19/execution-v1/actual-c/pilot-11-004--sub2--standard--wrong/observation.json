@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-11-004--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-11-004--sub2--standard",
+  "source_set_id": "pilot-11-004",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "77ed5fc25b4188fd4f966fe8c33ac2bb81529a22fc027148ec5b11e0efa28520",
+  "answers": {
+    "sub2": "① 유의적 위험이므로 실증절차만으로 설계할 수 없고 반드시 통제테스트를 해야 한다. ② 통제에 의존하려면 전기에 수행한 통제테스트 결과를 그대로 이용하면 된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (①의 판단과 ②의 수행 기간을 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (①의 판단과 ②의 수행 기간을 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (①의 판단과 ②의 수행 기간을 반대로 썼다.)"
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (①의 판단과 ②의 수행 기간을 반대로 썼다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "c7f129fe05b75b11995f0ad36e5f52e4214ddb98e4fc95d9ebd9a9961a3cabd6",
+  "schema_hash": "0dba75dde8c2c7ca8be16f1ac3490d20491ab93d8d1a8c3d66c0a4960f9374ef",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "① 유의적 위험이므로 실증절차만으로 설계할 수 없고 반드시 통제테스트를 해야 한다. ",
+            "reason": "실증절차만으로 설계할 수 없다고 명시적으로 반대하였다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "세부테스트 포함 요건을 제시하지 않았다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "met",
+            "quote": "② 통제에 의존하려면 전기에 수행한 통제테스트 결과를 그대로 이용하면 된다.",
+            "reason": "통제테스트를 언급하여 해당 통제의 운영효과성 테스트를 제시하였다."
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "contradicted",
+            "quote": "② 통제에 의존하려면 전기에 수행한 통제테스트 결과를 그대로 이용하면 된다.",
+            "reason": "테스트 결과를 당기가 아닌 전기에 수행한 것으로 명시하였다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "실증절차만으로 설계할 수 없다고 명시적으로 반대하였다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "세부테스트 포함 요건을 제시하지 않았다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "통제테스트를 언급하여 해당 통제의 운영효과성 테스트를 제시하였다."
+              },
+              {
+                "criterion_id": "crit8",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "테스트 결과를 당기가 아닌 전기에 수행한 것으로 명시하였다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-11-004",
+    "score": 1,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "회계추정치와 관련된 유의적 위험에 대한 다음 두 상황을 각각 답하시오.\n① 관련 통제에 의존할 계획이 없고 실증절차만으로 충분하고 적합한 감사증거를 얻을 수 있는 경우, 실증절차만으로 접근방법을 설계해도 되는지 판단하고 그 절차에 반드시 포함할 것을 제시하시오.\n② 관련 통제에 의존할 계획인 경우, 추가감사절차에 포함해야 할 테스트와 그 수행 기간을 제시하시오.",
+        "user_answer": "① 유의적 위험이므로 실증절차만으로 설계할 수 없고 반드시 통제테스트를 해야 한다. ② 통제에 의존하려면 전기에 수행한 통제테스트 결과를 그대로 이용하면 된다.",
+        "score": 1,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "① 유의적 위험이므로 실증절차만으로 설계할 수 없고 반드시 통제테스트를 해야 한다.",
+            "reason": "실증절차만으로 설계할 수 없다고 명시적으로 반대하였다.",
+            "claim": "①에서는 실증절차만으로 접근방법을 설계해도 된다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "세부테스트 포함 요건을 제시하지 않았다.",
+            "claim": "①에서 실증절차만으로 구성하면 세부테스트를 포함해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "met",
+            "quote": "② 통제에 의존하려면 전기에 수행한 통제테스트 결과를 그대로 이용하면 된다.",
+            "reason": "통제테스트를 언급하여 해당 통제의 운영효과성 테스트를 제시하였다.",
+            "claim": "②에서는 해당 통제의 운영효과성을 테스트해야 한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit8",
+            "verdict": "contradicted",
+            "quote": "② 통제에 의존하려면 전기에 수행한 통제테스트 결과를 그대로 이용하면 된다.",
+            "reason": "테스트 결과를 당기가 아닌 전기에 수행한 것으로 명시하였다.",
+            "claim": "②의 테스트 수행 기간은 당기이다. 이 기준은 시점만 평가한다. 발문의 테스트를 가리키며 당기라고만 답해도 인정한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "① 허용된다. 관련 통제에 의존할 계획이 없고 실증절차만으로 충분하고 적합한 감사증거를 얻을 수 있다는 전제에서 실증절차만으로 설계할 수 있다.",
+          "다만 유의적 위험에 대한 접근방법을 실증절차만으로 구성하는 경우에는 세부테스트를 포함해야 한다.",
+          "② 관련 통제에 의존할 계획이면 당기에 해당 통제에 대한 테스트를 포함해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 1,
+      "delta": 1,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_019c2c85d7943ed4016aae06dfc3fc87d08a178566fcc912e3",
+        "request_id": "req_8ebc262966654e1c9de87e171af4c42b",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2844,
+          "input_tokens_details": {
+            "cache_write_tokens": 2841,
+            "cached_tokens": 0
+          },
+          "output_tokens": 989,
+          "output_tokens_details": {
+            "reasoning_tokens": 769
+          },
+          "total_tokens": 3833
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00189765,
+        "min_usd": 0.00189765,
+        "max_usd": 0.00189765,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-11-004--sub2--standard--wrong/input.json",
+      "sha256": "ddd9ff6661bdb8ce428e235114c2cfa60966568c19229e11c56e8f90cc7a646d"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-11-004--sub2--standard--wrong/transport.jsonl",
+      "sha256": "01f7ca98175c2f9c6472064a72d72fbda40e68501e5320843228574192c581b5"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-11-004--sub2--standard--wrong/traces.jsonl",
+      "sha256": "1cf5a43915472a1433fae20332ebfefe225d22420bb5768315ac5aa4a29e0a7b"
+    }
+  }
+}

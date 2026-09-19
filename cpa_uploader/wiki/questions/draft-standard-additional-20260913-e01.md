@@ -1,7 +1,7 @@
 ---
 title: "draft-standard-additional-20260913-e01. 선물·접대의 위협 평가와 대응"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[ethics-independence-quality]] · [[topic-01-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/121`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/113`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [01.json](../../analysis/reviews/question-review-2027/01.json)
 - 학습 순서: sub2
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/121/subquestions/0`
+유형: descriptive · JSON Pointer `/113/subquestions/0`
 
 ### 발문
 
-공인회계사윤리기준 문단 260.2–260.3의 일반 규정에 따른 선물·접대의 평가와 대응을 설명하시오. ① 명백하게 경미한지 판단하는 관점, 그러한 판단이 이루어진 경우 제공 취지 및 위협 수준에 관하여 일반적으로 내릴 수 있는 결론, ② 명백하게 경미하지 않은 경우의 조치와 안전장치가 충분하지 않을 때의 결론을 모두 제시하시오. 다른 법률이나 감사·인증의뢰인에 대한 별도 금지규정의 적용 여부는 묻지 않는다.
+공인회계사윤리기준 문단 260.2–260.3에 따라 의뢰인이 제의한 선물이나 접대를 받을 수 있는지 판단하는 방법과, 그 판단 결과에 따라 개업공인회계사가 내릴 수 있는 결론과 취할 조치를 설명하시오. 다른 법률이나 감사·인증의뢰인에 대한 별도 금지규정의 적용 여부는 묻지 않는다.
 
 ### 모범답안
 

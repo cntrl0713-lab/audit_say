@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-04-001--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-04-001--sub1--standard",
+  "source_set_id": "pilot-04-001",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "565b8e06ea83122c4e14cc4fe447e3e9e9dc8a2014d55fc097b9e30b5b5abbd9",
+  "answers": {
+    "sub1": "전반감사전략을 먼저 확정한 뒤에만 세부 감사계획을 수립해야 하며, 세부계획이 바뀌어도 전반감사전략은 수정하지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (순차 수립을 요구하고 상호 변경을 부정했다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (순차 수립을 요구하고 상호 변경을 부정했다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "b4664115fedc0de7a1b13563341a8a230f95ac59563d91312f514c3f17bf7a78",
+  "schema_hash": "0007ec65ebc4ed9ef4721268a53ee7d41c68661d4d1cf8ca083bf9866cbe4874",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "전반감사전략을 먼저 확정한 뒤에만 세부 감사계획을 수립해야 하며, 세부계획이 바뀌어도 전반감사전략은 수정하지 않는다.",
+            "reason": "전반감사전략을 먼저 확정해야 한다고 하여 순차적일 필요가 없다는 결론과 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "전반감사전략을 먼저 확정한 뒤에만 세부 감사계획을 수립해야 하며, 세부계획이 바뀌어도 전반감사전략은 수정하지 않는다.",
+            "reason": "세부계획 변경 시 전반감사전략은 수정하지 않는다고 하여 상호 영향 및 변경 가능성을 부정한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "전반감사전략을 먼저 확정해야 한다고 하여 순차적일 필요가 없다는 결론과 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "세부계획 변경 시 전반감사전략은 수정하지 않는다고 하여 상호 영향 및 변경 가능성을 부정한다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-04-001",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "전반감사전략과 세부적인 감사계획을 순차적으로 수립하여야 하는지 판단하고, 감사기준서 300에 따라 그 이유를 설명하시오.",
+        "user_answer": "전반감사전략을 먼저 확정한 뒤에만 세부 감사계획을 수립해야 하며, 세부계획이 바뀌어도 전반감사전략은 수정하지 않는다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "전반감사전략을 먼저 확정한 뒤에만 세부 감사계획을 수립해야 하며, 세부계획이 바뀌어도 전반감사전략은 수정하지 않는다.",
+            "reason": "전반감사전략을 먼저 확정해야 한다고 하여 순차적일 필요가 없다는 결론과 반대된다.",
+            "claim": "전반감사전략과 감사계획은 반드시 순차적일 필요가 없음을 명시함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "전반감사전략을 먼저 확정한 뒤에만 세부 감사계획을 수립해야 하며, 세부계획이 바뀌어도 전반감사전략은 수정하지 않는다.",
+            "reason": "세부계획 변경 시 전반감사전략은 수정하지 않는다고 하여 상호 영향 및 변경 가능성을 부정한다.",
+            "claim": "상호 밀접한 관련성 및 변경 시 영향에 대해 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "전반감사전략과 세부적인 감사계획은 반드시 개별적이거나 순차적인 과정으로 수립할 필요는 없다. 한쪽이 변경되면 다른 쪽도 변경될 수 있으므로 서로 밀접하게 관련되어 있기 때문이다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f92f1881c83c651016aae069dbf4087d096ebbba67dabbb6e",
+        "request_id": "req_f15c6bb18d8c4bf8a48fec588567ce98",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2360,
+          "input_tokens_details": {
+            "cache_write_tokens": 2357,
+            "cached_tokens": 0
+          },
+          "output_tokens": 271,
+          "output_tokens_details": {
+            "reasoning_tokens": 105
+          },
+          "total_tokens": 2631
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009150499999999999,
+        "min_usd": 0.0009150499999999999,
+        "max_usd": 0.0009150499999999999,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-04-001--sub1--standard--wrong/input.json",
+      "sha256": "ed95e08193368e72faa26e94882d2b5d05c3667df31bfc5cbac86cb407d04708"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-04-001--sub1--standard--wrong/transport.jsonl",
+      "sha256": "0f00be55ee269ba875242806c980e6ef9554fd342e25b0c7bfcfd4ace0c0ab69"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-04-001--sub1--standard--wrong/traces.jsonl",
+      "sha256": "4f1e1e8ad88a510ee5932c84c783a39bb4f3e28648f8fc248d0eaf597379df21"
+    }
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-18-001--subq1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-18-001--subq1--standard",
+  "source_set_id": "pilot-18-001",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "subq1"
+  ],
+  "projected_body_hash": "704d50b426282143719e38af0be604e44ce17406685ebad82dd6db24184c2359",
+  "answers": {
+    "subq1": "기업 규모와 관계없이 감사인이 선택하면 감사기준서 1200을 적용할 수 있으며, 그 경우 일반 감사기준서는 적용하지 않는다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "subq1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (판단과 적용 기준을 모두 틀렸다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "실행 전 대조: 답안이 이 명제와 반대되는 내용을 명시한다. (판단과 적용 기준을 모두 틀렸다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ff17bdd263830e7d179b6dc37fca61010254d622f0ee87b04f7c786758fcf3bd",
+  "schema_hash": "e3c6a2231582538ad6173414963f83ee796c9d9fbe0c5ae56696abba2b7faf7c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "subq1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "기업 규모와 관계없이 감사인이 선택하면 감사기준서 1200을 적용할 수 있으며, 그 경우 일반 감사기준서는 적용하지 않는다.",
+            "reason": "감사기준서 1200을 적용할 수 있다고 명시하여 적용 불가 판단과 반대이다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "기업 규모와 관계없이 감사인이 선택하면 감사기준서 1200을 적용할 수 있으며, 그 경우 일반 감사기준서는 적용하지 않는다.",
+            "reason": "일반 감사기준서를 적용하지 않는다고 명시하여 요구된 적용 설명과 반대이다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "subq1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "subq1/e0"
+                ],
+                "reason": "감사기준서 1200을 적용할 수 있다고 명시하여 적용 불가 판단과 반대이다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "subq1/e0"
+                ],
+                "reason": "일반 감사기준서를 적용하지 않는다고 명시하여 요구된 적용 설명과 반대이다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-18-001",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "subq1",
+        "prompt": "감사기준서 1200(소규모기업 재무제표에 대한 감사)에서 정한 소규모기업에 해당하지 않는 기업의 일반목적 재무제표 감사에 감사기준서 1200을 적용할 수 있는지 판단하고, 그 감사에 적용하는 감사기준서를 제시하시오.",
+        "user_answer": "기업 규모와 관계없이 감사인이 선택하면 감사기준서 1200을 적용할 수 있으며, 그 경우 일반 감사기준서는 적용하지 않는다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "기업 규모와 관계없이 감사인이 선택하면 감사기준서 1200을 적용할 수 있으며, 그 경우 일반 감사기준서는 적용하지 않는다.",
+            "reason": "감사기준서 1200을 적용할 수 있다고 명시하여 적용 불가 판단과 반대이다.",
+            "claim": "소규모기업이 아닌 기업에는 감사기준서 1200을 적용할 수 없다고 판단함",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "기업 규모와 관계없이 감사인이 선택하면 감사기준서 1200을 적용할 수 있으며, 그 경우 일반 감사기준서는 적용하지 않는다.",
+            "reason": "일반 감사기준서를 적용하지 않는다고 명시하여 요구된 적용 설명과 반대이다.",
+            "claim": "그 경우 감사기준서 200부터 720까지의 일반 감사기준서를 적용한다고 설명함",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "감사기준서 1200을 적용할 수 없다.",
+          "일반 감사기준서(감사기준서 200부터 720까지)를 적용해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "subq1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0ee2776511059b47016aae074719b487d0970f28b939b6222d",
+        "request_id": "req_b2e5559e765445f8b667206005ac197d",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2373,
+          "input_tokens_details": {
+            "cache_write_tokens": 2370,
+            "cached_tokens": 0
+          },
+          "output_tokens": 210,
+          "output_tokens_details": {
+            "reasoning_tokens": 54
+          },
+          "total_tokens": 2583
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0008451,
+        "min_usd": 0.0008451,
+        "max_usd": 0.0008451,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-18-001--subq1--standard--wrong/input.json",
+      "sha256": "b9fe2693164c9669dd7922cfd7ab257ca750b8057ecf778253eda45bf7d5a57f"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-18-001--subq1--standard--wrong/transport.jsonl",
+      "sha256": "cbd1eb0688b06f25fce4e9d1eb5b6482a78a4e19f7940b44c53750c8267ea418"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-c/pilot-18-001--subq1--standard--wrong/traces.jsonl",
+      "sha256": "27681984cffb6e1bdc7e91863cfe694825c9592b99aeec472312726ce81fa31d"
+    }
+  }
+}

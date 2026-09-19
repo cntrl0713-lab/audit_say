@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/grading-manifest.json",
+    "sha256": "a7ee1c4ba3c469bbf000fb61560336568b25941b07d657ec474156b8f59027c9"
+  },
+  "entry_id": "pilot-01-006--sub1--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-01-006--sub1--standard",
+  "source_set_id": "pilot-01-006",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "470aa9ba1d05eb78d79212c89201afe263627493ae9edddd75ff372569099a9c",
+  "answers": {
+    "sub1": "업무품질관리검토자가 선임되었는지 결정하고, 감사 중 생긴 유의적 사항을 업무품질관리검토자와 논의한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (감사보고서일 요건을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "met",
+          "reason": "실행 전 대조: 답안이 이 명제를 직접 제시한다. (감사보고서일 요건을 쓰지 않았다.)"
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "실행 전 대조: 답안에 이 명제나 이를 함축하는 설명이 없다. (감사보고서일 요건을 쓰지 않았다.)"
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ec3352a58464cc1204e164e7b8b1889b8915596403533c8eb498baf562dc5d2b",
+  "schema_hash": "3eac8517d7031ba159bf6d9d43006e860939634d7304cbc3b3c985ca997cb23c",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "업무품질관리검토자가 선임되었는지 결정하고, 감사 중 생긴 유의적 사항을 업무품질관리검토자와 논의한다.",
+            "reason": "업무품질관리검토자의 선임 여부를 결정한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "유의적 사항을 논의한다고 했지만, 검토 중 식별된 사항을 포함한다는 요건이 명확히 제시되지 않았다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "감사보고서일과 업무품질관리검토의 실제 종료일 관계를 제시하지 않았다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "업무품질관리검토자의 선임 여부를 결정한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "유의적 사항을 논의한다고 했지만, 검토 중 식별된 사항을 포함한다는 요건이 명확히 제시되지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "감사보고서일과 업무품질관리검토의 실제 종료일 관계를 제시하지 않았다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-01-006",
+    "score": 1,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "종전 품질관리체계를 적용하고 업무품질관리검토를 받아야 하는 재무제표감사에서 업무품질관리검토와 관련하여 업무수행이사가 수행해야 할 사항을 모두 제시하시오.",
+        "user_answer": "업무품질관리검토자가 선임되었는지 결정하고, 감사 중 생긴 유의적 사항을 업무품질관리검토자와 논의한다.",
+        "score": 1,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "met",
+            "quote": "업무품질관리검토자가 선임되었는지 결정하고, 감사 중 생긴 유의적 사항을 업무품질관리검토자와 논의한다.",
+            "reason": "업무품질관리검토자의 선임 여부를 결정한다고 명시했다.",
+            "claim": "업무수행이사가 업무품질관리검토자의 선임 여부를 결정·확인함을 제시한다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "유의적 사항을 논의한다고 했지만, 검토 중 식별된 사항을 포함한다는 요건이 명확히 제시되지 않았다.",
+            "claim": "업무수행이사가 검토 중 식별된 사항 등 감사업무의 유의적 사항을 업무품질관리검토자와 논의함을 제시한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "감사보고서일과 업무품질관리검토의 실제 종료일 관계를 제시하지 않았다.",
+            "claim": "감사보고서일을 업무품질관리검토의 실제 종료일 전으로 하지 않는다고 제시한다. 보고서 발송 전에만 끝내면 된다는 시점으로 늦추지 않는다. 검토 문서의 최종 취합 완료일과 실제 검토 종료일을 혼동하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "업무품질관리검토자가 선임되었는지 결정한다.",
+          "검토 중 식별된 사항을 포함하여 감사 수행 중 생긴 유의적 사항을 업무품질관리검토자와 논의한다.",
+          "감사보고서일자를 업무품질관리검토의 실제 종료일보다 앞선 일자로 하지 않는다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 1,
+      "delta": -1,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_010e58f58e6d7d54016aae075413b087d0b1358371d507b041",
+        "request_id": "req_9a0995e7ce594f9d8897071966a806a5",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2637,
+          "input_tokens_details": {
+            "cache_write_tokens": 2634,
+            "cached_tokens": 0
+          },
+          "output_tokens": 394,
+          "output_tokens_details": {
+            "reasoning_tokens": 202
+          },
+          "total_tokens": 3031
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0011319000000000001,
+        "min_usd": 0.0011319000000000001,
+        "max_usd": 0.0011319000000000001,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-01-006--sub1--standard--partial/input.json",
+      "sha256": "64c7a975904ebfa691f400d6bcb7297841684679523319f2c07b8f38baf0fc84"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-01-006--sub1--standard--partial/transport.jsonl",
+      "sha256": "deea4b47455603941e80bfa797f073181600c74abb340f38f465462a852840c0"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/actual-b/pilot-01-006--sub1--standard--partial/traces.jsonl",
+      "sha256": "8b0ab98a323efd29c915702305700fc873d9a8497f933002685f384766b1d390"
+    }
+  }
+}

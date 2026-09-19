@@ -1,7 +1,7 @@
 ---
 title: "draft-12-570-freq01. 계속기업의 중요한 불확실성 공시와 감사보고"
 created: 2026-08-08
-updated: 2026-09-14
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[completion-subsequent-events-going-concern]] · [[topic-12-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/82`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/81`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [12.json](../../analysis/reviews/question-review-2027/12.json)
 - 학습 순서: q1 → q2
@@ -28,11 +28,11 @@ confidence: high
 
 ## q1
 
-유형: descriptive · JSON Pointer `/82/subquestions/0`
+유형: descriptive · JSON Pointer `/81/subquestions/0`
 
 ### 발문
 
-경영진의 계속기업전제 사용이 적합하고, 감사인이 충분하고 적합한 감사증거를 바탕으로 계속기업 존속능력에 유의적 의문을 초래할 수 있는 중요한 불확실성이 존재한다고 결론 내렸으며, 그 불확실성이 재무제표에 적절하게 공시된 경우의 보고 요구를 설명하시오. 다른 의견변형 사유나 증거 미입수 문제는 없는 것으로 한정한다. 표명할 감사의견과 감사보고서에 추가할 별도 단락의 제목을 제시하고, 그 단락에서 주의를 환기할 대상과 명시해야 할 두 사항을 모두 설명하시오.
+경영진의 계속기업전제 사용은 적합하고, 감사인은 충분하고 적합한 감사증거를 바탕으로 계속기업 존속능력에 유의적 의문을 초래할 수 있는 중요한 불확실성이 존재한다고 결론 내렸으며, 그 불확실성은 재무제표에 적절하게 공시되었다. 다른 의견변형 사유나 증거 미입수 문제는 없다. 감사기준서 570 문단 22에 따라 감사인이 표명할 감사의견과 감사보고서에 반영하여야 할 사항을 모두 설명하시오.
 
 ### 모범답안
 
@@ -64,11 +64,11 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## q2
 
-유형: descriptive · JSON Pointer `/82/subquestions/1`
+유형: descriptive · JSON Pointer `/81/subquestions/1`
 
 ### 발문
 
-경영진의 계속기업전제 사용이 적합하고 감사인이 충분하고 적합한 감사증거를 바탕으로 계속기업 존속능력에 유의적 의문을 초래할 수 있는 중요한 불확실성이 존재한다고 결론 내렸으나, 그 불확실성이 재무제표에 적절하게 공시되지 않은 경우를 전제로 하시오. 다른 의견변형 사유나 증거 미입수 문제는 없는 것으로 한정한다. 감사기준서 570 문단 23에 따라 표명할 수 있는 변형의견 두 종류와 해당 의견근거 단락에 계속기업·공시 상태에 관하여 명시해야 할 두 사항을 모두 제시하시오. 두 의견을 구분하는 중요성·전반성 기준 자체의 설명은 요구하지 않는다.
+경영진의 계속기업전제 사용은 적합하고, 감사인은 충분하고 적합한 감사증거를 바탕으로 계속기업 존속능력에 유의적 의문을 초래할 수 있는 중요한 불확실성이 존재한다고 결론 내렸으나, 그 불확실성이 재무제표에 적절하게 공시되지 않았다. 다른 의견변형 사유나 증거 미입수 문제는 없다. 감사기준서 570 문단 23에 따라 감사인이 표명할 수 있는 감사의견과 감사보고서의 의견근거 단락에 명시하여야 할 사항을 모두 제시하시오.
 
 ### 모범답안
 

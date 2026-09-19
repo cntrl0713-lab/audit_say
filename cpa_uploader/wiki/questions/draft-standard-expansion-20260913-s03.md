@@ -1,7 +1,7 @@
 ---
 title: "draft-standard-expansion-20260913-s03. 재무제표 수준의 부정위험에 대한 대응"
 created: 2026-08-08
-updated: 2026-09-15
+updated: 2026-09-19
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[fraud-laws-governance-communication]] · [[topic-05-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/148`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/140`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [05.json](../../analysis/reviews/question-review-2027/05.json)
 - 학습 순서: sub1
@@ -25,11 +25,11 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/148/subquestions/0`
+유형: descriptive · JSON Pointer `/140/subquestions/0`
 
 ### 발문
 
-감사인이 재무제표 수준의 부정으로 인한 중요왜곡표시위험에 대한 전반적인 대응을 결정할 때, 감사기준서 240 문단 30에 따라 수행해야 할 절차를 모두 설명하시오. 업무의 배정·감독 시 고려할 사항을 포함하고, 회계정책 및 감사절차 선택에 관한 요구도 제시하시오.
+감사인이 재무제표 수준의 부정으로 인한 중요왜곡표시위험에 대한 전반적인 대응을 결정할 때, 감사기준서 240 문단 30에 따라 수행해야 할 절차를 모두 설명하시오.
 
 ### 모범답안
 
