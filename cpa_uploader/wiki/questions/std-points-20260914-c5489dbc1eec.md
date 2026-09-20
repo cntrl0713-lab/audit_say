@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-c5489dbc1eec. 외부감사법 제10조제4항에 따라 주권상장법인·대형비상장주식회사·금융회사의 감사인 선정 절차를 설명하시오. 감사위원회가 설치된 경우와 설치되지 않은 경우를 구별하고, 미설치시 선정주체와 승인주체를 각각 제시하시오. 금액기준과 감사인선임위원회 구성은 제외한다."
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[engagement-acceptance-contract]] · [[topic-03-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/204`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/196`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [03.json](../../analysis/reviews/question-review-2027/03.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/204/subquestions/0`
+유형: descriptive · JSON Pointer `/196/subquestions/0`
 
 ### 발문
 

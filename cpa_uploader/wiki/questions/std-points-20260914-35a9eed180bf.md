@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-35a9eed180bf. 감사인측 전문가의 업무가 감사목적상 적합한지 평가할 때, 감사기준서 620 문단 12(a)에 따라 전문가의 발견사항이나 결론에 대하여 평가할 특성을 모두 제시하시오."
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[audit-evidence-assertions]] · [[topic-08-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/284`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/276`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [08.json](../../analysis/reviews/question-review-2027/08.json)
 - 학습 순서: sub3
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub3
 
-유형: enumeration · JSON Pointer `/284/subquestions/0`
+유형: enumeration · JSON Pointer `/276/subquestions/0`
 
 ### 발문
 

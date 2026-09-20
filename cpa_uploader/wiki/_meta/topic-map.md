@@ -1,7 +1,7 @@
 ---
 title: "회계감사 주제 지도"
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: source-map
 status: generated
 review_required: true
@@ -20,14 +20,14 @@ confidence: high
 | 2 | 01 | [[ethics-independence-quality]] | KGA 200 · KGA 220 | [[topic-01-design]] | 25 |
 | 3 | 03 | [[engagement-acceptance-contract]] | KGA 210 | [[topic-03-design]] | 20 |
 | 4 | 04 | [[planning-documentation-materiality]] | KGA 230 · KGA 300 · KGA 320 | [[topic-04-design]] | 21 |
-| 5 | 08 | [[audit-evidence-assertions]] | KGA 315 · KGA 500 | [[topic-08-design]] | 26 |
-| 6 | 06 | [[risk-assessment-internal-control]] | KGA 315 · KGA 330 | [[topic-06-design]] | 22 |
-| 7 | 07 | [[responses-controls-substantive-procedures]] | KGA 330 · KGA 500 | [[topic-07-design]] | 18 |
-| 8 | 09 | [[inventory-litigation-confirmations-opening-balances]] | KGA 501 · KGA 505 · KGA 510 | [[topic-09-design]] | 25 |
+| 5 | 08 | [[audit-evidence-assertions]] | KGA 315 · KGA 500 | [[topic-08-design]] | 25 |
+| 6 | 06 | [[risk-assessment-internal-control]] | KGA 315 · KGA 330 | [[topic-06-design]] | 21 |
+| 7 | 07 | [[responses-controls-substantive-procedures]] | KGA 330 · KGA 500 | [[topic-07-design]] | 17 |
+| 8 | 09 | [[inventory-litigation-confirmations-opening-balances]] | KGA 501 · KGA 505 · KGA 510 | [[topic-09-design]] | 23 |
 | 9 | 05 | [[fraud-laws-governance-communication]] | KGA 240 · KGA 250 · KGA 260 · KGA 265 | [[topic-05-design]] | 34 |
 | 10 | 11 | [[estimates-related-parties]] | KGA 540 · KGA 550 | [[topic-11-design]] | 12 |
 | 11 | 13 | [[service-organizations-internal-audit-experts]] | KGA 402 · KGA 610 · KGA 620 | [[topic-13-design]] | 20 |
-| 12 | 10 | [[analytics-audit-sampling]] | KGA 315 · KGA 520 · KGA 530 | [[topic-10-design]] | 16 |
+| 12 | 10 | [[analytics-audit-sampling]] | KGA 315 · KGA 520 · KGA 530 | [[topic-10-design]] | 15 |
 | 13 | 12 | [[completion-subsequent-events-going-concern]] | KGA 450 · KGA 560 · KGA 570 · KGA 580 | [[topic-12-design]] | 28 |
 | 14 | 15 | [[audit-opinions-reports]] | KGA 700 · KGA 705 | [[topic-15-design]] | 20 |
 | 15 | 16 | [[kam-emphasis-comparatives-other-information]] | KGA 701 · KGA 706 · KGA 710 · KGA 720 | [[topic-16-design]] | 17 |

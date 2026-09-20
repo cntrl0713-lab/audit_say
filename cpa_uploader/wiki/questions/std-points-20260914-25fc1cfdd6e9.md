@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-25fc1cfdd6e9. 감사업무 조건이 법규에 충분히 세부적으로 명시된 경우에도 감사계약서에 기록해야 하는 두 가지 사실을 제시하시오."
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[engagement-acceptance-contract]] · [[topic-03-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/167`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/159`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [03.json](../../analysis/reviews/question-review-2027/03.json)
 - 학습 순서: sub1
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub1
 
-유형: enumeration · JSON Pointer `/167/subquestions/0`
+유형: enumeration · JSON Pointer `/159/subquestions/0`
 
 ### 발문
 

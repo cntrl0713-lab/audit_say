@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "round": "r15",
+  "draft_version": "v2",
+  "set_id": "case-09-inventory-count-20260920",
+  "created_at": "2026-09-20T07:08:34.624Z",
+  "draft": {
+    "file": "cpa_uploader/drafts/case-review-2026-09-15/r15-inventory-count-merge/v2/sets.json",
+    "sha256": "7ad76360bbe22eebfe7d72fc2f531e7118d80b56ded765bf19e0f7e4529581b8"
+  },
+  "content_review": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r15/root-content-review-v2.json",
+    "sha256": "cc62accdac95224894f121a194d071c50d5f9614e86cd3fa41417d2057cf77d7"
+  },
+  "grading": {
+    "model": "gpt-5.6-luna",
+    "manifest": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r15/execution-v2/grading-manifest.json",
+      "sha256": "f932414df1d5e5dbb5833b1e75a91291f5a7187faa393600abb778eafa78edee"
+    },
+    "summary": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r15/execution-v2/actual-a/summary.json",
+      "sha256": "a16c53cce46ffd9110f1001318dd1ab0ffefc4725b7be96b1e887202fdcaed90"
+    },
+    "transport": "model",
+    "actual_sdk_calls": 3,
+    "representative_answers": 6,
+    "within_tolerance": 6,
+    "exact_points": 6,
+    "rows": [
+      {
+        "entry": "case-09-inventory-count-20260920--case--model",
+        "kind": "model",
+        "subquestion_id": "sub1",
+        "expected": 4,
+        "actual": 4,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-09-inventory-count-20260920--case--model",
+        "kind": "model",
+        "subquestion_id": "sub2",
+        "expected": 4,
+        "actual": 4,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-09-inventory-count-20260920--case--partial",
+        "kind": "partial",
+        "subquestion_id": "sub1",
+        "expected": 2,
+        "actual": 2,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-09-inventory-count-20260920--case--partial",
+        "kind": "partial",
+        "subquestion_id": "sub2",
+        "expected": 2,
+        "actual": 2,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-09-inventory-count-20260920--case--wrong",
+        "kind": "wrong",
+        "subquestion_id": "sub1",
+        "expected": 0,
+        "actual": 0,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-09-inventory-count-20260920--case--wrong",
+        "kind": "wrong",
+        "subquestion_id": "sub2",
+        "expected": 0,
+        "actual": 0,
+        "delta": 0,
+        "verdict_state_differences": []
+      }
+    ],
+    "verdict_state_note": "기대 판정과 실제 판정의 상태 차이가 있으면 모두 0점 상태(contradicted/not_met) 사이의 차이인지 rows에서 확인한다. 원 기대값을 바꾸거나 재채점하지 않았다.",
+    "usd": 0.0097141,
+    "provider_token_totals": {
+      "input_tokens": 28999,
+      "output_tokens": 2054,
+      "total_tokens": 31053
+    }
+  },
+  "supplementary": null,
+  "total_actual_sdk_calls": 3,
+  "total_usd_provider_usage_arithmetic": 0.0097141,
+  "costs_are_provider_usage_arithmetic_not_invoice": true,
+  "separate_paid_semantic_review": "not_run",
+  "human_review_performed": false,
+  "not_done": [
+    "정본·공개본·암호화본 반영",
+    "운영 DB 등록",
+    "원 세트의 활성 릴리스 제외(퇴역)",
+    "승급 receipt 봉인(authorization.production_publication 미승인)",
+    "coverage links 갱신"
+  ],
+  "version_change": {
+    "reason": "v1을 만든 뒤 다른 세션이 정본에 설치한 case-10-analytical-procedures-20260920의 두 발문과 v1의 두 발문이 바이트가 같아 새 정본에 대한 validateAuthoringBank가 발문 중복으로 거절했다. v2에서 두 발문만 은행의 다른 선택형 사례처럼 단계 이름으로 바꾸었고 사실관계·항목·모범답안·criterion·배점·출처는 v1과 같다.",
+    "graded_again": "발문은 채점 모델이 함께 읽는 입력이므로 v1의 대표 실측을 승계하지 않고 v2 최종 내용으로 대표 3요청을 다시 실측했다. v1의 초안·실행 증거는 보존한다.",
+    "v1_summary": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r15/summary-v1.json",
+      "actual_sdk_calls": 6,
+      "usd": 0.017861299999999997
+    }
+  },
+  "supplementary_v1_note": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r15/supplementary-v1/summary.json",
+    "measured_against": "v1 발문",
+    "receipt_denominator": false,
+    "note": "보조 실측 세 사례(번호만, 보완절차만, 조건 경계)는 v1 발문으로 측정했고 모두 판정까지 기대와 일치했다. 항목·답안·criterion·배점은 v2와 같고 발문의 범위 표현만 다르다. 승급 receipt 분모가 아닌 보조 증거이므로 v2에서 다시 호출하지 않았다."
+  },
+  "round_total_actual_sdk_calls": 9,
+  "round_total_usd_provider_usage_arithmetic": 0.027575399999999996
+}

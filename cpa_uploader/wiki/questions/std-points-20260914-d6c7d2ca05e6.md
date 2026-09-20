@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-d6c7d2ca05e6. 제3자가 보관·통제하는 재고자산이 재무제표에 중요한 경우, 감사기준서 501 문단 8에 따라 충분하고 적합한 감사증거를 입수하여야 할 대상 측면을 제시하고, 이를 위하여 수행하는 절차와 그 절차들 사이의 관계를 설명하시오. 적용지침 A16의 세부 예시를 모두 나열할 필요는 없다."
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[inventory-litigation-confirmations-opening-balances]] · [[topic-09-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/258`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/250`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [09.json](../../analysis/reviews/question-review-2027/09.json)
 - 학습 순서: sub1
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/258/subquestions/0`
+유형: descriptive · JSON Pointer `/250/subquestions/0`
 
 ### 발문
 

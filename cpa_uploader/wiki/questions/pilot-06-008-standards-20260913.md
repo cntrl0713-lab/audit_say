@@ -1,7 +1,7 @@
 ---
 title: "pilot-06-008-standards-20260913. 기업 위험평가절차와 감사인의 위험 재평가"
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[risk-assessment-internal-control]] · [[topic-06-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/128`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/121`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [06.json](../../analysis/reviews/question-review-2027/06.json)
 - 학습 순서: sub1
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/128/subquestions/0`
+유형: descriptive · JSON Pointer `/121/subquestions/0`
 
 ### 발문
 

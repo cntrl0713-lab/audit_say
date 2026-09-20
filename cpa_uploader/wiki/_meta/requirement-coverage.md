@@ -1,7 +1,7 @@
 ---
 title: "요구사항·학습목표 연결과 보강 후보"
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: coverage
 status: generated
 review_required: true
@@ -22,14 +22,14 @@ confidence: high
 | [[source-catalog-topic-01]] | 1046 | 63 | 983 |
 | [[source-catalog-topic-03]] | 788 | 25 | 763 |
 | [[source-catalog-topic-04]] | 1352 | 45 | 1307 |
-| [[source-catalog-topic-08]] | 2838 | 92 | 2746 |
-| [[source-catalog-topic-06]] | 1711 | 89 | 1622 |
-| [[source-catalog-topic-07]] | 1764 | 84 | 1680 |
-| [[source-catalog-topic-09]] | 1060 | 72 | 988 |
+| [[source-catalog-topic-08]] | 2838 | 90 | 2748 |
+| [[source-catalog-topic-06]] | 1711 | 85 | 1626 |
+| [[source-catalog-topic-07]] | 1764 | 80 | 1684 |
+| [[source-catalog-topic-09]] | 1060 | 74 | 986 |
 | [[source-catalog-topic-05]] | 2103 | 43 | 2060 |
 | [[source-catalog-topic-11]] | 657 | 71 | 586 |
 | [[source-catalog-topic-13]] | 501 | 79 | 422 |
-| [[source-catalog-topic-10]] | 1001 | 73 | 928 |
+| [[source-catalog-topic-10]] | 1001 | 74 | 927 |
 | [[source-catalog-topic-12]] | 941 | 52 | 889 |
 | [[source-catalog-topic-15]] | 1476 | 38 | 1438 |
 | [[source-catalog-topic-16]] | 716 | 62 | 654 |
@@ -43,7 +43,7 @@ confidence: high
 
 ## 기존 은행 대응과 요구사항 절 탐색
 
-정본 requirement 1442개와 criterion 1843개의 직접 대응은 각 [[topic-map]] → 세트 색인의 ‘학습목표·채점명제와 핵심 조건’ 및 ‘요구사항과 직접 근거’ 표에서 찾는다. ID는 세트·물음 안에서 해석한다. 실제 발문과 조건을 함께 보고 동일 명제 반복과 범위 누락을 검토한다.
+정본 requirement 1409개와 criterion 1803개의 직접 대응은 각 [[topic-map]] → 세트 색인의 ‘학습목표·채점명제와 핵심 조건’ 및 ‘요구사항과 직접 근거’ 표에서 찾는다. ID는 세트·물음 안에서 해석한다. 실제 발문과 조건을 함께 보고 동일 명제 반복과 범위 누락을 검토한다.
 
 아래는 통합학습자료 요구사항 절의 4글자 문자열 겹침 탐색이다. 공식 문단 식별에 의한 내용 검수가 아니다. 15% 미만은 공백 후보, 15% 이상 35% 미만은 낮은 유사도, 35% 이상도 유사 문구 탐지일 뿐 완전한 출제를 뜻하지 않는다. 짧은 절(40개 미만 4-gram)은 제외한다. 현재 파서가 요구사항 절로 분리하지 못한 기준 축: KGA 265, KGA 1200. 이 기준서는 미출제로 판정하지 말고 원문·세트 직접 연결에서 별도로 검토한다. 비KGA 인증·검토 기준의 전체 범위를 이 스캔에 포함했다고 해석하지 않는다.
 

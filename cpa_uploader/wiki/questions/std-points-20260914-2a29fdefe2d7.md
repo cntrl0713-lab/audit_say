@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-2a29fdefe2d7. 경영진측 전문가의 평가업무에 유의적인 가정과 평가방법이 사용된 경우, 감사기준서 500에 따라 그 업무의 적합성을 판단하기 위해 각 대상에 관하여 검토할 사항을 설명하시오."
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[audit-evidence-assertions]] · [[topic-08-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/238`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/230`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [08.json](../../analysis/reviews/question-review-2027/08.json)
 - 학습 순서: sub4
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub4
 
-유형: descriptive · JSON Pointer `/238/subquestions/0`
+유형: descriptive · JSON Pointer `/230/subquestions/0`
 
 ### 발문
 

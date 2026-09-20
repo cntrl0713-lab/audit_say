@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "set_id": "case-09-inventory-count-20260920",
+  "note": "대표 실측(execution-v1)의 분모에 넣지 않는 보조 실측 입력이다. 초안 qa.json의 supplementary_cases와 같은 취지이며, 봉인된 qa.json을 고치지 않도록 실행기 형상에 맞춘 입력을 따로 둔다.",
+  "supplementary_cases": [
+    {
+      "id": "r15-supp-numbers-only",
+      "purpose": "번호만 쓴 답이 물음마다 식별 1점만 받는지 확인한다.",
+      "answers": {
+        "sub1": "옳지 않은 것은 ②, ③, ④이다.",
+        "sub2": "옳지 않은 것은 ⑥, ⑦, ⑧이다."
+      },
+      "expected": {
+        "sub1": {
+          "expected_points": 1,
+          "expected_verdicts": [
+            { "criterion_id": "sub1.c1", "verdict": "met", "reason": "②·③·④를 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "sub1.c2", "verdict": "not_met", "reason": "②의 이유나 절차를 쓰지 않았다." },
+            { "criterion_id": "sub1.c3", "verdict": "not_met", "reason": "③의 이유나 절차를 쓰지 않았다." },
+            { "criterion_id": "sub1.c4", "verdict": "not_met", "reason": "④의 이유나 절차를 쓰지 않았다." }
+          ]
+        },
+        "sub2": {
+          "expected_points": 1,
+          "expected_verdicts": [
+            { "criterion_id": "sub2.c1", "verdict": "met", "reason": "⑥·⑦·⑧을 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "sub2.c2", "verdict": "not_met", "reason": "⑥의 이유나 절차를 쓰지 않았다." },
+            { "criterion_id": "sub2.c3", "verdict": "not_met", "reason": "⑦의 이유나 절차를 쓰지 않았다." },
+            { "criterion_id": "sub2.c4", "verdict": "not_met", "reason": "⑧의 이유나 절차를 쓰지 않았다." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "r15-supp-remedy-only",
+      "purpose": "이유 없이 보완절차만 쓴 답도 옳지 않은 항목마다 1점을 받는지 확인한다.",
+      "answers": {
+        "sub1": "옳지 않은 것은 ②, ③, ④이다. ②는 반품창고의 반복된 수량차이를 그 장소의 위험으로 보아 입회 필요성을 다시 판단한다. ③은 중앙물류창고와 동부영업소를 각각 별도의 모집단으로 보아 테스트 실사를 계획한다. ④는 별도 보관구역의 실제 상품에서 항목을 골라 회사의 실사기록에 기재되어 있는지 추적한다.",
+        "sub2": "옳지 않은 것은 ⑥, ⑦, ⑧이다. ⑥은 12월 재고변동에 대한 대조·검토 통제가 효과적으로 설계·실행되고 재무제표일까지 유지되었는지를 평가한다. ⑦은 12월의 입고·출고 거래를 표본추출하여 전표와 운송서류에 대조한다. ⑧은 실사에서 나타난 유의적 차이가 발생한 이유를 확인하여 12월 절차의 설계에 반영한다."
+      },
+      "expected": {
+        "sub1": {
+          "expected_points": 4,
+          "expected_verdicts": [
+            { "criterion_id": "sub1.c1", "verdict": "met", "reason": "②·③·④를 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "sub1.c2", "verdict": "met", "reason": "반품창고의 위험을 반영해 입회 필요성을 다시 판단한다는 보완절차를 적었다." },
+            { "criterion_id": "sub1.c3", "verdict": "met", "reason": "두 장소를 별도의 모집단으로 보아 계획한다는 보완절차를 적었다." },
+            { "criterion_id": "sub1.c4", "verdict": "met", "reason": "별도 보관구역의 실물에서 실사기록으로 추적한다는 보완절차를 적었다." }
+          ]
+        },
+        "sub2": {
+          "expected_points": 4,
+          "expected_verdicts": [
+            { "criterion_id": "sub2.c1", "verdict": "met", "reason": "⑥·⑦·⑧을 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "sub2.c2", "verdict": "met", "reason": "12월 대조·검토 통제의 설계·실행·유지 효과성을 평가한다는 보완절차를 적었다." },
+            { "criterion_id": "sub2.c3", "verdict": "met", "reason": "12월 입출고 거래를 증빙과 대조한다는 보완절차를 적었다." },
+            { "criterion_id": "sub2.c4", "verdict": "met", "reason": "유의적 차이가 발생한 이유를 확인해 절차 설계에 반영한다는 보완절차를 적었다." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "r15-supp-condition-boundary",
+      "purpose": "sub1 ④에 실물→실사기록 추적 대신 기존 방향의 표본 확대만 쓰고 sub2 ⑧에 차이의 이유 대신 금액 재계산만 쓴 조건 경계 답이 해당 항목 점수를 받지 못하는지 확인한다.",
+      "answers": {
+        "sub1": "옳지 않은 것은 ②, ③, ④이다. ② 반품창고의 중요왜곡표시위험을 보관금액의 중요성과 함께 고려하여 입회 필요성을 판단하였어야 한다. ③ 표본을 설계할 때 모집단의 특성을 고려하여 두 장소를 구분하였어야 한다. ④ 실사기록에서 고른 항목을 실물과 대조하는 테스트의 표본을 더 늘렸어야 한다.",
+        "sub2": "옳지 않은 것은 ⑥, ⑦, ⑧이다. ⑥ 계속기록법 유지 여부와 관계없이 재고자산 변동에 대한 통제의 설계·실행 및 유지의 효과성을 평가하였어야 한다. ⑦ 실사일과 재무제표일 사이의 재고변동이 적절하게 기록되었는지에 대한 감사증거를 얻는 절차를 수행하였어야 한다. ⑧ 회사가 수정한 차이 금액이 맞는지 다시 계산하였어야 한다."
+      },
+      "expected": {
+        "sub1": {
+          "expected_points": 3,
+          "expected_verdicts": [
+            { "criterion_id": "sub1.c1", "verdict": "met", "reason": "②·③·④를 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "sub1.c2", "verdict": "met", "reason": "장소별 중요왜곡표시위험을 함께 고려해야 한다는 이유를 적었다." },
+            { "criterion_id": "sub1.c3", "verdict": "met", "reason": "모집단의 특성을 고려해야 한다는 이유를 적었다." },
+            { "criterion_id": "sub1.c4", "verdict": "not_met", "reason": "기록에서 실물로 검사하는 기존 방향의 표본 확대만 적어 실물→실사기록 추적의 요건을 충족하지 못했다." }
+          ]
+        },
+        "sub2": {
+          "expected_points": 3,
+          "expected_verdicts": [
+            { "criterion_id": "sub2.c1", "verdict": "met", "reason": "⑥·⑦·⑧을 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "sub2.c2", "verdict": "met", "reason": "계속기록법 유지 여부와 관계없이 통제의 설계·실행·유지 효과성을 평가해야 한다는 이유를 적었다." },
+            { "criterion_id": "sub2.c3", "verdict": "met", "reason": "실사일과 재무제표일 사이 변동에 대한 감사증거가 필요하다는 이유를 적었다." },
+            { "criterion_id": "sub2.c4", "verdict": "not_met", "reason": "차이의 이유를 다루지 않고 수정 금액의 재계산만 적었다." }
+          ]
+        }
+      }
+    }
+  ]
+}

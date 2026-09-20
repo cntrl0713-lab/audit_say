@@ -1,7 +1,7 @@
 ---
 title: "문제은행 커버리지 맵"
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: coverage
 status: generated
 review_required: true
@@ -20,14 +20,14 @@ confidence: high
 | 01 | [[ethics-independence-quality]] | 25 | 34 | 127 | 25 | descriptive 22 · enumeration 9 · judgment 3 | KGA 200 | 기준서 미연결 우선 검토 |
 | 03 | [[engagement-acceptance-contract]] | 20 | 28 | 86 | 20 | descriptive 17 · enumeration 7 · judgment 4 | - | 요구사항 범위 검토 |
 | 04 | [[planning-documentation-materiality]] | 21 | 31 | 123 | 21 | descriptive 12 · enumeration 14 · judgment 5 | - | 요구사항 범위 검토 |
-| 08 | [[audit-evidence-assertions]] | 26 | 38 | 134 | 26 | descriptive 22 · enumeration 12 · judgment 4 | - | 요구사항 범위 검토 |
-| 06 | [[risk-assessment-internal-control]] | 22 | 27 | 90 | 22 | descriptive 11 · enumeration 14 · judgment 2 | - | 요구사항 범위 검토 |
-| 07 | [[responses-controls-substantive-procedures]] | 18 | 30 | 84 | 18 | descriptive 16 · enumeration 8 · judgment 6 | - | 요구사항 범위 검토 |
-| 09 | [[inventory-litigation-confirmations-opening-balances]] | 25 | 42 | 139 | 25 | descriptive 22 · enumeration 10 · judgment 10 | - | 요구사항 범위 검토 |
+| 08 | [[audit-evidence-assertions]] | 25 | 35 | 127 | 25 | descriptive 18 · enumeration 12 · judgment 5 | - | 요구사항 범위 검토 |
+| 06 | [[risk-assessment-internal-control]] | 21 | 24 | 82 | 21 | descriptive 7 · enumeration 13 · judgment 4 | - | 요구사항 범위 검토 |
+| 07 | [[responses-controls-substantive-procedures]] | 17 | 27 | 75 | 17 | descriptive 14 · enumeration 8 · judgment 5 | - | 요구사항 범위 검토 |
+| 09 | [[inventory-litigation-confirmations-opening-balances]] | 23 | 36 | 127 | 23 | descriptive 18 · enumeration 10 · judgment 8 | - | 요구사항 범위 검토 |
 | 05 | [[fraud-laws-governance-communication]] | 34 | 44 | 137 | 34 | descriptive 28 · enumeration 14 · judgment 2 | - | 요구사항 범위 검토 |
 | 11 | [[estimates-related-parties]] | 12 | 20 | 79 | 12 | descriptive 8 · enumeration 5 · judgment 7 | - | 요구사항 범위 검토 |
 | 13 | [[service-organizations-internal-audit-experts]] | 20 | 32 | 110 | 20 | descriptive 17 · enumeration 10 · judgment 5 | - | 요구사항 범위 검토 |
-| 10 | [[analytics-audit-sampling]] | 16 | 30 | 92 | 16 | descriptive 18 · enumeration 6 · judgment 6 | - | 요구사항 범위 검토 |
+| 10 | [[analytics-audit-sampling]] | 15 | 27 | 88 | 15 | descriptive 16 · enumeration 6 · judgment 5 | - | 요구사항 범위 검토 |
 | 12 | [[completion-subsequent-events-going-concern]] | 28 | 43 | 149 | 28 | descriptive 26 · enumeration 6 · judgment 11 | - | 요구사항 범위 검토 |
 | 15 | [[audit-opinions-reports]] | 20 | 24 | 89 | 20 | descriptive 10 · enumeration 12 · judgment 2 | - | 요구사항 범위 검토 |
 | 16 | [[kam-emphasis-comparatives-other-information]] | 17 | 28 | 103 | 17 | descriptive 9 · enumeration 9 · judgment 10 | - | 요구사항 범위 검토 |

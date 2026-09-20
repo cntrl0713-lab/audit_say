@@ -178,3 +178,13 @@
 생성 537페이지 중 신규·내용 변경 302페이지 기록(생성 날짜·줄바꿈 외 변경이 없는 235페이지는 기존 파일 유지) · 전체 콘텐츠 561페이지 · 364세트/532물음/1843criterion/1442requirement. 원자료·문제은행 변경 없음. lint·동기화 검사는 별도 명령의 실제 결과를 기록한다.
 
 - 작업자 기록: 위 자동 문구와 달리 문제은행이 바뀌었다. 사례형 지정 검토 r07~r11의 새 5세트(`case-09-confirmation-skepticism-20260918`, `case-16-kam-emphasis-20260919`, `case-16-comparative-restatement-20260919`, `case-12-report-date-subsequent-20260919`, `case-15-scope-limitation-disclaimer-20260919`)를 정본에 게시하고 원 10세트(27물음·76점)를 퇴역했다(369→364세트, 547→532물음, 1,873→1,843점). 퇴역 세트의 생성 페이지 10개는 원 바이트를 [보존](../analysis/reviews/case-review-2026-09-15/publication-r07-r11/wiki-retirement/manifest.json)한 뒤 제거했고, 퇴역 세트를 가리키던 은행 대상 coverage 관계 5개를 대체 물음으로 다시 연결했다. 기록은 [publication-r07-r11](../analysis/reviews/case-review-2026-09-15/publication-r07-r11/authorization.md)에 있다. `npm run analysis:build`/`check` 오류 0개(stale 94개는 이전부터 있던 초안 범위 관계), `npm run wiki:check` 오류·생성 내용 차이 0개.
+
+## 2026-09-20T07:04:34.076Z — 자동 wiki 빌드
+
+생성 536페이지 중 신규·내용 변경 270페이지 기록(생성 날짜·줄바꿈 외 변경이 없는 266페이지는 기존 파일 유지) · 전체 콘텐츠 560페이지 · 363세트/529물음/1839criterion/1436requirement. 원자료·문제은행 변경 없음. lint·동기화 검사는 별도 명령의 실제 결과를 기록한다.
+
+- 작업자 기록: 위 자동 문구와 달리 문제은행이 바뀌었다. 사례형 지정 검토 r12의 새 1세트(`case-10-analytical-procedures-20260920`, 68번과 32번의 병합, 2물음·7점)를 정본에 게시하고 원 2세트(`case-10-completion-analytics-20260914`·`pilot-10-007`, 5물음·11점)를 퇴역했다(364→363세트, 532→529물음, 1,843→1,839점). 퇴역 세트의 생성 페이지 2개는 원 바이트를 [보존](../analysis/reviews/case-review-2026-09-15/publication-r12/wiki-retirement/manifest.json)한 뒤 제거했고, 퇴역 세트를 가리키던 은행 대상 coverage 관계 1개(`coverage-trio-20260914-a`)를 대체 물음 `sub2.c2`로 다시 연결했다(partial 유지, 원자료 단위는 공식 출처 레지스트리에서 오므로 그대로). 기록은 [publication-r12](../analysis/reviews/case-review-2026-09-15/publication-r12/authorization.md)에 있다. `npm run analysis:build`/`check` 오류 0개(stale 94개는 이전부터 있던 초안 범위 관계), `npm run wiki:check` 오류·생성 내용 차이 0개. 사용자 지시 범위가 정본 설치와 퇴역까지여서 운영 DB에는 반영하지 않았고 활성 release는 `2ed1a151` 그대로다.
+
+## 2026-09-20T07:49:54.859Z — 자동 wiki 빌드
+
+생성 531페이지 중 신규·내용 변경 307페이지 기록(생성 날짜·줄바꿈 외 변경이 없는 224페이지는 기존 파일 유지) · 전체 콘텐츠 555페이지 · 358세트/514물음/1803criterion/1409requirement. 원자료·문제은행 변경 없음. lint·동기화 검사는 별도 명령의 실제 결과를 기록한다.

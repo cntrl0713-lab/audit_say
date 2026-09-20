@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-a9f84f7eef8b. 감사기준서 530에 따라 표본감사가 테스트 대상 모집단에 대한 결론의 합리적인 근거를 제공하지 못한다고 결론 내린 경우 감사인이 취할 수 있는 대응을 모두 설명하시오."
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[responses-controls-substantive-procedures]] · [[topic-07-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/241`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/233`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [07.json](../../analysis/reviews/question-review-2027/07.json)
 - 학습 순서: sub3
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub3
 
-유형: enumeration · JSON Pointer `/241/subquestions/0`
+유형: enumeration · JSON Pointer `/233/subquestions/0`
 
 ### 발문
 

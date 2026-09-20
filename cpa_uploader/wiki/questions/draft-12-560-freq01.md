@@ -1,7 +1,7 @@
 ---
 title: "draft-12-560-freq01. 후속사건 수정사항에 한정한 감사절차와 보고서일"
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[completion-subsequent-events-going-concern]] · [[topic-12-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/80`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/79`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [12.json](../../analysis/reviews/question-review-2027/12.json)
 - 학습 순서: q1 → q2
@@ -28,7 +28,7 @@ confidence: high
 
 ## q1
 
-유형: enumeration · JSON Pointer `/80/subquestions/0`
+유형: enumeration · JSON Pointer `/79/subquestions/0`
 
 ### 발문
 
@@ -58,7 +58,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## q2
 
-유형: descriptive · JSON Pointer `/80/subquestions/1`
+유형: descriptive · JSON Pointer `/79/subquestions/1`
 
 ### 발문
 

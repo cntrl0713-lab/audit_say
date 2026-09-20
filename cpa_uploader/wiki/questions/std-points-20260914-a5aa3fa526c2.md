@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-a5aa3fa526c2. 그룹감사업무의 수용·유지 단계에서 감사기준서 600 문단 12에 따라 그룹업무수행이사가 결정하여야 할 사항을 설명하시오. 또한 문단 A11에 따라 그룹업무팀이 보유하고 있는지 이해하여야 할 권한을 설명하시오."
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[group-audit]] · [[topic-14-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/280`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/272`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [14.json](../../analysis/reviews/question-review-2027/14.json)
 - 학습 순서: sub1
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub1
 
-유형: enumeration · JSON Pointer `/280/subquestions/0`
+유형: enumeration · JSON Pointer `/272/subquestions/0`
 
 ### 발문
 

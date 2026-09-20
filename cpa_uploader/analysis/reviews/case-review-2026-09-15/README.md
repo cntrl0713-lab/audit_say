@@ -23,6 +23,11 @@
 | r10 v2 | 같은 세트의 둘째 판본(물음 1의 ④ 교체) | [요약](r10/summary-v2.json): 대표 9답안 점수 모두 기대와 일치(식별 기준의 0점 상태 차이 1건), 보조 3답안 판정까지 일치. 채점 은행은 이 세트만 담은 부분 은행 | 사용자 지시(①·②가 이사회·주주총회 승인의 두 경우를 함께 보임)로 v3가 대체. 증거 보존 |
 | r10 v1 | 36·67·48 병합 → `case-12-report-date-subsequent-20260919` | [요약](r10/summary-v1.json): 대표 9답안 점수 모두 기대와 일치(식별 기준의 0점 상태 차이 5건), 보조 3답안 판정까지 일치 | 사용자 지적(③·④가 두 경우를 함께 보여 정답 힌트)으로 v2가 대체. 증거 보존 |
 | r11 v1 | 35 대체 → `case-15-scope-limitation-disclaimer-20260919` | [요약](r11/summary-v1.json): 대표 6답안 점수 모두 기대와 일치(식별 기준의 0점 상태 차이 4건), 보조 4답안 판정까지 일치 | 게시 근거 실행. 정본·운영 DB 반영(release `2ed1a151`, [publication-r07-r11](publication-r07-r11/authorization.md)) |
+| r12 v1 | 68·32 병합 → `case-10-analytical-procedures-20260920` | [요약](r12/summary-v1.json): 대표 6답안의 점수가 모두 기대와 일치(식별 기준의 0점 상태 차이 2건), 보조 3답안은 판정까지 일치. 채점 은행은 이 세트만 담은 부분 은행 | 게시 근거 실행. 정본·공개본 반영(원 2세트 퇴역). 운영 반영은 r13~r15 release `3518cda6`에 포함 |
+| r13 v1 | 11·12·28 병합 → `case-08-sales-receivable-20260920` | [요약](r13/summary-v1.json): 대표 9답안의 점수가 모두 기대와 일치(식별 기준의 0점 상태 차이 3건), 보조 3답안은 판정까지 일치. 채점 은행은 이 세트만 담은 부분 은행 | 게시 근거 실행. 정본·공개본 반영(원 3세트 퇴역). 운영 DB 반영(release `3518cda6`) |
+| r14 v1 | 13·14·56 병합 → `case-06-purchase-payment-20260920` | [요약](r14/summary-v1.json): 대표 9답안의 점수가 모두 기대와 일치(식별 기준의 0점 상태 차이 3건), 보조 3답안은 판정까지 일치. 채점 은행은 이 세트만 담은 부분 은행 | 게시 근거 실행. 정본·공개본 반영(원 3세트 퇴역). 운영 DB 반영(release `3518cda6`) |
+| r15 v2 | 6·65 병합 → `case-09-inventory-count-20260920`(v1 발문이 r12 발문과 바이트가 같아 v2로 대체) | [요약](r15/summary-v2.json): 대표 6답안의 점수·판정이 모두 기대와 일치(상태 차이 0건). 채점 은행은 이 세트만 담은 부분 은행 | 게시 근거 실행. 정본·공개본 반영(원 2세트 퇴역). 운영 DB 반영(release `3518cda6`) |
+| r15 v1 | 같은 초안의 첫 판본 | [요약](r15/summary-v1.json): 대표 6답안 모두 일치 | 발문 중복으로 v2가 대체. 증거 보존 |
 
 사용자 결정(2026-09-15): 지정 검토의 정본·공개본·운영 DB 반영과 원 세트 퇴역은 검토를 모아 한 번에 한다. 그때 사례형 원 세트 퇴역을 위한 DB 변경을 한 번 준비하고, 운영 DB 명령은 사용자가 직접 실행한다.
 
@@ -30,7 +35,7 @@
 
 ## 게시와 운영 반영
 
-지정 검토는 세 묶음으로 정본과 운영 DB에 반영했다. r01~r04는 release `906ca962`, r05·r06은 release `31504e78`, r07~r11은 release `2ed1a151`이다. 묶음마다 새 승인 기록·계획·수락 batch로 따로 실행했다.
+지정 검토는 네 묶음으로 정본과 운영 DB에 반영했다. r01~r04는 release `906ca962`, r05·r06은 release `31504e78`, r07~r11은 release `2ed1a151`, r13~r15는 release `3518cda6`이다. 묶음마다 새 승인 기록·계획·수락 batch로 따로 실행했다. r12는 정본·공개본에만 설치한 뒤 사용자 지시로 r13~r15 릴리스에 함께 올라갔다.
 
 ### r01~r04(2026-09-15~16)
 
@@ -66,6 +71,43 @@ import 도구는 옮긴 stage·baseline 사본을 읽지 않는다. 최종 원�
 
 정본 설치 뒤 다른 세션이 같은 정본에서 `pilot-01-005`를 동시에 고쳤다. 그래서 DB 반영은 이 묶음의 stage 산출물을 기준으로 했다([기준 대조](publication-r05-r06/db-import/preparation-v2/baseline-reconciliation.json)). `pilot-01-005` 수정은 이후 기준서형 검토 반영(release `c43c59e4`)에 포함되었다. 게시 stage·기준·후보 사본과 DB 전송 사본은 2026-09-19에 보관 폴더로 옮겼다([copy-archive-2026-09-19.json](../copy-archive-2026-09-19.json)). 기준서형 검토 반영 기록이 기준 원문으로 참조하는 `stage/authoring.json` 하나만 남겼다.
 
+### r13~r15(2026-09-20)
+
+사용자 지시(2026-09-20): "11·12·28 / 13·14·56 / 6·65 각각 합쳐서 새 문제로 대체해줘(서브에이전트 활용해줘)"와 "r12까지 같이 운영 반영하는 쪽으로 진행해줘". 승인 기록은 [publication-r13-r15/authorization.md](publication-r13-r15/authorization.md), 정본 설치 계획은 [plan.json](publication-r13-r15/plan.json), 운영 릴리스 범위는 [db-import/release-plan.json](publication-r13-r15/db-import/release-plan.json)이다. 원 8세트(21물음·66점)를 빼고 새 3세트(8물음·30점)를 회차 순서로 은행 끝에 붙였다.
+
+| 단계 | 결과 | 기록 |
+| --- | --- | --- |
+| 수락 | 대표 24답안(9·9·6)의 점수가 모두 기대와 일치했다(24/24). receipt `470c6134…`(r13)·`4d01972a…`(r14)·`1b6eda19…`(r15). 식별 기준의 0점 상태 차이 6건(r13 3, r14 3)은 재채점하지 않았다. 게시 근거 실행은 Luna 9회, 약 $0.0357(보조 실측 포함 회차 합계는 21회·약 $0.0744) | [acceptance-completion.json](publication-r13-r15/acceptance-completion.json), [batches](publication-r13-r15/batches/) |
+| stage | 커밋하지 않는 `tmp/case-review-publication-r13-r15/` 격리 경로에서 검수 승급·게시, 공개본·암호화본·분류 카탈로그, 전체 검증(358세트·514물음·1,803점), DB 준비 검사를 통과했다 | [stage-completion.json](publication-r13-r15/stage-completion.json), [단계 로그](publication-r13-r15/stage-logs/) |
+| 정본 설치 | 363세트·529물음·1,839점 → 358세트·514물음·1,803점. 승급 장부 6건 추가. 분류 입력은 제자리에서 갱신(529행 → 514행: 퇴역 23행 제외, 새 8행 추가) | [install-completion.json](publication-r13-r15/install-completion.json), [baseline.json](publication-r13-r15/baseline.json) |
+| coverage | 퇴역 세트를 가리키던 은행 대상 관계 2건을 대체 물음으로 다시 연결했다. `case-applied-20260914-09-liabilities-period-direct` → `case-06-purchase-payment-20260920/sub3.c2`(direct 유지), `coverage-deepening-20260914-04` → `case-09-inventory-count-20260920/sub1.c3`(direct → **partial**: 병합에서 실사기준일을 하나로 통일해 "다른 날짜" 구분 근거가 빠졌고 선택형 배점상 이유 하나로 득점한다). 초안 대상 관계 19건은 보존된 초안을 가리키므로 유지 | [coverage-update.json](publication-r13-r15/coverage-update.json), [관계 검토](publication-r13-r15/coverage-retarget-review.json) |
+| wiki | 퇴역 세트 생성 페이지 8개를 원 바이트로 보존한 뒤 제거하고 새 3페이지를 생성. `wiki:build`·`wiki:check` 오류 0 | [wiki-retirement](publication-r13-r15/wiki-retirement/manifest.json) |
+| 운영 DB 반영 | 로컬 PGlite 증명(payload `43cd831e…`, 전송 505KB) → read-only probe 통과(10.3초) → apply 1회. 새 active release `3518cda6-b4bd-460f-9428-014b2ed70925`(358세트·514물음·1,803점, 사례형 143물음·기준서형 371물음, 학습 단위 427개). 왕복 검증에서 원문 바이트·공개 payload·분류 514행·주제가 일치했고, 남는 354세트의 판본·분류는 그대로이며 퇴역 10세트는 비활성이다. 독립 검증(read-only 362요청, 쓰기 0) 통과 | [완료](publication-r13-r15/db-import/publication-v1/completion.json), [왕복](publication-r13-r15/db-import/publication-v1/roundtrip.json), [독립 검증](publication-r13-r15/db-import/publication-v1/verification.json), [준비](publication-r13-r15/db-import/preparation-v1/preparation.json) |
+
+- 기준 원문: 이 릴리스의 기준은 운영 active release `2ed1a151`의 저장 원문과 같은 바이트인 **HEAD 커밋의 정본**(`213b18f7…`, 364세트)이다. 워킹트리 정본은 다른 세션의 r12 설치로 이미 앞서 있어 기준으로 쓰지 않고, 사본을 `tmp/case-review-publication-r13-r15/release-baseline/authoring.json`에 두었다. 설치 baseline(`400f6de8…`)은 r12 [설치 기록](publication-r12/install-completion.json)과 바이트가 같은지 대조해 그 사이 다른 변경이 없음을 확인했다.
+- 운영 명령: 자동 모드 분류기가 `db-import/driver.mjs` 실행을 막아 `--prepare`·`--probe`·`--apply`를 **사용자가 직접 실행**했다. apply는 검토한 준비 기록의 SHA-256(`1c276394…`)을 인자로 한 번만 실행했고 재시도는 없었다.
+- 릴리스 범위: 사용자 지시에 따라 r12의 추가·퇴역 2건을 이 증분 릴리스에 함께 올렸다. 따라서 퇴역 10세트·추가 4세트이며 순서는 최종 정본 배열과 같다. r12를 설치한 세션의 지시 범위에는 운영 반영이 없었고, 그 세션은 자기 사용자에게 확인을 요청해 둔 상태에서 종료되었다. 실행 전 통지 약속은 그 세션이 없어 이행할 수 없다.
+- 동시 작업 조율: r12 설치가 끝난 뒤에 세 회차의 후보 은행을 빌드했고(정본 해시 assert), CRLF 정리 세션에는 승급이 live `lib/` 바이트를 읽는 신규 수락 경로라 설치까지 정규화를 미뤄 달라고 요청했다.
+- 도구: [accept.mjs](publication-r13-r15/accept.mjs), [publish.mjs](publication-r13-r15/publish.mjs), [coverage-retarget.mjs](publication-r13-r15/coverage-retarget.mjs), [wiki-retire.mjs](publication-r13-r15/wiki-retire.mjs), [db-import](publication-r13-r15/db-import/). r12 도구를 옮기되 baseline 대조와 릴리스 범위만 바꿨다.
+
+### r12(2026-09-20)
+
+사용자 지시(2026-09-20): "정본에 설치하고 원 두 세트 퇴역까지 진행해줘". 승인 기록은 [publication-r12/authorization.md](publication-r12/authorization.md), 계획은 [plan.json](publication-r12/plan.json)이다. 앞선 세 묶음과 달리 회차 하나만 반영했고, **운영 DB 반영은 지시 범위에 없어 하지 않았다**. 따라서 이 시점부터 정본이 운영 active release `2ed1a151`보다 앞선다.
+
+| 단계 | 결과 | 기록 |
+| --- | --- | --- |
+| 수락 | 대표 6답안의 점수가 모두 기대와 일치(6/6). receipt `9c55162e…`. 식별 기준 2건의 0점 상태 차이는 재채점하지 않았다 | [acceptance-completion.json](publication-r12/acceptance-completion.json), [batches/r12.json](publication-r12/batches/r12.json) |
+| stage | 커밋하지 않는 `tmp/case-review-publication-r12/` 격리 경로에서 검수 승급·게시, 공개본·암호화본·분류 카탈로그, 전체 검증(363세트·529물음·1,839점), DB 준비 검사를 통과했다 | [stage-completion.json](publication-r12/stage-completion.json), [단계 로그](publication-r12/stage-logs/) |
+| 정본 설치 | 364세트·532물음·1,843점 → 363세트·529물음·1,839점. 승급 장부 2건 추가. 분류 입력은 제자리에서 갱신(532행 → 529행) | [install-completion.json](publication-r12/install-completion.json), [baseline.json](publication-r12/baseline.json) |
+| coverage | 퇴역 세트를 가리키던 은행 대상 관계 1건(`coverage-trio-20260914-a`)을 대체 물음 `sub2.c2`로 다시 연결(partial 유지). 초안 대상 관계 4건은 보존된 초안을 가리키므로 유지 | [coverage-update.json](publication-r12/coverage-update.json), [관계 검토](publication-r12/coverage-retarget-review.json) |
+| wiki | 퇴역 세트 생성 페이지 2개를 원 바이트로 보존한 뒤 제거하고 새 1페이지를 생성 | [wiki-retirement](publication-r12/wiki-retirement/manifest.json) |
+| 운영 DB 반영 | 이 회차에서는 하지 않음(`db_applied: false`). 이후 2026-09-20 r13~r15 릴리스 `3518cda6`에 이 회차의 추가·퇴역이 함께 올라갔다 | [install-completion.json](publication-r12/install-completion.json), [r13~r15 완료](publication-r13-r15/db-import/publication-v1/completion.json) |
+
+- 원자료 단위 주의: coverage 재연결에서 `src-e67ae1831db41aa655`(KGA 520 문단 6)·`src-93c9a60b32ac6a97bd`(A17)·`src-5c224e2b3d26cb7abb`(A19)를 그대로 두었다. 이 단위 id는 공식 출처 레지스트리에서 오므로 세트 퇴역과 무관하게 유지되며, 대체 criterion의 근거 문단과 같다. 처음에 대체 세트의 `source_ref` id로 바꾸려다 카탈로그에 없어 실패했고 원 단위로 되돌렸다.
+- 설치 직후 `analysis:build`·`analysis:check`(오류 0), `wiki:build`·`wiki:check`(생성 오류 0, 경고는 이전부터 있던 `log.md` 항목)를 수행했다. coverage 갱신 전까지는 `build-coverage.mjs`가 퇴역 세트를 가리키는 관계에서 멈춰 `analysis:check`와 pre-commit Gate 3이 실패한다.
+- 동시 작업 조율: 같은 배치의 r13~r15를 만드는 다른 세션이 설치 순간에 후보 은행 빌드를 걸치지 않도록 빌드를 보류했고, 설치 완료 신호를 받아 재개했다. 설치는 그 세션의 candidate 생성 전에 끝냈다.
+- **운영 반영 경위**: 이 회차의 사용자 지시는 정본 설치와 퇴역까지였고 운영 반영은 범위 밖이었다. r13~r15를 진행한 세션이 그 세션 사용자의 지시("r12까지 같이 운영 반영하는 쪽으로 진행해줘")를 받아 이 회차의 추가·퇴역을 자기 증분 릴리스에 포함했다. 이 세션은 그 계획을 승인으로 삼지 않고 자기 사용자에게 확인을 요청해 두었으나 답을 받기 전에 종료되었고, 실행 전 통지도 받을 수 없었다. 실제 반영은 2026-09-20 release `3518cda6`이며 r12 문항 내용은 바뀌지 않았다. 이 승인 기록(`publication-r12/authorization.md`)은 수락 receipt가 해시로 고정하므로 고치지 않고 이 장부에만 남긴다.
+
 ### r07~r11(2026-09-19)
 
 사용자 지시(2026-09-19): “두 초안을 그대로 두고 전체 운영DB 대체 및 커밋 푸시 진행해줘”, “업무 맡기고 자리 비울 예정이니까 운영DB적용이 어려우면 그 외 작업만 진행해줘”. 두 초안은 새 사례형 기준(같은 기준에서 결론이 갈리는 두 경우를 함께 두지 않음)에 걸릴 수 있다고 물은 r06·r07이며, 고치지 않았다. 승인 기록은 [publication-r07-r11/authorization.md](publication-r07-r11/authorization.md), 계획은 [plan.json](publication-r07-r11/plan.json)이다. 원 10세트(27물음·76점. 그중 기준서형은 `pilot-02-006` 물음 1의 1물음·3점)를 빼고, 새 5세트(12물음·46점)를 회차 순서로 은행 끝에 붙였다.
@@ -83,6 +125,58 @@ import 도구는 옮긴 stage·baseline 사본을 읽지 않는다. 최종 원�
 - 운영 명령: 이번에는 사용자가 자리를 비운다고 해서 agent가 운영 probe·apply를 직접 실행했다(자동 모드에서 차단되지 않음). apply는 검토한 준비 기록의 SHA-256(`0c014a93…`)을 인자로 한 번만 실행했고, 재시도는 없었다.
 - 기준 원문: 운영 active release `c43c59e4`(기준서형 검토 반영)의 원문은 설치 전 정본(`55095861…`)과 같은 바이트다. 이 원문은 커밋에 없으므로 `tmp/`의 사본을 [baseline.json](publication-r07-r11/baseline.json)과 [운영 반영 기록](../../../releases/20260919-standard-spoiler-compressed/completion.json)의 해시로 대조해 읽었다. 운영 SQL도 active 원문 해시를 다시 확인했다.
 - 도구: [accept.mjs](publication-r07-r11/accept.mjs), [publish.mjs](publication-r07-r11/publish.mjs), [coverage-retarget.mjs](publication-r07-r11/coverage-retarget.mjs), [wiki-retire.mjs](publication-r07-r11/wiki-retire.mjs), [db-import/driver.mjs](publication-r07-r11/db-import/driver.mjs)·[contract.mjs](publication-r07-r11/db-import/contract.mjs), [archive.mjs](publication-r07-r11/archive.mjs). r05·r06 도구를 옮기되, 게시 사본과 운영 전송 pack·SQL은 `tmp/case-review-publication-r07-r11/`에 두었다.
+
+## r13 입력과 실행
+
+11번(`pilot-08-006` 매출채권 연령분석표의 정확성·완전성과 목적 적합성)·12번(`pilot-08-007` 매출 검증의 추출 방향과 수출거래의 기간귀속)·28번(`pilot-07-008` 통제 의존 근거가 약해진 뒤의 매출·채권 감사계획)을 합친 3물음·11점이다(2026-09-20 사용자 지시: "11·12·28 … 각각 합쳐서 새 문제로 대체해줘"). 형식은 기본인 옳지 않은 것 선택형이다. 자동차 부품 제조회사 세림의 20X1년 감사를 9월 통제테스트 결과 평가(①~④, 옳지 않음 ②), 조회·기간귀속의 시기와 범위(⑤~⑨, 옳지 않음 ⑤·⑥·⑦), 실증절차에 이용할 정보(⑩~⑮, 옳지 않음 ⑩·⑪·⑫·⑭)의 세 단계로 두었다.
+
+- 병합 기준 적용: 12번 sub1이 KGA 500 문단 A31의 같은 기준을 "발생사실에는 적합·완전성에는 부적합"이라는 **결론이 갈리는 두 경우**로 모두 정답 삼고 있었다. 완전성 쪽만 ⑩으로 남기고 발생사실 방향 요구(2점)는 삭제했다. KGA 330 문단 A11·A12(기중 증거와 보고기간말)도 ⑤ 한쪽만 남겼다. 12번 sub2의 "기초자료에서 기록으로 추적" 요구는 ⑩의 정답을 드러내므로 별도 항목 대신 ⑩의 보완절차 득점 요건으로 흡수했다.
+- 배점: 원 27점(11번 6 + 12번 12 + 28번 9) → 11점. 기간귀속 7일 범위(12번 sub3 + 28번 sub1, 6점)는 ⑦ 1점으로, 연령분석표·기업생성정보 요구(11번 sub1·sub3 + 28번 sub3)는 ⑫·⑭ 2점으로 통합했다. KGA 330 문단 16(통제테스트 결과의 평가)은 새 요구다. 대응은 [계보](../../../drafts/case-review-2026-09-15/r13-sales-receivable-merge/lineage.json)에 있다.
+- 중복 회피: r12 항목 ②(분석적절차 기대치 도출 자료의 신뢰성, KGA 520 문단 5(b)·A12·A13)와 갈라 두기 위해 연령분석표는 대손충당금 검토 대상 선정 용도로만 쓰고 KGA 520을 인용하지 않았다. 차이는 [설계](../../../drafts/case-review-2026-09-15/r13-sales-receivable-merge/design.json)의 중복 검토에 적었다.
+- 인용 24개 중 23개는 원 세 세트 정본 인용의 바이트·content_hash 재사용이고, KGA 330 문단 8만 등록 전문 `delegated-n03-kga330-2025.txt`(L73-L82)에서 새로 발췌했다. 새 원자료 수집은 없다.
+- [초안과 모범답안](../../../drafts/case-review-2026-09-15/r13-sales-receivable-merge/questions-and-answers.md), [내용 검토](r13/root-content-review-v1.json)(미해결 0건, 비차단 관찰 5건). 후보 은행은 이 세트만 담은 부분 은행이고, 정본 363세트 + 초안 = 364세트·532물음·1,850점을 메모리에서 검증했다.
+- [실행 manifest](r13/execution-v1/grading-manifest.json): dry-a(호출 0회) 후 actual-a에서 Luna 3회. 대표 9답안(모범 2·4·5, 부분 1·2·2, 오답 0·0·0)의 점수가 모두 기대와 정확히 일치했다. 식별 기준 3건의 기대 `contradicted`·실제 `not_met`은 둘 다 0점인 상태 차이로 재채점하지 않았다. [보조 실측](r13/supplementary-v1/summary.json) 3답안(번호만, 보완절차만, 조건 경계)은 판정까지 일치했고 receipt 분모에서 제외한다.
+- 사용량: 6회 약 $0.0231(제공자 사용량×공개 단가 추정). [요약](r13/summary-v1.json).
+
+## r14 입력과 실행
+
+13번(`pilot-06-006` 구매·지급 권한의 집중과 보완 통제)·14번(`pilot-06-007` ERP의 접근·변경 위험과 통제 이해)·56번(`case-09-unrecorded-liabilities-20260914` 후속지급 검사와 누락된 매입채무의 탐색)을 합친 3물음·11점이다. 산업용 부품 제조회사 다온의 20X1년 감사를 구매·지급 업무의 통제 이해(①~⑤, 옳지 않음 ②·③·④), IT 관련 통제(⑥~⑨, 옳지 않음 ⑦·⑧), 기말 매입채무(⑩~⑭, 옳지 않음 ⑩·⑪·⑭)로 두었다.
+
+- 서술형→선택형 전환: 13번·14번의 원 요구는 "미흡한 통제를 식별하고 개선 통제를 설계하라"였다. 회사 통제의 결함(계좌변경·지급승인 권한 집중, 실행·기록·대사 집중, 전 사용자 쓰기 권한, 개발자의 직접 이관)은 모두 사실관계로 옮기고, 번호 항목에는 **감사인이 수행한 절차와 판단만** 두었다. 그 결과 13번 sub2(개선 통제 설계·검증 흔적 4점)와 14번 sub3(A180 운영효과성 한계 3점)은 득점 요건에서 빠졌고(후자는 기준서형이 계속 다룬다), 13번 sub3·14번 sub2는 옳은 항목으로 전환했다.
+- 병합 기준 적용: 원 세 세트에는 결론이 갈리는 두 경우가 없었다. 설계 중 생길 수 있던 3쌍(KGA 315 문단 A177, KGA 330 문단 8, KGA 505 문단 12·13)은 각각 한쪽만 남겼다. KGA 315 문단 27(통제 미비점 결정 시점)은 새 요구다.
+- 배점: 원 27점(13번 10 + 14번 9 + 56번 8) → 11점. 56번은 한 요구의 판단·이유·사실 연결을 각각 배점하던 것을 항목별 1점으로 합쳤다. 대응은 [계보](../../../drafts/case-review-2026-09-15/r14-purchase-payment-merge/lineage.json)에 있다.
+- [초안과 모범답안](../../../drafts/case-review-2026-09-15/r14-purchase-payment-merge/questions-and-answers.md), [설계](../../../drafts/case-review-2026-09-15/r14-purchase-payment-merge/design.json), [내용 검토](r14/root-content-review-v1.json)(미해결 0건). 후보 은행 364세트·532물음·1,850점을 메모리에서 검증했다.
+- 발문 중복: 1차 형상 검사에서 r12 정본 발문과 바이트가 같아 2건이 거절되어 자료의 주제명을 넣어 고쳤고, 이후 정본 363세트와 배치의 다른 초안 전체를 합친 562개 발문과 대조해 동일 바이트 0건을 확인했다. 실측은 최종 발문으로 한 번만 했다.
+- [실행 manifest](r14/execution-v1/grading-manifest.json): 대표 9답안(모범 4·3·4, 부분 2·1·2, 오답 0·0·0)의 점수가 모두 기대와 정확히 일치했다. 식별 기준 3건의 0점 상태 차이는 재채점하지 않았다. 보조 3답안은 판정까지 일치(분모 제외).
+- 사용량: 6회 약 $0.0237. [요약](r14/summary-v1.json).
+
+## r15 입력과 실행
+
+6번(`draft-09-501-freq01` 기중 재고실사와 결산일까지의 재고변동 통제)·65번(`case-09-inventory-location-population-20260914` 재고실사 장소의 위험과 모집단·테스트 방향)을 합친 2물음·8점이다. 생활잡화 도소매 한별상사의 20X1년 감사에서 실사기준일은 11월 30일, 재무제표일은 12월 31일이고 계속기록법을 유지한다. 물음 1은 실사 계획과 실사일의 절차(①~⑤, 옳지 않음 ②·③·④), 물음 2는 실사일 이후 재무제표일까지의 절차(⑥~⑨, 옳지 않음 ⑥·⑦·⑧)다.
+
+- 판본: **v2가 반영 대상**이다. v1은 발문이 r12 세트의 발문과 바이트가 같아 `validateAuthoringBank`가 거절했다. 단계 이름을 쓴 발문으로 바꾼 v2를 만들고, 발문이 채점 입력이므로 최종 내용으로 대표 채점을 다시 실측했다. v1의 실행 증거(`execution-v1`, 대표 6답안 일치)와 보조 실측은 보존한다. v1 기준으로 기록한 `baseline-v1.json`은 고정 입력이라 덮어쓰지 않고, 새 정본 확인은 [baseline-recheck-v1.json](r15/baseline-recheck-v1.json)과 [baseline-v2.json](r15/baseline-v2.json)에 남겼다.
+- 병합 기준 적용: 원 두 세트 사이에 결론이 갈리는 두 경우는 없었다(6번은 KGA 501 문단 5·A9, 65번은 A3·A7과 KGA 530 문단 6). 65번의 "장소별 실사일이 다름"은 통일한 실사기준일과 충돌하므로 삭제하고, 모집단 구분 근거를 상품 성격·관리 부서·실사팀과 기록 담당자의 차이로 유지했다. 65번의 "중앙물류창고만 방문" 계획과 "세 장소 통합 모집단"이 서로 모순이어서 ②에서 반품창고만 제외하는 구성으로 고쳤다.
+- 갱신본과의 중복: `case-15-scope-limitation-disclaimer-20260919`의 재고 함정은 KGA 501 문단 6(감사인이 입회하지 못한 경우)과 감사범위 제한 결론을 다루고, 이 세트는 문단 5·A9·A11(기업이 재무제표일 외의 날에 실시한 실사)을 다룬다. 혼동을 막기 위해 문단 6은 인용도 항목도 두지 않았다.
+- 배점: 원 12점(6번 5 + 65번 7) → 8점. 한 상황의 판단·이유·근거를 criterion 여러 개로 나누던 것을 선택형 항목 1점으로 합쳤고(65번 sub1 2→1, sub2 3→1, sub3 2→1, 6번 exp1 4→1), 물음별 식별 2점과 KGA 501 문단 A11 요구 1점이 새로 들어갔다.
+- [초안과 모범답안](../../../drafts/case-review-2026-09-15/r15-inventory-count-merge/v2/questions-and-answers.md), [설계](../../../drafts/case-review-2026-09-15/r15-inventory-count-merge/v2/design.json), [내용 검토](r15/root-content-review-v2.json). 후보 은행은 새 정본 363세트 + v2 = 364세트·531물음·1,847점이다.
+- [실행 manifest](r15/execution-v2/grading-manifest.json): v2 대표 6답안(모범 4·4, 부분 2·2, 오답 0·0)의 점수와 판정이 모두 기대와 일치했다(상태 차이 0건). v1 대표 6답안과 보조 3답안도 일치했다.
+- 사용량: 회차 합계 9회 약 $0.0276(v2 대표 3회 약 $0.0097). [요약](r15/summary-v2.json).
+
+## r12 입력과 실행
+
+68번(`case-10-completion-analytics-20260914` 감사종료를 앞둔 매출·운송비 자료의 검토)과 32번(`pilot-10-007` 이자비용 분석의 기대치와 차이 조사)을 합친 2물음·7점이다(2026-09-20 사용자 지시: "68 + 32로 r12 초안 만들어줘"). 형식은 기본인 옳지 않은 것 선택형이다. 생활용품 판매회사 해솔의 20X1년 감사를 기중 실증 분석과 감사종료 전 최종 자료 검토의 두 시점으로 두어, 물음 1은 이자비용에 대한 실증적인 분석적절차 ①~⑤(옳지 않음 ②·③·④), 물음 2는 감사종료 전 최종 자료에 대한 절차·판단 ⑥~⑨(옳지 않음 ⑥·⑦)이다.
+
+- 병합 기준 적용: 원 두 세트는 KGA 520 문단 7·A20·A21의 **같은 기준에서 결론이 갈리는 두 경우**를 각각 정답으로 삼고 있었다(68번 sub3은 이미 입수한 증거가 설명을 뒷받침하므로 새 외부증거가 필요하지 않은 경우, 32번 exp1의 나는 입수한 증거가 설명과 어긋나 기타 감사절차가 필요한 경우). 학습 단위 계약의 "대조되는 두 경우를 함께 두지 않음"에 따라 68번 쪽만 함정 ⑨로 남기고 32번의 차이 조사 요소는 삭제했다. 그 결과 이 세트에는 문단 7(b)를 직접 묻는 득점 요건이 없으며 이는 기준서형 `pilot-10-002` sub2가 계속 다룬다. 사용자가 어느 쪽을 남길지 지정하지 않아 초안 작성자가 정했다.
+- 배점: 원 11점(68번 6점 + 32번 5점) → 7점. 함정으로 전환한 68번 sub3과 삭제한 32번 exp1의 4점이 득점 요건에서 빠지고, 32번이 전제로만 두었던 자료 신뢰성(KGA 520 문단 5(b)·A12·A13)을 ②의 1점으로 새로 올렸다. 대응은 [계보](../../../drafts/case-review-2026-09-15/r12-analytical-procedures-merge/lineage.json)에 있다.
+- [초안과 모범답안](../../../drafts/case-review-2026-09-15/r12-analytical-procedures-merge/questions-and-answers.md), [설계](../../../drafts/case-review-2026-09-15/r12-analytical-procedures-merge/design.json), [내용 검토](r12/root-content-review-v1.json). 인용 열두 개 가운데 열 개(KGA 520 문단 5·6·7·A15~A20, KGA 315 문단 37)는 원 두 세트의 정본 인용을 바이트와 content_hash 그대로 재사용했고, 새로 쓰는 KGA 520 문단 A12·A13만 이미 등록된 전문 `cpa_uploader/data/official/delegated-s04-kga-2025.txt`(L446-L457, L461-L471)에서 발췌했다. 새 원자료 수집은 없다.
+- 후보 은행 [candidate-v1](r12/candidate-v1.json) = 이 세트만 담은 부분 은행. 현재 정본 364세트에 초안을 더한 365세트·534물음·1,850점은 메모리에서 `validateAuthoringBank`로 검증하고 해시·집계만 [baseline-v1](r12/baseline-v1.json)에 남겼다. 분류는 [classification-v1](r12/classification-v1.json) → [catalog-v1](r12/catalog-v1.json)(학습 단위 1개).
+- [실행 manifest](r12/execution-v1/grading-manifest.json): [dry-a](r12/execution-v1/dry-a/summary.json)(호출 0회) 후 [actual-a](r12/execution-v1/actual-a/summary.json)에서 Luna 3회. 대표 6답안(모범 4·3점, 부분 2·1점, 오답 0·0점)의 점수가 모두 기대와 정확히 일치했다(delta 0). 식별 기준 2건(`sub1.c1`·`sub2.c1`의 부분정답, 예상 `contradicted`·실제 `not_met`)은 둘 다 0점인 상태 차이이며 재채점하지 않았다.
+- [보조 실측](r12/supplementary-v1/summary.json)은 세 답안으로 했고 모두 판정까지 일치했다. 승급 receipt 분모에 넣지 않는다. 봉인된 초안 `qa.json`을 고치지 않도록 실행기 형상에 맞춘 [보조 입력](r12/supplementary-input-v1.json)을 이 폴더에 따로 두었다.
+  - 번호만 쓴 답: 물음마다 식별 1점(1·1점).
+  - 이유 없이 보완절차만 쓴 답: 4·3점.
+  - 조건 경계: ③에 기대치의 정확성·세분화 대신 세부테스트 확대만 쓴 답과 ⑦에 위험평가 수정 없이 구체적 절차만 쓴 답은 해당 항목을 받지 못해 3·2점.
+- 사용량: 대표 3회 약 $0.0089, 보조 3회 약 $0.0074, 합계 6회 약 $0.0163(제공자 사용량×공개 단가 추정, 청구액과 구별). [요약](r12/summary-v1.json).
+- 정본·공개본·운영 DB 반영, 원 두 세트 퇴역, 승급 receipt 봉인, coverage links 갱신은 아직 하지 않았다. 사람의 내용 확인도 하지 않았다.
 
 ## r11 입력과 실행
 

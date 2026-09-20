@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-b1ca4afb323f. 적정의견의 감사보고서에 감사인측 전문가의 업무를 언급할 수 있는지 판단하고, 그 근거와 관련 요구사항을 모두 설명하시오."
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[service-organizations-internal-audit-experts]] · [[topic-13-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/267`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/259`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [13.json](../../analysis/reviews/question-review-2027/13.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/267/subquestions/0`
+유형: descriptive · JSON Pointer `/259/subquestions/0`
 
 ### 발문
 

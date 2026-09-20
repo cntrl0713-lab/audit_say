@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-1bf3a2b9fe97. 감사기준서 1200(소규모기업 재무제표에 대한 감사)에 따른 최종감사파일의 취합이 완료된 후 기존 감사문서를 수정하거나 새로운 감사문서를 추가할 필요가 생겼다. 감사기준서 1200 문단 31에 따라 감사인이 문서화하여야 할 사항을 모두 제시하시오."
 created: 2026-08-08
-updated: 2026-09-19
+updated: 2026-09-20
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[small-entity-audit]] · [[topic-18-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/339`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/331`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [18.json](../../analysis/reviews/question-review-2027/18.json)
 - 학습 순서: sub4
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub4
 
-유형: enumeration · JSON Pointer `/339/subquestions/0`
+유형: enumeration · JSON Pointer `/331/subquestions/0`
 
 ### 발문
 
