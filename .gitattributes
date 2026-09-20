@@ -4,3 +4,837 @@
 * text=auto eol=lf
 
 .githooks/* text eol=lf
+
+# --- frozen review evidence: byte-exact checkout ---
+# Receipts and grading manifests under cpa_uploader/{analysis,drafts}/ pin the SHA-256 of
+# these files' WORKING-TREE bytes. Those bytes were written before `* text=auto eol=lf`
+# existed, so they carry CRLF. Checking them out as LF changes their hash and makes
+# `npm run questions:v3:validate` fail with `Changed evidence: ...` in a fresh clone.
+# These rules make each file check out as the exact bytes its receipt already attests to.
+# Do not renormalize these paths; seal new evidence in a new execution version instead.
+#
+# 715 files whose recorded bytes are the all-CRLF form (index still stores LF, so
+# text diffs keep working):
+/cpa_uploader/analysis/reviews/case-additional-2026-09-14/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-additional-2026-09-14/recorder-provenance.json text eol=crlf
+/cpa_uploader/analysis/reviews/case-applied-2026-09-14/deviation-review-a.json text eol=crlf
+/cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-applied-2026-09-14/final-checks-v1/analysis-build.log text eol=crlf
+/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/coverage-concurrent-review.json text eol=crlf
+/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/helpers/one-point-v2-origins.json text eol=crlf
+/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/incremental-db-publication-v2/tests/append-transaction-v1.log text eol=crlf
+/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/resume-publication-plan.json text eol=crlf
+/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/resume-publication-preflight.log text eol=crlf
+/cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v4/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r01/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r01/execution-v2/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r01/execution-v3/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r01/execution-v4/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r02/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r02/execution-v2/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r03/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r03/execution-v2/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r04/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r04/execution-v2/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r05/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r06/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r07/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r08/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r09/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v2/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v3/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r11/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-trio-2026-09-14/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-trio-2026-09-14/incremental-db-publication-v1/independent-review.json text eol=crlf
+/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/active-qa-overrides-v3-followup.json text eol=crlf
+/cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/active-qa-overrides-v3-plan-followup-01.json text eol=crlf
+/cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/active-qa-overrides-v3-plan-followup-02.json text eol=crlf
+/cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/question-style-v1/foundations.json text eol=crlf
+/cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/question-style-v2/foundations.json text eol=crlf
+/cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/runtime-v5-bank-v3-after-refill-01/root-partial-resume-map.json text eol=crlf
+/cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/runtime-v5-bank-v3-after-refill-02/root-partial-resume-map.json text eol=crlf
+/cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/audit.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/execution-all-v8/dry-run-a.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/execution-all-v8/dry-run-b.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/execution-all-v8/dry-run-c.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/grading-model-comparison-v1/terra-full-stdout.jsonl text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/handoff.md text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/official-source-remediation-v1/pdf-existing-source-comparison.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/official-source-remediation-v1/pdf-page-comparison.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/qa.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/sets.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/a/source-evidence.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/canary-plan-followup-v1/changes.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/canary-plan-followup-v1/plan-pilot-05-003.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/canary-plan-followup-v1/qa-pilot-05-003.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/grading-inference-early-diagnostics-verification-v1/README.md text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/grading-model-comparison-v1/input-selection.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/learning-unit-smoke-v5-runtime-inputs.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/official-source-remediation-v1/context-and-final-checks.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/resume-review-2026-09-12/v2-canary/findings.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/resume-review-2026-09-12/v2-canary/pilot-05-003-generated-counterexample-followup-qa.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/resume-review-2026-09-12/v2-canary/pilot-05-003-plan-proposal.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/resume-review-2026-09-12/v2-canary/plan-selection-proposal.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/c/official-source-remediation-v1/pdf-comparison-evidence.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/baseline-119.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-03-004/authoring-plan.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-03-004/original-qa.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-03-004/qa.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-03-004/question.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-03-004/remediation.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-005/authoring-plan.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-005/classification-proposal.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-005/question.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-005/remediation.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-006/authoring-plan.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-006/classification-proposal.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-006/original-qa.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-006/qa.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-006/question.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-006/remediation.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-007/authoring-plan.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-007/original-qa.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-007/qa.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-007/question.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-04-007/remediation.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-05-010/authoring-plan.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-05-010/question.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/content-followups-v1/pilot-05-010/remediation.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/edition-250-followup-v1/acquisition.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/edition-250-followup-v1/decision.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/edition-250-followup-v1/extracted-250-pages.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/edition-250-followup-v1/kicpa-2022-cover-letter.pdf.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/edition-250-followup-v1/kicpa-2022-notice.html text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/edition-250-followup-v1/kicpa-2022-overview.pdf.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/edition-250-followup-v1/official-notice-acquisition.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/edition-250-followup-v1/raw-registration-request.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/handoff-v1-preserved/handoff.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/kga800-investigation/acquisition.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/kga800-investigation/attachment-1-paragraphs.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/kga800-investigation/attachment-1-text.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/kga800-investigation/attachment-2-paragraphs.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/kga800-investigation/attachment-2-text.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/kga800-investigation/decision.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/kga800-investigation/handoff.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/kga800-investigation/official-board-list.html text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/kga800-investigation/official-kga800-2020-stage.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/kga800-investigation/official-notice-2020.html text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/kga800-investigation/raw-registration-request.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/kga800-investigation/transcription-evidence.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/plan-followups-v1/pilot-09-009/authoring-plan.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/plan-followups-v1/pilot-09-009/changes.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/plan-followups-v1/pilot-09-010/authoring-plan.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/plan-followups-v1/pilot-09-010/changes.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/qa-followups-v1/draft-04-320-freq01/changes.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/qa-followups-v1/draft-04-320-freq01/original-qa.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/qa-followups-v1/draft-04-320-freq01/qa.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-01-002.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-02-001.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-02-004.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-03-002.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-04-001.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-04-002.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-04-004.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-04-005.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-05-001.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-05-002.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-05-003.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-05-005.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-05-006.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-05-008.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-06-001.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-06-002.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-06-003.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-07-005.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-08-002.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-09-002.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-09-004.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-09-005.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/representative-supplements/pilot-09-008.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/a/reviewer-notes.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/additional-evidence.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-2IkbSl/reuse-identity/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-2IkbSl/reuse-mixed/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-2IkbSl/reuse-only/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-8F1Ud9/reuse-identity/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-8F1Ud9/reuse-mixed/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-8F1Ud9/reuse-only/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-RHnYPr/reuse-identity/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-RHnYPr/reuse-only/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-UVV49n/reuse-identity/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-UVV49n/reuse-mixed/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-UVV49n/reuse-only/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-X4Jify/reuse-identity/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-X4Jify/reuse-mixed/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-X4Jify/reuse-only/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-gRZbAU/reuse-identity/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-gRZbAU/reuse-mixed/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-gRZbAU/reuse-only/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-mHwUYm/reuse-identity/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-mHwUYm/reuse-only/origin/runtime/1.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/kga800-followup-v1/xml-independent-check.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration-test-v1.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/c/private-source-metadata-v1/migration-test-v2.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/runtime/lib/questionV3Evidence.ts.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v2/runtime/lib/questionV3Evidence.ts.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/runtime/lib/questionV3Evidence.ts.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v4/runtime/lib/questionV3Evidence.ts.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v5/runtime/lib/questionV3Evidence.ts.txt text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/canonical-install-v1/install-004/backup/previous-classification-review.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/efficient-final003-tests.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/efficient-final004-tests.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-analysis-build.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-analysis-check.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-build-results.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-canonical-dry-run.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-db-apply.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-db-postverify-derived-v1.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-db-postverify.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-wiki-build.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/final-wiki-check.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/prepare-final003.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/checks/private-metadata-preflight.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/execution-lock-v2.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/target-scope.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/execution-resumes/resume-2026-09-12-v2/frozen-inputs.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/grading-inference-followup-v1/before.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/raw-collection-v1/recovery.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/raw-collection-v1/url-only-recovery.json text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/review-source-followup-tests-v1.log text eol=crlf
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/source-parser-followup-v1/obsolete-generated-pages/manifest.json text eol=crlf
+/cpa_uploader/analysis/reviews/question-unit-migration-2026-09-11/canonical-classification.json text eol=crlf
+/cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/acceptance-runtime/1-questionV3Evidence.ts.snapshot text eol=crlf
+/cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/runtime/1-questionV3Evidence.ts.snapshot text eol=crlf
+/cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/runtime/1-questionV3Evidence.ts.snapshot text eol=crlf
+/cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/runtime/1-questionV3Evidence.ts.snapshot text eol=crlf
+/cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/runtime/1-questionV3Evidence.ts.snapshot text eol=crlf
+/cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v2/runtime/1-questionV3Evidence.ts.snapshot text eol=crlf
+/cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v3/runtime/1-questionV3Evidence.ts.snapshot text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/code-checks/auxiliary-regression.log text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/code-checks/auxiliary-typecheck.log text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/code-checks/efficient-review-followup.log text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/code-checks/source-reuse-followup.log text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/runtime/lib/questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v2/runtime/lib/questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v3/runtime/lib/questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v4/runtime/lib/questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v5/runtime/lib/questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v6/runtime/lib/questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/typecheck-before-topic-narrowing.log text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/wiki-build.log text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/wiki-check-before-index.log text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/wiki-check.log text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/wiki-index-tests-before-renderer.log text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/final-checks-v2/wiki-index-tests.log text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/plan-01-05.json text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/plan-11-14.json text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v1/01-verify-publish-transaction.log text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/publication-v2/01-verify-publish-transaction.log text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/source-evidence-11-14.json text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/subset-additional-representatives.json text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/subset-publication-tests-interrupted.json text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/subset-regrade-additional-required.json text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/subset-regrade-representatives.json text eol=crlf
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/subset-regrade-required.json text eol=crlf
+/cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v2/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v3/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/drafts/case-applied-2026-09-14/a/coverage-proposals.json text eol=crlf
+/cpa_uploader/drafts/case-applied-2026-09-14/a/design.json text eol=crlf
+/cpa_uploader/drafts/case-applied-2026-09-14/a/qa.json text eol=crlf
+/cpa_uploader/drafts/case-applied-2026-09-14/a/review.json text eol=crlf
+/cpa_uploader/drafts/case-applied-2026-09-14/a/sets.json text eol=crlf
+/cpa_uploader/drafts/case-applied-2026-09-14/a/source-files.json text eol=crlf
+/cpa_uploader/drafts/case-deepening-2026-09-14/a/coverage-proposals.json text eol=crlf
+/cpa_uploader/drafts/case-deepening-2026-09-14/a/design.json text eol=crlf
+/cpa_uploader/drafts/case-deepening-2026-09-14/a/qa.json text eol=crlf
+/cpa_uploader/drafts/case-deepening-2026-09-14/a/review.json text eol=crlf
+/cpa_uploader/drafts/case-deepening-2026-09-14/a/sets.json text eol=crlf
+/cpa_uploader/drafts/case-deepening-2026-09-14/a/source-files.json text eol=crlf
+/cpa_uploader/drafts/case-deepening-2026-09-14/a/sources/official-request.json text eol=crlf
+/cpa_uploader/drafts/case-deepening-2026-09-14/a/sources/official-request.md text eol=crlf
+/cpa_uploader/drafts/case-deepening-2026-09-14/b-peer-review-before-locator-check.json text eol=crlf
+/cpa_uploader/drafts/case-deepening-2026-09-14/b-peer-review.json text eol=crlf
+/cpa_uploader/drafts/case-deepening-2026-09-14/source-peer-review.json text eol=crlf
+/cpa_uploader/drafts/case-trio-2026-09-14/a/coverage-proposals.json text eol=crlf
+/cpa_uploader/drafts/case-trio-2026-09-14/a/design.json text eol=crlf
+/cpa_uploader/drafts/case-trio-2026-09-14/a/qa.json text eol=crlf
+/cpa_uploader/drafts/case-trio-2026-09-14/a/review.json text eol=crlf
+/cpa_uploader/drafts/case-trio-2026-09-14/a/sets.json text eol=crlf
+/cpa_uploader/drafts/case-trio-2026-09-14/a/source-files.json text eol=crlf
+/cpa_uploader/drafts/case-trio-2026-09-14/b-peer-review.json text eol=crlf
+/cpa_uploader/drafts/case-trio-next-2026-09-14/a/coverage-proposals.json text eol=crlf
+/cpa_uploader/drafts/case-trio-next-2026-09-14/a/design.json text eol=crlf
+/cpa_uploader/drafts/case-trio-next-2026-09-14/a/qa.json text eol=crlf
+/cpa_uploader/drafts/case-trio-next-2026-09-14/a/review.json text eol=crlf
+/cpa_uploader/drafts/case-trio-next-2026-09-14/a/sets.json text eol=crlf
+/cpa_uploader/drafts/case-trio-next-2026-09-14/a/source-files.json text eol=crlf
+/cpa_uploader/drafts/case-trio-next-2026-09-14/a/sources/coverage-element-snapshot.json text eol=crlf
+/cpa_uploader/drafts/case-trio-next-2026-09-14/a/sources/render-provenance.json text eol=crlf
+/cpa_uploader/drafts/case-trio-next-2026-09-14/b-peer-review.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/content-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/existing-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/frequency-evidence.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/handoff.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/manual-source-evidence.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/after-credit-controller-delta.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/audited-repeat-controller-delta.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/generated-after-credit-controller-delta.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/generated-expectation-watchlist-pregrading.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/independent-controller-delta.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/partial-controller-delta.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/qa-v2/exploratory-regressions.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/qa-v2/exploratory-runner-static-check.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/qa-v2/qa-cases-t02-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/qa-v2/qa-diff.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/qa-v2/static-check.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/qa-v3/README.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/qa-v3/exploratory-regressions.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/qa-v3/qa-cases-t02-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/qa-v3/qa-diff.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/qa-v3/run-exploratory-regressions.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/qa-v3/static-check.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/qa-v3/validation-linkage.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/run-owned-semantic-after-credit.py text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/run-owned-semantic-continuation.py text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/scoring-demand-review-18.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/scoring-demand-review-18.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/semantic-bank-v3-preparation.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/semantic-controller-continuation-delta.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/t01-a-qa-v2/README.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/t01-a-qa-v2/qa-cases-t01-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/t01-a-qa-v2/qa-diff.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/t01-a-qa-v2/static-check.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/t01-a-qa-v2/validation-linkage.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/t04-b-qa-v2/README.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/t04-b-qa-v2/qa-cases-t04-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/t04-b-qa-v2/qa-diff.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/t04-b-qa-v2/static-check.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-followup/t04-b-qa-v2/validation-linkage.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v1/HALT text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v1/author-qa-controller-01.jsonl text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v1/author-qa-controller-summary-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v1/phase-two-checkpoint-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v1/pilot-02-006/semantic-repeat-summary-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v1/qa-findings-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v1/qa-findings-02.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v1/semantic-findings-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v1/worker-inputs-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v2/author-qa-controller-01.jsonl text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v2/author-qa-controller-summary-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v2/pilot-02-006/author-qa-interruption-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v2/pilot-02-006/semantic-policy-v2-repeat-summary.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v2/run-owned-author-qa.py text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/HALT text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/author-qa-controller-01.jsonl text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/author-qa-controller-summary-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pause-before-v4-checkpoint.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-01-005/qa-findings-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-02-006/exploratory-analysis-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-02-006/qa-findings-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/pilot-04-006/qa-findings-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v3/run-owned-author-qa.py text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v4/author-qa-controller-01.jsonl text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v4/author-qa-controller-summary-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v4/inspect-owned-qa.py text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v4/package-author-qa-checkpoint.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v4/run-owned-author-qa.py text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v4/v5-grader-identity.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/HALT-credit-stop-second-20260911.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/HALT-helper-transition-20260911.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/after-refill-02-resume-chronology.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/after-refill-resume-chronology.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/after-refill-stop-audit.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/after-refill-stop-handoff.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/authoritative-receipts-stage-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/bank-v3-after-refill-01-controller-summary.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/bank-v3-after-refill-01-controller.jsonl text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/bank-v3-after-refill-02-controller-summary.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/bank-v3-after-refill-02-controller.jsonl text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/bank-v3-after-refill-03-controller-summary.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/bank-v3-after-refill-03-controller.jsonl text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/bank-v3-after-refill-04-controller-summary.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/bank-v3-after-refill-04-controller.jsonl text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/bank-v3-owned-01-controller-summary.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/bank-v3-owned-01-controller.jsonl text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/bank-v3-owned-02-controller-summary.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/bank-v3-owned-02-controller.jsonl text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/credit-stop-audit.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/refill02-source-boundaries.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/phase-two-v5/user-pause-20260911-1417.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/point-policy-v1/t01-a/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/point-policy-v1/t01-a/qa-cases-t01-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/point-policy-v1/t01-a/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/point-policy-v1/t02-a/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/point-policy-v1/t02-a/qa-cases-t02-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/point-policy-v1/t02-a/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/point-policy-v1/t03-a/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/point-policy-v1/t03-a/qa-cases-t03-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/point-policy-v1/t03-a/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/point-policy-v1/t04-b/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/point-policy-v1/t04-b/qa-cases-t04-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/point-policy-v1/t04-b/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/qa-cases-t01-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/qa-cases-t02-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/qa-cases-t03-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/qa-cases-t04-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/catalog-boundary-patch-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/decree-14.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/decree-15-2.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/ethics-2024-amendment.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/ethics-2024-excerpt.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/ethics-2024-full.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/ethics-2026-ed-overview.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/ethics-download-provenance.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/ethics-drafts.html text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/ethics-index.html text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/kga-edition-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/kga200-210-230-2025-excerpt.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/kga200-210-230-2026-excerpt.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/kga230-missing-pages-2025.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/kga230-missing-pages-2026.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/kga230-supplement-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/law-cpa-33.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/law-download-provenance.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/manual-dependent-context-2025.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/registration-kga230-supplement-proposal.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/registration-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase1/artifact-links-and-hashes.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase1/edition-additional-context.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase1/edition-appendices.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase1/edition-comparison-working.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase1/edition-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase1/typecheck.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/final-153-v1/pilot-08-006/partial-semantic-content-review.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/final-153-v1/pilot-08-006/partial-semantic-content-review.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/phase-two-v3/initial-content-mismatch-proposals.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/phase-two-v4-proposals/qa-cases-t08-a.followup-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/phase-two-v4-proposals/qa-v4-focused-precision-detail.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/phase-two-v4-proposals/qa-v4-t06-a-original-mismatches-review-pending.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/phase-two-v4-proposals/t08-a-followup-manifest.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/evidence/phase2/phase-two-v4-proposals/t08-b-prompt-plan-QA-patch-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v2/pilot-08-007.authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v2/pilot-08-007.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v2/pre-supplement-split/README.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v2/pre-supplement-split/lineage-and-change-record.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v2/pre-supplement-split/qa-cases-t08-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v3/prior-inputs/pilot-08-007.authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/phase-two-followup/t08-b-v3/prior-inputs/pilot-08-007.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/source-registration-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n02/sources/kga315-controls-2025.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase1/edition-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase1/kga200-footnote-context.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/evidence/phase1/kga315-cross-reference-context.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/source-registration-proposal-v2.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/source-registration-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/sources/kga240-2025-context-v2.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/sources/kga240-2025-context.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/sources/kga330-2025-context.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n04/condition-followup/preservation-manifest.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n04/condition-followup/prior/README.md.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n04/condition-followup/prior/build-package.mjs.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n04/condition-followup/prior/finalize-handoff.ts.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n04/condition-followup/prior/handoff.md.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n04/finalize-handoff.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n04/metadata-followup/preservation-manifest.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/README.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/build-manual.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/cli-validation-final.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/content-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/content-proposal.py text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/coverage-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/document-link-check.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/frequency-evidence.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/handoff.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/handoff.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-followup/runtime-v4-regression/README.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-followup/runtime-v4-regression/case-map.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-followup/runtime-v4-regression/qa-cases-t16-a-conflict.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-followup/runtime-v4-regression/static-check.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v1/generated-case-findings-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v1/pilot-16-010/semantic-repeat-summary-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v1/semantic-findings-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v2/pilot-16-010/semantic-policy-v2-repeat-summary.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v3/pilot-16-010/grading-findings-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v4/package-author-qa-checkpoint.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v4/pilot-16-010/full-author-qa-linkage.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v4/pilot-16-010/regression-analysis-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v4/run-regression-three-times.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/phase-two-v4/runner-delta.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/point-policy-v1/t16-a/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/point-policy-v1/t16-a/qa-cases-t16-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/point-policy-v1/t16-a/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/point-policy-v1/t17-a/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/point-policy-v1/t17-a/qa-cases-t17-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/point-policy-v1/t17-a/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/qa-cases-t16-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/qa-cases-t16-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/qa-cases-t17-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/qa-design.py text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/scope-and-sources.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/sources/edition-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/sources/official-pages-2025.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/sources/official-pages-2026.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/sources/registration-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/sources/registration-supplement-proposal.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/typecheck-final.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n06/verify-local.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r01/phase-two-v1/t09-a/content-investigation.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r01/phase-two-v3/pause-author-queue-author3.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r01/phase-two-v3/pause-author-queue-author3b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r01/sources/dependency-context.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r01/sources/supplemental-input-quotes.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase1/edition-paragraph-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase1/pdf-page-169-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase1/pdf-page-170-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase1/pdf-page-171-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase1/pdf-page-172-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase1/pdf-page-178-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase1/pdf-page-179-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase1/pdf-page-180-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase1/pdf-page-181-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase1/pdf-page-182-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase1/prior-all-criteria-expectation-check.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase1/qa-all-criteria-design.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/diagnose-unit-v3-handoff.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/diagnose-unit-v3.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/final-153-v1/author-qa-run1/mismatch-sub1-request-pending.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/final-153-v1/author-qa-run1/mismatch-sub1-request-pending.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/final-153-v1/partial-semantic-content-review.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/final-153-v1/partial-semantic-content-review.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/owned-progress-followup-after-external-code-change.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/STOP-BEFORE-NEXT-JOB text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/initial-content-triage-reading.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/n02-context-reading.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/t06a-direct-sources.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/triage-20260911T021236960233Z.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/triage-20260911T021448904366Z.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/triage-20260911T021902592079Z.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/triage-20260911T022139838135Z.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/triage-20260911T022717164255Z.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/triage-20260911T023354470157Z.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/triage-current-reading.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/triage-t06a-full-reading.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3-control/triage-t08b-t06a-reading.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3/pilot-05-008/request-pending-six-run-investigation.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v3/pilot-05-008/request-pending-v3-followup.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v4-proposals/focused-QA-design-manifest.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/phase-two-v4-proposals/qa-v4-focused-written-representations.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/prototype-handoff.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/prototype-handoff.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/resume-semantic.local-check.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/run-focused-author-qa-v4.mjs text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/run-generated-qa-read-review.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/run-generated-qa-read-review.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/run-owned-author-qa-v3.mjs text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/runtime-v2-policy/author-qa-run1/guard-stop-followup.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/evidence/phase2/triage-owned-author-qa-v3.py text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/lineage.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/patch-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/pilot-05-008.authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/pilot-05-008.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/qa-cases-t05-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/source-evidence.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/r02/sources/kga260-2026-context.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/README.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/artifact-integrity-check.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/build-manual.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/cli-validation-final.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/content-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/content-proposal.py text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/coverage-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/frequency-evidence.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/handoff.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/handoff.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/phase-two-followup/implicit-judgment-regression/case-map.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/phase-two-followup/implicit-judgment-regression/qa-cases-t02-b-implicit.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/phase-two-v4/pilot-02-007/grading-findings-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/phase-two-v4/pilot-03-006/grading-findings-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/phase-two-v5/pilot-01-006/locator-first-observations.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/phase-two-v5/pilot-04-007/locator-first-observations.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/phase-two-v5/write-locator-observations.py text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/point-policy-v1/t01-b/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/point-policy-v1/t01-b/qa-cases-t01-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/point-policy-v1/t01-b/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/point-policy-v1/t02-b/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/point-policy-v1/t02-b/qa-cases-t02-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/point-policy-v1/t02-b/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/point-policy-v1/t03-b/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/point-policy-v1/t03-b/qa-cases-t03-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/point-policy-v1/t03-b/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/point-policy-v1/t04-c/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/point-policy-v1/t04-c/qa-cases-t04-c.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/point-policy-v1/t04-c/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/qa-cases-t01-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/qa-cases-t02-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/qa-cases-t03-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/qa-cases-t04-c.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/qa-design.py text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/scope-and-sources.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/sources/edition-supplement.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/sources/paragraph-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/sources/registration-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/sources/registration-supplement-proposal.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/typecheck-final.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/verify-local.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/audit-phase1.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/build-qa.mjs text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/draft-manifest.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/edition-appendix2.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/edition-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/expected-crit7-cross-contradiction-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-206-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-207-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-231-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-232-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-255-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-256-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-257-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-258-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-259-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-260-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-263-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-264-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-269-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-270-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-320-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-321-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-322-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/pdf-page-323-independent.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/evidence/phase1/supplementary-cross-context.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/phase-two-followup/t07-c-qa-v2/current-identity-verification.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/source-registration-proposal-appendix2.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/source-registration-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/sources/kga315-2025-appendix2.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/sources/kga315-2025-supplement.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/sources/kga330-2025-supplement.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s03/build-package.mjs text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s03/content.mjs text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s03/finalize-handoff.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s03/inventory-initial-failure.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s03/phase2-followups.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s03/sources/selected-paragraphs.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s03/verify-package.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/audit-phase1.ts text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/build-qa.mjs text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/build-s04.mjs text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/content.mjs text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/draft-manifest.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase1/artifact-check-1789089969322.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase1/final-cross-review-followup.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase1/input-before-final-cross-review-1789089885146/build-qa.mjs text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase1/input-before-final-cross-review-1789089885146/build-s04.mjs text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase1/input-before-final-cross-review-1789089885146/content.mjs text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase1/input-before-final-cross-review-1789089885146/preservation-manifest.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/evidence/phase1/preparation-failure-r01-shape.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/finish-phase1.mjs text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/source-registration-proposal-additional.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga315-2025-additional-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga315-2026-additional-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga315-additional-2025.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga315-additional-2026.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga315-additional-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga450-2025-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga450-2026-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga520-2025-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga520-2026-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga530-2025-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga530-2026-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga580-2025-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/kga580-2026-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/official-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/official-excerpts-2025.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/official-excerpts-2026.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s04/sources/supplementary-cross-context.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/phase-two-v4/package-author-qa-checkpoint.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/phase-two-v5/pilot-15-006/locator-first-observations.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/point-policy-v1/t14-c/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/point-policy-v1/t14-c/qa-cases-t14-c.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/point-policy-v1/t14-c/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/point-policy-v1/t15-b/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/point-policy-v1/t15-b/qa-cases-t15-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/point-policy-v1/t15-b/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/point-policy-v1/t16-c/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/point-policy-v1/t16-c/qa-cases-t16-c.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/point-policy-v1/t16-c/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/documentation-context-2025.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/documentation-context-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/kga600-2025-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/kga600-2026-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/kga700-2025-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/kga700-2026-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/kga701-2025-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/kga701-2026-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/kga705-2025-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/kga705-2026-pages.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/official-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/official-excerpts-2025.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s05/sources/official-excerpts-2026.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/README.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/cli-validation-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/content-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/coverage-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/existing-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/frequency-evidence.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/handoff.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/handoff.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/manual-source-evidence.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/phase-two-followup/t17-b-plan-v2/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/phase-two-followup/t17-b-plan-v2/proposal-diff.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/phase-two-v4/package-author-qa-checkpoint.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/phase-two-v4/pilot-18-005/grading-findings-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/phase-two-v4/pilot-18-005/grading-findings-02.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/phase-two-v4/pilot-19-005/grading-findings-01.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/point-policy-v1/t17-b/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/point-policy-v1/t17-b/qa-cases-t17-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/point-policy-v1/t17-b/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/point-policy-v1/t18-a/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/point-policy-v1/t18-a/qa-cases-t18-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/point-policy-v1/t18-a/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/point-policy-v1/t19-a/authoring-plan.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/point-policy-v1/t19-a/qa-cases-t19-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/point-policy-v1/t19-a/question.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/qa-cases-t17-b.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/qa-cases-t18-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/qa-cases-t19-a.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/scope-and-sources.md text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/source-registration-proposal.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/capital-market-law-159-text.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/dependency-context.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/download-manifest-initial.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/external-audit-law-text.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/interim-2014-annex4.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/interim-2014-text.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/interim-2015-text.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/interim-edition-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/kga-edition-comparison.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/kicpa-interim-list.html text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/legal-edition-check.json text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/official-interim-proposed.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/official-kga1100-1200-proposed.txt text eol=crlf
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/typecheck-01.json text eol=crlf
+/cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2025-pymupdf-pages.txt text eol=crlf
+/cpa_uploader/drafts/frequency-gap-2026-09-10/sources/kga-2026-pymupdf-pages.txt text eol=crlf
+/cpa_uploader/drafts/frequency-priority-2026-09-10/sources/blocks.json text eol=crlf
+/cpa_uploader/drafts/frequency-priority-2026-09-10/sources/provenance.json text eol=crlf
+/cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/acceptance-runtime/1-questionV3Evidence.ts.snapshot text eol=crlf
+/cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/acceptance-runtime/1-questionV3Evidence.ts.snapshot text eol=crlf
+/cpa_uploader/drafts/standard-additional-2026-09-13/verify-and-grade.ts text eol=crlf
+/cpa_uploader/drafts/standard-expansion-2026-09-13/verify-and-grade.ts text eol=crlf
+/cpa_uploader/drafts/standard-followup-2026-09-13/verify-and-grade.ts text eol=crlf
+/cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/acceptance-runtime/1-questionV3Evidence.ts.snapshot text eol=crlf
+#
+# 104 files whose recorded bytes have MIXED line endings. No checkout rule can
+# derive them, so git must store and emit them verbatim (-text = no conversion):
+/cpa_uploader/analysis/reviews/case-additional-2026-09-14/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-applied-2026-09-14/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-deepening-2026-09-14/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-resume-v4/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-expansion-2026-09-13/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-followup-2026-09-14/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-quality-2026-09-13/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r01/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r01/execution-v2/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r01/execution-v3/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r01/execution-v4/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r02/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r02/execution-v2/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r03/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r03/execution-v2/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r04/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r04/execution-v2/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r05/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r06/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r07/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r08/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r09/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v2/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r10/execution-v3/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r11/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-trio-2026-09-14/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-trio-next-2026-09-14/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/question-style-v2/procedures.json -text
+/cpa_uploader/analysis/reviews/delegated-authoring-2026-09-11/run-semantic-cohort-complete-units.mjs -text
+/cpa_uploader/analysis/reviews/grader-hardening-2026-09-11/README.md -text
+/cpa_uploader/analysis/reviews/pilot-01-005-comprehensive-2026-09-18/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/grading-tolerance-study-v1/implementation/before/cpa_uploader/questionReviewGrading.ts.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/grading-tolerance-study-v1/implementation/before/cpa_uploader/questionSemanticReview.ts.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/grading-tolerance-study-v1/implementation/proposed/cpa_uploader/questionReviewGrading.ts.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/b/grading-tolerance-study-v1/implementation/proposed/cpa_uploader/questionSemanticReview.ts.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/c/r4-execution-v1/content-review-catalog-v1/review.html -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-2IkbSl/reuse-identity/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-2IkbSl/reuse-mixed/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-2IkbSl/reuse-only/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-8F1Ud9/reuse-identity/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-8F1Ud9/reuse-mixed/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-8F1Ud9/reuse-only/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-RHnYPr/reuse-identity/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-RHnYPr/reuse-only/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-UVV49n/reuse-identity/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-UVV49n/reuse-mixed/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-UVV49n/reuse-only/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-X4Jify/reuse-identity/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-X4Jify/reuse-mixed/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-X4Jify/reuse-only/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-gRZbAU/reuse-identity/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-gRZbAU/reuse-mixed/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-gRZbAU/reuse-only/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-mHwUYm/reuse-identity/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/b/local-fixture-mHwUYm/reuse-only/origin/runtime/0.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v1/runtime/lib/questionV3Grading.ts.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v2/runtime/lib/questionV3Grading.ts.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v3/runtime/lib/questionV3Grading.ts.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v4/runtime/lib/questionV3Grading.ts.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/efficient-verification-2026-09-12/candidate-v5/runtime/lib/questionV3Grading.ts.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/grading-inference-followup-v1/lib__questionV3Grading.ts.before.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/grading-inference-followup-v2/cpa_uploader__questionSemanticReview.ts.before.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/grading-inference-followup-v2/lib__questionV3Grading.ts.before.txt -text
+/cpa_uploader/analysis/reviews/point-review-and-publication-2026-09-11/review-request-clarification-v1/questionSemanticReview.ts.before.txt -text
+/cpa_uploader/analysis/reviews/standard-backlog-publication-2026-09-14/acceptance-runtime/0-questionV3Grading.ts.snapshot -text
+/cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v1/runtime/0-questionV3Grading.ts.snapshot -text
+/cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v2/runtime/0-questionV3Grading.ts.snapshot -text
+/cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v3/runtime/0-questionV3Grading.ts.snapshot -text
+/cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/runtime/0-questionV3Grading.ts.snapshot -text
+/cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v2/runtime/0-questionV3Grading.ts.snapshot -text
+/cpa_uploader/analysis/reviews/standard-new-verification-2026-09-14/fix-v4/v3/runtime/0-questionV3Grading.ts.snapshot -text
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v1/runtime/lib/questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v2/runtime/lib/questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v3/runtime/lib/questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v4/runtime/lib/questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v5/runtime/lib/questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/execution-v6/runtime/lib/questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v2/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/standard-spoiler-2026-09-19/execution-v3/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/drafts/case-followup-2026-09-14/b/sources/kga-540-retrospective-v2.md -text
+/cpa_uploader/drafts/case-followup-2026-09-14/b/sources/kga-540-retrospective.md -text
+/cpa_uploader/drafts/case-trio-2026-09-14/b/validate-local.mjs -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/decree-14.html -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/decree-15-2.html -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n01/sources/law-cpa-33.html -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/audit-phase1.ts -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/build-n03.mjs -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n03/build-qa.mjs -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n04/README.md -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n04/condition-followup/attempt1-build-package.mjs.txt -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/n04/handoff.md -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s01/phase-two-v4/package-author-qa-checkpoint.json -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s02/build-s02.mjs -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/capital-market-law-159.html -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/external-audit-law-view.html -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/external-audit-law.html -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/fsc-interim-2015.html -text
+/cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/verify-local.ts -text
+/cpa_uploader/drafts/frequency-gap-2026-09-10/sources/e-official.txt -text
+/cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/acceptance-runtime/0-questionV3Grading.ts.snapshot -text
+/cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/acceptance-runtime/0-questionV3Grading.ts.snapshot -text
+/cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/acceptance-runtime/0-questionV3Grading.ts.snapshot -text
+# --- end frozen review evidence ---
