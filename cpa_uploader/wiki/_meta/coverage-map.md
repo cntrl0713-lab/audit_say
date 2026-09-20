@@ -22,13 +22,13 @@ confidence: high
 | 04 | [[planning-documentation-materiality]] | 21 | 31 | 123 | 21 | descriptive 12 · enumeration 14 · judgment 5 | - | 요구사항 범위 검토 |
 | 08 | [[audit-evidence-assertions]] | 25 | 35 | 127 | 25 | descriptive 18 · enumeration 12 · judgment 5 | - | 요구사항 범위 검토 |
 | 06 | [[risk-assessment-internal-control]] | 21 | 24 | 82 | 21 | descriptive 7 · enumeration 13 · judgment 4 | - | 요구사항 범위 검토 |
-| 07 | [[responses-controls-substantive-procedures]] | 17 | 27 | 75 | 17 | descriptive 14 · enumeration 8 · judgment 5 | - | 요구사항 범위 검토 |
+| 07 | [[responses-controls-substantive-procedures]] | 16 | 23 | 71 | 16 | descriptive 7 · enumeration 8 · judgment 8 | - | 요구사항 범위 검토 |
 | 09 | [[inventory-litigation-confirmations-opening-balances]] | 23 | 36 | 127 | 23 | descriptive 18 · enumeration 10 · judgment 8 | - | 요구사항 범위 검토 |
 | 05 | [[fraud-laws-governance-communication]] | 34 | 44 | 137 | 34 | descriptive 28 · enumeration 14 · judgment 2 | - | 요구사항 범위 검토 |
 | 11 | [[estimates-related-parties]] | 12 | 20 | 79 | 12 | descriptive 8 · enumeration 5 · judgment 7 | - | 요구사항 범위 검토 |
 | 13 | [[service-organizations-internal-audit-experts]] | 20 | 32 | 110 | 20 | descriptive 17 · enumeration 10 · judgment 5 | - | 요구사항 범위 검토 |
-| 10 | [[analytics-audit-sampling]] | 15 | 27 | 88 | 15 | descriptive 16 · enumeration 6 · judgment 5 | - | 요구사항 범위 검토 |
-| 12 | [[completion-subsequent-events-going-concern]] | 28 | 43 | 149 | 28 | descriptive 26 · enumeration 6 · judgment 11 | - | 요구사항 범위 검토 |
+| 10 | [[analytics-audit-sampling]] | 14 | 24 | 81 | 14 | descriptive 14 · enumeration 6 · judgment 4 | - | 요구사항 범위 검토 |
+| 12 | [[completion-subsequent-events-going-concern]] | 26 | 39 | 141 | 26 | descriptive 21 · enumeration 6 · judgment 12 | - | 요구사항 범위 검토 |
 | 15 | [[audit-opinions-reports]] | 20 | 24 | 89 | 20 | descriptive 10 · enumeration 12 · judgment 2 | - | 요구사항 범위 검토 |
 | 16 | [[kam-emphasis-comparatives-other-information]] | 17 | 28 | 103 | 17 | descriptive 9 · enumeration 9 · judgment 10 | - | 요구사항 범위 검토 |
 | 14 | [[group-audit]] | 21 | 24 | 90 | 21 | descriptive 4 · enumeration 16 · judgment 4 | - | 요구사항 범위 검토 |

@@ -1,0 +1,523 @@
+{
+  "version": 1,
+  "artifact_type": "supplementary_grading_observation",
+  "transport": "model",
+  "model": "gpt-5.6-luna",
+  "case_id": "r19-supp-remedy-only",
+  "purpose": "이유 없이 보완절차나 처리만 쓴 답도 항목별 1점을 받는지 확인한다.",
+  "projected_body_hash": "3c35d84a05f323c9864c634ecd68e749f7393a7f9706b7ed6f5f3f35ac78ca97",
+  "answers": {
+    "sub1": "옳지 않은 것은 ①, ②이다. ① 은행에 해지 여부와 효력 발생일을 직접 확인한다. ② 위험평가를 다시 검토하여 추가감사절차의 성격·시기·범위를 정한다.",
+    "sub2": "옳지 않은 것은 ⑥, ⑦, ⑧이다. ⑥ 경영진의 성실성 등에 대한 평가를 재고한다. ⑦ 제품보증 청구에 관한 구두설명을 관련 자료와 대조하여 확인한다. ⑧ 연령분석표를 원천 거래자료와 대조한 뒤 이용 여부를 정한다.",
+    "sub3": "옳지 않은 것은 ⑪, ⑫, ⑬이다. ⑪ 전체 기간을 포함하는 서면진술의 요청을 유지한다. ⑫ 적정의견을 표명하지 않는다. ⑬ 재무제표에 대한 의견을 거절한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 3,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub1.c1",
+          "verdict": "met",
+          "reason": "①·②를 모두 고르고 옳은 항목을 고르지 않았다."
+        },
+        {
+          "criterion_id": "sub1.c2",
+          "verdict": "met",
+          "reason": "①에 대하여 은행에 해지 여부와 효력 발생일을 직접 확인한다는 절차를 적었다."
+        },
+        {
+          "criterion_id": "sub1.c3",
+          "verdict": "met",
+          "reason": "②에 대하여 위험평가를 다시 검토하여 추가감사절차를 정한다는 절차를 적었다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 4,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub2.c1",
+          "verdict": "met",
+          "reason": "⑥·⑦·⑧을 모두 고르고 옳은 항목을 고르지 않았다."
+        },
+        {
+          "criterion_id": "sub2.c2",
+          "verdict": "met",
+          "reason": "⑥에 대하여 경영진에 관한 평가를 재고한다는 절차를 적었다."
+        },
+        {
+          "criterion_id": "sub2.c3",
+          "verdict": "met",
+          "reason": "⑦에 대하여 제품보증 구두설명을 관련 자료와 대조하여 확인한다는 절차를 적었다."
+        },
+        {
+          "criterion_id": "sub2.c4",
+          "verdict": "met",
+          "reason": "⑧에 대하여 연령분석표를 원천 거래자료와 대조한 뒤 이용 여부를 정한다는 절차를 적었다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 4,
+      "expected_verdicts": [
+        {
+          "criterion_id": "sub3.c1",
+          "verdict": "met",
+          "reason": "⑪·⑫·⑬을 모두 고르고 옳은 항목을 고르지 않았다."
+        },
+        {
+          "criterion_id": "sub3.c2",
+          "verdict": "met",
+          "reason": "⑪에 대하여 전체 기간을 포함하는 진술의 요청을 유지한다는 절차를 적었다."
+        },
+        {
+          "criterion_id": "sub3.c3",
+          "verdict": "met",
+          "reason": "⑫에 대하여 적정의견을 표명하지 않는다는 처리를 적었다."
+        },
+        {
+          "criterion_id": "sub3.c4",
+          "verdict": "met",
+          "reason": "⑬에 대하여 재무제표에 대한 의견을 거절한다는 처리를 적었다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "d0f7f0a543160db94051891925443b50bd23fe5c37a937e1579fa6878a670577",
+  "schema_hash": "216ed310992e8c613c4320f351711b06d76af06754cec7cda5151df874bd5d7d",
+  "actual_sdk_calls": 1,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "옳지 않은 것은 ①, ②이다. ",
+            "reason": "옳지 않은 판단으로 ①과 ②를 모두 특정했다."
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "met",
+            "quote": "① 은행에 해지 여부와 효력 발생일을 직접 확인한다. ",
+            "reason": "은행에 해지 여부와 효력 발생일을 직접 확인하는 절차를 제시했다."
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "met",
+            "quote": "② 위험평가를 다시 검토하여 추가감사절차의 성격·시기·범위를 정한다.",
+            "reason": "위험평가를 재검토하고 추가감사절차의 성격·시기·범위를 정하도록 했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "옳지 않은 것은 ⑥, ⑦, ⑧이다. ",
+            "reason": "옳지 않은 판단으로 ⑥, ⑦, ⑧을 모두 특정했다."
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "met",
+            "quote": "⑥ 경영진의 성실성 등에 대한 평가를 재고한다. ",
+            "reason": "경영진의 성실성 등에 대한 평가를 재고하도록 했다."
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "met",
+            "quote": "⑦ 제품보증 청구에 관한 구두설명을 관련 자료와 대조하여 확인한다. ",
+            "reason": "제품보증 청구에 관한 구두설명을 관련 자료와 대조하도록 했다."
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "met",
+            "quote": "⑧ 연령분석표를 원천 거래자료와 대조한 뒤 이용 여부를 정한다.",
+            "reason": "연령분석표를 원천 거래자료와 대조한 뒤 이용 여부를 정하도록 했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "met",
+            "quote": "옳지 않은 것은 ⑪, ⑫, ⑬이다. ",
+            "reason": "옳지 않은 판단으로 ⑪, ⑫, ⑬을 모두 특정했다."
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "met",
+            "quote": "⑪ 전체 기간을 포함하는 서면진술의 요청을 유지한다. ",
+            "reason": "전체 기간을 포함하는 서면진술의 요청을 유지하도록 했다."
+          },
+          {
+            "criterion_id": "sub3.c3",
+            "verdict": "met",
+            "quote": "⑫ 적정의견을 표명하지 않는다. ",
+            "reason": "요구된 진술이 없으므로 적정의견을 표명하지 않도록 했다."
+          },
+          {
+            "criterion_id": "sub3.c4",
+            "verdict": "met",
+            "quote": "⑬ 재무제표에 대한 의견을 거절한다.",
+            "reason": "재무제표에 대한 의견을 거절하도록 했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "sub1.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "옳지 않은 판단으로 ①과 ②를 모두 특정했다."
+              },
+              {
+                "criterion_id": "sub1.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "은행에 해지 여부와 효력 발생일을 직접 확인하는 절차를 제시했다."
+              },
+              {
+                "criterion_id": "sub1.c3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub1/e3"
+                ],
+                "reason": "위험평가를 재검토하고 추가감사절차의 성격·시기·범위를 정하도록 했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "sub2.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e1"
+                ],
+                "reason": "옳지 않은 판단으로 ⑥, ⑦, ⑧을 모두 특정했다."
+              },
+              {
+                "criterion_id": "sub2.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e2"
+                ],
+                "reason": "경영진의 성실성 등에 대한 평가를 재고하도록 했다."
+              },
+              {
+                "criterion_id": "sub2.c3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e3"
+                ],
+                "reason": "제품보증 청구에 관한 구두설명을 관련 자료와 대조하도록 했다."
+              },
+              {
+                "criterion_id": "sub2.c4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub2/e4"
+                ],
+                "reason": "연령분석표를 원천 거래자료와 대조한 뒤 이용 여부를 정하도록 했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "sub3.c1",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "옳지 않은 판단으로 ⑪, ⑫, ⑬을 모두 특정했다."
+              },
+              {
+                "criterion_id": "sub3.c2",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "전체 기간을 포함하는 서면진술의 요청을 유지하도록 했다."
+              },
+              {
+                "criterion_id": "sub3.c3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e3"
+                ],
+                "reason": "요구된 진술이 없으므로 적정의견을 표명하지 않도록 했다."
+              },
+              {
+                "criterion_id": "sub3.c4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e4"
+                ],
+                "reason": "재무제표에 대한 의견을 거절하도록 했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-12-written-representations-20260920",
+    "score": 11,
+    "max_points": 11,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "서면진술서와 은행 조회 회신의 차이를 확인한 단계에서 감사팀이 수행하거나 결정한 절차와 판단 ①~⑤ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "옳지 않은 것은 ①, ②이다. ① 은행에 해지 여부와 효력 발생일을 직접 확인한다. ② 위험평가를 다시 검토하여 추가감사절차의 성격·시기·범위를 정한다.",
+        "score": 3,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "sub1.c1",
+            "verdict": "met",
+            "quote": "옳지 않은 것은 ①, ②이다.",
+            "reason": "옳지 않은 판단으로 ①과 ②를 모두 특정했다.",
+            "claim": "옳지 않은 것으로 ①·②를 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. ①·② 중 하나라도 빠뜨리거나, 옳은 것인 ③(진술서에 적힌 “본인이 알고 있고 믿는 최선의 범위에서 진술을 하였다”는 문구를 그대로 수용), ④(진술서를 감사보고서일에 실행가능한 가장 근접한 날로 갱신해 받기로 함), ⑤(경영진이 알고 있는 내부통제의 모든 미비점을 전달하였다는 서면진술도 함께 요청) 가운데 하나라도 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c2",
+            "verdict": "met",
+            "quote": "① 은행에 해지 여부와 효력 발생일을 직접 확인한다.",
+            "reason": "은행에 해지 여부와 효력 발생일을 직접 확인하는 절차를 제시했다.",
+            "claim": "① 서면진술이 다른 감사증거와 일관성이 없는 경우에는 그 사항의 해결을 시도하는 감사절차를 수행하여야 하므로 경영진이 서명한 진술서의 내용만으로 종결할 수 없다는 이유, 또는 해지 여부와 그 효력 발생일을 은행이나 계약 변경자료로 확인하는 등 불일치를 해결하려는 절차를 수행한다는 절차 중 하나를 제시한다. 서명된 진술만으로는 은행 자료와의 차이가 해소되지 않는다는 취지면 인정하고, 확인 절차는 이 사례의 계약 상태를 확인하는 타당한 것 하나면 충분하다. 단순히 질문한다·추가 절차를 한다·진술서에 다시 서명받는다는 말만 쓰면 인정하지 않는다. 두 사람이 서명하였으므로 종결할 수 있다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub1.c3",
+            "verdict": "met",
+            "quote": "② 위험평가를 다시 검토하여 추가감사절차의 성격·시기·범위를 정한다.",
+            "reason": "위험평가를 재검토하고 추가감사절차의 성격·시기·범위를 정하도록 했다.",
+            "claim": "② 서면진술과 다른 원천에서 입수된 감사증거 사이에 불일치가 식별되었으므로 위험평가가 여전히 적합한지 고려하여야 한다는 이유, 또는 위험평가가 적합하지 않다면 이를 수정하고 평가된 위험에 대응하기 위한 추가감사절차의 성격·시기·범위를 결정한다는 절차 중 하나를 제시한다. 이 불일치를 반영하여 위험평가와 감사절차를 다시 정하여야 한다는 취지면 인정하며 구체적인 절차의 나열은 요구하지 않는다. 종전의 위험평가와 계획한 절차를 그대로 유지해도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ①, ②이다. ③은 경영진이 진술에 포함된 사항에 대하여 적합한 책임과 지식을 가지고 있다는 것에 감사인이 만족한다면 그러한 제한적인 문구를 수용하는 것이 합리적이므로 옳다. ④는 서면진술일을 감사보고서일에 실행가능한 가장 근접한 날로 하되 감사보고서일보다 늦지 않게 하여야 하므로 옳다. ⑤는 경영진이 알고 있는 내부통제의 모든 미비점을 감사인에게 전달하였다는 서면진술을 요청할 필요가 있다고 감사인이 생각할 수 있으므로 옳다.",
+          "① 서면진술이 다른 감사증거와 일관성이 없는 경우 감사인은 그 사항의 해결을 시도하는 감사절차를 수행하여야 한다. 경영진이 서명한 진술서의 내용만으로 은행 조회 회신과의 불일치가 해소되는 것이 아니므로, 해지 합의서를 입수하거나 은행에 해지 여부와 그 효력 발생일을 직접 확인하여 불일치의 해결을 시도하여야 한다.",
+          "② 하나 이상의 서면진술과 다른 원천에서 입수된 감사증거 사이에 불일치가 식별되었으므로, 감사인은 위험평가가 여전히 적합한지 고려하고 적합하지 않다면 위험평가를 수정하여 평가된 위험에 대응하기 위한 추가감사절차의 성격·시기 및 범위를 결정하여야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "차이가 해결되지 않은 단계에서 감사팀이 수행하거나 결정한 절차와 판단 ⑥~⑩ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "옳지 않은 것은 ⑥, ⑦, ⑧이다. ⑥ 경영진의 성실성 등에 대한 평가를 재고한다. ⑦ 제품보증 청구에 관한 구두설명을 관련 자료와 대조하여 확인한다. ⑧ 연령분석표를 원천 거래자료와 대조한 뒤 이용 여부를 정한다.",
+        "score": 4,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub2.c1",
+            "verdict": "met",
+            "quote": "옳지 않은 것은 ⑥, ⑦, ⑧이다.",
+            "reason": "옳지 않은 판단으로 ⑥, ⑦, ⑧을 모두 특정했다.",
+            "claim": "옳지 않은 것으로 ⑥·⑦·⑧을 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. ⑥·⑦·⑧ 중 하나라도 빠뜨리거나, 옳은 것인 ⑨(감사업무의 해지를 고려하여야 하는지 검토한 결과 감사를 계속 수행하기로 함), ⑩(유의적 사항과 도달한 결론 및 유의적인 전문가적 판단을 감사문서에 기록)을 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c2",
+            "verdict": "met",
+            "quote": "⑥ 경영진의 성실성 등에 대한 평가를 재고한다.",
+            "reason": "경영진의 성실성 등에 대한 평가를 재고하도록 했다.",
+            "claim": "⑥ 서면진술과 다른 감사증거의 불일치가 해결되지 않고 있으므로 경영진의 적격성·성실성·윤리적 가치나 근면성 또는 이에 대한 경영진의 약속이나 그 이행에 관한 평가를 재고하여야 한다는 이유 또는 절차를 제시한다. 네 속성을 모두 열거할 필요는 없고 사례의 사정을 들어 종전 평가를 그대로 유지할 수 없다는 의미가 분명하면 “재고”라는 단어가 없어도 인정한다. 담보계약 한 건에 관한 것이므로 종전 평가를 유지해도 된다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c3",
+            "verdict": "met",
+            "quote": "⑦ 제품보증 청구에 관한 구두설명을 관련 자료와 대조하여 확인한다.",
+            "reason": "제품보증 청구에 관한 구두설명을 관련 자료와 대조하도록 했다.",
+            "claim": "⑦ 그러한 우려가 미칠 수 있는 영향은 서면진술만이 아니라 구두진술을 포함한 경영진 진술에 대하여 결정하여야 한다는 이유, 또는 같은 재무이사에게서 들은 제품보증 청구에 관한 구두설명의 신뢰성을 다시 평가하거나 관련 자료와 대조하여 확인한다는 절차 중 하나를 제시한다. 구두설명도 신뢰성 영향 평가의 대상이라는 취지면 인정하며, 경영진의 모든 진술이 거짓이라고 단정할 것을 요구하지 않는다. 구두·서면 진술 일반이라는 말만 적고 이 사례의 제품보증 구두설명과 연결하지 않으면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub2.c4",
+            "verdict": "met",
+            "quote": "⑧ 연령분석표를 원천 거래자료와 대조한 뒤 이용 여부를 정한다.",
+            "reason": "연령분석표를 원천 거래자료와 대조한 뒤 이용 여부를 정하도록 했다.",
+            "claim": "⑧ 그러한 우려가 감사증거일반의 신뢰성에 미칠 수 있는 영향도 결정하여야 한다는 이유, 또는 연체채권 자료를 빼도록 지시한 사실을 고려하여 연령분석표가 채권을 빠짐없이 포함하는지를 다시 평가하거나 원천 거래자료와 대조한 뒤 이용 여부를 정한다는 절차 중 하나를 제시한다. 경영진의 진술서 외에 기업이 제출한 자료의 신뢰성에도 영향이 있음을 이 연령분석표에 적용하면 인정한다. 감사증거 일반을 평가한다는 추상적인 문구만 쓰거나 모든 감사증거를 일괄 배제한다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ⑥, ⑦, ⑧이다. ⑨는 경영진의 성실성 등에 대한 우려 때문에 재무제표에 경영진의 왜곡진술 위험이 너무 커 감사를 수행할 수 없다는 결론을 내리게 되는 경우에 감사업무의 해지를 고려할 수 있는 것이므로, 그러한 결론에 이르지 않은 이 상황에서 감사를 계속 수행하기로 한 것은 옳다. ⑩은 감사 중에 발생한 유의적 사항과 이에 대하여 도달한 결론 그리고 그 결론에 도달하게 만든 유의적인 전문가적 판단을 문서화하여야 하므로 옳다.",
+          "⑥ 서면진술과 다른 감사증거의 불일치가 해결되지 않고 있으므로, 경영진의 적격성, 성실성, 윤리적 가치나 근면성 또는 이에 대한 경영진의 약속이나 그 이행에 대한 평가를 재고하여야 한다.",
+          "⑦ 그러한 우려가 미칠 수 있는 영향은 서면진술에 한정되지 않고 구두진술을 포함한 경영진 진술에 대하여 결정하여야 한다. 자료를 빼도록 지시한 같은 재무이사가 한 제품보증 청구에 관한 구두설명도 그대로 이용할 수 있는지 다시 평가하고 관련 자료와 대조하여 확인하여야 한다.",
+          "⑧ 그러한 우려가 감사증거일반의 신뢰성에 미칠 수 있는 영향도 결정하여야 한다. 연체채권 자료를 빼도록 지시한 사실을 고려하여 제출된 연령분석표가 채권을 빠짐없이 포함하는지를 다시 평가하고, 원천 거래자료와 대조한 뒤에 대손충당금 검토에 이용할 수 있는지 결정하여야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub3",
+        "prompt": "서면진술의 대상기간과 감사의견에 관하여 감사팀이 수행하거나 결정한 절차와 판단 ⑪~⑮ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "옳지 않은 것은 ⑪, ⑫, ⑬이다. ⑪ 전체 기간을 포함하는 서면진술의 요청을 유지한다. ⑫ 적정의견을 표명하지 않는다. ⑬ 재무제표에 대한 의견을 거절한다.",
+        "score": 4,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "sub3.c1",
+            "verdict": "met",
+            "quote": "옳지 않은 것은 ⑪, ⑫, ⑬이다.",
+            "reason": "옳지 않은 판단으로 ⑪, ⑫, ⑬을 모두 특정했다.",
+            "claim": "옳지 않은 것으로 ⑪·⑫·⑬을 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. ⑪·⑫·⑬ 중 하나라도 빠뜨리거나, 옳은 것인 ⑭(제공되지 않은 사항을 경영진과 토의하고 요청한 서면진술을 감사위원회와 커뮤니케이션함), ⑮(감사업무의 조건에 서명하였던 사람이 더 이상 책임을 갖지 않으므로 현재 경영진에게 책임의 인정과 이해를 서면진술에서 재확인하도록 요청)을 옳지 않다고 지적하면 이 점수는 주지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub3.c2",
+            "verdict": "met",
+            "quote": "⑪ 전체 기간을 포함하는 서면진술의 요청을 유지한다.",
+            "reason": "전체 기간을 포함하는 서면진술의 요청을 유지하도록 했다.",
+            "claim": "⑪ 서면진술은 감사보고서에서 언급된 모든 기간을 대상으로 하여야 한다는 이유, 현재의 경영진이 그 기간 동안 재직하지 않았다는 사실이 재무제표 전체에 대한 이들의 책임을 경감하지는 않는다는 이유, 또는 전체 기간을 포함하는 서면진술의 요청을 유지한다는 절차 가운데 하나를 제시한다. 취임일을 이유로 진술의 대상기간을 줄일 수 없다는 취지면 인정한다. 취임 전 기간을 제외한 진술을 받는 것으로 충분하다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub3.c3",
+            "verdict": "met",
+            "quote": "⑫ 적정의견을 표명하지 않는다.",
+            "reason": "요구된 진술이 없으므로 적정의견을 표명하지 않도록 했다.",
+            "claim": "⑫ 경영진이 재무제표 작성과 정보·거래의 완전성에 관한 책임을 완수하였는지는 다른 감사증거만으로는 판단할 수 없어 상반기 거래에 대한 감사절차의 결과가 그 서면진술을 대신할 수 없다는 이유, 또는 요구되는 서면진술이 제공되지 않은 상태에서는 적정의견을 표명할 수 없다는 처리 중 하나를 제시한다. 그 진술이 없으면 충분하고 적합한 감사증거를 입수할 수 없다는 취지면 인정한다. 상반기 거래에 대한 다른 감사절차로 그 진술을 대신할 수 있다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "sub3.c4",
+            "verdict": "met",
+            "quote": "⑬ 재무제표에 대한 의견을 거절한다.",
+            "reason": "재무제표에 대한 의견을 거절하도록 했다.",
+            "claim": "⑬ 요구되는 서면진술이 제공되지 않아 감사증거를 입수할 수 없는 영향은 재무제표의 특정 구성요소·계정 또는 항목에 국한되지 않고 전반적이라는 이유, 또는 한정의견이 아니라 재무제표에 대한 의견을 거절하여야 한다는 처리 중 하나를 제시한다. 한 사항에 한정할 수 없다는 취지면 인정하며 감사보고서의 문안은 요구하지 않는다. 상반기 거래 완전성 한 사항에 한정한 한정의견으로 충분하다고 쓰면 인정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ⑪, ⑫, ⑬이다. ⑭는 경영진이 요청한 서면진술 중 하나 이상을 제공하지 않는 경우 그 사항을 경영진과 토의하여야 하고 감사인이 경영진에게 요청한 서면진술은 지배기구와 커뮤니케이션하여야 하므로 옳다. ⑮는 기업을 대표하여 감사업무의 조건에 서명한 사람이 더 이상 관련 책임을 갖지 않을 때 경영진에게 그 책임을 인정하고 이해하고 있다는 것을 서면진술에서 재확인하도록 요청할 수 있으므로 옳다.",
+          "⑪ 서면진술은 감사보고서에서 언급된 모든 기간을 대상으로 하여야 하고, 현재의 경영진이 그 기간 동안 재직하지 않았다는 사실이 재무제표 전체에 대한 이들의 책임을 경감하지는 않는다. 따라서 전체 기간을 포함하는 서면진술을 요청하여야 할 요구사항은 그대로 적용되므로 요청을 철회할 수 없다.",
+          "⑫ 경영진이 재무제표를 작성할 책임과 제공한 정보 및 거래의 완전성에 관한 책임을 완수하였는지는 다른 감사증거만으로는 판단할 수 없다. 상반기 거래에 대한 감사절차에서 왜곡표시를 발견하지 않았더라도 요구되는 서면진술이 제공되지 않으면 충분하고 적합한 감사증거를 입수할 수 없으므로 적정의견을 표명할 수 없다.",
+          "⑬ 이러한 감사증거입수 능력의 부재가 재무제표에 미칠 수 있는 영향은 특정 구성요소, 계정 또는 항목에 국한되는 것이 아니고 전반적이다. 따라서 상반기 거래 완전성 한 사항에 한정한 한정의견을 표명할 수 없고 재무제표에 대한 의견을 거절하여야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 3,
+      "actual_points": 3,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 4,
+      "actual_points": 4,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 4,
+      "actual_points": 4,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0e065fe7e4b1ba0f016aafb8ea55ac87d0b29776060ed91571",
+        "request_id": "req_d071829574e5439a82bdb0c35b17bd72",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 11005,
+          "input_tokens_details": {
+            "cache_write_tokens": 11002,
+            "cached_tokens": 0
+          },
+          "output_tokens": 746,
+          "output_tokens_details": {
+            "reasoning_tokens": 123
+          },
+          "total_tokens": 11751
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0036463,
+        "min_usd": 0.0036463,
+        "max_usd": 0.0036463,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ]
+}

@@ -4,6 +4,14 @@
 
 | 회차 | 대상 | 결과 | 상태 |
 | --- | --- | --- | --- |
+| r20 | 69·47 병합 → `case-13-expert-engagement-20260921` | 제작·실측 진행 중 | 회차 번호 선점. 설계서 B등급 8묶음 |
+| r21 | 17·54 병합 → `case-11-accounting-estimate-20260921` + 기준서형 분리 `pilot-11-005-standards-20260921` | 제작·실측 진행 중 | 회차 번호 선점. 설계서 B등급 8묶음 |
+| r22 | 33·72 병합 → `case-12-uncorrected-misstatement-20260921` | 제작·실측 진행 중 | 회차 번호 선점. 설계서 B등급 8묶음 |
+| r23 | 39·49 병합 → `case-17-icfr-deficiency-20260921` | 제작·실측 진행 중 | 회차 번호 선점. 설계서 B등급 8묶음 |
+| r24 | 9·24·44 병합 → `case-03-engagement-acceptance-change-20260921` | 제작·실측 진행 중 | 회차 번호 선점. 설계서 B등급 8묶음 |
+| r25 | 42·64 병합 → `case-05-fraud-governance-20260921` | 제작·실측 진행 중 | 회차 번호 선점. 설계서 B등급 8묶음 |
+| r26 | 51·66 병합 → `case-10-sampling-evaluation-20260921` | 제작·실측 진행 중 | 회차 번호 선점. 설계서 B등급 8묶음 |
+| r27 | 3·73 병합 → `case-13-service-org-internal-audit-20260921` | 제작·실측 진행 중 | 회차 번호 선점. 설계서 B등급 8묶음 |
 | r01 v4 | 55·18·19 병합 → `case-14-group-procedures-20260915`(v3 초안 그대로) | [요약](r01/summary-v4.json): 대표 6답안 모두 기대점수와 일치 | 게시 근거 실행. 운영 반영 절차는 [publication](publication/) |
 | r01 v3 | 같은 초안 | [요약](r01/summary-v3.json): 대표 6답안·보조 2답안 모두 기대점수와 일치 | authorization.md 해시가 달라 v4로 재실측. 증거 보존 |
 | r01 v2 | 같은 세트의 둘째 판본 | [요약](r01/summary-v2.json): 대표 6답안 모두 일치 | 새 배점 기준으로 v3가 대체. 증거 보존 |
@@ -28,6 +36,11 @@
 | r14 v1 | 13·14·56 병합 → `case-06-purchase-payment-20260920` | [요약](r14/summary-v1.json): 대표 9답안의 점수가 모두 기대와 일치(식별 기준의 0점 상태 차이 3건), 보조 3답안은 판정까지 일치. 채점 은행은 이 세트만 담은 부분 은행 | 게시 근거 실행. 정본·공개본 반영(원 3세트 퇴역). 운영 DB 반영(release `3518cda6`) |
 | r15 v2 | 6·65 병합 → `case-09-inventory-count-20260920`(v1 발문이 r12 발문과 바이트가 같아 v2로 대체) | [요약](r15/summary-v2.json): 대표 6답안의 점수·판정이 모두 기대와 일치(상태 차이 0건). 채점 은행은 이 세트만 담은 부분 은행 | 게시 근거 실행. 정본·공개본 반영(원 2세트 퇴역). 운영 DB 반영(release `3518cda6`) |
 | r15 v1 | 같은 초안의 첫 판본 | [요약](r15/summary-v1.json): 대표 6답안 모두 일치 | 발문 중복으로 v2가 대체. 증거 보존 |
+| r16 v1 | 2·58 병합 → `case-12-going-concern-20260920` | [요약](r16/summary-v1.json): 대표 9답안의 점수가 모두 기대와 일치(식별 기준의 0점 상태 차이 2건), 보조 3답안은 판정까지 일치 | 게시 근거 실행. 정본·공개본 반영(원 2세트 퇴역) |
+| r17 v1 | 15·50·16 병합 → `case-07-evidence-timing-20260920` | [요약](r17/summary-v1.json): 대표 9답안 모두 일치 | 게시 근거 실행. 정본·공개본 반영(원 3세트 퇴역) |
+| r17s v1 | 15번의 기준서형 물음 분리 → `pilot-07-006-standards-20260920` | 같은 [요약](r17/summary-v1.json): 대표 3답안 모두 일치. `facts=[]` 투영으로 사례 없이 만점 성립 확인 | 게시 근거 실행. 정본·공개본 반영(퇴역 없음) |
+| r18 v1 | 63·53 병합 → `case-07-control-test-sampling-20260920` | [요약](r18/summary-v1.json): 대표 9답안 모두 일치(식별 기준의 0점 상태 차이 2건), 보조 3답안은 판정까지 일치 | 게시 근거 실행. 정본·공개본 반영(원 2세트 퇴역) |
+| r19 v1 | 34·71 병합 → `case-12-written-representations-20260920` | [요약](r19/summary-v1.json): 대표 9답안 모두 일치(식별 기준의 0점 상태 차이 1건), 보조 3답안은 판정까지 일치. 첫 실행은 API 키 없이 호출 0회로 중단되어 `actual-a2`가 유효 실측 | 게시 근거 실행. 정본·공개본 반영(원 2세트 퇴역) |
 
 사용자 결정(2026-09-15): 지정 검토의 정본·공개본·운영 DB 반영과 원 세트 퇴역은 검토를 모아 한 번에 한다. 그때 사례형 원 세트 퇴역을 위한 DB 변경을 한 번 준비하고, 운영 DB 명령은 사용자가 직접 실행한다.
 
@@ -35,7 +48,7 @@
 
 ## 게시와 운영 반영
 
-지정 검토는 네 묶음으로 정본과 운영 DB에 반영했다. r01~r04는 release `906ca962`, r05·r06은 release `31504e78`, r07~r11은 release `2ed1a151`, r13~r15는 release `3518cda6`이다. 묶음마다 새 승인 기록·계획·수락 batch로 따로 실행했다. r12는 정본·공개본에만 설치한 뒤 사용자 지시로 r13~r15 릴리스에 함께 올라갔다.
+지정 검토는 다섯 묶음으로 정본과 운영 DB에 반영했다. r01~r04는 release `906ca962`, r05·r06은 release `31504e78`, r07~r11은 release `2ed1a151`, r13~r15는 release `3518cda6`, r16~r19는 release `77fc4607`이다. 묶음마다 새 승인 기록·계획·수락 batch로 따로 실행했다. r12는 정본·공개본에만 설치한 뒤 사용자 지시로 r13~r15 릴리스에 함께 올라갔다.
 
 ### r01~r04(2026-09-15~16)
 
@@ -70,6 +83,26 @@ import 도구는 옮긴 stage·baseline 사본을 읽지 않는다. 최종 원�
 | 운영 DB 반영 | 첫 apply(preparation-v1)는 HTTP 524(약 125초)로 결과가 불명확하게 끝났다. 읽기 전용 inspect 두 번으로 커밋되지 않았음을 확인하고, inspect 모드를 더한 driver로 다시 준비(preparation-v2)했다. probe(payload `025d624a…`)를 통과한 뒤 2026-09-18 18:21(KST)에 apply 1회(20초). 새 active release `31504e78-cc30-48f0-bb09-4ae98caff453`. 왕복 검증에서 분류 546행·학습 단위 439개가 일치했고, 독립 검증(read-only 373요청, 쓰기 0)을 통과했다 | [완료](publication-r05-r06/db-import/publication-v2/completion.json), [독립 검증](publication-r05-r06/db-import/publication-v2/verification.json), [준비](publication-r05-r06/db-import/preparation-v2/preparation.json), [inspect](publication-r05-r06/db-import/inspect/) |
 
 정본 설치 뒤 다른 세션이 같은 정본에서 `pilot-01-005`를 동시에 고쳤다. 그래서 DB 반영은 이 묶음의 stage 산출물을 기준으로 했다([기준 대조](publication-r05-r06/db-import/preparation-v2/baseline-reconciliation.json)). `pilot-01-005` 수정은 이후 기준서형 검토 반영(release `c43c59e4`)에 포함되었다. 게시 stage·기준·후보 사본과 DB 전송 사본은 2026-09-19에 보관 폴더로 옮겼다([copy-archive-2026-09-19.json](../copy-archive-2026-09-19.json)). 기준서형 검토 반영 기록이 기준 원문으로 참조하는 `stage/authoring.json` 하나만 남겼다.
+
+### r16~r19(2026-09-20)
+
+사용자 지시(2026-09-20): "설계서에 따라서 사례형 문제 제작해서 대체해줘", "정본 설치하고 운영 반영까지 진행해줘". [병합 종합문제 설계](../../../../docs/사례형-병합-종합문제-설계.md)의 A등급 4묶음이며, 사용자가 범위를 A등급까지로, 섞여 있는 기준서형 물음은 분리 보존으로 정했다. 승인 기록은 [publication-r16-r19/authorization.md](publication-r16-r19/authorization.md), 계획은 [plan.json](publication-r16-r19/plan.json)이다. 원 9세트(23물음·64점)를 빼고 새 5세트(13물음·45점)를 회차 순서로 은행 끝에 붙였다.
+
+| 단계 | 결과 | 기록 |
+| --- | --- | --- |
+| 수락 | 대표 39답안(9·9·3·9·9)의 점수가 모두 기대와 일치했다(39/39). receipt `65b70204…`(r16)·`91c1c6ce…`(r17)·`67fac1bf…`(r17s)·`924c2838…`(r18)·`ad165ade…`(r19). 게시 근거 실행은 Luna 15회, 약 $0.0452(보조 포함 회차 합계 24회·약 $0.0845) | [acceptance-completion.json](publication-r16-r19/acceptance-completion.json), [batches](publication-r16-r19/batches/) |
+| stage | 커밋하지 않는 `tmp/case-review-publication-r16-r19/` 격리 경로에서 검수 승급·게시, 공개본·암호화본·분류 카탈로그, 전체 검증(354세트·503물음·1,784점), DB 준비 검사를 통과했다 | [stage-completion.json](publication-r16-r19/stage-completion.json), [단계 로그](publication-r16-r19/stage-logs/) |
+| 정본 설치 | 358세트·514물음·1,803점 → 354세트·503물음·1,784점. 승급 장부 10건 추가. 분류 입력은 제자리에서 갱신(514행 → 503행: 퇴역 24행 제외, 새 13행 추가) | [install-completion.json](publication-r16-r19/install-completion.json), [baseline.json](publication-r16-r19/baseline.json) |
+| coverage | 퇴역 세트를 가리키던 은행 대상 관계 5건을 다시 연결했다. direct 유지 1건(`case-followup-20260914-10-unavailable-control-evidence` → r18 `sub2.c4`), partial 유지 1건(`case-applied-20260914-12-support-evidence-partial` → r16 `sub2.c3·c4`), adjacent 유지 2건(r17 `sub2.c3`, r19 `sub3.c3`), **direct → adjacent 강등 1건**(`coverage-deepening-20260914-02` → r18 `sub1.c2`). 초안 대상 관계 9건은 보존된 초안을 가리키므로 유지 | [coverage-update.json](publication-r16-r19/coverage-update.json), [관계 검토](publication-r16-r19/coverage-retarget-review.json) |
+| wiki | 퇴역 세트 생성 페이지 9개를 원 바이트로 보존한 뒤 제거하고 새 5페이지를 생성. `analysis:check`·`wiki:check` 오류 0 | [wiki-retirement](publication-r16-r19/wiki-retirement/manifest.json) |
+| 운영 DB 반영 | 로컬 PGlite 증명(payload `280c4ff8…`, 전송 524KB) → read-only probe 통과(7.5초) → apply 1회(19초). 새 active release `77fc4607-af06-45fb-bace-270cfccf3138`(354세트·503물음·1,784점, 사례형 132물음·기준서형 371물음, 학습 단위 422개). 왕복 검증에서 원문 바이트·공개 payload·분류 503행·주제가 일치했고 퇴역 9세트의 항목은 0건이다. 독립 검증(read-only 358요청, 쓰기 0) 통과 | [완료](publication-r16-r19/db-import/publication-v1/completion.json), [왕복](publication-r16-r19/db-import/publication-v1/roundtrip.json), [독립 검증](publication-r16-r19/db-import/publication-v1/verification.json), [준비](publication-r16-r19/db-import/preparation-v1/preparation.json) |
+
+- 기준 원문: 설치 전 정본(`a8da89ee…`, 358세트)이 운영 active release `3518cda6`의 저장 원문과 같은 바이트다. 이번에는 다른 세션이 정본에만 설치해 둔 변경이 없어 릴리스 범위가 정본 설치 계획과 같다.
+- **기준서형 분리**: `pilot-07-006`의 사례형 2물음은 r17 병합본으로 대체하고, 같은 세트의 기준서형 물음 `sub4`(3점)는 새 세트 `pilot-07-006-standards-20260920`으로 옮겨 살렸다. 원 발문이 "배분하는 원칙"·"주기는 감사 횟수로 제시"라고 써서 정답 항목을 암시했기에 문단·항 기호로 범위를 정하는 발문으로 고쳤고 criterion·배점·모범답안·출처는 승계했다. 실측에서 `facts=[]` 투영으로 채점해 사례 없이 만점이 성립함을 확인했다.
+- **내용 범위가 줄어든 곳**: r18이 두 원 세트의 통제 전제를 문서화된 승인 통제로 통일하면서 KGA 330 문단 A27 후단(문서화가 없는 통제의 증거 입수방법)을 직접 묻는 득점 요건이 사라졌다. 현재 은행에 대응 문항이 없어 후속 제작 후보로 남기고 coverage 관계도 adjacent로 낮췄다.
+- 운영 명령: 자동 모드 분류기가 `db-import/driver.mjs` 실행을 막아 `--prepare`·`--probe`·`--apply`를 **사용자가 직접 실행**했다. apply는 준비 기록의 SHA-256(`8020de7b…`)을 인자로 한 번만 실행했다.
+- **apply 후 중단과 재개**: import는 커밋되었으나 `driver.mjs`가 그 뒤 학습 단위 확인에서 멈췄다(`New case unit missing: pilot-07-006-standards-20260920`). 이전 회차는 새 세트가 모두 사례형이어서 단위 id를 `<세트>--case`로만 찾는데, 기준서형 분리본의 단위 id는 `<세트>--sub4--standard`다([learningUnitId](../../../../lib/learningUnits.ts)). 데이터 문제가 아니며 그 단정 앞의 왕복 검증은 모두 통과했다. `driver.mjs`는 `preparation.json`의 `code_files` 해시로 고정되어 있어 고치지 않고, 커밋 이후 단계만 같은 계약으로 수행하며 학습 단위 확인만 유형별로 고친 [verify-v1.mjs](publication-r16-r19/db-import/verify-v1.mjs)로 재개했다(DB 쓰기 0). 다음 회차에 기준서형을 새로 추가하면 드라이버의 이 단정을 같은 방식으로 고쳐야 한다.
+- 도구: [accept.mjs](publication-r16-r19/accept.mjs)(회차별 유효 실행 디렉터리를 plan의 `actual`로 지정할 수 있게 확장), [publish.mjs](publication-r16-r19/publish.mjs), [coverage-retarget.mjs](publication-r16-r19/coverage-retarget.mjs), [wiki-retire.mjs](publication-r16-r19/wiki-retire.mjs), [db-import](publication-r16-r19/db-import/).
 
 ### r13~r15(2026-09-20)
 
@@ -125,6 +158,48 @@ import 도구는 옮긴 stage·baseline 사본을 읽지 않는다. 최종 원�
 - 운영 명령: 이번에는 사용자가 자리를 비운다고 해서 agent가 운영 probe·apply를 직접 실행했다(자동 모드에서 차단되지 않음). apply는 검토한 준비 기록의 SHA-256(`0c014a93…`)을 인자로 한 번만 실행했고, 재시도는 없었다.
 - 기준 원문: 운영 active release `c43c59e4`(기준서형 검토 반영)의 원문은 설치 전 정본(`55095861…`)과 같은 바이트다. 이 원문은 커밋에 없으므로 `tmp/`의 사본을 [baseline.json](publication-r07-r11/baseline.json)과 [운영 반영 기록](../../../releases/20260919-standard-spoiler-compressed/completion.json)의 해시로 대조해 읽었다. 운영 SQL도 active 원문 해시를 다시 확인했다.
 - 도구: [accept.mjs](publication-r07-r11/accept.mjs), [publish.mjs](publication-r07-r11/publish.mjs), [coverage-retarget.mjs](publication-r07-r11/coverage-retarget.mjs), [wiki-retire.mjs](publication-r07-r11/wiki-retire.mjs), [db-import/driver.mjs](publication-r07-r11/db-import/driver.mjs)·[contract.mjs](publication-r07-r11/db-import/contract.mjs), [archive.mjs](publication-r07-r11/archive.mjs). r05·r06 도구를 옮기되, 게시 사본과 운영 전송 pack·SQL은 `tmp/case-review-publication-r07-r11/`에 두었다.
+
+## r16 입력과 실행
+
+2번(`pilot-12-001` 계속기업 평가기간과 자금계획의 검증)과 58번(`case-12-going-concern-evidence-20260914` 자금지원 계획의 증거와 계속기업 관련 공시·의견)을 합친 3물음·11점이다. 전자부품 제조사 해든(지배기업 새봄, 감사인 라온회계법인)의 20X1년 감사를 평가자료 검토(①~④, 옳지 않음 ①), 실행계획·현금흐름예측의 증거(⑤~⑪, 옳지 않음 ⑤·⑦·⑧·⑩), 공시와 감사보고(⑫~⑯, 옳지 않음 ⑬·⑮·⑯)로 두었다.
+
+- 병합 기준 적용: KGA 570 문단 22(적절히 공시된 경우 적정의견+별도 단락)와 문단 23(공시하지 않은 경우 한정·부적정)은 같은 기준에서 결론이 갈리는 두 경우다. 미공시 쪽만 남기고 문단 22의 처리는 ⑯에서 오적용 형태로만 썼다. 58번의 상황 나(증거 미입수 → 의견거절)는 `case-15-scope-limitation-disclaimer-20260919`와 중복이라 삭제했다.
+- 배점: 원 16점 → 11점. 같은 요구의 두 부분을 나누어 받던 배점을 항목별 1점으로 합치고(16(b)·16(c)·A16·A19·19(b)), 물음별 식별 3점을 새로 두었다.
+- 인용 11개 중 7개는 원 두 세트 인용의 바이트·content_hash 재사용이고 KGA 570 문단 14·17·18과 705 문단 7만 등록 전문에서 새로 발췌했다. 새 원자료 수집은 없다.
+- [초안과 모범답안](../../../drafts/case-review-2026-09-15/r16-going-concern-merge/questions-and-answers.md), [설계](../../../drafts/case-review-2026-09-15/r16-going-concern-merge/design.json), [내용 검토](r16/root-content-review-v1.json)(미해결 0건, 비차단 관찰 6건). 후보 은행은 정본 358세트 + 초안 = 359세트·517물음·1,814점이다.
+- 실측: 대표 3요청 9답안(모범 2·5·4, 부분 1·2·2, 오답 0·0·0) 모두 delta 0. 보조 3요청도 판정까지 일치. 6회 약 $0.0240. [요약](r16/summary-v1.json).
+- 미확인: 등록 공식 전문에 KGA 570의 A11~A13·A17·A18·A20~A34가 없어 직접 읽지 못했다. 16개 항목은 요구사항 문단과 등록된 A16·A19, KGA 705 문단 7·8로 확정했고 미등록 적용자료가 필요한 득점 요건은 없다.
+
+## r17 입력과 실행
+
+15번(`pilot-07-006`)·50번(`case-07-interim-misstatement-20260914`)·16번(`pilot-07-007`)을 합친 3물음·10점과, 15번에서 분리 보존한 기준서형 1물음·3점이다. 우진정밀(감사인 청람회계법인)의 20X1년 감사를 통제테스트의 계획·시기(①~④, 옳지 않음 ②·④), 기중 실증절차와 잔여기간(⑤~⑨, 옳지 않음 ⑤·⑦·⑧), 감사종결을 앞둔 실증절차의 성격(⑩~⑬, 옳지 않음 ⑩·⑫)으로 두었다.
+
+- 병합 기준 적용: KGA 330 문단 14(전기 통제테스트 결과 이용)와 문단 15(유의적 위험 대응 통제는 당기 테스트)가 결론이 갈리는 쌍이다. 사례에는 문단 15 쪽만 남기고 **문단 14는 삭제 대신 기준서형 세트로 분리**했다(사용자 결정). 문단 22(a)/(b) 두 대안, 문단 18이 적용되지 않는 비중요 항목, 문단 21이 적용되지 않는 비유의적 위험도 판단 기준을 노출하므로 항목으로 두지 않았다.
+- 기준서형 분리본 `pilot-07-006-standards-20260920`: `shared_context.facts=[]`, 물음 1개(sub4)·3점. 원 발문의 정답 암시 표현을 문단·항 기호 발문으로 고치고 criterion(crit2·crit3·crit4)·배점·모범답안·출처는 승계했다. [설계](../../../drafts/case-review-2026-09-15/r17-evidence-timing-merge/design-standards.json), [내용 검토](r17/root-content-review-standards-v1.json).
+- 배점: 원 21점(사례형 18 + 기준서형 3) → 13점(사례형 10 + 기준서형 3). 판단·이유·조치를 각각 배점하던 설계를 항목별 1점으로 합치고, 식별 3점과 중간기간 증거 요구(문단 12) 1점을 새로 올렸다.
+- 중복 회피: r13 `case-08-sales-receivable-20260920`이 쓰는 KGA 330 문단 16·17은 인용도 항목도 두지 않았고, 공유하는 A11·A15는 다른 문장·옳은 항목으로만 썼다.
+- 미확보 원문: KGA 330 A56~A60이 등록 전문 두 파일에 없어(둘 다 A55에서 끝남) 50번이 학습자료에서 인용하던 A58을 승계하지 않고 ⑤의 근거를 문단 22 본문으로 확정했다.
+- 실측: 대표 6요청(사례형 3 + 기준서형 3)에서 12답안 모두 delta 0. 기준서형 모범답안은 `facts=[]` 투영으로 채점해 사례 없이 만점이 성립함을 확인했다. 첫 사례형 실행은 `OPENAI_API_KEY` 미설정으로 호출 0회에서 중단되어 `actual-a-aborted-nokey/`에 preflight만 보존했다. 6회 약 $0.0151. [요약](r17/summary-v1.json).
+- `tools/build-round3.mjs`가 모든 물음을 `question_style: 'case'`로 단언해 기준서형에 쓸 수 없어 같은 절차의 `build-standards-round.mjs`를 r17 초안 폴더에 따로 두었다(`tools/`는 고치지 않았다).
+
+## r18 입력과 실행
+
+63번(`case-07-control-evidence-20260914`)과 53번(`case-10-control-sample-frame-20260914`)을 합친 3물음·10점이다. 통제테스트의 설계·수행(①~④, 옳지 않음 ①·③), 모집단과 표본항목(⑤~⑨, 옳지 않음 ⑤·⑥·⑧), 표본 결과의 평가와 대응(⑩~⑬, 옳지 않음 ⑪·⑬)으로 두었다.
+
+- **전제 통일**: 63번은 구두 승인이라 문서가 없고 53번은 승인 기록이 남는 출고지시서를 쓴다. 표본감사·표본항목 처리·승인 기록 분실이 성립하려면 기록이 있어야 하므로 문서화된 승인 통제로 통일했다. 그 결과 KGA 330 문단 A27 후단(문서화가 없는 통제)을 직접 묻는 득점 요건이 이 세트에 없고, 63번의 질문 요구는 옳은 항목 ②로, 관찰의 한계는 옳지 않은 항목 ①로 옮겼다.
+- 병합 기준 적용: 53번 sub2의 가 항목(무효화 → 대체항목, KGA 530 문단 10·A14)은 나 항목(문단 11·A15)과 같은 상황의 반대 결론이라 삭제하고 문단 10·A14는 인용하지 않았다. 그 요구는 기준서형 `pilot-10-003` sub1이 계속 다룬다.
+- 배점: 원 13점 → 10점. 새 요구는 ③(문단 10(b)·A32 간접통제)과 ⑥(530 A6)이며 식별 3점을 두었다.
+- 중복 회피: r15 `case-09-inventory-count-20260920`이 KGA 530 문단 6을 쓰므로 문단 6 대신 A5(모집단 완전성)로 갈랐다. 66번·`pilot-08-003`·`pilot-07-001`·r14·r17 초안과도 근거를 분리했다.
+- 실측: 대표 3요청 9답안(모범 3·4·3, 부분 1·2·1, 오답 0·0·0) 모두 delta 0, 보조 3요청도 판정까지 일치. 6회 약 $0.0221. [요약](r18/summary-v1.json).
+
+## r19 입력과 실행
+
+34번(`pilot-12-010`)과 71번(`case-12-representation-conflict-20260914`)을 합친 3물음·11점이다. 가온정밀(감사인 한울회계법인)의 20X1년 감사를 진술서와 은행 조회 회신의 차이(①~⑤, 옳지 않음 ①·②), 차이가 해결되지 않은 단계(⑥~⑩, 옳지 않음 ⑥·⑦·⑧), 진술 대상기간과 감사의견(⑪~⑮, 옳지 않음 ⑪·⑫·⑬)으로 두었다.
+
+- 병합 기준 적용: 34번이 KGA 580 문단 20이 적용되지 않을 수 있는 미제공과 적용되는 미제공을 한 세트에 두고 있었다. 적용되는 쪽만 남기고 상황 A의 criterion 3개를 삭제했으며, 71번이 쓰던 문단 20(a)(성실성 의문에 의한 의견거절)와 A27(변형은 미제공이 아님)도 항목·인용에서 제외했다.
+- 전제 통일: 34번의 두 독립 상황을 한 회사로 합치고 담보·자료 누락 지시는 계속 재직한 재무이사에, 대상기간 문제는 20X1년 7월 취임한 신임 대표이사에 붙였다. 함정 ③·⑨·⑮가 다투어지지 않도록 서명자의 책임·지식, 법규가 해지를 금지하지 않음, 전임 대표이사의 업무조건 서명을 사실로 두었다.
+- 배점: 원 14점 → 11점. 새 요구는 A23(위험평가 재고려) 1점과 식별 3점이다.
+- 실측: 대표 3요청 9답안(모범 3·4·4, 부분 1·2·3, 오답 0·0·0) 모두 delta 0, 보조 3요청도 판정까지 일치. 첫 실행 `actual-a`는 `OPENAI_API_KEY` 미설정으로 호출 0회에서 중단되어 preflight만 보존했고 유효 실측은 `actual-a2`다. 6회 약 $0.0232. [요약](r19/summary-v1.json).
 
 ## r13 입력과 실행
 

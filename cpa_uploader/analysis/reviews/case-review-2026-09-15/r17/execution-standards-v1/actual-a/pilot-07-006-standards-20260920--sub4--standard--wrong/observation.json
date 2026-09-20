@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r17/execution-standards-v1/grading-manifest.json",
+    "sha256": "c117a9db9808dd1acb47a7dbd78ea2254a5c6eaac09e670eb672a38686ad3752"
+  },
+  "entry_id": "pilot-07-006-standards-20260920--sub4--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-07-006-standards-20260920--sub4--standard",
+  "source_set_id": "pilot-07-006-standards-20260920",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub4"
+  ],
+  "projected_body_hash": "5cc62172c38bfc51dea14d396ea7dfe692b33c18b4a029f10521b515d27eb402",
+  "answers": {
+    "sub4": "전기의 감사 이후 통제에 변화가 생겼더라도 전기의 감사에서 얻은 감사증거를 당기의 감사증거로 그대로 이용할 수 있다.\n변화가 없었다면 다시 테스트할 필요가 없으며 통제테스트의 주기에 관한 제한은 없다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub4",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "변화가 생겨도 전기 증거를 그대로 이용할 수 있다고 하여 반대 결론을 적었다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "주기 제한이 없다고 하여 매 3회 감사 요구에 반대되는 결론을 적었다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "매 보고기간의 감사마다 일부 통제를 테스트하여야 한다는 요구를 적지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "169da9dc9f6485017a01b7ba0f05b578c7489b2ce35bc1d40672401a3f9233e8",
+  "schema_hash": "5bea35f3d3bc183e6c041c4036e0239cef25dae1103975831a1171ef356a3dd9",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "verdicts": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "전기의 감사 이후 통제에 변화가 생겼더라도 전기의 감사에서 얻은 감사증거를 당기의 감사증거로 그대로 이용할 수 있다.\n",
+            "reason": "변화가 있어도 전기 증거를 그대로 이용할 수 있다고 하여 당기 테스트 의무를 반대로 서술했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "변화가 없었다면 다시 테스트할 필요가 없으며 통제테스트의 주기에 관한 제한은 없다.",
+            "reason": "재테스트 불필요 및 통제테스트 주기 제한이 없다고 명시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "변화가 없었다면 다시 테스트할 필요가 없으며 통제테스트의 주기에 관한 제한은 없다.",
+            "reason": "변화가 없으면 재테스트할 필요가 없다고 하여 매 보고기간 일부 통제를 테스트해야 한다는 요구를 부정했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub4",
+            "verdicts": [
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e1"
+                ],
+                "reason": "변화가 있어도 전기 증거를 그대로 이용할 수 있다고 하여 당기 테스트 의무를 반대로 서술했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e2"
+                ],
+                "reason": "재테스트 불필요 및 통제테스트 주기 제한이 없다고 명시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub4/e2"
+                ],
+                "reason": "변화가 없으면 재테스트할 필요가 없다고 하여 매 보고기간 일부 통제를 테스트해야 한다는 요구를 부정했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-07-006-standards-20260920",
+    "score": 0,
+    "max_points": 3,
+    "subquestions": [
+      {
+        "subquestion_id": "sub4",
+        "prompt": "감사인이 이전의 감사에서 입수한 통제의 운영효과성에 관한 감사증거를 당기의 감사증거로 이용하려 한다. 그 통제가 유의적 위험을 완화시키는 통제가 아닌 경우를 전제로, 감사기준서 330 문단 14(a)와 (b)가 각각 요구하는 사항을 설명하시오.",
+        "user_answer": "전기의 감사 이후 통제에 변화가 생겼더라도 전기의 감사에서 얻은 감사증거를 당기의 감사증거로 그대로 이용할 수 있다.\n변화가 없었다면 다시 테스트할 필요가 없으며 통제테스트의 주기에 관한 제한은 없다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "전기의 감사 이후 통제에 변화가 생겼더라도 전기의 감사에서 얻은 감사증거를 당기의 감사증거로 그대로 이용할 수 있다.",
+            "reason": "변화가 있어도 전기 증거를 그대로 이용할 수 있다고 하여 당기 테스트 의무를 반대로 서술했다.",
+            "claim": "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "변화가 없었다면 다시 테스트할 필요가 없으며 통제테스트의 주기에 관한 제한은 없다.",
+            "reason": "재테스트 불필요 및 통제테스트 주기 제한이 없다고 명시했다.",
+            "claim": "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "변화가 없었다면 다시 테스트할 필요가 없으며 통제테스트의 주기에 관한 제한은 없다.",
+            "reason": "변화가 없으면 재테스트할 필요가 없다고 하여 매 보고기간 일부 통제를 테스트해야 한다는 요구를 부정했다.",
+            "claim": "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "전기 증거의 계속적인 관련성에 영향을 미치는 변화가 발생했다면 당기감사에서 해당 통제를 테스트해야 한다.",
+          "계속적인 관련성에 영향을 미치는 변화가 없더라도 매 3회의 감사에 최소한 한 번은 해당 통제를 테스트해야 하므로 횟수 제한 없는 재사용은 허용되지 않는다.",
+          "한 감사에서 의존할 모든 통제를 일괄 테스트하고 다음 두 감사에서 통제테스트를 전혀 하지 않는 방식을 피하도록 매 보고기간의 감사마다 일부 통제는 테스트해야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub4",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0f75b2dd4182b491016aafb998b7cc87d098ab1e1f06a1ce2f",
+        "request_id": "req_e6be3c0af1364837a175414e3a520c9d",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2877,
+          "input_tokens_details": {
+            "cache_write_tokens": 2874,
+            "cached_tokens": 0
+          },
+          "output_tokens": 371,
+          "output_tokens_details": {
+            "reasoning_tokens": 158
+          },
+          "total_tokens": 3248
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0011643,
+        "min_usd": 0.0011643,
+        "max_usd": 0.0011643,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r17/execution-standards-v1/actual-a/pilot-07-006-standards-20260920--sub4--standard--wrong/input.json",
+      "sha256": "c88cff2b42cc89ba925c673c199992a816286185fae5f387bae491a7013a1048"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r17/execution-standards-v1/actual-a/pilot-07-006-standards-20260920--sub4--standard--wrong/transport.jsonl",
+      "sha256": "26ee701538cb666e574630b882c504bdc26215bb148fec54300d0db1209a390f"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r17/execution-standards-v1/actual-a/pilot-07-006-standards-20260920--sub4--standard--wrong/traces.jsonl",
+      "sha256": "506ad29378737539732c4d4e2b890932538cbb5e2a010ddad1d60239deabc2c9"
+    }
+  }
+}

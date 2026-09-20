@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "set_id": "case-07-control-test-sampling-20260920",
+  "note": "대표 실측(execution-v1)의 분모에 넣지 않는 보조 실측 입력이다. 초안 qa.json의 supplementary_cases와 같은 취지이며, 봉인된 qa.json을 고치지 않도록 실행기 형상에 맞춘 입력을 따로 둔다.",
+  "supplementary_cases": [
+    {
+      "id": "r18-supp-numbers-only",
+      "purpose": "번호만 쓴 답이 물음마다 식별 1점만 받는지 확인한다.",
+      "answers": {
+        "sub1": "옳지 않은 것은 ①, ③이다.",
+        "sub2": "옳지 않은 것은 ⑤, ⑥, ⑧이다.",
+        "sub3": "옳지 않은 것은 ⑪, ⑬이다."
+      },
+      "expected": {
+        "sub1": {
+          "expected_points": 1,
+          "expected_verdicts": [
+            {
+              "criterion_id": "sub1.c1",
+              "verdict": "met",
+              "reason": "①·③을 고르고 옳은 항목을 고르지 않았다."
+            },
+            {
+              "criterion_id": "sub1.c2",
+              "verdict": "not_met",
+              "reason": "①의 이유나 절차를 쓰지 않았다."
+            },
+            {
+              "criterion_id": "sub1.c3",
+              "verdict": "not_met",
+              "reason": "③의 이유나 절차를 쓰지 않았다."
+            }
+          ]
+        },
+        "sub2": {
+          "expected_points": 1,
+          "expected_verdicts": [
+            {
+              "criterion_id": "sub2.c1",
+              "verdict": "met",
+              "reason": "⑤·⑥·⑧을 모두 고르고 옳은 항목을 고르지 않았다."
+            },
+            {
+              "criterion_id": "sub2.c2",
+              "verdict": "not_met",
+              "reason": "⑤의 이유나 절차를 쓰지 않았다."
+            },
+            {
+              "criterion_id": "sub2.c3",
+              "verdict": "not_met",
+              "reason": "⑥의 이유나 절차를 쓰지 않았다."
+            },
+            {
+              "criterion_id": "sub2.c4",
+              "verdict": "not_met",
+              "reason": "⑧의 이유나 절차를 쓰지 않았다."
+            }
+          ]
+        },
+        "sub3": {
+          "expected_points": 1,
+          "expected_verdicts": [
+            {
+              "criterion_id": "sub3.c1",
+              "verdict": "met",
+              "reason": "⑪·⑬을 고르고 옳은 항목을 고르지 않았다."
+            },
+            {
+              "criterion_id": "sub3.c2",
+              "verdict": "not_met",
+              "reason": "⑪의 이유나 절차를 쓰지 않았다."
+            },
+            {
+              "criterion_id": "sub3.c3",
+              "verdict": "not_met",
+              "reason": "⑬의 이유나 절차를 쓰지 않았다."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "r18-supp-remedy-only",
+      "purpose": "이유 없이 수행하였어야 할 절차만 쓴 답도 항목별 1점을 받는지 확인한다.",
+      "answers": {
+        "sub1": "옳지 않은 것은 ①, ③이다. ① 감사대상 기간 전체의 출고지시서에 남은 승인 기록을 검사하는 등 질문과 결합한 다른 감사절차를 수행한다. ③ ERP 권한 관리 절차에 관한 감사증거가 필요한지를 결정하고 필요하면 그 증거를 입수한다.",
+        "sub2": "옳지 않은 것은 ⑤, ⑥, ⑧이다. ⑤ 승인 여부와 관계없이 20X1년에 발행된 출고지시서를 모집단으로 삼고 창고 시스템의 출고 기록과 대조하여 모집단의 완전성을 확인한다. ⑥ 승인 시각이 출고 시각보다 늦은 건을 이탈로 집계한다. ⑧ 그 항목을 교체하지 않고 이탈로 집계한다.",
+        "sub3": "옳지 않은 것은 ⑪, ⑬이다. ⑪ 매출의 발생사실에 관한 중요왜곡표시위험을 높여 다시 평가하고 그에 맞추어 실증절차를 조정한다. ⑬ 통제에 대한 추가적인 테스트가 필요한지 여부와 실증절차를 적용할 필요가 있는지 여부도 결정한다."
+      },
+      "expected": {
+        "sub1": {
+          "expected_points": 3,
+          "expected_verdicts": [
+            {
+              "criterion_id": "sub1.c1",
+              "verdict": "met",
+              "reason": "①·③을 고르고 옳은 항목을 고르지 않았다."
+            },
+            {
+              "criterion_id": "sub1.c2",
+              "verdict": "met",
+              "reason": "①에 대하여 감사대상 기간 전체의 승인 기록 검사 등 질문과 결합한 다른 절차를 제시했다."
+            },
+            {
+              "criterion_id": "sub1.c3",
+              "verdict": "met",
+              "reason": "③에 대하여 간접통제 증거의 필요 여부를 결정하고 필요하면 입수한다는 절차를 제시했다."
+            }
+          ]
+        },
+        "sub2": {
+          "expected_points": 4,
+          "expected_verdicts": [
+            {
+              "criterion_id": "sub2.c1",
+              "verdict": "met",
+              "reason": "⑤·⑥·⑧을 모두 고르고 옳은 항목을 고르지 않았다."
+            },
+            {
+              "criterion_id": "sub2.c2",
+              "verdict": "met",
+              "reason": "⑤에 대하여 모집단 구성과 완전성 확인 절차를 제시했다."
+            },
+            {
+              "criterion_id": "sub2.c3",
+              "verdict": "met",
+              "reason": "⑥에 대하여 이탈로 집계한다는 절차를 제시했다."
+            },
+            {
+              "criterion_id": "sub2.c4",
+              "verdict": "met",
+              "reason": "⑧에 대하여 교체하지 않고 이탈로 집계한다는 절차를 제시했다."
+            }
+          ]
+        },
+        "sub3": {
+          "expected_points": 3,
+          "expected_verdicts": [
+            {
+              "criterion_id": "sub3.c1",
+              "verdict": "met",
+              "reason": "⑪·⑬을 고르고 옳은 항목을 고르지 않았다."
+            },
+            {
+              "criterion_id": "sub3.c2",
+              "verdict": "met",
+              "reason": "⑪에 대하여 위험을 높여 다시 평가하고 실증절차를 조정한다는 절차를 제시했다."
+            },
+            {
+              "criterion_id": "sub3.c3",
+              "verdict": "met",
+              "reason": "⑬에 대하여 추가 테스트와 실증절차 적용의 필요 여부를 결정한다는 절차를 제시했다."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "r18-supp-condition-boundary",
+      "purpose": "핵심 원칙에 못 미치는 서술이 해당 항목의 점수를 받지 못하는지 확인한다.",
+      "answers": {
+        "sub1": "옳지 않은 것은 ①, ③이다. ① 관찰 결과는 참고자료일 뿐이다. ③ 승인권자와 승인 권한을 등록·변경하는 절차에 관한 감사증거가 필요한지를 결정하여야 한다.",
+        "sub2": "옳지 않은 것은 ⑤, ⑥, ⑧이다. ⑤ 모집단이 너무 작다. ⑥ 사전 승인을 확인한 뒤 출고하도록 정한 통제이므로 출고 이후에 기록된 승인은 이탈이다. ⑧ 설계된 절차와 적절한 대체적 절차를 모두 적용할 수 없으므로 이탈로 취급하여야 한다.",
+        "sub3": "옳지 않은 것은 ⑪, ⑬이다. ⑪ 최초의 낮은 위험평가를 그대로 유지할 수 없다. ⑬ 추가적인 통제테스트가 필요한지 여부도 결정하여야 한다."
+      },
+      "expected": {
+        "sub1": {
+          "expected_points": 2,
+          "expected_verdicts": [
+            {
+              "criterion_id": "sub1.c1",
+              "verdict": "met",
+              "reason": "①·③을 고르고 옳은 항목을 고르지 않았다."
+            },
+            {
+              "criterion_id": "sub1.c2",
+              "verdict": "not_met",
+              "reason": "①에 대하여 관찰의 시점 제한이나 관찰의 영향, 보완절차를 다루지 않고 참고자료라고만 썼다."
+            },
+            {
+              "criterion_id": "sub1.c3",
+              "verdict": "met",
+              "reason": "③에 대하여 간접통제 증거의 필요 여부를 결정하여야 한다는 절차를 제시했다."
+            }
+          ]
+        },
+        "sub2": {
+          "expected_points": 3,
+          "expected_verdicts": [
+            {
+              "criterion_id": "sub2.c1",
+              "verdict": "met",
+              "reason": "⑤·⑥·⑧을 모두 고르고 옳은 항목을 고르지 않았다."
+            },
+            {
+              "criterion_id": "sub2.c2",
+              "verdict": "not_met",
+              "reason": "⑤에 대하여 모집단의 목적 부합이나 완전성 확인 대신 크기만 들었다."
+            },
+            {
+              "criterion_id": "sub2.c3",
+              "verdict": "met",
+              "reason": "⑥에 대하여 출고 이후의 승인은 이탈이라는 이유를 제시했다."
+            },
+            {
+              "criterion_id": "sub2.c4",
+              "verdict": "met",
+              "reason": "⑧에 대하여 이탈로 취급하여야 한다는 이유를 제시했다."
+            }
+          ]
+        },
+        "sub3": {
+          "expected_points": 2,
+          "expected_verdicts": [
+            {
+              "criterion_id": "sub3.c1",
+              "verdict": "met",
+              "reason": "⑪·⑬을 고르고 옳은 항목을 고르지 않았다."
+            },
+            {
+              "criterion_id": "sub3.c2",
+              "verdict": "not_met",
+              "reason": "⑪에 대하여 이유나 절차 없이 결론만 썼다."
+            },
+            {
+              "criterion_id": "sub3.c3",
+              "verdict": "met",
+              "reason": "⑬에 대하여 추가적인 통제테스트의 필요 여부도 결정하여야 한다는 이유를 제시했다."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

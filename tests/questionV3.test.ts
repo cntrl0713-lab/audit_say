@@ -91,7 +91,21 @@ function createValidSet(sourceFile: string): QuestionSetV3 {
 }
 
 const authoringBankPath = path.resolve('cpa_uploader/data/cpa_question_sets_v3.authoring.json');
-const retirementManifestPath = path.resolve('cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/retirement-manifest.json');
+// 사용자가 승인한 퇴역 기록. 각 manifest는 승인 지시 원문을 authorization에 담는다.
+// 회차를 반영할 때 그 회차의 퇴역 기록 경로를 이 목록에 더하는 것이 승인을 코드에 남기는 절차다.
+// 글롭으로 훑지 않는다. 아무 파일이나 자동으로 승인 기록이 되면 가드가 막을 것이 없어진다.
+const retirementManifestPaths = [
+    // 2026-09-14 기준서형 배점 재편
+    'cpa_uploader/analysis/reviews/standard-points-implementation-2026-09-14/retirement-manifest.json',
+    // 2026-09-15 사례형 지정 검토의 병합·대체. r05-r06은 첫 적용이 실패해 publication-v2로 다시 올렸고
+    // 두 preparation의 퇴역 기록은 바이트가 같다. 어느 판이 적용됐는지 가리지 않고 실재하는 기록을 모두 적는다.
+    'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication/db-import/preparation-v1/retirement-manifest.json',
+    'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v1/retirement-manifest.json',
+    'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r05-r06/db-import/preparation-v2/retirement-manifest.json',
+    'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r07-r11/db-import/preparation-v1/retirement-manifest.json',
+    'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r13-r15/db-import/preparation-v1/retirement-manifest.json',
+    'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r16-r19/db-import/preparation-v1/retirement-manifest.json',
+].map((relativePath) => path.resolve(relativePath));
 
 test('validateQuestionSetV3 validates source-bound linked question sets', () => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'question-v3-'));
@@ -255,8 +269,13 @@ test('v3 authoring bank keeps the pilot floor distribution and stays internally 
             `${set.id} must have a positive integer total derived from its criteria`,
         );
     }
-    // 파일럿 세트는 사용자가 승인한 퇴역 manifest(2026-09-14 기준서형 배점 재편)에 있을 때만 은행에서 빠질 수 있다.
-    const retiredSetIds = new Set((JSON.parse(fs.readFileSync(retirementManifestPath, 'utf8')) as { retired_set_ids: string[] }).retired_set_ids);
+    // 파일럿 세트는 사용자가 승인한 퇴역 manifest에 있을 때만 은행에서 빠질 수 있다.
+    const retiredSetIds = new Set(retirementManifestPaths.flatMap((manifestPath) => {
+        const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')) as { authorization?: string; retired_set_ids: string[] };
+        // 승인 지시를 담지 않은 기록은 퇴역 근거가 되지 못한다.
+        assert.ok(manifest.authorization, `${manifestPath} must carry the authorization it was retired under`);
+        return manifest.retired_set_ids;
+    }));
     for (const id of retiredSetIds) assert.ok(!sets.some((set) => set.id === id), `${id} is retired but still in the bank`);
     for (const [topicId, expectedCount] of expectedCounts) {
         assert.ok(

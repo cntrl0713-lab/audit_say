@@ -1,0 +1,89 @@
+// r16 초안의 agent 내용검토 장부 기록기. 실제 대조를 마친 뒤 한 번만 실행한다.
+//
+//   node --import tsx cpa_uploader/drafts/case-review-2026-09-15/r16-going-concern-merge/record-review.mjs
+//
+// 출력: cpa_uploader/analysis/reviews/case-review-2026-09-15/r16/root-content-review-v1.json
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { reviewedContentHash } from '../../../questionReviewIdentity.ts';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(here, '../../../..');
+const DRAFT_DIR = 'cpa_uploader/drafts/case-review-2026-09-15/r16-going-concern-merge';
+const OUT_DIR = path.join(root, 'cpa_uploader/analysis/reviews/case-review-2026-09-15/r16');
+const SET_ID = 'case-12-going-concern-20260920';
+
+const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
+const ref = (file) => ({ file, sha256: hash(fs.readFileSync(path.join(root, file))) });
+const [draft] = JSON.parse(fs.readFileSync(path.join(root, DRAFT_DIR, 'sets.json'), 'utf8'));
+if (draft.id !== SET_ID) throw new Error('set id 불일치');
+
+const PASS = {
+    source: 'pass', answer: 'pass', prompt: 'pass', points: 'pass',
+    style: 'pass', topics: 'pass', edition: 'pass', nonduplication: 'pass',
+};
+
+const review = {
+    version: 1,
+    method: 'agent_content_review',
+    human_review_performed: false,
+    reviewer_id: 'agent:claude-opus-5 (author agent; no independent peer review)',
+    reviewed_at: new Date().toISOString(),
+    target: {
+        file: `${DRAFT_DIR}/sets.json`,
+        sha256: ref(`${DRAFT_DIR}/sets.json`).sha256,
+        set_id: SET_ID,
+        reviewed_content_sha256: reviewedContentHash(draft),
+    },
+    evidence: [
+        `${DRAFT_DIR}/design.json`,
+        `${DRAFT_DIR}/lineage.json`,
+        `${DRAFT_DIR}/qa.json`,
+        `${DRAFT_DIR}/build-draft.mjs`,
+        'cpa_uploader/data/official/kga450-560-570-580-2025-review12.txt',
+        'cpa_uploader/data/official/case-applied-2026-09-14-kga570.md',
+        'cpa_uploader/data/official/kga700-705-2025-review15.txt',
+        'cpa_uploader/data/cpa_question_sets_v3.authoring.json',
+        'docs/물음별-학습-단위와-분류-계약.md',
+        'docs/사례형-병합-종합문제-설계.md',
+        'docs/case-question-edit-notes-2026-09-14.md',
+    ].map(ref),
+    method_detail:
+        'KGA 570 문단 6~24 전부와 등록된 적용자료 A16·A19, KGA 700 문단 28과 KGA 705 문단 5(a)·7·8·9·20·21·23·24·28~30을 등록 전문에서 직접 읽고 열여섯 항목의 옳고 그름을 문단 단위로 확정했다. 인용 열한 개 가운데 일곱 개(KGA 570 문단 13·16·19·23·A16·A19, KGA 705 문단 8)는 병합 대상 두 원 세트(pilot-12-001, case-12-going-concern-evidence-20260914)의 정본 인용을 바이트와 content_hash 그대로 재사용했고, KGA 570 문단 14·17·18과 KGA 705 문단 7만 같은 등록 전문(kga450-560-570-580-2025-review12.txt L388-L389·L421-L422·L423-L430, kga700-705-2025-review15.txt L67-L72)에서 발췌해 SHA-256을 계산했다. validate_draft_v3.ts --against-bank로 인용 원문 실존과 기존 은행과의 ID·발문 중복 없음을 확인했다. 현재 정본에서 이 문단들을 인용한 세트를 모두 찾아 대조했으며(KGA 570 문단 13·16은 pilot-12-001과 pilot-12-003·std-points-20260914-320b18021b39, 문단 19·23과 A16·A19는 case-12-going-concern-evidence-20260914와 draft-12-570-freq01, KGA 705 문단 7·8은 pilot-15-003·case-16-comparative-restatement-20260919·case-16-other-information-20260915), 문단 인용이 겹치지 않아도 요구가 겹칠 수 있는 case-15-scope-limitation-disclaimer-20260919와 case-12-report-date-subsequent-20260919의 발문·criterion을 함께 읽었다. 판본은 두 원 세트가 남긴 2026 전문 대조 기록과 case-applied-2026-09-14-kga570.md의 수집 기록을 재사용했고 새 원자료 수집은 하지 않았다.',
+    questions: [
+        {
+            subquestion_id: 'sub1',
+            checks: { ...PASS },
+            rationale:
+                'source: ①은 문단 13(평가기간이 재무제표일로부터 12개월에 미달하면 적어도 12개월로 확장하도록 요청), ②는 문단 16(a)(경영진이 평가를 아직 수행하지 않은 경우에 평가 수행을 요청함), ③은 문단 14, ④는 문단 16(d)에서 확정했다. ①에 대하여 문단 13의 두 조건을 사실과 하나씩 대조했다. 첫째, 해당 재무보고체계의 요구에 따라 경영진이 평가한 기간과 동일한 기간을 대상으로 평가하는 것 자체는 옳으나, 둘째, 그 기간이 재무제표일로부터 10개월이어서 12개월에 미달하므로 확장 요청 의무가 발생한다. 법규가 더 긴 기간을 정한 경우의 분기는 "재무보고체계나 법규가 이보다 긴 평가기간을 요구하는 상황은 아니다"라는 사실로 배제했다. ②가 다투어지지 않도록 경영진이 평가자료를 이미 제출하였다는 사실을 자료에 두었고, 문단 15(경영진 평가기간 후의 기간에 대한 질문)는 ①과 결론이 갈리는 것으로 오해될 수 있어 항목으로 두지 않았다. answer: 모범답안 두 문장이 식별·① criterion과 1대1로 대응하고 옳은 항목 ②·③·④의 근거도 함께 제시한다. prompt: 발문은 단계 이름과 항목 범위, 요구 형식만 밝히고 옳지 않은 항목의 수·내용을 알려 주지 않는다. points: 식별 1점 + 옳지 않은 항목 한 개 1점으로 2점이며 원 pilot-12-001 subq2의 2점과 같다. 이유 또는 보완절차 중 하나를 핵심 원칙 수준으로 쓰면 인정하되, 재무제표일로부터 12개월이라는 최소기간이 드러나야 한다는 원 crit3의 인정 기준을 유지한다. style: 네 항목의 옳고 그름이 평가자료의 대상기간이 10개월이라는 점, 더 긴 기간을 요구하는 법규가 없다는 점, 평가가 이미 수행되었다는 사실에 달려 있으므로 사례형이다. topics: 12(감사 완료·계속기업)를 실제 요구에서 정했다. edition: 20X1·20X2 표기이며 2025 개정 전문(2026년 1월 1일 이후 개시 보고기간 시행)을 기준으로 판단했다. nonduplication: 현재 정본에서 문단 13을 인용한 세트는 병합 대상 pilot-12-001뿐이다. std-points-20260914-320b18021b39는 문단 16(a)·(b)·(e)를 사실 없이 재현하게 하는 기준서형이고, 이 물음에서 문단 16(a)는 적용 조건이 배제되는 함정 ②로만 쓰여 득점 요건이 없다.',
+        },
+        {
+            subquestion_id: 'sub2',
+            checks: { ...PASS },
+            rationale:
+                'source: ⑤는 문단 16(c)(i)·(ii), ⑥은 문단 A16(기업의 최근 이용가능한 중간 재무제표를 분석하고 토의함), ⑦은 문단 A16(금융지원의 제공 또는 유지약정의 존재여부, 그 적법성 및 강제성 여부를 조회함)과 A19(계약조건에 대한 조회를 포함한 서면조회 요청 고려), ⑧은 문단 A19(그러한 지원을 제공할 능력에 대한 증거를 입수할 필요)와 A16(추가적인 자금 제공을 위한 이들의 재무능력을 평가함), ⑨는 문단 A16(사채 및 차입금 약정의 조건을 열람하여 그 위반여부를 판단함), ⑩은 문단 16(b)와 A16(차입수단의 존재여부, 그리고 그 조건과 적절성을 확인함), ⑪은 문단 16(e)에서 확정했다. ⑤에 대하여 문단 16(c)의 적용 조건(기업이 현금흐름을 예측하였고 이 예측에 대한 분석이 경영진의 미래 실행계획을 평가할 때 유의적인 요소인 경우)을 사실로 명시해 두었다. ⑦과 ⑧은 A19의 서로 다른 요구(약정의 존재·조건 조회 / 제공 능력의 증거)여서 항목을 나누었고, 한쪽의 결론이 다른 쪽의 기준을 알려 주지 않는다. 새봄에 대한 조회를 옳은 항목으로 두면 ⑦의 보완절차가 드러나므로 두지 않았다. ⑪이 옳다는 판단은 문단 16(e)가 요구하는 절차를 그대로 수행할 뿐 다른 절차를 대신한다고 말하지 않는다는 점으로 확정했고, KGA 580 문단 4(서면진술은 그 자체로 충분하고 적합한 증거가 되지 않음)를 함께 읽어 항목 문장이 그 한계를 넘지 않는지 확인했다. answer: 모범답안 다섯 문장이 식별·⑤·⑦·⑧·⑩ criterion과 대응하고 옳은 항목 ⑥·⑨·⑪의 근거도 제시한다. prompt: 단계 이름과 항목 범위, 요구 형식만 밝힌다. points: 식별 1점 + 옳지 않은 항목 네 개 각 1점으로 5점이다. 원 pilot-12-001 exp1(4점)과 58번 sub1(3점)의 7점을 네 항목 4점으로 합치고 식별 1점을 더했다. 구체적인 조회 방법·입수할 재무자료의 종류·연장 조건의 세부는 득점 요건으로 삼지 않는다. style: 일곱 항목의 옳고 그름이 예측 분석이 유의적 요소라는 점, 이메일에 기간·금액·조건이 특정되어 있지 않다는 점, 새봄이 다른 계열사 채무를 부담하게 되었고 재무자료를 받지 못하였다는 점, 은행의 승인 회신이 오지 않았다는 사실에 달려 있으므로 사례형이다. topics: 12를 실제 요구에서 정했다. edition: 20X1·20X2 표기이며 2025 개정 전문을 기준으로 판단했다. nonduplication: pilot-12-003 sub1은 문단 16(c)·(d)의 절차를 사실 없이 제시하게 하는 기준서형 발문이고, 이 물음의 ⑤는 같은 문단을 해든의 예측이라는 사실에 적용해 월말 잔액 확인만으로 마무리한 결정이 요구를 충족하지 못함을 가리게 한다. case-12-going-concern-evidence-20260914의 같은 요구는 이 초안으로 대체·퇴역될 예정이다.',
+        },
+        {
+            subquestion_id: 'sub3',
+            checks: { ...PASS },
+            rationale:
+                'source: ⑫는 문단 18(불확실성의 잠재적 영향의 크기와 발생가능성이 적절한 공시가 필요할 정도라고 판단하는 경우 중요한 불확실성이 존재함), ⑬은 문단 19(a), ⑭는 문단 17, ⑮는 문단 19(b), ⑯은 문단 23(a)·(b)와 KGA 705 문단 7·8에서 확정했다. 문단 22(적절한 공시가 이루어진 경우의 적정의견과 "계속기업 관련 중요한 불확실성" 별도 단락)와 문단 23은 같은 기준에서 결론이 갈리는 두 경우이므로 공시가 이루어지지 않은 쪽만 남기고, 문단 22의 처리는 별도 항목이 아니라 ⑯에서 잘못 적용된 형태로만 두었다. 의견근거 단락의 기재사항(문단 23(b))을 옳은 항목으로 두면 ⑯의 정답인 의견 변형이 드러나므로 두지 않고 ⑯의 인정 범위로만 남겼다. ⑭가 다투어지지 않도록 자료 3에 계속기업전제 사용이 적합하다는 결론과 다른 의견변형 사유·증거 미입수 사항이 없다는 배제 사실을 두었고, 문단 21(전제 사용이 부적합한 경우의 부적정의견)과 문단 20(중요한 불확실성이 존재하지 않는 경우)의 적용을 각각 배제했다. ⑯의 득점 요건에서 전반성 판단을 뺀 것은 전반성을 뒷받침하던 원 58번의 사실 문장이 공시 미흡이라는 결론을 알려 주어 삭제되었기 때문이며, 문단 23(a)가 한정의견과 부적정의견을 모두 허용하므로 둘 중 하나만 써도 인정한다. answer: 모범답안 네 문장이 식별·⑬·⑮·⑯ criterion과 대응하고 옳은 항목 ⑫·⑭의 근거도 제시한다. prompt: 단계 이름과 항목 범위, 요구 형식만 밝히고 어떤 의견을 표명해야 하는지 알려 주지 않는다. points: 식별 1점 + 옳지 않은 항목 세 개 각 1점으로 4점이다. ⑬(문단 19(a))과 ⑮(문단 19(b))는 같은 문단의 서로 다른 결정이어서 합치지 않았고, 문단 19(b)가 한 결정으로 묶은 두 내용은 ⑮ 한 항목으로 두었다. style: 다섯 항목의 옳고 그름이 해든 주석의 실제 기재 내용, 확인된 지원의 조건이 확정되지 않았다는 점, 경영진이 주석을 그대로 두기로 하였다는 사실에 달려 있으므로 사례형이다. topics: 12(공시의 적절성 결정)와 15(표명할 감사의견)를 실제 요구에서 정했다. edition: 20X1·20X2 표기이며 KGA 570·705의 2025 개정 전문을 기준으로 판단했다. 문단 20과 A24~A25는 감사기준서 701의 시행시기를 따르지만 이 물음은 중요한 불확실성이 존재하는 경우만 다루므로 인용하지 않았다. nonduplication: draft-12-570-freq01 q1·q2는 문단 22·23을 사실 없이 재현하게 하는 기준서형이고, 이 물음의 ⑯은 같은 문단 23을 해든의 주석 상태에 적용해 어느 처리가 잘못되었는지 가리게 하는 의도된 심화다. pilot-15-003은 KGA 705 문단 7~9의 네 조합과 전반성의 세 경우를 재현하게 하는데 이 물음은 전반성을 득점 요건에 두지 않는다. case-15-scope-limitation-disclaimer-20260919는 증거 미입수에 따른 의견거절을 다루며, 이 초안은 그 상황을 두지 않는다.',
+        },
+    ],
+    observations_not_blocking: [
+        'KGA 570의 적용자료 가운데 등록된 발췌는 A16과 A19뿐이다(case-applied-2026-09-14-kga570.md). A11~A13(평가기간), A17(향후 실행계획), A18(현금흐름예측), A20(서면진술), A21~A23(중요한 불확실성과 공시), A28~A34(감사보고서)는 등록 전문에 없어 직접 읽지 못했다. 열여섯 항목의 판단은 모두 요구사항 문단(13·14·16·17·18·19·23)과 등록된 A16·A19, KGA 705 문단 7·8로 확정했으며 미등록 적용자료의 내용이 필요한 득점 요건은 이 세트에 없다.',
+        '자료 3의 전제 문장("감사팀이 경영진의 실행계획과 자금지원에 관하여 충분하고 적합한 감사증거를 입수한 뒤의 단계를 전제로 한다")은 원 58번 fact3의 같은 장치를 이어받은 것이다. 이 문장은 자료 2 항목의 옳고 그름을 말하지 않지만, 증거 입수가 끝난 단계를 전제로 한다는 점에서 자료 2에 보완이 필요했다는 인상을 줄 여지가 있다. 물음 2의 득점 요건은 이 문장과 무관하게 각 항목의 근거 문단으로만 판단된다.',
+        '자료 2의 배경 사실("예측을 위해 생성된 기초 영업자료와 가정의 근거는 감사팀이 요청하면 확인할 수 있다", "사채·차입금 약정서와 최근 이용가능한 중간 재무제표는 감사팀이 열람할 수 있다")은 자료 입수가 불가능하다는 변명을 배제하기 위한 것이며 옳은 항목 ⑥·⑨와 옳지 않은 항목 ⑤ 양쪽에 걸쳐 있어 정답 표지가 되지 않는다.',
+        '물음 1은 옳지 않은 항목이 하나뿐이어서 2점이다. 옳지 않은 항목을 더 넣으려면 함정 ②와 같은 문단 16에서 결론이 갈리는 항목을 두거나 문단 15(평가기간 후의 기간에 대한 질문)를 넣어야 하는데, 후자는 ①의 판단 기준을 알려 줄 수 있어 넣지 않았다. 세 물음의 옳지 않은 항목 수를 1·4·3으로 달리 두었다.',
+        '득점 요건에서 빠진 함정 ②·⑪의 판단은 식별 criterion에서만 평가된다. 함정을 옳지 않다고 고른 답은 식별 점수만 잃고 다른 항목의 이유·절차 점수는 유지된다.',
+        '⑯의 득점 요건은 한정의견과 부적정의견 중 하나만 써도 인정하므로, 원 58번 sub3이 요구하던 부적정의견 특정과 전반성 설명은 이 세트에서 평가되지 않는다. 그 요구는 pilot-15-003(기준서형)과 case-16-comparative-restatement-20260919(사례형 한정의견 판단)에 남아 있다.',
+    ],
+    unresolved_content_findings: [],
+};
+
+fs.mkdirSync(OUT_DIR, { recursive: true });
+fs.writeFileSync(path.join(OUT_DIR, 'root-content-review-v1.json'), `${JSON.stringify(review, null, 2)}\n`, { flag: 'wx' });
+console.log('root-content-review-v1.json 기록:', review.target.reviewed_content_sha256);

@@ -68,11 +68,11 @@ confidence: high
 | [data/회계감사_통합학습자료/99_문자_판독_검토대상.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EB%AC%B8%EC%9E%90_%ED%8C%90%EB%8F%85_%EA%B2%80%ED%86%A0%EB%8C%80%EC%83%81.md) | 32547 | b7ada42c94d11d0685af07fd97f447cb536cb2479445e29a7a831b80d36f4b1e | 0 | - |
 | [data/회계감사_통합학습자료/99_완전성_검증.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/99_%EC%99%84%EC%A0%84%EC%84%B1_%EA%B2%80%EC%A6%9D.md) | 3806 | d645692493fa616bdbdb386018d26c4f14f91dd18536cd84f8233446f541f21f | 0 | - |
 | [data/회계감사_통합학습자료/README.md](../../data/%ED%9A%8C%EA%B3%84%EA%B0%90%EC%82%AC_%ED%86%B5%ED%95%A9%ED%95%99%EC%8A%B5%EC%9E%90%EB%A3%8C/README.md) | 3608 | 73089ee49076f373e38fc33f5be4b30f5f2ed3b33e9763a62b4d77de70dac306 | 0 | - |
-| [data/cpa_question_sets_v3.authoring.json](../../data/cpa_question_sets_v3.authoring.json) | 6137529 | a8da89eecb7a79b9f843fa7c774622880e9fa23d259cb4d0e4c2e1dcfe6a86f3 | 0 | - |
-| [data/cpa_question_sets_v3.promotions.json](../../data/cpa_question_sets_v3.promotions.json) | 12480326 | 244b160b56c5e93647e3888ccaaf73cff4c7bc09426b3a90a734ad26fafc02fb | 0 | - |
-| [data/cpa_question_sets_v3.public.json](../../data/cpa_question_sets_v3.public.json) | 1191298 | 477b99cf999a583b5d28d6b6c4289080d711c19166ef16f0408a76461d333fa2 | 0 | - |
-| [data/learning-question-classification-review.json](../../data/learning-question-classification-review.json) | 315871 | 7aef610cbb925f937ed0b61abc3c844effb27193ee6ae2a56f318c2de84eb16d | 0 | - |
-| [data/learning-question-classifications.json](../../data/learning-question-classifications.json) | 496552 | 673c15f5856d88709edf61b4ae5134e32c13ef6e6599e5b6d4be22d8b5d14656 | 0 | - |
+| [data/cpa_question_sets_v3.authoring.json](../../data/cpa_question_sets_v3.authoring.json) | 6160261 | 3b7d62db7ee85af0585b554f1f5965505b9c35f9df3cbde7dba1c38953940c55 | 0 | - |
+| [data/cpa_question_sets_v3.promotions.json](../../data/cpa_question_sets_v3.promotions.json) | 12490059 | 603d77336e43712201cdb6af649881a27af17f677094159b1febf684d36aeb45 | 0 | - |
+| [data/cpa_question_sets_v3.public.json](../../data/cpa_question_sets_v3.public.json) | 1188453 | e10d4320a84f25d262fe9045375013aabee40a768f8dc496afea65c31cc1f7d0 | 0 | - |
+| [data/learning-question-classification-review.json](../../data/learning-question-classification-review.json) | 313829 | 430ba618835e07c3074bf06f4ee96e2a69513a320097049715109625e734d215 | 0 | - |
+| [data/learning-question-classifications.json](../../data/learning-question-classifications.json) | 487384 | 1dd83d9aafb0177b537dc2ebb5791d491aa5f2949647e52e455024e5c317b426 | 0 | - |
 | [data/official/assurance-review-2027-topic19.txt](../../data/official/assurance-review-2027-topic19.txt) | 7954 | 864546d0b2a109a3b0a254ef83ec4c13954d240a111025ccc0c4502dccea93a5 | 0 | - |
 | [data/official/case-applied-2026-09-14-kga570.md](../../data/official/case-applied-2026-09-14-kga570.md) | 2885 | 4c0cbc0e724f224badb27c59d58a7f46747e36bb5ac27e4e729c62ee1b070e8a | 0 | - |
 | [data/official/case-deepening-2026-09-14-kga230.md](../../data/official/case-deepening-2026-09-14-kga230.md) | 2584 | 27420e7e99ff52251eda9cb5e75dcbba3058bc6fd45fd0bd2bf1facc2e881781 | 0 | - |

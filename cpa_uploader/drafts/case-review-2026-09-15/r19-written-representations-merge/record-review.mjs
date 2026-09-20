@@ -1,0 +1,89 @@
+// r19 초안의 agent 내용검토 장부 기록기. 실제 대조를 마친 뒤 한 번만 실행한다.
+//
+//   node --import tsx cpa_uploader/drafts/case-review-2026-09-15/r19-written-representations-merge/record-review.mjs
+//
+// 출력: cpa_uploader/analysis/reviews/case-review-2026-09-15/r19/root-content-review-v1.json
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { reviewedContentHash } from '../../../questionReviewIdentity.ts';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(here, '../../../..');
+const DRAFT_DIR = 'cpa_uploader/drafts/case-review-2026-09-15/r19-written-representations-merge';
+const OUT_DIR = path.join(root, 'cpa_uploader/analysis/reviews/case-review-2026-09-15/r19');
+const SET_ID = 'case-12-written-representations-20260920';
+
+const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
+const ref = (file) => ({ file, sha256: hash(fs.readFileSync(path.join(root, file))) });
+const [draft] = JSON.parse(fs.readFileSync(path.join(root, DRAFT_DIR, 'sets.json'), 'utf8'));
+if (draft.id !== SET_ID) throw new Error('set id 불일치');
+
+const PASS = {
+    source: 'pass', answer: 'pass', prompt: 'pass', points: 'pass',
+    style: 'pass', topics: 'pass', edition: 'pass', nonduplication: 'pass',
+};
+
+const review = {
+    version: 1,
+    method: 'agent_content_review',
+    human_review_performed: false,
+    reviewer_id: 'agent:claude-opus-5 (author agent; no independent peer review)',
+    reviewed_at: new Date().toISOString(),
+    target: {
+        file: `${DRAFT_DIR}/sets.json`,
+        sha256: ref(`${DRAFT_DIR}/sets.json`).sha256,
+        set_id: SET_ID,
+        reviewed_content_sha256: reviewedContentHash(draft),
+    },
+    evidence: [
+        `${DRAFT_DIR}/design.json`,
+        `${DRAFT_DIR}/lineage.json`,
+        `${DRAFT_DIR}/qa.json`,
+        `${DRAFT_DIR}/build-draft.mjs`,
+        'cpa_uploader/data/official/delegated-s04-kga-2025.txt',
+        'cpa_uploader/data/official/kga700-705-2025-review15.txt',
+        'cpa_uploader/data/official/kga450-560-570-580-2025-review12.txt',
+        'cpa_uploader/data/cpa_question_sets_v3.authoring.json',
+        'docs/사례형-병합-종합문제-설계.md',
+        'docs/물음별-학습-단위와-분류-계약.md',
+        'docs/case-question-edit-notes-2026-09-14.md',
+    ].map(ref),
+    method_detail:
+        'KGA 580 문단 6~20 전체와 적용자료 A1~A27을 등록 전문 delegated-s04-kga-2025.txt에서 직접 읽고 열다섯 항목의 옳고 그름을 문단 단위로 확정했다. 인용 열여덟 개 가운데 열 개(KGA 580 문단 10·11·16·17·19·20, A18·A25·A26, KGA 705 문단 9)는 병합 대상 두 원 세트(pilot-12-010, case-12-representation-conflict-20260914)의 정본 인용을 바이트와 content_hash 그대로 재사용했고, 새로 필요한 여덟 개(문단 14, A5·A7·A8·A11·A15·A23·A24)는 같은 등록 전문에서 줄 범위로 발췌해 SHA-256을 계산했다. 발췌기는 원문의 CRLF를 보존하며, 기존 정본 인용 아홉 개를 같은 줄 범위로 재현해 바이트와 해시가 일치하는 것을 확인한 뒤 새 발췌에 적용했다. validate_draft_v3.ts --against-bank로 인용 원문 실존과 기존 은행과의 ID·발문 중복 없음을 확인했다. 현재 정본에서 이 문단들을 인용한 세트를 모두 찾아 대조했으며(문단 14는 pilot-12-002, 문단 16·17·18은 case-12-representation-conflict-20260914, 문단 19는 pilot-12-003과 pilot-12-010, 문단 20은 그 둘과 std-points-20260914-c82d262bd6a8, 문단 10·11은 그 둘과 std-points-20260914-aca6e1dc8f26, A18·A25·A27은 pilot-12-010, A26은 세 세트, KGA 705 문단 9는 네 세트이고 A5·A7·A8·A11·A15·A23·A24를 인용한 세트는 없었다), 같은 문단을 다른 전사본에서 인용한 std-points-20260914-e7a3730d6484·ae160de36d94(문단 17)와 1cae16e579d0(문단 3·4)도 함께 읽었다. 문단 인용이 없어도 요구가 겹칠 수 있는 case-15-scope-limitation-disclaimer-20260919(KGA 580 문단 4와 의견거절 보고서), case-12-report-date-subsequent-20260919, pilot-17-005, draft-standard-gap-20260913-g09의 발문과 criterion을 대조했다. 판본은 두 원 세트가 남긴 2026 전문 대조 기록을 재사용했고 새 원자료 수집은 하지 않았다.',
+    questions: [
+        {
+            subquestion_id: 'sub1',
+            checks: { ...PASS },
+            rationale:
+                'source: ①은 문단 17 전단(서면진술이 다른 감사증거와 일관성이 없는 경우 그 사항의 해결을 시도하는 감사절차를 수행하여야 함), ②는 적용자료 A23(불일치가 식별된 경우 위험평가가 여전히 적합한지 고려하고 적합하지 않다면 수정하여 추가감사절차의 성격·시기 및 범위를 결정), ③은 A5(적합한 책임과 지식을 가진 사람들이 한 진술이라는 데 감사인이 만족하면 “알고 있고 믿는 최선의 범위” 문구를 수용하는 것이 합리적), ④는 문단 14 전단과 A15(서면진술일은 감사보고서일에 실행가능한 가장 근접한 날로 하되 감사보고서일 후가 되어서는 안 됨), ⑤는 A11(경영진이 알고 있는 내부통제의 모든 미비점을 전달하였다는 서면진술을 요청할 필요가 있다고 감사인이 생각할 수 있음)에서 확정했다. ③에 대하여 A5의 조건을 사실과 하나씩 대조했다. 진술이 재무제표에 대한 적절한 책임과 대상 사항에 관한 지식을 가진 대표이사·재무이사에 의하여 이루어졌다는 점을 자료 1의 전제로 두었으므로 문단 9·A2와도 어긋나지 않는다. ④에 대하여 문단 14 후단(모든 재무제표와 기간을 대상)은 자료 3의 ⑪에서 별도로 다루므로 이 항목의 옳음 판단에는 쓰지 않았다. answer: 모범답안 세 문장이 식별·①·② criterion과 1대1로 대응하고 옳은 항목 ③·④·⑤의 근거도 함께 제시한다. prompt: 발문은 단계 이름과 항목 범위, 요구 형식만 밝히고 옳지 않은 항목의 수·내용을 알려 주지 않는다. points: 식별 1점 + 옳지 않은 항목 두 개 각 1점으로 3점이며, 이유 또는 보완절차 중 하나를 핵심 원칙 수준으로 쓰면 인정한다. 구체적 후속절차의 나열은 요구하지 않는다. style: 다섯 항목의 옳고 그름이 은행이 직접 보낸 대출계약서와 진술서·주석 기재의 차이가 아직 해소되지 않았다는 점, 서명자가 적합한 책임과 지식을 가지고 있다는 점, 진술서를 받은 날과 예정된 감사보고서일의 간격이라는 가온정밀의 사실에 달려 있으므로 사례형이다. topics: 12(감사종결 단계의 서면진술)와 08(외부증거와의 불일치가 위험평가·추가절차에 미치는 영향)을 실제 요구에서 정했다. edition: 20X1·20X2 표기이며 2025 전문을 기준으로 판단했다. nonduplication: 현재 정본에서 A5·A11·A15·A23을 인용한 세트는 없다. 문단 14를 다루는 pilot-12-002 sub2는 서면진술일의 시기와 대상 범위를 사실 없이 설명하게 하는 기준서형이고, 이 물음의 ④는 득점 기준이 없는 옳은 항목이다. case-15-scope-limitation-disclaimer-20260919의 항목 ②는 서면진술을 받았다는 이유로 계획한 절차를 생략한 것을 문단 4로 다루는데, 이 초안은 문단 4를 인용하지 않고 절차 생략을 항목으로 두지 않으며 ①은 불일치가 있는 상황에서 문단 17이 요구하는 해결 시도를 하지 않은 것을 다룬다.',
+        },
+        {
+            subquestion_id: 'sub2',
+            checks: { ...PASS },
+            rationale:
+                'source: ⑥은 문단 17 후단(불일치가 해결되지 않고 있으면 경영진의 적격성·성실성·윤리적 가치나 근면성 또는 이에 대한 약속·이행에 대한 평가를 재고하여야 함), ⑦과 ⑧은 문단 16·17이 나란히 요구하는 두 대상(“경영진 진술(구두 또는 서면)” 및 “감사증거일반”의 신뢰성에 미칠 수 있는 영향의 결정), ⑨는 A24(왜곡진술 위험이 너무 커 감사를 수행할 수 없다는 결론을 내리게 되는 경우에, 지배기구가 시정조치를 취하지 않고 법규상 가능한 때에 한하여 해지를 고려할 수 있음), ⑩은 A25가 인용하는 감사기준서 230 문단 8(c)·10의 문서화 요구에서 확정했다. ⑨가 다투어지지 않도록 관련 법규가 감사계약의 해지를 금지하지 않는다는 사실을 자료 2에 두어 법규 요건으로 판단이 갈리지 않게 하였고, 자료 2의 사실에서 감사를 수행할 수 없다는 결론이 필연이 아님을 A24 본문(“결론을 내리게 될 수 있다”, “고려할 수 있다”)과 대조했다. answer: 모범답안 네 문장이 식별·⑥·⑦·⑧ criterion과 대응하고 옳은 항목 ⑨·⑩의 근거도 제시한다. prompt: 단계 이름과 항목 범위, 요구 형식만 밝힌다. points: 식별 1점 + 옳지 않은 항목 세 개 각 1점으로 4점이다. ⑦(경영진 진술)과 ⑧(감사증거일반)은 문단 16·17이 구분해 요구하는 두 대상이어서 항목을 나누었고, ⑥(평가의 재고)은 그 앞 단계의 별개 요구다. 경영진의 네 속성을 모두 열거할 것은 요구하지 않는다. style: 다섯 항목의 옳고 그름이 담보계약의 해지가 확인되지 않아 불일치가 해결되지 않았다는 점, 자료를 빼도록 지시한 사람이 구두설명과 연령분석표를 제공한 같은 재무이사라는 점, 왜곡진술 위험의 수준에 관한 감사팀의 판단이라는 사실에 달려 있으므로 사례형이다. topics: 12(서면진술의 신뢰성에 대한 의문)와 08(구두진술·기업 제출자료 등 감사증거일반의 신뢰성)을 실제 요구에서 정했다. edition: 20X1·20X2 표기이며 2025 전문을 기준으로 판단했다. nonduplication: std-points-20260914-e7a3730d6484는 문단 17의 절차와 두 대상을 사실 없이 설명하게 하고 ae160de36d94는 재고할 네 속성을 열거하게 하는 기준서형이다. 이 물음의 ⑦·⑧은 두 대상을 각각 가온정밀의 제품보증 구두설명과 제출된 연령분석표에 적용해야 득점하며 열거만으로는 인정하지 않고, ⑥은 속성 열거를 요구하지 않는다. A24·A25를 인용한 세트는 정본에 없다.',
+        },
+        {
+            subquestion_id: 'sub3',
+            checks: { ...PASS },
+            rationale:
+                'source: ⑪은 문단 14 후단(서면진술은 감사보고서에서 언급된 모든 재무제표와 기간을 대상으로 하여야 함)과 A18(현재의 경영진이 그 기간 동안 재직하지 않았다는 사실이 재무제표 전체에 대한 책임을 경감하지 않으므로 전체 기간을 포함하는 서면진술을 요청해야 할 요구사항은 여전히 적용됨), ⑫는 A7과 A26 전단(경영진이 문단 10·11에서 언급된 책임을 완수하였는지는 다른 감사증거만으로는 판단할 수 없으므로 서면진술이 제공되지 않으면 충분하고 적합한 감사증거를 입수할 수 없음), ⑬은 A26 후단(증거입수 능력의 부재가 미칠 수 있는 영향은 특정 구성요소·계정 또는 항목에 국한되지 않고 전반적)과 문단 20(b), KGA 705 문단 9, ⑭는 문단 19(a)와 A22가 인용하는 감사기준서 260 문단 16(c)(ii), ⑮는 A8(기업을 대표하여 감사업무의 조건에 서명한 사람이 더 이상 관련 책임을 갖지 않을 때 경영진책임의 인정과 이해를 서면진술에서 재확인하도록 요청할 수 있음)에서 확정했다. 제공되지 않은 진술이 문단 11(b)의 필수 책임진술 하나임을 분명히 하기 위하여 문단 10과 11(a)의 진술은 전체 기간에 제공되었다는 사실을 두었고, A27(변형된 진술이 반드시 미제공을 뜻하지는 않음)이 적용될 여지를 없애기 위하여 경영진이 그 기간에 대한 진술의 제공을 명시적으로 거절하였고 거절이 감사보고서일까지 해소되지 않았다는 사실을 두었다. A17(모든 보고기간을 대상으로 하는 이유)도 함께 읽어 ⑪의 판단이 다투어지지 않음을 확인했다. answer: 모범답안 네 문장이 식별·⑪·⑫·⑬ criterion과 대응하고 옳은 항목 ⑭·⑮의 근거도 제시한다. prompt: 단계 이름과 항목 범위, 요구 형식만 밝히고 어떤 의견을 표명해야 하는지 알려 주지 않는다. points: 식별 1점 + 옳지 않은 항목 세 개 각 1점으로 4점이다. ⑫(다른 감사증거로 대체할 수 없음)와 ⑬(영향이 전반적이어서 한정할 수 없음)은 A26의 전단과 후단이 각각 뒷받침하는 별개 명제여서 항목을 나누었고, ⑪(대상기간)은 의견과 무관한 별개 요구다. 감사보고서의 문안은 요구하지 않는다. style: 다섯 항목의 옳고 그름이 대표이사의 취임일과 제공되지 않은 진술의 대상기간, 제공된 진술과 제공되지 않은 진술의 구분, 상반기 거래에 대한 감사절차의 결과, 감사업무의 조건에 서명한 사람이 사임하였다는 사실에 달려 있으므로 사례형이다. topics: 12(서면진술의 대상기간과 미제공 대응)와 15(감사의견의 종류)를 실제 요구에서 정했다. edition: 20X1·20X2 표기이며 2025 전문을 기준으로 판단했다. nonduplication: std-points-20260914-c82d262bd6a8은 문단 20의 두 경우를 조건과 함께 설명하게 하는 기준서형이고 이 물음은 20(b)만 사례에 적용한다. pilot-12-003 sub2는 문단 19의 절차를 열거하게 하며 이 물음은 그 열거를 득점 요건으로 두지 않고 ⑭에 옳은 항목으로만 남겼다. pilot-12-002 sub2가 다루는 문단 14의 대상 범위는 이 물음에서 경영진 교체라는 사실에 A18을 적용해야 득점하는 요구로 바뀐다. case-15-scope-limitation-disclaimer-20260919 sub2는 의견거절 감사보고서의 단락 구성과 문안을 다루고 이 물음은 의견의 종류만 다룬다.',
+        },
+    ],
+    observations_not_blocking: [
+        '문단 20(a)(성실성에 대한 의문으로 인한 의견거절)와 적용자료 A27(변형된 서면진술은 반드시 미제공을 뜻하지 않음)은 문단 20(b)와 결론이 갈리는 두 경우를 만들므로 항목에도 인용에도 두지 않았다. 원 71번 sub3이 20(a)로 세웠던 의견거절은 이 초안에서 20(b)로 바뀌었고, 원 34번 sub1의 세 criterion은 삭제했다. 20(a)의 조건 설명은 기준서형 std-points-20260914-c82d262bd6a8이 계속 다룬다.',
+        '자료 3의 “업무수행이사는 경영진이 제공한 서면진술을 신뢰할 수 없다고 결론을 내리지는 않았다”는 문단 20(a)를 배제하기 위한 사실이다. 적용자료 A25가 유의적 이슈를 식별하고도 서면진술은 신뢰할 수 있다고 결론 내리는 경우를 명시하므로 기준과 어긋나지 않는다. 이 문장은 결론을 알려 주지 않으며, 물음 2의 재고 요구(⑥)가 이루어졌는지도 밝히지 않는다.',
+        '담보로 제공된 자산에 관한 진술은 적용자료 A10이 기타 서면진술의 예로 드는 진술이어서 문단 10·11의 필수 책임진술이 아니다. 이 초안에는 그 진술의 불일치를 의견 사유로 다루는 항목이 없으므로 “필수 진술이 아닌 미제공”과 “필수 진술의 미제공”이 함께 놓이지 않는다. A10은 인용하지 않았다.',
+        '물음 1은 옳지 않은 항목이 두 개여서 3점이다. 문단 15·A19·A20(진술서의 형태와 법규상 공표문)은 A19와 A20이 같은 기준에서 결론이 갈리는 두 경우에 해당하여 항목으로 쓰지 않았다.',
+        '득점 요건에서 빠진 옳은 항목 ③·④·⑤·⑨·⑩·⑭·⑮의 판단은 식별 criterion에서만 평가된다. 함정을 옳지 않다고 고른 답은 식별 점수만 잃고 다른 항목의 이유·절차 점수는 유지된다.',
+        '옳은 항목 ⑭는 문단 19(a)의 토의와 지배기구 커뮤니케이션만 담고 문단 19(b)의 성실성 재평가는 담지 않았다. 뒤 단계의 옳은 항목이 앞 단계 ⑥의 정답을 드러내지 않게 하기 위한 배치다. 같은 이유로 적용자료 A23의 위험평가 재고려는 물음 1의 ②로만 두고 물음 2에 같은 취지의 옳은 항목을 두지 않았다.',
+    ],
+    unresolved_content_findings: [],
+};
+
+fs.mkdirSync(OUT_DIR, { recursive: true });
+fs.writeFileSync(path.join(OUT_DIR, 'root-content-review-v1.json'), `${JSON.stringify(review, null, 2)}\n`, { flag: 'wx' });
+console.log('root-content-review-v1.json 기록:', review.target.reviewed_content_sha256);
