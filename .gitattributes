@@ -837,4 +837,23 @@
 /cpa_uploader/drafts/standard-additional-2026-09-13/publication-v1/acceptance-runtime/0-questionV3Grading.ts.snapshot -text
 /cpa_uploader/drafts/standard-additional-2026-09-13/publication-v2/acceptance-runtime/0-questionV3Grading.ts.snapshot -text
 /cpa_uploader/drafts/standard-priority-2026-09-14/publication-v1/acceptance-runtime/0-questionV3Grading.ts.snapshot -text
+#
+# Snapshots from batches that are still being sealed in other sessions (r12 merge,
+# r13-r15 case merges). Their execution-v*/runtime/ copies are verbatim copies of the
+# live lib/*.ts files, so they inherit the same CRLF/mixed bytes, and each batch's
+# grading-manifest.json code_files already pins those bytes. These rules are inert
+# until the files are `git add`ed, and they must be in place BEFORE that: otherwise
+# `text=auto` stores an LF-normalized blob and the pinned hash no longer matches.
+# Verified by hashing each file: 00-* == aae10461 (mixed), 01-* == 9f7428a9 (all-CRLF).
+# The other 13 files per runtime directory are already LF and need no rule.
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r12/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r12/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r13/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r13/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r14/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r14/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r15/execution-v1/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r15/execution-v1/runtime/01-questionV3Evidence.ts text eol=crlf
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r15/execution-v2/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/analysis/reviews/case-review-2026-09-15/r15/execution-v2/runtime/01-questionV3Evidence.ts text eol=crlf
 # --- end frozen review evidence ---
