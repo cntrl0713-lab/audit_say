@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-0d598cf9ff4c. 감사기준서 700 문단 16·17에 따라 감사인이 적정의견을 표명하여야 하는 경우와 감사의견을 변형하여야 하는 경우를 모두 설명하시오."
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[audit-opinions-reports]] · [[topic-15-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/302`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/286`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [15.json](../../analysis/reviews/question-review-2027/15.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/302/subquestions/0`
+유형: enumeration · JSON Pointer `/286/subquestions/0`
 
 ### 발문
 

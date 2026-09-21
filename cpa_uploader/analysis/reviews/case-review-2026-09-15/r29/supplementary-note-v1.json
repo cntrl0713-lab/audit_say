@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "round": "r29",
+  "set_id": "case-16-kam-emphasis-20260921",
+  "purpose": "보조 실측 두 폴더의 관계와 실제 호출·비용 전부를 기록한다. summary-v1.json의 supplementary 항목은 supplementary-v2-actual만 담고 있으므로 이 파일과 함께 읽는다.",
+  "receipt_denominator": false,
+  "runs": [
+    {
+      "folder": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r29/supplementary-v1",
+      "qa_input": "cpa_uploader/drafts/case-review-2026-09-15/r29-kam-exception-extension/qa.json",
+      "status": "stopped",
+      "actual_sdk_calls": 2,
+      "usd": 0.0073056,
+      "cases": [
+        {
+          "id": "r29-supp-numbers-only",
+          "result": "strict_matched",
+          "points": [["sub1", 1, 1], ["sub2", 1, 1], ["sub3", 1, 1]],
+          "note": "번호만 쓴 답이 물음마다 식별 1점만 받는 것을 확인했다."
+        },
+        {
+          "id": "r29-supp-remedy-only",
+          "result": "execution_error",
+          "error": "AssertionError: Expected verdict/reason (run-efficient-grading.ts compareResult)",
+          "cause": "초안 qa.json의 supplementary_cases 가운데 r29-supp-remedy-only와 r29-supp-boundary의 expected_verdicts에 reason 문자열을 넣지 않았다. 도구는 기대 판정마다 비어 있지 않은 reason을 요구한다. 모델 호출·응답·사용량은 정상이었고 채점 결과를 기대값과 대조하는 단계에서 멈췄다.",
+          "model_call": {
+            "actual_sdk_calls": 1,
+            "scored": false,
+            "traces": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r29/supplementary-v1/r29-supp-remedy-only/traces.jsonl",
+            "observed_verdicts": "저장된 응답에서 열두 criterion이 모두 met이었다. 물음별 점수로 환산하면 sub1 3점·sub2 4점·sub3 5점으로 기대값(3·4·5)과 같다. 도구가 점수를 계산·기록하지 않았으므로 이 관찰은 수동 판독이며 receipt 분모에 넣지 않는다.",
+            "not_rerun": "같은 입력을 다시 호출하지 않았다. 응답이 이미 보존되어 있고 허용 편차를 줄이려는 반복 호출도 하지 않는다."
+          }
+        }
+      ]
+    },
+    {
+      "folder": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r29/supplementary-v2-actual",
+      "qa_input": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r29/supplementary-qa-v2.json",
+      "status": "completed",
+      "actual_sdk_calls": 1,
+      "usd": 0.00391095,
+      "cases": [
+        {
+          "id": "r29-supp-boundary",
+          "result": "strict_matched",
+          "points": [["sub1", 2, 2], ["sub2", 4, 4], ["sub3", 5, 5]],
+          "note": "sub1 ④에 전기 기술의 반복이 허용된다는 반대 결론을 쓴 답은 crit3를 contradicted로 판정해 점수를 주지 않았고, sub2 ⑤에 ‘극히 드문 상황’ 문구 없이 감사인의 판단 필요성만 쓴 답과 sub3 ⑮에 영업권이 핵심감사사항이어서 강조사항문단 대상이 아니라는 취지만 쓴 답은 모두 인정했다."
+        }
+      ],
+      "input_change_note": "초안 qa.json은 execution-v1 grading-manifest가 바이트를 고정하고 있어 고치지 않았다. 남은 표적 사례만 reason을 채워 supplementary-qa-v2.json에 다시 적었고 원문·기대 점수는 qa.json의 supplementary_cases와 같다."
+    }
+  ],
+  "dry_runs": [
+    "cpa_uploader/analysis/reviews/case-review-2026-09-15/r29/supplementary-v1-dry",
+    "cpa_uploader/analysis/reviews/case-review-2026-09-15/r29/supplementary-v2",
+    "cpa_uploader/analysis/reviews/case-review-2026-09-15/r29/execution-v1/dry-a"
+  ],
+  "totals": {
+    "representative_actual_sdk_calls": 3,
+    "supplementary_actual_sdk_calls": 3,
+    "all_actual_sdk_calls": 6,
+    "representative_usd": 0.012778349999999997,
+    "supplementary_usd": 0.01121655,
+    "all_usd": 0.023994899999999998,
+    "costs_are_provider_usage_arithmetic_not_invoice": true,
+    "note": "summary-v1.json의 total_actual_sdk_calls 4와 total_usd 0.0166893은 supplementary-v1의 2회·$0.0073056을 담지 않는다. 실제 이 회차의 Luna 호출은 대표 3회와 보조 3회로 모두 6회이고 합계는 약 $0.0240이다. 보조 실측은 승급 receipt 분모가 아니다."
+  }
+}

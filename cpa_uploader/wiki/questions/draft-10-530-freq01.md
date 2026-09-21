@@ -1,7 +1,7 @@
 ---
 title: "draft-10-530-freq01. 통제테스트와 세부테스트 표본규모의 영향요소"
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[analytics-audit-sampling]] · [[topic-10-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/77`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/74`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [10.json](../../analysis/reviews/question-review-2027/10.json)
 - 학습 순서: q2
@@ -25,7 +25,7 @@ confidence: high
 
 ## q2
 
-유형: descriptive · JSON Pointer `/77/subquestions/0`
+유형: descriptive · JSON Pointer `/74/subquestions/0`
 
 ### 발문
 

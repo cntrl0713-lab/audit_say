@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-f47d4eaf7a09. 감사인과 지배기구 간 양방향 커뮤니케이션이 감사 목적에 비추어 적절하지 않을 때, 감사기준서 260 문단 22에 따라 영향을 평가해야 하는 두 대상을 제시하시오. 해결불능 상황에서 취할 대응조치는 제외한다."
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[fraud-laws-governance-communication]] · [[topic-05-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/181`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/165`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [05.json](../../analysis/reviews/question-review-2027/05.json)
 - 학습 순서: sub1
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub1
 
-유형: descriptive · JSON Pointer `/181/subquestions/0`
+유형: descriptive · JSON Pointer `/165/subquestions/0`
 
 ### 발문
 

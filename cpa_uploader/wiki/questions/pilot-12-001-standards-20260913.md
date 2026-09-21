@@ -1,7 +1,7 @@
 ---
 title: "pilot-12-001-standards-20260913. 미수정왜곡표시에 관한 서면진술"
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[completion-subsequent-events-going-concern]] · [[topic-12-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/107`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/97`
 - 상태: published / verified · source_fidelity: exact
 - 검토·근거 장부: [12.json](../../analysis/reviews/question-review-2027/12.json)
 - 학습 순서: subq1
@@ -25,7 +25,7 @@ confidence: high
 
 ## subq1
 
-유형: descriptive · JSON Pointer `/107/subquestions/0`
+유형: descriptive · JSON Pointer `/97/subquestions/0`
 
 ### 발문
 

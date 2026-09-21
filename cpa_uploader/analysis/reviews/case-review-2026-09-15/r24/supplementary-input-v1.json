@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "set_id": "case-03-engagement-acceptance-change-20260921",
+  "note": "초안 qa.json의 supplementary_cases를 run-supplementary.ts의 학습 단위 전체 입력 형상으로 옮긴 것이다. qa.json은 물음 단위로 표적 사례를 적었고 보조 실행기는 사례 단위 답안을 요구하므로, 각 표적 사례를 포함한 채 나머지 물음도 같은 성격(보완절차만 / 사례와 연결하지 않은 일반론)의 답안으로 채웠다. 승급 receipt 분모와 별개인 표적 사례이며 실행 전에 확정한 기대값을 그대로 쓴다. 대표 실측(execution-v1/actual-a)의 분모에는 넣지 않는다.",
+  "supplementary_cases": [
+    {
+      "id": "r24-supp-procedure-only",
+      "purpose": "이유 대신 수행하였어야 할 절차만 쓴 답이 세 물음 모두에서 만점인지 확인한다. qa.json의 r24-supp-sub1-procedure-only를 물음 1 답안으로 그대로 쓴다.",
+      "answers": {
+        "sub1": "옳지 않은 것은 ③, ⑤이다.\n③ 감사인은 그 사항을 경영진과 논의하고, 감사목적의 추가정보와 기업 내부 관계자에 대한 제한없는 접근에 관한 동의를 받지 못하면 이 감사업무를 수임하지 않아야 한다.\n⑤ 마지막 조항을 보고서가 예상되는 형태와 내용과 다를 수 있는 상황이 존재할 수 있다는 기술로 고쳐야 한다.",
+        "sub2": "옳지 않은 것은 ⑦, ⑨, ⑩이다.\n⑦ 요청의 정당성을 고려할 때 그 요청이 감사업무의 범위제한에서 발생한 것인지와 그 시사점을 함께 고려하여야 한다.\n⑨ 매출채권에 관한 증거를 입수하지 못한 상태에서 변형의견을 피하려는 요청이므로 감사인은 그 변경에 동의하지 않아야 한다.\n⑩ 새로운 업무조건에 합의하고 계약서 또는 기타 적절한 형태의 합의서에 이를 기록하여야 한다.",
+        "sub3": "옳지 않은 것은 ⑪이다.\n⑪ 해당 법규가 해지를 허용하므로 후임 감사인의 선임을 기다리지 말고 감사업무를 해지하여야 한다."
+      },
+      "expected": {
+        "sub1": {
+          "expected_points": 3,
+          "expected_verdicts": [
+            { "criterion_id": "crit1", "verdict": "met", "reason": "③·⑤만 골랐다." },
+            { "criterion_id": "crit2", "verdict": "met", "reason": "이유 대신 논의·미수임 절차를 적었고 추가정보와 내부 관계자 접근을 특정했다." },
+            { "criterion_id": "crit3", "verdict": "met", "reason": "이유 대신 조항 수정 절차를 적었다." }
+          ]
+        },
+        "sub2": {
+          "expected_points": 4,
+          "expected_verdicts": [
+            { "criterion_id": "crit4", "verdict": "met", "reason": "⑦·⑨·⑩만 골랐다." },
+            { "criterion_id": "crit5", "verdict": "met", "reason": "범위제한 시사점을 고려한다는 절차를 적었다." },
+            { "criterion_id": "crit6", "verdict": "met", "reason": "사례의 증거 미입수·변형의견 회피와 연결한 동의 거절 절차를 적었다." },
+            { "criterion_id": "crit7", "verdict": "met", "reason": "새 업무조건의 합의·기록 절차를 적었다." }
+          ]
+        },
+        "sub3": {
+          "expected_points": 2,
+          "expected_verdicts": [
+            { "criterion_id": "crit8", "verdict": "met", "reason": "⑪만 골랐다." },
+            { "criterion_id": "crit9", "verdict": "met", "reason": "후임 감사인 선임을 기다리지 않고 해지한다는 절차를 적었다." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "r24-supp-general-only",
+      "purpose": "사례와 연결하지 않은 일반론과 대상을 특정하지 않은 서술이 조건 경계에서 인정되지 않는지, 그리고 물음 3의 함정 ⑫를 옳지 않다고 고른 답이 식별 점수만 잃는지 확인한다. qa.json의 r24-supp-sub2-general-only를 물음 2 답안으로 그대로 쓴다.",
+      "answers": {
+        "sub1": "옳지 않은 것은 ③, ⑤이다.\n③ 경영진이 감사인에게 정보를 제공할 책임을 인정하고 이해한다는 동의를 받아야 한다.\n⑤ 보고서가 예상되는 형태와 내용과 다를 수 있는 상황이 존재할 수 있다는 기술을 감사계약서에 포함하여야 한다.",
+        "sub2": "옳지 않은 것은 ⑦, ⑨, ⑩이다.\n⑦ 변경 요청의 정당성을 고려할 때에는 그 요청이 감사업무의 범위제한에서 발생한 것인지와 그 시사점을 함께 고려하여야 한다.\n⑨ 감사업무 조건의 변경에는 합리적 정당성이 있어야 한다.\n⑩ 감사업무 조건이 변경된 경우에는 새로운 업무조건에 합의하고 계약서 또는 기타 적절한 형태의 합의서에 기록하여야 한다.",
+        "sub3": "옳지 않은 것은 ⑪, ⑫이다.\n⑪ 법규가 해지를 허용하므로 감사업무를 해지하여야 한다.\n⑫ 의무의 존재 여부를 결정하는 데 그치지 않고 지배기구와 규제기관 모두에게 즉시 보고하였어야 한다."
+      },
+      "expected": {
+        "sub1": {
+          "expected_points": 2,
+          "expected_verdicts": [
+            { "criterion_id": "crit1", "verdict": "met", "reason": "③·⑤만 골랐다." },
+            { "criterion_id": "crit2", "verdict": "not_met", "reason": "정보 제공 책임이라고만 쓰고 추가적인 정보나 기업 내부 관계자에 대한 접근을 드러내지 않았다." },
+            { "criterion_id": "crit3", "verdict": "met", "reason": "문단 10(f)의 기술을 계약서에 포함하여야 한다고 적었다." }
+          ]
+        },
+        "sub2": {
+          "expected_points": 3,
+          "expected_verdicts": [
+            { "criterion_id": "crit4", "verdict": "met", "reason": "⑦·⑨·⑩만 골랐다." },
+            { "criterion_id": "crit5", "verdict": "met", "reason": "범위제한 시사점을 고려한다는 절차를 적었다." },
+            { "criterion_id": "crit6", "verdict": "not_met", "reason": "정당성이 필요하다는 일반론만 적고 사례의 증거 미입수·변형의견 회피와 연결하지 않았다." },
+            { "criterion_id": "crit7", "verdict": "met", "reason": "새 업무조건의 합의·기록 절차를 적었다." }
+          ]
+        },
+        "sub3": {
+          "expected_points": 1,
+          "expected_verdicts": [
+            { "criterion_id": "crit8", "verdict": "contradicted", "reason": "옳은 항목인 ⑫를 옳지 않다고 골랐다." },
+            { "criterion_id": "crit9", "verdict": "met", "reason": "법규가 해지를 허용하므로 해지하여야 한다는 이유를 적었다." }
+          ]
+        }
+      }
+    }
+  ]
+}

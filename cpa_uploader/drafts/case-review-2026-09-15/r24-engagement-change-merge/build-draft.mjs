@@ -1,0 +1,399 @@
+// r24: 9번(pilot-03-005) · 24번(pilot-03-006) · 44번(case-03-engagement-change-20260914)의 병합 초안 생성기.
+//
+//   node cpa_uploader/drafts/case-review-2026-09-15/r24-engagement-change-merge/build-draft.mjs
+//
+// 인용은 (1) 세 원 세트가 이미 담고 있는 KGA 210 인용을 바이트와 content_hash 그대로 재사용하고,
+// (2) 옳은 항목·함정의 근거로 필요한 KGA 210 문단 9·11만 이미 등록된 공식 전문에서 줄 범위로 발췌한다.
+// 해시는 인용 문자열의 SHA-256이다.
+
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(here, '../../../..');
+
+const BANK = path.join(root, 'cpa_uploader/data/cpa_question_sets_v3.authoring.json');
+const OFFICIAL_N01 = 'cpa_uploader/data/official/delegated-n01-kga200-210-230-2025.txt';
+const bank = JSON.parse(fs.readFileSync(BANK, 'utf8'));
+const byId = new Map(bank.map((set) => [set.id, set]));
+
+function extract(relativeFile, fromLine, toLine) {
+    const lines = fs.readFileSync(path.join(root, relativeFile), 'utf8').split(/\r?\n/);
+    return lines.slice(fromLine - 1, toLine).join('\n');
+}
+
+function hash(text) {
+    return crypto.createHash('sha256').update(text, 'utf8').digest('hex');
+}
+
+function reuse(setId, refId) {
+    const set = byId.get(setId);
+    if (!set) throw new Error(`정본에 세트가 없습니다: ${setId}`);
+    const ref = (set.source_refs || []).find((item) => item.id === refId);
+    if (!ref) throw new Error(`${setId}에 source_ref가 없습니다: ${refId}`);
+    return ref;
+}
+
+// ── 1. 출처 ──────────────────────────────────────────────────────────────────
+// 세 원 세트에서 바이트 그대로 재사용하는 인용
+const reused = [
+    // 9번 pilot-03-005
+    ['kga210-6', 'pilot-03-005', 'src-fdfd62f7d764e46a4c', 'KGA 210 문단 6, 2025 개정 전문 원문 페이지 34; L319-L343'],
+    ['kga210-8', 'pilot-03-005', 'src-7a1ba355e627b76def', 'KGA 210 문단 8, 2025 개정 전문 원문 페이지 34; L350-L358'],
+    ['kga210-10', 'pilot-03-005', 'src-5c9add477e4276728a', 'KGA 210 문단 10, 2025 개정 전문 원문 페이지 35; L368-L382'],
+    // 24번 pilot-03-006
+    ['kga210-17', 'pilot-03-006', 'src-cc5d4f21c0d10d2545', 'KGA 210 문단 17, 2025 개정 전문 원문 페이지 36; S01 L137-L148'],
+    ['kga210-A31', 'pilot-03-006', 'src-b7fd319463247d2d0c', 'KGA 210 문단 A31, 2025 개정 전문 원문 페이지 45; S01 L149-L155'],
+    ['kga210-A34', 'pilot-03-006', 'src-934be527b65159da23', 'KGA 210 문단 A34, 2025 개정 전문 원문 페이지 46; S01 L168-L172'],
+    // 44번 case-03-engagement-change-20260914
+    ['kga210-14', 'case-03-engagement-change-20260914', 'src-b964d8900e0497fc84', 'KGA 210 문단 14, 2025 개정 전문 원문 페이지 35; L400-L402'],
+    ['kga210-15', 'case-03-engagement-change-20260914', 'src-f00b4bd53d5bce0806', 'KGA 210 문단 15, 2025 개정 전문 원문 페이지 35; L403-L406'],
+    ['kga210-16', 'case-03-engagement-change-20260914', 'src-c0fa86a6f2b3fc69f8', 'KGA 210 문단 16, 2025 개정 전문 원문 페이지 36; S01 L132-L134'],
+    ['kga210-A33', 'case-03-engagement-change-20260914', 'src-f36e71f3e2c25186e5', 'KGA 210 문단 A33, 2025 개정 전문 원문 페이지 46; S01 L160-L164'],
+];
+
+const sourceRefs = reused.map(([id, setId, refId, title]) => {
+    const ref = reuse(setId, refId);
+    return {
+        id,
+        file: ref.file,
+        title,
+        page: ref.page,
+        source_quote: ref.source_quote,
+        role: 'standard',
+        content_hash: ref.content_hash,
+        source_span: `${title}; 재사용 출처 ${setId}/${refId}`,
+    };
+});
+
+// 새로 발췌하는 인용 (이미 등록된 공식 전문)
+const newCuts = [
+    ['kga210-9', OFFICIAL_N01, 365, 367, 'KGA 210 문단 9, 2025 개정 전문 원문 페이지 35; L365-L367', 'KGA 210'],
+    ['kga210-11', OFFICIAL_N01, 383, 387, 'KGA 210 문단 11, 2025 개정 전문 원문 페이지 35; L383-L387', 'KGA 210'],
+];
+
+for (const [id, file, from, to, title, page] of newCuts) {
+    const quote = extract(file, from, to);
+    sourceRefs.push({
+        id,
+        file,
+        title,
+        page,
+        source_quote: quote,
+        role: 'standard',
+        content_hash: hash(quote),
+        source_span: `${title}; 등록 전문 ${file} L${from}-L${to}`,
+    });
+}
+
+const refById = new Map(sourceRefs.map((ref) => [ref.id, ref]));
+function quoteOf(id) {
+    const ref = refById.get(id);
+    if (!ref) throw new Error(`source_ref 없음: ${id}`);
+    return ref.source_quote;
+}
+
+// 세트 안에서 인용 문자열이 중복되지 않는지 확인한다.
+{
+    const seen = new Map();
+    for (const ref of sourceRefs) {
+        const previous = seen.get(ref.source_quote);
+        if (previous) throw new Error(`source_quote 중복: ${previous} / ${ref.id}`);
+        seen.set(ref.source_quote, ref.id);
+    }
+}
+
+// ── 2. 사실관계 ──────────────────────────────────────────────────────────────
+const facts = [
+    {
+        id: 'fact1',
+        text: [
+            '너울회계법인은 아람의 20X1년 1월 1일부터 12월 31일까지의 재무제표에 대한 감사를 새로 수임하는 것을 검토하였다.',
+            '아람은 법규에 따라 감사를 받아야 하는 회사가 아니며, 채권은행과 맺은 대출약정이 감사받은 재무제표의 제출을 요구하고 있어 자발적으로 감사를 의뢰하였다.',
+            '수임 협의에서 감사인은 감사와 검토가 제공하는 확신의 수준과 수행 범위의 차이를 회사에 설명하였다.',
+            '재무제표 작성에 적용되는 재무보고체계는 수용가능하며, 경영진은 그 체계에 따라 재무제표를 작성할 책임과 부정이나 오류로 인한 중요한 왜곡표시가 없는 재무제표를 작성하기 위해 필요하다고 결정한 내부통제에 대한 책임을 인정하고 이해한다.',
+            '법규가 이 감사업무의 조건을 충분히 세부적으로 명시하고 있지는 않다.',
+        ].join(' '),
+        scoreable: false,
+    },
+    {
+        id: 'fact2',
+        text: [
+            '감사계약서 초안은 기록·문서 등 재무제표의 작성과 관련하여 경영진이 알고 있는 모든 정보에 대한 접근을 제공한다고 적고 있다.',
+            '같은 초안은 감사인이 감사목적으로 경영진에게 요청하는 추가적인 정보는 재무담당이사가 그 필요성을 인정하는 경우에 제공하고, 감사인이 감사증거를 입수하기 위하여 필요하다고 판단한 기업 내부의 관계자들에 대한 면담은 재무담당이사의 허가를 받아 진행하도록 정하고 있다.',
+            '경영진은 이 조항이 회사의 내부 보고체계를 따른 것이라고 설명하였다.',
+        ].join(' '),
+        scoreable: false,
+    },
+    {
+        id: 'fact3',
+        text: [
+            '초안에는 재무제표감사의 목적과 범위, 감사인의 책임, 경영진의 책임, 재무제표 작성을 위한 해당 재무보고체계의 식별, 감사인에 의해 발행될 보고서의 예상되는 형태와 내용에 대한 언급이 들어 있다.',
+            '초안의 마지막 조항은 “감사결과 어떤 사항이 발견되더라도 감사인은 첨부된 예상 보고서와 동일한 형태와 내용의 보고서를 발행한다”라고 정하고 있다.',
+            '아람에는 이사회가 지배기구로 구성되어 있고, 감사업무 조건에 관한 협의는 경영진과 진행되었다.',
+        ].join(' '),
+        scoreable: false,
+    },
+    {
+        id: 'fact4',
+        text: [
+            '[자료 1] 업무 수임의 전제조건을 확인하는 단계에서 감사인이 수행하거나 결정한 절차와 판단은 다음과 같다.',
+            '① 감사인은 아람의 재무제표 작성에 적용되는 재무보고체계가 수용가능한지 여부를 결정하였다.',
+            '② 감사인은 지배기구인 아람의 이사회와 따로 합의하지 않고 경영진과 감사업무 조건에 대하여 합의하기로 하였다.',
+            '③ 감사인은 초안이 기록·문서 등 경영진이 알고 있는 모든 정보에 대한 접근을 제공하고 있는 점을 확인하고, 추가적인 정보와 기업 내부의 관계자들에 대한 면담을 재무담당이사의 판단에 따르도록 한 조항을 유지한 채 감사를 위한 전제조건이 존재한다고 결론지었다.',
+            '④ 감사인은 법규가 이 감사업무의 조건을 충분히 세부적으로 명시하고 있지 않다는 점을 확인하고, 합의된 감사업무 조건을 감사계약서에 기록하기로 하였다.',
+            '⑤ 감사인은 감사결과 어떤 사항이 발견되더라도 첨부된 예상 보고서와 동일한 형태와 내용의 보고서를 발행한다는 초안의 마지막 조항을 그대로 두고 감사계약서를 확정하기로 하였다.',
+        ].join('\n'),
+        scoreable: false,
+    },
+    {
+        id: 'fact5',
+        text: [
+            '너울회계법인과 아람은 감사계약서에 서명하였고 감사는 20X2년 2월까지 진행되었다.',
+            '감사인은 매출채권 잔액에 대하여 외부조회를 실시하였으나 주요 거래처가 회신하지 않았고 대체적인 감사절차로도 그 잔액을 확인하지 못하여, 매출채권에 관한 충분하고 적합한 감사증거를 입수하지 못하였다.',
+            '아람의 경영진은 미확인 거래의 증빙을 추가로 찾아 제공하는 대신, 한정의견이나 의견거절을 피하기 위하여 감사업무를 검토업무로 변경해 줄 것을 요청하였다. 이 요청은 감사가 종료되기 전에 이루어졌고, 검토업무는 감사보다 낮은 수준의 확신을 제공한다.',
+            '아람의 차입금은 아직 상환되지 않았고 채권은행은 감사받은 재무제표의 제출을 요구하는 대출약정 조항을 그대로 유지하고 있다.',
+        ].join(' '),
+        scoreable: false,
+    },
+    {
+        id: 'fact6',
+        text: [
+            '[자료 2] 업무조건 변경 요청의 정당성을 평가하는 단계에서 감사인이 수행하거나 결정한 절차와 판단은 다음과 같다.',
+            '⑥ 감사인은 감사를 종료하기 이전에 감사업무를 보다 낮은 수준의 확신을 제공하는 업무로 변경할 것을 요청받았다고 보고, 그 변경에 합리적 정당성이 있는지 여부를 결정하기로 하였다.',
+            '⑦ 감사인은 이번 요청이 경영진의 요구에 의하여 제기되었다는 점에 비추어 감사업무의 범위제한과는 관계가 없다고 보고, 요청의 정당성을 고려할 때 범위제한에 대한 시사점은 다루지 않기로 하였다.',
+            '⑧ 감사인은 검토업무로의 변경에 동의하기 전에 그 변경의 법률상 또는 계약상 예상되는 시사점을 평가하기로 하였다.',
+            '⑨ 감사인은 매출채권에 관한 충분하고 적합한 감사증거를 입수하지 못한 상태에서 한정의견이나 의견거절을 피하려는 회사의 요청을 합리적 정당성이 있는 것으로 보고, 검토업무로의 변경에 동의하기로 하였다.',
+            '⑩ 감사인은 검토업무로 진행하게 되는 경우 종전 감사계약서의 업무 명칭만 검토업무로 고쳐 보관하기로 하고, 새로운 업무조건에 관한 합의와 그 기록은 따로 남기지 않기로 하였다.',
+        ].join('\n'),
+        scoreable: false,
+    },
+    {
+        id: 'fact7',
+        text: [
+            '[자료 3] 이 자료는 감사인이 변경 요청에 동의할 수 없는 경우를 전제로 한다. 이 전제는 앞 단계의 판단과 무관하게 주어진 것이다. 감사인이 변경에 동의할 수 없다는 뜻을 전하자 아람의 경영진은 원래의 감사업무를 계속하는 것도 허용하지 않고 추가 자료의 제공과 현장 접근을 차단하였다. 해당 법규는 이 경우의 업무해지를 허용한다. 아람은 후임 감사인을 아직 선임하지 않았다. 이 단계에서 감사인이 결정한 절차는 다음과 같다.',
+            '⑪ 감사인은 해당 법규가 이 경우의 업무해지를 허용한다는 점을 확인하고, 아람이 후임 감사인을 선임할 때까지는 감사업무를 해지하지 않고 업무를 중단한 상태로 두기로 하였다.',
+            '⑫ 감사인은 지배기구, 소유주 또는 규제기관과 같은 기타 이해관계자에게 그러한 상황을 보고하여야 할 계약상 또는 기타 형태의 의무가 존재하는지 여부를 결정하기로 하였다.',
+            '⑬ 감사인은 아람의 주주에게 이 상황을 보고하여야 할 계약상 또는 기타 형태의 의무가 존재하는지를 확인한 결과 그러한 의무가 없다고 보아, 주주에게 따로 통지하지는 않기로 하였다.',
+        ].join('\n'),
+        scoreable: false,
+    },
+];
+
+// ── 3. 물음 ──────────────────────────────────────────────────────────────────
+const PROMPT = (범위) =>
+    `${범위} 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.`;
+
+function criterion(id, requirementId, claim, factType, sourceRefIds) {
+    return {
+        id,
+        requirement_id: requirementId,
+        claim,
+        critical_facts: [{ id: `${id}.fact`, type: factType, expected: claim }],
+        max_points: 1,
+        scores: { met: 1, not_met: 0, contradicted: 0 },
+        source_ref_ids: sourceRefIds,
+    };
+}
+
+const SUB1_IDENTIFY =
+    '옳지 않은 것으로 ③과 ⑤를 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. ③ 또는 ⑤ 가운데 하나라도 빠뜨리거나, 옳은 것인 ①(재무제표 작성에 적용되는 재무보고체계가 수용가능한지 여부를 결정), ②(지배기구인 이사회와 따로 합의하지 않고 경영진과 감사업무 조건에 대하여 합의), ④(법규가 조건을 충분히 세부적으로 명시하고 있지 않으므로 합의된 조건을 감사계약서에 기록) 가운데 하나라도 옳지 않다고 지적하면 이 점수는 주지 않는다.';
+
+const SUB1_C2 =
+    '③ 감사목적으로 요청하는 추가적인 정보 또는 감사증거를 입수하기 위하여 필요하다고 판단한 기업 내부의 관계자들에 대한 제한없는 접근을 제공할 책임에 관하여 경영진의 동의를 받지 못하였다는 이유, 또는 그 사항을 경영진과 논의하고 동의를 받지 못하면 감사업무를 수임하지 않는다는 절차 중 하나를 제시한다. 두 접근 가운데 어느 하나를 구체적으로 지적하면 인정한다. 기록과 문서에 대한 접근만 언급하고 추가적인 정보나 기업 내부 관계자에 대한 접근을 드러내지 않으면 인정하지 않는다. 재무담당이사의 판단에 따르도록 한 조항을 그대로 두어도 된다고 쓰면 인정하지 않는다.';
+
+const SUB1_C3 =
+    '⑤ 감사계약서에 해당 보고서가 예상되는 형태와 내용과 다를 수 있는 상황이 존재할 수 있다는 기술이 포함되어야 한다는 이유, 또는 마지막 조항을 그러한 기술로 고친다는 절차 중 하나를 제시한다. 보고서가 예상된 형태·내용과 달라질 수 있는 상황이 있을 수 있음을 계약서에 적어야 한다는 취지면 인정한다. 실제로 반드시 달라진다고 단정하는 조항으로 바꾸라고 쓰면 인정하지 않는다. 감사결과와 관계없이 동일한 보고서를 발행한다는 조항을 그대로 두어도 된다고 쓰면 인정하지 않는다.';
+
+const SUB2_IDENTIFY =
+    '옳지 않은 것으로 ⑦, ⑨, ⑩을 모두 지적한다. 번호 대신 내용으로 특정해도 인정한다. 셋 중 하나라도 빠뜨리거나, 옳은 것인 ⑥(감사를 종료하기 이전에 보다 낮은 수준의 확신을 제공하는 업무로 변경할 것을 요청받아 합리적 정당성이 있는지 여부를 결정), ⑧(변경에 동의하기 전에 그 변경의 법률상 또는 계약상 예상되는 시사점을 평가) 가운데 하나라도 옳지 않다고 지적하면 이 점수는 주지 않는다.';
+
+const SUB2_C2 =
+    '⑦ 감사업무 조건의 변경 요청은 경영진의 요구에 의한 것이든 다른 상황에 의해 야기된 것이든 감사업무의 범위제한으로부터 발생될 수 있다는 이유, 또는 요청의 정당성을 고려하면서 감사업무의 범위제한에 대한 시사점을 고려한다는 절차 중 하나를 제시한다. 범위제한에 대한 시사점을 함께 고려하여야 한다는 취지면 인정한다. 경영진의 요구로 제기된 요청은 범위제한과 관계가 없다고 쓰면 인정하지 않는다.';
+
+const SUB2_C3 =
+    '⑨ 부정확·불완전 또는 불만족스러운 정보와 관련된 것으로 보이는 변경은 합리적인 것으로 간주될 수 없다는 이유, 또는 합리적 정당성이 없는 변경에는 동의하지 않는다는 절차 중 하나를 제시한다. 매출채권에 관한 충분하고 적합한 감사증거를 입수하지 못한 상태에서 한정의견이나 의견거절을 피하려는 요청이라는 사례의 사정과 연결하여야 하며, 변경에 정당성이 필요하다는 일반론만 쓰면 인정하지 않는다. 그 요청에 합리적 정당성이 있다고 쓰면 인정하지 않는다.';
+
+const SUB2_C4 =
+    '⑩ 감사업무 조건이 변경된 경우 감사인과 경영진은 새로운 업무조건에 합의하고 계약서 또는 기타 적절한 형태의 합의서에 이를 기록하여야 한다는 이유, 또는 새로운 업무조건을 계약서나 합의서에 기록한다는 절차 중 하나를 제시한다. 종전 감사계약서의 업무 명칭만 고쳐 보관하는 것으로는 그 기록을 대신할 수 없다는 취지면 인정한다. 구두 합의나 명칭 변경만으로 충분하다고 쓰면 인정하지 않는다.';
+
+const SUB3_IDENTIFY =
+    '옳지 않은 것으로 ⑪을 지적한다. 번호 대신 내용으로 특정해도 인정한다. ⑪을 빠뜨리거나, 옳은 것인 ⑫(기타 이해관계자에게 그러한 상황을 보고하여야 할 계약상 또는 기타 형태의 의무가 존재하는지 여부를 결정), ⑬(보고의무가 존재하는지 확인한 결과 의무가 없는 주주에게 따로 통지하지 않기로 함) 가운데 하나라도 옳지 않다고 지적하면 이 점수는 주지 않는다.';
+
+const SUB3_C2 =
+    '⑪ 해당 법규에서 허용하는 경우 감사업무를 해지하여야 한다는 이유, 또는 후임 감사인의 선임을 기다리지 않고 감사업무를 해지한다는 절차 중 하나를 제시한다. 법규가 해지를 허용하는 이 상황에서 해지가 요구된다는 취지면 인정한다. 업무를 중단한 상태로 두어도 된다고 쓰거나 해지 여부를 회사의 후임 감사인 선임에 맡겨도 된다고 쓰면 인정하지 않는다.';
+
+const sub1 = {
+    id: 'sub1',
+    type: 'judgment',
+    question_style: 'case',
+    topic_ids: ['03'],
+    prompt: PROMPT('업무 수임의 전제조건을 확인하는 단계에서 감사인이 수행하거나 결정한 절차와 판단 ①~⑤'),
+    constraints: { ordered: false, max_entries: null, overflow_policy: 'none' },
+    selection: { type: 'all', n: null },
+    decision: null,
+    answer_slots: [{ id: 'sub1.answer', label: '답안', input: 'textarea' }],
+    model_answer: [
+        '옳지 않은 것은 ③, ⑤이다. ①은 감사를 위한 전제조건이 존재하는지 여부를 확인하기 위하여 재무제표 작성에 적용되는 재무보고체계가 수용가능한지 여부를 결정하도록 한 요구에 따른 것이므로 옳다. ②는 감사업무 조건을 경영진 또는 적합한 경우 지배기구와 합의하도록 하고 있으므로 옳다. ④는 법규가 감사업무 조건을 충분히 세부적으로 명시하고 있지 않은 경우 합의된 조건이 감사계약서 또는 기타 적절한 형태의 합의서에 기록되어야 하므로 옳다.',
+        '③ 경영진의 동의를 받아야 하는 정보 제공 책임에는 감사인이 감사목적으로 요청하는 추가적인 정보와 감사증거를 입수하기 위하여 필요하다고 판단한 기업 내부의 관계자들에 대한 제한없는 접근이 포함된다. 이를 재무담당이사의 판단에 맡긴 조항이 남아 있으면 그 동의를 받은 것이 아니므로, 감사인은 그 사항을 경영진과 논의하여야 하며 동의를 받지 못하면 법규에 의해 요구되는 것이 아닌 한 감사업무를 수임해서는 안 된다.',
+        '⑤ 감사계약서에는 해당 보고서가 예상되는 형태와 내용과 다를 수 있는 상황이 존재할 수 있다는 기술이 포함되어야 한다. 감사결과와 관계없이 동일한 보고서를 발행한다는 마지막 조항을 그러한 기술로 고쳐야 한다.',
+    ],
+    requirements: [
+        {
+            id: 'sub1.req1',
+            source_ref_id: 'kga210-6',
+            source_quote: quoteOf('kga210-6'),
+            source_span:
+                'KGA 210 문단 6·8·9·10·11; 식별 기준: ③(추가적인 정보와 기업 내부 관계자에 대한 접근을 재무담당이사의 판단에 맡긴 조항을 유지한 채 전제조건이 존재한다고 결론)과 ⑤(감사결과와 관계없이 동일한 보고서를 발행한다는 조항 유지)는 옳지 않다. ①은 문단 6(a), ②는 문단 9, ④는 문단 10·11에 따라 옳다.',
+        },
+        {
+            id: 'sub1.req2',
+            source_ref_id: 'kga210-6',
+            source_quote: quoteOf('kga210-6'),
+            source_span: 'KGA 210 문단 6(b)(iii) b·c와 문단 8(b); ③의 판단 근거',
+        },
+        {
+            id: 'sub1.req3',
+            source_ref_id: 'kga210-10',
+            source_quote: quoteOf('kga210-10'),
+            source_span: 'KGA 210 문단 10(f); ⑤의 판단 근거',
+        },
+    ],
+    criteria: [
+        criterion('crit1', 'sub1.req1', SUB1_IDENTIFY, 'conclusion', ['kga210-6', 'kga210-8', 'kga210-9', 'kga210-10', 'kga210-11']),
+        criterion('crit2', 'sub1.req2', SUB1_C2, 'action', ['kga210-6', 'kga210-8']),
+        criterion('crit3', 'sub1.req3', SUB1_C3, 'action', ['kga210-10']),
+    ],
+};
+
+const sub2 = {
+    id: 'sub2',
+    type: 'judgment',
+    question_style: 'case',
+    topic_ids: ['03'],
+    prompt: PROMPT('업무조건 변경 요청의 정당성을 평가하는 단계에서 감사인이 수행하거나 결정한 절차와 판단 ⑥~⑩'),
+    constraints: { ordered: false, max_entries: null, overflow_policy: 'none' },
+    selection: { type: 'all', n: null },
+    decision: null,
+    answer_slots: [{ id: 'sub2.answer', label: '답안', input: 'textarea' }],
+    model_answer: [
+        '옳지 않은 것은 ⑦, ⑨, ⑩이다. ⑥은 감사를 종료하기 이전에 감사업무를 보다 낮은 수준의 확신을 제공하는 업무로 변경할 것을 요청받은 경우 그 변경에 합리적 정당성이 있는지 여부를 결정하도록 한 요구에 따른 것이므로 옳다. ⑧은 감사기준에 따라 감사를 수행하기로 한 감사인이 검토 또는 관련 서비스로의 변경에 동의하기 전에 그 변경의 법률상 또는 계약상 예상되는 시사점을 평가할 필요가 있을 수 있다는 지침에 따른 것이므로 옳다.',
+        '⑦ 감사업무 조건을 변경해 달라는 요청은 경영진의 요구이든 다른 상황에 의해 야기된 것이든 감사업무의 범위제한으로부터 발생될 수 있다. 감사인은 그 요청의 정당성, 특히 감사업무의 범위제한에 대한 시사점을 고려하여야 한다.',
+        '⑨ 감사업무 조건의 변경이 부정확, 불완전 또는 불만족스러운 정보와 관련된 것으로 보이는 경우 그러한 변경은 합리적인 것으로 간주될 수 없다. 매출채권에 관한 충분하고 적합한 감사증거를 입수할 수 없는 상태에서 한정의견이나 의견거절을 피하기 위한 요청이 이에 해당하므로, 감사인은 그 변경에 동의해서는 안 된다.',
+        '⑩ 감사업무 조건이 변경된 경우 감사인과 경영진은 새로운 업무조건에 합의하고 계약서 또는 기타 적절한 형태의 합의서에 이를 기록하여야 한다. 종전 감사계약서의 업무 명칭만 고쳐 보관하는 것으로는 그 기록을 대신할 수 없다.',
+    ],
+    requirements: [
+        {
+            id: 'sub2.req1',
+            source_ref_id: 'kga210-14',
+            source_quote: quoteOf('kga210-14'),
+            source_span:
+                'KGA 210 문단 14·15·16, 문단 A31·A33·A34; 식별 기준: ⑦(경영진의 요구로 제기되었다는 이유로 범위제한에 대한 시사점을 다루지 않기로 함), ⑨(증거를 입수하지 못한 상태에서 변형의견을 피하려는 요청을 합리적 정당성이 있는 것으로 보고 동의), ⑩(업무 명칭만 고쳐 보관하고 새로운 업무조건의 합의·기록을 남기지 않기로 함)은 옳지 않다. ⑥은 문단 15, ⑧은 문단 A34에 따라 옳다.',
+        },
+        {
+            id: 'sub2.req2',
+            source_ref_id: 'kga210-A31',
+            source_quote: quoteOf('kga210-A31'),
+            source_span: 'KGA 210 문단 A31과 문단 14; ⑦의 판단 근거',
+        },
+        {
+            id: 'sub2.req3',
+            source_ref_id: 'kga210-A33',
+            source_quote: quoteOf('kga210-A33'),
+            source_span: 'KGA 210 문단 A33과 문단 14; ⑨의 판단 근거',
+        },
+        {
+            id: 'sub2.req4',
+            source_ref_id: 'kga210-16',
+            source_quote: quoteOf('kga210-16'),
+            source_span: 'KGA 210 문단 16; ⑩의 판단 근거',
+        },
+    ],
+    criteria: [
+        criterion('crit4', 'sub2.req1', SUB2_IDENTIFY, 'conclusion', ['kga210-14', 'kga210-15', 'kga210-16', 'kga210-A31', 'kga210-A33', 'kga210-A34']),
+        criterion('crit5', 'sub2.req2', SUB2_C2, 'action', ['kga210-A31', 'kga210-14']),
+        criterion('crit6', 'sub2.req3', SUB2_C3, 'action', ['kga210-A33', 'kga210-14']),
+        criterion('crit7', 'sub2.req4', SUB2_C4, 'action', ['kga210-16']),
+    ],
+};
+
+const sub3 = {
+    id: 'sub3',
+    type: 'judgment',
+    question_style: 'case',
+    topic_ids: ['03'],
+    prompt: PROMPT('변경에 동의할 수 없다고 판단한 뒤의 단계에서 감사인이 결정한 절차 ⑪~⑬'),
+    constraints: { ordered: false, max_entries: null, overflow_policy: 'none' },
+    selection: { type: 'all', n: null },
+    decision: null,
+    answer_slots: [{ id: 'sub3.answer', label: '답안', input: 'textarea' }],
+    model_answer: [
+        '옳지 않은 것은 ⑪이다. ⑫는 감사업무 조건의 변경에 동의할 수 없고 경영진이 원래의 감사업무를 계속하는 것을 허용하지 않는 경우 지배기구, 소유주 또는 규제기관과 같은 기타 이해관계자에게 그러한 상황을 보고하여야 할 계약상 또는 기타 형태의 의무가 존재하는지 여부를 결정하도록 한 요구에 따른 것이므로 옳다. ⑬은 그러한 의무의 존재 여부를 결정하도록 요구할 뿐 의무가 없는 상대방에게 통지할 것까지 요구하지는 않으므로 옳다.',
+        '⑪ 감사인은 해당 법규에서 허용하는 경우 감사업무를 해지하여야 한다. 법규가 이 경우의 업무해지를 허용하므로 후임 감사인의 선임을 기다리지 말고 감사업무를 해지하여야 한다.',
+    ],
+    requirements: [
+        {
+            id: 'sub3.req1',
+            source_ref_id: 'kga210-17',
+            source_quote: quoteOf('kga210-17'),
+            source_span:
+                'KGA 210 문단 17(a)·(b); 식별 기준: ⑪(법규가 해지를 허용함을 확인하고도 후임 감사인 선임 전까지 해지하지 않고 업무를 중단한 상태로 두기로 함)은 옳지 않다. ⑫는 문단 17(b), ⑬은 문단 17(b)가 의무의 존재 여부 결정만 요구한다는 점에 따라 옳다.',
+        },
+        {
+            id: 'sub3.req2',
+            source_ref_id: 'kga210-17',
+            source_quote: quoteOf('kga210-17'),
+            source_span: 'KGA 210 문단 17(a); ⑪의 판단 근거',
+        },
+    ],
+    criteria: [
+        criterion('crit8', 'sub3.req1', SUB3_IDENTIFY, 'conclusion', ['kga210-17']),
+        criterion('crit9', 'sub3.req2', SUB3_C2, 'action', ['kga210-17']),
+    ],
+};
+
+// ── 4. 세트 ──────────────────────────────────────────────────────────────────
+const set = {
+    schema_version: '3.0',
+    id: 'case-03-engagement-acceptance-change-20260921',
+    type: 'linked_question_set',
+    status: 'needs_review',
+    title: '감사업무의 수임 협의와 업무조건 변경 요청',
+    classification: {
+        topic_id: '03',
+        part: 'PART1',
+        chapter: '감사업무 수임',
+        domain: 'audit',
+        standards: ['KGA 210'],
+        tags: ['감사계약', '전제조건', '업무조건 변경', '사례형'],
+    },
+    source_refs: sourceRefs,
+    shared_context: { facts },
+    learning_order: ['sub1', 'sub2', 'sub3'],
+    subquestions: [sub1, sub2, sub3],
+    verification: {
+        source_fidelity: 'reconstructed',
+        review_status: 'needs_human_review',
+        calculation_required: false,
+        notes: [
+            '2026-09-21 사용자 지시("문제 제작 및 수정작업 B도 진행해")와 docs/사례형-병합-종합문제-설계.md의 B등급 "수임·업무조건 변경" 묶음(9·24·44번)에 따라 pilot-03-005, pilot-03-006, case-03-engagement-change-20260914을 한 회사의 시간 순서로 합친 병합 초안이다. 세 원 세트는 대체 후 퇴역 대상이며 원 세트와의 대응은 같은 폴더의 lineage.json에 기록한다.',
+            '형식은 학습 단위 계약의 기본인 옳지 않은 것 선택형이다. 물음마다 옳지 않은 항목 전체를 정확히 고른 식별 1점, 옳지 않은 항목마다 이유 또는 수행하였어야 할 절차 중 하나를 핵심 원칙 수준으로 쓴 1점을 둔다. 옳은 항목 ①·②·④·⑥·⑧·⑫·⑬에는 별도 득점 기준이 없다. 물음 1은 3점, 물음 2는 4점, 물음 3은 2점으로 합계 9점이다. 옳지 않은 항목의 수는 물음마다 2개·3개·1개로 다르며 발문에 밝히지 않는다.',
+            '금지 기준 저촉 해소: 24번(pilot-03-006)은 같은 KGA 210 문단 14·15 기준에서 갑(정당성 있음, 문단 A32의 감사 성격 오해)과 을(정당성 없음, 문단 A33의 변형의견 회피)이라는 반대 결론을 한 사례에 두고 있었다. 학습 단위 계약의 "대조되는 두 경우를 함께 두지 않음"에 따라 을 쪽만 승계하고 갑의 두 criterion(crit1·crit8)과 문단 A32 인용을 삭제했다. 44번(case-03-engagement-change-20260914)의 sub1은 같은 기준에서 정당성 있음(차입금 상환과 은행의 제출요구 해제라는 상황 변화)을 정답으로 삼아 을과 반대 결론이므로 그 판단 요구를 삭제했고, 이에 딸린 문단 A35의 검토·합의된 절차 보고서 언급 요구(sub2·sub3)도 변경이 이루어진 경우에만 성립하므로 함께 삭제했다. 44번의 자발적 감사·대출약정 배경은 사실로 승계하되 차입금이 상환되지 않고 은행의 제출요구가 유지되는 상태로 두어 문단 A32의 상황 변화 분기를 배제했고, 44번의 문단 16(새 업무조건의 합의·기록) 요구는 항목 ⑩으로 승계했다.',
+            '전제 통일: 회사는 아람, 감사인은 너울회계법인 하나로 맞추고 9번의 갑·을 병렬 구조와 24번의 서로 독립된 두 회사 구조를 없앴다. 보고기간은 20X1년 1월 1일~12월 31일, 변경 요청은 20X2년 2월로 통일했다. 9번의 "법규가 수임을 요구하거나 업무조건을 충분히 상세하게 정한 상황이 아니다"라는 전제와 44번의 "법규상 감사의무가 없는 자발적 감사" 전제는 서로 맞으므로 그대로 결합했다. 새 전제에서 승계한 항목의 옳고 그름은 lineage.json의 premise_reconciliation에 근거 문단과 함께 다시 확정했다.',
+            '사용자가 확정한 대상 연도는 2027년이다. 판본 정책에 따라 사례의 20X1년을 2026년 1월 1일 개시 보고기간으로 보고, KGA 210의 2025 개정 전문을 기준으로 판단했다. 인용 열두 개 가운데 열 개(문단 6·8·10·14·15·16·17, A31·A33·A34)는 세 원 세트의 정본 인용을 바이트와 content_hash 그대로 재사용했고, 문단 9와 문단 11만 이미 등록된 공식 전문(delegated-n01-kga200-210-230-2025.txt L365-L367·L383-L387)에서 새로 발췌했다. 새 원자료 수집은 없다.',
+            'agent 내용검토·작성자 기대값과 실제 모델 채점·사람 확인·정본 수록·운영 DB 반영은 별개이며 이 초안 생성으로 완료되지 않는다.',
+        ],
+    },
+};
+
+const outPath = path.join(here, 'sets.json');
+fs.writeFileSync(outPath, `${JSON.stringify([set], null, 2)}\n`, 'utf8');
+
+const total = set.subquestions.reduce(
+    (sum, sub) => sum + sub.criteria.reduce((inner, c) => inner + c.max_points, 0),
+    0,
+);
+const factChars = facts.map((fact) => fact.text).join('\n').length;
+console.log(`sets.json 작성: ${set.id} · 물음 ${set.subquestions.length}개 · ${total}점 · 사실관계 ${factChars}자 · source_refs ${sourceRefs.length}개`);

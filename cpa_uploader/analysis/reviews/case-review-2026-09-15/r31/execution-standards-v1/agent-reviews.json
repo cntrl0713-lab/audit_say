@@ -1,0 +1,99 @@
+[
+  {
+    "set_id": "pilot-16-008-standards-20260921",
+    "content_hash": "199dd16dbffb59af62bb35464595beefc169f776d4609db89f8c09ce43905e4e",
+    "reviewer_id": "agent:claude-opus-5 (author agent; no independent peer review)",
+    "reviewed_at": "2026-09-21T16:10:00.000Z",
+    "method": "agent_content_review",
+    "human_review_performed": false,
+    "evidence": [
+      {
+        "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/authorization.md",
+        "sha256": "fe924c2f33a4649c4a1c6eb287ddaffff15b7ba7a5fbad965c23e5b6c9131d5c"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/policy-input.json",
+        "sha256": "eecd5bb39714c98d440c30da34c9977a45e26d0d3074d6228ea8c44595c50f16"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/root-content-review-standards-v1.json",
+        "sha256": "02a0514c0bcaf7286450f909505f7b77c48b3eca42906b6b98ed52fe6e3e3f2b"
+      },
+      {
+        "file": "cpa_uploader/drafts/case-review-2026-09-15/r31-comparative-restatement-extension/standards-sets.json",
+        "sha256": "cdc896927110b443128f3752eabde5ffa876d1933ec5acca32cea845791ca67e"
+      },
+      {
+        "file": "cpa_uploader/drafts/case-review-2026-09-15/r31-comparative-restatement-extension/design-standards.json",
+        "sha256": "94533da4eb96164968fc027aa6a9ca5dbb754bb568458d071f8c460967c3f9af"
+      },
+      {
+        "file": "cpa_uploader/drafts/case-review-2026-09-15/r31-comparative-restatement-extension/lineage.json",
+        "sha256": "3878acef5453592eb11928d7332acd59c14f071a8089ef775c582bb9170dd3e3"
+      },
+      {
+        "file": "cpa_uploader/drafts/case-review-2026-09-15/r31-comparative-restatement-extension/qa-standards.json",
+        "sha256": "e76b4e3adef758923ce47c40aa6760d29a080b4c1eb00f2b80df58d08ebe8e02"
+      },
+      {
+        "file": "cpa_uploader/drafts/case-review-2026-09-15/r31-comparative-restatement-extension/build-draft.mjs",
+        "sha256": "ee26cfafcc566e981116bff223d1862d62a95daef31e3d6b43820db9bdd38d18"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/baseline-standards-v1.json",
+        "sha256": "b32c592760e9332b955c741f005ccf2c759ba7ab13a9af0d1b70c6bd10ef22e3"
+      },
+      {
+        "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/classification-standards-v1.json",
+        "sha256": "5d6e0075d001fc80bde6263eacd2d0b7eb5c6a62edd5e62a194db03e900526b8"
+      }
+    ],
+    "questions": [
+      {
+        "subquestion_id": "sub2",
+        "criterion_ids": [
+          "crit1",
+          "crit2"
+        ],
+        "source_ref_ids": [
+          "p12"
+        ],
+        "checks": {
+          "source": "pass",
+          "answer": "pass",
+          "prompt": "pass",
+          "points": "pass",
+          "style": "pass",
+          "topics": "pass",
+          "edition": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "source: crit1·crit2는 문단 12의 결론 문장(당기 재무제표에 포함된 대응수치로 인한 의견변형에 따라, 당기 재무제표에 대하여 한정의견이나 부적정의견을 표명하여야 한다)에서 확정했다. 두 의견은 대체 가능한 두 결론이므로 각각을 독립 득점 단위로 둔 원 설계를 유지했다. answer: 모범답안은 \"당기재무제표에 대하여 한정의견이나 부적정의견을 표명한다\" 한 문장이며 두 criterion을 모두 담는다. 사례 사실이나 다른 물음을 참조하는 표현이 없다. prompt: 독립 발문은 문단 12의 적용 조건(이전에 적정의견이 표명되었던 전기재무제표에 중요한 왜곡표시가 존재한다는 감사증거를 입수하였으나 대응수치가 적절하게 재작성되지 않았거나 적절한 공시가 이루어지지 않았다)과 문단 기호로 범위만 정하고 정답 항목의 핵심어(한정의견·부적정의견)와 개수를 알려 주지 않는다. 원 발문의 \"표명하여야 하는 감사의견\"이 답이 하나라는 인상을 주어 \"문단 12가 이 경우에 대하여 정하고 있는 … 감사의견\"으로 고쳤고, 원 세트가 퇴역 전까지 정본에 남아 발문 바이트가 겹치는 문제도 함께 해소했다. 전후 발문과 사유는 design-standards.json의 prompt_revision에 있다. points: 두 독립 명제 각 1점으로 2점이며 원 배점을 그대로 유지했다. 발문이 바뀌어도 명제·critical_facts는 바꾸지 않았다. style: shared_context.facts가 비어 있고 특정 회사의 사실·자료·다른 물음의 판단을 해석할 필요가 없으므로 기준서형이다. 사례를 보지 않은 답안으로 만점이 가능한지는 모범답안 요청으로 실측한다. topics: 16을 실제 요구에서 정했다. edition: pilot-16-008의 판본 기록을 승계했고 KGA 710 2025 개정 전문을 적용한다. nonduplication: 현재 정본에서 문단 12를 인용하는 세트는 원 pilot-16-008뿐이다. std-points-20260914-99e4265696b2는 문단 2·6(b)·6(c)의 정의를, case-09-initial-audit-20260915는 문단 2·17을 쓴다. 같은 회차의 사례형 확장본은 문단 12를 인용하지 않는다."
+      },
+      {
+        "subquestion_id": "sub3",
+        "criterion_ids": [
+          "crit3",
+          "crit4",
+          "crit5",
+          "crit6"
+        ],
+        "source_ref_ids": [
+          "p13"
+        ],
+        "checks": {
+          "source": "pass",
+          "answer": "pass",
+          "prompt": "pass",
+          "points": "pass",
+          "style": "pass",
+          "topics": "pass",
+          "edition": "pass",
+          "nonduplication": "pass"
+        },
+        "rationale": "source: crit3은 문단 13(a)(전기재무제표는 전임감사인이 감사하였음), crit4·crit5는 13(b)(전임감사인이 표명한 의견의 유형, 그리고 해당 의견이 변형되었으면 그 이유), crit6은 13(c)(전임감사인의 감사보고서일)에서 확정했다. 13(b)는 의견 유형이라는 무조건 기재 사항과 변형 이유라는 조건부 기재 사항을 함께 담고 있어 criterion을 나눈 원 설계를 유지했다. answer: 모범답안 네 문장이 네 criterion과 1대1로 대응한다. prompt: 독립 발문은 문단 13의 적용 조건(전기재무제표가 전임감사인의 감사를 받았고, 대응수치에 대하여 전임감사인의 감사보고서를 언급하는 것이 법규상 금지되지 아니하여 감사인이 이를 언급하기로 결정함)과 항 기호((a), (b), (c))로 범위만 정한다. 항 기호는 세 개이고 득점 단위는 네 개여서 정답 수를 알려 주지 않으며, 정답 항목의 핵심어(감사 사실, 의견의 유형, 변형 이유, 감사보고서일)도 쓰지 않았다. r21의 pilot-11-005-standards-20260921이 같은 방식을 썼다. 원 발문은 정답 암시 문제가 없었으나 정본의 pilot-16-008/sub3과 바이트가 같아 적용 조건 서술을 다시 썼다. points: 네 독립 명제 각 1점으로 4점이며 원 배점을 유지했다. 열거형이므로 정답인 독립 요소마다 1점을 부여하는 공통 배점 계약과 일치한다. style: shared_context.facts가 비어 있고 발문이 문단 13의 적용 조건만 서술하므로 기준서형이다. topics: 16. edition: pilot-16-008의 판본 기록을 승계했다. nonduplication: 현재 정본에서 문단 13을 인용하는 세트는 원 pilot-16-008뿐이다. 비교재무제표 절의 대응 요구인 문단 17은 case-09-initial-audit-20260915와 같은 회차의 사례형 확장본이 쓰지만 문단이 다르고 기재 의무의 성격(임의 대 의무)도 달라 요구가 겹치지 않는다."
+      }
+    ],
+    "unresolved_content_findings": []
+  }
+]

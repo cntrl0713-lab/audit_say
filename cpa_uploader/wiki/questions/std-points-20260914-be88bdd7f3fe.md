@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-be88bdd7f3fe. 내부회계관리제도 감사보고서의 제목과 수신인을 제외한 본문 구성요소 중 감사기준서 1100 문단 69(c)~(g)에 해당하는 다섯 요소의 명칭을 모두 제시하시오. 업무수행이사 이름·서명·주소·보고서일과 각 요소의 세부 기재내용은 제외한다."
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[internal-control-over-financial-reporting]] · [[topic-17-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/312`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/296`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [17.json](../../analysis/reviews/question-review-2027/17.json)
 - 학습 순서: subq2
@@ -25,7 +25,7 @@ confidence: high
 
 ## subq2
 
-유형: enumeration · JSON Pointer `/312/subquestions/0`
+유형: enumeration · JSON Pointer `/296/subquestions/0`
 
 ### 발문
 

@@ -1,7 +1,7 @@
 ---
 title: "요구사항·학습목표 연결과 보강 후보"
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: coverage
 status: generated
 review_required: true
@@ -20,21 +20,21 @@ confidence: high
 |---|---|---|---|
 | [[source-catalog-topic-02]] | 599 | 32 | 567 |
 | [[source-catalog-topic-01]] | 1046 | 63 | 983 |
-| [[source-catalog-topic-03]] | 788 | 25 | 763 |
-| [[source-catalog-topic-04]] | 1352 | 45 | 1307 |
-| [[source-catalog-topic-08]] | 2838 | 90 | 2748 |
+| [[source-catalog-topic-03]] | 788 | 26 | 762 |
+| [[source-catalog-topic-04]] | 1352 | 41 | 1311 |
+| [[source-catalog-topic-08]] | 2838 | 89 | 2749 |
 | [[source-catalog-topic-06]] | 1711 | 82 | 1629 |
-| [[source-catalog-topic-07]] | 1764 | 77 | 1687 |
+| [[source-catalog-topic-07]] | 1764 | 76 | 1688 |
 | [[source-catalog-topic-09]] | 1060 | 74 | 986 |
-| [[source-catalog-topic-05]] | 2103 | 43 | 2060 |
-| [[source-catalog-topic-11]] | 657 | 71 | 586 |
-| [[source-catalog-topic-13]] | 501 | 79 | 422 |
-| [[source-catalog-topic-10]] | 1001 | 77 | 924 |
-| [[source-catalog-topic-12]] | 941 | 61 | 880 |
+| [[source-catalog-topic-05]] | 2103 | 45 | 2058 |
+| [[source-catalog-topic-11]] | 657 | 54 | 603 |
+| [[source-catalog-topic-13]] | 501 | 81 | 420 |
+| [[source-catalog-topic-10]] | 1001 | 79 | 922 |
+| [[source-catalog-topic-12]] | 941 | 67 | 874 |
 | [[source-catalog-topic-15]] | 1476 | 38 | 1438 |
 | [[source-catalog-topic-16]] | 716 | 62 | 654 |
-| [[source-catalog-topic-14]] | 533 | 35 | 498 |
-| [[source-catalog-topic-17]] | 487 | 78 | 409 |
+| [[source-catalog-topic-14]] | 533 | 36 | 497 |
+| [[source-catalog-topic-17]] | 487 | 68 | 419 |
 | [[source-catalog-topic-18]] | 129 | 15 | 114 |
 | [[source-catalog-topic-19]] | 405 | 26 | 379 |
 | [[source-catalog-unmapped]] | 263 | 0 | 263 |
@@ -43,11 +43,11 @@ confidence: high
 
 ## 기존 은행 대응과 요구사항 절 탐색
 
-정본 requirement 1393개와 criterion 1784개의 직접 대응은 각 [[topic-map]] → 세트 색인의 ‘학습목표·채점명제와 핵심 조건’ 및 ‘요구사항과 직접 근거’ 표에서 찾는다. ID는 세트·물음 안에서 해석한다. 실제 발문과 조건을 함께 보고 동일 명제 반복과 범위 누락을 검토한다.
+정본 requirement 1359개와 criterion 1730개의 직접 대응은 각 [[topic-map]] → 세트 색인의 ‘학습목표·채점명제와 핵심 조건’ 및 ‘요구사항과 직접 근거’ 표에서 찾는다. ID는 세트·물음 안에서 해석한다. 실제 발문과 조건을 함께 보고 동일 명제 반복과 범위 누락을 검토한다.
 
 아래는 통합학습자료 요구사항 절의 4글자 문자열 겹침 탐색이다. 공식 문단 식별에 의한 내용 검수가 아니다. 15% 미만은 공백 후보, 15% 이상 35% 미만은 낮은 유사도, 35% 이상도 유사 문구 탐지일 뿐 완전한 출제를 뜻하지 않는다. 짧은 절(40개 미만 4-gram)은 제외한다. 현재 파서가 요구사항 절로 분리하지 못한 기준 축: KGA 265, KGA 1200. 이 기준서는 미출제로 판정하지 말고 원문·세트 직접 연결에서 별도로 검토한다. 비KGA 인증·검토 기준의 전체 범위를 이 스캔에 포함했다고 해석하지 않는다.
 
-- 탐색 절 189개: 공백 후보 0, 낮은 유사도 32, 유사 문구 탐지 157
+- 탐색 절 189개: 공백 후보 0, 낮은 유사도 29, 유사 문구 탐지 160
 - 전체 절별 결과: `node cpa_uploader/wiki/scripts/gap-scan.mjs --sections`
 
 | 기준서 | 공백 후보 | 낮은 유사도 | 유사 문구 탐지 |
@@ -56,7 +56,7 @@ confidence: high
 | KGA 210 | 0 | 0 | 7 |
 | KGA 220 | 0 | 1 | 6 |
 | KGA 230 | 0 | 0 | 2 |
-| KGA 240 | 0 | 7 | 4 |
+| KGA 240 | 0 | 6 | 5 |
 | KGA 250 | 0 | 3 | 1 |
 | KGA 260 | 0 | 1 | 3 |
 | KGA 300 | 0 | 1 | 4 |
@@ -64,19 +64,19 @@ confidence: high
 | KGA 320 | 0 | 0 | 3 |
 | KGA 330 | 0 | 0 | 5 |
 | KGA 402 | 0 | 1 | 4 |
-| KGA 450 | 0 | 1 | 6 |
+| KGA 450 | 0 | 0 | 7 |
 | KGA 500 | 0 | 0 | 4 |
 | KGA 501 | 0 | 0 | 4 |
 | KGA 505 | 0 | 0 | 5 |
 | KGA 510 | 0 | 0 | 2 |
 | KGA 520 | 0 | 0 | 3 |
 | KGA 530 | 0 | 0 | 5 |
-| KGA 540 | 0 | 1 | 14 |
+| KGA 540 | 0 | 2 | 13 |
 | KGA 550 | 0 | 0 | 6 |
 | KGA 560 | 0 | 0 | 4 |
 | KGA 570 | 0 | 1 | 7 |
 | KGA 580 | 0 | 1 | 5 |
-| KGA 600 | 0 | 5 | 1 |
+| KGA 600 | 0 | 3 | 3 |
 | KGA 610 | 0 | 0 | 5 |
 | KGA 620 | 0 | 0 | 7 |
 | KGA 700 | 0 | 1 | 2 |

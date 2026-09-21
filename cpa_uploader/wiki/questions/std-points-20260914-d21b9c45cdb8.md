@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-d21b9c45cdb8. 경영진의 통제무력화 위험에 대응하여 회계추정치의 편의를 검토할 때 감사기준서 240 문단 33(b)에 따라 수행해야 할 절차를 설명하시오."
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[fraud-laws-governance-communication]] · [[topic-05-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/155`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/139`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [05.json](../../analysis/reviews/question-review-2027/05.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/155/subquestions/0`
+유형: descriptive · JSON Pointer `/139/subquestions/0`
 
 ### 발문
 

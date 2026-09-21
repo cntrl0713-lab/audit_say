@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "set_id": "case-17-icfr-deficiency-20260921",
+  "note": "초안 qa.json의 supplementary_cases를 run-supplementary.ts의 입력 형상(answers·purpose·expected)으로 옮긴 파일이다. 답안 문자열과 물음별 기대점수는 qa.json과 같고 criterion별 기대 판정만 이 파일에서 펼쳤다. 승급 receipt 분모에 넣지 않는 보조 증거다.",
+  "source": {
+    "file": "cpa_uploader/drafts/case-review-2026-09-15/r23-icfr-deficiency-merge/qa.json",
+    "sha256": "5e90eed1e5624cebcfdf11fea0e07a6d3548332a23a1dfc6ea86b467de0efc91"
+  },
+  "supplementary_cases": [
+    {
+      "id": "r23-supp-numbers-only",
+      "purpose": "번호만 쓴 답이 물음마다 식별 1점만 받는지 확인한다.",
+      "answers": {
+        "sub1": "옳지 않은 것은 ①, ②, ④이다.",
+        "sub2": "옳지 않은 것은 ⑥, ⑦, ⑧이다.",
+        "sub3": "옳지 않은 것은 ⑪, ⑫이다."
+      },
+      "expected": {
+        "sub1": {
+          "expected_points": 1,
+          "expected_verdicts": [
+            { "criterion_id": "crit1", "verdict": "met", "reason": "①·②·④를 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "crit2", "verdict": "not_met", "reason": "①의 이유나 절차를 쓰지 않았다." },
+            { "criterion_id": "crit3", "verdict": "not_met", "reason": "②의 이유나 절차를 쓰지 않았다." },
+            { "criterion_id": "crit4", "verdict": "not_met", "reason": "④의 이유나 절차를 쓰지 않았다." }
+          ]
+        },
+        "sub2": {
+          "expected_points": 1,
+          "expected_verdicts": [
+            { "criterion_id": "crit5", "verdict": "met", "reason": "⑥·⑦·⑧을 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "crit6", "verdict": "not_met", "reason": "⑥의 이유나 절차를 쓰지 않았다." },
+            { "criterion_id": "crit7", "verdict": "not_met", "reason": "⑦의 이유나 절차를 쓰지 않았다." },
+            { "criterion_id": "crit8", "verdict": "not_met", "reason": "⑧의 이유나 절차를 쓰지 않았다." }
+          ]
+        },
+        "sub3": {
+          "expected_points": 1,
+          "expected_verdicts": [
+            { "criterion_id": "crit9", "verdict": "met", "reason": "⑪·⑫를 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "crit10", "verdict": "not_met", "reason": "⑪의 이유나 절차를 쓰지 않았다." },
+            { "criterion_id": "crit11", "verdict": "not_met", "reason": "⑫의 이유나 절차를 쓰지 않았다." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "r23-supp-remedy-only",
+      "purpose": "이유 없이 수행하였어야 할 절차만 쓴 답도 항목별 1점을 받는지 확인한다.",
+      "answers": {
+        "sub1": "옳지 않은 것은 ①, ②, ④이다. ① 대손충당금 검토통제 자체를 테스트한다. ② 각각의 관련경영진주장에 대하여 선정한 통제의 효과성 증거를 입수하는 것으로 한다. ④ 평가기준일까지 주간 점검통제가 충분한 기간 동안 시행되었는지를 결정한다.",
+        "sub2": "옳지 않은 것은 ⑥, ⑦, ⑧이다. ⑥ 승인 없이 상향된 한도가 적용된 고객의 매출채권에서 초래될 수 있는 잠재적 왜곡표시의 크기를 평가한다. ⑦ 대손충당금의 왜곡표시를 예방하거나 발견·수정하는 데 실패할 합리적 가능성이 있는지를 평가한다. ⑧ 보완통제의 운영효과성을 테스트한다.",
+        "sub3": "옳지 않은 것은 ⑪, ⑫이다. ⑪ 두 미비점을 결합하여 평가기준일 현재 중요한 취약점인지를 결정한다. ⑫ 구매 승인에 관한 유의적 미비점을 당기 서면 커뮤니케이션에 포함한다."
+      },
+      "expected": {
+        "sub1": {
+          "expected_points": 4,
+          "expected_verdicts": [
+            { "criterion_id": "crit1", "verdict": "met", "reason": "①·②·④를 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "crit2", "verdict": "met", "reason": "①에 대하여 그 통제 자체를 테스트한다는 보완절차를 적었다." },
+            { "criterion_id": "crit3", "verdict": "met", "reason": "②에 대하여 관련경영진주장별 선정 통제의 증거로 충분하다는 설명을 적었다." },
+            { "criterion_id": "crit4", "verdict": "met", "reason": "④에 대하여 평가기준일까지의 충분한 시행기간을 결정한다는 보완절차를 적었다." }
+          ]
+        },
+        "sub2": {
+          "expected_points": 4,
+          "expected_verdicts": [
+            { "criterion_id": "crit5", "verdict": "met", "reason": "⑥·⑦·⑧을 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "crit6", "verdict": "met", "reason": "⑥에 대하여 잠재적 왜곡표시의 크기를 평가한다는 보완절차를 적었다." },
+            { "criterion_id": "crit7", "verdict": "met", "reason": "⑦에 대하여 실패할 합리적 가능성을 평가한다는 보완절차를 적었다." },
+            { "criterion_id": "crit8", "verdict": "met", "reason": "⑧에 대하여 보완통제의 운영효과성을 테스트한다는 보완절차를 적었다." }
+          ]
+        },
+        "sub3": {
+          "expected_points": 3,
+          "expected_verdicts": [
+            { "criterion_id": "crit9", "verdict": "met", "reason": "⑪·⑫를 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "crit10", "verdict": "met", "reason": "⑪에 대하여 두 미비점을 결합하여 중요한 취약점인지 결정한다는 보완절차를 적었다." },
+            { "criterion_id": "crit11", "verdict": "met", "reason": "⑫에 대하여 당기 서면 커뮤니케이션에 포함한다는 보완절차를 적었다." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "r23-supp-condition-boundary",
+      "purpose": "항목마다 핵심 원칙 수준의 이유·절차가 있는지에 따라 점수가 갈리는 조건 경계를 확인한다.",
+      "answers": {
+        "sub1": "옳지 않은 것은 ①, ②, ④이다. ① 실증절차에서 왜곡표시가 발견되지 않았다는 것이 통제의 운영효과성을 의미하지는 않으므로 그 통제 자체를 테스트한다. ② 통제테스트의 표본 수를 늘려 수행한다. ④ 평가기준일 후의 거래에 대한 운영은 20X1년의 운영기간에 더할 수 없다.",
+        "sub2": "옳지 않은 것은 ⑥, ⑦, ⑧이다. ⑥ 미비점의 심각성은 잠재적 왜곡표시의 크기에 따라 달라진다. ⑦ 왜곡표시가 실제로 발생하였는지 여부로 심각성을 결정하지 않는다. ⑧ 재무담당임원에게 증감표의 검토 방법을 질문한다.",
+        "sub3": "옳지 않은 것은 ⑪, ⑫이다. ⑪ 같은 계정잔액과 관련경영진주장에 영향을 미치는 미비점들이 집합적으로 중요한 취약점이 되는지를 결정한다. ⑫ 감사위원회에 구두로 설명하는 자리를 따로 마련한다."
+      },
+      "expected": {
+        "sub1": {
+          "expected_points": 3,
+          "expected_verdicts": [
+            { "criterion_id": "crit1", "verdict": "met", "reason": "①·②·④를 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "crit2", "verdict": "met", "reason": "①에 대하여 이유와 보완절차를 모두 적었다." },
+            { "criterion_id": "crit3", "verdict": "not_met", "reason": "②에 대하여 표본 수 확대만 적었다. 문단 40 후단의 책임 범위와 무관하므로 인정하지 않는다." },
+            { "criterion_id": "crit4", "verdict": "met", "reason": "④에 대하여 평가기준일 후의 운영을 더할 수 없다는 이유를 적었다." }
+          ]
+        },
+        "sub2": {
+          "expected_points": 3,
+          "expected_verdicts": [
+            { "criterion_id": "crit5", "verdict": "met", "reason": "⑥·⑦·⑧을 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "crit6", "verdict": "met", "reason": "⑥에 대하여 심각성이 잠재적 왜곡표시의 크기에 따라 달라진다는 이유를 적었다." },
+            { "criterion_id": "crit7", "verdict": "met", "reason": "⑦에 대하여 실제 왜곡표시 발생 여부로 심각성을 결정하지 않는다는 이유를 적었다." },
+            { "criterion_id": "crit8", "verdict": "not_met", "reason": "⑧에 대하여 질문만 적었다. 정밀한 수준의 운영 여부를 결정하기 위한 보완통제의 운영효과성 테스트로 보기 어려우므로 인정하지 않는다." }
+          ]
+        },
+        "sub3": {
+          "expected_points": 2,
+          "expected_verdicts": [
+            { "criterion_id": "crit9", "verdict": "met", "reason": "⑪·⑫를 모두 고르고 옳은 항목을 고르지 않았다." },
+            { "criterion_id": "crit10", "verdict": "met", "reason": "⑪에 대하여 집합적으로 중요한 취약점이 되는지를 결정한다는 보완절차를 적었다." },
+            { "criterion_id": "crit11", "verdict": "not_met", "reason": "⑫에 대하여 구두 설명 자리를 마련한다고만 적었다. 문단 63의 서면 커뮤니케이션 요구를 충족하지 않으므로 인정하지 않는다." }
+          ]
+        }
+      }
+    }
+  ]
+}

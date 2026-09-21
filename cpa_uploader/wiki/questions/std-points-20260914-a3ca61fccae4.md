@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-a3ca61fccae4. 감사기준서 330에 따라 ① 통제의 효과성에 더 많이 의존하려는 경우와 ② 평가된 위험이 더 높은 경우, 입수할 감사증거의 설득력에 각각 어떤 영향이 있는지 설명하시오."
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[responses-controls-substantive-procedures]] · [[topic-07-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/207`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/191`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [07.json](../../analysis/reviews/question-review-2027/07.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/207/subquestions/0`
+유형: descriptive · JSON Pointer `/191/subquestions/0`
 
 ### 발문
 

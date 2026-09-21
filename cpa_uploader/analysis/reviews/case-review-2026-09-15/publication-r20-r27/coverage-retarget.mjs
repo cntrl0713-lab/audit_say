@@ -1,0 +1,107 @@
+// 퇴역하는 원 17세트를 가리키던 은행 대상 coverage 관계 11건을 대체 문항으로 다시 연결하고, 병합에서 사례형의 득점 요건이 사라진 요구 하나를 그 요구를 계속 다루는 기준서형으로 새로 연결한다(정본 설치 뒤 한 번 실행). publication-r16-r19/coverage-retarget.mjs를 옮겼다.
+// 초안 대상(target.scope=draft) 관계 18건은 보존된 초안 파일을 가리키므로 바꾸지 않는다. 반영 전 links.json 사본은 커밋하지 않는 tmp/에 두고 해시만 기록한다.
+//   node --import tsx cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r20-r27/coverage-retarget.mjs
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { questionHash, sourceUnitHash } from '../../../coverage/build-coverage.mjs';
+import { buildSourceCatalog } from '../../../../questionSourceCatalog.mjs';
+import { assertRelationship, checkCoverageBeforeWrite } from '../../case-trio-next-2026-09-14/helpers/coverage-contract.mjs';
+
+const P = 'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r20-r27', T = 'tmp/case-review-publication-r20-r27', file = 'cpa_uploader/analysis/coverage/links.json';
+const read = (f) => JSON.parse(fs.readFileSync(f)), hash = (x) => createHash('sha256').update(x).digest('hex'), ref = (f) => ({ file: f, sha256: hash(fs.readFileSync(f)) });
+const write = (f, v) => { fs.writeFileSync(f, JSON.stringify(v, null, 2) + '\n', { flag: 'wx' }); return ref(f); };
+assert.equal(read(P + '/install-completion.json').status, 'canonical_installed_and_validated');
+const plan = read(P + '/plan.json'), retired = plan.rounds.flatMap((r) => r.retires);
+const decisions = [
+    { id: 'frequency-gap-2026-09-10-B-1', set_id: 'case-13-service-org-internal-audit-20260921', subquestion_id: 'sub1', criterion_ids: ['crit1', 'crit2'], relationship: 'direct',
+        reason: '원 대상 pilot-13-007/sub1은 r27 병합으로 퇴역했다. 요소 “급여 서비스조직의 유형 1 보고서를 통제 운영효과성의 감사증거로 이용하려는 절차의 적절성과 이유 판단”(2025년 기출 1회)에 직접 대응하던 관계다. 대체 세트도 급여를 위탁한 서비스조직(유니페이)의 유형 1 보고서를 그대로 쓰며, sub1의 ③(통제설계 적합성에 대한 적정의견을 근거로 20X1년 운영효과성의 감사증거를 그 보고서에서 입수한 것으로 보고 실증절차를 축소)이 원 물음과 같은 절차다. 원 crit1의 “적절하지 않다”는 판단은 lineage.json에 따라 선택형의 식별 crit1로, 원 crit2의 “유형 1 보고서는 관련 통제의 운영효과성에 대한 증거를 제공하지 않는다”는 이유는 crit2로 각각 승계되었으므로 두 criterion을 대상으로 둔다. 식별 crit1은 ⑤(운영효과성 증거의 입수를 다음 보고기간으로 미룸, KGA 402 문단 16)까지 함께 맞아야 득점하므로 판단 점수의 획득 요건이 원 세트보다 넓어졌으나, 요소가 요구하는 판단과 이유가 모두 득점 요건으로 남아 있어 direct를 유지한다. 원자료 단위 KGA 402 A22는 대체 criterion의 근거 문단과 같아 그대로 두었다.' },
+    { id: 'case-additional-20260914-03-report-exclusions', set_id: 'case-03-engagement-acceptance-change-20260921', subquestion_id: 'sub2', criterion_ids: ['crit7'], relationship: 'adjacent',
+        reason: '원 대상 case-03-engagement-change-20260914/sub2는 r24 병합으로 퇴역했다. 요소 “감사에서 검토로 업무 변경 시 검토보고서에서 제외할 내용”(고급연습 23년 제1회 GS 문제3 물음1, 모의 1회)에 직접 대응하며 원 sub2.c1·c2가 당초 감사 수임 언급과 매출채권 외부조회 절차 언급의 제외를 각각 요구했다. 병합에서 이 요구가 삭제되었다. r24 lineage.json에 따르면 24번의 갑(상황 변화로 정당성 있음, KGA 210 문단 A32)과 44번 sub1의 정당성 있음 판단이 을(변형의견 회피, 문단 A33)과 반대 결론이어서 을만 남겼고, 문단 A35의 보고서 언급 제외 요구는 변경에 동의한 경우에만 성립하므로 sub2·sub3와 함께 삭제되었다. 대체 세트에서 변경 후 단계에 남은 득점 요건은 sub2의 ⑩(종전 감사계약서의 업무 명칭만 고쳐 보관하고 새 업무조건의 합의·기록을 남기지 않음)에 대한 crit7(KGA 210 문단 16)뿐이어서 이를 인접 대상으로 두고 direct에서 adjacent로 낮춘다. 문단 A35의 요구 자체는 기준서형 std-points-20260914-b10e300423f0 sub3의 crit6·crit7·crit7.sp2가 계속 다루지만 그 세트로 향하는 관계는 아직 없으므로 후속 정비 후보로 남는다. 원자료 단위 KGA 210 A35는 요소의 요구를 지지하는 단위이므로 그대로 두었다.' },
+    { id: 'case-additional-20260914-b13-expert-sub1', set_id: 'case-13-expert-engagement-20260921', subquestion_id: 'sub2', criterion_ids: ['crit7', 'crit8', 'crit9'], relationship: 'direct',
+        reason: '원 대상 case-13-expert-remediation-20260914/sub1은 r20 병합으로 퇴역했다. 요소 “원상복구충당부채 산정에 활용한 감사인측 전문가 업무가 감사목적에 적합한지 평가할 고려사항 제시”(고급연습 23년 제1회 GS 문제5 물음1, 모의 1회)는 세 가지 고려사항을 요구하는데, 원 세트는 sub1.c1·c2(가정·방법, 결론)만 이 관계에 두고 원천데이터는 sub2로 나뉘어 있어 partial이었다. r20 lineage.json에 따르면 sub1.c1은 sub2의 ⑧과 crit7로, sub1.c2는 ⑩과 crit8로, 원천데이터를 다루던 sub2.c1·c2·c3은 ⑫와 crit9 하나로 승계되어 KGA 620 문단 12(b)·(a)·(c)의 세 고려사항이 모두 같은 물음의 득점 요건이 되었다. 그래서 partial에서 direct로 올린다. 사례의 대상이 복구충당부채에서 신약 제조기술의 공정가치로 바뀌었으나 요소가 요구하는 것은 문단 12의 평가 고려사항이고 그 요구는 같다. 식별 crit6은 세 항목을 한 점수로 묶으므로 세 고려사항의 개별 득점 요건인 crit7·crit8·crit9만 대상으로 둔다. 원자료 단위 KGA 620 문단 12는 대체 criterion의 근거 문단과 같아 그대로 두었다.' },
+    { id: 'case-additional-20260914-b17-deficiency-sub1', set_id: 'case-17-icfr-deficiency-20260921', subquestion_id: 'sub2', criterion_ids: ['crit6', 'crit7'], relationship: 'direct',
+        reason: '원 대상 case-17-control-deficiency-20260914/sub1은 r23 병합으로 퇴역했다. 요소 “통제미비점이 중요한 취약점인지 평가할 때 심각성에 영향을 미치는 요소 두 가지 서술”(2020년 기출 1회)의 두 요소는 잠재적 왜곡표시의 크기와 예방 또는 발견·수정에 실패할 합리적 가능성이다. r23 lineage.json에 따르면 원 sub1.c1은 신용한도 승인통제에 붙여 ⑥(crit6)으로, 원 sub1.c2는 연체채권 검토통제에 붙여 ⑦(crit7)으로 각각 1점 그대로 승계되었고 근거도 KGA 1100 적용자료 A74로 같다. 두 요소가 서로 다른 항목의 독립 득점 요건이 되어 한쪽만 써도 그 점수를 받으므로 direct를 유지한다. 원 sub1.c3의 미비점 결합 평가는 원 관계에서도 제외했고 병합에서 sub3의 ⑪(crit10)으로 옮겨졌으므로 대상에 넣지 않는다. 식별 crit5는 ⑧(보완통제의 정밀성 테스트)까지 묶으므로 제외한다. 원자료 단위 KGA 1100 A74는 대체 criterion의 근거 문단과 같아 그대로 두었다.' },
+    { id: 'case-followup-20260914-08-specific-item-not-sampling', set_id: 'case-10-sampling-evaluation-20260921', subquestion_id: 'sub1', criterion_ids: ['crit2'], relationship: 'direct',
+        reason: '원 대상 case-08-selection-coverage-20260914/sub1은 r26 병합으로 퇴역했다. 요소 “특정항목 선택검사가 표본감사라는 진술의 적절성 판단”(고급연습 25년 제2회 GS 문제4 물음3④, 모의 1회)에 sub1.c1로 직접 대응하던 관계다. 대체 세트 sub1의 ②(일정 금액 초과 잔액과 분쟁 이력 거래처를 판단에 따라 골라 검사한 결과를 매출채권 모집단 전체로 투영)에 대한 crit2가 “특정 항목을 선택적으로 조사하는 것은 표본감사를 구성하지 않으므로 그 결과를 전체 모집단으로 투영할 수 없다”는 이유를 요구하여 같은 판단을 그대로 묻는다. r26 lineage.json은 원 sub1.c1의 추출방법 구별을 옳은 항목 ①의 판단과 ②의 인정 이유 안에서 평가하도록 옮겼다고 적고 있고, 그 구별이 crit2의 득점 요건에 들어 있어 direct를 유지한다. 원 sub1.c2·c3의 투영 불가와 잔여 부분 증거 부재도 같은 crit2와 옳은 항목 ③의 근거로 흡수되었으나 이 관계는 진술의 적절성 판단에 한정하므로 대상을 crit2 하나로 둔다. 식별 crit1은 ④(회신을 받기 쉬운 거래처로 표본을 채움, KGA 530 문단 8)까지 묶으므로 제외한다. 원자료 단위 KGA 500 A65·A66은 대체 criterion의 근거 문단과 같아 그대로 두었다.' },
+    { id: 'case-followup-20260914-11-lookback-information-partial', set_id: 'case-11-accounting-estimate-20260921', subquestion_id: 'sub2', criterion_ids: ['crit6'], relationship: 'adjacent',
+        reason: '원 대상 case-11-estimate-lookback-20260914/sub1은 r21 병합으로 퇴역했다. 요소 “과거 회계추정치 결과·재추정치의 소급적 검토로 입수할 수 있는 감사증거와 정보”(고급연습 25년 제1회 GS 문제5 물음1 요구사항1, 모의 1회)는 KGA 540 문단 A55의 네 범주 가운데 세 가지를 열거하게 하는 요구이고, 원 sub1.c3이 그 가운데 “과거 추정절차의 효과성에 관한 정보를 당기 위험평가에 이용”이라는 한 범주를 사례에 적용하여 partial이었다. r21 lineage.json에 따르면 원 sub1.c1·c2·c3은 항목 ⑦ 한 점(crit6)으로 합쳐졌고, crit6의 득점 요건은 문단 14의 요구(당기 중요왜곡표시위험의 식별·평가에 도움을 주기 위하여 이전 결과 또는 후속적인 재추정을 검토하여야 한다)이거나 전기 산정표와 당기 재추정 자료를 검토한다는 절차로, A55의 정보 범주를 하나도 요구하지 않는다. 열거 요구가 득점 요건에서 사라졌으므로 partial에서 adjacent로 낮춘다. A55의 네 번째 범주인 경영진 편의가능성 징후는 같은 세트 sub3의 crit9가 다루지만 그것은 문단 32·A133의 편의 평가 요구여서 소급적 검토로 입수하는 정보의 열거로 득점되지 않는다. 이 열거를 묻는 문항은 후속 제작의 후보로 남는다. 원자료 단위 KGA 540 문단 14·A55는 대체 criterion의 근거 문단과 같아 그대로 두었다.' },
+    { id: 'coverage-deepening-20260914-03', set_id: 'case-05-fraud-governance-20260921', subquestion_id: 'sub3', criterion_ids: ['crit8'], relationship: 'adjacent',
+        reason: '원 대상 case-05-governance-dialogue-20260914/sub1은 r25 병합으로 퇴역했다. 요소 “지배기구 커뮤니케이션 대상의 적절성”(2018년 기출 문제7 물음3, 1회)은 경영진과만 커뮤니케이션하는 관행을 지적하고 적합한 소통상대를 고치게 하는 요구이며, 원 관계는 실제 소통이 감사목적에 적절했는지를 평가하는 신규 물음과 대상을 구별하여 adjacent였다. r25 lineage.json에 따르면 원 sub1.c1·c2는 sub3의 ⑪ 한 항목(crit8)으로 합쳐져 승계되었고, crit8은 서신 수신 회신만으로 양방향 커뮤니케이션의 적절성을 결론지을 수 없다는 이유 또는 KGA 260 문단 A51의 관찰사항에 근거한 평가 절차를 요구한다. 2018년 원발문이 요구하는 소통상대의 식별(문단 11~13)은 이 세트에서도 득점 요건이 아니므로 adjacent를 유지한다. 같은 sub3의 crit11(⑮ 은솔 이사회와의 커뮤니케이션)은 소통 상대를 다루지만 문단 A53의 미해결 상황에서 취할 수 있는 조치이지 지배기구 식별 요구가 아니어서 대상에 넣지 않는다. 원 판단 점수를 흡수한 식별 crit7은 ⑬·⑭·⑮까지 묶으므로 제외한다. 소통상대의 적절성을 직접 묻는 문항은 현재 은행에 없어 후속 제작의 후보로 남는다. 원자료 단위 KGA 260 문단 22·A51은 대체 criterion의 근거 문단과 같아 그대로 두었다.' },
+    { id: 'coverage-deepening-20260914-05', set_id: 'case-10-sampling-evaluation-20260921', subquestion_id: 'sub3', criterion_ids: ['crit10', 'crit11'], relationship: 'partial',
+        reason: '원 대상 case-10-anomaly-projection-conclusion-20260914/sub2는 r26 병합으로 퇴역했다. 요소 “경영진이 수정하지 않은 변이 왜곡표시를 모집단 수용 판단에 반영하는 방법”(2017년 기출 문제4 물음4, 1회)은 변이로 밝혀진 왜곡표시를 경영진이 수정하지 않은 상황에서 모집단의 수용 여부를 결정할 때의 처리를 서술하게 한다. 원 sub2.c1(입증된 변이를 일반 오류의 투영에서 제외)과 sub2.c2(미수정 변이를 투영값에 가산)가 대상이었다. r26 lineage.json에 따르면 sub2.c1은 삭제되었다. 변이 판정 시점을 하나로 통일하면서 새 사례에는 입증된 변이가 존재하지 않고, 오히려 담당자의 설명만으로 변이로 분류한 ⑦과 그 거래처 자료만으로 잔여 부분의 영향을 판단한 ⑧이 sub2의 crit6·crit7로 옳지 않은 항목이 되었다. 같은 요구는 기준서형 pilot-10-005 sub2 crit2가 계속 다룬다. sub2.c2는 sub3의 ⑬(crit10)으로 승계되었고, 원 세트 sub3.c1·c2가 담당하던 수용 판단은 ⑭(crit11, 투영액과 변이왜곡표시의 합이 허용왜곡표시를 초과하면 표본이 합리적인 근거를 제공하지 못함)로 남아 요소의 “모집단 수용 판단” 부분을 함께 받는다. 세 처리 가운데 투영 제외가 득점 요건에서 빠지고 이 사례에서는 반대 방향으로 다루어지므로 direct에서 partial로 낮춘다. 원자료 단위 KGA 530 A19·문단 14·A22는 대체 criterion의 근거 문단과 같아 그대로 두었다.' },
+    { id: 'coverage-trio-20260914-b', set_id: 'case-13-expert-engagement-20260921', subquestion_id: 'sub1', criterion_ids: ['crit5'], relationship: 'adjacent',
+        reason: '원 대상 case-13-expert-selection-agreement-20260914/sub3은 r20 병합으로 퇴역했다. 요소 “감사인측 전문가와 합의할 사항”(2021년 기출 문제3 물음3, 1회)은 커뮤니케이션의 성격·시기·범위를 예시로 제외하고 나머지 합의사항 두 가지를 요구하며, 원 sub3.c3(비밀유지와 목적 외 사용 제한, KGA 620 문단 11(d))이 그 가운데 하나를 사례에 적용하여 partial이었다. r20 lineage.json에 따르면 sub3.c3은 옳은 항목 ⑦로 옮겨져 득점 요건이 없어졌고, 문단 11(b)의 역할과 책임도 옳은 항목 ④로만 제시되며, sub3.c1의 커뮤니케이션 시기 합의는 사실에서 시기를 적합하게 통일하며 삭제되었다. 대체 세트에서 문단 11의 합의사항 가운데 남은 득점 요건은 sub1의 ⑥(최종 금액만 구두로 알리는 결과 전달 방식을 그대로 둠)에 대한 crit5뿐인데, 이는 원발문이 명시적으로 제외한 예시(문단 11(c)의 보고서 형태 등 커뮤니케이션의 성격·시기·범위)에 해당한다. 원발문이 요구한 예시 외 합의사항이 득점 요건에서 사라졌으므로 partial에서 adjacent로 낮추고 같은 문단의 인접 요구인 crit5를 대상으로 둔다. 문단 11(c)·(d)를 포함한 합의사항은 기준서형 std-points-20260914-553c373f5e2b가 계속 다룬다. 원자료 단위 KGA 620 문단 11은 대체 criterion의 근거 문단과 같아 그대로 두었다.' },
+    { id: 'coverage-trio-next-20260914-b', set_id: 'case-12-uncorrected-misstatement-20260921', subquestion_id: 'sub2', criterion_ids: ['crit4', 'crit5'], relationship: 'direct',
+        reason: '원 대상 case-12-trivial-classification-offset-20260914/sub2는 r22 병합으로 퇴역했다. 요소 “중요한 장기차입금을 단기차입금으로 분류한 왜곡표시의 중요성 평가”(고급연습 2024년 GS1 문제4 물음3, 모의 1회)는 금액 중요성을 넘는 분류왜곡표시에 대한 질적 중요성 판단과 근거를 요구하며, 원 sub2.c1(판단)과 sub2.c2(근거)가 대상이었다. r22 lineage.json에 따르면 두 criterion은 sub2의 ⑦(구분 차이의 금액이 중요성을 초과함을 확인하고 재무제표 전체의 관점에서 중요하다고 결론)과 그 이유 crit5, 그리고 식별 crit4로 승계되어 총 2점이 유지되었다. sub2에서 옳지 않은 항목은 ⑦ 하나뿐이어서 식별 crit4가 곧 원 sub2.c1의 판단에 대응하므로 두 criterion을 대상으로 둔다. 계정이 장기대여금과 기타비유동자산으로 바뀌고 금액이 3억원·중요성 2억원으로 바뀌었으나 KGA 450 문단 A20의 같은 평가 요구를 직접 다루므로 direct를 유지한다. 같은 세트의 sub1·sub3는 이 원물음의 출제 범위로 확장하지 않는다. 원자료 단위 KGA 450 A20은 대체 criterion의 근거 문단과 같아 그대로 두었다.' },
+    { id: 'coverage-trio-next-20260914-c', set_id: 'case-13-service-org-internal-audit-20260921', subquestion_id: 'sub2', criterion_ids: ['crit5'], relationship: 'partial',
+        reason: '원 대상 case-13-internal-audit-boundaries-20260914/sub2는 r27 병합으로 퇴역했다. 요소 “유의적 위험이 있는 공정가치측정금융자산의 통제테스트에 외주 내부감사 평가업무를 활용하려는 절차의 적절성과 이유 판단”(2025년 기출 1회)에 원 sub2.c1·c2·c3(활용 축소, 직접 수행 확대, 위험 수준 차이의 근거)으로 일부 대응하던 관계다. r27 lineage.json에 따르면 세 criterion은 같은 잘못의 이유와 보완절차이므로 sub2의 ⑦(두 영역의 활용 범위와 직접 수행 범위를 같게 정함)에 대한 crit5 한 점으로 통합되었고, 세 표현 가운데 어느 하나만 써도 인정한다. 근거도 KGA 610 문단 18(b)·A20·A21로 같다. 원발문의 공정가치측정금융자산과 외주 전문인력이라는 조건을 대체 세트도 재현하지 않고 사내 내부감사부의 장기 판매계약 매출인식 통제 평가로 두므로 partial을 유지한다. 식별 crit4는 ⑧(유의적 판단의 주체)·⑨(재수행 포함)까지 함께 요구하는 신규 항목을 묶으므로 대상에 넣지 않는다. 원 세트 sub1의 객관성 결함으로 인한 활용 금지(KGA 610 문단 16(a))는 조직개편 전·후가 반대 결론이어서 병합에서 삭제되었으나 원 관계의 대상이 아니었고, 그 요구는 기준서형 std-points-20260914-da16629297a8과 pilot-13-002가 계속 다룬다. 원자료 단위 KGA 610 문단 18은 대체 criterion의 근거 문단과 같아 그대로 두었다.' },
+];
+// 퇴역이 만든 결손을 같은 회차에서 정리하는 신규 관계다. 기존 관계의 재연결이 아니므로 decisions와 구분해 둔다.
+const additions = [
+    { id: 'case-review-20260921-03-report-exclusions-standards', element_id: 'element-5a72f897af95df41', source_unit_ids: ['src-4a6bcea8d9ef59ddd2'],
+        origin_link_id: 'case-additional-20260914-03-report-exclusions',
+        set_id: 'std-points-20260914-b10e300423f0', subquestion_id: 'sub3', criterion_ids: ['crit6', 'crit7'], relationship: 'direct',
+        reason: 'r24 병합에서 A35 요구가 사례형에서 사라졌고 기준서형이 이를 계속 다루므로 관계를 그 세트로 새로 연결한다. 요소 “감사에서 검토로 업무 변경 시 검토보고서에서 제외할 내용”(고급연습 23년 제1회 GS 문제3 물음1, 모의 1회)은 변경 후 보고서에서 당초 감사업무의 수임과 그 감사에서 수행한 절차를 제외하도록 요구한다. 원 대상 case-03-engagement-change-20260914/sub2는 r24 병합으로 퇴역했고, r24 lineage.json에 따르면 KGA 210 문단 A35는 변경에 합리적 정당성이 있다고 결론 내린 경우에만 적용되므로 정당성 없음으로 확정한 대체 사례형(case-03-engagement-acceptance-change-20260921)에서 sub2·sub3의 A35 요구가 삭제되었다. 기존 관계 case-additional-20260914-03-report-exclusions는 대체 세트 sub2의 crit7(문단 16, 새 업무조건의 합의·기록)로 adjacent 재연결했고, 요소의 요구 자체는 이 기준서형 sub3이 계속 다룬다. sub3은 문단 A35 전문을 인용하고, crit6이 보고서에서 당초 감사업무 자체에 대한 언급의 배제를, crit7이 당초 감사업무에서 수행되었던 절차의 원칙적 미언급을 각각 1점의 독립 득점 요건으로 요구하여 요소가 요구하는 두 제외 대상을 모두 받는다. 발문은 문단 A35 후단의 문언을 따라 관련 서비스로 변경된 경우를 전제하고 원발문은 검토로 변경된 경우이나, 문단 A35는 “검토 또는 관련 서비스로 변경”에 대하여 (a) 당초 감사업무와 (b) 당초 감사업무에서 수행되었던 절차라는 하나의 제외 규칙을 두고 있고 두 criterion이 요구하는 명제가 그 규칙 자체이므로 direct로 판정한다. 같은 물음의 crit5·crit10(변경 후 수행할 업무와 발행할 보고서가 변경된 업무에 적합하여야 함)과 crit7.sp2(합의된 절차 수행업무로 변경되어 절차 언급이 통상적인 경우의 예외)는 요소가 요구하지 않는 별도 요구여서 대상에서 제외한다. 검토로 변경된 경우에는 그 예외가 성립하지 않으므로 crit7.sp2를 넣으면 대응 범위를 부풀리게 된다. 원발문의 “수행해야 할 절차” 부분은 다른 요소이며 이 연결에 포함하지 않는다. 원자료 단위는 기존 관계와 같은 공식 원문 단위(KGA 210 A35)를 쓴다.' },
+];
+const bytes = fs.readFileSync(file), data = JSON.parse(bytes), bank = read('cpa_uploader/data/cpa_question_sets_v3.authoring.json');
+const elements = read('cpa_uploader/analysis/question-elements/question-elements.json').elements, units = buildSourceCatalog().units;
+const bankTargets = data.links.filter((l) => l.target && l.target.scope !== 'draft' && retired.includes(l.target.set_id));
+assert.equal(bankTargets.length, 11, 'r20~r27은 은행 대상 관계 11건을 재연결한다');
+assert.deepEqual(bankTargets.map((l) => l.id).sort(), decisions.map((d) => d.id).sort(), 'Every bank relationship to a retired set must be decided');
+for (const id of retired) assert(!bank.some((s) => s.id === id), 'Retired set still in canonical bank: ' + id);
+const review = write(P + '/coverage-retarget-review.json', { version: 1, method: 'agent_relationship_review', human_review_performed: false,
+    reviewer_id: 'agent:claude-opus-5 (publication author agent; not an independent peer review)', reviewed_at: new Date().toISOString(),
+    basis: '퇴역·대체 이력(plan.json)과 각 회차 초안의 lineage.json, 대체 문항의 발문·항목·criterion, 원 관계의 요소·원출제·답안 비교·원자료 단위를 대조했다. 원자료 단위는 대체 criterion의 근거 문단과 같아 그대로 두었다. 신규 관계는 요소의 요구가 병합에서 사례형의 득점 요건에서 사라지고 기준서형이 그 요구를 계속 다루는 경우에 한정해 두었다.',
+    plan: ref(P + '/plan.json'), links: decisions.map((d) => ({ ...d, decision: 'retarget_to_replacement' })),
+    new_links: additions.map((a) => ({ ...a, decision: 'new_relationship_to_standards_set_retaining_the_requirement' })),
+    resolved_findings: [
+        'case-additional-20260914-03-report-exclusions: KGA 210 문단 A35의 보고서 언급 제외 요구는 r24 병합에서 사례형의 득점 요건에서 삭제되었고 기준서형 std-points-20260914-b10e300423f0 sub3이 그 요구를 계속 다루나 그 세트로 향하는 coverage 관계가 없었다. 사용자 확인(2026-09-21)에 따라 같은 회차에서 신규 관계 case-review-20260921-03-report-exclusions-standards를 sub3의 crit6·crit7에 direct로 추가하여 해결했다. 요소 element-5a72f897af95df41은 이제 은행 대상 direct 관계 하나와 대체 사례형에 대한 adjacent 관계 하나를 가진다.',
+    ],
+    unresolved_findings: [
+        'r24가 삭제한 KGA 210 문단 A32(상황 변화에 따른 업무조건 변경의 정당성)를 묻는 문항은 은행에 없다. 이 11건 가운데 그 요구를 가리키는 관계는 없으며 후속 제작 후보로 남는다. 사용자 확인에 따라 이 회차에서 새 관계를 만들지 않는다.',
+        'case-followup-20260914-11-lookback-information-partial: KGA 540 문단 A55의 정보 범주 열거를 득점 요건으로 묻는 문항이 은행에 없어 후속 제작 후보로 남는다. 사용자 확인에 따라 이 회차에서 새 관계를 만들지 않는다.',
+        'coverage-deepening-20260914-03: 2018년 기출이 요구한 소통상대의 식별(KGA 260 문단 11~13)을 득점 요건으로 묻는 문항이 은행에 없어 후속 제작 후보로 남는다. 은행 전수 조회에서 문단 11~13을 인용하는 세트를 찾지 못했다.',
+        'r25/r21이 승계하지 않은 KGA 240 문단 33(b)(통제무력화 대응으로서의 회계추정치 편의 검토)를 가리키는 관계는 이 11건에 없다. 그 요구는 기준서형 std-points-20260914-d21b9c45cdb8 sub2가 계속 다루며, 이번 범위가 아니므로 사용자 확인에 따라 새 관계를 만들지 않는다.',
+    ],
+    unchanged_draft_links: data.links.filter((l) => l.target?.scope === 'draft' && retired.includes(l.target.set_id)).map((l) => l.id) });
+const candidate = structuredClone(data);
+for (const d of decisions) {
+    const link = candidate.links.find((l) => l.id === d.id), previous = structuredClone(link);
+    const set = bank.find((s) => s.id === d.set_id), q = set?.subquestions.find((x) => x.id === d.subquestion_id);
+    assert(q && set.status === 'published', d.id); assert(d.criterion_ids.every((id) => q.criteria.some((c) => c.id === id)));
+    const element = elements.find((e) => e.id === link.element_id); assert(element, link.element_id);
+    const sourceIds = d.source_unit_ids ?? link.source_unit_ids;
+    const sources = sourceIds.map((id) => { const u = units.find((x) => x.id === id); assert(u, id); return u; });
+    Object.assign(link, { source_unit_ids: sourceIds, target: { set_id: set.id, subquestion_id: q.id, criterion_ids: d.criterion_ids }, relationship: d.relationship, review_status: 'reviewed', reason: d.reason,
+        snapshot: { element_sha256: hash(JSON.stringify(element)), question_sha256: questionHash(set, q), source_hashes: Object.fromEntries(sources.map((u) => [u.id, u.contentHash])), source_metadata_hashes: Object.fromEntries(sources.map((u) => [u.id, sourceUnitHash(u)])) },
+        provenance: { ...previous.provenance, retargeted: { reason: 'retired_and_replaced', previous_target: previous.target, previous_relationship: previous.relationship, previous_reason: previous.reason,
+            previous_source_unit_ids: previous.source_unit_ids, previous_snapshot: previous.snapshot, review, publication: ref(P + '/install-completion.json'), human_review_performed: false } } });
+    assertRelationship(link);
+}
+for (const a of additions) {
+    assert(!candidate.links.some((l) => l.id === a.id), 'Relationship id already exists: ' + a.id);
+    const set = bank.find((s) => s.id === a.set_id), q = set?.subquestions.find((x) => x.id === a.subquestion_id);
+    assert(q && set.status === 'published', a.id); assert(a.criterion_ids.every((id) => q.criteria.some((c) => c.id === id)));
+    const element = elements.find((e) => e.id === a.element_id); assert(element, a.element_id);
+    const sources = a.source_unit_ids.map((id) => { const u = units.find((x) => x.id === id); assert(u, id); return u; });
+    const origin = data.links.find((l) => l.id === a.origin_link_id); assert(origin, a.origin_link_id);
+    const link = { id: a.id, element_id: a.element_id, source_unit_ids: a.source_unit_ids,
+        target: { set_id: set.id, subquestion_id: q.id, criterion_ids: a.criterion_ids }, relationship: a.relationship, review_status: 'reviewed', reason: a.reason,
+        snapshot: { element_sha256: hash(JSON.stringify(element)), question_sha256: questionHash(set, q), source_hashes: Object.fromEntries(sources.map((u) => [u.id, u.contentHash])), source_metadata_hashes: Object.fromEntries(sources.map((u) => [u.id, sourceUnitHash(u)])) },
+        provenance: { created: { reason: 'requirement_dropped_from_retired_case_and_retained_by_standards_set', origin_link_id: origin.id, origin_previous_target: origin.target,
+            review, publication: ref(P + '/install-completion.json'), human_review_performed: false } } };
+    assertRelationship(link);
+    candidate.links.push(link);
+}
+assert.equal(candidate.links.length, data.links.length + additions.length);
+for (const [i, l] of data.links.entries()) if (!decisions.some((d) => d.id === l.id)) assert.deepEqual(candidate.links[i], l, 'Unrelated relationship changed: ' + l.id);
+assert.deepEqual(candidate.links.slice(data.links.length).map((l) => l.id), additions.map((a) => a.id), 'Only the reviewed new relationships may be appended');
+assert.equal(hash(fs.readFileSync(file)), hash(bytes), 'Concurrent coverage edit');
+const assembled = checkCoverageBeforeWrite({ overlay: candidate, dataset: read('cpa_uploader/analysis/question-elements/question-elements.json'), bank, catalog: buildSourceCatalog(), addedIds: [...decisions, ...additions].map((x) => x.id) });
+assert.equal(hash(fs.readFileSync(file)), hash(bytes), 'Concurrent coverage edit after assemble validation');
+fs.mkdirSync(T, { recursive: true }); fs.writeFileSync(T + '/coverage-links-before.json', bytes, { flag: 'wx' });
+fs.writeFileSync(file, JSON.stringify(candidate, null, 2) + '\n');
+write(P + '/coverage-update.json', { created_at: new Date().toISOString(), before: ref(T + '/coverage-links-before.json'), before_copy_committed: false, after: ref(file), retargeted_link_ids: decisions.map((d) => d.id), added_link_ids: additions.map((a) => a.id), review,
+    assembled_before_write: assembled, other_links_preserved: true, frequency_inputs_changed: false, human_review_performed: false });
+console.log({ retargeted: decisions.length, added: additions.length, total_links: candidate.links.length, assembled });

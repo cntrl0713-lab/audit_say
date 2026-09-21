@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/execution-standards-v1/grading-manifest.json",
+    "sha256": "1b0fc3441f2ab473ec964b939c1aa7301bb1c07023db46a1c164597f76d1ac1e"
+  },
+  "entry_id": "pilot-16-008-standards-20260921--sub3--standard--partial",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-008-standards-20260921--sub3--standard",
+  "source_set_id": "pilot-16-008-standards-20260921",
+  "kind": "partial",
+  "evaluated_subquestion_ids": [
+    "sub3"
+  ],
+  "projected_body_hash": "da5b232dac96eb9d21afec25a1c8295ddd04bdea5e370d172ad01dd3b976f5f8",
+  "answers": {
+    "sub3": "감사보고서의 기타사항문단에 전기재무제표는 전임감사인이 감사하였다는 사실을 기재한다.\n그리고 전임감사인이 표명한 의견의 유형을 기재한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub3",
+      "expected_points": 2,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "문단 13(a)의 전임감사인 감사 사실을 적었다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "문단 13(b) 전단의 의견 유형을 적었다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "의견이 변형되었으면 그 이유도 기재한다는 내용이 없다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "not_met",
+          "reason": "전임감사인의 감사보고서일을 적지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "cf9f8ff5b839fcd9b0523adc9e8ffdea65d8e5c4ce3af8cf1e17c2a92b9f7914",
+  "schema_hash": "cacaa317385d13f84bb8fc785c886f3e0a6d788c564bdd18db335461f9315b95",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "verdicts": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "감사보고서의 기타사항문단에 전기재무제표는 전임감사인이 감사하였다는 사실을 기재한다.\n",
+            "reason": "전기재무제표가 전임감사인의 감사를 받았다는 사실을 기타사항문단에 기재한다고 제시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "그리고 전임감사인이 표명한 의견의 유형을 기재한다.",
+            "reason": "전임감사인이 표명한 의견의 유형을 기재한다고 제시했다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "의견이 변형된 경우 그 이유를 기재한다는 내용이 없다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "전임감사인의 감사보고서일을 기재한다는 내용이 없다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub3",
+            "verdicts": [
+              {
+                "criterion_id": "crit3",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e1"
+                ],
+                "reason": "전기재무제표가 전임감사인의 감사를 받았다는 사실을 기타사항문단에 기재한다고 제시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "met",
+                "evidence_ids": [
+                  "sub3/e2"
+                ],
+                "reason": "전임감사인이 표명한 의견의 유형을 기재한다고 제시했다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "의견이 변형된 경우 그 이유를 기재한다는 내용이 없다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "전임감사인의 감사보고서일을 기재한다는 내용이 없다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-008-standards-20260921",
+    "score": 2,
+    "max_points": 4,
+    "subquestions": [
+      {
+        "subquestion_id": "sub3",
+        "prompt": "감사기준서 710의 대응수치 방식이 적용되는 감사에서 전기재무제표가 전임감사인의 감사를 받았고, 감사인이 대응수치에 대하여 전임감사인의 감사보고서를 언급하는 것이 법규상 금지되지 아니하여 감사인이 이를 언급하기로 결정하였다. 이 경우 감사기준서 710 문단 13의 (a), (b), (c)에 따라 감사보고서의 기타사항문단에 기재하여야 할 사항을 모두 제시하시오.",
+        "user_answer": "감사보고서의 기타사항문단에 전기재무제표는 전임감사인이 감사하였다는 사실을 기재한다.\n그리고 전임감사인이 표명한 의견의 유형을 기재한다.",
+        "score": 2,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit3",
+            "verdict": "met",
+            "quote": "감사보고서의 기타사항문단에 전기재무제표는 전임감사인이 감사하였다는 사실을 기재한다.",
+            "reason": "전기재무제표가 전임감사인의 감사를 받았다는 사실을 기타사항문단에 기재한다고 제시했다.",
+            "claim": "전기재무제표가 전임감사인의 감사를 받았다는 사실을 기타사항문단에 기재한다고 제시함. 전임감사인이라는 대상 명칭만으로 해당 감사사실의 보고 요구를 대신하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "met",
+            "quote": "그리고 전임감사인이 표명한 의견의 유형을 기재한다.",
+            "reason": "전임감사인이 표명한 의견의 유형을 기재한다고 제시했다.",
+            "claim": "전임감사인이 표명한 의견의 유형을 기재한다고 제시함. 유형의 명칭을 요구하는 보고 범주로서 특정 사례의 실제 의견 유형을 추정할 필요는 없다.",
+            "max_points": 1,
+            "awarded_points": 1
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "의견이 변형된 경우 그 이유를 기재한다는 내용이 없다.",
+            "claim": "전임감사인의 의견이 변형되었으면 그 이유도 기재한다고 제시함. 모든 경우의 변형 이유를 가정하거나 부적정의견인 때로만 한정하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "not_met",
+            "reason": "전임감사인의 감사보고서일을 기재한다는 내용이 없다.",
+            "claim": "전임감사인의 감사보고서일을 기재한다고 제시함. 전기 재무제표일이나 당기 감사보고서일로 대체하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "전기재무제표는 전임감사인이 감사하였다는 사실을 기재한다.",
+          "전임감사인이 표명한 의견의 유형을 기재한다.",
+          "그 의견이 변형되었다면 변형 이유를 함께 기재한다.",
+          "전임감사인의 감사보고서일을 기재한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub3",
+      "evaluated": true,
+      "expected_points": 2,
+      "actual_points": 2,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_02a110b825caa8ff016ab0cab4b10887d08ac8bad6679032a3",
+        "request_id": "req_88196713034348de81d03d03742a8c7f",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2923,
+          "input_tokens_details": {
+            "cache_write_tokens": 2920,
+            "cached_tokens": 0
+          },
+          "output_tokens": 273,
+          "output_tokens_details": {
+            "reasoning_tokens": 45
+          },
+          "total_tokens": 3196
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0010582,
+        "min_usd": 0.0010582,
+        "max_usd": 0.0010582,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/execution-standards-v1/actual-a/pilot-16-008-standards-20260921--sub3--standard--partial/input.json",
+      "sha256": "d42dbb30b41199604965e5b67c20552e0a53181da71b40244bfc4fdf0fdd4c86"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/execution-standards-v1/actual-a/pilot-16-008-standards-20260921--sub3--standard--partial/transport.jsonl",
+      "sha256": "909e063452a2a228415fe8bc69a1908db9f7b1eda08b1f808cc9c0d3c6875bb8"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/execution-standards-v1/actual-a/pilot-16-008-standards-20260921--sub3--standard--partial/traces.jsonl",
+      "sha256": "23e37a4a7c0f0089803434a0ff72a75a4ab50947fcc4da39549e0d7237a2e2a1"
+    }
+  }
+}

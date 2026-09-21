@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-a2dcdc9faa17. 경영진이 조회서 발송을 거부할 때 관련성이 있고 신뢰할 수 있는 증거를 확보하기 위하여 수행할 절차를 제시하시오. 거부가 비합리적이라고 결론 내리거나 그 절차로 관련성이 있고 신뢰할 수 있는 증거를 얻지 못하는 경우에는 누구와 커뮤니케이션해야 하는지도 제시하시오."
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[inventory-litigation-confirmations-opening-balances]] · [[topic-09-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/212`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/196`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [09.json](../../analysis/reviews/question-review-2027/09.json)
 - 학습 순서: sub1
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub1
 
-유형: enumeration · JSON Pointer `/212/subquestions/0`
+유형: enumeration · JSON Pointer `/196/subquestions/0`
 
 ### 발문
 

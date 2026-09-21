@@ -1,7 +1,7 @@
 ---
 title: "draft-09-505-freq01. 공란형 적극적 조회의 장단점과 회신 자체가 필요한 경우"
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[inventory-litigation-confirmations-opening-balances]] · [[topic-09-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/76`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/73`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [09.json](../../analysis/reviews/question-review-2027/09.json)
 - 학습 순서: q1 → q2
@@ -27,7 +27,7 @@ confidence: high
 
 ## q1
 
-유형: descriptive · JSON Pointer `/76/subquestions/0`
+유형: descriptive · JSON Pointer `/73/subquestions/0`
 
 ### 발문
 
@@ -63,7 +63,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## q2
 
-유형: descriptive · JSON Pointer `/76/subquestions/1`
+유형: descriptive · JSON Pointer `/73/subquestions/1`
 
 ### 발문
 

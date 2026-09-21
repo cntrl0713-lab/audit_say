@@ -1,0 +1,84 @@
+// r24: agent 내용 검토 기록기. 초안 내용을 확정한 뒤에 실행한다.
+//
+//   node --import tsx cpa_uploader/drafts/case-review-2026-09-15/r24-engagement-change-merge/record-review.mjs
+//
+// 초안 파일의 해시를 고정하므로 기록 후 초안을 고쳤으면 출력 파일을 지우고 다시 실행한다.
+// 이 기록은 agent의 내용 대조이며 사람 검수·실제 모델 채점이 아니다.
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { reviewedContentHash } from '../../../questionReviewIdentity.ts';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(here, '../../../..');
+process.chdir(root);
+
+const DRAFT = 'cpa_uploader/drafts/case-review-2026-09-15/r24-engagement-change-merge';
+const OUT = 'cpa_uploader/analysis/reviews/case-review-2026-09-15/r24/root-content-review-v1.json';
+const hash = (file) => createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const ref = (file) => ({ file, sha256: hash(file) });
+
+const [draft] = JSON.parse(fs.readFileSync(`${DRAFT}/sets.json`, 'utf8'));
+
+const PASS = {
+    source: 'pass', answer: 'pass', prompt: 'pass', points: 'pass',
+    style: 'pass', topics: 'pass', edition: 'pass', nonduplication: 'pass',
+};
+
+const rationale = {
+    sub1:
+        'source: ①은 문단 6(a), ②는 문단 9("경영진, 또는 적합한 경우 지배기구와"), ③은 문단 6(b)(iii) b·c와 문단 8(b), ④는 문단 10과 문단 11, ⑤는 문단 10(f)에서 확정했다. ③에 대하여 문단 6(b)(iii)의 세 범주를 초안 조항과 하나씩 대조했다. a(기록·문서 등 알고 있는 모든 정보에 대한 접근)는 초안이 제공하지만, b(감사목적으로 요청하는 추가적인 정보)와 c(감사증거 입수에 필요하다고 판단한 기업 내부 관계자들에 대한 제한없는 접근)는 재무담당이사의 필요성 인정·허가에 걸려 있어 동의를 받은 것이 아니다. 문단 8의 두 분기 가운데 (a)는 "재무보고체계는 수용가능하며"라는 사실로 배제했고 (b)만 남겼으며, "법규에 의해 요구되는 것이 아닌 한"이라는 한정은 "법규에 따라 감사를 받아야 하는 회사가 아니며"라는 사실로 충족했다. ⑤에 대하여 초안이 문단 10(a)~(e)를 모두 담고 있고 마지막 조항만 (f)와 반대 방향임을 확인해 잘못이 하나임을 확정했다. ④가 옳다는 판단은 문단 11의 면제 조건("법규에서 충분히 세부적으로 명시")이 충족되지 않는다는 사실로 확정했다. answer: 모범답안 세 문장이 식별·③·⑤ criterion과 1대1로 대응하고 옳은 항목 ①·②·④의 근거도 함께 제시한다. prompt: 발문은 단계 이름과 항목 범위, 요구 형식만 밝히고 옳지 않은 항목의 수·내용을 알려 주지 않는다. points: 식별 1점 + 옳지 않은 항목 두 개 1점씩으로 3점이다. 원 pilot-03-005는 같은 두 요구를 판단 2점 + 이유·수정 2점의 4점으로 두었고, 선택형 전환으로 판단 두 개가 식별 1점으로 통합되어 3점이 되었다. ③은 문단 6(b)(iii) b와 c 두 접근을 다루지만 같은 동의 하나가 빠진 것이므로 항목을 나누지 않고 어느 하나를 지적하면 인정한다. style: 다섯 항목의 옳고 그름이 초안의 정보·접근 조항, 마지막 보고서 조항, 법규가 업무조건을 세부적으로 정하지 않았다는 사실에 달려 있으므로 사례형이다. topics: 03(감사업무 수임)을 실제 요구에서 정했다. edition: 20X1·20X2 표기이며 2025 개정 전문을 기준으로 판단했다. 인용한 문단에 적용대상별 시행일 차이가 없다. nonduplication: 현재 정본에서 문단 6을 인용한 세트는 pilot-03-004·pilot-03-005·pilot-03-005-standards-20260913·std-points-20260914-e5ad8e728e7e, 문단 10을 인용한 세트는 pilot-03-005·std-points-20260914-a6ab16588b96·622fea303bdb이며 모두 사실 없이 열거·설명하게 하는 기준서형이다. 이 물음은 같은 문단을 계약서 초안이라는 사실에 적용하게 하고 열거를 득점 요건으로 두지 않는다.',
+    sub2:
+        'source: ⑥은 문단 15, ⑦은 문단 A31과 문단 14, ⑧은 문단 A34, ⑨는 문단 A33과 문단 14, ⑩은 문단 16에서 확정했다. ⑥의 적용 조건(감사 종료 이전, 보다 낮은 수준의 확신을 제공하는 업무)은 "이 요청은 감사가 종료되기 전에 이루어졌고, 검토업무는 감사보다 낮은 수준의 확신을 제공한다"는 사실로 확정했다. ⑦은 A31이 "경영진의 요구이든 다른 상황에 의해 야기된 것이든 감사업무의 범위제한으로부터 발생될 수 있다"고 명시하므로 경영진의 요구라는 사정만으로 범위제한 검토를 배제할 수 없다는 점에서 옳지 않다. ⑨는 A33의 예시(매출채권에 관한 충분하고 적합한 감사증거를 입수할 수 없고 한정의견이나 의견거절을 피하기 위해 검토업무로 변경해 줄 것을 요청)와 사례의 사실 구성이 같고 문단 14가 동의를 금지하므로 옳지 않다. ⑧은 A34가 요구하는 평가 자체이므로 동의를 전제한 절차로 보여도 옳다. ⑩은 문단 16의 합의·기록 요구를 대신할 수 없는 처리다. 결론이 갈릴 수 있는 문단 A32의 두 분기는 사실로 배제했다. 상황 변화 분기는 "차입금은 아직 상환되지 않았고 채권은행은 … 조항을 그대로 유지하고 있다"로, 성격 오해 분기는 "수임 협의에서 감사인은 감사와 검토가 제공하는 확신의 수준과 수행 범위의 차이를 회사에 설명하였다"로 막았다. answer: 모범답안 네 문장이 식별·⑦·⑨·⑩ criterion과 1대1로 대응하고 옳은 항목 ⑥·⑧의 근거도 함께 제시한다. prompt: 발문은 단계 이름과 항목 범위, 요구 형식만 밝힌다. points: 식별 1점 + 옳지 않은 항목 세 개 1점씩으로 4점이다. 원 pilot-03-006 sub1(4점)과 case-03-engagement-change-20260914 sub1(3점)의 정당성 평가 요구가 중복이어서 하나로 합쳤고, 원 세트에 인용만 있고 득점 요건이 없던 문단 A31을 새 항목으로 더했다. ⑦·⑨·⑩은 각각 다른 문단의 독립된 결정이므로 묶지 않았다. style: 다섯 항목의 옳고 그름이 증거 미입수 상태, 변형의견 회피라는 요청 동기, 차입약정이 유지된다는 사실에 달려 있으므로 사례형이다. crit6은 사례의 증거 상태와 연결하지 않은 일반론을 인정하지 않는다. topics: 03을 실제 요구에서 정했다. edition: 2025 개정 전문 기준이며 인용한 문단에 적용대상별 시행일 차이가 없다. nonduplication: std-points-20260914-cb878e26070e가 문단 A31의 고려사항과 문단 16의 두 조치를 사실 없이 설명하게 하지만, 이 물음은 같은 문단을 사례의 잘못된 결정에 적용하게 하고 고려사항·조치의 열거를 득점 요건으로 두지 않는다. 문단 A33·14를 인용한 사례형은 병합 대상 두 세트뿐이며 모두 퇴역 대상이다.',
+    sub3:
+        'source: ⑪은 문단 17(a), ⑫와 ⑬은 문단 17(b)에서 확정했다. 문단 17의 적용 조건(변경에 동의할 수 없고 경영진이 원래의 감사업무를 계속하는 것을 허용하지 않음)은 자료 3의 전제와 접근 차단 사실로 확정했다. ⑪은 "해당 법규에서 허용하는 경우 감사업무를 해지함"이 요구사항이고 사실관계가 법규의 허용을 명시하므로 후임 감사인 선임을 기다리는 대기 결정은 옳지 않다. 문단 17에 그러한 유예를 두는 단서는 없다. ⑬은 17(b)가 "보고하여야 할 계약상 또는 기타 형태의 의무가 존재하는지 여부를 결정함"만 요구하고 의무가 없는 상대방에 대한 통지를 요구하지 않으므로 옳다. ⑫와 ⑬은 같은 요구의 절차와 그 수행 결과여서 결론이 갈리는 두 경우가 아니다. answer: 모범답안 두 문장이 식별·⑪ criterion과 대응하고 옳은 항목 ⑫·⑬의 근거도 제시한다. prompt: 발문은 단계 이름과 항목 범위, 요구 형식만 밝힌다. points: 식별 1점 + 옳지 않은 항목 한 개 1점으로 2점이며 원 pilot-03-006 exp1의 2점과 같다. 보고의무 쪽을 옳지 않은 항목으로 바꾸면 ⑫·⑬과 결론이 갈리는 항목을 같은 목록에 두게 되므로 해지 쪽만 옳지 않은 항목으로 두었다. style: 세 항목의 옳고 그름이 법규가 해지를 허용한다는 점, 경영진이 원래 감사의 계속을 막았다는 점, 주주에 대한 보고의무가 없다고 확인되었다는 점에 달려 있으므로 사례형이다. topics: 03을 실제 요구에서 정했다. edition: 2025 개정 전문 기준이다. nonduplication: pilot-03-006-standards-20260913 sub2가 문단 17의 두 절차를 사실 없이 설명하게 하지만, 이 물음은 17(a)를 사례의 대기 결정에 적용하게 하고 17(b)는 옳은 항목으로만 써서 득점 요건을 두지 않았다.',
+};
+
+const review = {
+    version: 1,
+    method: 'agent_content_review',
+    human_review_performed: false,
+    reviewer_id: 'agent:claude-opus-5 (author agent; no independent peer review)',
+    reviewed_at: new Date().toISOString(),
+    target: {
+        file: `${DRAFT}/sets.json`,
+        sha256: hash(`${DRAFT}/sets.json`),
+        set_id: draft.id,
+        reviewed_content_sha256: reviewedContentHash(draft),
+    },
+    evidence: [
+        `${DRAFT}/design.json`,
+        `${DRAFT}/lineage.json`,
+        `${DRAFT}/qa.json`,
+        `${DRAFT}/build-draft.mjs`,
+        'cpa_uploader/data/official/delegated-n01-kga200-210-230-2025.txt',
+        'cpa_uploader/data/official/delegated-s01-kga200-210-220-320-2025.txt',
+        'cpa_uploader/data/cpa_question_sets_v3.authoring.json',
+        'docs/물음별-학습-단위와-분류-계약.md',
+        'docs/사례형-병합-종합문제-설계.md',
+        'docs/case-question-edit-notes-2026-09-14.md',
+    ].map(ref),
+    method_detail:
+        'KGA 210의 요구사항 문단 6~17 전부와 등록된 적용자료 A31~A35를 두 등록 전문(delegated-n01-kga200-210-230-2025.txt, delegated-s01-kga200-210-220-320-2025.txt)에서 직접 읽고 열세 항목의 옳고 그름을 문단 단위로 확정했다. 인용 열두 개 가운데 열 개(문단 6·8·10은 pilot-03-005, 문단 17·A31·A34는 pilot-03-006, 문단 14·15·16·A33은 case-03-engagement-change-20260914)는 병합 대상 세 원 세트의 정본 인용을 바이트와 content_hash 그대로 재사용했고, 문단 9(L365-L367)와 문단 11(L383-L387)만 같은 등록 전문에서 발췌해 SHA-256을 계산했다. 같은 src id가 원 세트마다 다른 바이트를 담고 있던 문단 15·A33은 페이지 표시 꼬리가 없는 44번 판본을 택했다. validate_draft_v3.ts --against-bank로 인용 원문 실존과 기존 은행과의 ID·발문 중복 없음을 확인했고, 형제 회차 초안 폴더 23개의 sets.json·standards-sets.json에 대해서도 공백 제거 발문 충돌을 대조했다(0건). 현재 정본에서 KGA 210을 인용한 세트 열여섯 개를 모두 찾아 문단별로 대조했다(pilot-03-002·004·005·006, pilot-03-005-standards-20260913, pilot-03-006-standards-20260913, case-03-engagement-change-20260914, draft-standard-additional-20260913-s02, std-points-20260914-e5ad8e728e7e·cb878e26070e·25fc1cfdd6e9·7e4d0729cd29·314b990cde78·a6ab16588b96·622fea303bdb·b10e300423f0). 판본은 세 원 세트가 남긴 2026년 개시 보고기간 적용 기록을 재사용했고 새 원자료 수집은 하지 않았다.',
+    questions: draft.subquestions.map((question) => ({
+        subquestion_id: question.id,
+        checks: { ...PASS },
+        rationale: rationale[question.id],
+    })),
+    observations_not_blocking: [
+        '자료 3의 전제 문장("이 자료는 감사인이 변경 요청에 동의할 수 없는 경우를 전제로 한다. 이 전제는 앞 단계의 판단과 무관하게 주어진 것이다")은 문단 17의 적용 조건을 세우기 위한 장치다. 회차 배정이 지정한 흐름의 마지막 단계가 "변경에 동의할 수 없을 때의 조치"이므로 이 전제는 뺄 수 없다. 앞 단계의 판단과 무관함을 문장으로 밝혀 지시를 줄였으나, 물음 2의 ⑨(변경에 동의하기로 한 결정)가 옳지 않다는 점에 관한 약한 단서가 될 여지는 남는다. 물음 2의 득점 요건은 이 문장과 무관하게 문단 A31·A33·14·16으로만 판단된다. 원 case-03-engagement-change-20260914 fact4도 "앞의 검토업무와 양립하지 않는 독립적인 대안이다"라는 같은 형태의 장치를 쓰고 있었다.',
+        '문단 A32(상황의 변화 또는 감사 성격의 오해가 합리적 근거가 될 수 있음)는 남긴 문단 A33과 결론이 갈리는 다른 쪽 경우여서 이 세트에서 인용하지 않았다. 그 결과 A32 자체를 묻는 요구는 현재 은행에서 사라진다. 정본에 A32를 다루는 기준서형은 없으며(std-points-20260914-cb878e26070e는 문단 A31·16만 다룬다), 후속 제작 후보로 lineage.json의 moved_to_other_batch에 남겼다.',
+        '문단 A35의 변경 후 보고서 언급 요구(원 44번 sub2·sub3, 7점)는 변경에 합리적 정당성이 있는 경우에만 성립하므로 이 세트에서 삭제했다. 같은 내용은 정본의 기준서형 std-points-20260914-b10e300423f0(5 criterion)과 pilot-03-006-standards-20260913 sub2가 이미 다루고 있어 은행 전체에서 사라지지 않는다.',
+        '항목 ④는 문단 10의 기록 요구를 옳은 항목으로 두고 ⑤는 문단 10(f)를 옳지 않은 항목으로 둔다. ④의 문장에 개별 기록사항을 열거하지 않고 문단 11의 면제 조건이 충족되지 않는다는 판단만 남겨, ④가 (f)를 빠뜨린 것처럼 읽히지 않게 했다. 기록사항의 내용은 사실관계(fact3)에만 있다.',
+        '득점 요건에서 빠진 함정 ②·⑧·⑬의 판단은 식별 criterion에서만 평가된다. 함정을 옳지 않다고 고른 답은 식별 점수만 잃고 다른 항목의 이유·절차 점수는 유지된다. 세 함정을 물음마다 하나씩 두었고 qa.json의 대표 사례에서 ②와 ⑬, ⑥·⑧을 실제로 건드린다.',
+        '물음 3은 옳지 않은 항목이 하나뿐이어서 2점이다. 문단 17은 두 절차만 요구하므로 옳지 않은 항목을 더 넣으려면 17(b)를 옳지 않은 형태로 바꾸어야 하는데, 그러면 옳은 항목 ⑫·⑬과 결론이 갈린다. 세 물음의 옳지 않은 항목 수를 2·3·1로 달리 두었다.',
+        '원 pilot-03-005 sub3·exp1의 판단 criterion(crit10, exp1.c1)과 pilot-03-006 sub1의 을 판단(crit2)은 선택형의 식별 criterion으로 통합되었다. 통합으로 판단 점수가 물음당 1점으로 줄었으므로 원 세트의 이유·조치 criterion은 모두 유지했다.',
+    ],
+    unresolved_content_findings: [],
+};
+
+fs.mkdirSync(path.dirname(OUT), { recursive: true });
+fs.writeFileSync(OUT, `${JSON.stringify(review, null, 2)}\n`, { flag: 'wx' });
+console.log(`${OUT} 작성: ${draft.id} · 물음 ${review.questions.length}개 · reviewed_content_sha256 ${review.target.reviewed_content_sha256}`);

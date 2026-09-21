@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/execution-standards-v1/grading-manifest.json",
+    "sha256": "1b0fc3441f2ab473ec964b939c1aa7301bb1c07023db46a1c164597f76d1ac1e"
+  },
+  "entry_id": "pilot-16-008-standards-20260921--sub2--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-16-008-standards-20260921--sub2--standard",
+  "source_set_id": "pilot-16-008-standards-20260921",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub2"
+  ],
+  "projected_body_hash": "623c1f2a3df96e6218041074b21b65863909ca13df8a727363800c473017b882",
+  "answers": {
+    "sub2": "전기재무제표에 대한 감사는 이미 종료되었으므로 당기재무제표에 대하여는 적정의견을 표명하고, 전기 왜곡표시의 내용은 감사보고서의 기타사항문단에 기재한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "한정의견을 제시하지 않았고 적정의견을 표명한다고 썼다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "부적정의견을 제시하지 않았다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "ce821bd6fc1b1fb218358035896f0991a9a7436d392aa890d18569969f9dec42",
+  "schema_hash": "2ee1790debde0b57e5708bb26703ed151367789f89dbc1a2c2dc7995816743ac",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "전기재무제표에 대한 감사는 이미 종료되었으므로 당기재무제표에 대하여는 적정의견을 표명하고, 전기 왜곡표시의 내용은 감사보고서의 기타사항문단에 기재한다.",
+            "reason": "당기재무제표에 적정의견을 표명한다고 하여 한정의견을 명시적으로 배제한다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "전기재무제표에 대한 감사는 이미 종료되었으므로 당기재무제표에 대하여는 적정의견을 표명하고, 전기 왜곡표시의 내용은 감사보고서의 기타사항문단에 기재한다.",
+            "reason": "당기재무제표에 적정의견을 표명한다고 하여 부적정의견을 명시적으로 배제한다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "당기재무제표에 적정의견을 표명한다고 하여 한정의견을 명시적으로 배제한다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e0"
+                ],
+                "reason": "당기재무제표에 적정의견을 표명한다고 하여 부적정의견을 명시적으로 배제한다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-16-008-standards-20260921",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub2",
+        "prompt": "감사기준서 710의 대응수치 방식이 적용되는 감사에서, 이전에 적정의견이 표명되었던 전기재무제표에 중요한 왜곡표시가 존재한다는 감사증거를 감사인이 입수하였으나 대응수치가 적절하게 재작성되지 않았거나 적절한 공시가 이루어지지 않았다. 감사기준서 710 문단 12가 이 경우에 대하여 정하고 있는 당기재무제표에 대한 감사의견을 제시하시오.",
+        "user_answer": "전기재무제표에 대한 감사는 이미 종료되었으므로 당기재무제표에 대하여는 적정의견을 표명하고, 전기 왜곡표시의 내용은 감사보고서의 기타사항문단에 기재한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "전기재무제표에 대한 감사는 이미 종료되었으므로 당기재무제표에 대하여는 적정의견을 표명하고, 전기 왜곡표시의 내용은 감사보고서의 기타사항문단에 기재한다.",
+            "reason": "당기재무제표에 적정의견을 표명한다고 하여 한정의견을 명시적으로 배제한다.",
+            "claim": "당기재무제표에 표명할 수 있는 변형의견으로 한정의견을 제시한다. 구체적 상황에서 둘 중 하나를 선택하는 근거는 요구하지 않는다. 한정의견을 두 허용 대안 중 하나로 제시하면 충족하며 한정의견만 유일하게 가능하다고 단정한 부분은 다른 대안 명제와 구분한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "전기재무제표에 대한 감사는 이미 종료되었으므로 당기재무제표에 대하여는 적정의견을 표명하고, 전기 왜곡표시의 내용은 감사보고서의 기타사항문단에 기재한다.",
+            "reason": "당기재무제표에 적정의견을 표명한다고 하여 부적정의견을 명시적으로 배제한다.",
+            "claim": "당기재무제표에 표명할 수 있는 변형의견으로 부적정의견을 제시한다. 구체적 상황에서 둘 중 하나를 선택하는 근거는 요구하지 않는다. 부적정의견을 두 허용 대안 중 하나로 제시하면 충족하며 부적정의견만 유일하게 가능하다고 단정한 부분은 다른 대안 명제와 구분한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "당기재무제표에 대하여 한정의견이나 부적정의견을 표명한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0a879b752a795cae016ab0caae08a487d0ba4c205c20a786b6",
+        "request_id": "req_fa28640f83bc4e0a86619132ae79fb0b",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 2594,
+          "input_tokens_details": {
+            "cache_write_tokens": 2591,
+            "cached_tokens": 0
+          },
+          "output_tokens": 245,
+          "output_tokens_details": {
+            "reasoning_tokens": 80
+          },
+          "total_tokens": 2839
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00094235,
+        "min_usd": 0.00094235,
+        "max_usd": 0.00094235,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/execution-standards-v1/actual-a/pilot-16-008-standards-20260921--sub2--standard--wrong/input.json",
+      "sha256": "19fed0e4ffcdfc879f1272e9b01e0e1e85115363898d78e98d299208f2d6c592"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/execution-standards-v1/actual-a/pilot-16-008-standards-20260921--sub2--standard--wrong/transport.jsonl",
+      "sha256": "c0e01dc6df71da1909f67a3cf9fd7ee75479c63fc1b147877a6fa3ba6a2226c2"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/execution-standards-v1/actual-a/pilot-16-008-standards-20260921--sub2--standard--wrong/traces.jsonl",
+      "sha256": "89761ebb7b73211cb68e74e5da4bafd48fa955898f852b91a6890ae1146a7eec"
+    }
+  }
+}

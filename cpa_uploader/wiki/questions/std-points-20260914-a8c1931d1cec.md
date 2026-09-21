@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-a8c1931d1cec. 감사인이 경영진주장 수준에서 실증절차만으로는 충분하고 적합한 감사증거를 얻을 수 없는 경우가 있는 이유와, 그러한 경우 감사기준서 330에 따라 감사인에게 요구되는 절차를 설명하시오."
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[risk-assessment-internal-control]] · [[topic-06-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/206`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/190`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [06.json](../../analysis/reviews/question-review-2027/06.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: descriptive · JSON Pointer `/206/subquestions/0`
+유형: descriptive · JSON Pointer `/190/subquestions/0`
 
 ### 발문
 

@@ -1,7 +1,7 @@
 ---
 title: "std-points-20260914-dacecd7e7ab8. 감사기준서 1200(소규모기업 재무제표에 대한 감사) 문단 28(a) 본문과 28(b)에 따라 감사문서에 기록하여야 할 사항을 모두 제시하시오."
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[small-entity-audit]] · [[topic-18-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/319`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/303`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [18.json](../../analysis/reviews/question-review-2027/18.json)
 - 학습 순서: sub2
@@ -25,7 +25,7 @@ confidence: high
 
 ## sub2
 
-유형: enumeration · JSON Pointer `/319/subquestions/0`
+유형: enumeration · JSON Pointer `/303/subquestions/0`
 
 ### 발문
 

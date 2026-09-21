@@ -1,7 +1,7 @@
 ---
 title: "case-15-scope-limitation-disclaimer-20260919. 해외 관계기업 정보의 접근 제한과 감사보고서"
 created: 2026-08-08
-updated: 2026-09-20
+updated: 2026-09-21
 type: question
 status: generated
 review_required: true
@@ -15,7 +15,7 @@ confidence: high
 
 이 페이지는 편집 정본에서 생성한 출제·검토용 색인이다. 정답·채점 조건을 포함하므로 public 문제 배포물에 포함하지 않는다. 원문과 판본 판단은 연결된 출처 및 검토 기록에서 확인한다.
 - 주제: [[audit-opinions-reports]] · [[topic-15-design]]
-- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/344`
+- 정본: [authoring JSON](../../data/cpa_question_sets_v3.authoring.json) · JSON Pointer `/316`
 - 상태: published / verified · source_fidelity: reconstructed
 - 검토·근거 장부: [15.json](../../analysis/reviews/question-review-2027/15.json)
 - 학습 순서: sub1 → sub2
@@ -28,7 +28,7 @@ confidence: high
 
 ## sub1
 
-유형: judgment · JSON Pointer `/344/subquestions/0`
+유형: judgment · JSON Pointer `/316/subquestions/0`
 
 ### 발문
 
@@ -65,7 +65,7 @@ selection: `{"type":"all","n":null}` · constraints: `{"ordered":false,"max_entr
 
 ## sub2
 
-유형: judgment · JSON Pointer `/344/subquestions/1`
+유형: judgment · JSON Pointer `/316/subquestions/1`
 
 ### 발문
 
