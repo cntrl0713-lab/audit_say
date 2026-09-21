@@ -21,7 +21,7 @@ export const CORRECTIONS_DIRECTORY = 'cpa_uploader/corrections';
 /** 선택 필드가 없음을 나타낸다. `null`은 실제 값이므로 구분한다(예: decision:null과 decision 없음). */
 export const ABSENT: { readonly $absent: true } = Object.freeze({ $absent: true as const });
 
-const SET_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/u;
+export const SET_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/u;
 const SLUG = '[0-9a-z가-힣]+(?:-[0-9a-z가-힣]+)*';
 export const CORRECTION_ID_PATTERN = new RegExp(`^(\\d{8})-(.+)--(${SLUG})$`, 'u');
 const MAX_PATCHES = 50;
@@ -115,6 +115,42 @@ export interface QuestionSetCorrection {
     patches: CorrectionPatch[];
     classification_entries?: CorrectionClassificationEntry[];
 }
+
+/**
+ * 세트 통째 교체 명세. 물음 구성(추가·삭제·재작성)이 바뀌는 판본을 같은 세트 ID로 낸다. 파서는 여기, 적용·비계·관계
+ * 재연결은 `questionReplacement.ts`에 있다. ID·수명주기 라벨·주제 구조는 교체로도 바꾸지 못한다.
+ */
+export const REPLACEMENT_ARTIFACT_TYPE = 'question_set_replacement';
+export const LINEAGE_DISPOSITIONS = ['kept', 'rewritten', 'split', 'merged', 'added', 'removed'] as const;
+export const COVERAGE_RELATIONSHIPS = ['direct', 'partial', 'adjacent', 'broader', 'excluded'] as const;
+export interface ReplacementLineageRow { before: string | null; after: string | null; disposition: (typeof LINEAGE_DISPOSITIONS)[number]; note: string }
+export interface ReplacementLineage {
+    reason: string;
+    subquestions: ReplacementLineageRow[];
+    criteria: ReplacementLineageRow[];
+    dropped_requirements?: Array<{ requirement: string; reason: string; covered_elsewhere: string | false }>;
+}
+export interface CoverageRetarget {
+    link_id: string;
+    target: { subquestion_id: string; criterion_ids: string[] } | null;
+    relationship?: (typeof COVERAGE_RELATIONSHIPS)[number];
+    review_status?: 'needs_review' | 'reviewed';
+    reason: string;
+}
+export interface QuestionSetReplacement {
+    version: 1;
+    artifact_type: typeof REPLACEMENT_ARTIFACT_TYPE;
+    correction_id: string;
+    set_id: string;
+    summary: string;
+    note?: string;
+    base_content_hash: string;
+    replacement: QuestionSetV3;
+    lineage: ReplacementLineage;
+    classification_entries: CorrectionClassificationEntry[];
+    coverage_retargets?: CoverageRetarget[];
+}
+export type QuestionSetSpec = QuestionSetCorrection | QuestionSetReplacement;
 
 export class QuestionCorrectionError extends Error {
     readonly problems: string[];
@@ -254,7 +290,7 @@ export function parseCorrectionId(id: string): { date: string; setId: string; sl
     return { date, setId, slug };
 }
 
-function parseClassificationEntries(value: unknown, label: string): CorrectionClassificationEntry[] {
+export function parseClassificationEntries(value: unknown, label: string): CorrectionClassificationEntry[] {
     if (!Array.isArray(value) || value.length === 0) throw new Error(`${label}: classification_entries는 비어 있지 않은 배열이어야 합니다.`);
     const seen = new Set<string>();
     return value.map((entry, index) => {
@@ -324,7 +360,130 @@ export function parseQuestionCorrection(value: unknown, label = 'correction'): Q
     };
 }
 
-export interface CorrectionFile { file: string; bytes: Buffer; sha256: string; gitBlob: string; correction: QuestionSetCorrection }
+const LINEAGE_ID = /^[^\s/:=]+$/u;
+const CRITERION_LINEAGE_ID = /^[^\s/:=]+\/[^\s/:=]+$/u;
+const noTodo = (value: unknown, max: number) => nonEmptyText(value) && !/^todo\b/iu.test(value.trim()) && value.length <= max;
+
+function parseLineageRows(value: unknown, label: string, pattern: RegExp, what: string): ReplacementLineageRow[] {
+    if (!Array.isArray(value) || !value.length) throw new Error(`${label}: ${what} 대응 목록은 비어 있지 않은 배열이어야 합니다.`);
+    return value.map((row, index) => {
+        const at = `${label}[${index}]`;
+        if (!isRecord(row)) throw new Error(`${at}: 객체여야 합니다.`);
+        assertKeys(row, ['before', 'after', 'disposition', 'note'], [], at);
+        for (const key of ['before', 'after'] as const) {
+            if (row[key] !== null && (typeof row[key] !== 'string' || !pattern.test(row[key] as string))) throw new Error(`${at}: ${key}는 null 또는 ${what} ID여야 합니다.`);
+        }
+        const disposition = row.disposition as string;
+        if (!(LINEAGE_DISPOSITIONS as readonly string[]).includes(disposition)) throw new Error(`${at}: disposition은 ${LINEAGE_DISPOSITIONS.join('|')} 중 하나입니다.`);
+        if (disposition === 'added' ? row.before !== null || row.after === null
+            : disposition === 'removed' ? row.after !== null || row.before === null
+            : row.before === null || row.after === null) {
+            throw new Error(`${at}: ${disposition}는 ${disposition === 'added' ? 'before=null·after 필수' : disposition === 'removed' ? 'before 필수·after=null' : 'before·after 모두 필수'}입니다.`);
+        }
+        if (!noTodo(row.note, 1000)) throw new Error(`${at}: note에 대응 설명을 적어야 합니다(TODO 불가, 1000자 이하).`);
+        return row as unknown as ReplacementLineageRow;
+    });
+}
+
+function parseReplacementLineage(value: unknown, label: string): ReplacementLineage {
+    if (!isRecord(value)) throw new Error(`${label}: lineage는 객체여야 합니다.`);
+    assertKeys(value, ['reason', 'subquestions', 'criteria'], ['dropped_requirements'], label);
+    if (!noTodo(value.reason, 2000)) throw new Error(`${label}.reason: 물음 구성을 바꾸는 이유를 적어야 합니다(TODO 불가, 2000자 이하).`);
+    const lineage: ReplacementLineage = {
+        reason: value.reason as string,
+        subquestions: parseLineageRows(value.subquestions, `${label}.subquestions`, LINEAGE_ID, '물음'),
+        criteria: parseLineageRows(value.criteria, `${label}.criteria`, CRITERION_LINEAGE_ID, '물음/criterion'),
+    };
+    if (value.dropped_requirements !== undefined) {
+        if (!Array.isArray(value.dropped_requirements)) throw new Error(`${label}.dropped_requirements: 배열이어야 합니다.`);
+        lineage.dropped_requirements = value.dropped_requirements.map((row, index) => {
+            const at = `${label}.dropped_requirements[${index}]`;
+            if (!isRecord(row)) throw new Error(`${at}: 객체여야 합니다.`);
+            assertKeys(row, ['requirement', 'reason', 'covered_elsewhere'], [], at);
+            if (!nonEmptyText(row.requirement) || !noTodo(row.reason, 2000)) throw new Error(`${at}: requirement와 reason을 적어야 합니다.`);
+            if (row.covered_elsewhere !== false && !nonEmptyText(row.covered_elsewhere)) throw new Error(`${at}: covered_elsewhere는 대체 문항 설명 또는 false입니다.`);
+            return row as unknown as NonNullable<ReplacementLineage['dropped_requirements']>[number];
+        });
+    }
+    return lineage;
+}
+
+function parseCoverageRetargets(value: unknown, label: string): CoverageRetarget[] {
+    if (!Array.isArray(value)) throw new Error(`${label}: coverage_retargets는 배열이어야 합니다.`);
+    const seen = new Set<string>();
+    return value.map((row, index) => {
+        const at = `${label}[${index}]`;
+        if (!isRecord(row)) throw new Error(`${at}: 객체여야 합니다.`);
+        assertKeys(row, ['link_id', 'target', 'reason'], ['relationship', 'review_status'], at);
+        if (!nonEmptyText(row.link_id) || seen.has(row.link_id)) throw new Error(`${at}: link_id가 없거나 중복됩니다.`);
+        seen.add(row.link_id);
+        if (row.target !== null) {
+            if (!isRecord(row.target)) throw new Error(`${at}.target: null 또는 객체여야 합니다.`);
+            assertKeys(row.target, ['subquestion_id', 'criterion_ids'], [], `${at}.target`);
+            if (typeof row.target.subquestion_id !== 'string' || !TARGET_ID_PATTERN.test(row.target.subquestion_id)) throw new Error(`${at}.target: subquestion_id가 필요합니다.`);
+            const ids = row.target.criterion_ids;
+            if (!Array.isArray(ids) || !ids.length || ids.some((id) => typeof id !== 'string' || !TARGET_ID_PATTERN.test(id)) || new Set(ids).size !== ids.length) {
+                throw new Error(`${at}.target: criterion_ids는 중복 없는 ID 배열이어야 합니다.`);
+            }
+        }
+        if (row.relationship !== undefined && !(COVERAGE_RELATIONSHIPS as readonly string[]).includes(row.relationship as string)) {
+            throw new Error(`${at}: relationship은 ${COVERAGE_RELATIONSHIPS.join('|')} 중 하나입니다.`);
+        }
+        if (row.review_status !== undefined && row.review_status !== 'needs_review' && row.review_status !== 'reviewed') throw new Error(`${at}: review_status는 needs_review 또는 reviewed입니다.`);
+        if (!noTodo(row.reason, 4000)) throw new Error(`${at}: reason에 재연결 근거를 적어야 합니다(TODO 불가, 4000자 이하).`);
+        return row as unknown as CoverageRetarget;
+    });
+}
+
+/** 파일에서 읽은 교체 명세를 엄격하게 검사한다. 현재 세트와의 대조(기준 해시·before 대응)는 적용 시 한다. */
+export function parseQuestionSetReplacement(value: unknown, label = 'replacement'): QuestionSetReplacement {
+    if (!isRecord(value)) throw new Error(`${label}: 교체 명세는 JSON 객체여야 합니다.`);
+    assertKeys(value, ['version', 'artifact_type', 'correction_id', 'set_id', 'summary', 'base_content_hash', 'replacement', 'lineage', 'classification_entries'],
+        ['note', 'coverage_retargets'], label);
+    if (value.version !== 1) throw new Error(`${label}: version은 1이어야 합니다.`);
+    if (value.artifact_type !== REPLACEMENT_ARTIFACT_TYPE) throw new Error(`${label}: artifact_type은 ${REPLACEMENT_ARTIFACT_TYPE}이어야 합니다.`);
+    if (typeof value.set_id !== 'string' || !SET_ID_PATTERN.test(value.set_id) || value.set_id.includes('--')) throw new Error(`${label}: set_id 형식이 올바르지 않습니다.`);
+    if (typeof value.correction_id !== 'string') throw new Error(`${label}: correction_id가 필요합니다.`);
+    if (parseCorrectionId(value.correction_id).setId !== value.set_id) throw new Error(`${label}: correction_id에 적은 세트와 set_id가 다릅니다.`);
+    if (!nonEmptyText(value.summary) || value.summary.length > 500 || value.summary.includes('\0')) throw new Error(`${label}: summary는 500자 이하의 비어 있지 않은 문자열이어야 합니다.`);
+    if (value.note !== undefined && (typeof value.note !== 'string' || value.note.includes('\0'))) throw new Error(`${label}: note는 문자열이어야 합니다.`);
+    if (typeof value.base_content_hash !== 'string' || !/^[a-f0-9]{64}$/u.test(value.base_content_hash)) throw new Error(`${label}: base_content_hash는 64자리 소문자 16진수여야 합니다.`);
+    const replacement = value.replacement;
+    if (!isRecord(replacement) || replacement.id !== value.set_id) throw new Error(`${label}: replacement는 set_id와 같은 id의 세트 객체여야 합니다.`);
+    const subquestions = replacement.subquestions;
+    if (!Array.isArray(subquestions) || !subquestions.length || subquestions.some((sub) => !isRecord(sub) || !nonEmptyText(sub.id))) {
+        throw new Error(`${label}: replacement.subquestions는 id를 가진 물음의 비어 있지 않은 배열이어야 합니다.`);
+    }
+    const subIds = subquestions.map((sub) => (sub as { id: string }).id);
+    if (new Set(subIds).size !== subIds.length) throw new Error(`${label}: replacement의 물음 ID가 중복됩니다.`);
+    const critIds = subquestions.flatMap((sub) => {
+        const criteria = (sub as { criteria?: unknown }).criteria;
+        if (!Array.isArray(criteria) || !criteria.length || criteria.some((crit) => !isRecord(crit) || !nonEmptyText(crit.id))) {
+            throw new Error(`${label}: replacement 물음 ${(sub as { id: string }).id}의 criteria가 비어 있거나 id가 없습니다.`);
+        }
+        return criteria.map((crit) => `${(sub as { id: string }).id}/${(crit as { id: string }).id}`);
+    });
+    if (new Set(critIds).size !== critIds.length) throw new Error(`${label}: replacement의 criterion ID가 세트 안에서 중복됩니다.`);
+    const lineage = parseReplacementLineage(value.lineage, `${label}.lineage`);
+    const afterSubs = lineage.subquestions.map((row) => row.after).filter((id): id is string => id !== null);
+    const afterCrits = lineage.criteria.map((row) => row.after).filter((id): id is string => id !== null);
+    for (const id of subIds) if (!afterSubs.includes(id)) throw new Error(`${label}.lineage.subquestions: 물음 ${id}의 대응(after)이 없습니다.`);
+    for (const id of afterSubs) if (!subIds.includes(id)) throw new Error(`${label}.lineage.subquestions: replacement에 없는 물음 ${id}를 after로 적었습니다.`);
+    for (const id of critIds) if (!afterCrits.includes(id)) throw new Error(`${label}.lineage.criteria: criterion ${id}의 대응(after)이 없습니다.`);
+    for (const id of afterCrits) if (!critIds.includes(id)) throw new Error(`${label}.lineage.criteria: replacement에 없는 criterion ${id}를 after로 적었습니다.`);
+    const entries = parseClassificationEntries(value.classification_entries, label);
+    if (canonicalJson([...entries.map((entry) => entry.subquestion_id)].sort()) !== canonicalJson([...subIds].sort())) {
+        throw new Error(`${label}: classification_entries는 replacement의 모든 물음(${subIds.join(', ')})을 정확히 한 번씩 다뤄야 합니다.`);
+    }
+    return {
+        version: 1, artifact_type: REPLACEMENT_ARTIFACT_TYPE, correction_id: value.correction_id, set_id: value.set_id,
+        summary: value.summary, ...(value.note === undefined ? {} : { note: value.note as string }),
+        base_content_hash: value.base_content_hash, replacement: replacement as unknown as QuestionSetV3, lineage, classification_entries: entries,
+        ...(value.coverage_retargets === undefined ? {} : { coverage_retargets: parseCoverageRetargets(value.coverage_retargets, `${label}.coverage_retargets`) }),
+    };
+}
+
+export interface CorrectionFile { file: string; bytes: Buffer; sha256: string; gitBlob: string; correction: QuestionSetSpec }
 
 export const sha256 = (bytes: string | Buffer): string => createHash('sha256').update(bytes).digest('hex');
 export const gitBlobId = (bytes: Buffer): string => createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex');
@@ -337,7 +496,8 @@ export function readCorrectionFile(file: string): CorrectionFile {
     const text = bytes.toString('utf8').replace(/^﻿/u, '');
     let value: unknown;
     try { value = JSON.parse(text); } catch (error) { throw new Error(`${file}: JSON이 아닙니다. ${error instanceof Error ? error.message : ''}`); }
-    const correction = parseQuestionCorrection(value, path.basename(file));
+    const correction = isRecord(value) && value.artifact_type === REPLACEMENT_ARTIFACT_TYPE
+        ? parseQuestionSetReplacement(value, path.basename(file)) : parseQuestionCorrection(value, path.basename(file));
     if (path.basename(file) !== `${correction.correction_id}.json`) {
         throw new Error(`${file}: 파일 이름은 ${correction.correction_id}.json이어야 합니다.`);
     }
@@ -383,7 +543,8 @@ function writeTarget(set: QuestionSetV3, target: CorrectionTarget, value: unknow
 
 export interface CorrectionChange { target: string; reason: string; before: unknown; after: unknown }
 export interface AppliedCorrection {
-    correction: QuestionSetCorrection;
+    kind: 'correction' | 'replacement';
+    correction: QuestionSetSpec;
     index: number;
     before: QuestionSetV3;
     after: QuestionSetV3;
@@ -405,7 +566,7 @@ function frozenShape(set: QuestionSetV3): unknown {
     };
 }
 
-function learningFields(before: QuestionSetV3, after: QuestionSetV3): string[] {
+export function learningFields(before: QuestionSetV3, after: QuestionSetV3): string[] {
     const changed: string[] = [];
     if (!sameJson(before.shared_context?.facts, after.shared_context?.facts)) changed.push('shared_context.facts');
     for (const sub of after.subquestions) {
@@ -472,7 +633,7 @@ export function applyCorrections(bank: QuestionSetV3[], corrections: QuestionSet
             const { after, changes } = applyCorrectionToSet(before, correction);
             sets[index] = after;
             applied.push({
-                correction, index, before, after, changes,
+                kind: 'correction', correction, index, before, after, changes,
                 contentHash: { before: reviewedContentHash(before), after: reviewedContentHash(after) },
                 points: { before: computeQuestionSetMaxPoints(before), after: computeQuestionSetMaxPoints(after) },
                 publicChanged: !sameJson(compilePublicQuestionSet(before), compilePublicQuestionSet(after)),
@@ -484,6 +645,11 @@ export function applyCorrections(bank: QuestionSetV3[], corrections: QuestionSet
         }
     }
     if (problems.length) throw new QuestionCorrectionError('correction을 적용하지 못했습니다.', problems);
+    return { sets, applied, errors: validateAppliedSets(sets, applied, root) };
+}
+
+/** 적용 결과 검증: 대상 세트의 형상·인용, 인용 해시 규칙, 그리고 은행 전체 규칙. correction과 교체 명세가 함께 쓴다. */
+export function validateAppliedSets(sets: QuestionSetV3[], applied: AppliedCorrection[], root = process.cwd()): string[] {
     const errors: string[] = [];
     for (const item of applied) {
         const checked = validateQuestionSetV3(item.after, { verifySourceQuotes: true, cwd: root });
@@ -497,7 +663,7 @@ export function applyCorrections(bank: QuestionSetV3[], corrections: QuestionSet
     }
     // 세트 간 발문 중복·주제 최소 분포·기준서 범위는 은행 전체에서만 확인할 수 있다.
     if (!errors.length) errors.push(...validateAuthoringBank(sets, root).errors);
-    return { sets, applied, errors };
+    return errors;
 }
 
 /** 편집 정본의 직렬화 규칙. 세트 순서와 키 순서가 같으면 바이트도 같다. */

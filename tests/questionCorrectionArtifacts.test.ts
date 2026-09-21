@@ -9,7 +9,7 @@ import { CORRECTIONS_DIRECTORY, readCorrectionFile } from '../cpa_uploader/quest
 const root = process.cwd();
 const corrections = path.join(root, CORRECTIONS_DIRECTORY);
 const releases = path.join(root, 'cpa_uploader/releases');
-const MAX_CORRECTION_BYTES = 256 * 1024;
+const MAX_CORRECTION_BYTES = 512 * 1024;
 const RELEASE_FILES = new Set(['inspection.json', 'preparation.json', 'probe-result.json', 'before.json', 'apply-started.json',
     'apply-response.json', 'apply-failure.json', 'verification.json', 'completion.json']);
 const MAX_RELEASE_RECORD_BYTES = 1024 * 1024;
@@ -22,7 +22,7 @@ test('correction files parse strictly, are named by their ID and stay small', ()
         if (entry.name === 'README.md') continue;
         assert.match(entry.name, /\.json$/u, `${entry.name}: correction은 JSON 파일입니다.`);
         const file = path.join(corrections, entry.name);
-        assert.ok(fs.statSync(file).size <= MAX_CORRECTION_BYTES, `${entry.name}: correction이 너무 큽니다. 세트 전체 대신 바꿀 필드만 적으십시오.`);
+        assert.ok(fs.statSync(file).size <= MAX_CORRECTION_BYTES, `${entry.name}: 명세가 너무 큽니다. correction은 바꿀 필드만 적고, 교체 명세는 세트 하나만 담습니다.`);
         assert.doesNotThrow(() => readCorrectionFile(file), entry.name);
     }
 });
@@ -32,7 +32,7 @@ test('application records point at unchanged correction specs', () => {
     for (const entry of list(path.join(corrections, 'applied'))) {
         assert.ok(entry.isFile() && entry.name.endsWith('.json'), `${entry.name}: 적용 기록은 JSON 파일입니다.`);
         const record = JSON.parse(fs.readFileSync(path.join(corrections, 'applied', entry.name), 'utf8'));
-        assert.equal(record.artifact_type, 'question_set_correction_application', entry.name);
+        assert.ok(['question_set_correction_application', 'question_set_replacement_application'].includes(record.artifact_type), entry.name);
         assert.equal(`${record.correction_id}.json`, entry.name, `${entry.name}: 기록 이름은 correction_id와 같아야 합니다.`);
         assert.ok(!ids.has(record.correction_id)); ids.add(record.correction_id);
         const spec = path.join(root, record.spec.file);

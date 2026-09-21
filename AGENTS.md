@@ -42,7 +42,7 @@
 | `cpa_uploader/analysis/coverage/` | 수동 `links.json`과 생성 `registry.json`·`summary.md`·주제별 조회 |
 | `cpa_uploader/analysis/reviews/` | 여러 문항·주제의 검토 장부와 당시 실행 증거 |
 | `cpa_uploader/drafts/` | 개별 제작 배치의 초안·계획·출처 패킷·QA·검수 receipt |
-| `cpa_uploader/corrections/` | 게시 문항의 수정 명세(바꿀 필드·수정 전 값·이유)와 정본 설치 기록. 게시 문항은 정본 직접 편집·전체 은행 사본 대신 이 경로로 고친다 |
+| `cpa_uploader/corrections/` | 게시 문항의 수정 명세(바꿀 필드·수정 전 값·이유)와, 물음 구성이 바뀌는 판본의 통째 교체 명세(같은 ID, 전후 대응·전수 분류·관계 재연결 포함), 그리고 정본 설치 기록. 게시 문항은 정본 직접 편집·전체 은행 사본 대신 이 경로로 고친다. 병합·분리처럼 ID가 바뀌는 변경만 제작 경로(퇴역 + 새 세트)다 |
 | `cpa_uploader/releases/` | 운영 문제은행 증분 반영의 실행별 기록. SQL·사본은 `tmp/`에만 둔다 |
 | `docs/` | 사람이 읽는 정책·설계·계획·보고 이력 |
 | `cpa_uploader/wiki/` | 현재 자료 탐색과 수동 출제 지침. 생성 페이지는 입력·생성기에서 갱신 |

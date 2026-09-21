@@ -35,15 +35,20 @@ export function carryClassificationEntries(entries: ClassificationReviewEntry[],
         }
         const derived: ClassificationReviewEntry[] = [];
         for (const sub of after.subquestions) {
-            const old = before.subquestions.find((item) => item.id === sub.id)!;
+            const old = before.subquestions.find((item) => item.id === sub.id);
             const previous = entries.find((entry) => entry.set_id === after.id && entry.subquestion_id === sub.id);
             const given = explicit.get(sub.id);
             const at = `${correction.correction_id} ${after.id}/${sub.id}`;
             let entry: ClassificationReviewEntry | undefined;
             if (given) {
                 entry = { set_id: after.id, ...given };
+            } else if (item.kind === 'replacement') {
+                // 교체 명세는 물음 구성이 바뀌므로 이전 항목을 이어받지 않는다. 파서가 전수 명시를 요구하지만 여기서도 막는다.
+                problems.push(`${at}: 교체 명세는 모든 물음의 분류를 classification_entries로 명시해야 합니다.`);
             } else if (!previous) {
                 problems.push(`${at}: 현재 분류 입력에 항목이 없습니다. classification_entries로 분류를 명시하십시오.`);
+            } else if (!old) {
+                problems.push(`${at}: 이전 판본에 없는 물음입니다. classification_entries로 분류를 명시하십시오.`);
             } else if (!sameJson(old.question_style ?? null, sub.question_style ?? null) || !sameJson(old.topic_ids ?? null, sub.topic_ids ?? null)) {
                 problems.push(`${at}: 학습 유형·주제를 바꿨습니다. classification_entries로 새 분류와 근거를 명시하십시오.`);
             } else {

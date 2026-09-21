@@ -3,7 +3,9 @@
  *
  *   scaffold  현재 정본 값으로 correction 비계를 만든다(읽기 전용).
  *     npx tsx cpa_uploader/correct_cpa_v3.ts scaffold --set <set_id> --slug <slug> --summary "<요약>" --target <대상>...
- *   check     correction을 메모리에서 적용해 세트·은행 전체를 검증하고 바뀌는 값을 보여 준다(쓰기 없음).
+ *   scaffold --replace  같은 ID로 세트 전체를 바꾸는 교체 명세(물음 구성 변경)의 비계를 만든다. 이후 절차는 correction과 같다.
+ *     npx tsx cpa_uploader/correct_cpa_v3.ts scaffold --replace --set <set_id> --slug <slug> --summary "<요약>"
+ *   check     correction·교체 명세를 메모리에서 적용해 세트·은행 전체를 검증하고 바뀌는 값을 보여 준다(쓰기 없음).
  *     npx tsx cpa_uploader/correct_cpa_v3.ts check cpa_uploader/corrections/<id>.json... [--json]
  *   evidence  검수·대표 채점이 참조할 부분 은행(수정 세트만)과 분류 카탈로그를 만든다.
  *     npx tsx cpa_uploader/correct_cpa_v3.ts evidence cpa_uploader/corrections/<id>.json... --out-dir <검토 배치 폴더>
@@ -27,10 +29,14 @@ import {
 } from './questionBankPublication.ts';
 import type { FileSnapshot } from './questionBankPublication.ts';
 import {
-    applyCorrections, changedSetIds, CORRECTIONS_DIRECTORY, correctionEvidenceBank, formatAppliedCorrection, parseCorrectionId,
+    changedSetIds, CORRECTIONS_DIRECTORY, correctionEvidenceBank, formatAppliedCorrection, parseCorrectionId,
     parseTargetExpression, readCorrectionFile, scaffoldCorrection, serializeBank, sha256, QuestionCorrectionError,
 } from './questionCorrection.ts';
-import type { AppliedBank, CorrectionFile } from './questionCorrection.ts';
+import type { AppliedBank, CorrectionFile, QuestionSetReplacement } from './questionCorrection.ts';
+import {
+    applyCoverageRetargets, applySpecs, bankLinksForSet, coverageRetargetProblems, readCoverageLinks, scaffoldReplacement, serializeCoverageLinks,
+} from './questionReplacement.ts';
+import type { CoverageLinksDocument, CoverageRetargetChange } from './questionReplacement.ts';
 import { carryClassificationEntries, entriesForSets } from './questionCorrectionClassification.ts';
 import type { ClassificationReview, ClassificationReviewEntry } from './questionCorrectionClassification.ts';
 
@@ -45,6 +51,7 @@ export function correctionPaths(root = process.cwd()) {
         classificationReview: resolve('CPA_QUESTION_V3_CLASSIFICATION_REVIEW_PATH', DEFAULT_CLASSIFICATION_REVIEW),
         applied: resolve('CPA_QUESTION_CORRECTIONS_APPLIED_DIR', `${CORRECTIONS_DIRECTORY}/applied`),
         stage: resolve('CPA_QUESTION_CORRECTIONS_STAGE_DIR', 'tmp/question-corrections'),
+        coverageLinks: resolve('CPA_QUESTION_COVERAGE_LINKS_PATH', 'cpa_uploader/analysis/coverage/links.json'),
     };
 }
 type Paths = ReturnType<typeof correctionPaths>;
@@ -88,7 +95,9 @@ function readCanonical(paths: Paths) {
     return { document, bank };
 }
 
+interface PreparedCoverage { file: string; document: CoverageLinksDocument; changes: CoverageRetargetChange[]; affected: Array<{ set_id: string; link_ids: string[] }> }
 interface Prepared {
+    coverage: PreparedCoverage | null;
     files: CorrectionFile[];
     document: string;
     bank: QuestionSetV3[];
@@ -104,7 +113,7 @@ function prepare(root: string, paths: Paths, specFiles: string[]): Prepared {
     const recorded = files.filter((file) => fs.existsSync(path.join(paths.applied, `${file.correction.correction_id}.json`)));
     if (recorded.length) throw new Error(`이미 게시 기록이 있는 correction입니다: ${recorded.map((file) => file.correction.correction_id).join(', ')}`);
     const { document, bank } = readCanonical(paths);
-    const result = applyCorrections(bank, files.map((file) => file.correction), root);
+    const result = applySpecs(bank, files.map((file) => file.correction), root);
     if (result.errors.length) throw new QuestionCorrectionError('수정 결과가 문항·은행 검증을 통과하지 못했습니다. 정본은 바꾸지 않았습니다.', result.errors);
     const unpublished = result.applied.filter((item) => item.before.status !== 'published');
     if (unpublished.length) throw new Error(`게시된 세트만 수정 경로로 고칩니다. 초안은 제작 경로를 따르십시오: ${unpublished.map((item) => item.before.id).join(', ')}`);
@@ -114,7 +123,26 @@ function prepare(root: string, paths: Paths, specFiles: string[]): Prepared {
     if (JSON.stringify([...changed].sort()) !== JSON.stringify([...ids].sort())) {
         throw new Error(`정본에서 대상 세트 밖의 바이트가 바뀌었습니다: ${changed.join(', ')}`);
     }
-    return { files, document, bank, result, candidate, ids };
+    return { files, document, bank, result, candidate, ids, coverage: prepareCoverage(paths, result) };
+}
+
+/** 교체 명세가 있으면 은행 관계 장부의 대상이 교체 후에도 살아 있는지 확인하고, 재연결을 적용한 장부를 메모리에 만든다(쓰기 없음). */
+function prepareCoverage(paths: Paths, result: AppliedBank): PreparedCoverage | null {
+    const replacements = result.applied.filter((item) => item.kind === 'replacement');
+    if (!replacements.length || !fs.existsSync(paths.coverageLinks)) return null;
+    let document = readCoverageLinks(paths.coverageLinks);
+    const changes: CoverageRetargetChange[] = [], affected: PreparedCoverage['affected'] = [], problems: string[] = [];
+    for (const item of replacements) {
+        const spec = item.correction as QuestionSetReplacement;
+        affected.push({ set_id: item.after.id, link_ids: bankLinksForSet(document, item.after.id).map((link) => link.id) });
+        const found = coverageRetargetProblems(document, item.after, spec);
+        if (found.length) { problems.push(...found.map((problem) => `${spec.correction_id}: ${problem}`)); continue; }
+        const applied = applyCoverageRetargets(document, item.after, spec);
+        document = applied.document;
+        changes.push(...applied.changes);
+    }
+    if (problems.length) throw new QuestionCorrectionError('교체 후 은행 관계 장부(coverage links)를 정리해야 합니다. 정본은 바꾸지 않았습니다.', problems);
+    return { file: paths.coverageLinks, document, changes, affected };
 }
 
 function checkReport(root: string, paths: Paths, prepared: Prepared) {
@@ -122,10 +150,13 @@ function checkReport(root: string, paths: Paths, prepared: Prepared) {
         version: 1, artifact_type: 'question_set_correction_check', checked_at: new Date().toISOString(),
         canonical: { file: relative(root, paths.authoring), sha256: sha256(prepared.document), set_count: prepared.bank.length },
         candidate: { sha256: sha256(prepared.candidate), changed_set_ids: prepared.ids, whole_bank_validation: 'passed' },
+        coverage: prepared.coverage ? { file: relative(root, prepared.coverage.file), affected: prepared.coverage.affected,
+            retargeted_link_ids: prepared.coverage.changes.map((change) => change.link_id) } : null,
         corrections: prepared.result.applied.map((item) => {
             const file = prepared.files.find((entry) => entry.correction.correction_id === item.correction.correction_id)!;
             return {
-                correction_id: item.correction.correction_id, set_id: item.after.id,
+                correction_id: item.correction.correction_id, set_id: item.after.id, kind: item.kind,
+                ...(item.kind === 'replacement' ? { lineage: summarizeLineage(item.correction as QuestionSetReplacement) } : {}),
                 spec: { file: relative(root, file.file), sha256: file.sha256, git_blob: file.gitBlob },
                 content_hash: item.contentHash, points: item.points, public_changed: item.publicChanged,
                 learning_fields_changed: item.learningFieldsChanged,
@@ -135,13 +166,22 @@ function checkReport(root: string, paths: Paths, prepared: Prepared) {
     };
 }
 
+function summarizeLineage(spec: QuestionSetReplacement) {
+    const count = (rows: Array<{ disposition: string }>) => Object.fromEntries(['kept', 'rewritten', 'split', 'merged', 'added', 'removed']
+        .map((name) => [name, rows.filter((row) => row.disposition === name).length]).filter(([, n]) => n));
+    return { reason: spec.lineage.reason, subquestions: count(spec.lineage.subquestions), criteria: count(spec.lineage.criteria),
+        dropped_requirements: spec.lineage.dropped_requirements?.length ?? 0, coverage_retargets: spec.coverage_retargets?.length ?? 0 };
+}
+
 // ---------------------------------------------------------------- scaffold
 
 function scaffold(root: string, paths: Paths, args: string[]) {
-    const options = parseOptions(args, ['--set', '--slug', '--summary', '--target', '--date', '--out'], []);
+    const options = parseOptions(args, ['--set', '--slug', '--summary', '--target', '--date', '--out'], ['--replace']);
     if (options.positional.length) throw new Error(`알 수 없는 인자: ${options.positional.join(' ')}`);
     const setId = single(options, '--set'), slug = single(options, '--slug'), summary = single(options, '--summary');
     if (!setId || !slug || !summary?.trim()) throw new Error('scaffold에는 --set, --slug, --summary가 필요합니다.');
+    const replace = options.flags.has('--replace');
+    if (replace && options.values.has('--target')) throw new Error('--replace에는 --target을 쓰지 않습니다. replacement에 새 판본 전체를 적습니다.');
     const now = new Date();
     const date = single(options, '--date') ?? `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
     const correctionId = `${date}-${setId}--${slug}`;
@@ -149,13 +189,26 @@ function scaffold(root: string, paths: Paths, args: string[]) {
     const { bank } = readCanonical(paths);
     const set = bank.find((item) => item.id === setId);
     if (!set) throw new Error(`정본에 세트 ${setId}가 없습니다.`);
-    const draft = scaffoldCorrection(set, { correctionId, summary: summary.trim(), targets: (options.values.get('--target') ?? []).map(parseTargetExpression) });
+    const draft = replace
+        ? scaffoldReplacement(set, { correctionId, summary: summary.trim(), entries: currentClassification(root, paths).review.entries })
+        : scaffoldCorrection(set, { correctionId, summary: summary.trim(), targets: (options.values.get('--target') ?? []).map(parseTargetExpression) });
     const out = path.resolve(root, single(options, '--out') ?? `${CORRECTIONS_DIRECTORY}/${correctionId}.json`);
     if (path.basename(out) !== `${correctionId}.json`) throw new Error(`출력 파일 이름은 ${correctionId}.json이어야 합니다.`);
     fs.mkdirSync(path.dirname(out), { recursive: true });
     fs.writeFileSync(out, json(draft), { encoding: 'utf8', flag: 'wx' });
-    console.log(`비계를 만들었습니다: ${relative(root, out)}`);
-    console.log('각 patch의 set에 고친 값을, reason에 수정 이유를 쓰십시오. expected_before와 base_content_hash는 고치지 마십시오.');
+    if (!replace) {
+        console.log(`비계를 만들었습니다: ${relative(root, out)}`);
+        console.log('각 patch의 set에 고친 값을, reason에 수정 이유를 쓰십시오. expected_before와 base_content_hash는 고치지 마십시오.');
+        return;
+    }
+    console.log(`교체 비계를 만들었습니다: ${relative(root, out)}`);
+    console.log('replacement에 새 판본 전체를, lineage에 물음·criterion의 전후 대응과 이유를, classification_entries에 모든 물음의 분류 근거를 쓰십시오. base_content_hash·id·status·review_status·주제 구조는 고치지 마십시오.');
+    if (fs.existsSync(paths.coverageLinks)) {
+        const links = bankLinksForSet(readCoverageLinks(paths.coverageLinks), set.id);
+        console.log(links.length
+            ? `이 세트를 가리키는 은행 관계 ${links.length}건: ${links.map((link) => `${link.id}(${link.target!.subquestion_id}/${link.target!.criterion_ids.join(',')})`).join(', ')} — 가리키던 물음·criterion ID가 사라지면 coverage_retargets로 다시 연결합니다.`
+            : '이 세트를 가리키는 은행 관계는 없습니다.');
+    }
 }
 
 // ---------------------------------------------------------------- check
@@ -165,6 +218,7 @@ function check(root: string, paths: Paths, args: string[]) {
     const prepared = prepare(root, paths, options.positional);
     if (options.flags.has('--json')) { console.log(JSON.stringify(checkReport(root, paths, prepared), null, 2)); return; }
     for (const item of prepared.result.applied) console.log(formatAppliedCorrection(item));
+    if (prepared.coverage) console.log(`관계 장부: 대상 관계 ${prepared.coverage.affected.reduce((n, item) => n + item.link_ids.length, 0)}건, 재연결 ${prepared.coverage.changes.length}건 (설치 뒤 npm run analysis:build로 registry를 다시 만듭니다).`);
     console.log(`은행 전체 검증 통과: ${prepared.result.sets.length}세트. 바뀌는 세트 ${prepared.ids.length}개 외 정본 바이트는 같습니다. 정본은 바꾸지 않았습니다.`);
     console.log('다음: evidence로 검수용 부분 은행을 만들고 검수·대표 채점 후 publish를 실행합니다.');
 }
@@ -290,7 +344,8 @@ export function publish(root: string, paths: Paths, specFiles: string[], options
     const { catalog, reviewFile: currentReviewFile, review } = currentClassification(root, paths);
     const entries = carryClassificationEntries(review.entries, prepared.result.applied);
     const guards: FileSnapshot[] = [...Object.values(before), snapshotFile(currentReviewFile), snapshotFile(reviewFile),
-        snapshotFile(paths.classificationReview), ...prepared.files.map((file) => snapshotFile(file.file))];
+        snapshotFile(paths.classificationReview), ...prepared.files.map((file) => snapshotFile(file.file)),
+        ...(prepared.coverage ? [snapshotFile(prepared.coverage.file)] : [])];
 
     const runId = `${new Date().toISOString().replace(/[-:]/gu, '').replace(/\.\d+Z$/u, 'Z')}-${process.pid}`;
     const stage = path.join(paths.stage, runId);
@@ -353,6 +408,7 @@ export function publish(root: string, paths: Paths, specFiles: string[], options
         { file: paths.encrypted, content: fs.readFileSync(staged.encrypted, 'utf8') },
         { file: paths.classificationReview, content: reviewDocument },
         { file: paths.catalog, content: catalogDocumentText },
+        ...(prepared.coverage ? [{ file: prepared.coverage.file, content: serializeCoverageLinks(prepared.coverage.document) }] : []),
     ];
     const summary = {
         run_id: runId, stage: relative(root, stage), stage_only: Boolean(options.stageOnly), corrections: prepared.files.map((file) => file.correction.correction_id),
@@ -390,7 +446,10 @@ export function publish(root: string, paths: Paths, specFiles: string[], options
         const ledgerEntries = added.map((entry, index) => ({ index: ledgerOffset + index, entry })).filter(({ entry }) => entry.set_id === item.after.id)
             .map(({ index, entry }) => ({ index, from_status: entry.from_status, to_status: entry.to_status, review_receipt_hash: entry.review_receipt_hash ?? null }));
         const record = {
-            version: 1, artifact_type: 'question_set_correction_application', correction_id: item.correction.correction_id, set_id: item.after.id,
+            version: 1, artifact_type: item.kind === 'replacement' ? 'question_set_replacement_application' : 'question_set_correction_application',
+            correction_id: item.correction.correction_id, set_id: item.after.id,
+            ...(item.kind === 'replacement' ? { lineage: (item.correction as QuestionSetReplacement).lineage,
+                coverage: (prepared.coverage?.changes ?? []).filter((change) => ((item.correction as QuestionSetReplacement).coverage_retargets ?? []).some((retarget) => retarget.link_id === change.link_id)) } : {}),
             applied_at: new Date().toISOString(), run_id: runId,
             spec: { file: relative(root, file.file), sha256: file.sha256, git_blob: file.gitBlob },
             review: { route: options.efficientReview ? 'efficient_review' : 'semantic_review', file: relative(root, reviewFile), sha256: reviewSha },
@@ -402,6 +461,7 @@ export function publish(root: string, paths: Paths, specFiles: string[], options
     }
     for (const item of prepared.result.applied) console.log(formatAppliedCorrection(item));
     console.log(`정본 설치 완료: 세트 ${prepared.ids.length}개, 승급 장부 +${added.length}건. 적용 기록: ${relative(root, paths.applied)}/`);
+    if (prepared.coverage?.changes.length) console.log(`관계 장부 ${relative(root, prepared.coverage.file)}의 ${prepared.coverage.changes.length}건을 다시 연결했습니다.`);
     console.log('다음: npm run analysis:build → analysis:check → wiki:build → wiki:check, 운영 반영은 cpa_uploader/publish_question_release.ts');
     return summary;
 }

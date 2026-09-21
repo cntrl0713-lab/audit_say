@@ -5,6 +5,7 @@
 | 경로 | 내용 | 수정 |
 | --- | --- | --- |
 | `<correction_id>.json` | 세트 하나의 수정 명세 | 작성 후 검토. 게시하면 바꾸지 않는다 |
+| `<correction_id>.json` (`artifact_type: question_set_replacement`) | 세트 하나의 통째 교체 명세(물음 구성 변경). 아래 [통째 교체 명세](#통째-교체-명세물음-구성-변경) | 작성 후 검토. 게시하면 바꾸지 않는다 |
 | `applied/<correction_id>.json` | 정본 설치 기록(명세 해시, 내용 해시 전후, 승급 장부 위치, 정본 파일 해시) | `publish`만 쓴다 |
 
 `tests/questionCorrectionArtifacts.test.ts`가 파일 이름·형식·크기와 게시 후 명세 불변을 검사한다.
@@ -49,7 +50,7 @@
 | 출처 | `src=<출처>:<필드>` | `file`, `title`, `page`, `source_quote`, `role`, `content_hash`, `source_span` |
 | 사실 | `fact=<사실>:<필드>` | `text` |
 
-배열 전체 교체(`criteria`, `requirements`, `source_refs`, `shared_context.facts`)로 병합·분할을 표현한다. 배열 전체와 그 안의 원소를 한 명세에서 함께 바꾸지 않는다. ID·수명주기 라벨(`status`, `review_status`)·주제 구조(`topic_id`, `part`, `chapter`, `domain`)·물음 구성·답안 정책(`constraints`, `selection`)은 이 경로로 바꾸지 않는다. 그런 변경과 초안(`needs_review`) 수정은 제작 경로를 따른다.
+배열 전체 교체(`criteria`, `requirements`, `source_refs`, `shared_context.facts`)로 병합·분할을 표현한다. 배열 전체와 그 안의 원소를 한 명세에서 함께 바꾸지 않는다. ID·수명주기 라벨(`status`, `review_status`)·주제 구조(`topic_id`, `part`, `chapter`, `domain`)·물음 구성·답안 정책(`constraints`, `selection`)은 patch로 바꾸지 않는다. **물음 구성·답안 정책이 바뀌는 판본은 같은 ID의 [통째 교체 명세](#통째-교체-명세물음-구성-변경)로 낸다.** ID·수명주기 라벨·주제 구조는 교체로도 바꾸지 못하며, 그런 변경(병합·분리처럼 ID가 바뀌는 경우)과 초안(`needs_review`) 수정은 제작 경로를 따른다.
 
 ## 순서
 
@@ -72,3 +73,26 @@ npm run questions:v3:correct -- publish cpa_uploader/corrections/<id>.json --eff
 - `publish --stage-only`는 설치하지 않고 스테이지 검증만 한다. 스테이지와 로그는 `tmp/question-corrections/<run>/`에 남고 커밋하지 않는다.
 - 설치 결과: 정본은 대상 세트 줄만, 공개본은 대상 세트의 공개 필드만, 승급 장부는 세트당 두 항목(재검수·재게시)만 바뀐다. 암호화본은 전체가 새로 암호화된다. 분류 카탈로그는 현재 분류 입력(`cpa_uploader/data/learning-question-classification-review.json`)을 이어받아 수정 세트 항목만 바꾼다.
 - 같은 correction은 한 번만 설치된다(`applied/` 기록). 게시 후 다시 고치려면 새 correction을 만든다.
+
+## 통째 교체 명세(물음 구성 변경)
+
+물음을 더하거나 빼거나 다시 쓰는 판본은 patch로 표현할 수 없다. 같은 세트 ID로 세트 객체 전체를 담은 교체 명세를 같은 폴더에 두고 같은 절차(check → evidence → publish → 운영 반영)로 설치한다. 퇴역·새 ID·wiki 퇴역·가드 승인 목록 갱신이 필요 없고, 운영 반영은 `questions:v3:release`의 교체(같은 위치의 세트 내용 변경)로 간다. 과거 판본은 DB의 봉인 버전으로 남는다. 2026-09-21까지의 단독 갱신 회차(D등급 r33~r40)가 퇴역 + 새 ID로 갔던 것은 이 경로가 없었기 때문이다.
+
+```sh
+npm run questions:v3:correct -- scaffold --replace --set <set_id> --slug <slug> --summary "<요약>"
+```
+
+비계는 현재 세트를 `replacement`에 그대로 두고 대응·이유·분류 근거를 `TODO`로 채운다. 채우기 전에는 파서가 거절한다.
+
+| 키 | 내용 |
+| --- | --- |
+| `replacement` | 새 판본 전체. `id`·`schema_version`·`type`·`classification`의 주제 구조·`verification.calculation_required`·수명주기 라벨(`status`, `review_status`)은 현재 값 그대로 둔다. 주제가 다르면 새 세트다 |
+| `lineage.reason` | 물음 구성을 바꾸는 이유 |
+| `lineage.subquestions`, `lineage.criteria` | 물음과 `<물음>/<criterion>`의 전후 대응. 현재 세트의 모든 ID가 `before`에, 새 판본의 모든 ID가 `after`에 정확히 한 번씩 나와야 한다. `disposition`은 `kept`·`rewritten`·`split`·`merged`·`added`·`removed`이고 `note`에 대응 설명을 적는다 |
+| `lineage.dropped_requirements` | 선택. 버린 요구와 이유, 은행의 대체 문항(`covered_elsewhere`) 또는 `false` |
+| `classification_entries` | 새 판본의 **모든 물음**의 학습 유형·주제·독립 발문·사실 연결과 근거. 이전 분류를 이어받지 않는다 |
+| `coverage_retargets` | 관계 장부(`cpa_uploader/analysis/coverage/links.json`)의 은행 관계가 가리키던 물음·criterion이 사라지면 새 대상(또는 `null`)과 이유. `review_status`를 적지 않으면 `needs_review`이며, 대상이 있으면 물음 지문 해시를 새로 적는다 |
+
+- `check`는 이 세트를 가리키는 은행 관계를 모두 대조해, 사라진 대상을 다시 연결하지 않았으면 거절한다. `publish`는 정본·장부·공개본·카탈로그와 함께 관계 장부를 한 번의 원자적 쓰기로 바꾸고, 적용 기록(`applied/`, `artifact_type: question_set_replacement_application`)에 대응과 재연결 전후를 남긴다. 설치 뒤 `npm run analysis:build`로 registry를 다시 만든다.
+- 검수·대표 채점은 correction과 같이 `evidence`가 만든 부분 은행으로 한다. 물음 구성이 바뀌었으므로 새 판본의 모든 물음이 검수 대상이다.
+- 여러 세트를 합치거나 나누어 ID가 바뀌는 병합·분리는 여전히 제작 경로(퇴역 + 새 세트)다.
