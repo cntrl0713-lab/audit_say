@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "project": "xvifzicrjmbfqaepcfpp",
+  "prepared_at": "2026-09-21T23:45:15.318Z",
+  "migration": {
+    "file": "supabase/migrations/20260921120000_cpa_question_version_source_memo.sql",
+    "sha256": "e73129224fc096e423444df811399406815d280d274ff50ba8df64e938459a3b"
+  },
+  "migration_version": "20260921120000",
+  "snapshot": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r33-r40/db-import/memo-migration-v1/migration.sql",
+    "sha256": "e73129224fc096e423444df811399406815d280d274ff50ba8df64e938459a3b"
+  },
+  "guarded_sql": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r33-r40/db-import/memo-migration-v1/guarded-migration.sql",
+    "sha256": "d8983639898bee9cb734ca868dd8328a10800c5e869722e214d03f32917becb1"
+  },
+  "expected": {
+    "active": {
+      "release_id": "92948c50-7ec5-4a88-a4c4-a0208bc13f63",
+      "source_file_hash": "89da3e6ab717551d500cb27295fb3cd0a5cbee9f7164fa0627874dda6d145b6d"
+    },
+    "functions": [
+      {
+        "signature": "cpa_assert_reviewed_question_retirements(jsonb)",
+        "definition_sha256": "64a2f3b0e5c0a8414b389a154d816d6bbd8bebd79703a52bd61856478008f510",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false
+      },
+      {
+        "signature": "cpa_get_question_version(uuid)",
+        "definition_sha256": "b0ac20592fa6603420a4c9fc129b7af4a15ae2f94a44bf0ab3be2925fa80b2f4",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false
+      },
+      {
+        "signature": "cpa_get_question_version_with_source_metadata(uuid)",
+        "definition_sha256": "74697d51accd5f6e9c8cd03e9b0d2ffbd2e3df5467c24e6d1565104ba47e9401",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false
+      },
+      {
+        "signature": "cpa_import_learning_question_bank(jsonb)",
+        "definition_sha256": "00ea299c46a0d4c4fd7e8e28f60e3de1dd2c9c5e3341bd2f5187286d73739983",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false
+      },
+      {
+        "signature": "cpa_import_learning_question_bank_with_retirements(jsonb)",
+        "definition_sha256": "c79b43b6be43070c4b392c22aa4c8a6164350f898b3fef7e4c22a22075741445",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false
+      },
+      {
+        "signature": "cpa_import_question_bank(jsonb)",
+        "definition_sha256": "a95ae21fe483c2eb3eac9ec8198803028a8e206c468ce50850472bb8e54a6b42",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false
+      },
+      {
+        "signature": "cpa_import_question_bank_with_retirements(jsonb)",
+        "definition_sha256": "a80ecdea245f0b78ac9fc08d4361391f3abad54b8ca416277866dd204784dda5",
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "security_definer": false
+      }
+    ]
+  },
+  "expected_sources": [
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r33-r40/db-import/publication-v1/roundtrip.json",
+      "sha256": "342d2e9b4fa2d3408b6af0218e1c56ecf607cecc764f5c3f9bdc0a354c2e406c"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r33-r40/db-import/publication-v1/receipt.json",
+      "sha256": "22f8ae305ae0af6f023c51e935021d474c73e4b44985aa764b2d608cad7d99e3"
+    },
+    {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r33-r40/db-import/publication-v1/diagnosis-v1.json",
+      "sha256": "38933b0083598007d51053cae16f9d26b57203c52ada09973c666312a6799c5b"
+    }
+  ],
+  "changed_function": "cpa_get_question_version_with_source_metadata(uuid)",
+  "added_function": "cpa_backfill_release_item_source(uuid)",
+  "tables": [
+    "cpa_question_set_version_source",
+    "cpa_question_bank_release_item_source"
+  ],
+  "local_proof": {
+    "test": "tests/cpaQuestionVersionSourceMemoDatabase.test.ts",
+    "note": "PGlite에서 사적 메타데이터·퇴역 migration 위에 같은 migration을 적용해 백필 전후 DTO 동일, 사적 메타데이터 주입, 권한·RLS, 위치 불일치·조각 누락 거절, 이후 릴리스 백필을 확인한다.",
+    "file": {
+      "file": "tests/cpaQuestionVersionSourceMemoDatabase.test.ts",
+      "sha256": "055adc5e4084750f8ad0e070b9cb4e06d9633a0f3562939f0da07812f267addb"
+    }
+  },
+  "backfill": "apply는 DDL 뒤 저장 원문이 있는 릴리스마다 cpa_backfill_release_item_source(release_id)를 한 번씩 부른다(멱등). 활성 릴리스의 모든 항목에 메모가 있어야 완료로 본다.",
+  "api_calls": 0,
+  "db_writes": 0
+}
