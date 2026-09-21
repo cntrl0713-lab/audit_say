@@ -227,7 +227,11 @@ export function buildWiki({ repoDir = path.resolve(scriptDir, '../../..'), date 
     + '\n\n은행 인용 연결은 동일 파일·인용 포함 여부이며 학습목표 충족 판정이 아니다. 아래 요구사항 절 유사도 스캔과 별도 범위로 읽는다.\n\n## 기존 은행 대응과 요구사항 절 탐색\n\n';
   put(requirementFile, front('요구사항·학습목표 연결과 보강 후보', 'coverage', [bankRelative, 'cpa_uploader/data/회계감사_통합학습자료/01_감사기준']) + sourceFirstCoverage + `정본 requirement ${requirementCount}개와 criterion ${counts(bank).criteria}개의 직접 대응은 각 [[topic-map]] → 세트 색인의 ‘학습목표·채점명제와 핵심 조건’ 및 ‘요구사항과 직접 근거’ 표에서 찾는다. ID는 세트·물음 안에서 해석한다. 실제 발문과 조건을 함께 보고 동일 명제 반복과 범위 누락을 검토한다.\n\n아래는 통합학습자료 요구사항 절의 4글자 문자열 겹침 탐색이다. 공식 문단 식별에 의한 내용 검수가 아니다. 15% 미만은 공백 후보, 15% 이상 35% 미만은 낮은 유사도, 35% 이상도 유사 문구 탐지일 뿐 완전한 출제를 뜻하지 않는다. 짧은 절(40개 미만 4-gram)은 제외한다. 현재 파서가 요구사항 절로 분리하지 못한 기준 축: ${unscannedStandards.join(', ') || '없음'}. 이 기준서는 미출제로 판정하지 말고 원문·세트 직접 연결에서 별도로 검토한다. 비KGA 인증·검토 기준의 전체 범위를 이 스캔에 포함했다고 해석하지 않는다.\n\n- 탐색 절 ${gaps.rows.length}개: 공백 후보 ${gaps.totals.공백}, 낮은 유사도 ${gaps.totals.얇음}, 유사 문구 탐지 ${gaps.totals.커버}\n- 전체 절별 결과: \`node cpa_uploader/wiki/scripts/gap-scan.mjs --sections\`\n\n` + table(['기준서', '공백 후보', '낮은 유사도', '유사 문구 탐지'], [...gaps.perStandard].sort(([a], [b]) => a.localeCompare(b, 'en', { numeric: true })).map(([standard, n]) => [standard, n.공백, n.얇음, n.커버])) + '\n\n## 공백 후보의 실제 절 위치\n\n' + table(['기준서', '학습자료 요구사항 절', '문자열 겹침', '최근접 세트'], missingSections.map((r) => [r.standard, link(requirementFile, `cpa_uploader/data/회계감사_통합학습자료/01_감사기준/${r.file}`, r.name), `${r.score}%`, r.bestSet === '-' ? '연결 없음' : `[[${r.bestSet}]]`])) + '\n\nKGA 402처럼 직접 출처가 없는 기준서는 세트 수보다 먼저 보강 범위를 검토한다. 후보 절의 실제 학습목표·조건·예외를 공식 원문과 대조한 뒤 출제 여부를 결정하며, 자동 유사도만으로 문항 검수 상태를 올리지 않는다.\n\n## Related\n\n- [[coverage-map]]\n- [[source-review-map]]\n- [[question-design]]');
 
-  const records = allFiles(path.join(repoDir, 'cpa_uploader/data')).filter((p) => /\.(md|txt|json|sql)$/i.test(p)).sort((a, b) => a.localeCompare(b, 'ko')).map((p) => {
+  // data/sets/{case,standard}/*.json은 정본과 같은 바이트를 만드는 세트별 편집 원천이다(questions:v3:sets:check). 표에 나열하지 않고 개수만 적는다.
+  const setFilePattern = /[\\/]cpa_uploader[\\/]data[\\/]sets[\\/](case|standard)[\\/][^\\/]+\.json$/i;
+  const dataFiles = allFiles(path.join(repoDir, 'cpa_uploader/data')).filter((p) => /\.(md|txt|json|sql)$/i.test(p));
+  const setFiles = dataFiles.filter((p) => setFilePattern.test(p));
+  const records = dataFiles.filter((p) => !setFilePattern.test(p)).sort((a, b) => a.localeCompare(b, 'ko')).map((p) => {
     const body = fs.readFileSync(p);
     return { file: slash(path.relative(repoDir, p)), bytes: body.length, sha: hash(body), nul: body.reduce((n, v) => n + Number(v === 0), 0) };
   });
@@ -247,7 +251,7 @@ export function buildWiki({ repoDir = path.resolve(scriptDir, '../../..'), date 
           collection.summary.original_paths, collection.summary.unique_files, collection.missing.length];
       })) + '\n\n' : '';
   put('raw/source-manifest.md', front('원자료 매니페스트', 'source-map', ['cpa_uploader/data', ...collectionManifests]) + rawArchive
-    + `## 현행 등록 입력\n\n파일 ${records.length}개 · 동일 해시 중복 ${duplicates.size}그룹 · NUL 포함 ${records.filter((r) => r.nul).length}개. 아래는 현재 data 입력이고 raw의 과거 시점 사본과 구분한다. 원자료를 수정하지 않고 읽으며 편집 정본과 배포물은 각각의 생성·검수 절차로만 갱신한다.\n\n`
+    + `## 현행 등록 입력\n\n파일 ${records.length}개 · 동일 해시 중복 ${duplicates.size}그룹 · NUL 포함 ${records.filter((r) => r.nul).length}개. 세트별 파일 ${setFiles.length}개(\`data/sets/case\`·\`data/sets/standard\`)는 정본 \`cpa_question_sets_v3.authoring.json\`과 같은 바이트를 만드는 편집 원천이라 표에서 뺀다(\`npm run questions:v3:sets:check\`가 일치를 검사한다). 아래는 현재 data 입력이고 raw의 과거 시점 사본과 구분한다. 원자료를 수정하지 않고 읽으며 편집 정본과 배포물은 각각의 생성·검수 절차로만 갱신한다.\n\n`
     + table(['경로', 'bytes', 'SHA-256', 'NUL', '중복 그룹'], records.map((r) => [link('raw/source-manifest.md', r.file, r.file.replace('cpa_uploader/', '')), r.bytes, r.sha, r.nul, duplicates.get(r.sha) || '-'])) + '\n\n## Related\n\n- [[topic-map]]\n- [[coverage-map]]\n- [[source-review-map]]');
 
   const dashboardFile = '_meta/authoring-dashboard.md';

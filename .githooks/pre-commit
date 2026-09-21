@@ -5,7 +5,14 @@
 #   - tests catch type-valid logic bugs (e.g. R1: matching by array index instead of question id).
 # This is enforcement by tool, not by prompt.
 
-echo "> Gate 1/4: typecheck (npm run typecheck)..."
+echo "> Gate 1/5: per-set question files (npm run questions:v3:sets:check)..."
+npm run questions:v3:sets:check --silent
+if [ $? -ne 0 ]; then
+  echo "x Set-file check FAILED - commit blocked. cpa_uploader/data/sets/ and the canonical bank disagree; fix per the message above."
+  exit 1
+fi
+echo "v Set files match the canonical bank."
+echo "> Gate 2/5: typecheck (npm run typecheck)..."
 npm run typecheck --silent
 if [ $? -ne 0 ]; then
   echo "x Typecheck FAILED - commit blocked. Fix the type errors above, then re-commit."
@@ -14,7 +21,7 @@ if [ $? -ne 0 ]; then
 fi
 echo "v Typecheck passed."
 
-echo "> Gate 2/4: tests (npm test)..."
+echo "> Gate 3/5: tests (npm test)..."
 npm test --silent
 if [ $? -ne 0 ]; then
   echo "x Tests FAILED - commit blocked. Fix the failing tests above, then re-commit."
@@ -22,7 +29,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 echo "v Tests passed."
-echo "> Gate 3/4: analysis synchronization and historical evidence (npm run analysis:check)..."
+echo "> Gate 4/5: analysis synchronization and historical evidence (npm run analysis:check)..."
 npm run analysis:check --silent
 if [ $? -ne 0 ]; then
   echo "x Analysis check FAILED - review the changed inputs, regenerate analysis, and preserve historical evidence."
@@ -30,7 +37,7 @@ if [ $? -ne 0 ]; then
 fi
 echo "v Analysis synchronization passed."
 
-echo "> Gate 4/4: wiki synchronization (npm run wiki:check)..."
+echo "> Gate 5/5: wiki synchronization (npm run wiki:check)..."
 npm run wiki:check --silent
 if [ $? -ne 0 ]; then
   echo "x Wiki check FAILED - commit blocked. Run npm run wiki:build, review the changes, and stage the updated wiki."

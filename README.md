@@ -25,7 +25,7 @@ KICPA 회계감사 서술형 문제를 풀고, 기준서 근거와 criterion 단
 
 물음의 `question_style`은 `case`(사례형) 또는 `standard`(기준서형)이며, 답안 형식 `type`과 별개입니다. 사례형만 사실관계 부모에 연결하고 기준서형은 독립 발문으로 한 물음씩 풉니다. 주제는 물음별 다대다 관계이며, 특정 주제로 찾은 사례도 소속 사례형 물음을 모두 보여줍니다. 저장 계보·봉인 분류·기존 제출 호환·신규 등록의 계약은 [물음별 학습 단위와 DB 계약](docs/물음별-학습-단위와-분류-계약.md)을 확인하세요.
 
-문제은행은 `cpa_uploader/data/cpa_question_sets_v3.authoring.json`을 편집 정본으로, `cpa_uploader/data/cpa_question_sets_v3.public.json`을 공개 문제 목록으로 사용합니다. 공개본에는 모범답안·requirements·criterion·source quote가 포함되지 않습니다.
+문제은행은 `cpa_uploader/data/sets/`의 세트별 파일(`case/`·`standard/`와 `order.json`)을 편집 원천으로, 그로부터 같은 바이트로 만드는 `cpa_uploader/data/cpa_question_sets_v3.authoring.json`을 정본 파일로, `cpa_uploader/data/cpa_question_sets_v3.public.json`을 공개 문제 목록으로 사용합니다. 공개본에는 모범답안·requirements·criterion·source quote가 포함되지 않습니다.
 
 Supabase의 프로젝트 소유 테이블은 `cpa_*` 접두어를 사용합니다. 회원 프로필은 `cpa_users`, 회계법인 데이터는 `cpa_firm_*`입니다. 기존 이름은 배포 호환용 뷰로 유지하며 다른 앱의 `cta_*`와 Supabase 관리 테이블은 변경하지 않습니다. [테이블 이름 전환 기록](docs/프로젝트-테이블-cpa-접두어-전환.md)을 참고하세요.
 

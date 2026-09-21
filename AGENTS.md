@@ -37,7 +37,7 @@
 | 위치 | 역할 |
 | --- | --- |
 | `cpa_uploader/raw/` | wiki 기반·제작·검증 원자료와 출처 계보. 원본·추출본·보존 사본을 구분하고 수집 매니페스트로 추적 |
-| `cpa_uploader/data/` | 현재 문제은행과 기존 출처 계약의 등록 입력. 편집 정본은 `cpa_question_sets_v3.authoring.json` |
+| `cpa_uploader/data/` | 현재 문제은행과 기존 출처 계약의 등록 입력. 편집 원천은 세트별 파일 `sets/{case,standard}/<세트ID>.json`과 `sets/order.json`이고, 정본 파일 `cpa_question_sets_v3.authoring.json`은 그로부터 같은 바이트로 다시 만드는 생성물이다. 정본을 쓰는 도구가 둘을 함께 쓰며 `npm run questions:v3:sets:check`가 일치를 검사한다([안내](cpa_uploader/data/sets/README.md)) |
 | `cpa_uploader/analysis/question-elements/` | 원발문 추출·재수록 연결·수동 보정과 생성 빈도표 |
 | `cpa_uploader/analysis/coverage/` | 수동 `links.json`과 생성 `registry.json`·`summary.md`·주제별 조회 |
 | `cpa_uploader/analysis/reviews/` | 여러 문항·주제의 검토 장부와 당시 실행 증거 |

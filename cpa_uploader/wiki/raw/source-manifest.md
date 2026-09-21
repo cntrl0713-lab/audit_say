@@ -42,7 +42,7 @@ confidence: high
 
 ## 현행 등록 입력
 
-파일 79개 · 동일 해시 중복 0그룹 · NUL 포함 0개. 아래는 현재 data 입력이고 raw의 과거 시점 사본과 구분한다. 원자료를 수정하지 않고 읽으며 편집 정본과 배포물은 각각의 생성·검수 절차로만 갱신한다.
+파일 81개 · 동일 해시 중복 0그룹 · NUL 포함 0개. 세트별 파일 343개(`data/sets/case`·`data/sets/standard`)는 정본 `cpa_question_sets_v3.authoring.json`과 같은 바이트를 만드는 편집 원천이라 표에서 뺀다(`npm run questions:v3:sets:check`가 일치를 검사한다). 아래는 현재 data 입력이고 raw의 과거 시점 사본과 구분한다. 원자료를 수정하지 않고 읽으며 편집 정본과 배포물은 각각의 생성·검수 절차로만 갱신한다.
 
 | 경로 | bytes | SHA-256 | NUL | 중복 그룹 |
 |---|---|---|---|---|
@@ -125,6 +125,8 @@ confidence: high
 | [data/official/point-review-a-supplement-2026-09-11.txt](../../data/official/point-review-a-supplement-2026-09-11.txt) | 8369 | 0cced263e2fd992ee6868bdb7445f032a126bec524d202f64902c33ce9fd1a9c | 0 | - |
 | [data/official/point-review-b-source-followup-2026-09-11.txt](../../data/official/point-review-b-source-followup-2026-09-11.txt) | 17266 | 56aeba5c45a513ef53a4a6596b7726d350897eeb9002734ddae0ada224089dcb | 0 | - |
 | [data/official/point-review-c-source-followup-2026-09-11.txt](../../data/official/point-review-c-source-followup-2026-09-11.txt) | 12825 | 04800954742798494f1ffa5c8c3ac0a3126b3011760dbc172d97a799b4421b01 | 0 | - |
+| [data/sets/order.json](../../data/sets/order.json) | 12446 | a95324735eddfc7db1e57c9fd3e5066ecb3b2f0d84bb9164e040c9605d5d0f5f | 0 | - |
+| [data/sets/README.md](../../data/sets/README.md) | 2179 | 0971d1fca3aefc0aaf3e5736b228e9a1d78e7d7acc9ca27b352a56576c76afe8 | 0 | - |
 
 ## Related
 

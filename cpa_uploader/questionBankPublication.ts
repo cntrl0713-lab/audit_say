@@ -10,6 +10,7 @@ import { assertEfficientEvidenceUnchanged, createEfficientValidationContext, eff
 import type { EfficientReviewReceipt, EfficientValidationContext } from './questionEfficientReview.ts';
 import { subsetReceiptIntegrityErrors, validateRecordedSubsetReview } from './questionSubsetReview.ts';
 import type { SubsetReviewReceipt } from './questionSubsetReview.ts';
+import { splitWritesForAuthoring } from './questionSetFiles.ts';
 export { reviewedContentHash } from './questionReviewIdentity.ts';
 
 const allowedStandardsByTopic: Record<string, string[]> = {
@@ -284,16 +285,23 @@ export function assertSnapshotsUnchanged(snapshots: FileSnapshot[]): void {
 }
 
 /** Stage every output, then replace; synchronous failures restore the previous bytes.
- * The authoring lock serializes these CLIs. This is not a cross-file crash transaction. */
-export function writePublicationFiles(writes: Array<{ file: string; content: string }>, guards: FileSnapshot[] = []): void {
-    const paths = writes.map((write) => path.resolve(write.file));
+ * The authoring lock serializes these CLIs. This is not a cross-file crash transaction.
+ * `content: null` deletes the file. Writing the split canonical bank (cpa_uploader/data/sets/ exists
+ * next to it) adds that bank's per-set files, order file and stale-file deletions to the same batch,
+ * unless options.deriveSetFiles is false. */
+export function writePublicationFiles(writes: Array<{ file: string; content: string | null }>, guards: FileSnapshot[] = [], options: { deriveSetFiles?: boolean } = {}): void {
+    // deriveSetFiles:false는 세트 파일 자체가 원천인 재생성(sets:build)에서만 쓴다.
+    const derived = options.deriveSetFiles === false ? { writes: [], deletes: [] } : splitWritesForAuthoring(writes);
+    const batch = [...writes, ...derived.writes, ...derived.deletes.map((file) => ({ file, content: null }))];
+    const paths = batch.map((write) => path.resolve(write.file));
     if (new Set(paths).size !== paths.length) throw new Error('서로 다른 출력 파일 경로가 필요합니다.');
-    const staged: Array<{ file: string; temp: string; previous: Buffer | null }> = [];
+    const staged: Array<{ file: string; temp: string | null; previous: Buffer | null }> = [];
     const committed: typeof staged = [];
     try {
-        for (const [index, write] of writes.entries()) {
+        for (const [index, write] of batch.entries()) {
             const file = paths[index];
             const previous = fs.existsSync(file) ? fs.readFileSync(file) : null;
+            if (write.content === null) { staged.push({ file, temp: null, previous }); continue; }
             fs.mkdirSync(path.dirname(file), { recursive: true });
             const temp = `${file}.${process.pid}.${randomUUID()}.tmp`;
             staged.push({ file, temp, previous });
@@ -301,7 +309,8 @@ export function writePublicationFiles(writes: Array<{ file: string; content: str
         }
         assertSnapshotsUnchanged(guards);
         for (const entry of staged) {
-            fs.renameSync(entry.temp, entry.file);
+            if (entry.temp === null) fs.unlinkSync(entry.file);
+            else fs.renameSync(entry.temp, entry.file);
             committed.push(entry);
         }
     } catch (error) {
@@ -310,15 +319,16 @@ export function writePublicationFiles(writes: Array<{ file: string; content: str
             try {
                 if (entry.previous === null) fs.unlinkSync(entry.file);
                 else {
-                    fs.writeFileSync(entry.temp, entry.previous);
-                    fs.renameSync(entry.temp, entry.file);
+                    const temp = entry.temp ?? `${entry.file}.${process.pid}.${randomUUID()}.tmp`;
+                    fs.writeFileSync(temp, entry.previous);
+                    fs.renameSync(temp, entry.file);
                 }
             } catch (restoreError) { restoreErrors.push(`${entry.file}: ${String(restoreError)}`); }
         }
         if (restoreErrors.length) throw new Error(`${String(error)}\n이전 파일 복원 실패: ${restoreErrors.join('; ')}`);
         throw error;
     } finally {
-        for (const entry of staged) if (fs.existsSync(entry.temp)) fs.unlinkSync(entry.temp);
+        for (const entry of staged) if (entry.temp !== null && fs.existsSync(entry.temp)) fs.unlinkSync(entry.temp);
     }
 }
 

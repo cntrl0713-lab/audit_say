@@ -20,7 +20,7 @@
 
 ## Wiki Layers
 
-- `raw/source-manifest.md`: 현행 등록 입력의 경로·크기·해시·중복 상태와 실제 `cpa_uploader/raw/` 보관소의 연결. 기존 입력 경로는 보존하며 수집한 자료·누락은 보관소의 매니페스트로 확인한다.
+- `raw/source-manifest.md`: 현행 등록 입력의 경로·크기·해시·중복 상태와 실제 `cpa_uploader/raw/` 보관소의 연결. `cpa_uploader/data/sets/`의 세트별 파일은 정본과 같은 바이트를 만드는 편집 원천이라 개수만 적고 표에 나열하지 않는다. 기존 입력 경로는 보존하며 수집한 자료·누락은 보관소의 매니페스트로 확인한다.
 - `concepts/`: 19개 공통 주제별 탐색어, 공통 사실·실제 발문, 세트 색인과 주제 지침·검토 기록 연결.
 - `questions/`: 정본에서 생성한 세트별 발문·모범답안·critical_facts·배점·requirement·직접 출처·검수 메모 색인. 비공개 채점 정보를 포함하므로 public 배포 대상이 아니다.
 - `question-generation/`: 공통 문제 유형·정수 배점·생성 절차·스키마·프롬프트와 `topics/`의 주제별 조건·예외 지침.
