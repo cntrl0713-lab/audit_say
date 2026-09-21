@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "round": "r35",
+  "draft_version": "v1",
+  "set_id": "case-06-inherent-risk-20260921",
+  "created_at": "2026-09-21T08:50:25.863Z",
+  "route": "case_single_update",
+  "updated_set": "pilot-06-008",
+  "edit_note_number": 27,
+  "draft": {
+    "file": "cpa_uploader/drafts/case-review-2026-09-15/r35-inherent-risk-update/sets.json",
+    "sha256": "b1bf8a465a5372b56867638dc668b247e89d799225288616ab70a118c6ed8c38"
+  },
+  "content_review": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r35/root-content-review-v1.json",
+    "sha256": "5629f1d2d5e2d0a42188fc9995c247e1ccbdbd6274428c63d8129d9e1cea838b"
+  },
+  "grading": {
+    "model": "gpt-5.6-luna",
+    "manifest": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r35/execution-v1/grading-manifest.json",
+      "sha256": "01917b9c528d008a29134a733247b52ace3fa6f537dbb14a849f9700649e6ec8"
+    },
+    "summary": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r35/execution-v1/actual-a/summary.json",
+      "sha256": "5fc42dd5c091d14b373a4107ced61e135f8871cd4f69e442b985b01758317544"
+    },
+    "transport": "model",
+    "actual_sdk_calls": 3,
+    "representative_answers": 9,
+    "within_tolerance": 9,
+    "observed_within_tolerance_ratio": 1,
+    "target_ratio": 0.95,
+    "exact_points": 8,
+    "rows": [
+      {
+        "entry": "case-06-inherent-risk-20260921--case--model",
+        "kind": "model",
+        "subquestion_id": "sub1",
+        "expected": 4,
+        "actual": 4,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-06-inherent-risk-20260921--case--model",
+        "kind": "model",
+        "subquestion_id": "sub2",
+        "expected": 4,
+        "actual": 4,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-06-inherent-risk-20260921--case--model",
+        "kind": "model",
+        "subquestion_id": "sub3",
+        "expected": 3,
+        "actual": 3,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-06-inherent-risk-20260921--case--partial",
+        "kind": "partial",
+        "subquestion_id": "sub1",
+        "expected": 2,
+        "actual": 2,
+        "delta": 0,
+        "verdict_state_differences": [
+          {
+            "criterion_id": "crit1",
+            "expected": "contradicted",
+            "actual": "not_met"
+          }
+        ]
+      },
+      {
+        "entry": "case-06-inherent-risk-20260921--case--partial",
+        "kind": "partial",
+        "subquestion_id": "sub2",
+        "expected": 2,
+        "actual": 2,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-06-inherent-risk-20260921--case--partial",
+        "kind": "partial",
+        "subquestion_id": "sub3",
+        "expected": 2,
+        "actual": 3,
+        "delta": 1,
+        "verdict_state_differences": [
+          {
+            "criterion_id": "crit11",
+            "expected": "not_met",
+            "actual": "met"
+          }
+        ]
+      },
+      {
+        "entry": "case-06-inherent-risk-20260921--case--wrong",
+        "kind": "wrong",
+        "subquestion_id": "sub1",
+        "expected": 0,
+        "actual": 0,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-06-inherent-risk-20260921--case--wrong",
+        "kind": "wrong",
+        "subquestion_id": "sub2",
+        "expected": 0,
+        "actual": 0,
+        "delta": 0,
+        "verdict_state_differences": []
+      },
+      {
+        "entry": "case-06-inherent-risk-20260921--case--wrong",
+        "kind": "wrong",
+        "subquestion_id": "sub3",
+        "expected": 0,
+        "actual": 0,
+        "delta": 0,
+        "verdict_state_differences": []
+      }
+    ],
+    "verdict_state_note": "기대 판정과 실제 판정의 상태 차이는 rows에 남긴다. 이 실행에서 차이는 둘이다. (1) 부분정답 sub1의 crit1이 기대 contradicted·실제 not_met인데 두 판정 모두 0점이므로 점수 차이가 없고 비용 통제 지침에 따라 재채점하지 않는다. (2) 부분정답 sub3의 crit11이 기대 not_met·실제 met으로 판정되어 그 물음의 점수가 기대 2점·실제 3점이 되었다. 허용한 ±1점 안이며 이 편차를 없애기 위한 반복 호출을 하지 않았다.",
+    "deviation_detail": "부분정답 sub3의 답안은 ⑫에 대하여 \"감사계획 단계의 평가를 그대로 유지한 것은 절차상 문제가 있다\"만 적었다. 작성자는 이를 발문의 판단을 되풀이한 것으로 보아 not_met으로 기대했고, 모델은 \"재고 필요성을 제시했다\"고 보아 met으로 판정했다. crit11이 인정하지 않는 조건(\"감사계획 단계의 평가는 이번 사항으로 달라지지 않는다고 쓰면 인정하지 않는다\")과 반대 방향의 진술이어서 관대한 해석이 가능한 경계 사례다. 문항 내용의 결함이 아니라 대표 부분정답의 경계 설계 문제이며, 원문·정답·배점 기준을 고치지 않았다.",
+    "usd": 0.013386849999999999,
+    "provider_token_totals": {
+      "input_tokens": 38026,
+      "output_tokens": 3234,
+      "total_tokens": 41260
+    }
+  },
+  "supplementary": {
+    "run": false,
+    "reason": "대표 9답안이 모두 허용 범위 안이고(9/9 = 100%, 목표 95%) 허용 범위 밖 결과가 없어 보조 요청을 추가하지 않았다. 비용 통제 지침에 따라 허용한 ±1점 편차를 없애기 위한 반복 호출도 하지 않았다. qa.json의 supplementary_cases 세 건은 run=false로 남겨 두었다."
+  },
+  "total_actual_sdk_calls": 3,
+  "total_usd_provider_usage_arithmetic": 0.013386849999999999,
+  "costs_are_provider_usage_arithmetic_not_invoice": true,
+  "separate_paid_semantic_review": "not_run",
+  "human_review_performed": false,
+  "not_done": [
+    "정본·공개본·암호화본 반영",
+    "운영 DB 등록",
+    "원 세트 pilot-06-008의 활성 릴리스 제외(퇴역)",
+    "승급 receipt 봉인(authorization.production_publication 미승인)",
+    "coverage links 갱신",
+    "수정 요청서·검토 장부·drafts README 갱신(메인 세션 담당)"
+  ]
+}

@@ -1,0 +1,303 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r37/execution-standards-v1/grading-manifest.json",
+    "sha256": "e0b7207cfafaa28beab9287ee9ec78eab257ed0e04b7eb29fb13bb8bea120afa"
+  },
+  "entry_id": "pilot-18-005-standards-20260921--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-18-005-standards-20260921--sub1--standard",
+  "source_set_id": "pilot-18-005-standards-20260921",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "94557f43704a3cd71c50550a6ae3253063c66091295ef43fe7e2fc4492b5ae9f",
+  "answers": {
+    "sub1": "모든 주식회사, 비영리법인, 직전 회계연도말 자산이 200억원 이상인 회사, 감사인을 스스로 선임한 회사, 지배회사의 연결재무제표에 포함되는 종속회사가 제외된다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "주권상장법인 대신 모든 주식회사로 확대해 이 범주를 제시하지 못했다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "주권상장법인이 되려는 회사에 관한 범주를 적지 않았다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "금융회사를 적지 않았다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "사업보고서 제출대상법인을 적지 않았다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "증권선물위원회의 지정이 아니라 회사가 스스로 감사인을 선임한 경우를 제외 범주로 적어 명시적 반대 결론이다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "contradicted",
+          "reason": "지배회사로서 연결재무제표를 작성하는 회사가 아니라 연결재무제표에 포함되는 종속회사로 대체해 명시적 반대 결론이다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "cf59d4ee64e07a1c2b6642ad2354cecfb72b40f6eafc6815aa9cff0285f8c358",
+  "schema_hash": "6a5418ac18fef25a979b5da136dbc1a755404401e2a7d1b07ed3870395588357",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "주권상장법인이 아니라 모든 주식회사로 범위를 부정확하게 확대했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "해당 회계연도 또는 다음 회계연도 중 상장 예정인 회사를 제시하지 않았다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "외부감사법상 금융회사를 제시하지 않았다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "사업보고서 제출대상법인을 제시하지 않았다."
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "모든 주식회사, 비영리법인, 직전 회계연도말 자산이 200억원 이상인 회사, 감사인을 스스로 선임한 회사, 지배회사의 연결재무제표에 포함되는 종속회사가 제외된다.",
+            "reason": "증권선물위원회 지정 회사가 아니라 회사가 감사인을 스스로 선임한 경우라고 명시했다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "모든 주식회사, 비영리법인, 직전 회계연도말 자산이 200억원 이상인 회사, 감사인을 스스로 선임한 회사, 지배회사의 연결재무제표에 포함되는 종속회사가 제외된다.",
+            "reason": "지배회사로서 연결재무제표를 작성하는 회사가 아니라 연결재무제표에 포함되는 종속회사라고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "주권상장법인이 아니라 모든 주식회사로 범위를 부정확하게 확대했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "해당 회계연도 또는 다음 회계연도 중 상장 예정인 회사를 제시하지 않았다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "외부감사법상 금융회사를 제시하지 않았다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "사업보고서 제출대상법인을 제시하지 않았다."
+              },
+              {
+                "criterion_id": "crit5",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "증권선물위원회 지정 회사가 아니라 회사가 감사인을 스스로 선임한 경우라고 명시했다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e0"
+                ],
+                "reason": "지배회사로서 연결재무제표를 작성하는 회사가 아니라 연결재무제표에 포함되는 종속회사라고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-18-005-standards-20260921",
+    "score": 0,
+    "max_points": 6,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "감사기준서 1200(소규모기업 재무제표에 대한 감사) 문단 2(a)는 소규모기업에 해당하려면 일정한 기업 범주 중 어느 것에도 해당하지 않아야 한다고 정한다. 그 (i)부터 (vi)까지의 기업 범주를 모두 제시하시오. 각 범주는 관련 법률의 조문번호 없이 제시하여도 된다.",
+        "user_answer": "모든 주식회사, 비영리법인, 직전 회계연도말 자산이 200억원 이상인 회사, 감사인을 스스로 선임한 회사, 지배회사의 연결재무제표에 포함되는 종속회사가 제외된다.",
+        "score": 0,
+        "max_points": 6,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "주권상장법인이 아니라 모든 주식회사로 범위를 부정확하게 확대했다.",
+            "claim": "주권상장법인을 제외범주로 제시한다. 단순히 주식회사 전체라고 확대하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "not_met",
+            "reason": "해당 회계연도 또는 다음 회계연도 중 상장 예정인 회사를 제시하지 않았다.",
+            "claim": "해당 회계연도 또는 다음 회계연도 중 주권상장법인이 되려는 회사를 제외범주로 제시한다. 먼 장래의 불특정 상장희망까지 확대하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "not_met",
+            "reason": "외부감사법상 금융회사를 제시하지 않았다.",
+            "claim": "외부감사법 제9조 제1항 제3호에서 정한 금융회사를 제외범주로 제시한다. 금융회사라는 통상적인 동의명칭은 허용하며 해당 업종 전부의 추가 열거를 요구하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "not_met",
+            "reason": "사업보고서 제출대상법인을 제시하지 않았다.",
+            "claim": "자본시장법에 따른 사업보고서 제출대상법인을 제외범주로 제시한다. 단지 자발적으로 경영보고서를 만드는 회사라는 뜻은 아니다. 조문번호는 필수 표현이 아니다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit5",
+            "verdict": "contradicted",
+            "quote": "모든 주식회사, 비영리법인, 직전 회계연도말 자산이 200억원 이상인 회사, 감사인을 스스로 선임한 회사, 지배회사의 연결재무제표에 포함되는 종속회사가 제외된다.",
+            "reason": "증권선물위원회 지정 회사가 아니라 회사가 감사인을 스스로 선임한 경우라고 명시했다.",
+            "claim": "외부감사법 제11조 제1항에 따른 증권선물위원회의 감사인 지정 회사를 제외범주로 제시한다. 조문번호 대신 같은 법적 범위의 직권지정을 정확히 설명해도 인정하지만, 회사가 스스로 감사인을 선임한 경우나 모든 종류의 지정으로 무조건 확대하면 부족하다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "모든 주식회사, 비영리법인, 직전 회계연도말 자산이 200억원 이상인 회사, 감사인을 스스로 선임한 회사, 지배회사의 연결재무제표에 포함되는 종속회사가 제외된다.",
+            "reason": "지배회사로서 연결재무제표를 작성하는 회사가 아니라 연결재무제표에 포함되는 종속회사라고 명시했다.",
+            "claim": "외부감사법상 지배회사로서 연결재무제표를 작성하는 회사를 제외범주로 제시한다. 종속회사이거나 연결재무제표에 포함된다는 사실만으로 대체하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "주권상장법인.",
+          "해당 회계연도 또는 다음 회계연도 중 주권상장법인이 되려는 회사.",
+          "외부감사법이 정한 금융회사.",
+          "자본시장과 금융투자업에 관한 법률 제159조 제1항에 따른 사업보고서 제출대상법인.",
+          "외부감사법 제11조 제1항에 따라 증권선물위원회가 감사인을 지정한 회사.",
+          "외부감사법상 지배회사에 해당하여 연결재무제표를 작성하는 회사."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0b9cbf97531632a0016ab10ad9706087d09a7361b8f547ecab",
+        "request_id": "req_96301f061fd146578c3aff8e01bfa557",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3296,
+          "input_tokens_details": {
+            "cache_write_tokens": 3293,
+            "cached_tokens": 0
+          },
+          "output_tokens": 492,
+          "output_tokens_details": {
+            "reasoning_tokens": 177
+          },
+          "total_tokens": 3788
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.00141425,
+        "min_usd": 0.00141425,
+        "max_usd": 0.00141425,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r37/execution-standards-v1/actual-a/pilot-18-005-standards-20260921--sub1--standard--wrong/input.json",
+      "sha256": "763cf3b84f4e2296b9657a2ff27411d3adc52326c0bfcb73e398064a355ec115"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r37/execution-standards-v1/actual-a/pilot-18-005-standards-20260921--sub1--standard--wrong/transport.jsonl",
+      "sha256": "d178994ec3cf1d66b1075795ba2d0470c36d9e18119e60838f046b9387f1697a"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r37/execution-standards-v1/actual-a/pilot-18-005-standards-20260921--sub1--standard--wrong/traces.jsonl",
+      "sha256": "6f74fd0ead8ab6ab9feb181c580581cf84d88676fec1a9c2f97f30aa3254eb6b"
+    }
+  }
+}

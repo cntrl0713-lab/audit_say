@@ -1,0 +1,188 @@
+{
+  "cases": [
+    {
+      "id": "r37s-sub1-partial",
+      "set_id": "pilot-18-005-standards-20260921",
+      "subquestion_id": "sub1",
+      "kind": "partial",
+      "answer": "주권상장법인, 금융회사, 자본시장과 금융투자업에 관한 법률에 따른 사업보고서 제출대상법인, 연결재무제표를 작성하는 회사, 장래에 상장을 희망하는 회사가 제외된다.",
+      "expected_points": 4,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "met",
+          "reason": "주권상장법인을 제외 범주로 제시했다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "해당 회계연도 또는 다음 회계연도라는 시기 범위 없이 장래의 불특정 상장희망으로 넓게 적어 이 범주를 제시하지 못했다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "met",
+          "reason": "금융회사를 제외 범주로 제시했다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "met",
+          "reason": "자본시장법에 따른 사업보고서 제출대상법인을 제외 범주로 제시했다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "not_met",
+          "reason": "증권선물위원회가 감사인을 지정한 회사를 적지 않았다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "met",
+          "reason": "연결재무제표를 작성하는 회사를 제외 범주로 제시했고 종속회사나 연결재무제표 포함 사실로 대체하지 않았다."
+        }
+      ],
+      "expectation_review": "agent_content_review_before_execution",
+      "human_review_performed": false,
+      "origin": {
+        "file": "cpa_uploader/drafts/case-review-2026-09-15/r37-small-entity-update/qa-standards.json",
+        "reason": "여섯 범주 중 네 개만 맞고 하나는 시기 범위를 넓혀 적은 답에서 요소별 부분점수가 정수 합계로 나오는지 확인한다."
+      }
+    },
+    {
+      "id": "r37s-sub1-wrong",
+      "set_id": "pilot-18-005-standards-20260921",
+      "subquestion_id": "sub1",
+      "kind": "wrong",
+      "answer": "모든 주식회사, 비영리법인, 직전 회계연도말 자산이 200억원 이상인 회사, 감사인을 스스로 선임한 회사, 지배회사의 연결재무제표에 포함되는 종속회사가 제외된다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "not_met",
+          "reason": "주권상장법인 대신 모든 주식회사로 확대해 이 범주를 제시하지 못했다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "not_met",
+          "reason": "주권상장법인이 되려는 회사에 관한 범주를 적지 않았다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "not_met",
+          "reason": "금융회사를 적지 않았다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "not_met",
+          "reason": "사업보고서 제출대상법인을 적지 않았다."
+        },
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "증권선물위원회의 지정이 아니라 회사가 스스로 감사인을 선임한 경우를 제외 범주로 적어 명시적 반대 결론이다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "contradicted",
+          "reason": "지배회사로서 연결재무제표를 작성하는 회사가 아니라 연결재무제표에 포함되는 종속회사로 대체해 명시적 반대 결론이다."
+        }
+      ],
+      "expectation_review": "agent_content_review_before_execution",
+      "human_review_performed": false,
+      "origin": {
+        "file": "cpa_uploader/drafts/case-review-2026-09-15/r37-small-entity-update/qa-standards.json",
+        "reason": "범주를 모두 잘못 적고 두 범주는 반대 방향으로 적은 답이 0점인지 확인한다."
+      }
+    },
+    {
+      "id": "r37s-sub2-partial",
+      "set_id": "pilot-18-005-standards-20260921",
+      "subquestion_id": "sub2",
+      "kind": "partial",
+      "answer": "개별(별도)재무제표를 기준으로 직전 회계연도말 자산이 200억원 이하이고 직전 회계연도 매출이 100억원 미만이어야 규모 요건을 충족한다.",
+      "expected_points": 4,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit7",
+          "verdict": "met",
+          "reason": "규모 판단의 기준 재무제표를 개별(별도)재무제표로 제시했다."
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "met",
+          "reason": "자산의 대상 시점을 직전 회계연도 말로 제시했다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "contradicted",
+          "reason": "자산 금액 조건을 200억원 이하로 적어 미만과 구별하지 못한 명시적 반대 결론이다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "met",
+          "reason": "매출의 대상 기간을 직전 회계연도로 제시했다."
+        },
+        {
+          "criterion_id": "crit11",
+          "verdict": "met",
+          "reason": "매출 금액 조건을 100억원 미만으로 제시했다."
+        },
+        {
+          "criterion_id": "crit12",
+          "verdict": "contradicted",
+          "reason": "두 금액 요건을 그리고 관계로 적어 또는 관계라는 명제와 반대된다."
+        }
+      ],
+      "expectation_review": "agent_content_review_before_execution",
+      "human_review_performed": false,
+      "origin": {
+        "file": "cpa_uploader/drafts/case-review-2026-09-15/r37-small-entity-update/qa-standards.json",
+        "reason": "기준 재무제표와 대상 시점·기간은 맞지만 금액 경계와 논리관계를 틀린 답에서 여섯 명제 중 넷만 득점하는지 확인한다."
+      }
+    },
+    {
+      "id": "r37s-sub2-wrong",
+      "set_id": "pilot-18-005-standards-20260921",
+      "subquestion_id": "sub2",
+      "kind": "wrong",
+      "answer": "연결재무제표를 기준으로 당기말 자산이 200억원을 초과하고 당기 매출이 100억원을 초과하면 규모 요건을 충족한다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit7",
+          "verdict": "contradicted",
+          "reason": "개별(별도)재무제표가 아니라 연결재무제표를 기준으로 적었다."
+        },
+        {
+          "criterion_id": "crit8",
+          "verdict": "contradicted",
+          "reason": "직전 회계연도 말이 아니라 당기말을 대상 시점으로 적었다."
+        },
+        {
+          "criterion_id": "crit9",
+          "verdict": "contradicted",
+          "reason": "200억원 미만이 아니라 200억원 초과로 적었다."
+        },
+        {
+          "criterion_id": "crit10",
+          "verdict": "contradicted",
+          "reason": "직전 회계연도가 아니라 당기를 대상 기간으로 적었다."
+        },
+        {
+          "criterion_id": "crit11",
+          "verdict": "contradicted",
+          "reason": "100억원 미만이 아니라 100억원 초과로 적었다."
+        },
+        {
+          "criterion_id": "crit12",
+          "verdict": "contradicted",
+          "reason": "또는 관계가 아니라 그리고 관계로 적었다."
+        }
+      ],
+      "expectation_review": "agent_content_review_before_execution",
+      "human_review_performed": false,
+      "origin": {
+        "file": "cpa_uploader/drafts/case-review-2026-09-15/r37-small-entity-update/qa-standards.json",
+        "reason": "여섯 명제를 모두 반대로 적은 답이 0점인지 확인한다."
+      }
+    }
+  ]
+}

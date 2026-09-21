@@ -20,21 +20,21 @@ confidence: high
 | 01 | [[ethics-independence-quality]] | 25 | 34 | 127 | 25 | descriptive 22 · enumeration 9 · judgment 3 | KGA 200 | 기준서 미연결 우선 검토 |
 | 03 | [[engagement-acceptance-contract]] | 18 | 24 | 75 | 18 | descriptive 12 · enumeration 7 · judgment 5 | - | 요구사항 범위 검토 |
 | 04 | [[planning-documentation-materiality]] | 19 | 27 | 115 | 19 | descriptive 8 · enumeration 14 · judgment 5 | - | 요구사항 범위 검토 |
-| 08 | [[audit-evidence-assertions]] | 24 | 32 | 120 | 24 | descriptive 15 · enumeration 12 · judgment 5 | - | 요구사항 범위 검토 |
-| 06 | [[risk-assessment-internal-control]] | 21 | 24 | 82 | 21 | descriptive 7 · enumeration 13 · judgment 4 | - | 요구사항 범위 검토 |
+| 08 | [[audit-evidence-assertions]] | 24 | 33 | 126 | 24 | descriptive 13 · enumeration 12 · judgment 8 | - | 요구사항 범위 검토 |
+| 06 | [[risk-assessment-internal-control]] | 21 | 25 | 86 | 21 | descriptive 5 · enumeration 13 · judgment 7 | - | 요구사항 범위 검토 |
 | 07 | [[responses-controls-substantive-procedures]] | 16 | 23 | 71 | 16 | descriptive 7 · enumeration 8 · judgment 8 | - | 요구사항 범위 검토 |
-| 09 | [[inventory-litigation-confirmations-opening-balances]] | 22 | 34 | 125 | 22 | descriptive 15 · enumeration 10 · judgment 9 | - | 요구사항 범위 검토 |
+| 09 | [[inventory-litigation-confirmations-opening-balances]] | 22 | 34 | 128 | 22 | descriptive 12 · enumeration 10 · judgment 12 | - | 요구사항 범위 검토 |
 | 05 | [[fraud-laws-governance-communication]] | 33 | 41 | 135 | 33 | descriptive 23 · enumeration 14 · judgment 4 | - | 요구사항 범위 검토 |
-| 11 | [[estimates-related-parties]] | 12 | 18 | 74 | 12 | descriptive 8 · enumeration 5 · judgment 5 | - | 요구사항 범위 검토 |
+| 11 | [[estimates-related-parties]] | 12 | 18 | 76 | 12 | descriptive 6 · enumeration 5 · judgment 7 | - | 요구사항 범위 검토 |
 | 13 | [[service-organizations-internal-audit-experts]] | 18 | 27 | 105 | 18 | descriptive 8 · enumeration 10 · judgment 9 | - | 요구사항 범위 검토 |
-| 10 | [[analytics-audit-sampling]] | 14 | 24 | 85 | 14 | descriptive 13 · enumeration 6 · judgment 5 | - | 요구사항 범위 검토 |
+| 10 | [[analytics-audit-sampling]] | 14 | 25 | 89 | 14 | descriptive 11 · enumeration 6 · judgment 8 | - | 요구사항 범위 검토 |
 | 12 | [[completion-subsequent-events-going-concern]] | 25 | 37 | 140 | 25 | descriptive 17 · enumeration 6 · judgment 14 | - | 요구사항 범위 검토 |
 | 15 | [[audit-opinions-reports]] | 20 | 24 | 89 | 20 | descriptive 10 · enumeration 12 · judgment 2 | - | 요구사항 범위 검토 |
 | 16 | [[kam-emphasis-comparatives-other-information]] | 16 | 24 | 96 | 16 | descriptive 6 · enumeration 9 · judgment 9 | - | 요구사항 범위 검토 |
 | 14 | [[group-audit]] | 20 | 23 | 89 | 20 | descriptive 4 · enumeration 16 · judgment 3 | - | 요구사항 범위 검토 |
-| 17 | [[internal-control-over-financial-reporting]] | 10 | 15 | 61 | 10 | descriptive 9 · enumeration 3 · judgment 3 | - | 요구사항 범위 검토 |
-| 18 | [[small-entity-audit]] | 12 | 15 | 63 | 12 | descriptive 5 · enumeration 9 · judgment 1 | - | 요구사항 범위 검토 |
-| 19 | [[assurance-review-related-services]] | 7 | 12 | 40 | 7 | descriptive 5 · enumeration 5 · judgment 2 | - | 요구사항 범위 검토 |
+| 17 | [[internal-control-over-financial-reporting]] | 10 | 15 | 61 | 10 | descriptive 6 · enumeration 3 · judgment 6 | - | 요구사항 범위 검토 |
+| 18 | [[small-entity-audit]] | 13 | 15 | 62 | 13 | descriptive 3 · enumeration 9 · judgment 3 | - | 요구사항 범위 검토 |
+| 19 | [[assurance-review-related-services]] | 8 | 13 | 45 | 8 | descriptive 5 · enumeration 5 · judgment 3 | - | 요구사항 범위 검토 |
 
 ## Related
 

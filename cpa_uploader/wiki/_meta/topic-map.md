@@ -33,8 +33,8 @@ confidence: high
 | 15 | 16 | [[kam-emphasis-comparatives-other-information]] | KGA 701 · KGA 706 · KGA 710 · KGA 720 | [[topic-16-design]] | 16 |
 | 16 | 14 | [[group-audit]] | KGA 600 | [[topic-14-design]] | 20 |
 | 17 | 17 | [[internal-control-over-financial-reporting]] | KGA 1100 | [[topic-17-design]] | 10 |
-| 18 | 18 | [[small-entity-audit]] | KGA 1200 | [[topic-18-design]] | 12 |
-| 19 | 19 | [[assurance-review-related-services]] | 인증업무개념체계 · 검토업무기준 · 분·반기재무제표 검토준칙 · 합의된 절차 수행업무기준 · ISA 800 (국내 판본 미확인) | [[topic-19-design]] | 7 |
+| 18 | 18 | [[small-entity-audit]] | KGA 1200 | [[topic-18-design]] | 13 |
+| 19 | 19 | [[assurance-review-related-services]] | 인증업무개념체계 · 검토업무기준 · 분·반기재무제표 검토준칙 · 합의된 절차 수행업무기준 · ISA 800 (국내 판본 미확인) | [[topic-19-design]] | 8 |
 
 ## Related
 

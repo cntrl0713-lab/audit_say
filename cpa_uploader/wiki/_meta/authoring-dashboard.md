@@ -37,8 +37,8 @@ confidence: high
 | 15 | [16 핵심감사사항·강조사항·비교정보·기타정보](../../analysis/coverage/topics/16.md) | 97 | 84 | 0 | 0 | 16 |
 | 16 | [14 그룹재무제표감사](../../analysis/coverage/topics/14.md) | 175 | 162 | 0 | 0 | 20 |
 | 17 | [17 내부회계관리제도 감사](../../analysis/coverage/topics/17.md) | 203 | 192 | 0 | 0 | 10 |
-| 18 | [18 소규모기업 감사](../../analysis/coverage/topics/18.md) | 7 | 5 | 0 | 0 | 12 |
-| 19 | [19 기타 인증·검토 및 관련 업무](../../analysis/coverage/topics/19.md) | 39 | 34 | 0 | 0 | 7 |
+| 18 | [18 소규모기업 감사](../../analysis/coverage/topics/18.md) | 7 | 5 | 0 | 0 | 13 |
+| 19 | [19 기타 인증·검토 및 관련 업무](../../analysis/coverage/topics/19.md) | 39 | 34 | 0 | 0 | 8 |
 
 [전체 집계·입력 해시](../../analysis/coverage/summary.md) · [연결표 관리법](../../analysis/coverage/README.md) · [자료별 정본과 갱신 순서](../../../docs/%EC%B6%9C%EC%A0%9C-%EA%B2%80%ED%86%A0-%EC%9E%90%EB%A3%8C-%EA%B4%80%EB%A6%AC.md)
 

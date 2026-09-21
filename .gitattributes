@@ -910,6 +910,15 @@
 /cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/execution-standards-v1/runtime/01-questionV3Evidence.ts text eol=crlf
 /cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/execution-standards-v1-aborted-build/runtime/00-questionV3Grading.ts -text
 /cpa_uploader/analysis/reviews/case-review-2026-09-15/r31/execution-standards-v1-aborted-build/runtime/01-questionV3Evidence.ts text eol=crlf
+#
+# D등급 단독 갱신 회차(r33~r40, r37·r38은 기준서형 분리본을 별도 실행으로 봉인)부터는 실행
+# 디렉터리를 하나씩 적지 않는다. 지금까지 커밋된 58쌍의 사본이 전부 같은 두 형태였고(00-* ==
+# aae10461 mixed, 01-* == 9f7428a9 all-CRLF; 위 규칙이 모두 이 두 값이다), 새 사본은 라이브
+# lib/*.ts를 그대로 복사하므로 형태도 같다(r33~r40의 10쌍을 해시로 확인). 아래 두 패턴은 기존
+# 사본에는 위와 같은 속성을 주고, 앞으로의 사본에는 `git add` 전에 미리 속성을 준다. 다른 13개
+# 런타임 사본은 LF라 규칙이 필요 없다. 라이브 두 파일의 형태가 바뀌면 이 패턴도 함께 다시 본다.
+/cpa_uploader/**/runtime/00-questionV3Grading.ts -text
+/cpa_uploader/**/runtime/01-questionV3Evidence.ts text eol=crlf
 # --- end frozen review evidence ---
 
 # --- pinned live grading runtime ---

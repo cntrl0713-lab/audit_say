@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "round": "r38",
+  "set_id": "pilot-19-005-standards-20260921",
+  "fixed_before_execution": true,
+  "note": "분리 보존 기준서형 세트의 대표 사례다. 모범답안 사례는 저장 model_answer를 그대로 쓰므로 별도 행을 두지 않는다. 물음이 하나이고 최대 2점이므로 부분정답 1건·오답 1건을 둔다.",
+  "cases": [
+    {
+      "id": "r38s-sub1-partial",
+      "subquestion_id": "sub1",
+      "kind": "partial",
+      "answer": "이 검토업무가 제공하는 확신은 회계감사기준에 따른 감사가 제공하는 합리적 확신보다 낮은 제한적 확신이다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        { "criterion_id": "crit1", "verdict": "met", "reason": "감사의 합리적 확신보다 낮은 제한적 확신임을 제시했다." },
+        { "criterion_id": "crit2", "verdict": "not_met", "reason": "검토보고서에 기재할 결론을 작성하지 않았다." }
+      ],
+      "reason": "두 독립 요구 가운데 확신 수준만 답한 부분정답이다. 기준서형의 두 명제가 독립적으로 채점되는지 확인한다."
+    },
+    {
+      "id": "r38s-sub1-wrong",
+      "subquestion_id": "sub1",
+      "kind": "wrong",
+      "answer": "이 검토업무는 회계감사기준에 따른 감사와 같은 합리적 확신을 제공한다. 따라서 검토보고서에는 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하고 있다는 의견을 기재한다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        { "criterion_id": "crit1", "verdict": "contradicted", "reason": "검토가 감사와 같은 합리적 확신을 제공한다고 써서 제한적 확신을 정면으로 부정했다." },
+        { "criterion_id": "crit2", "verdict": "contradicted", "reason": "소극적 결론 대신 적극적 공정표시 의견을 기재한다고 썼다." }
+      ],
+      "reason": "확신 수준과 결론 형식을 모두 감사 방식으로 바꾼 대표 오답이다. criterion claim이 명시적으로 불인정한다고 적은 두 경우에 해당한다."
+    }
+  ],
+  "supplementary_cases": [
+    {
+      "id": "r38s-sub1-conclusion-only",
+      "subquestion_id": "sub1",
+      "run": false,
+      "answer": "우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다.",
+      "expected_points": 1,
+      "expectation": "crit1 not_met(확신 수준을 쓰지 않았다), crit2 met",
+      "reason": "반대 방향의 부분정답이다. 대표 실측에서 허용 범위 밖 결과가 나오면 실행한다."
+    },
+    {
+      "id": "r38s-sub1-moderate-wording",
+      "subquestion_id": "sub1",
+      "run": false,
+      "answer": "이 검토는 감사와 달리 보통수준의 확신을 제공한다. 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않았다고 믿게 하는 사항이 발견되지 아니하였다.",
+      "expected_points": 2,
+      "expectation": "crit1 met(보론 4의 '보통수준의 확신'을 동의 표현으로 허용), crit2 met",
+      "reason": "criterion claim이 허용한다고 적은 동의 표현이 실제로 인정되는지 확인하는 표적 사례다."
+    }
+  ],
+  "coverage_note": "기준서형 확인 계약에 따라 사례 지문 없이 독립 발문만으로 만점이 되는지(모범답안 요청), 한 명제 누락(양방향 부분정답), 명시적 반대 의미(오답)를 확인한다. 빈 답안은 두 criterion 모두 not_met으로 0점이며 별도 호출하지 않는다."
+}

@@ -1,0 +1,383 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r37/execution-v1/grading-manifest.json",
+    "sha256": "808d6caddaf87a7eaf3847457de94326e36640b76861f6121ee46b4f477f919d"
+  },
+  "entry_id": "case-18-small-entity-20260921--case--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "case-18-small-entity-20260921--case",
+  "source_set_id": "case-18-small-entity-20260921",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1",
+    "sub2"
+  ],
+  "projected_body_hash": "1bed7d657e08851eb31f959a4953b7ac743dc4e651d5c6dc332cf87f315b96ed",
+  "answers": {
+    "sub1": "옳지 않은 것은 ①과 ⑤이다.\n① 회사가 지배회사의 연결재무제표에 포함되므로 규모 요건은 그 연결재무제표의 자산과 매출로 판단하였어야 한다.\n⑤ 문단 2(a)와 문단 2(b) 중 어느 하나만 충족하면 소규모기업에 해당하므로 둘을 모두 요구한 것은 옳지 않다.\n② 자산 요건과 매출 요건을 모두 확인한 것은 두 요건이 함께 충족되어야 하는 요건이므로 옳다.\n③ 연결재무제표에 포함되는 회사는 제외 범주에 해당하므로 옳다.\n④ 일반 감사기준서의 소규모기업과 감사기준서 1200의 소규모기업은 같은 개념이므로 옳다.",
+    "sub2": "옳지 않은 것은 ⑥과 ⑨이다.\n⑥ 문단 2의 조건을 충족하는 기업의 감사에는 감사기준서 1200을 적용하여야 하므로 서면 합의로 일반 감사기준서를 적용할 수는 없다.\n⑨ 적용하는 감사기준서가 바뀌었으므로 기초잔액과 비교재무제표에 대하여 추가 절차를 수행하였어야 한다.\n⑦ 감사문서에 관한 요구사항은 회사의 규모에 맞추어 선택할 수 있으므로 옳다.\n⑧ 감사기준서 1200도 회계감사기준의 일부이므로 감사보고서에 회계감사기준 전체를 준수하였다고 기술하는 것은 옳다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "옳은 항목 ①·⑤를 옳지 않다고 고르고 옳지 않은 항목 ②·③·④는 모두 빠뜨렸다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "자산 요건과 매출 요건이 함께 충족되어야 한다는 명시적 반대 결론을 적었다."
+        },
+        {
+          "criterion_id": "crit3",
+          "verdict": "contradicted",
+          "reason": "연결재무제표에 포함되는 회사가 제외 범주에 해당한다는 명시적 반대 결론을 적었다."
+        },
+        {
+          "criterion_id": "crit4",
+          "verdict": "contradicted",
+          "reason": "두 소규모기업 개념이 같다는 명시적 반대 결론을 적었다."
+        }
+      ]
+    },
+    {
+      "subquestion_id": "sub2",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit5",
+          "verdict": "contradicted",
+          "reason": "옳은 항목 ⑥·⑨를 옳지 않다고 고르고 옳지 않은 항목 ⑦·⑧은 빠뜨렸다."
+        },
+        {
+          "criterion_id": "crit6",
+          "verdict": "contradicted",
+          "reason": "감사문서 요구사항을 규모에 맞추어 선택할 수 있다는 명시적 반대 결론을 적었다."
+        },
+        {
+          "criterion_id": "crit7",
+          "verdict": "contradicted",
+          "reason": "감사보고서에 회계감사기준 전체 준수를 기술할 수 있다는 명시적 반대 결론을 적었다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "cff7fea29b9ddb4d7e6a25ca0d1f9a18c12a5dc0b7770ab224dbfb3a117bfce4",
+  "schema_hash": "4a190b64f4e047739d44b14bcb175eefc1a0a4296a2448a62503ae3818af9cdb",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "정답인 ②·③·④가 아니라 ①·⑤를 옳지 않다고 지적했다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "② 자산 요건과 매출 요건을 모두 확인한 것은 두 요건이 함께 충족되어야 하는 요건이므로 옳다.\n",
+            "reason": "자산 요건과 매출 요건을 모두 충족해야 한다고 명시했다."
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "③ 연결재무제표에 포함되는 회사는 제외 범주에 해당하므로 옳다.\n",
+            "reason": "연결재무제표에 포함되는 회사 자체가 제외 범주라고 명시했다."
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "④ 일반 감사기준서의 소규모기업과 감사기준서 1200의 소규모기업은 같은 개념이므로 옳다.",
+            "reason": "두 소규모기업 개념이 같다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      },
+      {
+        "subquestion_id": "sub2",
+        "verdicts": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "정답인 ⑦·⑧이 아니라 ⑥·⑨를 옳지 않다고 지적했다."
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "⑦ 감사문서에 관한 요구사항은 회사의 규모에 맞추어 선택할 수 있으므로 옳다.\n",
+            "reason": "감사문서 요구사항을 회사 규모에 따라 선택할 수 있다고 명시했다."
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "contradicted",
+            "quote": "⑧ 감사기준서 1200도 회계감사기준의 일부이므로 감사보고서에 회계감사기준 전체를 준수하였다고 기술하는 것은 옳다.",
+            "reason": "감사기준서 1200 적용 시 회계감사기준 전체 준수라고 기술하는 것이 옳다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "정답인 ②·③·④가 아니라 ①·⑤를 옳지 않다고 지적했다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e4"
+                ],
+                "reason": "자산 요건과 매출 요건을 모두 충족해야 한다고 명시했다."
+              },
+              {
+                "criterion_id": "crit3",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e5"
+                ],
+                "reason": "연결재무제표에 포함되는 회사 자체가 제외 범주라고 명시했다."
+              },
+              {
+                "criterion_id": "crit4",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e6"
+                ],
+                "reason": "두 소규모기업 개념이 같다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          },
+          {
+            "subquestion_id": "sub2",
+            "verdicts": [
+              {
+                "criterion_id": "crit5",
+                "verdict": "not_met",
+                "evidence_ids": [],
+                "reason": "정답인 ⑦·⑧이 아니라 ⑥·⑨를 옳지 않다고 지적했다."
+              },
+              {
+                "criterion_id": "crit6",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e4"
+                ],
+                "reason": "감사문서 요구사항을 회사 규모에 따라 선택할 수 있다고 명시했다."
+              },
+              {
+                "criterion_id": "crit7",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub2/e5"
+                ],
+                "reason": "감사기준서 1200 적용 시 회계감사기준 전체 준수라고 기술하는 것이 옳다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "case-18-small-entity-20260921",
+    "score": 0,
+    "max_points": 7,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "소규모기업 해당 여부를 검토하는 단계에서 감사팀이 적용한 판단 기준과 확인 내용 ①~⑤ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "옳지 않은 것은 ①과 ⑤이다.\n① 회사가 지배회사의 연결재무제표에 포함되므로 규모 요건은 그 연결재무제표의 자산과 매출로 판단하였어야 한다.\n⑤ 문단 2(a)와 문단 2(b) 중 어느 하나만 충족하면 소규모기업에 해당하므로 둘을 모두 요구한 것은 옳지 않다.\n② 자산 요건과 매출 요건을 모두 확인한 것은 두 요건이 함께 충족되어야 하는 요건이므로 옳다.\n③ 연결재무제표에 포함되는 회사는 제외 범주에 해당하므로 옳다.\n④ 일반 감사기준서의 소규모기업과 감사기준서 1200의 소규모기업은 같은 개념이므로 옳다.",
+        "score": 0,
+        "max_points": 4,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "not_met",
+            "reason": "정답인 ②·③·④가 아니라 ①·⑤를 옳지 않다고 지적했다.",
+            "claim": "옳지 않은 것으로 ②·③·④를 모두 지적한다. 번호 대신 내용으로 특정하거나 이유·보완절차에서 해당 항목의 부적절성이 분명히 드러나도 인정한다. 셋 중 하나라도 빠뜨리거나, 옳은 것인 ①(개별재무제표의 직전 회계연도 금액으로 규모 요건을 판단), ⑤(문단 2(a)의 어느 범주에도 해당하지 않고 문단 2(b)도 충족하여야 소규모기업에 해당) 가운데 하나라도 옳지 않다고 고르면 충족하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "② 자산 요건과 매출 요건을 모두 확인한 것은 두 요건이 함께 충족되어야 하는 요건이므로 옳다.",
+            "reason": "자산 요건과 매출 요건을 모두 충족해야 한다고 명시했다.",
+            "claim": "② 문단 2(b)의 자산 요건과 매출 요건이 또는 관계여서 어느 하나만 충족하면 규모 요건이 충족된다는 이유, 또는 20X1년 매출 99억원이 100억원 미만이라는 점만으로 규모 요건이 충족된 것으로 보았어야 한다는 절차 중 하나를 제시한다. 이유 또는 절차 한 가지만 핵심 원칙 수준으로 쓰면 충족하며 둘 다 써도 1점이다. 두 요건을 모두 충족하여야 한다는 판단을 유지하면 충족하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit3",
+            "verdict": "contradicted",
+            "quote": "③ 연결재무제표에 포함되는 회사는 제외 범주에 해당하므로 옳다.",
+            "reason": "연결재무제표에 포함되는 회사 자체가 제외 범주라고 명시했다.",
+            "claim": "③ 문단 2(a)에서 제외하는 연결재무제표를 작성하는 회사가 외부감사법상 지배회사에 해당하여 연결재무제표를 작성하는 회사를 말한다는 이유, 또는 회사 자신이 지배회사로서 연결재무제표를 작성하는지를 확인하였어야 한다는 절차 중 하나를 제시한다. 종속회사로서 지배회사의 연결재무제표에 포함된다는 사실만으로는 이 범주에 해당하지 않는다는 취지가 드러나야 한다. 이유 또는 절차 한 가지만 핵심 원칙 수준으로 쓰면 충족한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit4",
+            "verdict": "contradicted",
+            "quote": "④ 일반 감사기준서의 소규모기업과 감사기준서 1200의 소규모기업은 같은 개념이므로 옳다.",
+            "reason": "두 소규모기업 개념이 같다고 명시했다.",
+            "claim": "④ 일반 감사기준서에서 언급하는 소규모기업(감사기준서 200 문단 A71의 특성을 지닌 기업)이 감사기준서 1200이 정의하는 소규모기업과 다르다는 이유, 또는 감사기준서 200 문단 A71의 특성 대신 문단 2의 조건으로 판단하였어야 한다는 절차 중 하나를 제시한다. 이유 또는 절차 한 가지만 핵심 원칙 수준으로 쓰면 충족한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ②, ③, ④이다. ①은 문단 2(b)가 개별(별도)재무제표상 직전 회계연도말 자산과 직전 회계연도 매출을 기준으로 정하고 있으므로 옳다. ⑤는 문단 2가 (a)와 (b)의 조건을 모두 충족하는 기업에 적용된다고 정하고 있으므로 옳다.",
+          "② 문단 2(b)의 자산 요건과 매출 요건은 또는 관계이므로 어느 하나만 충족하면 규모 요건이 충족된다. 두 요건이 함께 충족되는지 확인할 것이 아니라 20X1년 매출 99억원이 100억원 미만이라는 점만으로 규모 요건이 충족된 것으로 보았어야 한다.",
+          "③ 문단 2(a)에서 제외하는 연결재무제표를 작성하는 회사는 외부감사법상 지배회사에 해당하여 연결재무제표를 작성하는 회사를 말한다. 회사는 지배회사의 연결재무제표에 포함되는 종속회사일 뿐이므로, 회사 자신이 지배회사로서 연결재무제표를 작성하는지를 확인하였어야 한다.",
+          "④ 일반 감사기준서에서 언급하는 소규모기업은 감사기준서 200 문단 A71의 특성을 지닌 기업으로서 감사기준서 1200이 정의하는 소규모기업과 다르다. 감사기준서 200 문단 A71의 특성 대신 문단 2(a)와 문단 2(b)의 조건으로 판단하였어야 한다."
+        ]
+      },
+      {
+        "subquestion_id": "sub2",
+        "prompt": "적용할 감사기준서와 감사보고에 관하여 감사팀이 정한 사항 ⑥~⑨ 중 감사기준에 비추어 옳지 않은 것을 모두 찾아 번호를 쓰고, 각각에 대하여 옳지 않은 이유나 감사인이 수행하였어야 할 절차를 간략히 서술하시오.",
+        "user_answer": "옳지 않은 것은 ⑥과 ⑨이다.\n⑥ 문단 2의 조건을 충족하는 기업의 감사에는 감사기준서 1200을 적용하여야 하므로 서면 합의로 일반 감사기준서를 적용할 수는 없다.\n⑨ 적용하는 감사기준서가 바뀌었으므로 기초잔액과 비교재무제표에 대하여 추가 절차를 수행하였어야 한다.\n⑦ 감사문서에 관한 요구사항은 회사의 규모에 맞추어 선택할 수 있으므로 옳다.\n⑧ 감사기준서 1200도 회계감사기준의 일부이므로 감사보고서에 회계감사기준 전체를 준수하였다고 기술하는 것은 옳다.",
+        "score": 0,
+        "max_points": 3,
+        "criteria": [
+          {
+            "criterion_id": "crit5",
+            "verdict": "not_met",
+            "reason": "정답인 ⑦·⑧이 아니라 ⑥·⑨를 옳지 않다고 지적했다.",
+            "claim": "옳지 않은 것으로 ⑦과 ⑧을 모두 지적한다. 번호 대신 내용으로 특정하거나 이유·보완절차에서 해당 항목의 부적절성이 분명히 드러나도 인정한다. 둘 중 하나를 빠뜨리거나, 옳은 것인 ⑥(서면 합의로 일반 감사기준서를 적용할 수 있다고 보고 협의하기로 함), ⑨(적용 기준서 변경을 전진적으로 적용) 가운데 하나라도 옳지 않다고 고르면 충족하지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit6",
+            "verdict": "contradicted",
+            "quote": "⑦ 감사문서에 관한 요구사항은 회사의 규모에 맞추어 선택할 수 있으므로 옳다.",
+            "reason": "감사문서 요구사항을 회사 규모에 따라 선택할 수 있다고 명시했다.",
+            "claim": "⑦ 감사기준서 1200을 소규모기업에 해당하지 않는 기업의 재무제표 감사에 적용할 수 없다는 이유, 또는 그러한 기업의 감사에는 감사기준서 200에서 감사기준서 720까지의 일반 감사기준서를 적용하였어야 한다는 절차 중 하나를 제시한다. 감사문서에 관한 요구사항만 떼어 적용할 수 없다는 취지가 드러나야 한다. 이유 또는 절차 한 가지만 핵심 원칙 수준으로 쓰면 충족한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit7",
+            "verdict": "contradicted",
+            "quote": "⑧ 감사기준서 1200도 회계감사기준의 일부이므로 감사보고서에 회계감사기준 전체를 준수하였다고 기술하는 것은 옳다.",
+            "reason": "감사기준서 1200 적용 시 회계감사기준 전체 준수라고 기술하는 것이 옳다고 명시했다.",
+            "claim": "⑧ 감사기준서 1200을 적용하여 감사를 수행한 경우 감사보고서에 회계감사기준 전체를 준수하였다고 기술해서는 안 된다는 이유, 또는 그러한 기술을 감사보고서에 넣지 않기로 하였어야 한다는 절차 중 하나를 제시한다. 이유 또는 절차 한 가지만 핵심 원칙 수준으로 쓰면 충족한다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "옳지 않은 것은 ⑦과 ⑧이다. ⑥은 문단 5가 기업과 서면으로 합의한 경우 문단 2에 해당하는 기업의 감사에 감사기준서 1200 대신 일반 감사기준서를 적용할 수 있도록 하고 있으므로 옳다. ⑨는 문단 6이 적용 감사기준서의 변경을 해당 회계연도 감사부터 전진적으로 적용하도록 하고, 그 변경 때문에 기초잔액과 비교재무제표와 관련하여 추가 고려할 사항이나 추가 수행할 절차는 없다고 정하고 있으므로 옳다.",
+          "⑦ 감사기준서 1200은 소규모기업에 해당하지 않는 기업의 재무제표 감사에 적용할 수 없으므로 감사문서에 관한 요구사항만 떼어 적용할 수 없다. 소규모기업에 해당하지 않는 기업의 일반목적 재무제표 감사에는 감사기준서 200에서 감사기준서 720까지의 일반 감사기준서를 적용하였어야 한다.",
+          "⑧ 감사기준서 1200을 적용하여 감사를 수행한 경우 감사보고서에 회계감사기준 전체를 준수하였다고 기술해서는 안 된다. 그러한 기술을 감사보고서에 넣지 않기로 하였어야 한다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": false,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    },
+    {
+      "subquestion_id": "sub2",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": false,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0baada0e72094ffa016ab10ab49b1487d08a84ee05b9e644b7",
+        "request_id": "req_94c81fe9a3d14c2ebe0f0705decc6fa4",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 7254,
+          "input_tokens_details": {
+            "cache_write_tokens": 7251,
+            "cached_tokens": 0
+          },
+          "output_tokens": 504,
+          "output_tokens_details": {
+            "reasoning_tokens": 91
+          },
+          "total_tokens": 7758
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0024181499999999996,
+        "min_usd": 0.0024181499999999996,
+        "max_usd": 0.0024181499999999996,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r37/execution-v1/actual-a/case-18-small-entity-20260921--case--wrong/input.json",
+      "sha256": "a52756cbd3eb681f4a315f1ad4cba3b8af140a647d9574c1db73571a49dabf20"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r37/execution-v1/actual-a/case-18-small-entity-20260921--case--wrong/transport.jsonl",
+      "sha256": "e4367c7659a282d5556b9c1c71d35152f97b0f44e4bd9d2d0c5d508dfd12433d"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r37/execution-v1/actual-a/case-18-small-entity-20260921--case--wrong/traces.jsonl",
+      "sha256": "19b6b92b80ef8b0134e50fe7c35e5f80bd392a52545fa0812eb792a307544ed1"
+    }
+  }
+}

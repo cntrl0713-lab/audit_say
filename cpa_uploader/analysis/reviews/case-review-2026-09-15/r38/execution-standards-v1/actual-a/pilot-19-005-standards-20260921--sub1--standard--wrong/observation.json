@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "artifact_type": "efficient_grading_observation",
+  "transport": "model",
+  "response_injection": false,
+  "manifest": {
+    "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r38/execution-standards-v1/grading-manifest.json",
+    "sha256": "094a9200b357c337a670a1c5f6c46258109186f59750985c64b3cedf5893e421"
+  },
+  "entry_id": "pilot-19-005-standards-20260921--sub1--standard--wrong",
+  "model": "gpt-5.6-luna",
+  "learning_unit_id": "pilot-19-005-standards-20260921--sub1--standard",
+  "source_set_id": "pilot-19-005-standards-20260921",
+  "kind": "wrong",
+  "evaluated_subquestion_ids": [
+    "sub1"
+  ],
+  "projected_body_hash": "ead51247bcaf4c349bfe6e8d7a483abd889e30e9e76a1f89a194b39a5934daad",
+  "answers": {
+    "sub1": "이 검토업무는 회계감사기준에 따른 감사와 같은 합리적 확신을 제공한다. 따라서 검토보고서에는 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하고 있다는 의견을 기재한다."
+  },
+  "original_expected": [
+    {
+      "subquestion_id": "sub1",
+      "expected_points": 0,
+      "expected_verdicts": [
+        {
+          "criterion_id": "crit1",
+          "verdict": "contradicted",
+          "reason": "검토가 감사와 같은 합리적 확신을 제공한다고 써서 제한적 확신을 정면으로 부정했다."
+        },
+        {
+          "criterion_id": "crit2",
+          "verdict": "contradicted",
+          "reason": "소극적 결론 대신 적극적 공정표시 의견을 기재한다고 썼다."
+        }
+      ]
+    }
+  ],
+  "prompt_sha256": "bad235599f86b793c26122792cef33dad226c21433f0a14d30600c3bbc2ba550",
+  "schema_hash": "450e5450f39cb179dc330749e1eda21d00cb61df1fdc3d16477169ae47fd8af5",
+  "actual_sdk_calls": 1,
+  "extra_quality_repeats": 0,
+  "judgment": {
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "verdicts": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "이 검토업무는 회계감사기준에 따른 감사와 같은 합리적 확신을 제공한다. ",
+            "reason": "검토업무가 감사와 같은 합리적 확신을 제공한다고 명시하여 요구된 제한적 확신과 반대된다."
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "따라서 검토보고서에는 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하고 있다는 의견을 기재한다.",
+            "reason": "소극적 결론이 아니라 공정하게 표시하고 있다는 적극적 의견을 기재한다고 명시했다."
+          }
+        ],
+        "injection_detected": false,
+        "salad_detected": false
+      }
+    ],
+    "injection_detected": false,
+    "salad_detected": false
+  },
+  "traces": [
+    {
+      "stage": "judgment",
+      "attempt": 1,
+      "response": {
+        "subquestions": [
+          {
+            "subquestion_id": "sub1",
+            "verdicts": [
+              {
+                "criterion_id": "crit1",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e1"
+                ],
+                "reason": "검토업무가 감사와 같은 합리적 확신을 제공한다고 명시하여 요구된 제한적 확신과 반대된다."
+              },
+              {
+                "criterion_id": "crit2",
+                "verdict": "contradicted",
+                "evidence_ids": [
+                  "sub1/e2"
+                ],
+                "reason": "소극적 결론이 아니라 공정하게 표시하고 있다는 적극적 의견을 기재한다고 명시했다."
+              }
+            ],
+            "injection_detected": false,
+            "injection_evidence_ids": [],
+            "salad_detected": false
+          }
+        ]
+      }
+    }
+  ],
+  "result": {
+    "question_set_id": "pilot-19-005-standards-20260921",
+    "score": 0,
+    "max_points": 2,
+    "subquestions": [
+      {
+        "subquestion_id": "sub1",
+        "prompt": "분·반기재무제표 검토준칙에 따라 수행하는 반기재무제표 검토업무에서 검토대상 반기재무제표는 요약 재무제표가 아닌 전체 재무제표 형식이며 한국채택국제회계기준에 따라 작성되었다. 감사인은 필요한 종결절차를 모두 완료하였고 검토보고서를 변형할 사유는 발생하지 않았다. 이 검토업무가 제공하는 확신을 회계감사기준에 따른 감사가 제공하는 확신과 비교하여 제시하고, 같은 준칙 문단 46의 (8)에 따라 검토보고서에 기재할 결론을 대상 반기재무제표와 적용한 회계처리기준이 드러나도록 작성하시오.",
+        "user_answer": "이 검토업무는 회계감사기준에 따른 감사와 같은 합리적 확신을 제공한다. 따라서 검토보고서에는 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하고 있다는 의견을 기재한다.",
+        "score": 0,
+        "max_points": 2,
+        "criteria": [
+          {
+            "criterion_id": "crit1",
+            "verdict": "contradicted",
+            "quote": "이 검토업무는 회계감사기준에 따른 감사와 같은 합리적 확신을 제공한다.",
+            "reason": "검토업무가 감사와 같은 합리적 확신을 제공한다고 명시하여 요구된 제한적 확신과 반대된다.",
+            "claim": "중간검토의 확신은 감사의 합리적 확신보다 낮은 제한적 확신임을 제시한다. 이 준칙 보론4의 보통수준의 확신이라는 동의 표현도 허용한다. 무확신 업무나 합리적 확신으로 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          },
+          {
+            "criterion_id": "crit2",
+            "verdict": "contradicted",
+            "quote": "따라서 검토보고서에는 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하고 있다는 의견을 기재한다.",
+            "reason": "소극적 결론이 아니라 공정하게 표시하고 있다는 적극적 의견을 기재한다고 명시했다.",
+            "claim": "대상 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않았다고 믿게 하는 사항이 발견되지 않았다는 소극적 결론을 작성한다. 문구의 완전한 축자재현은 요구하지 않지만 적극적 공정표시 감사의견이나 발견된 중요한 왜곡이 없다는 무근거 보장으로 바꾸지 않는다.",
+            "max_points": 1,
+            "awarded_points": 0
+          }
+        ],
+        "model_answer": [
+          "검토가 제공하는 확신은 감사보다 낮은 제한적 확신이다. 이 준칙의 보통수준의 확신이라는 표현도 같은 취지로 이해하며 합리적 확신의 감사의견을 표명하지 않는다.",
+          "우리의 검토결과 상기 반기재무제표가 한국채택국제회계기준에 따라 중요성의 관점에서 공정하게 표시하지 않은 사항이 발견되지 아니하였습니다."
+        ]
+      }
+    ],
+    "security_flag": "none"
+  },
+  "strict_matched": true,
+  "within_tolerance": true,
+  "subquestions": [
+    {
+      "subquestion_id": "sub1",
+      "evaluated": true,
+      "expected_points": 0,
+      "actual_points": 0,
+      "delta": 0,
+      "strict_matched": true,
+      "within_tolerance": true
+    }
+  ],
+  "security_findings": [],
+  "usage": [
+    {
+      "provider": {
+        "request_name": "audit_grading_judgment",
+        "requested_model": "gpt-5.6-luna",
+        "attempt": 1,
+        "response_id": "resp_0c60ba917dc7ea15016ab10b75d78887d0b08bad120bf2fc69",
+        "request_id": "req_66d75e216e5146c39f01fea7653321aa",
+        "response_model": "gpt-5.6-luna",
+        "service_tier": "default",
+        "response_status": "completed",
+        "usage": {
+          "input_tokens": 3005,
+          "input_tokens_details": {
+            "cache_write_tokens": 3002,
+            "cached_tokens": 0
+          },
+          "output_tokens": 204,
+          "output_tokens_details": {
+            "reasoning_tokens": 44
+          },
+          "total_tokens": 3209
+        }
+      },
+      "cost": {
+        "status": "calculated",
+        "usd": 0.0009959,
+        "min_usd": 0.0009959,
+        "max_usd": 0.0009959,
+        "reason": "Actual provider tokens × pinned public standard rates; invoice/tax/account credits are separate."
+      }
+    }
+  ],
+  "files": {
+    "input": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r38/execution-standards-v1/actual-a/pilot-19-005-standards-20260921--sub1--standard--wrong/input.json",
+      "sha256": "66d89b5ef458d6d21bae3838241d0293ee729144cbe3a7264c2c11e61183ddc6"
+    },
+    "transport": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r38/execution-standards-v1/actual-a/pilot-19-005-standards-20260921--sub1--standard--wrong/transport.jsonl",
+      "sha256": "6e42f32e8075764495b99ac109053f2d5c48307e8ccd4677b15a83d640cfb233"
+    },
+    "traces": {
+      "file": "cpa_uploader/analysis/reviews/case-review-2026-09-15/r38/execution-standards-v1/actual-a/pilot-19-005-standards-20260921--sub1--standard--wrong/traces.jsonl",
+      "sha256": "e21ca213817a9dd965f8a05e314bcc63b64d1566c4cbc381014acecab047ffe0"
+    }
+  }
+}

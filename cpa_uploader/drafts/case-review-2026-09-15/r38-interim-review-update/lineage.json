@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "round": "r38",
+  "edit_note_number": 41,
+  "created_for": "2026-09-21 D등급 단독 갱신",
+  "retired_set": {
+    "id": "pilot-19-005",
+    "title": "중간재무제표 검토의 결론 문구와 종결 판단",
+    "topic_id": "19",
+    "subquestions": 3,
+    "points": 6,
+    "case_points": 4,
+    "standard_points": 2,
+    "retire_scope": "사례형 물음 sub2·sub3만 새 사례형 세트로 대체되고, 기준서형 물음 sub1은 퇴역하지 않고 pilot-19-005-standards-20260921로 분리 보존된다. 세트 자체는 퇴역한다.",
+    "retire_authority": "이 초안 작성으로 퇴역이 실행되지는 않는다. 정본 설치·활성 릴리스 제외는 조율자(메인 세션)가 사용자 승인 아래 수행한다."
+  },
+  "new_sets": [
+    { "id": "case-19-interim-review-20260921", "question_style": "case", "subquestions": 3, "points": 9, "topic_id": "19" },
+    { "id": "pilot-19-005-standards-20260921", "question_style": "standard", "subquestions": 1, "points": 2, "topic_id": "19" }
+  ],
+  "standards_split": {
+    "policy_source": "docs/사례형-병합-종합문제-설계.md 1절(2026-09-20 사용자 결정: 분리 보존)과 docs/물음별-학습-단위와-분류-계약.md의 기준서형 분리 규칙.",
+    "mapping": [
+      {
+        "from": "pilot-19-005/sub1",
+        "to": "pilot-19-005-standards-20260921/sub1",
+        "points": "2 → 2",
+        "criteria": [
+          { "from": "crit1", "to": "crit1", "claim": "그대로", "points": "1 → 1" },
+          { "from": "crit2", "to": "crit2", "claim": "그대로", "points": "1 → 1" }
+        ],
+        "requirements": [
+          { "from": "sub1.req1", "to": "sub1.req1", "source": "문단 9" },
+          { "from": "sub1.req2", "to": "sub1.req2", "source": "문단 7" },
+          { "from": "sub1.req3", "to": "sub1.req3", "source": "문단 8" },
+          { "from": "sub1.req4", "to": "sub1.req4", "source": "문단 46" }
+        ],
+        "model_answer": "두 문장 모두 바이트 그대로 승계",
+        "prompt_changed": true,
+        "prompt_change_reason": "원 발문이 특정 업무 상황을 앞세우고 종결 조건을 '변형된 검토의견을 필요로 하는 사항이 없다'로 적어 결론 방향에 가까웠다. 일반 적용 조건으로 다시 쓰고 두 번째 요구의 범위를 문단 46의 (8)이라는 항 기호로 정했다. 세부 사유는 design-standards.json의 prompt_rewrite에 있다.",
+        "facts": "원 세트의 shared_context.facts 세 건은 이 세트에서 빈 배열이 된다. 기준서형은 사례 지문 없이 단독으로 풀어야 하고 validateQuestionSetV3도 question_style='standard'에 facts가 있으면 거절한다.",
+        "id_note": "criterion id crit1·crit2는 원 세트에서 이미 sub1에 붙어 있던 값이고 새 세트 안에서도 고유하다. 채점 모델이 물음 접두사가 붙은 id를 돌려주지 않도록 세트 안 연번을 유지했다."
+      }
+    ]
+  },
+  "case_inheritance": [
+    {
+      "from": "pilot-19-005/sub2 (갑의 서면진술 생략 제안, 1점, crit3)",
+      "to": "case-19-interim-review-20260921/sub3 항목 ⑨ (crit8, 1점)",
+      "disposition": "승계(선택형 항목으로 전환)",
+      "note": "원 물음은 '갑의 제안이 적절한지 판단하고 서면진술을 입수해야 하는지 제시'하는 판단형이었다. 등장인물의 틀린 주장을 그대로 읽히는 형식이 정답 암시에 해당하므로, 검토팀이 정한 사항 ⑨로 바꾸고 옳지 않은 항목으로 두었다. 원 crit3의 불인정 조건(구두진술 대체, 문제가 발견될 때에만 입수)을 crit8에 그대로 옮겼다. 근거는 문단 36 본문으로 같다."
+    },
+    {
+      "from": "pilot-19-005/sub3 (을의 중요성 완화 제안, 3점, crit4·crit5·crit6)",
+      "to": "case-19-interim-review-20260921/sub2 항목 ⑧ (crit6, 1점) + 함정 ⑦ + crit4 식별",
+      "disposition": "승계(배점 구조 변경)",
+      "note": "선택형 배점은 옳지 않은 항목마다 이유 또는 보완 중 하나를 1점으로 두므로 원 3점이 항목 1점으로 합쳐졌다. 원 crit4(완화 부적절 판단)는 식별 criterion crit4와 crit6이 함께 담고, 원 crit5(보고해야 하는 정보와 이를 신뢰·이용하는 측의 요구에 의거한 판단)는 crit6의 인정 근거이자 보완 내용으로 보존했다. 원 crit6(낮은 확신 = 발견위험의 차이이며 중요성 판단기준 자체의 차이와 구별)은 독립 criterion 자리가 없어 함정 항목 ⑦(문단 20 제2문)과 crit6의 불인정 조건('확신 수준이 낮다는 이유로 완화할 수 있다고 쓰면 인정하지 않는다')으로 옮겼다."
+    }
+  ],
+  "added_requirements": [
+    { "item": "①", "source": "문단 1 후단", "verdict": "옳음(함정)", "reason": "검토업무 중에도 '감사인'으로 지칭하는 이유를 준칙이 직접 밝히고 있다." },
+    { "item": "②", "source": "문단 1-1", "verdict": "옳지 않음", "reason": "반기·분기보고서에 포함되지 않는 중간재무제표에도 연간재무제표 감사인이 검토할 때 이 준칙을 적용할 수 있다." },
+    { "item": "③", "source": "문단 9 제2문", "verdict": "옳음", "reason": "검토는 주로 질문·분석적절차 및 기타 검토절차로 구성된다." },
+    { "item": "④", "source": "문단 9 제1문(보완 문단 7 후단)", "verdict": "옳지 않음", "reason": "검토는 감사와 같은 합리적 수준의 확신을 얻도록 설계되지 않는다." },
+    { "item": "⑤", "source": "문단 19 제2문", "verdict": "옳음", "reason": "중요성 기준의 결정은 양적·질적 요소를 고려한 전문가적 판단에 기초한다." },
+    { "item": "⑥", "source": "문단 19 제1문", "verdict": "옳지 않음", "reason": "왜곡사항의 영향을 평가할 때에도 중요성을 고려하여야 한다." },
+    { "item": "⑦", "source": "문단 20 제2문", "verdict": "옳음(함정)", "reason": "검토업무가 왜곡표시를 발견하지 못할 위험이 더 크다는 것은 준칙 자신의 진술이다." },
+    { "item": "⑩", "source": "문단 36(1)", "verdict": "옳음", "reason": "내부통제제도 수립·운영 책임의 인정은 서면진술의 내용이다." },
+    { "item": "⑪", "source": "문단 36 단서·(3)", "verdict": "옳지 않음", "reason": "경영진이 수정반영하지 아니한 사항들의 요약을 서면진술에 기재하거나 별도로 첨부하여야 한다." },
+    { "item": "⑫", "source": "문단 36(7)", "verdict": "옳음(함정)", "reason": "공개 대상 기간이 재무상태표일 후 검토보고서일까지다." }
+  ],
+  "dropped_requirements": [
+    {
+      "requirement": "원 fact3의 갑·을 등장인물 구조와 '연간재무제표 감사에서 사용했던 중요성의 숫자를 반기에도 그대로 사용하는지는 묻지 않는다'는 배제 문구의 일부",
+      "disposition": "형식 변경",
+      "reason": "등장인물의 틀린 주장을 그대로 읽히는 형식이 정답 암시 금지에 걸린다. 배제 취지는 fact3에 '연간재무제표 감사에서 사용한 중요성 금액을 반기에 그대로 옮겨 쓸 것인지는 이 사례에서 다루지 않는다'로 남겼다.",
+      "covered_elsewhere": "해당 없음(배제 문구이며 득점 요건이 아니다)"
+    },
+    {
+      "requirement": "원 sub3 crit5의 독립 배점(보고해야 하는 정보와 이를 신뢰·이용하는 측의 요구에 의거하여 무엇이 중요한지 판단)",
+      "disposition": "criterion 통합",
+      "reason": "선택형 배점 계약은 옳지 않은 항목마다 이유 또는 보완 중 하나에 1점을 둔다. 같은 항목(⑧)의 이유를 둘로 나누어 배점을 늘리지 않았다.",
+      "covered_elsewhere": "case-19-interim-review-20260921 sub2 crit6의 인정 근거·보완 내용으로 그대로 남아 있다. 이 명제만 써도 crit6을 충족한다."
+    },
+    {
+      "requirement": "원 sub3 crit6의 독립 배점(검토의 낮은 확신은 발견위험의 차이이며 중요성 판단기준 자체의 차이와 구별)",
+      "disposition": "함정·불인정 조건으로 이관",
+      "reason": "같은 이유로 독립 criterion 자리가 없다. 학습 가치는 함정 ⑦을 옳다고 판단해야 하는 데에서 유지된다.",
+      "covered_elsewhere": "항목 ⑦(문단 20 제2문)과 crit6의 불인정 조건. 은행에서 이 구별을 독립 요구로 묻는 다른 문항은 없으며 후속 제작 후보로 남는다."
+    },
+    {
+      "requirement": "문단 8(검토목적은 감사와 유의적 차이가 있고 공정표시 의견 표명의 근거를 제공하지 않음)의 사례 적용",
+      "disposition": "사례형 항목으로 쓰지 않음",
+      "reason": "옳지 않은 항목으로 두면 항목 ④와 같은 통찰(검토를 감사처럼 다루는 잘못)로 풀려 변별이 떨어지고, 분리 보존 세트 crit2(소극적 결론)와 요구가 겹친다.",
+      "covered_elsewhere": "pilot-19-005-standards-20260921 sub1이 문단 8을 요구 근거로 계속 다룬다."
+    },
+    {
+      "requirement": "문단 46의 검토보고서 기재사항과 46-1의 요약 중간재무제표 수정 적용",
+      "disposition": "사례형 항목으로 쓰지 않음",
+      "reason": "보고서 기재사항은 분리 보존 세트의 영역이고, 46-1을 항목으로 쓰면 fact1의 '전체 재무제표 형식'이 곧바로 정답을 알려 준다.",
+      "covered_elsewhere": "pilot-19-005-standards-20260921 sub1 crit2가 문단 46(8)을 다룬다. 46-1(요약 중간재무제표)을 묻는 문항은 은행에 없어 후속 제작 후보로 남는다."
+    }
+  ],
+  "requirements_not_written_for_lack_of_registered_text": {
+    "registered_file": "cpa_uploader/data/official/delegated-s06-interim-2015.txt",
+    "registered_units": ["문단 1(1-1)", "문단 7", "문단 8", "문단 9", "문단 19", "문단 20", "문단 36", "문단 46(46-1)"],
+    "not_registered": [
+      "문단 21~31(질문·분석적절차 및 기타 검토절차의 성격·범위, 일반적으로 수행하는 검토절차, 수행 시기, 소송·배상청구 질의, 원시 회계기록과의 일치, 후속사건 질문, 계속기업 질문, 발견사항 후속 절차)",
+      "문단 32~35(미수정 왜곡표시의 개별·합계 평가, 전문가적 판단, 집계 제외 기준금액)",
+      "문단 37(추가 진술서)",
+      "문단 38~39(기타정보 숙독과 불일치·사실의 왜곡표시)",
+      "문단 40~45(경영진·지배기구 커뮤니케이션, 부정·법규위반, 부문감사인 결과 활용)",
+      "문단 47~59(비교표시 재무정보, 결론의 변형·한정·부적정의견, 범위제한, 강조사항, 계속기업 불확실성)"
+    ],
+    "decision": "배정이 후보로 든 '검토절차의 성격과 범위', '질문과 분석적절차', '수정되지 않은 왜곡표시의 처리', '결론의 변형' 가운데 등록 원문으로 확정할 수 있는 범위만 항목으로 썼다. 절차의 구성은 문단 9·7, 수정반영하지 않은 왜곡표시의 서면진술 처리는 문단 36 단서·(3)에서 확정했다. 결론의 변형(문단 49~51)과 검토절차의 구체 내용(문단 22·23)은 등록 원문에 없어 쓰지 않았다.",
+    "available_but_unregistered_extract": "같은 고시의 전체 추출본이 cpa_uploader/drafts/delegated-authoring-2026-09-11/s06/sources/interim-2015-text.txt(raw 보존 cpa_uploader/raw/materials/verification/d277ee81283c4b52/interim-2015-text.txt)에 있고 위 문단들을 포함한다. 그러나 등록 입력 cpa_uploader/data/*는 이 작업에서 쓰지 않는 경로이고 source_quote의 실재 검증은 등록 원문 파일만 본다. 추가 문단의 등록은 조율자 판단으로 별도 수행할 사항이며 이 회차에서는 하지 않았다."
+  },
+  "contrasting_pairs": {
+    "found": false,
+    "kept_side": null,
+    "detail": "원 세트의 갑(서면진술 생략, 문단 36)과 을(중요성 완화, 문단 20)은 근거 조항이 다르고 둘 다 정답이 '부적절하다' 한 방향이어서 같은 기준에서 결론이 갈리는 쌍이 아니다. 두 요구를 모두 승계했고 삭제한 쪽이 없다. 새로 더한 항목에서도 같은 조항의 적용·미적용을 나란히 둔 쌍은 만들지 않았다(문단 1-1은 옳지 않은 항목 한 방향, 문단 19·20·36은 서로 다른 문장·항의 명제). 대조 근거는 design.json의 contrasting_pairs_review에 있다."
+  },
+  "source_reuse": {
+    "reused_quotes": 8,
+    "reused_from": "pilot-19-005의 source_refs 8건(문단 1·7·8·9·19·20·36·46) 전부. 사례형이 6건(1·7·9·19·20·36), 기준서형이 4건(7·8·9·46)을 쓰며 문단 7·9는 두 세트가 각각 인용한다.",
+    "bytes_and_hash": "source_quote 바이트와 content_hash를 원 세트에서 그대로 옮겼고, 각 인용의 sha256이 quote 바이트와 일치함을 확인했다.",
+    "new_collection": false
+  },
+  "prompt_collision_check": {
+    "method": "공백 제거·소문자 정규화 후 현재 정본 341세트와 cpa_uploader/drafts/case-review-2026-09-15 아래 모든 초안(sets.json·standards-sets.json)의 발문과 대조",
+    "result": "충돌 0건. 퇴역 예정인 pilot-19-005와의 충돌도 없다.",
+    "note": "이 회차는 원 세트의 발문을 그대로 쓴 물음이 없어 퇴역 세트와의 바이트 충돌이 애초에 생기지 않았다."
+  }
+}

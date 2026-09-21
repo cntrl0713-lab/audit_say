@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "set_id": "case-11-related-party-20260921",
+  "method": "author_expectation_before_execution",
+  "human_review_performed": false,
+  "note": "실제 채점 전에 원문·발문·criterion에서 확정한 대표 사례다. 모범답안은 저장된 model_answer 바이트를 그대로 쓰므로 여기에 다시 적지 않는다. cases에는 물음마다 부분정답 1건과 오답 1건을 두었고, 세 물음의 같은 역할을 한 요청으로 통합해 Luna 대표 3요청으로 실측한다. 부분정답의 실패 유형은 물음마다 다르게 두었다(물음 1은 한 항목의 이유 누락, 물음 2는 함정 오선택, 물음 3은 다른 한 항목의 이유 누락).",
+  "cases": [
+    {
+      "id": "r39-sub1-partial",
+      "set_id": "case-11-related-party-20260921",
+      "subquestion_id": "sub1",
+      "kind": "partial",
+      "answer": "옳지 않은 것은 ①, ②, ⑥이다.\n① 경영진이 이전에 공개하지 않았던 특수관계자를 식별한 경우 관련 정보를 업무팀의 다른 구성원에게 신속하게 커뮤니케이션하여야 하므로, 후속 절차가 끝나기를 기다리지 말고 지체 없이 전달하여야 한다.\n② 해당 재무보고체계가 특수관계자에 관한 요구사항을 정하고 있으므로, 경영진에게 아라물산과 이루어진 모든 거래를 식별하여 제출하도록 요청하여야 한다.",
+      "expected_points": 3,
+      "expected_verdicts": [
+        { "criterion_id": "crit1", "verdict": "met", "reason": "옳지 않은 항목 ①·②·⑥을 모두 고르고 옳은 항목 ③·④·⑤는 고르지 않았다." },
+        { "criterion_id": "crit2", "verdict": "met", "reason": "①에 대하여 신속한 커뮤니케이션이라는 이유와 지체 없이 전달한다는 절차를 적었다." },
+        { "criterion_id": "crit3", "verdict": "met", "reason": "②에 대하여 재무보고체계의 요구사항이라는 이유와 모든 거래를 식별해 제출하도록 요청한다는 절차를 적었다." },
+        { "criterion_id": "crit4", "verdict": "not_met", "reason": "⑥을 골랐으나 고의적 미공개의 시사점 평가에 관한 이유나 보완절차를 쓰지 않았다." }
+      ],
+      "reason": "식별은 맞히고 한 항목의 이유만 빠뜨린 답에서 나머지 항목 점수가 유지되는지 확인하는 부분정답이다."
+    },
+    {
+      "id": "r39-sub1-wrong",
+      "set_id": "case-11-related-party-20260921",
+      "subquestion_id": "sub1",
+      "kind": "wrong",
+      "answer": "옳지 않은 것은 ③, ④, ⑤이다.\n③ 기업의 통제가 실패한 이유는 경영진에게 물을 사항이 아니라 감사인이 스스로 판단할 사항이므로 경영진에게 질문한 것은 옳지 않다.\n④ 새로 식별된 특수관계자와의 거래에 대하여는 경영진에 대한 질문으로 충분하므로 별도의 실증감사절차를 계획한 것은 옳지 않다.\n⑤ 새로 식별된 특수관계자를 명단에 추가하면 명단이 완전해지므로 다른 특수관계자가 존재할 위험을 다시 고려한 것은 옳지 않다.\n① 후속 절차가 끝난 뒤에 업무팀의 다른 구성원에게 전달하여도 되므로 옳다.\n② 거래가 없다는 경영진의 설명만으로 아라물산과의 거래 범위를 확정하여도 되므로 옳다.\n⑥ 명단 관리 방식의 미비로 보아 경위를 기록하는 것으로 절차를 마쳐도 되므로 옳다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        { "criterion_id": "crit1", "verdict": "contradicted", "reason": "옳은 항목 ③·④·⑤를 옳지 않다고 고르고 옳지 않은 항목 ①·②·⑥은 모두 빠뜨렸다." },
+        { "criterion_id": "crit2", "verdict": "contradicted", "reason": "후속 절차가 끝난 뒤에 전달하여도 된다는 명시적 반대 결론을 적었다." },
+        { "criterion_id": "crit3", "verdict": "contradicted", "reason": "경영진의 설명만으로 거래 범위를 확정하여도 된다는 명시적 반대 결론을 적었다." },
+        { "criterion_id": "crit4", "verdict": "contradicted", "reason": "경위를 기록하는 것으로 절차를 마쳐도 된다는 명시적 반대 결론을 적었다." }
+      ],
+      "reason": "옳은 항목과 함정만 고르고 세 옳지 않은 항목에 반대 결론을 적은 답이 0점인지 확인한다."
+    },
+    {
+      "id": "r39-sub2-partial",
+      "set_id": "case-11-related-party-20260921",
+      "subquestion_id": "sub2",
+      "kind": "partial",
+      "answer": "옳지 않은 것은 ⑧, ⑨, ⑩이다.\n⑧ 감사인은 근거 계약을 검사하여 거래의 조건이 경영진의 설명과 일관성이 있는지 평가하여야 하므로, 최종 보증 계약조건을 입수하여 보증료를 받는 거래라는 설명과 일치하는지 확인하여야 한다.\n⑨ 감사인은 해당 거래가 적합하게 권한이 부여되고 승인되었다는 감사증거를 입수하여야 하므로, 재무담당 임원의 서명이 아니라 기업 내부의 적합한 수준에서 이 보증이 승인되었음을 보여 주는 기록을 입수하여야 한다.\n⑩ 감사인은 기업의 관점에서 거래를 평가하면 되고 특수관계자의 관점에서 사업상 이유를 이해할 필요는 없으므로 옳지 않다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        { "criterion_id": "crit5", "verdict": "contradicted", "reason": "옳은 항목인 함정 ⑩(특수관계자의 관점에서 사업상 이유를 이해)을 옳지 않다고 고르고 그 이유로 명시적 반대 결론을 적었다." },
+        { "criterion_id": "crit6", "verdict": "met", "reason": "⑧에 대하여 조건과 경영진 설명의 일관성 평가라는 이유와 최종 계약조건을 입수해 대조한다는 절차를 적었다." },
+        { "criterion_id": "crit7", "verdict": "met", "reason": "⑨에 대하여 권한부여·승인의 감사증거 입수라는 이유와 적합한 수준의 승인 기록을 입수한다는 절차를 적었다." }
+      ],
+      "reason": "함정 ⑩을 옳지 않다고 고른 답에서 식별 점수만 잃고 ⑧·⑨의 이유 점수는 유지되는지 확인하는 부분정답이다."
+    },
+    {
+      "id": "r39-sub2-wrong",
+      "set_id": "case-11-related-party-20260921",
+      "subquestion_id": "sub2",
+      "kind": "wrong",
+      "answer": "옳지 않은 것은 ⑦과 ⑩이다.\n⑦ 사업상 이유의 평가는 정상적인 사업과정 안의 거래에만 필요하므로 이 지급보증에 대하여 평가한 것은 옳지 않다.\n⑩ 특수관계자의 관점에서 사업상 이유를 이해하는 것은 감사인의 업무 범위를 벗어나므로 옳지 않다.\n⑧ 계약서 초안이 확정 전의 문서이므로 최종 계약조건을 입수하지 않고 경영진의 설명을 그대로 감사증거로 사용한 것은 옳다.\n⑨ 재무담당 임원의 서명이 있으면 권한부여와 승인에 관한 감사증거가 확보되므로 옳다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        { "criterion_id": "crit5", "verdict": "contradicted", "reason": "옳은 항목 ⑦·⑩을 옳지 않다고 고르고 옳지 않은 항목 ⑧·⑨는 모두 빠뜨렸다." },
+        { "criterion_id": "crit6", "verdict": "contradicted", "reason": "초안이 확정 전 문서라는 이유로 최종 계약조건을 입수하지 않아도 된다는 명시적 반대 결론을 적었다." },
+        { "criterion_id": "crit7", "verdict": "contradicted", "reason": "재무담당 임원의 서명만으로 권한부여와 승인에 관한 감사증거가 확보된다는 명시적 반대 결론을 적었다." }
+      ],
+      "reason": "옳은 항목과 함정만 고르고 두 옳지 않은 항목에 반대 결론을 적은 답이 0점인지 확인한다."
+    },
+    {
+      "id": "r39-sub3-partial",
+      "set_id": "case-11-related-party-20260921",
+      "subquestion_id": "sub3",
+      "kind": "partial",
+      "answer": "옳지 않은 것은 ⑫와 ⑭이다.\n⑭ 이자율이 같다는 자료만으로는 거래의 다른 모든 측면이 독립된 당사자 간의 거래의 경우와 동등하다는 점을 뒷받침하지 못하므로, 담보의 제공 여부와 만기·상환조건 등 가격 외의 거래조건까지 비교하여 감사증거를 입수하여야 한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        { "criterion_id": "crit8", "verdict": "met", "reason": "옳지 않은 항목 ⑫·⑭를 모두 고르고 옳은 항목 ⑪·⑬은 고르지 않았다." },
+        { "criterion_id": "crit9", "verdict": "not_met", "reason": "⑫를 골랐으나 회계처리·공시의 적합성 평가에 관한 이유나 보완절차를 쓰지 않았다." },
+        { "criterion_id": "crit10", "verdict": "met", "reason": "⑭에 대하여 가격 비교만으로는 부족하다는 이유와 가격 외의 거래조건을 비교한다는 절차를 적었다." }
+      ],
+      "reason": "식별은 맞히고 다른 한 항목의 이유를 빠뜨린 답에서 남은 항목 점수가 유지되는지 확인하는 부분정답이다. 물음 1의 부분정답과 누락 위치를 반대로 두었다."
+    },
+    {
+      "id": "r39-sub3-wrong",
+      "set_id": "case-11-related-party-20260921",
+      "subquestion_id": "sub3",
+      "kind": "wrong",
+      "answer": "옳지 않은 것은 ⑪과 ⑬이다.\n⑪ 특수관계자 주석의 범위는 경영진이 제출한 명단으로 확정되므로 관계의 성격이나 거래의 형태·목적을 다시 질문한 것은 옳지 않다.\n⑬ 경영진이 제시한 자료는 감사증거가 될 수 없으므로 주석 기재의 근거 자료를 경영진에게 요청한 것은 옳지 않다.\n⑫ 이행을 청구받은 금액이 없으므로 지급보증의 회계처리와 공시가 적합한지 평가하지 않은 것은 옳다.\n⑭ 이자율이 같으므로 정상거래조건 주장에 대한 감사증거가 충분하고 이 사항의 절차를 마친 것은 옳다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        { "criterion_id": "crit8", "verdict": "contradicted", "reason": "옳은 항목 ⑪·⑬을 옳지 않다고 고르고 옳지 않은 항목 ⑫·⑭는 모두 빠뜨렸다." },
+        { "criterion_id": "crit9", "verdict": "contradicted", "reason": "이행을 청구받은 금액이 없으면 회계처리·공시의 적합성을 평가하지 않아도 된다는 명시적 반대 결론을 적었다." },
+        { "criterion_id": "crit10", "verdict": "contradicted", "reason": "이자율이 같으면 정상거래조건 주장에 대한 감사증거가 충분하다는 명시적 반대 결론을 적었다." }
+      ],
+      "reason": "옳은 항목과 함정만 고르고 두 옳지 않은 항목에 반대 결론을 적은 답이 0점인지 확인한다."
+    }
+  ],
+  "supplementary_cases": [
+    {
+      "id": "r39-sub1-number-only",
+      "subquestion_id": "sub1",
+      "kind": "targeted",
+      "answer": "①, ②, ⑥",
+      "expected_points": 1,
+      "expectation": "crit1 met, crit2·crit3·crit4 not_met. 번호만 정확히 쓴 답은 식별 1점만 받는다.",
+      "run": false,
+      "reason": "대표 3요청의 결과가 허용 범위 안이면 보조 요청을 추가하지 않는다는 비용 통제 지침에 따라 기본 실행 대상에서 제외한다. 허용 범위 밖 결과가 나오면 이 사례를 보조 요청 후보로 쓴다."
+    },
+    {
+      "id": "r39-sub2-crit6-boundary",
+      "subquestion_id": "sub2",
+      "kind": "targeted",
+      "answer": "옳지 않은 것은 ⑧과 ⑨이다.\n⑧ 확정 전의 계약서 초안은 조서에 편철할 문서가 아니므로 초안을 기록한 것이 잘못이다.\n⑨ 감사인은 해당 거래가 적합하게 권한이 부여되고 승인되었다는 감사증거를 입수하여야 하므로, 기업 내부의 적합한 수준에서 승인되었음을 보여 주는 기록을 입수하여야 한다.",
+      "expected_points": 2,
+      "expectation": "crit5 met, crit6 not_met(거래조건과 경영진 설명의 일관성이 아니라 조서 편철만 문제 삼았다), crit7 met.",
+      "run": false,
+      "reason": "crit6이 조건과 설명의 일관성 평가라는 득점 요건과 무관한 지적을 구분해 채점하는지 확인하는 조건 경계 사례다. 같은 이유로 기본 실행 대상에서 제외하고 보조 요청 후보로만 둔다."
+    },
+    {
+      "id": "r39-sub3-crit10-boundary",
+      "subquestion_id": "sub3",
+      "kind": "targeted",
+      "answer": "옳지 않은 것은 ⑫와 ⑭이다.\n⑫ 감사인은 근거 계약을 검사하여 그 거래가 해당 재무보고체계에 따라 적합하게 회계처리되고 공시되었는지 평가하여야 한다.\n⑭ 경영진의 주장이므로 서면진술을 받아 두었어야 한다.",
+      "expected_points": 2,
+      "expectation": "crit8 met, crit9 met, crit10 not_met(가격 외의 거래조건 비교나 증거의 불충분이 아니라 서면진술만 들었다).",
+      "run": false,
+      "reason": "crit10이 문단 24·A42의 득점 요건과 다른 절차를 구분해 채점하는지 확인하는 조건 경계 사례다. 같은 이유로 기본 실행 대상에서 제외하고 보조 요청 후보로만 둔다."
+    }
+  ]
+}

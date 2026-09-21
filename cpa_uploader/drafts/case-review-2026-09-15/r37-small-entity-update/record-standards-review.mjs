@@ -1,0 +1,79 @@
+// r37 기준서형 분리본의 agent 내용검토 장부 기록기. 실제 대조를 마친 뒤 한 번만 실행한다.
+//
+//   node --import tsx cpa_uploader/drafts/case-review-2026-09-15/r37-small-entity-update/record-standards-review.mjs
+//
+// 출력: cpa_uploader/analysis/reviews/case-review-2026-09-15/r37/root-content-review-standards-v1.json
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { reviewedContentHash } from '../../../questionReviewIdentity.ts';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(here, '../../../..');
+const DRAFT_DIR = 'cpa_uploader/drafts/case-review-2026-09-15/r37-small-entity-update';
+const OUT_DIR = path.join(root, 'cpa_uploader/analysis/reviews/case-review-2026-09-15/r37');
+const SET_ID = 'pilot-18-005-standards-20260921';
+
+const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
+const ref = (file) => ({ file, sha256: hash(fs.readFileSync(path.join(root, file))) });
+const [draft] = JSON.parse(fs.readFileSync(path.join(root, DRAFT_DIR, 'standards-sets.json'), 'utf8'));
+if (draft.id !== SET_ID) throw new Error('set id 불일치');
+
+const PASS = {
+    source: 'pass', answer: 'pass', prompt: 'pass', points: 'pass',
+    style: 'pass', topics: 'pass', edition: 'pass', nonduplication: 'pass',
+};
+
+const review = {
+    version: 1,
+    method: 'agent_content_review',
+    human_review_performed: false,
+    reviewer_id: 'agent:claude-opus-5 (author agent; no independent peer review)',
+    reviewed_at: new Date().toISOString(),
+    target: {
+        file: `${DRAFT_DIR}/standards-sets.json`,
+        sha256: ref(`${DRAFT_DIR}/standards-sets.json`).sha256,
+        set_id: SET_ID,
+        reviewed_content_sha256: reviewedContentHash(draft),
+    },
+    evidence: [
+        `${DRAFT_DIR}/design-standards.json`,
+        `${DRAFT_DIR}/lineage.json`,
+        `${DRAFT_DIR}/qa-standards.json`,
+        `${DRAFT_DIR}/build-draft.mjs`,
+        'cpa_uploader/data/official/kga1200-2025-review18.txt',
+        'cpa_uploader/data/official/delegated-s06-kga1100-1200-2025.txt',
+        'cpa_uploader/data/cpa_question_sets_v3.authoring.json',
+        'docs/물음별-학습-단위와-분류-계약.md',
+        'docs/사례형-병합-종합문제-설계.md',
+    ].map(ref),
+    method_detail:
+        '분리 보존 세트이므로 원 pilot-18-005 sub1·sub2의 criterion claim·critical_facts·배점·모범답안·출처를 정본에서 바이트 그대로 읽어 승계했는지 먼저 대조했다. 바뀐 것은 criterion id(sub2의 crit15·crit16이 순서를 유지한 채 crit9·crit11로 이동, 그에 따라 crit9→crit10, crit10→crit12)와 두 발문, source_ref id(src-eefc15ac2516338307→kga1200-2, src-5d149516e009fdc5f1→kga1200-3)뿐이며 명제와 점수는 하나도 바뀌지 않았다. 승계한 여섯 + 여섯 명제를 등록 공식 전문 kga1200-2025-review18.txt의 KGA 1200 문단 2(a)(i)~(vi)·2(b)와 문단 3의 각주 1~5로 다시 대조했다. 새로 쓴 두 발문이 criterion의 득점 내용을 알려 주지 않는지, 한 발문이 다른 발문의 정답을 제외 문구로 나열하지 않는지, 새 발문 아래에서도 승계한 명제가 그대로 요구되는지 확인했다. validate_draft_v3.ts --against-bank로 인용 원문 실존과 기존 은행과의 ID·발문 중복 없음을 확인했고, 현재 정본 341세트에 이 회차의 사례형 초안과 이 세트를 붙인 전체 후보(343세트)를 메모리에서 validateAuthoringBank로 검증해 오류 0건을 확인했다. 새 원자료 수집과 새 발췌는 없다.',
+    questions: [
+        {
+            subquestion_id: 'sub1',
+            checks: { ...PASS },
+            rationale:
+                'source: 여섯 범주를 KGA 1200 문단 2(a)(i)~(vi)에서 확정했다. (i) 주권상장법인, (ii) 해당 회계연도 또는 다음 회계연도 중에 주권상장법인이 되려는 회사, (iii) 금융회사, (iv) 자본시장과 금융투자업에 관한 법률 제159조 제1항에 따른 사업보고서 제출대상법인, (v) 외부감사법 제11조 제1항에 따라 증권선물위원회가 감사인을 지정한 회사, (vi) 연결재무제표를 작성하는 회사. 각 범주의 법적 범위를 정하는 각주 1~4는 문단 3에 붙어 있어 인용 kga1200-3(sub1.req2)이 함께 담고 있다. crit1~crit6의 claim과 critical_facts는 원 세트에서 바이트 그대로 승계했다. answer: 모범답안 여섯 문장이 crit1~crit6과 하나씩 대응한다(원 세트의 model_answer 배열을 그대로 읽어 썼다). prompt: 새 발문은 범위를 문단·항 기호(문단 2(a)의 (i)~(vi))로만 정하고 개수만 드러낸다. 원 발문의 "각 범주의 시기적·법적 범위가 드러나도록 답하되"는 여섯 범주 가운데 시기 범위가 있는 것이 (ii)뿐이고 법적 범위가 득점 요건인 것이 (iii)·(iv)·(v)뿐이어서 어느 범주에 무엇을 써야 하는지를 먼저 알려 주므로 없앴다. crit4·crit5가 조문번호를 필수 표현으로 요구하지 않으므로 "관련 법률의 조문번호 없이 제시하여도 된다"는 안내는 같은 뜻으로 유지했다. 새 발문 아래에서도 crit2의 시기 범위(해당 회계연도 또는 다음 회계연도)는 범주 자체를 특정하는 한정어이므로 여전히 요구된다. points: 6점 유지. 여섯 범주가 각각 독립한 열거 요소이고 원 세트도 요소마다 1점을 두었다. 조정·분리 없음. 비슷한 물음 대조: std-points-20260914-b014c2599fa2(6점, 문단 28(a)(i)~(iii) 열거)와 같은 요소당 1점 계약이다. style: 여섯 범주를 기준서 문단만으로 열거할 수 있고 어떤 회사의 사실도 필요하지 않으므로 기준서형이다. shared_context.facts=[]이며 사례 지문 없이 한 물음만으로 만점이 성립한다. topics: 18을 실제 요구에서 정했다. edition: KGA 1200 2025 개정 전문(문단 8: 2023년 1월 1일 이후 개시하는 보고기간의 재무제표에 대한 감사부터 적용)을 기준으로 한다. nonduplication: 주제 18에서 문단 2(a)를 다루는 다른 문항은 퇴역 대상 pilot-18-005 sub1뿐이며 이 세트가 그 요구를 그대로 잇는다. pilot-18-001은 문단 3, pilot-18-003은 문단 4·5와 27~31, std-points 아홉 세트는 문단 6·7과 27~31을 다룬다. 같은 배치의 사례형 case-18-small-entity-20260921은 항목 ③에서 문단 2(a)(vi)의 지배회사 한정을 사례에 적용하지만 열거를 요구하지 않고 학습 단위가 달라 한 화면에 함께 나오지 않는다.',
+        },
+        {
+            subquestion_id: 'sub2',
+            checks: { ...PASS },
+            rationale:
+                'source: 여섯 명제를 KGA 1200 문단 2(b)("개별(별도)재무제표상 직전 회계연도말 자산이 200억원 미만 또는 직전 회계연도 매출이 100억원 미만임") 한 문장에서 확정했다. 기준 재무제표(개별·별도), 자산의 대상 시점(직전 회계연도말), 자산 금액(200억원 미만), 매출의 대상 기간(직전 회계연도), 매출 금액(100억원 미만), 두 요건의 관계(또는)다. crit7~crit12의 claim과 critical_facts는 원 세트 sub2의 crit7·crit8·crit15·crit9·crit16·crit10에서 순서를 유지한 채 바이트 그대로 승계했고 id만 연번으로 바꾸었다. answer: 모범답안 여섯 문장이 crit7~crit12와 하나씩 대응한다(원 세트의 model_answer 배열을 그대로 읽어 썼다). prompt: 새 발문은 범위를 문단 기호(문단 2(b))로만 정한다. 원 발문의 "금액을 읽는 재무제표의 기준, 자산과 매출 각각의 대상 시점·기간 및 금액 경계, 두 금액 조건 사이의 논리관계를 구별하여 제시하시오"는 여섯 criterion을 그대로 목차로 적은 것이어서 득점 내용을 발문이 알려 준다. 특히 "금액 경계"는 crit9·crit11의 미만·이하 구별을, "논리관계"는 crit12의 또는 관계를 미리 알려 준다. 원문이 한 문장이므로 그 내용을 빠짐없이 설명하면 여섯 명제가 모두 나오며, 새 발문 아래에서 만점 답안이 성립하는지는 qa-standards.json의 표적 사례 r37s-sub2-one-sentence로 확인한다. 승계한 claim에는 "발문 문맥에서는" 같은 옛 발문 의존 표현이 없어 함께 고칠 문구가 없었다. points: 6점 유지. 기준 재무제표, 자산의 시점, 자산 금액, 매출의 기간, 매출 금액, 두 요건의 논리관계는 각각 빠지면 답이 달라지는 독립 의미 단위다. 한 문장이 여섯 명제를 모두 충족할 수 있으나 이는 같은 의미의 중복 배점이 아니라 한 문장이 여러 독립 요구를 충족하는 경우로 공통 배점 계약이 허용한다. 조정·분리 없음. style: 문단 2(b) 한 문장의 구성 요소를 설명하는 요구이고 어떤 회사의 금액도 필요하지 않으므로 기준서형이다. shared_context.facts=[]이며 사례 지문 없이 한 물음만으로 만점이 성립한다. topics: 18을 실제 요구에서 정했다. edition: 위와 같다. nonduplication: sub1(문단 2(a))과 sub2(문단 2(b))는 서로 다른 항을 다루어 겹치는 명제가 없고 한쪽 발문이 다른 쪽의 정답을 제외 문구로 나열하지 않는다. 주제 18에서 문단 2(b)를 다루는 다른 문항은 퇴역 대상 pilot-18-005 sub2뿐이다. 같은 배치의 사례형 항목 ②는 또는 관계를 (주)들녘산업의 금액에 적용한 판단을 묻고 명제의 설명을 요구하지 않는다.',
+        },
+    ],
+    observations_not_blocking: [
+        '원 세트 pilot-18-005 sub2의 criterion id는 crit7·crit8·crit15·crit9·crit16·crit10으로 연번이 아니었다. 세트 안 고유성은 유지되었으나 분리본에서는 읽기 편의를 위해 순서를 유지한 채 crit7~crit12로 다시 매겼다. claim·critical_facts.type·expected·max_points·scores는 하나도 바뀌지 않았다. 과거 판본(pilot-18-005)의 봉인된 메타데이터와 실행 증거는 고치지 않는다.',
+        '이 세트는 퇴역 없이 추가만 한다. 원 세트 pilot-18-005는 사례형 대체본 case-18-small-entity-20260921과 함께 퇴역 대상이지만, 그 기준서형 2물음의 요구는 이 세트가 전부 잇는다.',
+        '기준서형은 물음마다 학습 단위가 따로 생긴다(pilot-18-005-standards-20260921--sub1--standard, --sub2--standard). 실측은 물음마다 모범·부분·오답 3요청씩 모두 6요청으로 나뉜다. 승급 드라이버가 새 세트의 학습 단위를 유형별로 갈라 찾는지는 조율자가 --prepare 전에 확인한다.',
+        '발문 바이트 중복 대조는 현재 정본 341세트의 발문 전부와 같은 배치의 형제 초안 파일(발문 498개)을 대상으로 수행해 충돌 0건을 확인했다. 원 세트 pilot-18-005 sub1·sub2의 발문과도 바이트가 다르다(둘 다 다시 썼다).',
+    ],
+    unresolved_content_findings: [],
+};
+
+fs.mkdirSync(OUT_DIR, { recursive: true });
+fs.writeFileSync(path.join(OUT_DIR, 'root-content-review-standards-v1.json'), `${JSON.stringify(review, null, 2)}\n`, { flag: 'wx' });
+console.log('root-content-review-standards-v1.json 기록:', review.target.reviewed_content_sha256);

@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "round": "r38",
+  "set_id": "case-19-interim-review-20260921",
+  "fixed_before_execution": true,
+  "note": "대표 사례는 실제 채점 전에 원문·발문·criterion에서 기대값을 확정했다. 모범답안 사례는 저장 model_answer를 그대로 쓰므로 여기에 별도 행을 두지 않는다(build-round3.mjs가 kind='model'을 자동 구성한다). 물음마다 부분정답 1건·오답 1건을 둔다.",
+  "cases": [
+    {
+      "id": "r38-sub1-partial",
+      "subquestion_id": "sub1",
+      "kind": "partial",
+      "answer": "옳지 않은 것은 ②와 ④이다.\n② 반기 및 분기보고서에 포함되지 않는 중간재무제표에 대해서도 그 회사의 연간재무제표 감사업무를 수행하는 감사인이 검토업무를 수행할 때에는 이 준칙을 적용할 수 있으므로, 적용 대상에서 제외할 것이 아니라 이 준칙을 적용하여 검토하여야 한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        { "criterion_id": "crit1", "verdict": "met", "reason": "옳지 않은 항목 ②와 ④를 모두 정확히 지적했고 옳은 항목 ①·③을 옳지 않다고 하지 않았다." },
+        { "criterion_id": "crit2", "verdict": "met", "reason": "문단 1-1의 적용 가능 범위를 이유로 제시하고 보완 내용까지 썼다." },
+        { "criterion_id": "crit3", "verdict": "not_met", "reason": "④에 대한 이유나 보완 내용을 전혀 쓰지 않았다." }
+      ],
+      "reason": "옳지 않은 항목을 모두 골랐으나 한 항목의 이유만 쓴 양방향 부분정답이다. 식별 점수와 이유 점수를 분리해 인정하는지 확인한다."
+    },
+    {
+      "id": "r38-sub1-wrong",
+      "subquestion_id": "sub1",
+      "kind": "wrong",
+      "answer": "옳지 않은 것은 ①과 ③이다.\n① 이 업무는 감사가 아니라 검토이므로 검토조서와 검토보고서에서 회사를 담당하는 회계법인을 '감사인'이 아니라 '검토인'으로 지칭하여야 한다.\n③ 질문과 분석적절차만으로는 증거가 부족하므로 검토절차는 감사와 같은 합리적 수준의 확신을 얻도록 설계하여야 한다.\n②와 ④는 준칙에 맞는 옳은 처리이다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        { "criterion_id": "crit1", "verdict": "contradicted", "reason": "옳은 항목 ①·③을 옳지 않다고 골랐고 옳지 않은 항목 ②·④를 옳다고 명시했다." },
+        { "criterion_id": "crit2", "verdict": "contradicted", "reason": "②가 옳다고 명시하여 문단 1-1의 적용 가능 범위를 정면으로 부정했다." },
+        { "criterion_id": "crit3", "verdict": "contradicted", "reason": "검토절차를 감사와 같은 합리적 확신을 얻도록 설계하여야 한다고 써서 문단 9 제1문을 정면으로 부정했다." }
+      ],
+      "reason": "함정 ①과 옳은 항목 ③을 옳지 않다고 고르고 실제 위반 항목을 옳다고 한 대표 오답이다. 세 criterion 모두 0점이어야 한다."
+    },
+    {
+      "id": "r38-sub2-partial",
+      "subquestion_id": "sub2",
+      "kind": "partial",
+      "answer": "옳지 않은 것은 ⑧이다. 감사인은 검토업무를 수행할 때에도 재무제표에 대한 감사의견 표명시 적용하였을 중요성에 관한 사항을 동일하게 고려하여야 하므로, 검토업무라고 하여 감사업무 수행시에 비하여 중요성의 판단기준을 완화할 수 없다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        { "criterion_id": "crit4", "verdict": "not_met", "reason": "옳지 않은 항목 ⑥을 빠뜨렸으므로 식별 점수를 주지 않는다." },
+        { "criterion_id": "crit5", "verdict": "not_met", "reason": "⑥에 대한 이유나 보완 내용을 쓰지 않았다." },
+        { "criterion_id": "crit6", "verdict": "met", "reason": "문단 20의 동일 고려 요구와 완화 금지를 이유로 제시했다." }
+      ],
+      "reason": "옳지 않은 항목 하나를 빠뜨린 부분정답이다. 선택형 계약의 '빠뜨리면 식별 점수 없음' 규칙이 적용되면서도 맞힌 항목의 이유 점수는 유지되는지 확인한다."
+    },
+    {
+      "id": "r38-sub2-wrong",
+      "subquestion_id": "sub2",
+      "kind": "wrong",
+      "answer": "옳지 않은 것은 ⑤와 ⑦이다.\n⑤ 중요성 기준은 객관성을 위하여 양적 요소만으로 산정하여야 하므로 질적 요소를 함께 고려하기로 한 것은 옳지 않다.\n⑦ 검토업무가 감사보다 왜곡표시를 발견하지 못할 위험이 더 크다고 볼 근거가 없으므로 그런 내용을 검토계획 문서에 기재하는 것은 옳지 않다.\n⑥과 ⑧은 준칙에 맞는 옳은 처리이다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        { "criterion_id": "crit4", "verdict": "contradicted", "reason": "옳은 항목 ⑤·⑦을 옳지 않다고 골랐고 옳지 않은 항목 ⑥·⑧을 옳다고 명시했다." },
+        { "criterion_id": "crit5", "verdict": "contradicted", "reason": "⑥이 옳다고 명시하여 왜곡사항 영향 평가에도 중요성을 고려해야 한다는 요구를 부정했다." },
+        { "criterion_id": "crit6", "verdict": "contradicted", "reason": "⑧이 옳다고 명시하여 중요성 판단기준의 완화 금지를 부정했다." }
+      ],
+      "reason": "함정 ⑦과 옳은 항목 ⑤를 옳지 않다고 고른 대표 오답이다."
+    },
+    {
+      "id": "r38-sub3-partial",
+      "subquestion_id": "sub3",
+      "kind": "partial",
+      "answer": "옳지 않은 것은 ⑨와 ⑪이다.",
+      "expected_points": 1,
+      "expected_verdicts": [
+        { "criterion_id": "crit7", "verdict": "met", "reason": "옳지 않은 항목 ⑨와 ⑪을 모두 정확히 지적했다." },
+        { "criterion_id": "crit8", "verdict": "not_met", "reason": "⑨에 대한 이유나 보완 내용을 쓰지 않았다." },
+        { "criterion_id": "crit9", "verdict": "not_met", "reason": "⑪에 대한 이유나 보완 내용을 쓰지 않았다." }
+      ],
+      "reason": "번호만 쓴 답이다. 계약대로 식별 점수만 받아야 한다."
+    },
+    {
+      "id": "r38-sub3-wrong",
+      "subquestion_id": "sub3",
+      "kind": "wrong",
+      "answer": "옳지 않은 것은 ⑩과 ⑫이다.\n⑩ 내부통제제도의 수립·운영 책임을 인정하는 진술은 연차감사의 서면진술 항목이고 중간재무제표 검토의 서면진술에는 포함되지 않는다.\n⑫ 후속사건에 관한 진술의 공개 대상 기간은 재무상태표일부터 반기 종료일까지로 한정하여야 한다.\n⑨와 ⑪은 준칙에 맞는 옳은 처리이다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        { "criterion_id": "crit7", "verdict": "contradicted", "reason": "옳은 항목 ⑩·⑫를 옳지 않다고 골랐고 옳지 않은 항목 ⑨·⑪을 옳다고 명시했다." },
+        { "criterion_id": "crit8", "verdict": "contradicted", "reason": "⑨가 옳다고 명시하여 중간재무제표 검토에서도 서면진술을 입수하여야 한다는 요구를 부정했다." },
+        { "criterion_id": "crit9", "verdict": "contradicted", "reason": "⑪이 옳다고 명시하여 수정반영하지 아니한 사항의 요약을 서면진술에 기재하거나 별도 첨부하여야 한다는 요구를 부정했다." }
+      ],
+      "reason": "함정 ⑫와 옳은 항목 ⑩을 옳지 않다고 고른 대표 오답이다."
+    }
+  ],
+  "supplementary_cases": [
+    {
+      "id": "r38-sub1-trap-only",
+      "subquestion_id": "sub1",
+      "run": false,
+      "answer": "옳지 않은 것은 ①, ②, ④이다. ①은 검토업무이므로 '감사인'이라는 표현을 쓸 수 없다. ② 반기보고서에 포함되지 않는 중간재무제표에도 이 준칙을 적용할 수 있다. ④ 검토는 감사와 같은 합리적 확신을 얻도록 설계되지 않는다.",
+      "expected_points": 2,
+      "expectation": "crit1 not_met(함정 ①을 옳지 않다고 골랐다), crit2 met, crit3 met",
+      "reason": "함정을 잘못 고른 답도 다른 항목의 이유 점수는 유지된다는 계약을 확인하는 표적 사례다. 대표 실측에서 허용 범위 밖 결과가 나오면 실행한다."
+    },
+    {
+      "id": "r38-sub2-procedure-only",
+      "subquestion_id": "sub2",
+      "run": false,
+      "answer": "옳지 않은 것은 ⑥과 ⑧이다. ⑥ 검토 과정에서 발견한 왜곡사항의 영향을 평가할 때에도 중요성을 적용하여야 한다. ⑧ 보고해야 하는 정보와 그 정보를 신뢰하고 이용하는 측의 요구에 의거하여 무엇이 중요한지를 판단하여야 한다.",
+      "expected_points": 3,
+      "expectation": "crit4 met, crit5 met(보완 내용만), crit6 met(원 crit5의 명제만으로 인정)",
+      "reason": "이유 대신 보완 내용만 쓴 답과, 원 세트 crit5의 명제만으로 crit6이 인정되는지를 확인하는 표적 사례다."
+    },
+    {
+      "id": "r38-sub3-reason-only",
+      "subquestion_id": "sub3",
+      "run": false,
+      "answer": "감사인은 중간재무제표의 검토에서도 경영진으로부터 준칙이 정한 내용의 서면진술을 입수하여야 하고, 경영진이 수정반영하지 아니한 사항들의 요약은 경영진이 서면진술에 기재하거나 별도로 첨부하여야 한다.",
+      "expected_points": 3,
+      "expectation": "crit7 met(번호 없이 내용으로 두 항목을 특정), crit8 met, crit9 met",
+      "reason": "번호를 쓰지 않고 내용만으로 특정한 답을 식별 criterion이 인정하는지 확인하는 표적 사례다."
+    }
+  ],
+  "coverage_note": "계약이 요구하는 선택형 확인 유형 가운데 함정을 옳지 않다고 고른 답(r38-sub1-trap-only), 번호만 쓴 답(r38-sub3-partial), 옳지 않은 항목을 적합하다고 쓴 답(세 wrong 사례), 이유만 또는 보완절차만 쓴 답(r38-sub2-procedure-only, r38-sub3-reason-only)을 대표 또는 표적 사례로 두었다. 빈 답안은 모든 criterion이 not_met으로 0점이며 별도 호출하지 않는다."
+}

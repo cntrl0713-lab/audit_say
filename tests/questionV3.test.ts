@@ -105,6 +105,9 @@ const retirementManifestPaths = [
     'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r07-r11/db-import/preparation-v1/retirement-manifest.json',
     'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r13-r15/db-import/preparation-v1/retirement-manifest.json',
     'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r16-r19/db-import/preparation-v1/retirement-manifest.json',
+    'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r20-r27/db-import/preparation-v1/retirement-manifest.json',
+    'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r28-r32/db-import/preparation-v1/retirement-manifest.json',
+    'cpa_uploader/analysis/reviews/case-review-2026-09-15/publication-r33-r40/db-import/preparation-v1/retirement-manifest.json',
 ].map((relativePath) => path.resolve(relativePath));
 
 test('validateQuestionSetV3 validates source-bound linked question sets', () => {

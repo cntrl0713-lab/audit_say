@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "set_id": "case-10-sampling-risk-20260921",
+  "method": "author_expectation_before_execution",
+  "human_review_performed": false,
+  "note": "실제 채점 전에 원문·발문·criterion에서 확정한 대표 사례다. 모범답안은 저장된 model_answer 바이트를 그대로 쓰므로 여기에 다시 적지 않는다. cases에는 물음마다 부분정답 1건과 오답 1건을 두었고, 세 물음의 같은 역할을 한 요청으로 통합해 Luna 대표 3요청으로 실측한다. 부분정답의 실패 유형은 물음마다 다르게 두었다(물음 1은 한 항목의 이유 누락, 물음 2는 함정 오선택과 한 항목 누락, 물음 3은 다른 한 항목의 이유 누락).",
+  "cases": [
+    {
+      "id": "r36-sub1-partial",
+      "set_id": "case-10-sampling-risk-20260921",
+      "subquestion_id": "sub1",
+      "kind": "partial",
+      "answer": "옳지 않은 것은 ②와 ③이다.\n② 허용왜곡표시는 수행중요성을 특정한 표본감사 절차에 적용한 것이므로 수행중요성과 같거나 적은 금액이 되어야 한다. 수행중요성 이하의 금액으로 허용왜곡표시를 다시 정하여야 한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        { "criterion_id": "crit1", "verdict": "met", "reason": "옳지 않은 항목 ②·③을 모두 고르고 옳은 항목 ①·④는 고르지 않았다." },
+        { "criterion_id": "crit2", "verdict": "met", "reason": "②에 대하여 허용왜곡표시가 수행중요성과 같거나 적은 금액이어야 한다는 이유와 다시 정한다는 절차를 적었다." },
+        { "criterion_id": "crit3", "verdict": "not_met", "reason": "③을 골랐으나 모집단의 완전성에 관한 이유나 보완절차를 쓰지 않았다." }
+      ],
+      "reason": "식별은 맞히고 한 항목의 이유만 빠뜨린 답에서 나머지 항목 점수가 유지되는지 확인하는 부분정답이다."
+    },
+    {
+      "id": "r36-sub1-wrong",
+      "set_id": "case-10-sampling-risk-20260921",
+      "subquestion_id": "sub1",
+      "kind": "wrong",
+      "answer": "옳지 않은 것은 ①과 ④이다.\n① 감사표본을 설계할 때에는 감사절차의 목적만 고려하여야 하고 모집단의 특성은 표본 결과를 평가하는 단계에서 고려할 사항이다.\n④ 모집단을 화폐가치에 따라 계층으로 나누어 금액이 큰 거래에 감사노력을 집중하면 모집단을 대표하지 못하는 표본이 되므로 계층화를 적용할 수 없다.\n② 개별적으로 중요하지 않은 왜곡표시의 합계 문제는 재무제표 전체 수준 중요성에서 이미 고려되었으므로 허용왜곡표시를 수행중요성보다 큰 금액으로 정한 것은 옳다.\n③ 회계시스템에서 내려받은 목록의 건수와 합계금액을 조서에 기록하였으므로 모집단에 관하여 더 입수할 증거는 없고 그대로 모집단으로 삼은 것은 옳다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        { "criterion_id": "crit1", "verdict": "contradicted", "reason": "옳은 항목 ①·④를 옳지 않다고 고르고 옳지 않은 항목 ②·③은 모두 빠뜨렸다." },
+        { "criterion_id": "crit2", "verdict": "contradicted", "reason": "허용왜곡표시를 수행중요성보다 크게 정할 수 있다는 명시적 반대 결론을 적었다." },
+        { "criterion_id": "crit3", "verdict": "contradicted", "reason": "건수와 합계금액의 기록만으로 모집단에 관한 증거가 충분하다는 명시적 반대 결론을 적었다." }
+      ],
+      "reason": "옳은 항목과 함정만 고르고 두 옳지 않은 항목에 반대 결론을 적은 답이 0점인지 확인한다."
+    },
+    {
+      "id": "r36-sub2-partial",
+      "set_id": "case-10-sampling-risk-20260921",
+      "subquestion_id": "sub2",
+      "kind": "partial",
+      "answer": "옳지 않은 것은 ⑤, ⑥, ⑧이다.\n⑤ 표본규모는 통계학적 공식으로 산정하여야 하므로 전문가적 판단만으로 정할 수 없다.\n⑥ 감사인이 수용할 수 있는 표본위험의 수준이 낮을수록 표본규모는 더욱 커질 필요가 있으므로, 다른 요소가 전기와 같다면 표본규모를 전기보다 크게 정하여야 한다.\n⑧ 표본규모는 통계적 접근법과 비통계적 접근법을 구분하는 타당한 기준이 아니므로 비통계적 접근법을 적용한다는 이유로 표본규모를 적게 정할 수 없고, 접근법과 관계없이 표본위험을 수용가능한 낮은 수준으로 감소시키기에 충분한 규모를 정하여야 한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        { "criterion_id": "crit4", "verdict": "contradicted", "reason": "옳은 항목인 함정 ⑤(전문가적 판단에 의한 표본규모 결정)를 옳지 않다고 고르고 옳지 않은 항목 ⑨는 빠뜨렸다." },
+        { "criterion_id": "crit5", "verdict": "met", "reason": "⑥에 대하여 수용가능한 표본위험 수준이 낮을수록 표본규모가 커져야 한다는 이유와 전기보다 크게 정한다는 절차를 적었다." },
+        { "criterion_id": "crit6", "verdict": "met", "reason": "⑧에 대하여 표본규모가 두 접근법을 구분하는 기준이 아니라는 이유와 충분한 규모를 정한다는 절차를 적었다." },
+        { "criterion_id": "crit7", "verdict": "not_met", "reason": "⑨를 고르지 않아 이유나 보완절차를 쓰지 않았다." }
+      ],
+      "reason": "함정 ⑤를 옳지 않다고 고르고 ⑨를 빠뜨린 답에서 식별 점수만 잃고 ⑥·⑧의 이유 점수는 유지되는지 확인하는 부분정답이다."
+    },
+    {
+      "id": "r36-sub2-wrong",
+      "set_id": "case-10-sampling-risk-20260921",
+      "subquestion_id": "sub2",
+      "kind": "wrong",
+      "answer": "옳지 않은 것은 ⑤와 ⑦이다.\n⑤ 표본규모는 반드시 통계학적 공식으로 산정하여야 하므로 전문가적 판단에 따라 결정할 수 없다.\n⑦ 모집단의 예상왜곡표시는 표본 결과를 평가하는 단계에서만 쓰는 값이므로 표본 설계와 표본규모 결정에 이용할 수 없다.\n⑥ 수용할 수 있는 표본위험의 수준이 낮아져도 표본규모를 전기와 같은 건수로 유지할 수 있으므로 옳다.\n⑧ 비통계적 접근법에서는 표본규모를 통계적 접근법보다 적게 정할 수 있으므로 옳다.\n⑨ 부적합한 절차의 적용이나 증거의 잘못된 해석에서 오는 가능성도 표본규모를 늘리면 함께 낮아지므로 옳다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        { "criterion_id": "crit4", "verdict": "contradicted", "reason": "옳은 항목 ⑤·⑦을 옳지 않다고 고르고 옳지 않은 항목 ⑥·⑧·⑨는 모두 빠뜨렸다." },
+        { "criterion_id": "crit5", "verdict": "contradicted", "reason": "수용가능한 표본위험 수준이 낮아져도 표본규모를 유지할 수 있다는 명시적 반대 결론을 적었다." },
+        { "criterion_id": "crit6", "verdict": "contradicted", "reason": "비통계적 접근법에서는 표본규모를 적게 정할 수 있다는 명시적 반대 결론을 적었다." },
+        { "criterion_id": "crit7", "verdict": "contradicted", "reason": "표본규모를 늘리면 비표본위험도 함께 낮아진다는 명시적 반대 결론을 적었다." }
+      ],
+      "reason": "옳은 항목과 함정만 고르고 세 옳지 않은 항목에 반대 결론을 적은 답이 0점인지 확인한다."
+    },
+    {
+      "id": "r36-sub3-partial",
+      "set_id": "case-10-sampling-risk-20260921",
+      "subquestion_id": "sub3",
+      "kind": "partial",
+      "answer": "옳지 않은 것은 ⑪과 ⑬이다.\n⑬ 표본에 근거한 결론은 모집단 전체에 동일한 감사절차를 적용하였을 경우 도달하였을 결론과 다를 수 있으므로, 표본에서 왜곡표시가 발견되지 않았다는 것만으로 모집단 전체에 중요한 왜곡표시가 없다는 점이 확인되었다고 볼 수 없다. 그러한 위험이 남아 있음을 고려하여 표본의 결과를 평가하고 모집단에 대한 결론을 내려야 한다.",
+      "expected_points": 2,
+      "expected_verdicts": [
+        { "criterion_id": "crit8", "verdict": "met", "reason": "옳지 않은 항목 ⑪·⑬을 모두 고르고 옳은 항목 ⑩·⑫는 고르지 않았다." },
+        { "criterion_id": "crit9", "verdict": "not_met", "reason": "⑪을 골랐으나 목적에 부합하는 감사절차에 관한 이유나 보완절차를 쓰지 않았다." },
+        { "criterion_id": "crit10", "verdict": "met", "reason": "⑬에 대하여 표본 결론과 모집단 결론이 다를 수 있다는 이유와 그 위험을 고려해 결론을 내린다는 절차를 적었다." }
+      ],
+      "reason": "식별은 맞히고 다른 한 항목의 이유를 빠뜨린 답에서 남은 항목 점수가 유지되는지 확인하는 부분정답이다. 물음 1의 부분정답과 누락 위치를 반대로 두었다."
+    },
+    {
+      "id": "r36-sub3-wrong",
+      "set_id": "case-10-sampling-risk-20260921",
+      "subquestion_id": "sub3",
+      "kind": "wrong",
+      "answer": "옳지 않은 것은 ⑩과 ⑫이다.\n⑩ 매입전표에 승인 표시가 남아 있지 않은 항목은 그 자체로 이 세부테스트의 왜곡표시이므로 왜곡표시로 집계하였어야 한다.\n⑫ 추출된 표본항목은 어떠한 경우에도 다른 항목으로 바꿀 수 없으므로 취소된 전표도 그대로 검사하였어야 한다.\n⑪ 금액이 작은 표본항목은 구매담당자에 대한 질문만으로 절차를 마쳐도 되므로 옳다.\n⑬ 표본에서 왜곡표시가 발견되지 않았으므로 모집단 전체에 중요한 왜곡표시가 존재하지 않는다는 점이 확인된 것이어서 결론을 확정한 것은 옳다.",
+      "expected_points": 0,
+      "expected_verdicts": [
+        { "criterion_id": "crit8", "verdict": "contradicted", "reason": "옳은 항목 ⑩·⑫를 옳지 않다고 고르고 옳지 않은 항목 ⑪·⑬은 모두 빠뜨렸다." },
+        { "criterion_id": "crit9", "verdict": "contradicted", "reason": "금액이 작은 표본항목은 질문만으로 갈음할 수 있다는 명시적 반대 결론을 적었다." },
+        { "criterion_id": "crit10", "verdict": "contradicted", "reason": "표본에서 왜곡표시가 발견되지 않았으므로 모집단 전체에 중요한 왜곡표시가 없다는 점이 확인되었다는 명시적 반대 결론을 적었다." }
+      ],
+      "reason": "함정만 고르고 두 옳지 않은 항목에 반대 결론을 적은 답이 0점인지 확인한다."
+    }
+  ],
+  "supplementary_cases": [
+    {
+      "id": "r36-sub2-number-only",
+      "subquestion_id": "sub2",
+      "kind": "targeted",
+      "answer": "⑥, ⑧, ⑨",
+      "expected_points": 1,
+      "expectation": "crit4 met, crit5·crit6·crit7 not_met. 번호만 정확히 쓴 답은 식별 1점만 받는다.",
+      "run": false,
+      "reason": "대표 3요청의 결과가 허용 범위 안이면 보조 요청을 추가하지 않는다는 비용 통제 지침에 따라 기본 실행 대상에서 제외한다. 허용 범위 밖 결과가 나오면 이 사례를 보조 요청 후보로 쓴다."
+    },
+    {
+      "id": "r36-sub3-crit10-boundary",
+      "subquestion_id": "sub3",
+      "kind": "targeted",
+      "answer": "옳지 않은 것은 ⑪과 ⑬이다.\n⑪ 추출된 각각의 항목에 대하여 해당 목적에 부합하는 감사절차를 수행하여야 하므로 금액이 작은 항목에도 송장과 입고자료를 검사하여야 한다.\n⑬ 금액이 작은 표본항목에 목적에 부합하는 절차를 수행하지 않았으므로 모집단 전체에 대한 결론을 확정할 수 없다.",
+      "expected_points": 2,
+      "expectation": "crit8 met, crit9 met, crit10 not_met(표본위험이 아니라 ⑪의 잘못만 근거로 들었다).",
+      "run": false,
+      "reason": "crit10이 표본위험에 근거한 이유와 앞 항목의 절차 미수행을 구분해 채점하는지 확인하는 조건 경계 사례다. 같은 이유로 기본 실행 대상에서 제외하고 보조 요청 후보로만 둔다."
+    },
+    {
+      "id": "r36-sub1-crit3-boundary",
+      "subquestion_id": "sub1",
+      "kind": "targeted",
+      "answer": "옳지 않은 것은 ②와 ③이다.\n② 허용왜곡표시는 수행중요성과 같거나 적은 금액이어야 한다.\n③ 내려받은 목록에 기재된 거래가 실제로 존재하는지를 표본으로 확인하여야 한다.",
+      "expected_points": 2,
+      "expectation": "crit1 met, crit2 met, crit3 not_met(모집단의 완전성이 아니라 실재성만 적었다).",
+      "run": false,
+      "reason": "crit3이 모집단의 완전성 증거와 목록의 실재성·정확성을 구분해 채점하는지 확인하는 조건 경계 사례다. 같은 이유로 기본 실행 대상에서 제외하고 보조 요청 후보로만 둔다."
+    }
+  ]
+}
