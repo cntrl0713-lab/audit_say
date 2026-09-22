@@ -14,6 +14,8 @@ import { bankSpans, sha256 } from './questionCorrection.ts';
  * 끝에 붙여 최종 원문을 PostgreSQL 안에서 복원한 뒤 기존 importer(cpa_import_learning_question_bank)를 한
  * transaction으로 호출한다. 전송량은 바뀐 세트와 분류 메타데이터뿐이다. importer는 내용 해시가 같은 세트의
  * 봉인 버전을 재사용하므로 바뀐 세트만 새 버전이 된다. 퇴역(삭제)·재정렬은 이 경로가 받지 않는다.
+ * 적용 SQL은 importer 호출 뒤 같은 transaction에서 새 릴리스의 판본 조회 메모(cpa_backfill_release_item_source,
+ * migration 20260921120000)를 채우고 항목 수와 대조한다. 어긋나면 릴리스까지 함께 되돌린다.
  *
  * 회차마다 복사하던 db-incremental 드라이버(replace-contract.mjs, contract.mjs)를 일반화한 것이다.
  *
@@ -24,12 +26,12 @@ import { bankSpans, sha256 } from './questionCorrection.ts';
  */
 
 export const RELEASE_RPC = 'cpa_import_learning_question_bank';
-/** importer가 호출하거나 트리거로 실행되는 함수. 검토 후 정의가 바뀌면 적용을 멈춘다. */
+/** importer가 호출하거나 트리거로 실행되는 함수와, 적용 뒤 같은 transaction에서 부르는 판본 조회 메모 백필 함수. 검토 후 정의가 바뀌면 적용을 멈춘다. */
 export const RELEASE_FUNCTIONS = [
     'cpa_import_learning_question_bank', 'cpa_import_question_bank', 'cpa_import_learning_classifications',
     'cpa_get_learning_classifications', 'cpa_json_text_array', 'cpa_normalize_fact', 'cpa_validate_question_seal',
     'cpa_guard_sealed_content', 'cpa_guard_published_release', 'cpa_guard_learning_metadata', 'cpa_guard_review_event',
-    'cpa_guard_logical_identity',
+    'cpa_guard_logical_identity', 'cpa_backfill_release_item_source',
 ] as const;
 const ADVISORY_LOCK = '7261202609080502';
 
@@ -215,6 +217,15 @@ export function buildReleaseDeltaSql(delta: ReleaseDelta, expected: ReleaseExpec
         + `select jsonb_agg(to_jsonb(t) order by t.position) into actual from (select id,title,part,position from public.cpa_learning_topics) t;\n`
         + `if actual is distinct from current_setting('cpa.delta_prior_topics')::jsonb then raise exception 'Existing learning topics changed'; end if;\n`
         + `end $delta_after$;\n`;
+    // 새 릴리스의 판본 조회 메모를 같은 transaction에서 채운다. 백필 함수는 security invoker이고 메모 표의 쓰기 권한은 소유자(세션 사용자)에게
+    // 있으므로 service_role을 되돌린 뒤 부른다. 채운 행이 항목 수와 어긋나면 예외로 transaction 전체(릴리스 포함)를 되돌린다.
+    const memo = `reset role;\n`
+        + `do $delta_memo$ declare new_id uuid; item_count int; written int; begin\n`
+        + `select id into strict new_id from public.cpa_question_bank_releases where status='active' and source_file_hash=${hex64(delta.metadata.source_file_hash)} and bank_content_hash=${hex64(delta.metadata.bank_content_hash)} and public_content_hash=${hex64(delta.metadata.public_content_hash)};\n`
+        + `select count(*) into item_count from public.cpa_question_bank_release_items where release_id=new_id;\n`
+        + `written:=public.cpa_backfill_release_item_source(new_id);\n`
+        + `if written<>item_count or (select count(*) from public.cpa_question_bank_release_item_source s where s.release_id=new_id)<>item_count or (select count(*) from public.cpa_question_bank_release_items i join public.cpa_question_set_version_source v on v.set_version_id=i.set_version_id where i.release_id=new_id)<>item_count then raise exception 'Release source memo incomplete'; end if;\n`
+        + `end $delta_memo$;\n`;
     return `begin;\nset local role service_role;\nset local statement_timeout='120s';\n`
         + `do $delta_guard$ declare active_id uuid; active_hash text; source text; topics jsonb; begin\n`
         + `if current_user <> 'service_role' then raise exception 'Unexpected role'; end if;\n`
@@ -223,16 +234,19 @@ export function buildReleaseDeltaSql(delta: ReleaseDelta, expected: ReleaseExpec
         + `select jsonb_agg(to_jsonb(t) order by t.position) into topics from (select id,title,part,position from public.cpa_learning_topics) t;\n`
         + `perform set_config('cpa.delta_prior_topics',topics::text,true);\nend $delta_guard$;\n`
         + `${cte}select current_user as effective_role,current_setting('statement_timeout') as statement_timeout,public.${RELEASE_RPC}(${guard}) as receipt from payload;\n`
-        + `${after}commit;\n`;
+        + `${after}${memo}commit;\n`;
 }
 
-/** 읽기 전용 점검: active 릴리스, 검토 대상 함수 정의, 저장 원문 누적량. */
+/** 읽기 전용 점검: active 릴리스와 그 판본 조회 메모 적용률, 검토 대상 함수 정의, 저장 원문 누적량. */
 export function releaseInspectionSql(): string {
     const names = `array[${RELEASE_FUNCTIONS.map((name) => `'${name}'`).join(',')}]::text[]`;
     return `select jsonb_build_object(`
         + `'active',(select jsonb_build_object('release_id',r.id,'release_no',r.release_no,'source_file_hash',r.source_file_hash,`
         + `'source_document_sha256',case when r.source_document is null then null else encode(sha256(convert_to(r.source_document,'UTF8')),'hex') end,`
         + `'set_count',(select count(*) from public.cpa_question_bank_release_items i where i.release_id=r.id)) from public.cpa_question_bank_releases r where r.status='active'),`
+        + `'memo',(select jsonb_build_object('items',(select count(*) from public.cpa_question_bank_release_items i where i.release_id=r.id),`
+        + `'memo_items',(select count(*) from public.cpa_question_bank_release_item_source s where s.release_id=r.id),`
+        + `'memo_versions',(select count(*) from public.cpa_question_bank_release_items i join public.cpa_question_set_version_source v on v.set_version_id=i.set_version_id where i.release_id=r.id)) from public.cpa_question_bank_releases r where r.status='active'),`
         + `'functions',(select coalesce(jsonb_agg(jsonb_build_object('name',p.proname,'signature',regexp_replace(p.oid::regprocedure::text,'^public\\.',''),`
         + `'definition_sha256',encode(sha256(convert_to(pg_get_functiondef(p.oid),'UTF8')),'hex'),'acl',p.proacl::text,'security_definer',p.prosecdef) order by p.oid::regprocedure::text),'[]'::jsonb)`
         + ` from pg_proc p where p.pronamespace='public'::regnamespace and p.proname=any(${names})),`
@@ -242,6 +256,8 @@ export function releaseInspectionSql(): string {
 
 export interface ReleaseInspection {
     active: { release_id: string; release_no: number; source_file_hash: string; source_document_sha256: string | null; set_count: number } | null;
+    /** active 릴리스의 판본 조회 메모 적용률. 셋이 같아야 그 릴리스의 모든 판본이 메모 경로로 조회된다. */
+    memo: { items: number; memo_items: number; memo_versions: number } | null;
     functions: (ReleaseFunction & { name: string; acl: string | null; security_definer: boolean })[];
     releases: { count: number; stored_source_bytes: number };
 }

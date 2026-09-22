@@ -18,6 +18,7 @@ import { createLearningUnitsDatabase } from './helpers/cpaLearningUnitsDatabase.
 import { sampleQuestionSet } from './helpers/cpaLearningDatabase.ts';
 
 const metadataMigration = fs.readFileSync(new URL('../supabase/migrations/20260912060000_cpa_private_source_metadata.sql', import.meta.url), 'utf8');
+const memoMigration = fs.readFileSync(new URL('../supabase/migrations/20260921120000_cpa_question_version_source_memo.sql', import.meta.url), 'utf8');
 const sha = (text: string) => createHash('sha256').update(text).digest('hex');
 const topics = [{ id: '01', title: '감사기초', part: 'PART1', position: 1 }];
 const catalog = { topics, classifications: [] };
@@ -51,9 +52,15 @@ async function activeItems(db: PGlite) {
     return scalar<{ set_id: string; set_version_id: string; position: number }[]>(db,
         "(select jsonb_agg(jsonb_build_object('set_id',i.set_id,'set_version_id',i.set_version_id,'position',i.position) order by i.position) from cpa_question_bank_release_items i join cpa_question_bank_releases r on r.id=i.release_id and r.status='active')");
 }
+/** active 릴리스의 판본 조회 메모 적용률(20260921120000). 셋이 같아야 모든 판본이 메모 경로로 조회된다. */
+async function memoCoverage(db: PGlite) {
+    return scalar<{ items: number; memo_items: number; memo_versions: number }>(db,
+        "(select jsonb_build_object('items',(select count(*) from cpa_question_bank_release_items i where i.release_id=r.id),'memo_items',(select count(*) from cpa_question_bank_release_item_source s where s.release_id=r.id),'memo_versions',(select count(*) from cpa_question_bank_release_items i join cpa_question_set_version_source v on v.set_version_id=i.set_version_id where i.release_id=r.id)) from cpa_question_bank_releases r where r.status='active')");
+}
 async function setup(options: { pgcrypto?: boolean } = {}) {
     const db = await createLearningUnitsDatabase(options.pgcrypto ? { extensions: { pgcrypto } } : {});
     await db.exec(metadataMigration);
+    await db.exec(memoMigration);
     // Supabase처럼 pgcrypto를 extensions 스키마에 두고 service_role이 쓸 수 있게 한다.
     if (options.pgcrypto) await db.exec('create schema extensions; create extension pgcrypto with schema extensions; grant usage on schema extensions to service_role;');
     const sets = [standardSet('std-a'), caseSet('case-b'), standardSet('std-c')];
@@ -108,6 +115,7 @@ test('delta SQL publishes only the corrected set as a new version through the re
     const { db, sets, baseline } = await setup();
     try {
         const before = await activeItems(db);
+        assert.deepEqual(await memoCoverage(db), { items: 3, memo_items: 0, memo_versions: 0 }, 'a release imported without the release tool has no memo yet');
         const next = structuredClone(sets); next[1].subquestions[0].criteria[0].claim += ' 보완';
         const { sql, probe, proof } = await prepared(db, baseline, next);
         const probed = lastRow(await db.exec(probe), 'payload_jsonb_sha256')!;
@@ -115,6 +123,7 @@ test('delta SQL publishes only the corrected set as a new version through the re
         assert.equal(probed.unchanged_sets_identical, true);
         assert.equal(probed.transaction_read_only, 'on');
         assert.deepEqual(await activeItems(db), before, 'probe does not write');
+        assert.deepEqual(await memoCoverage(db), { items: 3, memo_items: 0, memo_versions: 0 }, 'probe does not back-fill');
         const receipt = lastRow(await db.exec(sql), 'receipt')!.receipt as { release_id: string; reused: boolean };
         assert.equal(receipt.reused, false);
         const after = await activeItems(db);
@@ -124,6 +133,9 @@ test('delta SQL publishes only the corrected set as a new version through the re
         assert.notEqual(after[1].set_version_id, before[1].set_version_id);
         const stored = await scalar<string>(db, "(select source_document from cpa_question_bank_releases where status='active')");
         assert.equal(stored, serializeBank(next));
+        // 같은 transaction에서 새 릴리스의 판본 조회 메모를 채운다. 점검 결과도 같은 적용률을 보고한다.
+        assert.deepEqual(await memoCoverage(db), { items: 3, memo_items: 3, memo_versions: 3 });
+        assert.deepEqual((await inspect(db)).memo, { items: 3, memo_items: 3, memo_versions: 3 });
         const evidence = await scalar<string[]>(db, "(select jsonb_agg(evidence) from cpa_question_review_events where set_version_id=$1::uuid)", [after[1].set_version_id]);
         assert.ok(evidence.every((text) => text.includes('question-release test')));
         // 같은 SQL을 다시 보내면 기준 릴리스가 바뀌었으므로 아무것도 쓰지 않고 거절한다.
@@ -162,6 +174,7 @@ test('delta SQL appends new sets and refuses tampered packs or changed reviewed 
         assert.deepEqual(after.slice(0, 3), before);
         assert.equal(after[3].set_id, 'std-d');
         assert.equal(after[3].position, 4);
+        assert.deepEqual(await memoCoverage(fresh.db), { items: 4, memo_items: 4, memo_versions: 4 }, 'appended sets are memoised too');
     } finally { await fresh.db.close(); }
 });
 
@@ -203,6 +216,7 @@ test('compressed transport restores the same payload in PostgreSQL, rejects wron
         assert.notEqual(after[1].set_version_id, before[1].set_version_id);
         assert.notEqual(after[2].set_version_id, before[2].set_version_id);
         assert.equal(await scalar<string>(db, "(select source_document from cpa_question_bank_releases where status='active')"), serializeBank(next));
+        assert.deepEqual(await memoCoverage(db), { items: 3, memo_items: 3, memo_versions: 3 });
         await assert.rejects(db.exec(sql), /Active baseline changed/);
         await db.exec('rollback');
     } finally { await db.close(); }

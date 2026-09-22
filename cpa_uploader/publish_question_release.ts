@@ -5,7 +5,7 @@
  *   prepare  로컬 준비(운영 접속 없음): 기준 원문 찾기·증분 계산·DB 이관 준비 검사·PGlite 증명·SQL 생성
  *   probe    운영 읽기 전용 transaction에서 복원 payload 해시 대조
  *   apply    검토한 SQL을 한 번 실행한다. 실패해도 자동 재시도하지 않는다
- *   verify   운영 읽기 전용 왕복 검증(공개본·물음 분류·세트 버전·저장 원문)
+ *   verify   운영 읽기 전용 왕복 검증(공개본·물음 분류·세트 버전·저장 원문·판본 조회 메모 적용률)
  *
  *   node --env-file=.env.local cpa_uploader/publish_question_release.ts <inspect|probe|verify> --run <YYYYMMDD-slug> --project <ref>
  *   node --env-file=.env.local cpa_uploader/publish_question_release.ts prepare --run <run> [--baseline-commit <sha> | --baseline-file <path>] [--transport literal|compressed]
@@ -338,6 +338,9 @@ async function verifyRelease(root: string, paths: Paths, project: string, transp
     if (after.active!.release_id !== releaseId) problems.push('active 릴리스가 적용 영수증의 릴리스가 아닙니다.');
     if (after.active!.source_file_hash !== preparation.metadata.source_file_hash || after.active!.source_document_sha256 !== preparation.metadata.source_file_hash) problems.push('active 저장 원문이 정본과 다릅니다.');
     if (canonicalJson(after.functions) !== canonicalJson(before.inspection.functions)) problems.push('함수 정의나 권한이 적용 전후로 달라졌습니다.');
+    // 적용 SQL이 같은 transaction에서 채운 판본 조회 메모가 새 릴리스의 모든 항목을 덮는지 확인한다.
+    const memo = after.memo;
+    if (!memo || memo.memo_items !== memo.items || memo.memo_versions !== memo.items) problems.push('새 릴리스의 판본 조회 메모(cpa_question_bank_release_item_source)가 항목 수와 다릅니다.');
     const sets = JSON.parse(fs.readFileSync(paths.authoring, 'utf8')) as QuestionSetV3[];
     const bank = (await transport<{ bank: unknown[] }>(serviceRoleRead('select public.cpa_get_active_question_bank() as bank'), false, [], 150_000))[0]?.bank ?? [];
     const projected = (bank as Parameters<typeof publicLearningSet>[0][]).map(publicLearningSet).map((set) => {
@@ -366,7 +369,7 @@ async function verifyRelease(root: string, paths: Paths, project: string, transp
     }
     if (items.length !== sets.length) problems.push('새 릴리스의 세트 수가 정본과 다릅니다.');
     const verification = { checked_at: new Date().toISOString(), read_only: true, read_function_role: 'service_role in a read-only transaction', release_id: releaseId, passed: problems.length === 0, problems,
-        public_round_trip: publicRoundTrip, classification_count: classes.length, set_count: items.length,
+        public_round_trip: publicRoundTrip, classification_count: classes.length, set_count: items.length, memo,
         replaced_set_ids: preparation.replaced_set_ids, appended_set_ids: preparation.appended_set_ids, releases: after.releases };
     writeRecord(path.join(paths.records, 'verification.json'), verification);
     if (problems.length) throw new Error(`운영 검증 실패:\n${problems.map((problem) => `- ${problem}`).join('\n')}`);
@@ -391,7 +394,7 @@ export async function runRelease(mode: string, options: ReleaseOptions, root = p
         if (fs.existsSync(file)) throw new Error('이미 점검한 실행입니다. 새 --run을 쓰십시오.');
         const inspection = await inspect(sql);
         writeRecord(file, { version: 1, checked_at: new Date().toISOString(), project, read_only: true, inspection });
-        console.log(JSON.stringify({ active: inspection.active, releases: inspection.releases, functions: inspection.functions.length }, null, 2));
+        console.log(JSON.stringify({ active: inspection.active, memo: inspection.memo, releases: inspection.releases, functions: inspection.functions.length }, null, 2));
         console.log(`다음(로컬): node --env-file=.env.local cpa_uploader/publish_question_release.ts prepare --run ${options.run}`);
         return inspection;
     }

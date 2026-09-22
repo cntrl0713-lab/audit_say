@@ -56,6 +56,7 @@ test('release CLI inspects, prepares, probes, applies once and verifies an in-pl
     const db = await createLearningUnitsDatabase({ extensions: { pgcrypto } });
     try {
         await db.exec(fs.readFileSync('supabase/migrations/20260912060000_cpa_private_source_metadata.sql', 'utf8'));
+        await db.exec(fs.readFileSync('supabase/migrations/20260921120000_cpa_question_version_source_memo.sql', 'utf8'));
         // 압축 전송 검사용: Supabase처럼 pgcrypto를 extensions 스키마에 둔다.
         await db.exec('create schema extensions; create extension pgcrypto with schema extensions; grant usage on schema extensions to service_role;');
         // 운영의 supabase_read_only_user처럼 모든 행을 읽되(RLS 우회) 함수 실행 권한은 없다.
@@ -115,6 +116,8 @@ test('release CLI inspects, prepares, probes, applies once and verifies an in-pl
             const completion = JSON.parse(fs.readFileSync(path.join(records, 'completion.json'), 'utf8'));
             assert.equal(completion.status, 'production_published_and_verified');
             assert.deepEqual(completion.replaced_set_ids, [sets[2].id]);
+            const verification = JSON.parse(fs.readFileSync(path.join(records, 'verification.json'), 'utf8'));
+            assert.deepEqual(verification.memo, { items: sets.length, memo_items: sets.length, memo_versions: sets.length }, 'apply back-fills the release source memo in the same transaction');
             const stored = (await db.query<{ ok: boolean }>("select encode(sha256(convert_to(source_document,'UTF8')),'hex')=$1 as ok from cpa_question_bank_releases where status='active'",
                 [sha(serializeBank(next))])).rows[0];
             assert.equal(stored.ok, true);
